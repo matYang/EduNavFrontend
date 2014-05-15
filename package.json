@@ -1,0 +1,18 @@
+{
+  "name": "Vanilla",
+  "version": "1.0.0",
+  "description": "Carpool frontend",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.6.5",
+    "grunt-contrib-nodeunit": "~0.3.0",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-concat": "~0.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matYang/CarpoolFrontend"
+  },
+  "readmeFilename": "README.md"
+}

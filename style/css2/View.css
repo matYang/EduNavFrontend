@@ -1,0 +1,589 @@
+#view_panel_left{
+	width:480px;
+	height:auto;
+	position:relative;
+	margin-top:30px;
+	padding:0 0 0 30px;
+	float: left;
+}
+#view_panel_right{
+	width:340px;
+	height:400px;
+	position:relative;
+	margin-top:30px;
+	padding:0 0 10px 30px;
+	float:left;
+}
+#view_header{
+	width:100%;
+	height:50px;
+	position:relative;
+}
+
+#view_school{
+	font-size: 22px;
+	letter-spacing: 2px;
+	font-weight: bold;
+	float:left;
+}
+#view_city{
+	font-size: 17px;
+	letter-spacing: 2px;
+	font-weight: bold;
+	float: left;
+	margin-left:30px;
+	margin-top: 2px
+}
+
+
+#view_edit,#view_contact{
+	color:#ffffff;
+	background-color: rgb(20,188,222);
+	width:270px;
+	height:55px;
+	padding-top:5px;
+	border:1px solid #999999;
+	float:left;
+	text-align: center;
+	margin: 10px;
+	font-size:40px;
+}
+#view_edit{
+	width:180px;
+}
+#view_headerUser{
+	height:20px;
+	width:100px;
+	margin-left:20px;
+	margin-top:5px;
+	float:left;
+}
+#view_header_info{
+	height:30px;
+	width: 100%;
+}
+#view_delete{
+	height:20px;
+	width:100px;
+	position:relative;
+	color: #ff0000;
+}
+#view_event_info_left{
+	width: 100%;
+	height:auto;
+	border:1px solid #424242;
+	border-radius: 5px;
+	margin-top: 15px;
+	background: #ffffff; /* Old browsers */
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 6%, #e4e4e4 52%, #ffffff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(6%,#ffffff), color-stop(52%,#e4e4e4), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 6%,#e4e4e4 52%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 6%,#e4e4e4 52%,#ffffff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 6%,#e4e4e4 52%,#ffffff 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 6%,#e4e4e4 52%,#ffffff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+#view_event_info_tbar{
+	height:200px;
+	width:100%;
+}
+#view_event_info_bbar{
+	height:30px;
+	width:100%;
+}
+#view_event_info_right{
+	width: 100%;
+	height:250px;
+	background-color: #f3f3f3;
+	border:1px solid #424242;
+	border-radius: 5px;
+	margin-top: 15px;
+	display:block;
+}
+#departureInfo, #returnInfo{
+	height:80px;
+	width:160px;
+	margin-left:20px;
+	margin-right:10px;
+	margin-top:20px;
+	padding:10px;
+	float:left;
+	border: 2px solid #aaaaaa;
+}
+#directionArrow{
+	width: 25px;
+	height: 50px;
+	padding-top: 61px;
+	padding-left: 17px;
+	float: left;
+}
+
+#note{
+	width:250px;
+	height:40px;
+	margin:10px 10px 10px 20px;
+	float:left;
+}
+
+#view_eventTime{
+	width:auto;
+	height:20px;
+	float:left;
+	font-weight: bold;
+	margin-top:15px;
+	margin-left:20px;
+}
+
+#view_eventGender{
+	width:auto;
+	height:20px;
+	float:left;
+	margin-left: 20px;
+	margin-top:4px;
+	font-size:13px;
+}
+
+#view_eventDescription{
+	margin-left: 20px;
+	float:left;
+}
+
+#view_map{
+	width:100%;
+	height:300px;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+#view_publishTime{
+	margin-top:5px;
+	margin-left:15px;
+	position:absolute;
+	height:18px;
+	font-size:13px;
+	color:#999999;
+	letter-spacing:2px;
+	width:150px;
+}
+
+#view_event_info_right_container{
+	width:290px;
+	height:100%;
+	margin-left: auto;
+	margin-right:auto;
+}
+
+#view_book_option{
+	margin-top:15px;
+	float:left;
+	margin-right:10px;
+	width:120px;
+}
+
+#go, #back{
+	float:left;
+	margin: 5px 5px 5px 0;
+	height:20px;
+	width:20px;
+	border: 2px solid #999999;
+	background-color: #ffffff;
+	text-align:center;
+	padding-top:1px;
+}
+
+#go:hover, #back:hover, .direction_selected{
+	border-color: #00aaff !important;
+}
+
+#price_total{
+	margin-top:7px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:2px;
+	height:20px;
+	width:150px;
+	font-size:18px;
+	color:#1BA700;
+	float:left;
+	font-weight:bold;
+	text-align: center;
+}
+#view_book {
+	background-color: #3399ff;
+	color: #ffffff;
+	font-size: 35px;
+	height:50px;
+	width:150px;
+	margin-top: 10px;
+	text-align: center;
+	padding-top: 5px;
+	padding-left: 5px;
+	letter-spacing: 5px;
+	border: 1px solid #000000;
+	float:left;
+}
+
+#chooseSeatNumber{
+	width:70px;
+	margin-left:5px;
+}
+
+#view_contactInfo{
+	width:100%;
+	height:80px;
+	margin-top:10px;
+	float:left;
+}
+
+#view_cellphone, #view_qq, #view_email{
+	width:100%;
+	height:25px;
+	margin-bottom: 3px;
+}
+
+.view_label{
+	color: rgb(149,149,149);
+	font-weight: bold;
+}
+
+.cipher{
+	color: rgb(127, 150, 204);
+	letter-spacing: 3px;
+	margin-left: 3px;
+}
+
+#view_userInfo{
+	margin-top:20px;
+	width:100%;
+	height:120px;
+}
+
+#view_profilePicture{
+	height: 110px;
+	width: 110px;
+	position:relative;
+	background-color: #aaaaaa;
+	background-image:url("");
+	float:left;
+}
+#view_profile_right{
+	width:200px;
+	height:110px;
+	margin-left:10px;
+	float: left;
+}
+.view_profileOverviewBlock{
+	width:60px;
+	height:60px;
+}
+#view_account{
+	width:100%;
+	height:40px;
+}
+#view_account_name{
+	font-weight: bold;
+	font-size: 16px;
+	color: rgb(127, 120, 230);
+	position: relative;
+	float:left;
+}
+#view_account_gender{
+	width:20px;
+	height:20px;
+	position:relative;
+	float:left;
+}
+#view_account_age{
+	color: #ff0000;
+	width:40px;
+	height:16px;
+	position:relative;
+	margin-left:3px;
+	padding-top:0;
+	padding-bottom:3px;
+	float:left;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1px 2px 2px 1px;
+	text-align: center;
+}
+#view_account_url {
+	font-size:12px;
+	width:230px;
+	height:15px;
+	color:#a8a8a8;
+	float:left;
+	margin-left: 3px;
+}
+#view_profileOverview{
+	width:100%;
+	margin-top:10px;
+	height:70px;
+}
+.view_profileOverviewBlock {
+	height:60px;
+	width:65px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	float: left;
+}
+
+#view_accountLevelLabel, #view_accountScoreLabel, #view_accountTradeCountLabel{
+	font-size: 12px;
+	
+}
+#view_accountLevelLabel, #view_accountScoreLabel{
+	letter-spacing: 5px;
+	margin-left: 5px
+}
+.dashboard_text {
+	font-size: 23px;
+	font-weight: bold;
+	width:100%;
+	height:40px;
+}
+.view_unit1{
+	font-size:10px;
+	margin-left:-6px;
+}
+
+div.editWindow.hourRateEditWindow{
+	width:250px !important;
+	height:140px;
+}
+div.editContentWrapper.hourRateEditWindow{
+	width:220px !important;
+	height:70px;
+}
+div.editContent.hourRateEditWindow{
+	width:220px !important;
+	height:70px;
+}
+#editHourRate{
+	font-size:15px;
+	width:180px;
+	margin-top:20px;
+	margin-left: auto;
+	margin-right: auto;
+	position:relative;
+
+}
+#editHourRate > input{
+	width:50px;
+}
+
+div.editWindow.timeDateEditWindow{
+	width:250px !important;
+	height:180px;
+}
+div.editContentWrapper.timeDateEditWindow{
+	width:220px !important;
+	height:110px;
+}
+div.editContent.timeDateEditWindow{
+	width:220px !important;
+	height:110px;
+}
+
+#editTimeDate > input{
+	width:120px;
+	margin-bottom:5px;
+}
+
+#editTimeDate{
+	font-size:15px;
+	width:200px;
+	margin-top:15px;
+	margin-left: auto;
+	margin-right: auto;
+	position:relative;
+
+}
+
+div.editWindow.locationEditWindow{
+	width:330px !important;
+	height:160px;
+}
+div.editContentWrapper.locationEditWindow{
+	width:300px !important;
+	height:90px;
+}
+div.editContent.locationEditWindow{
+	width:300px !important;
+	height:90px;
+}
+#editLocation > .input_block{
+	margin-bottom: 10px;
+	width:280px;
+	padding-left:10px;
+	padding-right:10px;
+}
+#editLocation > .input_block> input{
+	width:180px;
+	float:right;
+	margin-bottom:0;
+}
+
+#editLocation{
+	font-size:15px;
+	width:auto;
+	margin-top:15px;
+	margin-left: auto;
+	margin-right: auto;
+	position:relative;
+
+}
+div.editWindow.genderEditWindow{
+	width:250px !important;
+	height:120px;
+}
+div.editContentWrapper.genderEditWindow{
+	width:220px !important;
+	height:50px;
+}
+div.editContent.genderEditWindow{
+	width:220px !important;
+	height:50px;
+}
+
+.input_block > input{
+	width:15px;
+	margin-left:15px;
+}
+
+#editGender{
+	font-size:15px;
+	width:auto;
+	margin-top:15px;
+	margin-left: auto;
+	margin-right: auto;
+	position:relative;
+}
+.input_block{
+	float:left;
+}
+#view_transactions_header{
+	width:100%;
+	height:30px;
+	border-bottom:1px solid black;
+}
+#view_transactions_button{
+	width:16px;
+	height:16px;
+	background-image: url("../../res/personal/arrow_down.png");
+	float:left;
+	background-size:100%;
+	background-repeat: no-repeat;
+	margin-left:8px;
+	margin-top:8px;
+}
+
+#view_transactions_title{
+	float:right;
+	color:rgb(90, 90, 90);
+	font-weight:bold;
+	font-size:0.9em;
+	margin-right:5px;
+}
+#reservation_count{
+	color:#000000;
+	font-size:2em;
+}
+#view_transactions{
+	width: 100%;
+	background-color: rgb(243, 243, 243);
+	border: 1px solid rgb(66, 66, 66);
+	border-radius: 5px;
+	margin-top: 15px;
+}
+
+#view_transactions_content{
+	margin-top:5px;
+}
+
+.transaction_content{
+	width:100%;
+	height:55px;
+}
+
+.transaction_image {
+	width:45px;
+	height:45px;
+	background-color: #ffffff;
+	float:left;
+	margin: 5px 10px 5px 10px;
+}
+
+.transaction_text{
+	position:absolute;
+	margin-top:20px;
+	margin-left:80px;
+	font-weight: bold;
+	color: rgb(105,105,105);
+}
+
+.transaction_time {
+	color:rgb(202, 97, 97);
+}
+
+.transaction_targetUser{
+	color:rgb(98, 133, 180);
+}
+
+#pricelist {
+	float:left;
+	width:100%;
+	margin-top:20px;
+	height:140px;
+
+}
+
+.priceEntry {
+	float:left;
+	width:50%;
+	height:20px;
+	font-size:18px;
+}
+/*.ownerVersionVEIR{
+	height:230px;
+}
+*/
+
+#view_automatchButton{
+    height:40px;
+    width:80px;
+    background-color: #0099ff;
+    border: 1px solid black;
+    text-align:center;
+    color:#ffffff;
+    padding-top: 20px;
+    margin-top: 10px;
+    float:left;
+    font-size:20px;
+}
+
+#view_automatch {
+	display:block;
+	width:100%;
+	float:left;
+}
+
+.view_matchResultEntry {
+	width:60px;
+	height:60px;
+	float:left;
+	margin:5px;
+}
+
+#view_matchMore{
+    width:270px;
+    float:left;
+    height:20px;
+    border:1px solid #cee1ee;
+    background-color:#f0f5f8;
+    margin-left:10px;
+    padding-top:2px;
+    text-align: center;
+}

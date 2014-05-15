@@ -1,0 +1,4 @@
+node_modules/
+style/images/Thumbs.db
+scripts/test/testMockObj.js
+build/

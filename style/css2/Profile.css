@@ -1,0 +1,738 @@
+#profilePage{
+	width: 100%;
+	height:700px;
+	position:relative;
+	float:left;
+	padding:5px;
+
+}
+
+#profilePage_dashboard {
+	height:240px;
+	width:320px;
+	position:relative;
+	border-bottom-color: #cacaca;
+	border-right-color: #cacaca;
+	border-left-color: #ececec;
+	border-top-color: #ececec;
+	border-style: solid;
+	border-width: 2px;
+	float:left;
+}
+
+#profilePage_profilePicture{
+	height: 240px;
+	width: 240px;
+	position:relative;
+	background-color: #aaaaaa;
+	float:left;
+}
+
+#profilePage_profilePicture>img {
+	height: 100%;
+	width: 100%;
+	background-size: 100%;
+}
+
+#profilePage_profileOverview {
+	height:240px;
+    width:80px;
+    position:relative;
+    float:left;
+}
+
+.profileOverviewBlock {
+	height:70px;
+	width:80px;
+	text-align: center;
+	padding-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#profilePage_accountScoreHolder{
+	text-align: center;
+	position: relative;
+	width:57px;
+	height:45px;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+#profilePage_accountScoreValue{
+	width:auto;
+	height:40px;
+	position:relative;
+	margin-top:10px;
+	margin-left:auto;
+}
+
+.unit_1{
+	width:15px;
+	height:30px;
+	margin-top: 20px;
+	position: relative;
+	font-size: 15px;
+	float:left;
+}
+
+.dashboard_text {
+	font-size: 23px;
+	font-weight: bold;
+	width:70px;
+	height:50px;
+}
+
+#profilePage_accountTradeCountValue {
+    margin-left:auto;
+    margin-right: auto;
+}
+
+#profilePage_accountInfo {
+	width: 390px;
+	height: 150px;
+	padding-left:15px;
+	padding-top: 5px;
+	position:relative;
+	float:left;
+}
+
+#profilePage_accountInfoHeader {
+	width:360px;
+	height: 50px;
+	position:relative;
+	float:left;
+}
+#profilePage_accountInfoContent {
+	width: 360px;
+	height: 100px;
+	position:relative;
+	float:left;
+}
+
+#profilePage_userRealName, #profilePage_userEmail, #profilePage_userCellphone, #profilePage_userQQ{
+	height:26px;
+}
+
+#profilePage_userName{
+	font-size:35px;
+	position: relative;
+	float:left;
+}
+#profilePage_userGender{
+	width:20px;
+	height:20px;
+	position:relative;
+	margin-top:10px;
+	float:left;
+}
+#profilePage_userAge{
+	width:35px;
+	height:16px;
+	position:relative;
+	margin-top:8px;
+	margin-left:3px;
+	padding-top:0;
+	padding-bottom:3px;
+	float:left;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1px 2px 2px 1px;
+	text-align: center;
+}
+
+#profilePage_sendLetter{
+	background-image: url('../../res/topBar/letter.png');
+	width:32px;
+	height:30px;
+	float:left;
+	margin-left: 20px;
+	margin-top:1px;
+	background-repeat: no-repeat;
+	border:2px solid #ffffff;
+}
+#profilePage_sendLetter:hover{
+	border-color: #0099ff;
+	cursor:pointer;
+}
+
+#profilePage_userUrl {
+	font-size:12px;
+	width:230px;
+	height:15px;
+	color:#a8a8a8;
+	float:left;
+	margin-left: 3px;
+}
+
+/*background-image need to be set*/
+#profilePage_homepageTab{
+}
+#profilePage_historyTab{}
+#profilePage_followTab{}
+#profilePage_settingTab{}
+
+#profilePage_tabButton{
+	width:400px;  
+    height:82px;
+    position:relative;
+    margin-left: 10px;
+    margin-top:17px;
+    float:left;
+}
+
+.tabButton {
+	width:98px;
+	height:70px;
+	float:left;
+	position: relative;
+	border-width: 0;
+	border-left-width: 1px;
+	border-top-width: 1px;
+	border-style: solid;
+	border-color:#999999;
+	text-align: center;
+	padding-top: 10px;
+	z-index: 2;
+}
+
+.tabButton:hover{
+	background-color: rgb(236,223,177);
+}
+.lastTabButton {
+	border-right-width: 1px;
+}
+
+.selectedTabButton{
+	background-color:#ddfeff !important;
+	z-index: 2;
+	border-bottom-width: 1px;
+	border-bottom-color: #60B7CF;
+}
+
+.nonSelectedTabButton{
+	background-color: #ffffff;
+	border-bottom-width: 1px;
+}
+#profilePage_content {
+	height:520px;
+	width:729px;
+	border-width: 1px;
+	border-style: solid;
+	border-color:#999999;
+	float:left;
+	z-index: 1;
+	margin-top: -1px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#profilePage_messageTabContent, #profilePage_watchTabContent, #profilePage_historyTabContent, #profilePage_utilityTabContent{
+	height:520px;
+	width:730px;
+	margin:auto;
+	padding-top: 5px;
+	position:relative;
+	float:left;
+}
+
+#profilePage_messagePublished{
+	height: 100%;
+	width: 46%;
+	float:left;
+	margin-left:20px;
+	margin-top:5px;
+}
+
+.profilePage_header{
+	height:30px;
+	width: 355px;
+	position:relative;
+	margin-top:5px;
+	margin-left: 20px;
+	font-size:20px;
+}
+
+#profilePage_messageParticipated{
+	height: 100%;
+	width: 46%;
+	float:left;
+	margin-left:20px;
+	margin-top:5px;
+}
+#profilePage_messagePublishedContent{
+	border-color: #999999;
+	border-width:2px;
+	border-style: solid;
+	width:100%;
+	height:460px;
+}
+#profilePage_messageParticipatedContent{
+	border-color: #999999;
+	border-width:2px;
+	border-style: solid;
+	width:100%;
+	height:460px;
+}
+.profilePage_eventBox {
+	height: 60px;
+	width: 325px;
+	margin: 5px 5px 0 5px;
+	position: relative;
+	border-color: #cecece;
+	border-width: 0 0 1px 0;
+	border-style: dashed;
+}
+
+.profilePage_profilePicture, .profilePage_profilePicture>img {
+	height:55px;
+	width:55px;
+	position:relative;
+	float:left;
+	background-color:#aaaaaa;
+}
+
+.profilePage_containerInfo {
+	width:220px;
+	height:60px;
+	margin-left:5px;
+	float:left;
+}
+
+.profilePage_containerPrice {
+	font-size:20px;
+	float:left;
+}
+
+
+.profilePage_arrival, .profilePage_departure{
+	width:180px;
+	color:#585858;
+}
+.profilePage_date {
+	float:left;
+	margin-top:10px;
+	font-size:15px;
+	color:#585858;
+}
+
+.profilePage_time{
+	margin-top:10px;
+	font-size:15px;
+	color:#aa6059;
+}
+.profilePage_containerPrice{
+	margin-top:2px;
+
+}
+.profilePage_priceUnit{
+	float:left;
+	font-size:15px;
+	color:#009900;
+	margin-top:8px;
+}
+
+.profilePage_price{
+	float:left;
+	font-size:22px;
+	color:#009900;
+}
+.profilePage_follow {
+	width:30px;
+	height:20px;
+	position:relative;
+	margin-top:5px;
+	color:#585858;
+	font-size:12px;	
+}
+
+.profilePage_finished {
+	width:40px;
+	height:20px;
+	position:relative;
+	margin-top:5px;
+	color:#585858;
+	font-size:12px;	
+}
+
+.profilePage_followNumber{
+	width:26px;
+	height:21px;
+	position: relative;
+	padding-top: 1px;
+	border-color: #999999;
+	border-width:1px;
+	border-style: solid;
+	background-color: #58c0b9;
+	color: #ffffff;
+	font-size:15px;
+	text-align: center;
+}
+.profilePage_followNumberFinished{
+
+    width:26px;
+	height:21px;
+	position: relative;
+	padding-top: 1px;
+	border-color: #999999;
+	border-width:1px;
+	border-style: solid;
+	background-color: #7a7a7a;
+	color: #ffffff;
+	font-size:15px;
+	text-align: center;
+}
+#profilePage_moreActiveMessagePublished {
+	width:97%;
+	height:15px;
+	font-size: 12px;
+	padding:2px 0 2px 0;
+	position:relative;
+	background-color: #cecece;
+	color: #555555;
+	margin-left:5px;
+	text-align: center;
+}
+#profilePage_moreActiveMessageParticipated {
+	width:97%;
+	height:15px;
+	font-size: 12px;
+	padding:2px 0 2px 0;
+	position:relative;
+	background-color: #cecece;
+	color: #555555;
+	margin-left:5px;
+	text-align: center;
+}
+
+.personal_messageHistory_eventBox{
+	height:20px;
+}
+
+.unread{
+	background-color:rgb(198,244,178);
+}
+
+.transactionState0{
+	background-color:#F5F5F5;
+}
+.transactionState1{
+	background-color:#FFFF66;
+}
+.transactionState2{
+	background-color:#666666;
+}
+.transactionState3{
+	background-color:#FFFF66;
+}
+.transactionState4{
+	background-color:#666666;
+}
+.transactionState5{
+	background-color:#47D147;
+}
+.transactionState6{
+	background-color:#FF0000;
+}
+.transactionState7, .transactionState8, .transactionState9{
+	background-color:#47D147;
+}
+
+#profilePage_transactionHistories, #profilePage_notificationHistories, #profilePage_userWatch, #profilePage_messageWatch{
+	position:relative;
+	width:46%;
+	height:100%;
+	float:left;
+	margin-left:20px;
+	margin-top:5px;
+}
+
+#transactionHistoryContent, #notificationHistoryContent, #messageWatchContent{
+	width:100%;
+	height:460px;
+	border:2px solid #999999;
+	overflow-y:auto;
+}
+#socialListContent{
+	width: 700px;
+	height: 460px;
+	margin-left: 10px;
+	margin-top: 10px;
+	overflow-y: auto;
+}
+
+#utility_personalInfo, #utility_displayPicture, #utility_password, #utility_accountSetting {
+	width:500px;
+	height:450px;
+	margin:15px auto 15px auto;
+	float:left;
+}
+
+#save_personalInfo{
+	width:60px;
+	height:25px;
+	background-color:#60B7CF;
+	margin-top:50px;
+	margin-left:20px;
+	padding-top: 5px;
+	float:right;
+	text-align: center;	
+}
+
+#reset_password, #submit_password{
+	width:60px;
+	height:25px;
+	background-color:#60B7CF;
+
+	margin-left:20px;
+	padding-top: 5px;
+	margin-top:60px;	
+	float:right;
+	text-align: center;
+}
+#utility_picture{
+	width:130px;
+	height:130px;
+	float:left;
+	background-image:url("");
+}
+#useDefault_picture{
+	width:90px;
+	height:25px;
+	background-color:rgb(224,39,41);
+	margin-top:60px;
+	margin-left:20px;
+	padding-top: 5px;	
+	float:right;
+	text-align: center;
+}
+
+#upload_picture{
+	width:90px;
+	height:25px;
+	background-color:rgb(224,39,41);
+	margin-top:60px;
+	margin-left:20px;
+	padding-top: 5px;	
+	float:right;
+	text-align: center;
+}
+
+#utility_QQ, #utility_name, #utility_nickname, #utility_location, #utility_phone, #utility_birthday, #utility_intro, #utility_gender{
+	height:30px;
+	margin-left:20px;
+	margin-top:15px;
+}
+#utility_birthday>input{
+	width:60px;
+}
+#utility_gender>label{
+	top:-8px;
+}
+
+#oldPassword, #newPassword, #confirmNewPassword{
+	height:30px;
+	margin-top:15px;
+	float:left;
+	margin-left:20px;
+}
+
+#notificationMethod, #paymentMethod{
+	height: 30px;
+	margin-left: 20px;
+	margin-top: 15px;
+}
+
+.personal_transactionHistory_message {
+	width:310px;
+	height:60px;
+	padding-left:10px;
+	padding-right: 15px;
+	border-bottom:1px dashed #999999;
+}
+
+.personal_transactionHistory_state{
+	position:relative;
+	margin-top:10px;
+	width:75px;
+	height:30px;
+	padding-top:10px;
+	float:left;
+	text-align:center;
+	font-size:12px;
+	border:solid 1px #999999;
+}
+
+.personal_transactionHistory_userName{
+	position:relative;
+	margin-top:10px;
+	width:80px;
+	height:30px;
+	padding-top:10px;
+	float:left;
+	text-align:center;
+	font-size:20px
+}
+
+.personal_transactionHistory_containerInfo{
+	padding:10px;
+	width:200px;
+	margin-left:10px;
+	height:40px;
+	float:left;
+}
+
+.personal_transactionHistory_date{
+	color:#666666;
+	position:relative;
+	margin-top:10px;
+	width:60px;
+	height:30px;
+	padding-top:10px;
+	float:left;
+	text-align:center;
+	font-size:20px;
+}
+.personal_transactionHistory_price{
+	color:#006600;
+	position:relative;
+	margin-top:5px;
+	margin-left:10px;
+	width:auto;
+	height:30px;
+	padding-top:10px;
+	float:left;
+	text-align:center;
+	font-size:25px;
+}
+
+.personal_notification_message{
+	height:60px;
+	font-size:18px;
+	border-bottom: 1px dashed #999999;
+}
+
+.profilePage_userWatch{
+	height: 65px;
+	width: 310px;
+	margin: 5px 5px 0px;
+	position: relative;
+	border-color: rgb(206, 206, 206);
+	border-width: 0px 0px 2px;
+	border-style: solid;
+}
+
+#message_more, #user_more {
+	height:20px;
+	width:310px;
+	text-align: center;
+	padding-top:2px;
+}
+
+.social_card {
+	width:200px;
+	margin:5px;
+	height:85px;
+	border-color:#e6e6e6;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 2px;
+	float:left;
+	padding:10px;
+
+}
+
+.social_card:hover{
+	border-width: 2px;
+	border-color:#00aaff;
+	margin:4px;
+}
+
+.social_picture{
+	height:60px;
+	width:60px;
+	margin:5px;
+	float:left;
+}
+
+.social_picture>img{
+	height:60px;
+	width:60px;
+}
+.social_name{
+	float:left;
+	width:110px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.social_gender_0, .social_gender_1, .social_level{
+	width:50px;
+	float:left;
+}
+.social_location{
+	width:130px;
+	float:left;
+}
+
+#utilitySelect{
+	float:left;
+	width:150px;
+	height:496px;
+	padding-top:20px;
+	margin-left:20px;
+}
+
+#utilitySelect>h3{
+	height: 15px;
+	font-size: 14px;
+	line-height: 15px;
+	padding: 6px 15px;
+	margin: 0 0 1px;
+	font-weight: 400;
+	color: #666;
+}
+.utilityTab{
+	color: #0363a0;
+	padding-left: 35px;
+	margin: 0 0 1px;
+	font-size: 12px;
+	line-height: 15px;
+	padding: 6px 30px;
+	cursor: pointer;
+	 -webkit-user-select:none
+}
+.utilityTab:hover{
+ 	background-color:rgb(236,223,177);
+}
+#utility_intro>textarea{
+	border: 1px solid #ddd;
+	padding: 2px 0 0 2px;
+	vertical-align: top;
+	color: #666;
+	overflow: auto;
+	height: 48px;
+	width: 218px;
+	font-size: 12px;
+}
+
+.invalid_input{
+	background-color:#ffaaaa;
+}
+.selected_input{
+	background-color:rgb(244, 255, 212);
+	border-color:rgb(165, 199, 96);
+}
+
+.personal_notification_userDp>img {
+	height:50px;
+	width:50px;
+	margin-right:5px;
+	margin-top:5px;
+	margin-left:5px;
+	float:left;
+}
+.mandatoryStar{
+	color:#ff0000;
+	float:left;
+}
