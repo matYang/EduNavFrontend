@@ -4,9 +4,11 @@ var Course = Backbone.Model.extend({
             "courseId":-1,
             "creationTime": new Date(),
             "partnerId":-1,
-            "startTime": new Date(), 
-            "finishTime": new Date(), 
-            // "location": "",
+
+            "startTime": new Date(),
+            "finishTime": new Date(),
+            "location": "",
+
             "teacherInfo": "",
             "teacherImgUrl": "",
             "teachingMaterial": "",

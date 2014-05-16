@@ -1,11 +1,18 @@
 var Partner = BaseUser.extend({
-    defaults: {
-           "license": "",
-           "organization": "", 
-           "reference": "", 
-           "creationTime": "",
-           "institutionName": ""
+
+    
+    defaults: function () {
+        return {
+            "partnerId":"",
+            "license": "",
+            "organization": "", 
+            "reference": "", 
+            "creationTime": "",
+            "institutionName": ""
+        };
     },
+    idAttribute: "partnerId",
+
     parse: function (data) {
         if ( typeof data !== 'undefined' && typeof data.courseId !== 'undefined') {
             data = BaseUser.prototype.parse(data);
