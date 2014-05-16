@@ -64,7 +64,7 @@
         }
 
         var sessionUser = newUser;
-        sessionUser.overrideUrl(this.apis.users_user);
+        sessionUser.overrideUrl(this.apis.user_user);
         sessionUser.set('userId', -1);
         sessionUser.save({},{
             dataType:'json',
@@ -99,7 +99,7 @@
         }
 
         var user = new User();
-        user.overrideUrl(this.apis.users_user);
+        user.overrideUrl(this.apis.user_user);
         user.set('userId', this.sessionManager.getUserId());
         user.fetch({
             data: $.param({ 'intendedUserId': intendedUserId}),
@@ -138,7 +138,7 @@
         $.ajax({
             type: "GET",
             async: true,
-            url: self.apis.users_email,
+            url: self.apis.user_email,
             data: $.param({ email: emailVal}),
             dataType: 'json',
             success: function(data){
@@ -176,7 +176,7 @@
         var self = this;
 
         var sessionUser = app.sessionManager.getSessionUser();
-        sessionUser.overrideUrl(this.apis.users_contactInfo);
+        sessionUser.overrideUrl(this.apis.user_contactInfo);
         sessionUser.set('name', name);
         sessionUser.set('gender', gender);
         sessionUser.set('phone', phone);
@@ -218,7 +218,7 @@
         var self = this;
 
         var sessionUser = app.sessionManager.getSessionUser();
-        sessionUser.overrideUrl(this.apis.users_singleLocation);
+        sessionUser.overrideUrl(this.apis.user_singleLocation);
         //url encoded, not setting in user
         sessionUser.save({},{
             data: JSON.stringify({ 'location': location.toString()}),
@@ -251,7 +251,7 @@
         }
 
         var sessionUser = app.sessionManager.getSessionUser();
-        sessionUser.overrideUrl(this.apis.users_toggleNotices);
+        sessionUser.overrideUrl(this.apis.user_toggleNotices);
         //url encoded, not setting in user
         sessionUser.fetch({
             data: $.param({ 'emailNotice': shouldEmail, 'phoneNotice': shouldPhone}),
@@ -296,7 +296,7 @@
         $.ajax({
             type: "PUT",
             async: true,
-            url: self.apis.users_changePassword + '/' + self.sessionManager.getUserId(),
+            url: self.apis.user_changePassword + '/' + self.sessionManager.getUserId(),
             data: JSON.stringify({ 'oldPassword': oldPassword, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword}),
             dataType: 'json',
             contentType: 'application/json',    //setting this should be covering the data into PUT body
@@ -332,7 +332,7 @@
         $.ajax({
             type: "GET",
             async: true,
-            url: self.apis.users_emailActivation,
+            url: self.apis.user_emailActivation,
             data: $.param({'key': key}),
             dataType: 'json',
             success: function(data){
@@ -365,7 +365,7 @@
         $.ajax({
             type: "GET",
             async: true,
-            url: self.apis.users_resendActivationEmail + '/' + self.sessionManager.getUserId(),
+            url: self.apis.user_resendActivationEmail + '/' + self.sessionManager.getUserId(),
             dataType: 'json',
             success: function(data){
                 if(callback){
@@ -396,7 +396,7 @@
         $.ajax({
             type: "GET",
             async: true,
-            url: self.apis.users_forgetPassword,
+            url: self.apis.user_forgetPassword,
             data: $.param({'email': email}),
             dataType: 'json',
             success: function(data){
@@ -429,7 +429,7 @@
         $.ajax({
             type: "POST",
             async: true,
-            url: self.apis.users_forgetPassword,
+            url: self.apis.user_forgetPassword,
             data: JSON.stringify({ 'key': key, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword}),
             dataType: 'json',
             contentType: 'application/json',    //setting this should be covering the data into PUT body
@@ -447,154 +447,6 @@
     };
 
     /********************* User Relations ***************************/
-
-    UserManager.prototype.watchUser = function(targetUserId, callback) {
-        var self = this;
-        if (typeof targetUserId !== 'number'){
-            Constants.dWarn("UserManager::watchUser:: invalid parameter");
-            return;
-        }
-        if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::watchUser:: session does not exist, exit");
-            return;
-        }
-
-
-        var tempCurUser = new User();
-        tempCurUser.overrideUrl(this.apis.users_watchUser);
-        tempCurUser.set('userId', self.sessionManager.getUserId());
-        tempCurUser.save({},{
-            data: JSON.stringify({'targetUserId': targetUserId, 'action': 'watch'}),
-            dataType:'json',
-
-            success:function(model, response){
-                self.timeStamp = new Date();
-                if(callback){
-                    callback.success(tempCurUser);
-                }
-            },
-            error: function(model, response){
-                Constants.dWarn("UserManager::watchUser:: update failed with response:");
-                Constants.dLog(response);
-                if(callback){
-                    callback.error(response);
-                }
-            }
-        });
-    };
-
-    UserManager.prototype.deWatchUser = function(targetUserId, callback) {
-        var self = this;
-        if (typeof targetUserId !== 'number'){
-            Constants.dWarn("UserManager::deWatchUser:: invalid parameter");
-            return;
-        }
-        if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::deWatchUser:: session does not exist, exit");
-            return;
-        }
-
-
-        var tempCurUser = new User();
-        //set the id of the temp user to curUserId to confront to API requirements
-        tempCurUser.overrideUrl(this.apis.users_watchUser);
-        tempCurUser.set('userId', self.sessionManager.getUserId());
-        tempCurUser.save({}, {
-            data: JSON.stringify({'userId':self.sessionManager.getUserId(),'targetUserId': targetUserId, 'action': 'dewatch'}),
-            dataType:'json',
-
-            success:function(model, response){
-                self.timeStamp = new Date();
-                if(callback){
-                    callback.success(tempCurUser);
-                }
-            },
-            error: function(model, response){
-                Constants.dWarn("UserManager::deWatchUser:: delete failed with response:");
-                Constants.dLog(response);
-                if(callback){
-                    callback.error(response);
-                }
-            }
-        });
-    };
-    
-    UserManager.prototype.isUserWatched = function(intendedUserId, callback) {
-        //don't care about session
-        if (typeof intendedUserId !== 'number'){
-            Constants.dWarn("UserManager::isUserWatched:: invalid parameter");
-            return;
-        }
-
-        var self = this;
-
-        $.ajax({
-            type: "GET",
-            async: true,
-            url: self.apis.users_isUserWatched+'/'+self.sessionManager.getUserId(),
-            data: $.param({ 'intendedUserId': intendedUserId}),
-            dataType: 'json',
-            success: function(data){
-                Info.log("isUserWatched call succeeded with response:");
-                Info.log(data);
-
-                if(callback && callback.success){
-                    callback.success(data.val === 'true' || data.val === true);
-                }
-            },
-            error: function (data, textStatus, jqXHR){
-                alert("请稍后再试");
-                Constants.dWarn("UserManager::isUserWatched:: action failed");
-                if(callback && callback.error){
-                    callback.error(data === 'true');
-                }
-            }
-        });
-    };
-
-
-    UserManager.prototype.fetchWatchedUsers = function(intendedUserId, callback) {
-        if(testMockObj.testMode){
-            watchedUsers = testMockObj.sampleUsers;
-            callback.success(watchedUsers, 0);
-            return;
-        }
-        var self = this;
-
-        if (typeof intendedUserId !== 'number'){
-            Constants.dWarn("UserManager::fetchWatchedUsers:: invalid parameter, exit");
-            return;
-        }
-        if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::fetchWatchedUsers:: session does not exist, exit");
-            return;
-        }
-
-
-        var watchedUsers = new Users();
-        //set the id of the temp user to curUserId to confront to API requirements
-        watchedUsers.overrideUrl(this.apis.users_watchUser + '/' + self.sessionManager.getUserId());
-        watchedUsers.fetch({
-            data: $.param({ 'intendedUserId': intendedUserId}),
-            dataType:'json',
-
-            success:function(model, response){
-                self.socialList_timeStamp = new Date();
-                if(callback){
-                    callback.success(watchedUsers, 0);
-                }
-            },
-            error: function(model, response){
-                Constants.dWarn("UserManager::fetchWatchedUsers:: fetch failed with response:");
-                Constants.dLog(response);
-                if(callback){
-                    callback.error(response);
-                }
-            }
-        });
-    };
-
-
     UserManager.prototype.fetchMessageHistory = function(intendedUserId, callback) {
         if (testMockObj.testMode) {
             callback.success(testMockObj.sampleMessages);
@@ -615,7 +467,7 @@
 
         var messageHistory = new Messages();
         //confront to API requirements
-        messageHistory.overrideUrl(this.apis.users_messageHistory + '/' + self.sessionManager.getUserId());
+        messageHistory.overrideUrl(this.apis.user_messageHistory + '/' + self.sessionManager.getUserId());
         messageHistory.fetch({
             data: $.param({ 'intendedUserId': intendedUserId}),
             dataType:'json',
@@ -656,7 +508,7 @@
 
 
         var transactionList = new Transactions();
-        transactionList.overrideUrl(this.apis.users_transaction + '/' + self.sessionManager.getUserId());
+        transactionList.overrideUrl(this.apis.user_transaction + '/' + self.sessionManager.getUserId());
         transactionList.fetch({
             data: $.param({ 'intendedUserId': intendedUserId}),
             dataType:'json',
@@ -679,152 +531,5 @@
         });
     };
 
-
-    UserManager.prototype.fetchNotificationList = function(intendedUserId, callback){
-        if (testMockObj.testMode) {
-            callback.success(testMockObj.sampleNotifications);
-            return;
-        }
-        if (typeof intendedUserId !== 'number'){
-            Constants.dWarn("UserManager::fetchNotification:: userId invalid");
-            return;
-        }
-        if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::fetchNotification:: session does not exist, exit");
-            return;
-        }
-
-        var self = this;
-        //passing reset true to make sure notifications are always sync with server
-        var notifications = new Notifications();
-        notifications.overrideUrl(this.apis.users_notification + '/' + self.sessionManager.getUserId());
-        notifications.fetch({
-            reset: true,
-            data: $.param({ 'userId': intendedUserId}),
-            dataType:'json',
-            success:function(model, response){
-                self.notificationList_timeStamp = new Date();
-                if(callback){
-                    callback.success(notifications);
-                }
-            },
-            error: function(model, response){
-                Constants.dWarn("UserManager::fetchNotification:: fetch failed with response:");
-                Constants.dLog(response);
-                if(callback){
-                    callback.error(response);
-                }
-            }
-        });
-    };
-
-
-
-    /*
-    * letters will only be fetched from sessionManager, as letters have highest privacy levels
-    * letterFetchOptions can be empty, and can optionally inlude
-        {
-            direction: 0 | 1 | 2,  0, inbound letters, 1. outbound letters 2: both direction, 
-            targetUserId: the userId I am fetching chat history from, this userId can be sender or receiver or both, depending on direction
-            targetType: if user, when user messges will be fetch, if system, then you know..
-        }
-    *
-    */
-    UserManager.prototype.fetchLetters = function(letterFetchOptions, callback){
-        if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::fetchLetter:: session does not exist, exit");
-            return;
-        }
-
-        var self = this,
-            letters = new Letters();
-
-        letterFetchOptions.userId = self.sessionManager.getUserId();
-        letters.overrideUrl(this.apis.letter_letter + '/' + self.sessionManager.getUserId());
-        letters.fetch({
-            data: $.param(letterFetchOptions),
-            dataType:'json',
-
-            success:function(model, response){
-                self.letter_timeStamp = new Date();
-                if (callback) {
-                    callback.success(letters);
-                }
-            },
-            error: function(model, response){
-                Constants.dWarn("UserManager::fetchLetter:: fetch failed with response:");
-                Constants.dLog(response);
-                if(callback){
-                    callback.error(response);
-                }
-            }
-        });
-    };
-    
-    UserManager.prototype.fetchLetterUsers = function(callback){
-        if (testMockObj.testMode) {
-            callback.success(testMockObj.sampleUsers);
-            return;
-        }
-        if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::fetchLetterUsers:: session does not exist, exit");
-            return;
-        }
-
-        var self = this,
-            users = new Users();
-
-        users.overrideUrl(this.apis.letter_user + '/' + self.sessionManager.getUserId());
-        users.fetch({
-            dataType:'json',
-
-            success:function(model, response){
-                if (callback) {
-                    callback.success(users);
-                }
-            },
-            error: function(model, response){
-                Constants.dWarn("UserManager::fetchLetterUsers:: fetch failed with response:");
-                Constants.dLog(response);
-                if(callback){
-                    callback.error(response);
-                }
-            }
-        });
-    };
-
-    UserManager.prototype.searchUsers = function(userSearchRepresentation, callback) {
-        debugger;
-        if (testMockObj.testMode) {
-            callback.success(testMockObj.sampleUsers);
-            return;
-        }
-        if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::searchUsers:: session does not exist, exit");
-            return;
-        }
-
-        var self = this,
-            users = new Users();
-
-        users.overrideUrl(this.apis.users_searchUser);
-        users.fetch({
-            data: $.param({'userSearchRepresentation': userSearchRepresentation, 'userId': self.sessionManager.getUserId()}),
-            dataType:'json',
-
-            success:function(model, response){
-                if (callback) {
-                    callback.success(users);
-                }
-            },
-            error: function(model, response){
-                Constants.dWarn("UserManager::searchUsers:: fetch failed with response:");
-                Constants.dLog(response);
-                if(callback){
-                    callback.error(response);
-                }
-            }
-        });
-    };
 
 }).call(this);

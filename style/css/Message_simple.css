@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* CSS Document */
+.message_simple {
+	margin-bottom:10px;
+}
+.message_simple dl {
+	height:85px;
+	cursor:pointer;
+}
+.message_simple dl:hover dd {
+	background:#e9f3f7;
+}
+.message_simple dl dt {
+	float:left;
+	width:70px;
+	text-align:center;
+	margin-right:12px;
+	color:#57b7e1;
+	font-size:12px;
+}
+.message_simple dl dd {
+	float:right;
+	width:618px;
+	background:#f4f4f4;
+	height:85px;
+}
+.message_simple dl dd .from, .message_simple dl dd .to {
+	float:left;
+	width:190px;
+	margin-top:12px;
+	padding-left:25px;
+	font-size:12px;
+	color:#a5a5a5;
+	line-height:20px;
+	background:url(../images/message_simple.png) no-repeat 0 3px;
+}
+.message_simple .back-and-forth .arrow {
+	float:left;
+	width:40px;
+	height:85px;
+	margin:0 15px 0;
+	background:url(../images/message_simple.png) no-repeat 0 -146px;
+	text-indent: -32768px;
+}
+.message_simple .one-way .arrow {
+	float:left;
+	width:40px;
+	height:85px;
+	margin:0 15px 0;
+	background:url(../images/message_simple.png) no-repeat 0 -220px;
+	text-indent: -32768px;
+}
+.message_simple .one-way .to p {
+	color:#ccc;
+}
+.message_simple dl dd h3 {
+	font-size:14px;
+	color:#57b7e1;
+	margin-bottom:3px;
+	font-weight:normal;
+}
+.message_simple dl dd .from {
+	margin-left:20px;
+}
+.message_simple dl dd .to {
+	background-position:0 -82px;
+}
+.message_simple dl dd .price {
+	line-height:85px;
+	font-size:18px;
+}

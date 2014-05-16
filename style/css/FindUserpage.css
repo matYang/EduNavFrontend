@@ -1,0 +1,76 @@
+@charset "utf-8";
+/* CSS Document */
+
+.FindUserpage-searchBanner { height: 123px; background: url(../images/mainPage_searchBanner_bg.png) repeat-x; }
+.FindUserpage-searchBanner-inner { width: 1000px; margin: 0 auto; }
+.FindUserpage-searchBanner-searchBox { position: relative; top: 20px; height: 82px; background: url(../images/searchBox.png) no-repeat; padding-left: 12px; }
+
+.FindUserpage-searchBanner-searchBox input.text {height: 50px; line-height: 50px\9; font-family: 微软雅黑; background: url(../images/input_bg.png) no-repeat 0 -280px; border: none; padding-left:10px; font-size: 18px; color: #888888; }
+
+.FindUserpage-searchBanner-searchBox .select_item{ width:260px; margin-right:10px; margin-top:15px;}
+.FindUserpage-searchBanner-searchBox .select_item input{width:250px;}
+.FindUserpage-searchBanner-searchBox .select_item ul{width:258px; margin-top:-2px;}
+
+.FindUserpage-searchBanner-searchBox .find_user{float:left; margin-top:15px;}
+.FindUserpage-searchBanner-searchBox .find_user input.text{width:568px; background:url(../images/input_bg.png) no-repeat 0 -339px;}
+
+.FindUserpage-searchBanner-searchBox .search { float: left; margin-top: 16px; margin-left: 10px; }
+.FindUserpage-searchBanner-searchBox .search input { width: 115px; height: 50px; background: url(../images/btns.png) no-repeat -367px -288px; cursor: pointer; border: none; font-size: 18px; color: #fff; }
+.FindUserpage-searchBanner-searchBox .search_down { width: 258px; }
+
+.FindUserpage-searchResult-container{width: 1000px; margin: 25px auto 45px;}
+.FindUserpage-searchResult-title { border-bottom: 1px solid #57b7e1; padding-bottom: 10px; background: url(../images/icon.png) no-repeat 0 -252px; font-size: 18px; color: #57b7e1; padding-left: 40px; margin-bottom: 15px; }
+
+.control_bar{ padding-left:20px; height:42px; background:#ededed;}
+.control_bar .select_item2{margin-right:20px; margin-top:8px;}
+.control_bar label{float:left; line-height:42px;}
+select.select_item2{ position:relative; background:#fff;width:150px;}
+select.select_item2{position:relative; width:150px; height:24px; line-height:24px; cursor:pointer; border:1px solid #dcdcdc;}
+select.select_item2 option{float:left; padding-left:8px; padding-right:8px; color:#909090; line-height:24px; font-size:12px;}
+select.select_item2 a{ position:absolute; right:0; width:19px; height:24px; border-left:1px solid #dcdcdc; background:url(../images/arrow2.png) no-repeat center;}
+select.select_item2 ul{ position:absolute; width:100%; border:1px solid #dcdcdc; border-top:none; margin-top:0px; background:#fff}
+select.select_item2 option{display:block; padding-left:8px; line-height:22px;}
+select.select_item2 option:selection{text-decoration:none; background:#e1e1e1}
+
+.FindUserpage-searchResult-multiPage dl{ border-bottom:1px dotted #cdcdcd; padding:15px 0;}
+.FindUserpage-searchResult-multiPage dl dt{float:left; margin-right:15px;}
+.FindUserpage-searchResult-multiPage dl dd{float:left; width:883px;}
+.FindUserpage-searchResult-multiPage dl dd .info{float:left;}
+.FindUserpage-searchResult-multiPage dl dd .info div{margin-bottom:10px;}
+.FindUserpage-searchResult-multiPage dl dd .info div a,
+.FindUserpage-searchResult-multiPage dl dd .info div a:visited{ color:#57b7e1; margin-right:36px;}
+.FindUserpage-searchResult-multiPage dl dd .info div .verified{padding-left: 20px;background: url(../images/icon.png) no-repeat 0 -600px;color: #2fba46;}
+.FindUserpage-searchResult-multiPage dl dd .info p{line-height:24px;}
+.FindUserpage-searchResult-multiPage dl dd .info p span{ margin:0 15px; color:#888;}
+
+.FindUserpage-searchResult-multiPage dl dd .operate{float:right;}
+.FindUserpage-searchResult-multiPage dl dd .operate a{ margin-right:10px; margin-left:10px;}
+.add_follow,.add_follow:visited{padding-left: 20px;color: #2fba46; background: url(../images/icon.png) no-repeat 0 -673px;}
+a.followed,a.followed:visited{padding-left: 20px;color: #2fba46;background: url(../images/icon.png) no-repeat 0 -597px;}
+a.follow_two,a.follow_two:visited{padding-left: 20px;color: #2fba46;background: url(../images/icon.png) no-repeat 0 -650px;}
+
+.FindUserpage-searchResult-multiPage-pageNum {float: right; margin-top:15px;}/*翻页*/
+.FindUserpage-searchResult-multiPage-pageNum a, .mainPage-searchResult-multiPage-pageNum span { float: left; }
+.FindUserpage-searchResult-multiPage-pageNum .pre { background: url(../images/page.png) no-repeat 0 -24px; text-indent: -32768px; width: 25px; height: 25px; }
+.FindUserpage-searchResult-multiPage-pageNum .pre-disabled { background: url(../images/page.png) no-repeat 0 0; text-indent: -32768px; }
+.FindUserpage-searchResult-multiPage-pageNum .next { background: url(../images/page.png) no-repeat -24px -24px; text-indent: -32768px; width: 25px; height: 25px; }
+.FindUserpage-searchResult-multiPage-pageNum .next-disabled { background: url(../images/page.png) no-repeat -24px 0; text-indent: -32768px; }
+.FindUserpage-searchResult-multiPage-pageNum a, .mainPage-searchResult-multiPage-pageNum span { width: 25px; height: 25px; line-height: 25px; text-align: center; margin: 0 10px; font-size: 14px; }
+.FindUserpage-searchResult-multiPage-pageNum a.active { color: #57b7e1; }
+
+
+.select_item select{
+    height: 49px;
+    width: 258px;
+    border-radius: 5px;
+    margin-top: 1px;
+    font-size: 18px;
+    color: #888888;
+    -webkit-appearance: none;
+    font-family: 微软雅黑;
+    padding-left: 10px;
+}
+
+#userSearchInputContainer ul {
+    min-width:300px;
+}

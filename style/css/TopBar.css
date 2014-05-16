@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* CSS Document */
+
+.topBar { width:100%; height:60px; background:#000; }
+.topBar-inner { position:relative; width:1000px; margin:0 auto;}
+.topBar-logo a { float:left; background:url(../images/logo.png) no-repeat left center; width:180px; height:60px; background-position-y: 5px; text-indent: -32768px; }
+.topBar-navigation { float:left; margin-left:55px; }
+/*主导航*/
+.topBar-navigation li { float:left; height:60px; line-height:60px; margin-right:52px; font-family:'幼圆', '微软雅黑', '黑体', '宋体'; font-size:18px; color:#fff; font-weight:bold; cursor:pointer; }
+.topBar-navigation li:hover { color:#b9eaff; }
+.topBar-navigation li.active { background:url(../images/nav_arrow.png) no-repeat center bottom; }
+.topBar-dropdown { float:left; margin-left:65px; }
+/*右侧工具*/
+.topBar-dropdown dl { float:left; width:70px; position:relative; }
+.topBar-dropdown dl dt { display:block; height:60px; background:url(../images/nav_spites.png) no-repeat; text-indent: -32768px; cursor:pointer; }
+.topBar-dropdown dl.message dt { background-position:0 16px; }
+.topBar-dropdown dl.notice dt { background-position:0 -43px; }
+.topBar-dropdown dl.my_following dt { background-position:0 -106px; }
+.topBar-dropdown dl.message dt:hover { background-position:0 -164px; }
+.topBar-dropdown dl.notice dt:hover { background-position:0 -223px; }
+.topBar-dropdown dl.my_following dt:hover { background-position:0 -286px; }
+.topBar-dropdown dd { display:none; position:absolute; left:-149px; top:48px; width:350px; background: url(../images/nav_spites.png) no-repeat 159px -354px; padding-top:12px; z-index:9999; }
+.topBar-dropdown dl:hover dd { display:block; }
+.topBar-dropdown ul { background:#fff; max-height:322px; overflow-y:auto; }
+.topBar-dropdown ul li { position:relative; overflow:hidden; padding:14px 15px 10px; border-bottom:1px solid #e7e7e7; cursor:pointer; }
+.topBar-dropdown ul li:hover { background:#efefef; }
+.topBar-dropdown ul li .img { float:left; margin-right:5px; }
+.topBar-dropdown ul li .title { float:left; width:230px; font-size:12px; margin-top:-3px; line-height:20px; }
+.topBar-dropdown ul li .date { float:left; font-size:12px; color:#989898; }
+.topBar-dropdown .more { height:32px; line-height:30px; text-align:center; background:#191919; color:#fff; cursor:pointer; }
+.topBar-dropdown li .close { display:none; position:absolute; right:10px; top:15px; width:8px; height:8px; text-indent: -32768px; background:url(../images/close.png) no-repeat 0 -50px; }
+.topBar-dropdown li .close:hover { background-position:0 -58px; }
+.topBar-dropdown ul li:hover .close { display:block }
+.topBar-dropdown dl.my_following dd { left:-112px; width:250px; max-height:360px; background-position:124px -354px; padding-top:12px; }
+.topBar-dropdown dl.my_following ul li .title { width:135px; }
+.topBar-dropdown dl.my_following .follows { float:left; margin-top:12px; }
+.topBar-dropdown dl.my_following .follows a { font-size:12px; }
+.topBar-dropdown dl.my_following .follows a.cancel { padding-left:10px; background:url(../images/icon.png) no-repeat 0 -632px; margin-left:10px; cursor:pointer; }
+.topBar-dropdown dl.my_following .follows a.follow_two { padding-left:20px; color:#2fba46; background:url(../images/icon.png) no-repeat 0 -653px; }
+.topBar-dropdown dl.my_following .follows a.add_follow { padding-left:20px; color:#2fba46; background:url(../images/icon.png) no-repeat 0 -673px; }
+.topBar-dropdown dl.my_following .follows a.followed { padding-left:20px; color:#2fba46; background:url(../images/icon.png) no-repeat 0 -599px; }
+.topBar-dropdown dl.my_following .contact { padding:1px 5px; background:#57b7e1; font-size:12px; color:#fff; }
+/*头像*/
+.topBar-profileImage { float:left; }
+.topBar-profileImage dl { position:relative; }
+.topBar-profileImage dt { padding-top:5px; }
+.topBar-profileImage dt img { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.topBar-profileImage dd { display:none; position:absolute; left:-98px; top:48px; width:150px; background: url(../images/nav_spites.png) no-repeat 118px -354px; padding-top:12px; z-index:9999; }
+.topBar-profileImage dl:hover dd { display:block; }
+.topBar-profileImage ul { background:#fff; }
+.topBar-profileImage ul li { position:relative; overflow:hidden; padding:14px 15px 10px; border-bottom:1px solid #e7e7e7; cursor:pointer; }
+.topBar-profileImage ul li:hover { background:#efefef; }
+.topBar-profileImage ul li .img { float:left; margin-right:5px; }
+.topBar-profileImage ul li .title { float:left; width:230px; font-size:12px; margin-top:-3px; }
+.topBar-profileImage ul li .date { float:left; margin-top:8px; font-size:12px; color:#989898; }
+.topBar-profileImage .more { height:32px; line-height:30px; text-align:center; background:#191919; color:#fff; cursor:pointer; }
+.topBar-profileImage li .close { position:absolute; right:10px; top:15px; width:8px; height:8px; text-indent: -32768px; background:url(../images/close.png) no-repeat 0 -50px; }
+.login { position:absolute; z-index:8; right:150px; width:100px; text-align:center; }
+.login span { display:block; height:64px; line-height:56px; background:url(../images/top_nav_login_bg.jpg) no-repeat; font-size:16px; color:#fff; cursor:pointer; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.reg { position:absolute; right:50px; width:100px; height:60px; line-height:60px; text-align:center; font-size:16px; color:#fff; cursor:pointer; }
+.login .bd { position:absolute; top:69px; left:0; width:262px; background:#fff; border:1px solid #ccc; z-index:99; }
+.login .bd ul { padding:20px; }
+.checkbox { height:25px; line-height:25px; padding-left:30px; background:url(../images/checkbox.png) no-repeat 0 0; cursor:pointer; }
+.checked { background-position:0 -25px; }
+.login .bd ul li { margin-bottom:10px; }
+.login .wrong { text-align:left; line-height:26px; padding-left:20px; background:url(../images/icon_wrong.png) no-repeat 0 -22px; font-size:12px; }
+.login .bd ul li input.text { width:210px; height:38px; line-height:38px\9; border:1px solid #cccccc; padding-left:10px; color:#333; }
+.login .bd ul li .checkbox { float:left; }
+.forget_password { float:right; }
+.btn_topnav_login { width:220px; height:40px; background:url(../images/btns.png) no-repeat 0 -492px; border:none; font-family: 微软雅黑; font-size:16px; color:#fff; cursor:pointer; }
+.btn_topnav_login:hover { background-position:-231px -492px; }
+.dropdownBox {box-shadow:3px 3px 10px #888;}

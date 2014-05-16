@@ -1,0 +1,20 @@
+/*how it works*/
+.how_it_works{width:1000px; margin:20px auto 100px;}
+.how_it_works .tab{width:100%; height:83px; margin-bottom:20px;}
+.how_it_works .tab li{float:left; width:50%; height:68px; line-height:68px; color:#fff; background:#adadad; text-align:center; font-size:24px; cursor:pointer;}
+.how_it_works .tab li.active{ background:#04a4e7;}
+.how_it_works .tab li.active span{ display:block; margin:0 auto; width:35px; height:15px; background:url(../images/icon.png) no-repeat 0 -800px;}
+
+.how_it_works table{border-left:1px solid #c2c2c2; border-bottom:1px solid #c2c2c2;}
+.how_it_works table td{border-right:1px solid #c2c2c2;border-top:1px solid #c2c2c2; padding:15px;}
+.how_it_works table td h2{ font-size:18px; font-weight:normal; margin-bottom:10px;}
+.how_it_works table td p{ line-height:24px;}
+
+
+
+
+
+
+
+
+

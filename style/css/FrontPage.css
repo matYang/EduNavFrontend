@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+
+.frontPage-searchBanner { width:100%; height:355px; background:url(../images/frontPage_bg.png) repeat-x; }
+.frontPage-searchBanner_inner { width:1000px; margin:0 auto; }
+/*搜索框*/
+.frontPage-searchBanner-searchBox { float:left; position:relative; top:20px; width:464px; height:317px; background:url(../images/frontPage-searchBanner-searchBox_bg.png) no-repeat;}
+.frontPage-searchBanner-searchBox .form { padding:50px 0 0 50px; }
+.frontPage input.text { width:285px; height:50px; line-height:50px\9; font-family:微软雅黑; background:url(../images/input_bg.png) no-repeat; border:none; padding-left:35px; font-size:18px; color:#888888; }
+.frontPage-searchBanner-searchBox .from { position:relative; width:320px; margin-bottom:20px; }
+.frontPage-searchBanner-searchBox .from label { position:absolute; display:block; width:20px; height:20px; top:15px; left:12px; background:url(../images/icon.png) no-repeat; }
+.frontPage-searchBanner-searchBox .to { position:relative; width:320px; margin-bottom:20px; }
+.frontPage-searchBanner-searchBox .to label { position:absolute; display:block; width:20px; height:20px; top:15px; left:12px; background:url(../images/icon.png) no-repeat 0 -25px; }
+.frontPage-searchBanner-searchBox .date { float:left; position:relative; width:130px; }
+.frontPage-searchBanner-searchBox .date .text { width:95px; background:url(../images/input_bg.png) no-repeat 0 -220px; }
+.frontPage-searchBanner-searchBox .date label { position:absolute; display:block; width:20px; height:20px; top:15px; left:12px; background:url(../images/icon.png) no-repeat 0 -49px; }
+.btn_search { float:left; margin-left:10px; }
+.btn_search input { width:177px; height:50px; background:url(../images/input_bg.png) no-repeat 0 -55px; border:none; font-size:18px; color:#fff; cursor:pointer; font-family:'微软雅黑'; }
+.btn_search input:hover { background-position:0 -110px; }
+/*右侧文字*/
+.frontPage-searchBanner-introText { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;float:right; width:450px; height:160px; margin-top:105px; color:#fff; background:url(../images/intro_text.png) no-repeat right bottom; }
+.frontPage-searchBanner-introText h2 { font-size:32px; margin-bottom:22px; text-shadow:2px 3px 3px #333; }
+.frontPage-searchBanner-introText p { line-height:30px; font-size:16px; }
+.frontPage-searchBanner-introText p a, .frontPage-searchBanner-introText p a:visited { color:#f3fb79; text-decoration:underline; }
+.frontPage-searchBanner-introText p a:hover { color:#fff; }
+/*搜索结果*/
+.frontPage-middle { width:1000px; margin:20px auto 30px; }
+.frontPage-recentMessage { float:left; width:700px; }
+.frontPage-recentMessage h2 { font-size:18px; padding-left:28px; margin-bottom:10px; background:url(../images/icon.png) no-repeat 0 -70px; color:#57b7e1; font-weight:normal; border-bottom:1px solid #57b7e1; padding-bottom:5px; _padding-bottom:3px; text-indent: -32768px; }
+/*热门目的地*/
+.frontPage-destinations { float:right; width:275px; }
+.frontPage-destinations h2 { font-size:18px; padding-left:22px; margin-bottom:10px; background:url(../images/icon.png) no-repeat 0 -96px; color:#57b7e1; font-weight:normal; border-bottom:1px solid #57b7e1; padding-bottom:5px; _padding-bottom:2px; text-indent: -32768px; }
+.slider_container { position:relative; width:275px; height:240px; overflow:hidden; }
+.slider_container .left_arr, .slider_container .right_arr { position:absolute; width:36px; height:36px; top:90px; cursor:pointer; z-index:800; }
+.slider_container .left_arr { left:0; background:url(../images/left_arr.png) no-repeat; }
+.slider_container .left_arr:hover { background-position:0 -36px; }
+.slider_container .right_arr { right:0; background:url(../images/right_arr.png) no-repeat; }
+.slider_container .right_arr:hover { background-position:0 -36px; }
+.slider { width:275px; overflow:hidden; }
+.slider ul { width:3000px; }
+.slider ul li { float:left; width:275px; }
+.caption { padding-left:10px; height:38px; background:#87ccea; line-height:38px; font-size:14px; font-weight:normal; color:#fff; }
+.caption h3 { font-size:16px; }
+/*经验之谈*/
+.frontPage-lower { width:1000px; margin:20px auto 45px; }
+.frontPage-lower h2 { font-size:18px; padding-left:28px; margin-bottom:10px; background:url(../images/icon.png) no-repeat 0 -124px; color:#57b7e1; font-weight:normal; }
+.frontPage-experience dt { position: relative; padding:30px 100px 25px 100px; text-align: center; background:#f4f4f4; color:#a1a1a1; font-size:14px; line-height:30px; }
+.frontPage-experience dt span.qu1, .frontPage-experience dt span.qu2 { width: 24px; height: 16px; vertical-align: text-top; display:inline-block; zoom:1; background:url(../images/icon.png) no-repeat; }
+.frontPage-experience dt span.qu1 { background-position:0 -159px; margin-right:5px; }
+.frontPage-experience dt span.qu2 { background-position:0 -182px; margin-left:5px; }
+.frontPage-experience dd .user { width: 250px; float: left; background: #e1e4ea; color:#888; cursor:pointer; }
+.frontPage-experience dd .f-gray img { -webkit-filter: grayscale(100%); -moz-filter: grayscale(100%); -ms-filter: grayscale(100%); -o-filter: grayscale(100%); filter: grayscale(100%); filter: gray; }
+.frontPage-experience dd img.userImg { float:left; width:70px; height:70px; }
+.frontPage-experience dd .userInfo { float:left; line-height:23px; padding:12px; font-size:14px; }
+.frontPage-experience dd .active { background:#57b7e1 url(../images/icon.png) no-repeat 150px -217px; color:#fff; }
+.frontPage-experience dd .user:hover { background:#57b7e1 url(../images/icon.png) no-repeat 150px -217px; color:#fff; }
+
+.frontPage-resultPanel{
+        overflow: hidden;
+        height:285px;
+}

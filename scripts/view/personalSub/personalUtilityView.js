@@ -101,33 +101,6 @@ var PersonalUtilityView = Backbone.View.extend({
             $(this).addClass("active");
             app.navigate("personal/" + that.sessionUser.id + "/utility/avatar");
         });
-        $('#passengerVerification').on("click", function (e) {
-            that.$personalContent.hide();
-            that.$settingContent.hide();
-            that.$passwordContent.hide();
-            that.$dpContent.hide();
-            that.$passengerIdentityContent.show();
-            that.$driverIdentityContent.hide();
-            $('.wrong').remove();
-            $('#myPage_edit_control>.active').removeClass("active");
-            $(this).addClass("active");
-            app.navigate("personal/" + that.sessionUser.id + "/utility/passengerVerification");
-            that.switchToIdentityView("passenger");
-
-        });
-        $('#driverVerification').on("click", function (e) {
-            that.$personalContent.hide();
-            that.$settingContent.hide();
-            that.$passwordContent.hide();
-            that.$dpContent.hide();
-            that.$driverIdentityContent.show();
-            that.$passengerIdentityContent.hide();
-            $('.wrong').remove();
-            $('#myPage_edit_control>.active').removeClass("active");
-            $(this).addClass("active");
-            app.navigate("personal/" + that.sessionUser.id + "/utility/driverVerification");
-            that.switchToIdentityView("driver");
-        });
 
         $('#upload_picture').on('click', function () {
             //TODO:
@@ -549,14 +522,6 @@ var PersonalUtilityView = Backbone.View.extend({
     },
     noticeError: function () {
 
-    },
-
-    switchToIdentityView: function (type) {
-        if (type === "passenger" && !this.passengerIdentityView) {
-            this.passengerIdentityView = new passengerIdentityVerificationView({"curUserId": this.curUserId});
-        } else if (type === "driver" && !this.driverIdentityView) {
-            this.driverIdentityView = new driverIdentityVerificationView({"curUserId": this.curUserId});
-        }
     },
     close: function () {
         if (!this.isClosed) {

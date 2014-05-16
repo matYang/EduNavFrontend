@@ -20,8 +20,8 @@ var Course = Backbone.Model.extend({
             "referenceNum": -1,
             "category": "",
             "subcategory": "",
-            // "city": "", 
-            // "district": "",
+            "city": "", 
+            "district": "",
             "title": "",
             "partner": null
         };
@@ -55,6 +55,17 @@ var Course = Backbone.Model.extend({
         }
         return data;
     },
+    _toJSON: function () {
+        var json = this.toJSON();
+        return json;
+    },
+    toJSON: function () {
+        var json = _.clone(this.attributes);
+        json.city = encodeURI(json.city);
+        json.district = encodeURI(json.district);
+        json.location = encodeURI(json.location);
+        return json;
+    }
 });
 
 var Courses = Backbone.Collection.extend({

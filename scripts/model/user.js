@@ -16,7 +16,7 @@ var BaseUser = Backbone.Model.extend({
 
     idAttribute: "userId",
 
-    urlRoot: Constants.origin + "/api/v1.0/users/user",
+    urlRoot: Constants.origin + "/api/v1.0/user/user",
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');

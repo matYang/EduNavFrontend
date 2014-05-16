@@ -39,7 +39,7 @@ module.exports = function(grunt) {
               "scripts/dataManagers/sessionManager.js",
               "scripts/dataManagers/userManager.js",
               "scripts/dataManagers/courseManager.js",
-              "scripts/dataManagers/transactionManager.js",
+              "scripts/dataManagers/bookingManager.js",
               "scripts/admin/adminManager",
               "scripts/view/shared/multiPageView.js",
               "scripts/view/shared/BaseFormView.js"
@@ -81,8 +81,9 @@ module.exports = function(grunt) {
               "scripts/dataManagers/sessionManager.js",
               "scripts/dataManagers/userManager.js",
               "scripts/dataManagers/courseManager.js",
-              "scripts/dataManagers/transactionManager.js",
-              "scripts/dataManagers/generalManager.js",
+              "scripts/dataManagers/bookingManager.js",
+              "scripts/dataManagers/partnerManager.js",
+
               "scripts/view/shared/multiPageView.js",
               "scripts/view/shared/BaseFormView.js"
               "scripts/view/mapview.js",
@@ -90,10 +91,10 @@ module.exports = function(grunt) {
               "scripts/view/dropdown/baseDropDownView.js",
               "scripts/view/dropdown/locationDropDownView.js",
               "scripts/view/dropdown/idTypeDropDownView.js",
-              "scripts/view/message/MessageDetailView.js",
-              "scripts/view/message/MessagePostView.js",
-              "scripts/view/message/MessagePublishView.js",
-              "scripts/view/message/MessageEditView.js",
+              "scripts/view/course/CourseDetailView.js",
+              "scripts/view/course/MessagePostView.js",
+              "scripts/view/course/MessagePublishView.js",
+              "scripts/view/course/MessageEditView.js",
               "scripts/view/searchResultView.js",
               "scripts/view/userSearchResultView.js",
               "scripts/view/frontPageView.js",
@@ -149,7 +150,7 @@ module.exports = function(grunt) {
               "scripts/view/shared/BaseFormView.js"
               "scripts/view/dropdown/baseDropDownView.js",
               "scripts/view/dropdown/locationDropDownView.js",
-              "scripts/view/message/CourseDetailView.js",
+              "scripts/view/course/CourseDetailView.js",
               "scripts/view/searchResultView.js",
               
               "scripts/view/frontPageView.js",

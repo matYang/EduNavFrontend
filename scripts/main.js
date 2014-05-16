@@ -45,7 +45,7 @@ var AppRouter = Backbone.Router.extend({
         this.sessionManager = new SessionManager ();
         this.userManager = new UserManager (this.sessionManager);
         this.courseManager = new CourseManager (this.sessionManager, this.userManager);
-        this.transactionManager = new TransactionManager (this.sessionManager, this.userManager);
+        this.bookingManager = new BookingManager (this.sessionManager, this.userManager);
      
         this.sessionManager.fetchSession(false, {
             success: function () {

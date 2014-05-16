@@ -82,27 +82,6 @@ var searchView = Backbone.view.extend({
         this.$resultp.empty().append("<div class = 'noMessage'>暂无消息</div>");
     },
 
-    onClickTime: function (e, parentId) {
-        var me = $('#' + e.id);
-        $("#" + parentId + ">.selected").removeClass('selected').addClass('notSelected');
-        me.removeClass('notSelected').addClass('selected');
-        var time = e.target.getAttribute("data-id");
-        this.filter.time1 = time;
-    },
-
-    onClickType: function (e) {
-        this.$type.children(".active").removeClass('active');
-        $(e.target).addClass('active');
-        if (e.target.getAttribute("data-id") === "passenger"){
-            this.filter.type = Constants.messageType.ask;
-        } else if (e.target.getAttribute("data-id") === "driver") {
-            this.filter.type = Constants.messageType.help;
-        } else {
-            this.filter.type = Constants.messageType.both;
-        }
-        this.refresh();
-    },
-
     submitSearch: function () {
         if (!(this.$dateDepart.val() && this.$locationFrom.val() && this.$locationTo.val())) {
             return;
@@ -120,12 +99,6 @@ var searchView = Backbone.view.extend({
         app.storage.setSearchRepresentationCache(this.searchRepresentation);
     },
 
-    refresh: function () {
-        this.filteredMessages.reset(this.filterMessage(this.allMessages));
-        this.searchResultView.messages.reset(this.filteredMessages);
-
-    },
-
     bindEvents: function () {
         var self = this;
 
@@ -141,10 +114,6 @@ var searchView = Backbone.view.extend({
                 if (this.map) {
                     this.map.close();
                 }
-                this.$type.children("span").off();
-                this.$locationFrom.off();
-                this.$locationTo.off();
-                this.$swap.off();
                 this.closeLocationDropDown();
                 if (this.searchResultView) {
                     this.searchResultView.close();

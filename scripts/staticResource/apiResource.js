@@ -18,7 +18,7 @@
         var api_modules = {
 
             rootPrefix: Constants.origin + '/api',
-
+            partnerRootPrefix: Constants.origin + '/p-api',
             versionPrefix: '/v1.0',
 
             moduleResource: {
@@ -29,76 +29,75 @@
             },
 
             moduleSufixResource: {
+                'general': {
+                    location:"location",
+                    category:"category",
+                    partner:"partner"
+                },
                 'course': {
-                    recent: '/recent',
-                    search: '/search',
-                    transaction: '/transaction',
-                    autoMatch: '/autoMatch',
-                    message: '/dianming'
+                    course: '/course'
                 },
 
-                'users': {
+                'user': {
                     findSession: '/findSession',
                     user: '/user',
-                    login: '/login',
-                    logout: '/logout',
                     img: '/img',
                     email: '/email',
                     changePassword: '/changePassword',
-                    contactInfo: '/contactInfo',
+                    changeCell: '/changeCell',
+                    info: "info",
 
-                    emailActivation: '/emailActivation',
-                    resendActivationEmail: '/resendActivationEmail',
+                    login: '/login',
+                    logout: '/logout',
                     forgetPassword: '/forgetPassword',
-                    
-                    messageHistory: '/messageHistory',
-                    transaction: '/transaction',
-                    notification: '/notification',
-                    searchHistory: '/searchHistory'
+                    recoverPassword: '/recoverPassword',
+                },
+
+                'partner': {
+                    login: '/login',
+                    logout: '/logout',
+                    forgetPassword: '/forgetPassword',
+                    recoverPassword: '/recoverPassword',                    
                 },
 
                 'booking': {
-                    transaction: '/transaction',
-                    admin: '/admin'
-                },
-                'location': {
-                    location: '/location'
+                    booking: '/booking',
                 }
             }
         };
 
-        var api_maker = function (moduleName, actionName) {
+        var api_maker = function (prefix, moduleName, actionName) {
             return api_modules.rootPrefix + api_modules.versionPrefix + api_modules.moduleResource[moduleName] + api_modules.moduleSufixResource[moduleName][actionName];
         };
 
         var api_assembler = function () {
 
             return {
-                message_message: api_maker("message", "message"),
-                message_recent: api_maker('message', 'recent'),
-                message_search: api_maker('message', 'search'),
-                message_transaction: api_maker('message', 'transaction'),
-                message_autoMatch: api_maker('message', 'autoMatch'),
+                general_location: api_maker(api_modules.rootPrefix, "location", "location"),
+                general_category: api_maker(api_modules.rootPrefix, "category", "category"),
+                general_partner: api_maker(api_modules.rootPrefix, "partner", "partner"),
 
-                users_findSession: api_maker('users', 'findSession'), //GET added to session manaegr
-                users_user: api_maker('users', 'user'), //GET and POST added to user manager
-                users_login: api_maker('users', 'login'), //GET dded to session manager
-                users_logout: api_maker('users', 'logout'), //GET added to session manager
-                users_img: api_maker('users', 'img'), //
-                users_email: api_maker('users', 'email'),
-                users_changePassword: api_maker('users', 'changePassword'),
-                users_contactInfo: api_maker('users', 'contactInfo'),
+                course_course: api_maker(api_modules.rootPrefix, "course", "course"),
                 
-                users_emailActivation: api_maker('users', 'emailActivation'),
-                users_resendActivationEmail: api_maker('users', 'resendActivationEmail'),
-                
-                users_messageHistory: api_maker('users', 'messageHistory'),
-                users_transaction: api_maker('users', 'transaction'),
-                users_notification: api_maker('users', 'notification'),
-                users_searchUser: api_maker('users', 'searchUser'),
+                user_findSession: api_maker(api_modules.rootPrefix, 'user', 'findSession'), //GET added to session manaegr
+                user_user: api_maker(api_modules.rootPrefix, 'user', 'user'), //GET and POST added to user manager
+                user_login: api_maker(api_modules.rootPrefix, 'user', 'login'), //GET dded to session manager
+                user_logout: api_maker(api_modules.rootPrefix, 'user', 'logout'), //GET added to session manager
+                user_img: api_maker(api_modules.rootPrefix, 'user', 'img'), //
+                user_email: api_maker(api_modules.rootPrefix, 'user', 'email'),
+                user_changePassword: api_maker(api_modules.rootPrefix, 'user', 'changePassword'),
+                user_changeCell: api_maker(api_modules.rootPrefix, 'user', 'changeCell'),
+                user_info: api_maker(api_modules.rootPrefix, 'user', 'info'),
+                user_forgetPassword: api_maker(api_modules.rootPrefix, 'user', 'forgetPassword'),
+                user_recoverPassword: api_maker(api_modules.rootPrefix, 'user', 'recoverPassword'),
 
-                transaction_transaction: api_maker('booking', 'transaction'),
-                transaction_admin: api_maker('booking', 'admin'),
+                partner_login: api_maker(api_modules.partnerRootPrefix, 'partner', 'partner'), //GET dded to session manager
+                partner_logout: api_maker(api_modules.partnerRootPrefix, 'partner', 'partner'), //GET added to session manager
+                partner_forgetPassword: api_maker(api_modules.partnerRootPrefix, 'partner', 'forgetPassword'),
+                partner_recoverPassword: api_maker(api_modules.partnerRootPrefix, 'partner', 'recoverPassword'),
+                partner_course: api_maker(api_modules.partnerRootPrefix, 'course', 'course'), //GET dded to session manager
+
+                booking_booking: api_maker('booking', 'booking')
             };
         };
 

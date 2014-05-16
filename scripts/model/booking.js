@@ -23,7 +23,7 @@ var Booking = Backbone.Model.extend({
 
     idAttribute: "transactionId",
 
-    urlRoot: Constants.origin + "/api/v1.0/transaction/transaction",
+    urlRoot: Constants.origin + "/api/v1.0/booking/booking",
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl');
@@ -63,19 +63,13 @@ var Booking = Backbone.Model.extend({
         }
         return data;
     },
-
+    _toJSON: function () {
+        var json = this.toJSON();
+        return json;
+    },
     toJSON: function () {
         var json = _.clone(this.attributes);
-        if (this.get('departure_location') instanceof UserLocation) {
-            json.departure_location = this.get('departure_location').toJSON();
-        }
-        if (this.get('arrival_location') instanceof UserLocation) {
-            json.arrival_location = this.get('arrival_location').toJSON();
-        }
-        json.departure_time = Utilities.castToAPIFormat(this.get('departure_time'));
-        json.customerNote = encodeURI(json.customerNote);
-        json.providerNote = encodeURI(json.providerNote);
-
+        
         return json;
     },
 });
