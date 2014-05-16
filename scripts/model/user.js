@@ -1,20 +1,17 @@
 var BaseUser = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
-    defaults: {
+    defaults: function () {
+        return {
             "userId": -1,
-            "password": "default",
+            
             "name": "default",
-            "email": "default",
             "phone": "default",
-            "qq": "default",
-
-            "imgPath": "default",
-
-            "lastLogin": new Date (),
+            "password": "default",
+            
+            "status": 0,
             "creationTime": new Date (),
- 
-            "state": Constants.userState.normal,
-            "sessionCode": "default"
+            "lastLogin": new Date ()
+        };
     },
 
     idAttribute: "userId",
@@ -46,16 +43,17 @@ var BaseUser = Backbone.Model.extend({
             data.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
 
-            data.state = parseInt(data.state, 10);
-
+            data.status = parseInt(data.status, 10);
             data.name = decodeURI(data.name);
         }
         return data;
     },
+
     _toJSON: function () {
         var json = this.toJSON();
         return json;
     },
+
     toJSON: function () {
         var json = _.clone(this.attributes);
         json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
@@ -75,7 +73,7 @@ var Users = Backbone.Collection.extend({
 
     model: BaseUser,
 
-    url: Constants.origin + "/api/v1.0/users/watchMessage",
+    url: Constants.origin + "/api/v1.0/users/user",
 
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');

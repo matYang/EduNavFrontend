@@ -4,8 +4,8 @@ var Course = Backbone.Model.extend({
             "courseId":-1,
             "creationTime": new Date(),
             "partnerId":-1,
-            "startTime": new Date(), 
-            "finishTime": new Date(), 
+            "startTime": new Date(),
+            "finishTime": new Date(),
             "location": "",
             "teacherInfo": "",
             "teacherImgUrl": "",
@@ -14,12 +14,16 @@ var Course = Backbone.Model.extend({
             "price": 0.0,
             "seatsTotal": -1,
             "seatsTaken": -1,
-            "referenceNum": -1,
+            "reference": -1,
+
+
             "category": "",
             "subcategory": "",
-            "city": "", 
+            "city": "",
             "district": "",
-            "title": ""
+            "title": "",
+
+            "partner": {}
         };
     },
     idAttribute: "courseId",

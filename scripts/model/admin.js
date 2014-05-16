@@ -1,7 +1,18 @@
 var Admin = BaseUser.extend({
-    defaults: {
-           "reference": "",
-           "privilege": ""
+    defaults: function () {
+        return {
+            "adminId":-1,
+
+            "name": "",
+            "phone": "",
+
+            "reference": "",
+            "privilege": "",
+
+            "status": 0,
+            "creationTime": new Date(),
+            "lastLogin": new Date()
+        };
     },
     idAttribute: "courseId",
     parse: function (data) {

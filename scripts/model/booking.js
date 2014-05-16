@@ -1,19 +1,26 @@
 var Booking = Backbone.Model.extend({
 
-    defaults: {
-        "bookingId": -1,
+    defaults: function () {
+        return {
+            "bookingId": -1,
 
-        "userId": -1,
-        "partnerId": -1,
-        "courseId": -1,
+            "userId": -1,
+            "partnerId": -1,
+            "courseId": -1,
 
-        "price": 0.0,
-        "startTime": new Date (),
-        "endTime": new Date (),
-        "status": -1,
-        "reference": "",
+            "price": 0.0,
+            "startTime": new Date (),
+            "finishTime": new Date (),
+            
+            "reference": "",
+            "timeStamp":"",
 
-        "creationTime": new Date ()
+            "name":"",
+            "phone":"",
+
+            "status": 0,
+            "creationTime": new Date ()
+        };
     },
 
     idAttribute: "transactionId",
