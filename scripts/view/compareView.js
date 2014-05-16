@@ -1,5 +1,7 @@
 var compareView = Backbone.View.extend({
     el: "#content",
+    highlighted: false,
+    hided: false,
     initialize: function (params) {
         this.items = params.items; // array of items to compare
         this.isClosed = false;
@@ -38,14 +40,36 @@ var compareView = Backbone.View.extend({
         });
     },
     highlight: function () {
-        var i;
-        var keys = this.items[0].keys()
-        for ( i = 0; i < this.obj.len; i++ ) {
-
+        this.highlighted = !this.highlighted;
+        if (this.highlighted) {
+            $(".highlighted").removeClass("highlight");
+            return;
+        }
+        var i, count;
+        var keys = this.items[0].keys(), len = this.obj.len;
+        for ( count = 0; count < keys.lenght; count++) {
+            for ( i = 0; i < len; i++ ) {
+                if (this.items[i].get(keys[count]) !== this.items[(i+1)%len].get(keys[count])) {
+                    $("."+keys[count]).addClass("highlight");
+                }
+            }
         }
     },
     hideSame: function () {
-    
+        this.hided = !this.hided;
+        if (this.hided) {
+            $(".hidden").removeClass("hidden");
+            return;
+        }
+        var i, count;
+        var keys = this.items[0].keys(), len = this.obj.len;
+        for ( count = 0; count < keys.lenght; count++) {
+            for ( i = 0; i < len; i++ ) {
+                if (this.items[i].get(keys[count]) !== this.items[(i+1)%len].get(keys[count])) {
+                    $("."+keys[count]).addClass("hidden");
+                }
+            }
+        }
     },
     close: function () {
         if (!this.isClosed) {

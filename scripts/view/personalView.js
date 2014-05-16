@@ -1,6 +1,7 @@
 var PersonalView = Backbone.View.extend({
+    el: "#content",
     initialize: function (params) {
-        _.bindAll(this, 'preRender', 'render', 'renderError', 'switchChildView', 'createChildView', 'getCurrentUserId', 'renderWatchButton', 'bindEvents', 'close');
+        _.bindAll(this, 'render', 'renderError', 'switchChildView', 'createChildView', 'getCurrentUserId', 'renderWatchButton', 'bindEvents', 'close');
         app.viewRegistration.register("personal", this, true);
         this.isClosed = false;
 
@@ -8,61 +9,28 @@ var PersonalView = Backbone.View.extend({
         //this curUserId is used to record the id of the user the personalPage is currently displaying
         this.curUserId = Utilities.toInt(params.intendedUserId);
         this.activeViewState = params.viewState;
-        this.childrenViews = {};
-        this.domContainer = $('#content');
-        this.watched = false;
+        
         this.sessionUser = app.sessionManager.getSessionUser();
         this.query = params.query;
         app.userManager.fetchUser(this.curUserId, {
-            "success": this.preRender,
+            "success": this.render,
             "error": this.renderError
         });
 
     },
 
-    preRender: function (user) {
-        if ( location.href.indexOf("personal/"+this.curUserId) < 0) {
-            return;
-        }
+    render: function (user) {
         var that = this;
         this.user = user;
         var userJson = this.user._toJSON();
-        this.domContainer.append(this.template(userJson));
-        app.userManager.fetchWatchedUsers(this.sessionUser.id, {
-            "success": this.renderWatchButton,
-            "error": function(response) {
-                Info.log(response);
-                if (that.curUserId.id !== that.sessionUser.id) {
-                    $("#profilePage_utilityTab").hide();
-                }
-            }
-        });
+        this.$el.append(this.template(userJson));
+
         $("#popup").attr("class", "pop message_reservation");
         this.render();
         this.switchChildView(this.activeViewState);
         this.bindEvents();
     },
-    renderWatchButton: function (socialList) {
-        if (this.sessionUser.get("userId") !== this.curUserId) {
 
-            for (var user = 0; user < socialList.length; user++) {
-                if (socialList.at(user).get("userId") === this.curUserId) {
-                    this.watched = true;
-                    break;
-                }
-            }
-            //if user has watched this user
-            if (this.watched) {
-                $("#profilePage_utilityTab").html(" - 取消关注");
-                this.bindDeWatchEvent();
-            } else {
-                $("#profilePage_utilityTab").html(" + 关注");
-                this.bindWatchEvent();
-            }
-        }
-    },
-    render: function () {
-    },
     renderError: function () {
         if (this.curUserId.id !== that.sessionUser.id) {
             $("#profilePage_utilityTab").hide();

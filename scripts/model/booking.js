@@ -6,14 +6,17 @@ var Booking = Backbone.Model.extend({
         "userId": -1,
         "partnerId": -1,
         "courseId": -1,
-
         "price": 0.0,
-        "startTime": new Date (),
-        "endTime": new Date (),
+
         "status": -1,
         "reference": "",
+        "status": "",
+        "phone":"",
 
-        "creationTime": new Date ()
+        "startTime": new Date (),
+        "finishTime": new Date (),
+        "creationTime": new Date (),
+        "timestamp": new Date()
     },
 
     idAttribute: "transactionId",
@@ -41,7 +44,20 @@ var Booking = Backbone.Model.extend({
     parse: function (data) {
 
         if ( typeof data !== 'undefined') {
+            data.bookingId = parseInt(data.id, 10);
 
+            data.status = parseInt(data.status, 10);
+            data.userId = parseInt(data.userId, 10);
+            data.partnerId = parseInt(data.partnerId, 10);
+            data.courseId = parseInt(data.courseId, 10);
+
+            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            data.timestamp = Utilities.castFromAPIFormat(data.dataStamp);
+            data.startTime = Utilities.castFromAPIFormat(data.startTime);
+            data.finishTime = Utilities.castFromAPIFormat(data.finishTime);
+
+            data.price = parseFloat(data.price);
+            data.name = decodeURI(data.name);
         }
         return data;
     },
