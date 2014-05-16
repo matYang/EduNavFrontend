@@ -22,17 +22,14 @@
             versionPrefix: '/v1.0',
 
             moduleResource: {
-                'message': '/dianming',
+                'course': '/course',
                 'users': '/users',
-                'transaction': '/transaction',
-                'notification': '/notification',
-                'letter': '/letter',
-                'general': '/general',
+                'booking': '/booking',
                 'location': '/location',
             },
 
             moduleSufixResource: {
-                'message': {
+                'course': {
                     recent: '/recent',
                     search: '/search',
                     transaction: '/transaction',
@@ -49,44 +46,23 @@
                     email: '/email',
                     changePassword: '/changePassword',
                     contactInfo: '/contactInfo',
-                    singleLocation: '/singleLocation',
-                    circleLocation: '/circleLocation',
+
                     emailActivation: '/emailActivation',
                     resendActivationEmail: '/resendActivationEmail',
                     forgetPassword: '/forgetPassword',
-                    toggleNotices: '/toggleNotices',
-                    watchUser: '/watchUser',
-                    isUserWatched: '/isWatched/:id',
+                    
                     messageHistory: '/messageHistory',
                     transaction: '/transaction',
                     notification: '/notification',
-                    searchUser: '/searchUser',
-                    uncheckedNotification: '/uncheckedNotification',
-                    uncheckedLetter: '/uncheckedLetter',
                     searchHistory: '/searchHistory'
                 },
 
-                'transaction': {
+                'booking': {
                     transaction: '/transaction',
                     admin: '/admin'
                 },
-
-                'notification': {
-                    notification: '/notification',
-                    notificationByIdList: '/notificationByIdList'
-                },
-
-                'general': {
-                    feedBack: '/feedBack'
-                },
-
                 'location': {
                     location: '/location'
-                },
-
-                'letter': {
-                    letter: '/letter',
-                    user: '/user'
                 }
             }
         };
@@ -112,33 +88,17 @@
                 users_email: api_maker('users', 'email'),
                 users_changePassword: api_maker('users', 'changePassword'),
                 users_contactInfo: api_maker('users', 'contactInfo'),
-                users_singleLocation: api_maker('users', 'singleLocation'),
+                
                 users_emailActivation: api_maker('users', 'emailActivation'),
                 users_resendActivationEmail: api_maker('users', 'resendActivationEmail'),
-                users_forgetPassword: api_maker('users', 'forgetPassword'),
-                users_toggleNotices: api_maker('users', 'toggleNotices'),
-                users_watchUser: api_maker('users', 'watchUser'),
-                users_isUserWatched: api_maker('users', 'isUserWatched'),
+                
                 users_messageHistory: api_maker('users', 'messageHistory'),
                 users_transaction: api_maker('users', 'transaction'),
                 users_notification: api_maker('users', 'notification'),
                 users_searchUser: api_maker('users', 'searchUser'),
-                users_uncheckedNotification: api_maker('users', 'uncheckedNotification'),
-                users_uncheckedLetter: api_maker('users', 'uncheckedLetter'),
-                users_searchHistory: api_maker('users', 'searchHistory'),
 
-                transaction_transaction: api_maker('transaction', 'transaction'),
-                transaction_admin: api_maker('transaction', 'admin'),
-
-                notification_notification: api_maker('notification', 'notification'),
-                notification_notificationByIdList: api_maker('notification', 'notificationByIdList'),
-
-                letter_letter: api_maker('letter', 'letter'),
-                letter_user: api_maker('letter', 'user'),
-
-                general_feedBack: api_maker('general', 'feedBack'),
-
-                location_location: api_maker('location', 'default')
+                transaction_transaction: api_maker('booking', 'transaction'),
+                transaction_admin: api_maker('booking', 'admin'),
             };
         };
 

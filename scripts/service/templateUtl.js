@@ -6,7 +6,7 @@ tpl = {
     // Recursively pre-load all the templates for the app.
     // This implementation should be changed in a production environment. All the template files should be
     // concatenated in a single file.
-    loadTemplates:function (names, callback) {
+    loadTemplates:function (names, targetUrl, callback) {
 
         if (names.length > 0){
 
@@ -38,7 +38,7 @@ tpl = {
                 self = this;
 
             $.ajax({
-                url: 'targets/templates.min.js',
+                url: targetUrl,
                 dataType: "html",
                 success: function (data) {
                     tplContainer = $('#tpl_main_invisible_placeholder_v1');

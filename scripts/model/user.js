@@ -14,7 +14,8 @@ var BaseUser = Backbone.Model.extend({
             "creationTime": new Date (),
  
             "state": Constants.userState.normal,
-            "sessionCode": "default"
+            "sessionCode": "default",
+            "searchRepresentation": null
     },
 
     idAttribute: "userId",
