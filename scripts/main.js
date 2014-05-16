@@ -25,9 +25,9 @@ var AppRouter = Backbone.Router.extend({
         "forgetPassword/*token" : "lost",
 
         "emailActivation/*authKey": "emailActivation",
-        "howitworks": "howItWorks",
-        "service": "serviceCenter",
-        "service/*tab": "serviceCenter",
+        // "howitworks": "howItWorks",
+        // "service": "serviceCenter",
+        // "service/*tab": "serviceCenter",
 
         "*default" : "front"
     },
@@ -176,20 +176,20 @@ var AppRouter = Backbone.Router.extend({
                 Info.alert('Email验证失败');
             }
         });
-    },
-    howItWorks: function() {
-        this.howItWorks = new HowItWorksView();
-    },
-    serviceCenter: function(tab) {
-        if (!tab) {
-            this.navigate("service/about", {replace: true});
-        }
-        this.serviceCenter = new ServiceCenterView({"tab":tab});
+    // },
+    // howItWorks: function() {
+    //     this.howItWorks = new HowItWorksView();
+    // },
+    // serviceCenter: function(tab) {
+    //     if (!tab) {
+    //         this.navigate("service/about", {replace: true});
+    //     }
+    //     this.serviceCenter = new ServiceCenterView({"tab":tab});
     }
 });
 
 //warning: tpl is the global object for templating services, do not name any variable "tpl" in any context in any files
-tpl.loadTemplates(Constants.templateResources, function () {
+tpl.loadTemplates(Constants.templateResources, 'targets/templates.min.js', function () {
     app = new AppRouter ();
     app.topBarView = new TopBarView ();
     Backbone.history.start();

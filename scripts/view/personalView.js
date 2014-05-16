@@ -155,8 +155,6 @@ var PersonalView = Backbone.View.extend({
             }
             $('#profilePage_messageTab').off();
             $('#profilePage_historyTab').off();
-            $('#profilePage_socialTab').off();
-            $('#profilePage_notificationTab').off();
             $('#profilePage_utilityTab').off();
 
             this.unbind();
