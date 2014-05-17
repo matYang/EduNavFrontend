@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    
+        <meta charset="utf-8" /> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+          
+        <!--watch out for IE-->
+        
+        <title>Route A!</title>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&language=zh-CN"></script>
+
+        <link rel="shortcut icon" type="image/x-icon" href="/res/favicon.ico" />
+        <link href="style/lib/jquery-ui.css" rel="stylesheet" type="text/css" />
+        <!-- Google Analytics -->
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','scripts/lib/analytics.js','ga');
+
+          ga('create', 'UA-47392305-1', 'routea.ca');
+          ga('send', 'pageview');
+
+        </script>
+        <!-- End Google Analytics -->
+    </head>
+
+    <body>
+
+        <div id = 'topBar' class = 'unselectable'></div>
+
+        <div id = 'main' class='main'>
+            <div id = 'content' class='content'></div>
+
+        </div>
+        <div id = 'infoLayer'></div>
+        <div id = 'overlay' class="mask1" style="display: none;"></div>
+        <div id = 'popup' class = 'pop' style="display: none;"></div>
+        <div id = 'cache' style="display: none;"></div>
+        <div class="footer">
+            <div class="footer_inner">
+                <div id="footer_service_link" class="footer-upperContent"> <a id="footer_about" href="#">关于我们</a><a id="footer_faq" href="#">常见问题</a><a id="footer_career" href="#">诚聘英才</a><a id="footer_term" href="#">隐私条款</a><a id="footer_feedback" href="#">意见反馈</a> </div>
+                <div class="footer-copyright"> Copyright  2013 RouteA.ca&#169;. All Rights Reserved</div>
+            </div>
+        </div>
+        <div id = "chat" class="chat_box" style="display: none;"></div>
+        <!-- taken out into templates  <div id = 'bottom'></div>-->
+
+        <!-- taken out into templates  <div id='overlay'></div>-->
+
+        <!-- under all circumstances, constants/prototypes/info must be loaded first-->
+        <script src="scripts/service/info.js" type="text/javascript"></script>
+        <script src="scripts/Lib/loadfirst/jquery.cycle2.min.js"></script>
+        <script src="scripts/Lib/loadfirst/underscore-1.5.2-min.js" type="text/javascript"></script>  
+
+        <script src="scripts/Lib/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="scripts/Lib/backbone-1.1.0-min.js" type="text/javascript"></script>
+        <script src="scripts/Lib/jquery-ui-1.10.0.custom.min.js" type="text/javascript"></script>
+        <script src="scripts/Lib/jquery.placeholder.min.js" type="text/javascript"></script>
+        <script src="scripts/Lib/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="scripts/Lib/additional-methods.min.js" type="text/javascript"></script>
+        <script src="scripts/Lib/json2.js" type="text/javascript"></script>
+        <script src="scripts/Lib/socket.io.js" type="text/javascript"></script>
+        <script src="scripts/Lib/custom.js" type="text/javascript"></script>
+        <script src="scripts/Lib/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+
+        <script src="scripts/Test/TestMockObj.js" type="text/javascript"></script>
+        <script src="scripts/Common/StaticResource/EnvConfig.js" type="text/javascript"></script>
+        <script src="scripts/Common/StaticResource/Prototypes.js" type="text/javascript"></script>
+
+        <script src="scripts/Common/StaticResource/Constants.js" type="text/javascript"></script>
+        <script src="scripts/Common/StaticResource/ApiResource.js" type="text/javascript"></script>
+        <script src="scripts/Common/StaticResource/Status.js" type="text/javascript"></script>
+        <script src="scripts/Common/StaticResource/Config.js" type="text/javascript"></script>
+        <script src="scripts/Common/StaticResource/Utilities.js" type="text/javascript"></script>
+        <script src="scripts/Common/StaticResource/Resources.js" type="text/javascript"></script>
+
+
+        <script src="scripts/Common/Service/StorageService.js" type="text/javascript"></script>
+
+        
+        <script src="scripts/Common/Model/Representation/SearchRepresentation.js" type="text/javascript"></script>
+        <script src="scripts/Common/Model/Booking.js" type="text/javascript"></script>
+        <script src="scripts/Common/Model/User.js" type="text/javascript"></script>
+        <script src="scripts/Common/Model/Partner.js" type="text/javascript"></script>
+        <script src="scripts/Common/Model/Admin.js" type="text/javascript"></script>
+        <script src="scripts/Common/Model/Course.js" type="text/javascript"></script>
+        
+        <script src="scripts/Common/Service/TemplateUtl.js" type="text/javascript"></script>
+        <script src="scripts/Common/Service/ViewRegistrationService.js" type="text/javascript"></script>
+        <script src="scripts/Common/Service/EventClearService.js" type="text/javascript"></script>
+        <script src="scripts/Common/Service/locationService.js" type="text/javascript"></script>
+
+
+        <script src="scripts/Common/DataManagers/SessionManager.js" type="text/javascript"></script>
+        <script src="scripts/Common/DataManagers/UserManager.js" type="text/javascript"></script>
+        <script src="scripts/Common/DataManagers/CourseManager.js" type="text/javascript"></script>
+        <script src="scripts/Common/DataManagers/PartnerManager.js" type="text/javascript"></script>
+        <script src="scripts/Common/DataManagers/BookingManager.js" type="text/javascript"></script>
+
+        <script src="scripts/Common/View/Shared/MultiPageView.js" type="text/javascript"></script>
+        <script src="scripts/Common/View/Shared/BaseFormView.js" type="text/javascript"></script>
+        <script src="scripts/Common/View/Shared/BaseDropDownView.js" type="text/javascript"></script>
+        
+        <div id = "tpl_main_invisible_placeholder_v1" style="display:none;"></div>
+        <script src="scripts/User/Main.js" type="text/javascript"></script>
+    </body>
+</html>

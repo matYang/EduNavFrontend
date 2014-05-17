@@ -97,7 +97,7 @@
                 partner_recoverPassword: api_maker(api_modules.partnerRootPrefix, 'partner', 'recoverPassword'),
                 partner_course: api_maker(api_modules.partnerRootPrefix, 'course', 'course'), //GET dded to session manager
 
-                booking_booking: api_maker('booking', 'booking')
+                booking_booking: api_maker(api_modules.rootPrefix, 'booking', 'booking')
             };
         };
 

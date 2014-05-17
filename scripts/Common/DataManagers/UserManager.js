@@ -448,8 +448,8 @@
 
     /********************* User Relations ***************************/
     UserManager.prototype.fetchMessageHistory = function(intendedUserId, callback) {
-        if (testMockObj.testMode) {
-            callback.success(testMockObj.sampleMessages);
+        if (testMockObj.testMode) {s
+            callback.success(testMockObj.sampleCourses);
             return;
         }
 
@@ -492,7 +492,7 @@
 
     UserManager.prototype.fetchTransactionList = function(intendedUserId, callback) {
         if(testMockObj.testMode){
-            callback.success(testMockObj.sampleTransactions);
+            callback.success(testMockObj.sampleBookings);
             return;
         }
         var self = this;

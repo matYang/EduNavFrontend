@@ -16,7 +16,7 @@ var TransactionDetailView = Backbone.View.extend({
 
         this.user = app.sessionManager.getSessionUser();
         // if (testMockObj.testMode){
-        // 	this.transaction = testMockObj.sampleTransactionA;
+        // 	this.transaction = testMockObj.sampleBookingA;
         // 	//To allow edit
         // }
         this.user = app.sessionManager.getSessionUser();

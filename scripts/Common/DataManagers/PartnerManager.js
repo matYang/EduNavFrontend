@@ -170,7 +170,7 @@
         });
     };
 
-        PartnerManager.prototype.updateCourse = function(course, callback) {
+    PartnerManager.prototype.updateCourse = function(course, callback) {
         var self = this;
         if (!(key && newPassword && confirmNewPassword)){
             Constants.dWarn("UserManager::findPassword:: invalid parameter");

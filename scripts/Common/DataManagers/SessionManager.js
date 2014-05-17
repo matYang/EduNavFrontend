@@ -5,7 +5,7 @@
 		this.apis = new ApiResource();
 		this.sessionUser = new User();
 
-		this.sessionUser.overrideUrl(this.apis.users_findSession);
+		this.sessionUser.overrideUrl(this.apis.user_findSession);
 
 		this.timeStamp = new Date();
 
@@ -57,7 +57,7 @@
 	SessionManager.prototype.fetchSession = function(asyncFlag, callback){
 		var self = this;
 		
-		this.sessionUser.overrideUrl(this.apis.users_findSession);
+		this.sessionUser.overrideUrl(this.apis.user_findSession);
 		if (testMockObj.testMode) {
 			this.sessionUser = testMockObj.sampleUser;
 			if(callback){
@@ -108,7 +108,7 @@
 		}
 		var self = this;
 
-		this.sessionUser.overrideUrl(this.apis.users_login);
+		this.sessionUser.overrideUrl(this.apis.user_login);
 		//make sure the user is new, so no id is in the api path
 		this.sessionUser.set('email', emailVal);
 		this.sessionUser.set('password', passwordVal);
@@ -147,7 +147,7 @@
 
 		var self = this;
 
-		this.sessionUser.overrideUrl(this.apis.users_logout);
+		this.sessionUser.overrideUrl(this.apis.user_logout);
 		//if session user is new, no id in path, then already logged out
 		//if session user is not new, then has id in path, will launch right call
 		this.sessionUser.save({},{
@@ -182,7 +182,7 @@
 			return;
 		}
 
-		this.cur_searchHistory.overrideUrl(this.apis.users_searchHistory + '/' + this.getUserId());
+		this.cur_searchHistory.overrideUrl(this.apis.user_searchHistory + '/' + this.getUserId());
 		this.cur_searchHistory.fetch({
 			dataType:'json',
 			reset: true,
