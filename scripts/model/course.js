@@ -13,16 +13,16 @@ var Course = Backbone.Model.extend({
             "teacherImgUrl": "",
             "teachingMaterial": "",
             "backgroundUrl": "",
-            "instName":"",
             "price": 0.0,
             "seatsTotal": -1,
             "seatsLeft": -1,
-            "referenceNum": -1,
+            "reference": -1,
             "category": "",
             "subcategory": "",
-            "city": "", 
+            "city": "",
             "district": "",
             "title": "",
+            "status": 0,
             "partner": null
         };
     },
@@ -41,16 +41,16 @@ var Course = Backbone.Model.extend({
             data.teacherImgUrl = decodeURI(data.t_ImgURL);
             data.teachingMaterial = decodeURI(data.t_Material);
             data.backgroundUrl = decodeURI(data.backgroundURL);
-            data.instName = decodeURI(data.instName);
             data.price =  parseFloat(data.price);
             data.seatsTotal =  parseInt(data.seatsTotal, 10);
             data.seatsLeft =  parseInt(data.seatsLeft, 10);
-            data.referenceNum =  parseInt(data.referenceNum, 10);
+            data.reference =  parseInt(data.reference, 10);
             data.category = decodeURI(data.category);
             data.subcategory = decodeURI(data.subcategory);
             data.city = decodeURI(data.city);
             data.district = decodeURI(data.district);
             data.title = decodeURI(data.title);
+            data.status = parseInt(data.status, 10);
             data.partner = new Partner(data.partner, {parse: true});
         }
         return data;

@@ -5,10 +5,11 @@ var Partner = BaseUser.extend({
         return {
             "partnerId":"",
             "license": "",
-            "organization": "", 
-            "reference": "", 
+            "organization": "",
+            "reference": "",
             "creationTime": "",
-            "institutionName": ""
+            "instName": "",
+            "logoUrl":""
         };
     },
     idAttribute: "partnerId",
