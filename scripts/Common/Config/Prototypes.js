@@ -31,3 +31,9 @@ Array.prototype.compare = function (array) {
     }
     return true;
 }; 
+
+(function() {
+    if (!console) {
+        console = {"log": function(){}}
+    }
+})();
