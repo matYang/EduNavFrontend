@@ -7,13 +7,11 @@ var AppRouter = Backbone.Router.extend({
         "": "defaultRoute",
 
         "front": "front",
-        "main": "main",
-        "main/*encodedSearchkey": "encodedMain",
+        "search": "search",
+        "search/*search": "encodedSearch",
 
-        "personal/:intendedUserId": "personal",
-        "personal/:intendedUserId/": "personal",
-        "personal/:intendedUserId/:personalViewState": "personalWithState",
-        "personal/:intendedUserId/:personalViewState/*query": "personalWithState",
+        "mypage": "mypage",
+        "mypage/*query": "mypage",
 
         "course/:courseId": "courseDetail",
         "course/:courseId/": "courseDetail",
@@ -42,6 +40,7 @@ var AppRouter = Backbone.Router.extend({
         this.eventClearService = new EventClearService();
 
         //initializing all the data managers
+        this.generalManager = new GeneralManager ();
         this.sessionManager = new SessionManager ();
         this.userManager = new UserManager (this.sessionManager);
         this.courseManager = new CourseManager (this.sessionManager, this.userManager);
@@ -86,47 +85,24 @@ var AppRouter = Backbone.Router.extend({
         this.frontPageVew = new FrontPageView();
     },
 
-    main: function () {
-        this.mainPageVew = new MainPageView();
+    search: function () {
+        this.searchView = new SearchView();
     },
 
-    encodedMain: function (encodedSearchKey) {
-        this.mainPageVew = new MainPageView ({
+    encodedSearch: function (encodedSearchKey) {
+        this.searchVew = new SearchView ({
             "searchKey": encodedSearchKey
         });
         // this.advertisementView = new AdvertisementView ();
     },
 
-    personal: function (intendedUserId) {
-        this.navigate("personal/" + intendedUserId + "/" + Config.getDefaultPersonalViewState(), {trigger: true, replace: true});
-
-    },
-
-    personalWithState: function (intendedUserId, personalViewState, query) {
+    mypage: function (query) {
         if (!this.sessionManager.hasSession()) {
             this.navigate("front", {trigger: true, replace: true});
             return;
         }
-        var id = Utilities.toInt(intendedUserId);
-        if ( typeof id === 'number' && !isNaN(id)){
-            if (!personalViewState || !Config.validatePersonalViewState(personalViewState)) {
-                this.navigate("personal/" + intendedUserId + "/" + Config.getDefaultPersonalViewState() + "/" + query, {trigger: true, replace: true});
-            } else {
-                if (!this.personalView || this.personalView.isClosed || this.personalView.getCurrentUserId() !== Utilities.toInt(intendedUserId)) {
-                    if (personalViewState === "utility" && this.sessionManager.getSessionUser().id !== Utilities.toInt(intendedUserId))
-                        personalViewState = "history";
-                    this.personalView = new PersonalView ({
-                        'intendedUserId': intendedUserId,
-                        'viewState': personalViewState,
-                        "query": query
-                    });
-                } else {
-                    this.personalView.switchChildView(personalViewState, query);
-                }
-            }
-        } else {
-            this.navigate("personal/" + this.sessionManager.getSessionUser().id + "/history", {trigger: true, replace: true});
-        }
+        
+        this.personalView = new PersonalView ({query:query});
     },
 
     courseDetail: function (messageId) {

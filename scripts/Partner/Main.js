@@ -10,15 +10,8 @@ var AppRouter = Backbone.Router.extend({
         "main": "main",
         "main/*encodedSearchkey": "encodedMain",
 
-        "personal/:intendedUserId": "personal",
-        "personal/:intendedUserId/": "personal",
-        "personal/:intendedUserId/:personalViewState": "personalWithState",
-        "personal/:intendedUserId/:personalViewState/*query": "personalWithState",
-
         "course/:courseId": "courseDetail",
-        "course/:courseId/": "courseDetail",
         "course/:courseId/edit": "courseEdit",
-
         "post", "post"
 
         "register": "register",
@@ -45,10 +38,11 @@ var AppRouter = Backbone.Router.extend({
         this.eventClearService = new EventClearService();
 
         //initializing all the data managers
+        this.generalManager = new GeneralManager ();
         this.sessionManager = new SessionManager ();
         this.userManager = new UserManager (this.sessionManager);
         this.courseManager = new CourseManager (this.sessionManager, this.userManager);
-        this.transactionManager = new TransactionManager (this.sessionManager, this.userManager);
+        this.bookingManager = new TransactionManager (this.sessionManager, this.userManager);
      
         this.sessionManager.fetchSession(false, {
             success: function () {
@@ -100,43 +94,12 @@ var AppRouter = Backbone.Router.extend({
         // this.advertisementView = new AdvertisementView ();
     },
 
-    personal: function (intendedUserId) {
-        this.navigate("personal/" + intendedUserId + "/" + Config.getDefaultPersonalViewState(), {trigger: true, replace: true});
-
-    },
-
-    personalWithState: function (intendedUserId, personalViewState, query) {
-        if (!this.sessionManager.hasSession()) {
-            this.navigate("front", {trigger: true, replace: true});
-            return;
-        }
-        var id = Utilities.toInt(intendedUserId);
-        if ( typeof id === 'number' && !isNaN(id)){
-            if (!personalViewState || !Config.validatePersonalViewState(personalViewState)) {
-                this.navigate("personal/" + intendedUserId + "/" + Config.getDefaultPersonalViewState() + "/" + query, {trigger: true, replace: true});
-            } else {
-                if (!this.personalView || this.personalView.isClosed || this.personalView.getCurrentUserId() !== Utilities.toInt(intendedUserId)) {
-                    if (personalViewState === "utility" && this.sessionManager.getSessionUser().id !== Utilities.toInt(intendedUserId))
-                        personalViewState = "history";
-                    this.personalView = new PersonalView ({
-                        'intendedUserId': intendedUserId,
-                        'viewState': personalViewState,
-                        "query": query
-                    });
-                } else {
-                    this.personalView.switchChildView(personalViewState, query);
-                }
-            }
-        } else {
-            this.navigate("personal/" + this.sessionManager.getSessionUser().id + "/history", {trigger: true, replace: true});
-        }
-    },
 
     courseDetail: function (courseId) {
         this.courseDetailView = new CourseDetailView ({
             'courseId': courseId
         });
-    },
+`    },
     post: function(){
 
     },

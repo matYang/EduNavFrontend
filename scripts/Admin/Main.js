@@ -21,6 +21,7 @@ var AppRouter = Backbone.Router.extend({
         //initializing all the data managers
         this.sessionManager = new SessionManager ();
         this.userManager = new UserManager (this.sessionManager);
+        this.courseManager = new CourseManager (this.sessionManager);
         this.adminManager = new AdminManager (this.sessionManager);
 
         //determine if the user has logged in or not

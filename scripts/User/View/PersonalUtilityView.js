@@ -12,11 +12,7 @@ var PersonalUtilityView = Backbone.View.extend({
         if (testMockObj.testMode === true) {
             this.sessionUser = testMockObj.sampleUser;
         }
-        try {
-            this.geocoder = new google.maps.Geocoder();
-        } catch (e) {
-            this.geocoderNotAvailable = true;
-        }
+        this.geocoderNotAvailable = true;
         this.render();
         this.bindEvents();
         this.bindValidator();
@@ -31,17 +27,10 @@ var PersonalUtilityView = Backbone.View.extend({
                 case "avatar":
                     $('#changeDp').trigger("click");
                     break;
-                case "passengerVerification":
-                    $('#passengerVerification').trigger("click");
-                    break;
-                case "driverVerification":
-                    $('#driverVerification').trigger("click");
-                    break;
                 case "basic":
                 default:
                     $('#basicInfo').trigger("click");
                     break;
-
             }
         }
     },
