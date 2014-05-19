@@ -25,14 +25,15 @@
                 'course': '/course',
                 'users': '/users',
                 'booking': '/booking',
-                'location': '/location',
+                'general': '/general',
             },
 
             moduleSufixResource: {
                 'general': {
                     location:"location",
                     category:"category",
-                    partner:"partner"
+                    partner:"partner",
+                    course:"course"
                 },
                 'course': {
                     course: '/course'
@@ -73,9 +74,10 @@
         var api_assembler = function () {
 
             return {
-                general_location: api_maker(api_modules.rootPrefix, "location", "location"),
-                general_category: api_maker(api_modules.rootPrefix, "category", "category"),
-                general_partner: api_maker(api_modules.rootPrefix, "partner", "partner"),
+                general_location: api_maker(api_modules.rootPrefix, "general", "location"),
+                general_category: api_maker(api_modules.rootPrefix, "general", "category"),
+                general_partner: api_maker(api_modules.rootPrefix, "general", "partner"),
+                general_course: api_maker(api_modules.rootPrefix, "general", "course"),
 
                 course_course: api_maker(api_modules.rootPrefix, "course", "course"),
                 
