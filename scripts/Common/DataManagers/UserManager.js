@@ -8,13 +8,6 @@
         //time stamp updates when user data changes or sycns
         this.timeStamp = new Date();
 
-        //thses time stamps records the time when the lastest data is fetches from server
-        this.socialList_timeStamp = new Date();
-        this.historyList_timeStamp = new Date();
-        this.transactionList_timeStamp = new Date();
-        this.notificationList_timeStamp = new Date();
-        this.letter_timeStamp = new Date();
-
         this.sessionManager = sessionManager;
         this.sessionManager.resgisterManager(this);
     };
@@ -25,35 +18,12 @@
         this.sessionUser = this.sessionManager.getSessionUser();
 
         this.timeStamp = new Date();
-        this.socialList_timeStamp = new Date();
-        this.historyList_timeStamp = new Date();
-        this.transactionList_timeStamp = new Date();
-        this.notificationList_timeStamp = new Date();
-        this.letter_timeStamp = new Date();
-
     };
 
 
     UserManager.prototype.getTimeStamp = function() {
         return this.timeStamp;
     };
-    UserManager.prototype.getSocialListTimeStamp = function() {
-        return this.socialList_timeStamp;
-    };
-    UserManager.prototype.getHistoryListTimeStamp = function() {
-        return this.historyList_timeStamp;
-    };
-    UserManager.prototype.getTransactionListTimeStamp = function() {
-        return this.transactionList_timeStamp;
-    };
-    UserManager.prototype.getNotificationListTimeStamp = function() {
-        return this.notificationList_timeStamp;
-    };
-    UserManager.prototype.getLetterTimeStamp = function() {
-        return this.letter_timeStamp;
-    };
-
-
 
     UserManager.prototype.registerUser = function(newUser, callback) {
         var self = this;
@@ -447,89 +417,5 @@
     };
 
     /********************* User Relations ***************************/
-    UserManager.prototype.fetchMessageHistory = function(intendedUserId, callback) {
-        if (testMockObj.testMode) {s
-            callback.success(testMockObj.sampleCourses);
-            return;
-        }
-
-        var self = this;
-
-        if (typeof intendedUserId !== 'number'){
-            Constants.dWarn("UserManager::fetchMessageHistory:: invalid parameter, exit");
-            return;
-        }
-        if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::fetchMessageHistory:: session does not exist, exit");
-            return;
-        }
-
-
-        var messageHistory = new Messages();
-        //confront to API requirements
-        messageHistory.overrideUrl(this.apis.user_messageHistory + '/' + self.sessionManager.getUserId());
-        messageHistory.fetch({
-            data: $.param({ 'intendedUserId': intendedUserId}),
-            dataType:'json',
-
-            success:function(model, response){
-                //TODO
-                self.historyList_timeStamp = new Date();
-                if(callback){
-                    callback.success(messageHistory);
-                }
-            },
-
-            error: function(model, response){
-                Constants.dWarn("UserManager::fetchMessageHistory:: fetch failed with response:");
-                Constants.dLog(response);
-                if(callback){
-                    callback.error(response);
-                }
-            }
-        });
-    };
-
-    UserManager.prototype.fetchTransactionList = function(intendedUserId, callback) {
-        if(testMockObj.testMode){
-            callback.success(testMockObj.sampleBookings);
-            return;
-        }
-        var self = this;
-
-        if (typeof intendedUserId !== 'number'){
-            Constants.dWarn("UserManager::fetchTransactionList:: invalid parameter, exit");
-            return;
-        }
-        if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::fetchTransactionList:: session does not exist, exit");
-            return;
-        }
-
-
-        var transactionList = new Transactions();
-        transactionList.overrideUrl(this.apis.user_transaction + '/' + self.sessionManager.getUserId());
-        transactionList.fetch({
-            data: $.param({ 'intendedUserId': intendedUserId}),
-            dataType:'json',
-
-            success:function(model, response){
-                //caching?
-                self.transactionList_timeStamp = new Date();
-                if(callback){
-                    callback.success(transactionList);
-                }
-            },
-
-            error: function(model, response){
-                Constants.dWarn("UserManager::fetchTransactionList:: fetch failed with response:");
-                Constants.dLog(response);
-                if(callback){
-                    callback.error(response);
-                }
-            }
-        });
-    };
-
 
 }).call(this);
