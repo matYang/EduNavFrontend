@@ -1,4 +1,4 @@
-var searchView = Backbone.view.extend({
+var searchView = Backbone.View.extend({
     el: '#content',
     initialize: function (params) {
         _.bindAll(this, 'render', 'renderSearchResults', 'courseSearch', 'submitSearch', 'bindEvents', 'close');
@@ -27,8 +27,6 @@ var searchView = Backbone.view.extend({
         //TODO force target type to be all
         
         this.render();
-        // app.locationService.getDefaultLocations(, this);
-        //after data intialiazation, start render curreny view
     },
 
     courseSearch: function () {

@@ -14,18 +14,11 @@
     //constructor
     this.StorageService = function () {
         this.searchQueryState = {
-            "searchLocation": new UserLocation (),
+            "searchLocation": "",
             "seachDate": new Date (),
             "searchType": Constants.messageType.ask
         };
-        this.searchFilterState = {
-            "searchGender": Constants.gender.both,
-            "searchTimeSlot": Constants.DayTimeSlot.n0,
-            "searchPriceInterval": {
-                "min": 0,
-                "max": 999
-            }
-        };
+
         this.views = {};
         //detect once upon initialization
         this.isSupported = isStorageSupported();
@@ -33,20 +26,12 @@
         // live storage variables
         if (this.isSupported) {
             this.searchQueryState = {
-                "searchLocation": new UserLocation (true, localStorage.searchLocation),
+                "searchLocation": localStorage.searchLocation,
                 "searchDate": new Date (localStorage.searchDate),
                 "searchType": localStorage.searchType
             };
 
-            this.searchFilterState = {
-                "searchGender": localStorage.searchGender,
-                "searchTimeSlot": localStorage.searchTimeSlot,
-                "searchPriceInterval": {
-                    "min": localStorage.searchPriceMin,
-                    "max": localStorage.searchPriceMax
-                }
-            };
-            localStorage.lastContact = localStorage.lastContact || {};
+            
         }
 
         this.sr = new SearchRepresentation ();
@@ -74,29 +59,6 @@
         return this.searchQueryState;
     };
 
-    StorageService.prototype.updateSearchFilterState = function (newSearchGender, newSearchTimeSlot, newSearchPriceInterval) {
-        this.searchFilterState = {
-            "searchGender": newSearchGender,
-            "searchTimeSlot": newSearchTimeSlot,
-            "searchPriceInterval": {
-                "min": newSearchPriceInterval.min,
-                "max": newSearchPriceInterval.max
-            }
-        };
-
-        if (this.isSupported) {
-            localStorage.searchGender = newSearchGender;
-            localStorage.searchTimeSlot = newSearchTimeSlot;
-            localStorage.searchPriceMin = newSearchPriceInterval.min;
-            localStorage.searchPriceMax = newSearchPriceInterval.max;
-            localStorage.searchPriceMax = newSearchPriceInterval.max;
-        }
-    };
-
-    StorageService.prototype.getSearchFilterState = function () {
-        return this.searchFilterState;
-    };
-
     StorageService.prototype.getSearchRepresentationCache = function () {
         return typeof this.sr !== 'undefined' ? this.sr : new SearchRepresentation ();
     };
@@ -106,54 +68,6 @@
             this.sr = sr;
         }
     };
-	StorageService.prototype.getLastContact = function () {
-        if (!this.isSupported) return -1;
-        var ret = localStorage.lastContact.split("|");
-        if ( Utilities.toInt(ret[0]) === app.sessionManager.sessionUser.id ) {
-            return Utilities.toInt(ret[1]);
-        } else {
-            return -1;
-        }
-    };
-
-    StorageService.prototype.setLastContact = function (id) {
-        localStorage.lastContact = app.sessionManager.sessionUser.id + "|" + id;
-    };
-
-    StorageService.prototype.setRecentMessages = function (recentMessages) {
-        var now = new Date();
-        var json = "";
-        for (var i = 0; i < recentMessages.length; i++){
-            json+=JSON.stringify(recentMessages.at(i)._toJSON())+"$"; 
-        }
-
-        localStorage.recent = now.getTime()+"|"+json;
-    };
-    StorageService.prototype.getRecentMessages = function (id) {
-        if (!this.isSupported) return null;
-        var now = new Date();
-        now = now.getTime();
-        var timestamp, json, raw;
-        if (localStorage.recent) {
-            raw = localStorage.recent.split("|");
-            timestamp = Utilities.toInt(raw[0]);
-            json = raw[1];
-            if (now - timestamp < 90000){
-                json = json.split("$") ;
-                for (var i = 0; i < json.length; i++){
-                    if (json[i]) {
-                        json[i] = JSON.parse(json[i]);
-                        
-                    }
-                }
-                json.length-=1;
-                return json;
-            }
-        }
-        localStorage.recent = "";
-        return null;
-    };
-
 
     StorageService.prototype.setViewCache = function (type, view) {
         this.views[type] = view;

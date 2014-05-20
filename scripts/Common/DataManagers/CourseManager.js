@@ -24,39 +24,6 @@
         this.timeStamp = new Date();
     };
 
-
-    CourseManager.prototype.fetchCourse = function(courseId, callback){
-        var course = new Course();
-        if (typeof courseId !== 'number'){
-            courseId = parseInt(courseId, 10);
-        }
-
-        var self = this;
-
-        course.overrideUrl(this.apis.course_course);
-        course.set('courseId', courseId);
-
-        course.fetch({
-            //data: $.param({ 'userId': self.sessionManager.getUserId()}),
-            dataType:'json',
-
-            success:function(model, response){
-                self.timeStamp = new Date();
-                if (callback) {
-                    callback.success(course);
-                }
-            },
-            error: function(model, response){
-                Constants.dWarn("CourseManager::fetchCourse:: fetch failed with response:");
-                Constants.dLog(response);
-                if(callback){
-                    callback.error(response);
-                }
-            }
-        });
-    };
-
-
     CourseManager.prototype._postSingleCourse = function(newCourse, promiseback, callback){
         var partnerId = this.sessionManager.getSessionUser().get("partnerId");
         if (!partnerId) {
@@ -66,7 +33,7 @@
 
         newCourse.overrideUrl(this.apis.course_course);
         newCourse.set('courseId', -1);
-        newCourse.set('ownerId', );
+        newCourse.set('partnerId', app.sessionManager.getSessionUser().getId());
         newCourse.save({},{
             dataType:'json',
 

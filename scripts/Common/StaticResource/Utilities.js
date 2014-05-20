@@ -34,26 +34,7 @@ var Utilities = {
 
     /*take in an encoded searchkey and decodes it*/
     decodeSearchKey: function (encodedSearchKey) {
-        if (encodedSearchKey !== null) {
-            var encodedArray = encodedSearchKey.split("_");
-            if (encodedArray.length >= 4) {
-                var fromLocation = new UserLocation ();
-                var toLocation = new UserLocation ();
-                fromLocation.castFromString(encodedArray[0]);
-                fromLocation.castFromString(encodedArray[1]);
-                encodedArray[0] = fromLocation;
-                encodedArray[1] = toLocation;
-                encodedArray[3] = this.castFromAPIFormat(encodedArray[3]);
-                if (encodedArray.length === 5) {
-                    encodedArray[4] = this.castFromAPIFormat(encodedArray[4]);
-                }
-                return encodedArray;
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
+        return "";
     },
 
     encodeDate: function (date) {
@@ -289,7 +270,7 @@ var Utilities = {
             return _arr;
         }
     },
-    getUrlParams: function() {
+    getUrlParams: function(name) {
         if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
               return decodeURIComponent(name[1]);
     },

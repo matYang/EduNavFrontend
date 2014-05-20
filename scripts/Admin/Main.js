@@ -38,9 +38,8 @@ var AppRouter = Backbone.Router.extend({
                 Info.log("session fetch failed, user not logged in");
             }
         });
-        this.userLocation = new UserLocation ();
         this.curDate = new Date ();
-        this.searchResult = new Courses ();
+        
     },
     defaultRoute: function () {
         this.navigate("login", true);

@@ -56,8 +56,6 @@ var AppRouter = Backbone.Router.extend({
         //intializing search query states & filter states, look into localStorage to find previous history
         this.searchQueryState = this.storage.getSearchQueryState();
         this.searchFilterState = this.storage.getSearchFilterState();
-
-        this.userLocation = new UserLocation ();
         this.curDate = new Date ();
         this.searchResult = new Courses ();
         this.bindGlobalLinks();
@@ -163,10 +161,7 @@ tpl.loadTemplates(Constants.templateResources, function () {
     Backbone.history.start();
     if (app.sessionManager.hasSession()) {
         // create letter view if use is logged in.
-        app.letterView = new LetterView({
-            "toUserId": app.storage.getLastContact()
-        });
-        $("#chat").show();
+
     }
 });
 

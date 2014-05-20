@@ -134,10 +134,5 @@ var Constants = {
         "yahoo.com":"mail.yahoo.com",
         "live.com":"mail.live.com",
         "live.cn":"mail.live.com"
-    },
-    getDefaultUserLocation: function () {
-        return new UserLocation();
     }
-
-
 };

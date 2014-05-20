@@ -59,7 +59,6 @@ var AppRouter = Backbone.Router.extend({
         this.searchQueryState = this.storage.getSearchQueryState();
         this.searchFilterState = this.storage.getSearchFilterState();
 
-        this.userLocation = new UserLocation ();
         this.curDate = new Date ();
         this.searchResult = new Courses ();
         this.bindGlobalLinks();
