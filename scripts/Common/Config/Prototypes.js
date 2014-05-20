@@ -32,6 +32,18 @@ Array.prototype.compare = function (array) {
     return true;
 }; 
 
+Backbone.Model.prototype.overrideUrl = function (urlRootOverride) {
+    if (typeof urlRootOverride !== 'undefined') {
+        this.urlRoot = urlRootOverride;
+    }
+};
+
+Backbone.Collection.prototype.overrideUrl = function (urlRootOverride) {
+    if (typeof urlRootOverride !== 'undefined') {
+        this.url = urlRootOverride;
+    }
+};
+
 (function() {
     if (!console) {
         console = {"log": function(){}}

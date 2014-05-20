@@ -164,7 +164,7 @@ var AppRouter = Backbone.Router.extend({
 });
 
 //warning: tpl is the global object for templating services, do not name any variable "tpl" in any context in any files
-tpl.loadTemplates(Constants.templateResources, 'targets/templates.min.js', function () {
+tpl.loadTemplates(Constants.templateResources, 'scripts/User/Templates.js', function () {
     app = new AppRouter ();
     app.topBarView = new TopBarView ();
     Backbone.history.start();

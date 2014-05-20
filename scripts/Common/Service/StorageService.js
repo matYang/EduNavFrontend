@@ -14,9 +14,7 @@
     //constructor
     this.StorageService = function () {
         this.searchQueryState = {
-            "searchLocation": "",
-            "seachDate": new Date (),
-            "searchType": Constants.messageType.ask
+            
         };
 
         this.views = {};
@@ -26,9 +24,7 @@
         // live storage variables
         if (this.isSupported) {
             this.searchQueryState = {
-                "searchLocation": localStorage.searchLocation,
-                "searchDate": new Date (localStorage.searchDate),
-                "searchType": localStorage.searchType
+            
             };
 
             
@@ -42,16 +38,14 @@
      */
     StorageService.prototype.updateSearchQueryState = function (newSearchLocation, newSearchDate, newSearchType) {
         this.searchQueryState = {
-            "searchLocation": newSearchLocation,
-            "searchDate": newSearchDate,
-            "searchType": newSearchType
+        
         };
 
         //if has local storage, update the storage as well
         if (this.isSupported) {
-            localStorage.searchLocation = newSearchLocation.castToString();
-            localStorage.searchDate = newSearchDate.toString();
-            localStorage.searchType = newSearchType;
+            // localStorage.searchLocation = newSearchLocation.castToString();
+            // localStorage.searchDate = newSearchDate.toString();
+            // localStorage.searchType = newSearchType;
         }
     };
 

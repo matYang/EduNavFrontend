@@ -26,12 +26,6 @@ var BaseUser = Backbone.Model.extend({
         }
     },
 
-    overrideUrl: function (urlRootOverride) {
-        if (typeof urlRootOverride !== 'undefined') {
-            this.urlRoot = urlRootOverride;
-        }
-    },
-
     isNew: function () {
         return this.id === -1;
     },
@@ -77,12 +71,6 @@ var Users = Backbone.Collection.extend({
 
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
-        if ( typeof urlOverride !== 'undefined') {
-            this.url = urlOverride;
-        }
-    },
-
-    overrideUrl: function (urlOverride) {
         if ( typeof urlOverride !== 'undefined') {
             this.url = urlOverride;
         }

@@ -17,7 +17,7 @@
         /*---------------  API level constants   --------------*/
         var api_modules = {
 
-            rootPrefix: Constants.origin + '/api',
+            rootPrefix: Constants.origin + '/a-api',
 
             versionPrefix: '/v1.0',
 
@@ -27,10 +27,15 @@
 
             moduleSufixResource: {
                 'admin': {
-                    verify: '/verififcation/verify',
+                    admin: '/admin',
+                    partner: '/partner',
+                    user: '/user',
+                    booking: '/booking',
                     stateChange: "/stateChange",
                     statAnalysis: "/stat",
-                    routine: "/routine"
+                    routine: "/routine",
+                    login: "/login",
+                    logout: "/logout"
                 }
             }
         };
@@ -42,7 +47,12 @@
         var api_assembler = function () {
 
             return {
-                admin_verification: api_maker('admin', 'verify')
+                admin_login: api_maker('admin', 'login'),
+                admin_logout: api_maker('admin', 'logout'),
+                admin_admin: api_maker('admin', 'admin'),
+                admin_partner: api_maker('admin', 'partner'),
+                admin_user: api_maker('admin', 'user'),
+                admin_booking: api_maker('admin', 'booking')
             };
         };
 
