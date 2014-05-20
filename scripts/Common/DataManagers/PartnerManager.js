@@ -140,61 +140,44 @@
     /********************* courses ***************************/
     PartnerManager.prototype.postCourse = function(course, callback) {
         var self = this;
-        if (!(key && newPassword && confirmNewPassword)){
-            Constants.dWarn("UserManager::findPassword:: invalid parameter");
-            return;
-        }
         if (this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::findPassword:: session already exists, exit");
+            Constants.dWarn("PartnerManager::updateCourse:: session already exists, exit");
             return;
         }
 
-
-        $.ajax({
-            type: "POST",
-            async: true,
-            url: self.apis.partner_recoverPassword,
-            data: JSON.stringify({ 'key': key, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword}),
+        course.overrideUrl(this.apis.partner_course);
+        course.save({},{
+            data: .param({partnerId: this.sessionUser.id}),
             dataType: 'json',
-            contentType: 'application/json',    //setting this should be covering the data into PUT body
             success: function(data){
                 self.sessionManager.fetchSession(false, callback);
 
             },
             error: function (data, textStatus, jqXHR){
-                Constants.dWarn("UserManager::findPassword:: action failed");
+                Constants.dWarn("PartnerManager::updateCourse:: action failed");
                 if(callback){
                     callback.error(data);
                 }
             }
         });
-    };
 
     PartnerManager.prototype.updateCourse = function(course, callback) {
         var self = this;
-        if (!(key && newPassword && confirmNewPassword)){
-            Constants.dWarn("UserManager::findPassword:: invalid parameter");
-            return;
-        }
         if (this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::findPassword:: session already exists, exit");
+            Constants.dWarn("PartnerManager::updateCourse:: session already exists, exit");
             return;
         }
 
-
-        $.ajax({
-            type: "POST",
-            async: true,
-            url: self.apis.partner_recoverPassword,
-            data: JSON.stringify({ 'key': key, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword}),
+        course.overrideUrl(this.apis.partner_course);
+        course.save({},{
+            data: $.param({partnerId: this.sessionUser.id}),
             dataType: 'json',
-            contentType: 'application/json',    //setting this should be covering the data into PUT body
             success: function(data){
                 self.sessionManager.fetchSession(false, callback);
 
             },
             error: function (data, textStatus, jqXHR){
-                Constants.dWarn("UserManager::findPassword:: action failed");
+                Constants.dWarn("PartnerManager::updateCourse:: action failed");
                 if(callback){
                     callback.error(data);
                 }
