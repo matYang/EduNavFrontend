@@ -58,7 +58,8 @@
                     login: '/login',
                     logout: '/logout',
                     forgetPassword: '/forgetPassword',
-                    recoverPassword: '/recoverPassword',                    
+                    recoverPassword: '/recoverPassword',
+                    course: '/course'
                 },
 
                 'booking': {
