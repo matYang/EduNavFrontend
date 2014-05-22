@@ -22,20 +22,32 @@
             versionPrefix: '/v1.0',
 
             moduleResource: {
-                'admin': "/admin"
+                'admin': '/admin',
+                'partner': '/partner',
+                'user': '/user',
+                'booking': '/booking',
+                'course': '/course'
             },
 
             moduleSufixResource: {
                 'admin': {
                     admin: '/admin',
-                    partner: '/partner',
-                    user: '/user',
-                    booking: '/booking',
-                    stateChange: "/stateChange",
-                    statAnalysis: "/stat",
-                    routine: "/routine",
                     login: "/login",
-                    logout: "/logout"
+                    logout: "/logout",
+                    findSession: '/findSession',
+                    changePassword: '/changePassword'
+                },
+                'partner': {
+                    partner: '/partner'
+                },
+                'user': {
+                    user: '/user'
+                },
+                'booking': {
+                    booking: '/booking'
+                },
+                'course': {
+                    course: '/course'
                 }
             }
         };
@@ -47,12 +59,16 @@
         var api_assembler = function () {
 
             return {
+                admin_admin: api_maker('admin', 'admin'),
                 admin_login: api_maker('admin', 'login'),
                 admin_logout: api_maker('admin', 'logout'),
-                admin_admin: api_maker('admin', 'admin'),
-                admin_partner: api_maker('admin', 'partner'),
-                admin_user: api_maker('admin', 'user'),
-                admin_booking: api_maker('admin', 'booking')
+                admin_findSession: api_maker('admin', 'findSession'),
+                admin_changePassword: api_maker('admin', 'changePassword'),
+                
+                admin_partner: api_maker('partner', 'partner'),
+                admin_user: api_maker('user', 'user'),
+                admin_booking: api_maker('booking', 'booking'),
+                admin_course: api_maker('course', 'course')
             };
         };
 
