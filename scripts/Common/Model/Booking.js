@@ -7,7 +7,7 @@ var Booking = Backbone.Model.extend({
             "userId": -1,
             "partnerId": -1,
             "courseId": -1,
-            "price": 0.0,
+            "price": 0,
 
             "status": 0,
             "reference": "",
@@ -21,7 +21,7 @@ var Booking = Backbone.Model.extend({
         };
     },
 
-    idAttribute: "transactionId",
+    idAttribute: "bookingId",
 
     urlRoot: Constants.origin + "/api/v1.0/booking/booking",
 
@@ -44,22 +44,23 @@ var Booking = Backbone.Model.extend({
     },
 
     parse: function (data) {
-
         if ( typeof data !== 'undefined') {
-            data.bookingId = parseInt(data.id, 10);
-
-            data.status = parseInt(data.status, 10);
+            data.bookingId = parseInt(data.bookingId, 10);
+            
             data.userId = parseInt(data.userId, 10);
             data.partnerId = parseInt(data.partnerId, 10);
             data.courseId = parseInt(data.courseId, 10);
 
-            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
-            data.timestamp = Utilities.castFromAPIFormat(data.dataStamp);
+            data.price = parseInt(data.price, 10);
+            data.status = parseInt(data.status, 10);
+            data.reference = decodeURI(data.reference);
+            data.name = decodeURI(data.name);
+            data.phone = decodeURI(data.phone);
+
             data.startTime = Utilities.castFromAPIFormat(data.startTime);
             data.finishTime = Utilities.castFromAPIFormat(data.finishTime);
-
-            data.price = parseFloat(data.price);
-            data.name = decodeURI(data.name);
+            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            data.timestamp = Utilities.castFromAPIFormat(data.dataStamp);
         }
         return data;
     },

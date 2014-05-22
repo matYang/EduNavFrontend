@@ -4,47 +4,6 @@
 
 var Utilities = {
 
-    /*search key standards: location_date_searchState
-     *locationString standards  province-city-region-university
-     *date string standard: yyyy:mm:dd:hh:mm:ss UTC
-     *searchState:  an int
-     *take in an array of searchkeys and encode them
-     *@param searchKeys: an array of 3 entries
-     *@return  null if format error, encoded string if format valid
-     */
-
-    makeQueryString: function (queryData) {
-        var queryString = "";
-        for (var name in queryData) {
-            queryString += name + "=" + queryData[name] + "&";
-        }
-        return "?" + queryString.substring(0, queryString.length - 1);
-    },
-
-    encodeSearchKey: function (searchKeys) {
-        if (searchKeys !== null && searchKeys.length < 4) {
-            return null;
-        }
-        if (searchKeys.length === 4 || !searchKeys[4]) {
-            return searchKeys[0].toString() + "_" + searchKeys[1].toString() + "_" + searchKeys[2] + "_" + this.castToAPIFormat(searchKeys[3]);
-        }
-        return searchKeys[0].toString() + "_" + searchKeys[1].toString() + "_" + searchKeys[2] + "_" + this.castToAPIFormat(searchKeys[3]) + "_" + this.castToAPIFormat(searchKeys[4]);
-
-    },
-
-    /*take in an encoded searchkey and decodes it*/
-    decodeSearchKey: function (encodedSearchKey) {
-        return "";
-    },
-
-    encodeDate: function (date) {
-        return date.toString().replace(" ", "_");
-
-    },
-
-    decodeDate: function (dateString) {
-        return new Date (dateString.replace("_", " "));
-    },
 
     //converts an date object to a human-friendly data string, eg: 明天，下周二，5月3号
     getDateString: function (targetDate, flag) {
@@ -194,16 +153,27 @@ var Utilities = {
     isEmpty: function (str) {
         return (str === null || str === undefined || str === "");
     },
+
+
     castFromAPIFormat: function (dateString) {
         var match = dateString.match(/^(\d+)-(\d+)-(\d+) (\d+)\:(\d+)\:(\d+)$/);
         var date = new Date (match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
         return date;
     },
-
     castToAPIFormat: function (date) {
         var d = date, str = [d.getFullYear(), (d.getMonth() + 1).padLeft(), d.getDate().padLeft()].join('-') + ' ' + [d.getHours().padLeft(), d.getMinutes().padLeft(), d.getSeconds().padLeft()].join(':');
         return str;
     },
+    castFromRepresentationFormat: function (dateString) {
+        var match = dateString.match(/^(\d+)-(\d+)-(\d+)$/);
+        var date = new Date (match[1], match[2] - 1, match[3], 0, 0, 0, 0);
+        return date;
+    },
+    castToRepresentationFormat: function (date) {
+        var d = date, str = [d.getFullYear(), (d.getMonth() + 1).padLeft(), d.getDate().padLeft()].join('-');
+        return str;
+    },
+    
 
     getDayTimeSlotText: function(timeSlot){
         var prefixText = '',
@@ -271,7 +241,7 @@ var Utilities = {
         }
     },
     getUrlParams: function(name) {
-        if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+        if(name===(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search));
               return decodeURIComponent(name[1]);
     },
     getCookie: function(c_name){
@@ -287,5 +257,26 @@ var Utilities = {
                 return unescape(y);
             }
         }
+    },
+    parseQueryParam: function(queryString){
+        var params = {};
+        if(queryString){
+            _.each(
+                _.map(decodeURI(queryString).split(/&/g),function(el,i){
+                    var aux = el.split('='), o = {};
+                    if(aux.length >= 1){
+                        var val;
+                        if(aux.length == 2)
+                            val = aux[1];
+                        o[aux[0]] = val;
+                    }
+                    return o;
+                }),
+                function(o){
+                    _.extend(params,o);
+                }
+            );
+        }
+        return params;
     }
 };

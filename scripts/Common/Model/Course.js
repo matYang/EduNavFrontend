@@ -2,55 +2,60 @@ var Course = Backbone.Model.extend({
     defaults: function () {
         return {
             "courseId":-1,
-            "creationTime": new Date(),
             "partnerId":-1,
 
             "startTime": new Date(),
             "finishTime": new Date(),
+            "price": 0,
+            "seatsTotal": -1,
+            "seatsLeft": -1,
+            "status": 0,
+            "category": "",
+            "subcategory": "",
+            "title": "",
             "location": "",
+            "city": "",
+            "district": "",
+            "reference": "",
 
             "teacherInfo": "",
             "teacherImgUrl": "",
             "teachingMaterial": "",
             "backgroundUrl": "",
-            "price": 0.0,
-            "seatsTotal": -1,
-            "seatsLeft": -1,
-            "reference": -1,
-            "category": "",
-            "subcategory": "",
-            "city": "",
-            "district": "",
-            "title": "",
-            "status": 0,
-            "partner": null
+            "courseInfo": "",
+            
+            "partner": null,
+            "creationTime": new Date()
         };
     },
     idAttribute: "courseId",
     parse: function (data) {
-        if ( typeof data !== 'undefined' && typeof data.courseId !== 'undefined') {
+        if ( typeof data !== 'undefined') {
             data.courseId = parseInt(data.courseId, 10);
-
             data.partnerId = parseInt(data.p_Id, 10);
-            data.creationTime =  Utilities.castFromAPIFormat(data.creationTime);
+            
             data.startTime = Utilities.castFromAPIFormat(data.startTime);
             data.finishTime = Utilities.castFromAPIFormat(data.finishTime);
-
+            data.price =  parseInt(data.price, 10);
+            data.seatsTotal =  parseInt(data.seatsTotal, 10);
+            data.seatsLeft =  parseInt(data.seatsLeft, 10);
+            data.status = parseInt(data.status, 10);
+            data.category = decodeURI(data.category);
+            data.subcategory = decodeURI(data.subcategory);
+            data.title = decodeURI(data.title);
             data.location = decodeURI(data.location);
+            data.city = decodeURI(data.city);
+            data.district = decodeURI(data.district);
+            data.reference =  decodeURI(data.reference);
+
+
             data.teacherInfo = decodeURI(data.t_Info);
             data.teacherImgUrl = decodeURI(data.t_ImgURL);
             data.teachingMaterial = decodeURI(data.t_Material);
             data.backgroundUrl = decodeURI(data.backgroundURL);
-            data.price =  parseFloat(data.price);
-            data.seatsTotal =  parseInt(data.seatsTotal, 10);
-            data.seatsLeft =  parseInt(data.seatsLeft, 10);
-            data.reference =  parseInt(data.reference, 10);
-            data.category = decodeURI(data.category);
-            data.subcategory = decodeURI(data.subcategory);
-            data.city = decodeURI(data.city);
-            data.district = decodeURI(data.district);
-            data.title = decodeURI(data.title);
-            data.status = parseInt(data.status, 10);
+            data.courseInfo = decodeURI(data.courseInfo);
+
+            data.creationTime =  Utilities.castFromAPIFormat(data.creationTime);
             data.partner = new Partner(data.partner, {parse: true});
         }
         return data;
@@ -72,7 +77,7 @@ var Courses = Backbone.Collection.extend({
 
     model: Course,
 
-    url: Constants.origin + "/api/v1.0/courses",
+    url: Constants.origin + "/api/v1.0/course",
 
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
