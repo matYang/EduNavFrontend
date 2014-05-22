@@ -2,7 +2,7 @@ var searchView = Backbone.View.extend({
     el: '#content',
     initialize: function (params) {
         _.bindAll(this, 'render', 'renderSearchResults', 'courseSearch', 'submitSearch', 'bindEvents', 'close');
-        app.viewRegistration.register("mainPage", this, true);
+        app.viewRegistration.register("search", this, true);
         this.isClosed = false;
         this.rendered = false;
         this.user = app.sessionManager.getSessionUser();
