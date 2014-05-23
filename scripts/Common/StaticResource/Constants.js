@@ -14,14 +14,6 @@ var getEnvironmentServerOrigin = function () {
 
 var Constants = {
 
-    //all console logs/warns should use these methods to help IE compatability
-    dLog: function (message) {
-        Info.log(message);
-    },
-
-    dWarn: function (err) {
-        Info.warn(err);
-    },
 
     origin: getEnvironmentServerOrigin().httpOrigin,
     socketOrigin: getEnvironmentServerOrigin().socketOrigin,

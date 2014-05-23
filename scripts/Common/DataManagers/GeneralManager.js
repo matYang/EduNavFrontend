@@ -2,17 +2,13 @@
     'use strict';
 
     this.GeneralManager = function(sessionManager){
-
         this.apis = new ApiResource();
 
-        //time stamp updates when user data changes or sycns
-        this.timeStamp = new Date();
     };
 
 
     //reset the manager state upon logout
     GeneralManager.prototype.release = function() {
-        this.timeStamp = new Date();
     };
 
     GeneralManager.prototype.fetchCourse = function (courseId, callback) {
@@ -95,7 +91,7 @@
             return;
         }
         if (typeof searchRepresentationObj !== 'object'){
-            Constants.dWarn("CourseManager::fetchSearchResult:: invalid parameter, exit");
+            Info.warn("CourseManager::fetchSearchResult:: invalid parameter, exit");
             return;
         }
 
@@ -112,8 +108,8 @@
                 }
             },
             error: function(model, response){
-                Constants.dWarn("CourseManager::fetchSearchResult:: fetch failed with response:");
-                Constants.dLog(response);
+                Info.warn("CourseManager::fetchSearchResult:: fetch failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }

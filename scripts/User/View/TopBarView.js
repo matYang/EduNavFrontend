@@ -234,8 +234,8 @@ var TopBarView = Backbone.View.extend({
             $('#login_button').val("登录中...").prop("disabled", true);
             app.sessionManager.login(username, password, {
                 success: function (response) {
-                    Constants.dLog("server login response: ");
-                    Constants.dLog(response);
+                    Info.log("server login response: ");
+                    Info.log(response);
                     //fetching session, with async flag to true
                     app.sessionManager.fetchSession(true, {
                         success: function () {
@@ -264,8 +264,8 @@ var TopBarView = Backbone.View.extend({
     logout: function () {
         app.sessionManager.logout({
             success: function (response) {
-                Constants.dLog("server logout response: ");
-                Constants.dLog(response);
+                Info.log("server logout response: ");
+                Info.log(response);
 
                 app.sessionManager.fetchSession(true, {
                     success: function () {

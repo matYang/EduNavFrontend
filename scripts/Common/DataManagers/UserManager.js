@@ -5,8 +5,6 @@
 
         this.apis = new ApiResource();
 
-        //time stamp updates when user data changes or sycns
-        this.timeStamp = new Date();
 
         this.sessionManager = sessionManager;
         this.sessionManager.resgisterManager(this);
@@ -17,19 +15,14 @@
     UserManager.prototype.release = function() {
         this.sessionUser = this.sessionManager.getSessionUser();
 
-        this.timeStamp = new Date();
     };
 
-
-    UserManager.prototype.getTimeStamp = function() {
-        return this.timeStamp;
-    };
 
     UserManager.prototype.registerUser = function(newUser, callback) {
         var self = this;
 
         if (this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::registerUser::currentUser already has session, conflict, exit");
+            Info.warn("UserManager::registerUser::currentUser already has session, conflict, exit");
             return;
         }
 
@@ -46,7 +39,7 @@
                 }
             },
             error: function(model, response){
-                Constants.dWarn("UserManager::register:: action failed");
+                Info.warn("UserManager::register:: action failed");
                 if(callback){
                     callback.error(response);
                 }
@@ -64,7 +57,7 @@
         var self = this;
 
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::getUser::currentUser does not have session, exit");
+            Info.warn("UserManager::getUser::currentUser does not have session, exit");
             return;
         }
 
@@ -81,8 +74,8 @@
                 }
             },
             error: function(model, response){
-                Constants.dWarn("UserManager::getUser:: fetch failed with response:");
-                Constants.dLog(response);
+                Info.warn("UserManager::getUser:: fetch failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
@@ -91,55 +84,17 @@
     };
 
 
-    UserManager.prototype.postImage = function(callback) {
-        //TODO
-    };
-
-    //the call back should accept the return data (true or false)
-    UserManager.prototype.verifyEmail = function(emailVal, callback) {
-        //don't care about session
-        if (!emailVal){
-            Constants.dWarn("UserManager::verifyEmail:: invalid parameter");
-            return;
-        }
-
-        var self = this;
-
-        $.ajax({
-            type: "GET",
-            async: true,
-            url: self.apis.user_email,
-            data: $.param({ email: emailVal}),
-            dataType: 'json',
-            success: function(data){
-                Constants.dLog("email verification call succeeded with response:");
-                Constants.dLog(data);
-
-                if(callback && callback.success){
-                    callback.success(data.val);
-                }
-            },
-            error: function (data, textStatus, jqXHR){
-                alert("请稍后再试");
-                Constants.dWarn("UserManager::verifyEmail:: action failed");
-                if(callback && callback.error){
-                    callback.error(data.val);
-                }
-            }
-        });
-    };
-
 
 
     UserManager.prototype.changeContactInfo = function(name, gender, phone, qq, birthday, location, callback) {
         //if invalid input or is already logged in, can not change contact information
         if (!(name && (typeof gender === 'number'))){
-            Constants.dWarn("UserManager::changeContactInfo:: invalid parameter");
+            Info.warn("UserManager::changeContactInfo:: invalid parameter");
             return;
         }
 
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::changeContactInfo:: session does not exist, exit");
+            Info.warn("UserManager::changeContactInfo:: session does not exist, exit");
             return;
         }
 
@@ -161,45 +116,7 @@
             },
             error: function(model, response){
                 alert("请稍后再试");
-                Constants.dWarn("UserManager::changeContactInfo:: action failed");
-                if(callback){
-                    callback.error(response);
-                }
-            }
-        });
-        this.timeStamp = new Date();
-    };
-
-    UserManager.prototype.changeLocation = function(location, callback) {
-        //if invalid input or is already logged in, can not change location
-        if (!(location)){
-            Constants.dWarn("UserManager::changeLocation:: invalid parameter");
-            return;
-        }
-
-        if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::changeLocation:: session does not exist, exit");
-            return;
-        }
-
-        var self = this;
-
-        var sessionUser = app.sessionManager.getSessionUser();
-        sessionUser.overrideUrl(this.apis.user_singleLocation);
-        //url encoded, not setting in user
-        sessionUser.save({},{
-            data: JSON.stringify({ 'location': location.toString()}),
-            dataType:'json',
-
-            success:function(model, response){
-                self.timeStamp = new Date();
-                if(callback){
-                    callback.success(sessionUser);
-                }
-            },
-            error: function(model, response){
-                alert("请稍后再试");
-                Constants.dWarn("UserManager::changeLocation:: action failed");
+                Info.warn("UserManager::changeContactInfo:: action failed");
                 if(callback){
                     callback.error(response);
                 }
@@ -213,12 +130,12 @@
     UserManager.prototype.changePassword = function(oldPassword, newPassword, confirmNewPassword, callback) {
         //if invalid input or is already logged in, can not change password
         if (!(oldPassword && newPassword && confirmNewPassword)){
-            Constants.dWarn("UserManager::changePassword:: invalid parameter");
+            Info.warn("UserManager::changePassword:: invalid parameter");
             return;
         }
 
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::changePassword:: session does not exist, exit");
+            Info.warn("UserManager::changePassword:: session does not exist, exit");
             return;
         }
 
@@ -238,7 +155,7 @@
             },
             error: function (data, textStatus, jqXHR){
                 alert("请稍后再试");
-                Constants.dWarn("UserManager::changePassword:: action failed");
+                Info.warn("UserManager::changePassword:: action failed");
                 if(callback){
                     callback.error(data);
                 }
@@ -247,83 +164,16 @@
         this.timeStamp = new Date();
     };
 
-    UserManager.prototype.activateAccount = function(key, callback) {
-        var self = this;
 
-        if (!(key)){
-            Constants.dWarn("UserManager::activateAccount:: invalid parameter");
-            return;
-        }
-        if (this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::activateAccount:: session already exists, exit");
-            app.navigate("/main", true);
-            return;
-        }
-
-
-        $.ajax({
-            type: "GET",
-            async: true,
-            url: self.apis.user_emailActivation,
-            data: $.param({'key': key}),
-            dataType: 'json',
-            success: function(data){
-                //update session
-                if(callback){
-                    callback.success();
-                }
-
-            },
-            error: function (data, textStatus, jqXHR){
-                alert("请稍后再试");
-                Constants.dWarn("UserManager::activateAccount:: action failed");
-                if(callback){
-                    callback.error(data);
-                }
-            }
-        });
-        this.timeStamp = new Date();
-    };
-
-    UserManager.prototype.resendActivationEmail = function(callback) {
-        var self = this,
-            newTopBarUser = new User();
-
-        if (this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::resendActivationEmail:: session already exists, exit");
-            return;
-        }
-
-
-        $.ajax({
-            type: "GET",
-            async: true,
-            url: self.apis.user_resendActivationEmail + '/' + self.sessionManager.getUserId(),
-            dataType: 'json',
-            success: function(data){
-                if(callback){
-                    callback.success();
-                }
-            },
-            error: function (data, textStatus, jqXHR){
-                alert("请稍后再试");
-                Constants.dWarn("UserManager::resendActivationEmail:: action failed");
-                if(callback){
-                    callback.error(data);
-                }
-            }
-        });
-
-    };
 
     UserManager.prototype.forgetPassword = function(email, callback) {
         var self = this;
         if (!(email)){
-            Constants.dWarn("UserManager::forgetPassword:: invalid parameter");
+            Info.warn("UserManager::forgetPassword:: invalid parameter");
             return;
         }
         if (this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::forgetPassword:: session already exists, exit");
+            Info.warn("UserManager::forgetPassword:: session already exists, exit");
             return;
         }
 
@@ -340,7 +190,7 @@
             },
             error: function (data, textStatus, jqXHR){
                 alert("请稍后再试");
-                Constants.dWarn("UserManager::forgetPassword:: action failed");
+                Info.warn("UserManager::forgetPassword:: action failed");
                 if(callback){
                     callback.error(data);
                 }
@@ -351,11 +201,11 @@
     UserManager.prototype.findPassword = function(key, newPassword, confirmNewPassword, callback) {
         var self = this;
         if (!(key && newPassword && confirmNewPassword)){
-            Constants.dWarn("UserManager::findPassword:: invalid parameter");
+            Info.warn("UserManager::findPassword:: invalid parameter");
             return;
         }
         if (this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::findPassword:: session already exists, exit");
+            Info.warn("UserManager::findPassword:: session already exists, exit");
             return;
         }
 
@@ -372,7 +222,7 @@
 
             },
             error: function (data, textStatus, jqXHR){
-                Constants.dWarn("UserManager::findPassword:: action failed");
+                Info.warn("UserManager::findPassword:: action failed");
                 if(callback){
                     callback.error(data);
                 }
@@ -382,4 +232,118 @@
 
     /********************* User Relations ***************************/
 
+
+
+    UserManager.prototype.fetchBookings = function(bookingId, callback) {
+        if (typeof bookingId !== 'number' ){
+            Info.warn("BookingManager::fetchBooking:: invalid parameter");
+            return;
+        }
+        if (!this.sessionManager.hasSession()){
+            Info.warn("BookingManager::fetchBooking:: session does not exist, exit");
+            return;
+        }
+
+        var self = this;
+
+        var booking = new Booking();
+        booking.overrideUrl(this.apis.booking_booking);
+        booking.set('bookingId', bookingId);
+
+        booking.fetch({
+            data: $.param({ 'userId': this.sessionManager.getUserId()}),
+            dataType:'json',
+
+            success:function(model, response){
+                self.timeStamp = new Date();
+                if(callback){
+                    callback.success(booking);
+                }
+            },
+
+            error: function(model, response){
+                Info.warn("BookingManager::fetchBooking:: fetch failed with response:");
+                Info.log(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
+    UserManager.prototype.initBooking = function(newBooking, callback){
+        if (!newBooking || typeof newBooking !== 'object'){
+            Info.warn("BookingManager::initBooking:: invalid parameter");
+            return;
+        }
+        if (!this.sessionManager.hasSession()){
+            Info.warn("BookingManager::initBooking:: session does not exist, exit");
+            return;
+        }
+
+        var self = this;
+
+        newBooking.overrideUrl(this.apis.booking_booking);
+        newBooking.set('bookingId', -1);
+        newBooking.set('userId', this.sessionManager.getUserId());
+        newBooking.save({},{
+            dataType:'json',
+
+            success:function(model, response){
+                self.booking = newBooking;
+                self.timeStamp = new Date();
+
+                if(callback){
+                    callback.success();
+                }
+            },
+
+            error: function(model, response){
+                Info.warn("BookingManager::initBooking:: save failed with response:");
+                Info.log(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+
+    };
+
+
+    //if evaluate, pass in score as well
+    UserManager.prototype.changeBookingState = function(booking, callback) {
+        var bookingId = booking.id;
+
+        if (typeof bookingId !== 'number'){
+            Info.warn("BookingManager::changeBookingState:: invalid parameter");
+            return;
+        }
+        if (!this.sessionManager.hasSession()){
+            Info.warn("BookingManager::changeBookingState:: session does not exist, exit");
+            return;
+        }
+
+        var self = this;
+        booking.overrideUrl(this.apis.booking_booking);
+
+        booking.save({},{
+            data: JSON.stringify({ 'userId': this.sessionManager.getUserId(), 'stateChangeAction': stateChangeAction, 'score': score}),
+            dataType:'json',
+
+            success:function(model, response){
+                self.timeStamp = new Date();
+                if(callback){
+                    callback.success(booking);
+                }
+            },
+
+            error: function(model, response){
+                Info.warn("BookingManager::changeBookingState:: save failed with response:");
+                Info.log(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
 }).call(this);

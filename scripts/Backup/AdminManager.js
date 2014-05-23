@@ -9,25 +9,21 @@
         this.sessionManager = sessionManager;
         this.userManager = userManager;
 
-        this.timeStamp = new Date();
-
         this.sessionManager.resgisterManager(this);
-
     };
 
 
     AdminManager.prototype.release = function() {
-        this.timeStamp = new Date();
     };
 
     AdminManager.prototype.login = function(emailVal, passwordVal, callback){
         //if invalid input or is already logged in, can not login
         if (!(emailVal && passwordVal)){
-            Constants.dWarn("AdminManager::lougout:: invalid parameter");
+            Info.warn("AdminManager::lougout:: invalid parameter");
             return;
         }
         if (this.hasSession()){
-            Constants.dWarn("AdminManager::login::already logged in, conflict, still sending the login request");
+            Info.warn("AdminManager::login::already logged in, conflict, still sending the login request");
             app.navigate("/main", true);
         }
         var self = this;
@@ -45,28 +41,25 @@
                 self.fetchCurUserLetters();
                 self.fetchCurUserFavorites();
 
-                Constants.dLog(model);
+                Info.log(model);
                 if(callback){
                     callback.success(response);
                 }
             },
 
             error: function(model, response){
-                Constants.dWarn("AdminManager::login:: login failed with response:");
-                Constants.dLog(response);
+                Info.warn("AdminManager::login:: login failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-
-        this.timeStamp = new Date();
-
     };
 
     AdminManager.prototype.logout = function(callback){
         if (!this.hasSession()){
-            Constants.dWarn("AdminManager::logout::not logged in, conflict, still sending the logout request");
+            Info.warn("AdminManager::logout::not logged in, conflict, still sending the logout request");
         }
         var self = this;
 
@@ -81,21 +74,19 @@
             },
 
             error: function(model, response){
-                Constants.dWarn("AdminManager::logout:: logout failed with response:");
-                Constants.dLog(response);
+                Info.warn("AdminManager::logout:: logout failed with response:");
+                Info.log(response);
 
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-
-        this.timeStamp = new Date();
     };
 
     AdminManager.prototype.createAdmin = function(admin, callback){
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("AdminManager::findCourse:: session does not exist, exit");
+            Info.warn("AdminManager::findCourse:: session does not exist, exit");
             return;
         }
         admin.overrideUrl(this.apis.admin_admin);
@@ -109,24 +100,24 @@
             },
 
             error: function(model, response){
-                Constants.dWarn("AdminManager::createAdmin:: createAdmin failed with response:");
-                Constants.dLog(response);
+                Info.warn("AdminManager::createAdmin:: createAdmin failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-    }
+    };
 
     AdminManager.prototype.listAdmin = function(callback){
         var Admins = new Users();
         Admins.overrideUrl(this.apis.admin_admin);
-        Admins.fetch({}); 
-    }
+        Admins.fetch({});
+    };
 
     AdminManager.prototype.updateAdmin = function(admin, callback){
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("AdminManager::findCourse:: session does not exist, exit");
+            Info.warn("AdminManager::findCourse:: session does not exist, exit");
             return;
         }
         admin.overrideUrl(this.apis.admin_admin);
@@ -140,28 +131,28 @@
             },
 
             error: function(model, response){
-                Constants.dWarn("AdminManager::updateAdmin:: updateAdmin failed with response:");
-                Constants.dLog(response);
+                Info.warn("AdminManager::updateAdmin:: updateAdmin failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-    }
+    };
 
     AdminManager.prototype.createPartner = function(partner, callback){
         //MultiForm
-    }
+    };
 
     AdminManager.prototype.listPartner = function(callback){
         var partners = new Users();
         partners.overrideUrl(this.apis.admin_partner);
-        partners.fetch({}); 
-    }
+        partners.fetch({});
+    };
 
     AdminManager.prototype.updatePartner = function(partner, callback){
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("AdminManager::findCourse:: session does not exist, exit");
+            Info.warn("AdminManager::findCourse:: session does not exist, exit");
             return;
         }
         partner.overrideUrl(this.apis.admin_partner);
@@ -174,24 +165,24 @@
                 }
             },
             error: function(model, response){
-                Constants.dWarn("AdminManager::updatePartner:: updatePartner failed with response:");
-                Constants.dLog(response);
+                Info.warn("AdminManager::updatePartner:: updatePartner failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-    }
+    };
 
     AdminManager.prototype.listUser = function(callback){
         var users = new Users();
         users.overrideUrl(this.apis.admin_user);
         users.fetch({}); 
-    }
+    };
 
     AdminManager.prototype.updateUser = function(user, callback){
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("AdminManager::findCourse:: session does not exist, exit");
+            Info.warn("AdminManager::findCourse:: session does not exist, exit");
             return;
         }
         user.overrideUrl(this.apis.admin_partner);
@@ -204,14 +195,14 @@
                 }
             },
             error: function(model, response){
-                Constants.dWarn("AdminManager::updateUser:: updateUser failed with response:");
-                Constants.dLog(response);
+                Info.warn("AdminManager::updateUser:: updateUser failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-    }
+    };
 
     AdminManager.prototype.listBookings = function(callback){
         var partners = new Users();
@@ -227,22 +218,22 @@
             },
 
             error: function(model, response){
-                Constants.dWarn("AdminManager::listBookings:: fetch failed with response:");
-                Constants.dLog(response);
+                Info.warn("AdminManager::listBookings:: fetch failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-    }
+    };
 
     AdminManager.prototype.findBooking = function(bookingId, callback) {
         if (typeof bookingId !== 'number' ){
-            Constants.dWarn("AdminManager::findBooking:: invalid parameter");
+            Info.warn("AdminManager::findBooking:: invalid parameter");
             return;
         }
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("AdminManager::findBooking:: session does not exist, exit");
+            Info.warn("AdminManager::findBooking:: session does not exist, exit");
             return;
         }
 
@@ -264,8 +255,8 @@
             },
 
             error: function(model, response){
-                Constants.dWarn("AdminManager::findBooking:: fetch failed with response:");
-                Constants.dLog(response);
+                Info.warn("AdminManager::findBooking:: fetch failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
@@ -275,7 +266,7 @@
 
     AdminManager.prototype.updateBooking = function(booking, callback) {
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("AdminManager::updateBooking:: session does not exist, exit");
+            Info.warn("AdminManager::updateBooking:: session does not exist, exit");
             return;
         }
         booking.overrideUrl(this.apis.admin_booking);
@@ -291,25 +282,25 @@
             },
 
             error: function(model, response){
-                Constants.dWarn("AdminManager::updateBooking:: save failed with response:");
-                Constants.dLog(response);
+                Info.warn("AdminManager::updateBooking:: save failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-    }
+    };
 
     AdminManager.prototype.createCourse = function(course, callback) {
         //MultiForm
-    }
+    };
     AdminManager.prototype.findCourse = function(courseId, callback) {
         if (typeof bookingId !== 'number' ){
-            Constants.dWarn("AdminManager::findCourse:: invalid parameter");
+            Info.warn("AdminManager::findCourse:: invalid parameter");
             return;
         }
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("AdminManager::findCourse:: session does not exist, exit");
+            Info.warn("AdminManager::findCourse:: session does not exist, exit");
             return;
         }
 
@@ -331,16 +322,16 @@
             },
 
             error: function(model, response){
-                Constants.dWarn("AdminManager::findCourse:: fetch failed with response:");
-                Constants.dLog(response);
+                Info.warn("AdminManager::findCourse:: fetch failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-    }
+    };
     AdminManager.prototype.updateCourse = function(booking){
         //MultiForm
-    }
+    };
 
 }).call(this);

@@ -1,17 +1,5 @@
-/*
- no matter who we are, where we are from, each of us is a part
- of something greater, more consequential, than we individualy are
- wonders can only be achieved, by hardwork and unity
- I believe we can, we must, get the project going fast
- we do big things from the days of our funding,
- big things, cause we dare to dream
- our destiny is our choice, and we share common hopes common creed
- while all of us have different backgrounds, different stories different beliefs,
- we do not give up, not this time
- */
-
-(function () {'use strict';
-
+(function () {
+    'use strict';
     this.AdminApiResource = function () {
 
         /*---------------  API level constants   --------------*/

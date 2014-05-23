@@ -8,7 +8,7 @@ var Utilities = {
     //converts an date object to a human-friendly data string, eg: 明天，下周二，5月3号
     getDateString: function (targetDate, flag) {
         if (!targetDate) {
-            Constants.dLog("Utilities::getDateString invalid parameter, null or undefined");
+            Info.log("Utilities::getDateString invalid parameter, null or undefined");
             targetDate = new Date ();
         }
         var tempDate = new Date (), curDate = new Date (targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate()), today = new Date (tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate()), dayDifference = Math.floor((curDate.getTime() - today.getTime()) / Constants.miliSecInDay), time = "";
@@ -53,18 +53,18 @@ var Utilities = {
     //expected return format is "startTime - endTime"
     getTimeRange: function (startTime, endTime) {
         if (!startTime) {
-            Constants.dLog("Utilities::getTimeRange  invalid startTime paramters, either null or undefined");
+            Info.log("Utilities::getTimeRange  invalid startTime paramters, either null or undefined");
             startTime = new Date ();
         }
         if (!endTime) {
-            Constants.dLog("Utilities::getTimeRange  invalid endTime paramters, either null or undefined");
+            Info.log("Utilities::getTimeRange  invalid endTime paramters, either null or undefined");
             endTime = new Date ();
         }
         if (startTime.getFullYear() !== endTime.getFullYear || startTime.getMonth() !== endTime.getMonth() || startTime.getDate() !== endTime.getDate()) {
-            Constants.dLog("Utilities::getTimeRange warning, startTime and endTime are not on the date day");
+            Info.log("Utilities::getTimeRange warning, startTime and endTime are not on the date day");
         }
         if (endTime.getTime() >= startTime.getTime()) {
-            Constants.dLog("Utilities:getTimeRange warning, endTime is earlier than or equals startTime");
+            Info.log("Utilities:getTimeRange warning, endTime is earlier than or equals startTime");
         }
 
         return startTime.getHours() + ":" + startTime.getMinutes() + " - " + endTime.getHours() + ":" + endTime.getMinutes();
@@ -74,21 +74,21 @@ var Utilities = {
     //expected return format is xx小时xx分钟
     getDuration: function (startTime, endTime) {
         if (!startTime) {
-            Constants.dLog("Utilities::getTimeRange  invalid startTime paramters, either null or undefined");
+            Info.log("Utilities::getTimeRange  invalid startTime paramters, either null or undefined");
             startTime = new Date ();
         }
         if (!endTime) {
-            Constants.dLog("Utilities::getTimeRange  invalid endTime paramters, either null or undefined");
+            Info.log("Utilities::getTimeRange  invalid endTime paramters, either null or undefined");
             endTime = new Date ();
         }
         if (startTime.getFullYear() !== endTime.getFullYear || startTime.getMonth() !== endTime.getMonth() || startTime.getDate() !== endTime.getDate()) {
-            Constants.dLog("Utilities::getDuration warning, startTime and endTime are not on the date day");
+            Info.log("Utilities::getDuration warning, startTime and endTime are not on the date day");
         }
 
         var miliDif = endTime.getTime() - startTime.getTime(), hourDif = 0, minuteDif = 0;
 
         if (miliDif <= 0) {
-            Constants.dLog("Utilities:getTimeRange warning, endTime is earlier than or equal startTime");
+            Info.log("Utilities:getTimeRange warning, endTime is earlier than or equal startTime");
         }
 
         hourDif = Math.floor(miliDif / (1000 * 60 * 60));
@@ -103,24 +103,24 @@ var Utilities = {
 
     getHourlyRate: function (startTime, endTime, price) {
         if (!startTime) {
-            Constants.dLog("Utilities::getTimeRange  invalid startTime paramters, either null or undefined");
+            Info.log("Utilities::getTimeRange  invalid startTime paramters, either null or undefined");
             startTime = new Date ();
         }
         if (!endTime) {
-            Constants.dLog("Utilities::getTimeRange  invalid endTime paramters, either null or undefined");
+            Info.log("Utilities::getTimeRange  invalid endTime paramters, either null or undefined");
             endTime = new Date ();
         }
         if (startTime.getFullYear() !== endTime.getFullYear || startTime.getMonth() !== endTime.getMonth() || startTime.getDate() !== endTime.getDate()) {
-            Constants.dLog("Utilities::getHourlyRate warning, startTime and endTime are not on the date day");
+            Info.log("Utilities::getHourlyRate warning, startTime and endTime are not on the date day");
         }
         if (price === undefined || price < 0) {
-            Constants.dLog("Utilities::getHourlyRate warning, price undefined or less than 0");
+            Info.log("Utilities::getHourlyRate warning, price undefined or less than 0");
         }
 
         var miliDif = endTime.getTime() - startTime.getTime(), hourLength = 0;
 
         if (miliDif <= 0) {
-            Constants.dLog("Utilities::getHourlyRate warning, endTime is earlier or equal startTime");
+            Info.log("Utilities::getHourlyRate warning, endTime is earlier or equal startTime");
         }
 
         hourLength = miliDif / (1000 * 60 * 60);

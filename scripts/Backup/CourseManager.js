@@ -27,7 +27,7 @@
     CourseManager.prototype._postSingleCourse = function(newCourse, promiseback, callback){
         var partnerId = this.sessionManager.getSessionUser().get("partnerId");
         if (!partnerId) {
-            Constants.dWarn("CourseManager::postCourse:: fetch failed with response:");
+            Info.warn("CourseManager::postCourse:: fetch failed with response:");
         }
         var self = this;
 
@@ -45,8 +45,8 @@
                 }
             },
             error: function(model, response){
-                Constants.dWarn("CourseManager::postCourse:: post failed with response:");
-                Constants.dLog(response);
+                Info.warn("CourseManager::postCourse:: post failed with response:");
+                Info.log(response);
                 if(promiseback){
                     promiseback(null, callback, self);
                 }
@@ -77,15 +77,15 @@
         var self = this,
             i = 0;
         if (!newCourses || !(newCourses instanceof Backbone.Collection)){
-            Constants.dWarn("CourseManager::postCourse::invalid parameter, exit");
+            Info.warn("CourseManager::postCourse::invalid parameter, exit");
             return;
         }
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("CourseManager::postCourse::currentCourse does not have session, exit");
+            Info.warn("CourseManager::postCourse::currentCourse does not have session, exit");
             return;
         }
         if (postCount > 0){
-            Constants.dWarn("CoursePost Queue not cleared yet");
+            Info.warn("CoursePost Queue not cleared yet");
             return;
         }
 
@@ -99,11 +99,11 @@
 
     CourseManager.prototype.updateCourse = function(updatedCourse, callback) {
         if (!updatedCourse || typeof updatedCourse !== 'object'){
-            Constants.dWarn("CourseManager::updateCourse:: invalid parameter");
+            Info.warn("CourseManager::updateCourse:: invalid parameter");
             return;
         }
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("CourseManager::updateCourse:: session does not exist, exit");
+            Info.warn("CourseManager::updateCourse:: session does not exist, exit");
             return;
         }
 
@@ -119,8 +119,8 @@
                 }
             },
             error: function(model, response){
-                Constants.dWarn("CourseManager::updateCourse:: update failed with response:");
-                Constants.dLog(response);
+                Info.warn("CourseManager::updateCourse:: update failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
@@ -133,11 +133,11 @@
     CourseManager.prototype.deactivateCourse = function(courseId, callback) {
         var self = this;
         if (typeof courseId !== 'number'){
-            Constants.dWarn("CourseManager::deleteCourse:: invalid parameter");
+            Info.warn("CourseManager::deleteCourse:: invalid parameter");
             return;
         }
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("CourseManager::deleteCourse::current user does not have session, exit");
+            Info.warn("CourseManager::deleteCourse::current user does not have session, exit");
             return;
         }
         //do not destory the course itself
@@ -152,8 +152,8 @@
                 }
             },
             error: function(model, response){
-                Constants.dWarn("CourseManager::deleteCourse:: delete failed with response:");
-                Constants.dLog(response);
+                Info.warn("CourseManager::deleteCourse:: delete failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }

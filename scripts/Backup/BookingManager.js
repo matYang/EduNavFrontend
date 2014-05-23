@@ -23,11 +23,11 @@
 
 	BookingManager.prototype.fetchBookings = function(bookingId, callback) {
 		if (typeof bookingId !== 'number' ){
-			Constants.dWarn("BookingManager::fetchBooking:: invalid parameter");
+			Info.warn("BookingManager::fetchBooking:: invalid parameter");
 			return;
 		}
 		if (!this.sessionManager.hasSession()){
-			Constants.dWarn("BookingManager::fetchBooking:: session does not exist, exit");
+			Info.warn("BookingManager::fetchBooking:: session does not exist, exit");
 			return;
 		}
 
@@ -49,8 +49,8 @@
 			},
 
 			error: function(model, response){
-				Constants.dWarn("BookingManager::fetchBooking:: fetch failed with response:");
-				Constants.dLog(response);
+				Info.warn("BookingManager::fetchBooking:: fetch failed with response:");
+				Info.log(response);
 				if(callback){
 					callback.error(response);
 				}
@@ -60,11 +60,11 @@
 
 	BookingManager.prototype.initBooking = function(newBooking, callback){
 		if (!newBooking || typeof newBooking !== 'object'){
-			Constants.dWarn("BookingManager::initBooking:: invalid parameter");
+			Info.warn("BookingManager::initBooking:: invalid parameter");
 			return;
 		}
 		if (!this.sessionManager.hasSession()){
-			Constants.dWarn("BookingManager::initBooking:: session does not exist, exit");
+			Info.warn("BookingManager::initBooking:: session does not exist, exit");
 			return;
 		}
 
@@ -86,8 +86,8 @@
 			},
 
 			error: function(model, response){
-				Constants.dWarn("BookingManager::initBooking:: save failed with response:");
-				Constants.dLog(response);
+				Info.warn("BookingManager::initBooking:: save failed with response:");
+				Info.log(response);
 				if(callback){
 					callback.error(response);
 				}
@@ -104,11 +104,11 @@
 		var score = stateChangeAction === Constants.bookingStateChangeAction.evaluate ? options.score : 0;
 		
 		if (typeof bookingId !== 'number' || typeof stateChangeAction !== 'number'){
-			Constants.dWarn("BookingManager::changeBookingState:: invalid parameter");
+			Info.warn("BookingManager::changeBookingState:: invalid parameter");
 			return;
 		}
 		if (!this.sessionManager.hasSession()){
-			Constants.dWarn("BookingManager::changeBookingState:: session does not exist, exit");
+			Info.warn("BookingManager::changeBookingState:: session does not exist, exit");
 			return;
 		}
 
@@ -129,8 +129,8 @@
 			},
 
 			error: function(model, response){
-				Constants.dWarn("BookingManager::changeBookingState:: save failed with response:");
-				Constants.dLog(response);
+				Info.warn("BookingManager::changeBookingState:: save failed with response:");
+				Info.log(response);
 				if(callback){
 					callback.error(response);
 				}
@@ -140,11 +140,11 @@
 
 	//BookingManager.prototype.deleteBooking = function(bookingId, callback) {
 	//	if (typeof bookingId !== 'number'){
-	//		Constants.dWarn("BookingManager::deleteBooking:: invalid parameter");
+	//		Info.warn("BookingManager::deleteBooking:: invalid parameter");
 	//		return;
 	//	}
 	//	if (!this.sessionManager.hasSession()){
-	//		Constants.dWarn("BookingManager::deleteBooking:: session does not exist, exit");
+	//		Info.warn("BookingManager::deleteBooking:: session does not exist, exit");
 	//		return;
 	//	}
 
@@ -167,8 +167,8 @@
 	//		},
 
 	//		error: function(model, response){
-	//			Constants.dWarn("BookingManager::deleteBooking:: delete failed with response:");
-	//			Constants.dLog(response);
+	//			Info.warn("BookingManager::deleteBooking:: delete failed with response:");
+	//			Info.log(response);
 	//			if(callback){
 	//				callback.error(response);
 	//			}
@@ -180,7 +180,7 @@
 
 	//BookingManager.prototype.changeBookingState_admin = function(bookingId, newState, access_admin ,callback) {
 	//	if (!access_admin ||typeof bookingId !== 'number' || typeof newState !== 'number' || typeof access_admin !== 'string'){
-	//		Constants.dWarn("BookingManager::changeBookingState_admin:: invalid parameter");
+	//		Info.warn("BookingManager::changeBookingState_admin:: invalid parameter");
 	//		return;
 	//	}
 
@@ -203,8 +203,8 @@
 	//		},
 
 	//		error: function(model, response){
-	//			Constants.dWarn("BookingManager::changeBookingState_admin:: save failed with response:");
-	//			Constants.dLog(response);
+	//			Info.warn("BookingManager::changeBookingState_admin:: save failed with response:");
+	//			Info.log(response);
 	//			if(callback){
 	//				callback.error(response);
 	//			}

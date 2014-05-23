@@ -30,8 +30,8 @@ var AdminLoginView = Backbone.View.extend({
             $('#login_button').val("登录中...").prop("disabled", true);
             app.adminManager.adminLogin(username, password, {
                 success: function (response) {
-                    Constants.dLog("server login response: ");
-                    Constants.dLog(response);
+                    Info.log("server login response: ");
+                    Info.log(response);
                     //fetching session, with async flag to true
                     app.sessionManager.fetchSession(true, {
                         success: function () {

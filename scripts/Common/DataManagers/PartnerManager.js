@@ -33,7 +33,7 @@
         var self = this;
 
         if (this.sessionManager.hasSession()){
-            Constants.dWarn("PartnerManager::login::session already exists, exit");
+            Info.warn("PartnerManager::login::session already exists, exit");
             return;
         }
 
@@ -51,21 +51,20 @@
                 }
             },
             error: function(model, response){
-                Constants.dWarn("PartnerManager::login:: session fetch failed with response:");
-                Constants.dLog(response);
+                Info.warn("PartnerManager::login:: session fetch failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-        this.timestamp = 
     };
 
     PartnerManager.prototype.logout = function(callback){
         var self = this;
 
         if (!this.sessionManager.hasSession()){
-            Constants.dWarn("PartnerManager::logout::Session does not exist");
+            Info.warn("PartnerManager::logout::Session does not exist");
             return;
         }
 
@@ -82,8 +81,8 @@
                 }
             },
             error: function(model, response){
-                Constants.dWarn("PartnerManager::getUser:: fetch failed with response:");
-                Constants.dLog(response);
+                Info.warn("PartnerManager::getUser:: fetch failed with response:");
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
@@ -93,11 +92,11 @@
     PartnerManager.prototype.forgetPassword = function(email, callback) {
         var self = this;
         if (!(email)){
-            Constants.dWarn("PartnerManager::forgetPassword:: invalid parameter");
+            Info.warn("PartnerManager::forgetPassword:: invalid parameter");
             return;
         }
         if (this.sessionManager.hasSession()){
-            Constants.dWarn("PartnerManager::forgetPassword:: session already exists, exit");
+            Info.warn("PartnerManager::forgetPassword:: session already exists, exit");
             return;
         }
 
@@ -114,7 +113,7 @@
             },
             error: function (data, textStatus, jqXHR){
                 alert("请稍后再试");
-                Constants.dWarn("PartnerManager::forgetPassword:: action failed");
+                Info.warn("PartnerManager::forgetPassword:: action failed");
                 if(callback){
                     callback.error(data);
                 }
@@ -125,11 +124,11 @@
     PartnerManager.prototype.recoverPassword = function(key, newPassword, confirmNewPassword, callback) {
         var self = this;
         if (!(key && newPassword && confirmNewPassword)){
-            Constants.dWarn("PartnerManager::findPassword:: invalid parameter");
+            Info.warn("PartnerManager::findPassword:: invalid parameter");
             return;
         }
         if (this.sessionManager.hasSession()){
-            Constants.dWarn("PartnerManager::findPassword:: session already exists, exit");
+            Info.warn("PartnerManager::findPassword:: session already exists, exit");
             return;
         }
 
@@ -146,7 +145,7 @@
 
             },
             error: function (data, textStatus, jqXHR){
-                Constants.dWarn("PartnerManager::findPassword:: action failed");
+                Info.warn("PartnerManager::findPassword:: action failed");
                 if(callback){
                     callback.error(data);
                 }
@@ -158,7 +157,7 @@
     PartnerManager.prototype.postCourse = function(course, callback) {
         var self = this;
         if (this.sessionManager.hasSession()){
-            Constants.dWarn("PartnerManager::postCourse:: session already exists, exit");
+            Info.warn("PartnerManager::postCourse:: session already exists, exit");
             return;
         }
 
@@ -172,17 +171,18 @@
                 }
             },
             error: function (data, textStatus, jqXHR){
-                Constants.dWarn("PartnerManager::postCourse:: action failed");
+                Info.warn("PartnerManager::postCourse:: action failed");
                 if(callback){
                     callback.error(data);
                 }
             }
         });
+    };
 
     PartnerManager.prototype.updateCourse = function(course, callback) {
         var self = this;
         if (this.sessionManager.hasSession()){
-            Constants.dWarn("PartnerManager::updateCourse:: session already exists, exit");
+            Info.warn("PartnerManager::updateCourse:: session already exists, exit");
             return;
         }
 
@@ -196,7 +196,7 @@
                 }
             },
             error: function (data, textStatus, jqXHR){
-                Constants.dWarn("PartnerManager::updateCourse:: action failed");
+                Info.warn("PartnerManager::updateCourse:: action failed");
                 if(callback){
                     callback.error(data);
                 }

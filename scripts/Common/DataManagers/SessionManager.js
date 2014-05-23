@@ -1,14 +1,24 @@
 (function () {
     'use strict';
-    this.SessionManager = function(){
+    this.SessionManager = function(identifier){
+        this.identifier = identifier;
+        switch (this.identifier){
+            case EnumConfig.ModuleIdentifier.user:
+                this.apis = new ApiResource();
+                this.sessionModel = new User();
+                break;
+            case EnumConfig.ModuleIdentifier.partner:
+                this.apis = new ApiResource();
+                this.sessionModel = new Partner();
+                break;
 
-        this.apis = new ApiResource();
-        this.sessionUser = new User();
-
-        this.sessionUser.overrideUrl(this.apis.user_findSession);
-
-        this.timeStamp = new Date();
-
+            case EnumConfig.ModuleIdentifier.admin:
+                this.apis = new AdminApiResource();
+                this.sessionModel = new Admin();
+                break;
+            default:
+                throw new Error('SessionManage模块识别失败');
+        }
         //this is used to reset all manager data upon logouts
         this.sessionRegistraTable = [];
     };
@@ -25,164 +35,176 @@
 
     SessionManager.prototype.hasSession = function(){
         if (testMockObj.testMode) return true;
-        return this.sessionUser.id >= 0;
+        return this.sessionModel.id > 0;
     };
 
     //avoid using this
     SessionManager.prototype.getSessionUser = function(){
-        return this.sessionUser;
+        return this.sessionModel;
     };
 
     SessionManager.prototype.getUserId = function() {
-        return  this.sessionUser.id;
+        return  this.sessionModel.id;
     };
 
-    SessionManager.prototype.getTimeStamp = function() {
-        return this.timeStamp;
-    };
     
     //using the find session API to determine if the uer has logged in or not
     SessionManager.prototype.fetchSession = function(asyncFlag, callback){
         var self = this;
         
-        this.sessionUser.overrideUrl(this.apis.user_findSession);
+        switch (this.identifier){
+            case EnumConfig.ModuleIdentifier.user:
+                this.sessionModel.overrideUrl(this.apis.user_findSession);
+                this.sessionModel.set('userId', -1);
+                break;
+
+            case EnumConfig.ModuleIdentifier.partner:
+                this.sessionModel.overrideUrl(this.apis.partner_findSession);
+                this.sessionModel.set('partnerId', -1);
+                break;
+
+            case EnumConfig.ModuleIdentifier.admin:
+                this.sessionModel.overrideUrl(this.apis.admin_findSession);
+                this.sessionModel.set('adminId', -1);
+                break;
+
+            default:
+                throw new Error('fetchSession模块识别失败');
+        }
+        
         if (testMockObj.testMode) {
-            this.sessionUser = testMockObj.sampleUser;
+            this.sessionModel = testMockObj.sampleUser;
             if(callback){
                 callback.success();
             }
             return;
         }
-        //make sure the session user is new, and sends Get to /findSession
-        this.sessionUser.fetch({
+        
+        //make sure the session model is new
+        this.sessionModel.fetch({
             async:asyncFlag,
             dataType:'json',
 
             success:function(model, response){
                 self.releaseManager();
-                if (self.hasSession()){
-                    self.fetchCurUserNotifications();
-                    self.fetchCurUserLetters();
-                    self.fetchCurUserFavorites();
-                }
                 if(callback){
                     callback.success();
                 }
             },
 
             error: function(model, response){
-                Constants.dWarn("SessionManager::updateSession:: fetch failed with response:");
-                Constants.dLog(response);
+                Info.log(response);
 
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-
-        this.timeStamp = new Date();
-
     };
 
-    SessionManager.prototype.login = function(emailVal, passwordVal, callback){
-        //if invalid input or is already logged in, can not login
-        if (!(emailVal && passwordVal)){
-            Constants.dWarn("SessionManager::lougout:: invalid parameter");
-            return;
-        }
-        if (this.hasSession()){
-            Constants.dWarn("SessionManager::login::already logged in, conflict, still sending the login request");
-            app.navigate("/main", true);
-        }
+    SessionManager.prototype.login = function(key, password, callback){
         var self = this;
 
-        this.sessionUser.overrideUrl(this.apis.user_login);
-        //make sure the user is new, so no id is in the api path
-        this.sessionUser.set('email', emailVal);
-        this.sessionUser.set('password', passwordVal);
-        this.sessionUser.save({},{
+        if (this.hasSession()){
+            Info.alert('已经登录，请刷新页面');
+            app.navigate('/main', {trigger: true});
+        }
+        if (!(key && password)){
+            Info.alert('');
+            return;
+        }
+
+        switch (this.identifier){
+            case EnumConfig.ModuleIdentifier.user:
+                this.sessionModel.overrideUrl(this.apis.user_login);
+                this.sessionModel.set('phone', key);
+                this.sessionModel.set('password', password);
+                this.sessionModel.set('userId', -1);
+                break;
+
+            case EnumConfig.ModuleIdentifier.partner:
+                this.sessionModel.overrideUrl(this.apis.partner_login);
+                this.sessionModel.set('phone', key);
+                this.sessionModel.set('password', password);
+                this.sessionModel.set('partnerId', -1);
+                break;
+
+            case EnumConfig.ModuleIdentifier.admin:
+                this.sessionModel.overrideUrl(this.apis.admin_login);
+                this.sessionModel.set('reference', key);
+                this.sessionModel.set('password', password);
+                this.sessionModel.set('adminId', -1);
+                break;
+
+            default:
+                throw new Error('fetchSession模块识别失败');
+        }
+        
+        this.sessionModel.save({},{
             dataType:'json',
 
             success:function(model, response){
-                Constants.dLog(model);
+                Info.log(model);
                 if(callback){
-                    callback.success(response);
+                    callback.success();
                 }
             },
 
             error: function(model, response){
-                Constants.dWarn("SessionManager::login:: login failed with response:");
-                Constants.dLog(response);
+                Info.log(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-
-        this.timeStamp = new Date();
 
     };
 
     SessionManager.prototype.logout = function(callback){
-        if (!this.hasSession()){
-            Constants.dWarn("SessionManager::logout::not logged in, conflict, still sending the logout request");
-        }
-
         var self = this;
-
-        this.sessionUser.overrideUrl(this.apis.user_logout);
-        //if session user is new, no id in path, then already logged out
-        //if session user is not new, then has id in path, will launch right call
-        this.sessionUser.save({},{
-            dataType:'json',
-
-            success:function(model, response){
-                if(callback){
-                    callback.success(response);
-                }
-            },
-
-            error: function(model, response){
-                Constants.dWarn("SessionManager::logout:: logout failed with response:");
-                Constants.dLog(response);
-
-                if(callback){
-                    callback.error(response);
-                }
+        
+        if (!this.hasSession()){
+            Info.alert('尚未登录');
+            if(callback){
+                callback.success();
             }
-        });
-
-        this.timeStamp = new Date();
-    };
-
-    
-
-    SessionManager.prototype.fetchCurUserSearchHistory = function(callback) {
-        var self = this;
-
-        if (!this.hasSession()){
-            Constants.dWarn("SessionManager::fetchCurUserSearchHistory:: session does not exist, exit");
-            return;
         }
 
-        this.cur_searchHistory.overrideUrl(this.apis.user_searchHistory + '/' + this.getUserId());
-        this.cur_searchHistory.fetch({
+        switch (this.identifier){
+            case EnumConfig.ModuleIdentifier.user:
+                this.sessionModel.overrideUrl(this.apis.user_logout);
+                break;
+
+            case EnumConfig.ModuleIdentifier.partner:
+                this.sessionModel.overrideUrl(this.apis.partner_logout);
+                break;
+
+            case EnumConfig.ModuleIdentifier.admin:
+                this.sessionModel.overrideUrl(this.apis.admin_logout);
+                break;
+
+            default:
+                throw new Error('fetchSession模块识别失败');
+        }
+
+        this.sessionModel.save({},{
             dataType:'json',
-            reset: true,
 
             success:function(model, response){
                 if(callback){
                     callback.success();
                 }
             },
+
             error: function(model, response){
-                Constants.dWarn("SessionManager::fetchCurUserSearchHistory:: fetch failed with response:");
-                Constants.dLog(response);
+                Info.log(response);
+
                 if(callback){
                     callback.error(response);
                 }
             }
         });
     };
+
 
 }).call(this);

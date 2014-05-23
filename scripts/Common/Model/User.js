@@ -4,9 +4,9 @@ var BaseUser = Backbone.Model.extend({
         return {
             "userId": -1,
             
-            "name": "default",
-            "phone": "default",
-            "password": "default",
+            "name": "",
+            "phone": "",
+            "password": "",
             
             "status": 0,
             "creationTime": new Date (),
