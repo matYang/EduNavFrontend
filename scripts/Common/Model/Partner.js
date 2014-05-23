@@ -42,6 +42,28 @@ var Partner = BaseUser.extend({
             
         }
         return data;
+    },
+    _toJSON: function () {
+        var json = _.clone(this.attributes);
+        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.lastLogin = Utilities.getDateString(this.get('lastLogin'));
+        return json;
+    },
+    toJSON: function () {
+        var json = _.clone(this.attributes);
+
+        json.name = encodeURI(json.name);
+        json.license = encodeURI(json.license);
+        json.organizationNum = encodeURI(json.organizationNum);
+        json.reference = encodeURI(json.reference);
+        json.password = encodeURI(json.password);
+        json.phone = encodeURI(json.phone);
+        json.instName = encodeURI(json.instName);
+        json.logoUrl = encodeURI(json.logoUrl);
+
+        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+        json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
+        return json;
     }
 });
 

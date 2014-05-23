@@ -52,7 +52,7 @@ var Course = Backbone.Model.extend({
             data.teacherInfo = decodeURI(data.t_Info);
             data.teacherImgUrl = decodeURI(data.t_ImgURL);
             data.teachingMaterial = decodeURI(data.t_Material);
-            data.backgroundUrl = decodeURI(data.backgroundURL);
+            data.backgroundUrl = decodeURI(data.backgroundUrl);
             data.courseInfo = decodeURI(data.courseInfo);
 
             data.creationTime =  Utilities.castFromAPIFormat(data.creationTime);
@@ -61,14 +61,31 @@ var Course = Backbone.Model.extend({
         return data;
     },
     _toJSON: function () {
-        var json = this.toJSON();
+        var json = _.clone(this.attributes);
+        json.startTime = Utilities.getDateString(this.get('startTime'));
+        json.finishTime = Utilities.getDateString(this.get('finishTime'));
+        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.partner = this.get('partner') === null ? undefined : this.get("partner")._toJSON();
         return json;
     },
     toJSON: function () {
         var json = _.clone(this.attributes);
+        json.category = encodeURI(json.category);
+        json.subcategory = encodeURI(json.subcategory);
+        json.title = encodeURI(json.title);
+        json.location = encodeURI(json.location);
         json.city = encodeURI(json.city);
         json.district = encodeURI(json.district);
-        json.location = encodeURI(json.location);
+        json.reference = encodeURI(json.reference);
+        json.teacherInfo = encodeURI(json.teacherInfo);
+        json.teacherImgUrl = encodeURI(json.teacherImgUrl);
+        json.teachingMaterial = encodeURI(json.teachingMaterial);
+        json.backgroundUrl = encodeURI(json.backgroundUrl);
+        json.courseInfo = encodeURI(json.courseInfo);
+
+        json.startTime = Utilities.castToAPIFormat(this.get('startTime'));
+        json.finishTime = Utilities.castToAPIFormat(this.get('finishTime'));
+        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         return json;
     }
 });

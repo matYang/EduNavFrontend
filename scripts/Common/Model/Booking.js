@@ -65,14 +65,26 @@ var Booking = Backbone.Model.extend({
         return data;
     },
     _toJSON: function () {
-        var json = this.toJSON();
+        var json = _.clone(this.attributes);
+        json.startTime = Utilities.getDateString(this.get('startTime'));
+        json.finishTime = Utilities.getDateString(this.get('finishTime'));
+        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.timestamp = Utilities.getDateString(this.get('timestamp'));
         return json;
     },
     toJSON: function () {
         var json = _.clone(this.attributes);
         
+        json.reference = encodeURI(json.reference);
+        json.name = encodeURI(json.name);
+        json.phone = encodeURI(json.phone);
+
+        json.startTime = Utilities.castToAPIFormat(this.get('startTime'));
+        json.finishTime = Utilities.castToAPIFormat(this.get('finishTime'));
+        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+        json.timestamp = Utilities.castToAPIFormat(this.get('timestamp'));
         return json;
-    },
+    }
 });
 
 var Bookings = Backbone.Collection.extend({

@@ -45,17 +45,24 @@ var BaseUser = Backbone.Model.extend({
     },
 
     _toJSON: function () {
-        var json = this.toJSON();
+        var json = _.clone(this.attributes);
+        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.lastLogin = Utilities.getDateString(this.get('lastLogin'));
         return json;
     },
 
     toJSON: function () {
         var json = _.clone(this.attributes);
-        json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
+
+        json.name = encodeURI(json.name);
+        json.phone = encodeURI(json.phone);
+        json.password = encodeURI(json.password);
+        
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+        json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
         json.name = encodeURI(json.name);
         return json;
-    },
+    }
 
 });
 
