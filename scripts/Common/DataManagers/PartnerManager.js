@@ -7,8 +7,7 @@
 
         //time stamp updates when user data changes or sycns
         this.timeStamp = new Date();
-
-        //thses time stamps records the time when the lastest data is fetches from server
+        
         this.sessionManager = sessionManager;
         this.sessionManager.resgisterManager(this);
     };
@@ -17,7 +16,6 @@
     //reset the manager state upon logout
     PartnerManager.prototype.release = function() {
         this.sessionUser = this.sessionManager.getSessionUser();
-
         this.timeStamp = new Date();
     };
 
@@ -47,6 +45,7 @@
             dataType:'json',
 
             success:function(model, response){
+                self.timeStamp = new Date();
                 if(callback){
                     callback.success(user);
                 }
@@ -59,6 +58,7 @@
                 }
             }
         });
+        this.timestamp = 
     };
 
     PartnerManager.prototype.logout = function(callback){
@@ -164,7 +164,7 @@
 
         course.overrideUrl(this.apis.partner_course);
         course.save({},{
-            data: .param({partnerId: this.sessionUser.id}),
+            data: $.param({partnerId: this.sessionUser.id}),
             dataType: 'json',
             success: function(data){
                 if(callback){

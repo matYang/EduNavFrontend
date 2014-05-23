@@ -104,11 +104,6 @@
             dataType:'json',
 
             success:function(model, response){
-
-                self.fetchCurUserNotifications();
-                self.fetchCurUserLetters();
-                self.fetchCurUserFavorites();
-
                 Constants.dLog(model);
                 if(callback){
                     callback.success(response);

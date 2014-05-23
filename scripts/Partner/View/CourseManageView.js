@@ -5,34 +5,40 @@ var CourseManageView = MultiPageView.extend({
     pageNavigator: "",
     pageNavigatorClass: "",
     pageEntryNumber: 10,
-    startIndex: 0,
-    currentPage: 1,
     pageNumberClass: "",
     pageNumberId: "",
     entryEvent: "",
     allMessages: [],
     messages: null,
-    entryHeight: -1,
-    entryRowNum: 1,
-    minHeight: 0,
+    entryHeight: 80,
+    minHeight: 400,
     noMessage: "暂无课程",
-    _filters:[],
-    _sorter:[],
-    eventBound: false,
-    $domContainer: null,
+    el: null,
     initialize: function(){
+        this.isClosed = false;
         MultiPageView.prototype.initialize.call(this);
-        app.courseManager.searchCourses(new SearchRepresentation({partnerId: app.sessionManager.getSessionUser().id}),
+        app.courseManager.searchCourses(
+            new SearchRepresentation({partnerId: app.sessionManager.getSessionUser().id}), 
             {
                 "success": this.render,
                 "error": function(){}
-            });
+            }
+        );
         
     },
     render: function () {
         MultiPageView.prototype.render.call(this);
     },
-    close: function () {
+    renderFail: function () {
 
+    },
+    bindEvents: function () {
+
+    },
+    close: function () {
+        if (!this.isClosed) {
+            this.isClosed = false;
+            $el.empty();
+        }
     }
 });
