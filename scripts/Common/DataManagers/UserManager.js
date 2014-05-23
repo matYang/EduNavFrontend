@@ -40,7 +40,6 @@
             dataType:'json',
 
             success:function(model, response){
-                self.timeStamp = new Date();
                 //app.sessionManager.sessionUser = sessionUser;
                 if(callback){
                     callback.success(sessionUser);
@@ -53,6 +52,7 @@
                 }
             }
         });
+        this.timeStamp = new Date();
     };
 
     //will be used to display personal informatiom page only
@@ -150,14 +150,11 @@
         sessionUser.set('name', name);
         sessionUser.set('gender', gender);
         sessionUser.set('phone', phone);
-        sessionUser.set('qq', qq);
-        sessionUser.set('birthday', birthday);
         sessionUser.set('location', location);
         sessionUser.save({},{
             dataType:'json',
 
             success:function(model, response){
-                self.timeStamp = new Date();
                 if(callback){
                     callback.success(sessionUser);
                 }
@@ -170,7 +167,7 @@
                 }
             }
         });
-
+        this.timeStamp = new Date();
     };
 
     UserManager.prototype.changeLocation = function(location, callback) {
@@ -208,44 +205,8 @@
                 }
             }
         });
+        this.timeStamp = new Date();
     };
-
-
-
-    UserManager.prototype.toggleNotices = function(shouldEmail, shouldPhone, callback) {
-        var self = this;
-
-        if (!this.sessionManager.hasSession()){
-            Constants.dWarn("UserManager::toggleEmailNotice:: session does not exist, exit");
-            return;
-        }
-
-        var sessionUser = app.sessionManager.getSessionUser();
-        sessionUser.overrideUrl(this.apis.user_toggleNotices);
-        //url encoded, not setting in user
-        sessionUser.fetch({
-            data: $.param({ 'emailNotice': shouldEmail, 'phoneNotice': shouldPhone}),
-            dataType:'json',
-
-            success:function(model, response){
-                self.timeStamp = new Date();
-                if(callback){
-                    callback.success(sessionUser);
-                }
-            },
-            error: function(model, response){
-                alert("请稍后再试");
-                Constants.dWarn("UserManager::toggleNotices:: action failed");
-                if(callback){
-                    callback.error(response);
-                }
-            }
-        });
-
-    };
-
-
-
 
     /********************* Authentication Related ***************************/
 
@@ -283,6 +244,7 @@
                 }
             }
         });
+        this.timeStamp = new Date();
     };
 
     UserManager.prototype.activateAccount = function(key, callback) {
@@ -320,6 +282,7 @@
                 }
             }
         });
+        this.timeStamp = new Date();
     };
 
     UserManager.prototype.resendActivationEmail = function(callback) {
@@ -350,6 +313,7 @@
                 }
             }
         });
+
     };
 
     UserManager.prototype.forgetPassword = function(email, callback) {

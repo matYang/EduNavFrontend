@@ -8,13 +8,6 @@
         //time stamp updates when user data changes or sycns
         this.timeStamp = new Date();
 
-        //thses time stamps records the time when the lastest data is fetches from server
-        this.socialList_timeStamp = new Date();
-        this.historyList_timeStamp = new Date();
-        this.transactionList_timeStamp = new Date();
-        this.notificationList_timeStamp = new Date();
-        this.letter_timeStamp = new Date();
-
         this.sessionManager = sessionManager;
         this.sessionManager.resgisterManager(this);
     };
@@ -23,14 +16,7 @@
     //reset the manager state upon logout
     PartnerManager.prototype.release = function() {
         this.sessionUser = this.sessionManager.getSessionUser();
-
         this.timeStamp = new Date();
-        this.socialList_timeStamp = new Date();
-        this.historyList_timeStamp = new Date();
-        this.transactionList_timeStamp = new Date();
-        this.notificationList_timeStamp = new Date();
-        this.letter_timeStamp = new Date();
-
     };
 
 
@@ -59,6 +45,7 @@
             dataType:'json',
 
             success:function(model, response){
+                self.timeStamp = new Date();
                 if(callback){
                     callback.success(user);
                 }
@@ -71,6 +58,7 @@
                 }
             }
         });
+        this.timestamp = 
     };
 
     PartnerManager.prototype.forgetPassword = function(email, callback) {
@@ -147,7 +135,7 @@
 
         course.overrideUrl(this.apis.partner_course);
         course.save({},{
-            data: .param({partnerId: this.sessionUser.id}),
+            data: $.param({partnerId: this.sessionUser.id}),
             dataType: 'json',
             success: function(data){
                 self.sessionManager.fetchSession(false, callback);
