@@ -132,16 +132,6 @@ var Utilities = {
         return parseInt(number, 10);
     },
 
-    getTimeFromString: function (time) {
-        var hour = 0;
-        if (time.indexOf("中午") > -1)
-            return 12;
-        if (time.indexOf("晚上") > -1 || time.indexOf("下午") > -1 || time.indexOf("午后") > -1 || time.indexOf("傍晚") > -1)
-            hour = 12;
-        var clockhour = this.toInt(time.replace(/\D+/g, ''));
-        return (clockhour + hour);
-    },
-
     getId: function (str, deli) {
         if (this.isEmpty(deli)) {
             deli = "_";
@@ -173,73 +163,8 @@ var Utilities = {
         var d = date, str = [d.getFullYear(), (d.getMonth() + 1).padLeft(), d.getDate().padLeft()].join('-');
         return str;
     },
-    
 
-    getDayTimeSlotText: function(timeSlot){
-        var prefixText = '',
-            actualStartHour = 0,
-            actualEndHour = 1;
-        if (timeSlot < Constants.DayTimeSlot.n12){
-            prefixText = '上午';
-            actualStartHour = timeSlot;
-            actualEndHour = actualStartHour + 1;
-        }
-        else if (timeSlot < Constants.DayTimeSlot.n18){
-            prefixText = '下午';
-            if ( timeSlot === Constants.DayTimeSlot.n12 ) {
-                actualEndHour = 1;
-            } else {
-                actualStartHour = timeSlot - 12;
-                actualEndHour = actualStartHour + 1;
-            }
-        }
-        else{
-            prefixText = '晚上';
-            actualStartHour = timeSlot - 12;
-            actualEndHour = actualStartHour + 1;
 
-        }
-        return prefixText+actualStartHour+'-'+actualEndHour+'点';
-    },
-    getDayTimeSlot_morningStart: function(){
-        return Constants.DayTimeSlot.n0;
-    },
-    getDayTimeSlot_afternoonStart: function(){
-        return Constants.DayTimeSlot.n12;
-    },
-    getDayTimeSlot_nightStart: function(){
-        return Constants.DayTimeSlot.n18;
-    },
-
-    //accepts id in number, string, object, array formats
-    getIdList: function(idOpt){
-        var _id = -1;
-        var _arr = [];
-        if ($.isArray(idOpt)){
-            if (idOpt.length === 0){
-                throw new Error('fatal error: id array empty');
-            }
-            return idOpt;
-        }
-        else{
-            switch (typeof idOpt){
-                case 'string':
-                    _id = parseInt(idOpt, 10);
-                    _arr.push(_id);
-                    break;
-                case 'object':
-                    _id = parseInt(idOpt.id, 10);
-                    _arr.push(_id);
-                    break;
-                case 'number':
-                    _arr.push(_id);
-                    break;
-                default:
-                    throw new Error('fatal error: Invalid id format');
-            }
-            return _arr;
-        }
-    },
     getUrlParams: function(name) {
         if(name===(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search));
               return decodeURIComponent(name[1]);
