@@ -31,14 +31,15 @@ var BaseUser = Backbone.Model.extend({
     },
 
     parse: function (data) {
-        if ( typeof data !== 'undefined' && typeof data.userId !== 'undefined') {
+        if ( typeof data !== 'undefined') {
             data.userId = parseInt(data.userId, 10);
 
-            data.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
-            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            data.name = decodeURI(data.name);
+            data.phone = decodeURI(data.phone);
 
             data.status = parseInt(data.status, 10);
-            data.name = decodeURI(data.name);
+            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            data.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
         }
         return data;
     },
@@ -58,14 +59,12 @@ var BaseUser = Backbone.Model.extend({
 
 });
 
-var User = BaseUser.extend({
+var User = BaseUser.extend({});
 
-
-});
 
 var Users = Backbone.Collection.extend({
 
-    model: BaseUser,
+    model: User,
 
     url: Constants.origin + "/api/v1.0/users/user",
 

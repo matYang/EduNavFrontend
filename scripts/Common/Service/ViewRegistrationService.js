@@ -20,39 +20,39 @@
                 request: ['content'],
                 antiRequest: ['content']
             },
-            'mainPage': {
+            'front': {
                 request: ['content'],
                 antiRequest: ['content']
             },
-            'findUser': {
+            'search': {
                 request: ['content'],
                 antiRequest: ['content']
             },
-            'frontPage': {
+            'compare': {
                 request: ['content'],
-                antiRequest: ['content', 'advertisement']
+                antiRequest: ['content']
             },
             'courseDetail': {
                 request: ['content'],
-                antiRequest: ['content', 'advertisement']
+                antiRequest: ['content']
             },
-            'HowItWorkds': {
+            'HowItWorks': {
                 request: ['content'],
-                antiRequest: ['content', 'advertisement']
+                antiRequest: ['content']
             },
             'serviceCenter': {
                 request: ['content'],
-                antiRequest: ['content', 'advertisement']
+                antiRequest: ['content']
             },
             'registration': {
                 request: ['content'],
-                antiRequest: ['content', 'advertisement']
+                antiRequest: ['content']
             },
             'findPassword': {
                 request: ['content'],
-                antiRequest: ['content', 'advertisement']
+                antiRequest: ['content']
             },
-            'transactionDetail': {
+            'bookingDetail': {
                 request: ['popup'],
                 antiRequest: ['popup']
             }

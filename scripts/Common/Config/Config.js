@@ -4,8 +4,6 @@ var Config = {
 
     locationSeperator: '_',
 
-    defaultCustomDepthIndex: 3,
-
     //-------------- PersonalView state transfer -------------
     getDefaultPersonalViewState: function () {
         return "utility";

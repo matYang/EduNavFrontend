@@ -1,10 +1,8 @@
 var CourseDetailView = Backbone.View.extend({
-
     el: "#content",
-
     initialize: function (messageIdWrapper) {
         _.bindAll(this, 'render', 'bindEvents', 'createNewTransaction', 'openTransactionDetail', 'parseTransaction', 'renderPriceList', 'cancelSuccess', 'cancelError', 'close');
-        app.viewRegistration.register("MessageDetail", this, true);
+        app.viewRegistration.register("courseDetail", this, true);
         this.isClosed = false;
 
         this.user = app.sessionManager.getSessionUser();

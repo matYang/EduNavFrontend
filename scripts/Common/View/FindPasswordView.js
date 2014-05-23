@@ -125,7 +125,9 @@ var FindPasswordView = Backbone.View.extend({
     },
     changeSuccess: function () {
         $("#confirmChange").val("修改成功");
-        setTimeout(function(){app.navigate('front', {trigger: true})},5000 );
+        setTimeout(function(){
+            app.navigate('front', {trigger: true});
+        },5000 );
         
     },
     changeError: function (data) {

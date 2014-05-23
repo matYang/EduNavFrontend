@@ -1,44 +1,57 @@
 var Admin = BaseUser.extend({
     defaults: function () {
         return {
-            "adminId":-1,
+            "adminId": -1,
+            "password":"",
 
             "name": "",
             "phone": "",
 
             "reference": "",
-            "privilege": "",
+            "privilege": 0,
 
             "status": 0,
             "creationTime": new Date(),
             "lastLogin": new Date()
         };
     },
-    idAttribute: "courseId",
+    idAttribute: "adminId",
     parse: function (data) {
-        if ( typeof data !== 'undefined' && typeof data.courseId !== 'undefined') {
-            data = BaseUser.prototype.parse(data);
-            data.courseId = parseInt(data.id, 10);
+        if ( typeof data !== 'undefined') {
 
-            data.partnerId = parseInt(data.partner_id, 10);
-
-            data.location = decodeURI(data.location);
-            data.teacherInfo = decodeURI(data.teacherInfo);
-            data.teacherImgUrl = decodeURI(data.teacherImgUrl);
-            data.teachingMaterial = decodeURI(data.teachingMaterial);
-            data.classroomImgUrl = decodeURI(data.classroomImgUrl);
-            data.price =  parseInt(data.price, 10);
-            data.seatsTotal =  parseInt(data.seatsTotal, 10);
-            data.seatsTaken =  parseInt(data.seatsTaken, 10);
-            data.referenceNum =  parseInt(data.referenceNum, 10);
-            data.price =  parseInt(data.price, 10);
-            data.category = decodeURI(data.category);
-            data.subcategory = decodeURI(data.subcategory);
-            data.city = decodeURI(data.city);
-            data.district = decodeURI(data.district);
-            
+            data.adminId = parseInt(data.adminId, 10);
             data.name = decodeURI(data.name);
+            data.phone = decodeURI(data.phone);
+            data.reference = decodeURI(data.reference);
+
+            data.privilege = parseInt(data.privilege, 10);
+            data.status = parseInt(data.status, 10);
+
+            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            data.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
+            
         }
+
         return data;
+    }
+});
+
+var Admins = Backbone.Collection.extend({
+
+    model: Admin,
+
+    url: Constants.origin + "/a-api/v1.0/admin",
+
+    initialize: function (urlOverride) {
+        _.bindAll(this, 'overrideUrl');
+        if ( typeof urlOverride !== 'undefined') {
+            this.url = urlOverride;
+        }
+    },
+
+    overrideUrl: function (urlOverride) {
+        if ( typeof urlOverride !== 'undefined') {
+            this.url = urlOverride;
+        }
     }
 });

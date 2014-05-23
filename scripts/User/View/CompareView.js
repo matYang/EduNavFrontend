@@ -4,6 +4,7 @@ var compareView = Backbone.View.extend({
     hided: false,
     initialize: function (params) {
         this.items = params.items; // array of items to compare
+        app.viewRegistration.register("compare", this, true);
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "highlight", "hideSame", "close");
         this.template = _.template(tpl.get("compareView"));
