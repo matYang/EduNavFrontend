@@ -2,7 +2,7 @@
 $('input, textarea').placeholder();
 
 var AppRouter = Backbone.Router.extend({
-
+    courseCache:{},
     routes: {
         "": "defaultRoute",
 
@@ -97,9 +97,16 @@ var AppRouter = Backbone.Router.extend({
         this.courseDetailView = new CourseDetailView ({
             'courseId': courseId
         });
-`    },
+    },
     post: function(){
-
+        this.coursePostView =  new CoursePostView();
+    },
+    edit: function(courseId) {
+        if (this.courseCache[courseId]) {
+            this.coursePostView =  new CoursePostView({course: this.courseCache[courseId});    
+        } else {
+            this.coursePostView =  new CoursePostView({courseId: courseId});
+        }
     },
     register: function (registrationState) {
         if (this.sessionManager.hasSession()) {

@@ -2,7 +2,7 @@ var CoursePostView = BaseFormView.extend({
     container:"#content",
     formElem:"#coursePostForm",
     submitButtonId: "submit",
-    initialize: function () {
+    initialize: function (params) {
         var apis = new ApiResource();
 
         this.action = apis.course_course;
@@ -126,13 +126,28 @@ var CoursePostView = BaseFormView.extend({
             }),
         ];
         this.template: _.template(tpl.get("coursePostView")),
-        BaseFormView.prototype.initialize.call(this, params);
-        this.formElem = params.formElem;
-        this.action = params.action;
-        this.callback = params.callback;
-        this.successCallback = params.successCallback;
-        this.submitButtonId = params.submitButtonId;
 
+        BaseFormView.prototype.initialize.call(this, params);
+        if (params.course) {
+            this.course = params.course;
+            this.renderEdit(this.course);
+        } else if (params.courseId) {
+            app.generalManager.fetchCourse(params.courseId, {
+                success: this.renderEdit,
+                error: function(){}
+            })
+        } else {
+            this.render();
+        }
+
+    },
+    renderEdit: function (course) {
+        this.template = _.template(tpl.get("courseEdit"));
+        this.$el.append(this.template(course));
+    },
+    render: function () {
+        this.template = _.template(tpl.get("coursePost"));
+        this.$el.append(this.template);
     },
     successCallback: function () {
         app.navigate("course/");
