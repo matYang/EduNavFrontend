@@ -28,34 +28,13 @@ var CourseSearchRepresentation = Backbone.Model.extend({
     },
 
     initialize: function () {
-        _.bindAll(this, 'toQueryString', 'castFromQuery');
+        _.bindAll(this, 'toQueryString', 'castFromQuery', 'toJSON');
     },
 
     toQueryString: function () {
         var queryArr = [];
-        var queryObj = {};
+        var queryObj = this.toJSON();
 
-        queryObj.category = this.get('category');
-        queryObj.subCategory = this.get('subCategory');
-        queryObj.city = this.get('city');
-        queryObj.district = this.get('district');
-
-        queryObj.startTime = typeof this.get('startTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startTime'));
-        queryObj.finishTime = typeof this.get('finishTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishTime'));
-
-        queryObj.institutionName = this.get('institutionName');
-        queryObj.status = this.get('status');
-
-        queryObj.startPrice = this.get('startPrice');
-        queryObj.finishPrice = this.get('finishPrice');
-        queryObj.courseReference = this.get('courseReference');
-        queryObj.partnerReference = this.get('partnerReference');
-        queryObj.courseId = this.get('courseId');
-        queryObj.partnerId = this.get('partnerId');
-        queryObj.userId = this.get('userId');
-
-        queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
-    
         for (var property in queryObj) {
             if (queryObj.hasOwnProperty(property) && typeof queryObj[property] !== 'undefined') {
                 queryArr.push(property + '=' + queryObj[property]);
@@ -68,9 +47,36 @@ var CourseSearchRepresentation = Backbone.Model.extend({
     castFromQuery: function (queryObj) {
         for (var property in queryObj) {
             if (queryObj.hasOwnProperty(property) && typeof queryObj[property] !== 'undefined') {
-                this.set(property, queryObj[property]);
+                this.set(property, decodeURI(queryObj[property]));
             }
         }
+    },
+
+    toJSON: function(){
+        var queryObj = {};
+
+        queryObj.category = typeof this.get('category') === 'undefined' ? undefined : encodeURI(this.get('category'));
+        queryObj.subCategory = typeof this.get('subCategory') === 'undefined' ? undefined : encodeURI(this.get('subCategory'));
+        queryObj.city = typeof this.get('city') === 'undefined' ? undefined : encodeURI(this.get('city'));
+        queryObj.district = typeof this.get('district') === 'undefined' ? undefined : encodeURI(this.get('district'));
+
+        queryObj.startTime = typeof this.get('startTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startTime'));
+        queryObj.finishTime = typeof this.get('finishTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishTime'));
+
+        queryObj.institutionName = typeof this.get('institutionName') === 'undefined' ? undefined : encodeURI(this.get('institutionName'));
+        queryObj.status = this.get('status');
+
+        queryObj.startPrice = this.get('startPrice');
+        queryObj.finishPrice = this.get('finishPrice');
+        queryObj.courseReference = typeof this.get('courseReference') === 'undefined' ? undefined : encodeURI(this.get('courseReference'));
+        queryObj.partnerReference = typeof this.get('partnerReference') === 'undefined' ? undefined : encodeURI(this.get('partnerReference'));
+        queryObj.courseId = this.get('courseId');
+        queryObj.partnerId = this.get('partnerId');
+        queryObj.userId = this.get('userId');
+
+        queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
+    
+        return queryObj;
     }
 
 });

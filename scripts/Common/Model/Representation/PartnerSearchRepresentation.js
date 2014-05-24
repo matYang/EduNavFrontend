@@ -15,23 +15,12 @@ var PartnerSearchRepresentation = Backbone.Model.extend({
     },
 
     initialize: function () {
-        _.bindAll(this, 'toQueryString', 'castFromQuery');
+        _.bindAll(this, 'toQueryString', 'castFromQuery', 'toJSON');
     },
 
     toQueryString: function () {
         var queryArr = [];
-        var queryObj = {};
-
-        queryObj.partnerId = this.get('partnerId');
-        queryObj.name = this.get('name');
-        queryObj.licence = this.get('licence');
-        queryObj.organizationNum = this.get('organizationNum');
-        queryObj.reference = this.get('reference');
-        queryObj.phone = this.get('phone');
-        queryObj.status = this.get('status');
-        queryObj.instName = this.get('instName');
-        queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
-
+        var queryObj = this.toJSON();
 
         for (var property in queryObj) {
             if (queryObj.hasOwnProperty(property) && typeof queryObj[property] !== 'undefined') {
@@ -45,9 +34,25 @@ var PartnerSearchRepresentation = Backbone.Model.extend({
     castFromQuery: function (queryObj) {
         for (var property in queryObj) {
             if (queryObj.hasOwnProperty(property) && typeof queryObj[property] !== 'undefined') {
-                this.set(property, queryObj[property]);
+                this.set(property, decodeURI(queryObj[property]));
             }
         }
+    },
+
+    toJSON: function(){
+        var queryObj = {};
+
+        queryObj.partnerId = this.get('partnerId');
+        queryObj.name = typeof this.get('name') === 'undefined' ? undefined : encodeURI(this.get('name'));
+        queryObj.licence = typeof this.get('licence') === 'undefined' ? undefined : encodeURI(this.get('licence'));
+        queryObj.organizationNum = typeof this.get('organizationNum') === 'undefined' ? undefined : encodeURI(this.get('organizationNum'));
+        queryObj.reference = typeof this.get('reference') === 'undefined' ? undefined : encodeURI(this.get('reference'));
+        queryObj.phone = typeof this.get('phone') === 'undefined' ? undefined : encodeURI(this.get('phone'));
+        queryObj.status = this.get('status');
+        queryObj.instName = typeof this.get('instName') === 'undefined' ? undefined : encodeURI(this.get('instName'));
+        queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
+
+        return queryObj;
     }
 
 });

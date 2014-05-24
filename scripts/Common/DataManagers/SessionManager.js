@@ -93,7 +93,8 @@
             },
 
             error: function(model, response){
-                Info.log(response);
+                Info.warn('Session redirect failed');
+                Info.warn(response);
 
                 if(callback){
                     callback.error(response);
@@ -151,7 +152,8 @@
             },
 
             error: function(model, response){
-                Info.log(response);
+                Info.warn('login failed');
+                Info.warn(response);
                 if(callback){
                     callback.error(response);
                 }
@@ -162,7 +164,7 @@
 
     SessionManager.prototype.logout = function(callback){
         var self = this;
-        
+
         if (!this.hasSession()){
             Info.alert('尚未登录');
             if(callback){
@@ -197,8 +199,8 @@
             },
 
             error: function(model, response){
-                Info.log(response);
-
+                Info.warn('logout failed');
+                Info.warn(response);
                 if(callback){
                     callback.error(response);
                 }
