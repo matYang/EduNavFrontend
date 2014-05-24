@@ -134,7 +134,9 @@
         });
     };
 
-    /********************* Authentication Related ***************************/
+    /****************
+    *   Authentication Related
+    ****************/
     UserManager.prototype.changePasswordVerification = function(callback) {
         var self = this;
         if (!this.sessionManager.hasSession()){
@@ -144,7 +146,7 @@
 
         $.ajax({
             type: 'GET',
-            url: self.apis.user_changePassword + '/' + self.sessionManager.getUserId(),
+            url: self.apis.user_changePassword + '/' + self.sessionManager.getId(),
             dataType: 'json',
             success: function(data){
                 if(callback){
@@ -176,7 +178,7 @@
 
         $.ajax({
             type: 'PUT',
-            url: self.apis.user_changePassword + '/' + self.sessionManager.getUserId(),
+            url: self.apis.user_changePassword + '/' + self.sessionManager.getId(),
             data: JSON.stringify(opt),
             dataType: 'json',
             contentType: 'application/json',
@@ -233,11 +235,11 @@
     UserManager.prototype.recoverPassword = function(opt, callback) {
         var self = this;
         if (!(opt.phone && opt.newPassword && opt.confirmNewPassword && opt.authCode)){
-            Info.warn('UserManager::findPassword:: invalid parameter');
+            Info.warn('UserManager::recoverPassword:: invalid parameter');
             return;
         }
         if (this.sessionManager.hasSession()){
-            Info.warn('UserManager::findPassword:: session already exists, exit');
+            Info.warn('UserManager::recoverPassword:: session already exists, exit');
             return;
         }
 
@@ -251,7 +253,7 @@
                 self.sessionManager.fetchSession(false, callback);
             },
             error: function (data, textStatus, jqXHR){
-                Info.warn('UserManager::findPassword:: action failed');
+                Info.warn('UserManager::recoverPassword:: action failed');
                 Info.warn(data);
                 if(callback){
                     callback.error(data);
@@ -260,7 +262,9 @@
         });
     };
 
-    /********************* User Relations ***************************/
+    /****************
+    *   User Relations
+    ****************/
     UserManager.prototype.fetchBookings = function(bookingSearchRepresentation, callback) {
         var self = this;
 
@@ -305,7 +309,7 @@
 
         newBooking.overrideUrl(this.apis.user_booking);
         newBooking.set('bookingId', -1);
-        newBooking.set('userId', this.sessionManager.getUserId());
+        newBooking.set('userId', this.sessionManager.getId());
         newBooking.save({},{
             dataType:'json',
 
@@ -340,7 +344,7 @@
 
        
         booking.overrideUrl(this.apis.user_booking);
-        booking.set('userId', this.sessionManager.getUserId());
+        booking.set('userId', this.sessionManager.getId());
         booking.save({},{
             dataType:'json',
 

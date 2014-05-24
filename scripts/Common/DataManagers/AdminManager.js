@@ -291,9 +291,7 @@
         });
     };
 
-    AdminManager.prototype.createCourse = function(course, callback) {
-        //MultiForm
-    };
+
     AdminManager.prototype.findCourse = function(courseId, callback) {
         if (typeof bookingId !== 'number' ){
             Info.warn("AdminManager::findCourse:: invalid parameter");
@@ -330,8 +328,6 @@
             }
         });
     };
-    AdminManager.prototype.updateCourse = function(booking){
-        //MultiForm
-    };
+
 
 }).call(this);
