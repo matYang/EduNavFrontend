@@ -155,7 +155,7 @@
         });
     };
 
-
+    //caller view must provide a function called renderCategories || renderLocations, must store the returned index and call remove when close
     GeneralManager.prototype.getCategories = function(reference){
         var index = -1;
         if (this.categoryList.length === 0 || shouldReload(this.categoryTimeStamp)){

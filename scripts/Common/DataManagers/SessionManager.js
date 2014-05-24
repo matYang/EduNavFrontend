@@ -39,11 +39,11 @@
     };
 
     //avoid using this
-    SessionManager.prototype.getSessionUser = function(){
+    SessionManager.prototype.getSessionModel = function(){
         return this.sessionModel;
     };
 
-    SessionManager.prototype.getUserId = function() {
+    SessionManager.prototype.getId = function() {
         return  this.sessionModel.id;
     };
 

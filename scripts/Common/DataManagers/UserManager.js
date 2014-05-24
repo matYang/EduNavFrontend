@@ -5,16 +5,43 @@
 
         this.apis = new ApiResource();
 
-
         this.sessionManager = sessionManager;
         this.sessionManager.resgisterManager(this);
     };
 
 
     //reset the manager state upon logout
-    UserManager.prototype.release = function() {
-        this.sessionUser = this.sessionManager.getSessionUser();
+    UserManager.prototype.release = function() {};
 
+    UserManager.prototype.smsVerification = function(phone, callback) {
+        var self = this;
+        if (!phone){
+            Info.warn('UserManager::smsVerification:: invalid parameter');
+            return;
+        }
+        if (this.sessionManager.hasSession()){
+            Info.warn('UserManager::smsVerification:: session already exists, exit');
+            return;
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: self.apis.user_smsVerification,
+            data: $.param({'phone': phone}),
+            dataType: 'json',
+            success: function(data){
+                if(callback){
+                    callback.success();
+                }
+            },
+            error: function (data, textStatus, jqXHR){
+                Info.warn('UserManager::smsVerification:: action failed');
+                Info.warn(data);
+                if(callback){
+                    callback.error(data);
+                }
+            }
+        });
     };
 
 
@@ -22,50 +49,45 @@
         var self = this;
 
         if (this.sessionManager.hasSession()){
-            Info.warn("UserManager::registerUser::currentUser already has session, conflict, exit");
+            Info.warn('UserManager::registerUser::currentUser already has session, conflict, exit');
             return;
         }
 
-        var sessionUser = newUser;
-        sessionUser.overrideUrl(this.apis.user_user);
-        sessionUser.set('userId', -1);
-        sessionUser.save({},{
+        newUser.overrideUrl(this.apis.user_user);
+        newUser.set('userId', -1);
+        newUser.save({},{
             dataType:'json',
 
             success:function(model, response){
-                //app.sessionManager.sessionUser = sessionUser;
                 if(callback){
-                    callback.success(sessionUser);
+                    callback.success(newUser);
                 }
             },
             error: function(model, response){
-                Info.warn("UserManager::register:: action failed");
+                Info.warn('UserManager::register failed');
+                Info.warn(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-        this.timeStamp = new Date();
     };
 
-    //will be used to display personal informatiom page only
-    UserManager.prototype.fetchUser = function(intendedUserId, callback){
+    UserManager.prototype.fetchUser = function(callback){
+        var self = this;
         if (testMockObj.testMode) {
             callback.success(testMockObj.sampleUser);
             return;
         }
-        var self = this;
-
         if (!this.sessionManager.hasSession()){
-            Info.warn("UserManager::getUser::currentUser does not have session, exit");
+            Info.warn("UserManager::fetchUser::currentUser does not have session, exit");
             return;
         }
 
         var user = new User();
         user.overrideUrl(this.apis.user_user);
-        user.set('userId', this.sessionManager.getUserId());
+        user.set('userId', this.sessionManager.getId());
         user.fetch({
-            data: $.param({ 'intendedUserId': intendedUserId}),
             dataType:'json',
 
             success:function(model, response){
@@ -74,8 +96,8 @@
                 }
             },
             error: function(model, response){
-                Info.warn("UserManager::getUser:: fetch failed with response:");
-                Info.log(response);
+                Info.warn("UserManager::fetchUser:: fetch failed with response:");
+                Info.warn(response);
                 if(callback){
                     callback.error(response);
                 }
@@ -84,113 +106,88 @@
     };
 
 
-
-
-    UserManager.prototype.changeContactInfo = function(name, gender, phone, qq, birthday, location, callback) {
-        //if invalid input or is already logged in, can not change contact information
-        if (!(name && (typeof gender === 'number'))){
-            Info.warn("UserManager::changeContactInfo:: invalid parameter");
-            return;
-        }
-
-        if (!this.sessionManager.hasSession()){
-            Info.warn("UserManager::changeContactInfo:: session does not exist, exit");
-            return;
-        }
-
+    UserManager.prototype.changeInfo = function(user, callback) {
         var self = this;
 
-        var sessionUser = app.sessionManager.getSessionUser();
-        sessionUser.overrideUrl(this.apis.user_contactInfo);
-        sessionUser.set('name', name);
-        sessionUser.set('gender', gender);
-        sessionUser.set('phone', phone);
-        sessionUser.set('location', location);
-        sessionUser.save({},{
+        if (!this.sessionManager.hasSession()){
+            Info.warn('UserManager::changeContactInfo:: session does not exist, exit');
+            return;
+        }
+
+        user.overrideUrl(this.apis.user_info);
+        user.set('userId', this.sessionManager.getId());
+        user.save({},{
             dataType:'json',
 
             success:function(model, response){
                 if(callback){
-                    callback.success(sessionUser);
+                    callback.success(user);
                 }
             },
             error: function(model, response){
-                alert("请稍后再试");
-                Info.warn("UserManager::changeContactInfo:: action failed");
+                Info.warn('UserManager::changeContactInfo failed');
+                Info.warn(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
-        this.timeStamp = new Date();
     };
 
     /********************* Authentication Related ***************************/
-
-    UserManager.prototype.changePassword = function(oldPassword, newPassword, confirmNewPassword, callback) {
-        //if invalid input or is already logged in, can not change password
-        if (!(oldPassword && newPassword && confirmNewPassword)){
-            Info.warn("UserManager::changePassword:: invalid parameter");
-            return;
-        }
-
-        if (!this.sessionManager.hasSession()){
-            Info.warn("UserManager::changePassword:: session does not exist, exit");
-            return;
-        }
-
+    UserManager.prototype.changePasswordVerification = function(callback) {
         var self = this;
+        if (!this.sessionManager.hasSession()){
+            Info.warn('UserManager::changePasswordVerification:: session already exists, exit');
+            return;
+        }
 
         $.ajax({
-            type: "PUT",
-            async: true,
+            type: 'GET',
             url: self.apis.user_changePassword + '/' + self.sessionManager.getUserId(),
-            data: JSON.stringify({ 'oldPassword': oldPassword, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword}),
             dataType: 'json',
-            contentType: 'application/json',    //setting this should be covering the data into PUT body
             success: function(data){
                 if(callback){
                     callback.success();
                 }
             },
             error: function (data, textStatus, jqXHR){
-                alert("请稍后再试");
-                Info.warn("UserManager::changePassword:: action failed");
+                Info.warn('UserManager::changePasswordVerification:: action failed');
+                Info.warn(data);
                 if(callback){
                     callback.error(data);
                 }
             }
         });
-        this.timeStamp = new Date();
     };
 
-
-
-    UserManager.prototype.forgetPassword = function(email, callback) {
+    //desired opt format:  { 'oldPassword': oldPassword, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword, 'authCode': authCode}
+    UserManager.prototype.changePassword = function(opt, callback) {
         var self = this;
-        if (!(email)){
-            Info.warn("UserManager::forgetPassword:: invalid parameter");
+
+        if (!(opt.oldPassword && opt.newPassword && opt.confirmNewPassword && opt.authCode)){
+            Info.warn('UserManager::changePassword:: invalid parameter');
             return;
         }
-        if (this.sessionManager.hasSession()){
-            Info.warn("UserManager::forgetPassword:: session already exists, exit");
+        if (!this.sessionManager.hasSession()){
+            Info.warn('UserManager::changePassword:: session does not exist, exit');
             return;
         }
 
         $.ajax({
-            type: "GET",
-            async: true,
-            url: self.apis.user_forgetPassword,
-            data: $.param({'email': email}),
+            type: 'PUT',
+            url: self.apis.user_changePassword + '/' + self.sessionManager.getUserId(),
+            data: JSON.stringify(opt),
             dataType: 'json',
+            contentType: 'application/json',
             success: function(data){
                 if(callback){
-                    callback.success(2);
+                    callback.success();
                 }
             },
             error: function (data, textStatus, jqXHR){
-                alert("请稍后再试");
-                Info.warn("UserManager::forgetPassword:: action failed");
+                Info.warn('UserManager::changePassword:: action failed');
+                Info.warn();
                 if(callback){
                     callback.error(data);
                 }
@@ -198,31 +195,64 @@
         });
     };
 
-    UserManager.prototype.findPassword = function(key, newPassword, confirmNewPassword, callback) {
+
+
+    UserManager.prototype.forgetPassword = function(phone, callback) {
         var self = this;
-        if (!(key && newPassword && confirmNewPassword)){
-            Info.warn("UserManager::findPassword:: invalid parameter");
+        if (!phone){
+            Info.warn('UserManager::forgetPassword:: invalid parameter');
             return;
         }
         if (this.sessionManager.hasSession()){
-            Info.warn("UserManager::findPassword:: session already exists, exit");
+            Info.warn('UserManager::forgetPassword:: session already exists, exit');
             return;
         }
 
-
         $.ajax({
-            type: "POST",
+            type: 'GET',
             async: true,
             url: self.apis.user_forgetPassword,
-            data: JSON.stringify({ 'key': key, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword}),
+            data: $.param({'phone': phone}),
             dataType: 'json',
-            contentType: 'application/json',    //setting this should be covering the data into PUT body
+            success: function(data){
+                if(callback){
+                    callback.success();
+                }
+            },
+            error: function (data, textStatus, jqXHR){
+                Info.warn('UserManager::forgetPassword:: action failed');
+                Info.warn(data);
+                if(callback){
+                    callback.error(data);
+                }
+            }
+        });
+    };
+
+    //desired opt format:  { 'phone': phone, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword, 'authCode': authCode}
+    UserManager.prototype.recoverPassword = function(opt, callback) {
+        var self = this;
+        if (!(opt.phone && opt.newPassword && opt.confirmNewPassword && opt.authCode)){
+            Info.warn('UserManager::findPassword:: invalid parameter');
+            return;
+        }
+        if (this.sessionManager.hasSession()){
+            Info.warn('UserManager::findPassword:: session already exists, exit');
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: self.apis.user_forgetPassword,
+            data: JSON.stringify(opt),
+            dataType: 'json',
+            contentType: 'application/json',
             success: function(data){
                 self.sessionManager.fetchSession(false, callback);
-
             },
             error: function (data, textStatus, jqXHR){
-                Info.warn("UserManager::findPassword:: action failed");
+                Info.warn('UserManager::findPassword:: action failed');
+                Info.warn(data);
                 if(callback){
                     callback.error(data);
                 }
@@ -231,39 +261,29 @@
     };
 
     /********************* User Relations ***************************/
-
-
-
-    UserManager.prototype.fetchBookings = function(bookingId, callback) {
-        if (typeof bookingId !== 'number' ){
-            Info.warn("BookingManager::fetchBooking:: invalid parameter");
-            return;
-        }
-        if (!this.sessionManager.hasSession()){
-            Info.warn("BookingManager::fetchBooking:: session does not exist, exit");
-            return;
-        }
-
+    UserManager.prototype.fetchBookings = function(bookingSearchRepresentation, callback) {
         var self = this;
 
-        var booking = new Booking();
-        booking.overrideUrl(this.apis.booking_booking);
-        booking.set('bookingId', bookingId);
+        if (!this.sessionManager.hasSession()){
+            Info.warn('BookingManager::fetchBookings:: session does not exist, exit');
+            return;
+        }
 
-        booking.fetch({
-            data: $.param({ 'userId': this.sessionManager.getUserId()}),
+        var bookings = new Bookings();
+        bookings.overrideUrl(this.apis.user_booking);
+        bookings.fetch({
+            data: $.param(bookingSearchRepresentation.toJSON()),
             dataType:'json',
 
             success:function(model, response){
-                self.timeStamp = new Date();
                 if(callback){
-                    callback.success(booking);
+                    callback.success(bookings);
                 }
             },
 
             error: function(model, response){
-                Info.warn("BookingManager::fetchBooking:: fetch failed with response:");
-                Info.log(response);
+                Info.warn('BookingManager::fetchBookings:: fetch failed with response:');
+                Info.warn(response);
                 if(callback){
                     callback.error(response);
                 }
@@ -272,34 +292,30 @@
     };
 
     UserManager.prototype.initBooking = function(newBooking, callback){
-        if (!newBooking || typeof newBooking !== 'object'){
-            Info.warn("BookingManager::initBooking:: invalid parameter");
+        var self = this;
+
+        if (!(booking instanceof Backbone.Model) || booking.id > 0){
+            Info.warn('BookingManager::initBooking:: invalid parameter');
             return;
         }
         if (!this.sessionManager.hasSession()){
-            Info.warn("BookingManager::initBooking:: session does not exist, exit");
+            Info.warn('BookingManager::initBooking:: session does not exist, exit');
             return;
         }
 
-        var self = this;
-
-        newBooking.overrideUrl(this.apis.booking_booking);
+        newBooking.overrideUrl(this.apis.user_booking);
         newBooking.set('bookingId', -1);
         newBooking.set('userId', this.sessionManager.getUserId());
         newBooking.save({},{
             dataType:'json',
 
             success:function(model, response){
-                self.booking = newBooking;
-                self.timeStamp = new Date();
-
                 if(callback){
-                    callback.success();
+                    callback.success(newBooking);
                 }
             },
-
             error: function(model, response){
-                Info.warn("BookingManager::initBooking:: save failed with response:");
+                Info.warn('BookingManager::initBooking:: save failed with response:');
                 Info.log(response);
                 if(callback){
                     callback.error(response);
@@ -310,40 +326,37 @@
     };
 
 
-    //if evaluate, pass in score as well
     UserManager.prototype.changeBookingState = function(booking, callback) {
-        var bookingId = booking.id;
+        var self = this;
 
-        if (typeof bookingId !== 'number'){
-            Info.warn("BookingManager::changeBookingState:: invalid parameter");
+        if (!(booking instanceof Backbone.Model) || booking.id < 0){
+            Info.warn('BookingManager::changeBookingState:: invalid parameter');
             return;
         }
         if (!this.sessionManager.hasSession()){
-            Info.warn("BookingManager::changeBookingState:: session does not exist, exit");
+            Info.warn('BookingManager::changeBookingState:: session does not exist, exit');
             return;
         }
 
-        var self = this;
-        booking.overrideUrl(this.apis.booking_booking);
-
+       
+        booking.overrideUrl(this.apis.user_booking);
+        booking.set('userId', this.sessionManager.getUserId());
         booking.save({},{
-            data: JSON.stringify({ 'userId': this.sessionManager.getUserId(), 'stateChangeAction': stateChangeAction, 'score': score}),
             dataType:'json',
 
             success:function(model, response){
-                self.timeStamp = new Date();
                 if(callback){
                     callback.success(booking);
                 }
             },
-
             error: function(model, response){
-                Info.warn("BookingManager::changeBookingState:: save failed with response:");
-                Info.log(response);
+                Info.warn('BookingManager::changeBookingState:: save failed with response:');
+                Info.warn(response);
                 if(callback){
                     callback.error(response);
                 }
             }
         });
     };
+
 }).call(this);
