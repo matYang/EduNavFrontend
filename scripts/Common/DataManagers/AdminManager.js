@@ -32,7 +32,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn("AdminManager::createAdmin:: createAdmin failed with response:");
+                Info.warn('AdminManager::createAdmin:: createAdmin failed with response:');
                 Info.warn(response);
                 if(callback){
                     callback.error(response);
@@ -59,7 +59,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn("AdminManager::listAdmin:: listAdmin failed with response:");
+                Info.warn('AdminManager::listAdmin:: listAdmin failed with response:');
                 Info.warn(response);
                 if(callback){
                     callback.error(response);
@@ -70,7 +70,7 @@
 
     AdminManager.prototype.updateAdmin = function(admin, callback){
         if (!this.sessionManager.hasSession()){
-            Info.warn("AdminManager::findCourse:: session does not exist, exit");
+            Info.warn('AdminManager::findCourse:: session does not exist, exit');
             return;
         }
         admin.overrideUrl(this.apis.admin_admin);
@@ -83,7 +83,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn("AdminManager::updateAdmin:: updateAdmin failed with response:");
+                Info.warn('AdminManager::updateAdmin:: updateAdmin failed with response:');
                 Info.warn(response);
                 if(callback){
                     callback.error(response);
@@ -196,7 +196,7 @@
 
     AdminManager.prototype.updateUser = function(user, callback){
         if (!this.sessionManager.hasSession()){
-            Info.warn("AdminManager::update:: session does not exist, exit");
+            Info.warn('AdminManager::update:: session does not exist, exit');
             return;
         }
         user.overrideUrl(this.apis.admin_user);
@@ -208,7 +208,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn("AdminManager::updateUser:: updateUser failed with response:");
+                Info.warn('AdminManager::updateUser:: updateUser failed with response:');
                 Info.warn(response);
                 if(callback){
                     callback.error(response);
@@ -254,7 +254,7 @@
 
     AdminManager.prototype.updateBooking = function(booking, callback) {
         if (!this.sessionManager.hasSession()){
-            Info.warn("AdminManager::updateBooking:: session does not exist, exit");
+            Info.warn('AdminManager::updateBooking:: session does not exist, exit');
             return;
         }
         booking.overrideUrl(this.apis.admin_booking);
@@ -267,7 +267,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn("AdminManager::updateBooking:: save failed with response:");
+                Info.warn('AdminManager::updateBooking:: save failed with response:');
                 Info.warn(response);
                 if(callback){
                     callback.error(response);
