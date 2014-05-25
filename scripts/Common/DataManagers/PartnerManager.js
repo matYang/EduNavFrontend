@@ -22,7 +22,7 @@
             return;
         }
         if (!this.sessionManager.hasSession()){
-            Info.warn("PartnerManager::fetchPartner::currentPartner does not have session, exit");
+            Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
             return;
         }
 
@@ -38,7 +38,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn("PartnerManager::fetchPartner:: fetch failed with response:");
+                Info.warn('PartnerManager::fetchPartner:: fetch failed with response:');
                 Info.warn(response);
                 if(callback){
                     callback.error(response);
@@ -113,16 +113,16 @@
     PartnerManager.prototype.forgetPassword = function(phone, callback) {
         var self = this;
         if (!phone){
-            Info.warn("PartnerManager::forgetPassword:: invalid parameter");
+            Info.warn('PartnerManager::forgetPassword:: invalid parameter');
             return;
         }
         if (this.sessionManager.hasSession()){
-            Info.warn("PartnerManager::forgetPassword:: session already exists, exit");
+            Info.warn('PartnerManager::forgetPassword:: session already exists, exit');
             return;
         }
 
         $.ajax({
-            type: "GET",
+            type: 'GET',
             async: true,
             url: self.apis.partner_forgetPassword,
             data: $.param({'phone': phone}),
@@ -133,7 +133,7 @@
                 }
             },
             error: function (data, textStatus, jqXHR){
-                Info.warn("PartnerManager::forgetPassword:: action failed");
+                Info.warn('PartnerManager::forgetPassword:: action failed');
                 Info.warn(data);
                 if(callback){
                     callback.error(data);
