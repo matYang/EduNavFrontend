@@ -207,7 +207,7 @@ var baseField = Backbone.Model.extend({
             }
         } else if (this.validatorFunction){
             var validResult = this.validatorFunction(val);
-            if (validResult) {
+            if (validResult.valid) {
                 div = this.buildValidatorDiv(true);
                 valid = true;
             } else {
