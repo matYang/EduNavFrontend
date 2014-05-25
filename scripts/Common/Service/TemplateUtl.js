@@ -9,28 +9,6 @@ tpl = {
     loadTemplates:function (names, targetUrl, callback) {
 
         if (names.length > 0){
-
-            //previous async recursion to load all html files
-            // var that = this,
-            //     i = 0,
-            //     tplCount = 0;
-
-            // var loopingLoadTemplate = function(index){
-            //     var name = names[index];
-
-            //     $.get('templates/' + name + '.html', function (data) {
-            //         that.templates[name] = data;
-            //         tplCount++;
-            //         //safety lock
-            //         if (tplCount === names.length){
-            //             callback();
-            //         }
-            //     });
-            // };
-
-            // for (i = 0; i < names.length; i++){
-            //     loopingLoadTemplate(i);
-            // }
             
             var i = 0,
                 name, tplContainer,

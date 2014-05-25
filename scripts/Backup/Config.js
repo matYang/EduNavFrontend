@@ -1,4 +1,4 @@
-var Config = {
+]var Config = {
 
     urlSeperator: '+',
 
