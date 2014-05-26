@@ -11,6 +11,9 @@ module.exports = function(grunt) {
               "scripts/Admin/Resource/*.js",
 
               "scripts/Common/Model/Representation/*",
+              "scripts/Common/Model/Transaction.js",
+              "scripts/Common/Model/Credit.js",
+              "scripts/Common/Model/Coupon.js",
               "scripts/Common/Model/Booking.js",
               "scripts/Common/Model/User.js",
               "scripts/Common/Model/Partner.js",
@@ -37,6 +40,9 @@ module.exports = function(grunt) {
               "scripts/Common/StaticResource/*.js",
 
               "scripts/Common/Model/Representation/*",
+              "scripts/Common/Model/Transaction.js",
+              "scripts/Common/Model/Credit.js",
+              "scripts/Common/Model/Coupon.js",
               "scripts/Common/Model/Booking.js",
               "scripts/Common/Model/User.js",
               "scripts/Common/Model/Partner.js",
@@ -61,6 +67,9 @@ module.exports = function(grunt) {
               "scripts/Common/StaticResource/*.js",
 
               "scripts/Common/Model/Representation/*",
+              "scripts/Common/Model/Transaction.js",
+              "scripts/Common/Model/Credit.js",
+              "scripts/Common/Model/Coupon.js",
               "scripts/Common/Model/Booking.js",
               "scripts/Common/Model/User.js",
               "scripts/Common/Model/Partner.js",

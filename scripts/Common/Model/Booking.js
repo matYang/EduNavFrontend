@@ -2,28 +2,28 @@ var Booking = Backbone.Model.extend({
 
     defaults: function () {
         return {
-            "bookingId": -1,
+            'bookingId': -1,
 
-            "userId": -1,
-            "partnerId": -1,
-            "courseId": -1,
-            "price": 0,
+            'userId': -1,
+            'partnerId': -1,
+            'courseId': -1,
+            'price': 0,
 
-            "status": 0,
-            "reference": "",
-            "name": "",
-            "phone":"",
+            'status': 0,
+            'reference': '',
+            'name': '',
+            'phone':'',
 
-            "startTime": new Date (),
-            "finishTime": new Date (),
-            "creationTime": new Date (),
-            "timestamp": new Date()
+            'startTime': new Date (),
+            'finishTime': new Date (),
+            'creationTime': new Date (),
+            'timestamp': new Date()
         };
     },
 
-    idAttribute: "bookingId",
+    idAttribute: 'bookingId',
 
-    urlRoot: Constants.origin + "/api/v1.0/booking/booking",
+    urlRoot: Constants.origin + '/api/v1.0/booking/booking',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl');
@@ -91,7 +91,7 @@ var Bookings = Backbone.Collection.extend({
 
     model: Booking,
 
-    url: Constants.origin + "/api/v1.0/booking",
+    url: Constants.origin + '/api/v1.0/booking',
 
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');

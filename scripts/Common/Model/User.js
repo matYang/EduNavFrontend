@@ -2,21 +2,25 @@ var BaseUser = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
-            "userId": -1,
+            'userId': -1,
             
-            "name": "",
-            "phone": "",
-            "password": "",
+            'name': '',
+            'phone': '',
+            'password': '',
             
-            "status": 0,
-            "creationTime": new Date (),
-            "lastLogin": new Date ()
+            'status': 0,
+            'creationTime': new Date (),
+            'lastLogin': new Date (),
+
+            'transactions': new Transactions(),
+            'coupons': new Coupons(),
+            'credits': new Credits()
         };
     },
 
-    idAttribute: "userId",
+    idAttribute: 'userId',
 
-    urlRoot: Constants.origin + "/api/v1.0/user/user",
+    urlRoot: Constants.origin + '/api/v1.0/user/user',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');
@@ -40,6 +44,10 @@ var BaseUser = Backbone.Model.extend({
             data.status = parseInt(data.status, 10);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
+
+            data.transactions = new Transactions(data.transactions, {parse: true});
+            data.coupons = new Coupons(data.coupons, {parse: true});
+            data.credits = new Credits(data.credits, {parse: true});
         }
         return data;
     },
@@ -73,7 +81,7 @@ var Users = Backbone.Collection.extend({
 
     model: User,
 
-    url: Constants.origin + "/api/v1.0/users/user",
+    url: Constants.origin + '/api/v1.0/users/user',
 
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');

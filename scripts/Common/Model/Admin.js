@@ -1,21 +1,21 @@
 var Admin = BaseUser.extend({
     defaults: function () {
         return {
-            "adminId": -1,
-            "password":"",
+            'adminId': -1,
+            'password':'',
 
-            "name": "",
-            "phone": "",
+            'name': '',
+            'phone': '',
 
-            "reference": "",
-            "privilege": 0,
+            'reference': '',
+            'privilege': 0,
 
-            "status": 0,
-            "creationTime": new Date(),
-            "lastLogin": new Date()
+            'status': 0,
+            'creationTime': new Date(),
+            'lastLogin': new Date()
         };
     },
-    idAttribute: "adminId",
+    idAttribute: 'adminId',
     parse: function (data) {
         if ( typeof data !== 'undefined') {
             data.adminId = parseInt(data.adminId, 10);
@@ -56,7 +56,7 @@ var Admins = Backbone.Collection.extend({
 
     model: Admin,
 
-    url: Constants.origin + "/a-api/v1.0/admin",
+    url: Constants.origin + '/a-api/v1.0/admin',
 
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');

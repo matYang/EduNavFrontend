@@ -1,34 +1,34 @@
 var Course = Backbone.Model.extend({
     defaults: function () {
         return {
-            "courseId":-1,
-            "partnerId":-1,
+            'courseId':-1,
+            'partnerId':-1,
 
-            "startTime": new Date(),
-            "finishTime": new Date(),
-            "price": 0,
-            "seatsTotal": -1,
-            "seatsLeft": -1,
-            "status": 0,
-            "category": "",
-            "subcategory": "",
-            "title": "",
-            "location": "",
-            "city": "",
-            "district": "",
-            "reference": "",
+            'startTime': new Date(),
+            'finishTime': new Date(),
+            'price': 0,
+            'seatsTotal': -1,
+            'seatsLeft': -1,
+            'status': 0,
+            'category': '',
+            'subcategory': '',
+            'title': '',
+            'location': '',
+            'city': '',
+            'district': '',
+            'reference': '',
 
-            "teacherInfo": "",
-            "teacherImgUrl": "",
-            "teachingMaterial": "",
-            "backgroundUrl": "",
-            "courseInfo": "",
+            'teacherInfo': '',
+            'teacherImgUrl': '',
+            'teachingMaterial': '',
+            'backgroundUrl': '',
+            'courseInfo': '',
             
-            "partner": null,
-            "creationTime": new Date()
+            'partner': null,
+            'creationTime': new Date()
         };
     },
-    idAttribute: "courseId",
+    idAttribute: 'courseId',
     parse: function (data) {
         if ( typeof data !== 'undefined') {
             data.courseId = parseInt(data.courseId, 10);
@@ -65,7 +65,7 @@ var Course = Backbone.Model.extend({
         json.startTime = Utilities.getDateString(this.get('startTime'));
         json.finishTime = Utilities.getDateString(this.get('finishTime'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
-        json.partner = this.get('partner') === null ? undefined : this.get("partner")._toJSON();
+        json.partner = this.get('partner') === null ? undefined : this.get('partner')._toJSON();
         return json;
     },
     toJSON: function () {
@@ -94,7 +94,7 @@ var Courses = Backbone.Collection.extend({
 
     model: Course,
 
-    url: Constants.origin + "/api/v1.0/course",
+    url: Constants.origin + '/api/v1.0/course',
 
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');

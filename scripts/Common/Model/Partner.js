@@ -2,25 +2,25 @@ var Partner = BaseUser.extend({
 
     defaults: function () {
         return {
-            "partnerId": -1,
-            "name":"",
-            "license": "",
-            "organizationNum": "",
-            "reference": "",
-            "password":"",
+            'partnerId': -1,
+            'name':'',
+            'license': '',
+            'organizationNum': '',
+            'reference': '',
+            'password':'',
 
-            "phone":"",
-            "status": 0,
-            "instName": "",
-            "logoUrl":"",
+            'phone':'',
+            'status': 0,
+            'instName': '',
+            'logoUrl':'',
 
-            "creationTime": new Date(),
-            "lastLogin": new Date()
+            'creationTime': new Date(),
+            'lastLogin': new Date()
         };
     },
-    idAttribute: "partnerId",
+    idAttribute: 'partnerId',
 
-    urlRoot: Constants.origin + "/p-api/v1.0/partner/partner",
+    urlRoot: Constants.origin + '/p-api/v1.0/partner/partner',
 
     parse: function (data) {
         if ( typeof data !== 'undefined') {
@@ -72,7 +72,7 @@ var Partners = Backbone.Collection.extend({
 
     model: Partner,
 
-    url: Constants.origin + "/p-api/v1.0/partner",
+    url: Constants.origin + '/p-api/v1.0/partner',
 
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');

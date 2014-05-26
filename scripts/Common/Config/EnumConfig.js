@@ -17,6 +17,24 @@ var EnumConfig = {
 		user: 0,
 		partner: 1,
 		admin: 2
+    },
+
+    'CreditStatus': {
+		usable: 0,
+		expired: 1,
+		used: 2
+    },
+
+    'CouponStatus': {
+		usabled: 0,
+		expired: 1,
+		used: 2
+    },
+
+    'TransactionType': {
+		coupon: 0,
+		deposit: 1,
+		withdraw: 2
     }
 
 };
