@@ -18,7 +18,7 @@ var CourseManageView = MultiPageView.extend({
         this.isClosed = false;
         MultiPageView.prototype.initialize.call(this);
         app.courseManager.searchCourses(
-            new SearchRepresentation({partnerId: app.sessionManager.getSessionUser().id}), 
+            new CourseSearchRepresentation({partnerId: app.sessionManager.getSessionUser().id}), 
             {
                 "success": this.render,
                 "error": function(){}
