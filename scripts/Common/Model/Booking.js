@@ -14,10 +14,10 @@ var Booking = Backbone.Model.extend({
             'name': '',
             'phone':'',
             'email': '',
-            'expectedTime': new Date(),
+            'scheduledTime': new Date(),
 
             'creationTime': new Date (),
-            'timestamp': new Date(),
+            'adjustTime': new Date(),
 
             'course': {}
         };
@@ -60,9 +60,9 @@ var Booking = Backbone.Model.extend({
             data.phone = decodeURI(data.phone);
             data.email = decodeURI(data.email);
 
-            data.expectedTime = Utilities.castFromAPIFormat(expectedTime);
+            data.scheduledTime = Utilities.castFromAPIFormat(scheduledTime);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
-            data.timestamp = Utilities.castFromAPIFormat(data.dataStamp);
+            data.adjustTime = Utilities.castFromAPIFormat(data.adjustTime);
 
             data.course = new Course(data.course, {parse: true});
         }
@@ -70,9 +70,9 @@ var Booking = Backbone.Model.extend({
     },
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.expectedTime = Utilities.getDateString(this.get('expectedTime'));
+        json.scheduledTime = Utilities.getDateString(this.get('scheduledTime'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
-        json.timestamp = Utilities.getDateString(this.get('timestamp'));
+        json.adjustTime = Utilities.getDateString(this.get('adjustTime'));
         return json;
     },
     toJSON: function () {
@@ -83,9 +83,9 @@ var Booking = Backbone.Model.extend({
         json.phone = encodeURI(json.phone);
         json.email = encodeURI(json.email);
 
-        json.expectedTime = Utilities.castToAPIFormat(this.get('expectedTime'));
+        json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
-        json.timestamp = Utilities.castToAPIFormat(this.get('timestamp'));
+        json.adjustTime = Utilities.castToAPIFormat(this.get('adjustTime'));
         return json;
     }
 });
