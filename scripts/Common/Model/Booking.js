@@ -17,7 +17,9 @@ var Booking = Backbone.Model.extend({
             'expectedTime': new Date(),
 
             'creationTime': new Date (),
-            'timestamp': new Date()
+            'timestamp': new Date(),
+
+            'course': {}
         };
     },
 
@@ -61,6 +63,8 @@ var Booking = Backbone.Model.extend({
             data.expectedTime = Utilities.castFromAPIFormat(expectedTime);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.timestamp = Utilities.castFromAPIFormat(data.dataStamp);
+
+            data.course = new Course(data.course, {parse: true});
         }
         return data;
     },

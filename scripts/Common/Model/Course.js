@@ -1,89 +1,138 @@
 var Course = Backbone.Model.extend({
     defaults: function () {
         return {
-            'courseId':-1,
-            'partnerId':-1,
-
-            'startTime': new Date(),
+            'courseId': -1,
+            'partnerId': -1,
+            'creationTime': new Date(),
+            'courseName': '',
+            'courseIntro': '',
+            'dailyStartTime': '0:00',
+            'dailyFinishTime': '23:59',
+            'studyDays': [],
+            'studyDaysNote': '',
+            'startTIme': new Date(),
             'finishTime': new Date(),
-            'price': 0,
-            'seatsTotal': -1,
-            'seatsLeft': -1,
-            'status': 0,
-            'category': '',
-            'subcategory': '',
-            'title': '',
-            'location': '',
+            'courseHourNum': 0,
+            'courseHourLength': 0,
             'city': '',
             'district': '',
+            'location': '',
+            'category': '',
+            'subCategory': '',
+            'price': 0,
+            'seatsTotal': 0,
+            'seatsLeft': 0,
             'reference': '',
-
-            'teacherInfo': '',
+            'partnerCourseReference': '',
+            'classModel': 0,
+            'openCourseRequirement': '',
+            'classroomImgUrl': '',
+            'classroomIntro': '',
+            'partnerQualification': 0,
+            'partnerIntro': '',
+            'teachingMethods': [],
+            'teachingMethodsIntro': '',
+            'teachingMaterialType': 0,
+            'teachingMaterialName': '',
+            'teachingMaterialIntro': '',
+            'teachingMaterialCost': 0,
+            'teachingMaterialFree': false,
+            'suitableStudent': '',
+            'prerequest': '',
             'teacherImgUrl': '',
-            'teachingMaterial': '',
-            'backgroundUrl': '',
-            'courseInfo': '',
-            
-            'partner': null,
-            'creationTime': new Date()
+            'teacherIntro': '',
+            'hasDownloadMaterials':false,
+            'questionBank': [],
+            'questionBankIntro':  '',
+            'highScoreReward':  '',
+            'passAgreement':  '',
+            'quiz': '',
+            'provideAssignments': false,
+            'provideMarking': false,
+            'certification':  '',
+            'extracurricular': [],
+            'extracurricularIntro': '',
+            'status': 0,
+            'phone': '',
+            'logoUrl': '',
+            'instName': '',
+            'wholeName': ''
+
         };
     },
     idAttribute: 'courseId',
     parse: function (data) {
         if ( typeof data !== 'undefined') {
             data.courseId = parseInt(data.courseId, 10);
-            data.partnerId = parseInt(data.p_Id, 10);
-            
-            data.startTime = Utilities.castFromAPIFormat(data.startTime);
+            data.partnerId = parseInt(data.partnerId, 10);
+            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            data.courseName = decodeURI(data.courseName);
+            data.courseIntro = decodeURI(data.courseIntro);
+            data.dailyStartTime = decodeURI(data.dailyStartTime);
+            data.dailyFinishTime = decodeURI(data.dailyFinishTime);
+            data.studyDays = data.studyDays;
+            data.studyDaysNote = data.studyDaysNote;
+            data.startTIme = Utilities.castFromAPIFormat(data.startTIme);
             data.finishTime = Utilities.castFromAPIFormat(data.finishTime);
-            data.price =  parseInt(data.price, 10);
-            data.seatsTotal =  parseInt(data.seatsTotal, 10);
-            data.seatsLeft =  parseInt(data.seatsLeft, 10);
-            data.status = parseInt(data.status, 10);
-            data.category = decodeURI(data.category);
-            data.subcategory = decodeURI(data.subcategory);
-            data.title = decodeURI(data.title);
-            data.location = decodeURI(data.location);
+            data.courseHourNum = parseInt(data.courseHourNum, 10);
+            data.courseHourLength = parseInt(data.courseHourLength, 10);
             data.city = decodeURI(data.city);
             data.district = decodeURI(data.district);
-            data.reference =  decodeURI(data.reference);
-
-
-            data.teacherInfo = decodeURI(data.t_Info);
-            data.teacherImgUrl = decodeURI(data.t_ImgURL);
-            data.teachingMaterial = decodeURI(data.t_Material);
-            data.backgroundUrl = decodeURI(data.backgroundUrl);
-            data.courseInfo = decodeURI(data.courseInfo);
-
-            data.creationTime =  Utilities.castFromAPIFormat(data.creationTime);
-            data.partner = new Partner(data.partner, {parse: true});
+            data.location = decodeURI(data.location);
+            data.category = decodeURI(data.category);
+            data.subCategory = decodeURI(data.subCategory);
+            data.price = parseInt(data.price, 10);
+            data.seatsTotal = parseInt(data.seatsTotal, 10);
+            data.seatsLeft = parseInt(data.seatsLeft, 10);
+            data.reference = decodeURI(data.reference);
+            data.partnerCourseReference = decodeURI(data.partnerCourseReference);
+            data.classModel = parseInt(data.classModel, 10);
+            data.openCourseRequirement = decodeURI(data.openCourseRequirement);
+            data.classroomImgUrl = decodeURI(data.classroomImgUrl);
+            data.classroomIntro = decodeURI(data.classroomIntro);
+            data.partnerQualification = parseInt(data.partnerQualification, 10);
+            data.partnerIntro = decodeURI(data.partnerIntro);
+            data.teachingMethods = data.teachingMethods;
+            data.teachingMethodsIntro = decodeURI(data.teachingMethodsIntro);
+            data.teachingMaterialType = parseInt(data.teachingMaterialType, 10);
+            data.teachingMaterialName = decodeURI(data.teachingMaterialName);
+            data.teachingMaterialIntro = decodeURI(data.teachingMaterialIntro);
+            data.teachingMaterialCost = parseInt(data.teachingMaterialCost, 10);
+            data.teachingMaterialFree = data.teachingMaterialFree === 'true' || data.teachingMaterialFree === true;
+            data.suitableStudent = decodeURI(data.suitableStudent);
+            data.prerequest = decodeURI(data.prerequest);
+            data.teacherImgUrl = decodeURI(data.teacherImgUrl);
+            data.teacherIntro = decodeURI(data.teacherIntro);
+            data.hasDownloadMaterials = data.hasDownloadMaterials === 'true' || data.hasDownloadMaterials === true;
+            data.questionBank = data.questionBank;
+            data.questionBankIntro = decodeURI(data.questionBankIntro);
+            data.highScoreReward = decodeURI(data.highScoreReward);
+            data.passAgreement = decodeURI(data.passAgreement);
+            data.quiz = decodeURI(data.quiz);
+            data.provideAssignments = data.provideAssignments === 'true' || data.provideAssignments === true;
+            data.provideMarking = data.provideMarking === 'true' || data.provideMarking === true;
+            data.certification = decodeURI(data.certification);
+            data.extracurricular = data.extracurricular;
+            data.extracurricularIntro = decodeURI(data.extracurricularIntro);
+            data.status = parseInt(data.status, 10);
+            data.phone = decodeURI(data.phone);
+            data.logoUrl = decodeURI(data.logoUrl);
+            data.instName = decodeURI(data.instName);
+            data.wholeName = decodeURI(data.wholeName);
         }
         return data;
     },
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.startTime = Utilities.getDateString(this.get('startTime'));
+        json.startTIme = Utilities.getDateString(this.get('startTIme'));
         json.finishTime = Utilities.getDateString(this.get('finishTime'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
-        json.partner = this.get('partner') === null ? undefined : this.get('partner')._toJSON();
         return json;
     },
+    //simplified toJSON, as courses are not updated by Ajax but by html form
     toJSON: function () {
         var json = _.clone(this.attributes);
-        json.category = encodeURI(json.category);
-        json.subcategory = encodeURI(json.subcategory);
-        json.title = encodeURI(json.title);
-        json.location = encodeURI(json.location);
-        json.city = encodeURI(json.city);
-        json.district = encodeURI(json.district);
-        json.reference = encodeURI(json.reference);
-        json.teacherInfo = encodeURI(json.teacherInfo);
-        json.teacherImgUrl = encodeURI(json.teacherImgUrl);
-        json.teachingMaterial = encodeURI(json.teachingMaterial);
-        json.backgroundUrl = encodeURI(json.backgroundUrl);
-        json.courseInfo = encodeURI(json.courseInfo);
-
-        json.startTime = Utilities.castToAPIFormat(this.get('startTime'));
+        json.startTIme = Utilities.castToAPIFormat(this.get('startTIme'));
         json.finishTime = Utilities.castToAPIFormat(this.get('finishTime'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         return json;
