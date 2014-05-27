@@ -82,33 +82,46 @@
 
 
 <script type="text/templates" id="tpl_adminCourseManage">
-    <div class="clearfix">
-        <div class="fleft search">
-            <input id="searchInput" class="text" type="text" placeholder="请输入课程名，学校名，或者课程id"/><input id="search" class="btn" type="button" value="搜索"/>
-            
-        </div>
-        <div class="fright" style="line-height:40px">
-            欢迎您，<span id="adminUserName" class="F_orange"></span>
-        </div>
-     </div>
-     <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <td width="80">课程id</td>
-                <td width="120">课程</td>
-                <td width="120">学校名</td>
-                <td width="130">等级</td>
-                <td width="100">开始时间</td>
-                <td width="100">结束时间</td>
-                <td width="100">价格</td>
-                <td>--</td>
-            </tr>
-        </thead>
-        <tbody id="searchResultContainer">
+    <div class="tabs">
+        <span id="createCourse">新建课程</span>
+        <span id="updateCourse">修改课程</span>
+    </div>
+    <div id="createCourseContent">
+        <form id="createCourseForm">
+            <label>
+                课程名: <input type="text" name="courseName"/>
+            </label>
+        </form>
+    </div>
+    <div id="updateCourseContent" class="hidden">
+        <div class="clearfix">
+            <div class="fleft search">
+                <input id="searchInput" class="text" type="text" placeholder="请输入课程名，学校名，或者课程id"/><input id="search" class="btn" type="button" value="搜索"/>
+                
+            </div>
+            <div class="fright" style="line-height:40px">
+                欢迎您，<span id="adminUserName" class="F_orange"></span>
+            </div>
+         </div>
+         <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <td width="80">课程id</td>
+                    <td width="120">课程</td>
+                    <td width="120">学校名</td>
+                    <td width="130">等级</td>
+                    <td width="100">开始时间</td>
+                    <td width="100">结束时间</td>
+                    <td width="100">价格</td>
+                    <td>--</td>
+                </tr>
+            </thead>
+            <tbody id="searchResultContainer">
 
-        </tbody>
-     </table>
-    <div id="courseSearchNavigator" class="page clearfix">
+            </tbody>
+         </table>
+        <div id="courseSearchNavigator" class="page clearfix">
+        </div>
     </div>
 </script>
 
@@ -184,4 +197,24 @@
         <td><%= passengerVerification.submissionDate %></td>
         <td><a class="view" href="#">查看</a></td>
     </tr>
+</script>
+
+<script type="text/templates" id="tpl_adminCourseRow">
+    
+</script>
+
+<script type="text/templates" id="tpl_adminBookingRow">
+    
+</script>
+
+<script type="text/templates" id="tpl_adminAdminRow">
+    
+</script>
+
+<script type="text/templates" id="tpl_adminUserDetail">
+    
+</script>
+
+<script type="text/templates" id="tpl_adminUserEdit">
+
 </script>

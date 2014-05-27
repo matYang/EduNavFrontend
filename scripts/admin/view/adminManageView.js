@@ -52,12 +52,27 @@ var AdminCourseSearchResultView = MultiPageView.extend({
         this.pnc = true;
         var that = this;
         this.render();
+        this.bindEvents();
     },
     render: function () {
         MultiPageView.prototype.render.call(this);
     },
     entryEvent: function (id) {
         app.navigate("course/"+id, true);
+    },
+    bindEvents: function () {
+        $("#createCourse").on("click", function(){
+            $(this).addClass("active");
+            $("#updateCourse").removeClass("active");
+            $("#createCourseContent").removeClass("hidden");
+            $("#updateCourseContent").addClass("hidden");
+        });
+        $("#updateCourse").on("click", function(){
+            $(this).addClass("active");
+            $("#createCourse").removeClass("active");
+            $("#updateCourseContent").removeClass("hidden");
+            $("#createCourseContent").addClass("hidden");
+        });
     },
     close: function () {
         this.$domContainer.empty();
@@ -155,23 +170,29 @@ var AdminManageView = Backbone.View.extend({
     },
     render: function () {
         this.$el.append(this.baseTemplate);
-        debugger;
+        if (this.resultView) {
+            this.resultView.close();
+        }
         switch (this.type) {
             case "user":
-                var users = new Users();
-                this.resultView = new AdminUserSearchResultView(users, users);
+                this.allMessages = new Users();
+                this.resultView = new AdminUserSearchResultView(this.allMessages, this.allMessages);
+                this.sr = new UserSearchRepresentation();
                 break;
             case "course":
-                var courses = new Courses();
-                this.resultView = new AdminCourseSearchResultView(courses, courses);
+                this.allMessages = new Courses();
+                this.resultView = new AdminCourseSearchResultView(this.allMessages, this.allMessages);
+                this.sr = new CourseSearchRepresentation();
                 break;
             case "booking":
-                var bookings = new Bookings();
-                this.resultView = new AdminBookingSearchResultView(bookings, bookings);
+                this.allMessages = new Bookings();
+                this.resultView = new AdminBookingSearchResultView(this.allMessages, this.allMessages);
+                this.sr = new BookingSearchRepresentation();
                 break;
             case "admin":
-                var admins = new Admins();
-                this.resultView = new AdminBookingSearchResultView(admins, admins);
+                this.allMessages = new Admins();
+                this.resultView = new AdminBookingSearchResultView(this.allMessages, this.allMessages);
+                this.sr = new UserSearchRepresentation();
                 break;
             default:
                 alert("invalid");
@@ -179,18 +200,38 @@ var AdminManageView = Backbone.View.extend({
         }
     },
     bindEvents: function () {
+        var that = this;
         $("#searchInput").on("keypress", function (e) {
             if (e.which === 13) {
                 e.preventDefault();
             }
+            that.search();
         });
         $("#search").on("click", function (e) {
-            var val = $("#searchInput").val();
 
         });
     },
-    renderResult: function () {
+    search: function () {
+        var val = $("#searchInput").val(), regex = /[0-9]+/;
+        if (regex.str(val)) {
+            this.sr.set(this.sr.idAttribute, parseInt(val, 10));
+        } else {
+            if (this.type === "user") {
+                this.sr.set("name", val);
+                app.adminManager.listUsers(this.sr, this.renderResult);
+            } else if (this.type === "course") {
+                this.sr.set("")
+            } else if (this.type === "booking") {
 
+            } else if (this.type === "partner") {
+
+            }
+        }
+
+    },
+    renderResult: function (results) {
+        this.allMessages.reset(results);
+        this.resultView.render();
     },
     close: function () {
         if (!this.isClosed) {
