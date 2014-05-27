@@ -9,6 +9,7 @@ var MultiPageView = Backbone.View.extend({
     * @param entryTemplate: the template of each single entry
     * @param entryContainer: id of the tag for displaying message
     * @param entryClass: the class name for all entry in this view (style, event)
+    * @param actionClass: If this attribute is set, instead of entryClass, doms with this class will be bind to the entryEvent action when they are clicked
     * @param pageNavigator: the div holding all page numbers
     * @param pageNavigatorClass: the class name for the page navigator (style)
     * @param pageEntryNumber: the number of entry displayed in each page
@@ -73,7 +74,10 @@ var MultiPageView = Backbone.View.extend({
                 buf[i] = this.entryTemplate(message._toJSON());
             }
             this.$domContainer.append(buf.join(""));
-            this.$domContainer.children("div").addClass(this.entryClass);
+            var $divs = this.$domContainer.children("div");
+            if ($divs.length) {
+                $divs.addClass(this.entryClass);
+            }
             if (this.entryEvent && !this.eventBound) {
                 this.bindEntryEvent();
                 this.eventBound = true;
@@ -100,8 +104,9 @@ var MultiPageView = Backbone.View.extend({
         this.render();
     },
     bindEntryEvent: function () {
-        var self = this;
-        this.$domContainer.on("click", "." + this.entryClass, function (e) {
+
+        var self = this, eventClass = this.actionClass || this.entryClass ;
+        this.$domContainer.on("click", "." + eventClass, function (e) {
             e.preventDefault();
             var id = Utilities.getId($(this).attr("id"));
             self.entryEvent(id, e);

@@ -22,9 +22,11 @@
                 </h1>
                 <dl>
                     <dt>管理界面</dt>
-                    <dd id="userInfo" class="active">用户资料</dd>
-                    <dd id="passengerVeri">乘客验证</dd>
-                    <dd id="driverVeri">司机验证</dd>
+                    <dd id="userManage" class="active">用户管理</dd>
+                    <dd id="partnerManage">学校管理</dd>
+                    <dd id="courseManage">课程管理</dd>
+                    <dd id="bookingManage">订单管理</dd>
+                    <dd id="adminManage">管理员管理</dd>
                 </dl>
                 <dl>
                     <dt>监控界面</dt>
@@ -32,7 +34,7 @@
                     <dd>监控子项2</dd>
                     <dd>监控子项3</dd>
                 </dl>
-                <div id="sideBarClose" class="close" title="收起">收起</div>
+                
             </div>
         </td>
         <td valign="top">
@@ -51,7 +53,7 @@
             
         </div>
         <div class="fright" style="line-height:40px">
-            欢迎您，<span class="F_orange">管理员</span>
+            欢迎您，<span id="adminUserName" class="F_orange"></span>
         </div>
      </div>
      <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
@@ -75,6 +77,96 @@
         </tbody>
      </table>
     <div id="userSearchNavigator" class="page clearfix">
+    </div>
+</script>
+
+
+<script type="text/templates" id="tpl_adminCourseManage">
+    <div class="clearfix">
+        <div class="fleft search">
+            <input id="searchInput" class="text" type="text" placeholder="请输入课程名，学校名，或者课程id"/><input id="search" class="btn" type="button" value="搜索"/>
+            
+        </div>
+        <div class="fright" style="line-height:40px">
+            欢迎您，<span id="adminUserName" class="F_orange"></span>
+        </div>
+     </div>
+     <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td width="80">课程id</td>
+                <td width="120">课程</td>
+                <td width="120">学校名</td>
+                <td width="130">等级</td>
+                <td width="100">开始时间</td>
+                <td width="100">结束时间</td>
+                <td width="100">价格</td>
+                <td>--</td>
+            </tr>
+        </thead>
+        <tbody id="searchResultContainer">
+
+        </tbody>
+     </table>
+    <div id="courseSearchNavigator" class="page clearfix">
+    </div>
+</script>
+
+
+<script type="text/templates" id="tpl_adminBookingManage">
+    <div class="clearfix">
+        <div class="fleft search">
+            <input id="searchInput" class="text" type="text" placeholder="请输入姓名或id"/><input id="search" class="btn" type="button" value="搜索"/>
+            
+        </div>
+        <div class="fright" style="line-height:40px">
+            欢迎您，<span id="adminUserName" class="F_orange"></span>
+        </div>
+     </div>
+     <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td width="80">订单id</td>
+                <td width="80">用户id</td> 
+                <td width="120">用户名</td>
+                <td width="80">学校id</td> 
+                <td width="120">学校</td>
+                <td width="100">课程</td>
+                <td width="130">订单日期</td>
+                <td width="100">价格</td>
+                <td>--</td>
+            </tr>
+        </thead>
+        <tbody id="searchResultContainer">
+
+        </tbody>
+     </table>
+    <div id="bookingSearchNavigator" class="page clearfix">
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_adminAdminManage">
+    <div class="clearfix">
+        <div class="fleft search">
+            <input id="searchInput" class="text" type="text" placeholder="请输入姓名或id"/><input id="search" class="btn" type="button" value="搜索"/>
+            
+        </div>
+        <div class="fright" style="line-height:40px">
+            欢迎您，<span id="adminUserName" class="F_orange"></span>
+        </div>
+     </div>
+     <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td width="80">用户id</td>
+                <td>--</td>
+            </tr>
+        </thead>
+        <tbody id="searchResultContainer">
+
+        </tbody>
+     </table>
+    <div id="bookingSearchNavigator" class="page clearfix">
     </div>
 </script>
 

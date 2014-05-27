@@ -19,9 +19,9 @@ var AppRouter = Backbone.Router.extend({
         this.eventClearService = new EventClearService();
 
         //initializing all the data managers
-        this.sessionManager = new SessionManager ();
-        this.userManager = new UserManager (this.sessionManager);
-        this.courseManager = new CourseManager (this.sessionManager);
+        this.sessionManager = new SessionManager (EnumConfig.ModuleIdentifier.admin);
+        
+        this.generalManager = new GeneralManager (this.sessionManager);
         this.adminManager = new AdminManager (this.sessionManager);
 
         //determine if the user has logged in or not
@@ -32,7 +32,7 @@ var AppRouter = Backbone.Router.extend({
                 if (that.loginView) {
                     that.loginView.close();
                 }
-                that.baseView = new AdminBaseView();    
+                that.baseView = new AdminBaseView(that.sessionManager);    
             },
             error: function () {
                 Info.log("session fetch failed, user not logged in");
@@ -42,18 +42,25 @@ var AppRouter = Backbone.Router.extend({
         
     },
     defaultRoute: function () {
-        this.navigate("login", true);
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("manage", {trigger:true, replace:true});
+        }
+        this.navigate("login", {trigger:true, replace:true});
     },
     login: function () {
-        this.loginView = new AdminLoginView();
-
+        if (this.sessionManager.hasSession()) {
+            this.navigate("manage", true);    
+        } else {
+            this.loginView = new AdminLoginView();
+        }
     },
     manage: function (type) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("login", true);
+            this.navigate("login", {trigger:true, replace:true});
         } else if (!this.baseView) {
-            this.baseView = new AdminBaseView();
+            this.baseView = new AdminBaseView(this.sessionManager);
         }
+        type = type || "user";
         this.manageView = new AdminManageView({type:type});
     }
 });

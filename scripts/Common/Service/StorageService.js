@@ -30,7 +30,12 @@
             
         }
 
-        this.sr = new SearchRepresentation ();
+        this.sr = {
+            course: new CourseSearchRepresentation (),
+            user: new UserSearchRepresentation (),
+            partner: new PartnerSearchRepresentation (),
+            booking: new BookingSearchRepresentation ()
+        }
     };
 
     /**
@@ -53,13 +58,13 @@
         return this.searchQueryState;
     };
 
-    StorageService.prototype.getSearchRepresentationCache = function () {
-        return typeof this.sr !== 'undefined' ? this.sr : new SearchRepresentation ();
+    StorageService.prototype.getSearchRepresentationCache = function (type) {
+        return typeof this.sr[type] !== 'undefined' ? this.sr[type] : new UserSearchRepresentation ();
     };
 
-    StorageService.prototype.setSearchRepresentationCache = function (sr) {
+    StorageService.prototype.setSearchRepresentationCache = function (sr, type) {
         if ( sr instanceof Backbone.Model) {
-            this.sr = sr;
+            this.sr[type] = sr;
         }
     };
 
