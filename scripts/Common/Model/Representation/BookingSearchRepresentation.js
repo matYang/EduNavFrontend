@@ -4,8 +4,9 @@ var BookingSearchRepresentation = Backbone.Model.extend({
         return {
             'bookingId': undefined,
             'creationTime': undefined,
-            'startTime': undefined,
-            'finishTime': undefined,
+
+            'expectedTime': undefined,
+
             'startPrice': undefined,
             'finishPrice': undefined,
             'userId': undefined,
@@ -13,6 +14,7 @@ var BookingSearchRepresentation = Backbone.Model.extend({
             'courseId': undefined,
             'name': undefined,
             'phone': undefined,
+            'email': undefined,
             'status': undefined,
             'reference': undefined
         };
@@ -48,8 +50,7 @@ var BookingSearchRepresentation = Backbone.Model.extend({
 
         queryObj.bookingId = this.get('bookingId');
         queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
-        queryObj.startTime = typeof this.get('startTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startTime'));
-        queryObj.finishTime = typeof this.get('finishTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishTime'));
+        queryObj.expectedTime = typeof this.get('expectedTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('expectedTime'));
         queryObj.startPrice = this.get('startPrice');
         queryObj.finishPrice = this.get('finishPrice');
         queryObj.userId = this.get('userId');
@@ -57,6 +58,7 @@ var BookingSearchRepresentation = Backbone.Model.extend({
         queryObj.courseId = this.get('courseId');
         queryObj.name = typeof this.get('name') === 'undefined' ? undefined : encodeURI(this.get('name'));
         queryObj.phone = typeof this.get('phone') === 'undefined' ? undefined : encodeURI(this.get('phone'));
+        queryObj.email = typeof this.get('email') === 'undefined' ? undefined : encodeURI(this.get('email'));
         queryObj.status = this.get('status');
         queryObj.reference = typeof this.get('reference') === 'undefined' ? undefined : encodeURI(this.get('reference'));
 

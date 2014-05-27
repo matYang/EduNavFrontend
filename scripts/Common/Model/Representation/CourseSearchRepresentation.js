@@ -23,7 +23,9 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'courseId': undefined,
             'partnerId': undefined,
             'userId': undefined,
-            'creationTime': undefined
+            'creationTime': undefined,
+
+            'classModel': undefined
         };
     },
 
@@ -75,7 +77,8 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         queryObj.userId = this.get('userId');
 
         queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
-    
+        queryObj.classModel = this.get('classModel');
+
         return queryObj;
     }
 

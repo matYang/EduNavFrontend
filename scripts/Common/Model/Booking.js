@@ -13,9 +13,9 @@ var Booking = Backbone.Model.extend({
             'reference': '',
             'name': '',
             'phone':'',
+            'email': '',
+            'expectedTime': new Date(),
 
-            'startTime': new Date (),
-            'finishTime': new Date (),
             'creationTime': new Date (),
             'timestamp': new Date()
         };
@@ -56,9 +56,9 @@ var Booking = Backbone.Model.extend({
             data.reference = decodeURI(data.reference);
             data.name = decodeURI(data.name);
             data.phone = decodeURI(data.phone);
+            data.email = decodeURI(data.email);
 
-            data.startTime = Utilities.castFromAPIFormat(data.startTime);
-            data.finishTime = Utilities.castFromAPIFormat(data.finishTime);
+            data.expectedTime = Utilities.castFromAPIFormat(expectedTime);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.timestamp = Utilities.castFromAPIFormat(data.dataStamp);
         }
@@ -66,8 +66,7 @@ var Booking = Backbone.Model.extend({
     },
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.startTime = Utilities.getDateString(this.get('startTime'));
-        json.finishTime = Utilities.getDateString(this.get('finishTime'));
+        json.expectedTime = Utilities.getDateString(this.get('expectedTime'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         json.timestamp = Utilities.getDateString(this.get('timestamp'));
         return json;
@@ -78,9 +77,9 @@ var Booking = Backbone.Model.extend({
         json.reference = encodeURI(json.reference);
         json.name = encodeURI(json.name);
         json.phone = encodeURI(json.phone);
+        json.email = encodeURI(json.email);
 
-        json.startTime = Utilities.castToAPIFormat(this.get('startTime'));
-        json.finishTime = Utilities.castToAPIFormat(this.get('finishTime'));
+        json.expectedTime = Utilities.castToAPIFormat(this.get('expectedTime'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.timestamp = Utilities.castToAPIFormat(this.get('timestamp'));
         return json;

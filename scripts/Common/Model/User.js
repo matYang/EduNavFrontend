@@ -4,9 +4,14 @@ var BaseUser = Backbone.Model.extend({
         return {
             'userId': -1,
             
+            'balance': 0,
+            'coupon': 0,
+            'credit': 0,
+
             'name': '',
             'phone': '',
             'password': '',
+            'email': '',
             
             'status': 0,
             'creationTime': new Date (),
@@ -38,8 +43,13 @@ var BaseUser = Backbone.Model.extend({
         if ( typeof data !== 'undefined') {
             data.userId = parseInt(data.userId, 10);
 
+            data.balance = parseInt(data.balance, 10);
+            data.coupon = parseInt(data.coupon, 10);
+            data.credit = parseInt(data.credit, 10);
+
             data.name = decodeURI(data.name);
             data.phone = decodeURI(data.phone);
+            data.email = decodeURI(data.email);
 
             data.status = parseInt(data.status, 10);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
@@ -65,6 +75,7 @@ var BaseUser = Backbone.Model.extend({
         json.name = encodeURI(json.name);
         json.phone = encodeURI(json.phone);
         json.password = encodeURI(json.password);
+        json.email = encodeURI(json.email);
         
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));

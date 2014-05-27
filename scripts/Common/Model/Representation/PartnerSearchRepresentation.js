@@ -3,7 +3,7 @@ var PartnerSearchRepresentation = Backbone.Model.extend({
     defaults: function () {
         return {
             'partnerId': undefined,
-            'name': undefined,
+            'wholeName': undefined,
             'licence': undefined,
             'organizationNum': undefined,
             'reference': undefined,
@@ -43,7 +43,7 @@ var PartnerSearchRepresentation = Backbone.Model.extend({
         var queryObj = {};
 
         queryObj.partnerId = this.get('partnerId');
-        queryObj.name = typeof this.get('name') === 'undefined' ? undefined : encodeURI(this.get('name'));
+        queryObj.wholeName = typeof this.get('wholeName') === 'undefined' ? undefined : encodeURI(this.get('wholeName'));
         queryObj.licence = typeof this.get('licence') === 'undefined' ? undefined : encodeURI(this.get('licence'));
         queryObj.organizationNum = typeof this.get('organizationNum') === 'undefined' ? undefined : encodeURI(this.get('organizationNum'));
         queryObj.reference = typeof this.get('reference') === 'undefined' ? undefined : encodeURI(this.get('reference'));

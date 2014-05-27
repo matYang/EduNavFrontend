@@ -6,7 +6,8 @@ var UserSearchRepresentation = Backbone.Model.extend({
             'name': undefined,
             'phone': undefined,
             'status': undefined,
-            'creationTime': undefined
+            'creationTime': undefined,
+            'email': undefined
         };
     },
 
@@ -41,6 +42,7 @@ var UserSearchRepresentation = Backbone.Model.extend({
         queryObj.userId = this.get('userId');
         queryObj.name = typeof this.get('name') === 'undefined' ? undefined : encodeURI(this.get('name'));
         queryObj.phone = typeof this.get('phone') === 'undefined' ? undefined : encodeURI(this.get('phone'));
+        queryObj.email = typeof this.get('email') === 'undefined' ? undefined : encodeURI(this.get('email'));
         queryObj.status = this.get('status');
         queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
 

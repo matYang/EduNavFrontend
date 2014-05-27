@@ -3,7 +3,6 @@ var Partner = BaseUser.extend({
     defaults: function () {
         return {
             'partnerId': -1,
-            'name':'',
             'license': '',
             'organizationNum': '',
             'reference': '',
@@ -11,6 +10,7 @@ var Partner = BaseUser.extend({
 
             'phone':'',
             'status': 0,
+            'wholeName':'',
             'instName': '',
             'logoUrl':'',
 
@@ -26,7 +26,7 @@ var Partner = BaseUser.extend({
         if ( typeof data !== 'undefined') {
             
             data.partnerId = parseInt(data.partnerId, 10);
-            data.name = decodeURI(data.name);
+            data.wholeName = decodeURI(data.wholeName);
 
             data.license = decodeURI(data.license);
             data.organizationNum = decodeURI(data.organizationNum);
@@ -52,7 +52,7 @@ var Partner = BaseUser.extend({
     toJSON: function () {
         var json = _.clone(this.attributes);
 
-        json.name = encodeURI(json.name);
+        json.wholeName = encodeURI(json.wholeName);
         json.license = encodeURI(json.license);
         json.organizationNum = encodeURI(json.organizationNum);
         json.reference = encodeURI(json.reference);
