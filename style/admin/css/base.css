@@ -5,6 +5,10 @@ input[type="text"] { padding: 0px; }
 ol, ul { margin: 0; padding: 0; }
 img { border: none; }
 ul { list-style: none; }
+label {display:block; float:left;}
+.submit {display:block; float:left;}
+.hidden {display: none; }
+
 .fleft { float: left; }
 .fright { float: right; }
 .clearfix:after { clear: both; content: "."; display: block; font-size: 0; line-height: 0; visibility: hidden; width: 0; height: 0; }

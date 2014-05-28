@@ -17,7 +17,6 @@ var AdminUserSearchResultView = MultiPageView.extend({
         this.$domContainer = $("#searchResultContainer");
         this.isClosed = false;
         this.pnc = true;
-        var that = this;
         this.render();
     },
     render: function () {
@@ -50,7 +49,6 @@ var AdminCourseSearchResultView = MultiPageView.extend({
         this.$domContainer = $("#searchResultContainer");
         this.isClosed = false;
         this.pnc = true;
-        var that = this;
         this.render();
         this.bindEvents();
     },
@@ -98,7 +96,6 @@ var AdminBookingSearchResultView = MultiPageView.extend({
         this.$domContainer = $("#searchResultContainer");
         this.isClosed = false;
         this.pnc = true;
-        var that = this;
         this.render();
     },
     render: function () {
@@ -131,7 +128,6 @@ var AdminAdminSearchResultView = MultiPageView.extend({
         this.$domContainer = $("#searchResultContainer");
         this.isClosed = false;
         this.pnc = true;
-        var that = this;
         this.render();
     },
     render: function () {
@@ -151,17 +147,18 @@ var AdminManageView = Backbone.View.extend({
         _.bindAll(this, "render", "bindEvents", "close");
         this.isClosed = false;
         this.type = params.type;
+        app.viewRegistration.register(this.type + "Manage", this, true);
         this.templates = {
             user: _.template(tpl.get('adminUserManage')),
             course: _.template(tpl.get('adminCourseManage')),
             booking: _.template(tpl.get('adminBookingManage')),
-            admin: _.template(tpl.get('adminAdminManage')),
+            admin: _.template(tpl.get('adminAdminManage'))
         };
         this.rowTemplates = {
             user: _.template(tpl.get('adminUserRow')),
             course: _.template(tpl.get('adminCourseRow')),
             booking: _.template(tpl.get('adminBookingRow')),
-            booking: _.template(tpl.get('adminAdminRow')),
+            admin: _.template(tpl.get('adminAdminRow'))
         }
         this.baseTemplate = this.templates[this.type];
         this.rowTemplate = this.rowTemplates[this.type];
@@ -173,6 +170,8 @@ var AdminManageView = Backbone.View.extend({
         if (this.resultView) {
             this.resultView.close();
         }
+        $("#sideBar").find(".active").removeClass("active");
+        $("#" + this.type + "Manage").addClass("active");
         switch (this.type) {
             case "user":
                 this.allMessages = new Users();
@@ -220,7 +219,7 @@ var AdminManageView = Backbone.View.extend({
                 this.sr.set("name", val);
                 app.adminManager.listUsers(this.sr, this.renderResult);
             } else if (this.type === "course") {
-                this.sr.set("")
+                this.sr.set("courseName", val);
             } else if (this.type === "booking") {
 
             } else if (this.type === "partner") {
