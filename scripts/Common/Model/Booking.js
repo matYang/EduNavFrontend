@@ -4,6 +4,9 @@ var Booking = Backbone.Model.extend({
         return {
             'bookingId': -1,
 
+            'couponId': -1,
+            'transactionId': -1,
+            'adminId': -1,
             'userId': -1,
             'partnerId': -1,
             'courseId': -1,
@@ -18,6 +21,8 @@ var Booking = Backbone.Model.extend({
 
             'creationTime': new Date (),
             'adjustTime': new Date(),
+            'wasConfirmed': false,
+            'actionRecord': '',
 
             'course': {}
         };
@@ -49,6 +54,10 @@ var Booking = Backbone.Model.extend({
         if ( typeof data !== 'undefined') {
             data.bookingId = parseInt(data.bookingId, 10);
             
+            data.couponId = parseInt(data.couponId, 10);
+            data.transactionId = parseInt(data.transactionId, 10);
+            data.adminId = parseInt(data.adminId, 10);
+
             data.userId = parseInt(data.userId, 10);
             data.partnerId = parseInt(data.partnerId, 10);
             data.courseId = parseInt(data.courseId, 10);
@@ -64,6 +73,8 @@ var Booking = Backbone.Model.extend({
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.adjustTime = Utilities.castFromAPIFormat(data.adjustTime);
 
+            data.wasConfirmed = data.wasConfirmed === 'true' || data.wasConfirmed === true || Number(data.wasConfirmed) === 1;
+            data.actionRecord = decodeURI(data.actionRecord);
             data.course = new Course(data.course, {parse: true});
         }
         return data;
@@ -86,6 +97,8 @@ var Booking = Backbone.Model.extend({
         json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.adjustTime = Utilities.castToAPIFormat(this.get('adjustTime'));
+        
+        json.actionRecord = encodeURI(json.actionRecord);
         return json;
     }
 });
