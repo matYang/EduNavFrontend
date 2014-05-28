@@ -32,7 +32,7 @@ var AppRouter = Backbone.Router.extend({
                 if (that.loginView) {
                     that.loginView.close();
                 }
-                that.baseView = new AdminBaseView(that.sessionManager);    
+                that.navigate("manage/user");
             },
             error: function () {
                 Info.log("session fetch failed, user not logged in");

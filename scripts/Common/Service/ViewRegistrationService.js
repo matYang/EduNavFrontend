@@ -55,6 +55,35 @@
             'bookingDetail': {
                 request: ['popup'],
                 antiRequest: ['popup']
+            },
+            /* admin */
+            'login': {
+                request: ['base'],
+                antiRequest: ['base']
+            },
+            'base': {
+                request: ['base'],
+                antiRequest: ['base']
+            },
+            'userManage': {
+                request: ['main'],
+                antiRequest: ['main']
+            },
+            'courseManage': {
+                request: ['main'],
+                antiRequest: ['main']
+            },
+            'bookingManage': {
+                request: ['main'],
+                antiRequest: ['main']
+            },
+            'partnerManage': {
+                request: ['main'],
+                antiRequest: ['main']
+            },
+            'adminManage': {
+                request: ['main'],
+                antiRequest: ['main']
             }
         };
 

@@ -3,6 +3,7 @@ var AdminBaseView = Backbone.View.extend({
     initialize: function(sessionManager) {
         _.bindAll(this, "render", "bindEvents", "close");
         this.sessionManager = sessionManager;
+        app.viewRegistration.register("base", this, true);
         this.isClosed = false;
         this.baseTemplate = _.template(tpl.get('adminBase'))
         this.render();
