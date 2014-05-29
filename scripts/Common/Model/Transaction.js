@@ -7,9 +7,8 @@ var Transaction = Backbone.Model.extend({
             
             'bookingId': -1,
             'couponId': -1,
-            'transactionType': EnumConfig.TransactionType.withdraw,
-
             'transactionAmount': 0,
+            'transactionType': EnumConfig.TransactionType.withdraw,
             'creationTime': new Date()
         };
     },

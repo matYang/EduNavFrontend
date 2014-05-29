@@ -3,11 +3,14 @@ var UserSearchRepresentation = Backbone.Model.extend({
     defaults: function () {
         return {
             'userId': undefined,
+            'balance': undefined,
+            'coupon': undefined,
+            'credit': undefined,
             'name': undefined,
             'phone': undefined,
+            'email': undefined,
             'status': undefined,
-            'creationTime': undefined,
-            'email': undefined
+            'creationTime': undefined
         };
     },
 
@@ -40,6 +43,9 @@ var UserSearchRepresentation = Backbone.Model.extend({
         var queryObj = {};
 
         queryObj.userId = this.get('userId');
+        queryObj.balance = this.get('balance');
+        queryObj.coupon = this.get('coupon');
+        queryObj.credit = this.get('credit');
         queryObj.name = typeof this.get('name') === 'undefined' ? undefined : encodeURI(this.get('name'));
         queryObj.phone = typeof this.get('phone') === 'undefined' ? undefined : encodeURI(this.get('phone'));
         queryObj.email = typeof this.get('email') === 'undefined' ? undefined : encodeURI(this.get('email'));

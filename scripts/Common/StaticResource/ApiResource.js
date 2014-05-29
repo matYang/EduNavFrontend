@@ -15,15 +15,14 @@
                 'users': '/users',
                 'booking': '/booking',
                 'general': '/general',
-                'partner': 'partner'
             },
 
             moduleSufixResource: {
                 'general': {
-                    location:"location",
-                    category:"category",
-                    partner:"partner",
-                    course:"course"
+                    location:"/location",
+                    category:"/category",
+                    partner:"/partner",
+                    course:"/course"
                 },
 
 

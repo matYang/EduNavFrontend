@@ -17,7 +17,7 @@ var BookingSearchRepresentation = Backbone.Model.extend({
             'email': undefined,
             'status': undefined,
             'reference': undefined,
-            'wasConfirmed': undefined,
+            'wasConfirmedIndex': undefined,         //1 for  yes, 2 for no
             'adjustTime': undefined
         };
     },
@@ -63,7 +63,7 @@ var BookingSearchRepresentation = Backbone.Model.extend({
         queryObj.email = typeof this.get('email') === 'undefined' ? undefined : encodeURI(this.get('email'));
         queryObj.status = this.get('status');
         queryObj.reference = typeof this.get('reference') === 'undefined' ? undefined : encodeURI(this.get('reference'));
-        queryObj.wasConfirmed = this.get('wasConfirmed');
+        queryObj.wasConfirmedIndex = this.get('wasConfirmedIndex');
         queryObj.adjustTime = typeof this.get('adjustTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('adjustTime'));
 
         return queryObj;

@@ -9,8 +9,10 @@ var Credit = Backbone.Model.extend({
             'amount': 0,
             'creationTime': new Date(),
             'expireTime': new Date(),
-            'status': EnumConfig.CreditStatus.usable,
-            'usableTime': new Date()
+            'usableTime': new Date(),
+
+            'status': EnumConfig.CreditStatus.usable
+            
         };
     },
 

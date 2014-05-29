@@ -3,6 +3,7 @@ var Partner = BaseUser.extend({
     defaults: function () {
         return {
             'partnerId': -1,
+            'wholeName':'',
             'license': '',
             'organizationNum': '',
             'reference': '',
@@ -10,10 +11,9 @@ var Partner = BaseUser.extend({
 
             'phone':'',
             'status': 0,
-            'wholeName':'',
             'instName': '',
             'logoUrl':'',
-
+            
             'creationTime': new Date(),
             'lastLogin': new Date()
         };
