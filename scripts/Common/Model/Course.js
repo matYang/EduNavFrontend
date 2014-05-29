@@ -10,7 +10,7 @@ var Course = Backbone.Model.extend({
             'dailyFinishTime': '23:59',
             'studyDays': [],
             'studyDaysNote': '',
-            'startTIme': new Date(),
+            'startTime': new Date(),
             'finishTime': new Date(),
             'courseHourNum': 0,
             'courseHourLength': 0,
@@ -124,7 +124,7 @@ var Course = Backbone.Model.extend({
     },
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.startTIme = Utilities.getDateString(this.get('startTIme'));
+        json.startTime = Utilities.getDateString(this.get('startTime'));
         json.finishTime = Utilities.getDateString(this.get('finishTime'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         return json;
@@ -132,7 +132,7 @@ var Course = Backbone.Model.extend({
     //simplified toJSON, as courses are not updated by Ajax but by html form
     toJSON: function () {
         var json = _.clone(this.attributes);
-        json.startTIme = Utilities.castToAPIFormat(this.get('startTIme'));
+        json.startTime = Utilities.castToAPIFormat(this.get('startTime'));
         json.finishTime = Utilities.castToAPIFormat(this.get('finishTime'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         return json;
