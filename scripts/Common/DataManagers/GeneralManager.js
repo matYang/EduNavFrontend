@@ -193,23 +193,4 @@
     };
 
 
-
-    //temperorially no need to be used
-    GeneralManager.prototype.fetchPartnerNames = function(partner, callback) {
-        $.ajax({
-            url:this.apis.general_partner,
-            type:'GET',
-            dataType:'json',
-            success: function(data, textStatus, jqXHR){
-                if (callback) {
-                    callback.success(data);
-                }
-            },
-            error: function() {
-                if (callback) {
-                    callback.error();
-                }
-            }
-        });
-    };
 }).call(this);
