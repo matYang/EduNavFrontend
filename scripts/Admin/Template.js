@@ -275,10 +275,6 @@
     
 </script>
 
-<script type="text/templates" id="tpl_adminUserDetail">
-    
-</script>
-
-<script type="text/templates" id="tpl_adminUserEdit">
+<script type="text/templates" id="tpl_adminUser">
 
 </script>

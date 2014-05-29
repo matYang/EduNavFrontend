@@ -84,6 +84,10 @@
             'adminManage': {
                 request: ['main'],
                 antiRequest: ['main']
+            },
+            'adminUser': {
+                request: ['main'],
+                antiRequest: ['main']
             }
         };
 
