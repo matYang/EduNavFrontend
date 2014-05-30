@@ -44,6 +44,38 @@
         });
     };
 
+    UserManager.prototype.verifySMSAuthCode = function(phone, authCode, callback) {
+        var self = this;
+        if (!phone){
+            Info.warn('UserManager::verifySMSAuthCode:: invalid parameter');
+            return;
+        }
+        if (this.sessionManager.hasSession()){
+            Info.warn('UserManager::verifySMSAuthCode:: session already exists, exit');
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: self.apis.user_smsVerification,
+            data: JSON.stringify({'phone': phone, 'authCode': authCode}),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function(data){
+                if(callback){
+                    callback.success();
+                }
+            },
+            error: function (data, textStatus, jqXHR){
+                Info.warn('UserManager::verifySMSAuthCode:: action failed');
+                Info.warn(data);
+                if(callback){
+                    callback.error(data);
+                }
+            }
+        });
+    };
+
 
     UserManager.prototype.registerUser = function(newUser, callback) {
         var self = this;
@@ -76,7 +108,7 @@
     UserManager.prototype.fetchUser = function(callback){
         var self = this;
         var user = new User();
-        
+
         if (testMockObj.testMode) {
             callback.success(testMockObj.sampleUser);
             return;
