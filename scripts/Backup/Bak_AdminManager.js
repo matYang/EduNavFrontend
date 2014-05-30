@@ -177,7 +177,7 @@
     AdminManager.prototype.listUser = function(callback){
         var users = new Users();
         users.overrideUrl(this.apis.admin_user);
-        users.fetch({}); 
+        users.fetch({});
     };
 
     AdminManager.prototype.updateUser = function(user, callback){

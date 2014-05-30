@@ -75,6 +75,8 @@
 
     UserManager.prototype.fetchUser = function(callback){
         var self = this;
+        var user = new User();
+        
         if (testMockObj.testMode) {
             callback.success(testMockObj.sampleUser);
             return;
@@ -84,7 +86,6 @@
             return;
         }
 
-        var user = new User();
         user.overrideUrl(this.apis.user_user);
         user.set('userId', this.sessionManager.getId());
         user.fetch({

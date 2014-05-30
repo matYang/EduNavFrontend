@@ -68,7 +68,7 @@
         });
     };
 
-    GeneralManager.prototype.searchCourses = function(courseSearchRepresentation, callback) {
+    GeneralManager.prototype.findCourse = function(courseSearchRepresentation, callback) {
         var self = this,
             searchResults = new Courses();
 

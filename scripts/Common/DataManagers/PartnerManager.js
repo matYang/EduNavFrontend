@@ -17,6 +17,8 @@
 
     PartnerManager.prototype.fetchPartner = function(callback){
         var self = this;
+        var partner = new Partner();
+        
         if (testMockObj.testMode) {
             callback.success(testMockObj.samplePartner);
             return;
@@ -25,8 +27,7 @@
             Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
             return;
         }
-
-        var partner = new Partner();
+        
         partner.overrideUrl(this.apis.partner_partner);
         partner.set('partnerId', this.sessionManager.getId());
         partner.fetch({

@@ -15,9 +15,9 @@
 
 
 
-    AdminManager.prototype.createAdmin = function(admin, callback, opt){
-        if (opt){
-            admin.overrideUrl(this.apis.admin_admin + '?secret1=' + opt.secret1 + '&secret2=' + opt.secret2 + '&secret3=' + opt.secret3);
+    AdminManager.prototype.createAdmin = function(admin, callback, keys){
+        if (keys){
+            admin.overrideUrl(this.apis.admin_admin + '?secret1=' + keys.secret1 + '&secret2=' + keys.secret2 + '&secret3=' + keys.secret3);
         }
         else{
             admin.overrideUrl(this.apis.admin_admin);
@@ -41,16 +41,48 @@
         });
     };
 
-    AdminManager.prototype.listAdmin = function(callback, opt){
-        var admins = new Users();
-        if (opt){
-            admins.overrideUrl(this.apis.admin_admin + '?secret1=' + opt.secret1 + '&secret2=' + opt.secret2 + '&secret3=' + opt.secret3);
+    AdminManager.prototype.fetchAdmin = function(callback) {
+        var self = this;
+        var admin = new Admin();
+
+        if (!this.sessionManager.hasSession()){
+            Info.warn("AdminManager::fetchAdmin::currentAdmin does not have session, exit");
+            return;
         }
-        else{
-            admins.overrideUrl(this.apis.admin_admin);
+        
+        admin.overrideUrl(this.apis.admin_admin);
+        admin.set('adminId', this.sessionManager.getId());
+        admin.fetch({
+            dataType:'json',
+
+            success:function(model, response){
+                if(callback){
+                    callback.success(admin);
+                }
+            },
+            error: function(model, response){
+                Info.warn("AdminManager::fetchAdmin:: fetch failed with response:");
+                Info.warn(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
+    AdminManager.prototype.listAdmin = function(adminSearchRepresentation, callback, keys){
+        var admins = new Users();
+        var queryObj = adminSearchRepresentation.toJSON();
+
+        if (keys){
+            queryObj.secret1 = keys.secret1;
+            queryObj.secret2 = keys.secret2;
+            queryObj.secret3 = keys.secret3;
         }
 
+        admins.overrideUrl(this.apis.admin_admin);
         admins.fetch({
+            data: $.param(queryObj),
             dataType:'json',
 
             success:function(model, response){
