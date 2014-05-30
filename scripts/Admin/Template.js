@@ -276,5 +276,42 @@
 </script>
 
 <script type="text/templates" id="tpl_adminUser">
+    <label>
+        userId: <%= userId %>
+    </label>
+    <label>
+        name: <%= name %>
+    </label>
+    <label>
+        phone: <%= phone %>
+    </label>
+    <label>
+        email: <%= email %>
+    </label>
+    <label>
+        balance: <%= balance %>
+    </label>
+    <label>
+        credit: <%= credit %>
+    </label>
+    <label>
+        status: <%= status %>
+    </label>    
+    <label>
+        coupons: 
+        <div id="adminUserCouponsContainer">
+        </div>
+    </label>
+</script>
 
+<script type="text/templates" id="tpl_adminUserCouponRow">
+    <div class="userCoupon">
+        <div>couponId <%= couponId %></div>
+        <div>transactionId <%= transactionId %></div>
+        <div>userId <%= userId %></div>
+        <div>amount <%= amount %></div>
+        <div>creationTime<%= creationTime %></div>
+        <div>expireTime<%= expireTime %></div>
+        <div>status<%= status %></div>
+    </div>
 </script>
