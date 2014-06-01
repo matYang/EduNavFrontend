@@ -330,63 +330,65 @@
 </script>
 
 <script type="text/templates" id="tpl_adminCourseView">
-    <label>courseId: <span class="detail"><%= courseId %></span><span class="edit"><input type="hidden" name="courseId"/ value="<%= courseId %>"></span></label>
-    <label>partnerId: <span class="detail"><%= partnerId %></span><span class="edit"><input type="text" name="partnerId"/></span></label>
-    <label>creationTime: <span class="detail"><%= creationTime %></span></label>
-    <label>courseName: <span class="detail"><%= courseName %></span><span class="edit"><input type="text" name="courseName"/></span></label>
-    <label>courseIntro: <span class="detail"><%= courseIntro %></span><span class="edit"><input type="text" name="courseIntro"/></span></label>
-    <label>dailyStartTime: <span class="detail"><%= dailyStartTime %></span><span class="edit"><input type="text" name="dailyStartTime"/></span></label>
-    <label>dailyFinishTime: <span class="detail"><%= dailyFinishTime %></span><span class="edit"><input type="text" name="dailyFinishTime"/></span></label>
-    <label>studyDays: <span class="detail"><%= studyDays %></span><span class="edit"><input type="text" name="studyDays"/></span></label>
-    <label>studyDaysNote: <span class="detail"><%= studyDaysNote %></span><span class="edit"><input type="text" name="studyDaysNote"/></span></label>
-    <label>startTime: <span class="detail"><%= startTime %></span><span class="edit"><input type="text" name="startTime"/></span></label>
-    <label>finishTime: <span class="detail"><%= finishTime %></span><span class="edit"><input type="text" name="finishTime"/></span></label>
-    <label>courseHourNum: <span class="detail"><%= courseHourNum %></span><span class="edit"><input type="text" name="courseHourNum"/></span></label>
-    <label>courseHourLength: <span class="detail"><%= courseHourLength %></span><span class="edit"><input type="text" name="courseHourLength"/></span></label>
-    <label>city: <span class="detail"><%= city %></span><span class="edit"><input type="text" name="city"/></span></label>
-    <label>district: <span class="detail"><%= district %></span><span class="edit"><input type="text" name="district"/></span></label>
-    <label>location: <span class="detail"><%= location %></span><span class="edit"><input type="text" name="location"/></span></label>
-    <label>category: <span class="detail"><%= category %></span><span class="edit"><input type="text" name="category"/></span></label>
-    <label>subCategory: <span class="detail"><%= subCategory %></span><span class="edit"><input type="text" name="subCategory"/></span></label>
-    <label>price: <span class="detail"><%= price %></span><span class="edit"><input type="text" name="price"/></span></label>
-    <label>seatsTotal: <span class="detail"><%= seatsTotal %></span><span class="edit"><input type="text" name="seatsTotal"/></span></label>
-    <label>seatsLeft: <span class="detail"><%= seatsLeft %></span><span class="edit"><input type="text" name="seatsLeft"/></span></label>
-    <label>reference: <span class="detail"><%= reference %></span><span class="edit"><input type="text" name="reference"/></span></label>
-    <label>partnerCourseReference: <span class="detail"><%= partnerCourseReference %></span><span class="edit"><input type="text" name="partnerCourseReference"/></span></label>
-    <label>classModel: <span class="detail"><%= classModel %></span><span class="edit"><input type="text" name="classModel"/></span></label>
-    <label>openCourseRequirement: <span class="detail"><%= openCourseRequirement %></span><span class="edit"><input type="text" name="openCourseRequirement"/></span></label>
-    <label>classroomImgUrl: <span class="detail"><%= classroomImgUrl %></span><span class="edit"><input type="text" name="classroomImgUrl"/></span></label>
-    <label>classroomIntro: <span class="detail"><%= classroomIntro %></span><span class="edit"><input type="text" name="classroomIntro"/></span></label>
-    <label>partnerQualification: <span class="detail"><%= partnerQualification %></span><span class="edit"><input type="text" name="partnerQualification"/></span></label>
-    <label>partnerIntro: <span class="detail"><%= partnerIntro %></span><span class="edit"><input type="text" name="partnerIntro"/></span></label>
-    <label>teachingMethods: <span class="detail"><%= teachingMethods %></span><span class="edit"><input type="text" name="teachingMethods"/></span></label>
-    <label>teachingMethodsIntro: <span class="detail"><%= teachingMethodsIntro %></span><span class="edit"><input type="text" name="teachingMethodsIntro"/></span></label>
-    <label>teachingMaterialType: <span class="detail"><%= teachingMaterialType %></span><span class="edit"><input type="text" name="teachingMaterialType"/></span></label>
-    <label>teachingMaterialName: <span class="detail"><%= teachingMaterialName %></span><span class="edit"><input type="text" name="teachingMaterialName"/></span></label>
-    <label>teachingMaterialIntro: <span class="detail"><%= teachingMaterialIntro %></span><span class="edit"><input type="text" name="teachingMaterialIntro"/></span></label>
-    <label>teachingMaterialCost: <span class="detail"><%= teachingMaterialCost %></span><span class="edit"><input type="text" name="teachingMaterialCost"/></span></label>
-    <label>teachingMaterialFree: <span class="detail"><%= teachingMaterialFree %></span><span class="edit"><input type="text" name="teachingMaterialFree"/></span></label>
-    <label>suitableStudent: <span class="detail"><%= suitableStudent %></span><span class="edit"><input type="text" name="suitableStudent"/></span></label>
-    <label>prerequest: <span class="detail"><%= prerequest %></span><span class="edit"><input type="text" name="prerequest"/></span></label>
-    <label>teacherImgUrl: <span class="detail"><%= teacherImgUrl %></span><span class="edit"><input type="text" name="teacherImgUrl"/></span></label>
-    <label>teacherIntro: <span class="detail"><%= teacherIntro %></span><span class="edit"><input type="text" name="teacherIntro"/></span></label>
-    <label>hasDownloadMaterials: <span class="detail"><%= hasDownloadMaterials %></span><span class="edit"><input type="text" name="hasDownloadMaterials"/></span></label>
-    <label>questionBank: <span class="detail"><%= questionBank %></span><span class="edit"><input type="text" name="questionBank"/></span></label>
-    <label>questionBankIntro: <span class="detail"><%= questionBankIntro %></span><span class="edit"><input type="text" name="questionBankIntro"/></span></label>
-    <label>highScoreReward: <span class="detail"><%= highScoreReward %></span><span class="edit"><input type="text" name="highScoreReward"/></span></label>
-    <label>passAgreement: <span class="detail"><%= passAgreement %></span><span class="edit"><input type="text" name="passAgreement"/></span></label>
-    <label>quiz: <span class="detail"><%= quiz %></span><span class="edit"><input type="text" name="quiz"/></span></label>
-    <label>provideAssignments: <span class="detail"><%= provideAssignments %></span><span class="edit"><input type="text" name="provideAssignments"/></span></label>
-    <label>provideMarking: <span class="detail"><%= provideMarking %></span><span class="edit"><input type="text" name="provideMarking"/></span></label>
-    <label>certification: <span class="detail"><%= certification %></span><span class="edit"><input type="text" name="certification"/></span></label>
-    <label>extracurricular: <span class="detail"><%= extracurricular %></span><span class="edit"><input type="text" name="extracurricular"/></span></label>
-    <label>extracurricularIntro: <span class="detail"><%= extracurricularIntro %></span><span class="edit"><input type="text" name="extracurricularIntro"/></span></label>
-    <label>status: <span class="detail"><%= status %></span><span class="edit"><input type="text" name="status"/></span></label>
-    <label>phone: <span class="detail"><%= phone %></span><span class="edit"><input type="text" name="phone"/></span></label>
-    <label>logoUrl: <span class="detail"><%= logoUrl %></span><span class="edit"><input type="text" name="logoUrl"/></span></label>
-    <label>instName: <span class="detail"><%= instName %></span><span class="edit"><input type="text" name="instName"/></span></label>
-    <label>wholeName: <span class="detail"><%= wholeName %></span><span class="edit"><input type="text" name="wholeName"/></span></label> 
-    <span class="detail"><button id="createSimilarCourse">create similar</button></span>
-    <span class="detail"><button id="deleteCourse">delete</button></span>
-    <span class="edit"><input type="submit" value="submit"></span>
+    <form id="adminCourseForm">
+        <label>courseId: <span class="detail"><%= courseId %></span><span class="edit"><input type="hidden" name="courseId"/ value="<%= courseId %>"></span></label>
+        <label>partnerId: <span class="detail"><%= partnerId %></span><span class="edit"><input type="text" name="partnerId"/></span></label>
+        <label>creationTime: <span class="detail"><%= creationTime %></span></label>
+        <label>courseName: <span class="detail"><%= courseName %></span><span class="edit"><input type="text" name="courseName"/></span></label>
+        <label>courseIntro: <span class="detail"><%= courseIntro %></span><span class="edit"><input type="text" name="courseIntro"/></span></label>
+        <label>dailyStartTime: <span class="detail"><%= dailyStartTime %></span><span class="edit"><input type="text" name="dailyStartTime"/></span></label>
+        <label>dailyFinishTime: <span class="detail"><%= dailyFinishTime %></span><span class="edit"><input type="text" name="dailyFinishTime"/></span></label>
+        <label>studyDays: <span class="detail"><%= studyDays %></span><span class="edit"><input type="text" name="studyDays"/></span></label>
+        <label>studyDaysNote: <span class="detail"><%= studyDaysNote %></span><span class="edit"><input type="text" name="studyDaysNote"/></span></label>
+        <label>startTime: <span class="detail"><%= startTime %></span><span class="edit"><input type="text" name="startTime"/></span></label>
+        <label>finishTime: <span class="detail"><%= finishTime %></span><span class="edit"><input type="text" name="finishTime"/></span></label>
+        <label>courseHourNum: <span class="detail"><%= courseHourNum %></span><span class="edit"><input type="text" name="courseHourNum"/></span></label>
+        <label>courseHourLength: <span class="detail"><%= courseHourLength %></span><span class="edit"><input type="text" name="courseHourLength"/></span></label>
+        <label>city: <span class="detail"><%= city %></span><span class="edit"><input type="text" name="city"/></span></label>
+        <label>district: <span class="detail"><%= district %></span><span class="edit"><input type="text" name="district"/></span></label>
+        <label>location: <span class="detail"><%= location %></span><span class="edit"><input type="text" name="location"/></span></label>
+        <label>category: <span class="detail"><%= category %></span><span class="edit"><input type="text" name="category"/></span></label>
+        <label>subCategory: <span class="detail"><%= subCategory %></span><span class="edit"><input type="text" name="subCategory"/></span></label>
+        <label>price: <span class="detail"><%= price %></span><span class="edit"><input type="text" name="price"/></span></label>
+        <label>seatsTotal: <span class="detail"><%= seatsTotal %></span><span class="edit"><input type="text" name="seatsTotal"/></span></label>
+        <label>seatsLeft: <span class="detail"><%= seatsLeft %></span><span class="edit"><input type="text" name="seatsLeft"/></span></label>
+        <label>reference: <span class="detail"><%= reference %></span><span class="edit"><input type="text" name="reference"/></span></label>
+        <label>partnerCourseReference: <span class="detail"><%= partnerCourseReference %></span><span class="edit"><input type="text" name="partnerCourseReference"/></span></label>
+        <label>classModel: <span class="detail"><%= classModel %></span><span class="edit"><input type="text" name="classModel"/></span></label>
+        <label>openCourseRequirement: <span class="detail"><%= openCourseRequirement %></span><span class="edit"><input type="text" name="openCourseRequirement"/></span></label>
+        <label>classroomImgUrl: <span class="detail"><%= classroomImgUrl %></span><span class="edit"><input type="text" name="classroomImgUrl"/></span></label>
+        <label>classroomIntro: <span class="detail"><%= classroomIntro %></span><span class="edit"><input type="text" name="classroomIntro"/></span></label>
+        <label>partnerQualification: <span class="detail"><%= partnerQualification %></span><span class="edit"><input type="text" name="partnerQualification"/></span></label>
+        <label>partnerIntro: <span class="detail"><%= partnerIntro %></span><span class="edit"><input type="text" name="partnerIntro"/></span></label>
+        <label>teachingMethods: <span class="detail"><%= teachingMethods %></span><span class="edit"><input type="text" name="teachingMethods"/></span></label>
+        <label>teachingMethodsIntro: <span class="detail"><%= teachingMethodsIntro %></span><span class="edit"><input type="text" name="teachingMethodsIntro"/></span></label>
+        <label>teachingMaterialType: <span class="detail"><%= teachingMaterialType %></span><span class="edit"><input type="text" name="teachingMaterialType"/></span></label>
+        <label>teachingMaterialName: <span class="detail"><%= teachingMaterialName %></span><span class="edit"><input type="text" name="teachingMaterialName"/></span></label>
+        <label>teachingMaterialIntro: <span class="detail"><%= teachingMaterialIntro %></span><span class="edit"><input type="text" name="teachingMaterialIntro"/></span></label>
+        <label>teachingMaterialCost: <span class="detail"><%= teachingMaterialCost %></span><span class="edit"><input type="text" name="teachingMaterialCost"/></span></label>
+        <label>teachingMaterialFree: <span class="detail"><%= teachingMaterialFree %></span><span class="edit"><input type="text" name="teachingMaterialFree"/></span></label>
+        <label>suitableStudent: <span class="detail"><%= suitableStudent %></span><span class="edit"><input type="text" name="suitableStudent"/></span></label>
+        <label>prerequest: <span class="detail"><%= prerequest %></span><span class="edit"><input type="text" name="prerequest"/></span></label>
+        <label>teacherImgUrl: <span class="detail"><%= teacherImgUrl %></span><span class="edit"><input type="text" name="teacherImgUrl"/></span></label>
+        <label>teacherIntro: <span class="detail"><%= teacherIntro %></span><span class="edit"><input type="text" name="teacherIntro"/></span></label>
+        <label>hasDownloadMaterials: <span class="detail"><%= hasDownloadMaterials %></span><span class="edit"><input type="text" name="hasDownloadMaterials"/></span></label>
+        <label>questionBank: <span class="detail"><%= questionBank %></span><span class="edit"><input type="text" name="questionBank"/></span></label>
+        <label>questionBankIntro: <span class="detail"><%= questionBankIntro %></span><span class="edit"><input type="text" name="questionBankIntro"/></span></label>
+        <label>highScoreReward: <span class="detail"><%= highScoreReward %></span><span class="edit"><input type="text" name="highScoreReward"/></span></label>
+        <label>passAgreement: <span class="detail"><%= passAgreement %></span><span class="edit"><input type="text" name="passAgreement"/></span></label>
+        <label>quiz: <span class="detail"><%= quiz %></span><span class="edit"><input type="text" name="quiz"/></span></label>
+        <label>provideAssignments: <span class="detail"><%= provideAssignments %></span><span class="edit"><input type="text" name="provideAssignments"/></span></label>
+        <label>provideMarking: <span class="detail"><%= provideMarking %></span><span class="edit"><input type="text" name="provideMarking"/></span></label>
+        <label>certification: <span class="detail"><%= certification %></span><span class="edit"><input type="text" name="certification"/></span></label>
+        <label>extracurricular: <span class="detail"><%= extracurricular %></span><span class="edit"><input type="text" name="extracurricular"/></span></label>
+        <label>extracurricularIntro: <span class="detail"><%= extracurricularIntro %></span><span class="edit"><input type="text" name="extracurricularIntro"/></span></label>
+        <label>status: <span class="detail"><%= status %></span><span class="edit"><input type="text" name="status"/></span></label>
+        <label>phone: <span class="detail"><%= phone %></span><span class="edit"><input type="text" name="phone"/></span></label>
+        <label>logoUrl: <span class="detail"><%= logoUrl %></span><span class="edit"><input type="text" name="logoUrl"/></span></label>
+        <label>instName: <span class="detail"><%= instName %></span><span class="edit"><input type="text" name="instName"/></span></label>
+        <label>wholeName: <span class="detail"><%= wholeName %></span><span class="edit"><input type="text" name="wholeName"/></span></label> 
+        <span class="detail"><button id="createSimilarCourse">create similar</button></span>
+        <span class="detail"><button id="deleteCourse">delete</button></span>
+        <span class="edit"><input type="submit" value="submit"></span>
+    </form>
 </script>
