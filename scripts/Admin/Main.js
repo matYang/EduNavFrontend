@@ -9,6 +9,7 @@ var AppRouter = Backbone.Router.extend({
         "manage":"manage",
         "manage/*type":"manage",
         "course/:id": "course",
+        "user/:id": "user",
         "*default" : "defaultRoute"
     },
 
@@ -66,6 +67,9 @@ var AppRouter = Backbone.Router.extend({
     },
     course: function (id) {
         this.courseView = new AdminCourseView({courseId:id});
+    },
+    user: function (id) {
+        this.courseView = new AdminCourseView({userId:id});
     }
 });
 

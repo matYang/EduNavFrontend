@@ -1,6 +1,11 @@
-//not using base form view for now
-var AdminCourseView = Backbone.View.extend({
+var AdminCourseView = BaseFormView.extend({
     el: "#main_content",
+    fields: [],
+    formElem: "adminCourseForm",
+    action: this.action,
+    callback: 'uploadTarget',
+    
+    submitButtonId: "coursePostSubmit",
     initialize: function(params){
         _.bindAll(this, "render", "bindEvents", "close");
         this.isClosed = false;
@@ -32,13 +37,20 @@ var AdminCourseView = Backbone.View.extend({
             $("#adminCourseForm").find("detail").hide();
             var json = that.course.toJSON();
             for (var attr in json) {
-                $("input[name="+attr+"]").val(json[attr]);
+                var $edit = $("input[name="+attr+"]");
+                if ($edit.attr("type") === "checkbox") {
+                    $edit.prop("checked", json[attr]);
+                }
+                $edit.val(json[attr]);
             }
         });
         $("#deleteCourse").on("click", function() {
-
+            that.course.
         });
     },  
+    successCallback: function () {
+        app.navigate("manage/course", true);
+    },
     close: function () {
         if (!this.isClosed) {
             this.isClosed = false;

@@ -366,19 +366,19 @@
         <label>teachingMaterialName: <span class="detail"><%= teachingMaterialName %></span><span class="edit"><input type="text" name="teachingMaterialName"/></span></label>
         <label>teachingMaterialIntro: <span class="detail"><%= teachingMaterialIntro %></span><span class="edit"><input type="text" name="teachingMaterialIntro"/></span></label>
         <label>teachingMaterialCost: <span class="detail"><%= teachingMaterialCost %></span><span class="edit"><input type="text" name="teachingMaterialCost"/></span></label>
-        <label>teachingMaterialFree: <span class="detail"><%= teachingMaterialFree %></span><span class="edit"><input type="text" name="teachingMaterialFree"/></span></label>
+        <label>teachingMaterialFree: <span class="detail"><%= teachingMaterialFree %></span><span class="edit"><input type="checkbox" name="teachingMaterialFree"/></span></label>
         <label>suitableStudent: <span class="detail"><%= suitableStudent %></span><span class="edit"><input type="text" name="suitableStudent"/></span></label>
         <label>prerequest: <span class="detail"><%= prerequest %></span><span class="edit"><input type="text" name="prerequest"/></span></label>
         <label>teacherImgUrl: <span class="detail"><%= teacherImgUrl %></span><span class="edit"><input type="text" name="teacherImgUrl"/></span></label>
         <label>teacherIntro: <span class="detail"><%= teacherIntro %></span><span class="edit"><input type="text" name="teacherIntro"/></span></label>
-        <label>hasDownloadMaterials: <span class="detail"><%= hasDownloadMaterials %></span><span class="edit"><input type="text" name="hasDownloadMaterials"/></span></label>
+        <label>hasDownloadMaterials: <span class="detail"><%= hasDownloadMaterials %></span><span class="edit"><input type="checkbox" name="hasDownloadMaterials"/></span></label>
         <label>questionBank: <span class="detail"><%= questionBank %></span><span class="edit"><input type="text" name="questionBank"/></span></label>
         <label>questionBankIntro: <span class="detail"><%= questionBankIntro %></span><span class="edit"><input type="text" name="questionBankIntro"/></span></label>
         <label>highScoreReward: <span class="detail"><%= highScoreReward %></span><span class="edit"><input type="text" name="highScoreReward"/></span></label>
         <label>passAgreement: <span class="detail"><%= passAgreement %></span><span class="edit"><input type="text" name="passAgreement"/></span></label>
         <label>quiz: <span class="detail"><%= quiz %></span><span class="edit"><input type="text" name="quiz"/></span></label>
-        <label>provideAssignments: <span class="detail"><%= provideAssignments %></span><span class="edit"><input type="text" name="provideAssignments"/></span></label>
-        <label>provideMarking: <span class="detail"><%= provideMarking %></span><span class="edit"><input type="text" name="provideMarking"/></span></label>
+        <label>provideAssignments: <span class="detail"><%= provideAssignments %></span><span class="edit"><input type="checkbox" name="provideAssignments"/></span></label>
+        <label>provideMarking: <span class="detail"><%= provideMarking %></span><span class="edit"><input type="checkbox" name="provideMarking"/></span></label>
         <label>certification: <span class="detail"><%= certification %></span><span class="edit"><input type="text" name="certification"/></span></label>
         <label>extracurricular: <span class="detail"><%= extracurricular %></span><span class="edit"><input type="text" name="extracurricular"/></span></label>
         <label>extracurricularIntro: <span class="detail"><%= extracurricularIntro %></span><span class="edit"><input type="text" name="extracurricularIntro"/></span></label>
@@ -389,6 +389,6 @@
         <label>wholeName: <span class="detail"><%= wholeName %></span><span class="edit"><input type="text" name="wholeName"/></span></label> 
         <span class="detail"><button id="createSimilarCourse">create similar</button></span>
         <span class="detail"><button id="deleteCourse">delete</button></span>
-        <span class="edit"><input type="submit" value="submit"></span>
+        <span class="edit"><input id="coursePostSubmit" type="submit" value="submit"></span>
     </form>
 </script>

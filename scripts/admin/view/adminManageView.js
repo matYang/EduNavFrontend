@@ -23,8 +23,8 @@ var AdminUserSearchResultView = MultiPageView.extend({
         MultiPageView.prototype.render.call(this);
     },
     entryEvent: function (id) {
-        app.navigate("course/"+id);
-        this.courseView = new AdminCourseView({course: this.allMessages.get(id)});
+        app.navigate("user/"+id);
+        this.userView = new AdminUserView({user: this.allMessages.get(id)});
     },
     close: function () {
         this.$domContainer.empty();
