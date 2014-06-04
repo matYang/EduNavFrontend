@@ -67,7 +67,6 @@ var AppRouter = Backbone.Router.extend({
         this.manageView = new AdminManageView({type:type});
     },
     course: function (id) {
-        debugger;
         if (!this.sessionManager.hasSession()) {
             this.navigate("login", {trigger:true, replace:true});
         } else if (!this.baseView) {

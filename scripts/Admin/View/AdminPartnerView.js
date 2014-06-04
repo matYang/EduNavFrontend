@@ -1,18 +1,16 @@
-var AdminCourseView = BaseFormView.extend({
-    el: "#courseCRUDContainer",
+var AdminPartnerView = BaseFormView.extend({
+	el: "#partnerCRUDContainer",
     fields: [],
-    form: true,
-    formElem: "adminCourseForm",
-    submitButtonId: "coursePostSubmit",
+    formElem: "adminPartnerForm",
+    submitButtonId: "partnerPostSubmit",
     callback: "uploadTarget",
     initialize: function(params){
-        debugger;
         _.bindAll(this, "render", "bindEvents", "close");
         BaseFormView.prototype.initialize.call(this);
-        app.viewRegistration.register("adminCourse", this, true);
+        app.viewRegistration.register("adminPartner", this, true);
         params = params || {};
         var apis = new AdminApiResource();
-        this.template = _.template(tpl.get("adminCourse"));
+        this.template = _.template(tpl.get("adminPartner"));
         this.action = apis.admin_course;
         this.newCourse = false;
         if (params.course) {
@@ -39,7 +37,6 @@ var AdminCourseView = BaseFormView.extend({
         if (this.newCourse) {
             $("#adminCourseForm").find(".detail").hide();
             $("#adminCourseForm").find(".edit").show();
-            $("#cancel").hide();
         } else {
             $("#adminCourseForm").find(".edit").hide();
             $("#adminCourseForm").find(".detail").show();
@@ -48,7 +45,6 @@ var AdminCourseView = BaseFormView.extend({
     },
     bindEvents: function () {
         var that = this;
-        BaseFormView.prototype.bindEvents.call(this);
         $("#createSimilarCourse").on("click", function() {
             $("#adminCourseForm").find("edit").show();
             $("#adminCourseForm").find("detail").hide();
@@ -61,17 +57,15 @@ var AdminCourseView = BaseFormView.extend({
                 $edit.val(json[attr]);
             }
         });
-        $("#cancel").on("click", function () {
-            $("#adminCourseForm").find("input").val("");
-            $("#adminCourseForm").find(".edit").hide();
-            $("#adminCourseForm").find(".detail").show();   
-        });
         $("#deleteCourse").on("click", function() {
             
         });
     },  
     successCallback: function () {
         app.navigate("manage/course", true);
+    },
+    callback: function(){
+
     },
     close: function () {
         if (!this.isClosed) {

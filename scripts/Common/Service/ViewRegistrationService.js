@@ -92,6 +92,10 @@
             'adminCourse': {
                 request: ['courseEdit'],
                 antiRequest: ['courseEdit']
+            },
+            'adminPartner': {
+                request: ['partnerEdit'],
+                antiRequest: ['partnerEdit']
             }
         };
 

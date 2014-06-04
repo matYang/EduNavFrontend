@@ -1,4 +1,3 @@
-//TODO: test
 //Do not initialize this directly, extend it.
 //workflow:
 //  Initialize, append form to the active view.
@@ -26,10 +25,10 @@ var BaseFormView = Backbone.View.extend({
     },
     submitAction: function(){},
     render: function () {
-        this.$el.empty().append(this.template);
         this.bindEvents();
     },
     bindEvents: function() {
+        debugger;
         this.fieldNum = this.fields.length;
         var i, that = this;
         for ( i = 0; i < this.fieldNum; i++ ){
@@ -59,7 +58,9 @@ var BaseFormView = Backbone.View.extend({
                 });
             }
         }
+        debugger;
         $("#"+this.submitButtonId).on("click", function (e) {
+            debugger;
             var valid = true;
             for ( i = 0; i < that.fieldNum; i++ ){
                 var field = that.fields[i], $field = $("#"+  field.get("fieldId"));

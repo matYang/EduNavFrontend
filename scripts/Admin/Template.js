@@ -89,7 +89,25 @@
     <div id="searchResult">
         <div class="clearfix">
             <div class="fleft search">
-                <input id="searchInput" class="text" type="text" placeholder="请输入课程名，学校名，或者课程id"/><input id="search" class="btn" type="button" value="搜索"/>
+                <div>
+                <input id="searchInput_id" class="text" type="text" placeholder="课程id"/>
+                <input id="searchInput_schoolName" class="text" type="text" placeholder="学校名"/>
+                </div>
+                <div>
+                <select id="searchInput_category">
+                    <option value="" disabled selected>一级分类</option>
+                </select>
+                <select id="searchInput_subCategory">
+                    <option value="" disabled selected>二级分类</option>
+                </select>
+                <select id="searchInput_city">
+                    <option value="" disabled selected>城市</option>
+                </select>
+                <select id="searchInput_district">
+                    <option value="" disabled selected>地区</option>
+                </select>
+                </div>
+                <input id="search" class="btn" type="button" value="搜索"/>
                 
             </div>
             <div class="fright" style="line-height:40px">
@@ -119,6 +137,46 @@
         </div>
     </div>
     <div id="courseCRUDContainer">
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_adminPartnerManage">
+    <div class="tabs">
+        <span id="createPartner">新建伙伴</span>
+        <span id="searchPartner">搜索伙伴</span>
+    </div>
+    <div id="searchResult">
+        <div class="clearfix">
+            <div class="fleft search">
+                <input id="searchInput" class="text" type="text" placeholder="请输入课程名，学校名，或者课程id"/><input id="search" class="btn" type="button" value="搜索"/>
+                
+            </div>
+            <div class="fright" style="line-height:40px">
+                欢迎您，<span id="adminUserName" class="F_orange"></span>
+            </div>
+         </div>
+         <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <td width="80">partner id</td>
+                    <td width="120">全名</td>
+                    <td width="100">执照</td>
+                    <td width="100">机构号</td>
+                    <td width="100">Ref</td>
+                    <td width="100">Phone</td>
+                    <td width="100">状态</td>
+                    <td width="100">新建时间</td>
+                    <td>--</td>
+                </tr>
+            </thead>
+            <tbody id="searchResultContainer">
+
+            </tbody>
+         </table>
+        <div id="partnerSearchNavigator" class="page clearfix">
+        </div>
+    </div>
+    <div id="partnerCRUDContainer">
     </div>
 </script>
 
@@ -261,7 +319,7 @@
 </script>
 
 <script type="text/templates" id="tpl_adminCourse">
-    <form id="adminCourseForm">
+    <form id="adminCourseForm" method="post">
         <label>courseId: <span class="detail"><%= courseId %></span><span class="edit"><input type="hidden" name="courseId"/ value="<%= courseId %>"></span></label>
         <label>partnerId: <span class="detail"><%= partnerId %></span><span class="edit"><input type="text" name="partnerId"/></span></label>
         <label>creationTime: <span class="detail"><%= creationTime %></span></label>
@@ -322,6 +380,24 @@
         <span class="detail"><button id="deleteCourse">delete</button></span>
         <span class="detail"><button id="editCourse">edit</button></span>
         <span class="edit"><input id="coursePostSubmit" type="submit" value="submit"></span>
+        <span class="edit"><div id="cancel">Cancel</div>
+    </form>
+</script>
+
+<script type="text/templates" id="tpl_adminPartner">
+    <form id="adminPartnerForm">
+        <label>partnerId: <span class="detail"><%= partnerId %></span></label> 
+        <label>wholeName: <span class="detail"><%= wholeName %></span><span class="edit"><input type="text" name="wholeName"/></span></label> 
+        <label>license: <span class="detail"><%= license %></span><span class="edit"><input type="text" name="license"/></span></label> 
+        <label>organizationNum: <span class="detail"><%= organizationNum %></span><span class="edit"><input type="text" name="organizationNum"/></span></label> 
+        <label>reference: <span class="detail"><%= reference %></span><span class="edit"><input type="text" name="reference"/></span></label> 
+        <label>phone: <span class="detail"><%= phone %></span><span class="edit"><input type="text" name="phone"/></span></label> 
+        <label>status: <span class="detail"><%= status %></span><span class="edit"><input type="text" name="status"/></span></label> 
+        <label>instName: <span class="detail"><%= instName %></span><span class="edit"><input type="text" name="instName"/></span></label> 
+        <label>logoUrl: <span class="detail"><%= logoUrl %></span><span class="edit"><input type="text" name="logoUrl"/></span></label> 
+        <span class="detail"><button id="deletePartner">delete</button></span>
+        <span class="detail"><button id="editPartner">edit</button></span>
+        <span class="edit"><input id="partnerPostSubmit" type="submit" value="submit"></span>
         <span class="edit"><div id="cancel">Cancel</div>
     </form>
 </script>
