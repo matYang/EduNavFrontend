@@ -88,6 +88,10 @@
             'adminUser': {
                 request: ['main'],
                 antiRequest: ['main']
+            },
+            'adminCourse': {
+                request: ['courseEdit'],
+                antiRequest: ['courseEdit']
             }
         };
 

@@ -1,4 +1,4 @@
-var AdminUserView = var Backbone.View.extend({
+var AdminUserView = Backbone.View.extend({
 	el:"#main_content",
 	initialize: function (params) {
 		this.isClosed = false;

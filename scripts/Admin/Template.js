@@ -14,7 +14,7 @@
 
 <script type="text/templates" id="tpl_adminBase">
     <table id="wrap" class="clearfix" width="100%" cellpadding="0" cellspacing="0">
-        <tr>
+        <tr style="vertical-align: top;">
         <td width="225">
             <div id="sideBar" class="left_bar">
                 <h1>
@@ -84,80 +84,9 @@
 <script type="text/templates" id="tpl_adminCourseManage">
     <div class="tabs">
         <span id="createCourse">新建课程</span>
-        <span id="updateCourse">修改课程</span>
+        <span id="searchCourse">搜索课程</span>
     </div>
-    <div id="createCourseContent">
-        <form id="createCourseForm">
-            <label>
-                课程名: <input type="text" name="courseName"/>
-            </label>
-            <label>
-                课程简介: <input type="text" name="courseIntro"/>
-            </label>
-            <label>
-                上课时间: <input type="text" name="dailyStartTime"/>
-            </label>
-            <label>
-                下课时间: <input type="text" name="dailyFinishTime"/>
-            </label>
-            <label>
-                上课时间段: <input type="text" name="studyDays"/>
-            </label>
-            <label>
-                上课时间段备注: <input type="text" name="studyDaysNote"/>
-            </label>
-            <label>
-                开课日期: <input type="text" name="startTime"/>
-            </label>
-            <label>
-                节课日期: <input type="text" name="finishTime"/>
-            </label>
-            <label>
-                课时数目: <input type="text" name="courseHourNum"/>
-            </label>
-            <label>
-                课时长度: <input type="text" name="courseHourLength"/>
-            </label>
-            <label>
-                城市: <input type="text" name="city"/>
-            </label>
-            <label>
-                行政区: <input type="text" name="district"/>
-            </label>
-            <label>
-                具体地点: <input type="text" name="location"/>
-            </label>
-            <label>
-                一级分类: <input type="text" name="category"/>
-            </label>
-            <label>
-                二级分类: <input type="text" name="subCategory"/>
-            </label>
-            <label>
-                价格: <input type="text" name="price"/>
-            </label>
-            <label>
-                总共座位: <input type="text" name="seatsTotal"/>
-            </label>
-            <label>
-                P-Ref: <input type="text" name="partnerCourseReference"/>
-            </label>
-            <label>
-                班级类型: <input type="text" name="classModel"/>
-            </label>
-            <label>
-                开班需求: <input type="text" name="openCourseRequirement"/>
-            </label>
-            <label>
-                教室图片: <input type="text" name="classroomImgUrl"/>
-            </label>
-            <label>
-                教室介绍: <input type="text" name="classroomIntro"/>
-            </label>
-            <input class="submit" type="submit" value="提交"/>
-        </form>
-    </div>
-    <div id="updateCourseContent" class="hidden">
+    <div id="searchResult">
         <div class="clearfix">
             <div class="fleft search">
                 <input id="searchInput" class="text" type="text" placeholder="请输入课程名，学校名，或者课程id"/><input id="search" class="btn" type="button" value="搜索"/>
@@ -188,6 +117,8 @@
          </table>
         <div id="courseSearchNavigator" class="page clearfix">
         </div>
+    </div>
+    <div id="courseCRUDContainer">
     </div>
 </script>
 
@@ -329,7 +260,7 @@
     </div>
 </script>
 
-<script type="text/templates" id="tpl_adminCourseView">
+<script type="text/templates" id="tpl_adminCourse">
     <form id="adminCourseForm">
         <label>courseId: <span class="detail"><%= courseId %></span><span class="edit"><input type="hidden" name="courseId"/ value="<%= courseId %>"></span></label>
         <label>partnerId: <span class="detail"><%= partnerId %></span><span class="edit"><input type="text" name="partnerId"/></span></label>
@@ -389,6 +320,8 @@
         <label>wholeName: <span class="detail"><%= wholeName %></span><span class="edit"><input type="text" name="wholeName"/></span></label> 
         <span class="detail"><button id="createSimilarCourse">create similar</button></span>
         <span class="detail"><button id="deleteCourse">delete</button></span>
+        <span class="detail"><button id="editCourse">edit</button></span>
         <span class="edit"><input id="coursePostSubmit" type="submit" value="submit"></span>
+        <span class="edit"><div id="cancel">Cancel</div>
     </form>
 </script>

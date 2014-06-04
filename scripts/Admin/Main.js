@@ -7,9 +7,10 @@ var AppRouter = Backbone.Router.extend({
         "": "defaultRoute",
         "login": "login",
         "manage":"manage",
+        "manage/course/:id": "course",
+        "manage/user/:id": "user",
+        "manage/booking/:id": "booking",
         "manage/*type":"manage",
-        "course/:id": "course",
-        "user/:id": "user",
         "*default" : "defaultRoute"
     },
 
@@ -66,15 +67,39 @@ var AppRouter = Backbone.Router.extend({
         this.manageView = new AdminManageView({type:type});
     },
     course: function (id) {
+        debugger;
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("login", {trigger:true, replace:true});
+        } else if (!this.baseView) {
+            this.baseView = new AdminBaseView(this.sessionManager);
+        }
+        this.manageView = new AdminManageView({type:"course"});
         this.courseView = new AdminCourseView({courseId:id});
     },
     user: function (id) {
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("login", {trigger:true, replace:true});
+        } else if (!this.baseView) {
+            this.baseView = new AdminBaseView(this.sessionManager);
+        }
+        this.manageView = new AdminManageView({type:"user"});
         this.courseView = new AdminCourseView({userId:id});
-    }
+    },
+    booking: function (id) {
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("login", {trigger:true, replace:true});
+        } else if (!this.baseView) {
+            this.baseView = new AdminBaseView(this.sessionManager);
+        }
+        this.manageView = new AdminManageView({type:"booking"});
+        this.courseView = new AdminCourseView({userId:id});
+    },
 });
 
 //warning: tpl is the global object for templating services, do not name any variable "tpl" in any context in any files
+
 tpl.loadTemplates(AdminConstants.templateResources, 'scripts/Admin/Template.js', function () {
+
     app = new AppRouter ();
     // app.sideBarView = new sideBarView();
     Backbone.history.start();

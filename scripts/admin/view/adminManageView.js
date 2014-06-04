@@ -23,7 +23,7 @@ var AdminUserSearchResultView = MultiPageView.extend({
         MultiPageView.prototype.render.call(this);
     },
     entryEvent: function (id) {
-        app.navigate("user/"+id);
+        app.navigate("manage/user/"+id);
         this.userView = new AdminUserView({user: this.allMessages.get(id)});
     },
     close: function () {
@@ -50,6 +50,7 @@ var AdminCourseSearchResultView = MultiPageView.extend({
         this.$domContainer = $("#searchResultContainer");
         this.isClosed = false;
         this.pnc = true;
+        this.editViewTemplate = _.template(tpl.get('adminCourse'));
         this.render();
         this.bindEvents();
     },
@@ -57,20 +58,28 @@ var AdminCourseSearchResultView = MultiPageView.extend({
         MultiPageView.prototype.render.call(this);
     },
     entryEvent: function (id) {
-        app.navigate("course/"+id, true);
+        app.navigate("manage/course/"+id);
+        this.adminCourseView = new AdminCourseView({"courseId":id});
     },
     bindEvents: function () {
+        var that = this;
         $("#createCourse").on("click", function(){
             $(this).addClass("active");
             $("#updateCourse").removeClass("active");
-            $("#createCourseContent").removeClass("hidden");
-            $("#updateCourseContent").addClass("hidden");
+            $("#courseCRUDContainer").removeClass("hidden");
+            $("#searchResult").addClass("hidden");
+            that.adminCourseView = new AdminCourseView(); //Create
         });
-        $("#updateCourse").on("click", function(){
+        $("#searchCourse").on("click", function(){
             $(this).addClass("active");
             $("#createCourse").removeClass("active");
-            $("#updateCourseContent").removeClass("hidden");
-            $("#createCourseContent").addClass("hidden");
+            $("#searchResult").removeClass("hidden");
+            $("#courseCRUDContainer").addClass("hidden");
+        });
+        $("cancel").on("click", function () {
+            debugger;
+            $(".edit").hide(); 
+            $(".detail").show();
         });
     },
     close: function () {
@@ -103,7 +112,7 @@ var AdminBookingSearchResultView = MultiPageView.extend({
         MultiPageView.prototype.render.call(this);
     },
     entryEvent: function (id) {
-        app.navigate("booking/"+id, true);
+        app.navigate("manage/booking/"+id, true);
     },
     close: function () {
         this.$domContainer.empty();

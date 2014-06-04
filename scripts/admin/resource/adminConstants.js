@@ -3,7 +3,7 @@ var AdminConstants = {
     	"adminLogin", "adminBase", 
         "adminUserManage", "adminCourseManage","adminBookingManage", "adminAdminManage",
         "adminUserRow", "adminCourseRow", "adminBookingRow", "adminAdminRow",
-        "adminUser", "adminCourseDetail"
+        "adminUser", "adminCourse"
     ],
     verifcationResult: {
         "rejected": 0,

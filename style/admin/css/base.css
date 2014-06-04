@@ -5,7 +5,8 @@ input[type="text"] { padding: 0px; }
 ol, ul { margin: 0; padding: 0; }
 img { border: none; }
 ul { list-style: none; }
-label {display:block; float:left;}
+label {display:block;}
+.detail {font-size: 1.2em; font-weight: bold;}
 .submit {display:block; float:left;}
 .hidden {display: none; }
 

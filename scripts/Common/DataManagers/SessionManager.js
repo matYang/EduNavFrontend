@@ -40,6 +40,9 @@
 
     //avoid using this
     SessionManager.prototype.getSessionModel = function(){
+        if (testMockObj.testMode) {
+            return testMockObj.sessionModel[this.identifier];
+        }
         return this.sessionModel;
     };
 
@@ -73,7 +76,7 @@
         }
         
         if (testMockObj.testMode) {
-            this.sessionModel = testMockObj.sampleUser;
+            this.sessionModel = testMockObj.testAdmin;
             if(callback){
                 callback.success();
             }

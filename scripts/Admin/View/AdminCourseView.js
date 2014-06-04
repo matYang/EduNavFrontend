@@ -1,33 +1,46 @@
 var AdminCourseView = BaseFormView.extend({
-    el: "#main_content",
+    el: "#courseCRUDContainer",
     fields: [],
     formElem: "adminCourseForm",
-    action: this.action,
-    callback: 'uploadTarget',
-    
     submitButtonId: "coursePostSubmit",
+    callback: "uploadTarget",
     initialize: function(params){
         _.bindAll(this, "render", "bindEvents", "close");
-        this.isClosed = false;
-        this.template = _.template(tpl.get("adminCourseView"));
+        BaseFormView.prototype.initialize.call(this);
+        app.viewRegistration.register("adminCourse", this, true);
+        params = params || {};
+        var apis = new AdminApiResource();
+        this.template = _.template(tpl.get("adminCourse"));
+        this.action = apis.admin_course;
+        this.newCourse = false;
         if (params.course) {
             this.render(params.course);
-        } else {
+        } else if (params.courseId){
             app.generalManager.fetchCourse(params.courseId, {
                 success: this.render,
                 error: function() {
                     app.navigate("manage", true);
                 }
             });
+        } else {
+            //Create new course
+            this.newCourse = true;
+            this.course = new Course();
+            this.render(this.course);
         }
         
     },
 
     render: function (course) {
         this.course = course;
-        this.$el.append(this.template(course.toJSON())));
-        $("#adminCourseForm").find("edit").hide();
-        $("#adminCourseForm").find("detail").show();
+        this.$el.append(this.template(course.toJSON()));
+        if (this.newCourse) {
+            $("#adminCourseForm").find(".detail").hide();
+            $("#adminCourseForm").find(".edit").show();
+        } else {
+            $("#adminCourseForm").find(".edit").hide();
+            $("#adminCourseForm").find(".detail").show();
+        }
         this.bindEvents();
     },
     bindEvents: function () {
@@ -45,15 +58,19 @@ var AdminCourseView = BaseFormView.extend({
             }
         });
         $("#deleteCourse").on("click", function() {
-            that.course.
+            
         });
     },  
     successCallback: function () {
         app.navigate("manage/course", true);
     },
+    callback: function(){
+
+    },
     close: function () {
         if (!this.isClosed) {
             this.isClosed = false;
+            this.$el.empty();
         }
     }
 });

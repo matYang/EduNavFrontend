@@ -5,7 +5,7 @@
 //  bind validators to all fields
 //  If it's a form (using <form>), then prepare iframe for post action
 
-var baseFormView = Backbone.View.extend({
+var BaseFormView = Backbone.View.extend({
     el: "",
     form: true,
     template: "",
@@ -14,14 +14,15 @@ var baseFormView = Backbone.View.extend({
     initialize: function(params){
         _.bindAll(this, "bindEvents", "render", "unbindValidators", "submitAction", "formReady", "displayImagePreview");
         this.closed = false;
-        this.el = params.el;
-        this.template = params.template;
-        this.fields = params.fields;
-        this.formElem = params.formElem;
-        this.action = params.action;
-        this.callback = params.callback;
-        this.successCallback = params.successCallback;
-        this.submitButtonId = params.submitButtonId;
+        params = params || {};
+        this.el = params.el || this.el;
+        this.template = params.template || this.template;
+        this.fields = params.fields || this.fields;
+        this.formElem = params.formElem || this.formElem;
+        this.action = params.action || this.action;
+        this.callback = params.callback || this.callback;
+        this.successCallback = params.successCallback || this.successCallback;
+        this.submitButtonId = params.submitButtonId || this.submitButtonId;
     },
     submitAction: function(){},
     render: function () {
