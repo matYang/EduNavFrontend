@@ -200,7 +200,6 @@
     AdminManager.prototype.listUser = function(userSearchRepresentation, callback){
         var self = this,
             searchResults = new Users();
-
         if (!this.sessionManager.hasSession()){
             Info.warn('AdminManager::listUser:: session does not exist, exit');
             return;

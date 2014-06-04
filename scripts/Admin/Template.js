@@ -119,7 +119,7 @@
                 <tr>
                     <td width="80">课程id</td>
                     <td width="120">课程</td>
-                    <td width="120">学校名</td>
+                    <td width="360">学校名</td>
                     <td width="100">开始时间</td>
                     <td width="100">结束时间</td>
                     <td width="100">价格</td>
@@ -158,10 +158,10 @@
          <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
-                    <td width="80">partner id</td>
-                    <td width="120">全名</td>
-                    <td width="100">执照</td>
-                    <td width="100">机构号</td>
+                    <td width="100">partner id</td>
+                    <td width="360">全名</td>
+                    <td width="120">执照</td>
+                    <td width="120">机构号</td>
                     <td width="100">Ref</td>
                     <td width="100">Phone</td>
                     <td width="100">状态</td>

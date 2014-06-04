@@ -12,7 +12,6 @@ var AdminBaseView = Backbone.View.extend({
     },
     render: function () {
         this.$el.attr("class", "").append(this.baseTemplate);
-        $("#adminUserName").html(this.sessionManager.sessionModel.get("name"));
     },
     bindEvents: function () {
         var that = this;

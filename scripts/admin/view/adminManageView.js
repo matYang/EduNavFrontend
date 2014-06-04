@@ -171,6 +171,7 @@ var AdminPartnerSearchResultView = MultiPageView.extend({
     },
     render: function () {
         MultiPageView.prototype.render.call(this);
+        $("#adminUserName").html(app.sessionManager.sessionModel.get("name"));
     },
     bindEvents: function () {
         var that = this;
@@ -258,8 +259,8 @@ var AdminManageView = Backbone.View.extend({
         $("#searchInput").on("keypress", function (e) {
             if (e.which === 13) {
                 e.preventDefault();
+                that.search();
             }
-            that.search();
         });
         $("#search").on("click", function (e) {
             that.search();
@@ -268,8 +269,14 @@ var AdminManageView = Backbone.View.extend({
     bindSearchEvent: function () {
         var that = this;
         if (this.type === "user") {
-            this.sr.set("name", val);
-            app.adminManager.listUsers(this.sr, this.renderResult);
+            $("#searchInput").on("change", function() {
+                var value = $(this).val(), num = Utilities.toInt(value);
+                if (isNaN(num)) {
+                    that.sr.set("name", value);
+                } else {
+                    that.sr.set("userId", num);
+                }
+            });
         } else if (this.type === "course") {
             $("#searchInput_id").on("change", function() {
                 that.sr.set("courseId", Utilities.toInt($(this).val()) );
@@ -306,12 +313,12 @@ var AdminManageView = Backbone.View.extend({
                     that.sr.set("partnerId", num);
                 }
             });
-        }z
+        }
     },
     search: function () {
         var val = $("#searchInput").val(), regex = /[0-9]+/;
         if (this.type === "user") {
-            app.adminManager.listUsers(this.sr, {success:this.renderResult, error:function(){}});
+            app.adminManager.listUser(this.sr, {success:this.renderResult, error:function(){}});
         } else if (this.type === "course") {
             app.generalManager.findCourse(this.sr, {success:this.renderResult, error:function(){}});
         } else if (this.type === "booking") {
