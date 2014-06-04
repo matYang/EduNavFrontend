@@ -15,7 +15,7 @@ var AppRouter = Backbone.Router.extend({
 
         "course/:courseId": "courseDetail",
         "course/:courseId/": "courseDetail",
-
+        "compare/*courses": "compare",
         "register": "register",
         "register/*registerState": "register",
         "lost/": "lost",
@@ -43,8 +43,6 @@ var AppRouter = Backbone.Router.extend({
         this.generalManager = new GeneralManager ();
         this.sessionManager = new SessionManager ();
         this.userManager = new UserManager (this.sessionManager);
-        this.courseManager = new CourseManager (this.sessionManager, this.userManager);
-        this.bookingManager = new BookingManager (this.sessionManager, this.userManager);
      
         this.sessionManager.fetchSession(false, {
             success: function () {
@@ -108,6 +106,11 @@ var AppRouter = Backbone.Router.extend({
         this.courseDetailView = new CourseDetailView ({
             'courseId': courseId
         });
+    },
+
+    compare: function (courses) {
+        var courseIdList = courses.split("_");
+        this.compareView = new CompareView({courseIds: courseIdList});
     },
 
     register: function (registrationState) {

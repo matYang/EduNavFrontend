@@ -3,18 +3,24 @@ var compareView = Backbone.View.extend({
     highlighted: false,
     hided: false,
     initialize: function (params) {
-        this.items = params.items; // array of items to compare
+        
         app.viewRegistration.register("compare", this, true);
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "highlight", "hideSame", "close");
         this.template = _.template(tpl.get("compareView"));
+        this.$el.append(this.template(this.obj));
+        if (params.courseIdList) {
+            this.items = params.items; // array of items to compare
+        } else {
+            
+        }
         this.render();
         this.bindEvents();
     },
     render: function () {
         var len = this.items.length;
         this.obj = {
-            "items":[this.items[0].toJSON()],
+            "items":[this.items[0].toJSON()]
         }
 
         if (len === 1) {
@@ -26,7 +32,6 @@ var compareView = Backbone.View.extend({
         if (len === 3) {
             this.obj.items.push(this.items[2].toJSON())
         }
-        this.$el.append(this.template(this.obj));
 
     },
     bindEvents: function () {

@@ -1,10 +1,10 @@
 var SearchResultView = MultiPageView.extend({
     
-    initialize: function (allMessages, messageList) {
-        _.bindAll(this, 'render', 'transferURL', 'close');
+    initialize: function (allMessages, messageList, compareWidget) {
+        _.bindAll(this, 'render', 'bindEvents', 'transferURL', 'close');
         this.messages = messageList;
         this.allMessages = allMessages;
-        
+        this.compareWidget = compareWidget;
         this.entryTemplate = _.template(tpl.get('SimpleMessage'));
         this.pageNumberClass = "searchResultPageNumber";
         this.pageNumberId = "searchResultPageNumber";
@@ -20,9 +20,17 @@ var SearchResultView = MultiPageView.extend({
         this.isClosed = false;
         var that = this;
         this.render();
+        this.bindEvents();
     },
     render: function () {
         MultiPageView.prototype.render.call(this);
+    },
+    bindEvents: function (){
+        var that = this;
+        this.$domContainer.on("click", ".addToCompare", function (e){
+            var id = Utilities.getId($(this).attr("id"));
+            this.compareWidget.addCourse(that.messages.get(Utilities.toInt(id)));
+        });
     },
     transferURL: function (courseId) {
         app.navigate("course/" + messageId, true);

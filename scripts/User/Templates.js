@@ -61,3 +61,48 @@
     	<div class="institute"><img src="" class="insitute_logo" alt="超级课堂"></div>
     </div>
 </script>
+
+<script type="text/template" id="tpl_search">
+    <div class="fleft search">
+        <div>
+        <input id="searchInput_id" class="text" type="text" placeholder="课程id"/>
+        <input id="searchInput_schoolName" class="text" type="text" placeholder="学校名"/>
+        </div>
+        <div>
+        <select id="searchInput_category">
+            <option value="" disabled selected>一级分类</option>
+        </select>
+        <select id="searchInput_subCategory">
+            <option value="" disabled selected>二级分类</option>
+        </select>
+        <select id="searchInput_city">
+            <option value="" disabled selected>城市</option>
+        </select>
+        <select id="searchInput_district">
+            <option value="" disabled selected>地区</option>
+        </select>
+        </div>
+        <div id="filter">
+            <div id="priceFilter">
+                <label>价格范围</label>
+                <span id="_1000" class="active">~1000</span>
+                <span id="1000_1999">1000~1999</span>
+                <span id="2000_4999">2000~4999</span>
+                <span id="5000_">5000+</span>
+            </div>
+            <div id="timeFilter">
+                <label>上课时间</label>
+                <span id="morning" class="active">上午</span>
+                <span id="">下午</span>
+                <span id="">晚上</span>
+                <span id="">全天</span>
+            </div>
+        </div>
+        <input id="search" class="btn" type="button" value="搜索"/>
+        <div id="searchResultDisplayPanel">
+        </div>
+        <div id="mainMap"></div>
+        <div id="CompareWidgetContainer"></div>
+
+    </div>
+</script>

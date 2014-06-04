@@ -6,7 +6,6 @@ var Booking = Backbone.Model.extend({
 
             'couponId': -1,
             'transactionId': -1,
-            'adminId': -1,
             'userId': -1,
             'partnerId': -1,
             'courseId': -1,
@@ -56,7 +55,6 @@ var Booking = Backbone.Model.extend({
             
             data.couponId = parseInt(data.couponId, 10);
             data.transactionId = parseInt(data.transactionId, 10);
-            data.adminId = parseInt(data.adminId, 10);
 
             data.userId = parseInt(data.userId, 10);
             data.partnerId = parseInt(data.partnerId, 10);
@@ -100,6 +98,12 @@ var Booking = Backbone.Model.extend({
         
         json.actionRecord = encodeURI(json.actionRecord);
         return json;
+    },
+    initBookingFromCourse: function (course) {
+        
+        this.set("userId", app.sessionManager.sessionModel.id);
+        this.set("partnerId", course.get("partnerId"));
+        this.set("courseId", course.get("courseId"));
     }
 });
 

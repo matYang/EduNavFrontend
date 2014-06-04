@@ -17,33 +17,23 @@ var searchView = Backbone.View.extend({
                 app.navigate("/main", true);
             }
             app.storage.setSearchRepresentationCache(this.searchRepresentation);
-        } else if (app.sessionManager.hasSession()) {
-            this.searchRepresentation = this.user.get('searchRepresentation');
         } else {
-            this.searchRepresentation = app.storage.getSearchRepresentationCache();
+            this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
         }
         //injecting the template
         this.$el.append(this.template);
         //TODO force target type to be all
-        
         this.render();
-    },
-
-    courseSearch: function () {
-        app.courseManager.searchMessage(this.searchRepresentation, {
-            "success": this.renderSearchResults,
-            "error": this.renderError
-        });
+        this.compareWidgetView = new CompareWidgetView();
     },
     render: function () {
         var me = this, mapParams = {
             div: "mainMap",
             class: "mainPage-map",
-            originLocation: this.origin,
-            destLocation: this.dest,
             clickable: false
         };
         this.map = app.storage.getViewCache("MapView", mapParams);
+
         $("#dateStart").datepicker({
             buttonImageOnly: true,
             buttonImage: "calendar.gif",
@@ -63,16 +53,43 @@ var searchView = Backbone.View.extend({
         this.bindEvents();
         this.rendered = true;
     },
-
+    bindSearchEvents: function () {
+        $("#searchInput_id").on("change", function() {
+            that.sr.set("courseId", Utilities.toInt($(this).val()) );
+        });
+        $("#searchInput_schoolName").on("change", function() {
+            that.sr.set("institutionName", $(this).val());
+        });
+        $("#searchInput_category").on("change", function() {
+            var category = $(this).val();
+            that.sr.set("category", category);
+            that.sr.set("subCategory", undefined);
+            that.renderSubCategory(category);
+        });
+        $("#searchInput_subCategory").on("change", function() {
+            that.sr.set("subCategory", $(this).val());
+        });
+        $("#searchInput_city").on("change", function() {
+            var city = $(this).val();
+            that.sr.set("city", city);
+            that.sr.set("district", undefined);
+            that.renderDistrict(city);
+        });
+        $("#searchInput_district").on("change", function() {
+            that.sr.set("district", $(this).val());
+        });
+    },
     renderSearchResults: function (searchResults) {
         //prevent memory leaks
         $("#searchResultDisplayPanel").empty();
-        if (this.searchResultView) {
-            this.searchResultView.close();
-        }
         this.allMessages = searchResults;
-        this.filteredMessages = this.filterMessage(this.allMessages);
-        this.searchResultView = new SearchResultView (this.allMessages, this.filteredMessages, true);
+        if (!this.searchResultView) {
+            this.searchResultView = new SearchResultView (this.allMessages, this.allMessages, this.compareWidgetView);
+        } else {
+            this.searchResultView.allMessages.reset(this.allMessages);
+            this.searchResultView.messages.reset(this.allMessages);
+            this.searchResultView.render();
+        }
     },
 
     renderError: function () {
@@ -80,39 +97,34 @@ var searchView = Backbone.View.extend({
         this.$resultp.empty().append("<div class = 'noMessage'>暂无消息</div>");
     },
 
-    submitSearch: function () {
-        if (!(this.$dateDepart.val() && this.$locationFrom.val() && this.$locationTo.val())) {
-            return;
-        } else if (!this.$dateReturn.val() && this.filter.isRoundTrip) {
-            return;
-        }
-        app.navigate("main/" + this.searchRepresentation.toString(), {'trigger': false});
-        this.searchRepresentation.set("departureMatch_Id", this.origin.get("defaultId"));
-        this.searchRepresentation.set("arrivalMatch_Id", this.dest.get("defaultId"));
+    courseSearch: function () {
+        
+        app.navigate("search/" + this.searchRepresentation.toString(), {'trigger': false});
         $("#searchResultDisplayPanel").empty().append('<div class="messageDetail-middle-autoMatch-loading">正在为您寻找信息</div>');
         app.courseManager.searchMessage(this.searchRepresentation, {
             "success": this.renderSearchResults,
             "error": this.renderError
         });
-        app.storage.setSearchRepresentationCache(this.searchRepresentation);
+        app.storage.setSearchRepresentationCache(this.searchRepresentation, "course");
     },
 
     bindEvents: function () {
-        var self = this;
-
+        var that = this;
         this.$search = $("#search").on("click", function (e) {
-            me.submitSearch();
+            that.submitSearch();
         });
     },
 
     close: function () {
         if (!this.isClosed) {
             //removing all event handlers
+            if (this.compareWidgetView) {
+                this.compareWidgetView.close();
+            }
             if (this.rendered) {
                 if (this.map) {
                     this.map.close();
                 }
-                this.closeLocationDropDown();
                 if (this.searchResultView) {
                     this.searchResultView.close();
                 }

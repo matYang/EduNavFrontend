@@ -16,43 +16,37 @@
         this.searchQueryState = {
             
         };
-
+        this.compareList = [];
         this.views = {};
         //detect once upon initialization
         this.isSupported = isStorageSupported();
         //if local storage supported, reinitialize the storage variables from local storage, now control hands over to
         // live storage variables
+        if (!this.isSupported || !localStorage.sr) {
+            this.sr = {
+                course: new CourseSearchRepresentation (),
+                user: new UserSearchRepresentation (),
+                partner: new PartnerSearchRepresentation (),
+                booking: new BookingSearchRepresentation ()
+            }
+
+        }
         if (this.isSupported) {
-            this.searchQueryState = {
-            
-            };
-
-            
-        }
-
-        this.sr = {
-            course: new CourseSearchRepresentation (),
-            user: new UserSearchRepresentation (),
-            partner: new PartnerSearchRepresentation (),
-            booking: new BookingSearchRepresentation ()
-        }
+            if (localStorage.sr) {
+                this.sr = {
+                    course: new CourseSearchRepresentation (true, localStorage.sr.course),
+                    user: new UserSearchRepresentation (true, localStorage.sr.user),
+                    partner: new PartnerSearchRepresentation (true, localStorage.sr.partner),
+                    booking: new BookingSearchRepresentation (true, localStorage.sr.booking)
+                }
+            } 
+            this.compareList = JSON.parse(localStorage.compareList);
+        } 
     };
 
     /**
      * expecting: UserLocaton object, date object, searchType
      */
-    StorageService.prototype.updateSearchQueryState = function (newSearchLocation, newSearchDate, newSearchType) {
-        this.searchQueryState = {
-        
-        };
-
-        //if has local storage, update the storage as well
-        if (this.isSupported) {
-            // localStorage.searchLocation = newSearchLocation.castToString();
-            // localStorage.searchDate = newSearchDate.toString();
-            // localStorage.searchType = newSearchType;
-        }
-    };
 
     StorageService.prototype.getSearchQueryState = function () {
         return this.searchQueryState;
@@ -65,6 +59,7 @@
     StorageService.prototype.setSearchRepresentationCache = function (sr, type) {
         if ( sr instanceof Backbone.Model) {
             this.sr[type] = sr;
+            localStorage.sr = this.sr;
         }
     };
 
@@ -82,4 +77,35 @@
         return this.views[type];
     };
 
+    StorageService.prototype.addCourseToCompare = function (courseId) {
+        for (var i = 0; i < this.compareList.length; i++) {
+            if (this.compareList[i]=== courseId) {
+                return false;
+            }
+        }
+        if (this.compareList.length < 3) {
+            this.compareList.push(courseId);
+            localStorage.compareList = this.compareList;
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    StorageService.prototype.removeCourseFromCompare = function (index) {
+        if (this.compareList.length <= index) {
+            return false;
+        }
+        var newArray = [];
+        for (var i = 0; i < this.compareList.length; i++) {
+            if (i !== index) {
+                newArray.push(this.compareList[i]);
+            }
+        }
+        this.compareList = newArray;
+    };
+
+    StorageService.prototype.getCoursesToCompare = function () { 
+        return this.compareList;
+    }
 }).call(this);
