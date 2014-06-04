@@ -11,44 +11,45 @@ var AdminPartnerView = BaseFormView.extend({
         params = params || {};
         var apis = new AdminApiResource();
         this.template = _.template(tpl.get("adminPartner"));
-        this.action = apis.admin_course;
-        this.newCourse = false;
-        if (params.course) {
-            this.render(params.course);
-        } else if (params.courseId){
-            app.generalManager.fetchCourse(params.courseId, {
+        this.action = apis.admin_partner;
+        this.newPartner = false;
+        if (params.partner) {
+            this.render(params.partner);
+        } else if (params.partnerId){
+            app.generalManager.fetchPartner(params.partnerId, {
                 success: this.render,
                 error: function() {
                     app.navigate("manage", true);
                 }
             });
         } else {
-            //Create new course
-            this.newCourse = true;
-            this.course = new Course();
-            this.render(this.course);
+            //Create new partner
+            this.newPartner = true;
+            this.partner = new Partner();
+            this.render(this.partner);
         }
         
     },
 
-    render: function (course) {
-        this.course = course;
-        this.$el.append(this.template(course.toJSON()));
-        if (this.newCourse) {
-            $("#adminCourseForm").find(".detail").hide();
-            $("#adminCourseForm").find(".edit").show();
+    render: function (partner) {
+        this.partner = partner;
+        this.$el.append(this.template(partner.toJSON()));
+        if (this.newPartner) {
+            $("#adminPartnerForm").find(".detail").hide();
+            $("#adminPartnerForm").find(".edit").show();
         } else {
-            $("#adminCourseForm").find(".edit").hide();
-            $("#adminCourseForm").find(".detail").show();
+            $("#adminPartnerForm").find(".edit").hide();
+            $("#adminPartnerForm").find(".detail").show();
         }
         this.bindEvents();
     },
     bindEvents: function () {
         var that = this;
-        $("#createSimilarCourse").on("click", function() {
-            $("#adminCourseForm").find("edit").show();
-            $("#adminCourseForm").find("detail").hide();
-            var json = that.course.toJSON();
+        BaseFormView.prototype.bindEvents.call(this);
+        $("#createSimilarPartner").on("click", function() {
+            $("#adminPartnerForm").find("edit").show();
+            $("#adminPartnerForm").find("detail").hide();
+            var json = that.partner.toJSON();
             for (var attr in json) {
                 var $edit = $("input[name="+attr+"]");
                 if ($edit.attr("type") === "checkbox") {
@@ -57,15 +58,12 @@ var AdminPartnerView = BaseFormView.extend({
                 $edit.val(json[attr]);
             }
         });
-        $("#deleteCourse").on("click", function() {
+        $("#deletePartner").on("click", function() {
             
         });
     },  
     successCallback: function () {
-        app.navigate("manage/course", true);
-    },
-    callback: function(){
-
+        app.navigate("manage/partner", true);
     },
     close: function () {
         if (!this.isClosed) {

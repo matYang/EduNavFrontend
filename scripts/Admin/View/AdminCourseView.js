@@ -6,7 +6,6 @@ var AdminCourseView = BaseFormView.extend({
     submitButtonId: "coursePostSubmit",
     callback: "uploadTarget",
     initialize: function(params){
-        debugger;
         _.bindAll(this, "render", "bindEvents", "close");
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register("adminCourse", this, true);

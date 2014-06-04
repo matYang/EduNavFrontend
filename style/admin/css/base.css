@@ -9,6 +9,8 @@ label {display:block;}
 .detail {font-size: 1.2em; font-weight: bold;}
 .submit {display:block; float:left;}
 .hidden {display: none; }
+.manageTabButton {display: block; width:100%; height: 35px;}
+.manageTabButton div {width:120px; height:25px; padding-top:5px; margin-right:20px; text-align: center;background-color: #FF6666; float:left; cursor: pointer;}
 select {height:38px; width:160px; margin-right:10px; float:left; display:block;}
 
 .fleft { float: left; }

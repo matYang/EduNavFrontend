@@ -23,7 +23,7 @@
                 <dl>
                     <dt>管理界面</dt>
                     <dd id="userManage" class="active">用户管理</dd>
-                    <!-- <dd id="partnerManage">学校管理</dd> -->
+                    <dd id="partnerManage">合作伙伴管理</dd>
                     <dd id="courseManage">课程管理</dd>
                     <dd id="bookingManage">订单管理</dd>
                     <dd id="adminManage">管理员管理</dd>
@@ -82,9 +82,9 @@
 
 
 <script type="text/templates" id="tpl_adminCourseManage">
-    <div class="tabs">
-        <span id="createCourse">新建课程</span>
-        <span id="searchCourse">搜索课程</span>
+    <div class="tabs manageTabButton">
+        <div id="createCourse">新建课程</div>
+        <div id="searchCourse">搜索课程</div>
     </div>
     <div id="searchResult">
         <div class="clearfix">
@@ -141,14 +141,14 @@
 </script>
 
 <script type="text/templates" id="tpl_adminPartnerManage">
-    <div class="tabs">
-        <span id="createPartner">新建伙伴</span>
-        <span id="searchPartner">搜索伙伴</span>
+    <div class="tabs manageTabButton">
+        <div id="createPartner">新建伙伴</div>
+        <div id="searchPartner">搜索伙伴</div>
     </div>
     <div id="searchResult">
         <div class="clearfix">
             <div class="fleft search">
-                <input id="searchInput" class="text" type="text" placeholder="请输入课程名，学校名，或者课程id"/><input id="search" class="btn" type="button" value="搜索"/>
+                <input id="searchInput" class="text" type="text" placeholder="请输入学校名或者学校id"/><input id="search" class="btn" type="button" value="搜索"/>
                 
             </div>
             <div class="fright" style="line-height:40px">
@@ -264,6 +264,20 @@
         <td><%= price %></td>
         <td><%= seatsTotal %></td>
         <td><%= seatsLeft %></td>
+        <td><%= creationTime %></td>
+        <td><a class="view" href="#">查看</a></td>
+    </tr>
+</script>
+
+<script type="text/templates" id="tpl_adminPartnerRow">
+    <tr class="userResult">
+        <td><%= partnerId %></td>
+        <td><%= wholeName %></td>
+        <td><%= license %></td>
+        <td><%= organizationNum %></td>
+        <td><%= reference %></td>
+        <td><%= phone %></td>
+        <td><%= status %></td>
         <td><%= creationTime %></td>
         <td><a class="view" href="#">查看</a></td>
     </tr>

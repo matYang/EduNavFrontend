@@ -28,7 +28,6 @@ var BaseFormView = Backbone.View.extend({
         this.bindEvents();
     },
     bindEvents: function() {
-        debugger;
         this.fieldNum = this.fields.length;
         var i, that = this;
         for ( i = 0; i < this.fieldNum; i++ ){
@@ -58,9 +57,7 @@ var BaseFormView = Backbone.View.extend({
                 });
             }
         }
-        debugger;
         $("#"+this.submitButtonId).on("click", function (e) {
-            debugger;
             var valid = true;
             for ( i = 0; i < that.fieldNum; i++ ){
                 var field = that.fields[i], $field = $("#"+  field.get("fieldId"));
