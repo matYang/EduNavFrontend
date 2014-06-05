@@ -64,40 +64,89 @@
 
 <script type="text/template" id="tpl_search">
     <div class="fleft search">
-        <div id="search_category">
-            
-        </div>
-        <div id="search_subCategory">
-            <div data-id="category_math" class="active">
+        <div id="searchPanel">
+            <div id="search_category">
+            </div>
+            <div id="search_subCategory">
+                <div data-id="category_math" class="active">
+                </div>
+            </div>
+            <div id="filter">
+                <div id="locationFilter" class="filterCriteria">
+                    <label>开课时间</label>
+                    <span data-id="noreq" class="active">不限</span>
+                </div>
+                <div id="startDateFilter" class="filterCriteria">
+                    <label>开课时间</label>
+                    <span data-id="noreq" class="active">不限</span>
+                    <span data-id="thisMonth">当月</span>
+                    <span data-id="nextMonth">下月</span>
+                    <span data-id="twoMonthsAfter">下下月</span>
+                </div>
+                <div id="timeFilter" class="filterCriteria">
+                    <label>上课时间</label>
+                    <span data-id="noreq" class="active">不限</span>
+                    <span data-id="morning">上午</span>
+                    <span data-id="afternoon">下午</span>
+                    <span data-id="night">晚上</span>
+                    <span data-id="morning_weekday">上午</span>
+                    <span data-id="afternoon_weekday">下午</span>
+                    <span data-id="night_weekday">晚上</span>
+                    <span data-id="morning_weekend">上午</span>
+                    <span data-id="afternoon_weekend">下午</span>
+                    <span data-id="night_weekend">晚上</span>
+                </div>
+                <div id="classSizeFilter" class="filterCriteria">
+                    <label>班级类型</label>
+                    <span data-id="noreq" class="active">不限</span>
+                    <span data-id="small">小于6人</span>
+                    <span data-id="middle">6-30人</span>
+                    <span data-id="large">大于30人</span>
+                </div>
+                <div id="priceFilter" class="filterCriteria">
+                    <label>课程费用</label>
+                    <span id="noreq" class="active">不限</span>
+                    <span data-id="499">~499</span>
+                    <span data-id="500-999">500~999</span>
+                    <span data-id="1000-1499">1000~1499</span>
+                    <span data-id="1500-1999">1500~1999</span>
+                    <span data-id="2000">2000以上</span>
+                </div>
             </div>
         </div>
-        <div>
-        <input id="searchInput_id" class="text" type="text" placeholder="课程id"/>
-        <input id="searchInput_schoolName" class="text" type="text" placeholder="学校名"/>
-        </div>
-        <div>
-        <div id="filter">
-            <div id="priceFilter">
-                <label>价格范围</label>
-                <span id="_1000" class="active">~1000</span>
-                <span id="1000_1999">1000~1999</span>
-                <span id="2000_4999">2000~4999</span>
-                <span id="5000_">5000+</span>
+        <div id="searchReqs"></div>
+        <div id="searchResultSorter">
+            <div class="sorter">
+                <div id="editorPick"></div>
+                <div id="time"></div>
+                <div id="price"></div>
             </div>
-            <div id="timeFilter">
-                <label>上课时间</label>
-                <span id="morning" class="active">上午</span>
-                <span id="">下午</span>
-                <span id="">晚上</span>
-                <span id="">全天</span>
+            <div class="filter">
+                当前促销：
+                <input type="checkbox" name="cashback" />返现
+                <input type="checkbox" name="flashdeal" />限时抢
             </div>
         </div>
-        <input id="search" class="btn" type="button" value="搜索"/>
         <div id="searchResultDisplayPanel">
         </div>
-        <div id="mainMap"></div>
         <div id="CompareWidgetContainer"></div>
+        <div id="mainMap"></div>
 
+    </div>
+</script>
+
+<script type="text/template" id="tpl_compareWidget" >
+    <div class="compareTitle">对比框</div>
+    <div id="compareItems">
+    </div>
+    <input type="button" value="开始对比" id="compare">
+</script>
+
+<script type="text/template" id="tpl_compareEntry" >
+    <div class="compareEntry">
+        <p class="desc">【新东方】初二提高英语暑假班</p>
+        <p class="price"><span class="sign">￥</span>1999</p>
+        <div class="remove"></div>
     </div>
 </script>
 
