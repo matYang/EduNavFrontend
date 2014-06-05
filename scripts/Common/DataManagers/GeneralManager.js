@@ -46,7 +46,10 @@
 
     GeneralManager.prototype.fetchCourse = function (courseId, callback) {
         var course = new Course();
-
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testCourse1);
+            return;
+        }
         course.overrideUrl(this.apis.general_course);
         course.set('courseId', courseId);
         course.fetch({
@@ -71,9 +74,8 @@
     GeneralManager.prototype.findCourse = function(courseSearchRepresentation, callback) {
         var self = this,
             searchResults = new Courses();
-
         if(testMockObj.testMode){
-            searchResults = testMockObj.sampleCourses;
+            searchResults = testMockObj.testCourses;
             callback.success(searchResults);
             return;
         }

@@ -134,5 +134,6 @@ tpl.loadTemplates(Constants.templateResources, 'scripts/User/Templates.js', func
     app = new AppRouter ();
     app.topBarView = new TopBarView ();
     Backbone.history.start();
+    console.log("Wow, Congratulations!");
 });
 

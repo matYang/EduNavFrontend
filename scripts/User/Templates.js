@@ -224,7 +224,7 @@
     </div>
 </script>
 
-<script type="text/template" id="tpl_mypage_booking">
+<script type="text/template" id="tpl_mypage_bookingList">
     <span>订单管理</span>
     <div id="bookingSummary">
     </div>
@@ -248,4 +248,146 @@
         </div>
     </div>
 </script>
+
+<script type="text/template" id="tpl_mypage_bookingDetail">
+    <span>订单管理</span>
+    <div id="bookingDetail">
+        <div class="column1">
+            <div class="left">
+                <label>
+                    订单号：<span>1436991417</span> <span>(2014年5月23日预定)</span>
+                </label>
+                <label>
+                    状态：<span>1436991417</span> <span>(2014年5月23日预定)</span>
+                </label>
+            </div>
+            <div class="right">
+                <input type="button" value="订单打印" id="printBooking"/>
+                <p class="price">总金额：<span class="sign">￥</span>1999</p>
+            </div>
+        </div>
+        <div class="column2">
+            <label>
+                课程名称：六级考前词汇串讲班
+            </label>
+            <label>
+                教育机构：新东方教育
+            </label>
+            <label>
+                上课地址：xxx
+            </label>
+            <label>
+                咨询电话：010-5837900
+            </label>
+        </div>
+        <div class="column3">
+            <span class="title">入学信息</span>
+            <div class="left">
+                <label>
+                    开课时间: 5月13日-6月13日
+                </label>
+                <label>
+                    班级类型: 小于30人
+                </label>
+                <label>
+                    联系方式: 13567890909
+                </label>
+                <label>
+                    入学人姓名: 王晓伟
+                </label>
+            </div>
+            <div class="right">
+                <label>
+                    上课时间: 08:00-13:00
+                </label>
+                <label>
+                    预定人数: 1人
+                </label>
+                <label>
+                    邮箱: djxiaoniud@153.com
+                </label>
+            </div>
+        </div>
+        <div class="column4">
+            <span class="title">支付信息</span>
+            <label>
+                支付方式: 学校前台支付
+            </label>
+        </div>
+    </div>
+    <div class="btns">
+        <input type="button" class="btn_green" value="修改订单" id="editBooking" />
+        <input type="button" class="btn_white" value="取消订单" id="cancelBooking" />
+    </div>
+</script>
+
+<script type="text/template" id="tpl_mypage_newBooking">
+    <form id="bookingDetail" class="newBooking">
+        <div class="header">填写订单信息</div>
+        <div class="title">六级考前词汇串讲班</div>
+        <div class="right ">Wow, Congratulations!</div>
+        <hr />
+        <div class="column1">
+            <label>
+                报名人数:
+                <select name="enrollNum">
+
+                </select>
+            </label>
+        </div>
+        <div class="column2">
+            <label>
+                课程名称：六级考前词汇串讲班
+            </label>
+            <label>
+                教育机构：新东方教育
+            </label>
+            <label>
+                上课地址：xxx
+            </label>
+            <label>
+                咨询电话：010-5837900
+            </label>
+        </div>
+        <div class="column3">
+            <span class="title">入学信息</span>
+            <div class="left">
+                <label>
+                    开课时间: 5月13日-6月13日
+                </label>
+                <label>
+                    班级类型: 小于30人
+                </label>
+                <label>
+                    联系方式: 13567890909
+                </label>
+                <label>
+                    入学人姓名: 王晓伟
+                </label>
+            </div>
+            <div class="right">
+                <label>
+                    上课时间: 08:00-13:00
+                </label>
+                <label>
+                    预定人数: 1人
+                </label>
+                <label>
+                    邮箱: djxiaoniud@153.com
+                </label>
+            </div>
+        </div>
+        <div class="column4">
+            <span class="title">支付信息</span>
+            <label>
+                支付方式: 学校前台支付
+            </label>
+        </div>
+        <div class="btns">
+            <input type="submit" class="btn_orange" value="提交订单" id="initBooking" />
+        </div>
+    </form>
+</script>
+
+
 

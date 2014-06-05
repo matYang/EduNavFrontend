@@ -6,6 +6,7 @@ var AdminCourseView = BaseFormView.extend({
     submitButtonId: "coursePostSubmit",
     callback: "uploadTarget",
     initialize: function(params){
+        debugger;
         _.bindAll(this, "render", "bindEvents", "close");
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register("adminCourse", this, true);
@@ -20,7 +21,7 @@ var AdminCourseView = BaseFormView.extend({
             app.generalManager.fetchCourse(params.courseId, {
                 success: this.render,
                 error: function() {
-                    app.navigate("manage", true);
+                    app.navigate("manage/course", true);
                 }
             });
         } else {
@@ -43,6 +44,7 @@ var AdminCourseView = BaseFormView.extend({
             $("#adminCourseForm").find(".edit").hide();
             $("#adminCourseForm").find(".detail").show();
         }
+        $("#searchResult").addClass("hidden");
         this.bindEvents();
     },
     bindEvents: function () {
@@ -64,6 +66,10 @@ var AdminCourseView = BaseFormView.extend({
             $("#adminCourseForm").find("input").val("");
             $("#adminCourseForm").find(".edit").hide();
             $("#adminCourseForm").find(".detail").show();   
+        });
+        $("#editCourse").on("click", function () {
+            $("#adminCourseForm").find(".edit").show();
+            $("#adminCourseForm").find(".detail").hide(); 
         });
         $("#deleteCourse").on("click", function() {
             

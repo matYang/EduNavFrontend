@@ -184,7 +184,7 @@
 <script type="text/templates" id="tpl_adminBookingManage">
     <div class="clearfix">
         <div class="fleft search">
-            <input id="searchInput" class="text" type="text" placeholder="请输入姓名或id"/><input id="search" class="btn" type="button" value="搜索"/>
+            <input id="searchInput" class="text" type="text" placeholder="请输入订单id"/><input id="search" class="btn" type="button" value="搜索"/>
             
         </div>
         <div class="fright" style="line-height:40px">
@@ -265,7 +265,7 @@
         <td><%= seatsTotal %></td>
         <td><%= seatsLeft %></td>
         <td><%= creationTime %></td>
-        <td><a class="view" href="#">查看</a></td>
+        <td><a id="viewCourse_<%= courseId %>" class="view" href="#">查看</a></td>
     </tr>
 </script>
 
@@ -390,9 +390,9 @@
         <label>logoUrl: <span class="detail"><%= logoUrl %></span><span class="edit"><input type="text" name="logoUrl"/></span></label>
         <label>instName: <span class="detail"><%= instName %></span><span class="edit"><input type="text" name="instName"/></span></label>
         <label>wholeName: <span class="detail"><%= wholeName %></span><span class="edit"><input type="text" name="wholeName"/></span></label> 
-        <span class="detail"><button id="createSimilarCourse">create similar</button></span>
-        <span class="detail"><button id="deleteCourse">delete</button></span>
-        <span class="detail"><button id="editCourse">edit</button></span>
+        <span class="detail"><input type="button" id="createSimilarCourse" value="createsimilar"/></span>
+        <span class="detail"><input type="button" id="deleteCourse" value="delete"/></span>
+        <span class="detail"><input type="button" id="editCourse" value="edit"/></span>
         <span class="edit"><input id="coursePostSubmit" type="submit" value="submit"></span>
         <span class="edit"><div id="cancel">Cancel</div>
     </form>

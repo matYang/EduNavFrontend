@@ -9,8 +9,8 @@ var AdminUserSearchResultView = MultiPageView.extend({
         this.pageNavigator = "userSearchNavigator";
         this.pageNavigatorClass = "page clearfix";
         this.user = app.sessionManager.sessionModel;
-        this.entryHeight = 71;
-        this.pageEntryNumber = 10;
+        this.entryHeight = 27;
+        this.pageEntryNumber = 20;
         this.entryClass = "userResult";
         this.actionClass = "view";
         this.entryContainer = "searchResultContainer";
@@ -42,8 +42,8 @@ var AdminCourseSearchResultView = MultiPageView.extend({
         this.pageNavigator = "bookingSearchNavigator";
         this.pageNavigatorClass = "page clearfix";
         this.user = app.sessionManager.sessionModel;
-        this.entryHeight = 71;
-        this.pageEntryNumber = 10;
+        this.entryHeight = 27;
+        this.pageEntryNumber = 20;
         this.entryClass = "courseResult";
         this.actionClass = "view";
         this.entryContainer = "searchResultContainer";
@@ -61,6 +61,8 @@ var AdminCourseSearchResultView = MultiPageView.extend({
     entryEvent: function (id) {
         app.navigate("manage/course/"+id);
         this.adminCourseView = new AdminCourseView({"courseId":id});
+        $("#courseCRUDContainer").removeClass("hidden");
+        $("#searchResult").addClass("hidden");
     },
     bindEvents: function () {
         var that = this;
@@ -94,8 +96,8 @@ var AdminBookingSearchResultView = MultiPageView.extend({
         this.pageNavigator = "bookingSearchNavigator";
         this.pageNavigatorClass = "page clearfix";
         this.user = app.sessionManager.sessionModel;
-        this.entryHeight = 71;
-        this.pageEntryNumber = 10;
+        this.entryHeight = 27;
+        this.pageEntryNumber = 20;
         this.entryClass = "bookingResult";
         this.actionClass = "view";
         this.entryContainer = "searchResultContainer";
@@ -126,8 +128,8 @@ var AdminAdminSearchResultView = MultiPageView.extend({
         this.pageNavigator = "bookingSearchNavigator";
         this.pageNavigatorClass = "page clearfix";
         this.user = app.sessionManager.sessionModel;
-        this.entryHeight = 71;
-        this.pageEntryNumber = 10;
+        this.entryHeight = 27;
+        this.pageEntryNumber = 20;
         this.entryClass = "adminResult";
         this.actionClass = "view";
         this.entryContainer = "searchResultContainer";
@@ -158,8 +160,8 @@ var AdminPartnerSearchResultView = MultiPageView.extend({
         this.pageNavigator = "partnerSearchNavigator";
         this.pageNavigatorClass = "page clearfix";
         this.user = app.sessionManager.sessionModel;
-        this.entryHeight = 71;
-        this.pageEntryNumber = 10;
+        this.entryHeight = 27;
+        this.pageEntryNumber = 20;
         this.entryClass = "adminResult";
         this.actionClass = "view";
         this.entryContainer = "searchResultContainer";
@@ -212,6 +214,7 @@ var AdminManageView = Backbone.View.extend({
             partner: _.template(tpl.get('adminPartnerManage'))
         };
         this.baseTemplate = this.templates[this.type];
+        this.query = params.query;
         this.render();
         this.bindEvents();
     },
@@ -252,6 +255,9 @@ var AdminManageView = Backbone.View.extend({
             default:
                 alert("invalid");
                 break;
+        }
+        if (this.query) {
+            this.sr.castFromQuery(this.query);
         }
     },
     bindEvents: function () {
@@ -322,7 +328,7 @@ var AdminManageView = Backbone.View.extend({
         } else if (this.type === "course") {
             app.generalManager.findCourse(this.sr, {success:this.renderResult, error:function(){}});
         } else if (this.type === "booking") {
-
+            app.navigate("manage/booking/" + val, true);
         } else if (this.type === "partner") {
 
         }
@@ -364,8 +370,9 @@ var AdminManageView = Backbone.View.extend({
         $("#searchInput_district").empty().append(buf.join());
     },
     renderResult: function (results) {
-        this.resultView.allMessages.reset(results);
-        this.resultView.messages.reset(results);
+        var array = results.toArray();
+        this.resultView.allMessages.reset(array);
+        this.resultView.messages.reset(array);
         this.resultView.render();
     },
     close: function () {

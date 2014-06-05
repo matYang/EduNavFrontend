@@ -60,8 +60,9 @@ var SearchView = Backbone.View.extend({
         if (!this.searchResultView) {
             this.searchResultView = new SearchResultView (this.allMessages, this.allMessages, this.compareWidgetView);
         } else {
-            this.searchResultView.allMessages.reset(this.allMessages);
-            this.searchResultView.messages.reset(this.allMessages);
+            var array = this.allMessages.toArray();
+            this.searchResultView.allMessages.reset(array);
+            this.searchResultView.messages.reset(array);
             this.searchResultView.render();
         }
     },

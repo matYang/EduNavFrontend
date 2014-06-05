@@ -57,7 +57,6 @@ var Course = Backbone.Model.extend({
             'logoUrl': '',
             'instName': '',
             'wholeName': ''
-
         };
     },
     idAttribute: 'courseId',

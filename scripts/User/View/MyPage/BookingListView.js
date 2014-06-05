@@ -6,7 +6,6 @@ var BookingListView = MultiPageView.extend({
     pageEntryNumber: 3,
     pageNumberClass: "bookingPage",
     pageNumberId: "bookingPage",
-    actionClass 
     entryHeight: -1,
     entryRowNum: 1,
     minHeight: 0,

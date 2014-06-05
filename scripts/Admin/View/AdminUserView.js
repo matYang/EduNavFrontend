@@ -18,7 +18,7 @@ var AdminUserView = Backbone.View.extend({
 	},
 	render: function (user) {
 		this.$el.append(this.template(user.toJSON()));
-		this.couponsView = new Multi
+		$("#searchResult").addClass("hidden");
 		this.bindEvents();
 	},
 	bindEvents: function () {
