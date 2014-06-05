@@ -347,11 +347,11 @@
         <label>finishTime: <span class="detail"><%= finishTime %></span><span class="edit"><input type="text" name="finishTime"/></span></label>
         <label>courseHourNum: <span class="detail"><%= courseHourNum %></span><span class="edit"><input type="text" name="courseHourNum"/></span></label>
         <label>courseHourLength: <span class="detail"><%= courseHourLength %></span><span class="edit"><input type="text" name="courseHourLength"/></span></label>
-        <label>city: <span class="detail"><%= city %></span><span class="edit"><input type="text" name="city"/></span></label>
-        <label>district: <span class="detail"><%= district %></span><span class="edit"><input type="text" name="district"/></span></label>
+        <label>city: <span class="detail"><%= city %></span><span class="edit"><select name="city"></select></span></label>
+        <label>district: <span class="detail"><%= district %></span><span class="edit"><select name="district"></select></span></label>
         <label>location: <span class="detail"><%= location %></span><span class="edit"><input type="text" name="location"/></span></label>
-        <label>category: <span class="detail"><%= category %></span><span class="edit"><input type="text" name="category"/></span></label>
-        <label>subCategory: <span class="detail"><%= subCategory %></span><span class="edit"><input type="text" name="subCategory"/></span></label>
+        <label>category: <span class="detail"><%= category %></span><span class="edit"><select name="category"></select></span></label>
+        <label>subCategory: <span class="detail"><%= subCategory %></span><span class="edit"><select name="subCategory"></select></span></label>
         <label>price: <span class="detail"><%= price %></span><span class="edit"><input type="text" name="price"/></span></label>
         <label>seatsTotal: <span class="detail"><%= seatsTotal %></span><span class="edit"><input type="text" name="seatsTotal"/></span></label>
         <label>seatsLeft: <span class="detail"><%= seatsLeft %></span><span class="edit"><input type="text" name="seatsLeft"/></span></label>
@@ -385,7 +385,12 @@
         <label>certification: <span class="detail"><%= certification %></span><span class="edit"><input type="text" name="certification"/></span></label>
         <label>extracurricular: <span class="detail"><%= extracurricular %></span><span class="edit"><input type="text" name="extracurricular"/></span></label>
         <label>extracurricularIntro: <span class="detail"><%= extracurricularIntro %></span><span class="edit"><input type="text" name="extracurricularIntro"/></span></label>
-        <label>status: <span class="detail"><%= status %></span><span class="edit"><input type="text" name="status"/></span></label>
+        <label>status: <span class="detail"><%= status %></span><span class="edit">
+            <select name="status">
+                <option value=0>activate</option>
+                <option value=1>deactivate</option>
+            </select>
+        </span></label>
         <label>phone: <span class="detail"><%= phone %></span><span class="edit"><input type="text" name="phone"/></span></label>
         <label>logoUrl: <span class="detail"><%= logoUrl %></span><span class="edit"><input type="text" name="logoUrl"/></span></label>
         <label>instName: <span class="detail"><%= instName %></span><span class="edit"><input type="text" name="instName"/></span></label>

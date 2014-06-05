@@ -44,9 +44,12 @@ var AdminCourseView = BaseFormView.extend({
             $("#adminCourseForm").find(".edit").hide();
             $("#adminCourseForm").find(".detail").show();
         }
+        generalManager.getCategories(this);
+        generalManager.getLocations(this);
         $("#searchResult").addClass("hidden");
         this.bindEvents();
     },
+
     bindEvents: function () {
         var that = this;
         BaseFormView.prototype.bindEvents.call(this);
@@ -74,9 +77,54 @@ var AdminCourseView = BaseFormView.extend({
         $("#deleteCourse").on("click", function() {
             
         });
+        $("#select[name=category]").on("change", function() {
+            var category = $(this).val();
+            that.renderSubCategory(category);
+        });
+        $("#select[name=city]").on("change", function() {
+            var city = $(this).val();
+            that.renderDistrict(city);
+        });
     },  
     successCallback: function () {
         app.navigate("manage/course", true);
+    },
+    
+    renderCategories: function (list) {
+        this.categories = list;
+        var len = list.length, buf = [], obj;
+        for ( var i = 0; i < len; i ++) {
+            obj = this.categories[i];
+            for ( var attr in obj ) {
+                buf.push("<option value='" + attr + "'>" + attr + "</option>");
+            }
+        }
+        $("select[name=category]").empty().append(buf.join());
+    },
+    renderSubCategories: function (category) {
+        var subCategory = this.categories[category], len = subCategory.length, buf = [];
+        for ( var i = 0; i < len; i ++) {
+            buf.push("<option value='" + subCategory[i] + "'>" + subCategory[i] + "</option>");
+        }
+        $("select[name=subCategory]").empty().append(buf.join());
+    },
+    renderLocations: function (list) {
+        this.locations = list;
+        var len = list.length, buf = [], obj;
+        for ( var i = 0; i < len; i ++) {
+            obj = this.locations[i];
+            for ( var attr in obj ) {
+                buf.push("<option value='" + attr + "'>" + attr + "</option>");
+            }
+        }
+        $("select[name=city]").empty().append(buf.join());
+    },
+    renderDistrict: function (city) {
+        var districts = this.locations[city], len = districts.length, buf = [], obj;
+        for ( var i = 0; i < len; i ++) {
+            buf.push("<option value='" + districts[i] + "'>" + districts[i] + "</option>");
+        }
+        $("select[name=district]").empty().append(buf.join());
     },
     close: function () {
         if (!this.isClosed) {
