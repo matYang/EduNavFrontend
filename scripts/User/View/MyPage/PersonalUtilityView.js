@@ -4,7 +4,7 @@ var PersonalUtilityView = Backbone.View.extend({
         _.bindAll(this, 'render', 'close', 'prepareImgUpload', 'savePersonalInfo', 'saveFile', 'savePassword', 'passwordSuccess', 'passwordError', 'toggleNotificationMethods', 'testInput', 'bindEvents', 'saveSuccess', 'saveError', 'noticeError', 'noticeSuccess');
         this.isClosed = false;
         this.template = _.template(tpl.get('personalUtility'));
-        this.sessionUser = app.sessionManager.getSessionUser();
+        this.sessionUser = app.sessionManager.sessionModel;
         this.curUserId = params.intendedUserId;
         if (this.curUserId !== this.sessionUser.get("userId")) {
             throw "unexpected userId";
@@ -53,7 +53,7 @@ var PersonalUtilityView = Backbone.View.extend({
             $('.wrong').remove();
             $('#myPage_edit_control>.active').removeClass("active");
             $(this).addClass("active");
-            app.navigate("personal/" + that.sessionUser.id + "/utility/basic");
+            app.navigate("mypage/basic");
         });
         $('#passwordInfo').on('click', function () {
             that.$personalContent.hide();
@@ -65,7 +65,7 @@ var PersonalUtilityView = Backbone.View.extend({
             $('.wrong').remove();
             $('#myPage_edit_control>.active').removeClass("active");
             $(this).addClass("active");
-            app.navigate("personal/" + that.sessionUser.id + "/utility/password");
+            app.navigate("mypage/password");
         });
         $('#tradeInfo').on('click', function () {
             that.$personalContent.hide();
@@ -76,7 +76,7 @@ var PersonalUtilityView = Backbone.View.extend({
             that.$driverIdentityContent.hide();
             $('#myPage_edit_control>.active').removeClass("active");
             $(this).addClass("active");
-            app.navigate("personal/" + that.sessionUser.id + "/utility/trade");
+            app.navigate("mypage/trade");
         });
         $('#changeDp').on('click', function () {
             that.$personalContent.hide();
@@ -88,7 +88,7 @@ var PersonalUtilityView = Backbone.View.extend({
             $('.wrong').remove();
             $('#myPage_edit_control>.active').removeClass("active");
             $(this).addClass("active");
-            app.navigate("personal/" + that.sessionUser.id + "/utility/avatar");
+            app.navigate("mypage/avatar");
         });
 
         $('#upload_picture').on('click', function () {
@@ -178,7 +178,7 @@ var PersonalUtilityView = Backbone.View.extend({
         $(iframe).one("load", function () {
             app.sessionManager.fetchSession(true, {
                 "success": function () {
-                    var path = app.sessionManager.getSessionUser().get("imgPath");
+                    var path = app.sessionManager.sessionModel.get("imgPath");
                     $("#profile_image").attr("src", path);
                     $("#utility_dp>form").find("img").attr("src", path);
                     $("#topBar-avatar").find("img").attr("src", path);
@@ -412,7 +412,7 @@ var PersonalUtilityView = Backbone.View.extend({
                     loc.set("pointAddress", geocodeResults[0].formatted_address);
                     loc.set("pointName", geocodeResults[0].formatted_address.split(",")[0]);
                     if (!that.pivotLocation) {
-                        that.pivotLocation = app.locationService.getDefaultLocations().where({"defaultId":app.sessionManager.getSessionUser().get("location").get("match_Id")})[0];
+                        that.pivotLocation = app.locationService.getDefaultLocations().where({"defaultId":app.sessionManager.sessionModel.get("location").get("match_Id")})[0];
                     }
                     if (!that.pivotLocation.isInRange(loc) && $("#addrWrong").length === 0) {
                         that.$address.parent().parent().after("<dd class='wrong'><p>很抱歉，该地址不在服务区内</p></dd>");

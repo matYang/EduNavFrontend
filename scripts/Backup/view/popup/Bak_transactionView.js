@@ -14,12 +14,12 @@ var BookingDetailView = Backbone.View.extend({
             this.json[i] = info[i];
         }
 
-        this.user = app.sessionManager.getSessionUser();
+        this.user = app.sessionManager.sessionModel;
         // if (testMockObj.testMode){
         // 	this.transaction = testMockObj.sampleBookingA;
         // 	//To allow edit
         // }
-        this.user = app.sessionManager.getSessionUser();
+        this.user = app.sessionManager.sessionModel;
         this.editable = transaction.get("bookingId") === -1;
         this.userId = this.user.get("userId");
         this.template = _.template(tpl.get('transactionDetail'));

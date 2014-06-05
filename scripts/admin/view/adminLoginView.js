@@ -36,7 +36,7 @@ var AdminLoginView = Backbone.View.extend({
                     //fetching session, with async flag to true
                     app.sessionManager.fetchSession(true, {
                         success: function () {
-                            app.userManager.sessionUser = app.sessionManager.getSessionUser();
+                            app.userManager.sessionUser = app.sessionManager.sessionModel;
                             if (that.loginView) {
                                 that.loginView.close();
                             }

@@ -110,7 +110,7 @@
         var user = new User();
 
         if (testMockObj.testMode) {
-            callback.success(testMockObj.sampleUser);
+            callback.success(testMockObj.testUser);
             return;
         }
         if (!this.sessionManager.hasSession()){

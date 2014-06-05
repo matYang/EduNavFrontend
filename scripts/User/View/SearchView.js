@@ -1,24 +1,23 @@
-var searchView = Backbone.View.extend({
+var SearchView = Backbone.View.extend({
     el: '#content',
     initialize: function (params) {
-        _.bindAll(this, 'render', 'renderSearchResults', 'courseSearch', 'submitSearch', 'bindEvents', 'close');
+        _.bindAll(this, 'render', 'renderSearchResults', 'courseSearch', 'bindEvents', 'close');
         app.viewRegistration.register("search", this, true);
         this.isClosed = false;
         this.rendered = false;
-        this.user = app.sessionManager.getSessionUser();
+        this.user = app.sessionManager.sessionModel;
         //define the template
-        this.template = _.template(tpl.get('main'));
+        this.template = _.template(tpl.get('search'));
         this.currentPage = 0;
+        this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
         if (params) {
             try {
                 this.searchRepresentation.castFromString(params.searchKey);
             } catch (e) {
 
-                app.navigate("/main", true);
+                app.navigate("main", true);
             }
             app.storage.setSearchRepresentationCache(this.searchRepresentation);
-        } else {
-            this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
         }
         //injecting the template
         this.$el.append(this.template);
@@ -32,7 +31,7 @@ var searchView = Backbone.View.extend({
             class: "mainPage-map",
             clickable: false
         };
-        this.map = app.storage.getViewCache("MapView", mapParams);
+        // this.map = app.storage.getViewCache("MapView", mapParams);
 
         $("#dateStart").datepicker({
             buttonImageOnly: true,
@@ -53,7 +52,41 @@ var searchView = Backbone.View.extend({
         this.bindEvents();
         this.rendered = true;
     },
-    bindSearchEvents: function () {
+
+    renderSearchResults: function (searchResults) {
+        //prevent memory leaks
+        $("#searchResultDisplayPanel").empty();
+        this.allMessages = searchResults;
+        if (!this.searchResultView) {
+            this.searchResultView = new SearchResultView (this.allMessages, this.allMessages, this.compareWidgetView);
+        } else {
+            this.searchResultView.allMessages.reset(this.allMessages);
+            this.searchResultView.messages.reset(this.allMessages);
+            this.searchResultView.render();
+        }
+    },
+
+    renderError: function () {
+        this.$resultp = this.$resultp || $("#searchResultDisplayPanel");
+        this.$resultp.empty().append("<div class = 'noMessage'>暂无消息</div>");
+    },
+
+    courseSearch: function () {
+        
+        app.navigate("search/" + this.searchRepresentation.toString(), {'trigger': false});
+        $("#searchResultDisplayPanel").empty().append('<div class="messageDetail-middle-autoMatch-loading">正在为您寻找信息</div>');
+        app.generalManager.findCourse(this.searchRepresentation, {
+            "success": this.renderSearchResults,
+            "error": this.renderError
+        });
+        app.storage.setSearchRepresentationCache(this.searchRepresentation, "course");
+    },
+
+    bindEvents: function () {
+        var that = this;
+        this.$search = $("#search").on("click", function (e) {
+            that.courseSearch();
+        });
         $("#searchInput_id").on("change", function() {
             that.sr.set("courseId", Utilities.toInt($(this).val()) );
         });
@@ -77,41 +110,6 @@ var searchView = Backbone.View.extend({
         });
         $("#searchInput_district").on("change", function() {
             that.sr.set("district", $(this).val());
-        });
-    },
-    renderSearchResults: function (searchResults) {
-        //prevent memory leaks
-        $("#searchResultDisplayPanel").empty();
-        this.allMessages = searchResults;
-        if (!this.searchResultView) {
-            this.searchResultView = new SearchResultView (this.allMessages, this.allMessages, this.compareWidgetView);
-        } else {
-            this.searchResultView.allMessages.reset(this.allMessages);
-            this.searchResultView.messages.reset(this.allMessages);
-            this.searchResultView.render();
-        }
-    },
-
-    renderError: function () {
-        this.$resultp = this.$resultp || $("#searchResultDisplayPanel");
-        this.$resultp.empty().append("<div class = 'noMessage'>暂无消息</div>");
-    },
-
-    courseSearch: function () {
-        
-        app.navigate("search/" + this.searchRepresentation.toString(), {'trigger': false});
-        $("#searchResultDisplayPanel").empty().append('<div class="messageDetail-middle-autoMatch-loading">正在为您寻找信息</div>');
-        app.courseManager.searchMessage(this.searchRepresentation, {
-            "success": this.renderSearchResults,
-            "error": this.renderError
-        });
-        app.storage.setSearchRepresentationCache(this.searchRepresentation, "course");
-    },
-
-    bindEvents: function () {
-        var that = this;
-        this.$search = $("#search").on("click", function (e) {
-            that.submitSearch();
         });
     },
 

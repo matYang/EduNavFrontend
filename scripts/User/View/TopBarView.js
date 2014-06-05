@@ -42,10 +42,13 @@ var TopBarView = Backbone.View.extend({
         
         this.$passwordInput = $("#login_password");
         this.$usernameInput = $("#login_username");
-        this.$nmain = $('#navigate_main').on('click', function () {
-            app.navigate("main/" + self.sessionUser.get('searchRepresentation'), true);
+        $('#navigate_search').on('click', function () {
+            app.navigate("search", true);
         });
-        this.$logo = $('#logo').on('click', function () {
+        $('#navigate_compare').on('click', function () {
+            app.navigate("compare", true);
+        });
+        $('#logo').on('click', function () {
             app.navigate("front", true);
         });
         if (!app.sessionManager.hasSession()) {
@@ -96,26 +99,19 @@ var TopBarView = Backbone.View.extend({
             });
         } else {
             this.$npersonal = $('#navigate_personal').on('click', function () {
-                app.navigate("personal/" + app.sessionManager.getUserId(), true);
+                app.navigate("mypage", true);
             });
-            this.$nfeedback = $('#navigate_feedBack').on('click', function () {
-                app.navigate("post", true);
-            });
-            this.$nusersearch = $("#navigate_usersearch").on('click', function () {
-                app.navigate("finduser", true);
-            });
-
             $('#logout').on('click', function (e) {
                 e.preventDefault();
                 self.logout();
             });
             $("#topBar-avatar").add("#topBar-myPage").on('click', function (e) {
                 e.preventDefault();
-                app.navigate("personal/" + self.sessionUser.id + "/message", true);
+                app.navigate("mypage", true);
             });
             $("#topBar-utility").on('click', function (e) {
                 e.preventDefault();
-                app.navigate("personal/" + self.sessionUser.id + "/utility", true);
+                app.navigate("mypage/setting", true);
             });
         }
         
@@ -131,7 +127,7 @@ var TopBarView = Backbone.View.extend({
                     //fetching session, with async flag to true
                     app.sessionManager.fetchSession(true, {
                         success: function () {
-                            app.userManager.sessionUser = app.sessionManager.getSessionUser();
+                            app.userManager.sessionUser = app.sessionManager.sessionModel;
                             app.letterView = new LetterView({
                                 "toUserId": app.storage.getLastContact()
                             });
@@ -161,13 +157,13 @@ var TopBarView = Backbone.View.extend({
 
                 app.sessionManager.fetchSession(true, {
                     success: function () {
-                        app.userManager.sessionUser = app.sessionManager.getSessionUser();
+                        app.userManager.sessionUser = app.sessionManager.sessionModel;
                         app.letterView.close();
                         location.reload();
                     },
                     error: function () {
                         Info.warn("Session fetch failed");
-                        app.userManager.sessionUser = app.sessionManager.getSessionUser();
+                        app.userManager.sessionUser = app.sessionManager.sessionModel;
                     }
                 });
             },

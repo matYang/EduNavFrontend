@@ -25,7 +25,7 @@
     };
 
     CourseManager.prototype._postSingleCourse = function(newCourse, promiseback, callback){
-        var partnerId = this.sessionManager.getSessionUser().get("partnerId");
+        var partnerId = this.sessionManager.sessionModel.get("partnerId");
         if (!partnerId) {
             Info.warn("CourseManager::postCourse:: fetch failed with response:");
         }
@@ -33,7 +33,7 @@
 
         newCourse.overrideUrl(this.apis.course_course);
         newCourse.set('courseId', -1);
-        newCourse.set('partnerId', app.sessionManager.getSessionUser().getId());
+        newCourse.set('partnerId', app.sessionManager.sessionModel.getId());
         newCourse.save({},{
             dataType:'json',
 

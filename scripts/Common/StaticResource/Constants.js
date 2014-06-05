@@ -23,7 +23,8 @@ var Constants = {
 
     templateResources: [
         "topBar-loggedIn", "topBar-notLoggedIn", 
-        "front", "search","registration", "registration_finish"
+        "front", "search","registration", "registration_finish",
+        "mypage_base", "mypage_dashboard"
     ],
 
     partnerTemplateResource: [
@@ -38,9 +39,6 @@ var Constants = {
     weekDayArray: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
 
     /*---------------  Personal view constants   --------------*/
-    personalTemplateMapping: {
-        'personalUtility': 'personalPage/personalUtility'
-    },
     emailLink: {
         "qq.com":"mail.qq.com",
         "sina.com":"mail.sina.com",

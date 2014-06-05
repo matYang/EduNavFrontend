@@ -5,7 +5,7 @@ var CourseDetailView = Backbone.View.extend({
         app.viewRegistration.register("courseDetail", this, true);
         this.isClosed = false;
 
-        this.user = app.sessionManager.getSessionUser();
+        this.user = app.sessionManager.sessionModel;
         this.userId = app.sessionManager.getUserId();
         var self = this;
         this.newBooking = new Booking ();

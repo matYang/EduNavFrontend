@@ -1,4 +1,4 @@
-var Admin = BaseUser.extend({
+var Admin = Backbone.Model.extend({
     defaults: function () {
         return {
             'adminId': -1,

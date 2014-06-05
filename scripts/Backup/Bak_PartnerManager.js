@@ -16,7 +16,7 @@
 
     //reset the manager state upon logout
     PartnerManager.prototype.release = function() {
-        this.sessionUser = this.sessionManager.getSessionUser();
+        this.sessionUser = this.sessionManager.sessionModel;
         this.timeStamp = new Date();
     };
 

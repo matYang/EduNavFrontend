@@ -65,7 +65,7 @@
 <script type="text/template" id="tpl_search">
     <div class="fleft search">
         <div id="search_category">
-            <% for () %>
+            
         </div>
         <div id="search_subCategory">
             <div data-id="category_math" class="active">
@@ -173,3 +173,79 @@
         </div>    
     </div>
 </script>
+
+<script type="text/template" id="tpl_mypage_base">
+    <div id="mypage_top" >
+        <div id="mypage_avatar"><img /></div>
+        <div id="mypage_info">
+            <p>手机: </p>
+            <p>邮箱: </p>
+        </div>
+    </div>
+    <div id="mypage_main">
+        <div id="mypage_sidebar">
+            <div class="mypage_sidebar_section">
+                <div class="mypage_sidebar_sectionTitle">上课书包</div>
+                <div class="mypage_sidebar_sectionContent">
+                    <div class="mypage_sidebar_tab" id="bookingManage">订单管理</div>
+                </div>
+            </div>
+            <div class="mypage_sidebar_section">
+                <div class="mypage_sidebar_sectionTitle">账户管理</div>
+                <div class="mypage_sidebar_sectionContent">
+                    <div class="mypage_sidebar_tab" id="cashAccount">现金账户</div>
+                    <div class="mypage_sidebar_tab" id="couponAccount">消费券</div>
+                    <div class="mypage_sidebar_tab" id="creditAccount">积分</div>
+                </div>
+            </div>
+            <div class="mypage_sidebar_section">
+                <div class="mypage_sidebar_sectionTitle">个人设置</div>
+                <div class="mypage_sidebar_sectionContent">
+                    <div class="mypage_sidebar_tab" id="editInfo">个人资料</div>
+                    <div class="mypage_sidebar_tab" id="editPass">密码修改</div>
+                    <div class="mypage_sidebar_tab" id="wtf">常用学员</div>
+                </div>
+            </div>
+        </div>
+        <div id="mypage_content">
+        </div>
+    </div>
+
+</script>
+
+<script type="text/template" id="tpl_mypage_dashboard">
+    <div id="walletSummary">
+        <div class="summaryItem">元现金</div>
+        <div class="summaryItem">元消费券</div>
+        <div class="summaryItem">积分</div>
+    </div>
+    <span>未入学订单</span>
+    <div id="bookingSummary">
+    </div>
+</script>
+
+<script type="text/template" id="tpl_mypage_booking">
+    <span>订单管理</span>
+    <div id="bookingSummary">
+    </div>
+</script>
+
+<script type="text/template" id="tpl_booking_entry">
+    <div class="bookingEntry">
+        <div class="bookingEntryTime">
+            <div class="date">6月29日</div>
+            <div class="dayOfWeek">星期日</div>
+        </div>
+        <div class="bookingEntryDetail">
+            <p class="title">【新东方】初二提高英语暑假班</p>
+            <p class="address">地址：秦淮区文明路156号南都大厦12层5号</p>
+        </div>
+        <div class="bookingEntryPrice">
+            <span class="sign">￥</span>1999
+        </div>
+        <div class="bookingEntryState">
+            <span class="sign pending"></span>等待确认
+        </div>
+    </div>
+</script>
+

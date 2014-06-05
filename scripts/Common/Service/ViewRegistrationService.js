@@ -16,7 +16,7 @@
                 request: ['topBar'],
                 antiRequest: ['topBar']
             },
-            'personal': {
+            'mypage': {
                 request: ['content'],
                 antiRequest: ['content']
             },

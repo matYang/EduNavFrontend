@@ -1,4 +1,4 @@
-var Partner = BaseUser.extend({
+var Partner = Backbone.Model.extend({
 
     defaults: function () {
         return {

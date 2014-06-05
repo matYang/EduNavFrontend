@@ -1,4 +1,4 @@
-var BaseUser = Backbone.Model.extend({
+var User = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
@@ -17,7 +17,7 @@ var BaseUser = Backbone.Model.extend({
             'creationTime': new Date (),
             'lastLogin': new Date (),
 
-            'transactions': new Transactions(),
+            'bookings': new Bookings(),
             'coupons': new Coupons(),
             'credits': new Credits()
         };
@@ -84,9 +84,6 @@ var BaseUser = Backbone.Model.extend({
     }
 
 });
-
-var User = BaseUser.extend({});
-
 
 var Users = Backbone.Collection.extend({
 

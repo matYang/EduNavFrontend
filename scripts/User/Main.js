@@ -95,7 +95,7 @@ var AppRouter = Backbone.Router.extend({
             return;
         }
         
-        this.personalView = new PersonalView ({query:query});
+        this.personalView = new MyPageView ({query:query});
     },
 
     courseDetail: function (messageId) {

@@ -1,14 +1,12 @@
 var MyPageView = Backbone.View.extend({
     el: "#content",
     initialize: function (params) {
-        _.bindAll(this, 'render', 'renderError', 'switchChildView', 'createChildView','bindEvents', 'close');
-        app.viewRegistration.register("personal", this, true);
+        _.bindAll(this, 'render', 'renderError', 'createChildView','bindEvents', 'close');
+        app.viewRegistration.register("mypage", this, true);
         this.isClosed = false;
-        this.query = params.query || "basic";
-        this.template = _.template(tpl.get('personal'));
-        
-        this.sessionUser = app.sessionManager.sessionModel;
-        app.userManager.fetchUser(this.sessionUser.id, {
+        this.query = params.query || "dashboard";
+        this.template = _.template(tpl.get('mypage_base'));
+        app.userManager.fetchUser({
             "success": this.render,
             "error": this.renderError
         });
@@ -20,33 +18,28 @@ var MyPageView = Backbone.View.extend({
         this.user = user;
         var userJson = this.user._toJSON();
         this.$el.append(this.template(userJson));
-
-        $("#popup").attr("class", "pop message_reservation");
-        this.render();
-        this.createUtilityView();
+        this.createChildView();
         this.bindEvents();
     },
 
     renderError: function () {
         Info.displayErrorPage("content", "个人页面加载失败，请稍后再试");
     },
-    createUtilityView: function () {
+    createChildView: function () {
         var create = true;
+        debugger;
+        switch (this.query) {
+            case "dashboard":
+            default:
+                this.activeChildView = new MyPageDashboardView();        
+                break;
+        }
         this.activeChildView = new PersonalUtilityView ({
             'query': this.query
         });
-    },
+    },  
 
     bindEvents: function () {
-        $("#bookingManage").on("click", function () {
-            
-        });
-        $("#editInfo").on("click", function () {
-
-        });
-        $("#editPass").on("click", function () {
-
-        });
     },
     close: function () {
         if (!this.isClosed) {
