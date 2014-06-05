@@ -135,6 +135,28 @@
     </div>
 </script>
 
+<script type="text/template" id="tpl_searchResultEntry" >
+    <div class="searchResultEntry">
+        <div><img src=""><span>新东方</span></div>
+        <div class="col1">
+            <p class="title">初二提高英语暑假班</p>
+            <p class="desc"><span>适合学员:</span> 英语成绩中等或中等偏下的新初二学员</p>
+            <p class="desc"><span>开课时间:</span> 6月25日</p>
+            <p class="desc"><span>地址:</span>秦淮区文明路156号南都大厦12层5号</p>
+        </div>
+        <div class="col2">
+            <p class="classHour">共<span>12</span>课时</p>
+            <p class="price"><span class="sign">￥</span>1999</p>
+            <div class="cashback">50元</div>
+        </div>
+        <div class="col3">
+            <div class="compare">+对比</div>
+            <div class="viewDetail">查看更多</div>
+        </div>
+    </div>
+</script>
+
+
 <script type="text/template" id="tpl_compareWidget" >
     <div class="compareTitle">对比框</div>
     <div id="compareItems">

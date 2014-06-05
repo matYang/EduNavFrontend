@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <!-- 搜索 -->
+    <head>
+        <meta charset="utf-8" /> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+        <!--watch out for IE-->
+        <title>Route A!</title>
+    </head>
+    <body>
+        <div id = 'topBar' class = 'unselectable'>
+            <div class="topBar">
+                <div class="topBar-inner clearfix">
+                    <h1 id="logo" class="topBar-logo">
+                        <a></a>
+                    </h1>
+                    <ul class="topBar-navigation">
+                        <li id = 'navigate_search' class = 'button navigate_search'>分类检索</li>
+                        <li id = 'navigate_compare' class = 'button navigate_compare'>学校对比</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id = 'main' class='main'>
+            <div id = 'content' class='content'>
+                <div class="fleft search">
+                    <div id="searchPanel">
+                        <div id="search_category">
+                            <div>初中辅导</div>
+                            <div>高中辅导</div>
+                            <div>英语提升</div>
+                            <div>英语考级</div>
+                            <div>出国留学</div>
+                            <div>小语种</div>
+                            <div>从业资格</div>
+                            <div>疯狂考研</div>
+                            <div>公务员</div>
+                        </div>
+                        <div id="search_subCategory">
+                            <span data-id="noreq" class="active">不限</span>
+                            <span data-id="1">初一</span>
+                            <span data-id="2">初二</span>
+                            <span data-id="2">初三</span>
+                        </div>
+                        <div id="filter">
+                            <div id="locationFilter" class="filterCriteria">
+                                <label>开课时间</label>
+                                <span data-id="noreq" class="active">不限</span>
+                            </div>
+                            <div id="startDateFilter" class="filterCriteria">
+                                <label>开课时间</label>
+                                <span data-id="noreq" class="active">不限</span>
+                                <span data-id="thisMonth">当月</span>
+                                <span data-id="nextMonth">下月</span>
+                                <span data-id="twoMonthsAfter">下下月</span>
+                            </div>
+                            <div id="timeFilter" class="filterCriteria">
+                                <label>上课时间</label>
+                                <span data-id="noreq" class="active">不限</span>
+                                <span data-id="morning">上午</span>
+                                <span data-id="afternoon">下午</span>
+                                <span data-id="night">晚上</span>
+                                <span data-id="morning_weekday">上午</span>
+                                <span data-id="afternoon_weekday">下午</span>
+                                <span data-id="night_weekday">晚上</span>
+                                <span data-id="morning_weekend">上午</span>
+                                <span data-id="afternoon_weekend">下午</span>
+                                <span data-id="night_weekend">晚上</span>
+                            </div>
+                            <div id="classSizeFilter" class="filterCriteria">
+                                <label>班级类型</label>
+                                <span data-id="noreq" class="active">不限</span>
+                                <span data-id="small">小于6人</span>
+                                <span data-id="middle">6-30人</span>
+                                <span data-id="large">大于30人</span>
+                            </div>
+                            <div id="priceFilter" class="filterCriteria">
+                                <label>课程费用</label>
+                                <span id="noreq" class="active">不限</span>
+                                <span data-id="499">~499</span>
+                                <span data-id="500-999">500~999</span>
+                                <span data-id="1000-1499">1000~1499</span>
+                                <span data-id="1500-1999">1500~1999</span>
+                                <span data-id="2000">2000以上</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="searchReqs">10个课程中满足<span>初中辅导</span></div>
+                    <div id="searchResultSorter">
+                        <div class="sorter">
+                            <div id="editorPick"></div>
+                            <div id="time"></div>
+                            <div id="price"></div>
+                        </div>
+                        <div class="filter">
+                            当前促销：
+                            <input type="checkbox" name="cashback" />返现
+                            <input type="checkbox" name="flashdeal" />限时抢
+                        </div>
+                    </div>
+                    <div id="searchResultDisplayPanel">
+                        <div class="searchResultEntry">
+                            <div><img src=""><span>新东方</span></div>
+                            <div class="col1">
+                                <p class="title">初二提高英语暑假班</p>
+                                <p class="desc"><span>适合学员:</span> 英语成绩中等或中等偏下的新初二学员</p>
+                                <p class="desc"><span>开课时间:</span> 6月25日</p>
+                                <p class="desc"><span>地址:</span>秦淮区文明路156号南都大厦12层5号</p>
+                            </div>
+                            <div class="col2">
+                                <p class="classHour">共<span>12</span>课时</p>
+                                <p class="price"><span class="sign">￥</span>1999</p>
+                                <div class="cashback">50元</div>
+                            </div>
+                            <div class="col3">
+                                <div class="compare">+对比</div>
+                                <div class="viewDetail">查看更多</div>
+                            </div>
+                        </div>
+                        <div class="searchResultEntry">
+                            <div><img src=""><span>新东方</span></div>
+                            <div class="col1">
+                                <p class="title">初二提高英语暑假班</p>
+                                <p class="desc"><span>适合学员:</span> 英语成绩中等或中等偏下的新初二学员</p>
+                                <p class="desc"><span>开课时间:</span> 6月25日</p>
+                                <p class="desc"><span>地址:</span>秦淮区文明路156号南都大厦12层5号</p>
+                            </div>
+                            <div class="col2">
+                                <p class="classHour">共<span>12</span>课时</p>
+                                <p class="price"><span class="sign">￥</span>1999</p>
+                                <div class="cashback">50元</div>
+                            </div>
+                            <div class="col3">
+                                <div class="compare">+对比</div>
+                                <div class="viewDetail">查看更多</div>
+                            </div>
+                        </div>
+                        <div class="searchResultEntry">
+                            <div><img src=""><span>新东方</span></div>
+                            <div class="col1">
+                                <p class="title">初二提高英语暑假班</p>
+                                <p class="desc"><span>适合学员:</span> 英语成绩中等或中等偏下的新初二学员</p>
+                                <p class="desc"><span>开课时间:</span> 6月25日</p>
+                                <p class="desc"><span>地址:</span>秦淮区文明路156号南都大厦12层5号</p>
+                            </div>
+                            <div class="col2">
+                                <p class="classHour">共<span>12</span>课时</p>
+                                <p class="price"><span class="sign">￥</span>1999</p>
+                                <div class="cashback">50元</div>
+                            </div>
+                            <div class="col3">
+                                <div class="compare">+对比</div>
+                                <div class="viewDetail">查看更多</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="courseSearchResultNavigator"><a>1</a><a>2</a></div>
+                    <div id="CompareWidgetContainer">
+                        <div class="compareTitle">对比框</div>
+                        <div id="compareItems">
+                            <div class="compareEntry">
+                                <p class="desc">【新东方】初二提高英语暑假班</p>
+                                <p class="price"><span class="sign">￥</span>1999</p>
+                                <div class="remove"></div>
+                            </div>
+                            <div class="compareEntry">
+                                <p class="desc">【新东方】初二提高英语暑假班</p>
+                                <p class="price"><span class="sign">￥</span>1999</p>
+                                <div class="remove"></div>
+                            </div>
+                            <div class="compareEntry">
+                                <p class="desc">【新东方】初二提高英语暑假班</p>
+                                <p class="price"><span class="sign">￥</span>1999</p>
+                                <div class="remove"></div>
+                            </div>
+                            <div class="compareEntry">
+                                <p class="desc">【新东方】初二提高英语暑假班</p>
+                                <p class="price"><span class="sign">￥</span>1999</p>
+                                <div class="remove"></div>
+                            </div>
+                        </div>
+                        <input type="button" value="开始对比" id="compare">
+                    </div>
+                    <div id="mainMap"></div>
+
+                </div>
+            </div>
+        </div>
+        <div id = 'overlay' class="mask1" style="display: none;"></div>
+        <div id = 'popup' class = 'pop' style="display: none;"></div>
+        <div id = 'cache' style="display: none;"></div>
+        <div class="footer">
+            <div class="footer_inner">
+                <div id="footer_service_link" class="footer-upperContent"> <a id="footer_about" href="#">关于我们</a><a id="footer_faq" href="#">常见问题</a><a id="footer_career" href="#">诚聘英才</a><a id="footer_term" href="#">隐私条款</a><a id="footer_feedback" href="#">意见反馈</a> </div>
+                <div class="footer-copyright"> Copyright  2013 RouteA.ca&#169;. All Rights Reserved</div>
+            </div>
+        </div>
+    </body>
+</html>
+

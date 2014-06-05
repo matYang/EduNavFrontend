@@ -44,8 +44,8 @@ var AdminCourseView = BaseFormView.extend({
             $("#adminCourseForm").find(".edit").hide();
             $("#adminCourseForm").find(".detail").show();
         }
-        generalManager.getCategories(this);
-        generalManager.getLocations(this);
+        app.generalManager.getCategories(this);
+        app.generalManager.getLocations(this);
         $("#searchResult").addClass("hidden");
         this.bindEvents();
     },
