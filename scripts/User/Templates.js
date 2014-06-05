@@ -406,12 +406,24 @@
         <div class="right ">Wow, Congratulations!</div>
         <hr />
         <div class="column1">
-            <label>
-                报名人数:
+            <div class="field">
+                <label>报名人数:</label>
                 <select name="enrollNum">
-
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </select>
-            </label>
+            </div>
+            <div class="field">
+                <label>有效日期:</label>
+                5月6日 (5月6日前须到教学机构进行报名，否则优惠价格将自动失效)
+            </div>
+            <div class="field">
+                <label>课程费用:</label>
+                ￥1999/位 (5月6日前须到教学机构进行报名，否则优惠价格将自动失效)
+            </div>
         </div>
         <div class="column2">
             <label>

@@ -97,7 +97,7 @@ var AppRouter = Backbone.Router.extend({
         }
         this.manageView = new AdminManageView({type:"booking"});
         if (id) {
-            this.courseView = new AdminCourseView({userId:id});
+            this.courseView = new AdminBookingView({bookingId:id});
         }
     },
 });

@@ -328,7 +328,11 @@ var AdminManageView = Backbone.View.extend({
         } else if (this.type === "course") {
             app.generalManager.findCourse(this.sr, {success:this.renderResult, error:function(){}});
         } else if (this.type === "booking") {
-            app.navigate("manage/booking/" + val, true);
+            if (val) {
+                app.navigate("manage/booking/" + val, true);
+            } else {
+                
+            }
         } else if (this.type === "partner") {
 
         }

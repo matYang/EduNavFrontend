@@ -6,18 +6,14 @@ var CourseDetailView = Backbone.View.extend({
         this.isClosed = false;
 
         this.user = app.sessionManager.sessionModel;
-        this.userId = app.sessionManager.getUserId();
         var self = this;
         this.newBooking = new Booking ();
-        this.quickmatchTemplate = _.template(tpl.get('SimpleMessage'));
+        this.template = _.template(tpl.get('courseDetail'));
+        this.bookingTemplate = _.template(tpl.get('Booking'));
         app.courseManager.fetchMessage(courseIdWrapper.courseId, {
             success: function (course) {
                 self.course = course;
                 self.courseId = course.get("courseId");
-                self.ownerId = self.course.get("ownerId") || -1;
-
-                self.template = _.template(tpl.get('courseDetail'));
-                self.bookingTemplate = _.template(tpl.get('Booking'));
                 self.render();
                 self.bindEvents();
                 self.createNewBooking();
@@ -35,11 +31,11 @@ var CourseDetailView = Backbone.View.extend({
             location: this.course.get("city") + this.course.get("district"),
             clickable: false
         };
-        this.$el.append(this.template(this.parsedMessage));
-        this.map = app.storage.getViewCache("MapView", mapParams);
+        this.$el.append(this.template(this.course._toJSON()));
+        //this.map = app.storage.getViewCache("MapView", mapParams);
     },
     bindEvents: function () {
-
+        
     },
     createNewBooking: function () {
         this.newBooking.initBookingFromCourse(this.course);

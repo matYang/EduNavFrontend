@@ -194,14 +194,16 @@
      <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <td width="80">订单id</td>
-                <td width="80">用户id</td> 
+                <td width="120">订单id</td>
+                <td width="120">用户id</td> 
                 <td width="120">用户名</td>
-                <td width="80">学校id</td> 
-                <td width="120">学校</td>
-                <td width="100">课程</td>
+                <td width="120">交易id</td>
+                <td width="120">合作伙伴id</td> 
+                <td width="120">优惠券Id</td>
+                <td width="120">课程Id</td>
                 <td width="130">订单日期</td>
                 <td width="100">价格</td>
+                <td width="100">已确认</td>
                 <td>--</td>
             </tr>
         </thead>
@@ -255,7 +257,7 @@
 </script>
 
 <script type="text/templates" id="tpl_adminCourseRow">
-    <tr class="userResult">
+    <tr class="courseResult">
         <td><%= courseId %></td>
         <td><%= courseName %></td>
         <td><%= instName %></td>
@@ -270,7 +272,7 @@
 </script>
 
 <script type="text/templates" id="tpl_adminPartnerRow">
-    <tr class="userResult">
+    <tr class="partnerResult">
         <td><%= partnerId %></td>
         <td><%= wholeName %></td>
         <td><%= license %></td>
@@ -284,7 +286,18 @@
 </script>
 
 <script type="text/templates" id="tpl_adminBookingRow">
-    
+    <tr class="bookingResult">
+        <td><%= bookingId %></td>
+        <td><%= userId %></td>
+        <td><%= transactionId %></td>
+        <td><%= partnerId %></td>
+        <td><%= couponId %></td>
+        <td><%= courseId %></td>
+        <td><%= creationTime %></td>
+        <td><%= price %></td>
+        <td><%= wasConfirmed %></td>
+        <td><a class="view" href="#">查看</a></td>
+    </tr>
 </script>
 
 <script type="text/templates" id="tpl_adminAdminRow">
@@ -417,6 +430,27 @@
         <span class="detail"><button id="deletePartner">delete</button></span>
         <span class="detail"><button id="editPartner">edit</button></span>
         <span class="edit"><input id="partnerPostSubmit" type="submit" value="submit"></span>
+        <span class="edit"><div id="cancel">Cancel</div>
+    </form>
+</script>
+
+<script type="text/templates" id="tpl_adminBooking">
+    <form id="adminBookingForm">
+        <label>bookingId: <span class="detail"><%= bookingId %></span></label> 
+        <label>transactionId: <span class="detail"><%= transactionId %></span></label> 
+        <label>userId: <span class="detail"><%= userId %></span></label> 
+        <label>partnerId: <span class="detail"><%= partnerId %></span></label> 
+        <label>couponId: <span class="detail"><%= couponId %></span><span class="edit"><input type="text" name="couponId"/></span></label> 
+        <label>courseId: <span class="detail"><%= couponId %></span><span class="edit"><input type="text" name="courseId"/></span></label> 
+        
+        <label>status: <span class="detail"><%= status %></span><span class="edit">
+            <select name="status">
+                <option value=0>activate</option>
+                <option value=1>deactivate</option>
+            </select>
+        </span></label>
+        <span class="detail"><button id="editBooking">edit</button></span>
+        <span class="edit"><input id="bookingPostSubmit" type="submit" value="submit"></span>
         <span class="edit"><div id="cancel">Cancel</div>
     </form>
 </script>

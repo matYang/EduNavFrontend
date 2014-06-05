@@ -27,8 +27,9 @@ var MyPageView = Backbone.View.extend({
     },
     createChildView: function () {
         var create = true;
-        debugger;
         switch (this.query) {
+            case "booking": 
+                this.activeChildView = new MyPageBookingView();
             case "dashboard":
             default:
                 this.activeChildView = new MyPageDashboardView();        

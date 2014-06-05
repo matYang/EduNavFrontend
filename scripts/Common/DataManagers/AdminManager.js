@@ -338,6 +338,29 @@
         });
     };
 
+    AdminManager.prototype.getBooking = function(bookingId, callback) {
+        if (!this.sessionManager.hasSession()){
+            Info.warn('AdminManager::updateBooking:: session does not exist, exit');
+            return;
+        }
+        booking.overrideUrl(this.apis.admin_booking);
+        booking.set("bookingId", bookingId);
+        booking.fetch({},{
+            dataType:'json',
+            success:function(model, response){
+                if(callback){
+                    callback.success(booking);
+                }
+            },
+            error: function(model, response){
+                Info.warn('AdminManager::updateBooking:: save failed with response:');
+                Info.warn(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
 
 
     /****************
