@@ -37,7 +37,7 @@ var CompareWidgetView = Backbone.View.extend({
 	},
 	// course can only be added to compare widget from searchView
 	addCourse: function (course) {
-		if (app.storageService.addCourseToCompare(course.id);) {
+		if (app.storageService.addCourseToCompare(course.id)) {
 			ths.courseIds = app.storageService.getCoursesToCompare();
 			this.$domContainer.append(this.courseTemplate(course._toJSON()));
 			this.courses.push(course);

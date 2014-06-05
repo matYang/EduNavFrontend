@@ -43,6 +43,7 @@ var RegistrationView = BaseFormView.extend({
         this.render();
     },
     render: function(){
+        var that = this;
         this.domContainer = $('#content');
         this.domContainer.empty();
         if (this.state !== "finish") {
@@ -53,6 +54,12 @@ var RegistrationView = BaseFormView.extend({
             this.$password = $("#registerPasswordInput");
             this.$confirm = $("#registerPasswordConfirmInput");
             this.$cell = $('#registerCellInput');
+            $("#getSms").on("click", function (e) {
+                var phone = that.$cell.val();
+                if (that.phoneValid(phone).valid) {
+                    app.userManager.smsVerification(phone);
+                }
+            });
             BaseFormView.prototype.bindEvents.call(this);
         } else {
             this.domContainer.append(this.finishTemplate);
@@ -64,19 +71,6 @@ var RegistrationView = BaseFormView.extend({
                     $("#phoneNumber").val(this.phoneCache);
                 }
             }
-            $("#verifyAccount").on("click", function (e) {
-                app.userManager.verifySMSAuthCode($("#phoneNumber").val(),$("#smsAuthCode").val(), {
-                    success: function () {
-                        app.navigate("front", true);
-                    },
-                    error: function () {
-
-                    }
-                });
-            });
-            $("#resendSMS").on("click", function (e) {
-                app.userManager.smsVerification();
-            });
         }
 
         // --- events binding ---
@@ -102,16 +96,22 @@ var RegistrationView = BaseFormView.extend({
 
     },
 
-    successCallback: function(){
+    successCallback: function(data){
         this.state = "finish";
+        app.sessionManager.sessionModel = new User(data, {parse: true}); 
         this.render();
     },
     submitAction: function () {
-        this.user = new User();
         var phone = $("#registerCellInput").val();
-
         this.user.set("phone", phone);
         this.user.set("password", $("#registerPasswordInput").val());
+        this.user = {
+            "phone": encodeURI(phone),
+            "password": encodeURI($("#registerPasswordInput").val()),
+            "confirmPassword": encodeURI($("#registerConfirmPasswordInput").val()),
+            "authCode": encodeURI($("#smsAuthCode").val())
+        };
+
         document.cookie="registrationPhone="+phone+";"
         this.phoneCache = true;
         app.userManager.registerUser(this.user, {

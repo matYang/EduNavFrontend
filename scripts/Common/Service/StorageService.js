@@ -34,10 +34,10 @@
         if (this.isSupported) {
             if (localStorage.sr) {
                 this.sr = {
-                    course: new CourseSearchRepresentation (true, localStorage.sr.course),
-                    user: new UserSearchRepresentation (true, localStorage.sr.user),
-                    partner: new PartnerSearchRepresentation (true, localStorage.sr.partner),
-                    booking: new BookingSearchRepresentation (true, localStorage.sr.booking)
+                    course: new CourseSearchRepresentation (localStorage.sr.course, {parse: true}),
+                    user: new UserSearchRepresentation (localStorage.sr.user, {parse: true}),
+                    partner: new PartnerSearchRepresentation (localStorage.sr.partner, {parse: true}),
+                    booking: new BookingSearchRepresentation (localStorage.sr.booking, {parse: true})
                 }
             } 
             if (localStorage.compareList) {

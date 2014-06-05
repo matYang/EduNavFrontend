@@ -142,7 +142,7 @@
     <input type="button" value="开始对比" id="compare">
 </script>
 
-<script type="text/template" id="tpl_compareEntry" >
+<script type="text/template" id="tpl_compareWidgetEntry" >
     <div class="compareEntry">
         <p class="desc">【新东方】初二提高英语暑假班</p>
         <p class="price"><span class="sign">￥</span>1999</p>
@@ -182,11 +182,10 @@
                         </dd>
                     </dl>
                     <dl class="clearfix">
-                        <dt><span>*</span>验证码：</dt>
+                        <dt><span>*</span>输入验证码：</dt>
                         <dd>
-                            <input id="registerCaptchaInput" type="text" class="captcha" value="">
-                            <img class="captcha" />
-                            <span class="button" role="button">看不清，换一张</span>
+                            <input id="registerVeriCode" type="text" class="text">
+                            <input type="button" value="获取手机验证码" id="getSms" />
                         </dd>
                     </dl>
                     <div class="btns">
@@ -224,19 +223,23 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_base">
-    <div id="mypage_top" >
-        <div id="mypage_avatar"><img /></div>
-        <div id="mypage_info">
-            <p>手机: </p>
-            <p>邮箱: </p>
-        </div>
-    </div>
     <div id="mypage_main">
         <div id="mypage_sidebar">
-            <div class="mypage_sidebar_section">
-                <div class="mypage_sidebar_sectionTitle">上课书包</div>
+            <div class="mypage_sidebar_title">上课书包</div>
+            <div class="mypage_sidebar_section" >
                 <div class="mypage_sidebar_sectionContent">
-                    <div class="mypage_sidebar_tab" id="bookingManage">订单管理</div>
+                    <div id="mypage_avatar"><img /></div>
+                    晚上好，尊敬的会员
+                    <div id="mypage_info">
+                        <p class="phone"><span></span>18609879900</p>
+                        <p class="email"><span></span>djxiaoniud@163.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mypage_sidebar_section">
+                <div class="mypage_sidebar_sectionTitle">订单管理</div>
+                <div class="mypage_sidebar_sectionContent">
+                    <div class="mypage_sidebar_tab" id="bookingManage">课程订单</div>
                 </div>
             </div>
             <div class="mypage_sidebar_section">
@@ -252,7 +255,7 @@
                 <div class="mypage_sidebar_sectionContent">
                     <div class="mypage_sidebar_tab" id="editInfo">个人资料</div>
                     <div class="mypage_sidebar_tab" id="editPass">密码修改</div>
-                    <div class="mypage_sidebar_tab" id="wtf">常用学员</div>
+                    <div class="mypage_sidebar_tab" id="wtf">常用学员信息</div>
                 </div>
             </div>
         </div>
@@ -274,7 +277,7 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingList">
-    <span>订单管理</span>
+    <div>上课书包 &gt; 订单管理 </div>
     <div id="bookingSummary">
     </div>
 </script>
@@ -299,35 +302,38 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingDetail">
-    <span>订单管理</span>
+    <div>上课书包 &gt; 订单管理 &gt; 课程订单 </div>
     <div id="bookingDetail">
-        <div class="column1">
+        <div class="column0">
             <div class="left">
                 <label>
                     订单号：<span>1436991417</span> <span>(2014年5月23日预定)</span>
                 </label>
                 <label>
-                    状态：<span>1436991417</span> <span>(2014年5月23日预定)</span>
+                    状态：<span>等待确认</span> <span>(2014年5月27日预定)</span>
                 </label>
             </div>
             <div class="right">
-                <input type="button" value="订单打印" id="printBooking"/>
+                <p class="price">总金额：<span class="sign">￥</span>1999</p>
+            </div>
+        </div>
+        <div class="column1">
+            <div class="left">
+                <img class="progressbar" src=""/>
+                <p><span>2014-6-13</span> <span>11:02</span> <span>您的订单正在和新东方教育确认</span></p>
+                <p><span>2014-6-12</span> <span>12:02</span> <span>您的订单已经提交</span></p>
+            </div>
+            <div class="right">
                 <p class="price">总金额：<span class="sign">￥</span>1999</p>
             </div>
         </div>
         <div class="column2">
-            <label>
-                课程名称：六级考前词汇串讲班
-            </label>
-            <label>
-                教育机构：新东方教育
-            </label>
-            <label>
-                上课地址：xxx
-            </label>
-            <label>
-                咨询电话：010-5837900
-            </label>
+            <span class="title">
+                六级考前词汇串讲班
+            </span>
+            <label>教育机构：</label>新东方教育
+            <label>上课地址：</label>xxx
+            <label>咨询电话：</label>010-5837900
         </div>
         <div class="column3">
             <span class="title">入学信息</span>
@@ -363,10 +369,11 @@
                 支付方式: 学校前台支付
             </label>
         </div>
-    </div>
-    <div class="btns">
-        <input type="button" class="btn_green" value="修改订单" id="editBooking" />
-        <input type="button" class="btn_white" value="取消订单" id="cancelBooking" />
+        <div class="column5">
+            <input type="button" class="btn_green" value="修改订单" id="editBooking" />
+            <input type="button" class="btn_white" value="取消订单" id="cancelBooking" />
+            <input type="button" value="订单打印" id="printBooking"/>
+        </div>
     </div>
 </script>
 

@@ -84,18 +84,18 @@
             Info.warn('UserManager::registerUser::currentUser already has session, conflict, exit');
             return;
         }
-
-        newUser.overrideUrl(this.apis.user_user);
-        newUser.set('userId', -1);
-        newUser.save({},{
-            dataType:'json',
-
-            success:function(model, response){
-                if(callback){
-                    callback.success(newUser);
+        $.ajax({
+            type: "GET",
+            url: this.apis.user_user,
+            dataType: "json",
+            async: true,
+            data $.param(newUser);
+            success: function (data, response) {
+                if (callback) {
+                    callback.success(data);
                 }
             },
-            error: function(model, response){
+            error: function (data, response) {
                 Info.warn('UserManager::register failed');
                 Info.warn(response);
                 if(callback){

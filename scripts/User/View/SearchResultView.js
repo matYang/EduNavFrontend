@@ -19,6 +19,8 @@ var SearchResultView = MultiPageView.extend({
         this.$domContainer = $("#searchResultDisplayPanel");
         this.isClosed = false;
         var that = this;
+        this.priceDesc = true;
+        this.timeDesc = true;
         this.render();
         this.bindEvents();
     },
@@ -31,6 +33,18 @@ var SearchResultView = MultiPageView.extend({
             var id = Utilities.getId($(this).attr("id"));
             this.compareWidget.addCourse(that.messages.get(Utilities.toInt(id)));
         });
+        this.registerSortEvent($("#courseSortTime"), this.compareTime, this.timeDesc, this, function(){
+            that.timeDesc = !that.timeDesc;
+        });
+        this.registerSortEvent($("#courseSortPrice"), this.comparePrice, this.priceDesc, this, function(){
+            that.priceDesc = !that.priceDesc;
+        });
+    },
+    compareTime: function(course) {
+        return course.get("time");
+    },
+    comparePrice: function(course) {
+        return course.get("price");
     },
     transferURL: function (courseId) {
         app.navigate("course/" + messageId, true);
