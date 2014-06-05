@@ -3,20 +3,16 @@ var FrontPageView = Backbone.View.extend({
     el: '#content',
     displayIndex: 0,
     initialize: function () {
-        _.bindAll(this, 'getRecents', 'render', 'bindEvents',  'acceptDefaultLocation', 'closeLocationDropDown', 'close');
-        app.viewRegistration.register("frontPage", this, true);
+        _.bindAll(this, 'render', 'bindEvents', 'close');
+        app.viewRegistration.register("front", this, true);
         this.isClosed = false;
         this.temp = {};
         this.bottomRecentId = 0;
         this.template = _.template(tpl.get('front'));
-        this.messageTemplate = _.template(tpl.get('SimpleMessage'));
 
-        this.user = app.sessionManager.getSessionUser();
+        this.user = app.sessionManager.sessionModel;
 
         this.searchRepresentation = app.storage.getSearchRepresentationCache();
-        this.departLocation = new UserLocation();
-        this.arrivalLocation = new UserLocation();
-        this.locationDirection = Constants.LocationDirection.from;
         this.render();
         //app.sessionManager.fetchSession();
         this.bindEvents();
@@ -24,6 +20,7 @@ var FrontPageView = Backbone.View.extend({
     },
 
     render: function () {
+        this.$el.append(this.template)
     },
 
     bindEvents: function () {
@@ -35,28 +32,10 @@ var FrontPageView = Backbone.View.extend({
         //this.bindRecentsEvents();
     },
 
-    acceptDefaultLocation: function(defaultLocation){
-        // if (this.locationDirection === Constants.LocationDirection.from){
-        //     this.departLocation = defaultLocation;
-        //     this.$from.val(this.departLocation.toUiString());
-        // }
-        // else if (this.locationDirection === Constants.LocationDirection.to){
-        //     this.arrivalLocation = defaultLocation;
-        //     this.$to.val(this.arrivalLocation.toUiString());
-        // }
-    },
-
-    closeLocationDropDown: function(){
-        if (typeof this.locationDropDownView !== 'undefined' && this.locationDropDownView !== null){
-            this.locationDropDownView.close();
-        }
-    },
-
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
             this.isClosed = true;
-            clearInterval(this.rollInterval);
         }
     }
 });

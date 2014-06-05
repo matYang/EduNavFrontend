@@ -11,7 +11,7 @@
 
 		this.timeStamp = new Date();
 
-		this.sessionManager.resgisterManager(this);
+		this.sessionManager.registerManager(this);
 
 	};
 

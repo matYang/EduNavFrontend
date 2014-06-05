@@ -22,7 +22,10 @@ var Constants = {
     miliSecInDay: 86400000,
 
     templateResources: [
+        "topBar-loggedIn", "topBar-notLoggedIn", 
+        "front", "search","registration", "registration_finish"
     ],
+
     partnerTemplateResource: [
     ],
 

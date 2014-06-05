@@ -21,8 +21,6 @@ var AppRouter = Backbone.Router.extend({
         "lost/": "lost",
         "lost" : "lost",
         "forgetPassword/*token" : "lost",
-
-        "emailActivation/*authKey": "emailActivation",
         // "howitworks": "howItWorks",
         // "service": "serviceCenter",
         // "service/*tab": "serviceCenter",
@@ -36,12 +34,11 @@ var AppRouter = Backbone.Router.extend({
         //initializing the storage services, some resuable user information will be persisted by local storage
         this.storage = new StorageService ();
 
-        this.locationService = new LocationService();
         this.eventClearService = new EventClearService();
 
         //initializing all the data managers
-        this.generalManager = new GeneralManager ();
-        this.sessionManager = new SessionManager ();
+        this.sessionManager = new SessionManager (EnumConfig.ModuleIdentifier.user);
+        this.generalManager = new GeneralManager (this.sessionManager);
         this.userManager = new UserManager (this.sessionManager);
      
         this.sessionManager.fetchSession(false, {
@@ -54,9 +51,8 @@ var AppRouter = Backbone.Router.extend({
         });
 
         //intializing search query states & filter states, look into localStorage to find previous history
-        this.searchQueryState = this.storage.getSearchQueryState();
-        this.searchFilterState = this.storage.getSearchFilterState();
-
+        this.compareList = this.storage.getCoursesToCompare();
+        
         this.curDate = new Date ();
         this.searchResult = new Courses ();
         this.bindGlobalLinks();
@@ -131,39 +127,6 @@ var AppRouter = Backbone.Router.extend({
         this.findPasswordView = new FindPasswordView({"token":token});
     },
 
-    emailActivation: function (authKey) {
-        var self = this;
-        this.userManager.activateAccount(authKey, {
-            success: function () {
-                self.sessionManager.fetchSession(true, {
-                    success: function () {
-                        Info.log("session fetch success");
-                        app.letterView = new LetterView({
-                            "toUserId": app.storage.getLastContact()
-                        });
-                        self.navigate("/main", true);
-    
-                    },
-                    error: function () {
-                        Info.log("session fetch failed, user not logged in");
-                    }
-                });
-
-            },
-            error: function (response) {
-                Info.alert('Email验证失败');
-            }
-        });
-    // },
-    // howItWorks: function() {
-    //     this.howItWorks = new HowItWorksView();
-    // },
-    // serviceCenter: function(tab) {
-    //     if (!tab) {
-    //         this.navigate("service/about", {replace: true});
-    //     }
-    //     this.serviceCenter = new ServiceCenterView({"tab":tab});
-    }
 });
 
 //warning: tpl is the global object for templating services, do not name any variable "tpl" in any context in any files
@@ -171,12 +134,5 @@ tpl.loadTemplates(Constants.templateResources, 'scripts/User/Templates.js', func
     app = new AppRouter ();
     app.topBarView = new TopBarView ();
     Backbone.history.start();
-    if (app.sessionManager.hasSession()) {
-        // create letter view if use is logged in.
-        app.letterView = new LetterView({
-            "toUserId": app.storage.getLastContact()
-        });
-        $("#chat").show();
-    }
 });
 

@@ -40,7 +40,9 @@
                     booking: new BookingSearchRepresentation (true, localStorage.sr.booking)
                 }
             } 
-            this.compareList = JSON.parse(localStorage.compareList);
+            if (localStorage.compareList) {
+                this.compareList = JSON.parse(localStorage.compareList);
+            }
         } 
     };
 

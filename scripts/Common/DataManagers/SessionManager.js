@@ -23,7 +23,7 @@
         this.sessionRegistraTable = [];
     };
 
-    SessionManager.prototype.resgisterManager = function(manager) {
+    SessionManager.prototype.registerManager = function(manager) {
         this.sessionRegistraTable.push(manager);
     };
 

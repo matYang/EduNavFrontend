@@ -10,7 +10,7 @@
         this.timeStamp = new Date();
         
         this.sessionManager = sessionManager;
-        this.sessionManager.resgisterManager(this);
+        this.sessionManager.registerManager(this);
     };
 
 

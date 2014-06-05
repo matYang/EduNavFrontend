@@ -15,7 +15,7 @@
         this.searchResults_timeStamp = new Date();
         this.recents_timeStamp = new Date();
 
-        this.sessionManager.resgisterManager(this);
+        this.sessionManager.registerManager(this);
     };
 
 

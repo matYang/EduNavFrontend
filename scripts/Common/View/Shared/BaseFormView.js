@@ -145,7 +145,7 @@ var BaseFormView = Backbone.View.extend({
     
 });
 
-var baseField = Backbone.Model.extend({
+var BaseField = Backbone.Model.extend({
     defaults: function () {
         return {
             fieldId: "",
@@ -158,7 +158,7 @@ var baseField = Backbone.Model.extend({
             validClass: "right",
             validatorContainer: null,
             name: "", //Used for error Text
-            $preview: null
+            $preview: null              //container of image preview
         }
     },
     idAttribute: "fieldId",

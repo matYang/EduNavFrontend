@@ -6,7 +6,7 @@
         this.apis = new ApiResource();
 
         this.sessionManager = sessionManager;
-        this.sessionManager.resgisterManager(this);
+        this.sessionManager.registerManager(this);
     };
 
 

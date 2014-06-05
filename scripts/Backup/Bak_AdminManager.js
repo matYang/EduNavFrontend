@@ -9,7 +9,7 @@
         this.sessionManager = sessionManager;
         this.userManager = userManager;
 
-        this.sessionManager.resgisterManager(this);
+        this.sessionManager.registerManager(this);
     };
 
 

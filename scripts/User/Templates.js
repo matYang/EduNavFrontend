@@ -1,4 +1,4 @@
-<script type="text/template" id="tpl_topbar-loggedIn">
+<script type="text/template" id="tpl_topBar-loggedIn">
 	<div class="topBar">
         <div class="topBar-inner clearfix">
             <h1 id="logo" class="topBar-logo">
@@ -10,7 +10,7 @@
             </ul>
             <div class="topBar-profileImage">
                 <dl id = 'profileDropdown'>
-                    <dt id = "topBar-avatar"> <a href="#"><img class="topBar-profileImage-tag" src="<%= imgPath %>" width="48" height="48"/></a> </dt>
+                    <dt id = "topBar-avatar"> <a href="#"><img class="topBar-profileImage-tag" src="" width="48" height="48"/></a> </dt>
                     <dd>
                         <ul>
                             <li id='topBar-myPage'><a href="#">个人主页</a></li>
@@ -24,7 +24,7 @@
     <div id='topNoticeBar'></div>
 </script>
 
-<script type="text/template" id="tpl_topbar-notLoggedIn">
+<script type="text/template" id="tpl_topBar-notLoggedIn">
 	<div class="topBar">
         <div class="topBar-inner clearfix">
             <h1 id="logo" class="topBar-logo">
@@ -64,24 +64,18 @@
 
 <script type="text/template" id="tpl_search">
     <div class="fleft search">
+        <div id="search_category">
+            <% for () %>
+        </div>
+        <div id="search_subCategory">
+            <div data-id="category_math" class="active">
+            </div>
+        </div>
         <div>
         <input id="searchInput_id" class="text" type="text" placeholder="课程id"/>
         <input id="searchInput_schoolName" class="text" type="text" placeholder="学校名"/>
         </div>
         <div>
-        <select id="searchInput_category">
-            <option value="" disabled selected>一级分类</option>
-        </select>
-        <select id="searchInput_subCategory">
-            <option value="" disabled selected>二级分类</option>
-        </select>
-        <select id="searchInput_city">
-            <option value="" disabled selected>城市</option>
-        </select>
-        <select id="searchInput_district">
-            <option value="" disabled selected>地区</option>
-        </select>
-        </div>
         <div id="filter">
             <div id="priceFilter">
                 <label>价格范围</label>
@@ -104,5 +98,78 @@
         <div id="mainMap"></div>
         <div id="CompareWidgetContainer"></div>
 
+    </div>
+</script>
+
+<script type="text/template" id="tpl_registration" >
+
+        <div class="sign_up">
+            <div class="sign_up_inner">
+                
+                <div class="sign_up_title">
+                    <h2 class="fleft">用户注册</h2>
+                    <div class="fright">
+                        <span class="active"><b>1</b>填写信息</span>
+                        <span class=""><b>2</b>完成验证</span>
+                    </div>
+                </div>
+                <div class="account">
+                    <dl class="clearfix">
+                        <dt><span>*</span>手机：</dt>
+                        <dd>
+                            <input id="registerCellInput" type="text" class="text" value="" placeholder="请输入手机号(请不要输入特殊符号或者字母)">
+                        </dd>
+                    </dl>
+                    <dl class="clearfix">
+                        <dt><span>*</span>密码：</dt>
+                        <dd>
+                            <input id="registerPasswordInput" type="password" class="text" value="" placeholder="请输入密码">
+                        </dd>
+                    </dl>
+                    <dl class="clearfix">
+                        <dt><span>*</span>确认密码：</dt>
+                        <dd>
+                            <input id="registerPasswordConfirmInput" type="password" class="text" value="" placeholder="请再次输入密码">
+                        </dd>
+                    </dl>
+                    <dl class="clearfix">
+                        <dt><span>*</span>验证码：</dt>
+                        <dd>
+                            <input id="registerCaptchaInput" type="text" class="captcha" value="">
+                            <img class="captcha" />
+                            <span class="button" role="button">看不清，换一张</span>
+                        </dd>
+                    </dl>
+                    <div class="btns">
+                        <input id="complete" type="button" class="btn_O_long" value="立即注册">
+                    </div>
+                </div><!--account end-->
+            </div>    
+        </div>
+</script>
+
+<script type="text/template" id="tpl_registration_finish">
+    <div class="sign_up">
+        <div class="sign_up_inner">
+            
+            <div class="sign_up_title">
+                <h2 class="fleft">用户注册</h2>
+                <div class="fright">
+                    <span class=""><b>1</b>填写信息</span>
+                    <span class="active"><b>2</b>邮箱验证</span>
+                </div>
+            </div>
+            <div class="email_verification">
+                <h3>还差最后一步，您就注册成功了！请立即验证邮件！</h3>
+                <p>我们已给您的手机<span class="F_orange" id="emailValue"></span>发送了一封验证短信。</p>
+                <p>请输入收到的验证码来完成注册！</p>
+                <p>如果长时间没有收到短信，请点<a id="resendSMS">这里</a>重发短信</p>
+                <input id="phoneNumber" type="text"/>
+                <input id="smsAuthCode" type="text"/>
+                <div id="verifyAccount" class="btns">
+                    <input type="button" class="btn_O_long" value="完成验证">
+                </div>
+            </div>
+        </div>    
     </div>
 </script>
