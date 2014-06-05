@@ -326,7 +326,7 @@
 <script type="text/template" id="tpl_mypage_bookingDetail">
     <div>上课书包 &gt; 订单管理 &gt; 课程订单 </div>
     <div id="bookingDetail">
-        <div class="column0">
+        <div class="row0">
             <div class="left">
                 <label>
                     订单号：<span>1436991417</span> <span>(2014年5月23日预定)</span>
@@ -339,7 +339,7 @@
                 <p class="price">总金额：<span class="sign">￥</span>1999</p>
             </div>
         </div>
-        <div class="column1">
+        <div class="row1">
             <div class="left">
                 <img class="progressbar" src=""/>
                 <p><span>2014-6-13</span> <span>11:02</span> <span>您的订单正在和新东方教育确认</span></p>
@@ -349,7 +349,7 @@
                 <p class="price">总金额：<span class="sign">￥</span>1999</p>
             </div>
         </div>
-        <div class="column2">
+        <div class="row2">
             <span class="title">
                 六级考前词汇串讲班
             </span>
@@ -357,7 +357,7 @@
             <label>上课地址：</label>xxx
             <label>咨询电话：</label>010-5837900
         </div>
-        <div class="column3">
+        <div class="row3">
             <span class="title">入学信息</span>
             <div class="left">
                 <label>
@@ -385,13 +385,13 @@
                 </label>
             </div>
         </div>
-        <div class="column4">
+        <div class="row4">
             <span class="title">支付信息</span>
             <label>
                 支付方式: 学校前台支付
             </label>
         </div>
-        <div class="column5">
+        <div class="row5">
             <input type="button" class="btn_green" value="修改订单" id="editBooking" />
             <input type="button" class="btn_white" value="取消订单" id="cancelBooking" />
             <input type="button" value="订单打印" id="printBooking"/>
@@ -467,5 +467,37 @@
     </form>
 </script>
 
+<script type="text/template" id="tpl_booking_submitted">
+    <div class=""><img /></div>
+    <div id="booking_submitted">
+        <div class="row1">
+            <div class="title">
+                订单已提交
+            </div>
+            <div class="detail">
+                我们会在30分钟内通知您预订结果 <input type="button" id="viewBooking" value="查看订单" />
+            </div>
+            <div id="printBooking">打印订单</div>
+        </div>
+        <div class="column2">
+            <span class="title">
+                六级考前词汇串讲班
+            </span>
+            <label>教育机构: </label>新东方教育
+            <label>上课地址: </label>xxx
+            <label>咨询电话: </label>010-5837900
+            <label>开课时间: </label>5月13日-6月13日
+            <label>班级类型: </label>小于30人
+            <label>预约报道: </label>6月5日 (过时您的特价订单将失效)
+            <label>费用总计: </label> ￥<span class="price">2490</span> (到校付款)
+
+            <p class="extra"><span class="red">*</span>到达学校后，请您凭入学人的有效证件办理入学</p>
+        </div>
+        <div class="column3">
+            <p class="bonus">积分奖励，成功入学后，您将获得648积分，结账后7个工作日内计入您的上课书包</p>
+            <span class="viewMore">查看其他课程</span>
+        </div>
+    </div>
+</script>
 
 
