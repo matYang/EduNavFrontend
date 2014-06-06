@@ -400,12 +400,40 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_newBooking">
+    <div class="courseBrief">
+        <div class="row1">
+            <div class="left"><img></div>
+            <div class="right">
+                <div class="title">六级考前词汇串讲班</div>
+                <div class="desc ">适合学员</div>
+            </div>
+        </div>
+        <div class="row2">
+            <div class="section"><label>班级类型:</label><span>20人</span></div>
+            <div class="section"><label>开课时间:</label><span>5月13日-6月13日</span></div>
+            <div class="section"><label>上课时间:</label><span>9:00 - 14:00</span></div>
+            <div class="section"><label>上课地址:</label><span>xxxx</span></div>
+            <div class="extra">过去7天有124人预定了该课程</div>
+        </div>
+        <div class="row3">
+            <div class="left"><img></div>
+            <div class="right">
+                <div class="desc ">若该教学机构在您取消与本机构的课程订单后，给予您更多诱惑，您将获得500元。</div>
+            </div>
+        </div>
+        <div class="row3">
+            <div class="title">需要帮助?</div>
+            <div class="link">查看常见问题</div>
+            <div class="link">在线客服</div>
+            <div class="link">客服电话</div>
+        </div>
+    </div>
     <form id="bookingDetail" class="newBooking">
         <div class="header">填写订单信息</div>
         <div class="title">六级考前词汇串讲班</div>
         <div class="right ">Wow, Congratulations!</div>
         <hr />
-        <div class="column1">
+        <div class="row1">
             <div class="field">
                 <label>报名人数:</label>
                 <select name="enrollNum">
@@ -422,59 +450,47 @@
             </div>
             <div class="field">
                 <label>课程费用:</label>
-                ￥1999/位 (5月6日前须到教学机构进行报名，否则优惠价格将自动失效)
+                <span class="price">￥1999</span>/位 (预定免费，入学后学校前台付款)
+            </div>
+            <div class="field cashback">
+                <span class="cashback">50元</span>
+                <a class="link">登陆</a> 或 <a class="link">注册</a>后可使用优惠券，入学后获得50元现金返还
+            </div>
+            <div class="loginbox">
+                <label>用户名:
+                    <input class="text" type="text" id="booking_loginUsername"/>
+                </label>
+                <label>密码:
+                    <input class="text" type="password" id="booking_loginPassword"/>
+                </label>
+                <input type="button" value="登陆" id="booking_login" />
+                <a class="button" id="booking_forgotPassword">忘记密码?</a>
             </div>
         </div>
-        <div class="column2">
-            <label>
-                课程名称：六级考前词汇串讲班
-            </label>
-            <label>
-                教育机构：新东方教育
-            </label>
-            <label>
-                上课地址：xxx
-            </label>
-            <label>
-                咨询电话：010-5837900
-            </label>
-        </div>
-        <div class="column3">
+        <div class="row2">
             <span class="title">入学信息</span>
             <div class="left">
-                <label>
-                    开课时间: 5月13日-6月13日
+                <label><span class="req">*</span>入学人姓名:
+                    <input class="text" type="text" id="booking_applicantName"/>
+                    <span class="desc">(请填写实际入学人姓名)</span>
                 </label>
-                <label>
-                    班级类型: 小于30人
+                <label><span class="req">*</span>联系手机:
+                    <input class="text" type="text" id="booking_cellphone"/>
+                    <span class="desc">(用于接收确认信息)</span>
                 </label>
-                <label>
-                    联系方式: 13567890909
+                <label>E-mail:
+                    <input class="text" type="text" id="booking_email"/>
+                    <span class="desc">(可选)</span>
                 </label>
-                <label>
-                    入学人姓名: 王晓伟
-                </label>
-            </div>
-            <div class="right">
-                <label>
-                    上课时间: 08:00-13:00
-                </label>
-                <label>
-                    预定人数: 1人
-                </label>
-                <label>
-                    邮箱: djxiaoniud@153.com
+                <label><span class="req">*</span>预约报名日期:
+                    <input class="text" type="date" id="booking_date"/>
+                    <span class="desc">(若此预约日期前未报名入学，您的特惠名额将受让给其他学员)</span>
                 </label>
             </div>
         </div>
-        <div class="column4">
-            <span class="title">支付信息</span>
-            <label>
-                支付方式: 学校前台支付
-            </label>
-        </div>
-        <div class="btns">
-            <input type="submit" class="btn_orange" value="提交订单" id="initBooking" />
+        <div class="row3">
+            <input type="submit" class="btn_orange" value="完成预定" id="initBooking" />
+            <span class="desc">(不收预订费)</span>
         </div>
     </form>
 </script>
@@ -513,3 +529,5 @@
 </script>
 
 
+<script type="text/template" id="tpl_courseDetail">
+</script>

@@ -427,8 +427,8 @@
         <label>status: <span class="detail"><%= status %></span><span class="edit"><input type="text" name="status"/></span></label> 
         <label>instName: <span class="detail"><%= instName %></span><span class="edit"><input type="text" name="instName"/></span></label> 
         <label>logoUrl: <span class="detail"><%= logoUrl %></span><span class="edit"><input type="text" name="logoUrl"/></span></label> 
-        <span class="detail"><button id="deletePartner">delete</button></span>
-        <span class="detail"><button id="editPartner">edit</button></span>
+        <span class="detail"><input type="button" id="deletePartner" value="delete" /></span>
+        <span class="detail"><input type="button" id="editPartner" value="edit"/></span>
         <span class="edit"><input id="partnerPostSubmit" type="submit" value="submit"></span>
         <span class="edit"><div id="cancel">Cancel</div>
     </form>
@@ -449,7 +449,7 @@
                 <option value=1>deactivate</option>
             </select>
         </span></label>
-        <span class="detail"><button id="editBooking">edit</button></span>
+        <span class="detail"><input type="button" id="editBooking" value="edit" /></span>
         <span class="edit"><input id="bookingPostSubmit" type="submit" value="submit"></span>
         <span class="edit"><div id="cancel">Cancel</div>
     </form>

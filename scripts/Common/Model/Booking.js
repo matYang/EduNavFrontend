@@ -82,6 +82,7 @@ var Booking = Backbone.Model.extend({
         json.scheduledTime = Utilities.getDateString(this.get('scheduledTime'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         json.adjustTime = Utilities.getDateString(this.get('adjustTime'));
+        json.course = json.course._toJSON();
         return json;
     },
     toJSON: function () {
@@ -95,7 +96,7 @@ var Booking = Backbone.Model.extend({
         json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.adjustTime = Utilities.castToAPIFormat(this.get('adjustTime'));
-        
+        json.course = json.course.toJSON();
         json.actionRecord = encodeURI(json.actionRecord);
         return json;
     },
@@ -105,7 +106,7 @@ var Booking = Backbone.Model.extend({
         this.set("partnerId", course.get("partnerId"));
         this.set("courseId", course.get("courseId"));
         this.set("course", course);
-        
+
     }
 });
 

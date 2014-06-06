@@ -9,7 +9,7 @@ var MyPageDashboardView = Backbone.View.extend({
     },
     render: function () {
         this.$el.append(this.template);
-        this.bookingListView = new BookingListView(this.user.get("bookings"), _.first(this.user.get("bookings"), 3));
+        var buf = first
     },
     bindEvents: function () {},
     close: function () {
