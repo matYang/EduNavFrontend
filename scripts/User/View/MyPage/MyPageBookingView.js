@@ -2,7 +2,8 @@ var MyPageBookingView = Backbone.View.extend({
     el:"#mypage_content",
     initialize: function () {
         _.bindAll(this, "render", "bindEvents", "close");
-        this.template = _.template(tpl.get("mypage_dashboard"));
+        this.template = _.template(tpl.get("mypage_bookingList"));
+        app.viewRegistration.register("mypage_subpage", this, true);
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
         this.render();

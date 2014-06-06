@@ -15,6 +15,10 @@ var AppRouter = Backbone.Router.extend({
 
         "course/:courseId": "courseDetail",
         "course/:courseId/": "courseDetail",
+        
+        "booking/c:courseId": "newBooking",
+        "booking/b:bookingId": "booking",
+
         "compare/*courses": "compare",
         "register": "register",
         "register/*registerState": "register",
@@ -102,6 +106,13 @@ var AppRouter = Backbone.Router.extend({
         this.courseDetailView = new CourseDetailView ({
             'courseId': courseId
         });
+    },
+
+    newBooking:function (courseId) {
+        
+    },
+    booking: function (bookingId) {
+
     },
 
     compare: function (courses) {

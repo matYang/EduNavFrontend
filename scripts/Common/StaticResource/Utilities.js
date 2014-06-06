@@ -3,7 +3,7 @@
  */
 
 var Utilities = {
-
+    emailRegex: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 
     //converts an date object to a human-friendly data string, eg: 明天，下周二，5月3号
     getDateString: function (targetDate, flag) {
@@ -203,5 +203,20 @@ var Utilities = {
             );
         }
         return params;
+    },
+    phoneValid: function(phone) {
+        if (phone && phone.length === 11 && !isNaN(Utilities.toInt(phone))) {
+            return {valid:true};
+        } else {
+            return {valid:false, text: "电话号码格式不正确"};
+        }
+    },
+    emailValid: function (email) {
+        if (Utilities.emailRegex.test(email)) {
+            return {valid:true};
+        } else {
+            return {valid:false, text: "邮箱格式不正确"};
+        }
     }
+
 };

@@ -2,7 +2,8 @@ var MyPageDashboardView = Backbone.View.extend({
     el:"#mypage_content",
     initialize: function () {
         _.bindAll(this, "render", "bindEvents", "close");
-        this.template = _.template(tpl.get("mypage_dashboard"));
+        app.viewRegistration.register("mypage_dashboard", this, true);
+        this.template = _.template(tpl.get("mypage_subpage"));
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
         this.render();

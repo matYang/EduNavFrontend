@@ -1,7 +1,7 @@
 var CourseDetailView = Backbone.View.extend({
     el: "#content",
     initialize: function (courseIdWrapper) {
-        _.bindAll(this, 'render', 'bindEvents', 'createNewBooking', 'renderPriceList', 'cancelSuccess', 'cancelError', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'createNewBooking', 'close');
         app.viewRegistration.register("courseDetail", this, true);
         this.isClosed = false;
 
@@ -9,14 +9,12 @@ var CourseDetailView = Backbone.View.extend({
         var self = this;
         this.newBooking = new Booking ();
         this.template = _.template(tpl.get('courseDetail'));
-        this.bookingTemplate = _.template(tpl.get('Booking'));
         app.courseManager.fetchMessage(courseIdWrapper.courseId, {
             success: function (course) {
                 self.course = course;
                 self.courseId = course.get("courseId");
                 self.render();
                 self.bindEvents();
-                self.createNewBooking();
             },
             error: function () {
                 Info.displayErrorPage("content", "信息读取失败, 请刷新页面");
@@ -35,25 +33,18 @@ var CourseDetailView = Backbone.View.extend({
         //this.map = app.storage.getViewCache("MapView", mapParams);
     },
     bindEvents: function () {
-        
-    },
-    createNewBooking: function () {
-        this.newBooking.initBookingFromCourse(this.course);
+        var that = this;
+        $("#courseNavigateTab").on("click", "div", function(e) {
+            var id = e.target.id;
+            id = "content_" + id.split("_")[1];
+            that.scrollTo($("#"+id));
+        });
+        $("#bookNow").on("click", function() {
+
+        });
     },
     checkMyBooking: function () {
 
-    },
-    cancelSuccess: function(){
-        this.$viewendConfirm.removeAttr("disabled").val("取消成功, 关闭").off().on("click", function (e) {
-            $("#popup").empty().hide();
-            $("#overlay").hide();
-        });
-        this.$viewend.off();
-        this.$viewend.val("已经结束").removeClass("btn_R_long").attr("id", "view_expired");
-    },
-
-    cancelError: function(){
-        this.$viewendConfirm.val("取消失败,请重试").removeAttr("disabled");
     },
 
     close: function () {

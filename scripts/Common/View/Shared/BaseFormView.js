@@ -10,6 +10,7 @@ var BaseFormView = Backbone.View.extend({
     template: "",
     fields:[],
     submitButtonId: "",
+    model: undefined,
     initialize: function(params){
         _.bindAll(this, "bindEvents", "render", "unbindValidators", "submitAction", "formReady", "displayImagePreview");
         this.closed = false;
@@ -30,7 +31,7 @@ var BaseFormView = Backbone.View.extend({
     bindEvents: function() {
         this.fieldNum = this.fields.length;
         var i, that = this;
-        for ( i = 0; i < this.fieldNum; i++ ){
+        for ( i = 0; i < this.fieldNum; i++ ) {
 
             var field = this.fields[i], $field = $("#"+ field.get("fieldId")), fieldType = field.get("type");
             if (fieldType === "file") {
@@ -55,6 +56,9 @@ var BaseFormView = Backbone.View.extend({
                     var val = $(this).val();
                     e.data.field.testValue(val, $(e.target));
                 });
+            }
+            if (field.get("modelAttr") && this.model) {
+                this.bindFieldToModel(field);
             }
         }
         $("#"+this.submitButtonId).on("click", function (e) {
@@ -136,6 +140,12 @@ var BaseFormView = Backbone.View.extend({
             $("#"+ this.fields[i].get("fieldId")).off();
         }
     },
+    bindFieldToModel: function (field) {
+        var that = this;
+        $("#"+filed.get("fieldId")).on("change", function(){
+            that.model.set(field.get("modelAttr"), $(this).val());
+        });
+    },
     close: function () {
         if (!this.closed) {
             this.unbindValidators();      
@@ -158,6 +168,7 @@ var BaseField = Backbone.Model.extend({
             validClass: "right",
             validatorContainer: null,
             name: "", //Used for error Text
+            modelAttr: "",              //2-way Binding
             $preview: null              //container of image preview
         }
     },
