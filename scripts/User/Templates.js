@@ -454,9 +454,12 @@
             </div>
             <div class="field cashback">
                 <span class="cashback">50元</span>
-                <a class="link">登陆</a> 或 <a class="link">注册</a>后可使用优惠券，入学后获得50元现金返还
+                <span id="booking_loginBtns">
+                <a id="booking_signIn" class="link">登陆</a> 或 <a id="booking_register" class="link">注册</a>后可使用优惠券，入学后获得50元现金返还
+                </span>
             </div>
-            <div class="loginbox">
+            <div id="booking_loginbox" class="loginbox">
+                <div id="booking_loginBoxClose" class="close"></div>
                 <label>用户名:
                     <input class="text" type="text" id="booking_loginUsername"/>
                 </label>

@@ -122,7 +122,7 @@ var AppRouter = Backbone.Router.extend({
     },
 
     newBooking:function (courseId) {
-
+        this.newBookingView = new NewBookingView({courseId:courseId});
     },
     booking: function (bookingId) {
 

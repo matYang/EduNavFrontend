@@ -32,9 +32,16 @@ var MyPageView = Backbone.View.extend({
         var create = true;
         switch (this.query) {
             case "bookingDetail":
+                if (!this.bookingId) {
+                    throw "invalid access";
+                }
                 this.activeChildView = new BookingDetailView({bookingId:this.bookingId});
+                break;
             case "booking": 
                 this.activeChildView = new MyPageBookingView();
+                break;
+            case "account":
+                break;
             case "dashboard":
             default:
                 this.activeChildView = new MyPageDashboardView();        

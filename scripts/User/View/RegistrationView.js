@@ -28,18 +28,21 @@ var RegistrationView = BaseFormView.extend({
         }),
         new BaseField({
             name: "验证码",
-            fieldId: "registerCaptchaInput",
+            fieldId: "registerVeriCode",
             type: "text",
-            mandatory: true,
-            validatorFunction: this.captchaValid
+            mandatory: true
         }),
     ],
     initialize: function(params){
-        _.bindAll(this, 'render', 'bindEvents', 'phoneValid', 'passValid', 'captchaValid', 'successCallback', 'submitAction', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'phoneValid', 'passValid', 'successCallback', 'submitAction', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.template = _.template(tpl.get('registration'));
         this.finishTemplate = _.template(tpl.get('registration_finish'));
+        this.state = params.state;
+        if (this.state){
+            this.ref = this.state.split("_")[1];
+        }
         this.render();
     },
     render: function(){
@@ -92,13 +95,13 @@ var RegistrationView = BaseFormView.extend({
             return {valid:true};
         }
     },
-    captchaValid: function (val) {
-
-    },
 
     successCallback: function(data){
         this.state = "finish";
-        app.sessionManager.sessionModel = new User(data, {parse: true}); 
+        app.sessionManager.sessionModel = new User(data, {parse: true});
+        if (this.ref) {
+            app.navigate(this.ref, true);
+        }
         this.render();
     },
     submitAction: function () {

@@ -28,7 +28,7 @@ var TopBarView = Backbone.View.extend({
     },
 
     reRender: function () {
-        this._clearAll();
+        this.$el.empty();
         this.render();
     },
 
@@ -173,7 +173,7 @@ var TopBarView = Backbone.View.extend({
 
     close: function () {
         if (!this.isClosed) {
-            
+            this.stopListening();
             this.$el.empty();
             this.isClosed = true;
         }
