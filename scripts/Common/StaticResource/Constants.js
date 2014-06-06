@@ -23,8 +23,9 @@ var Constants = {
 
     templateResources: [
         "topBar-loggedIn", "topBar-notLoggedIn", 
-        "front", "search","registration", "registration_finish",
-        "mypage_base", "mypage_dashboard",
+        "registration", "registration_finish",
+        "front", "search", "searchResultEntry",
+        "mypage_base", "mypage_dashboard", "mypage_bookingList", "mypage_bookingDetail",
         "compareWidget", "compareWidgetEntry"
     ],
 

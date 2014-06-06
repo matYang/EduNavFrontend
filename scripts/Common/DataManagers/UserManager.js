@@ -89,7 +89,7 @@
             url: this.apis.user_user,
             dataType: "json",
             async: true,
-            data $.param(newUser);
+            data: $.param(newUser),
             success: function (data, response) {
                 if (callback) {
                     callback.success(data);

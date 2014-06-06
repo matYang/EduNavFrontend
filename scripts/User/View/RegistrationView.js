@@ -36,7 +36,7 @@ var RegistrationView = BaseFormView.extend({
     ],
     initialize: function(params){
         _.bindAll(this, 'render', 'bindEvents', 'phoneValid', 'passValid', 'captchaValid', 'successCallback', 'submitAction', 'close');
-        app.viewRegistration.register("registration", this, true);
+        app.viewRegistration.register(this);
         this.isClosed = false;
         this.template = _.template(tpl.get('registration'));
         this.finishTemplate = _.template(tpl.get('registration_finish'));

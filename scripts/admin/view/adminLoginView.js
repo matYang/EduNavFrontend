@@ -3,7 +3,7 @@ var AdminLoginView = Backbone.View.extend({
     initialize: function () {
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "login", "close");
-        app.viewRegistration.register("login", this, true);
+        app.viewRegistration.register(this);
         this.loginTemplate = _.template(tpl.get('adminLogin'));
         this.render();
         this.bindEvents();

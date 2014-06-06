@@ -1,14 +1,13 @@
 var CompareWidgetView = Backbone.View.extend({
     el: "#CompareWidgetContainer",
     initialize: function () {
-        a
         this.isClosed = false;
         _.bindAll(this, "render", "close");
         this.template = _.template(tpl.get("compareWidget"));;
         this.$el.append(this.template);
         this.courseTemplate = _.template(tpl.get("compareWidgetEntry"));
         this.$domContainer = $("#courses");
-        this.courseIds = app.storageService.getCoursesToCompare();
+        this.courseIds = app.storage.getCoursesToCompare();
         app.generalManager.fetchCourse(this.courseIds, {
             "success": this.render,
             "error": function (){}
@@ -37,8 +36,8 @@ var CompareWidgetView = Backbone.View.extend({
     },
     // course can only be added to compare widget from searchView
     addCourse: function (course) {
-        if (app.storageService.addCourseToCompare(course.id)) {
-            ths.courseIds = app.storageService.getCoursesToCompare();
+        if (app.storage.addCourseToCompare(course.id)) {
+            ths.courseIds = app.storage.getCoursesToCompare();
             this.$domContainer.append(this.courseTemplate(course._toJSON()));
             this.courses.push(course);
         } else {
@@ -47,8 +46,8 @@ var CompareWidgetView = Backbone.View.extend({
     },
     removeCourse: function(id) {
         $("#compare_course_"+id).remove();
-        app.storageService.removeCourseFromCompare(id);
-        this.courseIds = app.storageService.getCoursesToCompare();
+        app.storage.removeCourseFromCompare(id);
+        this.courseIds = app.storage.getCoursesToCompare();
     },
     close: function () {
         if (!this.isClosed) {

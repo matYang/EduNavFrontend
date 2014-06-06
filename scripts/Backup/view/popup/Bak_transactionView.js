@@ -5,7 +5,7 @@ var BookingDetailView = Backbone.View.extend({
     initialize: function (transaction, info) {
         var i, that = this;
         _.bindAll(this, 'render', 'bindEvents', 'bookSuccess', 'scoreSuccess', 'bookFail', 'scoreFail', 'bindEvaluationEvent', 'renderStar', 'close');
-        app.viewRegistration.register("bookingDetail", this, true);
+        app.viewRegistration.register(this);
         this.isClosed = false;
         this.transaction = transaction;
         this.info = info;

@@ -106,7 +106,8 @@ var Booking = Backbone.Model.extend({
         this.set("partnerId", course.get("partnerId"));
         this.set("courseId", course.get("courseId"));
         this.set("course", course);
-
+        this.set("price", course.get("price"));
+        this.set("reference", course.get("reference"));
     }
 });
 

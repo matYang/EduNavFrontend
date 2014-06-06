@@ -1,10 +1,9 @@
 var TopBarView = Backbone.View.extend({
 
     el: '#topBar',
-
     initialize: function () {
-        _.bindAll(this, 'render', 'reRender', 'bindEvents', 'close', 'login', 'logout', '_clearAll');
-        app.viewRegistration.register("topBar", this, true);
+        _.bindAll(this, 'render', 'reRender', 'bindEvents', 'close', 'login', 'logout');
+        app.viewRegistration.register(this);
         this.isClosed = false;
 
         this.loggedInTemplate = _.template(tpl.get('topBar-loggedIn'));
@@ -52,20 +51,18 @@ var TopBarView = Backbone.View.extend({
             app.navigate("front", true);
         });
         if (!app.sessionManager.hasSession()) {
-            this.$lb = $("#loginBox");
-            this.$lbt = $("#loginBoxToggler").on("click", function (e) {
+            $("#loginBoxToggler").on("click", function (e) {
                 self.$lb.toggle();
                 self.$usernameInput.trigger("focus");
             });
             $('#signup_button').on('click', function () {
                 app.navigate("/register", {trigger: true, replace: true});
             });
-            this.$wrong = $("#credentialWrong");
             this.$usernameInput.on("click", function (e){
-                self.$wrong.hide();
+                $("#credentialWrong").hide();
             });
             this.$passwordInput.on("focus", function (e){
-                self.$wrong.hide();
+                $("#credentialWrong").hide();
             });
             this.$passwordInput.add(this.$usernameInput).on("keydown", function (e) {
                 if (e.which == 13) {
@@ -75,7 +72,7 @@ var TopBarView = Backbone.View.extend({
             $("#forget_password").on("click", function (e) {
                 e.preventDefault();
                 app.navigate("lost", true);
-                self.$lb.toggle();
+                self.$("#loginBox").toggle();
             });
             this.remember = $("#remember_password").on("click", function (e) {
                 if ($(this).hasClass("checked")){
@@ -98,7 +95,7 @@ var TopBarView = Backbone.View.extend({
                 e.stopPropagation();
             });
         } else {
-            this.$npersonal = $('#navigate_personal').on('click', function () {
+            $('#navigate_personal').on('click', function () {
                 app.navigate("mypage", true);
             });
             $('#logout').on('click', function (e) {
@@ -174,32 +171,10 @@ var TopBarView = Backbone.View.extend({
         });
     },
 
-    _clearAll: function () {
-        if (app.sessionManager.hasSession()) {
-            this.$passwordInput.off();
-            this.$usernameInput.off();
-            $('#signup_button').off();
-            $('#login_button').off();
-            this.$lbt.off();
-            $("#remember_password").off();
-        }
-        else{
-            this.$npersonal.off();
-            this.$ndropdown.off();
-            this.$ldropdown.off();
-            this.$fdropdown.off();
-        }
-        this.$logo.off();
-        this.$nmain.off();
-        this.stopListening();
-        this.unbind();
-        this.$el.empty();
-    },
-
     close: function () {
         if (!this.isClosed) {
-            this._clearAll();
-
+            
+            this.$el.empty();
             this.isClosed = true;
         }
     }

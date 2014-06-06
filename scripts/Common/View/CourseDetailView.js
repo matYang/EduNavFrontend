@@ -2,7 +2,7 @@ var CourseDetailView = Backbone.View.extend({
     el: "#content",
     initialize: function (courseIdWrapper) {
         _.bindAll(this, 'render', 'bindEvents', 'createNewBooking', 'close');
-        app.viewRegistration.register("courseDetail", this, true);
+        app.viewRegistration.register(this);
         this.isClosed = false;
 
         this.user = app.sessionManager.sessionModel;

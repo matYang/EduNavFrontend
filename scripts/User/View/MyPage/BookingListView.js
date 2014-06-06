@@ -21,7 +21,8 @@ var BookingListView = MultiPageView.extend({
     render: function () {
         MultiPageView.prototype.render.call(this);
     },
-    entryEvent: function () {
+    entryEvent: function (id) {
+        app.navigate("mypage/booking/" + id);
 
     },
     close: function (){

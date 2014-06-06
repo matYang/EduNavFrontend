@@ -7,7 +7,7 @@ var AdminPartnerView = BaseFormView.extend({
     initialize: function(params){
         _.bindAll(this, "render", "bindEvents", "close");
         BaseFormView.prototype.initialize.call(this);
-        app.viewRegistration.register("adminPartner", this, true);
+        app.viewRegistration.register(this);
         params = params || {};
         var apis = new AdminApiResource();
         this.template = _.template(tpl.get("adminPartner"));

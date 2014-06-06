@@ -2,7 +2,7 @@ var FindPasswordView = Backbone.View.extend({
     el: "#content",
     initialize: function (params) {
         _.bindAll(this, 'render', 'validatePassword', 'submitNewPassword', 'close');
-        app.viewRegistration.register("findPassword", this, true);
+        app.viewRegistration.register(this);
         this.isClosed = false;
         this.template1 = _.template(tpl.get("findPassword_1"));
         this.template2 = _.template(tpl.get("findPassword_2"));

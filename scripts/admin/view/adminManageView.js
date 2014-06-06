@@ -205,7 +205,7 @@ var AdminManageView = Backbone.View.extend({
         _.bindAll(this, "render", "bindEvents", "bindSearchEvent", "renderResult", "renderCategories", "renderSubCategories", "renderLocations", "renderDistrict", "close", "search");
         this.isClosed = false;
         this.type = params.type;
-        app.viewRegistration.register(this.type + "Manage", this, true);
+        app.viewRegistration.register(this);
         this.templates = {
             user: _.template(tpl.get('adminUserManage')),
             course: _.template(tpl.get('adminCourseManage')),

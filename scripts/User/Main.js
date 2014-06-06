@@ -11,7 +11,8 @@ var AppRouter = Backbone.Router.extend({
         "search/*search": "encodedSearch",
 
         "mypage": "mypage",
-        "mypage/*query": "mypage",
+        "mypage/booking/:id": "myBooking",
+        "mypage/:view": "mypage",
 
         "course/:courseId": "courseDetail",
         "course/:courseId/": "courseDetail",
@@ -92,14 +93,26 @@ var AppRouter = Backbone.Router.extend({
         });
         // this.advertisementView = new AdvertisementView ();
     },
-
+    myBooking: function (id) {
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("front", {trigger: true, replace: true});
+            return;
+        }
+        if (this.myPageView && !this.myPageView.isClosed) {
+            this.myPageView.query = "bookingDetail";
+            this.myPageView.bookingId = id;
+            this.myPageView.createChildView();
+        } else {
+            this.myPageView = new MyPageView ({query:"bookingDetail", bookingId: id});
+        }
+    },
     mypage: function (query) {
         if (!this.sessionManager.hasSession()) {
             this.navigate("front", {trigger: true, replace: true});
             return;
         }
         
-        this.personalView = new MyPageView ({query:query});
+        this.myPageView = new MyPageView ({query:query});
     },
 
     courseDetail: function (messageId) {
@@ -109,7 +122,7 @@ var AppRouter = Backbone.Router.extend({
     },
 
     newBooking:function (courseId) {
-        
+
     },
     booking: function (bookingId) {
 

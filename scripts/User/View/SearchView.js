@@ -2,7 +2,7 @@ var SearchView = Backbone.View.extend({
     el: '#content',
     initialize: function (params) {
         _.bindAll(this, 'render', 'renderSearchResults', 'courseSearch', 'bindEvents', 'close');
-        app.viewRegistration.register("search", this, true);
+        app.viewRegistration.register(this);
         this.isClosed = false;
         this.rendered = false;
         this.user = app.sessionManager.sessionModel;
@@ -15,7 +15,7 @@ var SearchView = Backbone.View.extend({
                 this.searchRepresentation.castFromString(params.searchKey);
             } catch (e) {
 
-                app.navigate("main", true);
+                app.navigate("search", true);
             }
             app.storage.setSearchRepresentationCache(this.searchRepresentation);
         }
@@ -73,8 +73,7 @@ var SearchView = Backbone.View.extend({
     },
 
     courseSearch: function () {
-        
-        app.navigate("search/" + this.searchRepresentation.toString(), {'trigger': false});
+        app.navigate("search/" + this.searchRepresentation.toQueryString(), {'trigger': false});
         $("#searchResultDisplayPanel").empty().append('<div class="messageDetail-middle-autoMatch-loading">正在为您寻找信息</div>');
         app.generalManager.findCourse(this.searchRepresentation, {
             "success": this.renderSearchResults,

@@ -4,7 +4,7 @@ var NewBookingView = BaseFormView.extend({
     initialize: function (params) {
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "close");
-        app.viewRegistration.register("booking", this, true);
+        app.viewRegistration.register(this);
         this.template = _.template(tpl.get("newBooking"));
         this.field = [
             new BaseField({
@@ -94,7 +94,7 @@ var NewBookingView = BaseFormView.extend({
             onSelect: function (text, inst) {
                 var d = new Date ();
                 d.setDate(inst.selectedDay);
-                d.setMonth(inst.selectedMonth);
+                d.setMonth(inst.selectedMonth);x
                 d.setYear(inst.selectedYear);
                 that.model.set("scheduledTime", d);
                 $(this).val(Utilities.getDateString(d));
@@ -103,10 +103,10 @@ var NewBookingView = BaseFormView.extend({
         $("initBooking").on("click", function(){
             app.userManager.newBooking(this.model. {
                 success: function(){
-
+                    app.navigate("mypage/booking/" + id, true);
                 },
                 error: function(){
-                    
+
                 }
             });
         });

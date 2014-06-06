@@ -2,7 +2,7 @@ var MyPageView = Backbone.View.extend({
     el: "#content",
     initialize: function (params) {
         _.bindAll(this, 'render', 'renderError', 'switchChildView', 'createChildView','bindEvents', 'close');
-        app.viewRegistration.register("personal", this, true);
+        app.viewRegistration.register(this);
         this.isClosed = false;
         this.query = params.query || "basic";
         this.template = _.template(tpl.get('personal'));

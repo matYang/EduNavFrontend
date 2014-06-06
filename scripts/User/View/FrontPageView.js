@@ -4,7 +4,7 @@ var FrontPageView = Backbone.View.extend({
     displayIndex: 0,
     initialize: function () {
         _.bindAll(this, 'render', 'bindEvents', 'close');
-        app.viewRegistration.register("front", this, true);
+        app.viewRegistration.register(this);
         this.isClosed = false;
         this.temp = {};
         this.bottomRecentId = 0;

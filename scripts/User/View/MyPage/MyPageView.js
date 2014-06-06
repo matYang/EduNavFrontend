@@ -2,10 +2,13 @@ var MyPageView = Backbone.View.extend({
     el: "#content",
     initialize: function (params) {
         _.bindAll(this, 'render', 'renderError', 'createChildView','bindEvents', 'close');
-        app.viewRegistration.register("mypage", this, true);
+        app.viewRegistration.register(this);
         this.isClosed = false;
         this.query = params.query || "dashboard";
         this.template = _.template(tpl.get('mypage_base'));
+        if (params.bookingId) {
+            this.bookingId = params.bookingId;
+        }
         app.userManager.fetchUser({
             "success": this.render,
             "error": this.renderError
@@ -28,6 +31,8 @@ var MyPageView = Backbone.View.extend({
     createChildView: function () {
         var create = true;
         switch (this.query) {
+            case "bookingDetail":
+                this.activeChildView = new BookingDetailView({bookingId:this.bookingId});
             case "booking": 
                 this.activeChildView = new MyPageBookingView();
             case "dashboard":

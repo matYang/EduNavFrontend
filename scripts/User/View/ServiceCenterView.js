@@ -3,7 +3,7 @@ var ServiceCenterView = Backbone.View.extend({
     initialize: function(params){
         this.currentTab = params ? params.tab || "about" : "about";
         this.isClosed = false;
-        app.viewRegistration.register("serviceCenter", this, true);
+        app.viewRegistration.register(this);
         _.bindAll(this, "preRender", "render", "bindEvents", "close");
         this.baseTemplate = _.template(tpl.get('serviceCenter_base'));
         this.aboutUsPage = _.template(tpl.get('serviceCenter_aboutUs'));

@@ -2,7 +2,7 @@ var AdminUserView = Backbone.View.extend({
 	el:"#main_content",
 	initialize: function (params) {
 		this.isClosed = false;
-		app.viewRegistration.register("adminUser", this, true);
+		app.viewRegistration.register(this);
 		this.template = _.template(tpl.get("adminUser"));
 		if (!params.user) {
 			this.userId = params.userId;

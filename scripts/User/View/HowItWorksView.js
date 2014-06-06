@@ -4,7 +4,7 @@ var HowItWorksView = Backbone.View.extend({
     currentPage: "driver",
 
     initialize: function (messageIdWrapper) {
-        app.viewRegistration.register("HowItWorkds", this, true);
+        app.viewRegistration.register(this);
         _.bindAll(this, "render", "close");
         this.baseTemplate = _.template(tpl.get('howItWorks_base'));
         this.driverTemplate = _.template(tpl.get('howItWorks_driver'));
