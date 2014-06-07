@@ -1,38 +1,40 @@
-var compareView = Backbone.View.extend({
+var CompareView = Backbone.View.extend({
     el: "#content",
     highlighted: false,
     hided: false,
+    courses: [],
     initialize: function (params) {
         
         app.viewRegistration.register(this);
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "highlight", "hideSame", "close");
         this.template = _.template(tpl.get("compareView"));
+        this.entryTemplate = _.template(tpl.get("compareEntry"));
         this.$el.append(this.template(this.obj));
         if (params.courseIdList) {
-            this.items = params.items; // array of items to compare
-        } else {
-            
+            this.courseIdList = params.courseIdList; // array of items to compare
+        }
+        for (var i = 0; i < this.courseIdList.length; i++) {
+            app.generalManager.fetchCourse(this.courseIdList[i], {
+                success: this.render,
+                error: this.renderError
+            });
         }
         this.render();
         this.bindEvents();
     },
-    render: function () {
-        var len = this.items.length;
-        this.obj = {
-            "items":[this.items[0].toJSON()]
+    render: function (course) {
+        var len = this.courses.length, buf = [];
+        this.courses.push(course);
+        if (len === this.courseIdList.length) {
+            for ( var i = 0; i < len; i++) {
+                buf.push(this.entryTemplate(this.courses[i]._toJSON));
+            }
         }
-
-        if (len === 1) {
-            app.navigate("course/" + this.items[0].get("courseId"));
-        } 
-        if (len === 2) {
-            this.obj.items.push(this.items[1].toJSON());
-        }
-        if (len === 3) {
-            this.obj.items.push(this.items[2].toJSON())
-        }
-
+        $("#compareEntriesContainer").append(buf.join(""));
+    },
+    renderError: function () {
+        $("#compareEntriesContainer").append("<div>课程信息好像载入失败了....诶嘿...</div>");
     },
     bindEvents: function () {
         var that = this;
@@ -46,9 +48,9 @@ var compareView = Backbone.View.extend({
         });
     },
     highlight: function () {
-        this.highlighted = !this.highlighted;
         if (this.highlighted) {
             $(".highlighted").removeClass("highlight");
+            this.highlighted = false;
             return;
         }
         var i, count;
@@ -60,6 +62,7 @@ var compareView = Backbone.View.extend({
                 }
             }
         }
+        this.highlighted = true;
     },
     hideSame: function () {
         this.hided = !this.hided;

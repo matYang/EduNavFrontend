@@ -73,9 +73,6 @@ var AdminCourseView = BaseFormView.extend({
             $("#adminCourseForm").find(".edit").show();
             $("#adminCourseForm").find(".detail").hide(); 
         });
-        $("#deleteCourse").on("click", function() {
-            
-        });
         $("#select[name=category]").on("change", function() {
             var category = $(this).val();
             that.renderSubCategory(category);

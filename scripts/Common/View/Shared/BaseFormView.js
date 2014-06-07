@@ -1,8 +1,21 @@
+//This view has the following feature:
+//Configurable fields, automatic one-way binding between model and input fields.
+//When fields are set, model's value is automatically updated when the value has changed
+//Validation is done everytime a field is blurred or submit button is clicked.
+//For multi-forms, this view also automatically prepares an iframe target that prevents reloading after forms submission.
+//In HTML5 supported browsers, images can be previewed if $preview is set in the field configuration
+
+//limitations: Validation messages are in fixed structure. If it needs to be changed, either override the buildValidatorDiv function, or giff up.
+//This field value will not update automatically if the model is updated by http requests.
+
+
 //Do not initialize this directly, extend it.
 //workflow:
 //  Initialize, append form to the active view.
 //  bind validators to all fields
 //  If it's a form (using <form>), then prepare iframe for post action
+
+
 
 var BaseFormView = Backbone.View.extend({
     el: "",

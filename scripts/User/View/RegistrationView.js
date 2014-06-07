@@ -1,4 +1,3 @@
-
 /*dedicated view for user registration, deep linking will not be used for registrtion states, this view holds the session data*/
 var RegistrationView = BaseFormView.extend({
     el: "#content",
@@ -43,7 +42,6 @@ var RegistrationView = BaseFormView.extend({
         this.isClosed = false;
         this.template = _.template(tpl.get('registration'));
         this.model =  {};
-        this.finishTemplate = _.template(tpl.get('registration_finish'));
         this.state = params.state;
         if (this.state){
             this.ref = this.state.split("_")[1];
@@ -65,8 +63,6 @@ var RegistrationView = BaseFormView.extend({
         } else {
             this.$el.append(this.finishTemplate);
         }
-
-        // --- events binding ---
     },
     phoneValid: function(val) {
         if (!val || val.length !== 11 || isNaN(parseInt(val,10)) ){
@@ -103,8 +99,6 @@ var RegistrationView = BaseFormView.extend({
         });
 
     },
-
-
     close: function(){
         if (!this.isClosed){
             BaseFormView.prototype.close.call(this);
@@ -112,6 +106,4 @@ var RegistrationView = BaseFormView.extend({
             this.isClosed = true;
         }
     }
-
-
 });
