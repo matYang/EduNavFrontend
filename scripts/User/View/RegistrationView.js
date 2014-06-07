@@ -3,34 +3,38 @@
 var RegistrationView = BaseFormView.extend({
     el: "#content",
     form: false,
-    submitButtonId: "#register_submit",
+    submitButtonId: "register_submit",
     fields: [
         new BaseField({
             name: "手机",
             fieldId: "registerCellInput",
             type: "text",
             mandatory: true,
-            validatorFunction: this.passValid
+            validatorFunction: this.passValid,
+            modelAttr: "phone"
         }),
         new BaseField({
             name: "密码",
             fieldId: "registerPasswordInput",
             type: "text",
             mandatory: true,
-            validatorFunction: this.passValid
+            validatorFunction: this.passValid,
+            modelAttr: "password"
         }),
         new BaseField({
             name: "确认密码",
             fieldId: "registerPasswordConfirmInput",
             type: "text",
             mandatory: true,
-            validatorFunction: this.passValid
+            validatorFunction: this.passValid,
+            modelAttr: "confirmPassword"
         }),
         new BaseField({
             name: "验证码",
             fieldId: "registerVeriCode",
             type: "text",
-            mandatory: true
+            mandatory: true,
+            modelAttr: "authCode"
         }),
     ],
     initialize: function(params){
@@ -38,6 +42,7 @@ var RegistrationView = BaseFormView.extend({
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.template = _.template(tpl.get('registration'));
+        this.model =  {};
         this.finishTemplate = _.template(tpl.get('registration_finish'));
         this.state = params.state;
         if (this.state){
@@ -47,16 +52,12 @@ var RegistrationView = BaseFormView.extend({
     },
     render: function(){
         var that = this;
-        this.domContainer = $('#content');
-        this.domContainer.empty();
+        this.$el.empty();
         if (this.state !== "finish") {
-            this.domContainer.append(this.baseTemplate);
+            this.$el.append(this.template);
             this.registerContainer = $('#registerContainer');
             this.contentContainer = $('#registerContent');
             $("#loginBox").hide();
-            this.$password = $("#registerPasswordInput");
-            this.$confirm = $("#registerPasswordConfirmInput");
-            this.$cell = $('#registerCellInput');
             $("#getSms").on("click", function (e) {
                 var phone = that.$cell.val();
                 if (that.phoneValid(phone).valid) {
@@ -65,9 +66,9 @@ var RegistrationView = BaseFormView.extend({
             });
             BaseFormView.prototype.bindEvents.call(this);
         } else {
-            this.domContainer.append(this.finishTemplate);
-            if (this.user) {
-                $("#phoneNumber").val(this.user.get("phone"));
+            this.$el.append(this.finishTemplate);
+            if (this.model) {
+                $("#phoneNumber").val(this.model.get("phone"));
             } else {
                 this.phoneCache = Utilities.getCookie("registrationCell");
                 if (this.phoneCache) {
@@ -105,16 +106,6 @@ var RegistrationView = BaseFormView.extend({
         this.render();
     },
     submitAction: function () {
-        var phone = $("#registerCellInput").val();
-        this.user.set("phone", phone);
-        this.user.set("password", $("#registerPasswordInput").val());
-        this.user = {
-            "phone": encodeURI(phone),
-            "password": encodeURI($("#registerPasswordInput").val()),
-            "confirmPassword": encodeURI($("#registerConfirmPasswordInput").val()),
-            "authCode": encodeURI($("#smsAuthCode").val())
-        };
-
         document.cookie="registrationPhone="+phone+";"
         this.phoneCache = true;
         app.userManager.registerUser(this.user, {

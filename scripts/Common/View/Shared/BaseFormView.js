@@ -26,6 +26,7 @@ var BaseFormView = Backbone.View.extend({
     },
     submitAction: function(){},
     render: function () {
+        this.isBB = this.model instanceof Backbone.Model;
         this.bindEvents();
     },
     bindEvents: function() {
@@ -141,10 +142,17 @@ var BaseFormView = Backbone.View.extend({
         }
     },
     bindFieldToModel: function (field) {
-        var that = this;
-        $("#"+filed.get("fieldId")).on("change", function(){
-            that.model.set(field.get("modelAttr"), $(this).val());
+        var that = this, value = this.isBB ? this.model.get(field.get("modelAttr")) : this.model[field.get("modelAttr")];
+        var $field = $("#"+field.get("fieldId")).on("change", {"field":field }, function (e) {
+            if (that.isBB) {
+                that.model.set(e.data.field.get("modelAttr"), $(this).val());
+            } else {
+                that.model[e.data.field.get("modelAttr")] =$(this).val();
+            }
         });
+        if (value) {
+            $field.val(value);
+        }
     },
     close: function () {
         if (!this.closed) {

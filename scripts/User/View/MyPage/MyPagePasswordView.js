@@ -5,7 +5,7 @@ var MyPagePasswordView = BaseFormView.extend({
     model: {},
     initialize: function () {
 
-        _.bindAll(this, 'render', 'close', 'savePassword', 'passwordSuccess', 'getSmsSuccess', 'getSmsError', 'passwordError', 'bindEvents');
+        _.bindAll(this, 'render', 'close', 'savePassword', 'passwordSuccess', 'getSmsSuccess', 'getSmsError', 'passwordError', 'bindEvents'， 'clearPassword', 'oldPasswordValid', 'newPasswordValid', 'confirmPasswordValid');
         this.isClosed = false;
         this.field = [
             new BaseField({
@@ -13,7 +13,7 @@ var MyPagePasswordView = BaseFormView.extend({
                 fieldId: "oldPassword",
                 fieldType: "text",
                 mandatory: true,
-                validatorFunction: oldPasswordValid,
+                validatorFunction: this.oldPasswordValid,
                 modelAttr: "oldPassword"
             }),
             new BaseField({
@@ -21,7 +21,7 @@ var MyPagePasswordView = BaseFormView.extend({
                 fieldId: "newPassword",
                 fieldType: "text",
                 mandatory: true,
-                validatorFunction: newPasswordValid,
+                validatorFunction: this.newPasswordValid,
                 modelAttr: "newPassword"
             }),
             new BaseField({
@@ -29,7 +29,7 @@ var MyPagePasswordView = BaseFormView.extend({
                 fieldId: "confirmPassword",
                 fieldType: "text",
                 mandatory: true,
-                validatorFunction: confirmPasswordValid,
+                validatorFunction: this.confirmPasswordValid,
                 modelAttr: "confirmNewPassword"
             }),
             new BaseField({
@@ -58,6 +58,9 @@ var MyPagePasswordView = BaseFormView.extend({
             $("#getAuthCodeNote").html("短信发送中...");
             $("#getAuthCode").prop("disable", true);
         });
+
+        $("#reset_password").on('click', this.clearPassword);
+        BaseFormView.prototype.bindEvents.call(this);
     },
     getSmsSuccess: function () {
         $("#getAuthCodeNote").html("短信发送成功, 请确认短信。");
@@ -71,15 +74,6 @@ var MyPagePasswordView = BaseFormView.extend({
         app.userManager.changePassword(this.model, {
             "success": this.passwordSuccess,
             "error": this.passwordError
-        });
-    },
-    passwordSuccess: function () {
-        Info.displayNotice("密码修改成功");
-        app.navigate('/temp', {
-            replace: true
-        });
-        app.navigate("mypage/setting", {
-            trigger: true
         });
     },
     oldPasswordValid: function (val) {
@@ -109,8 +103,23 @@ var MyPagePasswordView = BaseFormView.extend({
         }
         return {valid:true};
     },
+    passwordSuccess: function () {
+        Info.displayNotice("密码修改成功");
+        app.navigate('/temp', {
+            replace: true
+        });
+        app.navigate("mypage/setting", {
+            trigger: true
+        });
+    },
     passwordError: function () {
         Info.displayNotice("密码修改失败，请重试");
+        this.clearPassword();
+    },
+    clearPassword: function () {
+        $("#oldPassword").val("");
+        $("#newPassword").val("");
+        $("#confirmPassword").val("");
     },
     close: function (){
 

@@ -32,10 +32,6 @@ Array.prototype.compare = function (array) {
     return true;
 }; 
 
-Object.prototype.set = function (key, value) {
-    this[key] = value;
-};
-
 Backbone.Model.prototype.overrideUrl = function (urlRootOverride) {
     if (typeof urlRootOverride !== 'undefined') {
         this.urlRoot = urlRootOverride;
