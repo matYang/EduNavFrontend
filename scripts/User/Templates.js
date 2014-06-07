@@ -179,10 +179,6 @@
                 
                 <div class="sign_up_title">
                     <h2 class="fleft">用户注册</h2>
-                    <div class="fright">
-                        <span class="active"><b>1</b>填写信息</span>
-                        <span class=""><b>2</b>完成验证</span>
-                    </div>
                 </div>
                 <div class="account">
                     <dl class="clearfix">

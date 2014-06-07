@@ -33,7 +33,6 @@ var BaseFormView = Backbone.View.extend({
         this.fieldNum = this.fields.length;
         var i, that = this;
         for ( i = 0; i < this.fieldNum; i++ ) {
-
             var field = this.fields[i], $field = $("#"+ field.get("fieldId")), fieldType = field.get("type");
             if (fieldType === "file") {
                 var preview = $("#"+field.get("previewId"));
@@ -48,9 +47,9 @@ var BaseFormView = Backbone.View.extend({
                     if (e.data.fieldType === "number" && !(e.which >= 48 && e.which <= 57) && !(e.which >= 96 && e.which <= 105) && e.which > 13) {
                         e.preventDefault();
                     }
-                }).on('blur', function (e) {
+                }).on('blur', {"field": field}, function (e) {
                     var val = $(this).val();
-                    that.fields[Utilities.toInt($(this).data("field-index"))].testValue(val, $(e.target));
+                    e.data.field.testValue(val, $(e.target));
                 });
             } else {
                 $field.on("change", {"field":field}, function (e) {
@@ -143,7 +142,7 @@ var BaseFormView = Backbone.View.extend({
     },
     bindFieldToModel: function (field) {
         var that = this, value = this.isBB ? this.model.get(field.get("modelAttr")) : this.model[field.get("modelAttr")];
-        var $field = $("#"+field.get("fieldId")).on("change", {"field":field }, function (e) {
+            var $field = $("#"+field.get("fieldId")).on("change", {"field":field }, function (e) {
             if (that.isBB) {
                 that.model.set(e.data.field.get("modelAttr"), $(this).val());
             } else {
@@ -194,6 +193,7 @@ var BaseField = Backbone.Model.extend({
         this.set("validatorContainer", params.validatorContainer);
         this.set("name", params.name);
         this.set("$preview", params.$preview);
+        this.validatorFunction = params.validatorFunction || this.validatorFunction;
     },
 
     buildValidatorDiv: function (valid, type, text) {
