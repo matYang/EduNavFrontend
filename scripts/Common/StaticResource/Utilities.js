@@ -6,15 +6,15 @@ var Utilities = {
     emailRegex: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 
     //converts an date object to a human-friendly data string, eg: 明天，下周二，5月3号
-    getDateString: function (targetDate, flag) {
+    getDateString: function (targetDate, relativeFlag) {
         if (!targetDate) {
             Info.log("Utilities::getDateString invalid parameter, null or undefined");
             targetDate = new Date ();
         }
         var tempDate = new Date (), curDate = new Date (targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate()), today = new Date (tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate()), dayDifference = Math.floor((curDate.getTime() - today.getTime()) / Constants.miliSecInDay), time = "";
 
-        if (flag) {
-            time = targetDate.getHours() + "点";
+        if (!relativeFlag) {
+            return (curDate.getMonth() + 1) + "月" + curDate.getDate() + "日";
         }
 
         if (dayDifference === 0) {

@@ -137,16 +137,16 @@
 
 <script type="text/template" id="tpl_searchResultEntry" >
     <div class="searchResultEntry">
-        <div><img src=""><span>新东方</span></div>
+        <div><img src=""><span><%= instName %></span></div>
         <div class="col1">
-            <p class="title">初二提高英语暑假班</p>
-            <p class="desc"><span>适合学员:</span> 英语成绩中等或中等偏下的新初二学员</p>
-            <p class="desc"><span>开课时间:</span> 6月25日</p>
-            <p class="desc"><span>地址:</span>秦淮区文明路156号南都大厦12层5号</p>
+            <p class="title"><%= courseName %></p>
+            <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
+            <p class="desc"><span>开课时间:</span> <%= startTime %> - <%= finishTime %></p>
+            <p class="desc"><span>地址:</span> <%= location %> </p>
         </div>
         <div class="col2">
-            <p class="classHour">共<span>12</span>课时</p>
-            <p class="price"><span class="sign">￥</span>1999</p>
+            <p class="classHour">共<span><%= courseHourNum %></span>课时</p>
+            <p class="price"><span class="sign">￥</span><%= price %></p>
             <div class="cashback">50元</div>
         </div>
         <div class="col3">
@@ -166,8 +166,8 @@
 
 <script type="text/template" id="tpl_compareWidgetEntry" >
     <div class="compareEntry">
-        <p class="desc">【新东方】初二提高英语暑假班</p>
-        <p class="price"><span class="sign">￥</span>1999</p>
+        <p class="desc">【<%= instName %>】<%= courseName %></p>
+        <p class="price"><span class="sign">￥</span><%= price %></p>
         <div class="remove"></div>
     </div>
 </script>
@@ -307,15 +307,15 @@
 <script type="text/template" id="tpl_booking_entry">
     <div class="bookingEntry">
         <div class="bookingEntryTime">
-            <div class="date">6月29日</div>
-            <div class="dayOfWeek">星期日</div>
+            <div class="date"><%= course.startTime %></div>
+            <div class="dayOfWeek"><%= course.studyDays %> <%= course.studyDaysNote %></div>
         </div>
         <div class="bookingEntryDetail">
-            <p class="title">【新东方】初二提高英语暑假班</p>
-            <p class="address">地址：秦淮区文明路156号南都大厦12层5号</p>
+            <p class="title">【<%= course.instName %>】<%= course.courseName %></p>
+            <p class="address">地址：<%= course.location %></p>
         </div>
         <div class="bookingEntryPrice">
-            <span class="sign">￥</span>1999
+            <span class="sign">￥</span><%= price %>
         </div>
         <div class="bookingEntryState">
             <span class="sign pending"></span>等待确认
@@ -336,7 +336,7 @@
                 </label>
             </div>
             <div class="right">
-                <p class="price">总金额：<span class="sign">￥</span>1999</p>
+                <p class="price">总金额：<span class="sign">￥</span><%= price %></p>
             </div>
         </div>
         <div class="row1">
@@ -345,43 +345,40 @@
                 <p><span>2014-6-13</span> <span>11:02</span> <span>您的订单正在和新东方教育确认</span></p>
                 <p><span>2014-6-12</span> <span>12:02</span> <span>您的订单已经提交</span></p>
             </div>
-            <div class="right">
-                <p class="price">总金额：<span class="sign">￥</span>1999</p>
-            </div>
         </div>
         <div class="row2">
             <span class="title">
                 六级考前词汇串讲班
             </span>
-            <label>教育机构：</label>新东方教育
-            <label>上课地址：</label>xxx
-            <label>咨询电话：</label>010-5837900
+            <label>教育机构：</label><%= course.instName %>
+            <label>上课地址：</label><%= course.location %>
+            <label>咨询电话：</label><%= course.phone %>
         </div>
         <div class="row3">
             <span class="title">入学信息</span>
             <div class="left">
                 <label>
-                    开课时间: 5月13日-6月13日
+                    开课时间: <%= course.startTime %> - <%= course.finishTime %>
                 </label>
                 <label>
-                    班级类型: 小于30人
+                    班级类型: <%= course.classModel %>
                 </label>
                 <label>
-                    联系方式: 13567890909
+                    联系方式: <%= phone %>
                 </label>
                 <label>
-                    入学人姓名: 王晓伟
+                    入学人姓名: <%= name %>
                 </label>
             </div>
             <div class="right">
                 <label>
-                    上课时间: 08:00-13:00
+                    上课时间: <%= dailyStartTime %> - <%= dailyFinishTime %>
                 </label>
                 <label>
                     预定人数: 1人
                 </label>
                 <label>
-                    邮箱: djxiaoniud@153.com
+                    邮箱: <%= email %>
                 </label>
             </div>
         </div>
@@ -512,20 +509,20 @@
         </div>
         <div class="column2">
             <span class="title">
-                六级考前词汇串讲班
+                <%= course.courseName %>
             </span>
-            <label>教育机构: </label>新东方教育
-            <label>上课地址: </label>xxx
-            <label>咨询电话: </label>010-5837900
-            <label>开课时间: </label>5月13日-6月13日
-            <label>班级类型: </label>小于30人
-            <label>预约报道: </label>6月5日 (过时您的特价订单将失效)
-            <label>费用总计: </label> ￥<span class="price">2490</span> (到校付款)
+            <label>教育机构: </label><%= course.instName %>
+            <label>上课地址: </label><%= course.location %>
+            <label>咨询电话: </label><%= course.phone %>
+            <label>开课时间: </label><%= course.startTime %>-<%= course.finishTime %>
+            <label>班级类型: </label><%= course.classModel %>
+            <label>预约报道: </label><%= scheduledTime %> (过时您的特价订单将失效)
+            <label>费用总计: </label> ￥<span class="price"><%= price %></span> (到校付款)
 
             <p class="extra"><span class="red">*</span>到达学校后，请您凭入学人的有效证件办理入学</p>
         </div>
         <div class="column3">
-            <p class="bonus">积分奖励，成功入学后，您将获得648积分，结账后7个工作日内计入您的上课书包</p>
+            <p class="bonus">积分奖励，成功入学后，您将获得<%= price %>积分，结账后7个工作日内计入您的上课书包</p>
             <span class="viewMore">查看其他课程</span>
         </div>
     </div>
@@ -536,11 +533,11 @@
     <div class="banner">
         <div class="row1">
             <div class="left">
-                <dt>初二提高英语暑假班</dt><dd>南京新东方<span class="bigv"></span></dd>
-                <dd>适合学员：词汇基础比较薄弱的学生</dd>
+                <dt><%= courseName %></dt><dd><%= wholeName %><span class="bigv"></span></dd>
+                <dd>适合学员：<%= suitableStudent %></dd>
             </div>
             <div class="right">
-                <div class="price"><span class="sign">￥</span>1999</div>
+                <div class="price"><span class="sign">￥</span><%= price %></div>
                 <div class="cashback">50元</div>
                 <input type="button" id="bookNow" value="立即预定" class="" />
             </div>
@@ -563,15 +560,15 @@
         <div class="course_content">
             <div id="content_basic">
                 <dt>基本信息</dt>
-                <dd><label>上课日期: </label>6月13日-7月13日；每周三、六(法定节假日除外)</dd>
-                <dd><label>上课时间: </label>09:00-14:00</dd>
-                <dd><label>上课课时: </label>21课时, 每课时2小时</dd>
-                <dd><label>班级类型: </label>25人</dd>
-                <dd><label>开班要求: </label>至少16人开班</dd>
+                <dd><label>上课日期: </label><%= startTime %>-<%= finishTime %>；<%= studyDaysNote %></dd>
+                <dd><label>上课时间: </label><%= dailyStartTime %>-<%= dailyFinishTime %></dd>
+                <dd><label>上课课时: </label><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</dd>
+                <dd><label>班级类型: </label><%= seatsTotal %>人</dd>
+                <dd><label>开班要求: </label>至少<%= %>人开班</dd>
                 <dd><label>报名日期: </label>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</dd>
-                <dd><label>机构全称: </label>南京新东方</dd>
-                <dd><label>机构荣誉: </label>纳斯达克上市</dd>
-                <dd><label>机构概况: </label>从1989年致力于英语雅思教学</dd>
+                <dd><label>机构全称: </label><%= wholeName %></dd>
+                <dd><label>机构荣誉: </label><%= partnerQualification %></dd>
+                <dd><label>机构概况: </label><%= partnerIntro %></dd>
                 <dd>
                     <label>老师介绍: </label>
                     <div class="teacherInfo">
@@ -588,33 +585,33 @@
             </div>
             <div id="content_teaching">
                 <dt>教学信息</dt>
-                <dd><label>先修知识: </label>基础英语语法</dd>
-                <dd><label>教学目标: </label>1.对初一英语知识点打到灵活运用层次, 夯实初一知识  2.对初二秋季知识点达到识记和理解层次, 在新学期中占得先机</dd>
-                <dd><label>上课形式: </label>分组学习; 分组讨论</dd>
-                <dd><label>教材介绍: </label>自编教材; 新东方内训特编</dd>
-                <dd><label>教材费用: </label>免费</dd>
+                <dd><label>先修知识: </label><%= prerequest %></dd>
+                <dd><label>教学目标: </label><%= courseIntro %></dd>
+                <dd><label>上课形式: </label><%= teachingMethods %></dd>
+                <dd><label>教材介绍: </label><%= teachingMethodsIntro %></dd>
+                <dd><label>教材费用: </label><%= teachingMaterialCost %></dd>
             </div>
             <div id="content_etc">
                 <dt>教学补充</dt>
-                <dd><label>课件下载: </label></dd>
-                <dd><label>题库支持: </label></dd>
+                <dd><label>课件下载: </label><%= hasDownloadMaterials %></dd>
+                <dd><label>题库支持: </label><%= questionBank %></dd>
                 <dd><label>质量保证: </label></dd>
                 <dd><label>讲练结合: </label></dd>
-                <dd><label>阶段测评: </label></dd>
+                <dd><label>阶段测评: </label><%= quiz %></dd>
                 <dd><label>课后答疑: </label></dd>
-                <dd><label>课后作业: </label></dd>
-                <dd><label>作业批改: </label></dd>
+                <dd><label>课后作业: </label><%= provideAssignments %></dd>
+                <dd><label>作业批改: </label><%= provideMarking %></dd>
             </div>
             <div id="content_guarantee">
                 <dt>教学保障</dt>
-                <dd><label>签约保过: </label>基础英语语法</dd>
-                <dd><label>高分奖励: </label>1.对初一英语知识点打到灵活运用层次, 夯实初一知识  2.对初二秋季知识点达到识记和理解层次, 在新学期中占得先机</dd>
+                <dd><label>签约保过: </label></dd>
+                <dd><label>高分奖励: </label><%= highScoreReward %></dd>
             </div>
             <div id="content_service">
                 <dt>特色服务</dt>
-                <dd><label>结业证书: </label>基础英语语法</dd>
-                <dd><label>课后互动: </label>支持QQ学习群，支持每周英语角</dd>
-                <dd><label>赠送服务: </label>免费获得教材一份; 单次速记手册</dd>
+                <dd><label>结业证书: </label><%= certification %></dd>
+                <dd><label>课后互动: </label><%= extracurricularIntro %></dd>
+                <dd><label>赠送服务: </label><%= extracurricularIntro %></dd>
             </div>
         </div>
     </div>

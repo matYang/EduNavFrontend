@@ -3,9 +3,10 @@ var NewBookingView = BaseFormView.extend({
     form: false,
     initialize: function (params) {
         this.isClosed = false;
-        _.bindAll(this, "render", "bindEvents", "close");
+        _.bindAll(this, "render", "bindEvents", "bookingSuccess", "close");
         app.viewRegistration.register(this);
         this.template = _.template(tpl.get("newBooking"));
+        this.finishTemplate = _.template(tpl.get("booking_submitted"));
         this.field = [
             new BaseField({
                 name: "入学人姓名",
@@ -112,14 +113,15 @@ var NewBookingView = BaseFormView.extend({
         });
         $("initBooking").on("click", function(){
             app.userManager.newBooking(this.model. {
-                success: function(){
-                    app.navigate("mypage/booking/" + id, true);
-                },
+                success: this.bookingSuccess,
                 error: function(){
 
                 }
             });
         });
+    },
+    bookingSuccess: function (booking) {
+        this.$el.empty().append(this.finishTemplate(booking._toJSON()));
     },
     close: function () {
         if (!this.isClosed) {

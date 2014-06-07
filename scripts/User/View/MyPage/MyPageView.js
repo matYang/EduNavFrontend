@@ -42,6 +42,12 @@ var MyPageView = Backbone.View.extend({
                 break;
             case "account":
                 break;
+            case "setting" :
+                this.activeChildView = new MyPageSettingView();
+                break
+            case "password" :
+                this.activeChildView = new MyPagePasswordView();
+                break;
             case "dashboard":
             default:
                 this.activeChildView = new MyPageDashboardView();        
@@ -53,6 +59,14 @@ var MyPageView = Backbone.View.extend({
     },  
 
     bindEvents: function () {
+        var that = this;
+        $("#bookingManage").on("click", function () {
+            if (that.query !== booking) {
+                that.query = "booking";
+                app.navigate("mypage/booking");
+                that.createChildView();
+            }
+        });
     },
     close: function () {
         if (!this.isClosed) {
