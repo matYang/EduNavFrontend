@@ -23,10 +23,12 @@ var AdminUserView = Backbone.View.extend({
 	},
 	bindEvents: function () {
 		$("#editUser").on("click", function () {
-			
+			$("#adminUserForm").find(".edit").hide();
+            $("#adminUserForm").find(".detail").show();   
 		});
 		$("#viewUser").on("click", function () {
-
+            $("#adminUserForm").find(".edit").show();
+            $("#adminUserForm").find(".detail").hide(); 
 		});
 	},
 	cloes: function() {

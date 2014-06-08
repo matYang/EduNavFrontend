@@ -40,8 +40,6 @@ var MyPageView = Backbone.View.extend({
             case "booking": 
                 this.activeChildView = new MyPageBookingView();
                 break;
-            case "account":
-                break;
             case "setting" :
                 this.activeChildView = new MyPageSettingView();
                 break
@@ -72,8 +70,7 @@ var MyPageView = Backbone.View.extend({
         if (!this.isClosed) {
             if (this.activeChildView) {
                 this.activeChildView.close();
-            }
-            
+            }   
             this.$el.empty();
             this.isClosed = true;
         }

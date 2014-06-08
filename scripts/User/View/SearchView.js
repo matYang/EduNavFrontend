@@ -1,5 +1,8 @@
 var SearchView = Backbone.View.extend({
     el: '#content',
+    categoryTemplate: ["<li data-id='", undefined, "'>", undefined,"</li>"],
+    subCategoryTemplate: ["<span data-id='", undefined ,"'>", undefined,"</span>"],
+    subCategoryContainerTemplate: ["<div data-id='", ,"'class='hidden subCategoryList'><label>类<s></s>别：</label><span data-id='noreq'>不限</span>", undefined,"</div>"]
     initialize: function (params) {
         _.bindAll(this, 'render', 'renderSearchResults', 'courseSearch', 'bindEvents', 'close');
         app.viewRegistration.register(this);
@@ -7,20 +10,25 @@ var SearchView = Backbone.View.extend({
         this.rendered = false;
         this.user = app.sessionManager.sessionModel;
         //define the template
-        this.template = _.template(tpl.get('search'));
-        this.currentPage = 0;
-        this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
         if (params) {
             try {
                 this.searchRepresentation.castFromString(params.searchKey);
+                app.storage.setSearchRepresentationCache(this.searchRepresentation);
             } catch (e) {
-
-                app.navigate("search", true);
+                app.navigate("search");
+                this.searchRepresentation = new CourseSearchRepresentation();
             }
-            app.storage.setSearchRepresentationCache(this.searchRepresentation);
+        } else {
+            this.searchRepresentation = new CourseSearchRepresentation();
         }
-        //injecting the template
+        this.template = _.template(tpl.get('search'));
         this.$el.append(this.template);
+        app.generalManager.fetchCategories({
+            success: renderCategories;
+        });
+        this.currentPage = 0;
+        this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
+        //injecting the template
         //TODO force target type to be all
         this.render();
         this.compareWidgetView = new CompareWidgetView();
@@ -32,23 +40,6 @@ var SearchView = Backbone.View.extend({
             clickable: false
         };
         // this.map = app.storage.getViewCache("MapView", mapParams);
-
-        $("#dateStart").datepicker({
-            buttonImageOnly: true,
-            buttonImage: "calendar.gif",
-            buttonText: "Calendar",
-            minDate: new Date (),
-            onSelect: function (text, inst) {
-                var d = new Date ();
-                d.setDate(inst.selectedDay);
-                d.setMonth(inst.selectedMonth);
-                d.setYear(inst.selectedYear);
-                me.searchRepresentation.set("date", d);
-                $(this).val(Utilities.getDateString(me.searchRepresentation.get("date")));
-            }
-        });
-
-        this.courseSearch();
         this.bindEvents();
         this.rendered = true;
     },
@@ -64,9 +55,49 @@ var SearchView = Backbone.View.extend({
             this.searchResultView.allMessages.reset(array);
             this.searchResultView.messages.reset(array);
             this.searchResultView.render();
+            this.renderPriceRange(array);
         }
     },
-
+    renderCategories: function (categories){
+        this.categories = categories;
+        var len = categories.length, cbuf = [], scbuf = [];
+        if (!this.searchRepresentation.get("category")) {
+            this.searchRepresentation.set("category", Object.keys[categories[0]]);
+        }
+        if (!this.searchRepresentation.get("subCategory")) {
+            var sub = categories[]
+            for ( var c = 0; c < len; c++) {
+                var key = Object.keys(categories[c])[0];
+                if ( key === this.searchRepresentation.get("category")) {
+                    this.searchRepresentation.set("subCategory", categories[c][key][0]);
+                }
+            }
+            this.searchRepresentation.set("category", Object.keys[categories[0]]);
+        }
+        for ( var i = 0; i < len; i ++) {
+            obj = this.categories[i];
+            for ( var attr in obj ) {
+                this.categoryTemplate[1] = attr;
+                this.categoryTemplate[3] = attr;
+                cbuf.push(this.categoryTemplate.join(""));
+                var scs = obj[attr], len2 = scs.length;
+                for (var j = 0; j < len2; j++ ) {
+                    this.categoryTemplate[1] = scs[j];
+                    this.categoryTemplate[3] = scs[j];
+                    scbuf.push(this.categoryTemplate.join(""));
+                }
+                this.subCategoryContainerTemplate[1] = attr;
+                this.subCategoryContainerTemplate[3] = scbuf.join("");
+                $("search_subCategory").append(this.subCategoryContainerTemplate.join(""));
+                scbuf = [];
+            }
+        }
+        $("#search_category").append(cbuf.join(""));
+        $("#search_category").find("li[data-id="+this.searchRepresentation.get("category")+"]").addClass("active");
+        $("#search_subCategory").find("div[data-id="+this.searchRepresentation.get("subCategory")+"]").removeClass("hidden");
+        $("div[data-id="+this.searchRepresentation.get("category")+"]").find("span[data-id="+this.searchRepresentation.get("subCategory")+"]").addClass("active");
+        this.courseSearch();
+    },
     renderError: function () {
         this.$resultp = this.$resultp || $("#searchResultDisplayPanel");
         this.$resultp.empty().append("<div class = 'noMessage'>暂无消息</div>");
@@ -84,23 +115,11 @@ var SearchView = Backbone.View.extend({
 
     bindEvents: function () {
         var that = this;
-        this.$search = $("#search").on("click", function (e) {
-            that.courseSearch();
-        });
         $("#searchInput_id").on("change", function() {
             that.sr.set("courseId", Utilities.toInt($(this).val()) );
         });
         $("#searchInput_schoolName").on("change", function() {
             that.sr.set("institutionName", $(this).val());
-        });
-        $("#searchInput_category").on("change", function() {
-            var category = $(this).val();
-            that.sr.set("category", category);
-            that.sr.set("subCategory", undefined);
-            that.renderSubCategory(category);
-        });
-        $("#searchInput_subCategory").on("change", function() {
-            that.sr.set("subCategory", $(this).val());
         });
         $("#searchInput_city").on("change", function() {
             var city = $(this).val();
@@ -112,26 +131,51 @@ var SearchView = Backbone.View.extend({
             that.sr.set("district", $(this).val());
         });
     },
-
+    bindSearchEvents: function () {
+        var that = this;
+        $("#search_category").on("click", "li", function (e) {
+            var dataId = $(e.target).data("id");
+            $(e.delegateTarget).children(".active").removeClass("active");
+            $(this).addClass("active");
+            $("#search_subCategory").children("div.hidden").addClass("hidden");
+            $("#search_subCategory").children(dataId).removeClass("hidden");
+            that.sr.set("category", dataId);
+        });
+        $("#search_subCategory").on("click", "span", function (e) {
+            that.sr.set("category", $("#search_category").find(".active").data("id"));
+            that.sr.set("subCategory", $(this).data("id"));
+            that.courseSearch();
+        });
+        $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
+            that.setSearchCriteria($(e.delegateTarget), $(e.target).data("id"));
+        });
+    },
+    setSearchCriteria: function ($filter, dataId) {
+        $filter.find(".active").removeClass("active");
+        $filter.find("span[data-id=" + dataId + "]").addClass("active");
+        var criteria = $filter.attr("id");
+        
+    },
+    renderPriceRange: function(){
+        var max = this.allMessages.max(this.comparePrice);
+        var min = this.allMessages.min(this.comparePrice);
+    },
+    comparePrice: function(course){
+        return course.get("price");
+    },
     close: function () {
         if (!this.isClosed) {
             //removing all event handlers
             if (this.compareWidgetView) {
                 this.compareWidgetView.close();
             }
-            if (this.rendered) {
-                if (this.map) {
-                    this.map.close();
-                }
-                if (this.searchResultView) {
-                    this.searchResultView.close();
-                }
+            if (this.searchResultView) {
+                this.searchResultView.close();
             }
-
-            //get ride of the view
-            this.unbind();
+            if (this.map) {
+                this.map.close();
+            }
             this.$el.empty();
-
             this.isClosed = true;
         }
     } 

@@ -64,74 +64,141 @@
 
 <script type="text/template" id="tpl_search">
     <div class="fleft search">
-        <div id="searchPanel">
-            <div id="search_category">
-            </div>
-            <div id="search_subCategory">
-                <div data-id="category_math" class="active">
+                <!--筛选框-->
+                <div id="searchPanel" class="filter">
+                    <ul id="search_category"  class="tab">
+                        <li class="active">初中辅导</li>
+                        <li>高中辅导</li>
+                        <li>英语提升</li>
+                        <li>英语考级</li>
+                        <li>出国留学</li>
+                        <li>小语种</li>
+                        <li>从业资格</li>
+                        <li>疯狂考研</li>
+                        <li>公务员</li>
+                    </ul>
+                    
+                    <div class="filter_content">
+                        <div id="search_subCategory" class="filterCriteria">
+                            <div>
+                                <label>类<s></s>别：</label>
+                                <span data-id="noreq" >不限</span>
+                                <span data-id="1">初一</span>
+                                <span data-id="2" class="active">初二</span>
+                                <span data-id="3">初三</span>
+                            </div>
+                            <!-- <p><span>不限</span><span>语文</span><span>数学</span><span class="active">英语</span><span>物理</span><span>化学</span><span>地理</span></p> -->
+                        </div>
+                        <div id="locationFilter" class="filterCriteria">
+                            <label>上课地点：</label>
+                            <span data-id="noreq" class="active">不限</span>
+                        </div>
+                        <div id="startDateFilter" class="filterCriteria">
+                            <label>开课时间：</label>
+                            <span data-id="noreq" class="active">不限</span>
+                            <span data-id="thisMonth">当月</span>
+                            <span data-id="nextMonth">下月</span>
+                            <span data-id="twoMonthsAfter">下下月</span>
+                        </div>
+                        <div id="timeFilter" class="filterCriteria">
+                            <label>上课时间：</label>
+                            <span data-id="noreq" class="active">不限</span>
+                            <span data-id="morning">上午</span>
+                            <span data-id="afternoon">下午</span>
+                            <span data-id="night">晚上</span>
+                            <span data-id="morning_weekday">平日上午</span>
+                            <span data-id="afternoon_weekday">平日下午</span>
+                            <span data-id="night_weekday">平日晚上</span>
+                            <span data-id="morning_weekend">周末上午</span>
+                            <span data-id="afternoon_weekend">周末下午</span>
+                            <span data-id="night_weekend">周末晚上</span>
+                        </div>
+                        <div id="classSizeFilter" class="filterCriteria">
+                            <label>班级类型：</label>
+                            <span data-id="noreq" class="active">不限</span>
+                            <span data-id="small">小于6人</span>
+                            <span data-id="middle">6-30人</span>
+                            <span data-id="large">大于30人</span>
+                        </div>
+                        <div id="priceFilter" class="filterCriteria">
+                            <label>课程费用：</label>
+                            <span id="noreq" class="active">不限</span>
+                            <span data-id="499">~499</span>
+                            <span data-id="500-999">500~999</span>
+                            <span data-id="1000-1499">1000~1499</span>
+                            <span data-id="1500-1999">1500~1999</span>
+                            <span data-id="2000">2000以上</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div id="filter">
-                <div id="locationFilter" class="filterCriteria">
-                    <label>开课时间</label>
-                    <span data-id="noreq" class="active">不限</span>
+                
+                <!--筛选结果-->
+                <div id="searchReqs" class="blank1">
+                    <span>10个课程中满足</span>
+                    <a href="#" title="取消">初中辅导</a>
+                    <a href="#" title="取消">英语</a>
                 </div>
-                <div id="startDateFilter" class="filterCriteria">
-                    <label>开课时间</label>
-                    <span data-id="noreq" class="active">不限</span>
-                    <span data-id="thisMonth">当月</span>
-                    <span data-id="nextMonth">下月</span>
-                    <span data-id="twoMonthsAfter">下下月</span>
-                </div>
-                <div id="timeFilter" class="filterCriteria">
-                    <label>上课时间</label>
-                    <span data-id="noreq" class="active">不限</span>
-                    <span data-id="morning">上午</span>
-                    <span data-id="afternoon">下午</span>
-                    <span data-id="night">晚上</span>
-                    <span data-id="morning_weekday">上午</span>
-                    <span data-id="afternoon_weekday">下午</span>
-                    <span data-id="night_weekday">晚上</span>
-                    <span data-id="morning_weekend">上午</span>
-                    <span data-id="afternoon_weekend">下午</span>
-                    <span data-id="night_weekend">晚上</span>
-                </div>
-                <div id="classSizeFilter" class="filterCriteria">
-                    <label>班级类型</label>
-                    <span data-id="noreq" class="active">不限</span>
-                    <span data-id="small">小于6人</span>
-                    <span data-id="middle">6-30人</span>
-                    <span data-id="large">大于30人</span>
-                </div>
-                <div id="priceFilter" class="filterCriteria">
-                    <label>课程费用</label>
-                    <span id="noreq" class="active">不限</span>
-                    <span data-id="499">~499</span>
-                    <span data-id="500-999">500~999</span>
-                    <span data-id="1000-1499">1000~1499</span>
-                    <span data-id="1500-1999">1500~1999</span>
-                    <span data-id="2000">2000以上</span>
-                </div>
-            </div>
-        </div>
-        <div id="searchReqs"></div>
-        <div id="searchResultSorter">
-            <div class="sorter">
-                <div id="editorPick"></div>
-                <div id="time"></div>
-                <div id="price"></div>
-            </div>
-            <div class="filter">
-                当前促销：
-                <input type="checkbox" name="cashback" />返现
-                <input type="checkbox" name="flashdeal" />限时抢
-            </div>
-        </div>
-        <div id="searchResultDisplayPanel">
-        </div>
-        <div id="CompareWidgetContainer"></div>
-        <div id="mainMap"></div>
+                
+                <div class="search_result clearfix blank">
+                    
+                    <!--左栏开始-->
+                    <div class="fleft w_730">
+                        <div id="searchResultSorter" class="clearfix">
+                            <ul class="sorter">
+                                <li id="editorPick" class="active">爱上课推荐</li>
+                                <li class="line"></li>
+                                <li id="time">时间↑</li>
+                                <li class="line"></li>
+                                <li id="price">价格↑</li>
+                            </ul>
+                            <div class="fright">
+                                当前促销：<input type="checkbox" name="cashback" /><label>返现</label>
+                                <input type="checkbox" name="flashdeal" /><label>限时抢</label>
 
+                            </div>
+                        </div><!--searchResultSorter end-->
+                        <div id="searchResultDisplayPanel">
+                        </div>
+                        <div id="courseSearchResultNavigator" class="page blank1 clearfix">
+   
+                        </div>
+                    </div>
+                    
+                    <!--右栏开始-->
+                    <div class="fright w_250">
+                        <div id="CompareWidgetContainer">
+                            <div class="compareTitle">对比框</div>
+                            <div id="compareItems">
+                                <div class="compareEntry">
+                                    <p class="desc"><span>【新东方】</span><a href="#">初二提高英语暑假班</a></p>
+                                    <p class="price"><span class="sign">￥</span>1999</p>
+                                    <div class="remove"> </div>
+                                </div>
+                                <div class="compareEntry">
+                                    <p class="desc"><span>【新东方】</span><a href="#">初二提高英语暑假班</a></p>
+                                    <p class="price"><span class="sign">￥</span>1999</p>
+                                    <div class="remove"> </div>
+                                </div>
+                                <div class="compareEntry">
+                                    <p class="desc"><span>【新东方】</span><a href="#">初二提高英语暑假班</a></p>
+                                    <p class="price"><span class="sign">￥</span>1999</p>
+                                    <div class="remove"></div>
+                                </div>
+                                <div class="compareEntry">
+                                    <p class="desc"><span>【新东方】</span><a href="#">初二提高英语暑假班</a></p>
+                                    <p class="price"><span class="sign">￥</span>1999</p>
+                                    <div class="remove"> </div>
+                                </div>
+                            </div>
+                            <div class="btns">
+                                <input type="button" value="开始对比" id="compare">
+                            </div>
+                        </div>
+                        <div id="mainMap" class="blank1">
+                            <img src="images/map.jpg"/>
+                        </div>
+                    </div>
+                </div><!--search_result end-->
     </div>
 </script>
 

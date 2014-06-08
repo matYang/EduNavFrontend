@@ -305,32 +305,17 @@
 </script>
 
 <script type="text/templates" id="tpl_adminUser">
-    <label>
-        userId: <%= userId %>
-    </label>
-    <label>
-        name: <%= name %>
-    </label>
-    <label>
-        phone: <%= phone %>
-    </label>
-    <label>
-        email: <%= email %>
-    </label>
-    <label>
-        balance: <%= balance %>
-    </label>
-    <label>
-        credit: <%= credit %>
-    </label>
-    <label>
-        status: <%= status %>
-    </label>    
-    <label>
-        coupons: 
-        <div id="adminUserCouponsContainer">
-        </div>
-    </label>
+    <form id="">
+    <label>userId: <span><%= userId %></span><span class="edit"><input type="hidden" name="userId"/ value="<%= userId %>"></span></label>
+    <label>name: <span class="detail"><%= name %></span><span class="edit"><input type="text" name="name"/></span></label>  
+    <label>email: <span class="detail"><%= name %></span><span class="edit"><input type="text" name="email"/></span></label>  
+    <span class="detail">
+        <label>
+            coupons: 
+            <div id="adminUserCouponsContainer">
+            </div>
+        </label>
+    </span>
 </script>
 
 <script type="text/templates" id="tpl_adminUserCouponRow">
