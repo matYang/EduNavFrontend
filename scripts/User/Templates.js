@@ -67,27 +67,10 @@
                 <!--筛选框-->
                 <div id="searchPanel" class="filter">
                     <ul id="search_category"  class="tab">
-                        <li class="active">初中辅导</li>
-                        <li>高中辅导</li>
-                        <li>英语提升</li>
-                        <li>英语考级</li>
-                        <li>出国留学</li>
-                        <li>小语种</li>
-                        <li>从业资格</li>
-                        <li>疯狂考研</li>
-                        <li>公务员</li>
                     </ul>
                     
                     <div class="filter_content">
                         <div id="search_subCategory" class="filterCriteria">
-                            <div>
-                                <label>类<s></s>别：</label>
-                                <span data-id="noreq" >不限</span>
-                                <span data-id="1">初一</span>
-                                <span data-id="2" class="active">初二</span>
-                                <span data-id="3">初三</span>
-                            </div>
-                            <!-- <p><span>不限</span><span>语文</span><span>数学</span><span class="active">英语</span><span>物理</span><span>化学</span><span>地理</span></p> -->
                         </div>
                         <div id="locationFilter" class="filterCriteria">
                             <label>上课地点：</label>
@@ -133,12 +116,13 @@
                 </div>
                 
                 <!--筛选结果-->
+                <!--
                 <div id="searchReqs" class="blank1">
                     <span>10个课程中满足</span>
                     <a href="#" title="取消">初中辅导</a>
                     <a href="#" title="取消">英语</a>
                 </div>
-                
+                -->
                 <div class="search_result clearfix blank">
                     
                     <!--左栏开始-->
@@ -169,26 +153,6 @@
                         <div id="CompareWidgetContainer">
                             <div class="compareTitle">对比框</div>
                             <div id="compareItems">
-                                <div class="compareEntry">
-                                    <p class="desc"><span>【新东方】</span><a href="#">初二提高英语暑假班</a></p>
-                                    <p class="price"><span class="sign">￥</span>1999</p>
-                                    <div class="remove"> </div>
-                                </div>
-                                <div class="compareEntry">
-                                    <p class="desc"><span>【新东方】</span><a href="#">初二提高英语暑假班</a></p>
-                                    <p class="price"><span class="sign">￥</span>1999</p>
-                                    <div class="remove"> </div>
-                                </div>
-                                <div class="compareEntry">
-                                    <p class="desc"><span>【新东方】</span><a href="#">初二提高英语暑假班</a></p>
-                                    <p class="price"><span class="sign">￥</span>1999</p>
-                                    <div class="remove"></div>
-                                </div>
-                                <div class="compareEntry">
-                                    <p class="desc"><span>【新东方】</span><a href="#">初二提高英语暑假班</a></p>
-                                    <p class="price"><span class="sign">￥</span>1999</p>
-                                    <div class="remove"> </div>
-                                </div>
                             </div>
                             <div class="btns">
                                 <input type="button" value="开始对比" id="compare">
@@ -203,22 +167,28 @@
 </script>
 
 <script type="text/template" id="tpl_searchResultEntry" >
-    <div class="searchResultEntry">
-        <div><img src=""><span><%= instName %></span></div>
+    <div class="searchResultEntry clearfix">
+        <div class="pic"><img src="images/xdf.jpg" width="100" height="100"/><span>新东方</span></div>
         <div class="col1">
-            <p class="title"><%= courseName %></p>
-            <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
-            <p class="desc"><span>开课时间:</span> <%= startTime %> - <%= finishTime %></p>
-            <p class="desc"><span>地址:</span> <%= location %> </p>
+            <p class="title"><a class="F_green" href="#">初二提高英语暑假班</a></p>
+            <p class="desc"><span>适合学员:</span> 英语成绩中等或中等偏下的新初二学员</p>
+            <p class="desc"><span>开课时间:</span> 6月25日</p>
+            <p class="desc"><span>地<s></s>址:</span> 秦淮区文明路156号南都大厦12层5号</p>
         </div>
         <div class="col2">
-            <p class="classHour">共<span><%= courseHourNum %></span>课时</p>
-            <p class="price"><span class="sign">￥</span><%= price %></p>
+            <p class="classHour">共<b class="F_orange">12</b>课时</p>
+            <p class="price"><span class="sign">￥</span>1999</p>
             <div class="cashback">50元</div>
+            <div class="tip">
+                <div class="arrow"></div>
+                <div class="tip_content">
+                    用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
+                </div>
+            </div>
         </div>
         <div class="col3">
-            <div class="compare">+对比</div>
-            <div class="viewDetail">查看更多</div>
+            <div class="compare"><input class="btn_g" type="button" value="+对比"/></div>
+            <div class="viewDetail"><a class="F_green" href="#">查看更多</a></div>
         </div>
     </div>
 </script>
@@ -228,12 +198,14 @@
     <div class="compareTitle">对比框</div>
     <div id="compareItems">
     </div>
-    <input type="button" value="开始对比" id="compare">
+    <div class="btns">
+        <input type="button" value="开始对比" id="compare">
+    </div>
 </script>
 
 <script type="text/template" id="tpl_compareWidgetEntry" >
     <div class="compareEntry">
-        <p class="desc">【<%= instName %>】<%= courseName %></p>
+        <p class="desc"><span>【<%= instName %>】</span><a href="#"><%= courseName %></a></p>
         <p class="price"><span class="sign">￥</span><%= price %></p>
         <div class="remove"></div>
     </div>
