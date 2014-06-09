@@ -69,21 +69,21 @@
                     <ul id="search_category"  class="tab">
                     </ul>
                     
-                    <div class="filter_content">
+                    <div id="filterPanel" class="filter_content">
                         <div id="search_subCategory" class="filterCriteria">
                         </div>
-                        <div id="locationFilter" class="filterCriteria">
+                        <div id="filter_district" class="filterCriteria">
                             <label>上课地点：</label>
                             <span data-id="noreq" class="active">不限</span>
                         </div>
-                        <div id="startDateFilter" class="filterCriteria">
+                        <div id="filter_startTime" class="filterCriteria">
                             <label>开课时间：</label>
                             <span data-id="noreq" class="active">不限</span>
                             <span data-id="thisMonth">当月</span>
                             <span data-id="nextMonth">下月</span>
                             <span data-id="twoMonthsAfter">下下月</span>
                         </div>
-                        <div id="timeFilter" class="filterCriteria">
+                        <div id="filter_classTime" class="filterCriteria">
                             <label>上课时间：</label>
                             <span data-id="noreq" class="active">不限</span>
                             <span data-id="morning">上午</span>
@@ -96,14 +96,14 @@
                             <span data-id="afternoon_weekend">周末下午</span>
                             <span data-id="night_weekend">周末晚上</span>
                         </div>
-                        <div id="classSizeFilter" class="filterCriteria">
+                        <div id="filter_classMode" class="filterCriteria">
                             <label>班级类型：</label>
                             <span data-id="noreq" class="active">不限</span>
                             <span data-id="small">小于6人</span>
                             <span data-id="middle">6-30人</span>
                             <span data-id="large">大于30人</span>
                         </div>
-                        <div id="priceFilter" class="filterCriteria">
+                        <div id="filter_price" class="filterCriteria">
                             <label>课程费用：</label>
                             <span id="noreq" class="active">不限</span>
                             <span data-id="499">~499</span>
@@ -151,12 +151,6 @@
                     <!--右栏开始-->
                     <div class="fright w_250">
                         <div id="CompareWidgetContainer">
-                            <div class="compareTitle">对比框</div>
-                            <div id="compareItems">
-                            </div>
-                            <div class="btns">
-                                <input type="button" value="开始对比" id="compare">
-                            </div>
                         </div>
                         <div id="mainMap" class="blank1">
                             <img src="images/map.jpg"/>
