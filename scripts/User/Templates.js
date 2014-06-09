@@ -63,100 +63,98 @@
 </script>
 
 <script type="text/template" id="tpl_search">
-    <div class="fleft search">
-                <!--筛选框-->
-                <div id="searchPanel" class="filter">
-                    <ul id="search_category"  class="tab">
-                    </ul>
-                    
-                    <div id="filterPanel" class="filter_content">
-                        <div id="search_subCategory" class="filterCriteria">
-                        </div>
-                        <div id="filter_district" class="filterCriteria">
-                            <label>上课地点：</label>
-                            <span data-id="noreq" class="active">不限</span>
-                        </div>
-                        <div id="filter_startTime" class="filterCriteria">
-                            <label>开课时间：</label>
-                            <span data-id="noreq" class="active">不限</span>
-                            <span data-id="thisMonth">当月</span>
-                            <span data-id="nextMonth">下月</span>
-                            <span data-id="twoMonthsAfter">下下月</span>
-                        </div>
-                        <div id="filter_classTime" class="filterCriteria">
-                            <label>上课时间：</label>
-                            <span data-id="noreq" class="active">不限</span>
-                            <span data-id="morning">上午</span>
-                            <span data-id="afternoon">下午</span>
-                            <span data-id="night">晚上</span>
-                            <span data-id="morning_weekday">平日上午</span>
-                            <span data-id="afternoon_weekday">平日下午</span>
-                            <span data-id="night_weekday">平日晚上</span>
-                            <span data-id="morning_weekend">周末上午</span>
-                            <span data-id="afternoon_weekend">周末下午</span>
-                            <span data-id="night_weekend">周末晚上</span>
-                        </div>
-                        <div id="filter_classMode" class="filterCriteria">
-                            <label>班级类型：</label>
-                            <span data-id="noreq" class="active">不限</span>
-                            <span data-id="small">小于6人</span>
-                            <span data-id="middle">6-30人</span>
-                            <span data-id="large">大于30人</span>
-                        </div>
-                        <div id="filter_price" class="filterCriteria">
-                            <label>课程费用：</label>
-                            <span id="noreq" class="active">不限</span>
-                            <span data-id="499">~499</span>
-                            <span data-id="500-999">500~999</span>
-                            <span data-id="1000-1499">1000~1499</span>
-                            <span data-id="1500-1999">1500~1999</span>
-                            <span data-id="2000">2000以上</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!--筛选结果-->
-                <!--
-                <div id="searchReqs" class="blank1">
-                    <span>10个课程中满足</span>
-                    <a href="#" title="取消">初中辅导</a>
-                    <a href="#" title="取消">英语</a>
-                </div>
-                -->
-                <div class="search_result clearfix blank">
-                    
-                    <!--左栏开始-->
-                    <div class="fleft w_730">
-                        <div id="searchResultSorter" class="clearfix">
-                            <ul class="sorter">
-                                <li id="editorPick" class="active">爱上课推荐</li>
-                                <li class="line"></li>
-                                <li id="time">时间↑</li>
-                                <li class="line"></li>
-                                <li id="price">价格↑</li>
-                            </ul>
-                            <div class="fright">
-                                当前促销：<input type="checkbox" name="cashback" /><label>返现</label>
-                                <input type="checkbox" name="flashdeal" /><label>限时抢</label>
-
-                            </div>
-                        </div><!--searchResultSorter end-->
-                        <div id="searchResultDisplayPanel">
-                        </div>
-                        <div id="courseSearchResultNavigator" class="page blank1 clearfix">
-   
-                        </div>
-                    </div>
-                    
-                    <!--右栏开始-->
-                    <div class="fright w_250">
-                        <div id="CompareWidgetContainer">
-                        </div>
-                        <div id="mainMap" class="blank1">
-                        </div>
-                    </div>
-                </div><!--search_result end-->
+    <!--筛选框-->
+    <div id="searchPanel" class="filter">
+        <ul id="search_category"  class="tab">
+        </ul>
+        
+        <div id="filterPanel" class="filter_content">
+            <div id="search_subCategory" class="filterCriteria">
+            </div>
+            <div id="filter_district" class="filterCriteria">
+                <label>上课地点：</label>
+                <span data-id="noreq" class="active">不限</span>
+            </div>
+            <div id="filter_startTime" class="filterCriteria">
+                <label>开课时间：</label>
+                <span data-id="noreq" class="active">不限</span>
+                <span data-id="thisMonth">当月</span>
+                <span data-id="nextMonth">下月</span>
+                <span data-id="twoMonthsAfter">下下月</span>
+            </div>
+            <div id="filter_classTime" class="filterCriteria">
+                <label>上课时间：</label>
+                <span data-id="noreq" class="active">不限</span>
+                <span data-id="morning">上午</span>
+                <span data-id="afternoon">下午</span>
+                <span data-id="night">晚上</span>
+                <span data-id="morning_weekday">平日上午</span>
+                <span data-id="afternoon_weekday">平日下午</span>
+                <span data-id="night_weekday">平日晚上</span>
+                <span data-id="morning_weekend">周末上午</span>
+                <span data-id="afternoon_weekend">周末下午</span>
+                <span data-id="night_weekend">周末晚上</span>
+            </div>
+            <div id="filter_classMode" class="filterCriteria">
+                <label>班级类型：</label>
+                <span data-id="noreq" class="active">不限</span>
+                <span data-id="small">小于6人</span>
+                <span data-id="middle">6-30人</span>
+                <span data-id="large">大于30人</span>
+            </div>
+            <div id="filter_price" class="filterCriteria">
+                <label>课程费用：</label>
+                <span id="noreq" class="active">不限</span>
+                <span data-id="499">~499</span>
+                <span data-id="500-999">500~999</span>
+                <span data-id="1000-1499">1000~1499</span>
+                <span data-id="1500-1999">1500~1999</span>
+                <span data-id="2000">2000以上</span>
+            </div>
+        </div>
     </div>
+    
+    <!--筛选结果-->
+    <!--
+    <div id="searchReqs" class="blank1">
+        <span>10个课程中满足</span>
+        <a href="#" title="取消">初中辅导</a>
+        <a href="#" title="取消">英语</a>
+    </div>
+    -->
+    <div class="search_result clearfix blank">
+        
+        <!--左栏开始-->
+        <div class="fleft w_730">
+            <div id="searchResultSorter" class="clearfix">
+                <ul class="sorter">
+                    <li id="editorPick" class="active">爱上课推荐</li>
+                    <li class="line"></li>
+                    <li id="time">时间↑</li>
+                    <li class="line"></li>
+                    <li id="price">价格↑</li>
+                </ul>
+                <div class="fright">
+                    当前促销：<input type="checkbox" name="cashback" /><label>返现</label>
+                    <input type="checkbox" name="flashdeal" /><label>限时抢</label>
+
+                </div>
+            </div><!--searchResultSorter end-->
+            <div id="searchResultDisplayPanel">
+            </div>
+            <div id="courseSearchResultNavigator" class="page blank1 clearfix">
+
+            </div>
+        </div>
+        
+        <!--右栏开始-->
+        <div class="fright w_250">
+            <div id="CompareWidgetContainer">
+            </div>
+            <div id="mainMap" class="blank1">
+            </div>
+        </div>
+    </div><!--search_result end-->
 </script>
 
 <script type="text/template" id="tpl_searchResultEntry" >
@@ -245,32 +243,6 @@
                 </div><!--account end-->
             </div>    
         </div>
-</script>
-
-<script type="text/template" id="tpl_registration_finish">
-    <div class="sign_up">
-        <div class="sign_up_inner">
-            
-            <div class="sign_up_title">
-                <h2 class="fleft">用户注册</h2>
-                <div class="fright">
-                    <span class=""><b>1</b>填写信息</span>
-                    <span class="active"><b>2</b>邮箱验证</span>
-                </div>
-            </div>
-            <div class="email_verification">
-                <h3>还差最后一步，您就注册成功了！请立即验证邮件！</h3>
-                <p>我们已给您的手机<span class="F_orange" id="emailValue"></span>发送了一封验证短信。</p>
-                <p>请输入收到的验证码来完成注册！</p>
-                <p>如果长时间没有收到短信，请点<a id="resendSMS">这里</a>重发短信</p>
-                <input id="phoneNumber" type="text"/>
-                <input id="smsAuthCode" type="text"/>
-                <div id="verifyAccount" class="btns">
-                    <input type="button" class="btn_O_long" value="完成验证">
-                </div>
-            </div>
-        </div>    
-    </div>
 </script>
 
 <script type="text/template" id="tpl_mypage_base">

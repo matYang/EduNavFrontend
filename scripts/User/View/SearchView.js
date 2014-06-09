@@ -4,7 +4,7 @@ var SearchView = Backbone.View.extend({
     subCategoryTemplate: ["<span data-id='", undefined ,"'>", undefined,"</span>"],
     subCategoryContainerTemplate: ["<div data-id='", ,"'class='hidden subCategoryList'><label>类<s></s>别：</label><span data-id='noreq'>不限</span>", undefined,"</div>"],
     initialize: function (params) {
-        _.bindAll(this, 'render', 'renderSearchResults', 'courseSearch', 'bindEvents', 'bindSearchEvents', 'renderCategories', 'filterResult', 'close');
+        _.bindAll(this, 'renderMap', 'renderSearchResults', 'courseSearch', 'bindEvents', 'bindSearchEvents', 'renderCategories', 'filterResult', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.rendered = false;
@@ -23,21 +23,17 @@ var SearchView = Backbone.View.extend({
         this.template = _.template(tpl.get('search'));
         this.$el.append(this.template);
         this.compareWidgetView = new CompareWidgetView();
-        app.generalManager.fetchCategories({
-            success: this.renderCategories,
-            error: function () {}
-        });
+        app.generalManager.getCategories(this);
         this.currentPage = 0;
         //injecting the template
     },
-    render: function () {
+    renderMap: function () {
         var me = this, mapParams = {
             div: "mainMap",
             class: "mainPage-map",
             clickable: false
         };
         this.map = app.storage.getViewCache("BaiduMapView", mapParams);
-        this.bindEvents();
         this.rendered = true;
     },
 
@@ -60,17 +56,17 @@ var SearchView = Backbone.View.extend({
         this.categories = categories;
         var len = categories.length, cbuf = [], scbuf = [];
         if (!this.searchRepresentation.get("category")) {
-            this.searchRepresentation.set("category", Object.keys[categories[0]]);
+            this.searchRepresentation.set("category", Object.keys(categories[0])[0]);
         }
-        if (!this.searchRepresentation.get("subCategory")) {
-            for ( var c = 0; c < len; c++) {
-                var key = Object.keys(categories[c])[0];
-                if ( key === this.searchRepresentation.get("category")) {
-                    this.searchRepresentation.set("subCategory", categories[c][key][0]);
-                }
-            }
-            this.searchRepresentation.set("category", Object.keys[categories[0]]);
-        }
+        // if (!this.searchRepresentation.get("subCategory")) {
+        //     for ( var c = 0; c < len; c++) {
+        //         var key = Object.keys(categories[c])[0];
+        //         if ( key === this.searchRepresentation.get("category")) {
+        //             this.searchRepresentation.set("subCategory", categories[c][key][0]);
+        //         }
+        //     }
+        //     this.searchRepresentation.set("category", Object.keys(categories[0])[0]);
+        // }
         for ( var i = 0; i < len; i ++) {
             obj = this.categories[i];
             for ( var attr in obj ) {
@@ -79,21 +75,27 @@ var SearchView = Backbone.View.extend({
                 cbuf.push(this.categoryTemplate.join(""));
                 var scs = obj[attr], len2 = scs.length;
                 for (var j = 0; j < len2; j++ ) {
-                    this.categoryTemplate[1] = scs[j];
-                    this.categoryTemplate[3] = scs[j];
-                    scbuf.push(this.categoryTemplate.join(""));
+                    this.subCategoryTemplate[1] = scs[j];
+                    this.subCategoryTemplate[3] = scs[j];
+                    scbuf.push(this.subCategoryTemplate.join(""));
                 }
                 this.subCategoryContainerTemplate[1] = attr;
                 this.subCategoryContainerTemplate[3] = scbuf.join("");
-                $("search_subCategory").append(this.subCategoryContainerTemplate.join(""));
+                $("#search_subCategory").append(this.subCategoryContainerTemplate.join(""));
                 scbuf = [];
             }
         }
         $("#search_category").append(cbuf.join(""));
         $("#search_category").find("li[data-id="+this.searchRepresentation.get("category")+"]").addClass("active");
-        $("#search_subCategory").find("div[data-id="+this.searchRepresentation.get("subCategory")+"]").removeClass("hidden");
-        $("div[data-id="+this.searchRepresentation.get("category")+"]").find("span[data-id="+this.searchRepresentation.get("subCategory")+"]").addClass("active");
+        $("#search_subCategory").find("div[data-id="+this.searchRepresentation.get("category")+"]").removeClass("hidden");
+        if (this.searchRepresentation.get("subCategory")) {
+            $("div[data-id="+this.searchRepresentation.get("category")+"]").find("span[data-id="+this.searchRepresentation.get("subCategory")+"]").addClass("active");
+        } else {
+            $("div[data-id="+this.searchRepresentation.get("category")+"]").find("span[data-id=noreq]");
+        }
         this.courseSearch();
+        this.renderMap();
+        this.bindEvents();
     },
     renderError: function () {
         this.$resultp = this.$resultp || $("#searchResultDisplayPanel");
@@ -119,13 +121,13 @@ var SearchView = Backbone.View.extend({
             var dataId = $(e.target).data("id");
             $(e.delegateTarget).children(".active").removeClass("active");
             $(this).addClass("active");
-            $("#search_subCategory").children("div.hidden").addClass("hidden");
-            $("#search_subCategory").children(dataId).removeClass("hidden");
-            that.sr.set("category", dataId);
+            $("#search_subCategory").children("div").addClass("hidden");
+            $("#search_subCategory").children("div[data-id=" + dataId + "]").removeClass("hidden");
+            that.searchRepresentation.set("category", dataId);
         });
         $("#search_subCategory").on("click", "span", function (e) {
-            that.sr.set("category", $("#search_category").find(".active").data("id"));
-            that.sr.set("subCategory", $(this).data("id"));
+            that.searchRepresentation.set("category", $("#search_category").find(".active").data("id"));
+            that.searchRepresentation.set("subCategory", $(this).data("id"));
             that.courseSearch();
         });
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
