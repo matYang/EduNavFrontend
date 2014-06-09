@@ -41,7 +41,6 @@ var SearchView = Backbone.View.extend({
         //prevent memory leaks
         $("#searchResultDisplayPanel").empty();
         this.allMessages = searchResults;
-        debugger;
         if (!this.searchResultView) {
             this.searchResultView = new SearchResultView (this.allMessages, this.allMessages, this.compareWidgetView);
         } else {
@@ -56,7 +55,7 @@ var SearchView = Backbone.View.extend({
         this.categories = categories;
         var len = categories.length, cbuf = [], scbuf = [];
         if (!this.searchRepresentation.get("category")) {
-            this.searchRepresentation.set("category", Object.keys(categories[0])[0]);
+            this.searchRepresentation.set("category", Object.keys(categories)[0]);
         }
         // if (!this.searchRepresentation.get("subCategory")) {
         //     for ( var c = 0; c < len; c++) {
@@ -67,23 +66,24 @@ var SearchView = Backbone.View.extend({
         //     }
         //     this.searchRepresentation.set("category", Object.keys(categories[0])[0]);
         // }
-        for ( var i = 0; i < len; i ++) {
-            obj = this.categories[i];
+        for ( var key in categories ) {
+            obj = categories[key];
+            this.categoryTemplate[1] = key;
+            this.categoryTemplate[3] = key;
+            cbuf.push(this.categoryTemplate.join(""));
             for ( var attr in obj ) {
-                this.categoryTemplate[1] = attr;
-                this.categoryTemplate[3] = attr;
-                cbuf.push(this.categoryTemplate.join(""));
                 var scs = obj[attr], len2 = scs.length;
-                for (var j = 0; j < len2; j++ ) {
-                    this.subCategoryTemplate[1] = scs[j];
-                    this.subCategoryTemplate[3] = scs[j];
-                    scbuf.push(this.subCategoryTemplate.join(""));
+                this.subCategoryTemplate[1] = attr;
+                this.subCategoryTemplate[3] = attr;
+                scbuf.push(this.subCategoryTemplate.join(""));
+                if (obj[attr]) {
+
                 }
-                this.subCategoryContainerTemplate[1] = attr;
-                this.subCategoryContainerTemplate[3] = scbuf.join("");
-                $("#search_subCategory").append(this.subCategoryContainerTemplate.join(""));
-                scbuf = [];
             }
+            this.subCategoryContainerTemplate[1] = key;
+            this.subCategoryContainerTemplate[3] = scbuf.join("");
+            $("#search_subCategory").append(this.subCategoryContainerTemplate.join(""));
+            scbuf = [];
         }
         $("#search_category").append(cbuf.join(""));
         $("#search_category").find("li[data-id="+this.searchRepresentation.get("category")+"]").addClass("active");

@@ -159,7 +159,7 @@
 
 <script type="text/template" id="tpl_searchResultEntry" >
     <div class="searchResultEntry clearfix">
-        <div class="pic"><img src="images/xdf.jpg" width="100" height="100"/><span><%= instName%></span></div>
+        <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/><span><%= instName%></span></div>
         <div class="col1">
             <p class="title"><a class="F_green" href="#"><%= courseName %></a></p>
             <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
@@ -174,7 +174,7 @@
 
                 <div class="arrow"></div>
                 <div class="tip_content">
-                    用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
+                    用“消费券”预订此课程，每人每课程返还50元现金！入学后7个工作日可至您的账户里提现。
                 </div>
             </div>
         </div>
@@ -233,7 +233,7 @@
                     <dl class="clearfix">
                         <dt><span>*</span>输入验证码：</dt>
                         <dd>
-                            <input id="registerVeriCode" type="text" class="text">
+                            <input id="registerVeriCode" type="text" class="text" placeholder="获取手机验证码">
                             <input type="button" value="获取手机验证码" id="getSms" />
                         </dd>
                     </dl>
@@ -565,23 +565,20 @@
                 <dd><label>上课时间: </label><%= dailyStartTime %>-<%= dailyFinishTime %></dd>
                 <dd><label>上课课时: </label><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</dd>
                 <dd><label>班级类型: </label><%= seatsTotal %>人</dd>
-                <dd><label>开班要求: </label>至少x人开班</dd>
+                <dd><label>开班要求: </label><%= openCourseRequirement%></dd>
                 <dd><label>报名日期: </label>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</dd>
                 <dd><label>机构全称: </label><%= wholeName %></dd>
                 <dd><label>机构荣誉: </label><%= partnerQualification %></dd>
                 <dd><label>机构概况: </label><%= partnerIntro %></dd>
                 <dd>
                     <label>老师介绍: </label>
-                    <div class="teacherInfo">
-                        <dt>李红永</dt>
-                        <dd>新东方高级讲师，毕业于英国爱丁堡大学英语文学系，授课风格轻松幽默，深受学生的喜爱</dd>
-                        <img class="teacherPhoto" />
-                    </div>
-                    <div class="teacherInfo">
-                        <dt>李红永</dt>
-                        <dd>新东方高级讲师，毕业于美国艾诺利亚大学，翻译专业，有丰富的教学经验</dd>
-                        <img class="teacherPhoto" />
-                    </div>
+                    <% for ( var i = 0; i < teacher.length; i++ ) { %>
+                        <div class="teacherInfo">
+                            <dt><% teacher[i].name %></dt>
+                            <dd><%= teacher[i].intro %></dd>
+                            <img class="teacherPhoto" src="<%= teacher[i].imgUrl %>"/>
+                        </div>
+                    <% } %>
                 </dd>
             </div>
             <div id="content_teaching">
@@ -591,12 +588,12 @@
                 <dd><label>上课形式: </label><%= teachingMethods %></dd>
                 <dd><label>教材介绍: </label><%= teachingMethodsIntro %></dd>
                 <dd><label>教材费用: </label><%= teachingMaterialCost %></dd>
+                <dd><label>课程介绍: </label><%= courseIntro %></dd>
             </div>
             <div id="content_etc">
                 <dt>教学补充</dt>
                 <dd><label>课件下载: </label><%= hasDownloadMaterials %></dd>
                 <dd><label>题库支持: </label><%= questionBank %></dd>
-                <dd><label>质量保证: </label></dd>
                 <dd><label>讲练结合: </label></dd>
                 <dd><label>阶段测评: </label><%= quiz %></dd>
                 <dd><label>课后答疑: </label></dd>
@@ -605,7 +602,7 @@
             </div>
             <div id="content_guarantee">
                 <dt>教学保障</dt>
-                <dd><label>签约保过: </label></dd>
+                <dd><label>签约保过: </label><%= passAgreement %></dd>
                 <dd><label>高分奖励: </label><%= highScoreReward %></dd>
             </div>
             <div id="content_service">

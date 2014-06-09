@@ -16,7 +16,7 @@ var AdminBookingView = BaseFormView.extend({
         if (params.booking) {
             this.render(params.booking);
         } else if (params.bookingId) {
-            app.generalManager.getBooking(params.bookingId, {
+            app.adminManager.getBooking(params.bookingId, {
                 success: this.render,
                 error: function() {
                     app.navigate("manage/booking", true);

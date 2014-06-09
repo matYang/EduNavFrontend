@@ -261,16 +261,7 @@ var AdminManageView = Backbone.View.extend({
         }
     },
     bindEvents: function () {
-        var that = this;
-        $("#searchInput").on("keypress", function (e) {
-            if (e.which === 13) {
-                e.preventDefault();
-                that.search();
-            }
-        });
-        $("#search").on("click", function (e) {
-            that.search();
-        });
+        this.bindSearchEvent();
     },
     bindSearchEvent: function () {
         var that = this;
@@ -309,7 +300,52 @@ var AdminManageView = Backbone.View.extend({
                 that.sr.set("district", $(this).val());
             });
         } else if (this.type === "booking") {
+            $("#bookingSearchPanel").on("click", "a", function (e) {
+                var id = e.target.id.split("_")[1];
+                $(e.delegateTarget).children("div").addClass("hidden");
+                $("#"+id).removeClass("hidden");
+            });
+            $("#bookingId_Input").on("keypress", function (e) {
+                if (e.which === 13) {
+                    var bookingId = $(this).val();
+                    if (bookingId) {
+                        app.navigate("manage/booking/"+ bookingId, true);
+                    }    
+                }
+            })
+            $("#getBookingBtn").on("click", function (e) {
+                var bookingId = $("#bookingId_Input").val();
+                if (bookingId) {
+                    app.navigate("manage/booking/"+ bookingId, true);
+                }
+            });
+            $("#queryBookingBtn").on("click", function (e) {
+                var userId = $("#userId_Input").val();
+                var name = $("#name_Input").val();
+                var partnerId = $("#partnerId_Input").val();
+                var courseId = $("#courseId_Input").val();
+                var wasConfirmedIndex = $("#wasConfirmedIndex_Input").prop("checked") ? 1 : 2;
 
+                that.sr.set("userId", userId);
+                that.sr.set("name", name);
+                that.sr.set("partnerId", partnerId);
+                that.sr.set("courseId", courseId);
+                that.sr.set("wasConfirmedIndex", wasConfirmedIndex);
+                app.adminManager.listBooking(that.sr, {success:this.renderResult, error:function(){}});
+            });
+            $("#scheduledTime_Input").datepicker({
+                buttonImageOnly: true,
+                buttonImage: "calendar.gif",
+                buttonText: "Calendar",
+                onSelect: function (text, inst) {
+                    var d = new Date ();
+                    d.setDate(inst.selectedDay);
+                    d.setMonth(inst.selectedMonth);
+                    d.setYear(inst.selectedYear);
+                    that.sr.set("scheduledTime", d);
+                    $(this).val(Utilities.getDateString(d));
+                }
+            });
         } else if (this.type === "partner") {
             $("#searchInput").on("change", function() {
                 var value = $(this).val(), num = Utilities.toInt(value);
@@ -337,21 +373,18 @@ var AdminManageView = Backbone.View.extend({
 
         }
     },
-    renderCategories: function (list) {
-        this.categories = list;
-        var len = list.length, buf = [], obj;
-        for ( var i = 0; i < len; i ++) {
-            obj = this.categories[i];
-            for ( var attr in obj ) {
-                buf.push("<option value='" + attr + "'>" + attr + "</option>");
-            }
+    renderCategories: function (categories) {
+        this.categories = categories;
+        var buf = [], obj;
+        for ( var key in categories) {
+            buf.push("<option value='" + key + "'>" + key + "</option>");
         }
         $("#searchInput_category").append(buf.join());
     },
     renderSubCategories: function (category) {
-        var subCategory = this.categories[category], len = subCategory.length, buf = [];
-        for ( var i = 0; i < len; i ++) {
-            buf.push("<option value='" + subCategory[i] + "'>" + subCategory[i] + "</option>");
+        var subCategories = this.categories[category], buf = [];
+        for ( var key in subCategories) {
+            buf.push("<option value='" + key + "'>" + key + "</option>");
         }
         $("#searchInput_district").empty().append(buf.join());
     },

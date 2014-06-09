@@ -60,15 +60,9 @@
         <thead>
             <tr>
                 <td width="80">用户id</td>
-                <td width="120">头像</td>
                 <td width="120">姓名</td>
-                <td width="80">性别</td>
                 <td width="130">邮箱</td>
                 <td width="100">电话</td>
-                <td width="100">位置</td>
-                <td width="100">生日</td>
-                <td width="80">验证状态</td>
-                <td width="100">申请日期</td>
                 <td>--</td>
             </tr>
         </thead>
@@ -182,10 +176,24 @@
 
 
 <script type="text/templates" id="tpl_adminBookingManage">
+	<div id="searchResult">
     <div class="clearfix">
-        <div class="fleft search">
-            <input id="searchInput" class="text" type="text" placeholder="请输入订单id"/><input id="search" class="btn" type="button" value="搜索"/>
-            
+    	<div id="bookingSearchPanel">
+	        <div id="findBooking" class="fleft search">
+	            <input id="bookingId_Input" class="text" type="text" placeholder="请输入订单id"/>
+	            <input id="getBookingBtn" class="btn" type="button" value="进入"/>
+	            <a style="float:left" id="goTo_queryBooking" class="button">Query</a>
+	        </div>
+	        <div id="queryBooking" class="fleft search hidden">
+	            <input id="userId_Input" class="text" type="text" placeholder="用户Id"/>
+	            <input id="name_Input" class="text" type="text" placeholder="姓名"/>
+	            <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
+	            <input id="courseId_Input" class="text" type="text" placeholder="course Id"/>
+	            <input id="scheduledTime_Input" class="text" type="text" placeholder="预约时间"/>
+	            <label>已经报道<input id="wasConfirmedIndex_Input" type="checkbox"></label>
+	            <input id="queryBookingBtn" class="btn" type="button" value="搜索"/>
+	            <a style="float:left" id="goTo_findBooking" class="button">Get</a>
+	        </div>
         </div>
         <div class="fright" style="line-height:40px">
             欢迎您，<span id="adminUserName" class="F_orange"></span>
@@ -202,6 +210,7 @@
                 <td width="120">优惠券Id</td>
                 <td width="120">课程Id</td>
                 <td width="130">订单日期</td>
+                <td width="130">报道日期</td>
                 <td width="100">价格</td>
                 <td width="100">已确认</td>
                 <td>--</td>
@@ -212,6 +221,9 @@
         </tbody>
      </table>
     <div id="bookingSearchNavigator" class="page clearfix">
+    </div>
+    </div>
+    <div id="bookingCRUDContainer">
     </div>
 </script>
 
@@ -243,15 +255,9 @@
 <script type="text/templates" id="tpl_adminUserRow">
     <tr class="userResult">
         <td><%= userId %></td>
-        <td><img src="<%= imgPath %>" width="60" height="60"/></td>
         <td><%= name %></td>
-        <td><%= gender %></td>
         <td><%= email %></td>
         <td><%= phone %></td>
-        <td><%= location %></td>
-        <td><%= birthday %></td>
-        <td><%= passengerVerification.state %></td>
-        <td><%= passengerVerification.submissionDate %></td>
         <td><a class="view" href="#">查看</a></td>
     </tr>
 </script>
@@ -294,6 +300,7 @@
         <td><%= couponId %></td>
         <td><%= courseId %></td>
         <td><%= creationTime %></td>
+        <td><%= scheduledTime %></td>
         <td><%= price %></td>
         <td><%= wasConfirmed %></td>
         <td><a class="view" href="#">查看</a></td>
@@ -358,7 +365,6 @@
         <label>classModel: <span class="detail"><%= classModel %></span><span class="edit"><input type="text" name="classModel"/></span></label>
         <label>openCourseRequirement: <span class="detail"><%= openCourseRequirement %></span><span class="edit"><input type="text" name="openCourseRequirement"/></span></label>
         <label>classroomImgUrl: <span class="detail"><%= classroomImgUrl %></span><span class="edit"><input type="text" name="classroomImgUrl"/></span></label>
-        <label>classroomIntro: <span class="detail"><%= classroomIntro %></span><span class="edit"><input type="text" name="classroomIntro"/></span></label>
         <label>partnerQualification: <span class="detail"><%= partnerQualification %></span><span class="edit"><input type="text" name="partnerQualification"/></span></label>
         <label>partnerIntro: <span class="detail"><%= partnerIntro %></span><span class="edit"><input type="text" name="partnerIntro"/></span></label>
         <label>teachingMethods: <span class="detail"><%= teachingMethods %></span><span class="edit"><input type="text" name="teachingMethods"/></span></label>
@@ -370,8 +376,13 @@
         <label>teachingMaterialFree: <span class="detail"><%= teachingMaterialFree %></span><span class="edit"><input type="checkbox" name="teachingMaterialFree"/></span></label>
         <label>suitableStudent: <span class="detail"><%= suitableStudent %></span><span class="edit"><input type="text" name="suitableStudent"/></span></label>
         <label>prerequest: <span class="detail"><%= prerequest %></span><span class="edit"><input type="text" name="prerequest"/></span></label>
-        <label>teacherImgUrl: <span class="detail"><%= teacherImgUrl %></span><span class="edit"><input type="text" name="teacherImgUrl"/></span></label>
-        <label>teacherIntro: <span class="detail"><%= teacherIntro %></span><span class="edit"><input type="text" name="teacherIntro"/></span></label>
+        <div class="teacherInfo">
+	        <label>teacherImgUrl: <span class="detail"><%= teacherImgUrl %></span><span class="edit"><input type="file" name="teacherImgUrl1"/></span></label>
+	        <label>teacherName: <span class="detail"><%= teacherName %></span><span class="edit"><input type="text" name="teacherName1"/></span></label>
+	        <label>teacherIntro: <span class="detail"><%= teacherIntro %></span><span class="edit"><input type="text" name="teacherIntro1"/></span></label>
+	        <div class="teacherRemove">Remove</div>
+	    </div>
+	    <input type="button" class="edit" id="addTeacher" />
         <label>hasDownloadMaterials: <span class="detail"><%= hasDownloadMaterials %></span><span class="edit"><input type="checkbox" name="hasDownloadMaterials"/></span></label>
         <label>questionBank: <span class="detail"><%= questionBank %></span><span class="edit"><input type="text" name="questionBank"/></span></label>
         <label>questionBankIntro: <span class="detail"><%= questionBankIntro %></span><span class="edit"><input type="text" name="questionBankIntro"/></span></label>
@@ -425,13 +436,13 @@
         <label>transactionId: <span class="detail"><%= transactionId %></span></label> 
         <label>userId: <span class="detail"><%= userId %></span></label> 
         <label>partnerId: <span class="detail"><%= partnerId %></span></label> 
-        <label>couponId: <span class="detail"><%= couponId %></span><span class="edit"><input type="text" name="couponId"/></span></label> 
-        <label>courseId: <span class="detail"><%= couponId %></span><span class="edit"><input type="text" name="courseId"/></span></label> 
-        
+        <label>couponId: <span class="detail"><%= couponId %></span></label> 
+        <label>courseId: <span class="detail"><%= couponId %></span></label> 
+        <label>name: <span class="detail"><%= name %></span><span class="edit"><input type="text" name="name" value="<%= name %>"/></span></label>
         <label>status: <span class="detail"><%= status %></span><span class="edit">
-            <select name="status">
-                <option value=0>activate</option>
-                <option value=1>deactivate</option>
+            <select name="status" value="<%= status %>" >
+                <option value="0">activate</option>
+                <option value="1">deactivate</option>
             </select>
         </span></label>
         <span class="detail"><input type="button" id="editBooking" value="edit" /></span>

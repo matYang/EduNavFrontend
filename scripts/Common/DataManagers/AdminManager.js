@@ -343,6 +343,11 @@
             Info.warn('AdminManager::updateBooking:: session does not exist, exit');
             return;
         }
+        if (testMockObj.testMode) {
+        	callback.success(testMockObj.testBooking1);
+        	return;
+        }
+        var booking = new Booking();
         booking.overrideUrl(this.apis.admin_booking);
         booking.set("bookingId", bookingId);
         booking.fetch({},{

@@ -68,3 +68,15 @@ body{width:100%; background:#f6f6f6 url(../images/left_bar_bg.png) repeat-y;}
 .page .next-disabled { background: url(../images/page.png) no-repeat -24px 0; text-indent: -32768px; }
 .page a, .page span { width: 25px; height: 25px; line-height: 25px; text-align: center; margin: 0 10px; font-size: 14px; }
 .page a.active { color: #57b7e1; }
+
+.search a {
+	float:left;
+	margin-left:20px;
+	margin-top:5px;
+	font-size:1.5em;
+	cursor:pointer;
+}
+
+#bookingSearchPanel{
+	width:1160px;
+}
