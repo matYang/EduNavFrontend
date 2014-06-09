@@ -1,7 +1,7 @@
 var CourseDetailView = Backbone.View.extend({
     el: "#content",
     initialize: function (courseIdWrapper) {
-        _.bindAll(this, 'render', 'bindEvents', 'createNewBooking', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
 
@@ -9,7 +9,7 @@ var CourseDetailView = Backbone.View.extend({
         var self = this;
         this.newBooking = new Booking ();
         this.template = _.template(tpl.get('courseDetail'));
-        app.courseManager.fetchMessage(courseIdWrapper.courseId, {
+        app.generalManager.fetchCourse(courseIdWrapper.courseId, {
             success: function (course) {
                 self.course = course;
                 self.courseId = course.get("courseId");

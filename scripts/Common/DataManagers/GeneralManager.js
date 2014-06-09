@@ -71,6 +71,34 @@
         });
     };
 
+        GeneralManager.prototype.batchFetchCourses = function (courseIds, callback) {
+        var courses = new Courses();
+        if (testMockObj.testMode) {
+            callback.success();
+            return;
+        }
+        course.overrideUrl(this.apis.general_courses);
+        course.set('courseId', courseId);
+        course.fetch({
+            dataType:'json',
+
+            success:function(model, response){
+                if(callback){
+                    callback.success(model);
+                }
+            },
+
+            error: function(model, response){
+                Info.warn('fetch course failed');
+                Info.warn(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
+
     GeneralManager.prototype.findCourse = function(courseSearchRepresentation, callback) {
         var self = this,
             searchResults = new Courses();

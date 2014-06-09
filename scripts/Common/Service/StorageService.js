@@ -43,6 +43,11 @@
             if (localStorage.compareList) {
                 this.compareList = JSON.parse(localStorage.compareList);
             }
+            if (typeof this.compareList === "number") {
+                this.compareList = [];
+                localStorage.compareList = "";
+            }
+
         } 
     };
 
@@ -87,7 +92,7 @@
         }
         if (this.compareList.length < 3) {
             this.compareList.push(courseId);
-            localStorage.compareList = this.compareList;
+            localStorage.compareList = JSON.stringify(this.compareList);
             return true;
         } else {
             return false;
@@ -105,6 +110,7 @@
             }
         }
         this.compareList = newArray;
+        localStorage.compareList = JSON.stringify(this.compareList);
     };
 
     StorageService.prototype.getCoursesToCompare = function () { 

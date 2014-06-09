@@ -10,6 +10,7 @@ var SearchView = Backbone.View.extend({
         this.rendered = false;
         this.user = app.sessionManager.sessionModel;
         //define the template
+        this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
         if (params) {
             try {
                 this.searchRepresentation.castFromString(params.searchKey);
@@ -18,22 +19,16 @@ var SearchView = Backbone.View.extend({
                 app.navigate("search");
                 this.searchRepresentation = new CourseSearchRepresentation();
             }
-        } else {
-            this.searchRepresentation = new CourseSearchRepresentation();
         }
         this.template = _.template(tpl.get('search'));
         this.$el.append(this.template);
-        debugger;
+        this.compareWidgetView = new CompareWidgetView();
         app.generalManager.fetchCategories({
             success: this.renderCategories,
             error: function () {}
         });
         this.currentPage = 0;
-        this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
         //injecting the template
-        //TODO force target type to be all
-        this.render();
-        this.compareWidgetView = new CompareWidgetView();
     },
     render: function () {
         var me = this, mapParams = {
@@ -50,6 +45,7 @@ var SearchView = Backbone.View.extend({
         //prevent memory leaks
         $("#searchResultDisplayPanel").empty();
         this.allMessages = searchResults;
+        debugger;
         if (!this.searchResultView) {
             this.searchResultView = new SearchResultView (this.allMessages, this.allMessages, this.compareWidgetView);
         } else {

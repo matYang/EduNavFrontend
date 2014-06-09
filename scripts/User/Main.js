@@ -115,7 +115,7 @@ var AppRouter = Backbone.Router.extend({
         this.myPageView = new MyPageView ({query:query});
     },
 
-    courseDetail: function (messageId) {
+    courseDetail: function (courseId) {
         this.courseDetailView = new CourseDetailView ({
             'courseId': courseId
         });

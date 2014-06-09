@@ -14,7 +14,7 @@ var SearchResultView = MultiPageView.extend({
         this.user = app.sessionManager.sessionModel;
         this.entryHeight = 157;
         this.pageEntryNumber = 10;
-        this.entryClass = "searchResultBoxContainer";
+        this.actionClass = "viewDetail";
         this.entryContainer = "searchResultDisplayPanel";
         this.$domContainer = $("#searchResultDisplayPanel");
         this.isClosed = false;
@@ -29,9 +29,9 @@ var SearchResultView = MultiPageView.extend({
     },
     bindEvents: function (){
         var that = this;
-        this.$domContainer.on("click", ".addToCompare", function (e){
+        this.$domContainer.on("click", ".compare", function (e){
             var id = Utilities.getId($(this).attr("id"));
-            this.compareWidget.addCourse(that.messages.get(Utilities.toInt(id)));
+            that.compareWidget.addCourse(that.messages.get(Utilities.toInt(id)));
         });
         this.registerSortEvent($("#courseSortTime"), this.compareTime, this.timeDesc, this, function(){
             that.timeDesc = !that.timeDesc;
@@ -46,8 +46,9 @@ var SearchResultView = MultiPageView.extend({
     comparePrice: function(course) {
         return course.get("price");
     },
+
     transferURL: function (courseId) {
-        app.navigate("course/" + messageId, true);
+        app.navigate("course/" + courseId, true);
     },
     close: function () {
         this.$domContainer.empty();

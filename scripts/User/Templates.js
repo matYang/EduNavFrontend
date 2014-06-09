@@ -161,16 +161,16 @@
 
 <script type="text/template" id="tpl_searchResultEntry" >
     <div class="searchResultEntry clearfix">
-        <div class="pic"><img src="images/xdf.jpg" width="100" height="100"/><span>新东方</span></div>
+        <div class="pic"><img src="images/xdf.jpg" width="100" height="100"/><span><%= instName%></span></div>
         <div class="col1">
-            <p class="title"><a class="F_green" href="#">初二提高英语暑假班</a></p>
-            <p class="desc"><span>适合学员:</span> 英语成绩中等或中等偏下的新初二学员</p>
-            <p class="desc"><span>开课时间:</span> 6月25日</p>
-            <p class="desc"><span>地<s></s>址:</span> 秦淮区文明路156号南都大厦12层5号</p>
+            <p class="title"><a class="F_green" href="#"><%= courseName %></a></p>
+            <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
+            <p class="desc"><span>开课时间:</span> <%= startTime %></p>
+            <p class="desc"><span>地<s></s>址:</span> <%= location %></p>
         </div>
         <div class="col2">
-            <p class="classHour">共<b class="F_orange">12</b>课时</p>
-            <p class="price"><span class="sign">￥</span>1999</p>
+            <p class="classHour">共<b class="F_orange"><%=courseHourNum %></b>课时</p>
+            <p class="price"><span class="sign">￥</span><%= price %></p>
             <div class="cashback">50元</div>
             <div class="tip">
 
@@ -181,8 +181,8 @@
             </div>
         </div>
         <div class="col3">
-            <div class="compare"><input class="btn_g" type="button" value="+对比"/></div>
-            <div class="viewDetail"><a class="F_green" href="#">查看更多</a></div>
+            <div class="compare" id="compare_<%= courseId %>"><input class="btn_g" type="button" value="+对比"/></div>
+            <div class="viewDetail" id="viewAll_<%= courseId %>"><a class="F_green" href="#">查看更多</a></div>
         </div>
     </div>
 </script>
@@ -593,7 +593,7 @@
                 <dd><label>上课时间: </label><%= dailyStartTime %>-<%= dailyFinishTime %></dd>
                 <dd><label>上课课时: </label><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</dd>
                 <dd><label>班级类型: </label><%= seatsTotal %>人</dd>
-                <dd><label>开班要求: </label>至少<%= %>人开班</dd>
+                <dd><label>开班要求: </label>至少x人开班</dd>
                 <dd><label>报名日期: </label>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</dd>
                 <dd><label>机构全称: </label><%= wholeName %></dd>
                 <dd><label>机构荣誉: </label><%= partnerQualification %></dd>
