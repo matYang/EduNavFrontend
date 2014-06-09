@@ -153,7 +153,6 @@
                         <div id="CompareWidgetContainer">
                         </div>
                         <div id="mainMap" class="blank1">
-                            <img src="images/map.jpg"/>
                         </div>
                     </div>
                 </div><!--search_result end-->
@@ -174,6 +173,7 @@
             <p class="price"><span class="sign">￥</span>1999</p>
             <div class="cashback">50元</div>
             <div class="tip">
+
                 <div class="arrow"></div>
                 <div class="tip_content">
                     用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。

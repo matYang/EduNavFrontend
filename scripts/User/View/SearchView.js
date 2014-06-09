@@ -23,6 +23,7 @@ var SearchView = Backbone.View.extend({
         }
         this.template = _.template(tpl.get('search'));
         this.$el.append(this.template);
+        debugger;
         app.generalManager.fetchCategories({
             success: this.renderCategories,
             error: function () {}
@@ -40,7 +41,7 @@ var SearchView = Backbone.View.extend({
             class: "mainPage-map",
             clickable: false
         };
-        // this.map = app.storage.getViewCache("MapView", mapParams);
+        this.map = app.storage.getViewCache("BaiduMapView", mapParams);
         this.bindEvents();
         this.rendered = true;
     },

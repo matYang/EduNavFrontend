@@ -106,6 +106,10 @@
 
     GeneralManager.prototype.fetchCategories = function(callback) {
         var self = this;
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testCategories);
+            return;
+        }
         $.ajax({
             url:this.apis.general_category,
             type:'GET',

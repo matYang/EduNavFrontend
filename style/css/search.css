@@ -64,6 +64,6 @@
 .btns{ text-align:center; margin:10px auto;}
 #compare{width:215px; height:32px; border:none; font-size:14px; font-family:微软雅黑; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
 
-#mainMap{border:1px solid #ccc;}
+#mainMap{border:1px solid #ccc; height: 300px;}
 
 

@@ -2,7 +2,7 @@ var BaiduMapView = Backbone.View.extend({
     el: "",
 
     initialize: function (config) {
-        _.bindAll(this, 'render', 'mapInitialize', 'bindClickEvent', 'setLocation', 'getLatLng');
+        _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'close');
         this.div = config.div;
         this.location = config.location || "南京";
         this.clickable = config.clickable;
@@ -32,24 +32,23 @@ var BaiduMapView = Backbone.View.extend({
         if (!this.map) {
             this.map = new BMap.Map (this.div);  //this should never expire
         }
+        this.map.enableScrollWheelZoom();
         this.getLatLng(this.location);
         if (this.clickable) {
             this.bindClickEvent();
         }
     },
-    bindClickEvent: function () {
-
-    },
     getLatLng: function (locationString) {
+        var that = this;
         var result = this.geocoder.getPoint(
             locationString,
             function (point) {
                 if (point) {
-                    that.map.setCenter(point);
+                    that.map.centerAndZoom(point, 13);
                 } else {
                     Info.warn('Geocode was not successful');
                 }
-            },
+            }
         );
     },
 
