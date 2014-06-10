@@ -3,14 +3,14 @@ var MyPageDashboardView = Backbone.View.extend({
     initialize: function () {
         _.bindAll(this, "render", "bindEvents", "close");
         app.viewRegistration.register(this);
-        this.template = _.template(tpl.get("mypage_subpage"));
+        this.template = _.template(tpl.get("mypage_dashboard"));
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
         this.render();
     },
     render: function () {
         this.$el.append(this.template);
-        var buf = first
+        this.bookingListView = new BookingListView(this.user.get("bookings"), this.user.get("bookings"), "dashboard");
     },
     bindEvents: function () {},
     close: function () {

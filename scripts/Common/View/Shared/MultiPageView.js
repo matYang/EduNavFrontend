@@ -51,6 +51,7 @@ var MultiPageView = Backbone.View.extend({
     _sorter:[],
     eventBound: false,
     $domContainer: null,
+    singlePage: null,
     initialize: function () {
         _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "close");
     },
@@ -114,6 +115,9 @@ var MultiPageView = Backbone.View.extend({
         this.entryBound = true;
     },
     setPageNavigator: function () {
+        if (this.singlePage) {
+            return;
+        }
         if (this.$pn && this.$pn.length) {
             this.$pn.children("." + this.pageNumberClass).off();
             this.$pn.children(".pre").off();

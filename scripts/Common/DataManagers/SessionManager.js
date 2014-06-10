@@ -76,7 +76,7 @@
         }
         
         if (testMockObj.testMode) {
-            this.sessionModel = testMockObj.testAdmin;
+            this.sessionModel = testMockObj[this.identifier];
             if(callback){
                 callback.success();
             }

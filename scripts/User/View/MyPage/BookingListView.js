@@ -1,9 +1,9 @@
 var BookingListView = MultiPageView.extend({
-    entryContainer: "#bookingSummary",
+    entryContainer: "bookingSummary",
     entryClass: "bookingEntry",
     pageNavigator: "bookingNavigator",
     pageNavigatorClass: "bookingNavigator",
-    pageEntryNumber: 3,
+    pageEntryNumber: 6,
     pageNumberClass: "bookingPage",
     pageNumberId: "bookingPage",
     entryHeight: -1,
@@ -11,11 +11,16 @@ var BookingListView = MultiPageView.extend({
     minHeight: 0,
     noMessage: "暂无订单",
     $domContainer: null,
-    $el: "bookingSummary",
-    initialize: function (allMessages, messages) {
+    el: "#bookingSummary",
+    initialize: function (allMessages, messages, type) {
         this.allMessages = allMessages;
         this.messages = messages;
+        this.entryTemplate = _.template(tpl.get("booking_entry"));
         this.isClosed = false;
+        if (type === "dashboard") {
+            this.singlePage = true;
+            this.pageEntryNumber = 4;
+        }
         this.render();
     }, 
     render: function () {

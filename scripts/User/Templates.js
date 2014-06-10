@@ -1,5 +1,5 @@
 <script type="text/template" id="tpl_topBar-loggedIn">
-	<div class="topBar">
+    <div class="topBar">
         <div class="topBar-inner clearfix">
             <h1 id="logo" class="topBar-logo">
                 <a></a>
@@ -25,7 +25,7 @@
 </script>
 
 <script type="text/template" id="tpl_topBar-notLoggedIn">
-	<div class="topBar">
+    <div class="topBar">
         <div class="topBar-inner clearfix">
             <h1 id="logo" class="topBar-logo">
                 <a></a>
@@ -34,12 +34,17 @@
                 <li id = 'navigate_search' class = 'button navigate_search'>分类检索</li>
                 <li id = 'navigate_compare' class = 'button navigate_compare'>学校对比</li>
             </ul>
+            <div class="login_reg">
+                <a id="" class="login" href="#">登录</a>
+                <span></span>
+                <a id="signup_button" class="reg" href="#">注册</a>
+            </div>
         </div>
     </div>
 </script>
 
 <script type="text/template" id="tpl_front">
-	<div class="category-lv1">
+    <div class="category-lv1">
         <div class="category-lv2"><span>英语</span><img src="" class="category_symbol" /></div>
         <div class="category-lv2"><span>数学</span><img src="" class="category_symbol" /></div>
         <div class="category-lv2"><span>语文</span><img src="" class="category_symbol" /></div>
@@ -49,16 +54,16 @@
     </div>
     <div class="front banner"></div>
     <div id="institutes" class="institutes">
-    	<div class="institute"><img src="" class="insitute_logo" alt="学而思教育"></div>
-    	<div class="institute"><img src="" class="insitute_logo" alt="新东方"></div>
-    	<div class="institute"><img src="" class="insitute_logo" alt="Spark"></div>
-    	<div class="institute"><img src="" class="insitute_logo" alt="海天教育"></div>
-    	<div class="institute"><img src="" class="insitute_logo" alt="OSC源创会"></div>
-    	<div class="institute"><img src="" class="insitute_logo" alt="智康1对1"></div>
-    	<div class="institute"><img src="" class="insitute_logo" alt="新航道网校"></div>
-    	<div class="institute"><img src="" class="insitute_logo" alt="易考拉雅思"></div>
-    	<div class="institute"><img src="" class="insitute_logo" alt="大街教育"></div>
-    	<div class="institute"><img src="" class="insitute_logo" alt="超级课堂"></div>
+        <div class="institute"><img src="" class="insitute_logo" alt="学而思教育"></div>
+        <div class="institute"><img src="" class="insitute_logo" alt="新东方"></div>
+        <div class="institute"><img src="" class="insitute_logo" alt="Spark"></div>
+        <div class="institute"><img src="" class="insitute_logo" alt="海天教育"></div>
+        <div class="institute"><img src="" class="insitute_logo" alt="OSC源创会"></div>
+        <div class="institute"><img src="" class="insitute_logo" alt="智康1对1"></div>
+        <div class="institute"><img src="" class="insitute_logo" alt="新航道网校"></div>
+        <div class="institute"><img src="" class="insitute_logo" alt="易考拉雅思"></div>
+        <div class="institute"><img src="" class="insitute_logo" alt="大街教育"></div>
+        <div class="institute"><img src="" class="insitute_logo" alt="超级课堂"></div>
     </div>
 </script>
 
@@ -169,15 +174,16 @@
         <div class="col2">
             <p class="classHour">共<b class="F_orange"><%=courseHourNum %></b>课时</p>
             <p class="price"><span class="sign">￥</span><%= price %></p>
-            <div class="cashback">50元</div>
-            <div class="tip">
-
-                <div class="arrow"></div>
-                <div class="tip_content">
-                    用“消费券”预订此课程，每人每课程返还50元现金！入学后7个工作日可至您的账户里提现。
-                </div>
+            <a class="cashback">
+                <em>50元</em>
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div>
         <div class="col3">
             <div class="compare" id="compare_<%= courseId %>"><input class="btn_g" type="button" value="+对比"/></div>
             <div class="viewDetail" id="viewAll_<%= courseId %>"><a class="F_green" href="#">查看更多</a></div>
@@ -248,23 +254,25 @@
     <div id="mypage_main">
         <div id="mypage_sidebar">
             <div class="mypage_sidebar_title">上课书包</div>
-            <div class="mypage_sidebar_section" >
+            <div class="mypage_sidebar_section p1" >
                 <div class="mypage_sidebar_sectionContent">
-                    <div id="mypage_avatar"><img /></div>
-                    晚上好，尊敬的会员
+                    <div id="mypage_avatar">
+                        <img src="images/user_pic.jpg" width="150" height="150"/>
+                        <p>晚上好，尊敬的会员</p>
+                    </div>
                     <div id="mypage_info">
                         <p class="phone"><span></span>18609879900</p>
                         <p class="email"><span></span>djxiaoniud@163.com</p>
                     </div>
                 </div>
             </div>
-            <div class="mypage_sidebar_section">
+            <div class="mypage_sidebar_section p2">
                 <div class="mypage_sidebar_sectionTitle">订单管理</div>
                 <div class="mypage_sidebar_sectionContent">
-                    <div class="mypage_sidebar_tab" id="bookingManage">课程订单</div>
+                    <div class="mypage_sidebar_tab active" id="bookingManage">课程订单</div>
                 </div>
             </div>
-            <div class="mypage_sidebar_section">
+            <div class="mypage_sidebar_section p3">
                 <div class="mypage_sidebar_sectionTitle">账户管理</div>
                 <div class="mypage_sidebar_sectionContent">
                     <div class="mypage_sidebar_tab" id="cashAccount">现金账户</div>
@@ -272,7 +280,7 @@
                     <div class="mypage_sidebar_tab" id="creditAccount">积分</div>
                 </div>
             </div>
-            <div class="mypage_sidebar_section">
+            <div class="mypage_sidebar_section p4">
                 <div class="mypage_sidebar_sectionTitle">个人设置</div>
                 <div class="mypage_sidebar_sectionContent">
                     <div class="mypage_sidebar_tab" id="editInfo">个人资料</div>
@@ -289,11 +297,13 @@
 
 <script type="text/template" id="tpl_mypage_dashboard">
     <div id="walletSummary">
-        <div class="summaryItem">元现金</div>
-        <div class="summaryItem">元消费券</div>
-        <div class="summaryItem">积分</div>
+        <div class="summaryItem1"><span class="F_orange">648</span>元现金</div>
+        <div class="line"></div>
+        <div class="summaryItem2"><span class="F_orange">1417</span>元消费券</div>
+        <div class="line"></div>
+        <div class="summaryItem3"><span class="F_orange">21189</span>积分</div>
     </div>
-    <span>未入学订单</span>
+    <h2>未入学订单</h2>
     <div id="bookingSummary">
     </div>
 </script>
@@ -311,14 +321,14 @@
             <div class="dayOfWeek"><%= course.studyDays %> <%= course.studyDaysNote %></div>
         </div>
         <div class="bookingEntryDetail">
-            <p class="title">【<%= course.instName %>】<%= course.courseName %></p>
-            <p class="address">地址：<%= course.location %></p>
+            <p class="title"><a class="F_green" href="#">【<%= course.instName %>】<%= course.courseName %></a></p>
+            <p class="address"><b>地址：</b><%= course.location %></p>
         </div>
         <div class="bookingEntryPrice">
             <span class="sign">￥</span><%= price %>
         </div>
         <div class="bookingEntryState">
-            <span class="sign pending"></span>等待确认
+            <span class="sign pending">等待确认</span>
         </div>
     </div>
 </script>
@@ -398,27 +408,24 @@
 
 <script type="text/template" id="tpl_newBooking">
     <div class="courseBrief">
-        <div class="row1">
-            <div class="left"><img></div>
-            <div class="right">
+        <div class="row1 clearfix">
+            <div class="fleft"><img src="images/pic.jpg" width="90" height="71"/></div>
+            <div class="fright">
                 <div class="title">六级考前词汇串讲班</div>
-                <div class="desc ">适合学员</div>
+                <div class="desc ">适合学员： 即将参加六级考试的学生。</div>
             </div>
         </div>
         <div class="row2">
-            <div class="section"><label>班级类型:</label><span>20人</span></div>
-            <div class="section"><label>开课时间:</label><span>5月13日-6月13日</span></div>
-            <div class="section"><label>上课时间:</label><span>9:00 - 14:00</span></div>
-            <div class="section"><label>上课地址:</label><span>xxxx</span></div>
+            <div class="section"><label>班级类型：</label> <span>20人</span></div>
+            <div class="section"><label>开课时间：</label> <span>5月13日-6月13日</span></div>
+            <div class="section"><label>上课时间：</label> <span>9:00 - 14:00</span></div>
+            <div class="section"><label>上课地址：</label> <span>南京市雨花台区宁双路28号汇智大厦9楼908室</span></div>
             <div class="extra">过去7天有124人预定了该课程</div>
         </div>
         <div class="row3">
-            <div class="left"><img></div>
-            <div class="right">
-                <div class="desc ">若该教学机构在您取消与本机构的课程订单后，给予您更多诱惑，您将获得500元。</div>
-            </div>
+            若该教学机构在您取消与本机构的课程订单后，给予您更多诱惑，您将获得500元。
         </div>
-        <div class="row3">
+        <div class="row4">
             <div class="title">需要帮助?</div>
             <div class="link">查看常见问题</div>
             <div class="link">在线客服</div>
@@ -427,12 +434,13 @@
     </div>
     <form id="bookingDetail" class="newBooking">
         <div class="header">填写订单信息</div>
-        <div class="title">六级考前词汇串讲班</div>
-        <div class="right ">Wow, Congratulations!</div>
-        <hr />
+        <div class="title">
+            <h3>六级考前词汇串讲班</h3>
+            <div class="fright ">Wow, Congratulations!</div>
+        </div>
         <div class="row1">
             <div class="field">
-                <label>报名人数:</label>
+                <label>报名人数</label>
                 <select name="enrollNum">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -440,56 +448,60 @@
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
+                人
             </div>
             <div class="field">
-                <label>有效日期:</label>
-                5月6日 (5月6日前须到教学机构进行报名，否则优惠价格将自动失效)
+                <label>有效日期</label>
+                5月6日 <span>（5月6日前须到教学机构进行报名，否则优惠价格将自动失效）</span>
             </div>
             <div class="field">
-                <label>课程费用:</label>
-                <span class="price">￥1999</span>/位 (预定免费，入学后学校前台付款)
+                <label>课程费用</label>
+                <b class="price">￥1999</b>/位 <span>（预定免费，入学后学校前台付款）</span>
             </div>
-            <div class="field cashback">
-                <span class="cashback">50元</span>
-                <span id="booking_loginBtns">
-                <a id="booking_signIn" class="link">登陆</a> 或 <a id="booking_register" class="link">注册</a>后可使用优惠券，入学后获得50元现金返还
-                </span>
+            <div class="field clearfix">
+                <div class="fleft cashback">50元</div>
+                <div class="fleft login_reg1"><a class="link F_green">登录</a> 或 <a class="link F_green">注册</a>后可使用优惠券，入学后获得50元现金返还</div>
             </div>
-            <div id="booking_loginbox" class="loginbox">
-                <div id="booking_loginBoxClose" class="close"></div>
-                <label>用户名:
-                    <input class="text" type="text" id="booking_loginUsername"/>
-                </label>
-                <label>密码:
-                    <input class="text" type="password" id="booking_loginPassword"/>
-                </label>
-                <input type="button" value="登陆" id="booking_login" />
-                <a class="button" id="booking_forgotPassword">忘记密码?</a>
+            <div class="loginbox">
+                <div class="loginbox_inner">
+                    <div>
+                        <label>用户名</label> <input class="text" type="text" id="booking_loginUsername"/>
+                        <label>密码</label> <input class="text" type="password" id="booking_loginPassword"/>
+                    </div>
+                    <div class="btns">
+                        <input type="button" value="登录" id="booking_login" />
+                        <a class="button" id="booking_forgotPassword">忘记密码?</a>
+                        <a class="button" id="booking_forgotPassword">还不是会员?</a>
+                    </div>
+                    <div class="close">关闭</div>
+                </div>
             </div>
         </div>
+        <div class="title"><h3>入学信息</h3></div>
         <div class="row2">
-            <span class="title">入学信息</span>
-            <div class="left">
-                <label><span class="req">*</span>入学人姓名:
-                    <input class="text" type="text" id="booking_applicantName"/>
-                    <span class="desc">(请填写实际入学人姓名)</span>
-                </label>
-                <label><span class="req">*</span>联系手机:
-                    <input class="text" type="text" id="booking_cellphone"/>
-                    <span class="desc">(用于接收确认信息)</span>
-                </label>
-                <label>E-mail:
-                    <input class="text" type="text" id="booking_email"/>
-                    <span class="desc">(可选)</span>
-                </label>
-                <label><span class="req">*</span>预约报名日期:
-                    <input class="text" type="date" id="booking_date"/>
-                    <span class="desc">(若此预约日期前未报名入学，您的特惠名额将受让给其他学员)</span>
-                </label>
+            <div class="field">
+                <label><span class="req">*</span>入学人姓名</label>
+                <input class="text" type="text" id="booking_applicantName"/>
+                <span class="desc">(请填写实际入学人姓名)</span>
+            </div>
+            <div class="field">
+                <label><span class="req">*</span>联系手机</label>
+                <input class="text" type="text" id="booking_cellphone"/>
+                <span class="desc">(用于接收确认信息)</span>
+            </div>
+            <div class="field">
+                <label>E-mail </label>
+                <input class="text" type="text" id="booking_email"/>
+                <span class="desc">(可选)</span>
+            </div>
+            <div class="field">
+                <label><span class="req">*</span>预约报名日期</label>
+                <input class="text" type="date" id="booking_date"/>
+                <span class="desc">(若此预约日期前未报名入学，您的特惠名额将受让给其他学员)</span>
             </div>
         </div>
         <div class="row3">
-            <input type="submit" class="btn_orange" value="完成预定" id="initBooking" />
+            <input type="submit" class="btn_O_long" value="完成预定" id="initBooking" />
             <span class="desc">(不收预订费)</span>
         </div>
     </form>
@@ -569,13 +581,7 @@
                 <dd><label>机构概况: </label><%= partnerIntro %></dd>
                 <dd>
                     <label>老师介绍: </label>
-                    <% for ( var i = 0; i < teacher.length; i++ ) { %>
-                        <div class="teacherInfo">
-                            <dt><% teacher[i].name %></dt>
-                            <dd><%= teacher[i].intro %></dd>
-                            <img class="teacherPhoto" src="<%= teacher[i].imgUrl %>"/>
-                        </div>
-                    <% } %>
+
                 </dd>
             </div>
             <div id="content_teaching">
@@ -613,12 +619,12 @@
 </script>
 
 <script type="text/template" id="tpl_compareView">
-	<div id="compareView">
-		<div id="compare_basic">
-			<dt id="title_basic"title_basic>基本信息 <span>[收起]</span></dt>
-			<div class="labels">
-				<div></div>
-			</div>
-		</div>
-	</div>
+    <div id="compareView">
+        <div id="compare_basic">
+            <dt id="title_basic"title_basic>基本信息 <span>[收起]</span></dt>
+            <div class="labels">
+                <div></div>
+            </div>
+        </div>
+    </div>
 </script>

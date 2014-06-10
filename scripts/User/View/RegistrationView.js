@@ -8,6 +8,7 @@ var RegistrationView = BaseFormView.extend({
     	_.bindAll(this, 'render', 'bindEvents', 'phoneValid', 'passValid', 'successCallback', 'submitAction', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
+        $("#viewStyle").attr("href", "style/css/reg.css");
         this.template = _.template(tpl.get('registration'));
     	this.$el.append(this.template);
         this.fields = [

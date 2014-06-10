@@ -9,6 +9,7 @@ var CourseDetailView = Backbone.View.extend({
         var self = this;
         this.newBooking = new Booking ();
         this.template = _.template(tpl.get('courseDetail'));
+        $("#viewStyle").attr("href", "style/css/courseDetail.css");
         app.generalManager.fetchCourse(courseIdWrapper.courseId, {
             success: function (course) {
                 self.course = course;
