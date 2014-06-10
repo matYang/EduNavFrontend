@@ -3,6 +3,7 @@ var MyPageView = Backbone.View.extend({
     initialize: function (params) {
         _.bindAll(this, 'render', 'renderError', 'createChildView','bindEvents', 'close');
         app.viewRegistration.register(this);
+        $("#viewStyle").attr("href", "style/css/mypage.css");
         this.isClosed = false;
         this.query = params.query || "dashboard";
         this.template = _.template(tpl.get('mypage_base'));
@@ -51,15 +52,12 @@ var MyPageView = Backbone.View.extend({
                 this.activeChildView = new MyPageDashboardView();        
                 break;
         }
-        this.activeChildView = new PersonalUtilityView ({
-            'query': this.query
-        });
     },  
 
     bindEvents: function () {
         var that = this;
         $("#bookingManage").on("click", function () {
-            if (that.query !== booking) {
+            if (that.query !== "booking") {
                 that.query = "booking";
                 app.navigate("mypage/booking");
                 that.createChildView();

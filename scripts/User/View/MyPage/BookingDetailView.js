@@ -3,6 +3,7 @@ var BookingDetailView = Backbone.View.extend({
     initialize: function (params) {
         this.isClosed = false;
         this.template = _.template(tpl.get("bookingDetail"));
+        $("#viewStyle").attr("href", "style/css/booking.css");
         if (params.booking) {
             this.booking = params.booking;
             this.render(this.booking);

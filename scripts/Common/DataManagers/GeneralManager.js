@@ -78,7 +78,6 @@
             return;
         }
         courses.overrideUrl(this.apis.general_courses);
-        courses.set('courseId', courseId);
         courses.fetch({
             dataType:'json',
 

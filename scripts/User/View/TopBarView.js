@@ -55,7 +55,8 @@ var TopBarView = Backbone.View.extend({
                 self.$lb.toggle();
                 self.$usernameInput.trigger("focus");
             });
-            $('#signup_button').on('click', function () {
+            $('#signup_button').on('click', function (e) {
+                e.preventDefault();
                 app.navigate("/register", {trigger: true, replace: true});
             });
             this.$usernameInput.on("click", function (e){

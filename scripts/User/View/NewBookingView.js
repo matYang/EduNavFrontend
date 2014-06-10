@@ -5,6 +5,7 @@ var NewBookingView = BaseFormView.extend({
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "bookingSuccess", "close");
         app.viewRegistration.register(this);
+        $("#viewStyle").attr("href", "style/css/booking.css");
         this.template = _.template(tpl.get("newBooking"));
         this.finishTemplate = _.template(tpl.get("booking_submitted"));
         this.field = [
@@ -112,7 +113,7 @@ var NewBookingView = BaseFormView.extend({
             }
         });
         $("initBooking").on("click", function(){
-            app.userManager.newBooking(this.model. {
+            app.userManager.newBooking(this.model, {
                 success: this.bookingSuccess,
                 error: function(){
 
