@@ -3,26 +3,27 @@ var Booking = Backbone.Model.extend({
     defaults: function () {
         return {
             'bookingId': -1,
-
-            'couponId': -1,
             'transactionId': -1,
             'userId': -1,
             'partnerId': -1,
             'courseId': -1,
             'price': 0,
-
             'status': 0,
             'reference': '',
+
             'name': '',
             'phone':'',
             'email': '',
             'scheduledTime': new Date(),
-
             'creationTime': new Date (),
             'adjustTime': new Date(),
-            'wasConfirmed': false,
-            'actionRecord': '',
 
+            'wasConfirmed': false,
+            'note': '',
+            'cashbackAmount': 0,
+            'couponRecord': '',
+            
+            'actionRecord': '',
             'course': {}
         };
     },
@@ -53,7 +54,6 @@ var Booking = Backbone.Model.extend({
         if ( typeof data !== 'undefined') {
             data.bookingId = parseInt(data.bookingId, 10);
             
-            data.couponId = parseInt(data.couponId, 10);
             data.transactionId = parseInt(data.transactionId, 10);
 
             data.userId = parseInt(data.userId, 10);
@@ -72,6 +72,10 @@ var Booking = Backbone.Model.extend({
             data.adjustTime = Utilities.castFromAPIFormat(data.adjustTime);
 
             data.wasConfirmed = data.wasConfirmed === 'true' || data.wasConfirmed === true || Number(data.wasConfirmed) === 1;
+            data.note = decodeURI(data.note);
+            data.cashbackAmount = parseInt(data.cashbackAmount, 10);
+            data.couponRecord = decodeURI(data.couponRecord);
+
             data.actionRecord = decodeURI(data.actionRecord);
             data.course = new Course(data.course, {parse: true});
         }
@@ -92,12 +96,14 @@ var Booking = Backbone.Model.extend({
         json.name = encodeURI(json.name);
         json.phone = encodeURI(json.phone);
         json.email = encodeURI(json.email);
+        json.note = encodeURI(json.note);
 
         json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.adjustTime = Utilities.castToAPIFormat(this.get('adjustTime'));
+
         json.course = json.course.toJSON();
-        json.actionRecord = encodeURI(json.actionRecord);
+        
         return json;
     },
     initBookingFromCourse: function (course) {
@@ -108,6 +114,7 @@ var Booking = Backbone.Model.extend({
         this.set("course", course);
         this.set("price", course.get("price"));
         this.set("reference", course.get("reference"));
+        //TODO add cashbackAmount when course is finalized
     }
 });
 
