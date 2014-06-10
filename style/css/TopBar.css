@@ -15,8 +15,8 @@
 .login_reg a,.login_reg a:visited{color:#fff; margin:0 10px;}
 .login_reg span{display:inline-block; width:1px; height:14px; background:#fff; color:#fff}
 
-
-
+.user_info{float:right; font-size:14px; line-height:60px; color:#fff; font-family:宋体;}
+.user_info a,.user_info a:visited{color:#fff; margin:0 10px;}
 
 
 

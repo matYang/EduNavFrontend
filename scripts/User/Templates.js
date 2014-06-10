@@ -204,33 +204,32 @@
 </script>
 
 <script type="text/template" id="tpl_registration" >
-
         <div class="sign_up">
             <div class="sign_up_inner">
-                
                 <div class="sign_up_title">
                     <h2 class="fleft">用户注册</h2>
+                    <div class="fright"> <span class="active"><b>1</b>填写信息</span> <span class=""><b>2</b>完成验证</span> </div>
                 </div>
                 <div class="account">
-                    <dl class="clearfix">
+                    <dl class="clearfix" id="cellContainer">
                         <dt><span>*</span>手机：</dt>
                         <dd>
                             <input id="registerCellInput" type="text" class="text" value="" placeholder="请输入手机号(请不要输入特殊符号或者字母)">
                         </dd>
                     </dl>
-                    <dl class="clearfix">
+                    <dl class="clearfix" id="passContainer">
                         <dt><span>*</span>密码：</dt>
                         <dd>
                             <input id="registerPasswordInput" type="password" class="text" value="" placeholder="请输入密码">
                         </dd>
                     </dl>
-                    <dl class="clearfix">
+                    <dl class="clearfix" id="confirmContainer">
                         <dt><span>*</span>确认密码：</dt>
                         <dd>
                             <input id="registerPasswordConfirmInput" type="password" class="text" value="" placeholder="请再次输入密码">
                         </dd>
                     </dl>
-                    <dl class="clearfix">
+                    <dl class="clearfix" id="authContainer">
                         <dt><span>*</span>输入验证码：</dt>
                         <dd>
                             <input id="registerVeriCode" type="text" class="text" placeholder="获取手机验证码">
@@ -508,23 +507,21 @@
             </div>
             <div id="printBooking">打印订单</div>
         </div>
-        <div class="column2">
-            <span class="title">
-                <%= course.courseName %>
-            </span>
-            <label>教育机构: </label><%= course.instName %>
-            <label>上课地址: </label><%= course.location %>
-            <label>咨询电话: </label><%= course.phone %>
-            <label>开课时间: </label><%= course.startTime %>-<%= course.finishTime %>
-            <label>班级类型: </label><%= course.classModel %>
-            <label>预约报道: </label><%= scheduledTime %> (过时您的特价订单将失效)
-            <label>费用总计: </label> ￥<span class="price"><%= price %></span> (到校付款)
-
-            <p class="extra"><span class="red">*</span>到达学校后，请您凭入学人的有效证件办理入学</p>
+        <div class="row2">
+            <p><label>订单号: </label><%= reference %></p>
+            <p><label>课程名称: </label><%= course.courseName %></p>
+            <p><label>教育机构: </label><%= course.instName %></p>
+            <p><label>上课地址: </label><%= course.phone %></p>
+            <p><label>咨询电话: </label<%= course.location %></p>
+            <p><label>开课时间: </label><%= course.startTime %>-<%= course.finishTime %></p>
+            <p><label>班级类型: </label><%= course.classModel %></p>
+            <p><label>预约报道: </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
+            <p><label>费用总计: </label> ￥<b class="price"><%= price %></b> <span>（到校付款）</span></p>
+            <p class="extra">* 到达学校后，请您凭入学人的有效证件办理入学</p>
         </div>
-        <div class="column3">
+        <div class="row3 clearfix">
             <p class="bonus">积分奖励，成功入学后，您将获得<%= price %>积分，结账后7个工作日内计入您的上课书包</p>
-            <span class="viewMore">查看其他课程</span>
+            <span class="viewMore">查看其他课程>></span>
         </div>
     </div>
 </script>
@@ -613,4 +610,15 @@
             </div>
         </div>
     </div>
+</script>
+
+<script type="text/template" id="tpl_compareView">
+	<div id="compareView">
+		<div id="compare_basic">
+			<dt id="title_basic"title_basic>基本信息 <span>[收起]</span></dt>
+			<div class="labels">
+				<div></div>
+			</div>
+		</div>
+	</div>
 </script>

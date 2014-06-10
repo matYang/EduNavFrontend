@@ -3,7 +3,13 @@ var RegistrationView = BaseFormView.extend({
     el: "#content",
     form: false,
     submitButtonId: "register_submit",
+    model: {},
     initialize: function(params){
+    	_.bindAll(this, 'render', 'bindEvents', 'phoneValid', 'passValid', 'successCallback', 'submitAction', 'close');
+        app.viewRegistration.register(this);
+        this.isClosed = false;
+        this.template = _.template(tpl.get('registration'));
+    	this.$el.append(this.template);
         this.fields = [
             new BaseField({
                 name: "手机",
@@ -11,7 +17,8 @@ var RegistrationView = BaseFormView.extend({
                 type: "text",
                 mandatory: true,
                 validatorFunction: this.phoneValid,
-                modelAttr: "phone"
+                modelAttr: "phone",
+                validatorContainer: $("#cellContainer")
             }),
             new BaseField({
                 name: "密码",
@@ -19,7 +26,8 @@ var RegistrationView = BaseFormView.extend({
                 type: "text",
                 mandatory: true,
                 validatorFunction: this.passValid,
-                modelAttr: "password"
+                modelAttr: "password",
+                validatorContainer: $("#passContainer")
             }),
             new BaseField({
                 name: "确认密码",
@@ -27,21 +35,18 @@ var RegistrationView = BaseFormView.extend({
                 type: "text",
                 mandatory: true,
                 validatorFunction: this.passValid,
-                modelAttr: "confirmPassword"
+                modelAttr: "confirmPassword",
+                validatorContainer: $("#confirmContainer")
             }),
             new BaseField({
                 name: "验证码",
                 fieldId: "registerVeriCode",
                 type: "text",
                 mandatory: true,
-                modelAttr: "authCode"
+                modelAttr: "authCode",
+                validatorContainer: $("#authContainer")
             }),
         ];
-        _.bindAll(this, 'render', 'bindEvents', 'phoneValid', 'passValid', 'successCallback', 'submitAction', 'close');
-        app.viewRegistration.register(this);
-        this.isClosed = false;
-        this.template = _.template(tpl.get('registration'));
-        this.model =  {};
         this.state = params.state;
         if (this.state){
             this.ref = this.state.split("_")[1];
@@ -50,9 +55,8 @@ var RegistrationView = BaseFormView.extend({
     },
     render: function(){
         var that = this;
-        this.$el.empty();
         if (this.state !== "finish") {
-            this.$el.append(this.template);
+            
             $("#loginBox").hide();
             $("#getSms").on("click", function (e) {
                 if (that.phoneValid(that.model.phone).valid) {

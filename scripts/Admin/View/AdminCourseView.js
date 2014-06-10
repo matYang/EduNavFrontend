@@ -65,7 +65,6 @@ var AdminCourseView = BaseFormView.extend({
             }
         });
         $("#cancel").on("click", function () {
-            $("#adminCourseForm").find("input").val("");
             $("#adminCourseForm").find(".edit").hide();
             $("#adminCourseForm").find(".detail").show();   
         });

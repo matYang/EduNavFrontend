@@ -159,5 +159,6 @@ tpl.loadTemplates(Constants.templateResources, 'scripts/User/Templates.js', func
     app.topBarView = new TopBarView ();
     Backbone.history.start();
     console.log("Wow, Congratulations!");
+    console.log("はい、榛名は大丈夫です!");
 });
 

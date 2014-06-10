@@ -53,26 +53,17 @@ var SearchView = Backbone.View.extend({
     },
     renderCategories: function (categories){
         this.categories = categories;
-        var len = categories.length, cbuf = [], scbuf = [];
+        var  cbuf = [], scbuf = [];
         if (!this.searchRepresentation.get("category")) {
             this.searchRepresentation.set("category", Object.keys(categories)[0]);
         }
-        // if (!this.searchRepresentation.get("subCategory")) {
-        //     for ( var c = 0; c < len; c++) {
-        //         var key = Object.keys(categories[c])[0];
-        //         if ( key === this.searchRepresentation.get("category")) {
-        //             this.searchRepresentation.set("subCategory", categories[c][key][0]);
-        //         }
-        //     }
-        //     this.searchRepresentation.set("category", Object.keys(categories[0])[0]);
-        // }
         for ( var key in categories ) {
             obj = categories[key];
             this.categoryTemplate[1] = key;
             this.categoryTemplate[3] = key;
             cbuf.push(this.categoryTemplate.join(""));
             for ( var attr in obj ) {
-                var scs = obj[attr], len2 = scs.length;
+                var scs = obj[attr];
                 this.subCategoryTemplate[1] = attr;
                 this.subCategoryTemplate[3] = attr;
                 scbuf.push(this.subCategoryTemplate.join(""));

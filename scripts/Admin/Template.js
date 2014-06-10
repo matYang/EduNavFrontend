@@ -432,12 +432,12 @@
 
 <script type="text/templates" id="tpl_adminBooking">
     <form id="adminBookingForm">
-        <label>bookingId: <span class="detail"><%= bookingId %></span></label> 
-        <label>transactionId: <span class="detail"><%= transactionId %></span></label> 
-        <label>userId: <span class="detail"><%= userId %></span></label> 
-        <label>partnerId: <span class="detail"><%= partnerId %></span></label> 
-        <label>couponId: <span class="detail"><%= couponId %></span></label> 
-        <label>courseId: <span class="detail"><%= couponId %></span></label> 
+        <label>bookingId: <%= bookingId %><input type="hidden" name="bookingId" value="<%= bookingId %>"/></label> 
+        <label>transactionId: <%= transactionId %><input type="hidden" name="transactionId" value="<%= transactionId %>"/></label> 
+        <label>userId: <%= userId %><input type="hidden" name="userId" value="<%= userId %>"/></label> 
+        <label>partnerId: <%= partnerId %><input type="hidden" name="partnerId" value="<%= partnerId %>"/></label> 
+        <label>couponId: <%= couponId %><input type="hidden" name="couponId" value="<%= couponId %>"/></label> 
+        <label>courseId: <%= courseId %><input type="hidden" name="courseId" value="<%= courseId %>"/></label> 
         <label>name: <span class="detail"><%= name %></span><span class="edit"><input type="text" name="name" value="<%= name %>"/></span></label>
         <label>status: <span class="detail"><%= status %></span><span class="edit">
             <select name="status" value="<%= status %>" >

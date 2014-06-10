@@ -213,11 +213,11 @@ var BaseField = Backbone.Model.extend({
         if (valid) {
             return "<dd class='" + this.get("validClass") + "' id='"+this.get("fieldId")+"_right'></dd>";
         } else if (type === "empty") {
-            return "<div class='" + this.get("errorClass") + "' id='" + this.get("fieldId") + "_wrong' title='"+this.get("name")+"不能为空'><p>" + this.get("name") + "不能为空</p></div>";
+            return "<dd class='" + this.get("errorClass") + "' id='" + this.get("fieldId") + "_wrong' title='"+this.get("name")+"不能为空'><p>" + this.get("name") + "不能为空</p></dd>";
         } else if (text) {
-            return "<div class='" + this.get("errorClass") + "' id='" + this.get("fieldId") + "_wrong' title='" + text + "'><p>" + text + "</p></div>";
+            return "<dd class='" + this.get("errorClass") + "' id='" + this.get("fieldId") + "_wrong' title='" + text + "'><p>" + text + "</p></dd>";
         } else {
-            return "<div class='" + this.get("errorClass") + "' id='" + this.get("fieldId") + "_wrong' title='" + this.get("errorText") + "'></p>" + this.get("errorClass") + "</p></div>";
+            return "<dd class='" + this.get("errorClass") + "' id='" + this.get("fieldId") + "_wrong' title='" + this.get("errorText") + "'></p>" + this.get("errorClass") + "</p></dd>";
         }
     }, 
     removeValidatorDiv: function () {
@@ -249,7 +249,7 @@ var BaseField = Backbone.Model.extend({
             valid = true;
         }
         this.removeValidatorDiv();
-        (this.validatorContainer) ? this.validatorContainer.append(div) : $input.after(div);
+        this.get("validatorContainer") ? this.get("validatorContainer").append(div) : $input.after(div);
         return true;
     }
 });

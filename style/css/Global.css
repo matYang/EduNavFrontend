@@ -18,16 +18,21 @@ ul { list-style: none; }
 .blank2 { margin-top: 30px; }
 .F_red { color: #ff0000; }
 .F_orange { color: #ff5500; }
-.F_green { color: #3aae36; }
+.F_green { color: #128d56; }
 .F_16 { font-size: 16px; }
 .F_18 { font-size: 18px; }
 a, a:visited { color: #333; text-decoration: none;}
 a:hover { color: #333; text-decoration: underline;}
 a.F_green, a.F_green:visited { color: #128d56;}
-input { font-family:'微软雅黑'; }
 .hidden {display: none;}
 
+input.text{height:28px; line-height:28px\9; border:1px solid #ccc; padding-left:10px;}
 .btn_g{width:82px; height:32px; background:url(../images/btn_g.png) no-repeat; color:#fff; border:none; cursor:pointer;}
+.btn_O_long{width:200px; height:50px; background:url(../images/btn_O_long.png) no-repeat; font-size:18px; font-family:'微软雅黑'; color:#fff; border:none; cursor:pointer;}
+.btn_G{width:150px; height:40px; background:url(../images/btn_G_long.png) no-repeat; font-size:14px; font-family:'微软雅黑'; color:#fff; border:none; cursor:pointer;}
+.btn_W{width:150px; height:40px; background:url(../images/btn_W_long.png) no-repeat; font-size:14px; font-family:'微软雅黑'; color:#128d56; border:none; cursor:pointer;}
+.btn_O{width:150px; height:40px; background:url(../images/btn_O_long.png) no-repeat; font-size:14px; font-family:'微软雅黑'; color:#fff; border:none; cursor:pointer;}
+
 /*Sticky Footer*/
 html, body, .main { height: 100%; }
 body > .main { height: auto; min-height: 100%; }
@@ -63,11 +68,18 @@ body > .main { height: auto; min-height: 100%; }
 .tab li{float:left; height:38px; line-height:45px; padding:0 18px; cursor:pointer; color:#303541;}
 .tab li.active{ border-left:1px solid #303541; line-height:43px; border-right:1px solid #303541; border-top:2px solid #303541; background:#fff;}
 
+.cashback{display:block; position:relative; width:50px; height:17px; line-height:18px; margin-top:3px; background:url(../images/return.png) no-repeat; font-size:12px; color:#128d56;} 
+.cashback em{ margin-left:17px; font-style:normal;}
+.cashback .tip{display:none; top:26px; right:-39px;}
+.cashback:hover .tip{display:block;}
+
 /*tip*/
-.tip{position:absolute; top:104px; left:-186px; z-index:99; width:313px; border:1px solid #a7a7a7; background:#fff; font-size:12px; line-height:22px;}
+.tip{position:absolute; z-index:99; width:313px; border:1px solid #a7a7a7; background:#fff; font-size:12px; line-height:22px;}
 .tip .arrow{ position:absolute; top:-8px; left:243px; width:15px; height:8px; background:url(../images/arrow.png) no-repeat;}
 .tip_content{ padding:8px;}
 
+.price{ font-family:微软雅黑; color:#ff5500;}
+.price .sign{ color:#333;}
 
 
 

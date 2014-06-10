@@ -44,7 +44,7 @@
 .col2 .classHour{ margin-top:10px;}
 .col2 .price{font-size:30px; color:#ff5500; font-family:微软雅黑; margin-top:10px;}
 .col2 .price .sign{font-size:14px; color:#333333;}
-.col2 .cashback{width:50px; height:17px; line-height:18px; text-indent:17px; margin-top:3px; background:url(../images/return.png) no-repeat; font-size:12px; color:#128d56; margin-left:40px;} 
+.col2 .cashback{ margin-left:40px;} 
 
 .col3{float:left; width:140px; height:105px; text-align:center;}
 .col3 .compare{ margin-top:20px;}
@@ -64,6 +64,6 @@
 .btns{ text-align:center; margin:10px auto;}
 #compare{width:215px; height:32px; border:none; font-size:14px; font-family:微软雅黑; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
 
-#mainMap{border:1px solid #ccc; height: 300px;}
+#mainMap{border:1px solid #ccc;}
 
 

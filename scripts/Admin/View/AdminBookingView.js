@@ -38,13 +38,20 @@ var AdminBookingView = BaseFormView.extend({
         var that = this;
         BaseFormView.prototype.bindEvents.call(this);
         $("#cancel").on("click", function () {
-            $("#adminBookingForm").find("input").val("");
             $("#adminBookingForm").find(".edit").hide();
             $("#adminBookingForm").find(".detail").show();   
         });
         $("#editBooking").on("click", function () {
             $("#adminBookingForm").find(".edit").show();
             $("#adminBookingForm").find(".detail").hide(); 
+			var json = that.booking.toJSON();
+            for (var attr in json) {
+                var $edit = $("input[name="+attr+"]");
+                if ($edit.attr("type") === "checkbox") {
+                    $edit.prop("checked", json[attr]);
+                }
+                $edit.val(json[attr]);
+            }
         });
     },  
     successCallback: function () {

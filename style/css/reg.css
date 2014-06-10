@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+
+.sign_up { border: 1px solid #e7e7e7; }
+
+.sign_up_title { height: 49px; line-height: 49px; background: #effff3; border-bottom: 1px solid #e7e7e7; }
+h2 { font-size: 24px; font-family: 微软雅黑; color: #128d56; font-weight: normal; padding-left: 42px; }
+.sign_up_title .fright { font-size: 14px; padding-right: 15px; }
+.sign_up_title .fright span { display: inline-block; margin-right: 20px; }
+.sign_up_title .fright span b { display: inline-block; width: 25px; height: 25px; margin-right: 5px; line-height: 25px; color: #fff; background: url(../images/xh2.png) no-repeat; text-align: center; }
+.sign_up_title .fright span.active b { background: url(../images/xh.png) no-repeat; }
+
+.account { font-size: 14px; padding: 25px 20px 50px; background: url(../images/reg_bg.gif) no-repeat 97% center; }
+.account dl { margin: 24px 0; }
+.account dl dt { float: left; width: 120px; line-height: 34px; text-align: right; margin-right: 10px; color: #333; }
+.account dl dt span { color: #ff5500; }
+.account dl dd { line-height:34px; overflow:hidden;}
+.account dl dd input {float:left; width: 348px; padding-left: 10px; height: 32px; line-height:32px\9; border: 1px solid #d3d3d3; color: #666; }
+
+.btns { padding-left: 130px; margin-top: 40px; }
+#registerVeriCode { width: 100px; }
+#getSms {width: 110px; height: 26px; margin-left:10px; margin-top:5px; background: #128d56; color: #fff; cursor: pointer; border: none; }
+
+/*输入不正确时的提醒*/
+.sign_up dd.wrong { margin-left: 130px; margin-top:10px;}
+.sign_up dd.wrong p { font-size: 14px; line-height: 22px; }
+.sign_up dd .right { float: left; width:20px; height: 14px; background: url(../images/icon.png) no-repeat -1px -306px; margin-top: 7px; margin-left: 5px; }
+.wrong p {margin-top: 10px;padding-left: 25px;height: 22px;background: url(../images/icon_wrong.png) no-repeat;font-size: 16px;}
+
+
+
+
+
+
+
+

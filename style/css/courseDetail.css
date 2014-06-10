@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+.sitemap{color:#128d56; font-size:14px;}
+.courseDetail{ font-size:14px; line-height:30px;}
+
+.banner{border:1px solid #ccc;}
+
+.banner .row1{ padding:15px; border-bottom:1px dotted #ccc;}
+.banner .row1 dt{font-size:24px; font-family:微软雅黑; color:#128d56; margin-bottom:10px;}
+.banner .row1 dt span{ font-size:14px; margin-left:20px;}
+
+.banner .row1 .col1{float:left; width:680px;}
+.banner .row1 .col2{float:left; width:125px; margin-top:5px;}
+.banner .row1 .col3{float:left; width:150px; margin-top:5px;}
+
+.price{ font-size:26px;}
+.price .sign{ font-size:14px; color:#333;}
+.cashback{ margin-left:18px;}
+.cashback em{ margin-left:22px;}
+
+.banner .row2 {padding:15px;}
+
+/*相册*/
+.banner .row2 .gallary{float:left; width:600px;}
+.small_pic{float:left;}
+.big_pic{float:right;}
+.small_pic .top{ overflow:hidden;}
+.small_pic .bottom{overflow:hidden;}
+.small_pic .top .pic1,
+.small_pic .top .pic2,
+.small_pic .bottom .pic3,
+.small_pic .bottom .pic4{float:left; margin-right:10px;}
+
+/*地图*/
+.course_map{float:right; width:328px; border:1px solid #ccc;}
+.course_map .addr{ line-height:30px; color:#333; padding-left:10px; border-bottom:1px solid #ccc;}
+
+/**/
+.courseMain{ position:relative; border:1px solid #ccc;}
+.course_content { padding:15px;}
+.course_content dt{ color:#128d56; font-weight:bold; padding-left:10px; line-height:34px; background:#d8eae2; margin-bottom:10px;}
+.course_content label{ margin-right:10px;}

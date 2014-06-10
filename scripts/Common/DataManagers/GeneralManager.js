@@ -77,9 +77,9 @@
             callback.success();
             return;
         }
-        course.overrideUrl(this.apis.general_courses);
-        course.set('courseId', courseId);
-        course.fetch({
+        courses.overrideUrl(this.apis.general_courses);
+        courses.set('courseId', courseId);
+        courses.fetch({
             dataType:'json',
 
             success:function(model, response){
@@ -194,7 +194,10 @@
         var index = -1;
         if (this.categoryList.length === 0 || shouldReload(this.categoryTimeStamp)){
             index = addToQueue(this.categoryQueue, reference);
-            this.fetchCategories();
+            this.fetchCategories({
+            	success: reference.renderCategories,
+            	error: function () {}
+            });
         }
         else {
             reference.renderCategories(this.categoryList);
