@@ -266,20 +266,60 @@ var AdminManageView = Backbone.View.extend({
     bindSearchEvent: function () {
         var that = this;
         if (this.type === "user") {
-            $("#searchInput").on("change", function() {
-                var value = $(this).val(), num = Utilities.toInt(value);
-                if (isNaN(num)) {
-                    that.sr.set("name", value);
-                } else {
-                    that.sr.set("userId", num);
+            $("#userSearchPanel").on("click", "a", function (e) {
+                var id = e.target.id.split("_")[1];
+                $(e.delegateTarget).children("div").addClass("hidden");
+                $("#"+id).removeClass("hidden");
+            });
+            $("#queryUserBtn").on("click", function (e) {
+                var obj = that.sr.toJSON();
+                for ( var attr in obj ) {
+                    var $input = $("#queryUser").find("#" +attr+"_Input"), value = $input.val();
+                    if (value) {
+                        that.sr.set(attr, $input.attr("type") === "number" ? Utilities.toInt(value) : value);
+                    }
                 }
+                app.adminManager.listUser(that.sr, {success:that.renderResult, error:function(){}});
+            });
+            $("#findUserBtn").on("click", function (e) {
+                var id = $("#userId_Input").val();
+                if (id) {
+                    app.navigate("manage/course/" + id, true );
+                }
+                app.adminManager.listUser(that.sr, {success:that.renderResult, error:function(){}});
             });
         } else if (this.type === "course") {
-            $("#searchInput_id").on("change", function() {
-                that.sr.set("courseId", Utilities.toInt($(this).val()) );
+            $("#findCourseBtn").on("click", function() {
+                var id = $("#courseId_Input").val();
+                if (id) {
+                    app.navigate("manage/course/" + id, true );
+                }
             });
-            $("#searchInput_schoolName").on("change", function() {
-                that.sr.set("institutionName", $(this).val());
+            $("#startTime_Input").datepicker({
+                buttonImageOnly: true,
+                buttonImage: "calendar.gif",
+                buttonText: "Calendar",
+                onSelect: function (text, inst) {
+                    var d = new Date ();
+                    d.setDate(inst.selectedDay);
+                    d.setMonth(inst.selectedMonth);
+                    d.setYear(inst.selectedYear);
+                    that.sr.set("startTime", d);
+                    $(this).val(Utilities.getDateString(d));
+                }
+            });
+            $("#finishTime_Input").datepicker({
+                buttonImageOnly: true,
+                buttonImage: "calendar.gif",
+                buttonText: "Calendar",
+                onSelect: function (text, inst) {
+                    var d = new Date ();
+                    d.setDate(inst.selectedDay);
+                    d.setMonth(inst.selectedMonth);
+                    d.setYear(inst.selectedYear);
+                    that.sr.set("finishTime", d);
+                    $(this).val(Utilities.getDateString(d));
+                }
             });
             $("#searchInput_category").on("change", function() {
                 var category = $(this).val();
@@ -298,6 +338,21 @@ var AdminManageView = Backbone.View.extend({
             });
             $("#searchInput_district").on("change", function() {
                 that.sr.set("district", $(this).val());
+            });
+            $("#queryCourseBtn").on("click", function (e) {
+                var obj = that.sr.toJSON();
+                for ( var attr in obj ) {
+                    var $input = $("#queryCourse").find("#" +attr+"_Input"), value = $input.val();
+                    if (value) {
+                        that.sr.set(attr, $input.attr("type") === "number" ? Utilities.toInt(value) : value);
+                    }
+                }
+                app.generalManager.findCourse(that.sr, {success:that.renderResult, error:function(){}});
+            });
+            $("#courseSearchPanel").on("click", "a", function (e) {
+                var id = e.target.id.split("_")[1];
+                $(e.delegateTarget).children("div").addClass("hidden");
+                $("#"+id).removeClass("hidden");
             });
         } else if (this.type === "booking") {
             $("#bookingSearchPanel").on("click", "a", function (e) {
@@ -320,18 +375,14 @@ var AdminManageView = Backbone.View.extend({
                 }
             });
             $("#queryBookingBtn").on("click", function (e) {
-                var userId = $("#userId_Input").val();
-                var name = $("#name_Input").val();
-                var partnerId = $("#partnerId_Input").val();
-                var courseId = $("#courseId_Input").val();
-                var wasConfirmedIndex = $("#wasConfirmedIndex_Input").prop("checked") ? 1 : 2;
-
-                that.sr.set("userId", userId);
-                that.sr.set("name", name);
-                that.sr.set("partnerId", partnerId);
-                that.sr.set("courseId", courseId);
-                that.sr.set("wasConfirmedIndex", wasConfirmedIndex);
-                app.adminManager.listBooking(that.sr, {success:this.renderResult, error:function(){}});
+                var obj = that.sr.toJSON();
+                for ( var attr in obj ) {
+                    var value = $("#queryBooking").find("#" +attr+"_Input").val();
+                    if (value) {
+                        that.sr.set(attr, value);
+                    }
+                }
+                app.adminManager.listBooking(that.sr, {success:that.renderResult, error:function(){}});
             });
             $("#scheduledTime_Input").datepicker({
                 buttonImageOnly: true,

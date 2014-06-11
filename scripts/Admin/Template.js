@@ -48,9 +48,25 @@
 
 <script type="text/templates" id="tpl_adminUserManage">
     <div class="clearfix">
-        <div class="fleft search">
-            <input id="searchInput" class="text" type="text" placeholder="请输入姓名或id"/><input id="search" class="btn" type="button" value="搜索"/>
-            
+        <div class="fleft search" id="userSearchPanel">
+            <div id="findUser">
+                <input id="userId_Input" class="text" type="text" placeholder="请输入用户id"/>
+                <input id="findUserBtn" class="btn" type="button" value="搜索"/>
+                <a style="float:left" id="goTo_queryUser" class="button">Query</a>
+            </div>
+            <div id="queryUser" class="hidden">
+                <input id="name_Input" class="text" type="text" placeholder="请输入姓名"/>
+                <input id="phone_Input" class="text" type="text" placeholder="电话号码"/>
+                <input id="email_Input" class="text" type="text" placeholder="email"/>
+                <label>
+                    <div style="float:left">用户状态：</div><select id="status_Input">
+                    <option value="0">正常</option>
+                    <option value="1">ban</option>
+                    </select>
+                </label>
+                <input id="queryUserBtn" class="btn" type="button" value="搜索"/>
+                <a style="float:left" id="goTo_findUser" class="button">Get</a>
+            </div>
         </div>
         <div class="fright" style="line-height:40px">
             欢迎您，<span id="adminUserName" class="F_orange"></span>
@@ -82,26 +98,41 @@
     </div>
     <div id="searchResult">
         <div class="clearfix">
-            <div class="fleft search">
-                <div>
-                <input id="searchInput_id" class="text" type="text" placeholder="课程id"/>
-                <input id="searchInput_schoolName" class="text" type="text" placeholder="学校名"/>
+            <div id="courseSearchPanel" class="fleft search">
+                <div id="findCourse">
+                    <input id="courseId_Input" class="text" type="text" placeholder="课程id"/>
+                    <input id="findCourseBtn" class="btn" type="button" value="进入课程"/>
+                    <a style="float:left" id="goTo_queryCourse" class="button">Query</a>
                 </div>
-                <div>
-                <select id="searchInput_category">
-                    <option value="" disabled selected>一级分类</option>
-                </select>
-                <select id="searchInput_subCategory">
-                    <option value="" disabled selected>二级分类</option>
-                </select>
-                <select id="searchInput_city">
-                    <option value="" disabled selected>城市</option>
-                </select>
-                <select id="searchInput_district">
-                    <option value="" disabled selected>地区</option>
-                </select>
+                <div id="queryCourse" class="hidden">
+                    <select id="category_Input">
+                        <option value="" disabled selected>一级分类</option>
+                    </select>
+                    <select id="subCategory_Input">
+                        <option value="" disabled selected>二级分类</option>
+                    </select>
+                    <select id="city_Input">
+                        <option value="" disabled selected>城市</option>
+                    </select>
+                    <select id="district_Input">
+                        <option value="" disabled selected>地区</option>
+                    </select>
+                    <label>开始日期:<input type="text" id="startTime_Input" placeholder="开始日期"/></label>
+                    <label>结束日期:<input type="text" id="finishTime_Input" placeholder="结束日期"/></label>
+                    <input id="institutionName_Input" class="text" type="text" placeholder="学校名"/>
+                    <label>
+                        最低价格：<input type="number" id="startPrice_Input" placeholder="最低价格"/>
+                    </label>
+                    <label>
+                        最高价格：<input type="number" id="finishPrice_Input" placeholder="最高价格"/>
+                    </label>
+                    <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
+                    <input id="userId_Input" class="text" type="text" placeholder="用户id"/>
+                    <input id="courseReference_Input" class="text" type="text" placeholder="course reference"/>
+                    <input id="partnerReference_Input" class="text" type="text" placeholder="partner reference"/>
+                    <input id="queryCourseBtn" class="btn" type="button" value="搜索"/>
+                    <a style="float:left" id="goTo_findCourse" class="button">get</a>
                 </div>
-                <input id="search" class="btn" type="button" value="搜索"/>
                 
             </div>
             <div class="fright" style="line-height:40px">
@@ -176,24 +207,28 @@
 
 
 <script type="text/templates" id="tpl_adminBookingManage">
-	<div id="searchResult">
+    <div id="searchResult">
     <div class="clearfix">
-    	<div id="bookingSearchPanel">
-	        <div id="findBooking" class="fleft search">
-	            <input id="bookingId_Input" class="text" type="text" placeholder="请输入订单id"/>
-	            <input id="getBookingBtn" class="btn" type="button" value="进入"/>
-	            <a style="float:left" id="goTo_queryBooking" class="button">Query</a>
-	        </div>
-	        <div id="queryBooking" class="fleft search hidden">
-	            <input id="userId_Input" class="text" type="text" placeholder="用户Id"/>
-	            <input id="name_Input" class="text" type="text" placeholder="姓名"/>
-	            <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
-	            <input id="courseId_Input" class="text" type="text" placeholder="course Id"/>
-	            <input id="scheduledTime_Input" class="text" type="text" placeholder="预约时间"/>
-	            <label>已经报道<input id="wasConfirmedIndex_Input" type="checkbox"></label>
-	            <input id="queryBookingBtn" class="btn" type="button" value="搜索"/>
-	            <a style="float:left" id="goTo_findBooking" class="button">Get</a>
-	        </div>
+        <div id="bookingSearchPanel">
+            <div id="findBooking" class="fleft search">
+                <input id="bookingId_Input" class="text" type="text" placeholder="请输入订单id"/>
+                <input id="getBookingBtn" class="btn" type="button" value="进入"/>
+                <a style="float:left" id="goTo_queryBooking" class="button">Query</a>
+            </div>
+            <div id="queryBooking" class="fleft search hidden">
+                <input id="userId_Input" class="text" type="text" placeholder="用户Id"/>
+                <input id="name_Input" class="text" type="text" placeholder="姓名"/>
+                <input id="phone_Input" class="text" type="text" placeholder="用户手机"/>
+                <input id="courseId_Input" class="text" type="text" placeholder="course Id"/>
+                <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
+                <input id="reference_Input" class="text" type="text" placeholder="reference"/>
+                <input id="startPrice_Input" class="text" type="text" placeholder="最低价格"/>
+                <input id="finishPrice_Input" class="text" type="text" placeholder="最高价格"/>
+                <input id="scheduledTime_Input" class="text" type="text" placeholder="预约时间"/>
+                <label>已经报道<input id="wasConfirmedIndex_Input" type="checkbox"></label>
+                <input id="queryBookingBtn" class="btn" type="button" value="搜索"/>
+                <a style="float:left" id="goTo_findBooking" class="button">Get</a>
+            </div>
         </div>
         <div class="fright" style="line-height:40px">
             欢迎您，<span id="adminUserName" class="F_orange"></span>
@@ -376,13 +411,8 @@
         <label>teachingMaterialFree: <span class="detail"><%= teachingMaterialFree %></span><span class="edit"><input type="checkbox" name="teachingMaterialFree"/></span></label>
         <label>suitableStudent: <span class="detail"><%= suitableStudent %></span><span class="edit"><input type="text" name="suitableStudent"/></span></label>
         <label>prerequest: <span class="detail"><%= prerequest %></span><span class="edit"><input type="text" name="prerequest"/></span></label>
-        <div class="teacherInfo">
-	        <label>teacherImgUrl: <span class="detail"><%= teacherImgUrl %></span><span class="edit"><input type="file" name="teacherImgUrl1"/></span></label>
-	        <label>teacherName: <span class="detail"><%= teacherName %></span><span class="edit"><input type="text" name="teacherName1"/></span></label>
-	        <label>teacherIntro: <span class="detail"><%= teacherIntro %></span><span class="edit"><input type="text" name="teacherIntro1"/></span></label>
-	        <div class="teacherRemove">Remove</div>
-	    </div>
-	    <input type="button" class="edit" id="addTeacher" />
+
+        <input type="button" class="edit" id="addTeacher" />
         <label>hasDownloadMaterials: <span class="detail"><%= hasDownloadMaterials %></span><span class="edit"><input type="checkbox" name="hasDownloadMaterials"/></span></label>
         <label>questionBank: <span class="detail"><%= questionBank %></span><span class="edit"><input type="text" name="questionBank"/></span></label>
         <label>questionBankIntro: <span class="detail"><%= questionBankIntro %></span><span class="edit"><input type="text" name="questionBankIntro"/></span></label>

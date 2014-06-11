@@ -5,8 +5,12 @@
         <meta charset="utf-8" /> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="HandheldFriendly" content="true">
+        <link href="css/Global.css" rel="stylesheet" type="text/css">
+        <link href="css/topBar.css" rel="stylesheet" type="text/css">
+        <link href="css/booking.css" rel="stylesheet" type="text/css">
+
         <!--watch out for IE-->
-        <title>Route A!</title>
+        <title>爱上课</title>
     </head>
     <body>
         <div id = 'topBar' class = 'unselectable'>
@@ -19,6 +23,11 @@
                         <li id = 'navigate_search' class = 'button navigate_search'>分类检索</li>
                         <li id = 'navigate_compare' class = 'button navigate_compare'>学校对比</li>
                     </ul>
+                    <div class="login_reg">
+                        <a class="login" href="#">登录</a>
+                        <span></span>
+                        <a class="reg" href="#">注册</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,23 +44,21 @@
                         </div>
                         <div id="printBooking">打印订单</div>
                     </div>
-                    <div class="column2">
-                        <span class="title">
-                            六级考前词汇串讲班
-                        </span>
-                        <label>教育机构: </label>新东方教育
-                        <label>上课地址: </label>xxx
-                        <label>咨询电话: </label>010-5837900
-                        <label>开课时间: </label>5月13日-6月13日
-                        <label>班级类型: </label>小于30人
-                        <label>预约报道: </label>6月5日 (过时您的特价订单将失效)
-                        <label>费用总计: </label> ￥<span class="price">2490</span> (到校付款)
-
-                        <p class="extra"><span class="red">*</span>到达学校后，请您凭入学人的有效证件办理入学</p>
+                    <div class="row2">
+                        <p><label>订单号: </label>23456789</p>
+                        <p><label>课程名称: </label>六级考前词汇串讲班</p>
+                        <p><label>教育机构: </label>新东方教育</p>
+                        <p><label>上课地址: </label>南京市雨花台区宁双路28号汇智大厦9楼908室</p>
+                        <p><label>咨询电话: </label>010-5837900</p>
+                        <p><label>开课时间: </label>5月13日-6月13日</p>
+                        <p><label>班级类型: </label>小于30人</p>
+                        <p><label>预约报道: </label>6月5日 <span>（过时您的特价订单将失效）</span></p>
+                        <p><label>费用总计: </label> ￥<b class="price">2490</b> <span>（到校付款）</span></p>
+                        <p class="extra">* 到达学校后，请您凭入学人的有效证件办理入学</p>
                     </div>
-                    <div class="column3">
+                    <div class="row3 clearfix">
                         <p class="bonus">积分奖励，成功入学后，您将获得648积分，结账后7个工作日内计入您的上课书包</p>
-                        <span class="viewMore">查看其他课程</span>
+                        <span class="viewMore">查看其他课程>></span>
                     </div>
                 </div>
             </div>

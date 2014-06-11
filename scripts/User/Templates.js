@@ -103,18 +103,18 @@
             <div id="filter_classMode" class="filterCriteria">
                 <label>班级类型：</label>
                 <span data-id="noreq" class="active">不限</span>
-                <span data-id="small">小于6人</span>
-                <span data-id="middle">6-30人</span>
-                <span data-id="large">大于30人</span>
+                <span data-id="0-5">小于6人</span>
+                <span data-id="6-29">6-30人</span>
+                <span data-id="30-">大于30人</span>
             </div>
             <div id="filter_price" class="filterCriteria">
                 <label>课程费用：</label>
-                <span id="noreq" class="active">不限</span>
-                <span data-id="499">~499</span>
+                <span data-id="noreq" class="active">不限</span>
+                <span data-id="0-499">~499</span>
                 <span data-id="500-999">500~999</span>
                 <span data-id="1000-1499">1000~1499</span>
                 <span data-id="1500-1999">1500~1999</span>
-                <span data-id="2000">2000以上</span>
+                <span data-id="2000-">2000以上</span>
             </div>
         </div>
     </div>
@@ -619,12 +619,474 @@
 </script>
 
 <script type="text/template" id="tpl_compareView">
-    <div id="compareView">
-        <div id="compare_basic">
-            <dt id="title_basic"title_basic>基本信息 <span>[收起]</span></dt>
-            <div class="labels">
-                <div></div>
-            </div>
+    <div class="item1">
+        <div class="title clearfix">
+            <span class="up">基本信息</span>
+            <a class="F_green" href="#" id="basic_collapse">[收起]</a>
         </div>
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr id="courseName">
+                <th>课程名称</th>
+                <td width="195">
+                    <h2 class="F_green">初二提高英语暑假班</h2>
+                    <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
+                    <div class="set"><a class="pre pre-disabled" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div>
+                </td>
+                <td width="195">
+                    <h2 class="F_green">初二提高英语暑假班</h2>
+                    <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
+                    <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div>
+                </td>
+                <td width="195">
+                    <h2 class="F_green">初二提高英语暑假班</h2>
+                    <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
+                    <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div>
+                </td>
+                <td width="195">
+                    <h2 class="F_green">初二提高英语暑假班</h2>
+                    <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
+                    <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next next-disabled" href="#">向后</a></div>
+                </td>
+            </tr>
+            <tr id="suitableStudent">
+                <th>适合学员</th>
+                <td>准初二学员、初二同步学员</td>
+                <td>初二同步学员</td>
+                <td>初二同步学员</td>
+                <td>初二同步学员</td>
+            </tr>
+            <tr id="instName">
+                <th>机构名称</th>
+                <td>南京新东方</td>
+                <td>南京新东方</td>
+                <td>南京新东方</td>
+                <td>南京新东方</td>
+            </tr>
+            <tr id="price">
+                <th>课程价格</th>
+                <td>
+                    <div class="price">780元</div>
+                    <a class="cashback">
+                        <em>50元</em>
+                        <div class="tip">
+                            <div class="arrow"></div>
+                            <div class="tip_content">
+                                用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
+                            </div>
+                        </div>
+                        </a>
+                </td>
+                <td>
+                    <div class="price">780元</div>
+                    <a class="cashback">
+                        <em>50元</em>
+                        <div class="tip">
+                            <div class="arrow"></div>
+                            <div class="tip_content">
+                                用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
+                            </div>
+                        </div>
+                        </a>
+                </td>
+                <td>
+                    <div class="price">780元</div>
+                    <a class="cashback">
+                        <em>50元</em>
+                        <div class="tip">
+                            <div class="arrow"></div>
+                            <div class="tip_content">
+                                用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
+                            </div>
+                        </div>
+                        </a>
+                </td>
+                <td>
+                    <div class="price">780元</div>
+                    <a class="cashback">
+                        <em>50元</em>
+                        <div class="tip">
+                            <div class="arrow"></div>
+                            <div class="tip_content">
+                                用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
+                            </div>
+                        </div>
+                     </a>
+                </td>
+            </tr>
+            <tr id="logoUrl">
+                <th>品牌展示</th>
+                <td><img src="images/xdf.gif"/></td>
+                <td><img src="images/xd.gif"/></td>
+                <td><img src="images/xd.gif"/></td>
+                <td><img src="images/xdf.gif"/></td>
+            </tr>
+            <tr id="startTime">
+                <th>开课日期</th>
+                <td>6月13日-7月13日</td>
+                <td>6月13日-7月13日</td>
+                <td>6月13日-7月13日</td>
+                <td>6月13日-7月13日</td>
+            </tr>
+            <tr id="dailyStartTime">
+                <th>上课时间</th>
+                <td>9:00-12:00（每周三、六,节假日除外）</td>
+                <td>9:00-12:00（每周三、六,节假日除外）</td>
+                <td>9:00-12:00（每周三、六,节假日除外）</td>
+                <td>9:00-12:00（每周三、六,节假日除外）</td>
+            </tr>
+            <tr id="courseHourNum">
+                <th>上课课时</th>
+                <td>21课时，每课时2小时</td>
+                <td>21课时，每课时2小时</td>
+                <td>21课时，每课时2小时</td>
+                <td>21课时，每课时2小时</td>
+            </tr>
+            <tr id="address">
+                <th>学校地址</th>
+                <td>南京市雨花区六合大街12号</td>
+                <td>南京市雨花区六合大街12号</td>
+                <td>南京市雨花区六合大街12号</td>
+                <td>南京市雨花区六合大街12号</td>
+            </tr>
+            <tr id="seatsTotal">
+                <th>班级类型</th>
+                <td>30人</td>
+                <td>30人</td>
+                <td>30人</td>
+                <td>30人</td>
+            </tr>
+            <tr id="openCourseRequirement">
+                <th>开班要求</th>
+                <td>至少16人开班</td>
+                <td>至少16人开班</td>
+                <td>至少16人开班</td>
+                <td>至少16人开班</td>
+            </tr>
+            <tr id="scheduledTime">
+                <th>报名日期</th>
+                <td>至6月5号止，晚于此日期，您将不再享有此优惠价格</td>
+                <td>至6月5号止，晚于此日期，您将不再享有此优惠价格</td>
+                <td>至6月5号止，晚于此日期，您将不再享有此优惠价格</td>
+                <td>至6月5号止，晚于此日期，您将不再享有此优惠价格</td>
+            </tr>
+            <tr id="wholeName">
+                <th>机构全称</th>
+                <td>北京新东方教育科技（集团）有限公司</td>
+                <td>学大教育集团</td>
+                <td>学大教育集团</td>
+                <td>学大教育集团</td>
+            </tr>
+            <tr id="distinction">
+                <th>机构荣誉</th>
+                <td>纳斯达克上市</td>
+                <td>纳斯达克上市</td>
+                <td>纳斯达克上市</td>
+                <td>纳斯达克上市</td>
+            </tr>
+            <tr id="partnerIntro">
+                <th>机构概况</th>
+                <td>是目前中国大陆规模最大的...<a class="F_green" href="#">[展开]</a></td>
+                <td>是目前中国大陆规模最大的...<a class="F_green" href="#">[展开]</a></td>
+                <td>是目前中国大陆规模最大的...<a class="F_green" href="#">[展开]</a></td>
+                <td>是目前中国大陆规模最大的...<a class="F_green" href="#">[展开]</a></td>
+            </tr>
+            <tr>
+                <th>老师介绍</th>
+                <td>
+                    <p><b class="F_green">刘明军</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
+                    <p><b class="F_green">何刚</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
+                </td>
+                <td>
+                    <p><b class="F_green">刘明军</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
+                    <p><b class="F_green">何刚</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
+                </td>
+                <td>
+                    <p><b class="F_green">刘明军</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
+                    <p><b class="F_green">何刚</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
+                </td>
+                <td>
+                    <p><b class="F_green">刘明军</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
+                    <p><b class="F_green">何刚</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
+                </td>
+            </tr>
+        </table>
+        
+        <div class="title clearfix" style="border-top:none;">
+            <span class="up">教学信息</span>
+            <a class="F_green" href="#" id="teaching_collapse">[收起]</a>
+        </div>
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>课程介绍</th>
+                <td width="195">课程介绍</td>
+                <td width="195">课程介绍</td>
+                <td width="195">课程介绍</td>
+                <td width="195">课程介绍</td>
+            </tr>
+            <tr>
+                <th>教学目标</th>
+                <td>
+                    <p>1、对初一英语知识点达到灵活运用层次，夯实初一知识</p>
+                    <p>2、对初二秋季知识点达到识记和理解层次，在新学期学习中占得先机。</p>
+                </td>
+                <td>
+                    <p>1、对初一英语知识点达到灵活运用层次，夯实初一知识</p>
+                    <p>2、对初二秋季知识点达到识记和理解层次，在新学期学习中占得先机。</p>
+                </td>
+                <td>
+                    <p>1、对初一英语知识点达到灵活运用层次，夯实初一知识</p>
+                    <p>2、对初二秋季知识点达到识记和理解层次，在新学期学习中占得先机。</p>
+                </td>
+                <td>
+                    <p>1、对初一英语知识点达到灵活运用层次，夯实初一知识</p>
+                    <p>2、对初二秋季知识点达到识记和理解层次，在新学期学习中占得先机。</p>
+                </td>
+            </tr>
+            <tr>
+                <th>先修知识</th>
+                <td>基础英语语法</td>
+                <td>基础英语语法</td>
+                <td>基础英语语法</td>
+                <td>基础英语语法</td>
+            </tr>
+            <tr>
+                <th>上课形式</th>
+                <td>分组学习，分组讨论</td>
+                <td>分组学习，分组讨论</td>
+                <td>分组学习，分组讨论</td>
+                <td>分组学习，分组讨论</td>
+            </tr>
+            <tr>
+                <th>教材介绍</th>
+                <td>自编教材，新东方内训特编</td>
+                <td>自编教材，新东方内训特编</td>
+                <td>自编教材，新东方内训特编</td>
+                <td>自编教材，新东方内训特编</td>
+            </tr>
+            <tr>
+                <th>教材费用</th>
+                <td>免费</td>
+                <td>免费</td>
+                <td>免费</td>
+                <td>免费</td>
+            </tr>
+            <tr>
+                <th>课程提纲</th>
+                <td>
+                    <p>第一讲</p>  
+                    <p>1、口语 Transport</p> 
+                    <p>2、听力专项训练 </p> 
+                    <p>3、精读文章</p>  
+                    <p>4、课后美文欣赏 </p> 
+                    <p>第二讲 </p> 
+                    <p>1、口语 Different shops</p>  
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章 </p> 
+                    <p>4、课后美文欣赏 </p> 
+                    <p>第三讲 </p> 
+                    <p>1、口语　Ｉlove fashion</p>  
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章 </p> 
+                    <p>4、课后美文欣赏</p>  
+                    <p>第四讲 </p> 
+                    <p>1、口语 Saving money </p> 
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章 </p> 
+                    <p>第五讲 </p> 
+                    <p>1、口语 Rules and Regulations </p> 
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章</p> 
+                </td>
+                <td>
+                    <p>第一讲</p>  
+                    <p>1、口语 Transport</p> 
+                    <p>2、听力专项训练 </p> 
+                    <p>3、精读文章</p>  
+                    <p>4、课后美文欣赏 </p> 
+                    <p>第二讲 </p> 
+                    <p>1、口语 Different shops</p>  
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章 </p> 
+                    <p>4、课后美文欣赏 </p> 
+                    <p>第三讲 </p> 
+                    <p>1、口语　Ｉlove fashion</p>  
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章 </p> 
+                    <p>4、课后美文欣赏</p>  
+                    <p>第四讲 </p> 
+                    <p>1、口语 Saving money </p> 
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章 </p> 
+                    <p>第五讲 </p> 
+                    <p>1、口语 Rules and Regulations </p> 
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章</p> 
+                </td>
+                <td>
+                    <p>第一讲</p>  
+                    <p>1、口语 Transport</p> 
+                    <p>2、听力专项训练 </p> 
+                    <p>3、精读文章</p>  
+                    <p>4、课后美文欣赏 </p> 
+                    <p>第二讲 </p> 
+                    <p>1、口语 Different shops</p>  
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章 </p> 
+                    <p>4、课后美文欣赏 </p> 
+                    <p>第三讲 </p> 
+                    <p>1、口语　Ｉlove fashion</p>  
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章 </p> 
+                    <p>4、课后美文欣赏</p>  
+                    <p>第四讲 </p> 
+                    <p>1、口语 Saving money </p> 
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章 </p> 
+                    <p>第五讲 </p> 
+                    <p>1、口语 Rules and Regulations </p> 
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章</p> 
+                </td>
+                <td>
+                    <p>第一讲</p>  
+                    <p>1、口语 Transport</p> 
+                    <p>2、听力专项训练 </p> 
+                    <p>3、精读文章</p>  
+                    <p>4、课后美文欣赏 </p> 
+                    <p>第二讲 </p> 
+                    <p>1、口语 Different shops</p>  
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章 </p> 
+                    <p>4、课后美文欣赏 </p> 
+                    <p>第三讲 </p> 
+                    <p>1、口语　Ｉlove fashion</p>  
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章 </p> 
+                    <p>4、课后美文欣赏</p>  
+                    <p>第四讲 </p> 
+                    <p>1、口语 Saving money </p> 
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章 </p> 
+                    <p>第五讲 </p> 
+                    <p>1、口语 Rules and Regulations </p> 
+                    <p>2、听力专项训练</p>  
+                    <p>3、精读文章</p> 
+                </td>
+            </tr>
+            </tr>
+        </table>
+
+        <div class="title clearfix" style="border-top:none;">
+            <span class="up">教学补充</span>
+            <a class="F_green" id="more_collapse" href="#">[收起]</a>
+        </div>
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>课件下载</th>
+                <td width="195">提供上课课件下载和拷贝，便于课后复习</td>
+                <td width="195">提供上课课件下载和拷贝，便于课后复习</td>
+                <td width="195">提供上课课件下载和拷贝，便于课后复习</td>
+                <td width="195">提供上课课件下载和拷贝，便于课后复习</td>
+            </tr>
+            <tr>
+                <th>题库支持</th>
+                <td>历年真题+模拟题+预测题+全真机考</td>
+                <td>历年真题+模拟题+预测题+全真机考</td>
+                <td>历年真题+模拟题+预测题+全真机考</td>
+                <td>历年真题+模拟题+预测题+全真机考</td>
+            </tr>
+            <tr>
+                <th>班主任导学</th>
+                <td>老师不定期跟进学员进度，灵活调整课程计划</td>
+                <td>老师不定期跟进学员进度，灵活调整课程计划</td>
+                <td>老师不定期跟进学员进度，灵活调整课程计划</td>
+                <td>老师不定期跟进学员进度，灵活调整课程计划</td>
+            </tr>
+            <tr>
+                <th>讲练结合</th>
+                <td>寄语特定教学目标，进行有针对的训练及讲解</td>
+                <td>寄语特定教学目标，进行有针对的训练及讲解</td>
+                <td>寄语特定教学目标，进行有针对的训练及讲解</td>
+                <td>寄语特定教学目标，进行有针对的训练及讲解</td>
+            </tr>
+            <tr>
+                <th>阶段测评</th>
+                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+            </tr>
+            <tr>
+                <th>课后答疑</th>
+                <td>支持课后多途径教学相关任何答疑问解答</td>
+                <td>支持课后多途径教学相关任何答疑问解答</td>
+                <td>支持课后多途径教学相关任何答疑问解答</td>
+                <td>支持课后多途径教学相关任何答疑问解答</td>
+            </tr>
+            <tr>
+                <th>课后作业</th>
+                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+            </tr>
+            <tr>
+                <th>作业批改</th>
+                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+            </tr>
+        </table>
+        
+        <div class="title clearfix" style="border-top:none;">
+            <span class="up">教学保障</span>
+            <a class="F_green" id="guarantee_collapse" href="#">[收起]</a>
+        </div>
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>签约保过</th>
+                <td width="195">入学签约，不过免费重读</td>
+                <td width="195">入学签约，不过免费重读</td>
+                <td width="195">入学签约，不过免费重读</td>
+                <td width="195">入学签约，不过免费重读</td>
+            </tr>
+            <tr>
+                <th>高分奖励</th>
+                <td>考试成绩优异的同学，在毕业的时候可获得300元的奖金和新东方颁发的奖状</td>
+                <td>考试成绩优异的同学，在毕业的时候可获得300元的奖金和新东方颁发的奖状</td>
+                <td>考试成绩优异的同学，在毕业的时候可获得300元的奖金和新东方颁发的奖状</td>
+                <td>考试成绩优异的同学，在毕业的时候可获得300元的奖金和新东方颁发的奖状</td>
+            </tr>
+        </table>
+        
+        <div class="title clearfix" style="border-top:none;">
+            <span class="up">特色服务</span>
+            <a class="F_green" id="special_collapse" href="#">[收起]</a>
+        </div>
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>结业证书</th>
+                <td width="195">结业之后可获得技能证书</td>
+                <td width="195">结业之后可获得技能证书</td>
+                 <td width="195">结业之后可获得技能证书</td>
+                 <td width="195">结业之后可获得技能证书</td>
+            </tr>
+            <tr>
+                <th>课后互动</th>
+                <td>支持QQ学习群，支持每周英语角</td>
+                <td>支持QQ学习群，支持每周英语角</td>
+                <td>支持QQ学习群，支持每周英语角</td>
+                <td>支持QQ学习群，支持每周英语角</td>
+            </tr>
+            <tr>
+                <th>赠送服务</th>
+                <td>免费获得教材一份，单次速记手册</td>
+                <td>免费获得教材一份，单次速记手册</td>
+                <td>免费获得教材一份，单次速记手册</td>
+                <td>免费获得教材一份，单次速记手册</td>
+            </tr>
+        </table>
+        
     </div>
 </script>

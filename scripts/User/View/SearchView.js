@@ -3,6 +3,7 @@ var SearchView = Backbone.View.extend({
     categoryTemplate: ["<li data-id='", undefined, "'>", undefined,"</li>"],
     subCategoryTemplate: ["<span data-id='", undefined ,"'>", undefined,"</span>"],
     subCategoryContainerTemplate: ["<div data-id='", ,"'class='hidden subCategoryList'><label>类<s></s>别：</label><span data-id='noreq'>不限</span>", undefined,"</div>"],
+    filters: {},
     initialize: function (params) {
         _.bindAll(this, 'renderMap', 'renderSearchResults', 'courseSearch', 'bindEvents', 'bindSearchEvents', 'renderCategories', 'filterResult', 'close');
         app.viewRegistration.register(this);
@@ -38,18 +39,24 @@ var SearchView = Backbone.View.extend({
         this.rendered = true;
     },
 
-    renderSearchResults: function (searchResults) {
+    renderSearchResults: function (searchResults, byFilter) {
         //prevent memory leaks
         $("#searchResultDisplayPanel").empty();
-        this.allMessages = searchResults;
+        if (!byFilter) {
+            this.allMessages = searchResults;
+        }
         if (!this.searchResultView) {
-            this.searchResultView = new SearchResultView (this.allMessages, this.allMessages, this.compareWidgetView);
+            this.searchResultView = new SearchResultView (this.allMessages, this.allMessages.clone(), this.compareWidgetView);
         } else {
-            var array = this.allMessages.toArray();
-            this.searchResultView.allMessages.reset(array);
-            this.searchResultView.messages.reset(array);
-            this.searchResultView.render();
-            this.renderPriceRange(array);
+            var array = searchResults.toArray();
+            this.searchResultView.allMessages.reset(this.allMessages.toArray());
+            if (byFilter) {
+                this.searchResultView.messages.reset(searchResults.toArray());
+            } else {
+                searchResult = this.filter();
+                this.searchResultView.messages.reset(searchResult.toArray());
+            }
+            this.searchResultView.render.call(this);
         }
     },
     renderCategories: function (categories){
@@ -114,12 +121,22 @@ var SearchView = Backbone.View.extend({
             $(e.delegateTarget).children(".active").removeClass("active");
             $(this).addClass("active");
             $("#search_subCategory").children("div").addClass("hidden");
-            $("#search_subCategory").children("div[data-id=" + dataId + "]").removeClass("hidden");
+            var $scCont = $("#search_subCategory").children("div[data-id=" + dataId + "]");
+            $scCont.removeClass("hidden");
+            $scCont.find(".active").removeClass("active");
+            $scCont.find("span[data-id=noreq]").addClass("avtive");
             that.searchRepresentation.set("category", dataId);
+            that.searchRepresentation.set("subCategory", undefined);
+            that.courseSearch();
         });
         $("#search_subCategory").on("click", "span", function (e) {
             that.searchRepresentation.set("category", $("#search_category").find(".active").data("id"));
-            that.searchRepresentation.set("subCategory", $(this).data("id"));
+            var val = $(this).data("id");
+            if (val === "noreq") {
+                that.searchRepresentation.set("subCategory", undefined);
+            } else {
+                that.searchRepresentation.set("subCategory", $(this).data("id"));
+            }
             that.courseSearch();
         });
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
@@ -130,12 +147,107 @@ var SearchView = Backbone.View.extend({
         $filter.find(".active").removeClass("active");
         $filter.find("span[data-id=" + dataId + "]").addClass("active");
         var criteria = $filter.attr("id").split("_")[1];
+        if (criteria === "startTime"){
+            var date = new Date();
+            date.setDate(1);
+            var month = date.getMonth();
+            if (dataId === "thisMonth") {
+                this.searchRepresentation.set("startTime", Utilities.castToRepresentationFormat(date));
+            } else if (dataId= "nextMonth") {
+                if (month === 11) {
+                    date.setMonth(0);
+                    date.setFullYear(date.getFullYear()+1);
+                } else {
+                    date.setMonth(date.getMonth()+1);
+                }
+                this.searchRepresentation.set("startTime", Utilities.castToRepresentationFormat(date));
+            } else if (dataId= "twoMonthsAfter") {
+                if (month >= 10) {
+                    date.setMonth((date.getMonth()+2)%12);
+                    date.setFullYear(date.getFullYear()+1);
+                } else {
+                    date.setMonth(date.getMonth()+2);
+                }
+                this.searchRepresentation.set("startTime", Utilities.castToRepresentationFormat(date));
+            } else {
+                this.searchRepresentation.set("startTime", undefined);
+            }
+            this.courseSearch();
+        }
+        else if (criteria === "district") {
+            if (dataId === "noreq") {
+                this.searchRepresentation.set("startTime", undefined);
+            } else {
+                this.searchRepresentation.set(criteria, dataId);
+            }
+            this.courseSearch();
+        }
+        else if (criteria === "price") {
+            if (dataId === "noreq") {
+                this.filters["price"] = null;
+            } else {
+                var priceRange = dataId.split("-");
+                var minPrice = Utilities.toInt(priceRange[0]), maxPrice;
+                if (priceRange.length === 1) {
+                    maxPrice = undefined;
+                } else {
+                    maxPrice = Utilities.toInt(priceRange[1]);
+                }
+                this.filters["price"] = {
+                    "minPrice": minPrice,
+                    "maxPrice": maxPrice
+                }
+            }
+        }
+        else if (criteria === "classMode") {
+            if (dataId === "noreq") {
+                this.filters["classMode"] = null;
+            } else {
+                var sizeRange = dataId.split("-");
+                var minSize = Utilities.toInt(sizeRange[0]), maxSize;
+                if (sizeRange.length === 1) {
+                    maxSize = undefined;
+                } else {
+                    maxSize = Utilities.toInt(sizeRange[1]);
+                }
+                this.filters["classSize"] = {
+                    "minSize": minPrice,
+                    "maxSize": maxPrice
+                }
+            }
+        }
+        else if (criteria === "classTime") {
+            if (dataId === "noreq") {
+                this.filters["classTime"] = null;
+            } else {
+            }
+        }
+        var messages = this.filter();
+        this.renderSearchResults(messages, true);
         //this.searchRepresentation.set(criteria, dataId);
         //todo
     },
-    renderPriceRange: function(){
-        var max = this.allMessages.max(this.comparePrice);
-        var min = this.allMessages.min(this.comparePrice);
+    filterClassSize: function (course) {
+        return (course.get("seatsTotal") >= this.filters.classSize.minSize && (this.filters.classSize.maxPrice ? course.get("seatsTotal")<= this.filters.classSize.maxSize : true));
+    },
+    filterClassTime: function(course){
+        return true;
+    },
+    filterPrice: function(course){
+        return (course.get("price") >= this.filters.price.minPrice && (this.filters.price.maxPrice ? course.get("price")<= this.filters.price.maxPrice : true) );
+    },
+    filter: function(){
+        var messages = this.allMessages.clone();
+        if (this.filters["price"]) {
+            messages.reset(messages.filter(this.filterPrice, this));
+        }
+        if (this.filters["classSize"]) {
+            messages.reset(messages.filter(this.filterClassSize, this));
+        }
+        if (this.filters["classTime"]) {
+            messages.reset(messages.filter(this.filterClassTime, this));
+        }
+        return messages;
     },
     comparePrice: function(course){
         return course.get("price");

@@ -1,0 +1,98 @@
+@charset "utf-8";
+/* CSS Document */
+
+/**********左栏**********/
+#mypage_sidebar{float:left; width:198px; border:1px solid #cccccc; font-size:14px;}
+.mypage_sidebar_title{ height:50px; line-height:50px; color:#fff; padding-left:35px; background:#128d56 url(../images/icon.png) no-repeat 15px 16px;}
+
+/*头像*/
+#mypage_avatar{width:150px; margin:20px auto 0;}
+#mypage_avatar p{ margin-top:5px;}
+#mypage_info{width:150px; margin:10px auto 30px; font-size:12px; line-height:20px;}
+.phone{ padding-left:20px; background:url(../images/icon.png) no-repeat 0 -117px;}
+.email{ padding-left:20px; background:url(../images/icon.png) no-repeat 0 -143px;}
+
+.mypage_sidebar_sectionTitle{ height:38px; line-height:38px; background:#efefef url(../images/icon.png) no-repeat 15px -22px; padding-left:35px; border-top:1px solid #ccc; border-bottom:1px solid #ccc;}
+.p3 .mypage_sidebar_sectionTitle{ background-position:15px -50px;}
+.p4 .mypage_sidebar_sectionTitle{ background-position:15px -80px;}
+.p2 .mypage_sidebar_sectionContent,
+.p3 .mypage_sidebar_sectionContent,
+.p4 .mypage_sidebar_sectionContent{ padding:10px 0 25px 35px; line-height:30px;}
+
+.mypage_sidebar_sectionContent div{ cursor:pointer;}
+.mypage_sidebar_sectionContent .active{ color:#128d56; font-weight:bold;}
+
+/**********右栏**********/
+#mypage_content{float:right; width:780px;}
+
+/*个人中心首页*/
+#walletSummary{width:100%; height:109px; line-height:109px; background:url(../images/walletSummary.png) no-repeat;}
+#walletSummary .line{float:left; width:1px; height:109px; background:url(../images/line.png) no-repeat center;}
+.summaryItem1,.summaryItem2,.summaryItem3{float:left; width:230px; text-align:center; padding-left:29px; font-size:18px; font-family:微软雅黑; }
+.summaryItem1{ background: url(../images/summaryItem1.png) no-repeat 56px center;}
+.summaryItem2{ background: url(../images/summaryItem2.png) no-repeat 29px center;}
+.summaryItem3{ background: url(../images/summaryItem3.png) no-repeat 54px center;}
+
+#mypage_content h2{ font-size:14px; margin-top:25px;}
+#bookingSummary{}
+
+.bookingEntry{height:105px; border:1px solid #cccccc; margin-top:10px;}
+.bookingEntryTime{float:left; width:124px; text-align:center; line-height:22px; font-size:14px; height:105px; background:#e4f3ec; border-right:1px solid #bcd6ca;}
+.bookingEntryTime .date{ margin-top:20px; padding-left:10px; margin-bottom:15px; background:url(../images/icon_date.png) no-repeat 18px;}
+
+.bookingEntryDetail{float:left; width:380px; padding-left:15px; height:105px;font-size:14px; border-right:1px solid #ccc;}
+.bookingEntryDetail .title{ font-weight:bold; margin-top:25px; margin-bottom:20px;}
+.address{ margin-left:5px;}
+
+.bookingEntryPrice{float:left; width:118px; height:105px; line-height:105px; font-family:微软雅黑; font-size:18px; color:#ff5500; border-right:1px solid #ccc; text-align:center;}
+.bookingEntryPrice .sign{font-size:14px; color:#333;}
+.bookingEntryState{ float:left; width:138px; height:105px; line-height:105px; text-align:center; font-family:微软雅黑; font-size:18px; color:#128d56;}
+.pending{ padding-left:25px; background:url(../images/icon.png) no-repeat 0 -189px;}
+.confirmed{ padding-left:25px; background:url(../images/icon.png) no-repeat 0 -225px;}
+.canceled{ padding-left:25px; background:url(../images/icon.png) no-repeat 0 -263px;}
+
+/*订单详情页*/
+
+.crumbs{border:1px solid #ccc; padding-left:24px; height:48px; line-height:48px; font-size:14px;}
+
+#bookingDetail{border:1px solid #ccc; font-size:14px;}
+.row0{border-bottom:1px dotted #ccc; padding:10px 25px; line-height:35px;}
+.row0 label{ font-weight:bold;}
+.row0 label s{ margin:0 8px;}
+.row0 span{ color:#666;}
+.row0 .price{font-family: 微软雅黑; font-size: 18px; color: #ff5500; padding-top: 32px;}
+.row0 .price label,.row0 .price .sign{ font-size:14px; color:#333;}
+
+.row1{ padding:10px 25px 30px; border-bottom:1px dotted #ccc;}
+#process{width:533px; padding:35px 0 40px; margin-left:18px;}
+#process .node,#process .proce{float:left;position:relative;height:13px;background-image:url(../images/bg_state.jpg);background-repeat:no-repeat;}
+#process .node{width:13px;}
+#process .proce{width:150px;border:solid #fff;border-width:0 5px;}
+.node.wait{background-position:-150px -40px;}
+.node.ready{background-position:-150px 0px;}
+.node.singular{background-position:-150px -60px;}
+.proce.wait{background-position:0 -40px;}
+.proce.doing{background-position:0 -20px;color:#360;}
+.proce.ready{background-position:0 0;}
+.node p{width:100px; margin-top:-20px; font-size:12px; margin-left:-17px;}
+.ready p{color:#128d56;}
+.explain { padding-left:20px;}
+.explain span{ margin-right:10px; font-size:12px; color:#666; line-height:26px;}
+.explain .active span{ color:#128d56;}
+
+.row2{ padding:10px 25px 30px;  border-bottom:1px dotted #ccc; line-height:30px;}
+.row2 h3.title{font-size:24px; font-family:微软雅黑; color:#128d56; font-weight:normal; margin:10px 0 20px;}
+.row2 p label{color:#666;}
+
+.row3{padding:10px 25px 30px;  border-bottom:1px dotted #ccc; line-height:30px;}
+.row3 .title{ font-weight:bold; margin:0 0 10px; color:#333;}
+.row3 .fleft{ margin-right:50px;}
+.row3 p label{color:#666;}
+
+.row4{padding:10px 25px 30px;  line-height:30px;}
+.row4 .title{ font-weight:bold; margin:0 0 10px; color:#333;}
+.row4 .fleft{ margin-right:50px;}
+.row4 p label{color:#666;}
+.print { text-align:right; margin-top:10px;}
+.btns{ margin:20px 0; text-align:center;}
+.btns input{ margin-right:30px;}

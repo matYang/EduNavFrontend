@@ -5,8 +5,11 @@
         <meta charset="utf-8" /> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="HandheldFriendly" content="true">
+        <link href="css/Global.css" rel="stylesheet" type="text/css">
+        <link href="css/topBar.css" rel="stylesheet" type="text/css">
+        <link href="css/booking.css" rel="stylesheet" type="text/css">
         <!--watch out for IE-->
-        <title>Route A!</title>
+        <title>爱上课</title>
     </head>
     <body>
         <div id = 'topBar' class = 'unselectable'>
@@ -19,33 +22,35 @@
                         <li id = 'navigate_search' class = 'button navigate_search'>分类检索</li>
                         <li id = 'navigate_compare' class = 'button navigate_compare'>学校对比</li>
                     </ul>
+                    <div class="login_reg">
+                        <a class="login" href="#">登录</a>
+                        <span></span>
+                        <a class="reg" href="#">注册</a>
+                    </div>
                 </div>
             </div>
         </div>
         <div id = 'main' class='main'>
             <div id = 'content' class='content'>
                 <div class="courseBrief">
-                    <div class="row1">
-                        <div class="left"><img></div>
-                        <div class="right">
+                    <div class="row1 clearfix">
+                        <div class="fleft"><img src="images/pic.jpg" width="90" height="71"/></div>
+                        <div class="fright">
                             <div class="title">六级考前词汇串讲班</div>
-                            <div class="desc ">适合学员</div>
+                            <div class="desc ">适合学员： 即将参加六级考试的学生。</div>
                         </div>
                     </div>
                     <div class="row2">
-                        <div class="section"><label>班级类型:</label><span>20人</span></div>
-                        <div class="section"><label>开课时间:</label><span>5月13日-6月13日</span></div>
-                        <div class="section"><label>上课时间:</label><span>9:00 - 14:00</span></div>
-                        <div class="section"><label>上课地址:</label><span>xxxx</span></div>
+                        <div class="section"><label>班级类型：</label> <span>20人</span></div>
+                        <div class="section"><label>开课时间：</label> <span>5月13日-6月13日</span></div>
+                        <div class="section"><label>上课时间：</label> <span>9:00 - 14:00</span></div>
+                        <div class="section"><label>上课地址：</label> <span>南京市雨花台区宁双路28号汇智大厦9楼908室</span></div>
                         <div class="extra">过去7天有124人预定了该课程</div>
                     </div>
                     <div class="row3">
-                        <div class="left"><img></div>
-                        <div class="right">
-                            <div class="desc ">若该教学机构在您取消与本机构的课程订单后，给予您更多诱惑，您将获得500元。</div>
-                        </div>
+                        若该教学机构在您取消与本机构的课程订单后，给予您更多诱惑，您将获得500元。
                     </div>
-                    <div class="row3">
+                    <div class="row4">
                         <div class="title">需要帮助?</div>
                         <div class="link">查看常见问题</div>
                         <div class="link">在线客服</div>
@@ -54,12 +59,13 @@
                 </div>
                 <form id="bookingDetail" class="newBooking">
                     <div class="header">填写订单信息</div>
-                    <div class="title">六级考前词汇串讲班</div>
-                    <div class="right ">Wow, Congratulations!</div>
-                    <hr />
+                    <div class="title">
+                        <h3>六级考前词汇串讲班</h3>
+                        <div class="fright ">Wow, Congratulations!</div>
+                    </div>
                     <div class="row1">
                         <div class="field">
-                            <label>报名人数:</label>
+                            <label>报名人数</label>
                             <select name="enrollNum">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -67,53 +73,60 @@
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
+                            人
                         </div>
                         <div class="field">
-                            <label>有效日期:</label>
-                            5月6日 (5月6日前须到教学机构进行报名，否则优惠价格将自动失效)
+                            <label>有效日期</label>
+                            5月6日 <span>（5月6日前须到教学机构进行报名，否则优惠价格将自动失效）</span>
                         </div>
                         <div class="field">
-                            <label>课程费用:</label>
-                            <span class="price">￥1999</span>/位 (预定免费，入学后学校前台付款)
+                            <label>课程费用</label>
+                            <b class="price">￥1999</b>/位 <span>（预定免费，入学后学校前台付款）</span>
                         </div>
-                        <div class="field cashback">
-                            <span class="cashback">50元</span>
-                            <a class="link">登陆</a> 或 <a class="link">注册</a>后可使用优惠券，入学后获得50元现金返还
+                        <div class="field clearfix">
+                            <div class="fleft cashback">50元</div>
+                            <div class="fleft login_reg1"><a class="link F_green">登录</a> 或 <a class="link F_green">注册</a>后可使用优惠券，入学后获得50元现金返还</div>
                         </div>
                         <div class="loginbox">
-                            <label>用户名:
-                                <input class="text" type="text" id="booking_loginUsername"/>
-                            </label>
-                            <label>密码:
-                                <input class="text" type="password" id="booking_loginPassword"/>
-                            </label>
-                            <input type="button" value="登陆" id="booking_login" />
-                            <a class="button" id="booking_forgotPassword">忘记密码?</a>
+                            <div class="loginbox_inner">
+                                <div>
+                                    <label>用户名</label> <input class="text" type="text" id="booking_loginUsername"/>
+                                    <label>密码</label> <input class="text" type="password" id="booking_loginPassword"/>
+                                </div>
+                                <div class="btns">
+                                    <input type="button" value="登录" id="booking_login" />
+                                    <a class="button" id="booking_forgotPassword">忘记密码?</a>
+                                    <a class="button" id="booking_forgotPassword">还不是会员?</a>
+                                </div>
+                                <div class="close">关闭</div>
+                            </div>
                         </div>
                     </div>
+                    <div class="title"><h3>入学信息</h3></div>
                     <div class="row2">
-                        <span class="title">入学信息</span>
-                        <div class="left">
-                            <label><span class="req">*</span>入学人姓名:
-                                <input class="text" type="text" id="booking_applicantName"/>
-                                <span class="desc">(请填写实际入学人姓名)</span>
-                            </label>
-                            <label><span class="req">*</span>联系手机:
-                                <input class="text" type="text" id="booking_cellphone"/>
-                                <span class="desc">(用于接收确认信息)</span>
-                            </label>
-                            <label>E-mail:
-                                <input class="text" type="text" id="booking_email"/>
-                                <span class="desc">(可选)</span>
-                            </label>
-                            <label><span class="req">*</span>预约报名日期:
-                                <input class="text" type="date" id="booking_date"/>
-                                <span class="desc">(若此预约日期前未报名入学，您的特惠名额将受让给其他学员)</span>
-                            </label>
+                        <div class="field">
+                            <label><span class="req">*</span>入学人姓名</label>
+                            <input class="text" type="text" id="booking_applicantName"/>
+                            <span class="desc">(请填写实际入学人姓名)</span>
+                        </div>
+                        <div class="field">
+                            <label><span class="req">*</span>联系手机</label>
+                            <input class="text" type="text" id="booking_cellphone"/>
+                            <span class="desc">(用于接收确认信息)</span>
+                        </div>
+                        <div class="field">
+                            <label>E-mail </label>
+                            <input class="text" type="text" id="booking_email"/>
+                            <span class="desc">(可选)</span>
+                        </div>
+                        <div class="field">
+                            <label><span class="req">*</span>预约报名日期</label>
+                            <input class="text" type="date" id="booking_date"/>
+                            <span class="desc">(若此预约日期前未报名入学，您的特惠名额将受让给其他学员)</span>
                         </div>
                     </div>
                     <div class="row3">
-                        <input type="button" class="btn_orange" value="完成预定" id="initBooking" />
+                        <input type="submit" class="btn_O_long" value="完成预定" id="initBooking" />
                         <span class="desc">(不收预订费)</span>
                     </div>
                 </form>

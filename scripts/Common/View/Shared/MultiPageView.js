@@ -183,7 +183,7 @@ var MultiPageView = Backbone.View.extend({
             $selector.on("change", function (e) {
                 if (that.allMessages) {
                     if (filter) {
-                        that.messages.reset(that.allMessages.filter(filter));
+                        that.messages.reset(that.allMessages.filter(filter, inst));
                     } else {
                         that.messages.reset(that.allMessages.toArray());
                     }
@@ -199,7 +199,7 @@ var MultiPageView = Backbone.View.extend({
                 $selector.addClass("active");
                 if (that.allMessages) {
                     if (filter) {
-                        that.messages.reset(that.allMessages.filter(filter));
+                        that.messages.reset(that.allMessages.filter(filter, inst));
                     } else {
                         that.messages.reset(that.allMessages.toArray());
                     }

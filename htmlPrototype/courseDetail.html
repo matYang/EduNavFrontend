@@ -5,8 +5,12 @@
         <meta charset="utf-8" /> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="HandheldFriendly" content="true">
+        <link href="css/Global.css" rel="stylesheet" type="text/css">
+        <link href="css/topBar.css" rel="stylesheet" type="text/css">
+        <link href="css/courseDetail.css" rel="stylesheet" type="text/css">
+
         <!--watch out for IE-->
-        <title>Route A!</title>
+        <title>爱上课</title>
     </head>
     <body>
         <div id = 'topBar' class = 'unselectable'>
@@ -24,41 +28,67 @@
         </div>
         <div id = 'main' class='main'>
             <div id = 'content' class='content'>
+                
                 <div class="sitemap">
                     <span>初中辅导</span> &gt; <span>英语</span>
                 </div>
-                <div class="courseDetail">
+                <div class="courseDetail blank">
                     <div class="banner">
-                        <div class="row1">
-                            <div class="left">
-                                <dt>初二提高英语暑假班</dt><dd>南京新东方<span class="bigv"></span></dd>
+                        <div class="row1 clearfix">
+                            <dl class="col1">
+                                <dt>初二提高英语暑假班<span>南京新东方</span></dt>
                                 <dd>适合学员：词汇基础比较薄弱的学生</dd>
-                            </div>
-                            <div class="right">
+                            </dl>
+                            <div class="col2">
                                 <div class="price"><span class="sign">￥</span>1999</div>
-                                <div class="cashback">50元</div>
-                                <input type="button" id="bookNow" value="立即预定" class="" />
-                            </div>
+                                <a class="cashback">
+                                    <em>50元</em>
+                                    <div class="tip">
+                                        <div class="arrow"></div>
+                                        <div class="tip_content">
+                                            用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
+                                        </div>
+                                    </div>
+                                  </a>
+                             </div>
+                             <div class="col3">
+                                 <input type="button" id="bookNow" value="立即预定" class="btn_O" />
+                             </div>
                         </div>
-                        <div class="row2">
-                            <div class="gallary">
+                        <div class="row2 clearfix">
+                            <div class="gallary clearfix">
+                                <div class="small_pic">
+                                    <div class="top">
+                                        <div class="pic1"><img src="images/pic1.jpg" width="116" height="106"/></div>
+                                        <div class="pic2"><img src="images/pic2.jpg"  width="156" height="106"/></div>
+                                    </div>
+                                    <div class="bottom">
+                                        <div class="pic3"><img src="images/pic3.jpg" width="156" height="101"/></div>
+                                        <div class="pic4"><img src="images/pic4.jpg" width="116" height="101"/></div>
+                                    </div>
+                                </div>
+                                <div class="big_pic">
+                                    <img src="images/pic5.jpg" width="306" height="216"/>
+                                </div>
                             </div>
                             <div class="course_map">
+                                <div class="addr">地址：南京市雨花台区南京理工大学15号楼109</div>
+                                <div class="map"><img src="images/map1.jpg" width="328" height="183"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="courseMain">
-                        <div class="tabButton stickyHeader">
-                            <div id="tab_basic" class="active">基本信息</div>
-                            <div id="tab_teaching">教学信息</div>
-                            <div id="tab_etc">教学补充</div>
-                            <div id="tab_guarantee">教学保障</div>
-                            <div id="tab_service">特色服务</div>
-                        </div>
+                    <div class="courseMain blank2">
+                        <ul class="tabButton stickyHeader tab">
+                            <li id="tab_basic" class="active">基本信息</li>
+                            <li id="tab_teaching">教学信息</li>
+                            <li id="tab_etc">教学补充</li>
+                            <li id="tab_guarantee">教学保障</li>
+                            <li id="tab_service">特色服务</li>
+                        </ul>
                         <div class="course_content">
-                            <div id="content_basic">
+                            <dl id="content_basic">
                                 <dt>基本信息</dt>
-                                <dd><label>上课日期: </label>6月13日-7月13日；每周三、六(法定节假日除外)</dd>
+                                <dd><label>开课日期: </label>6月13日-7月13日；每周三、六(法定节假日除外)</dd>
                                 <dd><label>上课时间: </label>09:00-14:00</dd>
                                 <dd><label>上课课时: </label>21课时, 每课时2小时</dd>
                                 <dd><label>班级类型: </label>25人</dd>
@@ -67,50 +97,71 @@
                                 <dd><label>机构全称: </label>南京新东方</dd>
                                 <dd><label>机构荣誉: </label>纳斯达克上市</dd>
                                 <dd><label>机构概况: </label>从1989年致力于英语雅思教学</dd>
-                                <dd>
+                                <dd class="teacher clearfix">
                                     <label>老师介绍: </label>
-                                    <div class="teacherInfo">
-                                        <dt>李红永</dt>
-                                        <dd>新东方高级讲师，毕业于英国爱丁堡大学英语文学系，授课风格轻松幽默，深受学生的喜爱</dd>
-                                        <img class="teacherPhoto" />
-                                    </div>
-                                    <div class="teacherInfo">
-                                        <dt>李红永</dt>
-                                        <dd>新东方高级讲师，毕业于美国艾诺利亚大学，翻译专业，有丰富的教学经验</dd>
-                                        <img class="teacherPhoto" />
+                                    <div class="clearfix blank">
+                                        <div class="teacherInfo">
+                                        	<img class="teacherPhoto" src="images/t1.jpg" width="120" height="120"/>
+                                            <div class="name">李红永</div>
+                                            <p class="">新东方高级讲师，毕业于英国爱丁堡大学英语文学系，授课风格轻松幽默，深受学生的喜爱</p>
+                                        </div>
+                                        <div class="teacherInfo">
+                                        	<img class="teacherPhoto" src="images/t2.jpg" width="120" height="120"/>
+                                            <div class="name">邱永清</div>
+                                            <p class="">新东方高级讲师，毕业于英国爱丁堡大学英语文学系，授课风格轻松幽默，深受学生的喜爱</p>
+                                        </div>
                                     </div>
                                 </dd>
-                            </div>
-                            <div id="content_teaching">
+                            </dl>
+                            <dl id="content_teaching">
                                 <dt>教学信息</dt>
-                                <dd><label>先修知识: </label>基础英语语法</dd>
+                                <dd><label>课程介绍: </label>课程介绍内容</dd>
                                 <dd><label>教学目标: </label>1.对初一英语知识点打到灵活运用层次, 夯实初一知识  2.对初二秋季知识点达到识记和理解层次, 在新学期中占得先机</dd>
+                                <dd><label>先修知识: </label>基础英语语法</dd>
                                 <dd><label>上课形式: </label>分组学习; 分组讨论</dd>
                                 <dd><label>教材介绍: </label>自编教材; 新东方内训特编</dd>
                                 <dd><label>教材费用: </label>免费</dd>
-                            </div>
-                            <div id="content_etc">
+                                <dd class="course_syllabus">
+                                     <label>课程提纲: </label>
+                                     <div>
+                                         <p>第一讲 </p>
+                                         <p>1、口语 Transport</p>
+                                         <p>2、听力专项训练</p> 
+                                         <p>3、精读文章</p> 
+                                         <p>4、课后美文欣赏</p>
+                                         <p>第二讲 </p>
+                                         <p>1、口语 Different shops</p> 
+                                         <p>2、听力专项训练</p> 
+                                         <p>3、精读文章</p> 
+                                         <p>4、课后美文欣赏</p> 
+                                         <p>第三讲</p> 
+                                         <p>1、口语　Ｉlove fashion</p> 
+                                         <p>2、听力专项训练</p>  
+                                     </div>
+                                </dd>
+                            </dl>
+                            <dl id="content_etc">
                                 <dt>教学补充</dt>
-                                <dd><label>课件下载: </label></dd>
-                                <dd><label>题库支持: </label></dd>
-                                <dd><label>质量保证: </label></dd>
-                                <dd><label>讲练结合: </label></dd>
-                                <dd><label>阶段测评: </label></dd>
-                                <dd><label>课后答疑: </label></dd>
-                                <dd><label>课后作业: </label></dd>
-                                <dd><label>作业批改: </label></dd>
-                            </div>
-                            <div id="content_guarantee">
+                                <dd><label>课件下载: </label>提供上课课件下载机拷贝，便于课后复习</dd>
+                                <dd><label>题库支持: </label>历年真题 + 模拟题 + 预测题 + 全真机考</dd>
+                                <dd><label>班主任导学: </label>老师不定期跟进学员进度，灵活调整课程计划</dd>
+                                <dd><label>讲练结合: </label>寄语特定教学目标，进行有针对的训练及讲解</dd>
+                                <dd><label>阶段测评: </label>通过阶段性测试，便于学员清楚了解自我学习状态</dd>
+                                <dd><label>课后答疑: </label>支持课后多途径教学相关任何答疑问解答</dd>
+                                <dd><label>课后作业: </label>老师布置课后习题，巩固教学内容</dd>
+                                <dd><label>作业批改: </label>专业老师批改作业，纠正错误理解，快速提升教学成效</dd>
+                            </dl>
+                            <dl id="content_guarantee">
                                 <dt>教学保障</dt>
                                 <dd><label>签约保过: </label>基础英语语法</dd>
                                 <dd><label>高分奖励: </label>1.对初一英语知识点打到灵活运用层次, 夯实初一知识  2.对初二秋季知识点达到识记和理解层次, 在新学期中占得先机</dd>
-                            </div>
-                            <div id="content_service">
+                            </dl>
+                            <dl id="content_service">
                                 <dt>特色服务</dt>
                                 <dd><label>结业证书: </label>基础英语语法</dd>
                                 <dd><label>课后互动: </label>支持QQ学习群，支持每周英语角</dd>
                                 <dd><label>赠送服务: </label>免费获得教材一份; 单次速记手册</dd>
-                            </div>
+                            </dl>
                         </div>
                     </div>
                 </div>

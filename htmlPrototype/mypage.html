@@ -5,8 +5,11 @@
         <meta charset="utf-8" /> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="HandheldFriendly" content="true">
+        <link href="css/Global.css" rel="stylesheet" type="text/css">
+        <link href="css/topBar.css" rel="stylesheet" type="text/css">
+        <link href="css/mypage.css" rel="stylesheet" type="text/css">
         <!--watch out for IE-->
-        <title>Route A!</title>
+        <title>爱上课</title>
     </head>
     <body>
         <div id = 'topBar' class = 'unselectable'>
@@ -19,31 +22,38 @@
                         <li id = 'navigate_search' class = 'button navigate_search'>分类检索</li>
                         <li id = 'navigate_compare' class = 'button navigate_compare'>学校对比</li>
                     </ul>
+                    <div class="user_info">
+                        晚上好，尊敬的会员 <a href="#">[退出]</a>
+                        <a href="#">上课书包</a>
+                    </div>
                 </div>
             </div>
         </div>
         <div id = 'main' class='main'>
             <div id = 'content' class='content'>
-                <div id="mypage_main">
+                <div id="mypage_main" class="clearfix">
+                    
                     <div id="mypage_sidebar">
                         <div class="mypage_sidebar_title">上课书包</div>
-                        <div class="mypage_sidebar_section" >
+                        <div class="mypage_sidebar_section p1" >
                             <div class="mypage_sidebar_sectionContent">
-                                <div id="mypage_avatar"><img /></div>
-                                晚上好，尊敬的会员
+                                <div id="mypage_avatar">
+                                    <img src="images/user_pic.jpg" width="150" height="150"/>
+                                    <p>晚上好，尊敬的会员</p>
+                                </div>
                                 <div id="mypage_info">
                                     <p class="phone"><span></span>18609879900</p>
                                     <p class="email"><span></span>djxiaoniud@163.com</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="mypage_sidebar_section">
+                        <div class="mypage_sidebar_section p2">
                             <div class="mypage_sidebar_sectionTitle">订单管理</div>
                             <div class="mypage_sidebar_sectionContent">
-                                <div class="mypage_sidebar_tab" id="bookingManage">课程订单</div>
+                                <div class="mypage_sidebar_tab active" id="bookingManage">课程订单</div>
                             </div>
                         </div>
-                        <div class="mypage_sidebar_section">
+                        <div class="mypage_sidebar_section p3">
                             <div class="mypage_sidebar_sectionTitle">账户管理</div>
                             <div class="mypage_sidebar_sectionContent">
                                 <div class="mypage_sidebar_tab" id="cashAccount">现金账户</div>
@@ -51,7 +61,7 @@
                                 <div class="mypage_sidebar_tab" id="creditAccount">积分</div>
                             </div>
                         </div>
-                        <div class="mypage_sidebar_section">
+                        <div class="mypage_sidebar_section p4">
                             <div class="mypage_sidebar_sectionTitle">个人设置</div>
                             <div class="mypage_sidebar_sectionContent">
                                 <div class="mypage_sidebar_tab" id="editInfo">个人资料</div>
@@ -60,13 +70,17 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div id="mypage_content">
                         <div id="walletSummary">
-                            <div class="summaryItem">元现金</div>
-                            <div class="summaryItem">元消费券</div>
-                            <div class="summaryItem">积分</div>
+                            <div class="summaryItem1"><span class="F_orange">648</span>元现金</div>
+                            <div class="line"></div>
+                            <div class="summaryItem2"><span class="F_orange">1417</span>元消费券</div>
+                            <div class="line"></div>
+                            <div class="summaryItem3"><span class="F_orange">21189</span>积分</div>
                         </div>
-                        <span>未入学订单</span>
+                        
+                        <h2>未入学订单</h2>
                         <div id="bookingSummary">
                             <div class="bookingEntry">
                                 <div class="bookingEntryTime">
@@ -74,14 +88,14 @@
                                     <div class="dayOfWeek">星期日</div>
                                 </div>
                                 <div class="bookingEntryDetail">
-                                    <p class="title">【新东方】初二提高英语暑假班</p>
-                                    <p class="address">地址：秦淮区文明路156号南都大厦12层5号</p>
+                                    <p class="title"><a class="F_green" href="#">【新东方】初二提高英语暑假班</a></p>
+                                    <p class="address"><b>地址：</b>秦淮区文明路156号南都大厦12层5号</p>
                                 </div>
                                 <div class="bookingEntryPrice">
                                     <span class="sign">￥</span>1999
                                 </div>
                                 <div class="bookingEntryState">
-                                    <span class="sign pending"></span>等待确认
+                                    <span class="sign pending">等待确认</span>
                                 </div>
                             </div>
                             <div class="bookingEntry">
@@ -90,14 +104,14 @@
                                     <div class="dayOfWeek">星期日</div>
                                 </div>
                                 <div class="bookingEntryDetail">
-                                    <p class="title">【新东方】初二提高英语暑假班</p>
-                                    <p class="address">地址：秦淮区文明路156号南都大厦12层5号</p>
+                                    <p class="title"><a class="F_green" href="#">【新东方】初二提高英语暑假班</a></p>
+                                    <p class="address"><b>地址：</b>秦淮区文明路156号南都大厦12层5号</p>
                                 </div>
                                 <div class="bookingEntryPrice">
                                     <span class="sign">￥</span>1999
                                 </div>
                                 <div class="bookingEntryState">
-                                    <span class="sign pending"></span>等待确认
+                                    <span class="sign pending">等待确认</span>
                                 </div>
                             </div>
                             <div class="bookingEntry">
@@ -106,19 +120,68 @@
                                     <div class="dayOfWeek">星期日</div>
                                 </div>
                                 <div class="bookingEntryDetail">
-                                    <p class="title">【新东方】初二提高英语暑假班</p>
-                                    <p class="address">地址：秦淮区文明路156号南都大厦12层5号</p>
+                                    <p class="title"><a class="F_green" href="#">【新东方】初二提高英语暑假班</a></p>
+                                    <p class="address"><b>地址：</b>秦淮区文明路156号南都大厦12层5号</p>
                                 </div>
                                 <div class="bookingEntryPrice">
                                     <span class="sign">￥</span>1999
                                 </div>
                                 <div class="bookingEntryState">
-                                    <span class="sign pending"></span>等待确认
+                                    <span class="sign pending">等待确认</span>
                                 </div>
                             </div>
-                        </div>
+                            <div class="bookingEntry">
+                                <div class="bookingEntryTime">
+                                    <div class="date">6月29日</div>
+                                    <div class="dayOfWeek">星期日</div>
+                                </div>
+                                <div class="bookingEntryDetail">
+                                    <p class="title"><a class="F_green" href="#">【新东方】初二提高英语暑假班</a></p>
+                                    <p class="address"><b>地址：</b>秦淮区文明路156号南都大厦12层5号</p>
+                                </div>
+                                <div class="bookingEntryPrice">
+                                    <span class="sign">￥</span>1999
+                                </div>
+                                <div class="bookingEntryState">
+                                    <span class="sign pending">等待确认</span>
+                                </div>
+                            </div>
+                            <div class="bookingEntry">
+                                <div class="bookingEntryTime">
+                                    <div class="date">6月29日</div>
+                                    <div class="dayOfWeek">星期日</div>
+                                </div>
+                                <div class="bookingEntryDetail">
+                                    <p class="title"><a class="F_green" href="#">【新东方】初二提高英语暑假班</a></p>
+                                    <p class="address"><b>地址：</b>秦淮区文明路156号南都大厦12层5号</p>
+                                </div>
+                                <div class="bookingEntryPrice">
+                                    <span class="sign">￥</span>1999
+                                </div>
+                                <div class="bookingEntryState">
+                                    <span class="sign confirmed">已经确认</span>
+                                </div>
+                            </div>
+                            <div class="bookingEntry">
+                                <div class="bookingEntryTime">
+                                    <div class="date">6月29日</div>
+                                    <div class="dayOfWeek">星期日</div>
+                                </div>
+                                <div class="bookingEntryDetail">
+                                    <p class="title"><a class="F_green" href="#">【新东方】初二提高英语暑假班</a></p>
+                                    <p class="address"><b>地址：</b>秦淮区文明路156号南都大厦12层5号</p>
+                                </div>
+                                <div class="bookingEntryPrice">
+                                    <span class="sign">￥</span>1999
+                                </div>
+                                <div class="bookingEntryState">
+                                    <span class="sign canceled">已经取消</span>
+                                </div>
+                            </div>
+                        </div><!--bookingSummary end-->
+                        
                     </div>
-                </div>
+                </div><!--mypage_main end-->
 
             </div>
         </div>

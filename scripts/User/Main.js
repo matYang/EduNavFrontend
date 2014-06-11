@@ -73,7 +73,7 @@ var AppRouter = Backbone.Router.extend({
     defaultRoute: function () {
         //if login, procees to main/:id, if not, proceed to front
         if (this.sessionManager.hasSession()) {
-            this.navigate("main", {trigger: true});
+            this.navigate("search", {trigger: true});
         } else {
             this.navigate("front", {trigger: true});
         }
