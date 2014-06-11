@@ -52,5 +52,13 @@
 /*教学信息--教学大纲*/
 .courseMain #content_teaching dd.course_syllabus div{ padding-left:80px;}
 
+.stickyHeader {
+	position: fixed;
+	top: 0px;
+	background-color: white;
+	width: 978px;
+	padding-top: 3px;
+	margin-top: 0px;
+}
 
 

@@ -589,7 +589,7 @@
             </div>
         </div>
         <div class="courseMain blank2">
-            <ul class="tabButton stickyHeader tab">
+            <ul id="courseNavigateTab" class="tabButton tab">
                 <li id="tab_basic" class="active">基本信息</li>
                 <li id="tab_teaching">教学信息</li>
                 <li id="tab_etc">教学补充</li>

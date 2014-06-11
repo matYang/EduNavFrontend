@@ -35,10 +35,21 @@ var CourseDetailView = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
-        $("#courseNavigateTab").on("click", "div", function(e) {
+        $("#courseNavigateTab").on("click", "li", function(e) {
             var id = e.target.id;
-            id = "content_" + id.split("_")[1];
-            that.scrollTo($("#"+id));
+            id = "#content_" + id.split("_")[1];
+            $.smoothScroll({
+                scrollTarget: id
+            });
+            $(e.delegateTarget).find(".active").removeClass("active");
+            $(e.target).addClass("active");
+        });
+        $(document).on("scroll", function (e) {
+            if ($(this).scrollTop() >= 522) {
+                $("#courseNavigateTab").addClass("stickyHeader");
+            } else {
+                $("#courseNavigateTab").removeClass("stickyHeader");
+            }
         });
         $("#bookNow").on("click", function() {
             app.navigate("booking/c"+that.courseId, true);
