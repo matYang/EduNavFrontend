@@ -47,7 +47,7 @@
     GeneralManager.prototype.fetchCourse = function (courseId, callback) {
         var course = new Course();
         if (testMockObj.testMode) {
-            callback.success(testMockObj.testCourse1);
+            callback.success(testMockObj.testCourses.get(courseId));
             return;
         }
         course.overrideUrl(this.apis.general_course);

@@ -126,6 +126,9 @@ var Course = Backbone.Model.extend({
         json.startTime = Utilities.getDateString(this.get('startTime'));
         json.finishTime = Utilities.getDateString(this.get('finishTime'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        var date = this.get("startTime");
+        date.setDate(date.getDate()-5);
+        json.scheduledTime = Utilities.getDateString(date);
         return json;
     },
     //simplified toJSON, as courses are not updated by Ajax but by html form
@@ -135,6 +138,18 @@ var Course = Backbone.Model.extend({
         json.finishTime = Utilities.castToAPIFormat(this.get('finishTime'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         return json;
+    },
+    /* generate object with html wrapping as values, these values will append to the compare table one by one */
+    // parseToCompare: function(){
+    //     var obj = {};
+    //     obj.courseName = this.td() +  '<h2 class="F_green">' + this.get("courseName") + '</h2>'+
+    //                 '<div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>' +
+    //                 '<div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div></td>';
+    //     obj.suitableStudent = this.td() + this.get("suitableStudent") + "</td>";
+    //     obj.s
+    // },
+    td: function(){
+        return "<td width='195' class='row_" + this.courseId + "'>";
     }
 });
 

@@ -41,7 +41,7 @@ var CourseDetailView = Backbone.View.extend({
             that.scrollTo($("#"+id));
         });
         $("#bookNow").on("click", function() {
-
+            app.navigate("booking/c"+that.courseId, true);
         });
     },
     checkMyBooking: function () {

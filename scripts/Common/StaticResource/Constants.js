@@ -26,7 +26,7 @@ var Constants = {
         "registration",
         "front", "search", "searchResultEntry", "courseDetail", "newBooking", "booking_submitted",
         "mypage_base", "mypage_dashboard", "mypage_bookingList", "mypage_bookingDetail", "booking_entry",
-        "compareWidget", "compareWidgetEntry"
+        "compareWidget", "compareWidgetEntry", "compareView"
     ],
 
     partnerTemplateResource: [

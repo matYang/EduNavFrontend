@@ -540,551 +540,445 @@
 
 
 <script type="text/template" id="tpl_courseDetail">
-    <div class="banner">
-        <div class="row1">
-            <div class="left">
-                <dt><%= courseName %></dt><dd><%= wholeName %><span class="bigv"></span></dd>
-                <dd>适合学员：<%= suitableStudent %></dd>
-            </div>
-            <div class="right">
-                <div class="price"><span class="sign">￥</span><%= price %></div>
-                <div class="cashback">50元</div>
-                <input type="button" id="bookNow" value="立即预定" class="" />
-            </div>
-        </div>
-        <div class="row2">
-            <div class="gallary">
-            </div>
-            <div class="course_map">
-            </div>
-        </div>
+    <div class="sitemap">
+        <span>初中辅导</span> &gt; <span>英语</span>
     </div>
-    <div class="courseMain">
-        <div id="courseNavigateTab" class="tabButton stickyHeader">
-            <div id="tab_basic" class="active">基本信息</div>
-            <div id="tab_teaching">教学信息</div>
-            <div id="tab_etc">教学补充</div>
-            <div id="tab_guarantee">教学保障</div>
-            <div id="tab_service">特色服务</div>
+    <div class="courseDetail blank">
+        <div class="banner">
+            <div class="row1 clearfix">
+                <dl class="col1">
+                    <dt><%= courseName %><span><%= instName %></span></dt>
+                    <dd>适合学员：<%= suitableStudent %></dd>
+                </dl>
+                <div class="col2">
+                    <div class="price"><span class="sign">￥</span><%= price %></div>
+                    <a class="cashback">
+                        <em>50元</em>
+                        <div class="tip">
+                            <div class="arrow"></div>
+                            <div class="tip_content">
+                                用“消费券”预订此课程，每人每课程返还50元现金！入学后7个工作日可至您的账户里提现。
+                            </div>
+                        </div>
+                      </a>
+                 </div>
+                 <div class="col3">
+                     <input type="button" id="bookNow" value="立即预定" class="btn_O" />
+                 </div>
+            </div>
+            <div class="row2 clearfix">
+                <div class="gallary clearfix">
+                    <div class="small_pic">
+                        <div class="top">
+                            <div class="pic1"><img src="style/images/pic1.jpg" width="116" height="106"/></div>
+                            <div class="pic2"><img src="style/images/pic2.jpg"  width="156" height="106"/></div>
+                        </div>
+                        <div class="bottom">
+                            <div class="pic3"><img src="style/images/pic3.jpg" width="156" height="101"/></div>
+                            <div class="pic4"><img src="style/images/pic4.jpg" width="116" height="101"/></div>
+                        </div>
+                    </div>
+                    <div class="big_pic">
+                        <img src="style/images/pic5.jpg" width="306" height="216"/>
+                    </div>
+                </div>
+                <div class="course_map">
+                    <div class="addr">地址：<%= location %></div>
+                    <div class="map" width="328" height="183"></div>
+                </div>
+            </div>
         </div>
-        <div class="course_content">
-            <div id="content_basic">
-                <dt>基本信息</dt>
-                <dd><label>上课日期: </label><%= startTime %>-<%= finishTime %>；<%= studyDaysNote %></dd>
-                <dd><label>上课时间: </label><%= dailyStartTime %>-<%= dailyFinishTime %></dd>
-                <dd><label>上课课时: </label><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</dd>
-                <dd><label>班级类型: </label><%= seatsTotal %>人</dd>
-                <dd><label>开班要求: </label><%= openCourseRequirement%></dd>
-                <dd><label>报名日期: </label>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</dd>
-                <dd><label>机构全称: </label><%= wholeName %></dd>
-                <dd><label>机构荣誉: </label><%= partnerQualification %></dd>
-                <dd><label>机构概况: </label><%= partnerIntro %></dd>
-                <dd>
-                    <label>老师介绍: </label>
-
-                </dd>
-            </div>
-            <div id="content_teaching">
-                <dt>教学信息</dt>
-                <dd><label>先修知识: </label><%= prerequest %></dd>
-                <dd><label>教学目标: </label><%= courseIntro %></dd>
-                <dd><label>上课形式: </label><%= teachingMethods %></dd>
-                <dd><label>教材介绍: </label><%= teachingMethodsIntro %></dd>
-                <dd><label>教材费用: </label><%= teachingMaterialCost %></dd>
-                <dd><label>课程介绍: </label><%= courseIntro %></dd>
-            </div>
-            <div id="content_etc">
-                <dt>教学补充</dt>
-                <dd><label>课件下载: </label><%= hasDownloadMaterials %></dd>
-                <dd><label>题库支持: </label><%= questionBank %></dd>
-                <dd><label>讲练结合: </label></dd>
-                <dd><label>阶段测评: </label><%= quiz %></dd>
-                <dd><label>课后答疑: </label></dd>
-                <dd><label>课后作业: </label><%= provideAssignments %></dd>
-                <dd><label>作业批改: </label><%= provideMarking %></dd>
-            </div>
-            <div id="content_guarantee">
-                <dt>教学保障</dt>
-                <dd><label>签约保过: </label><%= passAgreement %></dd>
-                <dd><label>高分奖励: </label><%= highScoreReward %></dd>
-            </div>
-            <div id="content_service">
-                <dt>特色服务</dt>
-                <dd><label>结业证书: </label><%= certification %></dd>
-                <dd><label>课后互动: </label><%= extracurricularIntro %></dd>
-                <dd><label>赠送服务: </label><%= extracurricularIntro %></dd>
+        <div class="courseMain blank2">
+            <ul class="tabButton stickyHeader tab">
+                <li id="tab_basic" class="active">基本信息</li>
+                <li id="tab_teaching">教学信息</li>
+                <li id="tab_etc">教学补充</li>
+                <li id="tab_guarantee">教学保障</li>
+                <li id="tab_service">特色服务</li>
+            </ul>
+            <div class="course_content">
+                <dl id="content_basic">
+                    <dt>基本信息</dt>
+                    <dd><label>开课日期: </label><%= startTime %>-<%= finishTime %>；<%= studyDaysNote %></dd>
+                    <dd><label>上课时间: </label><%= dailyStartTime %>-<%= dailyFinishTime %></dd>
+                    <dd><label>上课课时: </label><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</dd>
+                    <dd><label>班级类型: </label><%= seatsTotal %>人</dd>
+                    <dd><label>开班要求: </label><%= openCourseRequirement%></dd>
+                    <dd><label>报名日期: </label>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</dd>
+                    <dd><label>机构全称: </label><%= wholeName %></dd>
+                    <dd><label>机构荣誉: </label><%= partnerQualification %></dd>
+                    <dd><label>机构概况: </label><%= partnerIntro %></dd>
+                    <dd class="teacher clearfix">
+                        <label>老师介绍: </label>
+                        <div class="clearfix blank">
+                            <div class="teacherInfo">
+                                <img class="teacherPhoto" src="style/images/t1.jpg" width="120" height="120"/>
+                                <div class="name">李红永</div>
+                                <p class="">新东方高级讲师，毕业于英国爱丁堡大学英语文学系，授课风格轻松幽默，深受学生的喜爱</p>
+                            </div>
+                            <div class="teacherInfo">
+                                <img class="teacherPhoto" src="style/images/t2.jpg" width="120" height="120"/>
+                                <div class="name">邱永清</div>
+                                <p class="">新东方高级讲师，毕业于英国爱丁堡大学英语文学系，授课风格轻松幽默，深受学生的喜爱</p>
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+                <dl id="content_teaching">
+                    <dt>教学信息</dt>
+                    <dd><label>先修知识: </label><%= prerequest %></dd>
+                    <dd><label>教学目标: </label><%= courseIntro %></dd>
+                    <dd><label>上课形式: </label><%= teachingMethods %></dd>
+                    <dd><label>教材介绍: </label><%= teachingMethodsIntro %></dd>
+                    <dd><label>教材费用: </label><%= teachingMaterialCost %></dd>
+                    <dd><label>课程介绍: </label><%= courseIntro %></dd>
+                    <dd class="course_syllabus">
+                         <label>课程提纲: </label>
+                         <div>
+                             <p>第一讲 </p>
+                             <p>1、口语 Transport</p>
+                             <p>2、听力专项训练</p> 
+                             <p>3、精读文章</p> 
+                             <p>4、课后美文欣赏</p>
+                             <p>第二讲 </p>
+                             <p>1、口语 Different shops</p> 
+                             <p>2、听力专项训练</p> 
+                             <p>3、精读文章</p> 
+                             <p>4、课后美文欣赏</p> 
+                             <p>第三讲</p> 
+                             <p>1、口语　Ｉlove fashion</p> 
+                             <p>2、听力专项训练</p>  
+                         </div>
+                    </dd>
+                </dl>
+                <dl id="content_etc">
+                    <dt>教学补充</dt>
+                    <dd><label>课件下载: </label><%= hasDownloadMaterials %></dd>
+                    <dd><label>题库支持: </label><%= questionBank %></dd>
+                    <dd><label>讲练结合: </label></dd>
+                    <dd><label>阶段测评: </label><%= quiz %></dd>
+                    <dd><label>课后答疑: </label></dd>
+                    <dd><label>课后作业: </label><%= provideAssignments %></dd>
+                    <dd><label>作业批改: </label><%= provideMarking %></dd>
+                </dl>
+                <dl id="content_guarantee">
+                    <dt>教学保障</dt>
+                    <dd><label>签约保过: </label><%= passAgreement %></dd>
+                    <dd><label>高分奖励: </label><%= highScoreReward %></dd>
+                </dl>
+                <dl id="content_service">
+                    <dt>特色服务</dt>
+                    <dd><label>结业证书: </label><%= certification %></dd>
+                    <dd><label>课后互动: </label><%= extracurricularIntro %></dd>
+                    <dd><label>赠送服务: </label><%= extracurricularIntro %></dd>
+                </dl>
             </div>
         </div>
     </div>
 </script>
 
 <script type="text/template" id="tpl_compareView">
-    <div class="item1">
-        <div class="title clearfix">
+    <div id="compareView" class="compare">
+        <div class="title clearfix" id="basic_collapse">
             <span class="up">基本信息</span>
-            <a class="F_green" href="#" id="basic_collapse">[收起]</a>
+            <a class="F_green" href="#">[收起]</a>
         </div>
-        <table width="100%" cellpadding="0" cellspacing="0">
+        <table width="100%" cellpadding="0" cellspacing="0" id="basic_content">
             <tr id="courseName">
                 <th>课程名称</th>
-                <td width="195">
-                    <h2 class="F_green">初二提高英语暑假班</h2>
-                    <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
-                    <div class="set"><a class="pre pre-disabled" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div>
-                </td>
-                <td width="195">
-                    <h2 class="F_green">初二提高英语暑假班</h2>
-                    <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
-                    <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div>
-                </td>
-                <td width="195">
-                    <h2 class="F_green">初二提高英语暑假班</h2>
-                    <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
-                    <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div>
-                </td>
-                <td width="195">
-                    <h2 class="F_green">初二提高英语暑假班</h2>
-                    <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
-                    <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next next-disabled" href="#">向后</a></div>
-                </td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>" width="195">
+                        <h2 class="F_green"><%= course.courseName %></h2>
+                        <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
+                        <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div>
+                    </td>
+                <% }); %>
             </tr>
             <tr id="suitableStudent">
                 <th>适合学员</th>
-                <td>准初二学员、初二同步学员</td>
-                <td>初二同步学员</td>
-                <td>初二同步学员</td>
-                <td>初二同步学员</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.suitableStudent %></td>
+                <% }); %>
             </tr>
             <tr id="instName">
                 <th>机构名称</th>
-                <td>南京新东方</td>
-                <td>南京新东方</td>
-                <td>南京新东方</td>
-                <td>南京新东方</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.instName %></td>
+                <% }); %>
             </tr>
             <tr id="price">
                 <th>课程价格</th>
-                <td>
-                    <div class="price">780元</div>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>">
+                    <div class="price"><%= course.price %></div>
                     <a class="cashback">
                         <em>50元</em>
                         <div class="tip">
                             <div class="arrow"></div>
                             <div class="tip_content">
-                                用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
+                                用“消费券”预订此课程，每人每课程返还50元现金！入学后7个工作日可至您的账户里提现。
                             </div>
                         </div>
                         </a>
-                </td>
-                <td>
-                    <div class="price">780元</div>
-                    <a class="cashback">
-                        <em>50元</em>
-                        <div class="tip">
-                            <div class="arrow"></div>
-                            <div class="tip_content">
-                                用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
-                            </div>
-                        </div>
-                        </a>
-                </td>
-                <td>
-                    <div class="price">780元</div>
-                    <a class="cashback">
-                        <em>50元</em>
-                        <div class="tip">
-                            <div class="arrow"></div>
-                            <div class="tip_content">
-                                用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
-                            </div>
-                        </div>
-                        </a>
-                </td>
-                <td>
-                    <div class="price">780元</div>
-                    <a class="cashback">
-                        <em>50元</em>
-                        <div class="tip">
-                            <div class="arrow"></div>
-                            <div class="tip_content">
-                                用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
-                            </div>
-                        </div>
-                     </a>
-                </td>
+                    </td>
+                <% }); %>
             </tr>
             <tr id="logoUrl">
                 <th>品牌展示</th>
-                <td><img src="images/xdf.gif"/></td>
-                <td><img src="images/xd.gif"/></td>
-                <td><img src="images/xd.gif"/></td>
-                <td><img src="images/xdf.gif"/></td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><img src="<%= course.logoUrl %>"/></td>
+                <% }); %>
             </tr>
             <tr id="startTime">
                 <th>开课日期</th>
-                <td>6月13日-7月13日</td>
-                <td>6月13日-7月13日</td>
-                <td>6月13日-7月13日</td>
-                <td>6月13日-7月13日</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.startTime %>-<%= course.finishTime %></td>
+                <% }); %>
             </tr>
             <tr id="dailyStartTime">
                 <th>上课时间</th>
-                <td>9:00-12:00（每周三、六,节假日除外）</td>
-                <td>9:00-12:00（每周三、六,节假日除外）</td>
-                <td>9:00-12:00（每周三、六,节假日除外）</td>
-                <td>9:00-12:00（每周三、六,节假日除外）</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.dailyStartTime %>-<%= course.dailyFinishTime %>(<%= course.studyDays %>, <%= course.studyDaysNote %>)</td>
+                <% }); %>
             </tr>
             <tr id="courseHourNum">
                 <th>上课课时</th>
-                <td>21课时，每课时2小时</td>
-                <td>21课时，每课时2小时</td>
-                <td>21课时，每课时2小时</td>
-                <td>21课时，每课时2小时</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.courseHourNum %>课时，每课时<%= course.courseHourLength %>小时</td>
+                <% }); %>
             </tr>
             <tr id="address">
                 <th>学校地址</th>
-                <td>南京市雨花区六合大街12号</td>
-                <td>南京市雨花区六合大街12号</td>
-                <td>南京市雨花区六合大街12号</td>
-                <td>南京市雨花区六合大街12号</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.location %></td>
+                <% }); %>
             </tr>
             <tr id="seatsTotal">
                 <th>班级类型</th>
-                <td>30人</td>
-                <td>30人</td>
-                <td>30人</td>
-                <td>30人</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.seatsTotal %>人</td>
+                <% }); %>
             </tr>
             <tr id="openCourseRequirement">
                 <th>开班要求</th>
-                <td>至少16人开班</td>
-                <td>至少16人开班</td>
-                <td>至少16人开班</td>
-                <td>至少16人开班</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>">至少<%= course.openCourseRequirement %>人开班</td>
+                <% }); %>
             </tr>
             <tr id="scheduledTime">
                 <th>报名日期</th>
-                <td>至6月5号止，晚于此日期，您将不再享有此优惠价格</td>
-                <td>至6月5号止，晚于此日期，您将不再享有此优惠价格</td>
-                <td>至6月5号止，晚于此日期，您将不再享有此优惠价格</td>
-                <td>至6月5号止，晚于此日期，您将不再享有此优惠价格</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>">至<%= course.scheduledTime %>止，晚于此日期，您将不再享有此优惠价格</td>
+                <% }); %>
             </tr>
             <tr id="wholeName">
                 <th>机构全称</th>
-                <td>北京新东方教育科技（集团）有限公司</td>
-                <td>学大教育集团</td>
-                <td>学大教育集团</td>
-                <td>学大教育集团</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.wholeName %></td>
+                <% }); %>
             </tr>
             <tr id="distinction">
                 <th>机构荣誉</th>
-                <td>纳斯达克上市</td>
-                <td>纳斯达克上市</td>
-                <td>纳斯达克上市</td>
-                <td>纳斯达克上市</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.distinction %></td>
+                <% }); %>
             </tr>
             <tr id="partnerIntro">
                 <th>机构概况</th>
-                <td>是目前中国大陆规模最大的...<a class="F_green" href="#">[展开]</a></td>
-                <td>是目前中国大陆规模最大的...<a class="F_green" href="#">[展开]</a></td>
-                <td>是目前中国大陆规模最大的...<a class="F_green" href="#">[展开]</a></td>
-                <td>是目前中国大陆规模最大的...<a class="F_green" href="#">[展开]</a></td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>">
+                    <% if (course.partnerIntro.length>30) { %>
+                        <%= course.partnerIntro.strstring(0,24) %>...
+                        <a class="F_green" href="#">[展开]</a></td>
+                        <>
+                    <% } else {%>
+                        <%= course.partnerIntro %>
+                    <% } %>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="teacherInfo">
                 <th>老师介绍</th>
-                <td>
-                    <p><b class="F_green">刘明军</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
-                    <p><b class="F_green">何刚</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
-                </td>
-                <td>
-                    <p><b class="F_green">刘明军</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
-                    <p><b class="F_green">何刚</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
-                </td>
-                <td>
-                    <p><b class="F_green">刘明军</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
-                    <p><b class="F_green">何刚</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
-                </td>
-                <td>
-                    <p><b class="F_green">刘明军</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
-                    <p><b class="F_green">何刚</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
-                </td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>">
+                        <p><b class="F_green">刘明军</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
+                        <p><b class="F_green">何刚</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
+                    </td>
+                <% }); %>
             </tr>
         </table>
         
-        <div class="title clearfix" style="border-top:none;">
+        <div class="title clearfix" style="border-top:none;" id="teaching_collapse">
             <span class="up">教学信息</span>
-            <a class="F_green" href="#" id="teaching_collapse">[收起]</a>
+            <a class="F_green" href="#">[收起]</a>
         </div>
-        <table width="100%" cellpadding="0" cellspacing="0">
-            <tr>
+        <table width="100%" cellpadding="0" cellspacing="0" id="teaching_content">
+            <tr id="courseIntro">
                 <th>课程介绍</th>
-                <td width="195">课程介绍</td>
-                <td width="195">课程介绍</td>
-                <td width="195">课程介绍</td>
-                <td width="195">课程介绍</td>
+                <% _.each(courses, function(course) { %>
+                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.courseIntro %></td>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="goal">
                 <th>教学目标</th>
-                <td>
-                    <p>1、对初一英语知识点达到灵活运用层次，夯实初一知识</p>
-                    <p>2、对初二秋季知识点达到识记和理解层次，在新学期学习中占得先机。</p>
-                </td>
-                <td>
-                    <p>1、对初一英语知识点达到灵活运用层次，夯实初一知识</p>
-                    <p>2、对初二秋季知识点达到识记和理解层次，在新学期学习中占得先机。</p>
-                </td>
-                <td>
-                    <p>1、对初一英语知识点达到灵活运用层次，夯实初一知识</p>
-                    <p>2、对初二秋季知识点达到识记和理解层次，在新学期学习中占得先机。</p>
-                </td>
-                <td>
-                    <p>1、对初一英语知识点达到灵活运用层次，夯实初一知识</p>
-                    <p>2、对初二秋季知识点达到识记和理解层次，在新学期学习中占得先机。</p>
-                </td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>">
+                        <p>1、对初一英语知识点达到灵活运用层次，夯实初一知识</p>
+                        <p>2、对初二秋季知识点达到识记和理解层次，在新学期学习中占得先机。</p>
+                    </td>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="prerequest">
                 <th>先修知识</th>
-                <td>基础英语语法</td>
-                <td>基础英语语法</td>
-                <td>基础英语语法</td>
-                <td>基础英语语法</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.prerequest %></td>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="teachingMethods">
                 <th>上课形式</th>
-                <td>分组学习，分组讨论</td>
-                <td>分组学习，分组讨论</td>
-                <td>分组学习，分组讨论</td>
-                <td>分组学习，分组讨论</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.teachingMethods %></td>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="teachingMaterialIntro">
                 <th>教材介绍</th>
-                <td>自编教材，新东方内训特编</td>
-                <td>自编教材，新东方内训特编</td>
-                <td>自编教材，新东方内训特编</td>
-                <td>自编教材，新东方内训特编</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.teachingMaterialIntro %></td>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="teachingMaterialCost">
                 <th>教材费用</th>
-                <td>免费</td>
-                <td>免费</td>
-                <td>免费</td>
-                <td>免费</td>
-            </tr>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.teachingMaterialCost %></td>
+                <% }); %>
+            </tr id="teachingContent">
             <tr>
                 <th>课程提纲</th>
-                <td>
-                    <p>第一讲</p>  
-                    <p>1、口语 Transport</p> 
-                    <p>2、听力专项训练 </p> 
-                    <p>3、精读文章</p>  
-                    <p>4、课后美文欣赏 </p> 
-                    <p>第二讲 </p> 
-                    <p>1、口语 Different shops</p>  
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章 </p> 
-                    <p>4、课后美文欣赏 </p> 
-                    <p>第三讲 </p> 
-                    <p>1、口语　Ｉlove fashion</p>  
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章 </p> 
-                    <p>4、课后美文欣赏</p>  
-                    <p>第四讲 </p> 
-                    <p>1、口语 Saving money </p> 
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章 </p> 
-                    <p>第五讲 </p> 
-                    <p>1、口语 Rules and Regulations </p> 
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章</p> 
-                </td>
-                <td>
-                    <p>第一讲</p>  
-                    <p>1、口语 Transport</p> 
-                    <p>2、听力专项训练 </p> 
-                    <p>3、精读文章</p>  
-                    <p>4、课后美文欣赏 </p> 
-                    <p>第二讲 </p> 
-                    <p>1、口语 Different shops</p>  
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章 </p> 
-                    <p>4、课后美文欣赏 </p> 
-                    <p>第三讲 </p> 
-                    <p>1、口语　Ｉlove fashion</p>  
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章 </p> 
-                    <p>4、课后美文欣赏</p>  
-                    <p>第四讲 </p> 
-                    <p>1、口语 Saving money </p> 
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章 </p> 
-                    <p>第五讲 </p> 
-                    <p>1、口语 Rules and Regulations </p> 
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章</p> 
-                </td>
-                <td>
-                    <p>第一讲</p>  
-                    <p>1、口语 Transport</p> 
-                    <p>2、听力专项训练 </p> 
-                    <p>3、精读文章</p>  
-                    <p>4、课后美文欣赏 </p> 
-                    <p>第二讲 </p> 
-                    <p>1、口语 Different shops</p>  
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章 </p> 
-                    <p>4、课后美文欣赏 </p> 
-                    <p>第三讲 </p> 
-                    <p>1、口语　Ｉlove fashion</p>  
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章 </p> 
-                    <p>4、课后美文欣赏</p>  
-                    <p>第四讲 </p> 
-                    <p>1、口语 Saving money </p> 
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章 </p> 
-                    <p>第五讲 </p> 
-                    <p>1、口语 Rules and Regulations </p> 
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章</p> 
-                </td>
-                <td>
-                    <p>第一讲</p>  
-                    <p>1、口语 Transport</p> 
-                    <p>2、听力专项训练 </p> 
-                    <p>3、精读文章</p>  
-                    <p>4、课后美文欣赏 </p> 
-                    <p>第二讲 </p> 
-                    <p>1、口语 Different shops</p>  
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章 </p> 
-                    <p>4、课后美文欣赏 </p> 
-                    <p>第三讲 </p> 
-                    <p>1、口语　Ｉlove fashion</p>  
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章 </p> 
-                    <p>4、课后美文欣赏</p>  
-                    <p>第四讲 </p> 
-                    <p>1、口语 Saving money </p> 
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章 </p> 
-                    <p>第五讲 </p> 
-                    <p>1、口语 Rules and Regulations </p> 
-                    <p>2、听力专项训练</p>  
-                    <p>3、精读文章</p> 
-                </td>
-            </tr>
+                <% _.each(courses, function(course) { %>
+                    <td>
+                        <p>第一讲</p>  
+                        <p>1、口语 Transport</p> 
+                        <p>2、听力专项训练 </p> 
+                        <p>3、精读文章</p>  
+                        <p>4、课后美文欣赏 </p> 
+                        <p>第二讲 </p> 
+                        <p>1、口语 Different shops</p>  
+                        <p>2、听力专项训练</p>  
+                        <p>3、精读文章 </p> 
+                        <p>4、课后美文欣赏 </p> 
+                        <p>第三讲 </p> 
+                        <p>1、口语　Ｉlove fashion</p>  
+                        <p>2、听力专项训练</p>  
+                        <p>3、精读文章 </p> 
+                        <p>4、课后美文欣赏</p>  
+                        <p>第四讲 </p> 
+                        <p>1、口语 Saving money </p> 
+                        <p>2、听力专项训练</p>  
+                        <p>3、精读文章 </p> 
+                        <p>第五讲 </p> 
+                        <p>1、口语 Rules and Regulations </p> 
+                        <p>2、听力专项训练</p>  
+                        <p>3、精读文章</p> 
+                    </td>
+                <% }); %>
             </tr>
         </table>
 
-        <div class="title clearfix" style="border-top:none;">
+        <div class="title clearfix" style="border-top:none;" id="more_collapse">
             <span class="up">教学补充</span>
-            <a class="F_green" id="more_collapse" href="#">[收起]</a>
+            <a class="F_green" href="#">[收起]</a>
         </div>
-        <table width="100%" cellpadding="0" cellspacing="0">
-            <tr>
+        <table width="100%" cellpadding="0" cellspacing="0" id="more_content">
+            <tr id="hasDownloadMaterials">
                 <th>课件下载</th>
-                <td width="195">提供上课课件下载和拷贝，便于课后复习</td>
-                <td width="195">提供上课课件下载和拷贝，便于课后复习</td>
-                <td width="195">提供上课课件下载和拷贝，便于课后复习</td>
-                <td width="195">提供上课课件下载和拷贝，便于课后复习</td>
+                <% _.each(courses, function(course) { %>
+                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.hasDownloadMaterials %></td>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="questionBankIntro">
                 <th>题库支持</th>
-                <td>历年真题+模拟题+预测题+全真机考</td>
-                <td>历年真题+模拟题+预测题+全真机考</td>
-                <td>历年真题+模拟题+预测题+全真机考</td>
-                <td>历年真题+模拟题+预测题+全真机考</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.questionBankIntro %></td>
+                <% }); %>
             </tr>
             <tr>
                 <th>班主任导学</th>
-                <td>老师不定期跟进学员进度，灵活调整课程计划</td>
-                <td>老师不定期跟进学员进度，灵活调整课程计划</td>
-                <td>老师不定期跟进学员进度，灵活调整课程计划</td>
-                <td>老师不定期跟进学员进度，灵活调整课程计划</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>">老师不定期跟进学员进度，灵活调整课程计划</td>
+                <% }); %>
             </tr>
             <tr>
                 <th>讲练结合</th>
-                <td>寄语特定教学目标，进行有针对的训练及讲解</td>
-                <td>寄语特定教学目标，进行有针对的训练及讲解</td>
-                <td>寄语特定教学目标，进行有针对的训练及讲解</td>
-                <td>寄语特定教学目标，进行有针对的训练及讲解</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>">寄语特定教学目标，进行有针对的训练及讲解</td>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="quiz">
                 <th>阶段测评</th>
-                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
-                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
-                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
-                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.quiz %></td>
+                <% }); %>
             </tr>
             <tr>
                 <th>课后答疑</th>
-                <td>支持课后多途径教学相关任何答疑问解答</td>
-                <td>支持课后多途径教学相关任何答疑问解答</td>
-                <td>支持课后多途径教学相关任何答疑问解答</td>
-                <td>支持课后多途径教学相关任何答疑问解答</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>">支持课后多途径教学相关任何答疑问解答</td>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="provideAssignments">
                 <th>课后作业</th>
-                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
-                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
-                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
-                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.provideAssignments %></td>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="provideMarking">
                 <th>作业批改</th>
-                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
-                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
-                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
-                <td>通过阶段性测试，便于学员清楚了解自我学习状态</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.provideMarking %></td>
+                <% }); %>
             </tr>
         </table>
         
-        <div class="title clearfix" style="border-top:none;">
+        <div class="title clearfix" style="border-top:none;" id="guarantee_collapse">
             <span class="up">教学保障</span>
-            <a class="F_green" id="guarantee_collapse" href="#">[收起]</a>
+            <a class="F_green" href="#">[收起]</a>
         </div>
-        <table width="100%" cellpadding="0" cellspacing="0">
-            <tr>
+        <table width="100%" cellpadding="0" cellspacing="0" id="guarantee_content">
+            <tr id="passAgreement">
                 <th>签约保过</th>
-                <td width="195">入学签约，不过免费重读</td>
-                <td width="195">入学签约，不过免费重读</td>
-                <td width="195">入学签约，不过免费重读</td>
-                <td width="195">入学签约，不过免费重读</td>
+                <% _.each(courses, function(course) { %>
+                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.passAgreement %></td>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="highScoreReward">
                 <th>高分奖励</th>
-                <td>考试成绩优异的同学，在毕业的时候可获得300元的奖金和新东方颁发的奖状</td>
-                <td>考试成绩优异的同学，在毕业的时候可获得300元的奖金和新东方颁发的奖状</td>
-                <td>考试成绩优异的同学，在毕业的时候可获得300元的奖金和新东方颁发的奖状</td>
-                <td>考试成绩优异的同学，在毕业的时候可获得300元的奖金和新东方颁发的奖状</td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>"><%= course.highScoreReward %></td>
+                <% }); %>
             </tr>
         </table>
         
-        <div class="title clearfix" style="border-top:none;">
+        <div class="title clearfix" style="border-top:none;" id="special_collapse">
             <span class="up">特色服务</span>
-            <a class="F_green" id="special_collapse" href="#">[收起]</a>
+            <a class="F_green" href="#">[收起]</a>
         </div>
-        <table width="100%" cellpadding="0" cellspacing="0">
-            <tr>
+        <table width="100%" cellpadding="0" cellspacing="0" id="special_content">
+            <tr id="certification">
                 <th>结业证书</th>
-                <td width="195">结业之后可获得技能证书</td>
-                <td width="195">结业之后可获得技能证书</td>
-                 <td width="195">结业之后可获得技能证书</td>
-                 <td width="195">结业之后可获得技能证书</td>
+                <% _.each(courses, function(course) { %>
+                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.certification %></td>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="extracurricularIntro">
                 <th>课后互动</th>
-                <td>支持QQ学习群，支持每周英语角</td>
-                <td>支持QQ学习群，支持每周英语角</td>
-                <td>支持QQ学习群，支持每周英语角</td>
-                <td>支持QQ学习群，支持每周英语角</td>
+                <% _.each(courses, function(course) { %>
+                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.extracurricularIntro %></td>
+                <% }); %>
             </tr>
-            <tr>
+            <tr id="service">
                 <th>赠送服务</th>
-                <td>免费获得教材一份，单次速记手册</td>
-                <td>免费获得教材一份，单次速记手册</td>
-                <td>免费获得教材一份，单次速记手册</td>
-                <td>免费获得教材一份，单次速记手册</td>
+                <% _.each(courses, function(course) { %>
+                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.extracurricularIntro %></td>
+                <% }); %>
             </tr>
         </table>
         
