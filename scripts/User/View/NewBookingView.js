@@ -1,6 +1,7 @@
 var NewBookingView = BaseFormView.extend({
     el:"#content",
     form: false,
+    submitButtonId:"initBooking",
     initialize: function (params) {
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "bookingSuccess", "close");
@@ -8,7 +9,7 @@ var NewBookingView = BaseFormView.extend({
         $("#viewStyle").attr("href", "style/css/booking.css");
         this.template = _.template(tpl.get("newBooking"));
         this.finishTemplate = _.template(tpl.get("booking_submitted"));
-        this.field = [
+        this.fields = [
             new BaseField({
                 name: "入学人姓名",
                 fieldId: "booking_applicantName",
@@ -68,7 +69,7 @@ var NewBookingView = BaseFormView.extend({
     },
     loginSuccess: function(){
         $("#booking_loginbox").remove();
-        $("#booking_loginBtns").remove();
+        $("#booking_loginnote").remove();
     },
     loginError: function(){
         $("#booking_loginPassword").val("");
@@ -113,14 +114,15 @@ var NewBookingView = BaseFormView.extend({
                 $(this).val(Utilities.getDateString(d));
             }
         });
-        $("initBooking").on("click", function(){
-            app.userManager.newBooking(this.model, {
+        BaseFormView.prototype.bindEvents.call(this);
+    },
+    submitAction:function () {
+            app.userManager.initBooking(this.model, {
                 success: this.bookingSuccess,
                 error: function(){
 
                 }
             });
-        });
     },
     bookingSuccess: function (booking) {
         this.$el.empty().append(this.finishTemplate(booking._toJSON()));

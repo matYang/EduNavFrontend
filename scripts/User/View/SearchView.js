@@ -102,7 +102,7 @@ var SearchView = Backbone.View.extend({
     },
 
     courseSearch: function () {
-        app.navigate("search/" + this.searchRepresentation.toQueryString(), {'trigger': false});
+        app.navigate("search/" + this.searchRepresentation.toQueryString());
         $("#searchResultDisplayPanel").empty().append('<div class="messageDetail-middle-autoMatch-loading">正在为您寻找信息</div>');
         app.generalManager.findCourse(this.searchRepresentation, {
             "success": this.renderSearchResults,

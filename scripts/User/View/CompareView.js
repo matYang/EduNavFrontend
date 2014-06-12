@@ -10,7 +10,6 @@ var CompareView = Backbone.View.extend({
         $("#viewStyle").attr("href", "style/css/compare.css");
         this.template = _.template(tpl.get("compareView"));
         this.courseIdList = app.storage.getCoursesToCompare(); // array of items to compare
-        this.reload = false;
         this.load();
     },
     load: function () {
@@ -37,9 +36,7 @@ var CompareView = Backbone.View.extend({
                 this.$el.empty().append(this.template({courses: this.courses}));
                 this.$view = $("#compareView");
                 this.afterRender();
-                if (!this.reload) {
-                    this.bindEvents();
-                }
+                this.bindEvents();
             }
     },
     renderError: function () {
@@ -71,8 +68,7 @@ var CompareView = Backbone.View.extend({
                 $("#"+id+"_content").removeClass("hidden");
                 $(e.delegateTarget).css("border-bottom", "");
             }
-        });
-        $("#compareView").children(".title").on("click", "a", function (e) {
+        }).on("click", "a", function (e) {
             e.preventDefault();
             var id = e.delegateTarget.id.split("_")[0];
             if (!$("#"+id+"_content").hasClass("hidden")) {
@@ -87,19 +83,27 @@ var CompareView = Backbone.View.extend({
                 $(e.delegateTarget).css("border-bottom", "");
             }
         });
-        $("#courseName").children("td").on("click", "a", function (e) {
+        $("#courseName").on("click", "td", function (e) {
+            if (e.target.tagName === "INPUT") {
+                app.navigate("booking/c"+ Utilities.getId($(e.currentTarget).attr("class")) ,true);
+                return;
+            } else if (e.target.tagName !== "A") {
+                return;
+            }
             e.preventDefault();
             var $e = $(e.target);
             if ($e.hasClass("delete")) {
-                var courseId = Utilities.getId($(e.delegateTarget).attr("class"));
-                $(".courseId_"+courseId).html("");
+                var courseId = Utilities.getId($(e.currentTarget).attr("class"));
+                that.$view.detach();
+                that.$view.find(".courseId_"+courseId).remove();
+                that.$view.find("tr").append("<td></td>");
+                that.$el.append(that.$view);
+
                 app.storage.removeCourseFromCompare(Utilities.toInt(courseId));
                 that.courseIdList = app.storage.getCoursesToCompare();
                 return;
             }
-            var index = $("#courseName>td").index($(e.delegateTarget)), index2;
-
-
+            var index = $("#courseName>td").index($(e.currentTarget)), index2;
             if ($e.hasClass("pre")) {
                 if ($e.hasClass("pre-disabled")) {
                     return;
@@ -112,7 +116,6 @@ var CompareView = Backbone.View.extend({
                 index2 = index+1;
             }
             that.swapRow(index, index2);
-
         });
         $(document).on("scroll", function (e) {
             if ($(this).scrollTop() >= 170) {
@@ -125,7 +128,10 @@ var CompareView = Backbone.View.extend({
             var idList = app.storage.getCoursesToCompare();
             if (!that.courseIdList.compare(idList)) {
                 that.courseIdList = idList;
-                that.reload = true;
+                $(document).off();
+                $(window).off();
+                $("#compareView").off();
+                $("#courseName").off();
                 that.load();
             }
         });
@@ -184,9 +190,12 @@ var CompareView = Backbone.View.extend({
     //     }
     // },
     close: function () {
+        debugger;
         if (!this.isClosed) {
             $(document).off();
             $(window).off();
+            $("#compareView").off();
+            $("#courseName").off();
             this.isClosed = true;
             this.$el.empty();
         }

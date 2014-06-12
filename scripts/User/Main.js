@@ -8,7 +8,7 @@ var AppRouter = Backbone.Router.extend({
 
         "front": "front",
         "search": "search",
-        "search/*search": "encodedSearch",
+        "search/*encodedSearchKey": "encodedSearch",
 
         "mypage": "mypage",
         "mypage/booking/:id": "myBooking",
@@ -73,9 +73,9 @@ var AppRouter = Backbone.Router.extend({
     defaultRoute: function () {
         //if login, procees to main/:id, if not, proceed to front
         if (this.sessionManager.hasSession()) {
-            this.navigate("search", {trigger: true});
+            this.navigate("search", {trigger: true, replace:true});
         } else {
-            this.navigate("front", {trigger: true});
+            this.navigate("front", {trigger: true, replace:true});
         }
     },
 
@@ -88,9 +88,9 @@ var AppRouter = Backbone.Router.extend({
     },
 
     encodedSearch: function (encodedSearchKey) {
-        this.searchVew = new SearchView ({
+        this.searchVew = new SearchView (encodedSearchKey ? {
             "searchKey": encodedSearchKey
-        });
+        } : undefined);
         // this.advertisementView = new AdvertisementView ();
     },
     myBooking: function (id) {

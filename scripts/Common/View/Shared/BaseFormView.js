@@ -80,6 +80,7 @@ var BaseFormView = Backbone.View.extend({
                 var field = that.fields[i], $field = $("#"+  field.get("fieldId"));
                 valid = valid && field.testValue($field.val(), $field);
             }
+            debugger;
             if (valid) {
                 that.submitAction();
             } else {
@@ -250,6 +251,6 @@ var BaseField = Backbone.Model.extend({
         }
         this.removeValidatorDiv();
         this.get("validatorContainer") ? this.get("validatorContainer").append(div) : $input.after(div);
-        return true;
+        return valid;
     }
 });

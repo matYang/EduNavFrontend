@@ -433,14 +433,14 @@
         <div class="row1">
             <div class="field">
                 <label>报名人数</label>
-                <select name="enrollNum">
+               <!-- <select name="enrollNum">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                </select>
-                人
+                </select> -->
+               1 人
             </div>
             <div class="field">
                 <label>有效日期</label>
@@ -452,9 +452,9 @@
             </div>
             <div class="field clearfix">
                 <div class="fleft cashback">50元</div>
-                <div class="fleft login_reg1"><a class="link F_green">登录</a> 或 <a class="link F_green">注册</a>后可使用优惠券，入学后获得50元现金返还</div>
+                <div class="fleft login_reg1" id="booking_loginnote"><a class="link F_green">登录</a> 或 <a class="link F_green">注册</a>后可使用优惠券，入学后获得50元现金返还</div>
             </div>
-            <div class="loginbox">
+            <div id="booking_loginbox" class="loginbox">
                 <div class="loginbox_inner">
                     <div>
                         <label>用户名</label> <input class="text" type="text" id="booking_loginUsername"/>
