@@ -195,7 +195,7 @@
 </script>
 
 <script type="text/template" id="tpl_compareWidgetEntry" >
-    <div class="compareEntry">
+    <div class="compareEntry" id="compareEntry_courseId_<%= courseId %>">
         <p class="desc"><span>【<%= instName %>】</span><a href="#"><%= courseName %></a></p>
         <p class="price"><span class="sign">￥</span><%= price %></p>
         <div class="remove"></div>

@@ -126,7 +126,7 @@ var Course = Backbone.Model.extend({
         json.startTime = Utilities.getDateString(this.get('startTime'));
         json.finishTime = Utilities.getDateString(this.get('finishTime'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
-        var date = this.get("startTime");
+        var date = new Date(this.get("startTime"));
         date.setDate(date.getDate()-5);
         json.scheduledTime = Utilities.getDateString(date);
         return json;

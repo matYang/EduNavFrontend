@@ -69,7 +69,7 @@ var CourseDetailView = Backbone.View.extend({
             if ( typeof this.$el !== 'undefined') {
                 this.$el.empty();
             }
-
+            $(document).off();
             $("#popup").empty();
             this.isClosed = true;
         }

@@ -211,8 +211,8 @@ var SearchView = Backbone.View.extend({
                     maxSize = Utilities.toInt(sizeRange[1]);
                 }
                 this.filters["classSize"] = {
-                    "minSize": minPrice,
-                    "maxSize": maxPrice
+                    "minSize": minSize,
+                    "maxSize": maxSize
                 }
             }
         }

@@ -100,12 +100,9 @@
     };
 
     StorageService.prototype.removeCourseFromCompare = function (index) {
-        if (this.compareList.length <= index) {
-            return false;
-        }
         var newArray = [];
         for (var i = 0; i < this.compareList.length; i++) {
-            if (i !== index) {
+            if (this.compareList[i] !== index) {
                 newArray.push(this.compareList[i]);
             }
         }
@@ -115,5 +112,15 @@
 
     StorageService.prototype.getCoursesToCompare = function () { 
         return this.compareList;
-    }
+    };
+
+    StorageService.prototype.setCoursesToCompare = function (list) { 
+        if (list && list instanceof Array && list.length <= 4) {
+            this.compareList = list
+            localStorage.compareList = JSON.stringify(this.compareList);
+            return true;
+        } else {
+            return false;
+        }
+    };
 }).call(this);

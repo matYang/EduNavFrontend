@@ -2,6 +2,7 @@ var CompareWidgetView = Backbone.View.extend({
     el: "#CompareWidgetContainer",
     initialize: function () {
         this.isClosed = false;
+        debugger;
         _.bindAll(this, "render", "close");
         this.template = _.template(tpl.get("compareWidget"));;
         this.$el.append(this.template);
@@ -34,9 +35,10 @@ var CompareWidgetView = Backbone.View.extend({
             app.navigate("compare"+this.courses.join("_"), true);
         });
         this.$domContainer.on("click", ".remove", function (e) {
-            var id = Utilities.getId($(this).attr("id"));
+            var id = Utilities.getId($(this).parent().attr("id"));
             that.removeCourse(id);
         });
+        
 
     },
     // course can only be added to compare widget from searchView
@@ -50,7 +52,7 @@ var CompareWidgetView = Backbone.View.extend({
         }
     },
     removeCourse: function(id) {
-        $("#compare_course_"+id).remove();
+        $("#compareEntry_courseId_"+id).remove();
         app.storage.removeCourseFromCompare(id);
         this.courseIds = app.storage.getCoursesToCompare();
     },

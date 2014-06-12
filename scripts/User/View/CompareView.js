@@ -6,12 +6,13 @@ var CompareView = Backbone.View.extend({
         
         app.viewRegistration.register(this);
         this.isClosed = false;
-        _.bindAll(this, "render", "bindEvents", /* "highlight", "hideSame", */ "close");
+        _.bindAll(this, "load", "render", "bindEvents", /* "highlight", "hideSame", */ "close");
         $("#viewStyle").attr("href", "style/css/compare.css");
         this.template = _.template(tpl.get("compareView"));
-        if (params.courseIdList) {
-            this.courseIdList = params.courseIdList; // array of items to compare
-        }
+        this.courseIdList = app.storage.getCoursesToCompare(); // array of items to compare
+        this.load();
+    },
+    load: function () {
         this.courses = [];
         if (this.courseIdList.length === 0) {
             this.render(new Course());
@@ -23,7 +24,6 @@ var CompareView = Backbone.View.extend({
                 });
             }
         }
-        
     },
     render: function (course) {
         this.courses.push(course._toJSON());
@@ -33,9 +33,8 @@ var CompareView = Backbone.View.extend({
                     len++;
                     this.courses.push((new Course())._toJSON());
                 }
-                this.$el.append(this.template({courses: this.courses}));
+                this.$el.empty().append(this.template({courses: this.courses}));
                 this.$view = $("#compareView");
-                debugger;
                 this.afterRender();
                 this.bindEvents();
             }
@@ -50,8 +49,8 @@ var CompareView = Backbone.View.extend({
     configMoveButton: function () {
         this.$view.find(".pre-disabled").removeClass("pre-disabled");
         this.$view.find(".next-disabled").removeClass("next-disabled");
-        this.$view.find("#courseName").children("td:first").find(".pre").addClass("pre-disabled");
-        this.$view.find("#courseName").children("td:last").find(".next").addClass("next-disabled");
+        this.$view.find("#courseName").find(".pre:first").addClass("pre-disabled");
+        this.$view.find("#courseName").find(".next:last").addClass("next-disabled");
     },
     bindEvents: function () {
         var that = this;
@@ -89,6 +88,11 @@ var CompareView = Backbone.View.extend({
             e.preventDefault();
             var $e = $(e.target);
             if ($e.hasClass("delete")) {
+                debugger;
+                var courseId = Utilities.getId($(e.delegateTarget).attr("class"));
+                $(".courseId_"+courseId).html("");
+                app.storage.removeCourseFromCompare(Utilities.toInt(courseId));
+                that.courseIdList = app.storage.getCoursesToCompare();
                 return;
             }
             var index = $("#courseName>td").index($(e.delegateTarget)), index2;
@@ -109,27 +113,38 @@ var CompareView = Backbone.View.extend({
 
         });
         $(document).on("scroll", function (e) {
-            debugger;
             if ($(this).scrollTop() >= 170) {
                 $("#courseName").addClass("stickyHeader");
             } else {
                 $("#courseName").removeClass("stickyHeader");
             }
         });
+        $(window).on("focus", function(){
+            var idList = app.storage.getCoursesToCompare();
+            if (!that.courseIdList.compare(idList)) {
+                that.courseIdList = idList;
+                that.load();
+            }
+        });
     },
     swapRow: function (index1, index2) {
         this.$view.detach();
+        var temp;
         if (index1 > index2) {
-            var temp = index1;
+            temp = index1;
             index1 = index2;
             index2 = temp;
         }
+        temp = this.courseIdList[index1];
+        this.courseIdList[index1] = this.courseIdList[index2];
+        this.courseIdList[index2] = temp;
         var $rows = this.$view.find("tr");
         for (var i = 0; i < $rows.length; i++){
             var $td = $($rows[i]).find("td");
             $($td[index2]).after($($td[index1]).detach());
         }
         this.$el.append(this.$view);
+        app.storage.setCoursesToCompare(this.courseIdList);
         this.configMoveButton();
     },
     // highlight: function () {
@@ -167,6 +182,8 @@ var CompareView = Backbone.View.extend({
     // },
     close: function () {
         if (!this.isClosed) {
+            $(document).off();
+            $(window).off();
             this.isClosed = true;
             this.$el.empty();
         }
