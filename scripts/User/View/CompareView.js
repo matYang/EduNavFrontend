@@ -125,11 +125,12 @@ var CompareView = Backbone.View.extend({
             }
         });
         $(window).on("focus", function(){
+            if (that.isClosed) return;
             var idList = app.storage.getCoursesToCompare();
             if (!that.courseIdList.compare(idList)) {
                 that.courseIdList = idList;
-                $(document).off();
-                $(window).off();
+                $(document).off("scroll");
+                $(window).off("focus");
                 $("#compareView").off();
                 $("#courseName").off();
                 that.load();
@@ -190,10 +191,9 @@ var CompareView = Backbone.View.extend({
     //     }
     // },
     close: function () {
-        debugger;
         if (!this.isClosed) {
-            $(document).off();
-            $(window).off();
+            $(document).off("scroll");
+            $(window).off("focus");
             $("#compareView").off();
             $("#courseName").off();
             this.isClosed = true;

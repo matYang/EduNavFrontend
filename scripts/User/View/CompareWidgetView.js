@@ -48,6 +48,7 @@ var CompareWidgetView = Backbone.View.extend({
             that.removeCourse(id);
         });
         $(window).on("focus", function(){
+            if (that.isClosed) return;
             var idList = app.storage.getCoursesToCompare();
             if (!that.courseIds.compare(idList)) {
                 that.courseIds = idList;
@@ -73,8 +74,8 @@ var CompareWidgetView = Backbone.View.extend({
     },
     close: function () {
         if (!this.isClosed) {
+            $(window).off("focus");
             this.isClosed = true;
-            $(window).off();
             this.$el.empty();
         }
     }

@@ -41,7 +41,7 @@
                 }
             } 
             if (localStorage.compareList) {
-                this.compareList = JSON.parse(localStorage.compareList);
+                this.compareList = JSON.parse(localStorage.compareList || "[]");
             }
             if (typeof this.compareList === "number") {
                 this.compareList = [];

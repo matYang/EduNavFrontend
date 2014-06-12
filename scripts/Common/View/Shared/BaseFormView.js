@@ -80,7 +80,6 @@ var BaseFormView = Backbone.View.extend({
                 var field = that.fields[i], $field = $("#"+  field.get("fieldId"));
                 valid = valid && field.testValue($field.val(), $field);
             }
-            debugger;
             if (valid) {
                 that.submitAction();
             } else {
