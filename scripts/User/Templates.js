@@ -5,19 +5,12 @@
                 <a></a>
             </h1>
             <ul class="topBar-navigation">
-                <li id = 'navigate_search' class = 'button navigate_search'>分类检索</li>
-                <li id = 'navigate_compare' class = 'button navigate_compare'>学校对比</li>
+                <li id="navigate_search" class="button navigate_search">分类检索</li>
+                <li id="navigate_compare" class="button navigate_compare">学校对比</li>
             </ul>
-            <div class="topBar-profileImage">
-                <dl id = 'profileDropdown'>
-                    <dt id = "topBar-avatar"> <a href="#"><img class="topBar-profileImage-tag" src="" width="48" height="48"/></a> </dt>
-                    <dd>
-                        <ul>
-                            <li id='topBar-myPage'><a href="#">个人主页</a></li>
-                            <li id='logout' class="quit"><a href="#">退出</a></li>
-                        </ul>
-                    </dd>
-                </dl>
+            <div class="user_info">
+                晚上好，尊敬的会员 <a id="logout" href="#">[退出]</a>
+                <a id="topbar-mypage" href="#">上课书包</a>
             </div>
         </div>
     </div>
@@ -416,14 +409,13 @@
             </div>
         </div>
         <div class="row2">
-            <div class="section"><label>班级类型：</label> <span>20人</span></div>
-            <div class="section"><label>开课时间：</label> <span>5月13日-6月13日</span></div>
-            <div class="section"><label>上课时间：</label> <span>9:00 - 14:00</span></div>
-            <div class="section"><label>上课地址：</label> <span>南京市雨花台区宁双路28号汇智大厦9楼908室</span></div>
-            <div class="extra">过去7天有124人预定了该课程</div>
+            <div class="section"><label>班级类型：</label> <span><%= course.seatsTotal %>人</span></div>
+            <div class="section"><label>开课时间：</label> <span><%= course.startTime %> - <%= course.finishTime %></span></div>
+            <div class="section"><label>上课时间：</label> <span><%= course.dailyStartTime %> - <%= course.dailyFinishTime %></span></div>
+            <div class="section"><label>上课地址：</label> <span><%= course.location %></span></div>
         </div>
         <div class="row3">
-            若该教学机构在您取消与本机构的课程订单后，给予您更多诱惑，您将获得500元。
+            若该教学机构在您取消与本机构的课程订单后，给予您更多诱惑，您将获得100元反金券。
         </div>
         <div class="row4">
             <div class="title">需要帮助?</div>
@@ -452,11 +444,11 @@
             </div>
             <div class="field">
                 <label>有效日期</label>
-                5月6日 <span>（5月6日前须到教学机构进行报名，否则优惠价格将自动失效）</span>
+                <%= scheduledTime %> <span>（<%= scheduledTime %>前须到教学机构进行报名，否则优惠价格将自动失效）</span>
             </div>
             <div class="field">
                 <label>课程费用</label>
-                <b class="price">￥1999</b>/位 <span>（预定免费，入学后学校前台付款）</span>
+                <b class="price">￥<%= course.price %></b>/位 <span>（预定免费，入学后学校前台付款）</span>
             </div>
             <div class="field clearfix">
                 <div class="fleft cashback">50元</div>
@@ -685,7 +677,7 @@
         </div>
         <table width="100%" cellpadding="0" cellspacing="0" id="basic_content">
             <tr id="courseName">
-                <th>课程名称</th>
+                <th width="64px">课程名称</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>" width="195">
                         <h2 class="F_green"><%= course.courseName %></h2>
@@ -694,10 +686,10 @@
                     </td>
                 <% }); %>
             </tr>
-            <tr id="suitableStudent">
-                <th>适合学员</th>
+            <tr id="suitableStudent" >
+                <th width="64px">适合学员</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.suitableStudent %></td>
+                    <td class="courseId_<%= course.courseId %>" width="195"><%= course.suitableStudent %></td>
                 <% }); %>
             </tr>
             <tr id="instName">
@@ -710,7 +702,7 @@
                 <th>课程价格</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>">
-                    <div class="price"><%= course.price %></div>
+                    <div class="price">￥<%= course.price %></div>
                     <a class="cashback">
                         <em>50元</em>
                         <div class="tip">

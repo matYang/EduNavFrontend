@@ -20,6 +20,7 @@ var AppRouter = Backbone.Router.extend({
         "booking/c:courseId": "newBooking",
         "booking/b:bookingId": "booking",
 
+        "compare": "compare",
         "compare/*courses": "compare",
         "register": "register",
         "register/*registerState": "register",
@@ -129,7 +130,8 @@ var AppRouter = Backbone.Router.extend({
     },
 
     compare: function (courses) {
-        var courseIdList = courses.split("_");
+        debugger;
+        var courseIdList = courses ? courses.split("_") : [];
         this.compareView = new CompareView({courseIdList: courseIdList});
     },
 

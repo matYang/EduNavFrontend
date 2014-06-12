@@ -39,7 +39,8 @@ var CourseDetailView = Backbone.View.extend({
             var id = e.target.id;
             id = "#content_" + id.split("_")[1];
             $.smoothScroll({
-                scrollTarget: id
+                scrollTarget: id,
+                offset: -36
             });
             $(e.delegateTarget).find(".active").removeClass("active");
             $(e.target).addClass("active");

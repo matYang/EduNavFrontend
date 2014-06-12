@@ -49,8 +49,9 @@ var NewBookingView = BaseFormView.extend({
         }
     },
     render: function (course) {
-        this.$el.append(this.template(course._toJSON()));
         this.model = new Booking();
+        this.model.set("course", course);
+        this.$el.append(this.template(this.model._toJSON()));
         this.model.initBookingFromCourse(course);
         this.bindEvents();
     },
@@ -106,7 +107,7 @@ var NewBookingView = BaseFormView.extend({
             onSelect: function (text, inst) {
                 var d = new Date ();
                 d.setDate(inst.selectedDay);
-                d.setMonth(inst.selectedMonth);x
+                d.setMonth(inst.selectedMonth);
                 d.setYear(inst.selectedYear);
                 that.model.set("scheduledTime", d);
                 $(this).val(Utilities.getDateString(d));

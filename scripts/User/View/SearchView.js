@@ -152,7 +152,7 @@ var SearchView = Backbone.View.extend({
             date.setDate(1);
             var month = date.getMonth();
             if (dataId === "thisMonth") {
-                this.searchRepresentation.set("startTime", Utilities.castToRepresentationFormat(date));
+                this.searchRepresentation.set("startTime", date);
             } else if (dataId= "nextMonth") {
                 if (month === 11) {
                     date.setMonth(0);
@@ -160,7 +160,7 @@ var SearchView = Backbone.View.extend({
                 } else {
                     date.setMonth(date.getMonth()+1);
                 }
-                this.searchRepresentation.set("startTime", Utilities.castToRepresentationFormat(date));
+                this.searchRepresentation.set("startTime", date);
             } else if (dataId= "twoMonthsAfter") {
                 if (month >= 10) {
                     date.setMonth((date.getMonth()+2)%12);
@@ -168,7 +168,7 @@ var SearchView = Backbone.View.extend({
                 } else {
                     date.setMonth(date.getMonth()+2);
                 }
-                this.searchRepresentation.set("startTime", Utilities.castToRepresentationFormat(date));
+                this.searchRepresentation.set("startTime", date);
             } else {
                 this.searchRepresentation.set("startTime", undefined);
             }
