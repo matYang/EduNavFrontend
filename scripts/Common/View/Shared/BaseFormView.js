@@ -39,10 +39,10 @@ var BaseFormView = Backbone.View.extend({
     },
     submitAction: function(){},
     render: function () {
-        this.isBB = this.model instanceof Backbone.Model;
         this.bindEvents();
     },
     bindEvents: function() {
+        this.isBB = this.model instanceof Backbone.Model;
         this.fieldNum = this.fields.length;
         var i, that = this;
         for ( i = 0; i < this.fieldNum; i++ ) {
@@ -163,7 +163,11 @@ var BaseFormView = Backbone.View.extend({
             }
         });
         if (value) {
-            $field.val(value);
+            if (value instanceof Date) {
+                $field.val(Utilities.getDateString(value));
+            } else {
+                $field.val(value);
+            }
         }
     },
     close: function () {
@@ -214,6 +218,8 @@ var BaseField = Backbone.Model.extend({
             return "<dd class='" + this.get("validClass") + "' id='"+this.get("fieldId")+"_right'></dd>";
         } else if (type === "empty") {
             return "<dd class='" + this.get("errorClass") + "' id='" + this.get("fieldId") + "_wrong' title='"+this.get("name")+"不能为空'><p>" + this.get("name") + "不能为空</p></dd>";
+        } else if (type === "dom") {
+
         } else if (text) {
             return "<dd class='" + this.get("errorClass") + "' id='" + this.get("fieldId") + "_wrong' title='" + text + "'><p>" + text + "</p></dd>";
         } else {
@@ -229,6 +235,9 @@ var BaseField = Backbone.Model.extend({
         var valid = false;
         if (this.get("mandatory") && !val ) {
             div = this.buildValidatorDiv(false, "empty");
+        } else if (!this.get("mandatory") && !val) {
+            div = this.buildValidatorDiv(true);
+            valid = true;
         } else if (this.get("regex")) {
             if (this.regex.test(val) ) {
                 div = this.buildValidatorDiv(true);

@@ -103,11 +103,11 @@
             <div id="filter_price" class="filterCriteria">
                 <label>课程费用：</label>
                 <span data-id="noreq" class="active">不限</span>
-                <span data-id="0-499">~499</span>
-                <span data-id="500-999">500~999</span>
-                <span data-id="1000-1499">1000~1499</span>
-                <span data-id="1500-1999">1500~1999</span>
-                <span data-id="2000-">2000以上</span>
+                <span data-id="0-2499">2500元以下</span>
+                <span data-id="2500-4999">2500元~4999元</span>
+                <span data-id="5000-7499">5000元~7499元</span>
+                <span data-id="7500-9999">7500元~9999元</span>
+                <span data-id="10000-">10000元以上</span>
             </div>
         </div>
     </div>
@@ -308,7 +308,7 @@
 </script>
 
 <script type="text/template" id="tpl_booking_entry">
-    <div class="bookingEntry">
+    <div class="bookingEntry" id="booking_reference_<%= reference %>">
         <div class="bookingEntryTime">
             <div class="date"><%= course.startTime %></div>
             <div class="dayOfWeek"><%= course.studyDays %> <%= course.studyDaysNote %></div>
@@ -327,76 +327,113 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingDetail">
-    <div>上课书包 &gt; 订单管理 &gt; 课程订单 </div>
-    <div id="bookingDetail">
-        <div class="row0">
-            <div class="left">
-                <label>
-                    订单号：<span>1436991417</span> <span>(2014年5月23日预定)</span>
-                </label>
-                <label>
-                    状态：<span>等待确认</span> <span>(2014年5月27日预定)</span>
-                </label>
+    <div class="crumbs">上课书包 &gt; 订单管理 &gt; <span class="F_green">课程订单</span> </div>
+    <div id="bookingDetail" class="blank">
+        <div class="row0 clearfix">
+            <div class="fleft">
+                <p><label>订单号：<%= reference %></label> <span>(2014年5月23日预定)</span></p>
+                <p><label>状<s></s>态：<b class="F_green">等待确认</b></label> <span>(2014年5月27日预定)</span></p>
             </div>
-            <div class="right">
-                <p class="price">总金额：<span class="sign">￥</span><%= price %></p>
-            </div>
+            <p class="fright price"><label>总金额：</label><span class="sign">￥</span><%= course.price %></p>
         </div>
         <div class="row1">
-            <div class="left">
-                <img class="progressbar" src=""/>
-                <p><span>2014-6-13</span> <span>11:02</span> <span>您的订单正在和新东方教育确认</span></p>
-                <p><span>2014-6-12</span> <span>12:02</span> <span>您的订单已经提交</span></p>
+            <div id="process">
+                <% if ( status === 3 ) { %>
+                    <p>订单已取消</p>
+                <% } else if (status === 5 ) { %>
+                    <p>订单已结束</p>
+                <% } else { %>
+                    <% if ( status >= 0) { %>
+                        <div class="node fore ready">
+                    <% } else { %>
+                        <div class="node fore wait">
+                    <% } %>
+                        <p>提交订单</p>
+                    </div>
+                    <% if ( status > 0) { %>
+                        <div class="proce ready">
+                    <% } else { %>
+                        <div class="proce doing">
+                    <% } %>
+                        <p>&nbsp;</p>
+                    </div>
+                    <% if ( status >= 1) { %>
+                        <div class="node ready">
+                    <% } else { %>
+                        <div class="node wait">
+                    <% } %>
+                        <p>机构确认</p>
+                    </div>
+                    <% if ( status > 1) { %>
+                        <div class="proce ready">
+                    <% } else if (status === 1) { %>
+                        <div class="proce doing">
+                    <% } else { %>
+                        <div class="proce wait">
+                    <% } %>
+                        <p>&nbsp;</p>
+                    </div>
+                    <% if ( status >= 3) { %>
+                        <div class="node ready">
+                    <% } else { %>
+                        <div class="node wait">
+                    <% } %>
+                        <p>已经报到</p>
+                    </div>
+                    <% if ( status > 3) { %>
+                        <div class="proce ready">
+                    <% } else if (status === 3) { %>
+                        <div class="proce doing">
+                    <% } else { %>
+                        <div class="proce wait">
+                    <% } %>
+                        <p>&nbsp;</p>
+                    </div>
+                    <% if ( status >= 4) { %>
+                        <div class="node ready">
+                    <% } else { %>
+                        <div class="node wait">
+                    <% } %>
+                        <p>已经入学</p>
+                    </div>
+                <% } %>
+            </div>
+            <div class="explain">
+                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的订单正在和新东方教育确认</span></p>
             </div>
         </div>
         <div class="row2">
-            <span class="title">
-                六级考前词汇串讲班
-            </span>
-            <label>教育机构：</label><%= course.instName %>
-            <label>上课地址：</label><%= course.location %>
-            <label>咨询电话：</label><%= course.phone %>
+            <h3 class="title">六级考前词汇串讲班</h3>
+            <p><label>教育机构：</label><span><%= course.instName %></span></p>
+            <p><label>上课地址：</label><span><%= course.location %></span></p>
+            <p><label>咨询电话：</label><span><%= course.phone %></span></p>
         </div>
         <div class="row3">
-            <span class="title">入学信息</span>
-            <div class="left">
-                <label>
-                    开课时间: <%= course.startTime %> - <%= course.finishTime %>
-                </label>
-                <label>
-                    班级类型: <%= course.classModel %>
-                </label>
-                <label>
-                    联系方式: <%= phone %>
-                </label>
-                <label>
-                    入学人姓名: <%= name %>
-                </label>
-            </div>
-            <div class="right">
-                <label>
-                    上课时间: <%= dailyStartTime %> - <%= dailyFinishTime %>
-                </label>
-                <label>
-                    预定人数: 1人
-                </label>
-                <label>
-                    邮箱: <%= email %>
-                </label>
+            <div class="title">入学信息</div>
+            <div class="clearfix">
+                <div class="fleft">
+                    <p><label>开课时间:</label> <%= course.startTime %> - <%= course.finishTime %></p>
+                    <p><label>班级类型:</label> <%= course.classModel %></p>
+                    <p><label>联系方式:</label> <%= phone %></p>
+                    <p><label>入学人姓名:</label> <%= name %></p>
+                </div>
+                <div class="fleft">
+                    <p><label>上课时间:</label> <%= course.dailyStartTime %> - <%= course.dailyFinishTime %></p>
+                    <p><label>预定人数:</label>1人</p>
+                    <p><label>邮箱:</label><%= email %></p>
+                </div>
             </div>
         </div>
         <div class="row4">
-            <span class="title">支付信息</span>
-            <label>
-                支付方式: 学校前台支付
-            </label>
+            <div class="title">支付信息</div>
+            <p><label>支付方式:</label> 学校前台支付</p>
         </div>
-        <div class="row5">
-            <input type="button" class="btn_green" value="修改订单" id="editBooking" />
-            <input type="button" class="btn_white" value="取消订单" id="cancelBooking" />
-            <input type="button" value="订单打印" id="printBooking"/>
-        </div>
-    </div>
+    </div><!--bookingDetail end-->
+    <div id="printBooking" class="print"><a href="#">订单打印</a></div>
+    <div class="btns">
+        <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking" /> -->
+        <input type="button" class="btn_W" value="取消订单" id="cancelBooking" />
+    </div><!--btns end-->
 </script>
 
 <script type="text/template" id="tpl_newBooking">
@@ -474,21 +511,21 @@
             <div class="field">
                 <label><span class="req">*</span>入学人姓名</label>
                 <input class="text" type="text" id="booking_applicantName"/>
-                <span class="desc">(请填写实际入学人姓名)</span>
+                <span class="action"><span class="form_tip"><span class="form_tip_top">请填写实际入学人姓名</span><span class="form_tip_bottom"></span></span></span>
             </div>
             <div class="field">
                 <label><span class="req">*</span>联系手机</label>
                 <input class="text" type="text" id="booking_cellphone"/>
-                <span class="desc">(用于接收确认信息)</span>
+                <span class="action"><span class="form_tip"><span class="form_tip_top">(用于接收确认信息)</span><span class="form_tip_bottom"></span></span></span>
             </div>
             <div class="field">
                 <label>E-mail </label>
                 <input class="text" type="text" id="booking_email"/>
-                <span class="desc">(可选)</span>
+                <span class="action"><span class="form_tip"><span class="form_tip_top">(可选)</span><span class="form_tip_bottom"></span></span></span>
             </div>
             <div class="field">
                 <label><span class="req">*</span>预约报名日期</label>
-                <input class="text" type="date" id="booking_date"/>
+                <input class="text" type="text" id="booking_date"/>
                 <span class="desc">(若此预约日期前未报名入学，您的特惠名额将受让给其他学员)</span>
             </div>
         </div>
@@ -676,7 +713,7 @@
             <a class="F_green" href="#">[收起]</a>
         </div>
         <table width="100%" cellpadding="0" cellspacing="0" id="basic_content">
-            <tr id="courseName">
+            <tr id="courseName" class="course_name">
                 <th width="64px">课程名称</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>" width="195">

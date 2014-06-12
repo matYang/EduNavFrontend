@@ -7,8 +7,8 @@ var MyPageView = Backbone.View.extend({
         this.isClosed = false;
         this.query = params.query || "dashboard";
         this.template = _.template(tpl.get('mypage_base'));
-        if (params.bookingId) {
-            this.bookingId = params.bookingId;
+        if (params.reference) {
+            this.reference = params.reference;
         }
         app.userManager.fetchUser({
             "success": this.render,
@@ -33,10 +33,10 @@ var MyPageView = Backbone.View.extend({
         var create = true;
         switch (this.query) {
             case "bookingDetail":
-                if (!this.bookingId) {
+                if (!this.reference) {
                     throw "invalid access";
                 }
-                this.activeChildView = new BookingDetailView({bookingId:this.bookingId});
+                this.activeChildView = new BookingDetailView({reference:this.reference});
                 break;
             case "booking": 
                 this.activeChildView = new MyPageBookingView();
@@ -59,7 +59,7 @@ var MyPageView = Backbone.View.extend({
         $("#bookingManage").on("click", function () {
             if (that.query !== "booking") {
                 that.query = "booking";
-                app.navigate("mypage/booking");
+                app.navigate("mypage/booking", true);
                 that.createChildView();
             }
         });

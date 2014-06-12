@@ -9,6 +9,9 @@
 .compare .title a{ float:right; margin-right:20px;}
 
 .compare table{ border-top:1px solid #ccc; border-right:1px solid #ccc;}
+.compare table .course_name td{ text-align:center;}
+.compare table .course_name td .set{margin:20px auto 10px;}
+.compare table tr:hover{ background:#e9f2ee;}
 .compare table th,.compare table td{ border-left:1px solid #ccc; border-bottom:1px solid #ccc; padding:15px;}
 .compare table th{ vertical-align:top; background:#ecfff7;  font-weight:normal; color:#000;}
 .compare table td{color:#666; line-height:22px;}
@@ -31,8 +34,8 @@
 	position: fixed;
 	top: 0px;
 	background-color:#eeeeee;
-	padding-top: 3px;
 	margin-top: 0px;
+	width:999px;
 	z-index: 999;
 }
 

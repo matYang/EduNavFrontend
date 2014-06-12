@@ -135,5 +135,9 @@ var Bookings = Backbone.Collection.extend({
         if ( typeof urlOverride !== 'undefined') {
             this.url = urlOverride;
         }
+    },
+
+    findBookingByReference: function (reference) {
+        return this.where({reference: reference})[0];
     }
 });

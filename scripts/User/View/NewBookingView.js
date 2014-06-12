@@ -36,6 +36,7 @@ var NewBookingView = BaseFormView.extend({
             new BaseField({
                 name: "预约报名日期",
                 fieldId: "booking_date",
+                modelAttr: "scheduledTime",
                 type: "text",
                 mandatory: true,
             })
@@ -47,6 +48,19 @@ var NewBookingView = BaseFormView.extend({
             });
         } else if (params.course) {
             this.render(params.course);
+        } else if (params.reference) {
+            this.reference = params.reference;
+            var booking = app.sessionManager.sessionModel.get("bookings").findBookingByReference(this.reference);
+            if (booking) {
+                this.renderEditView(booking);
+            } else {
+                app.userManager.fetchUser({
+                    success: this.render,
+                    error: function () {}
+                });
+            }
+        } else if (params.booking) {
+            this.renderEditView(params.booking);
         }
     },
     render: function (course) {
@@ -55,6 +69,23 @@ var NewBookingView = BaseFormView.extend({
         this.$el.append(this.template(this.model._toJSON()));
         this.model.initBookingFromCourse(course);
         this.bindEvents();
+    },
+    renderEditView: function (booking) {
+        if (booking instanceof User) {
+            this.user = booking;
+            booking = booking.get("bookings").findBookingByReference(this.reference);
+        }
+        if (booking) {
+            this.model = booking;
+            this.$el.append(this.template(this.model._toJSON()));
+            // $("#booking_applicantName").val(this.model.get("name"));
+            // $("#booking_cellphone").val(this.model.get("phone"));
+            // $("#booking_email").val(this.model.get("email"));
+            // $("#booking_date").val(Utilities.getDateString(this.model.get("scheduledTime")));
+            this.bindEvents();
+        } else {
+
+        }
     },
     login: function() {
         var username = $("#booking_loginUsername").val(), pwd = $("#booking_loginPassword").val();

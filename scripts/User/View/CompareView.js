@@ -118,10 +118,14 @@ var CompareView = Backbone.View.extend({
             that.swapRow(index, index2);
         });
         $(document).on("scroll", function (e) {
-            if ($(this).scrollTop() >= 170) {
-                $("#courseName").addClass("stickyHeader");
+            if ($(this).scrollTop() >= 145) {
+                $("#courseName").addClass("stickyHeader")
+                if ($("#stickyPlaceholder").length === 0) {
+                    $("#courseName").after("<tr id='stickyPlaceholder' style='height:160px'></tr>");
+                }
             } else {
                 $("#courseName").removeClass("stickyHeader");
+                $("#stickyPlaceholder").remove();
             }
         });
         $(window).on("focus", function(){

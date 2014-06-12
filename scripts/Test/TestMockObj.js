@@ -11,12 +11,12 @@ testMockObj = {
 	testCourse5: (new Course()).set("courseId",5).set("courseName", "四六级").set("price",5800).set("instName","南京新东方"),
 	testCourse6: (new Course()).set("courseId",6).set("courseName", "雅思英语").set("price",9800).set("instName","南京新东方"),
 	testBookings: new Bookings(),
-	testBooking1: (new Booking()).set("bookingId", 1).set("course", new Course()),
-	testBooking2: (new Booking()).set("bookingId", 2).set("course", new Course()),
-	testBooking3: (new Booking()).set("bookingId", 3).set("course", new Course()),
-	testBooking4: (new Booking()).set("bookingId", 4).set("course", new Course()),
-	testBooking5: (new Booking()).set("bookingId", 5).set("course", new Course()),
-	testBooking6: (new Booking()).set("bookingId", 6).set("course", new Course()),
+	testBooking1: (new Booking()).set("bookingId", 1).set("reference", "10001").set("status", EnumConfig.BookingStatus.awaiting).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com"),
+	testBooking2: (new Booking()).set("bookingId", 2).set("reference", "10002").set("status", EnumConfig.BookingStatus.confirmed).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com"),
+	testBooking3: (new Booking()).set("bookingId", 3).set("reference", "10003").set("status", EnumConfig.BookingStatus.cancelled).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com"),
+	testBooking4: (new Booking()).set("bookingId", 4).set("reference", "10004").set("status", EnumConfig.BookingStatus.enter).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com"),
+	testBooking5: (new Booking()).set("bookingId", 5).set("reference", "10005").set("status", EnumConfig.BookingStatus.finished).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com"),
+	testBooking6: (new Booking()).set("bookingId", 6).set("reference", "10006").set("status", EnumConfig.BookingStatus.failed).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com"),
 	testCategories: {
 		"数学":{"初中": null,"高中": null},
 		"语文":{"初中": null,"高中": null},
@@ -28,6 +28,12 @@ testMockObj = {
 }
 testMockObj.testCourses.add([testMockObj.testCourse1,testMockObj.testCourse2,testMockObj.testCourse3,testMockObj.testCourse4,testMockObj.testCourse5,testMockObj.testCourse6]);
 testMockObj.testBookings.add([testMockObj.testBooking1,testMockObj.testBooking2,testMockObj.testBooking3,testMockObj.testBooking4,testMockObj.testBooking5,testMockObj.testBooking6]);
+testMockObj.testBooking1.set("course", testMockObj.testCourse1);
+testMockObj.testBooking2.set("course", testMockObj.testCourse2);
+testMockObj.testBooking3.set("course", testMockObj.testCourse3);
+testMockObj.testBooking4.set("course", testMockObj.testCourse4);
+testMockObj.testBooking5.set("course", testMockObj.testCourse5);
+testMockObj.testBooking6.set("course", testMockObj.testCourse6);
 testMockObj.testUser.set("bookings", testMockObj.testBookings);
 testMockObj[EnumConfig.ModuleIdentifier.admin] = testMockObj.testAdmin;
 testMockObj[EnumConfig.ModuleIdentifier.partner] = testMockObj.testPartner;
