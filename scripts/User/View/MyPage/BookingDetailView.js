@@ -32,13 +32,16 @@ var BookingDetailView = Backbone.View.extend({
             window.print();
         });
         $("#editBooking").on("click", function () {
-
+            app.navigate("booking/b" + this.booking.get("reference"), true);
         });
-        // $("#cancelBooking").on("click", function () {
-        //     var booking = that.booking.clone();
-        //     booking.set("status",)
-        //     app.userManager.changeBookingState(that.booking);
-        // });
+        $("#cancelBooking").on("click", function () {
+            var booking = that.booking.clone();
+            booking.set("status", EnumConfig.BookingStatus.cancelled);
+            app.userManager.changeBookingState(that.booking, {
+                success: that.render,
+                error: function(){}
+            });
+        });
     },
     close: function () {
         if (!this.isClosed) {

@@ -22,11 +22,9 @@
 }
 
 #logozghdm {
-	position: absolute;
+	text-align:center;
 	/*background-image: url(../img/zghdmlogo_reduced.png);*/
-	width: 300px;
-	margin-left: 333px;
-	margin-top: 30px;
+	padding-top: 30px;
 	height: 100px;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -42,8 +40,8 @@ body {
 }
 
 .header {
-	background: #003144;
-	min-height: 110px;
+	background: #128d56;
+	min-height: 180px;
 }
 
 
@@ -65,7 +63,7 @@ body {
 }
 
 .countdown {
-	background: #002e42 url(../img/countdown-bg-blue.jpg) no-repeat center;
+	background: #1f3e12 url(../img/countdown-bg-green.jpg) no-repeat center;
 	font-family: "BebasNeueRegular", Arial, Helvetica, sans-serif;
 	text-shadow: none;
 	font-size: 72px;
@@ -73,7 +71,8 @@ body {
 	height: 220px;
 	padding: 50px 0 0 0;
 }
-
+.footer{width:100%; height:140px; margin-top:50px; padding-top:20px; background:#2f3440; text-align:center; line-height:160px;}
+.footer img{ }
 body.black .countdown {background: #000 url(../img/countdown-bg-black.jpg) no-repeat center;}
 body.green .countdown {background: #1f4013 url(../img/countdown-bg-green.jpg) no-repeat center;}
 body.grey .countdown {background: #111612 url(../img/countdown-bg-grey.jpg) no-repeat center;}
@@ -498,7 +497,6 @@ input.submit::-moz-focus-inner {
 
 /* 3 - FOOTER */
 
-.footer {width: 700px; position: absolute; color: #707071;}
 .footer li. {width: 700px;float: left;margin: 0 60px 0 0; text-align: center;}
 
 .footer h4 {font-weight: bold;color: #4f4f4f;margin: 0 0 25px 0;font-size: 130%;}
