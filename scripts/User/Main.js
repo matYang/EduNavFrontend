@@ -100,10 +100,10 @@ var AppRouter = Backbone.Router.extend({
         }
         if (this.myPageView && !this.myPageView.isClosed) {
             this.myPageView.query = "bookingDetail";
-            this.myPageView.bookingId = id;
+            this.myPageView.reference = id;
             this.myPageView.createChildView();
         } else {
-            this.myPageView = new MyPageView ({query:"bookingDetail", bookingId: id});
+            this.myPageView = new MyPageView ({query:"bookingDetail", reference: id});
         }
     },
     mypage: function (query) {
@@ -125,7 +125,7 @@ var AppRouter = Backbone.Router.extend({
         this.newBookingView = new NewBookingView({courseId:courseId});
     },
     booking: function (bookingId) {
-
+        this.bookingEditView = new NewBookingView({reference:bookingId});
     },
 
     compare: function () {

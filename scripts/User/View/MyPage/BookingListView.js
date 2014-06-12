@@ -13,9 +13,11 @@ var BookingListView = MultiPageView.extend({
     $domContainer: null,
     el: "#bookingSummary",
     initialize: function (allMessages, messages, type) {
+        _.bindAll(this, 'render', 'entryEvent', 'close');
         this.allMessages = allMessages;
         this.messages = messages;
         this.entryTemplate = _.template(tpl.get("booking_entry"));
+        app.viewRegistration.register(this);
         this.isClosed = false;
         if (type === "dashboard") {
             this.singlePage = true;
@@ -27,8 +29,7 @@ var BookingListView = MultiPageView.extend({
         MultiPageView.prototype.render.call(this);
     },
     entryEvent: function (id) {
-        app.navigate("mypage/booking/" + id);
-
+        app.navigate("mypage/booking/" + id, true);
     },
     close: function (){
         if (!this.isClosed) {

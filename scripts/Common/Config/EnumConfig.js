@@ -35,6 +35,18 @@ var EnumConfig = {
         coupon: 0,
         deposit: 1,
         withdraw: 2
+    },
+
+    'BookingStatus': {
+        awaiting: 0,
+        confirmed: 1,
+        cancelled: 2,
+        enter: 3,
+        finished: 4,
+        failed: 5,
+        quit: 6,
+        delivered: 7,
+        consolidated: 8
     }
 
 };

@@ -201,7 +201,7 @@ var SearchView = Backbone.View.extend({
         }
         else if (criteria === "classMode") {
             if (dataId === "noreq") {
-                this.filters["classMode"] = null;
+                this.filters["classSize"] = null;
             } else {
                 var sizeRange = dataId.split("-");
                 var minSize = Utilities.toInt(sizeRange[0]), maxSize;

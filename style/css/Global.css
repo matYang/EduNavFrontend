@@ -81,8 +81,23 @@ body > .main { height: auto; min-height: 100%; }
 .price{ font-family:微软雅黑; color:#ff5500;}
 .price .sign{ color:#333;}
 
+/*表单错误提示*/
+.action,.success,.wrong {display:inline-block; position:relative; line-height:2;  vertical-align:top; padding-right:5px; font-size:12px; color:#000; padding-left:40px}
+.action,.wrong{width:247px; height:20px; padding-top:3px; background:url(../images/form_tip.gif) no-repeat 0 0;}
+.action a,.wrong a{ position:relative; _top:2px; margin:0 2px; }
 
+.success{ display:inline-block; height:16px; background:url(../images/icon.png) no-repeat 0 -727px; padding-left:25px; vertical-align:middle; padding-right:5px;}
+.action{ background:url(../images/form_tip.gif) no-repeat 0 0;}
+.action .form_tip,.wrong .form_tip{ position:absolute; left:0; top:0;}
 
+.action .form_tip_top{display:block;width:237px;padding:3px 10px 0 40px;min-height:10px;_height:10px; background:url(../images/form_tip.gif) no-repeat 0px 0;}
+.action .form_tip_bottom{display:block;width:287px;height:5px;background:url(../images/form_tip.gif) no-repeat 0px -185px;overflow:hidden;}
+.reg_content input.action_color{ border:1px solid #1d95f6;  background:#feffe3 url(../images/inp_text_bg.gif) left top repeat-x;}
+
+.wrong{ background:url(../images/form_tip.gif.gif) no-repeat 0 -190px;}
+.wrong .form_tip_top{ display:block; width:287px; padding:4px 10px 0 40px; min-height:10px; _height:10px; background:url(../images/form_tip.gif) no-repeat 0px -190px;}
+.wrong .form_tip_bottom{ display:block; width:287px; height:5px; background:url(../images/form_tip.gif) no-repeat 0px -375px; overflow:hidden;}
+input.wrong_color{  border:1px solid #ff9a9a; background:#feffe3 url(../images/inp_text_bg.gif) left top repeat-x;}
 
 
 
