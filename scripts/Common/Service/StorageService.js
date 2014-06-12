@@ -90,7 +90,7 @@
                 return false;
             }
         }
-        if (this.compareList.length < 3) {
+        if (this.compareList.length < 4) {
             this.compareList.push(courseId);
             localStorage.compareList = JSON.stringify(this.compareList);
             return true;
@@ -100,6 +100,9 @@
     };
 
     StorageService.prototype.removeCourseFromCompare = function (index) {
+        if (typeof index === "string") {
+            index = Utilities.toInt(index);
+        }
         var newArray = [];
         for (var i = 0; i < this.compareList.length; i++) {
             if (this.compareList[i] !== index) {
@@ -110,7 +113,8 @@
         localStorage.compareList = JSON.stringify(this.compareList);
     };
 
-    StorageService.prototype.getCoursesToCompare = function () { 
+    StorageService.prototype.getCoursesToCompare = function () {
+        this.compareList = JSON.parse(localStorage.compareList);
         return this.compareList;
     };
 

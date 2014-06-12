@@ -71,10 +71,14 @@
         });
     };
 
-        GeneralManager.prototype.batchFetchCourses = function (courseIds, callback) {
+    GeneralManager.prototype.batchFetchCourses = function (courseIds, callback) {
         var courses = new Courses();
         if (testMockObj.testMode) {
-            callback.success();
+            var collection = new Courses();
+            for (var i = 0; i < courseIds.length; i++) {
+                collection.add(testMockObj.testCourses.get(courseIds[i]));
+            }
+            callback.success(collection);
             return;
         }
         courses.overrideUrl(this.apis.general_courses);

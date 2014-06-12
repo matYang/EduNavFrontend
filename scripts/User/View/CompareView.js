@@ -10,6 +10,7 @@ var CompareView = Backbone.View.extend({
         $("#viewStyle").attr("href", "style/css/compare.css");
         this.template = _.template(tpl.get("compareView"));
         this.courseIdList = app.storage.getCoursesToCompare(); // array of items to compare
+        this.reload = false;
         this.load();
     },
     load: function () {
@@ -36,7 +37,9 @@ var CompareView = Backbone.View.extend({
                 this.$el.empty().append(this.template({courses: this.courses}));
                 this.$view = $("#compareView");
                 this.afterRender();
-                this.bindEvents();
+                if (!this.reload) {
+                    this.bindEvents();
+                }
             }
     },
     renderError: function () {
@@ -88,7 +91,6 @@ var CompareView = Backbone.View.extend({
             e.preventDefault();
             var $e = $(e.target);
             if ($e.hasClass("delete")) {
-                debugger;
                 var courseId = Utilities.getId($(e.delegateTarget).attr("class"));
                 $(".courseId_"+courseId).html("");
                 app.storage.removeCourseFromCompare(Utilities.toInt(courseId));
@@ -123,6 +125,7 @@ var CompareView = Backbone.View.extend({
             var idList = app.storage.getCoursesToCompare();
             if (!that.courseIdList.compare(idList)) {
                 that.courseIdList = idList;
+                that.reload = true;
                 that.load();
             }
         });
