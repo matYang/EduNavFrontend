@@ -4,11 +4,11 @@ $('input, textarea').placeholder();
 var AppRouter = Backbone.Router.extend({
 
     routes: {
-        "": "defaultRoute",
+        //"": "defaultRoute",
 
         "front": "front",
         "search": "search",
-        "search/*encodedSearchKey": "encodedSearch",
+        "search/*search": "encodedSearch",
 
         "mypage": "mypage",
         "mypage/booking/:id": "myBooking",
@@ -30,7 +30,7 @@ var AppRouter = Backbone.Router.extend({
         // "service": "serviceCenter",
         // "service/*tab": "serviceCenter",
 
-        "*default" : "front"
+        //"*default" : "front"
     },
 
     initialize: function () {
@@ -73,9 +73,9 @@ var AppRouter = Backbone.Router.extend({
     defaultRoute: function () {
         //if login, procees to main/:id, if not, proceed to front
         if (this.sessionManager.hasSession()) {
-            this.navigate("search", {trigger: true, replace:true});
+            this.navigate("search", {trigger: true});
         } else {
-            this.navigate("front", {trigger: true, replace:true});
+            this.navigate("front", {trigger: true});
         }
     },
 
@@ -88,9 +88,9 @@ var AppRouter = Backbone.Router.extend({
     },
 
     encodedSearch: function (encodedSearchKey) {
-        this.searchVew = new SearchView (encodedSearchKey ? {
+        this.searchVew = new SearchView ({
             "searchKey": encodedSearchKey
-        } : undefined);
+        });
         // this.advertisementView = new AdvertisementView ();
     },
     myBooking: function (id) {
