@@ -11,19 +11,23 @@ var NewBookingView = BaseFormView.extend({
         this.finishTemplate = _.template(tpl.get("booking_submitted"));
         this.fields = [
             new BaseField({
-                name: "入学人姓名",
+                name: "姓名",
                 fieldId: "booking_applicantName",
                 type: "text",
                 mandatory: true,
                 modelAttr: "name",
+                validClass: "success",
+                buildValidatorDiv: this.buildValidatorDiv            
             }),
             new BaseField({
-                name: "联系手机",
+                name: "手机号码",
                 fieldId: "booking_cellphone",
                 type: "text",
                 mandatory: true,
                 modelAttr: "phone",
-                validatorFunction: Utilities.phoneValid
+                validClass: "success",
+                validatorFunction: Utilities.phoneValid,
+                buildValidatorDiv: this.buildValidatorDiv
             }),
             new BaseField({
                 name: "E-mail",
@@ -31,14 +35,18 @@ var NewBookingView = BaseFormView.extend({
                 type: "text",
                 mandatory: false,
                 modelAttr: "email",
-                validatorFunction: Utilities.emailValid
+                validClass: "success",
+                validatorFunction: Utilities.emailValid,
+                buildValidatorDiv: this.buildValidatorDiv
             }),
             new BaseField({
                 name: "预约报名日期",
                 fieldId: "booking_date",
                 modelAttr: "scheduledTime",
+                validClass: "success",
                 type: "text",
                 mandatory: true,
+                buildValidatorDiv: this.buildValidatorDiv
             })
         ]
         if (params.courseId) {
@@ -148,12 +156,14 @@ var NewBookingView = BaseFormView.extend({
         BaseFormView.prototype.bindEvents.call(this);
     },
     submitAction:function () {
-            app.userManager.initBooking(this.model, {
-                success: this.bookingSuccess,
-                error: function(){
-
-                }
-            });
+        var that = this;
+        $("#"+ this.submitButtonId).val("预订中...");
+        app.userManager.initBooking(this.model, {
+            success: this.bookingSuccess,
+            error: function(){
+                $("#"+ that.submitButtonId).val("预订失败, 请重试");
+            }
+        });
     },
     bookingSuccess: function (booking) {
         this.$el.empty().append(this.finishTemplate(booking._toJSON()));
@@ -163,5 +173,19 @@ var NewBookingView = BaseFormView.extend({
             this.$el.empty();
             this.isClosed = true;
         }
-    }
+    },
+    buildValidatorDiv: function (valid, type, text) {
+        //This function overloads baseField's default buildValidatorDiv. It should only be invoked by BaseField's testValue function, thus this refers the BaseForm model in this case,
+        //This function is not bound to the view.
+        $("#"+this.get("fieldId")+"_info").remove();
+        if (valid) {
+            return '<span class="success" id="'+this.get("fieldId")+'_right"></span>';
+        } else if (type === "empty") {
+            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong" ><span class="form_tip"><span class="form_tip_top">' + this.get("name")+"不能为空" + '</span><span class="form_tip_bottom"></span></span></span>';
+        } else if (text) {
+            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' + text + '</span><span class="form_tip_bottom"></span></span></span>';
+        } else {
+            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' +  this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></span>';
+        }
+    }, 
 });

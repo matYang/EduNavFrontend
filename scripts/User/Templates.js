@@ -511,26 +511,26 @@
             <div class="field">
                 <label><span class="req">*</span>入学人姓名</label>
                 <input class="text" type="text" id="booking_applicantName"/>
-                <span class="action"><span class="form_tip"><span class="form_tip_top">请填写实际入学人姓名</span><span class="form_tip_bottom"></span></span></span>
+                <span id="booking_applicantName_info" class="action"><span class="form_tip"><span class="form_tip_top">请填写实际入学人姓名</span><span class="form_tip_bottom"></span></span></span>
             </div>
             <div class="field">
                 <label><span class="req">*</span>联系手机</label>
                 <input class="text" type="text" id="booking_cellphone"/>
-                <span class="action"><span class="form_tip"><span class="form_tip_top">(用于接收确认信息)</span><span class="form_tip_bottom"></span></span></span>
+                <span id="booking_cellphone_info" class="action"><span class="form_tip"><span class="form_tip_top">(用于接收确认信息)</span><span class="form_tip_bottom"></span></span></span>
             </div>
             <div class="field">
                 <label>E-mail </label>
                 <input class="text" type="text" id="booking_email"/>
-                <span class="action"><span class="form_tip"><span class="form_tip_top">(可选)</span><span class="form_tip_bottom"></span></span></span>
+                <span id="booking_email_info" class="action"><span class="form_tip"><span class="form_tip_top">(可选)</span><span class="form_tip_bottom"></span></span></span>
             </div>
             <div class="field">
                 <label><span class="req">*</span>预约报名日期</label>
                 <input class="text" type="text" id="booking_date"/>
-                <span class="desc">(若此预约日期前未报名入学，您的特惠名额将受让给其他学员)</span>
+                <span id="booking_date_info" class="desc">(若此预约日期前未报名入学，您的特惠名额将受让给其他学员)</span>
             </div>
         </div>
         <div class="row3">
-            <input type="submit" class="btn_O_long" value="完成预定" id="initBooking" />
+            <input type="button" class="btn_O_long" value="完成预定" id="initBooking" />
             <span class="desc">(不收预订费)</span>
         </div>
     </form>

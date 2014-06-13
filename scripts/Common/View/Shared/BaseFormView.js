@@ -211,6 +211,7 @@ var BaseField = Backbone.Model.extend({
         this.set("name", params.name);
         this.set("$preview", params.$preview);
         this.validatorFunction = params.validatorFunction || this.validatorFunction;
+        this.buildValidatorDiv = params.buildValidatorDiv || this.buildValidatorDiv;
     },
 
     buildValidatorDiv: function (valid, type, text) {
