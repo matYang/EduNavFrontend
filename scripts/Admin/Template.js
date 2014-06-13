@@ -174,10 +174,27 @@
         <div id="searchPartner">搜索伙伴</div>
     </div>
     <div id="searchResult">
-        <div class="clearfix">
-            <div class="fleft search">
-                <input id="searchInput" class="text" type="text" placeholder="请输入学校名或者学校id"/><input id="search" class="btn" type="button" value="搜索"/>
-                
+        <div id="partnerSearchPanel" class="clearfix">
+            <div id="findPartner" class="fleft search">
+                <input id="partnerId_Input" class="text" type="text" placeholder="请输入学校名或者学校id"/>
+                <input id="findPartnerBtn" class="btn" type="button" value="搜索"/>
+                <a style="float:left" id="goTo_queryPartner" class="button">Query</a>
+            </div>
+            <div id="queryPartner" class="fleft search hidden">
+                <input id="wholeName_Input" class="text" type="text" placeholder="请输入机构名"/>
+                <input id="license_Input" class="text" type="text" placeholder="学校执照"/>
+                <input id="organizationNum_Input" class="text" type="text" placeholder="organization number"/>
+                <input id="reference_Input" class="text" type="text" placeholder="参考号"/>
+                <input id="phone_Input" class="text" type="text" placeholder="电话"/>
+                <select id="status_Input" class="text" type="text">
+                    <option value=""></option>
+                </select>
+                <input id="instName_Input" class="text" type="text" placeholder="学校名"/>
+
+                <input id="queryPartnerBtn" class="btn" type="button" value="搜索"/>
+
+
+                <a style="float:left" id="goTo_findPartner" class="button">Get</a>
             </div>
             <div class="fright" style="line-height:40px">
                 欢迎您，<span id="adminUserName" class="F_orange"></span>

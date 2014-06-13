@@ -398,13 +398,26 @@ var AdminManageView = Backbone.View.extend({
                 }
             });
         } else if (this.type === "partner") {
-            $("#searchInput").on("change", function() {
-                var value = $(this).val(), num = Utilities.toInt(value);
-                if (isNaN(num)) {
-                    that.sr.set("wholeName", value);
-                } else {
-                    that.sr.set("partnerId", num);
+            $("#partnerSearchPanel").on("click", "a", function (e) {
+                var id = e.target.id.split("_")[1];
+                $(e.delegateTarget).children("div").addClass("hidden");
+                $("#"+id).removeClass("hidden");
+            });
+            $("#dindPartnerBtn").on("click", function (e) {
+                var partnerId = $("#partnerId_Input").val();
+                if (partnerId) {
+                    app.navigate("manage/partner/"+ partnerId, true);
                 }
+            });
+            $("#queryPartnerBtn").on("click", function (e) {
+                var obj = that.sr.toJSON();
+                for ( var attr in obj ) {
+                    var value = $("#queryPartner").find("#" +attr+"_Input").val();
+                    if (value) {
+                        that.sr.set(attr, value);
+                    }
+                }
+                app.adminManager.listPartner(that.sr, {success:that.renderResult, error:function(){}});
             });
         }
     },

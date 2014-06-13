@@ -87,6 +87,7 @@ var MultiPageView = Backbone.View.extend({
             this.$domContainer.append("<div class = 'noMessage'>"+this.noMessage+"</div>");
         }
         if (this.entryHeight) {
+            debugger;
             var height = Math.ceil(length / this.entryRowNum) * this.entryHeight;
             height = (height > this.minHeight) ? height : this.minHeight;
             this.$domContainer.css("height", height + "px");
@@ -118,6 +119,7 @@ var MultiPageView = Backbone.View.extend({
         if (this.singlePage) {
             return;
         }
+
         if (this.$pn && this.$pn.length) {
             this.$pn.children("." + this.pageNumberClass).off();
             this.$pn.children(".pre").off();
@@ -127,7 +129,7 @@ var MultiPageView = Backbone.View.extend({
         this.$domContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "mainPage-searchResult-multiPage-pageNum clearfix"));
         this.$pn = $("#" + this.pageNavigator);
         var length = this.messages ? this.messages.length : 0;
-        var pages = Math.floor(length / this.pageEntryNumber) + 1;
+        var pages = Math.ceil(length / this.pageEntryNumber);
         this.pages = pages;
         pages = pages > 10 ? 10 : pages;
         var buf = ['<a class="pre"></a>'];
