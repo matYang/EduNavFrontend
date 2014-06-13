@@ -136,3 +136,20 @@ body{width:100%; background:#f6f6f6 url(../images/left_bar_bg.png) repeat-y;}
 	width:300px;
 	height:150px;
 }
+
+.preview {
+	width:160px;
+	height:100px;
+	size: 100%;
+	margin-top:10px;
+	overflow: hidden;
+}
+.btns{
+	margin-top:10px;
+	width: 100% !important;
+}
+
+.imgblock {
+	width:100% !important;
+	height:150px !important;
+}

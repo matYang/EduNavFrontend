@@ -14,6 +14,43 @@ var AdminCourseView = BaseFormView.extend({
         this.template = _.template(tpl.get("adminCourse"));
         this.action = apis.admin_course;
         this.newCourse = false;
+        this.fields = [
+             new BaseField({
+                name: "教室照片1",
+                fieldId: "classroomImg1",
+                type: "file",
+                mandatory: true,
+                previewId: "preview1"
+            }), 
+            new BaseField({
+                name: "教室照片2",
+                fieldId: "classroomImg2",
+                type: "file",
+                mandatory: true,
+                previewId: "preview2"
+            }),
+            new BaseField({
+                name: "教室照片3",
+                fieldId: "classroomImg3",
+                type: "file",
+                mandatory: true,
+                previewId: "preview3"
+            }),
+            new BaseField({
+                name: "教室照片4",
+                fieldId: "classroomImg4",
+                type: "file",
+                mandatory: true,
+                previewId: "preview4"
+            }),
+            new BaseField({
+                name: "教室照片5",
+                fieldId: "classroomImg5",
+                type: "file",
+                mandatory: true,
+                previewId: "preview5"
+            }),
+        ];
         if (params.course) {
             this.render(params.course);
         } else if (params.courseId){
@@ -135,7 +172,7 @@ var AdminCourseView = BaseFormView.extend({
         $("select[name=district]").empty().append(buf.join());
     },
     submitAction: function () {
-        
+
     },
     close: function () {
         if (!this.isClosed) {

@@ -400,18 +400,17 @@
         <div><label>招生人数: </label><div class="detail"><%= seatsTotal %></div><div class="edit"><input type="text" name="seatsTotal"/></div></div>
         <div><label>剩余人数: </label><div class="detail"><%= seatsLeft %></div><span class="edit"><input type="text" name="seatsLeft"/></span></div>
         <div><label>reference: </label><span class="detail"><%= reference %></span><span class="edit"><input type="text" name="reference"/></span></div>
-        <div><label>partnerCourseReference: </label><span class="detail"><%= partnerCourseReference %></span><span class="edit"><input type="text" name="partnerCourseReference"/></span></div>
+        <div><label>courseReference: </label><span class="detail"><%= partnerCourseReference %></span><span class="edit"><input type="text" name="partnerCourseReference"/></span></div>
         <div><label>课程模式: </label><span class="detail"><%= classModel %></span><span class="edit"><input type="text" name="classModel"/></span></div>
         <div><label>开课要求: </label><span class="detail"><%= openCourseRequirement %></span><span class="edit"><input type="text" name="openCourseRequirement"/></span></div>
-        <div><label>partnerQualification: </label><span class="detail"><%= partnerQualification %></span><span class="edit"><input type="text" name="partnerQualification"/></span></div>
-        <div><label>partnerIntro: </label><span class="detail"><%= partnerIntro %></span><span class="edit"><input type="text" name="partnerIntro"/></span></div>
+        <div><label>教课资格: </label><span class="detail"><%= partnerQualification %></span><span class="edit"><input type="text" name="partnerQualification"/></span></div>
+        <div><label>机构简介: </label><span class="detail"><%= partnerIntro %></span><span class="edit"><input type="text" name="partnerIntro"/></span></div>
         <div><label>教学方式: </label><span class="detail"><%= teachingMethods %></span><span class="edit"><input type="text" name="teachingMethods"/></span></div>
         <div><label>教学方式简介: </label><span class="detail"><%= teachingMethodsIntro %></span><span class="edit"><input type="text" name="teachingMethodsIntro"/></span></div>
         <div><label>教材类型: </label><span class="detail"><%= teachingMaterialType %></span><span class="edit"><input type="text" name="teachingMaterialType"/></span></div>
         <div><label>教材名: </label><span class="detail"><%= teachingMaterialName %></span><span class="edit"><input type="text" name="teachingMaterialName"/></span></div>
         <div><label>教材简介: </label><span class="detail"><%= teachingMaterialIntro %></span><span class="edit"><input type="text" name="teachingMaterialIntro"/></span></div>
         <div><label>教材费用: </label><span class=  "detail"><%= teachingMaterialCost %></span><span class="edit"><input type="text" name="teachingMaterialCost"/></span></div>
-        <div><label>teachingMaterialFree: </label><span class="detail"><%= teachingMaterialFree %></span><span class="edit"><input type="checkbox" name="teachingMaterialFree"/></span></div>
         <div><label>适合学生: </label><span class="detail"><%= suitableStudent %></span><span class="edit"><input type="text" name="suitableStudent"/></span></div>
         <div><label>学前要求: </label><span class="detail"><%= prerequest %></span><span class="edit"><input type="text" name="prerequest"/></span></div>
 
@@ -439,11 +438,11 @@
         <div><label>学校名: </label><span class="detail"><%= instName %></span><span class="edit"><input type="text" name="instName"/></span></div>
         <div><label>机构全称: </label><span class="detail"><%= wholeName %></span><span class="edit"><input type="text" name="wholeName"/></span></div> 
 
-        <div><label>教室照片1: </label><span class="detail"><img src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" name="classroomImgUrl"/><img id="preview1" class="preview"/></span></div>
-        <div><label>教室照片2: </label><span class="detail"><img src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" name="classroomImgUrl"/><img id="preview2" class="preview"/></span></div>
-        <div><label>教室照片3: </label><span class="detail"><img src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" name="classroomImgUrl"/><img id="preview3" class="preview"/></span></div>
-        <div><label>教室照片4: </label><span class="detail"><img src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" name="classroomImgUrl"/><img id="preview4" class="preview"/></span></div>
-        <div><label>教室照片5: </label><span class="detail"><img src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" name="classroomImgUrl"/><img id="preview5" class="preview"/></span></div>
+        <div class="imgblock"><label>教室照片1: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg1" name="classroomImg1"/><img id="preview1" class="preview"/></span></div>
+        <div class="imgblock"><label>教室照片2: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg2" name="classroomImg2"/><img id="preview2" class="preview"/></span></div>
+        <div class="imgblock"><label>教室照片3: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg3" name="classroomImg3"/><img id="preview3" class="preview"/></span></div>
+        <div class="imgblock"><label>教室照片4: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg4" name="classroomImg4"/><img id="preview4" class="preview"/></span></div>
+        <div class="imgblock"><label>教室照片5: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg5" name="classroomImg5"/><img id="preview5" class="preview"/></span></div>
         <div class="btns">
             <span class="detail">   
             <input type="button" id="createSimilarCourse" value="新建类似课程"/>
@@ -464,7 +463,7 @@
         <div><label>电话: </label><span class="detail"><%= phone %></span><span class="edit"><input type="text" name="phone"/></span></div> 
         <div><label>状态: </label><span class="detail"><%= status %></span><span class="edit"><input type="text" name="status"/></span></div> 
         <div><label>学校名: </label><span class="detail"><%= instName %></span><span class="edit"><input type="text" name="instName"/></span></div> 
-        <div><label>logo: </label><span class="detail"><%= logoUrl %></span><span class="edit"><input type="text" name="logoUrl"/></span></div> 
+        <div class="imgblock"><label>logo: </label><span class="detail"><img class="preview" src="<%= logoUrl %>" /></span><span class="edit"><input type="file" name="logoUrl"/><img class="preview" id="logoPreview" src="<%= logoUrl %>" /></span></div> 
         <span class="detail"><input type="button" id="deletePartner" value="delete" /></span>
         <span class="detail"><input type="button" id="editPartner" value="edit"/></span>
         <span class="edit"><input id="partnerPostSubmit" type="submit" value="submit"></span>

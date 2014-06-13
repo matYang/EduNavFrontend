@@ -118,6 +118,7 @@ var BaseFormView = Backbone.View.extend({
         });
     },
     displayImagePreview: function (evt) {
+        debugger;
         if (!(window.File && window.FileReader && window.FileList)) {
             return;
         }
@@ -193,7 +194,7 @@ var BaseField = Backbone.Model.extend({
             validatorContainer: null,
             name: "", //Used for error Text
             modelAttr: "",              //2-way Binding
-            $preview: null              //container of image preview
+            previewId: null              //container of image preview
         }
     },
     idAttribute: "fieldId",
@@ -209,7 +210,7 @@ var BaseField = Backbone.Model.extend({
         this.set("validClass", params.validClass || this.get("validClass"));
         this.set("validatorContainer", params.validatorContainer);
         this.set("name", params.name);
-        this.set("$preview", params.$preview);
+        this.set("previewId", params.previewId);
         this.validatorFunction = params.validatorFunction || this.validatorFunction;
         this.buildValidatorDiv = params.buildValidatorDiv || this.buildValidatorDiv;
     },
