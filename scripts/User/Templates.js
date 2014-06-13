@@ -128,9 +128,9 @@
                 <ul class="sorter">
                     <li id="editorPick" class="active">爱上课推荐</li>
                     <li class="line"></li>
-                    <li id="time">时间↑</li>
+                    <li id="time">时间</li>
                     <li class="line"></li>
-                    <li id="price">价格↑</li>
+                    <li id="price">价格</li>
                 </ul>
                 <div class="fright">
                     当前促销：<input type="checkbox" name="cashback" /><label>返现</label>
@@ -161,7 +161,7 @@
         <div class="col1">
             <p class="title"><a class="F_green" href="#"><%= courseName %></a></p>
             <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
-            <p class="desc"><span>开课时间:</span> <%= startTime %></p>
+            <p class="desc"><span>开课时间:</span> <%= startDate %></p>
             <p class="desc"><span>地<s></s>址:</span> <%= location %></p>
         </div>
         <div class="col2">
@@ -310,7 +310,7 @@
 <script type="text/template" id="tpl_booking_entry">
     <div class="bookingEntry" id="booking_reference_<%= reference %>">
         <div class="bookingEntryTime">
-            <div class="date"><%= course.startTime %></div>
+            <div class="date"><%= course.startDate %></div>
             <div class="dayOfWeek"><%= course.studyDays %> <%= course.studyDaysNote %></div>
         </div>
         <div class="bookingEntryDetail">
@@ -399,11 +399,11 @@
                 <% } %>
             </div>
             <div class="explain">
-                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的订单正在和新东方教育确认</span></p>
+                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的订单正在和<%= course.instName %>确认</span></p>
             </div>
         </div>
         <div class="row2">
-            <h3 class="title">六级考前词汇串讲班</h3>
+            <h3 class="title"><%= course.courseName %></h3>
             <p><label>教育机构：</label><span><%= course.instName %></span></p>
             <p><label>上课地址：</label><span><%= course.location %></span></p>
             <p><label>咨询电话：</label><span><%= course.phone %></span></p>
@@ -412,13 +412,14 @@
             <div class="title">入学信息</div>
             <div class="clearfix">
                 <div class="fleft">
-                    <p><label>开课时间:</label> <%= course.startTime %> - <%= course.finishTime %></p>
+                    <p><label>开课时间:</label> <%= course.startDate %> - <%= course.finishDate %></p>
                     <p><label>班级类型:</label> <%= course.classModel %></p>
                     <p><label>联系方式:</label> <%= phone %></p>
                     <p><label>入学人姓名:</label> <%= name %></p>
                 </div>
                 <div class="fleft">
-                    <p><label>上课时间:</label> <%= course.dailyStartTime %> - <%= course.dailyFinishTime %></p>
+                    <p><label>上课时间1:</label> <%= course.startTime1 %> - <%= course.finishTime1 %></p>
+                    <p><label>上课时间2:</label> <%= course.startTime2 %> - <%= course.finishTime2 %></p>
                     <p><label>预定人数:</label>1人</p>
                     <p><label>邮箱:</label><%= email %></p>
                 </div>
@@ -447,8 +448,9 @@
         </div>
         <div class="row2">
             <div class="section"><label>班级类型：</label> <span><%= course.seatsTotal %>人</span></div>
-            <div class="section"><label>开课时间：</label> <span><%= course.startTime %> - <%= course.finishTime %></span></div>
-            <div class="section"><label>上课时间：</label> <span><%= course.dailyStartTime %> - <%= course.dailyFinishTime %></span></div>
+            <div class="section"><label>开课时间：</label> <span><%= course.startDate %> - <%= course.finishDate %> <%= course.studyDays%> <%= course.studyDaysNote %>
+            </span></div>
+            <div class="section"><label>上课时间：</label> <span><%= course.startTime1 %> - <%= course.finishTime1 %>, <%= course.startTime2 %> - <%= course.finishTime2 %></span></div>
             <div class="section"><label>上课地址：</label> <span><%= course.location %></span></div>
         </div>
         <div class="row3">
@@ -554,7 +556,7 @@
             <p><label>教育机构: </label><%= course.instName %></p>
             <p><label>上课地址: </label><%= course.phone %></p>
             <p><label>咨询电话: </label<%= course.location %></p>
-            <p><label>开课时间: </label><%= course.startTime %>-<%= course.finishTime %></p>
+            <p><label>开课时间: </label><%= course.startDate %>-<%= course.finishDate %></p>
             <p><label>班级类型: </label><%= course.classModel %></p>
             <p><label>预约报道: </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
             <p><label>费用总计: </label> ￥<b class="price"><%= price %></b> <span>（到校付款）</span></p>
@@ -628,8 +630,8 @@
             <div class="course_content">
                 <dl id="content_basic">
                     <dt>基本信息</dt>
-                    <dd><label>开课日期: </label><%= startTime %>-<%= finishTime %>；<%= studyDaysNote %></dd>
-                    <dd><label>上课时间: </label><%= dailyStartTime %>-<%= dailyFinishTime %></dd>
+                    <dd><label>开课日期: </label><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDaysNote %></dd>
+                    <dd><label>上课时间: </label><%= startTime1 %>-<%= finishTime1 %></dd>
                     <dd><label>上课课时: </label><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</dd>
                     <dd><label>班级类型: </label><%= seatsTotal %>人</dd>
                     <dd><label>开班要求: </label><%= openCourseRequirement%></dd>
@@ -758,16 +760,16 @@
                     <td class="courseId_<%= course.courseId %>"><img src="<%= course.logoUrl %>"/></td>
                 <% }); %>
             </tr>
-            <tr id="startTime">
+            <tr id="startDate">
                 <th>开课日期</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.startTime %>-<%= course.finishTime %></td>
+                    <td class="courseId_<%= course.courseId %>"><%= course.startDate %>-<%= course.finishDate %></td>
                 <% }); %>
             </tr>
-            <tr id="dailyStartTime">
+            <tr id="startTime1">
                 <th>上课时间</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.dailyStartTime %>-<%= course.dailyFinishTime %>(<%= course.studyDays %>, <%= course.studyDaysNote %>)</td>
+                    <td class="courseId_<%= course.courseId %>"><%= course.startTime1 %>-<%= course.finishTime1 %> <%= course.studyDays %><%= course.studyDaysNote %></td>
                 <% }); %>
             </tr>
             <tr id="courseHourNum">

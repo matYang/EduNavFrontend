@@ -6,12 +6,14 @@ var Course = Backbone.Model.extend({
             'creationTime': new Date(),
             'courseName': '',
             'courseIntro': '',
-            'dailyStartTime': '0:00',
-            'dailyFinishTime': '23:59',
+            'startTime1': 900,
+            'startTime2': 1200,
+            'finishTime1': 1500,
+            'finishTime2': 1800,
             'studyDays': [],
             'studyDaysNote': '',
-            'startTime': new Date(),
-            'finishTime': new Date(),
+            'startDate': new Date(),
+            'finisDate': new Date(),
             'courseHourNum': 0,
             'courseHourLength': 0,
             'city': '',
@@ -67,12 +69,14 @@ var Course = Backbone.Model.extend({
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.courseName = decodeURI(data.courseName);
             data.courseIntro = decodeURI(data.courseIntro);
-            data.dailyStartTime = decodeURI(data.dailyStartTime);
-            data.dailyFinishTime = decodeURI(data.dailyFinishTime);
+            data.startTime1 = parseInt(data.startTime1, 10);
+            data.startTime2 = parseInt(data.startTime2, 10);
+            data.finishTime1 = parseInt(data.finishTime1, 10);
+            data.finishTime2 = parseInt(data.finishTime2, 10);
             data.studyDays = data.studyDays;
             data.studyDaysNote = data.studyDaysNote;
-            data.startTIme = Utilities.castFromAPIFormat(data.startTIme);
-            data.finishTime = Utilities.castFromAPIFormat(data.finishTime);
+            data.startDate = Utilities.castFromAPIFormat(data.startDate);
+            data.finishDate = Utilities.castFromAPIFormat(data.finishDate);
             data.courseHourNum = parseInt(data.courseHourNum, 10);
             data.courseHourLength = parseInt(data.courseHourLength, 10);
             data.city = decodeURI(data.city);
@@ -123,10 +127,23 @@ var Course = Backbone.Model.extend({
     },
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.startTime = Utilities.getDateString(this.get('startTime'));
-        json.finishTime = Utilities.getDateString(this.get('finishTime'));
+        json.startDate = Utilities.getDateString(this.get('startDate'));
+        json.finishDate = Utilities.getDateString(this.get('finishDate'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
-        var date = new Date(this.get("startTime"));
+        json.startTime1 = Math.floor(json.startTime1/100) + ":" + json.startTime1%100;
+        json.startTime2 = Math.floor(json.startTime2/100) + ":" + json.startTime2%100;
+        json.finishTime1 = Math.floor(json.finishTime1/100) + ":" + json.finishTime1%100;
+        json.finishTime2 = Math.floor(json.finishTime2/100) + ":" + json.finishTime2%100;
+        var studyDays = "每周";
+        for (var i = 0; i < json.studyDays.length; i++ ){
+            studyDays = studyDays + Constants.weekDayArray[json.studyDays [i]];
+            if (i < json.studyDays.length - 1) {
+                studyDays += ", ";
+            }
+        }
+        json.studyDays = studyDays;
+        json.studyDaysNote =json.studyDaysNote ? "(" + json.studyDaysNote + ")" : "" ;
+        var date = new Date(this.get("startDate"));
         date.setDate(date.getDate()-5);
         json.scheduledTime = Utilities.getDateString(date);
         return json;
@@ -134,8 +151,8 @@ var Course = Backbone.Model.extend({
     //simplified toJSON, as courses are not updated by Ajax but by html form
     toJSON: function () {
         var json = _.clone(this.attributes);
-        json.startTime = Utilities.castToAPIFormat(this.get('startTime'));
-        json.finishTime = Utilities.castToAPIFormat(this.get('finishTime'));
+        json.startDate = Utilities.castToAPIFormat(this.get('startDate'));
+        json.finishDate = Utilities.castToAPIFormat(this.get('finishDate'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         return json;
     },

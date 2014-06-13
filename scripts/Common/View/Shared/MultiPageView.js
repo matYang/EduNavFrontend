@@ -87,7 +87,6 @@ var MultiPageView = Backbone.View.extend({
             this.$domContainer.append("<div class = 'noMessage'>"+this.noMessage+"</div>");
         }
         if (this.entryHeight) {
-            debugger;
             var height = Math.ceil(length / this.entryRowNum) * this.entryHeight;
             height = (height > this.minHeight) ? height : this.minHeight;
             this.$domContainer.css("height", height + "px");
@@ -149,6 +148,7 @@ var MultiPageView = Backbone.View.extend({
                 .addClass(this.pageNavigatorClass);
         this.$pre = this.$pn.children(".pre");
         this.$next = this.$pn.children(".next");
+        this.$pn.children("#"+this.pageNumberId + "_" + this.currentPage).addClass("active");
         var self = this;
         this.$pn.on("click", "." + this.pageNumberClass, function (e) {
             var id = Utilities.toInt(Utilities.getId(e.target.id));
@@ -221,22 +221,30 @@ var MultiPageView = Backbone.View.extend({
         this._filters = [];
     },
     registerSortEvent: function ($selector, sorter, desc, inst, callback) {
+        var that = this;
         $selector.on("click", function (e) {
             $selector.siblings().removeClass("active");
             $selector.addClass("active");
-            if (that.allMessages) {
+            var descFlag, list;
+            if (typeof desc === "string" && inst) {
+                descFlag = inst[desc];
+            } else {
+                descFlag = desc;
+            } 
+            if (that.messages) {
                 if (typeof sorter === "string") {
-                    that.messages.reset(that.allMessages.sortBy(sorter));
+                    list = that.messages.sortBy(sorter);
                 } else if (typeof sorter === "function"){
                     that.allMessages.Comparator = sorter;
-                    that.messages.reset(that.allMessages.sortBy(sorter));
+                    list = that.messages.sortBy(sorter);
                 } else {
-                    that.messages.reset(that.allMessages.toArray());
+                    list = that.messages.toArray();
                 }
             }
-            if (desc) {
-                that.messages.reverse();
+            if (descFlag) {
+                list = list.reverse();
             }
+            that.messages.reset(list);
             inst.render();
             if (callback){
                 callback.call(inst);

@@ -10,6 +10,8 @@ var SearchView = Backbone.View.extend({
         $("#viewStyle").attr("href", "style/css/search.css");
         this.isClosed = false;
         this.rendered = false;
+        this.timeDesc = true;
+        this.priceDesc = true;
         this.user = app.sessionManager.sessionModel;
         //define the template
         this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
@@ -113,6 +115,35 @@ var SearchView = Backbone.View.extend({
 
     bindEvents: function () {
         this.bindSearchEvents();
+        this.bindSortEvents();
+    },
+    bindSortEvents: function () {
+        this.searchResultView.registerSortEvent($("#time"), "startDate", "timeDesc", this, 
+            function(){
+                $("#price").html("价格");
+                if (this.timeDesc) {
+                    $("#time").html("时间↓");
+                } else {
+                    $("#time").html("时间↑");
+                }
+                this.timeDesc = !this.timeDesc;
+                $("#searchResultSorter>.active").removeClass("active");
+                $("#time").addClass("active");
+                this.searchResultView.render();
+            });
+        this.searchResultView.registerSortEvent($("#price"), "price", "priceDesc", this, 
+            function(){
+                $("#time").html("时间");
+                if (this.timeDesc) {
+                    $("#price").html("价格↓");
+                } else {
+                    $("#price").html("价格↑");
+                }
+                this.priceDesc = !this.priceDesc;
+                $("#searchResultSorter>.active").removeClass("active");
+                $("#price").addClass("active");
+                this.searchResultView.render();
+            });
     },
     bindSearchEvents: function () {
         var that = this;
@@ -220,6 +251,13 @@ var SearchView = Backbone.View.extend({
             if (dataId === "noreq") {
                 this.filters["classTime"] = null;
             } else {
+                var time = dataId.split("_"), day;
+                if (time.length === 2) {
+                    day = time[1];
+                }
+                time = time[0];
+                this.filters["classTime"].day = day;
+                this.filters["classTime"].time = time;
             }
         }
         var messages = this.filter();
@@ -231,7 +269,23 @@ var SearchView = Backbone.View.extend({
         return (course.get("seatsTotal") >= this.filters.classSize.minSize && (this.filters.classSize.maxPrice ? course.get("seatsTotal")<= this.filters.classSize.maxSize : true));
     },
     filterClassTime: function(course){
-        return true;
+        var valid = true, start = course.get("startTime1"), end = course.get("finishTime1");
+        if (this.filters["classTime"].time === "morning") {
+            valid = valid && (start < 1200);
+        } else if (this.filters["classTime"].time === "afternoon") {
+            valid = valid && (start >= 1200);
+        } else {
+
+        }
+        if (valid && this.filters["classTime"].day) {
+            var week = course.get("studyDays");
+            if (this.filters["classTime"].day === "weekend") {
+                valid = valid && (week.contains([0, 6])) ;
+            } else if (this.filters["classTime"].day === "weekday") {
+                valid = valid && (week.contains([1, 2, 3, 4, 5])) ;
+            }
+        }
+        return valid;
     },
     filterPrice: function(course){
         return (course.get("price") >= this.filters.price.minPrice && (this.filters.price.maxPrice ? course.get("price")<= this.filters.price.maxPrice : true) );

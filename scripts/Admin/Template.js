@@ -120,8 +120,8 @@
                     <select id="district_Input">
                         <option value="" disabled selected>地区</option>
                     </select>
-                    <div>开始日期:<input type="text" id="startTime_Input" placeholder="开始日期"/></div>
-                    <div>结束日期:<input type="text" id="finishTime_Input" placeholder="结束日期"/></div>
+                    <div>开始日期:<input type="text" id="startDate_Input" placeholder="开始日期"/></div>
+                    <div>结束日期:<input type="text" id="finishDate_Input" placeholder="结束日期"/></div>
                     <input id="institutionName_Input" class="text" type="text" placeholder="学校名"/>
                     <div>
                         最低价格：<input type="number" id="startPrice_Input" placeholder="最低价格"/>
@@ -322,8 +322,8 @@
         <td><%= courseId %></td>
         <td><%= courseName %></td>
         <td><%= instName %></td>
-        <td><%= startTime %></td>
-        <td><%= finishTime %></td>
+        <td><%= startDate %></td>
+        <td><%= finishDate %></td>
         <td><%= price %></td>
         <td><%= seatsTotal %></td>
         <td><%= seatsLeft %></td>
@@ -399,12 +399,14 @@
         <div><label>创建时间: </label><div class="detail"><%= creationTime %></div></div>
         <div><label>课程名: </label><div class="detail"><%= courseName %></div><div class="edit"><input type="text" name="courseName"/></div></div>
         <div><label>课程简介: </label><div class="detail"><%= courseIntro %></div><div class="edit"><input type="text" name="courseIntro"/></div></div>
-        <div><label>开始日期: </label><div class="detail"><%= dailyStartTime %></div><div class="edit"><input type="text" name="dailyStartTime"/></div></div>
-        <div><label>结束日期: </label><div class="detail"><%= dailyFinishTime %></div><div class="edit"><input type="text" name="dailyFinishTime"/></div></div>
+        <div><label>开始日期: </label><div class="detail"><%= startDate %></div><div class="edit"><input type="text" name="startDate"/></div></div>
+        <div><label>结束日期: </label><div class="detail"><%= finishDate %></div><div class="edit"><input type="text" name="finishDate"/></div></div>
         <div><label>上课日: </label><div class="detail"><%= studyDays %></div><div class="edit"><input type="text" name="studyDays"/></div></div>
         <div><label>上课日备注: </label><div class="detail"><%= studyDaysNote %></div><div class="edit"><input type="text" name="studyDaysNote"/></div></div>
-        <div><label>上学时间: </label><div class="detail"><%= startTime %></div><div class="edit"><input type="text" name="startTime"/></div></div>
-        <div><label>放学时间: </label><div class="detail"><%= finishTime %></div><div class="edit"><input type="text" name="finishTime"/></div></div>
+        <div><label>上学时间1: </label><div class="detail"><%= startTime1 %></div><div class="edit"><input type="text" name="startTime1"/></div></div>
+        <div><label>放学时间1: </label><div class="detail"><%= finishTime1 %></div><div class="edit"><input type="text" name="finishTime1"/></div></div>
+        <div><label>上学时间2: </label><div class="detail"><%= startTime2 %></div><div class="edit"><input type="text" name="startTime2"/></div></div>
+        <div><label>放学时间2: </label><div class="detail"><%= finishTime2 %></div><div class="edit"><input type="text" name="finishTime2"/></div></div>
         <div><label>学时: </label><div class="detail"><%= courseHourNum %></div><div class="edit"><input type="text" name="courseHourNum"/></div></div>
         <div><label>学时时间: </label><div class="detail"><%= courseHourLength %></div><div class="edit"><input type="text" name="courseHourLength"/></div></div>
         <div><label>城市: </label><div class="detail"><%= city %></div><div class="edit"><select name="city"></select></div></div>
