@@ -45,6 +45,7 @@ var AdminCourseView = BaseFormView.extend({
         }
         app.generalManager.getCategories(this);
         app.generalManager.getLocations(this);
+        $("#adminCourseForm").children("div:even").css("background-color","#f0f0f0");
         $("#searchResult").addClass("hidden");
         this.bindEvents();
     },
@@ -53,15 +54,18 @@ var AdminCourseView = BaseFormView.extend({
         var that = this;
         BaseFormView.prototype.bindEvents.call(this);
         $("#createSimilarCourse").on("click", function() {
-            $("#adminCourseForm").find("edit").show();
-            $("#adminCourseForm").find("detail").hide();
+            $("#adminCourseForm").find(".edit").show();
+            $("#adminCourseForm").find(".detail").hide();
             var json = that.course.toJSON();
             for (var attr in json) {
-                var $edit = $("input[name="+attr+"]");
+                var $edit = $("[name="+attr+"]");
                 if ($edit.attr("type") === "checkbox") {
                     $edit.prop("checked", json[attr]);
+                } else if ($edit.prop("tagName") === "TEXTAREA") {
+                    $edit.html(json[attr]);
+                } else {
+                    $edit.val(json[attr]);
                 }
-                $edit.val(json[attr]);
             }
         });
         $("#cancel").on("click", function () {
@@ -74,7 +78,11 @@ var AdminCourseView = BaseFormView.extend({
         });
         $("#select[name=category]").on("change", function() {
             var category = $(this).val();
-            that.renderSubCategory(category);
+            that.renderSubCategories(category);
+        });
+        $("#select[name=subCategory]").on("change", function() {
+            var category = $(this).val();
+            that.renderThirdCategories(category);
         });
         $("#select[name=city]").on("change", function() {
             var city = $(this).val();
@@ -85,15 +93,13 @@ var AdminCourseView = BaseFormView.extend({
         app.navigate("manage/course", true);
     },
     
-    renderCategories: function (list) {
-        this.categories = list;
-        var len = list.length, buf = [], obj;
-        for ( var i = 0; i < len; i ++) {
-            obj = this.categories[i];
-            for ( var attr in obj ) {
-                buf.push("<option value='" + attr + "'>" + attr + "</option>");
-            }
+    renderCategories: function (categories) {
+        this.categories = categories;
+        var buf = [];
+        for ( var key in categories ) {
+            buf.push("<option value='" + key + "'>" + key + "</option>");
         }
+
         $("select[name=category]").empty().append(buf.join());
     },
     renderSubCategories: function (category) {
@@ -102,6 +108,13 @@ var AdminCourseView = BaseFormView.extend({
             buf.push("<option value='" + subCategory[i] + "'>" + subCategory[i] + "</option>");
         }
         $("select[name=subCategory]").empty().append(buf.join());
+    },
+    renderThirdCategories: function (category) {
+        var subCategory = this.categories[category], len = subCategory.length, buf = [];
+        for ( var i = 0; i < len; i ++) {
+            buf.push("<option value='" + subCategory[i] + "'>" + subCategory[i] + "</option>");
+        }
+        $("select[name=thirdCategory]").empty().append(buf.join());
     },
     renderLocations: function (list) {
         this.locations = list;
@@ -120,6 +133,9 @@ var AdminCourseView = BaseFormView.extend({
             buf.push("<option value='" + districts[i] + "'>" + districts[i] + "</option>");
         }
         $("select[name=district]").empty().append(buf.join());
+    },
+    submitAction: function () {
+        
     },
     close: function () {
         if (!this.isClosed) {

@@ -8,21 +8,21 @@ var Booking = Backbone.Model.extend({
             'partnerId': -1,
             'courseId': -1,
             'price': 0,
-            'status': 0,
             'reference': '',
-
+           
+            'status': 0,
             'name': '',
             'phone':'',
             'email': '',
             'scheduledTime': new Date(),
+            'note': '',     //各种record
+
+            //---------
+            'cashbackAmount': 0,
+            'wasConfirmed': false,
             'creationTime': new Date (),
             'adjustTime': new Date(),
-
-            'wasConfirmed': false,
-            'note': '',
-            'cashbackAmount': 0,
             'couponRecord': '',
-            
             'actionRecord': '',
             'course': {}
         };
@@ -92,11 +92,11 @@ var Booking = Backbone.Model.extend({
     toJSON: function () {
         var json = _.clone(this.attributes);
         
-        json.reference = encodeURI(json.reference);
-        json.name = encodeURI(json.name);
-        json.phone = encodeURI(json.phone);
-        json.email = encodeURI(json.email);
-        json.note = encodeURI(json.note);
+        json.reference = decodeURI(json.reference);
+        json.name = decodeURI(json.name);
+        json.phone = decodeURI(json.phone);
+        json.email = decodeURI(json.email);
+        json.note = decodeURI(json.note);
 
         json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));

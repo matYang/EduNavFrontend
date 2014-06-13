@@ -5,13 +5,13 @@ input[type="text"] { padding: 0px; }
 ol, ul { margin: 0; padding: 0; }
 img { border: none; }
 ul { list-style: none; }
-label {display:block;}
-.detail {font-size: 1.2em; font-weight: bold;}
-.submit {display:block; float:left;}
+label {display:block; font-size: 1.1em; font-weight: bold;}
+.submit {display:block;  font-size: 1.1em; float:left;}
 .hidden {display: none; }
 .manageTabButton {display: block; width:100%; height: 35px;}
 .manageTabButton div {width:120px; height:25px; padding-top:5px; margin-right:20px; text-align: center;background-color: #FF6666; float:left; cursor: pointer;}
 select {height:38px; width:160px; margin-right:10px; float:left; display:block;}
+textarea {resize:none;}
 
 .fleft { float: left; }
 .fright { float: right; }
@@ -84,4 +84,55 @@ body{width:100%; background:#f6f6f6 url(../images/left_bar_bg.png) repeat-y;}
 .noMessage {
 	text-align:center;
 	font-size:1.4em;
+}
+
+#adminCourseForm div, #adminBookingForm div{
+	width:500px;
+	float:left;
+	height:50px;
+}
+
+#adminCourseForm .detail, #adminBookingForm .detail{
+	width:300px;
+	float:left;
+	height:50px;
+}
+
+#adminCourseForm div label, #adminBookingForm div label{
+	width:120px;
+	float:left;
+	height:30px;
+}
+#adminCourseForm div .edit, #adminBookingForm div .edit{
+	width:150px;
+	float:left;
+	height:30px;
+}
+#adminCourseForm div .edit input[type=text]{
+	width:300px;
+	float:left;
+	height:30px;
+}
+
+#adminBookingForm div .edit input[type=text]{
+	width:200px;
+	float:left;
+	height:30px;
+}
+
+#adminCourseForm div .edit select{
+	width:300px;
+	float:left;
+	height:30px;
+}
+
+#adminBookingForm div .edit select {
+	width:200px;
+	float:left;
+	height:30px;
+}
+
+#adminBookingForm textarea{
+	width:300px;
+	height:150px;
 }

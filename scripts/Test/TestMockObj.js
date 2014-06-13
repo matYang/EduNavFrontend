@@ -11,7 +11,7 @@ testMockObj = {
 	testCourse5: (new Course()).set("courseId",5).set("courseName", "四六级").set("price",5800).set("instName","南京新东方"),
 	testCourse6: (new Course()).set("courseId",6).set("courseName", "雅思英语").set("price",9800).set("instName","南京新东方"),
 	testBookings: new Bookings(),
-	testBooking1: (new Booking()).set("bookingId", 1).set("reference", "10001").set("status", EnumConfig.BookingStatus.awaiting).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com"),
+	testBooking1: (new Booking()).set("bookingId", 1).set("reference", "10001").set("status", EnumConfig.BookingStatus.awaiting).set("name","马修").set("phone", 13915063907).set("email", "test@gmail.com").set("price",11999).set("note","总而言之这是条测试信息"),
 	testBooking2: (new Booking()).set("bookingId", 2).set("reference", "10002").set("status", EnumConfig.BookingStatus.confirmed).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com"),
 	testBooking3: (new Booking()).set("bookingId", 3).set("reference", "10003").set("status", EnumConfig.BookingStatus.cancelled).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com"),
 	testBooking4: (new Booking()).set("bookingId", 4).set("reference", "10004").set("status", EnumConfig.BookingStatus.enter).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com"),

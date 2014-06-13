@@ -86,11 +86,11 @@
 
     StorageService.prototype.addCourseToCompare = function (courseId) {
         for (var i = 0; i < this.compareList.length; i++) {
-            if (this.compareList[i]=== courseId) {
+            if (this.compareList[i] === courseId) {
                 return false;
             }
         }
-        if (this.compareList.length < 4) {
+        if (this.compareList.length < 4 && courseId) {
             this.compareList.push(courseId);
             localStorage.compareList = JSON.stringify(this.compareList);
             return true;
@@ -105,7 +105,7 @@
         }
         var newArray = [];
         for (var i = 0; i < this.compareList.length; i++) {
-            if (this.compareList[i] !== index) {
+            if (this.compareList[i] && this.compareList[i] !== index) {
                 newArray.push(this.compareList[i]);
             }
         }
@@ -115,11 +115,31 @@
 
     StorageService.prototype.getCoursesToCompare = function () {
         this.compareList = JSON.parse(localStorage.compareList);
+        for (var i = 0; i < this.compareList.length; i++) {
+            if (!this.compareList[i]) {
+                if (i < this.compareList.length - 1) {
+                    this.compareList[i] = this.compareList[i+1];
+                    this.compareList[i+1] = null;
+                } else {
+                    this.compareList.pop();
+                }
+            }
+        }
         return this.compareList;
     };
 
     StorageService.prototype.setCoursesToCompare = function (list) { 
         if (list && list instanceof Array && list.length <= 4) {
+            for (var i = 0; i < list.length; i++) {
+                if (!list[i]) {
+                    if (i < list.length - 1) {
+                        list[i] = list[i+1];
+                        list[i+1] = null;
+                    } else {
+                        list.pop();
+                    }
+                }
+            }
             this.compareList = list
             localStorage.compareList = JSON.stringify(this.compareList);
             return true;

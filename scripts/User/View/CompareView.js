@@ -97,6 +97,7 @@ var CompareView = Backbone.View.extend({
                 that.$view.detach();
                 that.$view.find(".courseId_"+courseId).remove();
                 that.$view.find("tr").append("<td></td>");
+                that.configMoveButton();
                 that.$el.append(that.$view);
 
                 app.storage.removeCourseFromCompare(Utilities.toInt(courseId));

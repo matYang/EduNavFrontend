@@ -24,7 +24,6 @@ var TopBarView = Backbone.View.extend({
             this.$el.append(this.notLoggedInTemplate);
             this.bindEvents();
         }
-
     },
 
     reRender: function () {

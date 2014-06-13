@@ -4,7 +4,7 @@ $('input, textarea').placeholder();
 var AppRouter = Backbone.Router.extend({
 
     routes: {
-        //"": "defaultRoute",
+        "": "defaultRoute",
 
         "front": "front",
         "search": "search",
