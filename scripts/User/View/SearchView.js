@@ -27,7 +27,11 @@ var SearchView = Backbone.View.extend({
         this.template = _.template(tpl.get('search'));
         this.$el.append(this.template);
         this.compareWidgetView = new CompareWidgetView();
+        if (!this.searchResultView) {
+            this.searchResultView = new SearchResultView (new Courses(), new Courses(), this.compareWidgetView);
+        }
         app.generalManager.getCategories(this);
+        this.bindEvents();
         this.currentPage = 0;
         //injecting the template
     },
@@ -47,19 +51,16 @@ var SearchView = Backbone.View.extend({
         if (!byFilter) {
             this.allMessages = searchResults;
         }
-        if (!this.searchResultView) {
-            this.searchResultView = new SearchResultView (this.allMessages, this.allMessages.clone(), this.compareWidgetView);
+        var array = searchResults.toArray();
+        this.searchResultView.allMessages.reset(this.allMessages.toArray());
+        if (byFilter) {
+            this.searchResultView.messages.reset(searchResults.toArray());
         } else {
-            var array = searchResults.toArray();
-            this.searchResultView.allMessages.reset(this.allMessages.toArray());
-            if (byFilter) {
-                this.searchResultView.messages.reset(searchResults.toArray());
-            } else {
-                searchResult = this.filter();
-                this.searchResultView.messages.reset(searchResult.toArray());
-            }
-            this.searchResultView.render.call(this);
+            searchResult = this.filter();
+            this.searchResultView.messages.reset(searchResult.toArray());
         }
+        this.searchResultView.render.call(this);
+    
     },
     renderCategories: function (categories){
         this.categories = categories;
@@ -67,16 +68,21 @@ var SearchView = Backbone.View.extend({
         if (!this.searchRepresentation.get("category")) {
             this.searchRepresentation.set("category", Object.keys(categories)[0]);
         }
+        this.categoryList = [];
         for ( var key in categories ) {
             obj = categories[key];
+            index = categories[key]["index"];
+            if (this.categoryList)
             this.categoryTemplate[1] = key;
             this.categoryTemplate[3] = key;
-            cbuf.push(this.categoryTemplate.join(""));
+            cbuf[index] = this.categoryTemplate.join("");
+            debugger;
             for ( var attr in obj ) {
                 var scs = obj[attr];
+                var index2 = obj[attr].index;
                 this.subCategoryTemplate[1] = attr;
                 this.subCategoryTemplate[3] = attr;
-                scbuf.push(this.subCategoryTemplate.join(""));
+                scbuf[index2] = this.subCategoryTemplate.join("");
                 if (obj[attr]) {
 
                 }
@@ -94,9 +100,9 @@ var SearchView = Backbone.View.extend({
         } else {
             $("div[data-id="+this.searchRepresentation.get("category")+"]").find("span[data-id=noreq]");
         }
+        this.bindSearchEvents();
         this.courseSearch();
         this.renderMap();
-        this.bindEvents();
     },
     renderError: function () {
         this.$resultp = this.$resultp || $("#searchResultDisplayPanel");
@@ -114,8 +120,11 @@ var SearchView = Backbone.View.extend({
     },
 
     bindEvents: function () {
-        this.bindSearchEvents();
+        var that = this;
         this.bindSortEvents();
+        $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
+            that.filterResult($(e.delegateTarget), $(e.target).data("id"));
+        });
     },
     bindSortEvents: function () {
         this.searchResultView.registerSortEvent($("#time"), "startDate", "timeDesc", this, 
@@ -128,20 +137,27 @@ var SearchView = Backbone.View.extend({
                 }
                 this.timeDesc = !this.timeDesc;
                 $("#searchResultSorter>.active").removeClass("active");
-                $("#time").addClass("active");
                 this.searchResultView.render();
             });
         this.searchResultView.registerSortEvent($("#price"), "price", "priceDesc", this, 
             function(){
                 $("#time").html("时间");
-                if (this.timeDesc) {
+                if (this.priceDesc) {
                     $("#price").html("价格↓");
                 } else {
                     $("#price").html("价格↑");
                 }
                 this.priceDesc = !this.priceDesc;
                 $("#searchResultSorter>.active").removeClass("active");
-                $("#price").addClass("active");
+                this.searchResultView.render();
+            });
+        this.searchResultView.registerSortEvent($("#editorPick"), "popularity", true, this, 
+            function(){
+                $("#time").html("时间");
+                $("#price").html("价格");
+                $("#editorPick").html("爱上课推荐");
+                this.priceDesc = !this.priceDesc;
+                $("#searchResultSorter>.active").removeClass("active");
                 this.searchResultView.render();
             });
     },
@@ -169,9 +185,6 @@ var SearchView = Backbone.View.extend({
                 that.searchRepresentation.set("subCategory", $(this).data("id"));
             }
             that.courseSearch();
-        });
-        $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
-            that.filterResult($(e.delegateTarget), $(e.target).data("id"));
         });
     },
     filterResult: function ($filter, dataId) {
@@ -256,8 +269,10 @@ var SearchView = Backbone.View.extend({
                     day = time[1];
                 }
                 time = time[0];
-                this.filters["classTime"].day = day;
-                this.filters["classTime"].time = time;
+                this.filters["classTime"] = {
+                    "day" : day,
+                    "time": time
+                };
             }
         }
         var messages = this.filter();
@@ -291,7 +306,7 @@ var SearchView = Backbone.View.extend({
         return (course.get("price") >= this.filters.price.minPrice && (this.filters.price.maxPrice ? course.get("price")<= this.filters.price.maxPrice : true) );
     },
     filter: function(){
-        var messages = this.allMessages.clone();
+        var messages = this.allMessages ? this.allMessages.clone() : new Courses();
         if (this.filters["price"]) {
             messages.reset(messages.filter(this.filterPrice, this));
         }

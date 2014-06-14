@@ -17,6 +17,7 @@ var SearchResultView = MultiPageView.extend({
         this.actionClass = "viewDetail";
         this.entryContainer = "searchResultDisplayPanel";
         this.$domContainer = $("#searchResultDisplayPanel");
+        this.noMessage = '<div class="no_data"><div>很抱歉，没有找到符合您条件的课程~~</div><p>您可以尝试更换关键词搜索，或调整关键字，如""改为""。</p></div>';
         this.isClosed = false;
         var that = this;
         this.priceDesc = true;

@@ -58,7 +58,8 @@ var Course = Backbone.Model.extend({
             'phone': '',
             'logoUrl': '',
             'instName': '',
-            'wholeName': ''
+            'wholeName': '',
+            'popularity': 0
         };
     },
     idAttribute: 'courseId',
@@ -122,6 +123,7 @@ var Course = Backbone.Model.extend({
             data.logoUrl = decodeURI(data.logoUrl);
             data.instName = decodeURI(data.instName);
             data.wholeName = decodeURI(data.wholeName);
+            data.popularity = parseInt(data.popularity, 10);
         }
         return data;
     },

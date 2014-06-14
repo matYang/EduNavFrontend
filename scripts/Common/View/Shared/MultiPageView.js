@@ -93,6 +93,8 @@ var MultiPageView = Backbone.View.extend({
         }
         if (this.messages.length > this.pageEntryNumber) {
             this.setPageNavigator();
+        } else {
+            $("#" + this.pageNavigator).empty();
         }
         if (this.afterRender) {
             this.afterRender();

@@ -31,13 +31,123 @@ testMockObj = {
 	testBooking12: (new Booking()).set("bookingId", 12).set("reference", "10012").set("status", EnumConfig.BookingStatus.failed).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com").set("price",9781),
 
 	testCategories: {
-		"数学":{"初中": null,"高中": null},
-		"语文":{"初中": null,"高中": null},
-		"英语":{"四级": null,"六级": null,"托福": null,"雅思": null,"SAT": null,"GRE": null},
-		"考研":{"考研": null},
-		"会计":{"会计证": null,"职称证": null,"职业资格证": null},
-		"小语种":{"日语": null,"韩语": null,"法语": null,"西班牙语": null,"阿拉伯语": null,"Simon语": null}
+	"初中辅导":{
+		"初一":{
+			"语文":{"index":1},
+			"数学":{"index":2},
+			"英语":{"index":3},
+			"物理":{"index":4},
+			"化学":{"index":5},
+			"地理":{"index":6},
+			"index":1
+		},
+		"初二":{
+			"语文":{"index":1},
+			"数学":{"index":2},
+			"英语":{"index":3},
+			"物理":{"index":4},
+			"化学":{"index":5},
+			"地理":{"index":6},
+			"index":2
+		},
+		"初三":{
+			"语文":{"index":1},
+			"数学":{"index":2},
+			"英语":{"index":3},
+			"物理":{"index":4},
+			"化学":{"index":5},
+			"地理":{"index":6},
+			"index":3
+		},
+		"index":1
+	},
+	"高中辅导":{
+		"高一":{
+			"语文":{"index":1},
+			"数学":{"index":2},
+			"英语":{"index":3},
+			"物理":{"index":4},
+			"化学":{"index":5},
+			"地理":{"index":6},
+			"index":1
+		},
+		"高二":{
+			"语文":{"index":1},
+			"数学":{"index":2},
+			"英语":{"index":3},
+			"物理":{"index":4},
+			"化学":{"index":5},
+			"地理":{"index":6},
+			"index":2
+		},
+		"高三":{
+			"语文":{"index":1},
+			"数学":{"index":2},
+			"英语":{"index":3},
+			"物理":{"index":4},
+			"化学":{"index":5},
+			"地理":{"index":6},
+			"index":3
+		},
+		"index":2
+	},
+	"英语提升":{
+		"级别":{
+			"CET1":{"index":1},
+			"CET2":{"index":2},
+			"CET3":{"index":3},
+			"index":1
+			
+		},
+		"index":3
+	},
+	"英语考级":{
+		"四级":{
+			"入门":{"index":1},
+			"冲分":{"index":2},
+			"index":1
+		},
+		"六级":{
+			"入门":{"index":1},
+			"冲分":{"index":2},
+			"index":2
+		},
+		"index":4
+	},
+	"出国留学":{
+		"出国":{
+			"托福":{"index":1},
+			"雅思":{"index":2},
+			"SAT":{"index":3},
+			"GRE":{"index":4},
+			"GMAT":{"index":5},
+			"index":1
+		},
+		"index":5
+	},
+	"小语种":{
+		"日语":{
+			"N1":{"index":1},
+			"N2":{"index":2},
+			"N3":{"index":3},
+			"N4":{"index":4},
+			"index":1
+		},
+		"韩语":{
+			"思密达1":{"index":1},
+			"思密达2":{"index":2},
+			"思密达3":{"index":3},
+			"index":2
+		},
+		"法语":{
+			"bounju":{"index":1},
+			"gooday":{"index":2},
+			"index":3
+		},
+		"index":6
 	}
+}
+
 }
 testMockObj.testCourses.add([testMockObj.testCourse1,testMockObj.testCourse2,testMockObj.testCourse3,testMockObj.testCourse4,
 							 testMockObj.testCourse5,testMockObj.testCourse6,testMockObj.testCourse7,testMockObj.testCourse8,

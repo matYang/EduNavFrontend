@@ -21,6 +21,7 @@ var AppRouter = Backbone.Router.extend({
         "booking/b:bookingId": "booking",
 
         "compare": "compare",
+        "compare/*anything" : "compare",
         "register": "register",
         "register/*registerState": "register",
         "lost/": "lost",
@@ -30,7 +31,7 @@ var AppRouter = Backbone.Router.extend({
         // "service": "serviceCenter",
         // "service/*tab": "serviceCenter",
 
-        //"*default" : "front"
+        "*default" : "error"
     },
 
     initialize: function () {
@@ -149,7 +150,9 @@ var AppRouter = Backbone.Router.extend({
     lost: function (token) {
         this.findPasswordView = new FindPasswordView({"token":token});
     },
-
+    error: function () {
+        
+    }
 });
 
 //warning: tpl is the global object for templating services, do not name any variable "tpl" in any context in any files
