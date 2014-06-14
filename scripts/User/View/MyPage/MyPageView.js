@@ -38,9 +38,6 @@ var MyPageView = Backbone.View.extend({
                 }
                 this.activeChildView = new BookingDetailView({reference:this.reference});
                 break;
-            case "booking": 
-                this.activeChildView = new MyPageBookingView();
-                break;
             case "setting" :
                 this.activeChildView = new MyPageSettingView();
                 break
@@ -48,6 +45,7 @@ var MyPageView = Backbone.View.extend({
                 this.activeChildView = new MyPagePasswordView();
                 break;
             case "dashboard":
+            case "booking": 
             default:
                 this.activeChildView = new MyPageDashboardView();        
                 break;

@@ -3,7 +3,7 @@
 
 /**********左栏**********/
 #mypage_sidebar{float:left; width:198px; border:1px solid #cccccc; font-size:14px;}
-.mypage_sidebar_title{ height:50px; line-height:50px; color:#fff; padding-left:35px; background:#128d56 url(../images/icon.png) no-repeat 15px 16px;}
+.mypage_sidebar_title{ height:50px; line-height:50px; font-weight:bold; color:#fff; padding-left:35px; background:#128d56 url(../images/icon.png) no-repeat 15px 16px;}
 
 /*头像*/
 #mypage_avatar{width:150px; margin:20px auto 0;}
@@ -33,14 +33,13 @@
 .summaryItem2{ background: url(../images/summaryItem2.png) no-repeat 29px center;}
 .summaryItem3{ background: url(../images/summaryItem3.png) no-repeat 54px center;}
 
-#mypage_content h2{ font-size:14px; margin-top:25px;}
 #bookingSummary{}
 
-.bookingEntry{height:105px; border:1px solid #cccccc; margin-top:10px;}
+.bookingEntry{height:105px; border-bottom:1px solid #cccccc;}
 .bookingEntryTime{float:left; width:124px; text-align:center; line-height:22px; font-size:14px; height:105px; background:#e4f3ec; border-right:1px solid #bcd6ca;}
 .bookingEntryTime .date{ margin-top:20px; padding-left:10px; margin-bottom:15px; background:url(../images/icon_date.png) no-repeat 18px;}
 
-.bookingEntryDetail{float:left; width:380px; padding-left:15px; height:105px;font-size:14px; border-right:1px solid #ccc;}
+.bookingEntryDetail{float:left; width:377px; padding-left:15px; height:105px;font-size:14px; border-right:1px solid #ccc;}
 .bookingEntryDetail .title{ font-weight:bold; margin-top:25px; margin-bottom:20px;}
 .address{ margin-left:5px;}
 
@@ -96,3 +95,22 @@
 .print { text-align:right; margin-top:10px;}
 .btns{ margin:20px 0; text-align:center;}
 .btns input{ margin-right:30px;}
+
+/*修改密码*/
+.account{border:1px solid #ccc; min-height: 759px;}
+.account .title{ padding-left:20px; height:50px; line-height:50px; border-bottom:1px solid #ccc; font-size:14px; font-weight:bold;}
+.password{ padding:20px; font-size:14px;}
+.password .field {margin:18px 0; font-size: 14px;}
+.password .field label {display:inline-block; width:100px; text-align: right; margin-right: 20px;}
+.password .field input.text{width:250px;}
+.password .btn{ margin-top:30px;  margin-left:128px;}
+
+/*暂无数据*/
+.no_data{ margin-top:100px; margin-left:140px; padding-left:60px; background:url(../images/no_data.png) no-repeat left center;}
+.no_data div{ padding:12px 0 12px; font-size:24px; font-family:微软雅黑; color:#128d56;}
+
+#bookingSummary { margin-top:15px; border:1px solid #ccc; min-height:634px;}
+#bookingSummary h2.title{ font-size:14px; font-weight:bold; border-bottom:1px solid #ccc; line-height:50px; height:50px; padding-left:20px;}
+#bookingSummary .no_data{ width:292px; margin-left:auto; margin-right:auto;}
+
+#bookingNavigator{margin-bottom: 10px;}

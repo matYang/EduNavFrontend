@@ -24,13 +24,15 @@ var CourseDetailView = Backbone.View.extend({
     },
 
     render: function () {
-        var mapParams = {
-            div: "view_map",
-            class: "messageDetail-map-content",
-            location: this.course.get("city") + this.course.get("district"),
-            clickable: false
-        };
         this.$el.append(this.template(this.course._toJSON()));
+        var mapParams = {
+            div: "courseMap",
+            clickable: false,
+            class: "map",
+            location: this.course.get("location")
+        };
+
+        this.map = app.storage.getViewCache("BaiduMapView", mapParams);
         //this.map = app.storage.getViewCache("MapView", mapParams);
     },
     bindEvents: function () {

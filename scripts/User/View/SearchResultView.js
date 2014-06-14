@@ -20,19 +20,29 @@ var SearchResultView = MultiPageView.extend({
         this.noMessage = '<div class="no_data"><div>很抱歉，没有找到符合您条件的课程~~</div><p>您可以尝试更换关键词搜索，或调整关键字，如""改为""。</p></div>';
         this.isClosed = false;
         var that = this;
-        this.priceDesc = true;
-        this.timeDesc = true;
         this.render();
         this.bindEvents();
     },
     render: function () {
         MultiPageView.prototype.render.call(this);
+        var courseIds = app.storage.getCoursesToCompare();
+        for (var i = 0; i < courseIds.length; i++ ) {
+            $("#compare_" + courseIds[i]).find("input").val("-对比").removeClass("add").addClass("remove");
+        }
     },
     bindEvents: function (){
         var that = this;
         this.$domContainer.on("click", ".compare", function (e){
-            var id = Utilities.getId($(this).attr("id"));
-            that.compareWidget.addCourse(that.messages.get(Utilities.toInt(id)));
+            if ($(e.target).hasClass("add")) {
+                $(e.target).removeClass("add").addClass("remove").val("-对比");
+                var id = Utilities.getId($(this).attr("id"));
+                that.compareWidget.addCourse(that.messages.get(Utilities.toInt(id)));
+            } else {
+                $(e.target).removeClass("remove").addClass("add").val("+对比");
+                var id = Utilities.getId($(this).attr("id"));
+                that.compareWidget.removeCourse(Utilities.toInt(id));
+            }
+
         });
         this.registerSortEvent($("#courseSortTime"), this.compareTime, this.timeDesc, this, function(){
             that.timeDesc = !that.timeDesc;
@@ -51,6 +61,8 @@ var SearchResultView = MultiPageView.extend({
     transferURL: function (courseId) {
         app.navigate("course/" + courseId, true);
     },
+
+
     close: function () {
         this.$domContainer.empty();
     }

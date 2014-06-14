@@ -2,14 +2,13 @@ var BookingListView = MultiPageView.extend({
     entryContainer: "bookingSummary",
     entryClass: "bookingEntry",
     pageNavigator: "bookingNavigator",
-    pageNavigatorClass: "bookingNavigator",
+    pageNavigatorClass: "page blank1 clearfix",
     pageEntryNumber: 6,
     pageNumberClass: "bookingPage",
     pageNumberId: "bookingPage",
-    entryHeight: 117,
     entryRowNum: 1,
-    minHeight: 0,
-    noMessage: "暂无订单",
+    minHeight: 686,
+    noMessage: '<div class="no_data"><div>您目前没有未入学的订单哦~~</div></div>',
     $domContainer: null,
     el: "#bookingSummary",
     initialize: function (allMessages, messages, type) {
@@ -19,14 +18,11 @@ var BookingListView = MultiPageView.extend({
         this.entryTemplate = _.template(tpl.get("booking_entry"));
         app.viewRegistration.register(this);
         this.isClosed = false;
-        if (type === "dashboard") {
-            this.singlePage = true;
-            this.pageEntryNumber = 4;
-        }
         this.render();
     }, 
     render: function () {
         MultiPageView.prototype.render.call(this);
+        $("#bookingSummary").prepend("<h2 class='title'>未入学订单</h2>")
     },
     entryEvent: function (id) {
         app.navigate("mypage/booking/" + id, true);

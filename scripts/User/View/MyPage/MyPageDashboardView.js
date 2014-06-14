@@ -9,7 +9,7 @@ var MyPageDashboardView = Backbone.View.extend({
         this.render();
     },
     render: function () {
-        this.$el.append(this.template);
+        this.$el.append(this.template(this.user._toJSON()));
         this.bookingListView = new BookingListView(this.user.get("bookings"), this.user.get("bookings"), "dashboard");
     },
     bindEvents: function () {},

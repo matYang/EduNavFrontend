@@ -127,7 +127,7 @@ var MultiPageView = Backbone.View.extend({
             this.$pn.children(".next").off();
             this.$pn.remove();
         }
-        this.$domContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "mainPage-searchResult-multiPage-pageNum clearfix"));
+        this.$domContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
         this.$pn = $("#" + this.pageNavigator);
         var length = this.messages ? this.messages.length : 0;
         var pages = Math.ceil(length / this.pageEntryNumber);

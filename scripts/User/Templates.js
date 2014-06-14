@@ -113,13 +113,11 @@
     </div>
     
     <!--筛选结果-->
-    <!--
-    <div id="searchReqs" class="blank1">
-        <span>10个课程中满足</span>
-        <a href="#" title="取消">初中辅导</a>
-        <a href="#" title="取消">英语</a>
+    
+    <div id="searchReqs" class="blank1 hidden">
+        <span><span id="resultNum"></span>个课程满足以下条件</span>
     </div>
-    -->
+    
     <div class="search_result clearfix blank">
         
         <!--左栏开始-->
@@ -146,7 +144,7 @@
         </div>
         
         <!--右栏开始-->
-        <div class="fright w_250">
+        <div id="searchWidgets" class="fright w_250">
             <div id="CompareWidgetContainer">
             </div>
             <div id="mainMap" class="blank1">
@@ -178,7 +176,7 @@
                 </a>
             </div>
         <div class="col3">
-            <div class="compare" id="compare_<%= courseId %>"><input class="btn_g" type="button" value="+对比"/></div>
+            <div class="compare" id="compare_<%= courseId %>"><input class="btn_g add" type="button" value="+对比"/></div>
             <div class="viewDetail" id="viewAll_<%= courseId %>"><a class="F_green" href="#">查看更多</a></div>
         </div>
     </div>
@@ -268,9 +266,10 @@
             <div class="mypage_sidebar_section p3">
                 <div class="mypage_sidebar_sectionTitle">账户管理</div>
                 <div class="mypage_sidebar_sectionContent">
-                    <div class="mypage_sidebar_tab" id="cashAccount">现金账户</div>
+
+                <!--    <div class="mypage_sidebar_tab" id="cashAccount">现金账户</div> -->
                     <div class="mypage_sidebar_tab" id="couponAccount">消费券</div>
-                    <div class="mypage_sidebar_tab" id="creditAccount">积分</div>
+                <!--    <div class="mypage_sidebar_tab" id="creditAccount">积分</div> -->
                 </div>
             </div>
             <div class="mypage_sidebar_section p4">
@@ -278,7 +277,7 @@
                 <div class="mypage_sidebar_sectionContent">
                     <div class="mypage_sidebar_tab" id="editInfo">个人资料</div>
                     <div class="mypage_sidebar_tab" id="editPass">密码修改</div>
-                    <div class="mypage_sidebar_tab" id="wtf">常用学员信息</div>
+                <!--    <div class="mypage_sidebar_tab" id="wtf">常用学员信息</div> -->
                 </div>
             </div>
         </div>
@@ -290,14 +289,14 @@
 
 <script type="text/template" id="tpl_mypage_dashboard">
     <div id="walletSummary">
-        <div class="summaryItem1"><span class="F_orange">648</span>元现金</div>
+        <div class="summaryItem1"><span class="F_orange"><%= balance %></span>元现金</div>
         <div class="line"></div>
-        <div class="summaryItem2"><span class="F_orange">1417</span>元消费券</div>
+        <div class="summaryItem2"><span class="F_orange"><%= coupon %></span>元消费券</div>
         <div class="line"></div>
-        <div class="summaryItem3"><span class="F_orange">21189</span>积分</div>
+        <div class="summaryItem3"><span class="F_orange"><%= credit %></span>积分</div>
     </div>
-    <h2>未入学订单</h2>
     <div id="bookingSummary">
+        <h2>未入学订单</h2>
     </div>
 </script>
 
@@ -615,7 +614,7 @@
                 </div>
                 <div class="course_map">
                     <div class="addr">地址：<%= location %></div>
-                    <div class="map" width="328" height="183"></div>
+                    <div id="courseMap" class="map" width="328" height="183"></div>
                 </div>
             </div>
         </div>
