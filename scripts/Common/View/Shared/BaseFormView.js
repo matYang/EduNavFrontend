@@ -118,7 +118,6 @@ var BaseFormView = Backbone.View.extend({
         });
     },
     displayImagePreview: function (evt) {
-        debugger;
         if (!(window.File && window.FileReader && window.FileList)) {
             return;
         }

@@ -29,13 +29,18 @@ var CompareWidgetView = Backbone.View.extend({
         if (this.courses instanceof Backbone.Collection) {
             this.courses = this.courses.toArray();
         }
+        if (!this.map) {
+            this.renderMap();
+        }
         for (var i = 0; i < this.courses.length && i < 4; i++ ) {
             buf.push(this.courseTemplate(this.courses[i]._toJSON()));
+            this.map.getLatLng(this.courses[i].get("location"));
         }
         this.$domContainer.empty().append(buf.join(""));
         if (!this.reload) {
             this.bindEvents();
         }
+
 
     },
     bindEvents: function () {
@@ -66,6 +71,7 @@ var CompareWidgetView = Backbone.View.extend({
             this.courseIds = app.storage.getCoursesToCompare();
             this.$domContainer.append(this.courseTemplate(course._toJSON()));
             this.courses.push(course);
+            this.map.getLatLng(course.get("location"));
         } else {
 
         }
@@ -74,12 +80,26 @@ var CompareWidgetView = Backbone.View.extend({
         $("#compareEntry_courseId_"+id).remove();
         app.storage.removeCourseFromCompare(id);
         this.courseIds = app.storage.getCoursesToCompare();
+        this.map.removeMarker(course.get("location"));
+    },
+    renderMap: function () {
+        var me = this, mapParams = {
+            div: "mainMap",
+            class: "mainPage-map",
+            clickable: false
+        };
+        this.map = app.storage.getViewCache("BaiduMapView", mapParams);
+        this.rendered = true;
     },
     close: function () {
         if (!this.isClosed) {
             $(window).off("focus");
             this.isClosed = true;
             this.$el.empty();
+            if (this.map) {
+                this.map.close();
+            }
+
         }
     }
 });

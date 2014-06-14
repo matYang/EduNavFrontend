@@ -35,9 +35,6 @@ var BaiduMapView = Backbone.View.extend({
         this.removeAllMarkers();
         var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL}    
         this.map.addControl(new BMap.NavigationControl(opts)); 
-        if (this.location) {
-            this.getLatLng(this.location);
-        }
         if (this.clickable) {
             this.bindClickEvent();
         }

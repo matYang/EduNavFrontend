@@ -6,7 +6,7 @@ var SearchView = Backbone.View.extend({
     reqTemplate: ['<a href="#" data-cri="', undefined ,'" data-req="', undefined, '" title="取消">', undefined, "</a>"],
     filters: {},
     initialize: function (params) {
-        _.bindAll(this, 'renderMap', 'renderSearchResults', 'courseSearch', 'bindEvents', 'bindSearchEvents', 'renderCategories', 'filterResult', 'showOnMap', 'close');
+        _.bindAll(this, 'renderSearchResults', 'courseSearch', 'bindEvents', 'bindSearchEvents', 'renderCategories', 'filterResult', 'close');
         app.viewRegistration.register(this);
         $("#viewStyle").attr("href", "style/css/search.css");
         this.isClosed = false;
@@ -37,15 +37,7 @@ var SearchView = Backbone.View.extend({
         this.currentPage = 0;
         //injecting the template
     },
-    renderMap: function () {
-        var me = this, mapParams = {
-            div: "mainMap",
-            class: "mainPage-map",
-            clickable: false
-        };
-        this.map = app.storage.getViewCache("BaiduMapView", mapParams);
-        this.rendered = true;
-    },
+
 
     renderSearchResults: function (searchResults, byFilter) {
         //prevent memory leaks
@@ -115,7 +107,6 @@ var SearchView = Backbone.View.extend({
         }
         this.bindSearchEvents();
         this.courseSearch();
-        this.renderMap();
     },
     renderError: function () {
         this.$resultp = this.$resultp || $("#searchResultDisplayPanel");
@@ -144,7 +135,6 @@ var SearchView = Backbone.View.extend({
             } else {
                 $("#searchWidgets").removeClass("stickyHeader");
             }
-            // that.showOnMap();
         });
         $(window).on("resize", function (e) {
             that.windowHeight = $(this).height();
@@ -375,25 +365,25 @@ var SearchView = Backbone.View.extend({
         return course.get("price");
     },
 
-    showOnMap: function () {
-        var x = $(window).scrollTop();
-        var s = this.searchResultView.startIndex + Math.ceil((x - 459)/this.searchResultView.entryHeight), e;
-        s = (s < 0) ? 0 : s;
-        if ( x < 459) {
-            e = s - Math.ceil((459-x)/this.searchResultView.entryHeight);
-        } else {
-            e = s + Math.floor(this.windowHeight/this.searchResultView.entryHeight);
+    // showOnMap: function () {
+    //     var x = $(window).scrollTop();
+    //     var s = this.searchResultView.startIndex + Math.ceil((x - 459)/this.searchResultView.entryHeight), e;
+    //     s = (s < 0) ? 0 : s;
+    //     if ( x < 459) {
+    //         e = s - Math.ceil((459-x)/this.searchResultView.entryHeight);
+    //     } else {
+    //         e = s + Math.floor(this.windowHeight/this.searchResultView.entryHeight);
             
-        }
-        if (this.s !== s || this.e !== e ) {
-            this.map.removeAllMarkers();
-            this.s = s;
-            this.e = e;
-            for (var i = this.s; i < this.e && i < this.searchResultView.messages.length; i++ ) {
-                this.map.getLatLng(this.searchResultView.messages.at(i).get("location"));
-            }
-        }
-    },
+    //     }
+    //     if (this.s !== s || this.e !== e ) {
+    //         this.map.removeAllMarkers();
+    //         this.s = s;
+    //         this.e = e;
+    //         for (var i = this.s; i < this.e && i < this.searchResultView.messages.length; i++ ) {
+    //             this.map.getLatLng(this.searchResultView.messages.at(i).get("location"));
+    //         }
+    //     }
+    // },
     close: function () {
         if (!this.isClosed) {
             //removing all event handlers
@@ -403,10 +393,7 @@ var SearchView = Backbone.View.extend({
             if (this.searchResultView) {
                 this.searchResultView.close();
             }
-            if (this.map) {
-                this.map.close();
-            }
-            $(document).off("scroll");
+                  $(document).off("scroll");
             $(window).off("resize");
             this.$el.empty();
             this.isClosed = true;
