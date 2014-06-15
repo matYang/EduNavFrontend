@@ -6,7 +6,7 @@ var SearchView = Backbone.View.extend({
     reqTemplate: ['<a href="#" data-cri="', undefined ,'" data-req="', undefined, '" title="取消">', undefined, "</a>"],
     filters: {},
     initialize: function (params) {
-        _.bindAll(this, 'renderSearchResults', 'courseSearch', 'bindEvents', 'bindSearchEvents', 'renderCategories', 'filterResult', 'close');
+        _.bindAll(this, 'renderSearchResults', 'courseSearch', 'bindEvents', 'bindSearchEvents', 'renderCategories', 'renderLocations', 'filterResult', 'close');
         app.viewRegistration.register(this);
         $("#viewStyle").attr("href", "style/css/search.css");
         this.isClosed = false;
@@ -33,6 +33,7 @@ var SearchView = Backbone.View.extend({
             this.searchResultView = new SearchResultView (new Courses(), new Courses(), this.compareWidgetView);
         }
         app.generalManager.getCategories(this);
+        app.generalManager.getLocations(this);
         this.bindEvents();
         this.currentPage = 0;
         //injecting the template
@@ -112,7 +113,24 @@ var SearchView = Backbone.View.extend({
         this.$resultp = this.$resultp || $("#searchResultDisplayPanel");
         this.$resultp.empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
     },
-
+    renderLocations: function (locations) {
+        var buf = [];
+        // for (var prov in locations) {
+        //     var city = locations[prov];
+        //     for (var attr in city) {
+                for (var key in locations["江苏"]["南京"]) {
+                    if (key !== "index") {
+                        this.subCategoryTemplate[1] = this.subCategoryTemplate[3] = key;
+                        buf[locations["江苏"]["南京"][key].index]= this.subCategoryTemplate.join("");
+                    }
+                }
+        //     }
+        // }
+        $("#search_district").append(buf.join(""));
+        if (this.searchRepresentation.get("district")) {
+            $("#filter_district").find("span[data-id="+this.searchRepresentation.get("district")+"]").trigger("click");
+        }
+    },
     courseSearch: function () {
         app.navigate("search/" + this.searchRepresentation.toQueryString(), {trigger:false, replace: true});
         $("#searchResultDisplayPanel").empty().append('<div class="messageDetail-middle-autoMatch-loading">正在为您寻找信息</div>');
@@ -226,7 +244,7 @@ var SearchView = Backbone.View.extend({
         this.reqTemplate[3] = dataId;
         this.reqTemplate[5] = $("[data-id="+dataId+"]").html();
         $("a[data-cri="+criteria+"]").remove();
-        if (dataId !== "noreq") {
+        if (dataId !== "noreq" && $filter.attr("id").indexOf("filter")>-1) {
             $("#searchReqs").append(this.reqTemplate.join(""));
         }
         if($("#searchReqs").find("a").length) {

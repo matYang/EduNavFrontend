@@ -13,7 +13,7 @@ var Course = Backbone.Model.extend({
             'studyDays': [],
             'studyDaysNote': '',
             'startDate': new Date(),
-            'finisDate': new Date(),
+            'finishDate': new Date(),
             'courseHourNum': 0,
             'courseHourLength': 0,
             'city': '',

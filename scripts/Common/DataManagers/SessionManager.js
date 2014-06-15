@@ -174,7 +174,7 @@
                 callback.success();
             }
         }
-
+        debugger;
         switch (this.identifier){
             case EnumConfig.ModuleIdentifier.user:
                 this.sessionModel.overrideUrl(this.apis.user_logout);

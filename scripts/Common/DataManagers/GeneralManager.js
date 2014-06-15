@@ -168,6 +168,10 @@
     
     GeneralManager.prototype.fetchLocations = function(callback) {
         var self = this;
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testLocations);
+            return;
+        }
         $.ajax({
             url:this.apis.general_location,
             type:'GET',
@@ -211,7 +215,10 @@
         var index = -1;
         if (this.locationList.length === 0 || shouldReload(this.locationTimeStamp)){
             index = addToQueue(this.locationQueue, reference);
-            this.fetchLocations();
+            this.fetchLocations({
+                success: reference.renderLocations,
+                error: function () {}
+            });
         }
         else {
             reference.renderLocations(this.locationList);

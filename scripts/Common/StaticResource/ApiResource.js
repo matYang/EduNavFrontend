@@ -11,10 +11,10 @@
             versionPrefix: '/v1.0',
 
             moduleResource: {
-                'course': '/course',
-                'users': '/users',
+                'partner': '/partner',
+                'user': '/user',
                 'booking': '/booking',
-                'general': '/general',
+                'general': '/general'
             },
 
             moduleSufixResource: {

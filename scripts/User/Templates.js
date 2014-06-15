@@ -69,7 +69,7 @@
         <div id="filterPanel" class="filter_content">
             <div id="search_subCategory" class="filterCriteria">
             </div>
-            <div id="filter_district" class="filterCriteria">
+            <div id="search_district" class="filterCriteria">
                 <label>上课地点：</label>
                 <span data-id="noreq" class="active">不限</span>
             </div>
@@ -248,7 +248,7 @@
             <div class="mypage_sidebar_section p1" >
                 <div class="mypage_sidebar_sectionContent">
                     <div id="mypage_avatar">
-                        <img src="images/user_pic.jpg" width="150" height="150"/>
+                        <!--<img src="images/user_pic.jpg" width="150" height="150"/>-->
                         <p>晚上好，尊敬的会员</p>
                     </div>
                     <div id="mypage_info">
@@ -830,8 +830,9 @@
                 <th>老师介绍</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>">
-                        <p><b class="F_green">刘明军</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
-                        <p><b class="F_green">何刚</b> 南京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。</p>
+                        <% for ( var i; i < course.teacherName.length; i++ ) { %>
+                            <p><b class="F_green">course.teacherName[i]</b> course.teacherIntro[i]</p>
+                        <% } %>
                     </td>
                 <% }); %>
             </tr>
@@ -852,8 +853,7 @@
                 <th>教学目标</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>">
-                        <p>1、对初一英语知识点达到灵活运用层次，夯实初一知识</p>
-                        <p>2、对初二秋季知识点达到识记和理解层次，在新学期学习中占得先机。</p>
+                        <%= course.goal %>
                     </td>
                 <% }); %>
             </tr>
@@ -885,29 +885,7 @@
                 <th>课程提纲</th>
                 <% _.each(courses, function(course) { %>
                     <td>
-                        <p>第一讲</p>  
-                        <p>1、口语 Transport</p> 
-                        <p>2、听力专项训练 </p> 
-                        <p>3、精读文章</p>  
-                        <p>4、课后美文欣赏 </p> 
-                        <p>第二讲 </p> 
-                        <p>1、口语 Different shops</p>  
-                        <p>2、听力专项训练</p>  
-                        <p>3、精读文章 </p> 
-                        <p>4、课后美文欣赏 </p> 
-                        <p>第三讲 </p> 
-                        <p>1、口语　Ｉlove fashion</p>  
-                        <p>2、听力专项训练</p>  
-                        <p>3、精读文章 </p> 
-                        <p>4、课后美文欣赏</p>  
-                        <p>第四讲 </p> 
-                        <p>1、口语 Saving money </p> 
-                        <p>2、听力专项训练</p>  
-                        <p>3、精读文章 </p> 
-                        <p>第五讲 </p> 
-                        <p>1、口语 Rules and Regulations </p> 
-                        <p>2、听力专项训练</p>  
-                        <p>3、精读文章</p> 
+                        <%= course.outline %>
                     </td>
                 <% }); %>
             </tr>
