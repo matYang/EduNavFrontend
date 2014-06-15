@@ -52,8 +52,8 @@ var User = Backbone.Model.extend({
             data.email = decodeURI(data.email);
 
             data.status = parseInt(data.status, 10);
-            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
-            data.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
+            data.creationTime = Utilities.castFromAPIFormat(decodeURIComponent(data.creationTime));
+            data.lastLogin = Utilities.castFromAPIFormat(decodeURIComponent(data.lastLogin));
 
             data.transactions = new Transactions(data.transactions, {parse: true});
             data.coupons = new Coupons(data.coupons, {parse: true});

@@ -22,6 +22,7 @@ var TopBarView = Backbone.View.extend({
             this.bindEvents();
         } else {
             this.$el.append(this.notLoggedInTemplate);
+            $("#credentialWrong").hide();
             this.bindEvents();
         }
     },
@@ -50,13 +51,14 @@ var TopBarView = Backbone.View.extend({
             app.navigate("front", true);
         });
         if (!app.sessionManager.hasSession()) {
-            $("#loginBoxToggler").on("click", function (e) {
-                self.$lb.toggle();
-                self.$usernameInput.trigger("focus");
-            });
             $('#signup_button').on('click', function (e) {
                 e.preventDefault();
                 app.navigate("/register", {trigger: true, replace: true});
+            });
+            $('#login_toggle').on('click', function (e) {
+                e.preventDefault();
+                $("#topbar_loginbox").toggle();
+                self.$usernameInput.trigger("focus");
             });
             this.$usernameInput.on("click", function (e){
                 $("#credentialWrong").hide();
@@ -72,15 +74,9 @@ var TopBarView = Backbone.View.extend({
             $("#forget_password").on("click", function (e) {
                 e.preventDefault();
                 app.navigate("lost", true);
-                self.$("#loginBox").toggle();
+                $("#topbar_loginbox").toggle();
             });
-            this.remember = $("#remember_password").on("click", function (e) {
-                if ($(this).hasClass("checked")){
-                    $(this).removeClass("checked");
-                } else {
-                    $(this).addClass("checked");
-                }
-            });
+
             $('#login_button').on('click', function () {
                 self.login();
             });
@@ -108,10 +104,6 @@ var TopBarView = Backbone.View.extend({
                     app.sessionManager.fetchSession(true, {
                         success: function () {
                             app.userManager.sessionUser = app.sessionManager.sessionModel;
-                            app.letterView = new LetterView({
-                                "toUserId": app.storage.getLastContact()
-                            });
-                            $("#chat").show();
                         },
                         error: function () {
                             Info.displayNotice("登录失败，请稍后再试");
@@ -119,14 +111,14 @@ var TopBarView = Backbone.View.extend({
                     });
                 },
                 error: function (response) {
-                    self.$wrong.show().html(response.responseText || "服务器好像睡着了，请稍后再试");
+                    $("#credentialWrong").show().html(response.responseText || "服务器好像睡着了，请稍后再试");
                     $('#login_button').val("登 录").prop("disabled", false);
                     self.$passwordInput.val("");
                 }
             });
         } else {
             //请输入密码
-            self.$wrong.show().html("输入有误，请重新输入");
+            $("#credentialWrong").show().html("输入有误，请重新输入");
         }
     },
     logout: function () {

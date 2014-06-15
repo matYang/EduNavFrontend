@@ -44,7 +44,7 @@ var SearchView = Backbone.View.extend({
         //prevent memory leaks
         $("#searchResultDisplayPanel").empty();
         if (!byFilter) {
-            this.allMessages = searchResults;
+            this.allMessages = searchResults || new Courses();
         } 
         var array = searchResults.toArray();
         this.searchResultView.allMessages.reset(this.allMessages.toArray());
@@ -147,15 +147,32 @@ var SearchView = Backbone.View.extend({
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
             that.filterResult($(e.delegateTarget), $(e.target).data("id"));
         });
-        $(document).on("scroll", function (e) {
-            if ($(this).scrollTop()>402) {
-                $("#searchWidgets").addClass("stickyHeader");
-            } else {
-                $("#searchWidgets").removeClass("stickyHeader");
-            }
-        });
+        this.scrollSensorOn = true;
+        if (this.windowHeight >= 620 ) {
+            $(document).on("scroll", function (e) {
+                if ($(this).scrollTop()>402) {
+                    $("#searchWidgets").addClass("stickyHeader");
+                } else {
+                    $("#searchWidgets").removeClass("stickyHeader");
+                }
+            });
+        }
         $(window).on("resize", function (e) {
             that.windowHeight = $(this).height();
+            if (that.windowHeight < 620 && that.scrollSensorOn) {
+                that.scrollSensorOn = false;
+                $(document).off("scroll");
+                $("#searchWidgets").removeClass("stickyHeader");
+            } else if (that.windowHeight >= 620 && that.scrollSensorOn === false) {
+                that.scrollSensorOn = true;
+                $(document).on("scroll", function (e) {
+                    if ($(this).scrollTop()>402) {
+                        $("#searchWidgets").addClass("stickyHeader");
+                    } else {
+                        $("#searchWidgets").removeClass("stickyHeader");
+                    }
+                });
+            }
         })
         $("#searchReqs").on("click", "a", function (e) {
             e.preventDefault();

@@ -169,6 +169,13 @@ var BaseFormView = Backbone.View.extend({
                 $field.val(value);
             }
         }
+        if (value === undefined) {
+            if (that.isBB) {
+                that.model.set(field.get("modelAttr"), "");
+            } else {
+                that.model[field.get("modelAttr")] = "";
+            }
+        }
     },
     close: function () {
         if (!this.closed) {

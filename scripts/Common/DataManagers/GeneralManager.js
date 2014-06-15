@@ -110,7 +110,7 @@
             callback.success(searchResults);
             return;
         }
-        if (!(courseSearchRepresentation instanceof Backbone.model)){
+        if (!(courseSearchRepresentation instanceof Backbone.Model)){
             Info.warn('CourseManager:: invalid parameter, exit');
             return;
         }
@@ -148,13 +148,8 @@
             success: function(data, textStatus, jqXHR){
                 self.categoryList = data;
                 self.categoryTimeStamp = new Date();
-                var i = 0;
-                for (i = 0; i < self.categoryQueue.length; i++){
-                    self.categoryQueue[i].renderCategories(self.categoryList.slice());
-                    self.categoryQueue[i] = null;
-                }
                 if (callback) {
-                    callback.success(self.categoryList.slice());
+                    callback.success(self.categoryList);
                 }
             },
             error: function() {
@@ -179,13 +174,8 @@
             success: function(data, textStatus, jqXHR){
                 self.locationList = data;
                 self.locationTimeStamp = new Date();
-                var i = 0;
-                for (i = 0; i < self.locationQueue.length; i++){
-                    self.locationQueue[i].renderLocations(self.locationList.slice());
-                    self.locationQueue[i] = null;
-                }
                 if (callback) {
-                    callback.success(self.locationList.slice());
+                    callback.success(self.locationList);
                 }
             },
             error: function() {

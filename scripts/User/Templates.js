@@ -28,10 +28,29 @@
                 <li id = 'navigate_compare' class = 'button navigate_compare'>学校对比</li>
             </ul>
             <div class="login_reg">
-                <a id="" class="login" href="#">登录</a>
-                <span></span>
-                <a id="signup_button" class="reg" href="#">注册</a>
+                <div class="hd">
+                    <a id="login_toggle" class="login" href="#">登录</a>
+                    <span></span>
+                    <a id="signup_button" class="reg" href="#">注册</a>
+                </div>
+                <div id="topbar_loginbox" class="bd">
+                    <ul>
+                        <li>
+                            <input id="login_username" type="text" class="text" placeholder="请输入手机号">
+                            <p id="credentialWrong" class="wrong">输入有误，请重新输入</p>
+                        </li>
+                        <li>
+                            <input id="login_password" type="password" class="text" placeholder="请输入密码">
+                        </li>
+                        <li class="clearfix">
+                            <div class="checkbox checked">记住我</div>
+                            <a class="forget_password" href="#">忘记密码？</a>
+                        </li>
+                        <li><input id="login_button" class="btn_topnav_login" type="button" value="登 录"></li>
+                    </ul>
+                </div>
             </div>
+\
         </div>
     </div>
 </script>
@@ -224,6 +243,12 @@
                         <dt><span>*</span>确认密码：</dt>
                         <dd>
                             <input id="registerPasswordConfirmInput" type="password" class="text" value="" placeholder="请再次输入密码">
+                        </dd>
+                    </dl>
+                    <dl class="clearfix" id="invitationCodeContainer">
+                        <dt><span>*</span>邀请码：</dt>
+                        <dd>
+                            <input id="invitationCodeInput" type="text" class="text" value="" placeholder="由朋友邀请注册的用户会获得额外的优惠">
                         </dd>
                     </dl>
                     <dl class="clearfix" id="authContainer">

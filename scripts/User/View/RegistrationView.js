@@ -2,7 +2,7 @@
 var RegistrationView = BaseFormView.extend({
     el: "#content",
     form: false,
-    submitButtonId: "register_submit",
+    submitButtonId: "complete",
     model: {},
     initialize: function(params){
     	_.bindAll(this, 'render', 'bindEvents', 'phoneValid', 'passValid', 'successCallback', 'submitAction', 'close');
@@ -38,6 +38,14 @@ var RegistrationView = BaseFormView.extend({
                 validatorFunction: this.passValid,
                 modelAttr: "confirmPassword",
                 validatorContainer: $("#confirmContainer")
+            }),
+            new BaseField({
+                name: "邀请码",
+                fieldId: "invitationCodeInput",
+                type: "text",
+                mandatory: false,
+                modelAttr: "appliedInvitationalCode",
+                validatorContainer: $("#invitationCodeContainer")
             }),
             new BaseField({
                 name: "验证码",
@@ -98,7 +106,7 @@ var RegistrationView = BaseFormView.extend({
     },
     submitAction: function () {
         this.phoneCache = true;
-        app.userManager.registerUser(this.user, {
+        app.userManager.registerUser(this.model, {
             success: this.successCallback,
             error: function (){}
         });

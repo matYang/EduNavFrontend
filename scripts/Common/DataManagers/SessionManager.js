@@ -174,18 +174,17 @@
                 callback.success();
             }
         }
-        debugger;
         switch (this.identifier){
             case EnumConfig.ModuleIdentifier.user:
-                this.sessionModel.overrideUrl(this.apis.user_logout);
+                this.sessionModel.overrideUrl(this.apis.user_logout + "/" + this.sessionModel.id);
                 break;
 
             case EnumConfig.ModuleIdentifier.partner:
-                this.sessionModel.overrideUrl(this.apis.partner_logout);
+                this.sessionModel.overrideUrl(this.apis.partner_logout + "/" + this.sessionModel.id);
                 break;
 
             case EnumConfig.ModuleIdentifier.admin:
-                this.sessionModel.overrideUrl(this.apis.admin_logout);
+                this.sessionModel.overrideUrl(this.apis.admin_logout + "/" + this.sessionModel.id);
                 break;
 
             default:
@@ -194,7 +193,7 @@
 
         this.sessionModel.save({},{
             dataType:'json',
-
+            
             success:function(model, response){
                 if(callback){
                     callback.success();

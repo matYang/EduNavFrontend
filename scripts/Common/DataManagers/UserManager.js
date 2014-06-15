@@ -85,11 +85,12 @@
             return;
         }
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: this.apis.user_user,
             dataType: "json",
             async: true,
-            data: $.param(newUser),
+            data: JSON.stringify(newUser),
+            contentType: 'application/json',
             success: function (data, response) {
                 if (callback) {
                     callback.success(data);

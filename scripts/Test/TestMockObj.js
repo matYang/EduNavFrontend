@@ -1,5 +1,5 @@
 testMockObj = {
-    testMode: true,
+    testMode: false,
     testAdmin: (new Admin()).set("name", "admin1").set("phone","2260000000"),
     testUser: new User(),
     testPartner: new Partner(),
