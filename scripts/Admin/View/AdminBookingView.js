@@ -1,0 +1,66 @@
+var AdminBookingView = BaseFormView.extend({
+	el: "#bookingCRUDContainer",
+    fields: [],
+    form: true,
+    formElem: "adminBookingForm",
+    submitButtonId: "bookingPostSubmit",
+    callback: "uploadTarget",
+    initialize: function(params){
+        _.bindAll(this, "render", "bindEvents", "close");
+        BaseFormView.prototype.initialize.call(this);
+        app.viewRegistration.register(this);
+        params = params || {};
+        var apis = new AdminApiResource();
+        this.template = _.template(tpl.get("adminBooking"));
+        this.action = apis.admin_booking;
+        if (params.booking) {
+            this.render(params.booking);
+        } else if (params.bookingId) {
+            app.adminManager.getBooking(params.bookingId, {
+                success: this.render,
+                error: function() {
+                    app.navigate("manage/booking", true);
+                }
+            });
+        }
+    },
+
+    render: function (booking) {
+        this.booking = booking;
+        this.$el.append(this.template(booking.toJSON()));
+        $("#adminBookingForm").find(".edit").hide();
+        $("#adminBookingForm").find(".detail").show();
+        $("#searchResult").addClass("hidden");
+        this.bindEvents();
+    },
+
+    bindEvents: function () {
+        var that = this;
+        BaseFormView.prototype.bindEvents.call(this);
+        $("#cancel").on("click", function () {
+            $("#adminBookingForm").find(".edit").hide();
+            $("#adminBookingForm").find(".detail").show();   
+        });
+        $("#editBooking").on("click", function () {
+            $("#adminBookingForm").find(".edit").show();
+            $("#adminBookingForm").find(".detail").hide(); 
+			var json = that.booking.toJSON();
+            for (var attr in json) {
+                var $edit = $("input[name="+attr+"]");
+                if ($edit.attr("type") === "checkbox") {
+                    $edit.prop("checked", json[attr]);
+                }
+                $edit.val(json[attr]);
+            }
+        });
+    },  
+    successCallback: function () {
+        app.navigate("manage/booking", true);
+    },
+    close: function () {
+        if (!this.isClosed) {
+            this.isClosed = false;
+            this.$el.empty();
+        }
+    }
+});
