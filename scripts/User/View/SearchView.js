@@ -110,7 +110,7 @@ var SearchView = Backbone.View.extend({
     },
     renderError: function () {
         this.$resultp = this.$resultp || $("#searchResultDisplayPanel");
-        this.$resultp.empty().append("<div class = 'noMessage'>暂无消息</div>");
+        this.$resultp.empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
     },
 
     courseSearch: function () {

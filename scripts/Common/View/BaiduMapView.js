@@ -32,6 +32,7 @@ var BaiduMapView = Backbone.View.extend({
         if (!this.map) {
             this.map = new BMap.Map (this.div);  //this should never expire
         }
+        this.setCenter(this.location);
         this.removeAllMarkers();
         var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL}    
         this.map.addControl(new BMap.NavigationControl(opts)); 
@@ -55,6 +56,19 @@ var BaiduMapView = Backbone.View.extend({
             }
         );
     },
+    setCenter: function (locationString) {
+        var that = this;
+        var result = this.geocoder.getPoint(
+            locationString,
+            function (point) {
+                if (point) {
+                    that.map.centerAndZoom(point, 11);   
+                } else {
+                    Info.warn('Geocode was not successful');
+                }
+            }
+        );
+    },
     addMarker: function(marker, locationString) {
         marker.locationString = locationString;
         var add = true;
@@ -71,7 +85,7 @@ var BaiduMapView = Backbone.View.extend({
     },
     removeMarker: function(locationString) {
         for (var i = 0; i < this.markers.length; i++){
-            if (this.markers[i].locationString === marker.locationString) {
+            if (this.markers[i].locationString === locationString) {
                 this.map.removeOverlay(this.markers[i]);
                 this.markers[i] = undefined;
             }
@@ -82,10 +96,6 @@ var BaiduMapView = Backbone.View.extend({
                     this.markers.pop();
                 }
             }
-        }
-        if (add) {
-            this.markers.push(marker);
-            this.map.addOverlay(marker);
         }
     },
     removeAllMarkers: function (){

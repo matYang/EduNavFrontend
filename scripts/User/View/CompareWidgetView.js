@@ -50,6 +50,7 @@ var CompareWidgetView = Backbone.View.extend({
         });
         this.$domContainer.on("click", ".remove", function (e) {
             var id = Utilities.getId($(this).parent().attr("id"));
+            debugger;
             that.removeCourse(id);
         }).on("click", "a", function (e) {
             e.preventDefault();
@@ -78,9 +79,13 @@ var CompareWidgetView = Backbone.View.extend({
     },
     removeCourse: function(id) {
         $("#compareEntry_courseId_"+id).remove();
+        for (var i = 0; i < this.courses.length; i++ ) {
+            if (this.courses[i].id === Utilities.toInt(id)) {
+                this.map.removeMarker(this.courses[i].get("location"));
+            }
+        }
         app.storage.removeCourseFromCompare(id);
         this.courseIds = app.storage.getCoursesToCompare();
-        this.map.removeMarker(course.get("location"));
     },
     renderMap: function () {
         var me = this, mapParams = {

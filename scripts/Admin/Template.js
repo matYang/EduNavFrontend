@@ -433,7 +433,6 @@
         <div><label>适合学生: </label><span class="detail"><%= suitableStudent %></span><span class="edit"><input type="text" name="suitableStudent"/></span></div>
         <div><label>学前要求: </label><span class="detail"><%= prerequest %></span><span class="edit"><input type="text" name="prerequest"/></span></div>
 
-        <input type="button" class="edit" id="addTeacher" />
         <div><label>提纲：</label><span class="detail"></span></div>
         <div><label>下载材料: </label><span class="detail"><%= hasDownloadMaterials %></span><span class="edit"><input type="checkbox" name="hasDownloadMaterials"/></span></div>
         <div><label>题库: </label><span class="detail"><%= questionBank %></span><span class="edit"><input type="text" name="questionBank"/></span></div>
@@ -457,6 +456,17 @@
         <div><label>学校名: </label><span class="detail"><%= instName %></span><span class="edit"><input type="text" name="instName"/></span></div>
         <div><label>机构全称: </label><span class="detail"><%= wholeName %></span><span class="edit"><input type="text" name="wholeName"/></span></div> 
 
+        <% for ( var i = 0; i < 4; i++) { %>
+            <% if (teacherName[i]) {%>
+            <div><label>教师名: </label><span class="detail"><%= teacherName[i] %></span><span class="edit"><input type="text" name="teachingMaterialCost"/></span></div>
+            <div><label>教师照片: </label><span class="detail"><img src="<%= teacherImg[i] %>"/></span><span class="edit"><input type="text" name="suitableStudent"/></span></div>
+            <div><label>教师简介: </label><span class="detail"><%= teacherIntro[i] %></span><span class="edit"><input type="text" name="prerequest"/></span></div>
+            <% } else { %>
+                <div><label>教师名: </label><span class="detail"></span><span class="edit"><input type="text" name="teachingMaterialCost"/></span></div>
+                <div><label>教师照片: </label><span class="detail"></span><span class="edit"><input type="text" name="suitableStudent"/></span></div>
+                <div><label>教师简介: </label><span class="detail"></span><span class="edit"><input type="text" name="prerequest"/></span></div>
+            <% } %>
+        <% } %>
         <div class="imgblock"><label>教室照片1: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg1" name="classroomImg1"/><img id="preview1" class="preview"/></span></div>
         <div class="imgblock"><label>教室照片2: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg2" name="classroomImg2"/><img id="preview2" class="preview"/></span></div>
         <div class="imgblock"><label>教室照片3: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg3" name="classroomImg3"/><img id="preview3" class="preview"/></span></div>
