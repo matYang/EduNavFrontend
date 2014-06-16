@@ -7,12 +7,6 @@ var EnumConfig = {
         deleted: 2
     },
 
-    'Privilege': {
-        root: 0,
-        mamagement: 1,
-        routine: 2
-    },
-
     'ModuleIdentifier':{
         user: 0,
         partner: 1,
@@ -32,10 +26,17 @@ var EnumConfig = {
         inactive: 3
     },
 
+    'CouponOrigin': {
+        registration: 0,
+        invitation: 1,
+        admin: 2
+    },
+
     'TransactionType': {
-        coupon: 0,
+        cashback: 0,
         deposit: 1,
-        withdraw: 2
+        withdraw: 2,
+        invitation: 3
     },
 
     'BookingStatus': {
@@ -48,6 +49,23 @@ var EnumConfig = {
         quit: 6,
         delivered: 7,
         consolidated: 8
+    },
+
+    'Privilege': {
+        root: 0,
+        mamagement: 1,
+        routine: 2
+    },
+
+    'CourseStatus': {
+        openEnroll: 0,
+        deactivated: 1,
+        consolidated: 2
+    },
+
+    'PartnerQualification': {
+        verified: 0,
+        unverified: 1
     }
 
 };

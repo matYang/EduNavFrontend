@@ -6,7 +6,6 @@ var Transaction = Backbone.Model.extend({
             'userId': -1,
             
             'bookingId': -1,
-            'couponId': -1,
             'transactionAmount': 0,
             'transactionType': EnumConfig.TransactionType.withdraw,
             'creationTime': new Date()
@@ -33,7 +32,6 @@ var Transaction = Backbone.Model.extend({
             data.userId = parseInt(data.userId, 10);
 
             data.bookingId = parseInt(data.bookingId, 10);
-            data.couponId = parseInt(data.couponId, 10);
             data.transactionType = parseInt(data.transactionType, 10);
 
             data.transactionAmount = parseInt(data.transactionAmount, 10);

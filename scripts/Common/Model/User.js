@@ -14,6 +14,10 @@ var User = Backbone.Model.extend({
             'email': '',
             
             'status': 0,
+            'invitationalCode': '',
+            'appliedInvitationalCode': '',
+            'accountNumber':'',
+
             'creationTime': new Date (),
             'lastLogin': new Date (),
 
@@ -52,6 +56,10 @@ var User = Backbone.Model.extend({
             data.email = decodeURI(data.email);
 
             data.status = parseInt(data.status, 10);
+            data.invitationalCode = decodeURI(data.invitationalCode);
+            data.appliedInvitationalCode = decodeURI(data.appliedInvitationalCode);
+            data.accountNumber = decodeURI(data.accountNumber);
+
             data.creationTime = Utilities.castFromAPIFormat(decodeURIComponent(data.creationTime));
             data.lastLogin = Utilities.castFromAPIFormat(decodeURIComponent(data.lastLogin));
 
@@ -76,6 +84,8 @@ var User = Backbone.Model.extend({
         json.phone = encodeURI(json.phone);
         json.password = encodeURI(json.password);
         json.email = encodeURI(json.email);
+
+        json.encodeURI(appliedInvitationalCode);
         
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));

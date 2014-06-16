@@ -4,18 +4,24 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         return {
             'category': undefined,
             'subCategory': undefined,
-    
+            //'subSubCategory': undefined,
+        
+            //'province': undefined,
             'city': undefined,
             'district': undefined,
             
-            'startTime': undefined,
-            'finishTime': undefined,
+            'startDate': undefined,
+            'finishDate': undefined,
             
             'institutionName': undefined,
             'status': undefined,
             
             'startPrice': undefined,
             'finishPrice': undefined,
+            'startClassSize': undefined,
+            'finishClassSize': undefined,
+            'startCashback': undefined,
+            'finishCashback': undefined,
             
             'courseReference': undefined,
             'partnerReference': undefined,
@@ -25,7 +31,8 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'userId': undefined,
             'creationTime': undefined,
 
-            'classModel': undefined
+            'useCache': undefined
+
         };
     },
 
@@ -62,14 +69,19 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         queryObj.city = typeof this.get('city') === 'undefined' ? undefined : encodeURI(this.get('city'));
         queryObj.district = typeof this.get('district') === 'undefined' ? undefined : encodeURI(this.get('district'));
 
-        queryObj.startTime = typeof this.get('startTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startTime'));
-        queryObj.finishTime = typeof this.get('finishTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishTime'));
+        queryObj.startDate = typeof this.get('startDate') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startDate'));
+        queryObj.finishDate = typeof this.get('finishDate') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishDate'));
 
         queryObj.institutionName = typeof this.get('institutionName') === 'undefined' ? undefined : encodeURI(this.get('institutionName'));
         queryObj.status = this.get('status');
 
         queryObj.startPrice = this.get('startPrice');
         queryObj.finishPrice = this.get('finishPrice');
+        queryObj.startClassSize = this.get('startClassSize');
+        queryObj.finishClassSize = this.get('finishClassSize');
+        queryObj.startCashback = this.get('startCashback');
+        queryObj.finishCashback = this.get('finishCashback');
+
         queryObj.courseReference = typeof this.get('courseReference') === 'undefined' ? undefined : encodeURI(this.get('courseReference'));
         queryObj.partnerReference = typeof this.get('partnerReference') === 'undefined' ? undefined : encodeURI(this.get('partnerReference'));
         queryObj.courseId = this.get('courseId');
@@ -77,7 +89,7 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         queryObj.userId = this.get('userId');
 
         queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
-        queryObj.classModel = this.get('classModel');
+        queryObj.useCache = this.get('useCache');
 
         return queryObj;
     }

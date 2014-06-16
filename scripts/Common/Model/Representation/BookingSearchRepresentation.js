@@ -3,12 +3,6 @@ var BookingSearchRepresentation = Backbone.Model.extend({
     defaults: function () {
         return {
             'bookingId': undefined,
-            'creationTime': undefined,
-
-            'scheduledTime': undefined,
-
-            'startPrice': undefined,
-            'finishPrice': undefined,
             'userId': undefined,
             'partnerId': undefined,
             'courseId': undefined,
@@ -16,9 +10,18 @@ var BookingSearchRepresentation = Backbone.Model.extend({
             'phone': undefined,
             'email': undefined,
             'status': undefined,
+            'preStatus':undefined,
             'reference': undefined,
-            'wasConfirmedIndex': undefined,         //1 for  yes, 2 for no
-            'adjustTime': undefined
+
+            'startPrice': undefined,
+            'finishPrice': undefined,
+
+            'startScheduledTime': undefined,
+            'finishScheduledTime': undefined,
+            'startAdjustTime': undefined,
+            'finishAdjustTime': undefined,
+            'startCreationTime': undefined,
+            'finishCreationTime': undefined
         };
     },
 
@@ -51,8 +54,6 @@ var BookingSearchRepresentation = Backbone.Model.extend({
         var queryObj = {};
 
         queryObj.bookingId = this.get('bookingId');
-        queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
-        queryObj.scheduledTime = typeof this.get('scheduledTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('scheduledTime'));
         queryObj.startPrice = this.get('startPrice');
         queryObj.finishPrice = this.get('finishPrice');
         queryObj.userId = this.get('userId');
@@ -62,9 +63,16 @@ var BookingSearchRepresentation = Backbone.Model.extend({
         queryObj.phone = typeof this.get('phone') === 'undefined' ? undefined : encodeURI(this.get('phone'));
         queryObj.email = typeof this.get('email') === 'undefined' ? undefined : encodeURI(this.get('email'));
         queryObj.status = this.get('status');
+        queryObj.preStatus = this.get('preStatus');
         queryObj.reference = typeof this.get('reference') === 'undefined' ? undefined : encodeURI(this.get('reference'));
-        queryObj.wasConfirmedIndex = this.get('wasConfirmedIndex');
-        queryObj.adjustTime = typeof this.get('adjustTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('adjustTime'));
+
+
+        queryObj.startScheduledTime = typeof this.get('startScheduledTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startScheduledTime'));
+        queryObj.finishScheduledTime = typeof this.get('finishScheduledTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishScheduledTime'));
+        queryObj.startAdjustTime = typeof this.get('startAdjustTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startAdjustTime'));
+        queryObj.finishAdjustTime = typeof this.get('finishAdjustTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishAdjustTime'));
+        queryObj.startCreationTime = typeof this.get('startCreationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startCreationTime'));
+        queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishCreationTime'));
 
         return queryObj;
     }
