@@ -1,130 +1,170 @@
 var Course = Backbone.Model.extend({
     defaults: function () {
         return {
-            'courseId': -1,
-            'partnerId': -1,
-            'creationTime': new Date(),
-            'courseName': '',
-            'courseIntro': '',
-            'startTime1': 900,
-            'startTime2': 1200,
-            'finishTime1': 1500,
-            'finishTime2': 1800,
-            'studyDays': [],
-            'studyDaysNote': '',
-            'startDate': new Date(),
-            'finishDate': new Date(),
-            'courseHourNum': 0,
-            'courseHourLength': 0,
-            'city': '',
-            'district': '',
-            'location': '',
-            'category': '',
-            'subCategory': '',
-            'price': 0,
-            'seatsTotal': 0,
-            'seatsLeft': 0,
-            'reference': '',
-            'partnerCourseReference': '',
-            'classModel': 0,
-            'openCourseRequirement': '',
-            'classroomImgUrl': '',
-            'classroomIntro': '',
-            'partnerQualification': 0,
-            'partnerIntro': '',
-            'teachingMethods': [],
-            'teachingMethodsIntro': '',
-            'teachingMaterialType': 0,
-            'teachingMaterialName': '',
-            'teachingMaterialIntro': '',
-            'teachingMaterialCost': 0,
-            'teachingMaterialFree': false,
-            'suitableStudent': '',
-            'prerequest': '',
-            'teacherName': [],
-            'teacherImgUrl': [],
-            'teacherIntro': [],
-            'hasDownloadMaterials':false,
-            'questionBank': [],
-            'questionBankIntro':  '',
-            'highScoreReward':  '',
-            'passAgreement':  '',
-            'quiz': '',
-            'provideAssignments': false,
-            'provideMarking': false,
-            'certification':  '',
-            'extracurricular': [],
-            'extracurricularIntro': '',
-            'status': 0,
-            'phone': '',
-            'logoUrl': '',
-            'instName': '',
-            'wholeName': '',
-            'popularity': 0
+            'courseId': undefined,
+            'partnerId': undefined,
+            'price': undefined,
+            'courseHourNum': undefined,
+            'courseHourLength': undefined,
+                
+            'classSize': undefined,
+            'cashback': undefined,
+            'popularity': undefined,
+                
+            'creationTime': undefined,
+            'startDate': undefined,
+            'finishDate': undefined,
+                
+            'startTime1': undefined,
+            'finishTime1': undefined,
+            'startTime2': undefined,
+            'finishTime2': undefined,
+                
+            'category': undefined,
+            'subCategory': undefined,
+            'subSubCategory': undefined,
+            'location': undefined,
+            'province': undefined,
+            'city': undefined,
+            'district': undefined,
+            'reference': undefined,
+
+            'courseIntro': undefined,
+            'quiz': undefined,
+            'certification': undefined,
+            'openCourseRequirement': undefined,
+            'suitableStudent': undefined,
+            'prerequest': undefined,
+            'highScoreReward': undefined,
+            'courseName': undefined,
+            'studyDaysNote': undefined,
+            'partnerCourseReference': undefined,
+            'partnerIntro': undefined,
+            'teachingMaterialIntro': undefined,
+
+            'questionBank': undefined,
+            'passAgreement': undefined,
+            'extracurricular': undefined,
+            'phone': undefined,
+                
+            'partnerDistinction': undefined,
+            'outline': undefined,
+            'goal': undefined,
+            'classTeacher': undefined,
+            'teachingAndExercise': undefined,
+            'questionSession': undefined,
+            'trail': undefined,
+            'assignments': undefined,
+            'marking': undefined,
+            'bonusService': undefined,
+            'downloadMaterials': undefined,
+            'teachingMaterialFree': undefined,
+                
+            'status': undefined,
+            'partnerQualification': undefined,
+                 
+                
+            'studyDays': undefined,
+            'classImgUrls': undefined,
+            'teacherIntros': undefined,
+            'teacherImgUrls': undefined,
+            'teacherNames': undefined,
+                
+
+            'logoUrl': undefined,
+            'instName': undefined,
+            'wholeName': undefined
         };
     },
     idAttribute: 'courseId',
     parse: function (data) {
+        var i = 0,
+            introArr = [],
+            nameArr = [];
         if ( typeof data !== 'undefined') {
             data.courseId = parseInt(data.courseId, 10);
-            data.partnerId = parseInt(data.partnerId, 10);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.courseName = decodeURI(data.courseName);
-            data.courseIntro = decodeURI(data.courseIntro);
-            data.startTime1 = parseInt(data.startTime1, 10);
-            data.startTime2 = parseInt(data.startTime2, 10);
-            data.finishTime1 = parseInt(data.finishTime1, 10);
-            data.finishTime2 = parseInt(data.finishTime2, 10);
-            data.studyDays = data.studyDays;
-            data.studyDaysNote = data.studyDaysNote;
+            
+
+            data.courseId = parseInt(data.courseId, 10);
+            data.partnerId = parseInt(data.partnerId , 10);
+            data.price = parseInt(data.price , 10);
+            data.courseHourNum = parseInt(data.courseHourNum , 10);
+            data.courseHourLength = parseInt(data.courseHourLength , 10);
+                
+            data.classSize = parseInt(data.classSize , 10);
+            data.cashback = parseInt(data.cashback , 10);
+            data.popularity = parseInt(data.popularity , 10);
+                
+            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.startDate = Utilities.castFromAPIFormat(data.startDate);
             data.finishDate = Utilities.castFromAPIFormat(data.finishDate);
-            data.courseHourNum = parseInt(data.courseHourNum, 10);
-            data.courseHourLength = parseInt(data.courseHourLength, 10);
-            data.city = decodeURI(data.city);
-            data.district = decodeURI(data.district);
-            data.location = decodeURI(data.location);
+                
+            data.startTime1 = parseInt(data.startTime1 , 10);
+            data.finishTime1 = parseInt(data.finishTime1 , 10);
+            data.startTime2 = parseInt(data.startTime2 , 10);
+            data.finishTime2 = parseInt(data.finishTime2 , 10);
+                
             data.category = decodeURI(data.category);
             data.subCategory = decodeURI(data.subCategory);
-            data.price = parseInt(data.price, 10);
-            data.seatsTotal = parseInt(data.seatsTotal, 10);
-            data.seatsLeft = parseInt(data.seatsLeft, 10);
+            data.subSubCategory = decodeURI(data.subSubCategory);
+            data.location = decodeURI(data.location);
+            data.province = decodeURI(data.province);
+            data.city = decodeURI(data.city);
+            data.district = decodeURI(data.district);
             data.reference = decodeURI(data.reference);
-            data.partnerCourseReference = decodeURI(data.partnerCourseReference);
-            data.classModel = parseInt(data.classModel, 10);
+
+            data.courseIntro = decodeURI(data.courseIntro);
+            data.quiz = decodeURI(data.quiz);
+            data.certification = decodeURI(data.certification);
             data.openCourseRequirement = decodeURI(data.openCourseRequirement);
-            data.classroomImgUrl = decodeURI(data.classroomImgUrl);
-            data.classroomIntro = decodeURI(data.classroomIntro);
-            data.partnerQualification = parseInt(data.partnerQualification, 10);
-            data.partnerIntro = decodeURI(data.partnerIntro);
-            data.teachingMethods = data.teachingMethods;
-            data.teachingMethodsIntro = decodeURI(data.teachingMethodsIntro);
-            data.teachingMaterialType = parseInt(data.teachingMaterialType, 10);
-            data.teachingMaterialName = decodeURI(data.teachingMaterialName);
-            data.teachingMaterialIntro = decodeURI(data.teachingMaterialIntro);
-            data.teachingMaterialCost = parseInt(data.teachingMaterialCost, 10);
-            data.teachingMaterialFree = data.teachingMaterialFree === 'true' || data.teachingMaterialFree === true || Number(data.teachingMaterialFree) === 1;
             data.suitableStudent = decodeURI(data.suitableStudent);
             data.prerequest = decodeURI(data.prerequest);
-            data.teacherImgUrl = decodeURI(data.teacherImgUrl);
-            data.teacherIntro = decodeURI(data.teacherIntro);
-            data.hasDownloadMaterials = data.hasDownloadMaterials === 'true' || data.hasDownloadMaterials === true || Number(data.hasDownloadMaterials) === 1;
-            data.questionBank = data.questionBank;
-            data.questionBankIntro = decodeURI(data.questionBankIntro);
             data.highScoreReward = decodeURI(data.highScoreReward);
+            data.courseName = decodeURI(data.courseName);
+            data.studyDaysNote = decodeURI(data.studyDaysNote);
+            data.partnerCourseReference = decodeURI(data.partnerCourseReference);
+            data.partnerIntro = decodeURI(data.partnerIntro);
+            data.teachingMaterialIntro = decodeURI(data.teachingMaterialIntro);
+
+            data.questionBank = decodeURI(data.questionBank);
             data.passAgreement = decodeURI(data.passAgreement);
-            data.quiz = decodeURI(data.quiz);
-            data.provideAssignments = data.provideAssignments === 'true' || data.provideAssignments === true || Number(data.provideAssignments) === 1;
-            data.provideMarking = data.provideMarking === 'true' || data.provideMarking === true || Number(data.provideMarking) === 1;
-            data.certification = decodeURI(data.certification);
-            data.extracurricular = data.extracurricular;
-            data.extracurricularIntro = decodeURI(data.extracurricularIntro);
-            data.status = parseInt(data.status, 10);
+            data.extracurricular = decodeURI(data.extracurricular);
             data.phone = decodeURI(data.phone);
+                
+            data.partnerDistinction = decodeURI(data.partnerDistinction);
+            data.outline = decodeURI(data.outline);
+            data.goal = decodeURI(data.goal);
+            data.classTeacher = decodeURI(data.classTeacher);
+            data.teachingAndExercise = decodeURI(data.teachingAndExercise);
+            data.questionSession = decodeURI(data.questionSession);
+            data.trail = decodeURI(data.trail);
+            data.assignments = decodeURI(data.assignments);
+            data.marking = decodeURI(data.marking);
+            data.bonusService = decodeURI(data.bonusService);
+            data.downloadMaterials = decodeURI(data.downloadMaterials);
+            data.teachingMaterialFree = decodeURI(data.teachingMaterialFree);
+                
+            data.status = parseInt(data.status, 10);
+            data.partnerQualification = parseInt(data.partnerQualification, 10);
+                 
+            data.studyDays = data.studyDays;
+            data.classImgUrls = data.classImgUrls;
+            data.teacherImgUrls = data.teacherImgUrls;
+
+            for (i = 0; i < data.teacherIntros.length; i++){
+                introArr.push(decodeURI(data.teacherIntros[i]));
+            }
+            data.teacherIntros = introArr;
+            for (i = 0; i < data.teacherNames.length; i++){
+                nameArr.push(decodeURI(data.teacherNames[i]));
+            }
+            data.teacherNames = nameArr;
+
             data.logoUrl = decodeURI(data.logoUrl);
             data.instName = decodeURI(data.instName);
             data.wholeName = decodeURI(data.wholeName);
-            data.popularity = parseInt(data.popularity, 10);
         }
         return data;
     },
