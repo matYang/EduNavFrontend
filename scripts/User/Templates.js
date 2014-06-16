@@ -302,6 +302,8 @@
                 <div class="mypage_sidebar_sectionContent">
                     <div class="mypage_sidebar_tab" id="editInfo">个人资料</div>
                     <div class="mypage_sidebar_tab" id="editPass">密码修改</div>
+                    <div class="mypage_sidebar_tab" id="inviteCode">邀请码</div>
+
                 <!--    <div class="mypage_sidebar_tab" id="wtf">常用学员信息</div> -->
                 </div>
             </div>
@@ -475,7 +477,7 @@
             </div>
         </div>
         <div class="row2">
-            <div class="section"><label>班级类型：</label> <span><%= course.seatsTotal %>人</span></div>
+            <div class="section"><label>班级类型：</label> <span><%= course.classSize %>人</span></div>
             <div class="section"><label>开课时间：</label> <span><%= course.startDate %> - <%= course.finishDate %> <%= course.studyDays%> <%= course.studyDaysNote %>
             </span></div>
             <div class="section"><label>上课时间：</label> <span><%= course.startTime1 %> - <%= course.finishTime1 %>, <%= course.startTime2 %> - <%= course.finishTime2 %></span></div>
@@ -661,7 +663,7 @@
                     <dd><label>开课日期: </label><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDaysNote %></dd>
                     <dd><label>上课时间: </label><%= startTime1 %>-<%= finishTime1 %></dd>
                     <dd><label>上课课时: </label><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</dd>
-                    <dd><label>班级类型: </label><%= seatsTotal %>人</dd>
+                    <dd><label>班级类型: </label><%= classSize %>人</dd>
                     <dd><label>开班要求: </label><%= openCourseRequirement%></dd>
                     <dd><label>报名日期: </label>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</dd>
                     <dd><label>机构全称: </label><%= wholeName %></dd>
@@ -670,55 +672,42 @@
                     <dd class="teacher clearfix">
                         <label>老师介绍: </label>
                         <div class="clearfix blank">
-                            <div class="teacherInfo">
-                                <img class="teacherPhoto" src="style/images/t1.jpg" width="120" height="120"/>
-                                <div class="name">李红永</div>
-                                <p class="">新东方高级讲师，毕业于英国爱丁堡大学英语文学系，授课风格轻松幽默，深受学生的喜爱</p>
-                            </div>
-                            <div class="teacherInfo">
-                                <img class="teacherPhoto" src="style/images/t2.jpg" width="120" height="120"/>
-                                <div class="name">邱永清</div>
-                                <p class="">新东方高级讲师，毕业于英国爱丁堡大学英语文学系，授课风格轻松幽默，深受学生的喜爱</p>
-                            </div>
+                            <% if (teacherNames) { %>
+                                <% for (var i =0; i < teacherNames.length; i++) { %>
+                                    <div class="teacherInfo">
+                                        <img class="teacherPhoto" src="<%= teacherImgUrls %>" width="120" height="120"/>
+                                        <div class="name"><%= teacherNames[i] %></div>
+                                        <p class=""><%= teacherIntros %></p>
+                                    </div>
+                                <% } %>
+                            <% } %>
                         </div>
                     </dd>
                 </dl>
                 <dl id="content_teaching">
                     <dt>教学信息</dt>
                     <dd><label>先修知识: </label><%= prerequest %></dd>
-                    <dd><label>教学目标: </label><%= courseIntro %></dd>
-                    <dd><label>上课形式: </label><%= teachingMethods %></dd>
-                    <dd><label>教材介绍: </label><%= teachingMethodsIntro %></dd>
-                    <dd><label>教材费用: </label><%= teachingMaterialCost %></dd>
+                    <dd><label>教学目标: </label><%= goal %></dd>
+                    
+                    <dd><label>教材介绍: </label><%= teachingMaterialIntro %></dd>
+                    <dd><label>教材费用: </label><%= teachingMaterialFee %></dd>
                     <dd><label>课程介绍: </label><%= courseIntro %></dd>
                     <dd class="course_syllabus">
                          <label>课程提纲: </label>
                          <div>
-                             <p>第一讲 </p>
-                             <p>1、口语 Transport</p>
-                             <p>2、听力专项训练</p> 
-                             <p>3、精读文章</p> 
-                             <p>4、课后美文欣赏</p>
-                             <p>第二讲 </p>
-                             <p>1、口语 Different shops</p> 
-                             <p>2、听力专项训练</p> 
-                             <p>3、精读文章</p> 
-                             <p>4、课后美文欣赏</p> 
-                             <p>第三讲</p> 
-                             <p>1、口语　Ｉlove fashion</p> 
-                             <p>2、听力专项训练</p>  
+                             <%= outline %>
                          </div>
                     </dd>
                 </dl>
                 <dl id="content_etc">
                     <dt>教学补充</dt>
-                    <dd><label>课件下载: </label><%= hasDownloadMaterials %></dd>
+                    <dd><label>课件下载: </label><%= downloadMaterials %></dd>
                     <dd><label>题库支持: </label><%= questionBank %></dd>
-                    <dd><label>讲练结合: </label></dd>
+                    <dd><label>讲练结合: </label><%= teachingAndExercise %></dd>
                     <dd><label>阶段测评: </label><%= quiz %></dd>
-                    <dd><label>课后答疑: </label></dd>
-                    <dd><label>课后作业: </label><%= provideAssignments %></dd>
-                    <dd><label>作业批改: </label><%= provideMarking %></dd>
+                    <dd><label>课后答疑: </label><%= questionSession %></dd>
+                    <dd><label>课后作业: </label><%= assignments %></dd>
+                    <dd><label>作业批改: </label><%= marking %></dd>
                 </dl>
                 <dl id="content_guarantee">
                     <dt>教学保障</dt>
@@ -728,8 +717,8 @@
                 <dl id="content_service">
                     <dt>特色服务</dt>
                     <dd><label>结业证书: </label><%= certification %></dd>
-                    <dd><label>课后互动: </label><%= extracurricularIntro %></dd>
-                    <dd><label>赠送服务: </label><%= extracurricularIntro %></dd>
+                    <dd><label>课后互动: </label><%= extracurricular %></dd>
+                    <dd><label>赠送服务: </label><%= bonusService %></dd>
                 </dl>
             </div>
         </div>
@@ -812,10 +801,10 @@
                     <td class="courseId_<%= course.courseId %>"><%= course.location %></td>
                 <% }); %>
             </tr>
-            <tr id="seatsTotal">
+            <tr id="classSize">
                 <th>班级类型</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.seatsTotal %>人</td>
+                    <td class="courseId_<%= course.courseId %>"><%= course.classSize %>人</td>
                 <% }); %>
             </tr>
             <tr id="openCourseRequirement">
@@ -846,7 +835,7 @@
                 <th>机构概况</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>">
-                    <% if (course.partnerIntro.length>30) { %>
+                    <% if (course.partnerIntro && course.partnerIntro.length>30) { %>
                         <%= course.partnerIntro.strstring(0,24) %>...
                         <a class="F_green" href="#">[展开]</a></td>
                         <>
@@ -859,8 +848,10 @@
                 <th>老师介绍</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>">
-                        <% for ( var i; i < course.teacherName.length; i++ ) { %>
-                            <p><b class="F_green">course.teacherName[i]</b> course.teacherIntro[i]</p>
+                        <% if (course.tearcherName) { %>
+                            <% for ( var i; i < course.teacherName.length; i++ ) { %>
+                                <p><b class="F_green">course.teacherName[i]</b> course.teacherIntro[i]</p>
+                            <% } %>
                         <% } %>
                     </td>
                 <% }); %>
@@ -892,12 +883,12 @@
                     <td class="courseId_<%= course.courseId %>"><%= course.prerequest %></td>
                 <% }); %>
             </tr>
-            <tr id="teachingMethods">
+            <!-- <tr id="teachingMethods">
                 <th>上课形式</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>"><%= course.teachingMethods %></td>
                 <% }); %>
-            </tr>
+            </tr> -->
             <tr id="teachingMaterialIntro">
                 <th>教材介绍</th>
                 <% _.each(courses, function(course) { %>
@@ -940,13 +931,13 @@
             <tr>
                 <th>班主任导学</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>">老师不定期跟进学员进度，灵活调整课程计划</td>
+                    <td class="courseId_<%= course.courseId %>"><%= course.classTeacher %></td>
                 <% }); %>
             </tr>
             <tr>
                 <th>讲练结合</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>">寄语特定教学目标，进行有针对的训练及讲解</td>
+                    <td class="courseId_<%= course.courseId %>"><%= course.teachingAndExercise %></td>
                 <% }); %>
             </tr>
             <tr id="quiz">
@@ -958,7 +949,7 @@
             <tr>
                 <th>课后答疑</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>">支持课后多途径教学相关任何答疑问解答</td>
+                    <td class="courseId_<%= course.courseId %>"><%= course.questionSession %></td>
                 <% }); %>
             </tr>
             <tr id="provideAssignments">
@@ -1014,7 +1005,7 @@
             <tr id="service">
                 <th>赠送服务</th>
                 <% _.each(courses, function(course) { %>
-                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.extracurricularIntro %></td>
+                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.bonusService %></td>
                 <% }); %>
             </tr>
         </table>
@@ -1075,9 +1066,9 @@
     <tr id="coupon_<%= couponId %>">
         <td class="col1"><%= creationTime %></td>
         <td class="col2"><%= amount %></td>
-        <td class="col3">爱上课赠送</td>
+        <td class="col3"><%= origin %></td>
         <td class="col4"><%= expireTime %></td>
-        <td class="col5"><input class="claim" type="button" value="激活"></td>
+        <td class="col5"><input id="coupon_act_<%= couponId %>" class="claim" type="button" value="激活"></td>
     </tr>
 </script>
 
@@ -1085,7 +1076,7 @@
     <tr id="coupon_<%= couponId %>">
         <td class="col1"><%= couponId %></td>
         <td class="col2"><%= amount %></td>
-        <td class="col3">爱上课赠送</td>
+        <td class="col3"><%= origin %></td>
         <td class="col4">%= expireTime %></td>
     </tr>
 </script>
@@ -1122,5 +1113,37 @@
         </tbody>
     </table>
     <div id="couponNavigator1" class="page blank1 clearfix">
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_password">
+    <div class="title"><a href="#">我的爱上课</a> > <span>个人设置</span> > <a class=" F_green" href="#">修改密码</a></div>
+    <div class="mypage_content_inner form_style password">
+        <div class="field">
+            <label>原密码</label>
+            <input class="text" type="text" id="oldPassword">
+            <span id="oldPassword_info" class="action"><span class="form_tip"><span class="form_tip_top">请填写原密码</span><span class="form_tip_bottom"></span></span></span>
+        </div>                        
+        <div class="field">
+            <label>新密码</label>
+            <input class="text" type="text" id="newPassword">
+            <span id="newPassword_info" class="action"><span class="form_tip"><span class="form_tip_top">新密码至少八位</span><span class="form_tip_bottom"></span></span></span>
+        </div>                        
+        <div class="field">
+            <label>确认密码</label>
+            <input class="text" type="text" id="confirmPassword">
+            <span id="confirmPassword_info" class="action"><span class="form_tip"><span class="form_tip_top">确认新密码</span><span class="form_tip_bottom"></span></span></span>
+        </div> 
+        <div class="field">
+            <label>手机验证</label>
+            <input class="text" style="width:80px;" type="text" id="smsAuthCode">
+            <input id="getAuthCode" class="btn_g" type="button" value="获取验证码"/>
+            <input id="gotAuthCode" class="btn_gray hidden" type="button" value="获取验证码"/>
+            <span id="getAuthCodeNote" class="instr hidden">（验证码已发送，2分钟内无法重复发送，请注意查收）</span>
+        </div> 
+        <div class="btn">
+            <input class="btn_O" type="button" value="保 存">
+            <a href="#">取消</a>
+        </div> 
     </div>
 </script>

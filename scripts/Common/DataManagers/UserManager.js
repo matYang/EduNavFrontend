@@ -400,6 +400,28 @@
     /* Coupons */
     UserManager.prototype.claimCoupon =  function (couponId, callback) {
         var self = this;
+        if (!this.sessionManager.hasSession()){
+            Info.warn('UserManager::smsVerification:: session already exists, exit');
+            return;
+        }
+
+        $.ajax({
+            type: 'PUT',
+            url: self.apis.user_coupon + couponId,
+            dataType: 'json',
+            success: function(data){
+                if(callback){
+                    callback.success();
+                }
+            },
+            error: function (data, textStatus, jqXHR){
+                Info.warn('UserManager::smsVerification:: action failed');
+                Info.warn(data);
+                if(callback){
+                    callback.error(data);
+                }
+            }
+        });
     }
 
 }).call(this);

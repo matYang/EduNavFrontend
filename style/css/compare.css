@@ -1,6 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
+.compare{font-size:12px;}
 .compare .title{height:42px; line-height:42px; border-top:2px  solid #128d56; border-left:1px solid #ccc; border-right:1px solid #ccc;}
 .compare .title span{float:left; font-size:16px; font-weight:bold; font-family:微软雅黑; color:#128d56; padding-left:24px; margin-left:26px; cursor:pointer;}
 .compare .title span.up{ background:url(../images/up.png) no-repeat left center;}

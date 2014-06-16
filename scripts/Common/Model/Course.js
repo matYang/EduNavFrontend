@@ -58,7 +58,7 @@ var Course = Backbone.Model.extend({
             'marking': undefined,
             'bonusService': undefined,
             'downloadMaterials': undefined,
-            'teachingMaterialFree': undefined,
+            'teachingMaterialFee': undefined,
                 
             'status': undefined,
             'partnerQualification': undefined,
@@ -144,7 +144,7 @@ var Course = Backbone.Model.extend({
             data.marking = decodeURI(data.marking);
             data.bonusService = decodeURI(data.bonusService);
             data.downloadMaterials = decodeURI(data.downloadMaterials);
-            data.teachingMaterialFree = decodeURI(data.teachingMaterialFree);
+            data.teachingMaterialFee = decodeURI(data.teachingMaterialFee);
                 
             data.status = parseInt(data.status, 10);
             data.partnerQualification = parseInt(data.partnerQualification, 10);
@@ -177,14 +177,16 @@ var Course = Backbone.Model.extend({
         json.startTime2 = Math.floor(json.startTime2/100) + ":" + json.startTime2%100;
         json.finishTime1 = Math.floor(json.finishTime1/100) + ":" + json.finishTime1%100;
         json.finishTime2 = Math.floor(json.finishTime2/100) + ":" + json.finishTime2%100;
-        var studyDays = "每周";
-        for (var i = 0; i < json.studyDays.length; i++ ){
-            studyDays = studyDays + Constants.weekDayArray[json.studyDays [i]];
-            if (i < json.studyDays.length - 1) {
-                studyDays += ", ";
+        if (studyDays) {
+            var studyDays = "每周";
+            for (var i = 0; i < json.studyDays.length; i++ ){
+                studyDays = studyDays + Constants.weekDayArray[json.studyDays [i]];
+                if (i < json.studyDays.length - 1) {
+                    studyDays += ", ";
+                }
             }
+            json.studyDays = studyDays;
         }
-        json.studyDays = studyDays;
         json.studyDaysNote =json.studyDaysNote ? "(" + json.studyDaysNote + ")" : "" ;
         var date = new Date(this.get("startDate"));
         date.setDate(date.getDate()-5);

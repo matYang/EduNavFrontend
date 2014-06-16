@@ -44,7 +44,7 @@ var CompareView = Backbone.View.extend({
         $("#compareEntriesContainer").append("<div>课程信息好像载入失败了....诶嘿(<ゝω·) <a id='retry'>重试</a></div>");
     },
     afterRender: function() {
-        $(".courseId_-1").html("");
+        $(".courseId_").html("");
         this.configMoveButton();
     },
     configMoveButton: function () {

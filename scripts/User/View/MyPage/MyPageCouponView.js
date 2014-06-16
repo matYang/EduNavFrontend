@@ -81,7 +81,15 @@ var UnclaimedCouponView = MultiPageView.extend({
         MultiPageView.prototype.render.call(this);
     },
     entryEvent: function (id) {
-        app.userManager.claimCoupon(id);
+    $("#coupon_act_"+id).val("激活中");
+        app.userManager.claimCoupon(id, {
+            "success": function () {
+                $("#coupon_act_"+id).parent().html("<span>已激活</span>");
+            },
+            "error": function () {
+                $("#coupon_act_"+id).val("重试");
+            }
+        });
     },
     bindEvents: function () {
 

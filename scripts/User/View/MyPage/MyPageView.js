@@ -43,6 +43,7 @@ var MyPageView = Backbone.View.extend({
                 break
             case "password" :
                 this.activeChildView = new MyPagePasswordView();
+                $("#editPass").addClass("active");
                 break;
             case "coupon" :
                 this.activeChildView = new MyPageCouponView();
@@ -72,6 +73,22 @@ var MyPageView = Backbone.View.extend({
                 $("#mypage_sidebar").find(".active").removeClass("active");
                 that.query = "coupon";
                 app.navigate("mypage/coupon");
+                that.createChildView();
+            }
+        });
+        $("#editPass").on("click", function () {
+            if (that.query !== "password") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "password";
+                app.navigate("mypage/password");
+                that.createChildView();
+            }
+        });
+        $("#editInfo").on("click", function () {
+            if (that.query !== "setting") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "setting";
+                app.navigate("mypage/setting");
                 that.createChildView();
             }
         });

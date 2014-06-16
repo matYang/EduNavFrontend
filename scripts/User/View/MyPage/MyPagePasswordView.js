@@ -5,39 +5,44 @@ var MyPagePasswordView = BaseFormView.extend({
     model: {},
     initialize: function () {
 
-        _.bindAll(this, 'render', 'close', 'savePassword', 'passwordSuccess', 'getSmsSuccess', 'getSmsError', 'passwordError', 'bindEvents'， 'clearPassword', 'oldPasswordValid', 'newPasswordValid', 'confirmPasswordValid');
+        _.bindAll(this, 'render', 'close', 'passwordSuccess', 'getSmsSuccess', 'getSmsError', 'passwordError', 'bindEvents', 'clearPassword', 'oldPasswordValid', 'newPasswordValid', 'confirmPasswordValid');
         this.isClosed = false;
-        this.field = [
+        app.viewRegistration.register(this);
+        this.fields = [
             new BaseField({
                 name:"原密码",
                 fieldId: "oldPassword",
                 fieldType: "text",
                 mandatory: true,
                 validatorFunction: this.oldPasswordValid,
-                modelAttr: "oldPassword"
+                modelAttr: "oldPassword",
+                buildValidatorDiv: this.buildValidatorDiv
             }),
             new BaseField({
-                name:"原密码",
+                name:"新密码",
                 fieldId: "newPassword",
                 fieldType: "text",
                 mandatory: true,
                 validatorFunction: this.newPasswordValid,
-                modelAttr: "newPassword"
+                modelAttr: "newPassword",
+                buildValidatorDiv: this.buildValidatorDiv
             }),
             new BaseField({
-                name:"原密码",
+                name:"确认密码",
                 fieldId: "confirmPassword",
                 fieldType: "text",
                 mandatory: true,
                 validatorFunction: this.confirmPasswordValid,
-                modelAttr: "confirmNewPassword"
+                modelAttr: "confirmNewPassword",
+                buildValidatorDiv: this.buildValidatorDiv
             }),
             new BaseField({
                 name:"手机验证码",
                 fieldId: "smsAuthCode",
                 fieldType: "text",
                 mandatory: true,
-                modelAttr: "authCode"   
+                modelAttr: "authCode",
+                buildValidatorDiv: this.smsValidator
             })
         ];
         this.sessionUser = app.userManager.sessionModel;
@@ -50,13 +55,13 @@ var MyPagePasswordView = BaseFormView.extend({
         this.$el.append(this.template);
     },
     bindEvents:function (){
-        $("#getAuthCode").on("click", function () {
+        var that = this;
+        $("#getAuthCode").add($("#gotAuthCode")).on("click", function () {
             app.userManager.changePasswordVerification({
-                success: this.getSmsSuccess,
-                error: this.getSmsError,
+                success: that.getSmsSuccess,
+                error: that.getSmsError,
             });
-            $("#getAuthCodeNote").html("短信发送中...");
-            $("#getAuthCode").prop("disable", true);
+            $(this).prop("disable", true).val("发送中...");
         });
 
         $("#reset_password").on('click', this.clearPassword);
@@ -64,11 +69,13 @@ var MyPagePasswordView = BaseFormView.extend({
     },
     getSmsSuccess: function () {
         $("#getAuthCodeNote").html("短信发送成功, 请确认短信。");
-        $("#getAuthCode").prop("disable", false).val("重新发送");
+        $("#getAuthCode").prop("disable", false).val("发送验证码").addClass("hidden");
+        $("#gotAuthCode").removeClass("hidden");
     },
     getSmsError: function () {
-        $("#getAuthCodeNote").html("验证请求失败，请检查网络状态然后重试。");
-        $("#getAuthCode").prop("disable", false);
+        $("#getAuthCodeNote").html("验证请求失败，请检查网络状态然后重试。").removeClass("hidden");
+        $("#getAuthCode").prop("disable", false).val("发送验证码").removeClass("hidden");
+        $("#gotAuthCode").addClass("hidden")
     },
     submitAction: function () {
         app.userManager.changePassword(this.model, {
@@ -84,7 +91,7 @@ var MyPagePasswordView = BaseFormView.extend({
         }
     },
     newPasswordValid: function (val) {
-        var value2 = $("#confirmPassword"),val();
+        var value2 = $("#confirmPassword").bval();
         if (val !== value2) {
             return {valid:false, text:"两次密码不一致"};
         }
@@ -121,7 +128,36 @@ var MyPagePasswordView = BaseFormView.extend({
         $("#newPassword").val("");
         $("#confirmPassword").val("");
     },
+    buildValidatorDiv: function (valid, type, text) {
+        //This function overloads baseField's default buildValidatorDiv. It should only be invoked by BaseField's testValue function, thus this refers the BaseForm model in this case,
+        //This function is not bound to the view.
+        $("#"+this.get("fieldId")+"_info").remove();
+        if (valid) {
+            $("#"+this.get("fieldId")).removeClass("wrong_color");
+            return '<span class="success" id="'+this.get("fieldId")+'_right"></span>';
+        } else if (type === "empty") {
+            $("#"+this.get("fieldId")).addClass("wrong_color");
+            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong" ><span class="form_tip"><span class="form_tip_top">' + this.get("name")+"不能为空" + '</span><span class="form_tip_bottom"></span></span></span>';
+        } else if (text) {
+            $("#"+this.get("fieldId")).addClass("wrong_color");
+            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' + text + '</span><span class="form_tip_bottom"></span></span></span>';
+        } else {
+            $("#"+this.get("fieldId")).addClass("wrong_color");
+            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' +  this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></span>';
+        }
+    },
+    smsValidator: function (valid, type, text) {
+        if (valid) {
+            $("#"+this.get("fieldId")).removeClass("wrong_color");
+        } else {
+            $("#"+this.get("fieldId")).addClass("wrong_color");
+        }
+        return "";
+    }, 
     close: function (){
-
+        if (!this.isClosed) {
+            this.isClosed = true;
+            this.$el.empty();
+        }
     }
 });
