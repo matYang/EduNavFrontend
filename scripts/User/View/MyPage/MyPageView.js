@@ -44,9 +44,14 @@ var MyPageView = Backbone.View.extend({
             case "password" :
                 this.activeChildView = new MyPagePasswordView();
                 break;
+            case "coupon" :
+                this.activeChildView = new MyPageCouponView();
+                $("#couponAccount").addClass("active");
+                break;
             case "dashboard":
             case "booking": 
             default:
+                $("#bookingManage").addClass("active");
                 this.activeChildView = new MyPageDashboardView();        
                 break;
         }
@@ -56,8 +61,17 @@ var MyPageView = Backbone.View.extend({
         var that = this;
         $("#bookingManage").on("click", function () {
             if (that.query !== "booking") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
                 that.query = "booking";
-                app.navigate("mypage/booking", true);
+                app.navigate("mypage/booking");
+                that.createChildView();
+            }
+        });
+        $("#couponAccount").on("click", function () {
+            if (that.query !== "coupon") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "coupon";
+                app.navigate("mypage/coupon");
                 that.createChildView();
             }
         });

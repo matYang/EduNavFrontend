@@ -25,7 +25,7 @@ h2 { font-size: 24px; font-family: 微软雅黑; color: #128d56; font-weight: no
 .sign_up dd.wrong { margin-left: 130px; margin-top:10px;}
 .sign_up dd.wrong p { font-size: 14px; line-height: 22px; }
 .sign_up dd .right { float: left; width:20px; height: 14px; background: url(../images/icon.png) no-repeat -1px -306px; margin-top: 7px; margin-left: 5px; }
-.wrong p {margin-top: 10px;padding-left: 25px;height: 22px;background: url(../images/icon_wrong.png) no-repeat;font-size: 16px;}
+.wrong p {padding-left: 25px;height: 22px;background: url(../images/icon_wrong.png) no-repeat;font-size: 16px;}
 
 
 

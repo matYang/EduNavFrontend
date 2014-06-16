@@ -14,6 +14,7 @@ var SearchView = Backbone.View.extend({
         this.timeDesc = true;
         this.priceDesc = true;
         this.windowHeight = $(window).height();
+        this.allMessages = new Courses();
         this.user = app.sessionManager.sessionModel;
         //define the template
         this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
@@ -43,8 +44,9 @@ var SearchView = Backbone.View.extend({
     renderSearchResults: function (searchResults, byFilter) {
         //prevent memory leaks
         $("#searchResultDisplayPanel").empty();
+        searchResults = searchResults || new Courses()
         if (!byFilter) {
-            this.allMessages = searchResults || new Courses();
+            this.allMessages = searchResults;
         } 
         var array = searchResults.toArray();
         this.searchResultView.allMessages.reset(this.allMessages.toArray());

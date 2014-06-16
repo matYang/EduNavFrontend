@@ -12,30 +12,30 @@ var TopBarView = Backbone.View.extend({
         this.sessionUser = app.sessionManager.sessionModel;
 
         this.render();
+        this.bindEvents();
+        this.listenTo(this.sessionUser, 'change:userId', this.reRender);
     },
 
     render: function () {
-        this.listenTo(this.sessionUser, 'change:userId', this.reRender);
         this.$pdropdown = $('#profileDropdown>dd');
         if (app.sessionManager.hasSession()) {
             this.$el.append(this.loggedInTemplate(this.sessionUser._toJSON()));
-            this.bindEvents();
         } else {
             this.$el.append(this.notLoggedInTemplate);
+            $("#topbar_loginbox").hide();
             $("#credentialWrong").hide();
-            this.bindEvents();
         }
     },
 
     reRender: function () {
         this.$el.empty();
         this.render();
+        this.bindEvents();
     },
 
     bindEvents: function () {
         var self = this;
         var username, password;
-
         /*  navigation events  */
         //main nav
         
@@ -104,6 +104,7 @@ var TopBarView = Backbone.View.extend({
                     app.sessionManager.fetchSession(true, {
                         success: function () {
                             app.userManager.sessionUser = app.sessionManager.sessionModel;
+                            self.reRender();
                         },
                         error: function () {
                             Info.displayNotice("登录失败，请稍后再试");

@@ -28,7 +28,8 @@ var EnumConfig = {
     'CouponStatus': {
         usabled: 0,
         expired: 1,
-        used: 2
+        used: 2,
+        inactive: 3
     },
 
     'TransactionType': {

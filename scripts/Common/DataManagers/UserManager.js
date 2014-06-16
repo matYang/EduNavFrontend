@@ -397,4 +397,9 @@
         });
     };
 
+    /* Coupons */
+    UserManager.prototype.claimCoupon =  function (couponId, callback) {
+        var self = this;
+    }
+
 }).call(this);

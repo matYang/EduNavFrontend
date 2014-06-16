@@ -63,6 +63,10 @@ var MultiPageView = Backbone.View.extend({
         this.$domContainer = this.$domContainer || $("#"+this.entryContainer);
         this.$domContainer.empty();
         if (this.messages.length > 0) {
+            if (this.table) {
+                $(this.table).show();
+                $(this.table).find(".noMessage").remove();
+            }
             var buf = [], i, length = this.messages.length - this.startIndex;
             length = (length < this.pageEntryNumber) ? length : this.pageEntryNumber;
             for ( i = 0; i < length; i++) {
@@ -84,7 +88,12 @@ var MultiPageView = Backbone.View.extend({
                 this.eventBound = true;
             }
         } else {
-            this.$domContainer.append("<div class = 'noMessage'>"+this.noMessage+"</div>");
+            if (!this.table) {
+                this.$domContainer.append("<div class = 'noMessage'>"+this.noMessage+"</div>");
+            } else {
+                $(this.table).hide();
+                $(this.table).after("<div class = 'noMessage'>"+this.noMessage+"</div>");
+            }
         }
         if (this.entryHeight) {
             var height = Math.ceil(length / this.entryRowNum) * this.entryHeight;

@@ -28,16 +28,17 @@ var CompareView = Backbone.View.extend({
     render: function (course) {
         this.courses.push(course._toJSON());
         var len = this.courses.length;
-            if (len >= this.courseIdList.length) {
-                while (len < 4) {
-                    len++;
-                    this.courses.push((new Course())._toJSON());
-                }
-                this.$el.empty().append(this.template({courses: this.courses}));
-                this.$view = $("#compareView");
-                this.afterRender();
-                this.bindEvents();
+        if (len >= this.courseIdList.length) {
+            while (len < 4) {
+                len++;
+                this.courses.push((new Course())._toJSON());
             }
+            this.$el.empty().append(this.template({courses: this.courses}));
+            this.$view = $("#compareView");
+            this.afterRender();
+            this.bindEvents();
+        }
+        $(document).scrollTop(0);
     },
     renderError: function () {
         $("#compareEntriesContainer").append("<div>课程信息好像载入失败了....诶嘿(<ゝω·) <a id='retry'>重试</a></div>");

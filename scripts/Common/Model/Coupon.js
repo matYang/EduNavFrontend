@@ -64,7 +64,6 @@ var Coupon = Backbone.Model.extend({
 
 });
 
-
 var Coupons = Backbone.Collection.extend({
 
     model: Coupon,

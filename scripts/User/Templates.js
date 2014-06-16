@@ -44,7 +44,7 @@
                         </li>
                         <li class="clearfix">
                             <div class="checkbox checked">记住我</div>
-                            <a class="forget_password" href="#">忘记密码？</a>
+                            <a id="forget_password" class="forget_password" href="#">忘记密码？</a>
                         </li>
                         <li><input id="login_button" class="btn_topnav_login" type="button" value="登 录"></li>
                     </ul>
@@ -267,7 +267,7 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_base">
-    <div id="mypage_main">
+    <div id="mypage_main" class="clearfix">
         <div id="mypage_sidebar">
             <div class="mypage_sidebar_title">上课书包</div>
             <div class="mypage_sidebar_section p1" >
@@ -285,7 +285,7 @@
             <div class="mypage_sidebar_section p2">
                 <div class="mypage_sidebar_sectionTitle">订单管理</div>
                 <div class="mypage_sidebar_sectionContent">
-                    <div class="mypage_sidebar_tab active" id="bookingManage">课程订单</div>
+                    <div class="mypage_sidebar_tab" id="bookingManage">课程订单</div>
                 </div>
             </div>
             <div class="mypage_sidebar_section p3">
@@ -306,7 +306,7 @@
                 </div>
             </div>
         </div>
-        <div id="mypage_content">
+        <div id="mypage_content" class="mypage_min_height">
         </div>
     </div>
 
@@ -326,9 +326,9 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingList">
-    <div>上课书包 &gt; 订单管理 </div>
+    <div class="title"><b>未入学订单</b></div><strong></strong>
     <div id="bookingSummary">
-    </div>
+    </div><!--bookingSummary end-->
 </script>
 
 <script type="text/template" id="tpl_booking_entry">
@@ -338,7 +338,7 @@
             <div class="dayOfWeek"><%= course.studyDays %> <%= course.studyDaysNote %></div>
         </div>
         <div class="bookingEntryDetail">
-            <p class="title"><a class="F_green" href="#">【<%= course.instName %>】<%= course.courseName %></a></p>
+            <h3><a class="F_green" href="#">【<%= course.instName %>】<%= course.courseName %></a></h3>
             <p class="address"><b>地址：</b><%= course.location %></p>
         </div>
         <div class="bookingEntryPrice">
@@ -351,114 +351,118 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingDetail">
-    <div class="crumbs">上课书包 &gt; 订单管理 &gt; <span class="F_green">课程订单</span> </div>
-    <div id="bookingDetail" class="blank">
-        <div class="row0 clearfix">
-            <div class="fleft">
-                <p><label>订单号：<%= reference %></label> <span>(2014年5月23日预定)</span></p>
-                <p><label>状<s></s>态：<b class="F_green">等待确认</b></label> <span>(2014年5月27日预定)</span></p>
-            </div>
-            <p class="fright price"><label>总金额：</label><span class="sign">￥</span><%= course.price %></p>
-        </div>
-        <div class="row1">
-            <div id="process">
-                <% if ( status === 3 ) { %>
-                    <p>订单已取消</p>
-                <% } else if (status === 5 ) { %>
-                    <p>订单已结束</p>
-                <% } else { %>
-                    <% if ( status >= 0) { %>
-                        <div class="node fore ready">
-                    <% } else { %>
-                        <div class="node fore wait">
-                    <% } %>
-                        <p>提交订单</p>
-                    </div>
-                    <% if ( status > 0) { %>
-                        <div class="proce ready">
-                    <% } else { %>
-                        <div class="proce doing">
-                    <% } %>
-                        <p>&nbsp;</p>
-                    </div>
-                    <% if ( status >= 1) { %>
-                        <div class="node ready">
-                    <% } else { %>
-                        <div class="node wait">
-                    <% } %>
-                        <p>机构确认</p>
-                    </div>
-                    <% if ( status > 1) { %>
-                        <div class="proce ready">
-                    <% } else if (status === 1) { %>
-                        <div class="proce doing">
-                    <% } else { %>
-                        <div class="proce wait">
-                    <% } %>
-                        <p>&nbsp;</p>
-                    </div>
-                    <% if ( status >= 3) { %>
-                        <div class="node ready">
-                    <% } else { %>
-                        <div class="node wait">
-                    <% } %>
-                        <p>已经报到</p>
-                    </div>
-                    <% if ( status > 3) { %>
-                        <div class="proce ready">
-                    <% } else if (status === 3) { %>
-                        <div class="proce doing">
-                    <% } else { %>
-                        <div class="proce wait">
-                    <% } %>
-                        <p>&nbsp;</p>
-                    </div>
-                    <% if ( status >= 4) { %>
-                        <div class="node ready">
-                    <% } else { %>
-                        <div class="node wait">
-                    <% } %>
-                        <p>已经入学</p>
-                    </div>
-                <% } %>
-            </div>
-            <div class="explain">
-                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的订单正在和<%= course.instName %>确认</span></p>
-            </div>
-        </div>
-        <div class="row2">
-            <h3 class="title"><%= course.courseName %></h3>
-            <p><label>教育机构：</label><span><%= course.instName %></span></p>
-            <p><label>上课地址：</label><span><%= course.location %></span></p>
-            <p><label>咨询电话：</label><span><%= course.phone %></span></p>
-        </div>
-        <div class="row3">
-            <div class="title">入学信息</div>
-            <div class="clearfix">
+
+    <div id="mypage_content" class="mypage_min_height">
+        <div class="title">我的爱上课 &gt; 订单管理 &gt; <span class="F_green">课程订单</span> </div>
+        <div id="bookingDetail">
+            <div class="row0 clearfix">
                 <div class="fleft">
-                    <p><label>开课时间:</label> <%= course.startDate %> - <%= course.finishDate %></p>
-                    <p><label>班级类型:</label> <%= course.classModel %></p>
-                    <p><label>联系方式:</label> <%= phone %></p>
-                    <p><label>入学人姓名:</label> <%= name %></p>
+                    <p><label>订单号：1436991417</label> <span>(2014年5月23日预定)</span></p>
+                    <p><label>状<s></s>态：<b class="F_green">等待确认</b></label> <span>(2014年5月27日预定)</span></p>
                 </div>
-                <div class="fleft">
-                    <p><label>上课时间1:</label> <%= course.startTime1 %> - <%= course.finishTime1 %></p>
-                    <p><label>上课时间2:</label> <%= course.startTime2 %> - <%= course.finishTime2 %></p>
-                    <p><label>预定人数:</label>1人</p>
-                    <p><label>邮箱:</label><%= email %></p>
+                <p class="fright price"><label>总金额：</label><span class="sign">￥</span>1999</p>
+            </div>
+            <div class="row1">
+                <div id="process">
+                    <% if ( status === 3 ) { %>
+                        <p>订单已取消</p>
+                    <% } else if (status === 5 ) { %>
+                        <p>订单已结束</p>
+                    <% } else { %>
+                        <% if ( status >= 0) { %>
+                            <div class="node fore ready">
+                        <% } else { %>
+                            <div class="node fore wait">
+                        <% } %>
+                            <p>提交订单</p>
+                        </div>
+                        <% if ( status > 0) { %>
+                            <div class="proce ready">
+                        <% } else { %>
+                            <div class="proce doing">
+                        <% } %>
+                            <p>&nbsp;</p>
+                        </div>
+                        <% if ( status >= 1) { %>
+                            <div class="node ready">
+                        <% } else { %>
+                            <div class="node wait">
+                        <% } %>
+                            <p>机构确认</p>
+                        </div>
+                        <% if ( status > 1) { %>
+                            <div class="proce ready">
+                        <% } else if (status === 1) { %>
+                            <div class="proce doing">
+                        <% } else { %>
+                            <div class="proce wait">
+                        <% } %>
+                            <p>&nbsp;</p>
+                        </div>
+                        <% if ( status >= 3) { %>
+                            <div class="node ready">
+                        <% } else { %>
+                            <div class="node wait">
+                        <% } %>
+                            <p>已经报到</p>
+                        </div>
+                        <% if ( status > 3) { %>
+                            <div class="proce ready">
+                        <% } else if (status === 3) { %>
+                            <div class="proce doing">
+                        <% } else { %>
+                            <div class="proce wait">
+                        <% } %>
+                            <p>&nbsp;</p>
+                        </div>
+                        <% if ( status >= 4) { %>
+                            <div class="node ready">
+                        <% } else { %>
+                            <div class="node wait">
+                        <% } %>
+                            <p>已经入学</p>
+                        </div>
+                    <% } %>
+                </div>
+ <!--               <div class="explain">
+                    <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的订单正在和新东方教育确认</span></p>
+                    <p><span>2014-6-12</span> <span>12:02</span> <span>您的订单已经提交</span></p>
+                </div>-->
+            </div>
+            <div class="row2">
+                <h3><%= course.courseName %></h3>
+                <p><label>教育机构：</label><span><%= course.instName %></span></p>
+                <p><label>上课地址：</label><span><%= course.location %></span></p>
+                <p><label>咨询电话：</label><span><%= course.phone %></span></p>
+            </div>
+            <div class="row3">
+                <h3>入学信息</h3>
+                <div class="clearfix">
+                    <div class="fleft">
+                        <p><label>开课时间:</label> <%= course.startDate %> - <%= course.finishDate %></p>
+                        <p><label>班级类型:</label> <%= course.classModel %></p>
+                        <p><label>联系方式:</label> <%= phone %></p>
+                        <p><label>入学人姓名:</label> <%= name %></p>
+                    </div>
+                    <div class="fleft">
+                        <p><label>上课时间1:</label> <%= course.startTime1 %> - <%= course.finishTime1 %></p>
+                        <p><label>上课时间2:</label> <%= course.startTime2 %> - <%= course.finishTime2 %></p>
+                        <p><label>预定人数:</label>1人</p>
+                        <p><label>邮箱:</label><%= email %></p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row4">
-            <div class="title">支付信息</div>
-            <p><label>支付方式:</label> 学校前台支付</p>
-        </div>
-    </div><!--bookingDetail end-->
-    <div id="printBooking" class="print"><a href="#">订单打印</a></div>
-    <div class="btns">
-        <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking" /> -->
-        <input type="button" class="btn_W" value="取消订单" id="cancelBooking" />
-    </div><!--btns end-->
+            <div class="row4">
+                <h3>支付信息</h3>
+                <p><label>支付方式:</label> 学校前台支付</p>
+            </div>
+        </div><!--bookingDetail end-->
+        <div id="printBooking" class="print"><a href="#">订单打印</a></div>
+        <div class="btns">
+            <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
+            <input type="button" class="btn_W" value="取消订单" id="cancelBooking">
+        </div><!--btns end-->
+    </div>
 </script>
 
 <script type="text/template" id="tpl_newBooking">
@@ -1015,5 +1019,108 @@
             </tr>
         </table>
         
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_coupons">
+    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">消费券</span> </div>                        
+    <div class="mypage_content_inner coupons">
+        <h3 class="coupons_help_title">如何快速<span>免费获得</span>消费券</h3>
+        <div class="coupons_help coupons_help1 clearfix blank">
+            <dl class="col1 clearfix">
+                <dt>1</dt>
+                <dd><h3>邀请新用户</h3></dd>   
+                <dd><p>在<a class="F_green" href="#">邀请码页面</a>中将邀请码或邀请链接扩散给好友及陌生人</p></dd>
+            </dl>
+            <dl class="col2">
+                <dt>2</dt>
+                <dd><h3>新用户注册</h3></dd>   
+                <dd><p>新用户完成注册后，您将免费获得<b class="F_orange">10元</b>消费券；首次预订并成功入学后，您将额外获得<b class="F_orange">20元</b>消费券及<b class="F_orange">10元</b>现金奖励</p></dd>
+            </dl>
+            <dl class="col3">
+                <dt>3</dt>
+                <dd><h3>激活消费券</h3></dd>   
+                <dd><p>在<a class="F_green" href="#">消费券页面</a>中，找到待激活消费券，输入验证码</p></dd>
+            </dl>
+        </div>
+        <h3 class="coupons_help_title blank1">如何<span>使用</span>消费券</h3>
+        <div class="coupons_help coupons_help2 clearfix blank">
+            <dl class="col1 clearfix">
+                <dt>1</dt>
+                <dd><h3>找课程</h3></dd>   
+                <dd><p>登录或注册后选择<img src="style/images/return.gif">带有标识的课程</p></dd>
+
+            </dl>
+            <dl class="col2">
+                <dt>2</dt>
+                <dd><h3>填写订单</h3></dd>   
+                <dd><p>预订时，选用消费券</p></dd>
+            </dl>
+            <dl class="col3">
+                <dt>3</dt>
+                <dd><h3>报道入学</h3></dd>   
+                <dd><p>开学后7个工作日左右返现至您的爱上课现金账户</p></dd>
+            </dl>
+        </div>
+        <ul id="couponNavBtn" class="tab1 clearfix blank2">
+            <li data-id="claimed" class="active">可用消费券</li>
+            <li data-id="unclaimed">待激活消费券</li>
+        </ul>
+        <div id="coupons_container">
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_mypage_unclaimedCouponRow">
+    <tr id="coupon_<%= couponId %>">
+        <td class="col1"><%= creationTime %></td>
+        <td class="col2"><%= amount %></td>
+        <td class="col3">爱上课赠送</td>
+        <td class="col4"><%= expireTime %></td>
+        <td class="col5"><input class="claim" type="button" value="激活"></td>
+    </tr>
+</script>
+
+<script type="text/template" id="tpl_mypage_claimedCouponRow">
+    <tr id="coupon_<%= couponId %>">
+        <td class="col1"><%= couponId %></td>
+        <td class="col2"><%= amount %></td>
+        <td class="col3">爱上课赠送</td>
+        <td class="col4">%= expireTime %></td>
+    </tr>
+</script>
+
+<script type="text/template" id="tpl_mypage_couponClaimed">
+    <table id="claimedTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td class="col1">序号</td>
+                <td width="25%">券额</td>
+                <td width="25%">发放原因</td>
+                <td width="25%">有效期</td>
+            </tr>
+        </thead>
+        <tbody id="claimedList">
+        </tbody>
+    </table>
+    <div id="couponNavigator1" class="page blank1 clearfix">
+    </div>
+</script>
+
+<script type="text/template" id="tpl_mypage_couponUnclaimed">
+    <table id="unclaimedTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td class="col1">发放日期</td>
+                <td class="col2" width="20%">券额</td>
+                <td class="col3" width="20%">发放原因</td>
+                <td class="col4" width="20%">有效期</td>
+                <td class="col5" width="20%">激活</td>
+            </tr>
+        </thead>
+        <tbody id="unclaimedList">
+        </tbody>
+    </table>
+    <div id="couponNavigator1" class="page blank1 clearfix">
     </div>
 </script>

@@ -14,7 +14,8 @@
                 'partner': '/partner',
                 'user': '/user',
                 'booking': '/booking',
-                'general': '/general'
+                'general': '/general',
+                'coupon': '/coupon',
             },
 
             moduleSufixResource: {
@@ -52,6 +53,9 @@
                 },
                 'course': {
                     course: '/course'
+                },
+                'coupon': {
+                    coupon: "/"
                 }
             }
         };
@@ -79,6 +83,7 @@
                 user_logout: api_maker(api_modules.rootPrefix, 'user', 'logout'), //GET added to session manager
                 user_forgetPassword: api_maker(api_modules.rootPrefix, 'user', 'forgetPassword'),
                 user_booking: api_maker(api_modules.rootPrefix, 'booking', 'booking'),
+                user_coupon: api_maker(api_modules.rootPrefix, 'coupon', 'coupon'),
 
                 partner_findSession: api_maker(api_modules.partnerRootPrefix, 'partner', 'findSession'),
                 partner_login: api_maker(api_modules.partnerRootPrefix, 'partner', 'login'), //GET dded to session manager
@@ -87,7 +92,6 @@
                 partner_forgetPassword: api_maker(api_modules.partnerRootPrefix, 'partner', 'forgetPassword'),
                 partner_changePassword: api_maker(api_modules.partnerRootPrefix, 'partner', 'changePassword'),
                 partner_course: api_maker(api_modules.partnerRootPrefix, 'course', 'course'), //GET dded to session manager
-
             };
         };
 
