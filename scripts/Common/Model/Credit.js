@@ -9,7 +9,6 @@ var Credit = Backbone.Model.extend({
             'amount': 0,
             'creationTime': new Date(),
             'expireTime': new Date(),
-            'usableTime': new Date(),
 
             'status': EnumConfig.CreditStatus.usable
             
@@ -42,7 +41,6 @@ var Credit = Backbone.Model.extend({
             data.expireTime = Utilities.castFromAPIFormat(data.expireTime);
 
             data.status = parseInt(data.status, 10);
-            data.usableTime = Utilities.castFromAPIFormat(data.usableTime);
         }
         return data;
     },
@@ -60,7 +58,6 @@ var Credit = Backbone.Model.extend({
 
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.expireTime = Utilities.castToAPIFormat(this.get('expireTime'));
-        json.usableTime = Utilities.castToAPIFormat(this.get('usableTime'));
         return json;
     }
 

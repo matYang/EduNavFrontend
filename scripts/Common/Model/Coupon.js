@@ -9,10 +9,12 @@ var Coupon = Backbone.Model.extend({
             'userId': -1,
             
             'amount': 0,
+            'originalAmount': 0,
 
             'creationTime': new Date(),
             'expireTime': new Date(),
-            'status': EnumConfig.CouponStatus.usable
+            'status': EnumConfig.CouponStatus.usable,
+            'origin': 0
         };
     },
 
@@ -38,6 +40,8 @@ var Coupon = Backbone.Model.extend({
             data.transactionId = parseInt(data.transactionId, 10);
             data.userId = parseInt(data.userId, 10);
             data.amount = parseInt(data.amount, 10);
+            data.originalAmount = parseInt(data.originalAmount, 10);
+            data.origin = parseInt(data.origin, 10);
 
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.expireTime = Utilities.castFromAPIFormat(data.expireTime);

@@ -9,8 +9,9 @@ var Booking = Backbone.Model.extend({
             'courseId': -1,
             'price': 0,
             'reference': '',
-           
+            
             'status': 0,
+            'preStatus': 0,
             'name': '',
             'phone':'',
             'email': '',
@@ -19,7 +20,6 @@ var Booking = Backbone.Model.extend({
 
             //---------
             'cashbackAmount': 0,
-            'wasConfirmed': false,
             'creationTime': new Date (),
             'adjustTime': new Date(),
             'couponRecord': '',
@@ -62,6 +62,7 @@ var Booking = Backbone.Model.extend({
 
             data.price = parseInt(data.price, 10);
             data.status = parseInt(data.status, 10);
+            data.preStatus = parseInt(data.preStatus, 10);
             data.reference = decodeURI(data.reference);
             data.name = decodeURI(data.name);
             data.phone = decodeURI(data.phone);
@@ -71,7 +72,6 @@ var Booking = Backbone.Model.extend({
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.adjustTime = Utilities.castFromAPIFormat(data.adjustTime);
 
-            data.wasConfirmed = data.wasConfirmed === 'true' || data.wasConfirmed === true || Number(data.wasConfirmed) === 1;
             data.note = decodeURI(data.note);
             data.cashbackAmount = parseInt(data.cashbackAmount, 10);
             data.couponRecord = decodeURI(data.couponRecord);
