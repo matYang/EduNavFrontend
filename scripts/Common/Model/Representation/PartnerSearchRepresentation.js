@@ -10,7 +10,9 @@ var PartnerSearchRepresentation = Backbone.Model.extend({
             'phone': undefined,
             'status': undefined,
             'instName': undefined,
-            'creationTime': undefined
+
+            'startCreationTime': undefined,
+            'finishCreationTime': undefined
         };
     },
 
@@ -50,7 +52,8 @@ var PartnerSearchRepresentation = Backbone.Model.extend({
         queryObj.phone = typeof this.get('phone') === 'undefined' ? undefined : encodeURI(this.get('phone'));
         queryObj.status = this.get('status');
         queryObj.instName = typeof this.get('instName') === 'undefined' ? undefined : encodeURI(this.get('instName'));
-        queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
+        queryObj.startCreationTime = typeof this.get('startCreationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startCreationTime'));
+        queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishCreationTime'));
 
         return queryObj;
     }

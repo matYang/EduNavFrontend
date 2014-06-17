@@ -7,7 +7,6 @@ var UserSearchRepresentation = Backbone.Model.extend({
             'phone': undefined,
             'email': undefined,
             'status': undefined,
-            'creationTime': undefined,
 
             'startBalance': undefined,
             'finishBalance': undefined,
@@ -18,7 +17,10 @@ var UserSearchRepresentation = Backbone.Model.extend({
 
             'invitationalCode': undefined,
             'appliedInvitationalCode': undefined,
-            'accountNumber': undefined
+            'accountNumber': undefined,
+
+            'startCreationTime': undefined,
+            'finishCreationTime': undefined
 
         };
     },
@@ -56,7 +58,8 @@ var UserSearchRepresentation = Backbone.Model.extend({
         queryObj.phone = typeof this.get('phone') === 'undefined' ? undefined : encodeURI(this.get('phone'));
         queryObj.email = typeof this.get('email') === 'undefined' ? undefined : encodeURI(this.get('email'));
         queryObj.status = this.get('status');
-        queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
+        queryObj.startCreationTime = typeof this.get('startCreationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startCreationTime'));
+        queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishCreationTime'));
 
         queryObj.startBalance = this.get('startBalance');
         queryObj.finishBalance = this.get('finishBalance');

@@ -7,9 +7,11 @@ var UserSearchRepresentation = Backbone.Model.extend({
             'userId': undefined,
             'startAmount': undefined,
             'finishAmount': undefined,
-            'creationTime': undefined,
             'expireTime': undefined,
-            'status': undefined
+            'status': undefined,
+
+            'startCreationTime': undefined,
+            'finishCreationTime': undefined
         };
     },
 
@@ -47,7 +49,8 @@ var UserSearchRepresentation = Backbone.Model.extend({
         queryObj.userId = this.get('userId');
         queryObj.startAmount = this.get('startAmount');
         queryObj.finishAmount = this.get('finishAmount');
-        queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
+        queryObj.startCreationTime = typeof this.get('startCreationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startCreationTime'));
+        queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishCreationTime'));
         queryObj.expireTime = typeof this.get('expireTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('expireTime'));
         queryObj.status = this.get('status');
 
