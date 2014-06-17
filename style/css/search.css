@@ -33,7 +33,7 @@
 
 .no_data{ margin-top:100px; margin-left:140px; padding-left:60px; background:url(../images/no_data.png) no-repeat left center;}
 .no_data div{ padding:12px 0 12px; font-size:24px; font-family:微软雅黑; color:#128d56;}
-.searchResultEntry{ margin-top:10px; border:1px solid #dddddd; padding:20px 0 20px 15px;}
+.searchResultEntry{ margin-top:10px; border:1px solid #dddddd; padding:20px 0 20px 15px; font-size:12px;}
 .pic{position:relative; float:left; width:100px; height:100px; border:1px solid #ccc; margin-right:10px;}
 .pic span{ display:block; position:absolute; top:78px; left:0; width:100%; text-align:center; color:#fff; height:22px; line-height:22px; background-color:rgba(0,0,0,.5); filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#77000000',endColorstr='#77000000');}
 
@@ -50,13 +50,17 @@
 
 .col3{float:left; width:140px; height:105px; text-align:center;}
 .col3 .compare{ margin-top:20px;}
+.col3  input.btn_g,
+.col3  input.btn_o,
+.col3  input.btn_gray{width:100px;}
+
 .col3 .viewDetail{ margin-top:20px; font-weight:bold; color:#128d56;}
 
 /*对比框*/
 #CompareWidgetContainer{border:1px solid #cccccc;border-top:2px solid #128d56; }
 .compareTitle{ height:35px; line-height:35px; color:#128d56; padding-left:15px; font-weight:bold; font-size:14px; background:#eeeeee; border-bottom:1px solid #cccccc;}
 #compareItems{}
-.compareEntry{ position:relative; padding:15px 35px 10px 10px; border-bottom:1px dotted #ccc;}
+.compareEntry{ position:relative; padding:15px 35px 10px 10px; border-bottom:1px dotted #ccc; font-size:12px;}
 .compareEntry:hover{background:#e2ece7;}
 .compareEntry .desc a,.compareEntry .desc a:visited{ color:#128d56;}
 .compareEntry .price{ padding-left:5px; margin-top:10px; color:#ff5500;}
@@ -65,9 +69,11 @@
 .compareEntry .remove:hover{ background:url(../images/close3_hover.png) no-repeat;}
 .btns{ text-align:center; margin:10px auto;}
 #compare{width:215px; height:32px; border:none; font-size:14px; font-family:微软雅黑; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
+#mainMap{border:1px solid #ccc; width:248px; height:338px;z-index:10;}
 
-#mainMap{border:1px solid #ccc; width:248px; height:338px; margin-top:5px;}
-
+#searchWidgets.stickyHeader{position:fixed;top:5px;margin-left:750px;}
+#searchWidgets.stickyHeader #compare {margin-left:-1px;}
+#search_subCategory label {margin-right: 3px;}
 #searchWidgets.stickyHeader{
 	position:fixed;
 	top:5px;

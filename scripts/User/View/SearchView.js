@@ -150,7 +150,7 @@ var SearchView = Backbone.View.extend({
             that.filterResult($(e.delegateTarget), $(e.target).data("id"));
         });
         this.scrollSensorOn = true;
-        if (this.windowHeight >= 620 ) {
+        // if (this.windowHeight >= 620 ) {
             $(document).on("scroll", function (e) {
                 if ($(this).scrollTop()>402) {
                     $("#searchWidgets").addClass("stickyHeader");
@@ -158,23 +158,23 @@ var SearchView = Backbone.View.extend({
                     $("#searchWidgets").removeClass("stickyHeader");
                 }
             });
-        }
+        // }
         $(window).on("resize", function (e) {
             that.windowHeight = $(this).height();
-            if (that.windowHeight < 620 && that.scrollSensorOn) {
-                that.scrollSensorOn = false;
-                $(document).off("scroll");
-                $("#searchWidgets").removeClass("stickyHeader");
-            } else if (that.windowHeight >= 620 && that.scrollSensorOn === false) {
-                that.scrollSensorOn = true;
-                $(document).on("scroll", function (e) {
-                    if ($(this).scrollTop()>402) {
-                        $("#searchWidgets").addClass("stickyHeader");
-                    } else {
-                        $("#searchWidgets").removeClass("stickyHeader");
-                    }
-                });
-            }
+            // if (that.windowHeight < 620 && that.scrollSensorOn) {
+            //     that.scrollSensorOn = false;
+            //     $(document).off("scroll");
+            //     $("#searchWidgets").removeClass("stickyHeader");
+            // } else if (that.windowHeight >= 620 && that.scrollSensorOn === false) {
+            //     that.scrollSensorOn = true;
+            //     $(document).on("scroll", function (e) {
+            //         if ($(this).scrollTop()>402) {
+            //             $("#searchWidgets").addClass("stickyHeader");
+            //         } else {
+            //             $("#searchWidgets").removeClass("stickyHeader");
+            //         }
+            //     });
+            // }
         })
         $("#searchReqs").on("click", "a", function (e) {
             e.preventDefault();
@@ -364,16 +364,16 @@ var SearchView = Backbone.View.extend({
         return (course.get("seatsTotal") >= this.filters.classSize.minSize && (this.filters.classSize.maxPrice ? course.get("seatsTotal")<= this.filters.classSize.maxSize : true));
     },
     filterClassTime: function(course){
-        var valid = true, start = course.get("startTime1"), end = course.get("finishTime1");
+        var valid = true, start1 = course.get("startTime1"), start2 = course.get("startTime2");
         if (this.filters["classTime"].time === "morning") {
-            valid = valid && (start < 1200);
+            valid = valid && ((start1 < 1200) || (start2 < 1200));
         } else if (this.filters["classTime"].time === "afternoon") {
-            valid = valid && (start >= 1200);
+            valid = valid && ((start1 >= 1200 && start1 < 1700) || (start2 >= 1200 && start2 < 1700));
         } else {
-
+            valid = valid && ((start1 >= 1700) || (start2 >= 1700));
         }
         if (valid && this.filters["classTime"].day) {
-            var week = course.get("studyDays");
+            var week = course.get("studyDays") || [];
             if (this.filters["classTime"].day === "weekend") {
                 valid = valid && (week.contains([0, 6])) ;
             } else if (this.filters["classTime"].day === "weekday") {

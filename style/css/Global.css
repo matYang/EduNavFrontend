@@ -39,7 +39,7 @@ input.text{height:28px; line-height:28px\9; border:1px solid #ccc; padding-left:
 html, body, .main { height: 100%; }
 body > .main { height: auto; min-height: 100%; }
 .content { padding-bottom: 80px; }  /* 必须使用和footer相同的高度 */
-.footer { position: relative; margin-top: -80px; /* footer高度的负值 */ height: 80px; clear: both;}
+.footer { position: relative; margin-top: -80px; /* footer高度的负值 */ height: 80px; clear: both; z-index:-1;}
 
 /*footer*/
 .footer { border-top:1px solid #d6d6d6; }

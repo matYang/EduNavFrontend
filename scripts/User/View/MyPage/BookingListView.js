@@ -7,7 +7,7 @@ var BookingListView = MultiPageView.extend({
     pageNumberClass: "bookingPage",
     pageNumberId: "bookingPage",
     entryRowNum: 1,
-    minHeight: 686,
+    minHeight: 635,
     noMessage: '<div class="no_data"><div>您目前没有未入学的订单哦~~</div></div>',
     $domContainer: null,
     el: "#bookingSummary",

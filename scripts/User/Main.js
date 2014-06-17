@@ -23,7 +23,7 @@ var AppRouter = Backbone.Router.extend({
         "compare": "compare",
         "compare/*anything" : "compare",
         "register": "register",
-        "register/*registerState": "register",
+        "register/*ref": "register",
         "lost/": "lost",
         "lost" : "lost",
         "forgetPassword/*token" : "lost",
@@ -133,17 +133,12 @@ var AppRouter = Backbone.Router.extend({
         this.compareView = new CompareView();
     },
 
-    register: function (registrationState) {
+    register: function (ref) {
         if (this.sessionManager.hasSession()) {
             this.navigate("main", true);
             return;
         }
-        if (this.registrationView && !this.registrationView.isClosed) {
-            this.registrationView.state = registrationState;
-            this.registrationView.render();
-        } else {
-            this.registrationView = new RegistrationView ({"state":registrationState});
-        }
+        this.registrationView = new RegistrationView ({"ref":ref});
         
     },
 
@@ -151,7 +146,7 @@ var AppRouter = Backbone.Router.extend({
         this.findPasswordView = new FindPasswordView({"token":token});
     },
     error: function () {
-        
+        app.navigate("search", {trigger:true, replace:true});   
     }
 });
 

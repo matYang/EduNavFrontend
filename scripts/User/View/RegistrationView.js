@@ -10,6 +10,7 @@ var RegistrationView = BaseFormView.extend({
         this.isClosed = false;
         $("#viewStyle").attr("href", "style/css/reg.css");
         this.template = _.template(tpl.get('registration'));
+        this.finishTemplate = _.template(tpl.get('registration_finish'));
     	this.$el.append(this.template);
         this.fields = [
             new BaseField({
@@ -56,26 +57,18 @@ var RegistrationView = BaseFormView.extend({
                 validatorContainer: $("#authContainer")
             }),
         ];
-        this.state = params.state;
-        if (this.state){
-            this.ref = this.state.split("_")[1];
-        }
+        this.ref = params.ref;
         this.render();
     },
     render: function(){
         var that = this;
-        if (this.state !== "finish") {
-            
-            $("#loginBox").hide();
-            $("#getSms").on("click", function (e) {
-                if (that.phoneValid(that.model.phone).valid) {
-                    app.userManager.smsVerification(that.model.phone);
-                }
-            });
-            BaseFormView.prototype.bindEvents.call(this);
-        } else {
-            this.$el.append(this.finishTemplate);
-        }
+        $("#loginBox").hide();
+        $("#getSms").on("click", function (e) {
+            if (that.phoneValid(that.model.phone).valid) {
+                app.userManager.smsVerification(that.model.phone);
+            }
+        });
+        BaseFormView.prototype.bindEvents.call(this);
     },
     phoneValid: function(val) {
         if (!val || val.length !== 11 || isNaN(parseInt(val,10)) ){
@@ -98,11 +91,11 @@ var RegistrationView = BaseFormView.extend({
     successCallback: function(data){
         this.state = "finish";
         app.sessionManager.sessionModel = new User(data, {parse: true});
-        if (this.ref) {
-            app.navigate(this.ref, true);
-        } else {
-            app.navigate("front", true);
-        }
+        this.$el.append(this.finishTemplate);
+        var toPage = this.ref || "mypage";
+        setTimeout(function(){
+            app.navigate(toPage, true);
+        },5000);
     },
     submitAction: function () {
         this.phoneCache = true;

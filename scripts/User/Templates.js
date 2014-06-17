@@ -266,6 +266,22 @@
         </div>
 </script>
 
+<script type="text/template" id="tpl_registration_finish">
+    <div class="sign_up">
+        <div class="sign_up_inner">
+            <div class="sign_up_title">
+                <h2 class="fleft">用户注册</h2>
+                <div class="fright"> <span class="active"><b>1</b>填写信息</span> <span class="active"><b>2</b>注册完成</span> </div>
+            </div>
+            <div class="sign_up_success">
+                <div>恭喜，您已经成功的注册了爱上课！</div>
+                <p><b id="countdown" class="F_orange">5</b>秒后将跳转至您的个人主页</p>
+            </div>
+            <!--account end--> 
+        </div>
+    </div>
+</script>
+
 <script type="text/template" id="tpl_mypage_base">
     <div id="mypage_main" class="clearfix">
         <div id="mypage_sidebar">
@@ -294,7 +310,7 @@
 
                 <!--    <div class="mypage_sidebar_tab" id="cashAccount">现金账户</div> -->
                     <div class="mypage_sidebar_tab" id="couponAccount">消费券</div>
-                <!--    <div class="mypage_sidebar_tab" id="creditAccount">积分</div> -->
+                    <div class="mypage_sidebar_tab" id="creditAccount">积分</div> 
                 </div>
             </div>
             <div class="mypage_sidebar_section p4">
@@ -308,7 +324,7 @@
                 </div>
             </div>
         </div>
-        <div id="mypage_content" class="mypage_min_height">
+        <div id="mypage_content" class="mypage_min_height" style="border:none;">
         </div>
     </div>
 
@@ -322,7 +338,8 @@
         <div class="line"></div>
         <div class="summaryItem3"><span class="F_orange"><%= credit %></span>积分</div>
     </div>
-    <div id="bookingSummary">
+    <div class="title blank1" style="border:1px solid #ccc;"><b>未入学订单</b></div>
+    <div id="bookingSummary" style="border:1px solid #ccc; border-top:none;">
         <h2>未入学订单</h2>
     </div>
 </script>
@@ -1077,7 +1094,7 @@
         <td class="col1"><%= couponId %></td>
         <td class="col2"><%= amount %></td>
         <td class="col3"><%= origin %></td>
-        <td class="col4">%= expireTime %></td>
+        <td class="col4"><%= expireTime %></td>
     </tr>
 </script>
 
@@ -1094,7 +1111,7 @@
         <tbody id="claimedList">
         </tbody>
     </table>
-    <div id="couponNavigator1" class="page blank1 clearfix">
+    <div id="claimedCouponListNavigator" class="page blank1 clearfix">
     </div>
 </script>
 
@@ -1112,7 +1129,7 @@
         <tbody id="unclaimedList">
         </tbody>
     </table>
-    <div id="couponNavigator1" class="page blank1 clearfix">
+    <div id="unclaimedCouponListNavigator" class="page blank1 clearfix">
     </div>
 </script>
 
@@ -1145,5 +1162,53 @@
             <input class="btn_O" type="button" value="保 存">
             <a href="#">取消</a>
         </div> 
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_credit">
+    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">现金账户</span> </div>
+    <div class="total"><img src="style/images/icon_points.jpg">您现在拥有<b class="F_orange">100</b>点可用积分</div>
+    <div class="mypage_content_inner">
+        <ul id="creditNavBtn" class="tab1 clearfix">
+            <li data-id="table" class="active">积分明细</li>
+            <li data-id="store">积分兑换</li>
+        </ul>
+        <div id="credit_pageContent">
+            
+        </div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_creditTable">
+    <table id="creditTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td class="">序号</td>
+                <td class="" width="20%">获得日期</td>
+                <td class="" width="20%">订单号</td>
+                <td class="" width="20%">积分</td>
+                <td class="" width="20%">有效期</td>
+            </tr>
+        </thead>
+        <tbody id="creditEntryContainer">
+
+        </tbody>
+        <div id="creditPageNav"></div>
+    </table>
+</script>
+
+<script type="text/templates" id="tpl_mypage_creditRow">
+    <tr class="creditEntry">
+        <td><%= creditId %></td>
+        <td class=""><%= creationTime %></td>
+        <td class=""><%= bookingId %></td>
+        <td class=""><%= amount %></td>
+        <td class=""><%= expireTime %></td>
+    </tr>
+</script>
+
+<script type="text/templates" id="tpl_mypage_creditStore">
+    <div class="in_built">
+        积分商城施工中哦~~
     </div>
 </script>
