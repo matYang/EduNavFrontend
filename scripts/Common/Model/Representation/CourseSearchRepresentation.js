@@ -29,9 +29,11 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'courseId': undefined,
             'partnerId': undefined,
             'userId': undefined,
-            'creationTime': undefined,
 
-            'useCache': undefined
+            'useCache': undefined,
+
+            'startCreationTime': undefined,
+            'finishCreationTime': undefined
 
         };
     },
@@ -88,8 +90,8 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         queryObj.partnerId = this.get('partnerId');
         queryObj.userId = this.get('userId');
 
-        queryObj.creationTime = typeof this.get('creationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('creationTime'));
-        queryObj.useCache = this.get('useCache');
+        queryObj.startCreationTime = typeof this.get('startCreationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startCreationTime'));
+        queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishCreationTime'));
 
         return queryObj;
     }
