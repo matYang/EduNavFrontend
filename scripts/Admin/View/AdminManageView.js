@@ -143,12 +143,13 @@ var AdminAdminSearchResultView = MultiPageView.extend({
         MultiPageView.prototype.render.call(this);
     },
     bindEvents: function () {
+        var that = this;
         $("#createAdmin").on("click", function(){
             $(this).addClass("active");
             $("#updateAdmin").removeClass("active");
             $("#adminCRUDContainer").removeClass("hidden");
             $("#searchResult").addClass("hidden");
-            that.adminCourseView = new AdminPartnerView(); //Create
+            that.adminAdminView = new AdminAdminView(); //Create
         });
         $("#searchAdmin").on("click", function(){
             $(this).addClass("active");
@@ -198,7 +199,7 @@ var AdminPartnerSearchResultView = MultiPageView.extend({
             $("#updatePartner").removeClass("active");
             $("#partnerCRUDContainer").removeClass("hidden");
             $("#searchResult").addClass("hidden");
-            that.adminCourseView = new AdminPartnerView(); //Create
+            that.adminPartnerView = new AdminPartnerView(); //Create
         });
         $("#searchPartner").on("click", function(){
             $(this).addClass("active");
@@ -447,7 +448,7 @@ var AdminManageView = Backbone.View.extend({
                     app.navigate("manage/admin/"+ adminId, true);
                 }
             });
-            $("#queryPartnerBtn").on("click", function (e) {
+            $("#queryAdminBtn").on("click", function (e) {
                 var obj = that.sr.toJSON();
                 for ( var attr in obj ) {
                     var value = $("#queryAdmin").find("#" +attr+"_Input").val();

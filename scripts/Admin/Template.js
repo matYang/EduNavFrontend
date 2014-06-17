@@ -129,6 +129,18 @@
                     <div>
                         最高价格：<input type="number" id="finishPrice_Input" placeholder="最高价格"/>
                     </div>
+                    <div>
+                        最低返金：<input type="number" id="startCashback_Input" placeholder="最低返金"/>
+                    </div>
+                    <div>
+                        最高返金：<input type="number" id="finishCashback_Input" placeholder="最高返金"/>
+                    </div>
+                    <div>
+                        班级最低人数：<input type="number" id="startClassSize_Input" placeholder="最低返金"/>
+                    </div>
+                    <div>
+                        班级最高人数：<input type="number" id="finishClassSize_Input" placeholder="最高返金"/>
+                    </div>
                     <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
                     <input id="userId_Input" class="text" type="text" placeholder="用户id"/>
                     <input id="courseReference_Input" class="text" type="text" placeholder="course reference"/>
@@ -391,7 +403,12 @@
 </script>
 
 <script type="text/templates" id="tpl_adminAdminRow">
-    
+    <tr class="adminResult">
+        <td><%= adminId %></td>
+        <td><%= phone %></td>
+        <td><%= name %></td>
+        <td><a class="view" href="#">查看</a></td>
+    </tr>
 </script>
 
 <script type="text/templates" id="tpl_adminUser">
@@ -582,7 +599,7 @@
 
 <script type="text/templates" id="tpl_adminAdmin">
     <form id="adminAdminForm">
-        <div><span class="detail"><label>admin Id: </label><%= partnerId %></span></div> 
+        <div><span class="detail"><label>admin Id: </label><%= adminId %></span></div> 
         <div><label>电话: </label><span class="detail"><%= phone %></span><span class="edit"><input type="text" name="phone"/></span></div> 
         <div><label>名字: </label><span class="detail"><%= name %></span><span class="edit"><input type="text" name="name"/></span></div> 
         <div><span class="edit"><label>密码: </label><input type="text" name="phone"/></span></div> 

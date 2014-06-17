@@ -75,7 +75,7 @@
 
     AdminManager.prototype.listAdmin = function(adminSearchRepresentation, callback, keys){
         var admins = new Users();
-        var queryObj = adminSearchRepresentation.toJSON();
+        var queryObj = adminSearchRepresentation.toQueryString();
 
         if (keys){
             queryObj.secret1 = keys.secret1;
@@ -85,7 +85,7 @@
 
         admins.overrideUrl(this.apis.admin_admin);
         admins.fetch({
-            data: $.param(queryObj),
+            data: queryObj,
             dataType:'json',
 
             success:function(model, response){
@@ -178,7 +178,7 @@
 
         searchResults.overrideUrl(this.apis.admin_partner);
         searchResults.fetch({
-            data: $.param(partnerSearchRepresentation.toJSON()),
+            data: partnerSearchRepresentation.toQueryString(),
             dataType:'json',
 
             success:function(model, response){
@@ -210,7 +210,7 @@
 
         searchResults.overrideUrl(this.apis.admin_user);
         searchResults.fetch({
-            data: $.param(userSearchRepresentation.toJSON()),
+            data: userSearchRepresentation.toQueryString(),
             dataType:'json',
 
             success:function(model, response){
@@ -298,7 +298,7 @@
 
         searchResults.overrideUrl(this.apis.admin_booking);
         searchResults.fetch({
-            data: $.param(bookingSearchRepresentation.toJSON()),
+            data: bookingSearchRepresentation.toQueryString(),
             dataType:'json',
 
             success:function(model, response){

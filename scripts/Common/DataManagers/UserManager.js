@@ -310,7 +310,7 @@
         var bookings = new Bookings();
         bookings.overrideUrl(this.apis.user_booking);
         bookings.fetch({
-            data: $.param(bookingSearchRepresentation.toJSON()),
+            data: bookingSearchRepresentation.toQueryString(),
             dataType:'json',
 
             success:function(model, response){

@@ -35,14 +35,12 @@ var AdminAdminView = BaseFormView.extend({
 
     render: function (admin) {
         this.model = admin;
-        debugger;
         this.$el.append(this.template(admin.toJSON()));
         if (this.newAdmin) {
             $("#adminAdminForm").find(".detail").hide();
             $("#adminAdminForm").find(".edit").show();
             $("#cancel").hide();
         } else {
-        	debugger;
             $("#adminAdminForm").find(".detail").show();
             $("#adminAdminForm").find(".edit").hide();
         }
