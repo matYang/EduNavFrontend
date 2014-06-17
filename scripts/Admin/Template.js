@@ -64,6 +64,21 @@
                     <option value="1">ban</option>
                     </select>
                 </div>
+                <input id="invitationalCode_Input" class="text" type="text" placeholder="最低balance"/>
+                <input id="appliedInvitationalCode_Input" class="text" type="text" placeholder="最低balance"/>
+                <input id="accountNumber_Input" class="text" type="text" placeholder="最低balance"/>
+
+                <input id="startBalance_Input" class="text" type="text" placeholder="最低balance"/>
+                <input id="finishBalance_Input" class="text" type="text" placeholder="最高balance"/>
+                <input id="startCoupon_Input" class="text" type="text" placeholder="最低Coupon"/>
+                <input id="finishCoupon_Input" class="text" type="text" placeholder="最高Coupon"/>
+                <input id="startCredit_Input" class="text" type="text" placeholder="最低Credit"/>
+                <input id="finishCredit_Input" class="text" type="text" placeholder="最高Credit"/>
+                
+                <input id="startCreationTime_Input" class="date" type="text" placeholder="最低Credit"/>
+                <input id="finishCreationTime_Input" class="date" type="text" placeholder="最高Credit"/>
+
+
                 <input id="queryUserBtn" class="btn" type="button" value="搜索"/>
                 <a style="float:left" id="goTo_findUser" class="button">Get</a>
             </div>
@@ -202,9 +217,10 @@
                     <option value=""></option>
                 </select>
                 <input id="instName_Input" class="text" type="text" placeholder="学校名"/>
+                <input id="startCreationTime_Input" class="date" type="text" placeholder="建立开始时间" />
+                <input id="finishCreationTime_Input" class="date" type="text" placeholder="建立结束时间" />
 
                 <input id="queryPartnerBtn" class="btn" type="button" value="搜索"/>
-
 
                 <a style="float:left" id="goTo_findPartner" class="button">Get</a>
             </div>
@@ -256,7 +272,13 @@
                     <input id="reference_Input" class="text" type="text" placeholder="reference"/>
                     <input id="startPrice_Input" class="text" type="text" placeholder="最低价格"/>
                     <input id="finishPrice_Input" class="text" type="text" placeholder="最高价格"/>
-                    <input id="scheduledTime_Input" class="text" type="text" placeholder="预约时间"/>
+                    <input id="startScheduledTime_Input" class="date" type="text" placeholder="预约时间开始"/>
+                    <input id="finishScheduledTime_Input" class="date" type="text" placeholder="预约时间结束"/>
+                    <input id="startAdjustTime_Input" class="date" type="text" placeholder="调整时间开始"/>
+                    <input id="finishAdjustTime_Input" class="date" type="text" placeholder="调整时间结束"/>
+                    <input id="startCreationTime_Input" class="date" type="text" placeholder="创建时间开始"/>
+                    <input id="finishCreationTime_Input" class="date" type="text" placeholder="创建时间结束"/>
+                    
                     <div>已经报道<input id="wasConfirmedIndex_Input" type="checkbox"></div>
                     <input id="queryBookingBtn" class="btn" type="button" value="搜索"/>
                     <a style="float:left" id="goTo_findBooking" class="button">Get</a>
