@@ -17,8 +17,8 @@ var CourseDetailView = Backbone.View.extend({
                 self.render();
                 self.bindEvents();
             },
-            error: function () {
-                Info.displayErrorPage("content", "信息读取失败, 请刷新页面");
+            error: function (response) {
+                Info.displayErrorPage("content", response.responseText);
             }
         });
     },

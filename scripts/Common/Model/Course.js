@@ -3,6 +3,9 @@ var Course = Backbone.Model.extend({
         return {
             'courseId': undefined,
             'partnerId': undefined,
+            'courseName': undefined,
+            'courseIntro': undefined,
+            'suitableStudent': undefined,
             'price': undefined,
             'courseHourNum': undefined,
             'courseHourLength': undefined,
@@ -11,9 +14,11 @@ var Course = Backbone.Model.extend({
             'cashback': undefined,
             'popularity': undefined,
                 
-            'creationTime': undefined,
-            'startDate': undefined,
-            'finishDate': undefined,
+            'creationTime': new Date(),
+            'startDate': new Date(),
+            'finishDate': new Date(),
+            'studyDays': undefined,
+            'studyDaysNote': undefined,
                 
             'startTime1': undefined,
             'finishTime1': undefined,
@@ -27,53 +32,50 @@ var Course = Backbone.Model.extend({
             'province': undefined,
             'city': undefined,
             'district': undefined,
-            'reference': undefined,
 
-            'courseIntro': undefined,
-            'quiz': undefined,
-            'certification': undefined,
-            'openCourseRequirement': undefined,
-            'suitableStudent': undefined,
-            'prerequest': undefined,
-            'highScoreReward': undefined,
-            'courseName': undefined,
-            'studyDaysNote': undefined,
+            'reference': undefined,
             'partnerCourseReference': undefined,
+            'openCourseRequirement': undefined,
+            'partnerQualification': undefined,
             'partnerIntro': undefined,
             'teachingMaterialIntro': undefined,
-
-            'questionBank': undefined,
-            'passAgreement': undefined,
-            'extracurricular': undefined,
-            'phone': undefined,
-                
-            'partnerDistinction': undefined,
+            'teachingMaterialFee': undefined,
+            'prerequest': undefined,
+            
             'outline': undefined,
+            'downloadMaterials': undefined,
+            'questionBank': undefined,
+            'highScoreReward': undefined,
+            'passAgreement': undefined,
+            'quiz': undefined,
+            'assignments': undefined,
+            'marking': undefined,
+            'certification': undefined,
+            'extracurricular': undefined,
+                
+            'status': undefined,
+            
+            'phone': undefined,
+            'logoUrl': undefined,
+            'instName': undefined,
+            'wholeName': undefined,
+
+            'partnerDistinction': undefined,
             'goal': undefined,
             'classTeacher': undefined,
             'teachingAndExercise': undefined,
             'questionSession': undefined,
             'trail': undefined,
-            'assignments': undefined,
-            'marking': undefined,
             'bonusService': undefined,
-            'downloadMaterials': undefined,
-            'teachingMaterialFee': undefined,
                 
-            'status': undefined,
-            'partnerQualification': undefined,
                  
                 
-            'studyDays': undefined,
             'classImgUrls': undefined,
             'teacherIntros': undefined,
             'teacherImgUrls': undefined,
-            'teacherNames': undefined,
+            'teacherNames': undefined
                 
 
-            'logoUrl': undefined,
-            'instName': undefined,
-            'wholeName': undefined
         };
     },
     idAttribute: 'courseId',

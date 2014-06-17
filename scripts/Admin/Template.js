@@ -325,8 +325,7 @@
         <td><%= startDate %></td>
         <td><%= finishDate %></td>
         <td><%= price %></td>
-        <td><%= seatsTotal %></td>
-        <td><%= seatsLeft %></td>
+        <td><%= classSize %></td>
         <td><%= creationTime %></td>
         <td><a id="viewCourse_<%= courseId %>" class="view" href="#">查看</a></td>
     </tr>
@@ -399,52 +398,53 @@
         <div><label>创建时间: </label><div class="detail"><%= creationTime %></div></div>
         <div><label>课程名: </label><div class="detail"><%= courseName %></div><div class="edit"><input type="text" name="courseName"/></div></div>
         <div><label>课程简介: </label><div class="detail"><%= courseIntro %></div><div class="edit"><input type="text" name="courseIntro"/></div></div>
+        <div><label>适合学生: </label><span class="detail"><%= suitableStudent %></span><span class="edit"><input type="text" name="suitableStudent"/></span></div>
+        <div><label>价格: </label><div class="detail"><%= price %></div><div class="edit"><input type="text" name="price"/></div></div>
+        <div><label>学时: </label><div class="detail"><%= courseHourNum %></div><div class="edit"><input type="text" name="courseHourNum"/></div></div>
+        <div><label>学时时间: </label><div class="detail"><%= courseHourLength %></div><div class="edit"><input type="text" name="courseHourLength"/></div></div>
+        
+        <div><label>招生人数: </label><div class="detail"><%= classSize %></div><div class="edit"><input type="text" name="classSize"/></div></div>
+        <div><label>反金金额: </label><div class="detail"><%= cashback %></div><div class="edit"><input type="text" name="cashback"/></div></div>
+        <div><label>人气值: </label><div class="detail"><%= popularity %></div><div class="edit"><input type="text" name="popularity"/></div></div>
+        
         <div><label>开始日期: </label><div class="detail"><%= startDate %></div><div class="edit"><input type="text" name="startDate"/></div></div>
         <div><label>结束日期: </label><div class="detail"><%= finishDate %></div><div class="edit"><input type="text" name="finishDate"/></div></div>
-        <div><label>上课日: </label><div class="detail"><%= studyDays %></div><div class="edit"><input type="text" name="studyDays"/></div></div>
-        <div><label>上课日备注: </label><div class="detail"><%= studyDaysNote %></div><div class="edit"><input type="text" name="studyDaysNote"/></div></div>
         <div><label>上学时间1: </label><div class="detail"><%= startTime1 %></div><div class="edit"><input type="text" name="startTime1"/></div></div>
         <div><label>放学时间1: </label><div class="detail"><%= finishTime1 %></div><div class="edit"><input type="text" name="finishTime1"/></div></div>
         <div><label>上学时间2: </label><div class="detail"><%= startTime2 %></div><div class="edit"><input type="text" name="startTime2"/></div></div>
         <div><label>放学时间2: </label><div class="detail"><%= finishTime2 %></div><div class="edit"><input type="text" name="finishTime2"/></div></div>
-        <div><label>学时: </label><div class="detail"><%= courseHourNum %></div><div class="edit"><input type="text" name="courseHourNum"/></div></div>
-        <div><label>学时时间: </label><div class="detail"><%= courseHourLength %></div><div class="edit"><input type="text" name="courseHourLength"/></div></div>
+        <div><label>上课日: </label><div class="detail"><%= studyDays %></div><div class="edit"><input type="text" name="studyDays"/></div></div>
+        <div><label>上课日备注: </label><div class="detail"><%= studyDaysNote %></div><div class="edit"><input type="text" name="studyDaysNote"/></div></div>
+        
+        <div><label>一级分类: </label><div class="detail"><%= category %></div><div class="edit"><select name="category"></select></div></div>
+        <div><label>二级分类: </label><div class="detail"><%= subCategory %></div><div class="edit"><select name="subCategory"></select></div></div>
+        <div><label>三级分类: </label><div class="detail"><%= subSubCategory %></div><div class="edit"><select name="subSubCategory"></select></div></div>
+        <div><label>省份: </label><div class="detail"><%= province %></div><div class="edit"><select name="province"></select></div></div>
         <div><label>城市: </label><div class="detail"><%= city %></div><div class="edit"><select name="city"></select></div></div>
         <div><label>地区: </label><div class="detail"><%= district %></div><div class="edit"><select name="district"></select></div></div>
         <div><label>地址: </label><div class="detail"><%= location %></div><div class="edit"><input type="text" name="location"/></div></div>
-        <div><label>一级分类: </label><div class="detail"><%= category %></div><div class="edit"><select name="category"></select></div></div>
-        <div><label>二级分类: </label><div class="detail"><%= subCategory %></div><div class="edit"><select name="subCategory"></select></div></div>
-        <div><label>三级分类: </label><div class="detail"></div><div class="edit"><select name="thirdCategory"></select></div></div>
-        <div><label>价格: </label><div class="detail"><%= price %></div><div class="edit"><input type="text" name="price"/></div></div>
-        <div><label>招生人数: </label><div class="detail"><%= seatsTotal %></div><div class="edit"><input type="text" name="seatsTotal"/></div></div>
-        <div><label>剩余人数: </label><div class="detail"><%= seatsLeft %></div><span class="edit"><input type="text" name="seatsLeft"/></span></div>
+        
         <div><label>reference: </label><span class="detail"><%= reference %></span><span class="edit"><input type="text" name="reference"/></span></div>
         <div><label>courseReference: </label><span class="detail"><%= partnerCourseReference %></span><span class="edit"><input type="text" name="partnerCourseReference"/></span></div>
-        <div><label>课程模式: </label><span class="detail"><%= classModel %></span><span class="edit"><input type="text" name="classModel"/></span></div>
+        
         <div><label>开课要求: </label><span class="detail"><%= openCourseRequirement %></span><span class="edit"><input type="text" name="openCourseRequirement"/></span></div>
         <div><label>教课资格: </label><span class="detail"><%= partnerQualification %></span><span class="edit"><input type="text" name="partnerQualification"/></span></div>
         <div><label>机构简介: </label><span class="detail"><%= partnerIntro %></span><span class="edit"><input type="text" name="partnerIntro"/></span></div>
-        <div><label>教学方式: </label><span class="detail"><%= teachingMethods %></span><span class="edit"><input type="text" name="teachingMethods"/></span></div>
-        <div><label>教学方式简介: </label><span class="detail"><%= teachingMethodsIntro %></span><span class="edit"><input type="text" name="teachingMethodsIntro"/></span></div>
-        <div><label>教材类型: </label><span class="detail"><%= teachingMaterialType %></span><span class="edit"><input type="text" name="teachingMaterialType"/></span></div>
-        <div><label>教材名: </label><span class="detail"><%= teachingMaterialName %></span><span class="edit"><input type="text" name="teachingMaterialName"/></span></div>
         <div><label>教材简介: </label><span class="detail"><%= teachingMaterialIntro %></span><span class="edit"><input type="text" name="teachingMaterialIntro"/></span></div>
-        <div><label>教材费用: </label><span class=  "detail"><%= teachingMaterialCost %></span><span class="edit"><input type="text" name="teachingMaterialCost"/></span></div>
-        <div><label>适合学生: </label><span class="detail"><%= suitableStudent %></span><span class="edit"><input type="text" name="suitableStudent"/></span></div>
+        <div><label>教材费用: </label><span class=  "detail"><%= teachingMaterialFee %></span><span class="edit"><input type="text" name="teachingMaterialFee"/></span></div>
         <div><label>学前要求: </label><span class="detail"><%= prerequest %></span><span class="edit"><input type="text" name="prerequest"/></span></div>
 
         <div><label>提纲：</label><span class="detail"></span></div>
-        <div><label>下载材料: </label><span class="detail"><%= hasDownloadMaterials %></span><span class="edit"><input type="checkbox" name="hasDownloadMaterials"/></span></div>
+        <div><label>下载材料: </label><span class="detail"><%= downloadMaterials %></span><span class="edit"><input type="checkbox" name="hasDownloadMaterials"/></span></div>
         <div><label>题库: </label><span class="detail"><%= questionBank %></span><span class="edit"><input type="text" name="questionBank"/></span></div>
-        <div><label>题库简介: </label><span class="detail"><%= questionBankIntro %></span><span class="edit"><input type="text" name="questionBankIntro"/></span></div>
         <div><label>高分奖励: </label><span class="detail"><%= highScoreReward %></span><span class="edit"><input type="text" name="highScoreReward"/></span></div>
         <div><label>保过协议: </label><span class="detail"><%= passAgreement %></span><span class="edit"><input type="text" name="passAgreement"/></span></div>
         <div><label>阶段评估: </label><span class="detail"><%= quiz %></span><span class="edit"><input type="text" name="quiz"/></span></div>
-        <div><label>课后作业: </label><span class="detail"><%= provideAssignments %></span><span class="edit"><input type="checkbox" name="provideAssignments"/></span></div>
-        <div><label>作业批改: </label><span class="detail"><%= provideMarking %></span><span class="edit"><input type="checkbox" name="provideMarking"/></span></div>
+        <div><label>课后作业: </label><span class="detail"><%= assignments %></span><span class="edit"><input type="checkbox" name="assignments"/></span></div>
+        <div><label>作业批改: </label><span class="detail"><%= marking %></span><span class="edit"><input type="checkbox" name="marking"/></span></div>
         <div><label>结业证书: </label><span class="detail"><%= certification %></span><span class="edit"><input type="text" name="certification"/></span></div>
         <div><label>课后活动: </label><span class="detail"><%= extracurricular %></span><span class="edit"><input type="text" name="extracurricular"/></span></div>
-        <div><label>课后活动简介: </label><span class="detail"><%= extracurricularIntro %></span><span class="edit"><input type="text" name="extracurricularIntro"/></span></div>
+
         <div><label>状态: </label><span class="detail"><%= status %></span><span class="edit">
             <select name="status">
                 <option value=0>activate</option>
@@ -456,22 +456,33 @@
         <div><label>学校名: </label><span class="detail"><%= instName %></span><span class="edit"><input type="text" name="instName"/></span></div>
         <div><label>机构全称: </label><span class="detail"><%= wholeName %></span><span class="edit"><input type="text" name="wholeName"/></span></div> 
 
+        <div><label>机构荣誉: </label><span class="detail"><%= partnerDistinction %></span><span class="edit"><input type="text" name="partnerDistinction"/></span></div> 
+        <div><label>教学目标: </label><span class="detail"><%= goal %></span><span class="edit"><input type="text" name="goal"/></span></div> 
+        <div><label>班主任导读: </label><span class="detail"><%= classTeacher %></span><span class="edit"><input type="text" name="classTeacher"/></span></div> 
+        <div><label>讲练结合: </label><span class="detail"><%= teachingAndExercise %></span><span class="edit"><input type="text" name="teachingAndExercise"/></span></div> 
+        <div><label>问答时间: </label><span class="detail"><%= questionSession %></span><span class="edit"><input type="text" name="questionSession"/></span></div> 
+        <div><label>试听: </label><span class="detail"><%= trail %></span><span class="edit"><input type="text" name="trail"/></span></div> 
+        <div><label>附加服务: </label><span class="detail"><%= bonusService %></span><span class="edit"><input type="text" name="bonusService"/></span></div> 
+
+
         <% for ( var i = 0; i < 4; i++) { %>
-            <% if (teacherName[i]) {%>
-            <div><label>教师名: </label><span class="detail"><%= teacherName[i] %></span><span class="edit"><input type="text" name="teachingMaterialCost"/></span></div>
-            <div><label>教师照片: </label><span class="detail"><img src="<%= teacherImg[i] %>"/></span><span class="edit"><input type="text" name="suitableStudent"/></span></div>
-            <div><label>教师简介: </label><span class="detail"><%= teacherIntro[i] %></span><span class="edit"><input type="text" name="prerequest"/></span></div>
+            <% if (teacherNames && teacherNames[i]) {%>
+                <div><label>教师名<%= i+1 %>: </label><span class="detail"><%= teacherNames[i] %></span><span class="edit"><input type="text" name="teacherName<%= i+1 %>"/></span></div>
+                <div><label>教师照片<%= i+1 %>: </label><span class="detail"><img src="<%= teacherImgUrls[i] %>"/></span><span class="edit"><input type="text" name="teacherImgUrl<%= i+1 %>"/></span></div>
+                <div><label>教师简介<%= i+1 %>: </label><span class="detail"><%= teacherIntros[i] %></span><span class="edit"><input type="text" name="teacherIntro<%= i+1 %>"/></span></div>
             <% } else { %>
-                <div><label>教师名: </label><span class="detail"></span><span class="edit"><input type="text" name="teachingMaterialCost"/></span></div>
-                <div><label>教师照片: </label><span class="detail"></span><span class="edit"><input type="text" name="suitableStudent"/></span></div>
-                <div><label>教师简介: </label><span class="detail"></span><span class="edit"><input type="text" name="prerequest"/></span></div>
+                <div><label>教师名<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherName<%= i+1 %>"/></span></div>
+                <div><label>教师照片<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherImgUrl<%= i+1 %>"/></span></div>
+                <div><label>教师简介<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherIntro<%= i+1 %>"/></span></div>
             <% } %>
         <% } %>
-        <div class="imgblock"><label>教室照片1: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg1" name="classroomImg1"/><img id="preview1" class="preview"/></span></div>
-        <div class="imgblock"><label>教室照片2: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg2" name="classroomImg2"/><img id="preview2" class="preview"/></span></div>
-        <div class="imgblock"><label>教室照片3: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg3" name="classroomImg3"/><img id="preview3" class="preview"/></span></div>
-        <div class="imgblock"><label>教室照片4: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg4" name="classroomImg4"/><img id="preview4" class="preview"/></span></div>
-        <div class="imgblock"><label>教室照片5: </label><span class="detail"><img class="preview" src="<%= classroomImgUrl %>" /></span><span class="edit"><input type="file" id="classroomImg5" name="classroomImg5"/><img id="preview5" class="preview"/></span></div>
+        <% for ( var i = 0; i < 5; i++) { %>
+            <% if (teacherNames && teacherNames[i]) {%>
+                <div class="imgblock"><label>教室照片<%= i+1 %>: </label><span class="detail"><img class="preview" src="<%= classImgUrls[i] %>" /></span><span class="edit"><input type="file" id="classroomImg<%= i+1 %>" name="classImg<%= i+1 %>"/><img id="preview<%= i+1 %>" class="preview"/></span></div>
+            <% } else { %>
+                <div class="imgblock"><label>教室照片<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="file" id="classImg<%= i+1 %>" name="classImg<%= i+1 %>"/><img id="preview<%= i+1 %>" class="preview"/></span></div>
+            <% } %>
+        <% } %>
         <div class="btns">
             <span class="detail">   
             <input type="button" id="createSimilarCourse" value="新建类似课程"/>

@@ -23,7 +23,8 @@
                     location:"/location",
                     category:"/category",
                     partner:"/partner",
-                    course:"/course"
+                    course:"/course",
+                    courseByIdList:"/courseByIdList"
                 },
 
 
@@ -71,7 +72,7 @@
                 general_category: api_maker(api_modules.rootPrefix, "general", "category"),
                 general_partner: api_maker(api_modules.rootPrefix, "general", "partner"),
                 general_course: api_maker(api_modules.rootPrefix, "general", "course"),
-
+                general_courseByIdList: api_maker(api_modules.rootPrefix, "general", "courseByIdList"), 
                 
                 user_findSession: api_maker(api_modules.rootPrefix, 'user', 'findSession'), //GET added to session manaegr
                 user_smsVerification: api_maker(api_modules.rootPrefix, 'user', 'smsVerification'),

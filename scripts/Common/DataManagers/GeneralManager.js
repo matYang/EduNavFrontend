@@ -73,18 +73,11 @@
 
     GeneralManager.prototype.batchFetchCourses = function (courseIds, callback) {
         var courses = new Courses();
-        if (testMockObj.testMode) {
-            var collection = new Courses();
-            for (var i = 0; i < courseIds.length; i++) {
-                collection.add(testMockObj.testCourses.get(courseIds[i]));
-            }
-            callback.success(collection);
-            return;
-        }
-        courses.overrideUrl(this.apis.general_courses);
+        courses.overrideUrl(this.apis.general_courseByIdList);
+        var idList = "idList=" + courseIds.join("-");
         courses.fetch({
             dataType:'json',
-
+            data: idList,
             success:function(model, response){
                 if(callback){
                     callback.success(model);
@@ -117,7 +110,7 @@
 
         searchResults.overrideUrl(this.apis.general_course);
         searchResults.fetch({
-            data: $.param(courseSearchRepresentation.toJSON()),
+            data: courseSearchRepresentation.toQueryString(),
             dataType:'json',
 
             success:function(model, response){

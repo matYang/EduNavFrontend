@@ -13,6 +13,9 @@ var MyPageCreditView = Backbone.View.extend({
         this.$el.append(this.template);
         var credits = this.user.get("credits");
         this.creditTable = new CreditTableView(credits, credits);
+        this.creditStore = new CreditStoreView();
+        this.creditStore.hide();
+        $("#myCredit").html(this.user.get("credit"));
     },
     bindEvents: function () {
         var that = this;
@@ -27,10 +30,10 @@ var MyPageCreditView = Backbone.View.extend({
         this.viewName = name;
         if (this.viewName === "table") {
             this.creditTable.show();
-            // this.unclaimedCouponView.hide();
+            this.creditStore.hide();
         } else {
             this.creditTable.hide();
-            // this.unclaimedCouponView.show();
+            this.creditStore.show();
         }
 
     },
@@ -101,3 +104,28 @@ var CreditTableView = MultiPageView.extend({
         }
     }
 });
+
+var CreditStoreView = Backbone.View.extend({
+    el: "#credit_pageContent",
+    initialize: function() {
+        this.template = _.template(tpl.get("mypage_creditStore"));
+        this.isClosed = false;
+        this.render();
+    },
+    render: function () {
+        this.$el.append(this.template);
+
+    },
+    hide: function () {
+        $("#creditStore").addClass("hidden");
+    },
+    show: function () {
+        $("#creditStore").removeClass("hidden");
+    },
+    close: function () {
+        if (!this.isClosed) {
+            this.isClosed = true;
+            this.$el.empty();
+        }
+    }
+})

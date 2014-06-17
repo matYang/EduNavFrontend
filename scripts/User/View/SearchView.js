@@ -150,7 +150,7 @@ var SearchView = Backbone.View.extend({
             that.filterResult($(e.delegateTarget), $(e.target).data("id"));
         });
         this.scrollSensorOn = true;
-        // if (this.windowHeight >= 620 ) {
+        if (this.windowHeight >= 620 ) {
             $(document).on("scroll", function (e) {
                 if ($(this).scrollTop()>402) {
                     $("#searchWidgets").addClass("stickyHeader");
@@ -158,23 +158,23 @@ var SearchView = Backbone.View.extend({
                     $("#searchWidgets").removeClass("stickyHeader");
                 }
             });
-        // }
+        }
         $(window).on("resize", function (e) {
             that.windowHeight = $(this).height();
-            // if (that.windowHeight < 620 && that.scrollSensorOn) {
-            //     that.scrollSensorOn = false;
-            //     $(document).off("scroll");
-            //     $("#searchWidgets").removeClass("stickyHeader");
-            // } else if (that.windowHeight >= 620 && that.scrollSensorOn === false) {
-            //     that.scrollSensorOn = true;
-            //     $(document).on("scroll", function (e) {
-            //         if ($(this).scrollTop()>402) {
-            //             $("#searchWidgets").addClass("stickyHeader");
-            //         } else {
-            //             $("#searchWidgets").removeClass("stickyHeader");
-            //         }
-            //     });
-            // }
+            if (that.windowHeight < 620 && that.scrollSensorOn) {
+                that.scrollSensorOn = false;
+                $(document).off("scroll");
+                $("#searchWidgets").removeClass("stickyHeader");
+            } else if (that.windowHeight >= 620 && that.scrollSensorOn === false) {
+                that.scrollSensorOn = true;
+                $(document).on("scroll", function (e) {
+                    if ($(this).scrollTop()>402) {
+                        $("#searchWidgets").addClass("stickyHeader");
+                    } else {
+                        $("#searchWidgets").removeClass("stickyHeader");
+                    }
+                });
+            }
         })
         $("#searchReqs").on("click", "a", function (e) {
             e.preventDefault();

@@ -1167,7 +1167,7 @@
 
 <script type="text/templates" id="tpl_mypage_credit">
     <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">现金账户</span> </div>
-    <div class="total"><img src="style/images/icon_points.jpg">您现在拥有<b class="F_orange">100</b>点可用积分</div>
+    <div class="total"><img src="style/images/icon_points.jpg">您现在拥有<b id="myCredit" class="F_orange">100</b>点可用积分</div>
     <div class="mypage_content_inner">
         <ul id="creditNavBtn" class="tab1 clearfix">
             <li data-id="table" class="active">积分明细</li>
@@ -1208,7 +1208,7 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_creditStore">
-    <div class="in_built">
+    <div id="creditStore" class="in_built">
         积分商城施工中哦~~
     </div>
 </script>
