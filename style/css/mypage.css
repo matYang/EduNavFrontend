@@ -31,7 +31,7 @@
 
 
 /*个人中心首页*/
-#walletSummary{float:right; width:780px; height:109px; line-height:109px; background:url(../images/walletSummary.png) no-repeat;}
+#walletSummary{ width:780px; height:109px; line-height:109px; background:url(../images/walletSummary.png) no-repeat;}
 #walletSummary .line{float:left; width:1px; height:109px; background:url(../images/line.png) no-repeat center;}
 .summaryItem1,.summaryItem2,.summaryItem3{float:left; width:230px; text-align:center; padding-left:29px; font-size:18px; font-family:微软雅黑; }
 .summaryItem1{ background: url(../images/summaryItem1.png) no-repeat 56px center;}
@@ -146,29 +146,30 @@
 .coupons_help dl.col2{width:290px;}
 .coupons_help dl.col2 dd{width:230px; }
 
-.coupons table{border-top:1px solid #ccc; border-right:1px solid #ccc;}
-.coupons table td{ border-bottom:1px solid #ccc; border-left:1px solid #ccc; height:35px; line-height:35px; text-align:center; font-size:12px;}
-.coupons table thead td{background:#e6e6e7;}
-.coupons table tbody td.col2{ color:#ff5500;}
-.coupons table td.col4{padding-left:20px;}
-.coupons table td.col4 span{padding:2px; background:#ff5500; color:#fff; margin-left:5px;}
-.coupons table td.col5 span{ padding-left:25px; background:url(../images/icon.png) no-repeat left -306px; color:#128d56;}
-.coupons table td.col5 input{width:60px; height:24px; background:#128d56; border:none; color:#fff; font-size:12px; margin-top:3px; cursor:pointer;}
+#mypage_content table{border-top:1px solid #ccc; border-right:1px solid #ccc;}
+#mypage_content table td{ border-bottom:1px solid #ccc; border-left:1px solid #ccc; height:35px; line-height:35px; text-align:center; font-size:12px;}
+#mypage_content table thead td{background:#e6e6e7;}
+#mypage_content table tbody td.col2{ color:#ff5500;}
+#mypage_content table td.col4{padding-left:20px;}
+#mypage_content table td.col4 span{padding:2px; background:#ff5500; color:#fff; margin-left:5px;}
+#mypage_content table td.col5 span{ padding-left:25px; background:url(../images/icon.png) no-repeat left -306px; color:#128d56;}
+#mypage_content table td.col5 input{width:60px; height:24px; background:#128d56; border:none; color:#fff; font-size:12px; margin-top:3px; cursor:pointer;}
 
 .coupons .no_data{ margin:30px 0 0 20px;}
 .coupons .no_data input{width:80px; height:30px; background:#128d56; color:#fff; font-size:14px; cursor:pointer; border:none; margin:0 5px;}
 
+/*现金账户和积分*/
+.total{ padding-left:20px; height:72px; line-height:72px; border-bottom:1px dotted #ccc;}
+.total img{margin-right:5px; vertical-align:-7px;}
+.total b{font-size:18px; font-family:Arial, Helvetica, sans-serif;}
+.total span{font-size:16px; font-family:Arial, Helvetica, sans-serif; font-weight:bold;}
+
+.in_built{ height:144px; line-height:144px; color:#128d56; margin-top:20px; padding-left:160px; font-family:微软雅黑; font-size:16px; background:url(../images/in_built.jpg) no-repeat left center;}
 
 
-
-
-
-
-
-
-
-
-
+/*邀请好友*/
+.invite_friends{ padding-left:50px;}
+.invite_friends textarea{width:500px; height:200px; border:1px solid #ccc;}
 
 
 

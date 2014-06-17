@@ -1,5 +1,5 @@
 testMockObj = {
-    testMode: true,
+    testMode: false,
     testAdmin: (new Admin()).set("name", "admin1").set("phone","2260000000"),
     testUser: new User(),
     testPartner: new Partner(),
@@ -29,7 +29,28 @@ testMockObj = {
     testBooking10: (new Booking()).set("bookingId", 10).set("reference", "10010").set("status", EnumConfig.BookingStatus.enter).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com").set("price",998),
     testBooking11: (new Booking()).set("bookingId", 11).set("reference", "10011").set("status", EnumConfig.BookingStatus.finished).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com").set("price",4651),
     testBooking12: (new Booking()).set("bookingId", 12).set("reference", "10012").set("status", EnumConfig.BookingStatus.failed).set("name","John").set("phone", 13915063907).set("email", "test@gmail.com").set("price",9781),
-
+    testCoupons: new Coupons(),
+    testCoupon1: (new Coupon()).set("couponId", 1).set("amount", 30),
+    testCoupon2: (new Coupon()).set("couponId", 2).set("amount", 20),
+    testCoupon3: (new Coupon()).set("couponId", 3).set("amount", 25),
+    testCoupon4: (new Coupon()).set("couponId", 4).set("amount", 10),
+    testCoupon5: (new Coupon()).set("couponId", 5).set("amount", 20).set("status", EnumConfig.CouponStatus.inactive),
+    testCoupon6: (new Coupon()).set("couponId", 6).set("amount", 40).set("status", EnumConfig.CouponStatus.inactive),
+    testCoupon7: (new Coupon()).set("couponId", 7).set("amount", 15).set("status", EnumConfig.CouponStatus.inactive),
+    testCoupon8: (new Coupon()).set("couponId", 8).set("amount", 15).set("status", EnumConfig.CouponStatus.inactive),
+    testCoupon9: (new Coupon()).set("couponId", 9).set("amount", 20).set("status", EnumConfig.CouponStatus.usable),
+    testCoupon10: (new Coupon()).set("couponId", 10).set("amount", 40).set("status", EnumConfig.CouponStatus.usable),
+    testCoupon11: (new Coupon()).set("couponId", 11).set("amount", 15).set("status", EnumConfig.CouponStatus.inactive),
+    testCoupon12: (new Coupon()).set("couponId", 12).set("amount", 15).set("status", EnumConfig.CouponStatus.inactive),
+    testCredits: new Credits(),
+    testCredit1: (new Credit()).set("creditId", 1).set("amount", 1000),
+    testCredit2: (new Credit()).set("creditId", 2).set("amount", 1000),
+    testCredit3: (new Credit()).set("creditId", 3).set("amount", 1000),
+    testCredit4: (new Credit()).set("creditId", 4).set("amount", 1000),
+    testCredit5: (new Credit()).set("creditId", 5).set("amount", 1000),
+    testCredit6: (new Credit()).set("creditId", 6).set("amount", 1000),
+    testCredit7: (new Credit()).set("creditId", 7).set("amount", 1000),
+    testCredit8: (new Credit()).set("creditId", 8).set("amount", 1000),
     testCategories: {
             "初中辅导":{
                 "初一":{
@@ -189,6 +210,13 @@ testMockObj.testCourses.add([testMockObj.testCourse1,testMockObj.testCourse2,tes
                              testMockObj.testCourse5,testMockObj.testCourse6,testMockObj.testCourse7,testMockObj.testCourse8,
                              testMockObj.testCourse9,testMockObj.testCourse10,testMockObj.testCourse11,testMockObj.testCourse12]);
 testMockObj.testBookings.add([testMockObj.testBooking1,testMockObj.testBooking2,testMockObj.testBooking3,testMockObj.testBooking4,testMockObj.testBooking5,testMockObj.testBooking6, testMockObj.testBooking7,testMockObj.testBooking8,testMockObj.testBooking9, testMockObj.testBooking10,testMockObj.testBooking11,testMockObj.testBooking12]);
+testMockObj.testCoupons.add([testMockObj.testCoupon1,testMockObj.testCoupon2,testMockObj.testCoupon3,testMockObj.testCoupon4,
+                            testMockObj.testCoupon5,testMockObj.testCoupon6,testMockObj.testCoupon7,testMockObj.testCoupon8,
+                            testMockObj.testCoupon9,testMockObj.testCoupon10,testMockObj.testCoupon11,testMockObj.testCoupon12]);
+testMockObj.testCredits.add([testMockObj.testCredit1,testMockObj.testCredit2,testMockObj.testCredit3,testMockObj.testCredit4,
+                            testMockObj.testCredit5,testMockObj.testCredit6,testMockObj.testCredit7,testMockObj.testCredit8,
+                            testMockObj.testCredit9,testMockObj.testCredit10,testMockObj.testCredit11,testMockObj.testCredit12]);
+
 testMockObj.testBooking1.set("course", testMockObj.testCourse1);
 testMockObj.testBooking2.set("course", testMockObj.testCourse2);
 testMockObj.testBooking3.set("course", testMockObj.testCourse3);
@@ -202,6 +230,8 @@ testMockObj.testBooking10.set("course", testMockObj.testCourse4);
 testMockObj.testBooking11.set("course", testMockObj.testCourse5);
 testMockObj.testBooking12.set("course", testMockObj.testCourse6);
 testMockObj.testUser.set("bookings", testMockObj.testBookings);
+testMockObj.testUser.set("coupons", testMockObj.testCoupons);
+testMockObj.testUser.set("credits", testMockObj.testCredits);
 testMockObj[EnumConfig.ModuleIdentifier.admin] = testMockObj.testAdmin;
 testMockObj[EnumConfig.ModuleIdentifier.partner] = testMockObj.testPartner;
 testMockObj[EnumConfig.ModuleIdentifier.user] = testMockObj.testUser;

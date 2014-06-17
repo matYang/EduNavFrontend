@@ -25,7 +25,7 @@ var MultiPageView = Backbone.View.extend({
     * @param entryRowNum: the number of entries displaying in the same row
     * @param minHeight: the minimum height of the message container
     * @param noMessage: the message displayed in the container when there's no message available
-
+    * @param extPn: external page navigator
     * @param _filters: private member holding registered filters, should never be referenced from external
 
     //TODO: 
@@ -134,9 +134,15 @@ var MultiPageView = Backbone.View.extend({
             this.$pn.children("." + this.pageNumberClass).off();
             this.$pn.children(".pre").off();
             this.$pn.children(".next").off();
-            this.$pn.remove();
+            if (this.extPn) {
+                this.$pn.empty();
+            } else {
+                this.$pn.remove();
+            }
         }
-        this.$domContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
+        if  (!this.extPn) {
+            this.$domContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
+        }
         this.$pn = $("#" + this.pageNavigator);
         var length = this.messages ? this.messages.length : 0;
         var pages = Math.ceil(length / this.pageEntryNumber);

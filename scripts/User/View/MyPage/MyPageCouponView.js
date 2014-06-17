@@ -53,6 +53,7 @@ var UnclaimedCouponView = MultiPageView.extend({
     minHeight: 144,
     pageEntryNumber: 4,
     entryHeight: 36,
+    extPn:true,
     initialize: function (allCoupons, coupons) {
         _.bindAll(this, 'render', 'bindEvents', 'entryEvent', 'close');
         this.template = _.template(tpl.get("mypage_couponUnclaimed"));
@@ -97,10 +98,13 @@ var UnclaimedCouponView = MultiPageView.extend({
     show: function () {
         $("#unclaimedTable").removeClass("hidden");
         $("#unclaimedNoData").removeClass("hidden");
+        $("#unclaimedCouponListNavigator").removeClass("hidden");
+
     },
     hide: function () {
-      $("#unclaimedTable").addClass("hidden");
-      $("#unclaimedNoData").addClass("hidden");
+        $("#unclaimedTable").addClass("hidden");
+        $("#unclaimedNoData").addClass("hidden");
+        $("#unclaimedCouponListNavigator").addClass("hidden");
     },
     close: function () {
         if (!this.isClosed) {
@@ -116,6 +120,7 @@ var ClaimedCouponView = MultiPageView.extend({
     minHeight: 144,
     pageEntryNumber: 4,
     entryHeight: 36,
+    extPn:true,
     initialize: function (allCoupons, coupons) {
         _.bindAll(this, 'render', 'bindEvents', 'close');
         this.template = _.template(tpl.get("mypage_couponClaimed"));
@@ -148,10 +153,13 @@ var ClaimedCouponView = MultiPageView.extend({
     show: function () {
         $("#claimedTable").removeClass("hidden");
         $("#claimedNoData").removeClass("hidden");
+        $("#claimedCouponListNavigator").removeClass("hidden");
     },
     hide: function () {
-          $("#claimedTable").addClass("hidden");  
-          $("#claimedNoData").addClass("hidden");
+        $("#claimedTable").addClass("hidden");  
+        $("#claimedNoData").addClass("hidden");
+        $("#claimedCouponListNavigator").addClass("hidden");
+
     },
     close: function () {
         if (!this.isClosed) {

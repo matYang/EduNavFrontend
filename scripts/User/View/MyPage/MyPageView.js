@@ -49,6 +49,10 @@ var MyPageView = Backbone.View.extend({
                 this.activeChildView = new MyPageCouponView();
                 $("#couponAccount").addClass("active");
                 break;
+            case "credit" :
+                this.activeChildView = new MyPageCreditView();
+                $("#creditAccount").addClass("active");
+                break;
             case "dashboard":
             case "booking": 
             default:
@@ -89,6 +93,14 @@ var MyPageView = Backbone.View.extend({
                 $("#mypage_sidebar").find(".active").removeClass("active");
                 that.query = "setting";
                 app.navigate("mypage/setting");
+                that.createChildView();
+            }
+        });
+        $("#creditAccount").on("click", function () {
+            if (that.query !== "credit") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "credit";
+                app.navigate("mypage/credit");
                 that.createChildView();
             }
         });
