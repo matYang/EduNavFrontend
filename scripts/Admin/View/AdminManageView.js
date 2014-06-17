@@ -422,7 +422,7 @@ var AdminManageView = Backbone.View.extend({
             $("#queryBookingBtn").on("click", function (e) {
                 var obj = that.sr.toJSON();
                 for ( var attr in obj ) {
-                    var value = $("#queryBooking").find("#" +attr+"_Input").val();
+                    var $input = $("#queryBooking").find("#" +attr+"_Input"), value = $input.val();
                     if (value && !$input.hasClass("date") ) {
                         that.sr.set(attr, value);
                     }
@@ -522,7 +522,7 @@ var AdminManageView = Backbone.View.extend({
             $("#queryPartnerBtn").on("click", function (e) {
                 var obj = that.sr.toJSON();
                 for ( var attr in obj ) {
-                    var value = $("#queryPartner").find("#" +attr+"_Input").val();
+                    var $input = $("#queryUser").find("#" +attr+"_Input"), value = $input.val();
                     if (value && !$input.hasClass("date") ) {
                         that.sr.set(attr, value);
                     }
@@ -570,7 +570,7 @@ var AdminManageView = Backbone.View.extend({
             $("#queryAdminBtn").on("click", function (e) {
                 var obj = that.sr.toJSON();
                 for ( var attr in obj ) {
-                    var value = $("#queryAdmin").find("#" +attr+"_Input").val();
+                    var $input = $("#queryUser").find("#" +attr+"_Input"), value = $input.val();
                    if (value && !$input.hasClass("date") ) {
                         that.sr.set(attr, value);
                     }
