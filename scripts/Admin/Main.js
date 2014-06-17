@@ -11,6 +11,7 @@ var AppRouter = Backbone.Router.extend({
         "manage/course/:id": "course",
         "manage/user/:id": "user",
         "manage/booking/:id": "booking",
+        "manage/admin/:id": "admin",
         "manage": "manage",
         "*default" : "defaultRoute"
     },
@@ -98,6 +99,17 @@ var AppRouter = Backbone.Router.extend({
         this.manageView = new AdminManageView({type:"booking"});
         if (id) {
             this.courseView = new AdminBookingView({bookingId:id});
+        }
+    },
+    admin: function (id) {
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("login", {trigger:true, replace:true});
+        } else if (!this.baseView) {
+            this.baseView = new AdminBaseView(this.sessionManager);
+        }
+        this.manageView = new AdminManageView({type:"admin"});
+        if (id) {
+            this.adminView = new AdminAdminView({adminId:id});
         }
     },
 });

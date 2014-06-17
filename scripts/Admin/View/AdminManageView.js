@@ -137,12 +137,28 @@ var AdminAdminSearchResultView = MultiPageView.extend({
         this.isClosed = false;
         this.pnc = true;
         this.render();
+        this.bindEvents();
     },
     render: function () {
         MultiPageView.prototype.render.call(this);
     },
+    bindEvents: function () {
+        $("#createAdmin").on("click", function(){
+            $(this).addClass("active");
+            $("#updateAdmin").removeClass("active");
+            $("#adminCRUDContainer").removeClass("hidden");
+            $("#searchResult").addClass("hidden");
+            that.adminCourseView = new AdminPartnerView(); //Create
+        });
+        $("#searchAdmin").on("click", function(){
+            $(this).addClass("active");
+            $("#createAdmin").removeClass("active");
+            $("#searchResult").removeClass("hidden");
+            $("#adminCRUDContainer").addClass("hidden");
+        });
+    },
     entryEvent: function (id) {
-        app.navigate("manage/booking/"+id, true);
+        app.navigate("manage/admin/"+id, true);
     },
     close: function () {
         this.$domContainer.empty();
@@ -244,8 +260,8 @@ var AdminManageView = Backbone.View.extend({
                 break;
             case "admin":
                 this.allMessages = new Admins();
-                this.sr = new UserSearchRepresentation();
-                // this.resultView = new AdminBookingSearchResultView(this.allMessages, this.allMessages);
+                this.sr = new AdminSearchRepresentation();
+                this.resultView = new AdminAdminSearchResultView(this.allMessages, this.allMessages);
                 break;
             case "partner":
                 this.allMessages = new Partners();
@@ -368,7 +384,7 @@ var AdminManageView = Backbone.View.extend({
                     }    
                 }
             })
-            $("#getBookingBtn").on("click", function (e) {
+            $("#findBookingBtn").on("click", function (e) {
                 var bookingId = $("#bookingId_Input").val();
                 if (bookingId) {
                     app.navigate("manage/booking/"+ bookingId, true);
@@ -403,7 +419,7 @@ var AdminManageView = Backbone.View.extend({
                 $(e.delegateTarget).children("div").addClass("hidden");
                 $("#"+id).removeClass("hidden");
             });
-            $("#dindPartnerBtn").on("click", function (e) {
+            $("#findPartnerBtn").on("click", function (e) {
                 var partnerId = $("#partnerId_Input").val();
                 if (partnerId) {
                     app.navigate("manage/partner/"+ partnerId, true);
@@ -418,6 +434,28 @@ var AdminManageView = Backbone.View.extend({
                     }
                 }
                 app.adminManager.listPartner(that.sr, {success:that.renderResult, error:function(){}});
+            });
+        } else if (this.type === "admin") {
+            $("#adminSearchPanel").on("click", "a", function (e) {
+                var id = e.target.id.split("_")[1];
+                $(e.delegateTarget).children("div").addClass("hidden");
+                $("#"+id).removeClass("hidden");
+            });
+            $("#findAdminBtn").on("click", function (e) {
+                var adminId = $("#adminId_Input").val();
+                if (adminId) {
+                    app.navigate("manage/admin/"+ adminId, true);
+                }
+            });
+            $("#queryPartnerBtn").on("click", function (e) {
+                var obj = that.sr.toJSON();
+                for ( var attr in obj ) {
+                    var value = $("#queryAdmin").find("#" +attr+"_Input").val();
+                    if (value) {
+                        that.sr.set(attr, value);
+                    }
+                }
+                app.adminManager.listAdmin(that.sr, {success:that.renderResult, error:function(){}});
             });
         }
     },

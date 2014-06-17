@@ -228,82 +228,111 @@
 
 <script type="text/templates" id="tpl_adminBookingManage">
     <div id="searchResult">
-    <div class="clearfix">
-        <div id="bookingSearchPanel">
-            <div id="findBooking" class="fleft search">
-                <input id="bookingId_Input" class="text" type="text" placeholder="请输入订单id"/>
-                <input id="getBookingBtn" class="btn" type="button" value="进入"/>
-                <a style="float:left" id="goTo_queryBooking" class="button">Query</a>
+        <div class="clearfix">
+            <div id="bookingSearchPanel">
+                <div id="findBooking" class="fleft search">
+                    <input id="bookingId_Input" class="text" type="text" placeholder="请输入订单id"/>
+                    <input id="findBookingBtn" class="btn" type="button" value="进入"/>
+                    <a style="float:left" id="goTo_queryBooking" class="button">Query</a>
+                </div>
+                <div id="queryBooking" class="fleft search hidden">
+                    <input id="userId_Input" class="text" type="text" placeholder="用户Id"/>
+                    <input id="name_Input" class="text" type="text" placeholder="姓名"/>
+                    <input id="phone_Input" class="text" type="text" placeholder="用户手机"/>
+                    <input id="courseId_Input" class="text" type="text" placeholder="course Id"/>
+                    <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
+                    <input id="reference_Input" class="text" type="text" placeholder="reference"/>
+                    <input id="startPrice_Input" class="text" type="text" placeholder="最低价格"/>
+                    <input id="finishPrice_Input" class="text" type="text" placeholder="最高价格"/>
+                    <input id="scheduledTime_Input" class="text" type="text" placeholder="预约时间"/>
+                    <div>已经报道<input id="wasConfirmedIndex_Input" type="checkbox"></div>
+                    <input id="queryBookingBtn" class="btn" type="button" value="搜索"/>
+                    <a style="float:left" id="goTo_findBooking" class="button">Get</a>
+                </div>
             </div>
-            <div id="queryBooking" class="fleft search hidden">
-                <input id="userId_Input" class="text" type="text" placeholder="用户Id"/>
-                <input id="name_Input" class="text" type="text" placeholder="姓名"/>
-                <input id="phone_Input" class="text" type="text" placeholder="用户手机"/>
-                <input id="courseId_Input" class="text" type="text" placeholder="course Id"/>
-                <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
-                <input id="reference_Input" class="text" type="text" placeholder="reference"/>
-                <input id="startPrice_Input" class="text" type="text" placeholder="最低价格"/>
-                <input id="finishPrice_Input" class="text" type="text" placeholder="最高价格"/>
-                <input id="scheduledTime_Input" class="text" type="text" placeholder="预约时间"/>
-                <div>已经报道<input id="wasConfirmedIndex_Input" type="checkbox"></div>
-                <input id="queryBookingBtn" class="btn" type="button" value="搜索"/>
-                <a style="float:left" id="goTo_findBooking" class="button">Get</a>
+            <div class="fright" style="line-height:40px">
+                欢迎您，<span id="adminUserName" class="F_orange"></span>
             </div>
-        </div>
-        <div class="fright" style="line-height:40px">
-            欢迎您，<span id="adminUserName" class="F_orange"></span>
-        </div>
-     </div>
-     <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <td width="120">订单id</td>
-                <td width="120">用户id</td> 
-                <td width="120">用户名</td>
-                <td width="120">交易id</td>
-                <td width="120">合作伙伴id</td> 
-                <td width="120">优惠券Id</td>
-                <td width="120">课程Id</td>
-                <td width="130">订单日期</td>
-                <td width="130">报道日期</td>
-                <td width="100">价格</td>
-                <td width="100">已确认</td>
-                <td>--</td>
-            </tr>
-        </thead>
-        <tbody id="searchResultContainer">
+         </div>
+         <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <td width="120">订单id</td>
+                    <td width="120">用户id</td> 
+                    <td width="120">用户名</td>
+                    <td width="120">交易id</td>
+                    <td width="120">合作伙伴id</td> 
+                    <td width="120">优惠券Id</td>
+                    <td width="120">课程Id</td>
+                    <td width="130">订单日期</td>
+                    <td width="130">报道日期</td>
+                    <td width="100">价格</td>
+                    <td width="100">已确认</td>
+                    <td>--</td>
+                </tr>
+            </thead>
+            <tbody id="searchResultContainer">
 
-        </tbody>
-     </table>
-    <div id="bookingSearchNavigator" class="page clearfix">
-    </div>
+            </tbody>
+         </table>
+        <div id="bookingSearchNavigator" class="page clearfix">
+        </div>
     </div>
     <div id="bookingCRUDContainer">
     </div>
 </script>
 
 <script type="text/templates" id="tpl_adminAdminManage">
-    <div class="clearfix">
-        <div class="fleft search">
-            <input id="searchInput" class="text" type="text" placeholder="请输入姓名或id"/><input id="search" class="btn" type="button" value="搜索"/>
-            
-        </div>
-        <div class="fright" style="line-height:40px">
-            欢迎您，<span id="adminUserName" class="F_orange"></span>
-        </div>
-     </div>
-     <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <td width="80">用户id</td>
-                <td>--</td>
-            </tr>
-        </thead>
-        <tbody id="searchResultContainer">
+    <div class="tabs manageTabButton">
+        <div id="createAdmin">新建管理员</div>
+        <div id="searchAdmin">搜索管理员</div>
+    </div>
+    <div id="searchResult">
+        <div class="clearfix">
+            <div id="adminSearchPanel">
+                <div id="findAdmin" class="fleft search">
+                    <input id="adminId_Input" class="text" type="text" placeholder="请管理员id"/>
+                    <input id="findAdminBtn" class="btn" type="button" value="进入"/>
+                    <a style="float:left" id="goTo_queryAdmin" class="button">Query</a>
+                </div>
+                <div id="queryAdmin" class="fleft search hidden">
+                    <input id="name_Input" class="text" type="text" placeholder="姓名"/>
+                    <input id="phone_Input" class="text" type="text" placeholder="用户手机"/>
+                    <input id="reference_Input" class="text" type="text" placeholder="reference"/>
+                    <input id="status_Input" class="text" type="text" placeholder="状态"/>
+                    <div style="width:400px">
+                    <label style="float:left">权限</label>
+                    <select id="privilege_Input">
+                        <option value="0">root</option>
+                        <option value="1">management</option>
+                        <option value="2">routine</option>
+                    </select>
+                    </div>
+                    <input id="queryAdminBtn" class="btn" type="button" value="搜索"/>
+                    <a style="float:left" id="goTo_findAdmin" class="button">Get</a>
+                </div>
+            </div>
+            <div class="fright" style="line-height:40px">
+                欢迎您，<span id="adminUserName" class="F_orange"></span>
+            </div>
+         </div>
+         <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <td width="120">管理员id</td>
+                    <td width="200">手机</td>
+                    <td width="120">名字</td>
+                    <td>--</td>
+                </tr>
+            </thead>
+            <tbody id="searchResultContainer">
 
-        </tbody>
-     </table>
-    <div id="bookingSearchNavigator" class="page clearfix">
+            </tbody>
+         </table>
+        <div id="bookingSearchNavigator" class="page clearfix">
+        </div>
+    </div>
+    <div id="adminCRUDContainer">
     </div>
 </script>
 
@@ -366,7 +395,7 @@
 </script>
 
 <script type="text/templates" id="tpl_adminUser">
-    <form id="">
+    <form id="adminUserForm">
     <div>userId: <span><%= userId %></span><span class="edit"><input type="hidden" name="userId"/ value="<%= userId %>"></span></div>
     <div>name: <span class="detail"><%= name %></span><span class="edit"><input type="text" name="name"/></span></div>  
     <div>email: <span class="detail"><%= name %></span><span class="edit"><input type="text" name="email"/></span></div>  
@@ -425,7 +454,7 @@
         <div><label>地址: </label><div class="detail"><%= location %></div><div class="edit"><input type="text" name="location"/></div></div>
         
         <div><label>reference: </label><span class="detail"><%= reference %></span><span class="edit"><input type="text" name="reference"/></span></div>
-        <div><label>courseReference: </label><span class="detail"><%= partnerCourseReference %></span><span class="edit"><input type="text" name="partnerCourseReference"/></span></div>
+        <div><label>course Reference: </label><span class="detail"><%= partnerCourseReference %></span><span class="edit"><input type="text" name="partnerCourseReference"/></span></div>
         
         <div><label>开课要求: </label><span class="detail"><%= openCourseRequirement %></span><span class="edit"><input type="text" name="openCourseRequirement"/></span></div>
         <div><label>教课资格: </label><span class="detail"><%= partnerQualification %></span><span class="edit"><input type="text" name="partnerQualification"/></span></div>
@@ -434,7 +463,7 @@
         <div><label>教材费用: </label><span class=  "detail"><%= teachingMaterialFee %></span><span class="edit"><input type="text" name="teachingMaterialFee"/></span></div>
         <div><label>学前要求: </label><span class="detail"><%= prerequest %></span><span class="edit"><input type="text" name="prerequest"/></span></div>
 
-        <div><label>提纲：</label><span class="detail"></span></div>
+        <div style="height:220px;"><label>提纲：</label><span class="detail"><%= outline %></span><textarea name="outline" style="width:300px;height:200px;"></textarea></div>
         <div><label>下载材料: </label><span class="detail"><%= downloadMaterials %></span><span class="edit"><input type="checkbox" name="hasDownloadMaterials"/></span></div>
         <div><label>题库: </label><span class="detail"><%= questionBank %></span><span class="edit"><input type="text" name="questionBank"/></span></div>
         <div><label>高分奖励: </label><span class="detail"><%= highScoreReward %></span><span class="edit"><input type="text" name="highScoreReward"/></span></div>
@@ -548,5 +577,22 @@
             <span class="edit"><input id="cancel" type="button" value="取消"></span>
             <span class="edit"><input id="bookingPostSubmit" type="button" value="提交"></span>
         </div>
+    </form>
+</script>
+
+<script type="text/templates" id="tpl_adminAdmin">
+    <form id="adminAdminForm">
+        <div><span class="detail"><label>admin Id: </label><%= partnerId %></span></div> 
+        <div><label>电话: </label><span class="detail"><%= phone %></span><span class="edit"><input type="text" name="phone"/></span></div> 
+        <div><label>名字: </label><span class="detail"><%= name %></span><span class="edit"><input type="text" name="name"/></span></div> 
+        <div><span class="edit"><label>密码: </label><input type="text" name="phone"/></span></div> 
+        <div><span class="edit"><label>确认密码: </label><input type="text" name="name"/></span></div> 
+        <div><span class="edit"><label>key1: </label><input type="text" name="key1"/></span></div> 
+        <div><span class="edit"><label>key2: </label><input type="text" name="key2"/></span></div> 
+        <div><span class="edit"><label>key3: </label><input type="text" name="key3"/></span></div> 
+        <span class="detail"><input type="button" id="deleteAdmin" value="delete" /></span>
+        <span class="detail"><input type="button" id="editAdmin" value="edit"/></span>
+        <span class="edit"><input id="adminPostSubmit" type="button" value="提交"></span>
+        <span class="edit"><div id="cancel">Cancel</div>
     </form>
 </script>

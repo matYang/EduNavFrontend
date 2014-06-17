@@ -41,15 +41,18 @@
         });
     };
 
-    AdminManager.prototype.fetchAdmin = function(callback) {
+    AdminManager.prototype.fetchAdmin = function(adminId, callback) {
         var self = this;
         var admin = new Admin();
-
         if (!this.sessionManager.hasSession()){
             Info.warn("AdminManager::fetchAdmin::currentAdmin does not have session, exit");
             return;
         }
-        
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testAdmin);
+            return;
+        }
+
         admin.overrideUrl(this.apis.admin_admin);
         admin.set('adminId', this.sessionManager.getId());
         admin.fetch({

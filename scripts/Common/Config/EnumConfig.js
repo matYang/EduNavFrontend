@@ -53,7 +53,7 @@ var EnumConfig = {
 
     'Privilege': {
         root: 0,
-        mamagement: 1,
+        management: 1,
         routine: 2
     },
 
