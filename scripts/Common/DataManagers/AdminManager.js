@@ -25,7 +25,7 @@
             dataType:'json',
 
             success:function(model, response){
-                if(callback){
+                if(callback){   
                     callback.success(admin);
                 }
             },
@@ -232,7 +232,7 @@
             Info.warn('AdminManager::update:: session does not exist, exit');
             return;
         }
-        user.overrideUrl(this.apis.admin_user);
+        user.overrideUrl(this.apis.admin_user + "/" + user.get("userId"));
         user.save({}, {
             dataType:'json',
             success:function(model, response){
@@ -253,7 +253,7 @@
     AdminManager.prototype.fetchUser = function(userId, callback){
         var self = this;
         if (testMockObj.testMode) {
-            callback.success(testMockObj.sampleUser);
+            callback.success(testMockObj.testUser);
             return;
         }
         if (!this.sessionManager.hasSession()){

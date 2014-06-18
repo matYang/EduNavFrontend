@@ -441,16 +441,27 @@
 
 <script type="text/templates" id="tpl_adminUser">
     <form id="adminUserForm">
-    <div>userId: <span><%= userId %></span><span class="edit"><input type="hidden" name="userId"/ value="<%= userId %>"></span></div>
-    <div>name: <span class="detail"><%= name %></span><span class="edit"><input type="text" name="name"/></span></div>  
-    <div>email: <span class="detail"><%= name %></span><span class="edit"><input type="text" name="email"/></span></div>  
-    <span class="detail">
-        <div>
-            coupons: 
-            <div id="adminUserCouponsContainer">
-            </div>
-        </div>
-    </span>
+    <div><label>userId: </label><span><%= userId %></span><span class="edit"><input type="hidden" name="userId"/ value="<%= userId %>"></span></div>
+    <div><label>name: </label><span class="detail"><%= name %></span><span class="edit"><input type="text" id="userName" name="name"/></span></div> 
+    <div><label>phone: </label><span class="detail"><%= phone %></span><span class="edit"><input type="text" id="userPhone" name="phone"/></span></div> 
+    <div><label>email: </label><span class="detail"><%= email %></span><span class="edit"><input type="text" id="userEmail" name="email"/></span></div>  
+    <div>
+        <div><label>用户状态：</label><span class="detail"><%= status %></span></div>
+        <span class="edit">
+            <select id="status_Input">
+            <option value="0">正常</option>
+            <option value="1">ban</option>
+            </select>
+        </span>
+    </div>
+    <div class="btns" style="float:left;width:100%;">
+        <span class="detail"><input type="button" id="editUser" value="修改课程"/></span>
+        <span class="edit">
+            <input id="userSubmit" type="button" value="提交">
+            <input id="cancel" value="取消" type="button"/>
+        </span>
+    </div>
+ 
 </script>
 
 <script type="text/templates" id="tpl_adminUserCouponRow">
@@ -628,13 +639,23 @@
 <script type="text/templates" id="tpl_adminAdmin">
     <form id="adminAdminForm">
         <div><span class="detail"><label>admin Id: </label><%= adminId %></span></div> 
-        <div><label>电话: </label><span class="detail"><%= phone %></span><span class="edit"><input type="text" name="phone"/></span></div> 
-        <div><label>名字: </label><span class="detail"><%= name %></span><span class="edit"><input type="text" name="name"/></span></div> 
-        <div><span class="edit"><label>密码: </label><input type="password" name="phone"/></span></div> 
-        <div><span class="edit"><label>确认密码: </label><input type="password" name="name"/></span></div> 
+        <div><label>电话: </label><span class="detail"><%= phone %></span><span class="edit"><input type="text" id="adminPhone" name="phone"/></span></div> 
+        <div><label>名字: </label><span class="detail"><%= name %></span><span class="edit"><input type="text" id="adminName" name="name"/></span></div> 
+        <div><span class="edit"><label>密码: </label><input type="password" id="adminPassword" name="phone"/></span></div> 
+        <div><span class="edit"><label>确认密码: </label><input type="password" id="adminConfirm" name="name"/></span></div> 
+        <div><label>权限: </label><span class="detail"><%= privilege %></span><span class="edit">
+            <select id="adminPrevilege" name="privilege">
+                <option value="0">root</option>
+                <option value="1">management</option>
+                <option value="2">routine</option>
+            </select>
+        </span></div> 
+        
+
         <div><span class="edit"><label>key1: </label><input type="text" name="key1"/></span></div> 
         <div><span class="edit"><label>key2: </label><input type="text" name="key2"/></span></div> 
         <div><span class="edit"><label>key3: </label><input type="text" name="key3"/></span></div> 
+
         <span class="detail"><input type="button" id="deleteAdmin" value="delete" /></span>
         <span class="detail"><input type="button" id="editAdmin" value="edit"/></span>
         <span class="edit"><input id="adminPostSubmit" type="button" value="提交"></span>

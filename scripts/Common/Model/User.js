@@ -85,7 +85,7 @@ var User = Backbone.Model.extend({
         json.password = encodeURI(json.password);
         json.email = encodeURI(json.email);
 
-        json.encodeURI(appliedInvitationalCode);
+        json.appliedInvitationalCode = encodeURI(json.appliedInvitationalCode);
         
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));

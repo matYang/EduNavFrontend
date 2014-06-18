@@ -14,11 +14,48 @@ var AdminAdminView = BaseFormView.extend({
         this.template = _.template(tpl.get("adminAdmin"));
         this.action = apis.admin_admin;
         this.newAdmin = false;
+        this.fields = [
+            new BaseField({
+                name:"电话",
+                fieldId: "adminPhone",
+                fieldType: "text",
+                mandatory: true,
+                modelAttr: "phone"
+            }),
+            new BaseField({
+                name:"名字",
+                fieldId: "adminName",
+                fieldType: "text",
+                mandatory: true,
+                modelAttr: "name"
+            }),
+            new BaseField({
+                name:"密码",
+                fieldId: "adminPassword",
+                fieldType: "text",
+                mandatory: true,
+                modelAttr: "password"
+            }),
+            new BaseField({
+                name:"确认密码",
+                fieldId: "adminConfirm",
+                fieldType: "text",
+                mandatory: true,
+                modelAttr: "confirmPassword"
+            }),
+            new BaseField({
+                name:"权限",
+                fieldId: "adminPrivilege",
+                fieldType: "text",
+                mandatory: true,
+                modelAttr: "privilege"
+            }),
+        ]
         if (params.admin) {
             this.render(params.admin);
         } else if (params.adminId){
 
-            app.generalManager.fetchCourse(params.adminId, {
+            app.adminManager.fetchAdmin(params.adminId, {
                 success: this.render,
                 error: function() {
                     app.navigate("manage/admin", true);
@@ -66,14 +103,23 @@ var AdminAdminView = BaseFormView.extend({
     },
 
     submitAction: function () {
-    	var keys = {};
-    	keys.secret1 = $("#key1").val();
-    	keys.secret2 = $("#key2").val();
-    	keys.secret3 = $("#key3").val();
-    	app.adminManager.createAdmin(this.model, {
-    		success: function () {},
-    		error: function() {}
-    	}, keys);
+        var keys = {};
+        keys.secret1 = $("#key1").val();
+        keys.secret2 = $("#key2").val();
+        keys.secret3 = $("#key3").val();
+        if (this.newAdmin) {
+            app.adminManager.createAdmin(this.model, {
+                success: function (admin) {
+                    app.navigate("manage/admin/"+admin.id, true);
+                },
+                error: function() {}
+            }, keys);
+        } else {
+            app.adminManager.updateAdmin(this.model, {
+                success: function () {},
+                error: function() {}
+            }, keys);
+        }
     },
     close: function () {
         if (!this.isClosed) {

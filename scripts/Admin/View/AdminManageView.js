@@ -78,6 +78,8 @@ var AdminCourseSearchResultView = MultiPageView.extend({
             $("#createCourse").removeClass("active");
             $("#searchResult").removeClass("hidden");
             $("#courseCRUDContainer").addClass("hidden");
+            app.navigate("manage/course");
+
         });
     },
     close: function () {
@@ -156,6 +158,7 @@ var AdminAdminSearchResultView = MultiPageView.extend({
             $("#createAdmin").removeClass("active");
             $("#searchResult").removeClass("hidden");
             $("#adminCRUDContainer").addClass("hidden");
+            app.navigate("manage/admin");
         });
     },
     entryEvent: function (id) {
@@ -205,6 +208,7 @@ var AdminPartnerSearchResultView = MultiPageView.extend({
             $("#createPartner").removeClass("active");
             $("#searchResult").removeClass("hidden");
             $("#partnerCRUDContainer").addClass("hidden");
+            app.navigate("manage/partner");
         });
     },
     entryEvent: function (id) {
@@ -276,7 +280,7 @@ var AdminManageView = Backbone.View.extend({
             this.sr.castFromQuery(this.query);
         }
         $("#adminUserName").html(app.sessionManager.sessionModel.get("name"));
-        
+
     },
     bindEvents: function () {
         this.bindSearchEvent();
@@ -302,7 +306,7 @@ var AdminManageView = Backbone.View.extend({
             $("#findUserBtn").on("click", function (e) {
                 var id = $("#userId_Input").val();
                 if (id) {
-                    app.navigate("manage/course/" + id, true );
+                    app.navigate("manage/user/" + id, true );
                 }
                 app.adminManager.listUser(that.sr, {success:that.renderResult, error:function(){}});
             });

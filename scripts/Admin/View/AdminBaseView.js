@@ -41,6 +41,9 @@ var AdminBaseView = Backbone.View.extend({
                 }
             });
         });
+        // $("#changePassword").on("click", function(){
+
+        // });
     },
     goto: function (dest) {
         $(".active").removeClass("active");
