@@ -204,6 +204,17 @@ var Utilities = {
         }
         return params;
     },
+    passValid: function (val) {
+        var p1 = $("#password").val(), p2 = $("#passwordConfirm").val();
+        if ( p1 !== p2 ) {
+            return {valid: false, text:"密码长度至少为6位"};
+        } else if (val.length < 6 ){
+            return {valid: false, text:"两次输入密码不匹配"};
+        } else {
+            return {valid:true};
+        }
+    },
+
     phoneValid: function(phone) {
         if (phone && phone.length === 11 && !isNaN(Utilities.toInt(phone))) {
             return {valid:true};

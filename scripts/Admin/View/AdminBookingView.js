@@ -53,6 +53,18 @@ var AdminBookingView = BaseFormView.extend({
                 $edit.val(json[attr]);
             }
         });
+        $("input[name=scheduledTime]").datepicker({
+                buttonImageOnly: true,
+                buttonImage: "calendar.gif",
+                buttonText: "Calendar",
+                onSelect: function (text, inst) {
+                    var d = new Date ();
+                    d.setDate(inst.selectedDay);
+                    d.setMonth(inst.selectedMonth);
+                    d.setYear(inst.selectedYear);
+                    $(this).val(Utilities.castToAPIFormat(d));
+                }
+            });
     },  
     successCallback: function () {
         app.navigate("manage/booking", true);

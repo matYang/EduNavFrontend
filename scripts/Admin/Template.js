@@ -143,6 +143,11 @@
                     <select id="district_Input">
                         <option value="" disabled selected>地区</option>
                     </select>
+                    <select id="startUponArrival_Input">
+                        <option value="" disabled selected>报名即开始</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
                     </div>
                     <div class="clearfix">
                         <div>
@@ -165,6 +170,8 @@
                         </div>
                         <div>开始日期:<input type="text" class="date" id="startDate_Input" placeholder="开始日期"/></div>
                         <div>结束日期:<input type="text" class="date" id="finishDate_Input" placeholder="结束日期"/></div>
+                        <div>最早截止日期:<input type="text" class="date" id="startCutoffDate_Input" placeholder="最早截止日期"/></div>
+                        <div>最晚截止日期:<input type="text" class="date" id="finishCutoffDate_Input" placeholder="最晚截止日期"/></div>
                     </div>
                     <input id="queryCourseBtn" class="btn" type="button" value="搜索"/>
                     <a style="float:left" id="goTo_findCourse" class="button">get</a>
@@ -492,8 +499,9 @@
         <div><label>反金金额: </label><div class="detail"><%= cashback %></div><div class="edit"><input type="text" name="cashback"/></div></div>
         <div><label>人气值: </label><div class="detail"><%= popularity %></div><div class="edit"><input type="text" name="popularity"/></div></div>
         
-        <div><label>开始日期: </label><div class="detail"><%= startDate %></div><div class="edit"><input type="text" name="startDate"/></div></div>
-        <div><label>结束日期: </label><div class="detail"><%= finishDate %></div><div class="edit"><input type="text" name="finishDate"/></div></div>
+        <div><label>开始日期: </label><div class="detail"><%= startDate %></div><div class="edit"><input type="text" class="date" name="startDate"/></div></div>
+        <div><label>结束日期: </label><div class="detail"><%= finishDate %></div><div class="edit"><input type="text" class="date" name="finishDate"/></div></div>
+        <div><label>截止日期: </label><div class="detail"><%= cutoffDate %></div><div class="edit"><input type="text" class="date" name="cutoffDate"/></div></div>
         <div><label>上学时间1: </label><div class="detail"><%= startTime1 %></div><div class="edit"><input type="text" name="startTime1"/></div></div>
         <div><label>放学时间1: </label><div class="detail"><%= finishTime1 %></div><div class="edit"><input type="text" name="finishTime1"/></div></div>
         <div><label>上学时间2: </label><div class="detail"><%= startTime2 %></div><div class="edit"><input type="text" name="startTime2"/></div></div>

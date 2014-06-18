@@ -345,7 +345,7 @@ var AdminManageView = Backbone.View.extend({
                     app.navigate("manage/course/" + id, true );
                 }
             });
-            $("#startTime_Input").datepicker({
+            $("#startDate_Input").datepicker({
                 buttonImageOnly: true,
                 buttonImage: "calendar.gif",
                 buttonText: "Calendar",
@@ -354,11 +354,11 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("startTime", d);
+                    that.sr.set("startDate", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
-            $("#finishTime_Input").datepicker({
+            $("#finishDate_Input").datepicker({
                 buttonImageOnly: true,
                 buttonImage: "calendar.gif",
                 buttonText: "Calendar",
@@ -367,7 +367,33 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("finishTime", d);
+                    that.sr.set("finishDate", d);
+                    $(this).val(Utilities.getDateString(d));
+                }
+            });
+            $("#startCutoffDate_Input").datepicker({
+                buttonImageOnly: true,
+                buttonImage: "calendar.gif",
+                buttonText: "Calendar",
+                onSelect: function (text, inst) {
+                    var d = new Date ();
+                    d.setDate(inst.selectedDay);
+                    d.setMonth(inst.selectedMonth);
+                    d.setYear(inst.selectedYear);
+                    that.sr.set("startCutoffDate", d);
+                    $(this).val(Utilities.getDateString(d));
+                }
+            });
+            $("#finishCutoffDate_Input").datepicker({
+                buttonImageOnly: true,
+                buttonImage: "calendar.gif",
+                buttonText: "Calendar",
+                onSelect: function (text, inst) {
+                    var d = new Date ();
+                    d.setDate(inst.selectedDay);
+                    d.setMonth(inst.selectedMonth);
+                    d.setYear(inst.selectedYear);
+                    that.sr.set("finishCutoffDate", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });

@@ -90,7 +90,6 @@ var TopBarView = Backbone.View.extend({
                 app.navigate("mypage", true);
             });
         }
-        
     },
     login: function () {
         var username = this.$usernameInput.val(), password = this.$passwordInput.val(), self = this;
@@ -131,7 +130,6 @@ var TopBarView = Backbone.View.extend({
                 app.sessionManager.fetchSession(true, {
                     success: function () {
                         app.userManager.sessionUser = app.sessionManager.sessionModel;
-                        app.letterView.close();
                         location.reload();
                     },
                     error: function () {

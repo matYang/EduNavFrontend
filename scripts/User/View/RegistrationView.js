@@ -5,20 +5,20 @@ var RegistrationView = BaseFormView.extend({
     submitButtonId: "complete",
     model: {},
     initialize: function(params){
-    	_.bindAll(this, 'render', 'bindEvents', 'phoneValid', 'passValid', 'successCallback', 'submitAction', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'phoneValid', 'passValid', 'successCallback', 'submitAction', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
         $("#viewStyle").attr("href", "style/css/reg.css");
         this.template = _.template(tpl.get('registration'));
         this.finishTemplate = _.template(tpl.get('registration_finish'));
-    	this.$el.append(this.template);
+        this.$el.append(this.template);
         this.fields = [
             new BaseField({
                 name: "手机",
                 fieldId: "registerCellInput",
                 type: "text",
                 mandatory: true,
-                validatorFunction: this.phoneValid,
+                validatorFunction: Utilities.phoneValid,
                 modelAttr: "phone",
                 validatorContainer: $("#cellContainer")
             }),
@@ -27,7 +27,7 @@ var RegistrationView = BaseFormView.extend({
                 fieldId: "registerPasswordInput",
                 type: "text",
                 mandatory: true,
-                validatorFunction: this.passValid,
+                validatorFunction: Utilities.passValid,
                 modelAttr: "password",
                 validatorContainer: $("#passContainer")
             }),
@@ -36,7 +36,7 @@ var RegistrationView = BaseFormView.extend({
                 fieldId: "registerPasswordConfirmInput",
                 type: "text",
                 mandatory: true,
-                validatorFunction: this.passValid,
+                validatorFunction: Utilities.passValid,
                 modelAttr: "confirmPassword",
                 validatorContainer: $("#confirmContainer")
             }),
@@ -65,29 +65,21 @@ var RegistrationView = BaseFormView.extend({
         $("#loginBox").hide();
         $("#getSms").on("click", function (e) {
             if (that.phoneValid(that.model.phone).valid) {
-                app.userManager.smsVerification(that.model.phone);
+                app.userManager.smsVerification(that.model.phone,{
+                    success: function () {
+                        $("#smsInfo").html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试").prop("disabled", true);
+                        setTimeout(function(){
+                            $("#smsInfo").prop("disabled", false);
+                        }, 120000);
+                    },
+                    error: function () {
+                        $("#smsInfo").html("验证码发送失败，请检查网络正常并重试");
+                    },
+                });
             }
         });
         BaseFormView.prototype.bindEvents.call(this);
     },
-    phoneValid: function(val) {
-        if (!val || val.length !== 11 || isNaN(parseInt(val,10)) ){
-            return {valid: false, text:"手机号码格式不正确"};
-        } else {
-            return {valid: true};
-        }
-    },
-    passValid: function (val) {
-        var p1 = $("#password").val(), p2 = $("#passwordConfirm").val();
-        if ( p1 !== p2 ) {
-            return {valid: false, text:"密码长度至少为6位"};
-        } else if (val.length < 6 ){
-            return {valid: false, text:"两次输入密码不匹配"};
-        } else {
-            return {valid:true};
-        }
-    },
-
     successCallback: function(data){
         this.state = "finish";
         app.sessionManager.sessionModel = new User(data, {parse: true});

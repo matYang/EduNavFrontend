@@ -13,7 +13,9 @@ var Course = Backbone.Model.extend({
             'classSize': undefined,
             'cashback': undefined,
             'popularity': undefined,
-                
+            
+            'startUponArrival': undefined,
+            'cutoffDate': undefined,
             'creationTime': new Date(),
             'startDate': new Date(),
             'finishDate': new Date(),
@@ -99,6 +101,8 @@ var Course = Backbone.Model.extend({
             data.cashback = parseInt(data.cashback , 10);
             data.popularity = parseInt(data.popularity , 10);
                 
+            data.startUponArrival = parseInt(data.startUponArrival, 10);
+            data.cutoffDate =  Utilities.castFromAPIFormat(data.cutoffDate);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.startDate = Utilities.castFromAPIFormat(data.startDate);
             data.finishDate = Utilities.castFromAPIFormat(data.finishDate);
@@ -175,6 +179,7 @@ var Course = Backbone.Model.extend({
         json.startDate = Utilities.getDateString(this.get('startDate'));
         json.finishDate = Utilities.getDateString(this.get('finishDate'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.cutoffDate = Utilities.getDateString(this.get('cutoffDate'));
         json.startTime1 = Math.floor(json.startTime1/100) + ":" + json.startTime1%100;
         json.startTime2 = Math.floor(json.startTime2/100) + ":" + json.startTime2%100;
         json.finishTime1 = Math.floor(json.finishTime1/100) + ":" + json.finishTime1%100;
@@ -201,6 +206,8 @@ var Course = Backbone.Model.extend({
         json.startDate = Utilities.castToAPIFormat(this.get('startDate'));
         json.finishDate = Utilities.castToAPIFormat(this.get('finishDate'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+        json.cutoffTime = Utilities.castToAPIFormat(this.get('creationTime'));
+
         return json;
     },
     /* generate object with html wrapping as values, these values will append to the compare table one by one */

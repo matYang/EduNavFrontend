@@ -1,133 +1,108 @@
-var FindPasswordView = Backbone.View.extend({
+var FindPasswordView = BaseFormView.extend({
     el: "#content",
+    model: {},
     initialize: function (params) {
-        _.bindAll(this, 'render', 'validatePassword', 'submitNewPassword', 'close');
+        _.bindAll(this, 'render', 'validatePassword', 'submitAction', 'changeError', 'successCallback', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.template1 = _.template(tpl.get("findPassword_1"));
         this.template2 = _.template(tpl.get("findPassword_2"));
         this.template3 = _.template(tpl.get("findPassword_3"));
-        if (params.token) {
-            this.token = params.token;
-            this.state = 3;
-        } else {
-            this.state = 1;
-        }
+        this.fields = [
+            new BaseField({
+                name: "手机",
+                fieldId: "registerCellInput",
+                type: "text",
+                mandatory: true,
+                validatorFunction: Utilities.phoneValid,
+                modelAttr: "phone",
+                validatorContainer: $("#cellContainer")
+            }),
+            new BaseField({
+                name: "密码",
+                fieldId: "registerPasswordInput",
+                type: "text",
+                mandatory: true,
+                validatorFunction: Utilities.passValid,
+                modelAttr: "password",
+                validatorContainer: $("#passContainer")
+            }),
+            new BaseField({
+                name: "确认密码",
+                fieldId: "registerPasswordConfirmInput",
+                type: "text",
+                mandatory: true,
+                validatorFunction: Utilities.passValid,
+                modelAttr: "confirmPassword",
+                validatorContainer: $("#confirmContainer")
+            }),
+            new BaseField({
+                name: "验证码",
+                fieldId: "authCode",
+                type: "text",
+                mandatory: true,
+                modelAttr: "authCode",
+                validatorContainer: $("#authContainer")
+            }),
+        ];
         this.render(this.state);
     },
     render: function (state) {
         var that = this;
         this.state = state;
         this.$el.empty();
-        if (state === 3) {
-            this.$el.append(this.template3);
-        } else if (state === 2) {
+        if (state === 2) {
             this.$el.append(this.template2);
-            $("#email_value").html(this.email);
-            $("#go_to_email").on("click", function (e) {
-                e.preventDefault();
-                window.open("http://"+that.email.split("@")[1]);
-            });
         } else {
-            this.re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             this.$el.append(this.template1);
         }
         this.bindEvents(this.state);
     },
     bindEvents: function (state) {
-        var that = this,
-            email;
-        if (state === 3) {
-            this.$password = $("#newPassword");
-            this.$confirm = $("#confirmPassword");
-            this.valid = {password: false};
-            this.$password.add(this.$confirm).on("blur", function (e) {
-                that.validatePassword();
-            });
-            $("#confirmChange").on("click", this.submitNewPassword );
-            $('#newPassword, #confirmPassword').on("keyup", this.submitNewPassword);
+        var that = this;
+         if (state === 2) {
 
-        } else if (state === 2) {
-            $("#go_to_email").on("click", function (e) {
-                e.preventDefault();
-                window.open("http://"+that.email.split("@")[1]);
-            });
         } else {
-            $("#emailAddress").on("blur", function (e) {
+            $("#registerCellInput").on("blur", function (e) {
                 if ($("#forgotWrong").length) {
                     $("#forgotWrong").remove();
                 }
-                email = $("#emailAddress").val();
-                if (!email || !that.re.test(email)) {
-                    $("#forgot_container .btns").before("<div id='forgotWrong' class='wrong'><p>邮箱格式不正确，请输入正确的邮箱</p></div>");
-                    that.email = "";
+                phone = $("#registerCellInput").val();
+                if (!phone || phone.length  !== 11 || isNaN(parseInt(phone, 10)))  {
+                    $(this).after("<div id='forgotWrong' class='wrong'><p>手机格式不正确，请输入正确的手机号</p></div>");
+                    that.phone = "";
                 } else {
-                    that.email = $(this).val();
-                }
-            }).on("keyup", function (e) {
-                if (e.which === 13) {
-                    $(this).trigger("blur");
-                    $("#resetButton").trigger("click");
+                    that.phone = $(this).val();
                 }
             });
-            $("#resetButton").on("click", function() {
-                email = $("#emailAddress").val();
-                if (email && that.re.test(email)) {
-                    that.email = $("#emailAddress").val();
-                    app.userManager.forgetPassword(that.email, {
-                        "success": that.render,
-                        "error": that.forgetError
+            $("#getSms").on("click", function() {
+                if (that.phoneValid(that.model.phone).valid) {
+                    app.forgetPassword(that.phone, {
+                        success: function () {
+                            $("#smsInfo").html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试").prop("disabled", true);
+
+                            setTimeout(function(){
+                                $("#smsInfo").prop("disabled", false);
+                            }, 120000);
+                        },
+                        error: function () {
+                            $("#smsInfo").html("验证码发送失败，请检查网络正常并重试");
+                        },
                     });
-                    $("#resetButton").val("重置中...");
                 }
             });
+            BaseFormView.prototype.bindEvents.call(this);
         }
     },
-    submitNewPassword: function (e) {
-        if ( e.which!== 1 && e.which !==13 ) {
-            return;
-        }
-        this.validatePassword();
-        if (this.valid.password){
-            app.userManager.findPassword(this.token, this.$password.val(), this.$confirm.val(), {
-                "success": this.changeSuccess,
-                "error": this.changeError
-            });
-            $("#confirmChange").val("更改中...");
-        } 
+    submitAction: function () {
+        app.userManager.recoverPassword(this.model, {
+            success: this.successCallback,
+            error: this.changeError
+        });
+
     },
-    validatePassword: function(){
-        var p = this.$password.val();
-        $("#vpass").remove();
-        $("#vpass2").remove();
-        this.$password.parent().removeClass("wrong");
-        this.$confirm.parent().removeClass("wrong");
-        if (p && p.length >= 6 && this.$password.val() === this.$confirm.val()) {
-            this.$password.after('<span id="vpass" class="right"></span>');
-            this.$confirm.after('<span id="vpass2" class="right"></span>');
-            this.valid.password = true;
-        } else {
-            if (!p || p.length < 6) {
-                this.$password.parent().addClass("wrong").append('<p id="vpass" title="密码长度至少为6位">密码长度至少为6位</p>');
-            } else {
-                if (this.$confirm.val().length !== 0){
-                    this.$confirm.parent().addClass("wrong").append('<p id="vpass2" title="两次输入密码不匹配">两次输入密码不匹配</p>');
-                }
-            }
-            this.valid.password = false;
-        }
-    },
-    forgetError: function (response) {
-        if (!$("#forgotWrong").length) {
-            $("#forgot_container").append("<div id='forgotWrong' class='wrong'><p>"+response.responseText+"</p></div>");
-        }
-        $("#resetButton").val("重置密码");
-    },
-    changeSuccess: function () {
-        $("#confirmChange").val("修改成功");
-        setTimeout(function(){
-            app.navigate('front', {trigger: true});
-        },5000 );
+    successCallback: function () {
+        $("#confirmChange").val("修改成功");       
         
     },
     changeError: function (data) {

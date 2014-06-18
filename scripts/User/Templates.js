@@ -50,7 +50,6 @@
                     </ul>
                 </div>
             </div>
-\
         </div>
     </div>
 </script>
@@ -293,8 +292,8 @@
                         <p>晚上好，尊敬的会员</p>
                     </div>
                     <div id="mypage_info">
-                        <p class="phone"><span></span>18609879900</p>
-                        <p class="email"><span></span>djxiaoniud@163.com</p>
+                        <p class="phone"><span></span><%= phone %></p>
+                        <p class="email"><span></span><%= email %></p>
                     </div>
                 </div>
             </div>
@@ -1210,5 +1209,65 @@
 <script type="text/templates" id="tpl_mypage_creditStore">
     <div id="creditStore" class="in_built">
         积分商城施工中哦~~
+    </div>
+</script>
+
+<script type="text/template" id="tpl_findPassword_1">
+    <div class="sign_up">
+        <div class="sign_up_inner">
+            <div class="sign_up_title">
+                <h2 class="fleft">忘记密码</h2>
+                <div class="fright"> <span class="active"><b>1</b>验证身份</span> <span class=""><b>2</b>设置新密码</span> <span class=""><b>3</b>成功</span></div>
+            </div>
+            <div class="get_password">
+               <dl class="clearfix" id="cellContainer">
+                    <dt><span>*</span>手机：</dt>
+                    <dd>
+                        <input id="registerCellInput" type="text" class="text" value="" placeholder="请输入手机号(请不要输入特殊符号或者字母)"><span class="right"></span>
+                    </dd>
+                </dl> 
+                <dl class="clearfix" id="authContainer">
+                    <dt><span>*</span>手机验证码：</dt>
+                    <dd>
+                        <input id="authCode" type="text" class="text">
+                        <input type="button" value="获取手机验证码" id="getSms">
+                        <p id="smsInfo" class="clear" style="font-size:12px; margin-left:5px; color:#666;">将向**发送短信，2分钟内请勿重复点击，注意查收</p>
+                    </dd>
+                </dl>
+                <div class="btn">
+                    <input type="button" class="btn_G" id="nextButton" value="下一步">
+                </div>                
+            </div>
+            <!--account end--> 
+        </div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_findPassword_2">
+    <div class="sign_up">
+        <div class="sign_up_inner">
+            <div class="sign_up_title">
+                <h2 class="fleft">忘记密码</h2>
+                <div class="fright"> <span class="active"><b>1</b>验证身份</span> <span class="active"><b>2</b>设置新密码</span> <span class=""><b>3</b>成功</span></div>
+            </div>
+            <div class="get_password">
+               <dl class="clearfix">
+                    <dt><span>*</span>新密码：</dt>
+                    <dd>
+                        <input type="text" class="text" value="" placeholder=""><span class="right"></span>
+                    </dd>
+                </dl> 
+                <dl class="clearfix">
+                    <dt><span>*</span>确认新密码：</dt>
+                    <dd>
+                        <input type="text" class="text">
+                    </dd>
+                </dl>
+                <div class="btn">
+                    <input type="button" class="btn_G" value="下一步">
+                </div>                
+            </div>
+            <!--account end--> 
+        </div>
     </div>
 </script>

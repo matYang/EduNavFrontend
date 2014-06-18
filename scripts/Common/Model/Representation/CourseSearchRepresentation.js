@@ -33,7 +33,10 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'useCache': undefined,
 
             'startCreationTime': undefined,
-            'finishCreationTime': undefined
+            'finishCreationTime': undefined,
+            'startCutoffDate': undefined,
+            'finishCutoffDate': undefined,
+            'startUponArrival': undefined
 
         };
     },

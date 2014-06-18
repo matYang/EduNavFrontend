@@ -113,18 +113,31 @@ var AdminCourseView = BaseFormView.extend({
             $("#adminCourseForm").find(".edit").show();
             $("#adminCourseForm").find(".detail").hide(); 
         });
-        $("#select[name=category]").on("change", function() {
+        $("select[name=category]").on("change", function() {
             var category = $(this).val();
             that.renderSubCategories(category);
         });
-        $("#select[name=subCategory]").on("change", function() {
+        $("select[name=subCategory]").on("change", function() {
             var category = $(this).val();
             that.renderThirdCategories(category);
         });
-        $("#select[name=city]").on("change", function() {
+        $("select[name=city]").on("change", function() {
             var city = $(this).val();
             that.renderDistrict(city);
         });
+        $("input[class=date]").datepicker({
+                buttonImageOnly: true,
+                buttonImage: "calendar.gif",
+                buttonText: "Calendar",
+                onSelect: function (text, inst) {
+                    var d = new Date ();
+                    d.setDate(inst.selectedDay);
+                    d.setMonth(inst.selectedMonth);
+                    d.setYear(inst.selectedYear);
+                    $(this).val(Utilities.castToAPIFormat(d));
+                }
+            });
+
     },  
     successCallback: function () {
         app.navigate("manage/course", true);

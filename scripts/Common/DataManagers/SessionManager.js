@@ -21,6 +21,7 @@
         }
         //this is used to reset all manager data upon logouts
         this.sessionRegistraTable = [];
+        this.sessionCookie = document.cookie;
     };
 
     SessionManager.prototype.registerManager = function(manager) {
@@ -176,38 +177,56 @@
         }
         switch (this.identifier){
             case EnumConfig.ModuleIdentifier.user:
-                this.sessionModel.overrideUrl(this.apis.user_logout + "/" + this.sessionModel.id);
+                this.sessionModel.overrideUrl(this.apis.user_logout);
                 break;
 
             case EnumConfig.ModuleIdentifier.partner:
-                this.sessionModel.overrideUrl(this.apis.partner_logout + "/" + this.sessionModel.id);
+                this.sessionModel.overrideUrl(this.apis.partner_logout);
                 break;
 
             case EnumConfig.ModuleIdentifier.admin:
-                this.sessionModel.overrideUrl(this.apis.admin_logout + "/" + this.sessionModel.id);
+                this.sessionModel.overrideUrl(this.apis.admin_logout);
                 break;
 
             default:
                 throw new Error('fetchSession模块识别失败');
         }
-
-        this.sessionModel.save({},{
-            dataType:'json',
-            
-            success:function(model, response){
+        $.ajax({
+            type: 'PUT',
+            url: self.apis.user_logout + "/" + this.sessionModel.id,
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function(data){
                 if(callback){
                     callback.success();
                 }
             },
-
-            error: function(model, response){
-                Info.warn('logout failed');
-                Info.warn(response);
+            error: function (data, textStatus, jqXHR){
+                Info.warn('UserManager::verifySMSAuthCode:: action failed');
+                Info.warn(data);
                 if(callback){
-                    callback.error(response);
+                    callback.error(data);
                 }
             }
         });
+        // this.sessionModel.save({
+        //     dataType:'json',
+        //     data: JSON.stringify({}),
+        //     // contentType:"application/json",
+        //     success:function(model, response){
+        //         if(callback){
+        //             callback.success();
+        //         }
+        //     },
+
+        //     error: function(model, response){
+        //         Info.warn('logout failed');
+        //         Info.warn(response);
+        //         if(callback){
+        //             callback.error(response);
+        //         }
+        //     }
+        // });
     };
 
 

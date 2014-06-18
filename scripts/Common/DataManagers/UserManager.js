@@ -182,6 +182,7 @@
             type: 'GET',
             url: self.apis.user_changePassword + '/' + self.sessionManager.getId(),
             dataType: 'json',
+            contentType: 'application/json',
             success: function(data){
                 if(callback){
                     callback.success();
@@ -250,6 +251,8 @@
             url: self.apis.user_forgetPassword,
             data: $.param({'phone': phone}),
             dataType: 'json',
+            contentType: 'application/json',
+
             success: function(data){
                 if(callback){
                     callback.success();
@@ -401,13 +404,13 @@
     UserManager.prototype.claimCoupon =  function (couponId, callback) {
         var self = this;
         if (!this.sessionManager.hasSession()){
-            Info.warn('UserManager::smsVerification:: session already exists, exit');
+            Info.warn('UserManager::claimCoupon:: session does not exist.');
             return;
         }
 
         $.ajax({
             type: 'PUT',
-            url: self.apis.user_coupon + couponId,
+            url: self.apis.user_coupon + "/" + couponId,
             dataType: 'json',
             success: function(data){
                 if(callback){
@@ -415,7 +418,7 @@
                 }
             },
             error: function (data, textStatus, jqXHR){
-                Info.warn('UserManager::smsVerification:: action failed');
+                Info.warn('UserManager::claimCoupon:: action failed');
                 Info.warn(data);
                 if(callback){
                     callback.error(data);

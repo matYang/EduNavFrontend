@@ -11,3 +11,7 @@
 .account dd.wrong {
 	background: none;
 }
+
+#bookingSummary .no_data{
+	margin-top: 0px;
+}
