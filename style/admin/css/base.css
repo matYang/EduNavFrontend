@@ -77,9 +77,6 @@ body{width:100%; background:#f6f6f6 url(../images/left_bar_bg.png) repeat-y;}
 	cursor:pointer;
 }
 
-#bookingSearchPanel{
-	width:1160px;
-}
 
 .noMessage {
 	text-align:center;

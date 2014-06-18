@@ -190,7 +190,6 @@ var AdminPartnerSearchResultView = MultiPageView.extend({
     },
     render: function () {
         MultiPageView.prototype.render.call(this);
-        $("#adminUserName").html(app.sessionManager.sessionModel.get("name"));
     },
     bindEvents: function () {
         var that = this;
@@ -276,6 +275,8 @@ var AdminManageView = Backbone.View.extend({
         if (this.query) {
             this.sr.castFromQuery(this.query);
         }
+        $("#adminUserName").html(app.sessionManager.sessionModel.get("name"));
+        
     },
     bindEvents: function () {
         this.bindSearchEvent();

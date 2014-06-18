@@ -37,7 +37,7 @@ var AdminBaseView = Backbone.View.extend({
                     app.navigate("login", true);
                 },
                 error: function () {
-
+                    $(this).html("登出失败，重试");
                 }
             });
         });

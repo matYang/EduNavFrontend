@@ -122,6 +122,12 @@
                     <a style="float:left" id="goTo_queryCourse" class="button">Query</a>
                 </div>
                 <div id="queryCourse" class="hidden">
+                    <div class="clearfix">
+                    <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
+                    <input id="userId_Input" class="text" type="text" placeholder="用户id"/>
+                    <input id="courseReference_Input" class="text" type="text" placeholder="course reference"/>
+                    <input id="partnerReference_Input" class="text" type="text" placeholder="partner reference"/>
+                    <input id="institutionName_Input" class="text" type="text" placeholder="学校名"/>
                     <select id="category_Input">
                         <option value="" disabled selected>一级分类</option>
                     </select>
@@ -137,31 +143,29 @@
                     <select id="district_Input">
                         <option value="" disabled selected>地区</option>
                     </select>
-                    <div>开始日期:<input type="text" id="startDate_Input" placeholder="开始日期"/></div>
-                    <div>结束日期:<input type="text" id="finishDate_Input" placeholder="结束日期"/></div>
-                    <input id="institutionName_Input" class="text" type="text" placeholder="学校名"/>
-                    <div>
-                        最低价格：<input type="number" id="startPrice_Input" placeholder="最低价格"/>
                     </div>
-                    <div>
-                        最高价格：<input type="number" id="finishPrice_Input" placeholder="最高价格"/>
+                    <div class="clearfix">
+                        <div>
+                            最低价格：<input type="number" id="startPrice_Input" placeholder="最低价格"/>
+                        </div>
+                        <div>
+                            最高价格：<input type="number" id="finishPrice_Input" placeholder="最高价格"/>
+                        </div>
+                        <div>
+                            最低返金：<input type="number" id="startCashback_Input" placeholder="最低返金"/>
+                        </div>
+                        <div>
+                            最高返金：<input type="number" id="finishCashback_Input" placeholder="最高返金"/>
+                        </div>
+                        <div>
+                            班级最低人数：<input type="number" id="startClassSize_Input" placeholder="最低返金"/>
+                        </div>
+                        <div>
+                            班级最高人数：<input type="number" id="finishClassSize_Input" placeholder="最高返金"/>
+                        </div>
+                        <div>开始日期:<input type="text" class="date" id="startDate_Input" placeholder="开始日期"/></div>
+                        <div>结束日期:<input type="text" class="date" id="finishDate_Input" placeholder="结束日期"/></div>
                     </div>
-                    <div>
-                        最低返金：<input type="number" id="startCashback_Input" placeholder="最低返金"/>
-                    </div>
-                    <div>
-                        最高返金：<input type="number" id="finishCashback_Input" placeholder="最高返金"/>
-                    </div>
-                    <div>
-                        班级最低人数：<input type="number" id="startClassSize_Input" placeholder="最低返金"/>
-                    </div>
-                    <div>
-                        班级最高人数：<input type="number" id="finishClassSize_Input" placeholder="最高返金"/>
-                    </div>
-                    <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
-                    <input id="userId_Input" class="text" type="text" placeholder="用户id"/>
-                    <input id="courseReference_Input" class="text" type="text" placeholder="course reference"/>
-                    <input id="partnerReference_Input" class="text" type="text" placeholder="partner reference"/>
                     <input id="queryCourseBtn" class="btn" type="button" value="搜索"/>
                     <a style="float:left" id="goTo_findCourse" class="button">get</a>
                 </div>
@@ -215,9 +219,9 @@
                 <input id="organizationNum_Input" class="text" type="text" placeholder="organization number"/>
                 <input id="reference_Input" class="text" type="text" placeholder="参考号"/>
                 <input id="phone_Input" class="text" type="text" placeholder="电话"/>
-                <select id="status_Input" class="text" type="text">
+                <div>状态<select id="status_Input" class="text" type="text">
                     <option value=""></option>
-                </select>
+                </select></div>
                 <input id="instName_Input" class="text" type="text" placeholder="学校名"/>
                 <input id="startCreationTime_Input" class="date" type="text" placeholder="建立开始时间" />
                 <input id="finishCreationTime_Input" class="date" type="text" placeholder="建立结束时间" />
@@ -226,15 +230,15 @@
 
                 <a style="float:left" id="goTo_findPartner" class="button">Get</a>
             </div>
-            <div class="fright" style="line-height:40px">
-                欢迎您，<span id="adminUserName" class="F_orange"></span>
-            </div>
          </div>
+        <div class="fright" style="line-height:40px">
+            欢迎您，<span id="adminUserName" class="F_orange"></span>
+        </div>
          <table class="tablist" width="100%" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
                     <td width="100">partner id</td>
-                    <td width="360">全名</td>
+                    <td width="200">全名</td>
                     <td width="120">执照</td>
                     <td width="120">机构号</td>
                     <td width="100">Ref</td>
@@ -626,8 +630,8 @@
         <div><span class="detail"><label>admin Id: </label><%= adminId %></span></div> 
         <div><label>电话: </label><span class="detail"><%= phone %></span><span class="edit"><input type="text" name="phone"/></span></div> 
         <div><label>名字: </label><span class="detail"><%= name %></span><span class="edit"><input type="text" name="name"/></span></div> 
-        <div><span class="edit"><label>密码: </label><input type="text" name="phone"/></span></div> 
-        <div><span class="edit"><label>确认密码: </label><input type="text" name="name"/></span></div> 
+        <div><span class="edit"><label>密码: </label><input type="password" name="phone"/></span></div> 
+        <div><span class="edit"><label>确认密码: </label><input type="password" name="name"/></span></div> 
         <div><span class="edit"><label>key1: </label><input type="text" name="key1"/></span></div> 
         <div><span class="edit"><label>key2: </label><input type="text" name="key2"/></span></div> 
         <div><span class="edit"><label>key3: </label><input type="text" name="key3"/></span></div> 
