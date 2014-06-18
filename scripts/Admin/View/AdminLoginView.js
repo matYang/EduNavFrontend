@@ -29,7 +29,7 @@ var AdminLoginView = Backbone.View.extend({
         var username = this.$usernameInput.val(), password = this.$passwordInput.val(), self = this;
         if (username !== "" && password !== "") {
             $('#login_button').val("登录中...").prop("disabled", true);
-            app.adminManager.adminLogin(username, password, {
+            app.sessionManager.adminLogin(username, password, {
                 success: function (response) {
                     Info.log("server login response: ");
                     Info.log(response);

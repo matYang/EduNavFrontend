@@ -30,6 +30,17 @@ var AdminBaseView = Backbone.View.extend({
         $("#adminManage").on("click", function(){
             that.goto("admin");
         });
+        $("#logout").on("click", function (e) {
+            that.sessionManager.logout({
+                success: function () {
+                    that.close();
+                    app.navigate("login", true);
+                },
+                error: function () {
+
+                }
+            });
+        });
     },
     goto: function (dest) {
         $(".active").removeClass("active");

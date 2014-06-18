@@ -13,8 +13,6 @@
 
     AdminManager.prototype.release = function() {};
 
-
-
     AdminManager.prototype.createAdmin = function(admin, callback, keys){
         if (keys){
             admin.overrideUrl(this.apis.admin_admin + '?secret1=' + keys.secret1 + '&secret2=' + keys.secret2 + '&secret3=' + keys.secret3);
@@ -53,7 +51,7 @@
             return;
         }
 
-        admin.overrideUrl(this.apis.admin_admin);
+        admin.overrideUrl(this.apis.admin_admin + "/" + adminId);
         admin.set('adminId', this.sessionManager.getId());
         admin.fetch({
             dataType:'json',
@@ -72,6 +70,7 @@
             }
         });
     };
+
 
     AdminManager.prototype.listAdmin = function(adminSearchRepresentation, callback, keys){
         var admins = new Users();
