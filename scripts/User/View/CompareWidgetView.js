@@ -12,7 +12,7 @@ var CompareWidgetView = Backbone.View.extend({
         this.load();
     },
     load: function () {
-        if (this.courseIds) {
+        if (this.courseIds && this.courseIds.length) {
             app.generalManager.batchFetchCourses(this.courseIds, {
                 "success": this.render,
                 "error": function (){}
@@ -50,7 +50,6 @@ var CompareWidgetView = Backbone.View.extend({
         });
         this.$domContainer.on("click", ".remove", function (e) {
             var id = Utilities.getId($(this).parent().attr("id"));
-            debugger;
             that.removeCourse(id);
         }).on("click", "a", function (e) {
             e.preventDefault();

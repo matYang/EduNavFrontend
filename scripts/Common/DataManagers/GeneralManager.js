@@ -80,6 +80,7 @@
             data: idList,
             success:function(model, response){
                 if(callback){
+                    app.storage.setCoursesToCompare(courses.pluck("courseId"));
                     callback.success(model);
                 }
             },

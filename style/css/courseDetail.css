@@ -1,20 +1,19 @@
 @charset "utf-8";
 /* CSS Document */
-.sitemap{color:#128d56; font-size:14px;}
-.courseDetail{ font-size:14px; line-height:30px;}
+.sitemap{color:#128d56;}
+.courseDetail{ line-height:30px;}
 
 .banner{border:1px solid #ccc;}
 
 .banner .row1{ padding:15px; border-bottom:1px dotted #ccc;}
 .banner .row1 dt{font-size:24px; font-family:微软雅黑; color:#128d56; margin-bottom:10px;}
-.banner .row1 dt span{ font-size:14px; margin-left:20px;}
+.banner .row1 dt span{ margin-left:20px;}
 
 .banner .row1 .col1{float:left; width:680px;}
-.banner .row1 .col2{float:left; width:125px; margin-top:5px;}
-.banner .row1 .col3{float:left; width:150px; margin-top:5px;}
+.banner .row1 .col2{float:right; width:125px; margin-top:5px;}
 
 .banner .price{ font-size:26px;}
-.banner .price .sign{ font-size:14px; color:#333;}
+.banner .price .sign{ color:#333;}
 .banner .cashback{ margin-left:18px;}
 .banner .cashback em{ margin-left:22px;}
 

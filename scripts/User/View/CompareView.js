@@ -15,33 +15,33 @@ var CompareView = Backbone.View.extend({
     load: function () {
         this.courses = [];
         if (this.courseIdList.length === 0) {
-            this.render(new Course());
+            this.render(new Courses());
         } else {
-            for (var i = 0; i < this.courseIdList.length; i++) {
-                app.generalManager.fetchCourse(this.courseIdList[i], {
-                    success: this.render,
-                    error: this.renderError
-                });
-            }
+            app.generalManager.batchFetchCourses(this.courseIdList, {
+                success: this.render,
+                error: this.renderError
+            });
         }
     },
-    render: function (course) {
-        this.courses.push(course._toJSON());
-        var len = this.courses.length;
-        if (len >= this.courseIdList.length) {
-            while (len < 4) {
-                len++;
+    render: function (courses) {
+        this.courses = courses.toArray();
+        var len = 0;
+        while (len < 4) {
+            if (this.courses.length > len ) {
+                this.courses[len] = this.courses[len]._toJSON();
+            } else {
                 this.courses.push((new Course())._toJSON());
             }
-            this.$el.empty().append(this.template({courses: this.courses}));
-            this.$view = $("#compareView");
-            this.afterRender();
-            this.bindEvents();
+            len++;
         }
+        this.$el.empty().append(this.template({courses: this.courses}));
+        this.$view = $("#compareView");
+        this.afterRender();
+        this.bindEvents();
         $(document).scrollTop(0);
     },
     renderError: function () {
-        $("#compareEntriesContainer").append("<div>课程信息好像载入失败了....诶嘿(<ゝω·) <a id='retry'>重试</a></div>");
+        this.$el.append("<div>课程信息好像载入失败了....诶嘿(<ゝω·) <a id='retry'>重试</a></div>");
     },
     afterRender: function() {
         $(".courseId_").html("");
@@ -179,22 +179,6 @@ var CompareView = Backbone.View.extend({
     //         }
     //     }
     //     this.highlighted = true;
-    // },
-    // hideSame: function () {
-    //     this.hided = !this.hided;
-    //     if (this.hided) {
-    //         $(".hidden").removeClass("hidden");
-    //         return;
-    //     }
-    //     var i, count;
-    //     var keys = this.items[0].keys(), len = this.obj.len;
-    //     for ( count = 0; count < keys.lenght; count++) {
-    //         for ( i = 0; i < len; i++ ) {
-    //             if (this.items[i].get(keys[count]) !== this.items[(i+1)%len].get(keys[count])) {
-    //                 $("."+keys[count]).addClass("hidden");
-    //             }
-    //         }
-    //     }
     // },
     close: function () {
         if (!this.isClosed) {

@@ -150,7 +150,7 @@
                 </ul>
                 <div class="fright">
                     当前促销：<input type="checkbox" name="cashback" /><label>返现</label>
-                    <input type="checkbox" name="flashdeal" /><label>限时抢</label>
+                    <!-- <input type="checkbox" name="flashdeal" /><label>限时抢</label> -->
 
                 </div>
             </div><!--searchResultSorter end-->
@@ -183,15 +183,17 @@
         <div class="col2">
             <p class="classHour">共<b class="F_orange"><%=courseHourNum %></b>课时</p>
             <p class="price"><span class="sign">￥</span><%= price %></p>
-            <a class="cashback">
-                <em>50元</em>
+            <% if (cashback) { %>
+                <a class="cashback">
+                    <em><%= cashback %>元</em>
                     <div class="tip">
                         <div class="arrow"></div>
                         <div class="tip_content">
-                            用“消费券”预订此课程，每人每课程返还59元现金！入学后7个工作日可至您的账户里提现。
+                            用“消费券”预订此课程，每人每课程返还<%= cashback %>元现金！入学后7个工作日可至您的账户里提现。
                         </div>
                     </div>
                 </a>
+            <% } %>  
             </div>
         <div class="col3">
             <div class="compare" id="compare_<%= courseId %>"><input class="btn_g add" type="button" value="+对比"/></div>
@@ -536,8 +538,12 @@
                 <b class="price">￥<%= course.price %></b>/位 <span>（预定免费，入学后学校前台付款）</span>
             </div>
             <div class="field clearfix">
-                <div class="fleft cashback">50元</div>
-                <div class="fleft login_reg1" id="booking_loginnote"><a class="link F_green">登录</a> 或 <a class="link F_green">注册</a>后可使用优惠券，入学后获得50元现金返还</div>
+                <% if (course.cashback) { %>
+                    <div class="fleft cashback"><%= course.cashback %>元</div>
+                    <div class="fleft login_reg1" id="booking_loginnote"><a class="link F_green">登录</a> 或 <a class="link F_green">注册</a>后可使用优惠券，入学后获得<%= course.cashback %>元现金返还</div>
+                <% } else {%>
+                    <div class="fleft login_reg1" id="booking_loginnote"><a class="link F_green">登录</a> 或 <a class="link F_green">注册</a>可获得更多优惠</div>
+                <% } %>
             </div>
             <div id="booking_loginbox" class="loginbox">
                 <div class="loginbox_inner">
@@ -626,22 +632,24 @@
                 <dl class="col1">
                     <dt><%= courseName %><span><%= instName %></span></dt>
                     <dd>适合学员：<%= suitableStudent %></dd>
+                    <dd>
+                        <input type="button" id="bookNow" value="立即预定" class="btn_O">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input style="margin-top:10px;" type="button" id="getTrial" value="我要预约试听" class="btn_G">
+                        <!-- <span>预约名额有限（仅剩<b class="F_orange">3</b>个名额），快抢吧！</span> -->
+                    </dd>
                 </dl>
                 <div class="col2">
                     <div class="price"><span class="sign">￥</span><%= price %></div>
-                    <a class="cashback">
-                        <em>50元</em>
+                    <% if (cashback) { %>
+                        <a class="cashback"> <em><%= cashback %>元</em>
                         <div class="tip">
                             <div class="arrow"></div>
-                            <div class="tip_content">
-                                用“消费券”预订此课程，每人每课程返还50元现金！入学后7个工作日可至您的账户里提现。
-                            </div>
+                            <div class="tip_content"> 用“消费券”预订此课程，每人每课程返还<%= cashback %>元现金！入学后7个工作日可至您的账户里提现。 </div>
                         </div>
-                      </a>
-                 </div>
-                 <div class="col3">
-                     <input type="button" id="bookNow" value="立即预定" class="btn_O" />
-                 </div>
+                        </a>
+                    <% } %>
+                </div>
             </div>
             <div class="row2 clearfix">
                 <div class="gallary clearfix">
@@ -775,15 +783,7 @@
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>">
                     <div class="price">￥<%= course.price %></div>
-                    <a class="cashback">
-                        <em>50元</em>
-                        <div class="tip">
-                            <div class="arrow"></div>
-                            <div class="tip_content">
-                                用“消费券”预订此课程，每人每课程返还50元现金！入学后7个工作日可至您的账户里提现。
-                            </div>
-                        </div>
-                        </a>
+                    <a class="cashback"><em><%= course.cashback %>元</em></a>
                     </td>
                 <% }); %>
             </tr>
@@ -1159,7 +1159,7 @@
         </div> 
         <div class="btn">
             <input class="btn_O" type="button" value="保 存">
-            <a href="#">取消</a>
+            <a id="cancelPassword" href="#">取消</a>
         </div> 
     </div>
 </script>

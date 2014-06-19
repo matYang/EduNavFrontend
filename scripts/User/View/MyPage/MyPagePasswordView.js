@@ -63,7 +63,10 @@ var MyPagePasswordView = BaseFormView.extend({
             });
             $(this).prop("disable", true).val("发送中...");
         });
-
+        $("#cancelPassword").on("click", function (e) {
+            e.preventDefault();
+            app.navigate("mypage", true);
+        })
         $("#reset_password").on('click', this.clearPassword);
         BaseFormView.prototype.bindEvents.call(this);
     },
@@ -84,8 +87,8 @@ var MyPagePasswordView = BaseFormView.extend({
         });
     },
     oldPasswordValid: function (val) {
-        if (!val || val.length < 6) {
-            return {valid:false, text:"密码长度至少6位"};
+        if (!val || val.length < 8) {
+            return {valid:false, text:"密码长度至少8位"};
         } else {
             return {valid: true};
         }
@@ -95,8 +98,8 @@ var MyPagePasswordView = BaseFormView.extend({
         if (val !== value2) {
             return {valid:false, text:"两次密码不一致"};
         }
-        if (!val || val.length < 6) {
-            return {valid:false, text:"密码长度至少6位"};
+        if (!val || val.length < 8) {
+            return {valid:false, text:"密码长度至少8位"};
         }
         return {valid:true};
     },
@@ -105,8 +108,8 @@ var MyPagePasswordView = BaseFormView.extend({
         if (value1 !== val) {
             return {valid:false, text:"两次密码不一致"};
         }
-        if (!val || val.length < 6) {
-            return {valid:false, text:"密码长度至少6位"};
+        if (!val || val.length < 8) {
+            return {valid:false, text:"密码长度至少8位"};
         }
         return {valid:true};
     },

@@ -65,14 +65,17 @@ var RegistrationView = BaseFormView.extend({
         $("#loginBox").hide();
         $("#getSms").on("click", function (e) {
             if (that.phoneValid(that.model.phone).valid) {
+                $("#getSms").val("发送中...");
                 app.userManager.smsVerification(that.model.phone,{
                     success: function () {
                         $("#smsInfo").html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试").prop("disabled", true);
+                        $("#getSms").val("重新发送");
                         setTimeout(function(){
                             $("#smsInfo").prop("disabled", false);
                         }, 120000);
                     },
                     error: function () {
+                        $("#getSms").val("重新发送");
                         $("#smsInfo").html("验证码发送失败，请检查网络正常并重试");
                     },
                 });

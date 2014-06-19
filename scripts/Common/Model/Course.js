@@ -8,6 +8,7 @@ var Course = Backbone.Model.extend({
             'suitableStudent': undefined,
             'price': undefined,
             'courseHourNum': undefined,
+
             'courseHourLength': undefined,
                 
             'classSize': undefined,

@@ -149,8 +149,8 @@ var SearchView = Backbone.View.extend({
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
             that.filterResult($(e.delegateTarget), $(e.target).data("id"));
         });
-        this.scrollSensorOn = true;
-        if (this.windowHeight >= 620 ) {
+        // if (this.windowHeight >= 520 ) {
+            this.scrollSensorOn = true;
             $(document).on("scroll", function (e) {
                 if ($(this).scrollTop()>402) {
                     $("#searchWidgets").addClass("stickyHeader");
@@ -158,24 +158,24 @@ var SearchView = Backbone.View.extend({
                     $("#searchWidgets").removeClass("stickyHeader");
                 }
             });
-        }
-        $(window).on("resize", function (e) {
-            that.windowHeight = $(this).height();
-            if (that.windowHeight < 620 && that.scrollSensorOn) {
-                that.scrollSensorOn = false;
-                $(document).off("scroll");
-                $("#searchWidgets").removeClass("stickyHeader");
-            } else if (that.windowHeight >= 620 && that.scrollSensorOn === false) {
-                that.scrollSensorOn = true;
-                $(document).on("scroll", function (e) {
-                    if ($(this).scrollTop()>402) {
-                        $("#searchWidgets").addClass("stickyHeader");
-                    } else {
-                        $("#searchWidgets").removeClass("stickyHeader");
-                    }
-                });
-            }
-        })
+        // }
+        // $(window).on("resize", function (e) {
+        //     that.windowHeight = $(this).height();
+        //     if (that.windowHeight < 520 && that.scrollSensorOn) {
+        //         that.scrollSensorOn = false;
+        //         $(document).off("scroll");
+        //         $("#searchWidgets").removeClass("stickyHeader");
+        //     } else if (that.windowHeight >= 520 && that.scrollSensorOn === false) {
+        //         that.scrollSensorOn = true;
+        //         $(document).on("scroll", function (e) {
+        //             if ($(this).scrollTop()>402) {
+        //                 $("#searchWidgets").addClass("stickyHeader");
+        //             } else {
+        //                 $("#searchWidgets").removeClass("stickyHeader");
+        //             }
+        //         });
+        //     }
+        // })
         $("#searchReqs").on("click", "a", function (e) {
             e.preventDefault();
             var cri = $(e.target).data("cri");
@@ -216,6 +216,15 @@ var SearchView = Backbone.View.extend({
                 $("#searchResultSorter>.active").removeClass("active");
                 this.searchResultView.render();
             });
+        this.searchResultView.registerFilterEvent($("input[name=cashback]"),this.cashbackFilter,this, 
+              function(){
+                this.searchResultView.render();
+            });
+
+    },
+    cashbackFilter: function (course) {
+        var cashback = $("input[name=cashback]").prop("checked");
+        return (course.get("cashback") > 0) || !cashback;
     },
     bindSearchEvents: function () {
         var that = this;

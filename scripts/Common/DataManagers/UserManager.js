@@ -58,7 +58,7 @@
         $.ajax({
             type: 'POST',
             url: self.apis.user_smsVerification,
-            data: JSON.stringify({'phone': phone, 'authCode': authCode}),
+            data: JSON.stringify({'phone': phone, 'authCode': authCode.toUpperCase()}),
             dataType: 'json',
             contentType: 'application/json',
             success: function(data){
@@ -210,7 +210,7 @@
             Info.warn('UserManager::changePassword:: session does not exist, exit');
             return;
         }
-
+        opt.authCode = opt.authCode.toUpperCase();
         $.ajax({
             type: 'PUT',
             url: self.apis.user_changePassword + '/' + self.sessionManager.getId(),
@@ -279,7 +279,7 @@
             Info.warn('UserManager::recoverPassword:: session already exists, exit');
             return;
         }
-
+        opt.authCode = opt.authCode.toUpperCase();
         $.ajax({
             type: 'POST',
             url: self.apis.user_forgetPassword,

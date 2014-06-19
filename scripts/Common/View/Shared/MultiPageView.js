@@ -212,6 +212,20 @@ var MultiPageView = Backbone.View.extend({
                     callback.call(inst);
                 }
             });
+        } else if ($selector.attr("type") === "checkbox") {
+            $selector.on("change", function (e) {
+                if (that.allMessages) {
+                    if (filter) {
+                        that.messages.reset(that.allMessages.filter(filter, inst, true));
+                    } else {
+                        that.messages.reset(that.allMessages.toArray());
+                    }
+                }
+                inst.render();
+                if (callback){
+                    callback.call(inst);
+                }
+            });
         } else {
             $selector.on("click", function (e) {
                 $selector.siblings().removeClass("active");
