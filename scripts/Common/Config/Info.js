@@ -1,7 +1,7 @@
 var Info = {
 
     alert: function (data, options) {
-        alert(data);
+        app.infoModal.setMessage(data).show();
         // Info.displayErrorPage("content", data);
     },
 
@@ -18,11 +18,7 @@ var Info = {
         $("#" + div).append("<div class='errorMessage'>" + message + "</div>");
     },
     displayNotice: function (message, callback) {
-        $("#topNoticeBar").html(message);
-        $("#topNoticeBar").fadeIn(200, function(){
-                setTimeout(function(){$("#topNoticeBar").fadeOut()}, 5000);
-                
-        });
+        app.infoModal.setMessage(message).show();
         if (callback) {
             callback();
         }

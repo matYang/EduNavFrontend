@@ -107,10 +107,17 @@ var NewBookingView = BaseFormView.extend({
         }
     },
     loginSuccess: function(){
-        $("#booking_loginbox").remove();
-        $("#booking_loginnote").remove();
-        $("#"+ this.submitButtonId).removeClass("hidden");
-        $("#bookingDesc").removeClass("hidden");
+        app.sessionManager.fetchSession(true, {
+            success: function () {
+                $("#booking_loginbox").remove();
+                $("#booking_loginnote").remove();
+                $("#"+ this.submitButtonId).removeClass("hidden");
+                $("#bookingDesc").removeClass("hidden");
+            },
+            error: function (response) {
+                Info.displayNotice(response);
+            }
+        });
 
     },
     loginError: function(){

@@ -12,6 +12,7 @@ var InfoModal = Backbone.View.extend({
 	},
 	setMessage: function (message) {
 		$("#popMessage").html(message);
+		return this;
 	},
 	show: function () {
 		this.$el.removeClass("hidden");

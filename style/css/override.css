@@ -15,3 +15,7 @@
 #bookingSummary .no_data{
 	margin-top: 0px;
 }
+
+.search_result {
+	min-height:431px;
+}
