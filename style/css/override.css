@@ -19,3 +19,7 @@
 .search_result {
 	min-height:431px;
 }
+
+.noMessage {
+	padding-top: 20px;
+}

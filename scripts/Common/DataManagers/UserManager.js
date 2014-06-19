@@ -215,7 +215,7 @@
             type: 'PUT',
             url: self.apis.user_changePassword + '/' + self.sessionManager.getId(),
             data: JSON.stringify(opt),
-            dataType: 'json',
+            dataType: 'text',
             contentType: 'application/json',
             success: function(data){
                 if(callback){

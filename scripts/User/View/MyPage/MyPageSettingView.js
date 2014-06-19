@@ -1,27 +1,30 @@
 var MyPageSettingView = BaseFormView.extend({
     el:"#mypage_content",
     form: false,
-    submitButtonId: "save_personalInfo",
+    submitButtonId: "updateInfo",
     initialize: function () {
-        _.bindAll(this, 'render', 'close', 'prepareImgUpload', 'savePersonalInfo', 'saveFile', 'savePassword', 'passwordSuccess', 'passwordError', 'testInput', 'bindEvents', 'saveSuccess', 'saveError');
+        _.bindAll(this, 'render', 'close','submitAction', 'bindEvents', 'saveSuccess', 'saveError');
         this.isClosed = false;
-        this.template = _.template(tpl.get('personalUtility'));
+        this.template = _.template(tpl.get('mypage_setting'));
         this.model = app.sessionManager.sessionModel.clone();
-        this.field = [
+        app.viewRegistration.register(this);
+        this.fields = [
             new BaseField({
                 name:"名字",
                 fieldId: "inputName",
                 fieldType: "text",
                 mandatory: true,
-                modelAttr: "name"
+                modelAttr: "name",
+                buildValidatorDiv: this.buildValidatorDiv
             }),
             new BaseField({
                 name:"E-mail",
                 fieldId: "inputEmail",
                 fieldType: "text",
-                mandatory: true,
+                mandatory: false,
                 regex: Utilities.emailRegex,
-                modelAttr: "email"
+                modelAttr: "email",
+                buildValidatorDiv: this.buildValidatorDiv
             })
         ];
         if (testMockObj.testMode === true) {
@@ -29,31 +32,26 @@ var MyPageSettingView = BaseFormView.extend({
         }
         this.render();
         this.bindEvents();
-        this.bindValidator();
     },
 
     render: function () {
-        this.$el.append(this.template);
+        this.$el.append(this.template(this.model._toJSON()));
     },
     bindEvents: function () {
         BaseFormView.prototype.bindEvents.call(this);
     },
 
-    savePersonalInfo: function () {
+    submitAction: function () {
         var that = this, date = new Date ();
-        this.$name.trigger("focus").trigger("blur");
-        if ($(".wrong").length) {
-            return;
-        }
         app.userManager.changeInfo(this.model, {
             "success": that.saveSuccess,
             "error": that.saveError
         });
-        $("#save_personalInfo").attr("value", "保存中...");
+        $("#updateInfo").attr("value", "保存中...");
     },
 
     saveSuccess: function () {
-        $("#save_personalInfo").attr("value", "更新完毕");
+        $("#updateInfo").attr("value", "更新完毕");
         $("#myPage_myInfo").find("p[data-id=name]").html("姓名："+this.model.get("name"));
         app.navigate("mypage/setting", {
             trigger: true
@@ -61,7 +59,7 @@ var MyPageSettingView = BaseFormView.extend({
     },
     saveError: function () {
         Info.warn("Personal info update failed");
-        $("#save_personalInfo").attr("value", "更新失败(重试)");
+        $("#updateInfo").attr("value", "更新失败(重试)");
     },
 
     close: function () {
@@ -74,17 +72,19 @@ var MyPageSettingView = BaseFormView.extend({
             this.isClosed = true;
         }
     },
-
-    testInput: function (event, regularEx) {
-        var regex = new RegExp (regularEx), key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key)) {
-            event.preventDefault();
-            return false;
+    buildValidatorDiv: function (valid, type, text) {
+        //This function overloads baseField's default buildValidatorDiv. It should only be invoked by BaseField's testValue function, thus this refers the BaseForm model in this case,
+        //This function is not bound to the view.
+        $("#"+this.get("fieldId")+"_info").remove();
+        if (valid) {
+            return '<span class="success" id="'+this.get("fieldId")+'_right"></span>';
+        } else if (type === "empty") {
+            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong" ><span class="form_tip"><span class="form_tip_top">' + this.get("name")+"不能为空" + '</span><span class="form_tip_bottom"></span></span></span>';
+        } else if (text) {
+            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' + text + '</span><span class="form_tip_bottom"></span></span></span>';
+        } else {
+            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' +  this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></span>';
         }
-        if (!regex.test(event.target.value)) {
-            event.target.value = "";
-            return false;
-        }
-    }
+    }, 
 });
 

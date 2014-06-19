@@ -53,7 +53,7 @@ var User = Backbone.Model.extend({
 
             data.name = decodeURI(data.name);
             data.phone = decodeURI(data.phone);
-            data.email = decodeURI(data.email);
+            data.email = decodeURIComponent(data.email);
 
             data.status = parseInt(data.status, 10);
             data.invitationalCode = decodeURI(data.invitationalCode);
@@ -79,7 +79,6 @@ var User = Backbone.Model.extend({
 
     toJSON: function () {
         var json = _.clone(this.attributes);
-
         json.name = encodeURI(json.name);
         json.phone = encodeURI(json.phone);
         json.password = json.password;
@@ -89,7 +88,6 @@ var User = Backbone.Model.extend({
         
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
-        json.name = encodeURI(json.name);
         return json;
     }
 

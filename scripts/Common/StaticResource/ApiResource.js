@@ -33,7 +33,7 @@
                     smsVerification: '/smsVerification',
                     user: '/user',
                     changePassword: '/changePassword',
-                    info: "info",
+                    info: "/info",
                     changeCell: '/changeCell',
                     login: '/login',
                     logout: '/logout',

@@ -247,7 +247,7 @@ var BaseField = Backbone.Model.extend({
             div = this.buildValidatorDiv(true);
             valid = true;
         } else if (this.get("regex")) {
-            if (this.regex.test(val) ) {
+            if (this.get("regex").test(val) ) {
                 div = this.buildValidatorDiv(true);
                 valid = true;
             } else {

@@ -1137,17 +1137,17 @@
     <div class="mypage_content_inner form_style password">
         <div class="field">
             <label>原密码</label>
-            <input class="text" type="text" id="oldPassword">
+            <input class="text" type="password" id="oldPassword">
             <span id="oldPassword_info" class="action"><span class="form_tip"><span class="form_tip_top">请填写原密码</span><span class="form_tip_bottom"></span></span></span>
         </div>                        
         <div class="field">
             <label>新密码</label>
-            <input class="text" type="text" id="newPassword">
+            <input class="text" type="password" id="newPassword">
             <span id="newPassword_info" class="action"><span class="form_tip"><span class="form_tip_top">新密码至少八位</span><span class="form_tip_bottom"></span></span></span>
         </div>                        
         <div class="field">
             <label>确认密码</label>
-            <input class="text" type="text" id="confirmPassword">
+            <input class="text" type="password" id="confirmPassword">
             <span id="confirmPassword_info" class="action"><span class="form_tip"><span class="form_tip_top">确认新密码</span><span class="form_tip_bottom"></span></span></span>
         </div> 
         <div class="field">
@@ -1158,9 +1158,39 @@
             <span id="getAuthCodeNote" class="instr hidden">（验证码已发送，2分钟内无法重复发送，请注意查收）</span>
         </div> 
         <div class="btn">
-            <input class="btn_O" type="button" value="保 存">
+            <input class="btn_O" id="submit_password" type="button" value="保 存">
             <a id="cancelPassword" href="#">取消</a>
         </div> 
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_setting">
+    <div class="title"><a href="#">我的爱上课</a> &gt; <span>个人设置</span> &gt; <a class=" F_green" href="#">个人资料</a></div>
+    <div class="mypage_content_inner">
+        <div class="my_info form_style">
+            <div class="field">
+                <label>姓<s></s>名</label>
+                <input class="text" type="text" id="inputName" value="<%= name %>">
+                <span class="action"><span class="form_tip"><span class="form_tip_top">请填写实际入学人姓名</span><span class="form_tip_bottom"></span></span></span>
+            </div>   
+            <div class="field">
+                <label>手<s></s>机</label>
+                <span><%= phone.substr(0,3) %>*****<%= phone.substr(8,3) %></span>
+                <span class="instr">（修改手机号，请致电人工客服）</span>
+            </div>                        
+            <div class="field">
+                <label>邮<s></s>箱</label>
+                <input class="text" type="text" id="inputEmail">
+                
+            </div>    
+            <div class="btn">
+                <input class="btn_O" type="button" id="updateInfo" value="立即更新">
+            </div> 
+            <div style=" margin-top:50px; margin-left:103px;">
+                完善及更新基本信息将便于您选择适合的课程
+            </div>    
+
+        </div>                            
     </div>
 </script>
 
@@ -1254,13 +1284,13 @@
                <dl class="clearfix">
                     <dt><span>*</span>新密码：</dt>
                     <dd>
-                        <input type="text" class="text" value="" placeholder=""><span class="right"></span>
+                        <input type="text" class="password" value="" placeholder=""><span class="right"></span>
                     </dd>
                 </dl> 
                 <dl class="clearfix">
                     <dt><span>*</span>确认新密码：</dt>
                     <dd>
-                        <input type="text" class="text">
+                        <input type="text" class="password">
                     </dd>
                 </dl>
                 <div class="btn">

@@ -28,7 +28,7 @@ var Constants = {
         "mypage_base", "mypage_dashboard", "mypage_bookingList", "mypage_bookingDetail", "booking_entry", 
         "mypage_coupons", "mypage_unclaimedCouponRow", "mypage_claimedCouponRow", "mypage_couponClaimed", "mypage_couponUnclaimed",
         "mypage_credit", "mypage_creditTable", "mypage_creditRow", "mypage_creditStore",
-        "mypage_password",
+        "mypage_password", "mypage_setting",
         "compareWidget", "compareWidgetEntry", "compareView",
         "infoModal"
     ],

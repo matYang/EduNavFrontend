@@ -40,6 +40,7 @@ var MyPageView = Backbone.View.extend({
                 break;
             case "setting" :
                 this.activeChildView = new MyPageSettingView();
+                $("#editInfo").addClass("active");
                 break
             case "password" :
                 this.activeChildView = new MyPagePasswordView();
