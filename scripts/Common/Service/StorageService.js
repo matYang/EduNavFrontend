@@ -114,7 +114,7 @@
     };
 
     StorageService.prototype.getCoursesToCompare = function () {
-        this.compareList = JSON.parse(localStorage.compareList);
+        this.compareList = JSON.parse(localStorage.compareList || "[]");
         for (var i = 0; i < this.compareList.length; i++) {
             if (!this.compareList[i]) {
                 if (i < this.compareList.length - 1) {

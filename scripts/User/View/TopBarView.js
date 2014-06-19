@@ -13,7 +13,7 @@ var TopBarView = Backbone.View.extend({
 
         this.render();
         this.bindEvents();
-        this.listenTo(this.sessionUser, 'change:userId', this.reRender);
+        // this.listenTo(this.sessionUser, 'change:userId', this.reRender);
     },
 
     render: function () {

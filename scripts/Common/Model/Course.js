@@ -88,7 +88,6 @@ var Course = Backbone.Model.extend({
             nameArr = [];
         if ( typeof data !== 'undefined') {
             data.courseId = parseInt(data.courseId, 10);
-            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.courseName = decodeURI(data.courseName);
             
 

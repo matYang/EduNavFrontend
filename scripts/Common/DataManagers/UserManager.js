@@ -306,7 +306,7 @@
         var self = this;
 
         if (!this.sessionManager.hasSession()){
-            Info.warn('BookingManager::fetchBookings:: session does not exist, exit');
+            Info.warn('UserManager::fetchBookings:: session does not exist, exit');
             return;
         }
 
@@ -323,7 +323,7 @@
             },
 
             error: function(model, response){
-                Info.warn('BookingManager::fetchBookings:: fetch failed with response:');
+                Info.warn('UserManager::fetchBookings:: fetch failed with response:');
                 Info.warn(response);
                 if(callback){
                     callback.error(response);
@@ -336,14 +336,9 @@
         var self = this;
 
         if (!(newBooking instanceof Backbone.Model) || newBooking.id > 0){
-            Info.warn('BookingManager::initBooking:: invalid parameter');
+            Info.warn('UserManager::initBooking:: invalid parameter');
             return;
         }
-        if (!this.sessionManager.hasSession()){
-            Info.warn('BookingManager::initBooking:: session does not exist, exit');
-            return;
-        }
-
         newBooking.overrideUrl(this.apis.user_booking);
         newBooking.set('bookingId', -1);
         newBooking.set('userId', this.sessionManager.getId());
@@ -356,7 +351,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn('BookingManager::initBooking:: save failed with response:');
+                Info.warn('UserManager::initBooking:: save failed with response:');
                 Info.log(response);
                 if(callback){
                     callback.error(response);
@@ -371,11 +366,11 @@
         var self = this;
 
         if (!(booking instanceof Backbone.Model) || booking.id < 0){
-            Info.warn('BookingManager::changeBookingState:: invalid parameter');
+            Info.warn('UserManager::changeBookingState:: invalid parameter');
             return;
         }
         if (!this.sessionManager.hasSession()){
-            Info.warn('BookingManager::changeBookingState:: session does not exist, exit');
+            Info.warn('UserManager::changeBookingState:: session does not exist, exit');
             return;
         }
 
@@ -391,7 +386,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn('BookingManager::changeBookingState:: save failed with response:');
+                Info.warn('UserManager::changeBookingState:: save failed with response:');
                 Info.warn(response);
                 if(callback){
                     callback.error(response);

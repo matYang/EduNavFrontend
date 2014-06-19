@@ -24,6 +24,7 @@ var CompareWidgetView = Backbone.View.extend({
     },
     render: function (courses) {
         //load local storage
+        debugger;
         var buf = [];
         this.courses = courses || new Courses();
         if (this.courses instanceof Backbone.Collection) {

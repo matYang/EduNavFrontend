@@ -32,6 +32,10 @@ var Admin = Backbone.Model.extend({
 
         return data;
     },
+
+    isNew: function () {
+        return this.get("adminId") === -1;
+    },
     _toJSON: function () {
         var json = _.clone(this.attributes);
         json.creationTime = Utilities.getDateString(this.get('creationTime'));

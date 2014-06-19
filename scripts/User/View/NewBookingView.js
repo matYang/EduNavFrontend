@@ -109,6 +109,9 @@ var NewBookingView = BaseFormView.extend({
     loginSuccess: function(){
         $("#booking_loginbox").remove();
         $("#booking_loginnote").remove();
+        $("#"+ this.submitButtonId).removeClass("hidden");
+        $("#bookingDesc").removeClass("hidden");
+
     },
     loginError: function(){
         $("#booking_loginPassword").val("");
@@ -120,9 +123,6 @@ var NewBookingView = BaseFormView.extend({
         } else {
             $("#booking_signIn").on("click", function(){
                 $("#booking_loginbox").show();
-            });
-            $("#booking_loginBoxClose").on("click", function(){
-                $("#booking_loginbox").hide();
             });
             $("#booking_register").on("click", function(){
                 app.navigate("register", true);
@@ -136,6 +136,8 @@ var NewBookingView = BaseFormView.extend({
                     $("#booking_loginPassword").focus();
                 }
             });
+            $("#"+ this.submitButtonId).addClass("hidden");
+            $("#bookingDesc").addClass("hidden");
         }
         $("#booking_date").on("keypress", function(e){
             e.preventDefault();

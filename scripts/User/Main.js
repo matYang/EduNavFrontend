@@ -46,7 +46,7 @@ var AppRouter = Backbone.Router.extend({
         this.sessionManager = new SessionManager (EnumConfig.ModuleIdentifier.user);
         this.generalManager = new GeneralManager (this.sessionManager);
         this.userManager = new UserManager (this.sessionManager);
-     
+        this.infoModal = new InfoModal();
         this.sessionManager.fetchSession(false, {
             success: function () {
                 Info.log("session fetch success");

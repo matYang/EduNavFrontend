@@ -5,7 +5,7 @@ var RegistrationView = BaseFormView.extend({
     submitButtonId: "complete",
     model: {},
     initialize: function(params){
-        _.bindAll(this, 'render', 'bindEvents', 'phoneValid', 'passValid', 'successCallback', 'submitAction', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'successCallback', 'submitAction', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
         $("#viewStyle").attr("href", "style/css/reg.css");
@@ -64,7 +64,7 @@ var RegistrationView = BaseFormView.extend({
         var that = this;
         $("#loginBox").hide();
         $("#getSms").on("click", function (e) {
-            if (that.phoneValid(that.model.phone).valid) {
+            if (Utilities.phoneValid(that.model.phone).valid) {
                 $("#getSms").val("发送中...");
                 app.userManager.smsVerification(that.model.phone,{
                     success: function () {
@@ -85,12 +85,22 @@ var RegistrationView = BaseFormView.extend({
     },
     successCallback: function(data){
         this.state = "finish";
-        app.sessionManager.sessionModel = new User(data, {parse: true});
-        this.$el.append(this.finishTemplate);
+        var that = this;
         var toPage = this.ref || "mypage";
-        setTimeout(function(){
-            app.navigate(toPage, true);
-        },5000);
+        app.sessionManager.sessionModel = new User(data, {parse: true});
+        this.$el.empty().append(this.finishTemplate);
+        app.sessionManager.fetchSession(true, {
+            success:function(){
+                app.topBarView.reRender();
+                setTimeout(function(){
+                    app.navigate(toPage, true);
+                },5000);
+            },
+            error: function () {
+
+            }
+        })
+
     },
     submitAction: function () {
         this.phoneCache = true;

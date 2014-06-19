@@ -82,7 +82,7 @@ var User = Backbone.Model.extend({
 
         json.name = encodeURI(json.name);
         json.phone = encodeURI(json.phone);
-        json.password = encodeURI(json.password);
+        json.password = json.password;
         json.email = encodeURI(json.email);
 
         json.appliedInvitationalCode = encodeURI(json.appliedInvitationalCode);

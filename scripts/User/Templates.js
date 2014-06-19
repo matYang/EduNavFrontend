@@ -556,7 +556,7 @@
                         <a class="button" id="booking_forgotPassword">忘记密码?</a>
                         <a class="button" id="booking_forgotPassword">还不是会员?</a>
                     </div>
-                    <div class="close">关闭</div>
+                    <!-- <div class="close">关闭</div> -->
                 </div>
             </div>
         </div>
@@ -585,7 +585,7 @@
         </div>
         <div class="row3">
             <input type="button" class="btn_O_long" value="完成预定" id="initBooking" />
-            <span class="desc">(不收预订费)</span>
+            <span id="bookingDesc" class="desc">(不收预订费)</span>
         </div>
     </form>
 </script>
@@ -1268,6 +1268,16 @@
                 </div>                
             </div>
             <!--account end--> 
+        </div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_infoModal">
+    <div class="pop_content">
+        <div id="popMessage">
+        </div>
+        <div class="btn" style="text-align:center; padding-top:15px;">
+            <input class="btn_O" type="button" value="确认">
         </div>
     </div>
 </script>
