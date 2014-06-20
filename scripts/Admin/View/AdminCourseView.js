@@ -6,7 +6,7 @@ var AdminCourseView = BaseFormView.extend({
     submitButtonId: "coursePostSubmit",
     callback: "uploadTarget",
     initialize: function(params){
-        _.bindAll(this, "render", "bindEvents", "renderCategories", "renderSubCategories", "renderThirdCategories", "close");
+        _.bindAll(this, "render", "bindEvents", "renderCategories", "renderSubCategories", "renderThirdCategories", "renderLocations", "renderL2Locations", "renderL3Locations", "close");
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
         params = params || {};
@@ -121,9 +121,13 @@ var AdminCourseView = BaseFormView.extend({
             var category = $(this).val();
             that.renderThirdCategories($("select[name=category]").val(), category);
         });
+        $("select[name=province]").on("change", function() {
+            var province = $(this).val();
+            that.renderL2Locations(province);
+        });
         $("select[name=city]").on("change", function() {
             var city = $(this).val();
-            that.renderDistrict(city);
+            that.renderL3Locations($("select[name=province]").val(), city);
         });
         $("input[class=date]").datepicker({
                 buttonImageOnly: true,
@@ -184,21 +188,42 @@ var AdminCourseView = BaseFormView.extend({
     },
     renderLocations: function (list) {
         this.locations = list;
-        var len = list.length, buf = [], obj;
-        for ( var i = 0; i < len; i ++) {
-            obj = this.locations[i];
-            for ( var attr in obj ) {
-                buf.push("<option value='" + attr + "'>" + attr + "</option>");
+         var buf = [];
+        for ( var key in this.locations ) {
+            if (key !== "index") {
+                buf.push("<option value='" + key + "'>" + key + "</option>");
+                if (this.locations[key].index === 1) {
+                    first = key;
+                }
             }
         }
-        $("select[name=city]").empty().append(buf.join());
+        $("select[name=province]").empty().append(buf.join()).val(first);
+        this.renderL2Locations(first);
     },
-    renderDistrict: function (city) {
-        var districts = this.locations[city], len = districts.length, buf = [], obj;
-        for ( var i = 0; i < len; i ++) {
-            buf.push("<option value='" + districts[i] + "'>" + districts[i] + "</option>");
+    renderL2Locations: function (loc1) {
+        var buf = [];
+        for ( var key in this.locations[loc1] ) {
+            if (key !== "index") {
+                buf.push("<option value='" + key + "'>" + key + "</option>");
+                if (this.locations[loc1][key].index === 1) {
+                    first = key;
+                }
+            }
         }
-        $("select[name=district]").empty().append(buf.join());
+        $("select[name=city]").empty().append(buf.join()).val(first);
+        this.renderL3Locations(loc1, first);
+    },
+    renderL3Locations: function (loc1, loc2) {
+        var l3Location = this.locations[loc1][loc2], buf = [], first;
+        for ( var key in l3Location ) {
+            if (key !== "index") {
+                buf.push("<option value='" + key + "'>" + key + "</option>");
+                if (l3Location[key].index === 1) {
+                    first = key;
+                }
+            }
+        }
+        $("select[name=district]").empty().append(buf.join()).val(first);
     },
     submitAction: function () {
 
