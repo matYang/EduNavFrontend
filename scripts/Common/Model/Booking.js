@@ -86,7 +86,7 @@ var Booking = Backbone.Model.extend({
         json.scheduledTime = Utilities.getDateString(this.get('scheduledTime'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         json.adjustTime = Utilities.getDateString(this.get('adjustTime'));
-        json.email = json.decodeURIComponent(json.email);
+        json.email = decodeURIComponent(json.email);
         json.course = json.course._toJSON();
         return json;
     },
@@ -102,8 +102,9 @@ var Booking = Backbone.Model.extend({
         json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.adjustTime = Utilities.castToAPIFormat(this.get('adjustTime'));
-
-        json.course = json.course.toJSON();
+        if (json.course instanceof Course) {
+            json.course = json.course.toJSON();
+        }
         
         return json;
     },
@@ -114,6 +115,7 @@ var Booking = Backbone.Model.extend({
         this.set("courseId", course.get("courseId"));
         this.set("course", course);
         this.set("price", course.get("price"));
+        this.set("cashbackAmount", course.get("cashback"));
         this.set("reference", course.get("reference"));
         //TODO add cashbackAmount when course is finalized
     }

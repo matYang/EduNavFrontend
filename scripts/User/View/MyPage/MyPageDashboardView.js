@@ -10,11 +10,13 @@ var MyPageDashboardView = Backbone.View.extend({
     },
     render: function () {
         this.$el.append(this.template(this.user._toJSON()));
-        this.bookingListView = new BookingListView(this.user.get("bookings"), this.user.get("bookings"), "dashboard");
+        this.bookingListView = new BookingListView(this.user.get("bookingList"), this.user.get("bookingList"), "dashboard");
+        $("#mypage_content").css("border", "none");
     },
     bindEvents: function () {},
     close: function () {
         if (!this.isClosed) {
+            $("#mypage_content").css("border", "1px solid #ccc");
             this.$el.empty();
             this.isClosed = true;
         }

@@ -1,15 +1,12 @@
 var FrontPageView = Backbone.View.extend({
 
     el: '#content',
-    displayIndex: 0,
     initialize: function () {
         _.bindAll(this, 'render', 'bindEvents', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
-        this.temp = {};
-        this.bottomRecentId = 0;
         this.template = _.template(tpl.get('front'));
-
+        this.lvl2Template = _.template("");
         this.user = app.sessionManager.sessionModel;
 
         this.searchRepresentation = app.storage.getSearchRepresentationCache();
@@ -20,15 +17,24 @@ var FrontPageView = Backbone.View.extend({
     },
 
     render: function () {
-        this.$el.append(this.template)
+        this.$el.append(this.template);
+    },
+    renderCategories: function(categories) {
+
+        $("#front_content");
+        for ( var cat1 in categories) {
+            var level2 = categories[cat1], index1 = level2.index;
+            for (var cat2 in level2) {
+                var level3 = level2[cat2], index2 = level3.index;
+                for ( var cat3 in level3){
+
+                }
+            }
+        }
     },
 
     bindEvents: function () {
         var self = this;
-        $("#front_howItWorks").on("click", function (e) {
-            e.preventDefault();
-            app.navigate("howitworks", true);
-        });
         //this.bindRecentsEvents();
     },
 

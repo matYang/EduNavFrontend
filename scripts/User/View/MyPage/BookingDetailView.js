@@ -11,7 +11,7 @@ var BookingDetailView = Backbone.View.extend({
         } else if (params.reference){
             this.reference = params.reference;
             this.user = app.sessionManager.sessionModel;
-            this.booking = this.user.get("bookings").findBookingByReference(params.reference);
+            this.booking = this.user.get("bookingList").findBookingByReference(params.reference);
             if (this.booking) {
                 this.render(this.booking);
             } else {
@@ -25,7 +25,7 @@ var BookingDetailView = Backbone.View.extend({
     render: function (booking) {
         if (booking instanceof User) {
             this.user = booking;
-            booking = booking.get("bookings").findBookingByReference(this.reference);
+            booking = booking.get("bookingList").findBookingByReference(this.reference);
         }
         this.booking = booking;
         this.$el.append(this.template(this.booking._toJSON()));

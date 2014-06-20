@@ -20,7 +20,7 @@ var EnumConfig = {
     },
 
     'CouponStatus': {
-        usabled: 0,
+        usable: 0,
         expired: 1,
         used: 2,
         inactive: 3

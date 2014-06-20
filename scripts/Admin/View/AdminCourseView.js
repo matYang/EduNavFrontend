@@ -6,7 +6,7 @@ var AdminCourseView = BaseFormView.extend({
     submitButtonId: "coursePostSubmit",
     callback: "uploadTarget",
     initialize: function(params){
-        _.bindAll(this, "render", "bindEvents", "close");
+        _.bindAll(this, "render", "bindEvents", "renderCategories", "renderSubCategories", "renderThirdCategories", "close");
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
         params = params || {};
@@ -17,35 +17,35 @@ var AdminCourseView = BaseFormView.extend({
         this.fields = [
              new BaseField({
                 name: "教室照片1",
-                fieldId: "classroomImg1",
+                fieldId: "classImg1",
                 type: "file",
                 mandatory: true,
                 previewId: "preview1"
             }), 
             new BaseField({
                 name: "教室照片2",
-                fieldId: "classroomImg2",
+                fieldId: "classImg2",
                 type: "file",
                 mandatory: true,
                 previewId: "preview2"
             }),
             new BaseField({
                 name: "教室照片3",
-                fieldId: "classroomImg3",
+                fieldId: "classImg3",
                 type: "file",
                 mandatory: true,
                 previewId: "preview3"
             }),
             new BaseField({
                 name: "教室照片4",
-                fieldId: "classroomImg4",
+                fieldId: "classImg4",
                 type: "file",
                 mandatory: true,
                 previewId: "preview4"
             }),
             new BaseField({
                 name: "教室照片5",
-                fieldId: "classroomImg5",
+                fieldId: "classImg5",
                 type: "file",
                 mandatory: true,
                 previewId: "preview5"
@@ -119,7 +119,7 @@ var AdminCourseView = BaseFormView.extend({
         });
         $("select[name=subCategory]").on("change", function() {
             var category = $(this).val();
-            that.renderThirdCategories(category);
+            that.renderThirdCategories($("select[name=category]").val(), category);
         });
         $("select[name=city]").on("change", function() {
             var city = $(this).val();
@@ -148,23 +148,39 @@ var AdminCourseView = BaseFormView.extend({
         var buf = [];
         for ( var key in categories ) {
             buf.push("<option value='" + key + "'>" + key + "</option>");
+            if (categories[key].index === 1) {
+                first = key;
+            }
         }
 
-        $("select[name=category]").empty().append(buf.join());
+        $("select[name=category]").empty().append(buf.join("")).val(first);
+        this.renderSubCategories(first);
     },
     renderSubCategories: function (category) {
-        var subCategory = this.categories[category], len = subCategory.length, buf = [];
-        for ( var i = 0; i < len; i ++) {
-            buf.push("<option value='" + subCategory[i] + "'>" + subCategory[i] + "</option>");
+        var subCategory = this.categories[category], buf = [], first;
+        for ( var key in subCategory) {
+            if (key !== "index") {
+                buf[subCategory[key].index]="<option value='" + key + "'>" + key + "</option>";
+                if (subCategory[key].index === 1) {
+                    first = key;
+                }
+            }
         }
-        $("select[name=subCategory]").empty().append(buf.join());
+        $("select[name=subCategory]").empty().append(buf.join("")).val(first);
+
+        this.renderThirdCategories(category, first);
     },
-    renderThirdCategories: function (category) {
-        var subCategory = this.categories[category], len = subCategory.length, buf = [];
-        for ( var i = 0; i < len; i ++) {
-            buf.push("<option value='" + subCategory[i] + "'>" + subCategory[i] + "</option>");
+    renderThirdCategories: function (cat1, cat2) {
+        var l3Category = this.categories[cat1][cat2], buf = [], first;
+        for ( var key in l3Category) {
+            if (key !== "index") {
+                buf[l3Category[key].index]="<option value='" + key + "'>" + key + "</option>";
+                if (l3Category[key].index === 1) {
+                    first = key;
+                }
+            }
         }
-        $("select[name=thirdCategory]").empty().append(buf.join());
+        $("select[name=subSubCategory]").empty().append(buf.join("")).val(first);
     },
     renderLocations: function (list) {
         this.locations = list;

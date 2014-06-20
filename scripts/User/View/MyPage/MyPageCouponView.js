@@ -13,11 +13,12 @@ var MyPageCouponView = Backbone.View.extend({
     render: function () {
         this.$el.append(this.template);
         var claimedCoupons = new Coupons(), unclaimedCoupons = new Coupons();
-        claimedCoupons.add(this.user.get("coupons").where({status: EnumConfig.CouponStatus.usable}));
-        unclaimedCoupons.add(this.user.get("coupons").where({status: EnumConfig.CouponStatus.inactive}));
+        claimedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.usable}));
+        unclaimedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.inactive}));
         this.unclaimedCouponView = new UnclaimedCouponView(unclaimedCoupons, unclaimedCoupons);
         this.claimedCouponView = new ClaimedCouponView(claimedCoupons, claimedCoupons);
         this.unclaimedCouponView.hide();
+        $("#mypage_content").css("border", "1px solid #ccc");
     },
     bindEvents: function () {
         var that = this;

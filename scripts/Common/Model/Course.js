@@ -16,7 +16,7 @@ var Course = Backbone.Model.extend({
             'popularity': undefined,
             
             'startUponArrival': undefined,
-            'cutoffDate': undefined,
+            'cutoffDate': new Date(),
             'creationTime': new Date(),
             'startDate': new Date(),
             'finishDate': new Date(),

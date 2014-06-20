@@ -561,11 +561,11 @@
         <% for ( var i = 0; i < 4; i++) { %>
             <% if (teacherNames && teacherNames[i]) {%>
                 <div><label>教师名<%= i+1 %>: </label><span class="detail"><%= teacherNames[i] %></span><span class="edit"><input type="text" name="teacherName<%= i+1 %>"/></span></div>
-                <div><label>教师照片<%= i+1 %>: </label><span class="detail"><img src="<%= teacherImgUrls[i] %>"/></span><span class="edit"><input type="text" name="teacherImgUrl<%= i+1 %>"/></span></div>
+                <div><label>教师照片<%= i+1 %>: </label><span class="detail"><img id="teacherImgPreview<%= i+1 %>" src="<%= teacherImgUrls[i] %>"/></span><span class="edit"><input type="file" name="teacherImgUrl<%= i+1 %>"/></span></div>
                 <div><label>教师简介<%= i+1 %>: </label><span class="detail"><%= teacherIntros[i] %></span><span class="edit"><input type="text" name="teacherIntro<%= i+1 %>"/></span></div>
             <% } else { %>
                 <div><label>教师名<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherName<%= i+1 %>"/></span></div>
-                <div><label>教师照片<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherImgUrl<%= i+1 %>"/></span></div>
+                <div><label>教师照片<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="file" name="teacherImgUrl<%= i+1 %>"/><img id="teacherImgPreview<%= i+1 %>"/></span></div>
                 <div><label>教师简介<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherIntro<%= i+1 %>"/></span></div>
             <% } %>
         <% } %>

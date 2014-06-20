@@ -295,7 +295,7 @@
                     </div>
                     <div id="mypage_info">
                         <p class="phone"><span></span><%= phone %></p>
-                        <p class="email"><span></span><%= email %></p>
+                        <% if (email) { %><p class="email"><span></span><%= email %></p> <% } %>
                     </div>
                 </div>
             </div>

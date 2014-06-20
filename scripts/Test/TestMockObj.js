@@ -1,5 +1,5 @@
 testMockObj = {
-    testMode: false,
+    testMode: true,
     testAdmin: (new Admin()).set("name", "admin1").set("phone","2260000000"),
     testUser: new User(),
     testPartner: new Partner(),
@@ -229,9 +229,9 @@ testMockObj.testBooking9.set("course", testMockObj.testCourse3);
 testMockObj.testBooking10.set("course", testMockObj.testCourse4);
 testMockObj.testBooking11.set("course", testMockObj.testCourse5);
 testMockObj.testBooking12.set("course", testMockObj.testCourse6);
-testMockObj.testUser.set("bookings", testMockObj.testBookings);
-testMockObj.testUser.set("coupons", testMockObj.testCoupons);
-testMockObj.testUser.set("credits", testMockObj.testCredits);
+testMockObj.testUser.set("bookingList", testMockObj.testBookings);
+testMockObj.testUser.set("couponList", testMockObj.testCoupons);
+testMockObj.testUser.set("creditList", testMockObj.testCredits);
 testMockObj[EnumConfig.ModuleIdentifier.admin] = testMockObj.testAdmin;
 testMockObj[EnumConfig.ModuleIdentifier.partner] = testMockObj.testPartner;
 testMockObj[EnumConfig.ModuleIdentifier.user] = testMockObj.testUser;

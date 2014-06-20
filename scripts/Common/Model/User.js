@@ -21,9 +21,9 @@ var User = Backbone.Model.extend({
             'creationTime': new Date (),
             'lastLogin': new Date (),
 
-            'bookings': new Bookings(),
-            'coupons': new Coupons(),
-            'credits': new Credits()
+            'bookingList': new Bookings(),
+            'couponList': new Coupons(),
+            'creditList': new Credits()
         };
     },
 
@@ -51,6 +51,10 @@ var User = Backbone.Model.extend({
             data.coupon = parseInt(data.coupon, 10);
             data.credit = parseInt(data.credit, 10);
 
+            data.balance = isNaN(data.balance) ? 0 : data.balance;
+            data.coupon = isNaN(data.coupon) ? 0 : data.coupon;
+            data.credit = isNaN(data.credit) ? 0 : data.credit;
+
             data.name = decodeURI(data.name);
             data.phone = decodeURI(data.phone);
             data.email = decodeURIComponent(data.email);
@@ -63,9 +67,10 @@ var User = Backbone.Model.extend({
             data.creationTime = Utilities.castFromAPIFormat(decodeURIComponent(data.creationTime));
             data.lastLogin = Utilities.castFromAPIFormat(decodeURIComponent(data.lastLogin));
 
-            data.transactions = new Transactions(data.transactions, {parse: true});
-            data.coupons = new Coupons(data.coupons, {parse: true});
-            data.credits = new Credits(data.credits, {parse: true});
+            data.transactionList = new Transactions(data.transactionList, {parse: true});
+            data.bookingList = new Bookings(data.bookingList, {parse: true});
+            data.couponList = new Coupons(data.couponList, {parse: true});
+            data.creditList = new Credits(data.creditList, {parse: true});
         }
         return data;
     },

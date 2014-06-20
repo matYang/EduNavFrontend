@@ -23,3 +23,7 @@
 .noMessage {
 	padding-top: 20px;
 }
+
+#walletSummary span{
+	margin-right: 9px;
+}

@@ -10,7 +10,7 @@ var MyPageBookingView = Backbone.View.extend({
     },
     render: function () {
         this.$el.append(this.template);
-        this.bookingListView = new BookingListView(this.user.get("bookings"), this.user.get("bookings"), "booking");
+        this.bookingListView = new BookingListView(this.user.get("bookingList"), this.user.get("bookingList"), "booking");
     },
     bindEvents: function () {},
     close: function () {

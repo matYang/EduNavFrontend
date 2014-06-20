@@ -341,6 +341,7 @@
         }
         newBooking.overrideUrl(this.apis.user_booking);
         newBooking.set('bookingId', -1);
+        newBooking.set("course", undefined);
         newBooking.set('userId', this.sessionManager.getId());
         newBooking.save({},{
             dataType:'json',

@@ -5,6 +5,7 @@
     //note this is not a global helper function, it is encapsulated inside this modular function scope
     var isStorageSupported = function () {
         if ( typeof (localStorage) === "undefined" || typeof (sessionStorage) === "undefined") {
+            localStorage = {};
             alert("您的浏览器不支持本地存贮，已经过时");
             return false;
         }
@@ -48,7 +49,8 @@
                 localStorage.compareList = "";
             }
 
-        } 
+        } else {
+        }
     };
 
     /**
