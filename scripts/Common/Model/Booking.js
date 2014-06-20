@@ -87,6 +87,9 @@ var Booking = Backbone.Model.extend({
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         json.adjustTime = Utilities.getDateString(this.get('adjustTime'));
         json.email = decodeURIComponent(json.email);
+        json.name = decodeURI(json.name);
+        json.phone = decodeURI(json.phone);
+        json.note = decodeURI(json.note);
         json.course = json.course._toJSON();
         return json;
     },

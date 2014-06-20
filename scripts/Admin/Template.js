@@ -560,13 +560,17 @@
 
         <% for ( var i = 0; i < 4; i++) { %>
             <% if (teacherNames && teacherNames[i]) {%>
-                <div><label>教师名<%= i+1 %>: </label><span class="detail"><%= teacherNames[i] %></span><span class="edit"><input type="text" name="teacherName<%= i+1 %>"/></span></div>
-                <div><label>教师照片<%= i+1 %>: </label><span class="detail"><img id="teacherImgPreview<%= i+1 %>" src="<%= teacherImgUrls[i] %>"/></span><span class="edit"><input type="file" name="teacherImgUrl<%= i+1 %>"/></span></div>
-                <div><label>教师简介<%= i+1 %>: </label><span class="detail"><%= teacherIntros[i] %></span><span class="edit"><input type="text" name="teacherIntro<%= i+1 %>"/></span></div>
+                <div style="width:100%; height:150px;">
+                    <div><label>教师名<%= i+1 %>: </label><span class="detail"><%= teacherNames[i] %></span><span class="edit"><input type="text" name="teacherName<%= i+1 %>"/></span></div>
+                    <div><label>教师照片<%= i+1 %>: </label><span class="detail"><img id="teacherImgPreview<%= i+1 %>" src="<%= teacherImgUrls[i] %>"/></span><span class="edit"><input type="file" name="teacherImgUrl<%= i+1 %>"/></span></div>
+                    <div><label>教师简介<%= i+1 %>: </label><span class="detail"><%= teacherIntros[i] %></span><span class="edit"><textarea style="width:300px;height:100px" name="teacherIntro<%= i+1 %>"><%= teacherIntros[i] %></textarea></span></div>
+                </div>
             <% } else { %>
-                <div><label>教师名<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherName<%= i+1 %>"/></span></div>
-                <div><label>教师照片<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="file" name="teacherImgUrl<%= i+1 %>"/><img id="teacherImgPreview<%= i+1 %>"/></span></div>
-                <div><label>教师简介<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherIntro<%= i+1 %>"/></span></div>
+                <div style="width:100%; height:150px;">
+                    <div><label>教师名<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherName<%= i+1 %>"/></span></div>
+                    <div><label>教师照片<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="file" name="teacherImgUrl<%= i+1 %>"/><img id="teacherImgPreview<%= i+1 %>"/></span></div>
+                    <div><label>教师简介<%= i+1 %>: </label><span class="detail"></span><span class="edit"><textarea style="width:300px;height:100px" name="teacherIntro<%= i+1 %>"></textarea></span></div>
+                </div>
             <% } %>
         <% } %>
         <% for ( var i = 0; i < 5; i++) { %>
@@ -618,7 +622,7 @@
         <div style="height:450px">
             <div><label>订单状态: </label><span class="detail"><%= status %></span>
             <span class="edit">
-                <select name="status" value="<%= status %>" >
+                <select id="status_Input" name="status" value="<%= status %>" >
                     <option value="0">awaiting</option>
                     <option value="1">confirmed</option>
                     <option value="2">cancelled</option>
@@ -630,11 +634,11 @@
                     <option value="8">consolidated</option>
                 </select>
             </span></div>
-            <div><label>姓名:</label> <span class="detail"><%= name %></span><span class="edit"><input type="text" name="name" value="<%= name %>"/></span></div>
-            <div><label>电话:</label> <span class="detail"><%= phone %></span><span class="edit"><input type="text" name="phone" value="<%= phone %>"/></span></div>
-            <div><label>邮箱:</label> <span class="detail"><%= email %></span><span class="edit"><input type="text" name="email" value="<%= email %>"/></span></div>
-            <div><label>预约时间:</label> <span class="detail"><%= scheduledTime %></span><span class="edit"><input type="text" name="scheduledTime" value="<%= scheduledTime %>"/></span></div>
-            <div><label>记录:</label> <span class="detail"><%= note %></span><span class="edit"><textarea name="note"><%= note %></textarea></span></div>
+            <div><label>姓名:</label> <span class="detail"><%= name %></span><span class="edit"><input id="name_Input" type="text" name="name" value="<%= name %>"/></span></div>
+            <div><label>电话:</label> <span class="detail"><%= phone %></span><span class="edit"><input id="phone_Input" type="text" name="phone" value="<%= phone %>"/></span></div>
+            <div><label>邮箱:</label> <span class="detail"><%= email %></span><span class="edit"><input id="email_Input" type="text" name="email" value="<%= email %>"/></span></div>
+            <div><label>预约时间:</label> <span class="detail"><%= scheduledTime %></span><span class="edit"><input id="scheduledTime_Input" type="text" name="scheduledTime" value="<%= scheduledTime %>"/></span></div>
+            <div><label>记录:</label> <span class="detail"><%= note %></span><span class="edit"><textarea id="note_In" name="note"><%= note %></textarea></span></div>
         </div>
         <div class="btns" style="width:100%">
             <span class="detail"><input type="button" id="editBooking" value="edit" /></span>
