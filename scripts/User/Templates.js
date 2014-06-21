@@ -69,70 +69,9 @@
 <script type="text/template" id="tpl_front">
 <div id="content" class="content" style="margin-bottom:0">
         <div id="lv1Button" class="tab2">
-            <li class="item1">
-                <a class="active" href="#">语言培训</a>
-            </li>
-            <li class="item2">
-                <a class="" href="#">学历文凭</a>
-            </li>
-            <li class="item3">
-                <a class="" href="#">财务金融</a>
-            </li>
-            <li class="item4">
-                <a class="" href="#">资格认证</a>
-            </li>
         </div>
         <div class="category">
-            <table class="language blank1" width="100%" cellpadding="0" cellspacing="0">
-                <tbody><tr>
-                    <th rowspan="3">
-                        <a href="#">英语</a>
-                        <div class="top_arrow"></div>
-                    </th>
-                    <td><a href="#">雅思</a></td>
-                    <td><a href="#">四六级</a></td>
-                    <td><a href="#">托福</a></td>
-                    <td><a href="#">托业</a></td>
-                    <td><a href="#">GRE</a></td>
-                    <td><a href="#">GMAT</a></td>
-                    <td><a href="#">SAT</a></td>
-                    <td><a href="#">SSAT</a></td>
-                    <td><a href="#">公共英语</a></td>
-                    <td class="last"><a href="#">商务英</a></td>
-                </tr>
-                <tr>
-                    <td><a href="#">基础英语</a></td>
-                    <td><a href="#">职称英语</a></td>
-                    <td><a href="#">专业英语</a></td>
-                    <td><a href="#">学科英语</a></td>
-                    <td><a href="#">少儿英语</a></td>
-                    <td><a href="#">剑桥英语</a></td>
-                    <td><a href="#">新概念</a></td>
-                    <td><a href="#">英语口语</a></td>
-                    <td><a href="#">口译笔译</a></td>
-                    <td class="last"><a href="#">金融英语</a></td>
-                </tr>                   
-                
-            </tbody></table>
-            <table class="language blank1" width="100%" cellpadding="0" cellspacing="0">
-                <tbody><tr>                                                            
-                    <th rowspan="3">
-                        <a href="#">小语种</a>
-                        <div class="top_arrow"></div>
-                    </th>
-                    <td><a href="#">日语</a></td>
-                    <td><a href="#">韩语</a></td>
-                    <td><a href="#">法语</a></td>
-                    <td><a href="#">德语</a></td>
-                    <td><a href="#">俄语</a></td>
-                    <td><a href="#">意大利语</a></td>
-                    <td><a href="#">西班牙语</a></td>
-                    <td><a href="#">葡萄牙语</a></td>
-                    <td><a href="#">阿拉伯语</a></td>
-                    <td class="last"><a href="#">荷兰语</a></td>
-                </tr>
-                                   
-            </tbody></table>
+            <div id ="lv2Categories"></div>
             <table class="language blank2" width="100%" cellpadding="0" cellspacing="0">
                 <tbody><tr>
                     <td><img src="style/images/s10.png"></td>
@@ -1383,6 +1322,20 @@
         </div>
         <div class="btn" style="text-align:center; padding-top:15px;">
             <input class="btn_O" type="button" value="确认">
+        </div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_frontCategoryContainer">
+    <div data-parent="<%= lvl1Cat %>" class="<%= catClass %> lv2category c_item blank1 clearfix">
+        <div class="fleft">
+            <a href="#"><%= categoryName %></a>
+            <div class="top_arrow"></div>
+        </div>
+        <div class="fright">
+            <ul class="clearfix">
+                <%= catgoryList %>
+            </ul>
         </div>
     </div>
 </script>

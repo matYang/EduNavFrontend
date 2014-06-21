@@ -4,7 +4,7 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         return {
             'category': undefined,
             'subCategory': undefined,
-            //'subSubCategory': undefined,
+            'subSubCategory': undefined,
         
             //'province': undefined,
             'city': undefined,
@@ -59,6 +59,15 @@ var CourseSearchRepresentation = Backbone.Model.extend({
     },
 
     castFromQuery: function (queryObj) {
+        var obj, i, temp;
+        if (typeof queryObj === "string") {
+            obj = queryObj.split("&");
+            queryObj = {};
+            for (i = 0; i < obj.length; i++) {
+                temp = obj[i].split("=");
+                queryObj[temp[0]] = temp[1];
+            }
+        }
         for (var property in queryObj) {
             if (queryObj.hasOwnProperty(property) && typeof queryObj[property] !== 'undefined') {
                 this.set(property, decodeURI(queryObj[property]));
@@ -71,6 +80,7 @@ var CourseSearchRepresentation = Backbone.Model.extend({
 
         queryObj.category = typeof this.get('category') === 'undefined' ? undefined : encodeURI(this.get('category'));
         queryObj.subCategory = typeof this.get('subCategory') === 'undefined' ? undefined : encodeURI(this.get('subCategory'));
+        queryObj.subSubCategory = typeof this.get('subSubCategory') === 'undefined' ? undefined : encodeURI(this.get('subSubCategory'));
         queryObj.city = typeof this.get('city') === 'undefined' ? undefined : encodeURI(this.get('city'));
         queryObj.district = typeof this.get('district') === 'undefined' ? undefined : encodeURI(this.get('district'));
 

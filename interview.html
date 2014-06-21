@@ -3,51 +3,67 @@
 <script src="scripts/Lib/loadfirst/jquery-1.11.1.min.js"></script>
 </head>
 <body>
-	<div id="someDiv">
-		<input id="inputA" type="button" value="button A"/>
-		<input id="inputB" type="button" value="button B"/>
-		<input id="print" type="button" />
+    <div id="someDiv">
+        <input id="inputA" type="button" value="button A"/>
+        <input id="inputB" type="button" value="button B"/>
+        <input id="print" type="button" />
 
-	</div>
+    </div>
 </body>
-	<script>
-	//the following code contains several errors,
-	//please revise the code 
+    <script>
+    //practice
+    //jquery practice
+    //the following code contains several errors,
+    //please revise the code to make the buttons work properly
+    //What will the alert message be when the alert box first pop up.
+    //What will the alert message be when print button is clicked
+//prototype inheritence
+//simple function scope
+//function scope closure
+//javascript native 
+//typeof vs instanceof   null vs undefined   true condition
+//anonymous
 /**---------------------------NO EDIT------------------------**/
-	var x = 1;
-	ret = 0;
-	var clickHandler = (function () {
-		var ret = 1;
-		var bar = function (arg1) {
-			if (arg1 === "print"){
-				alert("ret=" + this.ret + " x=" + x);
-			} else if (arg1 === "inputA") {
-				alert("you clicked button A");
-			} else if (arg1 === "inputB"){
-				alert("you clicked button B");
-			}
-		}
-		var baz = function () {
-/**---------------------------NO EDIT END------------------------**/
-			$("#someDiv").on("click", "input", this.boo);
-		}
-		var boo = function (e) {
-			this.func3(e.target.id);
-/**---------------------------NO EDIT------------------------**/
-		}
 
-		return  {
-			"func1":bar,
-			"func2":baz,
-			"func3":boo,
-			"ret": window.ret
-		}
-	})();
-	clickHandler.boo = function () {
-		alert(ret);
-	}
-	clickHandler.func2();
+    var x = 1, ret = 0;
+    var clickHandler = (function () {
+        var ret = 1;
+        var bar = function (arg1) {
+            if (arg1 === "print"){
+                alert("ret=" + this.ret + " x=" + x);
+            } else if (arg1 === "inputA") {
+                alert("you clicked button A");
+            } else if (arg1 === "inputB"){
+                alert("you clicked button B");
+            }
+            var x = 0;
+        }
+        x=-1;
+/**---------------------------NO EDIT END------------------------**/
+        var baz = function () {
+            $("#someDiv").on("click", "input", this.boo);
+        }
+        var boo = function () {
+            this.bar();             //call bar()
+        }
+
+/**-----------------------------NO EDIT------------------------**/
+        return  {
+            "func1":bar,
+            "func2":baz,
+            "func3":boo,
+            "ret": ret
+        }
+    })();
+
+    clickHandler.boo = function () {
+        alert(ret);
+    }
+    clickHandler.func2();
+
+    alert("ret=" + this.ret + " x=" + x);
 /**---------------------------NO EDIT END------------------------**/
 
-	</script>
+
+    </script>
 </html>

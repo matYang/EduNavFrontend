@@ -20,7 +20,7 @@ var SearchView = Backbone.View.extend({
         this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
         if (params) {
             try {
-                this.searchRepresentation.castFromString(params.searchKey);
+                this.searchRepresentation.castFromQuery(params.searchKey);
                 app.storage.setSearchRepresentationCache(this.searchRepresentation);
             } catch (e) {
                 app.navigate("search", {replace:true});

@@ -2,15 +2,15 @@ var FrontPageView = Backbone.View.extend({
 
     el: '#content',
     initialize: function () {
-        _.bindAll(this, 'render', 'bindEvents', 'close');
+        _.bindAll(this, 'render', 'renderCategories', 'bindEvents', 'close');
         $("#viewStyle").attr("href", "style/css/index.css");
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.template = _.template(tpl.get('front'));
-        this.lvl2Template = _.template("");
+        this.lvl2Template = _.template(tpl.get("frontCategoryContainer"));
         this.user = app.sessionManager.sessionModel;
 
-        this.searchRepresentation = app.storage.getSearchRepresentationCache();
+        this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
         this.render();
         //app.sessionManager.fetchSession();
         this.bindEvents();
@@ -21,23 +21,76 @@ var FrontPageView = Backbone.View.extend({
         $("body").addClass("index");
         this.banner = new BannerView();
         this.$el.append(this.template);
+        app.generalManager.getCategories(this);
     },
     renderCategories: function(categories) {
-
-        $("#front_content");
+        var obj = {}, categoryList = [], buttonList = [], counter = 1, level2, index1, level3, index2, index3, lvl3CatList = [], lvl3counter = 0, padding = 0;
         for ( var cat1 in categories) {
-            var level2 = categories[cat1], index1 = level2.index;
+            if (cat1 === "index") continue;
+
+            obj.lvl1Cat = cat1;
+            level2 = categories[cat1];
+            index1 = level2.index;
+            buttonList[index1] = '<li class="item' + counter + '"><a href="#">' + cat1 + '</a></li>';
+            obj.catClass = Constants.categoryClassMapper[cat1];
             for (var cat2 in level2) {
-                var level3 = level2[cat2], index2 = level3.index;
+                if (cat2 === "index") continue;
+                obj.categoryName = cat2;
+                level3 = level2[cat2];
+                index2 = level3.index;
                 for ( var cat3 in level3){
-
+                    if (cat3 !== "index") {
+                        lvl3counter++;
+                        index3 = level3[cat3].index;
+                        lvl3CatList[index3] = "<li data-lvl1='" + cat1 + "' data-lvl2='" + cat2 + "' data-lvl3='" + cat3 + "'><a>"+ cat3 +"</a></li>";
+                    }
                 }
+                padding = (Constants.categoryRowMapper[cat1] - lvl3counter % Constants.categoryRowMapper[cat1])% Constants.categoryRowMapper[cat1];
+                while (padding) {
+                    lvl3CatList.push("<li><a> --- </a></li>");
+                    padding--;
+                }
+                obj.catgoryList = lvl3CatList.join("");
+                categoryList[index2] = this.lvl2Template(obj);
+                lvl3CatList = [];
+                lvl3counter = 0;
             }
-        }
-    },
 
+            $("#lv2Categories").append(categoryList.join(""));
+            lvl3CatList = [];
+            categoryList = [];
+            counter++;
+        }
+        $("#lv1Button").append(buttonList.join(""));
+        this.afterRender();
+    },
+    afterRender: function () {
+        //add last class to last rows of each lvl 2 category
+        $("#lv2Categories").children("div").each(function (category) {
+            var rowLength = Constants.categoryRowMapper[$(this).data("parent")], list = $(this).find("li");
+            $(this).find("li:gt(-"+(rowLength + 1)+")").addClass("last");
+            var rowNum = list.length/rowLength, stickerClass;
+            switch (rowNum) {
+                case 1:
+                    stickerClass = "c_h0"
+                    break;
+                case 2:
+                    stickerClass = "c_h2";
+                    break;
+                case 3:
+                    stickerClass = "c_h1";
+                    break;
+                case 4:
+                default:
+                    stickerClass = "c_h3";
+                    break;
+            }
+            $(this).addClass(stickerClass);
+        });
+
+    },
     bindEvents: function () {
-        var self = this;
+        var that = this;
         $("#lv1Button").on("mouseover", "li", function (e) {
             var category = $(e.target).data("id");
             $(e.delegateTarget).find(".active").removeClass("active");
@@ -45,9 +98,18 @@ var FrontPageView = Backbone.View.extend({
             $("lvl2Category").find(".hidden").removeClass("hidden");
             $("lvl2Category").find("[data-parent!=category]").addClass("hidden");
         });
+        $(".lv2category").on("click", "li", function (e) {
+            if (e.target.tagName === "A") {
+                e.preventDefault();
+                that.searchRepresentation.set("category", $(e.currentTarget).data("lvl1"));
+                that.searchRepresentation.set("subCategory", $(e.currentTarget).data("lvl2"));
+                that.searchRepresentation.set("subSubCategory", $(e.currentTarget).data("lvl3"));
+                app.navigate("search/"+that.searchRepresentation.toQueryString(), true);
+            }
+        });
     },
     buildCategoryTable: function (category, toplevel, secondlevel) {
-        var buf = "<table class='blank1' width='100%' cellpadding='0' cellspacing='0' data-parent='" + toplevel + "'><tbody>";
+        var buf = "<ul class='blank1' width='100%' cellpadding='0' cellspacing='0' data-parent='" + toplevel + "'><tbody>";
         var trBuf = "<tr>";
         var cellBuffer = [];
         var row = 0;
@@ -89,8 +151,7 @@ var BannerView = Backbone.View.extend({
     },
 
     bindEvents: function () {
-        var self = this;
-        //this.bindRecentsEvents();
+        
     },
 
     close: function () {

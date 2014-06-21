@@ -1,5 +1,5 @@
 var AdminLoginView = Backbone.View.extend({
-    el:"#content",
+    el:" ",
     initialize: function () {
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "login", "close");

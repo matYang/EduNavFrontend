@@ -485,7 +485,11 @@
 
 <script type="text/templates" id="tpl_adminCourse">
     <form id="adminCourseForm" method="post">
-        <div><label>courseId: </label><div class="detail"><%= courseId %></div><div class="edit"><input type="hidden" name="courseId"/ value="<%= courseId %>"></div></div>
+        <div><label>courseId: </label><div class="detail"><%= courseId %></div>
+        <%= if (courseId > -1) { %>
+        <div class="edit"><input type="hidden" name="courseId"/ value="<%= courseId %>"></div>
+        <% } %>
+        </div>
         <div><label>合作伙伴Id: </label><div class="detail"><%= partnerId %></div><div class="edit"><input type="text" name="partnerId"/></div></div>
         <div><label>创建时间: </label><div class="detail"><%= creationTime %></div></div>
         <div><label>课程名: </label><div class="detail"><%= courseName %></div><div class="edit"><input type="text" name="courseName"/></div></div>
@@ -521,7 +525,12 @@
         <div><label>course Reference: </label><span class="detail"><%= partnerCourseReference %></span><span class="edit"><input type="text" name="partnerCourseReference"/></span></div>
         
         <div><label>开课要求: </label><span class="detail"><%= openCourseRequirement %></span><span class="edit"><input type="text" name="openCourseRequirement"/></span></div>
-        <div><label>教课资格: </label><span class="detail"><%= partnerQualification %></span><span class="edit"><input type="text" name="partnerQualification"/></span></div>
+        <div><label>教课资格: </label><span class="detail"><%= partnerQualification %></span><span class="edit">
+            <select name="partnerQualification">
+                <option value=0>无</option>
+                <option value=1>有</option>
+            </select>
+        </span></div>
         <div><label>机构简介: </label><span class="detail"><%= partnerIntro %></span><span class="edit"><input type="text" name="partnerIntro"/></span></div>
         <div><label>教材简介: </label><span class="detail"><%= teachingMaterialIntro %></span><span class="edit"><input type="text" name="teachingMaterialIntro"/></span></div>
         <div><label>教材费用: </label><span class=  "detail"><%= teachingMaterialFee %></span><span class="edit"><input type="text" name="teachingMaterialFee"/></span></div>
@@ -562,13 +571,13 @@
             <% if (teacherNames && teacherNames[i]) {%>
                 <div style="width:100%; height:150px;">
                     <div><label>教师名<%= i+1 %>: </label><span class="detail"><%= teacherNames[i] %></span><span class="edit"><input type="text" name="teacherName<%= i+1 %>"/></span></div>
-                    <div><label>教师照片<%= i+1 %>: </label><span class="detail"><img id="teacherImgPreview<%= i+1 %>" src="<%= teacherImgUrls[i] %>"/></span><span class="edit"><input type="file" name="teacherImgUrl<%= i+1 %>"/></span></div>
+                    <div><label>教师照片<%= i+1 %>: </label><span class="detail"><img id="teacherImgPreview<%= i+1 %>" src="<%= teacherImgUrls[i] %>"/></span><span class="edit"><input type="file" name="teacherImg<%= i+1 %>"/></span></div>
                     <div><label>教师简介<%= i+1 %>: </label><span class="detail"><%= teacherIntros[i] %></span><span class="edit"><textarea style="width:300px;height:100px" name="teacherIntro<%= i+1 %>"><%= teacherIntros[i] %></textarea></span></div>
                 </div>
             <% } else { %>
                 <div style="width:100%; height:150px;">
                     <div><label>教师名<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherName<%= i+1 %>"/></span></div>
-                    <div><label>教师照片<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="file" name="teacherImgUrl<%= i+1 %>"/><img id="teacherImgPreview<%= i+1 %>"/></span></div>
+                    <div><label>教师照片<%= i+1 %>: </label><span class="detail"></span><span class="edit"><input type="file" name="teacherImg<%= i+1 %>"/><img id="teacherImgPreview<%= i+1 %>"/></span></div>
                     <div><label>教师简介<%= i+1 %>: </label><span class="detail"></span><span class="edit"><textarea style="width:300px;height:100px" name="teacherIntro<%= i+1 %>"></textarea></span></div>
                 </div>
             <% } %>

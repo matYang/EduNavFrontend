@@ -28,6 +28,7 @@
 	margin-right: 9px;
 }
 
-.page a {
+li a, .page a {
 	cursor:pointer;
 }
+

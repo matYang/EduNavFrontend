@@ -24,13 +24,13 @@ var Constants = {
     templateResources: [
         "topBar-loggedIn", "topBar-notLoggedIn", 
         "registration", "registration_finish",
-        "front", "search", "searchResultEntry", "courseDetail", "newBooking", "booking_submitted",
+        "front", "frontCategoryContainer", "search", "searchResultEntry", "courseDetail", "newBooking", "booking_submitted",
         "mypage_base", "mypage_dashboard", "mypage_bookingList", "mypage_bookingDetail", "booking_entry", 
         "mypage_coupons", "mypage_unclaimedCouponRow", "mypage_claimedCouponRow", "mypage_couponClaimed", "mypage_couponUnclaimed",
         "mypage_credit", "mypage_creditTable", "mypage_creditRow", "mypage_creditStore",
         "mypage_password", "mypage_setting",
         "compareWidget", "compareWidgetEntry", "compareView",
-        "infoModal","banner"
+        "infoModal", "banner"
     ],
 
     partnerTemplateResource: [
@@ -61,5 +61,11 @@ var Constants = {
         "学历文凭":"master",
         "财会·金融":"f_and_e",
         "资格认证":"attestation"
+    },
+    categoryRowMapper: {
+        "语言培训":10,
+        "学历文凭":10,
+        "财会·金融":5,
+        "资格认证":5
     }
 };
