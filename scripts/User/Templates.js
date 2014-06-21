@@ -1327,7 +1327,7 @@
 </script>
 
 <script type="text/templates" id="tpl_frontCategoryContainer">
-    <div data-parent="<%= lvl1Cat %>" class="<%= catClass %> lv2category c_item blank1 clearfix">
+    <div data-parent="<%= lvl1Cat %>" class="<%= catClass %> lv2category c_item blank1 hidden clearfix">
         <div class="fleft">
             <a href="#"><%= categoryName %></a>
             <div class="top_arrow"></div>

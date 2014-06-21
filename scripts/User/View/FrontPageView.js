@@ -31,7 +31,7 @@ var FrontPageView = Backbone.View.extend({
             obj.lvl1Cat = cat1;
             level2 = categories[cat1];
             index1 = level2.index;
-            buttonList[index1] = '<li class="item' + counter + '"><a href="#">' + cat1 + '</a></li>';
+            buttonList[index1] = '<li data-id="' + cat1 + '"class="item' + counter + '"><a href="#">' + cat1 + '</a></li>';
             obj.catClass = Constants.categoryClassMapper[cat1];
             for (var cat2 in level2) {
                 if (cat2 === "index") continue;
@@ -87,16 +87,17 @@ var FrontPageView = Backbone.View.extend({
             }
             $(this).addClass(stickerClass);
         });
-
+        var activeButton = $("#lv1Button").find("a:first").addClass("active");
+        $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("id") + "]").removeClass("hidden");
     },
     bindEvents: function () {
         var that = this;
         $("#lv1Button").on("mouseover", "li", function (e) {
-            var category = $(e.target).data("id");
+            var category = $(this).data("id");
             $(e.delegateTarget).find(".active").removeClass("active");
-            $(e.target).addClass("active");
-            $("lvl2Category").find(".hidden").removeClass("hidden");
-            $("lvl2Category").find("[data-parent!=category]").addClass("hidden");
+            $(this).find("a").addClass("active");
+            $("#lv2Categories").children(".hidden").removeClass("hidden");
+            $("#lv2Categories").children("div[data-parent!=" + category + "]").addClass("hidden");
         });
         $(".lv2category").on("click", "li", function (e) {
             if (e.target.tagName === "A") {
