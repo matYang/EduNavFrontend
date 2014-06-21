@@ -195,9 +195,7 @@ var Course = Backbone.Model.extend({
             json.studyDays = studyDays;
         }
         json.studyDaysNote =json.studyDaysNote ? "(" + json.studyDaysNote + ")" : "" ;
-        var date = new Date(this.get("startDate"));
-        date.setDate(date.getDate()-5);
-        json.scheduledTime = Utilities.getDateString(date);
+
         return json;
     },
     //simplified toJSON, as courses are not updated by Ajax but by html form
@@ -205,8 +203,8 @@ var Course = Backbone.Model.extend({
         var json = _.clone(this.attributes);
         json.startDate = Utilities.castToAPIFormat(this.get('startDate'));
         json.finishDate = Utilities.castToAPIFormat(this.get('finishDate'));
+        json.cutoffDate = Utilities.castToAPIFormat(this.get('cutoffDate'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
-        json.cutoffTime = Utilities.castToAPIFormat(this.get('creationTime'));
 
         return json;
     },

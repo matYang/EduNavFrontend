@@ -4,7 +4,6 @@ var Coupon = Backbone.Model.extend({
         return {
             'couponId': -1,
 
-            'bookingId': -1,
             'transactionId': -1,
             'userId': -1,
             
@@ -18,7 +17,7 @@ var Coupon = Backbone.Model.extend({
         };
     },
 
-    idAttribute: 'creditId',
+    idAttribute: 'couponId',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');
@@ -36,7 +35,6 @@ var Coupon = Backbone.Model.extend({
         if ( typeof data !== 'undefined') {
             data.couponId = parseInt(data.couponId, 10);
 
-            data.bookingId = parseInt(data.bookingId, 10);
             data.transactionId = parseInt(data.transactionId, 10);
             data.userId = parseInt(data.userId, 10);
             data.amount = parseInt(data.amount, 10);
@@ -73,7 +71,7 @@ var Coupons = Backbone.Collection.extend({
 
     model: Coupon,
 
-    url: Constants.origin + '/api/v1.0/users/user',
+    url: Constants.origin + '/api/v1.0/coupon/coupon',
 
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');

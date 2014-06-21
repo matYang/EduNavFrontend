@@ -55,7 +55,7 @@
     //using the find session API to determine if the uer has logged in or not
     SessionManager.prototype.fetchSession = function(asyncFlag, callback){
         var self = this;
-        
+debugger;        
         switch (this.identifier){
             case EnumConfig.ModuleIdentifier.user:
                 this.sessionModel.overrideUrl(this.apis.user_findSession);

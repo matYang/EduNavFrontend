@@ -125,9 +125,7 @@ var NewBookingView = BaseFormView.extend({
     },
     bindEvents: function () {
         var that = this;
-        if (app.sessionManager.hasSession()) {
-            this.loginSuccess();
-        } else {
+        if (!app.sessionManager.hasSession()) {
             $("#booking_signIn").on("click", function(){
                 $("#booking_loginbox").show();
             });

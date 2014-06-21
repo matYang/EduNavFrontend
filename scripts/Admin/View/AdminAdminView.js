@@ -13,7 +13,7 @@ var AdminAdminView = BaseFormView.extend({
         var apis = new AdminApiResource();
         this.template = _.template(tpl.get("adminAdmin"));
         this.action = apis.admin_admin;
-        this.newAdmin = false;
+        this.create = false;
         this.fields = [
             new BaseField({
                 name:"电话",
@@ -63,7 +63,7 @@ var AdminAdminView = BaseFormView.extend({
             });
         } else {
             //Create new course
-            this.newAdmin = true;
+            this.create = true;
             this.model = new Admin();
             this.render(this.model);
         }
@@ -73,7 +73,7 @@ var AdminAdminView = BaseFormView.extend({
     render: function (admin) {
         this.model = admin;
         this.$el.append(this.template(admin.toJSON()));
-        if (this.newAdmin) {
+        if (this.create) {
             $("#adminAdminForm").find(".detail").hide();
             $("#adminAdminForm").find(".edit").show();
             $("#cancel").hide();
@@ -107,7 +107,7 @@ var AdminAdminView = BaseFormView.extend({
         keys.secret1 = $("#key1").val();
         keys.secret2 = $("#key2").val();
         keys.secret3 = $("#key3").val();
-        if (this.newAdmin) {
+        if (this.create) {
             app.adminManager.createAdmin(this.model, {
                 success: function (admin) {
                     app.navigate("manage/admin/"+admin.id, true);

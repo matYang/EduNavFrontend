@@ -10,5 +10,3 @@ var AdminConstants = {
         "verified": 1
     }
 }
-
-Constants.origin = C_ENV_VAR !== 'REMOTE' ? 'http://localhost:8017' : '..';

@@ -6,7 +6,7 @@
         /*---------------  API level constants   --------------*/
         var api_modules = {
 
-            rootPrefix: Constants.origin + '/api',
+            rootPrefix: Constants.origin + ':8015/api',
             partnerRootPrefix: Constants.origin + '/p-api',
             versionPrefix: '/v1.0',
 
@@ -56,7 +56,7 @@
                     course: '/course'
                 },
                 'coupon': {
-                    coupon: "/"
+                    coupon: "/coupon"
                 }
             }
         };

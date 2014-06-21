@@ -54,27 +54,102 @@
     </div>
 </script>
 
-<script type="text/template" id="tpl_front">
-    <div class="category-lv1">
-        <div class="category-lv2"><span>英语</span><img src="" class="category_symbol" /></div>
-        <div class="category-lv2"><span>数学</span><img src="" class="category_symbol" /></div>
-        <div class="category-lv2"><span>语文</span><img src="" class="category_symbol" /></div>
-        <div class="category-lv2"><span>会计</span><img src="" class="category_symbol" /></div>
-        <div class="category-lv2"><span>小语种</span><img src="" class="category_symbol" /></div>
-        <div class="category-lv2"><span>考研</span><img src="" class="category_symbol" /></div>
+<script type="text/template" id="tpl_banner">
+    <div id="visual_container">
+        <ul class="slidee">
+            <li style="display: none;"><a href="#"><img src="style/images/banner.jpg" alt="" height="320"></a></li>
+            <li style="display: none;"><a href="#"><img src="style/images/banner.jpg" alt="" height="320"></a></li>
+            <li style="display: block"><a href="#"><img src="style/images/banner.jpg" alt="" height="320"></a></li>
+            <li style="display: none;"><a href="#"><img src="style/images/banner.jpg" alt="" height="320"></a></li>
+            <li style="display: none;"><a href="#"><img src="style/images/banner.jpg" alt="" height="320"></a></li>
+        </ul>
     </div>
-    <div class="front banner"></div>
-    <div id="institutes" class="institutes">
-        <div class="institute"><img src="" class="insitute_logo" alt="学而思教育"></div>
-        <div class="institute"><img src="" class="insitute_logo" alt="新东方"></div>
-        <div class="institute"><img src="" class="insitute_logo" alt="Spark"></div>
-        <div class="institute"><img src="" class="insitute_logo" alt="海天教育"></div>
-        <div class="institute"><img src="" class="insitute_logo" alt="OSC源创会"></div>
-        <div class="institute"><img src="" class="insitute_logo" alt="智康1对1"></div>
-        <div class="institute"><img src="" class="insitute_logo" alt="新航道网校"></div>
-        <div class="institute"><img src="" class="insitute_logo" alt="易考拉雅思"></div>
-        <div class="institute"><img src="" class="insitute_logo" alt="大街教育"></div>
-        <div class="institute"><img src="" class="insitute_logo" alt="超级课堂"></div>
+</script>
+
+<script type="text/template" id="tpl_front">
+<div id="content" class="content" style="margin-bottom:0">
+        <div id="lv1Button" class="tab2">
+            <li class="item1">
+                <a class="active" href="#">语言培训</a>
+            </li>
+            <li class="item2">
+                <a class="" href="#">学历文凭</a>
+            </li>
+            <li class="item3">
+                <a class="" href="#">财务金融</a>
+            </li>
+            <li class="item4">
+                <a class="" href="#">资格认证</a>
+            </li>
+        </div>
+        <div class="category">
+            <table class="language blank1" width="100%" cellpadding="0" cellspacing="0">
+                <tbody><tr>
+                    <th rowspan="3">
+                        <a href="#">英语</a>
+                        <div class="top_arrow"></div>
+                    </th>
+                    <td><a href="#">雅思</a></td>
+                    <td><a href="#">四六级</a></td>
+                    <td><a href="#">托福</a></td>
+                    <td><a href="#">托业</a></td>
+                    <td><a href="#">GRE</a></td>
+                    <td><a href="#">GMAT</a></td>
+                    <td><a href="#">SAT</a></td>
+                    <td><a href="#">SSAT</a></td>
+                    <td><a href="#">公共英语</a></td>
+                    <td class="last"><a href="#">商务英</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">基础英语</a></td>
+                    <td><a href="#">职称英语</a></td>
+                    <td><a href="#">专业英语</a></td>
+                    <td><a href="#">学科英语</a></td>
+                    <td><a href="#">少儿英语</a></td>
+                    <td><a href="#">剑桥英语</a></td>
+                    <td><a href="#">新概念</a></td>
+                    <td><a href="#">英语口语</a></td>
+                    <td><a href="#">口译笔译</a></td>
+                    <td class="last"><a href="#">金融英语</a></td>
+                </tr>                   
+                
+            </tbody></table>
+            <table class="language blank1" width="100%" cellpadding="0" cellspacing="0">
+                <tbody><tr>                                                            
+                    <th rowspan="3">
+                        <a href="#">小语种</a>
+                        <div class="top_arrow"></div>
+                    </th>
+                    <td><a href="#">日语</a></td>
+                    <td><a href="#">韩语</a></td>
+                    <td><a href="#">法语</a></td>
+                    <td><a href="#">德语</a></td>
+                    <td><a href="#">俄语</a></td>
+                    <td><a href="#">意大利语</a></td>
+                    <td><a href="#">西班牙语</a></td>
+                    <td><a href="#">葡萄牙语</a></td>
+                    <td><a href="#">阿拉伯语</a></td>
+                    <td class="last"><a href="#">荷兰语</a></td>
+                </tr>
+                                   
+            </tbody></table>
+            <table class="language blank2" width="100%" cellpadding="0" cellspacing="0">
+                <tbody><tr>
+                    <td><img src="style/images/s10.png"></td>
+                    <td><img src="style/images/s9.png"></td>
+                    <td><img src="style/images/s8.png"></td>
+                    <td><img src="style/images/s7.png"></td>
+                    <td class="last"><img src="style/images/s6.png"></td>
+                </tr>
+                <tr class="last">
+                    <td><img src="style/images/s5.png"></td>
+                    <td><img src="style/images/s4.png"></td>
+                    <td><img src="style/images/s3.png"></td>
+                    <td><img src="style/images/s2.png"></td>
+                    <td class="last"><img src="style/images/s1.png"></td>
+                </tr>
+            </tbody></table>
+        </div>
     </div>
 </script>
 
@@ -537,28 +612,28 @@
                 <label>课程费用</label>
                 <b class="price">￥<%= course.price %></b>/位 <span>（预定免费，入学后学校前台付款）</span>
             </div>
+            <% if (!app.sessionManager.hasSession()) { %>
             <div class="field clearfix">
                 <% if (course.cashback) { %>
                     <div class="fleft cashback"><%= course.cashback %>元</div>
-                    <div class="fleft login_reg1" id="booking_loginnote"><a class="link F_green">登录</a> 或 <a class="link F_green">注册</a>后可使用优惠券，入学后获得<%= course.cashback %>元现金返还</div>
-                <% } else {%>
-                    <div class="fleft login_reg1" id="booking_loginnote"><a class="link F_green">登录</a> 或 <a class="link F_green">注册</a>可获得更多优惠</div>
                 <% } %>
             </div>
-            <div id="booking_loginbox" class="loginbox">
-                <div class="loginbox_inner">
-                    <div>
-                        <label>用户名</label> <input class="text" type="text" id="booking_loginUsername"/>
-                        <label>密码</label> <input class="text" type="password" id="booking_loginPassword"/>
+                <div class="fleft login_reg1" id="booking_loginnote"><a class="link F_green">登录</a> 或 <a class="link F_green">注册</a>后可使用优惠券，入学后获得<%= course.cashback %>元现金返还</div>
+                <div id="booking_loginbox" class="loginbox">
+                    <div class="loginbox_inner">
+                        <div>
+                            <label>用户名</label> <input class="text" type="text" id="booking_loginUsername"/>
+                            <label>密码</label> <input class="text" type="password" id="booking_loginPassword"/>
+                        </div>
+                        <div class="btns">
+                            <input type="button" value="登录" id="booking_login" />
+                            <a class="button" id="booking_forgotPassword">忘记密码?</a>
+                            <a class="button" id="booking_forgotPassword">还不是会员?</a>
+                        </div>
+                        <!-- <div class="close">关闭</div> -->
                     </div>
-                    <div class="btns">
-                        <input type="button" value="登录" id="booking_login" />
-                        <a class="button" id="booking_forgotPassword">忘记密码?</a>
-                        <a class="button" id="booking_forgotPassword">还不是会员?</a>
-                    </div>
-                    <!-- <div class="close">关闭</div> -->
                 </div>
-            </div>
+            <% } %>
         </div>
         <div class="title"><h3>入学信息</h3></div>
         <div class="row2">

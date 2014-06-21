@@ -1,5 +1,5 @@
 testMockObj = {
-    testMode: true,
+    testMode: false,
     testAdmin: (new Admin()).set("name", "admin1").set("phone","2260000000"),
     testUser: new User(),
     testPartner: new Partner(),
@@ -52,120 +52,112 @@ testMockObj = {
     testCredit7: (new Credit()).set("creditId", 7).set("amount", 1000),
     testCredit8: (new Credit()).set("creditId", 8).set("amount", 1000),
     testCategories: {
-            "初中辅导":{
-                "初一":{
-                    "语文":{"index":1},
-                    "数学":{"index":2},
-                    "英语":{"index":3},
-                    "物理":{"index":4},
-                    "化学":{"index":5},
-                    "地理":{"index":6},
+            "语言培训":{
+                "英语":{
+                    "雅思":{"index":1},
+                    "四六级":{"index":2},
+                    "托福":{"index":3},
+                    "GRE":{"index":4},
+                    "GMAT":{"index":5},
+                    "SAT":{"index":6},
+                    "SSAT":{"index":7},
+                    "公共英语":{"index":8},
+                    "商务英语":{"index":9},
+                    "基础英语":{"index":10},
+                    "职称英语":{"index":11},
+                    "专业英语":{"index":12},
+                    "少儿英语":{"index":13},
+                    "剑桥英语":{"index":14},
+                    "新概念英语":{"index":15},
+                    "口译笔译":{"index":16},
+                    "金融英语":{"index":17},
                     "index":1
                 },
-                "初二":{
-                    "语文":{"index":1},
-                    "数学":{"index":2},
-                    "英语":{"index":3},
-                    "物理":{"index":4},
-                    "化学":{"index":5},
-                    "地理":{"index":6},
+                "小语种":{
+                    "日语":{"index":1},
+                    "韩语":{"index":2},
+                    "法语":{"index":3},
+                    "德语":{"index":4},
+                    "俄语":{"index":5},
+                    "意大利语":{"index":6},
+                    "西班牙语":{"index":7},
+                    "葡萄牙语":{"index":8},
+                    "阿拉伯语":{"index":9},
+                    "荷兰语":{"index":10},
                     "index":2
-                },
-                "初三":{
-                    "语文":{"index":1},
-                    "数学":{"index":2},
-                    "英语":{"index":3},
-                    "物理":{"index":4},
-                    "化学":{"index":5},
-                    "地理":{"index":6},
-                    "index":3
                 },
                 "index":1
             },
-            "高中辅导":{
-                "高一":{
-                    "语文":{"index":1},
-                    "数学":{"index":2},
-                    "英语":{"index":3},
-                    "物理":{"index":4},
-                    "化学":{"index":5},
-                    "地理":{"index":6},
+            "学历文凭": {
+                "考研":{
+                    "考研":{"index":1},
                     "index":1
-                },
-                "高二":{
-                    "语文":{"index":1},
-                    "数学":{"index":2},
-                    "英语":{"index":3},
-                    "物理":{"index":4},
-                    "化学":{"index":5},
-                    "地理":{"index":6},
-                    "index":2
-                },
-                "高三":{
-                    "语文":{"index":1},
-                    "数学":{"index":2},
-                    "英语":{"index":3},
-                    "物理":{"index":4},
-                    "化学":{"index":5},
-                    "地理":{"index":6},
-                    "index":3
                 },
                 "index":2
             },
-            "英语提升":{
-                "级别":{
-                    "CET1":{"index":1},
-                    "CET2":{"index":2},
-                    "CET3":{"index":3},
+            "财会·金融":{
+                "财务会计":{
+                    "会计从业资格":{"index":1},
+                    "初级会计职称":{"index":2},
+                    "中级会计职称":{"index":3},
+                    "高级会计职称":{"index":4},
+                    "注册会计师":{"index":5},
+                    "会计继续教育":{"index":6},
+                    "会计电算化":{"index":7},
+                    "会计实务":{"index":8},
+                    "CFO":{"index":9},
+                    "CMA":{"index":10},
+                    "AIA":{"index":11},
+                    "ACCA":{"index":12},
+                    "CPA":{"index":13},
                     "index":1
-                    
+                },
+                "金融":{
+                    "银行从业资格":{"index":1},
+                    "证劵从业员":{"index":2},
+                    "统计从业资格":{"index":3},
+                    "期货从业资格":{"index":4},
+                    "保险从业资格":{"index":5},
+                    "保险经纪人":{"index":6},
+                    "保险公估人":{"index":7},
+                    "保险代理人":{"index":8},
+                    "保荐代表人":{"index":9},
+                    "基金销售员":{"index":10},
+                    "价格鉴证师":{"index":11},
+                    "理财规划师":{"index":12},
+                    "注册税务师":{"index":13},
+                    "资产评估师":{"index":14},
+                    "经济师":{"index":15},
+                    "统计师":{"index":16},
+                    "审计师":{"index":17},
+                    "精算师":{"index":18},
+                    "CFA":{"index":19},
+                    "index":2
                 },
                 "index":3
             },
-            "英语考级":{
-                "四级":{
-                    "入门":{"index":1},
-                    "冲分":{"index":2},
+            "资格认证":{
+                "国家公职":{
+                    "公务员":{"index":1},
+                    "教师资格":{"index":2},
+                    "幼师资格":{"index":3},
+                    "司法考试":{"index":4},
+                    "军转干考":{"index":5},
+                    "企业法律顾问":{"index":6},
                     "index":1
-                },
-                "六级":{
-                    "入门":{"index":1},
-                    "冲分":{"index":2},
+                },  
+                "外贸":{
+                    "报关员":{"index":1},
+                    "跟单员":{"index":2},
+                    "外销员":{"index":3},
+                    "单证员":{"index":4},
+                    "货代员":{"index":5},
+                    "物流师":{"index":6},
+                    "报检员":{"index":7},
+                    "国际商务师":{"index":8},
                     "index":2
                 },
                 "index":4
-            },
-            "出国留学":{
-                "出国":{
-                    "托福":{"index":1},
-                    "雅思":{"index":2},
-                    "SAT":{"index":3},
-                    "GRE":{"index":4},
-                    "GMAT":{"index":5},
-                    "index":1
-                },
-                "index":5
-            },
-            "小语种":{
-                "日语":{
-                    "N1":{"index":1},
-                    "N2":{"index":2},
-                    "N3":{"index":3},
-                    "N4":{"index":4},
-                    "index":1
-                },
-                "韩语":{
-                    "思密达1":{"index":1},
-                    "思密达2":{"index":2},
-                    "思密达3":{"index":3},
-                    "index":2
-                },
-                "法语":{
-                    "bounju":{"index":1},
-                    "gooday":{"index":2},
-                    "index":3
-                },
-                "index":6
             }
         },
     testLocations: {

@@ -527,7 +527,7 @@
         <div><label>教材费用: </label><span class=  "detail"><%= teachingMaterialFee %></span><span class="edit"><input type="text" name="teachingMaterialFee"/></span></div>
         <div><label>学前要求: </label><span class="detail"><%= prerequest %></span><span class="edit"><input type="text" name="prerequest"/></span></div>
 
-        <div style="height:220px;"><label>提纲：</label><span class="detail"><%= outline %></span><textarea name="outline" style="width:300px;height:200px;"></textarea></div>
+        <div style="height:220px;"><label>提纲：</label><span class="detail"><%= outline %></span><span class="edit"><textarea name="outline" style="width:300px;height:200px;"></textarea></span></div>
         <div><label>下载材料: </label><span class="detail"><%= downloadMaterials %></span><span class="edit"><input type="checkbox" name="hasDownloadMaterials"/></span></div>
         <div><label>题库: </label><span class="detail"><%= questionBank %></span><span class="edit"><input type="text" name="questionBank"/></span></div>
         <div><label>高分奖励: </label><span class="detail"><%= highScoreReward %></span><span class="edit"><input type="text" name="highScoreReward"/></span></div>

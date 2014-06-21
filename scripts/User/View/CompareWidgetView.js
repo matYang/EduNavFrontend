@@ -29,7 +29,7 @@ var CompareWidgetView = Backbone.View.extend({
         if (this.courses instanceof Backbone.Collection) {
             this.courses = this.courses.toArray();
         }
-        if (!this.map) {
+        if (!this.map && BMap) {
             this.renderMap();
         }
         for (var i = 0; i < this.courses.length && i < 4; i++ ) {

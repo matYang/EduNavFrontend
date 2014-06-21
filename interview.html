@@ -1,0 +1,53 @@
+<html>
+<head>
+<script src="scripts/Lib/loadfirst/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div id="someDiv">
+		<input id="inputA" type="button" value="button A"/>
+		<input id="inputB" type="button" value="button B"/>
+		<input id="print" type="button" />
+
+	</div>
+</body>
+	<script>
+	//the following code contains several errors,
+	//please revise the code 
+/**---------------------------NO EDIT------------------------**/
+	var x = 1;
+	ret = 0;
+	var clickHandler = (function () {
+		var ret = 1;
+		var bar = function (arg1) {
+			if (arg1 === "print"){
+				alert("ret=" + this.ret + " x=" + x);
+			} else if (arg1 === "inputA") {
+				alert("you clicked button A");
+			} else if (arg1 === "inputB"){
+				alert("you clicked button B");
+			}
+		}
+		var baz = function () {
+/**---------------------------NO EDIT END------------------------**/
+			$("#someDiv").on("click", "input", this.boo);
+		}
+		var boo = function (e) {
+			this.func3(e.target.id);
+/**---------------------------NO EDIT------------------------**/
+		}
+
+		return  {
+			"func1":bar,
+			"func2":baz,
+			"func3":boo,
+			"ret": window.ret
+		}
+	})();
+	clickHandler.boo = function () {
+		alert(ret);
+	}
+	clickHandler.func2();
+/**---------------------------NO EDIT END------------------------**/
+
+	</script>
+</html>

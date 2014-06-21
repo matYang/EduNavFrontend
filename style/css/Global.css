@@ -8,7 +8,7 @@ body{ font-size:14px; color:#333;}
 input[type="text"] { padding: 0px; }
 ol, ul { margin: 0; padding: 0; }
 img { border: none; }
-ul { list-style: none; }
+ul,li{ list-style: none; }
 .fleft { float: left; }
 .fright { float: right; }
 .clearfix:after { clear: both; content: "."; display: block; font-size: 0; line-height: 0; visibility: hidden; width: 0; height: 0; }
@@ -29,6 +29,7 @@ a.F_green, a.F_green:visited { color: #128d56;}
 input.text{height:28px; line-height:28px\9; border:1px solid #ccc; padding-left:10px;}
 .btn_g{height:30px; padding:0 10px; background:#128d56; color:#fff; border:none; cursor:pointer;}
 .btn_gray{height:30px; padding:0 10px; background:#acacac; color:#fff; border:none; cursor:pointer;}
+.btn_o{height:30px; padding:0 10px; background:#f7a501; color:#fff; border:none; cursor:pointer;}
 
 .btn_O_long{width:200px; height:50px; background:url(../images/btn_O_long.png) no-repeat; font-size:18px; font-family:'微软雅黑'; color:#fff; border:none; cursor:pointer;}
 .btn_G{width:150px; height:40px; background:url(../images/btn_G_long.png) no-repeat; font-size:14px; font-family:'微软雅黑'; color:#fff; border:none; cursor:pointer;}
@@ -39,7 +40,7 @@ input.text{height:28px; line-height:28px\9; border:1px solid #ccc; padding-left:
 html, body, .main { height: 100%; }
 body > .main { height: auto; min-height: 100%; }
 .content { padding-bottom: 80px; }  /* 必须使用和footer相同的高度 */
-.footer { position: relative; margin-top: -80px; /* footer高度的负值 */ height: 80px; clear: both; z-index:-1;}
+.footer { position: relative; margin-top: -80px; /* footer高度的负值 */ height: 80px; clear: both;}
 
 /*footer*/
 .footer { border-top:1px solid #d6d6d6; }
@@ -106,3 +107,20 @@ body > .main { height: auto; min-height: 100%; }
 .wrong .form_tip_top{ display:block; width:287px; padding:4px 10px 0 40px; min-height:10px; _height:10px; background:url(../images/form_tip.gif) no-repeat 0px -190px;}
 .wrong .form_tip_bottom{ display:block; width:287px; height:5px; background:url(../images/form_tip.gif) no-repeat 0px -375px; overflow:hidden;}
 input.wrong_color{  border:1px solid #ff9a9a; background:#feffe3 url(../images/inp_text_bg.gif) left top repeat-x;}
+
+
+/*返回顶部*/
+.to_top{position: fixed;z-index: 1001;margin-left:502px;left: 50%;bottom: 0;padding-bottom: 10px;}
+.to_top .to_top_inner{width: 50px;height: 50px;background: #ccc;margin-top: 5px;}
+.to_top .to_top_inner a{display:block; font-size:12px; background-color: #e3e3e3;background-image: none;width: 30px;text-align: center;padding: 5px 10px;color: #999;line-height: 14px;}
+.to_top .to_top_inner a:hover{ text-decoration:none;}
+.to_top .to_top_inner a s{float: left;width: 21px;height: 23px;margin-left: 5px; padding-bottom: 2px;background-image: url(../images/backtotop.png); background-repeat: no-repeat;}
+
+.to_top .to_top_inner a:hover{background-color: #aaa;color: #fff;}
+.to_top .to_top_inner a:hover s{ background-position:-20px 0;}
+
+
+.pop{position:absolute; border:5px solid #ccc; background:#fff;}
+.pop .close{ position:absolute; top:10px; right:10px; width:20px; height:20px; background:url(../images/close.png) no-repeat; cursor:pointer;}
+.pop .pop_title{ height:35px; line-height:35px; padding-left:20px; background:#128d56; border-bottom:1px solid #ccc; font-weight:bold; color:#fff;}
+.pop_content{ padding:20px;}

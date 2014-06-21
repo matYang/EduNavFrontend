@@ -411,26 +411,6 @@ var SearchView = Backbone.View.extend({
     comparePrice: function(course){
         return course.get("price");
     },
-
-    // showOnMap: function () {
-    //     var x = $(window).scrollTop();
-    //     var s = this.searchResultView.startIndex + Math.ceil((x - 459)/this.searchResultView.entryHeight), e;
-    //     s = (s < 0) ? 0 : s;
-    //     if ( x < 459) {
-    //         e = s - Math.ceil((459-x)/this.searchResultView.entryHeight);
-    //     } else {
-    //         e = s + Math.floor(this.windowHeight/this.searchResultView.entryHeight);
-            
-    //     }
-    //     if (this.s !== s || this.e !== e ) {
-    //         this.map.removeAllMarkers();
-    //         this.s = s;
-    //         this.e = e;
-    //         for (var i = this.s; i < this.e && i < this.searchResultView.messages.length; i++ ) {
-    //             this.map.getLatLng(this.searchResultView.messages.at(i).get("location"));
-    //         }
-    //     }
-    // },
     close: function () {
         if (!this.isClosed) {
             //removing all event handlers

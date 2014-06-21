@@ -5,7 +5,7 @@
 var getEnvironmentServerOrigin = function () {
     var isOnLocal = C_ENV_VAR !== 'REMOTE';
     return {
-        'httpOrigin': isOnLocal ? 'http://localhost:8015' : '..',
+        'httpOrigin': isOnLocal ? 'http://localhost' : '..',
         'socketOrigin': isOnLocal ? 'http://localhost:3000' : 'https://www.routea.ca:3000',
         'env': isOnLocal
     };
@@ -30,7 +30,7 @@ var Constants = {
         "mypage_credit", "mypage_creditTable", "mypage_creditRow", "mypage_creditStore",
         "mypage_password", "mypage_setting",
         "compareWidget", "compareWidgetEntry", "compareView",
-        "infoModal"
+        "infoModal","banner"
     ],
 
     partnerTemplateResource: [
@@ -55,5 +55,11 @@ var Constants = {
         "yahoo.com":"mail.yahoo.com",
         "live.com":"mail.live.com",
         "live.cn":"mail.live.com"
+    },
+    categoryClassMapper: {
+        "语言培训":"language",
+        "学历文凭":"master",
+        "财会·金融":"f_and_e",
+        "资格认证":"attestation"
     }
 };

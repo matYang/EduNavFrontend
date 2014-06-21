@@ -48,9 +48,9 @@ var AppRouter = Backbone.Router.extend({
     },
     defaultRoute: function () {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("manage", {trigger:true, replace:true});
+            this.navigate("login", {trigger:true, replace:true});
         }
-        this.navigate("login", {trigger:true, replace:true});
+        this.navigate("manage", {trigger:true, replace:true});
     },
     login: function () {
         if (this.sessionManager.hasSession()) {

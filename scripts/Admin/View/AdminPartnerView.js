@@ -4,6 +4,7 @@ var AdminPartnerView = BaseFormView.extend({
     formElem: "adminPartnerForm",
     submitButtonId: "partnerPostSubmit",
     callback: "uploadTarget",
+    form:true,
     initialize: function(params){
         _.bindAll(this, "render", "bindEvents", "close");
         BaseFormView.prototype.initialize.call(this);
@@ -12,7 +13,7 @@ var AdminPartnerView = BaseFormView.extend({
         var apis = new AdminApiResource();
         this.template = _.template(tpl.get("adminPartner"));
         this.action = apis.admin_partner;
-        this.newPartner = false;
+        this.create = false;
         if (params.partner) {
             this.render(params.partner);
         } else if (params.partnerId){
@@ -24,7 +25,7 @@ var AdminPartnerView = BaseFormView.extend({
             });
         } else {
             //Create new partner
-            this.newPartner = true;
+            this.create = true;
             this.partner = new Partner();
             this.render(this.partner);
         }
@@ -34,7 +35,7 @@ var AdminPartnerView = BaseFormView.extend({
     render: function (partner) {
         this.partner = partner;
         this.$el.append(this.template(partner.toJSON()));
-        if (this.newPartner) {
+        if (this.create) {
             $("#adminPartnerForm").find(".detail").hide();
             $("#adminPartnerForm").find(".edit").show();
         } else {

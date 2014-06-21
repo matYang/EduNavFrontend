@@ -27,3 +27,7 @@
 #walletSummary span{
 	margin-right: 9px;
 }
+
+.page a {
+	cursor:pointer;
+}

@@ -13,7 +13,7 @@ var AdminCourseView = BaseFormView.extend({
         var apis = new AdminApiResource();
         this.template = _.template(tpl.get("adminCourse"));
         this.action = apis.admin_course;
-        this.newCourse = false;
+        this.create = false;
         this.fields = [
              new BaseField({
                 name: "教室照片1",
@@ -62,7 +62,7 @@ var AdminCourseView = BaseFormView.extend({
             });
         } else {
             //Create new course
-            this.newCourse = true;
+            this.create = true;
             this.course = new Course();
             this.render(this.course);
         }
@@ -72,7 +72,7 @@ var AdminCourseView = BaseFormView.extend({
     render: function (course) {
         this.course = course;
         this.$el.append(this.template(course.toJSON()));
-        if (this.newCourse) {
+        if (this.create) {
             $("#adminCourseForm").find(".detail").hide();
             $("#adminCourseForm").find(".edit").show();
             $("#cancel").hide();
@@ -112,7 +112,32 @@ var AdminCourseView = BaseFormView.extend({
         $("#editCourse").on("click", function () {
             $("#adminCourseForm").find(".edit").show();
             $("#adminCourseForm").find(".detail").hide(); 
+            var json = that.course._toJSON();
+            for (var attr in json) {
+                var $edit = $("input[name="+attr+"]");
+                if ($edit.attr("type") === "checkbox") {
+                    $edit.prop("checked", json[attr]);
+                } else if ($edit.prop("tagName") === "TEXTAREA") {
+                    $edit.html(json[attr]);
+                } else if ($edit.hasClass("date")) {
+                    $edit.val(Utilities.castToAPIFormat(that.course.get(attr)));
+                } else {
+                    $edit.val(json[attr]);
+                }
+            }
         });
+        $("input[name=scheduledTime]").datepicker({
+                buttonImageOnly: true,
+                buttonImage: "calendar.gif",
+                buttonText: "Calendar",
+                onSelect: function (text, inst) {
+                    var d = new Date ();
+                    d.setDate(inst.selectedDay);
+                    d.setMonth(inst.selectedMonth);
+                    d.setYear(inst.selectedYear);
+                    $(this).val(Utilities.castToAPIFormat(d));
+                }
+            });
         $("select[name=category]").on("change", function() {
             var category = $(this).val();
             that.renderSubCategories(category);

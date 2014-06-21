@@ -24,6 +24,7 @@ var BaseFormView = Backbone.View.extend({
     fields:[],
     submitButtonId: "",
     model: undefined,
+    create: true,
     initialize: function(params){
         _.bindAll(this, "bindEvents", "render", "unbindValidators", "submitAction", "formReady", "displayImagePreview");
         this.closed = false;
@@ -93,7 +94,7 @@ var BaseFormView = Backbone.View.extend({
     formReady: function (formElem, action, callback) {
 
         var iframe = document.createElement('iframe'), that = this;
-        action = action + (action.indexOf('?') == -1 ? '?' : '&');
+        action = action;
 
         // we create an iframe and use the callback as its name (why not).
         iframe.setAttribute('name', callback);
@@ -105,7 +106,12 @@ var BaseFormView = Backbone.View.extend({
 
         // we add the hidden iframe after the form
         formElem.parentNode.appendChild(iframe);
-
+        if (this.create) {
+            formElem.setAttribute('method', 'POST');
+        } else {
+            formElem.setAttribute('method', 'PUT');
+        }
+        formElem.setAttribute("ENCTYPE", "multipart/form-data");
         $(iframe).one("load", function () {
             app.sessionManager.fetchSession(true, {
                 "success": function () {
