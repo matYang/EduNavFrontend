@@ -197,9 +197,8 @@
             type: 'PUT',
             url: url + "/" + this.sessionModel.id,
             dataType: 'json',
-            contentType: 'application/json',
             success: function(data){
-                this.sessionModel.set(this.sessionModel.idAttribute, -1);
+                self.sessionModel.set(self.sessionModel.idAttribute, -1);
                 if(callback){
                     callback.success();
                 }
