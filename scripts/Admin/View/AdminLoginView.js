@@ -18,7 +18,6 @@ var AdminLoginView = Backbone.View.extend({
 
         var that = this;
         $('#login_button').on("click", function() {
-            debugger;
             that.login();
         });
         $('#login_password,#login_username').on("keyup", function (e) {
@@ -38,7 +37,6 @@ var AdminLoginView = Backbone.View.extend({
                     //fetching session, with async flag to true
                     app.sessionManager.fetchSession(true, {
                         success: function () {
-                            app.userManager.sessionUser = app.sessionManager.sessionModel;
                             if (that.loginView) {
                                 that.loginView.close();
                             }

@@ -257,7 +257,7 @@
             return;
         }
         if (!this.sessionManager.hasSession()){
-            Info.warn("UserManager::fetchUser::currentUser does not have session, exit");
+            Info.warn("AdminManager::fetchUser::currentUser does not have session, exit");
             return;
         }
 
@@ -273,7 +273,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn("UserManager::fetchUser:: fetch failed with response:");
+                Info.warn("AdminManager::fetchUser:: fetch failed with response:");
                 Info.warn(response);
                 if(callback){
                     callback.error(response);
