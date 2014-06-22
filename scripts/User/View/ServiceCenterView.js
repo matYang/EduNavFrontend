@@ -33,7 +33,7 @@ var ServiceCenterView = Backbone.View.extend({
                 $("#aboutUs_toTerms").off().on("click", function (e) {
                     e.preventDefault();
                     that.currentTab = "term";
-                    app.navigate("/service/term")
+                    app.navigate("/service/term");
                     that.render();
                 });
                 break;
@@ -69,7 +69,7 @@ var ServiceCenterView = Backbone.View.extend({
             $("#terms_lang").off();
             $(e.delegateTarget).find(".active").removeClass("active");
             that.currentTab = $(e.target).addClass("active").attr("data-id");
-            app.navigate("/service/"+that.currentTab)
+            app.navigate("/service/"+that.currentTab);
             that.render();
         });
     },

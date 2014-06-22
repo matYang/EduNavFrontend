@@ -50,7 +50,7 @@ var AdminAdminView = BaseFormView.extend({
                 mandatory: true,
                 modelAttr: "privilege"
             }),
-        ]
+        ];
         if (params.admin) {
             this.render(params.admin);
         } else if (params.adminId){

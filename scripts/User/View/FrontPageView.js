@@ -72,7 +72,7 @@ var FrontPageView = Backbone.View.extend({
             var rowNum = list.length/rowLength, stickerClass;
             switch (rowNum) {
                 case 1:
-                    stickerClass = "c_h0"
+                    stickerClass = "c_h0";
                     break;
                 case 2:
                     stickerClass = "c_h2";
@@ -81,9 +81,11 @@ var FrontPageView = Backbone.View.extend({
                     stickerClass = "c_h1";
                     break;
                 case 4:
-                default:
                     stickerClass = "c_h3";
                     break;
+                default:
+                    break;
+
             }
             $(this).addClass(stickerClass);
         });
@@ -117,9 +119,9 @@ var FrontPageView = Backbone.View.extend({
         for (var attr in category[toplevel][secondlevel]) {
             var cellCounter = 0;
             if (row === 0) {
-                trBuf+='<th rowspan="10"><a>'+ secondlevel +'</a><div class="top_arrow"></div></th>'
+                trBuf+='<th rowspan="10"><a>'+ secondlevel +'</a><div class="top_arrow"></div></th>';
             }
-            cellBuffer[category[toplevel][secondlevel][attr].index] = "<td data-id='"+attr+"'>" + attr + "</td>"
+            cellBuffer[category[toplevel][secondlevel][attr].index] = "<td data-id='"+attr+"'>" + attr + "</td>";
         }
 
     },
@@ -128,7 +130,7 @@ var FrontPageView = Backbone.View.extend({
             $("body").removeClass("index");
             this.$el.empty();
             this.isClosed = true;
-            this.banner.close()
+            this.banner.close();
         }
     }
 });

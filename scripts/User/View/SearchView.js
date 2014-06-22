@@ -44,7 +44,7 @@ var SearchView = Backbone.View.extend({
     renderSearchResults: function (searchResults, byFilter) {
         //prevent memory leaks
         $("#searchResultDisplayPanel").empty();
-        searchResults = searchResults || new Courses()
+        searchResults = searchResults || new Courses();
         if (!byFilter) {
             this.allMessages = searchResults;
         } 
@@ -68,7 +68,7 @@ var SearchView = Backbone.View.extend({
         this.categoryList = [];
         for ( var key in categories ) { //level 1
             obj = categories[key];
-            index = categories[key]["index"];
+            index = categories[key].index;
             if (this.categoryList)
             this.categoryTemplate[1] = key;
             this.categoryTemplate[3] = key;
@@ -81,7 +81,7 @@ var SearchView = Backbone.View.extend({
                 this.subCategoryTemplate[3] = attr;
                 scbuf[index2] = this.subCategoryTemplate.join("");
                 if (obj[attr]) {
-                    var bot = obj[attr]
+                    var bot = obj[attr];
                     for ( var type in bot ) { //level 3 and level 2 index
                         if (type === "index") continue;
                         var tcs = bot[type];
@@ -181,7 +181,7 @@ var SearchView = Backbone.View.extend({
             e.preventDefault();
             var cri = $(e.target).data("cri");
             that.filterResult($("#filter_"+cri), "noreq");
-        })
+        });
     },
     bindSortEvents: function () {
         this.searchResultView.registerSortEvent($("#time"), "startDate", "timeDesc", this, 
@@ -287,7 +287,7 @@ var SearchView = Backbone.View.extend({
             var month = date.getMonth();
             if (dataId === "thisMonth") {
                 this.searchRepresentation.set("startTime", date);
-            } else if (dataId= "nextMonth") {
+            } else if (dataId === "nextMonth") {
                 if (month === 11) {
                     date.setMonth(0);
                     date.setFullYear(date.getFullYear()+1);
@@ -295,7 +295,7 @@ var SearchView = Backbone.View.extend({
                     date.setMonth(date.getMonth()+1);
                 }
                 this.searchRepresentation.set("startTime", date);
-            } else if (dataId= "twoMonthsAfter") {
+            } else if (dataId === "twoMonthsAfter") {
                 if (month >= 10) {
                     date.setMonth((date.getMonth()+2)%12);
                     date.setFullYear(date.getFullYear()+1);
@@ -318,7 +318,7 @@ var SearchView = Backbone.View.extend({
         }
         else if (criteria === "price") {
             if (dataId === "noreq") {
-                this.filters["price"] = null;
+                this.filters.price = null;
             } else {
                 var priceRange = dataId.split("-");
                 var minPrice = Utilities.toInt(priceRange[0]), maxPrice;
@@ -327,15 +327,15 @@ var SearchView = Backbone.View.extend({
                 } else {
                     maxPrice = Utilities.toInt(priceRange[1]);
                 }
-                this.filters["price"] = {
+                this.filters.price = {
                     "minPrice": minPrice,
                     "maxPrice": maxPrice
-                }
+                };
             }
         }
         else if (criteria === "classMode") {
             if (dataId === "noreq") {
-                this.filters["classSize"] = null;
+                this.filters.classSize = null;
             } else {
                 var sizeRange = dataId.split("-");
                 var minSize = Utilities.toInt(sizeRange[0]), maxSize;
@@ -344,22 +344,22 @@ var SearchView = Backbone.View.extend({
                 } else {
                     maxSize = Utilities.toInt(sizeRange[1]);
                 }
-                this.filters["classSize"] = {
+                this.filters.classSize = {
                     "minSize": minSize,
                     "maxSize": maxSize
-                }
+                };
             }
         }
         else if (criteria === "classTime") {
             if (dataId === "noreq") {
-                this.filters["classTime"] = null;
+                this.filters.classTime = null;
             } else {
                 var time = dataId.split("_"), day;
                 if (time.length === 2) {
                     day = time[1];
                 }
                 time = time[0];
-                this.filters["classTime"] = {
+                this.filters.classTime = {
                     "day" : day,
                     "time": time
                 };
@@ -375,18 +375,18 @@ var SearchView = Backbone.View.extend({
     },
     filterClassTime: function(course){
         var valid = true, start1 = course.get("startTime1"), start2 = course.get("startTime2");
-        if (this.filters["classTime"].time === "morning") {
+        if (this.filters.classTime.time === "morning") {
             valid = valid && ((start1 < 1200) || (start2 < 1200));
-        } else if (this.filters["classTime"].time === "afternoon") {
+        } else if (this.filters.classTime.time === "afternoon") {
             valid = valid && ((start1 >= 1200 && start1 < 1700) || (start2 >= 1200 && start2 < 1700));
         } else {
             valid = valid && ((start1 >= 1700) || (start2 >= 1700));
         }
-        if (valid && this.filters["classTime"].day) {
+        if (valid && this.filters.classTime.day) {
             var week = course.get("studyDays") || [];
-            if (this.filters["classTime"].day === "weekend") {
+            if (this.filters.classTime.day === "weekend") {
                 valid = valid && (week.contains([0, 6])) ;
-            } else if (this.filters["classTime"].day === "weekday") {
+            } else if (this.filters.classTime.day === "weekday") {
                 valid = valid && (week.contains([1, 2, 3, 4, 5])) ;
             }
         }
@@ -397,13 +397,13 @@ var SearchView = Backbone.View.extend({
     },
     filter: function(){
         var messages = this.allMessages ? this.allMessages.clone() : new Courses();
-        if (this.filters["price"]) {
+        if (this.filters.price) {
             messages.reset(messages.filter(this.filterPrice, this));
         }
-        if (this.filters["classSize"]) {
+        if (this.filters.classSize) {
             messages.reset(messages.filter(this.filterClassSize, this));
         }
-        if (this.filters["classTime"]) {
+        if (this.filters.classTime) {
             messages.reset(messages.filter(this.filterClassTime, this));
         }
         return messages;

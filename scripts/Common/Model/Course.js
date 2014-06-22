@@ -73,9 +73,9 @@ var Course = Backbone.Model.extend({
                 
                  
                 
-            'classImgUrls': undefined,
+            'classImgUrls': [],
             'teacherIntros': undefined,
-            'teacherImgUrls': undefined,
+            'teacherImgUrls': [],
             'teacherNames': undefined
                 
 

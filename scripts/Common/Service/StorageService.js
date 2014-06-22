@@ -29,8 +29,7 @@
                 user: new UserSearchRepresentation (),
                 partner: new PartnerSearchRepresentation (),
                 booking: new BookingSearchRepresentation ()
-            }
-
+            };
         }
         if (this.isSupported) {
             if (localStorage.sr) {
@@ -39,7 +38,7 @@
                     user: new UserSearchRepresentation (localStorage.sr.user, {parse: true}),
                     partner: new PartnerSearchRepresentation (localStorage.sr.partner, {parse: true}),
                     booking: new BookingSearchRepresentation (localStorage.sr.booking, {parse: true})
-                }
+                };
             } 
             if (localStorage.compareList) {
                 this.compareList = JSON.parse(localStorage.compareList || "[]");
@@ -142,7 +141,7 @@
                     }
                 }
             }
-            this.compareList = list
+            this.compareList = list;
             localStorage.compareList = JSON.stringify(this.compareList);
             return true;
         } else {

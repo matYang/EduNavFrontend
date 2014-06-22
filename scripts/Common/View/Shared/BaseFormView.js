@@ -42,6 +42,10 @@ var BaseFormView = Backbone.View.extend({
     render: function () {
         this.bindEvents();
     },
+    testFieldValue: function (e) {
+        var val = $(this).val();
+        e.data.field.testValue(val, $(e.target));
+    },
     bindEvents: function() {
         this.isBB = this.model instanceof Backbone.Model;
         this.fieldNum = this.fields.length;
@@ -50,26 +54,13 @@ var BaseFormView = Backbone.View.extend({
             var field = this.fields[i], $field = $("#"+ field.get("fieldId")), fieldType = field.get("type");
             if (fieldType === "file") {
                 var preview = $("#"+field.get("previewId"));
-                $field.on("change", preview, function (e) {
-                    that.displayImagePreview(e);
-                }).on("keydown", function (e) {
-                    e.preventDefault()
-                });
+                $field.on("change", preview, that.displayImagePreview).on("keydown", Utilities.preventDefault);
             } else if (fieldType !== "select") {
                 $field.attr("data-field-index", i);
-                $field.on("keydown", {"fileType": fieldType}, function (e) {
-                    if (e.data.fieldType === "number" && !(e.which >= 48 && e.which <= 57) && !(e.which >= 96 && e.which <= 105) && e.which > 13) {
-                        e.preventDefault();
-                    }
-                }).on('blur', {"field": field}, function (e) {
-                    var val = $(this).val();
-                    e.data.field.testValue(val, $(e.target));
-                });
+                $field.on("keydown", {"fileType": fieldType}, Utilities.preventNonNumber)
+                       .on('blur', {"field": field}, this.testFieldValue);
             } else {
-                $field.on("change", {"field":field}, function (e) {
-                    var val = $(this).val();
-                    e.data.field.testValue(val, $(e.target));
-                });
+                $field.on("change", {"field":field}, this.testFieldValue);
             }
             if (field.get("modelAttr") && this.model) {
                 this.bindFieldToModel(field);
@@ -118,20 +109,29 @@ var BaseFormView = Backbone.View.extend({
                     that.successCallback();
                 },
                 "error":function(response) {
-                    location.reload();
+                    if (that.errorCallback) {
+                        that.errorCallback();
+                    }
                 }
             });
         });
     },
     displayImagePreview: function (evt) {
+        var i = 0, f;
         if (!(window.File && window.FileReader && window.FileList)) {
             return;
         }
         var files = evt.target.files; // FileList object
 
         // Loop through the FileList and render image files as thumbnails.
-        for (var i = 0, f; f = files[i]; i++) {
-
+        var handler = function(e) {
+              // Render thumbnail.
+                if (evt.data) {
+                    evt.data.attr("src", e.target.result).attr("title", escape(theFile.name));
+                }
+            };
+        for ( i=0; files[i]; i++) {
+            f = files[i];
           // Only process image files.
             if (!f.type.match('image.*')) {
                 continue;
@@ -141,12 +141,7 @@ var BaseFormView = Backbone.View.extend({
 
             // Closure to capture the file information.
             reader.onload = (function(theFile) {
-            return function(e) {
-              // Render thumbnail.
-                if (evt.data) {
-                    evt.data.attr("src", e.target.result).attr("title", escape(theFile.name));
-                }
-            };
+                return handler;
             })(f);
 
             // Read in the image file as a data URL.
@@ -207,7 +202,7 @@ var BaseField = Backbone.Model.extend({
             name: "", //Used for error Text
             modelAttr: "",              //2-way Binding
             previewId: null              //container of image preview
-        }
+        };
     },
     idAttribute: "fieldId",
 
@@ -245,8 +240,7 @@ var BaseField = Backbone.Model.extend({
         $("#"+this.get("fieldId")+"_wrong").remove();
     },
     testValue: function(val, $input) {
-        var div, valid;
-        var valid = false;
+        var div, valid = false;
         if (this.get("mandatory") && !val ) {
             div = this.buildValidatorDiv(false, "empty");
         } else if (!this.get("mandatory") && !val) {
@@ -272,7 +266,11 @@ var BaseField = Backbone.Model.extend({
             valid = true;
         }
         this.removeValidatorDiv();
-        this.get("validatorContainer") ? this.get("validatorContainer").append(div) : $input.after(div);
+        if (this.get("validatorContainer")){
+            this.get("validatorContainer").append(div);
+        } else {
+            $input.after(div);
+        }
         return valid;
     }
 });

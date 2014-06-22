@@ -3,7 +3,7 @@ var CompareWidgetView = Backbone.View.extend({
     initialize: function () {
         this.isClosed = false;
         _.bindAll(this, "load", "bindEvents", "addCourse", "removeCourse", "render", "close");
-        this.template = _.template(tpl.get("compareWidget"));;
+        this.template = _.template(tpl.get("compareWidget"));
         this.$el.append(this.template);
         this.courseTemplate = _.template(tpl.get("compareWidgetEntry"));
         this.$domContainer = $("#compareItems");

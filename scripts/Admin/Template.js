@@ -486,7 +486,7 @@
 <script type="text/templates" id="tpl_adminCourse">
     <form id="adminCourseForm" method="post">
         <div><label>courseId: </label><div class="detail"><%= courseId %></div>
-        <%= if (courseId > -1) { %>
+        <% if (courseId > -1) { %>
         <div class="edit"><input type="hidden" name="courseId"/ value="<%= courseId %>"></div>
         <% } %>
         </div>
@@ -537,7 +537,7 @@
         <div><label>学前要求: </label><span class="detail"><%= prerequest %></span><span class="edit"><input type="text" name="prerequest"/></span></div>
 
         <div style="height:220px;"><label>提纲：</label><span class="detail"><%= outline %></span><span class="edit"><textarea name="outline" style="width:300px;height:200px;"></textarea></span></div>
-        <div><label>下载材料: </label><span class="detail"><%= downloadMaterials %></span><span class="edit"><input type="checkbox" name="hasDownloadMaterials"/></span></div>
+        <div><label>下载材料: </label><span class="detail"><%= downloadMaterials %></span><span class="edit"><input type="checkbox" name="downloadMaterials"/></span></div>
         <div><label>题库: </label><span class="detail"><%= questionBank %></span><span class="edit"><input type="text" name="questionBank"/></span></div>
         <div><label>高分奖励: </label><span class="detail"><%= highScoreReward %></span><span class="edit"><input type="text" name="highScoreReward"/></span></div>
         <div><label>保过协议: </label><span class="detail"><%= passAgreement %></span><span class="edit"><input type="text" name="passAgreement"/></span></div>

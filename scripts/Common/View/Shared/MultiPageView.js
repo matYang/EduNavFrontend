@@ -57,6 +57,7 @@ var MultiPageView = Backbone.View.extend({
     },
 
     render: function () {
+        var buf = [], i, length;
         if (!this.messages instanceof Backbone.Collection) {
             this.messages = this.allMessages;
         }
@@ -67,7 +68,7 @@ var MultiPageView = Backbone.View.extend({
                 $(this.table).show();
                 $(this.table).find(".noMessage").remove();
             }
-            var buf = [], i, length = this.messages.length - this.startIndex;
+            length = this.messages.length - this.startIndex;
             length = (length < this.pageEntryNumber) ? length : this.pageEntryNumber;
             for ( i = 0; i < length; i++) {
                 var message;
@@ -96,7 +97,7 @@ var MultiPageView = Backbone.View.extend({
             }
         }
         if (this.entryHeight) {
-            var height = Math.ceil(length / this.entryRowNum) * this.entryHeight;
+            height = Math.ceil(length / this.entryRowNum) * this.entryHeight;
             height = (height > this.minHeight) ? height : this.minHeight;
             this.$domContainer.css("height", height + "px");
         }
@@ -126,6 +127,8 @@ var MultiPageView = Backbone.View.extend({
         this.entryBound = true;
     },
     setPageNavigator: function () {
+        var buf = ['<a class="pre"></a>'], 
+            divBuf = ["<a id='", this.pageNumberId, "_", 0, "' class='", this.pageNumberClass, "'> ", 0, "</a>"], pages, length, that = this;
         if (this.singlePage) {
             return;
         }
@@ -144,12 +147,10 @@ var MultiPageView = Backbone.View.extend({
             this.$domContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
         }
         this.$pn = $("#" + this.pageNavigator);
-        var length = this.messages ? this.messages.length : 0;
-        var pages = Math.ceil(length / this.pageEntryNumber);
+        length = this.messages ? this.messages.length : 0;
+        pages = Math.ceil(length / this.pageEntryNumber);
         this.pages = pages;
         pages = pages > 10 ? 10 : pages;
-        var buf = ['<a class="pre"></a>'];
-        var divBuf = ["<a id='", this.pageNumberId, "_", 0, "' class='", this.pageNumberClass, "'> ", 0, "</a>"];
         for (var i = 1; i <= pages; i++) {
             divBuf[3] = i;
             divBuf[7] = i;
@@ -166,23 +167,22 @@ var MultiPageView = Backbone.View.extend({
         this.$pre = this.$pn.children(".pre");
         this.$next = this.$pn.children(".next");
         this.$pn.children("#"+this.pageNumberId + "_" + this.currentPage).addClass("active");
-        var self = this;
         this.$pn.on("click", "." + this.pageNumberClass, function (e) {
             var id = Utilities.toInt(Utilities.getId(e.target.id));
-            self.toPage(id);
+            that.toPage(id);
         });
         if (this.currentPage === 1) {
             this.$pre.addClass("pre-disabled");
         } else {
             this.$pre.on("click", function (e) {
-                self.toPage(self.currentPage-1);
+                that.toPage(that.currentPage-1);
             });
         }
         if (this.currentPage === pages) {
             this.$next.addClass("next-disabled");
         } else {
             this.$next.on("click", function (e) {
-                self.toPage(self.currentPage + 1);
+                that.toPage(that.currentPage + 1);
             });
         }
     },

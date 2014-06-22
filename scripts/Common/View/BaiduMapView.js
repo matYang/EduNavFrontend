@@ -8,7 +8,7 @@ var BaiduMapView = Backbone.View.extend({
         this.clickable = config.clickable;
         this.class = config.class;
         this.init = config.init;
-        this.geocoder = new BMap.Geocoder();
+        this.geocoder = BMap ? new BMap.Geocoder() : {getPoint: function (){}};
         this.mapInitialize();
     },
     cacheConfig: function(config) {
@@ -34,7 +34,7 @@ var BaiduMapView = Backbone.View.extend({
         }
         this.setCenter(this.location);
         this.removeAllMarkers();
-        var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL}    
+        var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL};
         this.map.addControl(new BMap.NavigationControl(opts)); 
         if (this.clickable) {
             this.bindClickEvent();

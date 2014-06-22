@@ -128,4 +128,4 @@ var CreditStoreView = Backbone.View.extend({
             this.$el.empty();
         }
     }
-})
+});

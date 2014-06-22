@@ -41,7 +41,7 @@ var MyPageView = Backbone.View.extend({
             case "setting" :
                 this.activeChildView = new MyPageSettingView();
                 $("#editInfo").addClass("active");
-                break
+                break;
             case "password" :
                 this.activeChildView = new MyPagePasswordView();
                 $("#editPass").addClass("active");
@@ -56,9 +56,10 @@ var MyPageView = Backbone.View.extend({
                 break;
             case "dashboard":
             case "booking": 
-            default:
                 $("#bookingManage").addClass("active");
                 this.activeChildView = new MyPageDashboardView();        
+                break;
+            default:
                 break;
         }
     },  

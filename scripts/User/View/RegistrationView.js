@@ -99,7 +99,7 @@ var RegistrationView = BaseFormView.extend({
             error: function () {
 
             }
-        })
+        });
 
     },
     submitAction: function () {

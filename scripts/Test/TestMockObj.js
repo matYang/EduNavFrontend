@@ -196,7 +196,7 @@ testMockObj = {
                         "index":2
                     }
                 }
-}
+};
 
 testMockObj.testCourses.add([testMockObj.testCourse1,testMockObj.testCourse2,testMockObj.testCourse3,testMockObj.testCourse4,
                              testMockObj.testCourse5,testMockObj.testCourse6,testMockObj.testCourse7,testMockObj.testCourse8,

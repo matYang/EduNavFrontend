@@ -12,7 +12,7 @@
 .filterCriteria label{ font-weight:bold; color:#666666;}
 .filterCriteria label s{margin:0 13px;}
 
-.filterCriteria span{ padding:3px 8px; cursor:pointer;}
+.filterCriteria span{ padding:3px 8px; cursor:pointer; display:inline-block;}
 .filterCriteria span.active{ background:#128d56; color:#fff;}
 
 #search_subCategory p{ margin:10px 0 0 68px; border:1px solid #ccc; padding:10px;}

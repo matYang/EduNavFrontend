@@ -669,16 +669,16 @@
                 <div class="gallary clearfix">
                     <div class="small_pic">
                         <div class="top">
-                            <div class="pic1"><img src="style/images/pic1.jpg" width="116" height="106"/></div>
-                            <div class="pic2"><img src="style/images/pic2.jpg"  width="156" height="106"/></div>
+                            <div class="pic1"><img src="<%= classImgUrls[0] %>" height="106" style="overflow:hidden;" /></div>
+                            <div class="pic2"><img src="<%= classImgUrls[1] %>"  height="106" style="overflow:hidden;"/></div>
                         </div>
                         <div class="bottom">
-                            <div class="pic3"><img src="style/images/pic3.jpg" width="156" height="101"/></div>
-                            <div class="pic4"><img src="style/images/pic4.jpg" width="116" height="101"/></div>
+                            <div class="pic3"><img src="<%= classImgUrls[2] %>" height="101" style="overflow:hidden;"/></div>
+                            <div class="pic4"><img src="<%= classImgUrls[3] %>" height="101" style="overflow:hidden;"/></div>
                         </div>
                     </div>
                     <div class="big_pic">
-                        <img src="style/images/pic5.jpg" width="306" height="216"/>
+                        <img src="<%= classImgUrls[4] %>" width="306" height="216" style="overflow:hidden;"/>
                     </div>
                 </div>
                 <div class="course_map">

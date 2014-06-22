@@ -48,7 +48,7 @@ var NewBookingView = BaseFormView.extend({
                 mandatory: true,
                 buildValidatorDiv: this.buildValidatorDiv
             })
-        ]
+        ];
         if (params.courseId) {
             app.generalManager.fetchCourse(params.courseId, {
                 success: this.render,

@@ -9,4 +9,4 @@ var AdminConstants = {
         "rejected": 0,
         "verified": 1
     }
-}
+};

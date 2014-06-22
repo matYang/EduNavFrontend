@@ -5,7 +5,7 @@ var AdminBaseView = Backbone.View.extend({
         this.sessionManager = sessionManager;
         app.viewRegistration.register(this);
         this.isClosed = false;
-        this.baseTemplate = _.template(tpl.get('adminBase'))
+        this.baseTemplate = _.template(tpl.get('adminBase'));
         this.render();
         this.bindEvents();
         this.sidebarShown = true;
@@ -55,6 +55,7 @@ var AdminBaseView = Backbone.View.extend({
             this.isClosed = true;
             $("#sideBarClose").off();
             this.$el.empty();
+            this.$el.append("<div id='content' class='content'></div>");
         }
     }
 

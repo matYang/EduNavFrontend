@@ -37,7 +37,7 @@ Array.prototype.containsAny = function (val) {
         if (val === this[i]) return true;
     }
     return false;
-}
+};
 
 Backbone.Model.prototype.overrideUrl = function (urlRootOverride) {
     if (typeof urlRootOverride !== 'undefined') {
@@ -53,6 +53,6 @@ Backbone.Collection.prototype.overrideUrl = function (urlRootOverride) {
 
 (function() {
     if (!console) {
-        console = {"log": function(){}}
+        console = {"log": function(){}};
     }
 })();

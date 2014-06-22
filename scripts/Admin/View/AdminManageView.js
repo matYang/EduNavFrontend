@@ -443,7 +443,7 @@ var AdminManageView = Backbone.View.extend({
                         app.navigate("manage/booking/"+ bookingId, true);
                     }    
                 }
-            })
+            });
             $("#findBookingBtn").on("click", function (e) {
                 var bookingId = $("#bookingId_Input").val();
                 if (bookingId) {

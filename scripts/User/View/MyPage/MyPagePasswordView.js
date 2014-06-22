@@ -66,7 +66,7 @@ var MyPagePasswordView = BaseFormView.extend({
         $("#cancelPassword").on("click", function (e) {
             e.preventDefault();
             app.navigate("mypage", true);
-        })
+        });
         $("#reset_password").on('click', this.clearPassword);
         BaseFormView.prototype.bindEvents.call(this);
     },
@@ -78,7 +78,7 @@ var MyPagePasswordView = BaseFormView.extend({
     getSmsError: function () {
         $("#getAuthCodeNote").html("验证请求失败，请检查网络状态然后重试。").removeClass("hidden");
         $("#getAuthCode").prop("disable", false).val("发送验证码").removeClass("hidden");
-        $("#gotAuthCode").addClass("hidden")
+        $("#gotAuthCode").addClass("hidden");
     },
     submitAction: function () {
         app.userManager.changePassword(this.model, {
