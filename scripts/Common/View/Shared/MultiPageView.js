@@ -109,7 +109,7 @@ var MultiPageView = Backbone.View.extend({
         if (this.afterRender) {
             this.afterRender();
         }
-        this.messages.on("change", this.render);
+        // this.messages.on("change", this.render);
     },
     toPage: function (page) {
         this.currentPage = page;
@@ -161,7 +161,8 @@ var MultiPageView = Backbone.View.extend({
         }
         buf.push("<a class='next'></a>");
         var html = buf.join("");
-        this.$pn.empty()
+        this.$pn.off()
+                .empty()
                 .append(html)
                 .addClass(this.pageNavigatorClass);
         this.$pre = this.$pn.children(".pre");

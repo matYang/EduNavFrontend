@@ -678,7 +678,7 @@
                         </div>
                     </div>
                     <div class="big_pic">
-                        <img src="<%= classImgUrls[4] %>" width="306" height="216" style="overflow:hidden;"/>
+                        <img src="<%= classImgUrls[4] %>" height="216" style="overflow:hidden;"/>
                     </div>
                 </div>
                 <div class="course_map">
@@ -713,9 +713,9 @@
                             <% if (teacherNames) { %>
                                 <% for (var i =0; i < teacherNames.length; i++) { %>
                                     <div class="teacherInfo">
-                                        <img class="teacherPhoto" src="<%= teacherImgUrls %>" width="120" height="120"/>
+                                        <img class="teacherPhoto" src="<%= teacherImgUrls[i] %>" width="120" height="120"/>
                                         <div class="name"><%= teacherNames[i] %></div>
-                                        <p class=""><%= teacherIntros %></p>
+                                        <p class=""><%= teacherIntros[i] %></p>
                                     </div>
                                 <% } %>
                             <% } %>
