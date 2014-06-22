@@ -27,7 +27,7 @@ var AdminLoginView = Backbone.View.extend({
         });
     },
     login: function () {
-        var username = this.$usernameInput.val(), password = this.$passwordInput.val(), self = this;
+        var username = this.$usernameInput.val(), password = this.$passwordInput.val(), that = this;
         if (username !== "" && password !== "") {
             $('#login_button').val("登录中...").prop("disabled", true);
             app.sessionManager.login(username, password, {
@@ -50,7 +50,7 @@ var AdminLoginView = Backbone.View.extend({
                 },
                 error: function (response) {
                     $('#login_button').val("登 录").prop("disabled", false);
-                    self.$passwordInput.val("");
+                    that.$passwordInput.val("");
                 }
             });
         } else if (username) {

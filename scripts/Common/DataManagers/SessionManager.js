@@ -166,7 +166,7 @@
     };
 
     SessionManager.prototype.logout = function(callback){
-        var self = this;
+        var self = this, url;
 
         if (!this.hasSession()){
             Info.alert('尚未登录');
@@ -176,14 +176,17 @@
         }
         switch (this.identifier){
             case EnumConfig.ModuleIdentifier.user:
+                url = this.apis.user_logout;
                 this.sessionModel.overrideUrl(this.apis.user_logout);
                 break;
 
             case EnumConfig.ModuleIdentifier.partner:
+                url = this.apis.partner_logout;
                 this.sessionModel.overrideUrl(this.apis.partner_logout);
                 break;
 
             case EnumConfig.ModuleIdentifier.admin:
+                url = this.apis.admin_logout;
                 this.sessionModel.overrideUrl(this.apis.admin_logout);
                 break;
 
@@ -192,7 +195,7 @@
         }
         $.ajax({
             type: 'PUT',
-            url: self.apis.user_logout + "/" + this.sessionModel.id,
+            url: url + "/" + this.sessionModel.id,
             dataType: 'json',
             contentType: 'application/json',
             success: function(data){
@@ -201,7 +204,7 @@
                 }
             },
             error: function (data, textStatus, jqXHR){
-                Info.warn('UserManager::verifySMSAuthCode:: action failed');
+                Info.warn('SessionManager::Logout:: action failed');
                 Info.warn(data);
                 if(callback){
                     callback.error(data);
