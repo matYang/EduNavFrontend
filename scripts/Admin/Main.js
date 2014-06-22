@@ -64,9 +64,9 @@ var AppRouter = Backbone.Router.extend({
             this.navigate("login", {trigger:true, replace:true});
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
+            type = type || "user";
+            this.manageView = new AdminManageView({type:type, query:query});
         }
-        type = type || "user";
-        this.manageView = new AdminManageView({type:type, query:query});
     },
     course: function (id) {
         if (!this.sessionManager.hasSession()) {

@@ -6,7 +6,7 @@
         /*---------------  API level constants   --------------*/
         var api_modules = {
 
-            rootPrefix: Constants.origin + ':8015/api',
+            rootPrefix: Constants.origin + '/api',
             partnerRootPrefix: Constants.origin + '/p-api',
             versionPrefix: '/v1.0',
 

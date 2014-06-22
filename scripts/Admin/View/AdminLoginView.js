@@ -15,8 +15,10 @@ var AdminLoginView = Backbone.View.extend({
         this.$passwordInput = $("#login_password");
     },
     bindEvents: function (){
+
         var that = this;
         $('#login_button').on("click", function() {
+            debugger;
             that.login();
         });
         $('#login_password,#login_username').on("keyup", function (e) {
