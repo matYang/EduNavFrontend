@@ -22,6 +22,7 @@ var MyPageView = Backbone.View.extend({
         this.user = user;
         var userJson = this.user._toJSON();
         this.$el.append(this.template(userJson));
+        $("#mypage_content").css("border", "1px solid #ccc");
         this.createChildView();
         this.bindEvents();
     },
@@ -57,7 +58,8 @@ var MyPageView = Backbone.View.extend({
             case "dashboard":
             case "booking": 
                 $("#bookingManage").addClass("active");
-                this.activeChildView = new MyPageDashboardView();        
+                this.activeChildView = new MyPageDashboardView();   
+                $("#mypage_content").css("border", "none");
                 break;
             default:
                 break;

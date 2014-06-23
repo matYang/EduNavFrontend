@@ -78,7 +78,7 @@
                     <td><img src="style/images/s9.png"></td>
                     <td><img src="style/images/s8.png"></td>
                     <td><img src="style/images/s7.png"></td>
-                    <td class="last"><img src="style/images/s6.png"></td>
+                    <td><img src="style/images/s6.png"></td>
                 </tr>
                 <tr class="last">
                     <td><img src="style/images/s5.png"></td>
@@ -1147,7 +1147,7 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_password">
-    <div class="title"><a href="#">我的爱上课</a> > <span>个人设置</span> > <a class=" F_green" href="#">修改密码</a></div>
+    <div class="title"><span>我的爱上课</span> > <span>个人设置</span> > <span class=" F_green">修改密码</span></div>
     <div class="mypage_content_inner form_style password">
         <div class="field">
             <label>原密码</label>
@@ -1179,7 +1179,7 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_setting">
-    <div class="title"><a href="#">我的爱上课</a> &gt; <span>个人设置</span> &gt; <a class=" F_green" href="#">个人资料</a></div>
+    <div class="title"><span>我的爱上课</span> &gt; <span>个人设置</span> &gt; <span class=" F_green">个人资料</span></div>
     <div class="mypage_content_inner">
         <div class="my_info form_style">
             <div class="field">

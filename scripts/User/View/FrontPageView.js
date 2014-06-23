@@ -70,24 +70,7 @@ var FrontPageView = Backbone.View.extend({
             var rowLength = Constants.categoryRowMapper[$(this).data("parent")], list = $(this).find("li");
             $(this).find("li:gt(-"+(rowLength + 1)+")").addClass("last");
             var rowNum = list.length/rowLength, stickerClass;
-            switch (rowNum) {
-                case 1:
-                    stickerClass = "c_h0";
-                    break;
-                case 2:
-                    stickerClass = "c_h2";
-                    break;
-                case 3:
-                    stickerClass = "c_h1";
-                    break;
-                case 4:
-                    stickerClass = "c_h3";
-                    break;
-                default:
-                    break;
-
-            }
-            $(this).addClass(stickerClass);
+            $(this).addClass("c_h"+rowNum);
         });
         var activeButton = $("#lv1Button").find("a:first").addClass("active");
         $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("id") + "]").removeClass("hidden");

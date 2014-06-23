@@ -18,7 +18,6 @@ var MyPageCouponView = Backbone.View.extend({
         this.unclaimedCouponView = new UnclaimedCouponView(unclaimedCoupons, unclaimedCoupons);
         this.claimedCouponView = new ClaimedCouponView(claimedCoupons, claimedCoupons);
         this.unclaimedCouponView.hide();
-        $("#mypage_content").css("border", "1px solid #ccc");
     },
     bindEvents: function () {
         var that = this;

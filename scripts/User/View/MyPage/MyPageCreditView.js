@@ -51,7 +51,7 @@ var CreditTableView = MultiPageView.extend({
     el: "#credit_pageContent",
     table: "#creditTable",
     minHeight: 144,
-    pageEntryNumber: 20,
+    pageEntryNumber: 16,
     entryHeight: 36,
     extPn:true,
     initialize: function (allCoupons, coupons) {

@@ -2,12 +2,11 @@ var CompareView = Backbone.View.extend({
     el: "#content",
     highlighted: false,
     hided: false,
-    initialize: function (params) {
-        
+    initialize: function (params) {       
+        $("#viewStyle").attr("href", "style/css/compare.css");
         app.viewRegistration.register(this);
         this.isClosed = false;
         _.bindAll(this, "load", "render", "bindEvents", /* "highlight", "hideSame", */ "close");
-        $("#viewStyle").attr("href", "style/css/compare.css");
         this.template = _.template(tpl.get("compareView"));
         this.courseIdList = app.storage.getCoursesToCompare(); // array of items to compare
         this.load();

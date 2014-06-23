@@ -16,7 +16,7 @@ var MyPagePasswordView = BaseFormView.extend({
                 mandatory: true,
                 validatorFunction: this.oldPasswordValid,
                 modelAttr: "oldPassword",
-                buildValidatorDiv: this.buildValidatorDiv
+                buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
             new BaseField({
                 name:"新密码",
@@ -25,7 +25,7 @@ var MyPagePasswordView = BaseFormView.extend({
                 mandatory: true,
                 validatorFunction: this.newPasswordValid,
                 modelAttr: "newPassword",
-                buildValidatorDiv: this.buildValidatorDiv
+                buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
             new BaseField({
                 name:"确认密码",
@@ -34,7 +34,7 @@ var MyPagePasswordView = BaseFormView.extend({
                 mandatory: true,
                 validatorFunction: this.confirmPasswordValid,
                 modelAttr: "confirmNewPassword",
-                buildValidatorDiv: this.buildValidatorDiv
+                buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
             new BaseField({
                 name:"手机验证码",
