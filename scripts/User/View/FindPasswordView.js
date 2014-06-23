@@ -47,7 +47,7 @@ var FindPasswordView = BaseFormView.extend({
         this.template1 = _.template(tpl.get("findPassword_1"));
         this.template2 = _.template(tpl.get("findPassword_2"));
         // this.template3 = _.template(tpl.get("findPassword_3"));
-        $("#viewStyle").attr("href", "style/css/reg.css");
+        // $("#viewStyle").attr("href", "style/css/reg.css");
         this.render(1);
     },
     render: function (state) {

@@ -6,7 +6,7 @@ var NewBookingView = BaseFormView.extend({
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "bookingSuccess", "close");
         app.viewRegistration.register(this);
-        $("#viewStyle").attr("href", "style/css/booking.css");
+        // $("#viewStyle").attr("href", "style/css/booking.css");
         this.template = _.template(tpl.get("newBooking"));
         this.finishTemplate = _.template(tpl.get("booking_submitted"));
         this.fields = [
@@ -174,6 +174,12 @@ var NewBookingView = BaseFormView.extend({
     },
     bookingSuccess: function (booking) {
         this.$el.empty().append(this.finishTemplate(booking._toJSON()));
+        $("#viewMore").on("click", function() {
+            app.navigate("search", true);
+        });
+        $("#printBooking").on("click", function () {
+            window.print();
+        });
     },
     close: function () {
         if (!this.isClosed) {

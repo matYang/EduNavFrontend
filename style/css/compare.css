@@ -31,7 +31,7 @@
 .compare table td .price{float:left; font-weight:bold; margin-right:10px;}
 .compare table td .cashback{float:left;}
 
-.stickyHeader {
+.compare .stickyHeader {
 	position: fixed;
 	top: 0px;
 	background-color:#eeeeee;
@@ -40,5 +40,5 @@
 	z-index: 999;
 }
 
-.stickyHeader tr {width:64px; }
-.stickyHeader td {width:195px;}
+.compare .stickyHeader tr {width:64px; }
+.compare .stickyHeader td {width:195px;}

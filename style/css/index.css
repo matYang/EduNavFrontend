@@ -4,45 +4,45 @@
 .index #topBar{position:absolute; top:0; left:0; width:100%;z-index: 999;}
 .index #main{ margin-top:60px;}
 
-#visualScope {width:100%; height:320px;margin:0 auto; background:#069c5e; overflow:hidden;}
+.index #visualScope {width:100%; height:320px;margin:0 auto; background:#069c5e; overflow:hidden;}
 /*visual_container  */
-#visual_container,
-#visual_container .slidee,
-#visual_container .slidee li {height:320px}
+.index #visual_container,
+.index #visual_container .slidee,
+.index #visual_container .slidee li {height:320px}
 
-#visual_container{width: 1px;margin: 0 auto;position: relative;}
-#visual_container .slidee {width:1500px; position:absolute; left:-750px; overflow:hidden;}
+.index #visual_container{width: 1px;margin: 0 auto;position: relative;}
+.index #visual_container .slidee {width:1500px; position:absolute; left:-750px; overflow:hidden;}
 
 
 
 /* #visual_container .slidee li {position:absolute;top:0;left:0}   */
-#visual_container .slidee li {display:none;}
-#visual_container .slidee li:first-child { display:block;}
+.index #visual_container .slidee li {display:none;}
+.index #visual_container .slidee li:first-child { display:block;}
 
 .index .content{ margin-top:-74px; position:relative;}
 .index .content .category{ margin-bottom:100px;}
 
-.tab2{ height:88px; width:1000px; background:url(../images/tab2.png) no-repeat;}
-.tab2 li{float:left; width:250px; height:88px; line-height:68px; margin-top:5px; text-align:center; font-family:微软雅黑; font-size:24px; color:#fff}
-.tab2 li a,.tab2 li a:visited{display:block; height:88px; color:#fff; text-decoration:none;}
-.tab2 li.item1 a.active{ background:url(../images/tab2_active.png) no-repeat 0 68px;}
-.tab2 li.item2 a.active{ background:url(../images/tab2_active.png) no-repeat -250px 68px;}
-.tab2 li.item3 a.active{ background:url(../images/tab2_active.png) no-repeat -500px 68px;}
-.tab2 li.item4 a.active{ background:url(../images/tab2_active.png) no-repeat -750px 68px;}
+.index .tab2{ height:88px; width:1000px; background:url(../images/tab2.png) no-repeat;}
+.index .tab2 li{float:left; width:250px; height:88px; line-height:68px; margin-top:5px; text-align:center; font-family:微软雅黑; font-size:24px; color:#fff}
+.index .tab2 li a,.tab2 li a:visited{display:block; height:88px; color:#fff; text-decoration:none;}
+.index .tab2 li.item1 a.active{ background:url(../images/tab2_active.png) no-repeat 0 68px;}
+.index .tab2 li.item2 a.active{ background:url(../images/tab2_active.png) no-repeat -250px 68px;}
+.index .tab2 li.item3 a.active{ background:url(../images/tab2_active.png) no-repeat -500px 68px;}
+.index .tab2 li.item4 a.active{ background:url(../images/tab2_active.png) no-repeat -750px 68px;}
 
-.c_item{}
-.c_item .fleft{position:relative; width:148px; text-align:center;}
-.c_item .fleft a{color:#fff;vertical-align:middle; text-align:center; font-family:微软雅黑; font-size:22px; font-weight:normal;}
-.c_item .fleft .top_arrow{ position:absolute; top:-1px; left:-1px; width:50px; height:50px;}
-.c_item .fright{width:850px;}
+.index .c_item{}
+.index .c_item .fleft{position:relative; width:148px; text-align:center;}
+.index .c_item .fleft a{color:#fff;vertical-align:middle; text-align:center; font-family:微软雅黑; font-size:22px; font-weight:normal;}
+.index .c_item .fleft .top_arrow{ position:absolute; top:-1px; left:-1px; width:50px; height:50px;}
+.index .c_item .fright{width:850px;}
 
-.c_h1 .fleft{height:48px; line-height:48px; }
-.c_h2 .fleft{height:98px; line-height:98px; }
-.c_h3 .fleft{height:147px; line-height:147px; }
-.c_h4 .fleft{height:195px; line-height:195px; }
-.c_h5 .fleft{height:243px; line-height:243px; }
-.c_h6 .fleft{height:292px; line-height:292px; }
-.c_h7 .fleft{height:341px; line-height:341px; }
+.index .c_h1 .fleft{height:48px; line-height:48px; }
+.index .c_h2 .fleft{height:98px; line-height:98px; }
+.index .c_h3 .fleft{height:147px; line-height:147px; }
+.index .c_h4 .fleft{height:195px; line-height:195px; }
+.index .c_h5 .fleft{height:243px; line-height:243px; }
+.index .c_h6 .fleft{height:292px; line-height:292px; }
+.index .c_h7 .fleft{height:341px; line-height:341px; }
 
 .index tr.last td{ border-bottom:none!important;}
 .index td.last,.index li.last{border-right:none!important; border-bottom:none!important;}

@@ -51,6 +51,18 @@ var EnumConfig = {
         consolidated: 8
     },
 
+    'BookingStatusText': {
+        0: "等待确认",
+        1: "机构确认",
+        2: "已取消",
+        3: "成功入学",
+        4: "完成交易",
+        5: "订单失败",
+        6: "退学",
+        7: "delivered",
+        8: "内部结算"
+    },
+
     'Privilege': {
         root: 0,
         management: 1,

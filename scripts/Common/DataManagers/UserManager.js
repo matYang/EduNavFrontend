@@ -332,7 +332,10 @@
 
     UserManager.prototype.initBooking = function(newBooking, callback){
         var self = this;
-
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testBooking1);
+            return;
+        }
         if (!(newBooking instanceof Backbone.Model) || newBooking.id > 0){
             Info.warn('UserManager::initBooking:: invalid parameter');
             return;

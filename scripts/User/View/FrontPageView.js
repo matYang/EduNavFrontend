@@ -3,7 +3,7 @@ var FrontPageView = Backbone.View.extend({
     el: '#content',
     initialize: function () {
         _.bindAll(this, 'render', 'renderCategories', 'bindEvents', 'close');
-        $("#viewStyle").attr("href", "style/css/index.css");
+        // $("#viewStyle").attr("href", "style/css/index.css");
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.template = _.template(tpl.get('front'));
@@ -31,7 +31,7 @@ var FrontPageView = Backbone.View.extend({
             obj.lvl1Cat = cat1;
             level2 = categories[cat1];
             index1 = level2.index;
-            buttonList[index1] = '<li data-id="' + cat1 + '"class="item' + counter + '"><a href="#">' + cat1 + '</a></li>';
+            buttonList[index1] = '<li data-id="' + cat1 + '"class="item' + index1 + '"><a href="#">' + cat1 + '</a></li>';
             obj.catClass = Constants.categoryClassMapper[cat1];
             for (var cat2 in level2) {
                 if (cat2 === "index") continue;
@@ -59,7 +59,6 @@ var FrontPageView = Backbone.View.extend({
             $("#lv2Categories").append(categoryList.join(""));
             lvl3CatList = [];
             categoryList = [];
-            counter++;
         }
         $("#lv1Button").append(buttonList.join(""));
         this.afterRender();

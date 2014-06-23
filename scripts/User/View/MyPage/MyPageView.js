@@ -3,7 +3,7 @@ var MyPageView = Backbone.View.extend({
     initialize: function (params) {
         _.bindAll(this, 'render', 'renderError', 'createChildView','bindEvents', 'close');
         app.viewRegistration.register(this);
-        $("#viewStyle").attr("href", "style/css/mypage.css");
+        // $("#viewStyle").attr("href", "style/css/mypage.css");
         this.isClosed = false;
         this.query = params.query || "dashboard";
         this.template = _.template(tpl.get('mypage_base'));
@@ -56,10 +56,12 @@ var MyPageView = Backbone.View.extend({
                 $("#creditAccount").addClass("active");
                 break;
             case "dashboard":
-            case "booking": 
-                $("#bookingManage").addClass("active");
                 this.activeChildView = new MyPageDashboardView();   
                 $("#mypage_content").css("border", "none");
+                break;
+            case "booking": 
+                $("#bookingManage").addClass("active");
+                this.activeChildView = new MyPageBookingView();
                 break;
             default:
                 break;

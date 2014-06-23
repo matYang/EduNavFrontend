@@ -8,7 +8,7 @@ var SearchView = Backbone.View.extend({
     initialize: function (params) {
         _.bindAll(this, 'renderSearchResults', 'courseSearch', 'bindEvents', 'bindSearchEvents', 'renderCategories', 'renderLocations', 'filterResult', 'close');
         app.viewRegistration.register(this);
-        $("#viewStyle").attr("href", "style/css/search.css");
+        // // $("#viewStyle").attr("href", "style/css/search.css");
         this.isClosed = false;
         this.rendered = false;
         this.timeDesc = true;

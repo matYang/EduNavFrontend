@@ -50,10 +50,11 @@ var Coupon = Backbone.Model.extend({
     },
 
     _toJSON: function () {
-        var json = _.clone(this.attributes);
+        var json = _.clone(this.attributes), date = new Date();
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         json.expireTime = Utilities.getDateString(this.get('expireTime'));
         json.origin = json.origin === 0 ? "注册赠送" : json.origin === 1 ? "邀请获得" : "管理员赠送";
+        json.expireSoon = ((this.get('expireTime').getTime() - date.getTime()) < 604800000 ) ? "<span>即将到期</span>" : "";
         return json;
     },
 

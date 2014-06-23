@@ -360,7 +360,6 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingList">
-    <div class="title"><b>未入学订单</b></div><strong></strong>
     <div id="bookingSummary">
     </div><!--bookingSummary end-->
 </script>
@@ -379,7 +378,14 @@
             <span class="sign">￥</span><%= price %>
         </div>
         <div class="bookingEntryState">
-            <span class="sign pending">等待确认</span>
+        <% if (status === EnumConfig.BookingStatus.awaiting) { %>
+            <span class="sign pending">
+        <% } else if (status === EnumConfig.BookingStatus.cancelled || status === EnumConfig.BookingStatus.quit || status === EnumConfig.BookingStatus.failed) { %>
+            <span class="sign cancelled">
+        <% } else { %>            
+            <span class="sign confirmed">
+        <% } %>            
+            <%= EnumConfig.BookingStatusText[status] %></span>
         </div>
     </div>
 </script>
@@ -630,7 +636,7 @@
         </div>
         <div class="row3 clearfix">
             <p class="bonus">积分奖励，成功入学后，您将获得<%= price %>积分，结账后7个工作日内计入您的上课书包</p>
-            <span class="viewMore">查看其他课程>></span>
+            <span id="viewMore" class="viewMore">查看其他课程>></span>
         </div>
     </div>
 </script>
@@ -1107,7 +1113,7 @@
         <td class="col1"><%= couponId %></td>
         <td class="col2"><%= amount %></td>
         <td class="col3"><%= origin %></td>
-        <td class="col4"><%= expireTime %></td>
+        <td class="col4"><%= expireTime %><%= expireSoon %></td>
     </tr>
 </script>
 

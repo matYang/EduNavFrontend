@@ -3,55 +3,55 @@
 .sitemap{color:#128d56;}
 .courseDetail{ line-height:30px;}
 
-.banner{border:1px solid #ccc;}
+.courseDetail .banner{border:1px solid #ccc;}
 
-.banner .row1{ padding:15px; border-bottom:1px dotted #ccc;}
-.banner .row1 dt{font-size:24px; font-family:微软雅黑; color:#128d56; margin-bottom:10px;}
-.banner .row1 dt span{ margin-left:20px;}
+.courseDetail .banner .row1{ padding:15px; border-bottom:1px dotted #ccc;}
+.courseDetail .banner .row1 dt{font-size:24px; font-family:微软雅黑; color:#128d56; margin-bottom:10px;}
+.courseDetail .banner .row1 dt span{ margin-left:20px;}
 
-.banner .row1 .col1{float:left; width:680px;}
-.banner .row1 .col2{float:right; width:125px; margin-top:5px;}
+.courseDetail .banner .row1 .col1{float:left; width:680px;}
+.courseDetail .banner .row1 .col2{float:right; width:125px; margin-top:5px;}
 
-.banner .price{ font-size:26px;}
-.banner .price .sign{ color:#333;}
-.banner .cashback{ margin-left:18px;}
-.banner .cashback em{ margin-left:22px;}
+.courseDetail .banner .price{ font-size:26px;}
+.courseDetail .banner .price .sign{ color:#333;}
+.courseDetail .banner .cashback{ margin-left:18px;}
+.courseDetail .banner .cashback em{ margin-left:22px;}
 
-.banner .row2 {padding:15px;}
+.courseDetail .banner .row2 {padding:15px;}
+ 
+ /*相册*/
+.courseDetail .banner .row2 .gallary{float:left; width:600px;}
+.courseDetail .banner .row2 .small_pic{float:left;}
+.courseDetail .banner .row2 .big_pic{float:right;}
+.courseDetail .banner .row2 .small_pic .top{ overflow:hidden;}
+.courseDetail .banner .row2 .small_pic .bottom{overflow:hidden;}
+.courseDetail .banner .row2 .small_pic .top .pic1,
+.courseDetail .banner .row2 .small_pic .top .pic2,
+.courseDetail .banner .row2 .small_pic .bottom .pic3,
+.courseDetail .banner .row2 .small_pic .bottom .pic4{float:left; margin-right:10px;}
+ 
+ /*地图*/
+.courseDetail .banner .row2 .course_map{float:right; width:328px; border:1px solid #ccc;}
+.courseDetail .banner .row2 .course_map .addr{ line-height:30px; color:#333; padding-left:10px; border-bottom:1px solid #ccc;}
+.courseDetail .banner .row2 .course_map .map{width:328px; height:183px;}
+ /*公用*/
+.courseDetail .courseMain{ position:relative; border:1px solid #ccc;}
+.courseDetail .courseMain .course_content{padding:15px;}
+.courseDetail .courseMain .course_content dl{padding-bottom:30px;}
+.courseDetail .courseMain .course_content dt{color:#128d56; font-weight:bold; padding-left:10px; line-height:34px; background:#d8eae2; margin-bottom:10px;}
+.courseDetail .courseMain .course_content dd{padding-left:10px;}
+.courseDetail .courseMain .course_content label{ margin-right:10px;}
 
-/*相册*/
-.banner .row2 .gallary{float:left; width:600px;}
-.banner .row2 .small_pic{float:left;}
-.banner .row2 .big_pic{float:right;}
-.banner .row2 .small_pic .top{ overflow:hidden;}
-.banner .row2 .small_pic .bottom{overflow:hidden;}
-.banner .row2 .small_pic .top .pic1,
-.banner .row2 .small_pic .top .pic2,
-.banner .row2 .small_pic .bottom .pic3,
-.banner .row2 .small_pic .bottom .pic4{float:left; margin-right:10px;}
+ /*教师信息*/
+.courseDetail .courseMain .teacherInfo{float:left; width:300px; height:120px; border:1px solid #d1d1d1; margin-right:20px;}
+.courseDetail .courseMain .teacherInfo div{color:#128d56; margin:5px 10px;}
+.courseDetail .courseMain .teacherInfo p{ margin:5px 10px 0; font-size:12px; line-height:20px;}
+.courseDetail .courseMain .teacherInfo .teacherPhoto{float:right;}
+ 
+ /*教学信息--教学大纲*/
+.courseDetail .courseMain #content_teaching dd.course_syllabus div{ padding-left:80px;}
 
-/*地图*/
-.banner .row2 .course_map{float:right; width:328px; border:1px solid #ccc;}
-.banner .row2 .course_map .addr{ line-height:30px; color:#333; padding-left:10px; border-bottom:1px solid #ccc;}
-.banner .row2 .course_map .map{width:328px; height:183px;}
-/*公用*/
-.courseMain{ position:relative; border:1px solid #ccc;}
-.courseMain .course_content{padding:15px;}
-.courseMain .course_content dl{padding-bottom:30px;}
-.courseMain .course_content dt{color:#128d56; font-weight:bold; padding-left:10px; line-height:34px; background:#d8eae2; margin-bottom:10px;}
-.courseMain .course_content dd{padding-left:10px;}
-.courseMain .course_content label{ margin-right:10px;}
-
-/*教师信息*/
-.courseMain .teacherInfo{float:left; width:300px; height:120px; border:1px solid #d1d1d1; margin-right:20px;}
-.courseMain .teacherInfo div{color:#128d56; margin:5px 10px;}
-.courseMain .teacherInfo p{ margin:5px 10px 0; font-size:12px; line-height:20px;}
-.courseMain .teacherInfo .teacherPhoto{float:right;}
-
-/*教学信息--教学大纲*/
-.courseMain #content_teaching dd.course_syllabus div{ padding-left:80px;}
-
-.stickyHeader {
+.courseDetail .stickyHeader {
 	position: fixed;
 	top: 0px;
 	background-color: white;

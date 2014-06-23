@@ -8,7 +8,7 @@ var RegistrationView = BaseFormView.extend({
         _.bindAll(this, 'render', 'bindEvents', 'successCallback', 'submitAction', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
-        $("#viewStyle").attr("href", "style/css/reg.css");
+        // $("#viewStyle").attr("href", "style/css/reg.css");
         this.template = _.template(tpl.get('registration'));
         this.finishTemplate = _.template(tpl.get('registration_finish'));
         this.$el.append(this.template);

@@ -3,7 +3,7 @@ var CompareView = Backbone.View.extend({
     highlighted: false,
     hided: false,
     initialize: function (params) {       
-        $("#viewStyle").attr("href", "style/css/compare.css");
+        // $("#viewStyle").attr("href", "style/css/compare.css");
         app.viewRegistration.register(this);
         this.isClosed = false;
         _.bindAll(this, "load", "render", "bindEvents", /* "highlight", "hideSame", */ "close");
