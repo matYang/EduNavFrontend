@@ -3,9 +3,7 @@ var CoursePostView = BaseFormView.extend({
     formElem:"#coursePostForm",
     submitButtonId: "submit",
     initialize: function (params) {
-        var apis = new ApiResource();
-
-        this.action = apis.course_course;
+        this.action = ApiResource.course_course;
         this.fields = [
             new BaseField({
                 fieldId: "title",

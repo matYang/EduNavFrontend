@@ -10,9 +10,8 @@ var AdminAdminView = BaseFormView.extend({
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
         params = params || {};
-        var apis = new AdminApiResource();
         this.template = _.template(tpl.get("adminAdmin"));
-        this.action = apis.admin_admin;
+        this.action = AdminApiResource.admin_admin;
         this.create = false;
         this.fields = [
             new BaseField({

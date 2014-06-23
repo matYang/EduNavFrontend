@@ -39,7 +39,6 @@ var AppRouter = Backbone.Router.extend({
         this.viewRegistration = new ViewRegistrationService ();
         //initializing the storage services, some resuable user information will be persisted by local storage
         this.storage = new StorageService ();
-
         this.eventClearService = new EventClearService();
 
         //initializing all the data managers

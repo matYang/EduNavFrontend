@@ -2,39 +2,39 @@ var AdminUserView = BaseFormView.extend({
     el:"#main_content",
     form: false,
     submitButtonId: "userSubmit",
+    fields: [
+        new BaseField({
+            name: "手机",
+            fieldId: "userPhone",
+            type: "text",
+            mandatory: true,
+            validatorFunction: this.phoneValid,
+            modelAttr: "phone",
+            
+        }),
+        new BaseField({
+            name: "名字",
+            fieldId: "userName",
+            type: "text",
+            mandatory: true,
+            modelAttr: "name",
+            
+        }),
+        new BaseField({
+            name: "邮箱",
+            fieldId: "userEmail",
+            type: "text",
+            mandatory: false,
+            modelAttr: "email",
+            
+        })  
+    ],
     initialize: function (params) {
         this.isClosed = false;
         app.viewRegistration.register(this);
         _.bindAll(this, "render", "bindEvents", "close");
         this.template = _.template(tpl.get("adminUser"));
         this.newUser = false;
-        this.fields = [
-            new BaseField({
-                name: "手机",
-                fieldId: "userPhone",
-                type: "text",
-                mandatory: true,
-                validatorFunction: this.phoneValid,
-                modelAttr: "phone",
-                
-            }),
-            new BaseField({
-                name: "名字",
-                fieldId: "userName",
-                type: "text",
-                mandatory: true,
-                modelAttr: "name",
-                
-            }),
-            new BaseField({
-                name: "邮箱",
-                fieldId: "userEmail",
-                type: "text",
-                mandatory: false,
-                modelAttr: "email",
-                
-            })  
-        ];
         if (!params.user) {
             this.userId = params.userId;
             var that = this;
@@ -50,7 +50,7 @@ var AdminUserView = BaseFormView.extend({
         }
     },
     render: function (user) {
-        this.model = user || new User();
+        this.model = user ? user.clone() : new User();
         this.$el.append(this.template(this.model.toJSON()));
         $("#searchResult").addClass("hidden");
         if (this.newUser) {

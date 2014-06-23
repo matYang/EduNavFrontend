@@ -58,7 +58,7 @@ var NewBookingView = BaseFormView.extend({
             this.render(params.course);
         } else if (params.reference) {
             this.reference = params.reference;
-            var booking = app.sessionManager.sessionModel.get("bookings").findBookingByReference(this.reference);
+            var booking = app.sessionManager.sessionModel.get("bookingList").findBookingByReference(this.reference);
             if (booking) {
                 this.renderEditView(booking);
             } else {
@@ -81,7 +81,7 @@ var NewBookingView = BaseFormView.extend({
     renderEditView: function (booking) {
         if (booking instanceof User) {
             this.user = booking;
-            booking = booking.get("bookings").findBookingByReference(this.reference);
+            booking = booking.get("bookingList").findBookingByReference(this.reference);
         }
         if (booking) {
             this.model = booking;

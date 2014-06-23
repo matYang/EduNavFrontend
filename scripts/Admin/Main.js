@@ -19,13 +19,14 @@ var AppRouter = Backbone.Router.extend({
     initialize: function () {
         //initializing the registration service, now views should be hooked to DOM via registration
         this.viewRegistration = new ViewRegistrationService ();
+        debugger;
         //initializing the storage services, some resuable user information will be persisted by local storage
         this.storage = new StorageService ();
         this.eventClearService = new EventClearService();
 
         //initializing all the data managers
         this.sessionManager = new SessionManager (EnumConfig.ModuleIdentifier.admin);
-        
+
         this.generalManager = new GeneralManager (this.sessionManager);
         this.adminManager = new AdminManager (this.sessionManager);
 
@@ -44,7 +45,7 @@ var AppRouter = Backbone.Router.extend({
             }
         });
         this.curDate = new Date ();
-        
+
     },
     defaultRoute: function () {
         if (!this.sessionManager.hasSession()) {
@@ -54,7 +55,7 @@ var AppRouter = Backbone.Router.extend({
     },
     login: function () {
         if (this.sessionManager.hasSession()) {
-            this.navigate("manage", true);    
+            this.navigate("manage", true);
         } else {
             this.loginView = new AdminLoginView();
         }
@@ -62,10 +63,20 @@ var AppRouter = Backbone.Router.extend({
     manage: function (type, query) {
         if (!this.sessionManager.hasSession()) {
             this.navigate("login", {trigger:true, replace:true});
+            return;
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
             type = type || "user";
+        }
+        if (!this.manageView) {
             this.manageView = new AdminManageView({type:type, query:query});
+        } else {
+            if (!this.manageView.isClosed) {
+                this.manageView.switchView(type, query);
+            } else {
+                this.manageView.$el.append(this.manageView.baseTemplate);
+                this.manageView.switchView(type, query);
+            }
         }
     },
     course: function (id) {

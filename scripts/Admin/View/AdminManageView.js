@@ -1,22 +1,21 @@
 var AdminUserSearchResultView = MultiPageView.extend({
+    extPn:true,
+    entryContainer: "searchResultContainer",
+    pageNumberClass: "searchResultPageNumber",
+    pageNumberId: "searchResultPageNumber",
+    pageNavigator: "userSearchNavigator",
+    pageNavigatorClass: "page clearfix",
+    entryHeight: 27,
+    pageEntryNumber: 20,
+    entryClass: "userResult",
+    actionClass: "view",
     initialize: function (allMessages, messageList) {
         _.bindAll(this, 'render', 'entryEvent', 'close');
-        this.messages = messageList;
-        this.allMessages = allMessages;
+        this.messages = messageList || this.messages;
+        this.allMessages = allMessages || this.allMessages;
         this.entryTemplate = _.template(tpl.get('adminUserRow'));
-        this.pageNumberClass = "searchResultPageNumber";
-        this.pageNumberId = "searchResultPageNumber";
-        this.pageNavigator = "userSearchNavigator";
-        this.pageNavigatorClass = "page clearfix";
         this.user = app.sessionManager.sessionModel;
-        this.entryHeight = 27;
-        this.pageEntryNumber = 20;
-        this.entryClass = "userResult";
-        this.actionClass = "view";
-        this.entryContainer = "searchResultContainer";
-        this.$domContainer = $("#searchResultContainer");
         this.isClosed = false;
-        this.pnc = true;
         this.render();
     },
     render: function () {
@@ -24,33 +23,40 @@ var AdminUserSearchResultView = MultiPageView.extend({
     },
     entryEvent: function (id) {
         app.navigate("manage/user/"+id);
-        this.userView = new AdminUserView({user: this.allMessages.get(id)});
+        if (!this.userView) {
+            this.userView = new AdminUserView({user: this.allMessages.get(id)});
+        } else {
+            this.userView.initialize({user: this.allMessages.get(id)});
+        }
     },
     close: function () {
-        this.$domContainer.empty();
+        if (!this.isClosed){
+            MultiPageView.prototype.close.call(this);
+            this.$domContainer.empty();
+            this.isClosed = true;
+        }
     }
 });
 
 var AdminCourseSearchResultView = MultiPageView.extend({
+    pageNumberClass: "searchResultPageNumber",
+    pageNumberId: "searchResultPageNumber",
+    pageNavigator: "courseSearchNavigator",
+    pageNavigatorClass: "page clearfix",
+    entryHeight: 27,
+    pageEntryNumber: 20,
+    entryClass: "courseResult",
+    actionClass: "view",
+    entryContainer: "searchResultContainer",
+    pnc: true,
     initialize: function (allMessages, messageList) {
         _.bindAll(this, 'render', 'entryEvent', 'close');
-        this.messages = messageList;
-        this.allMessages = allMessages;
+        this.messages = messageList || this.messages;
+        this.allMessages = allMessages || this.allMessages;
         this.entryTemplate = _.template(tpl.get('adminCourseRow'));
-        this.pageNumberClass = "searchResultPageNumber";
-        this.pageNumberId = "searchResultPageNumber";
-        this.pageNavigator = "bookingSearchNavigator";
-        this.pageNavigatorClass = "page clearfix";
-        this.user = app.sessionManager.sessionModel;
-        this.entryHeight = 27;
-        this.pageEntryNumber = 20;
-        this.entryClass = "courseResult";
-        this.actionClass = "view";
-        this.entryContainer = "searchResultContainer";
-        this.$domContainer = $("#searchResultContainer");
-        this.isClosed = false;
-        this.pnc = true;
         this.editViewTemplate = _.template(tpl.get('adminCourse'));
+        this.user = app.sessionManager.sessionModel;
+        this.isClosed = false;
         this.render();
         this.bindEvents();
     },
@@ -71,7 +77,11 @@ var AdminCourseSearchResultView = MultiPageView.extend({
             $("#updateCourse").removeClass("active");
             $("#courseCRUDContainer").removeClass("hidden");
             $("#searchResult").addClass("hidden");
-            that.adminCourseView = new AdminCourseView(); //Create
+            if (!that.adminCourseView) {
+                that.adminCourseView = new AdminCourseView(); //Create
+            } else {
+                that.adminCourseView.initialize();
+            }
         });
         $("#searchCourse").on("click", function(){
             $(this).addClass("active");
@@ -83,29 +93,34 @@ var AdminCourseSearchResultView = MultiPageView.extend({
         });
     },
     close: function () {
-        this.$domContainer.empty();
+        if (!this.isClosed){
+            $("#createCourse").off();
+            $("#searchCourse").off();
+            MultiPageView.prototype.close.call(this);
+            this.$domContainer.empty();
+            this.isClosed = true;
+        }
     }
 });
 
 var AdminBookingSearchResultView = MultiPageView.extend({
+    pageNumberClass: "searchResultPageNumber",
+    pageNumberId: "searchResultPageNumber",
+    pageNavigator: "bookingSearchNavigator",
+    pageNavigatorClass: "page clearfix",
+    entryHeight: 27,
+    pageEntryNumber: 20,
+    entryClass: "bookingResult",
+    actionClass: "view",
+    entryContainer: "searchResultContainer",
+    pnc: true,
     initialize: function (allMessages, messageList) {
         _.bindAll(this, 'render', 'entryEvent', 'close');
-        this.messages = messageList;
-        this.allMessages = allMessages;
+        this.messages = messageList || this.messages;
+        this.allMessages = allMessages || this.allMessages;
         this.entryTemplate = _.template(tpl.get('adminBookingRow'));
-        this.pageNumberClass = "searchResultPageNumber";
-        this.pageNumberId = "searchResultPageNumber";
-        this.pageNavigator = "bookingSearchNavigator";
-        this.pageNavigatorClass = "page clearfix";
         this.user = app.sessionManager.sessionModel;
-        this.entryHeight = 27;
-        this.pageEntryNumber = 20;
-        this.entryClass = "bookingResult";
-        this.actionClass = "view";
-        this.entryContainer = "searchResultContainer";
-        this.$domContainer = $("#searchResultContainer");
         this.isClosed = false;
-        this.pnc = true;
         this.render();
     },
     render: function () {
@@ -115,29 +130,32 @@ var AdminBookingSearchResultView = MultiPageView.extend({
         app.navigate("manage/booking/"+id, true);
     },
     close: function () {
-        this.$domContainer.empty();
+        if (!this.isClosed){
+            MultiPageView.prototype.close.call(this);
+            this.$domContainer.empty();
+            this.isClosed = true;
+        }
     }
 });
 
 var AdminAdminSearchResultView = MultiPageView.extend({
+    pageNumberClass: "searchResultPageNumber",
+    pageNumberId: "searchResultPageNumber",
+    pageNavigator: "adminSearchNavigator",
+    pageNavigatorClass: "page clearfix",
+    entryHeight: 27,
+    pageEntryNumber: 20,
+    entryClass: "adminResult",
+    actionClass: "view",
+    entryContainer: "searchResultContainer",
+    pnc: true,
     initialize: function (allMessages, messageList) {
         _.bindAll(this, 'render', 'entryEvent', 'close');
-        this.messages = messageList;
-        this.allMessages = allMessages;
+        this.messages = messageList || this.messages;
+        this.allMessages = allMessages || this.allMessages;
         this.entryTemplate = _.template(tpl.get('adminBookingRow'));
-        this.pageNumberClass = "searchResultPageNumber";
-        this.pageNumberId = "searchResultPageNumber";
-        this.pageNavigator = "bookingSearchNavigator";
-        this.pageNavigatorClass = "page clearfix";
         this.user = app.sessionManager.sessionModel;
-        this.entryHeight = 27;
-        this.pageEntryNumber = 20;
-        this.entryClass = "adminResult";
-        this.actionClass = "view";
-        this.entryContainer = "searchResultContainer";
-        this.$domContainer = $("#searchResultContainer");
         this.isClosed = false;
-        this.pnc = true;
         this.render();
         this.bindEvents();
     },
@@ -165,29 +183,34 @@ var AdminAdminSearchResultView = MultiPageView.extend({
         app.navigate("manage/admin/"+id, true);
     },
     close: function () {
-        this.$domContainer.empty();
+        if (!this.isClosed){
+            $("#createAdmin").off();
+            $("#searchAdmin").off();
+            MultiPageView.prototype.close.call(this);
+            this.$domContainer.empty();
+            this.isClosed = true;
+        }
     }
 });
 
 var AdminPartnerSearchResultView = MultiPageView.extend({
+    pageNumberClass: "searchResultPageNumber",
+    pageNumberId: "searchResultPageNumber",
+    pageNavigator: "partnerSearchNavigator",
+    pageNavigatorClass: "page clearfix",
+    entryHeight: 27,
+    pageEntryNumber: 20,
+    entryClass: "partnerResult",
+    actionClass: "view",
+    entryContainer: "searchResultContainer",
+    pnc: true,
     initialize: function (allMessages, messageList) {
         _.bindAll(this, 'render', 'entryEvent', 'close');
-        this.messages = messageList;
-        this.allMessages = allMessages;
+        this.messages = messageList || this.messages;
+        this.allMessages = allMessages || this.allMessages;
         this.entryTemplate = _.template(tpl.get('adminPartnerRow'));
-        this.pageNumberClass = "searchResultPageNumber";
-        this.pageNumberId = "searchResultPageNumber";
-        this.pageNavigator = "partnerSearchNavigator";
-        this.pageNavigatorClass = "page clearfix";
         this.user = app.sessionManager.sessionModel;
-        this.entryHeight = 27;
-        this.pageEntryNumber = 20;
-        this.entryClass = "adminResult";
-        this.actionClass = "view";
-        this.entryContainer = "searchResultContainer";
-        this.$domContainer = $("#searchResultContainer");
         this.isClosed = false;
-        this.pnc = true;
         this.render();
         this.bindEvents();
     },
@@ -215,16 +238,20 @@ var AdminPartnerSearchResultView = MultiPageView.extend({
         app.navigate("manage/partner/"+id, true);
     },
     close: function () {
-        this.$domContainer.empty();
+        if (!this.isClosed){
+            MultiPageView.prototype.close.call(this);
+            this.$domContainer.empty();
+            this.isClosed = true;
+        }
     }
 });
 
 var AdminManageView = Backbone.View.extend({
     el:"#main_content",
+    resultView: {},
     initialize: function (params) {
-        _.bindAll(this, "render", "bindEvents", "bindSearchEvent", "renderResult", "renderCategories", "renderSubCategories", "renderLocations", "renderDistrict", "close", "search");
+        _.bindAll(this, "render", "switchView", "bindEvents", "bindSearchEvent", "renderResult", "renderCategories", "renderSubCategories", "renderLocations", "renderDistrict", "close", "search");
         this.isClosed = false;
-        this.type = params.type;
         app.viewRegistration.register(this);
         this.templates = {
             user: _.template(tpl.get('adminUserManage')),
@@ -233,51 +260,62 @@ var AdminManageView = Backbone.View.extend({
             admin: _.template(tpl.get('adminAdminManage')),
             partner: _.template(tpl.get('adminPartnerManage'))
         };
+        this.sr = {
+            user: new UserSearchRepresentation(),
+            course: new CourseSearchRepresentation(),
+            booking: new BookingSearchRepresentation(),
+            admin: new AdminSearchRepresentation(),
+            partner: new PartnerSearchRepresentation()
+        };
         this.baseTemplate = this.templates[this.type];
-        this.query = params.query;
+        this.$el.append(this.baseTemplate);
+        this.switchView(params.type, params.query);
+    },
+    switchView: function (viewName, query) {
+        this.closeActiveView();
+        this.query = query;
+        this.type = viewName;
+        this.baseTemplate = this.templates[this.type];
+        this.$el.append(this.baseTemplate);
         this.render();
         this.bindEvents();
     },
     render: function () {
-        this.$el.append(this.baseTemplate);
-        if (this.resultView) {
-            this.resultView.close();
-        }
+        var view;
         $("#sideBar").find(".active").removeClass("active");
         $("#" + this.type + "Manage").addClass("active");
-        switch (this.type) {
-            case "user":
-                this.allMessages = new Users();
-                this.sr = new UserSearchRepresentation();
-                this.resultView = new AdminUserSearchResultView(this.allMessages, this.allMessages);
-                break;
-            case "course":
-                this.allMessages = new Courses();
-                this.sr = new CourseSearchRepresentation();
-                this.resultView = new AdminCourseSearchResultView(this.allMessages, this.allMessages);
-                app.generalManager.getCategories(this);
-                break;
-            case "booking":
-                this.allMessages = new Bookings();
-                this.sr = new BookingSearchRepresentation();
-                this.resultView = new AdminBookingSearchResultView(this.allMessages, this.allMessages);
-                break;
-            case "admin":
-                this.allMessages = new Admins();
-                this.sr = new AdminSearchRepresentation();
-                this.resultView = new AdminAdminSearchResultView(this.allMessages, this.allMessages);
-                break;
-            case "partner":
-                this.allMessages = new Partners();
-                this.sr = new PartnerSearchRepresentation();
-                this.resultView = new AdminPartnerSearchResultView(this.allMessages, this.allMessages);
-                break;
-            default:
-                alert("invalid");
-                break;
+        if (this.resultView[this.type]) {
+            this.resultView[this.type].initialize();
+        } else {
+            switch (this.type) {
+                case "user":
+                    this.allMessages = new Users();
+                    this.resultView[this.type] = new AdminUserSearchResultView(this.allMessages, this.allMessages);
+                    break;
+                case "course":
+                    this.allMessages = new Courses();
+                    this.resultView[this.type] = new AdminCourseSearchResultView(this.allMessages, this.allMessages);
+                    app.generalManager.getCategories(this);
+                    break;
+                case "booking":
+                    this.allMessages = new Bookings();
+                    this.resultView[this.type] = new AdminBookingSearchResultView(this.allMessages, this.allMessages);
+                    break;
+                case "admin":
+                    this.allMessages = new Admins();
+                    this.resultView[this.type] = new AdminAdminSearchResultView(this.allMessages, this.allMessages);
+                    break;
+                case "partner":
+                    this.allMessages = new Partners();
+                    this.resultView[this.type] = new AdminPartnerSearchResultView(this.allMessages, this.allMessages);
+                    break;
+                default:
+                    alert("invalid");
+                    break;
+            }
         }
         if (this.query) {
-            this.sr.castFromQuery(this.query);
+            this.sr[this.type].castFromQuery(this.query);
         }
         $("#adminUserName").html(app.sessionManager.sessionModel.get("name"));
 
@@ -294,21 +332,20 @@ var AdminManageView = Backbone.View.extend({
                 $("#"+id).removeClass("hidden");
             });
             $("#queryUserBtn").on("click", function (e) {
-                var obj = that.sr.toJSON();
+                var obj = that.sr[that.type].toJSON();
                 for ( var attr in obj ) {
                     var $input = $("#queryUser").find("#" +attr+"_Input"), value = $input.val();
                     if (value && !$input.hasClass("date") ) {
-                        that.sr.set(attr, $input.attr("type") === "number" ? Utilities.toInt(value) : value);
+                        that.sr[that.type].set(attr, $input.attr("type") === "number" ? Utilities.toInt(value) : value);
                     }
                 }
-                app.adminManager.listUser(that.sr, {success:that.renderResult, error:function(){}});
+                app.adminManager.listUser(that.sr[this.type], {success:that.renderResult, error:function(){}});
             });
             $("#findUserBtn").on("click", function (e) {
                 var id = $("#userId_Input").val();
                 if (id) {
                     app.navigate("manage/user/" + id, true );
                 }
-                app.adminManager.listUser(that.sr, {success:that.renderResult, error:function(){}});
             });
             $("#startCreationTime_Input").datepicker({
                 buttonImageOnly: true,
@@ -320,7 +357,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("startScheduledTime", d);
+                    that.sr[that.type].set("startScheduledTime", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -334,7 +371,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("startScheduledTime", d);
+                    that.sr[that.type].set("startScheduledTime", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -354,7 +391,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("startDate", d);
+                    that.sr[that.type].set("startDate", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -367,7 +404,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("finishDate", d);
+                    that.sr[that.type].set("finishDate", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -380,7 +417,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("startCutoffDate", d);
+                    that.sr[that.type].set("startCutoffDate", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -393,34 +430,34 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("finishCutoffDate", d);
+                    that.sr[that.type].set("finishCutoffDate", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
             $("#searchInput_category").on("change", function() {
                 var category = $(this).val();
-                that.sr.set("category", category);
-                that.sr.set("subCategory", undefined);
+                that.sr[that.type].set("category", category);
+                that.sr[that.type].set("subCategory", undefined);
                 that.renderSubCategory(category);
             });
             $("#searchInput_subCategory").on("change", function() {
-                that.sr.set("subCategory", $(this).val());
+                that.sr[that.type].set("subCategory", $(this).val());
             });
             $("#searchInput_city").on("change", function() {
                 var city = $(this).val();
-                that.sr.set("city", city);
-                that.sr.set("district", undefined);
+                that.sr[that.type].set("city", city);
+                that.sr[that.type].set("district", undefined);
                 that.renderDistrict(city);
             });
             $("#searchInput_district").on("change", function() {
-                that.sr.set("district", $(this).val());
+                that.sr[that.type].set("district", $(this).val());
             });
             $("#queryCourseBtn").on("click", function (e) {
-                var obj = that.sr.toJSON();
+                var obj = that.sr[that.type].toJSON();
                 for ( var attr in obj ) {
                     var $input = $("#queryCourse").find("#" +attr+"_Input"), value = $input.val();
                     if (value && !$input.hasClass("date") ) {
-                        that.sr.set(attr, $input.attr("type") === "number" ? Utilities.toInt(value) : value);
+                        that.sr[that.type].set(attr, $input.attr("type") === "number" ? Utilities.toInt(value) : value);
                     }
                 }
                 app.generalManager.findCourse(that.sr, {success:that.renderResult, error:function(){}});
@@ -451,11 +488,11 @@ var AdminManageView = Backbone.View.extend({
                 }
             });
             $("#queryBookingBtn").on("click", function (e) {
-                var obj = that.sr.toJSON();
+                var obj = that.sr[that.type].toJSON();
                 for ( var attr in obj ) {
                     var $input = $("#queryBooking").find("#" +attr+"_Input"), value = $input.val();
                     if (value && !$input.hasClass("date") ) {
-                        that.sr.set(attr, value);
+                        that.sr[that.type].set(attr, value);
                     }
                 }
                 app.adminManager.listBooking(that.sr, {success:that.renderResult, error:function(){}});
@@ -469,7 +506,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("startScheduledTime", d);
+                    that.sr[that.type].set("startScheduledTime", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -482,7 +519,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("finishScheduledTime", d);
+                    that.sr[that.type].set("finishScheduledTime", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -495,7 +532,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("startAdjustTime", d);
+                    that.sr[that.type].set("startAdjustTime", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -508,7 +545,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("finishAdjustTime", d);
+                    that.sr[that.type].set("finishAdjustTime", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -521,7 +558,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("startCreationTime", d);
+                    that.sr[that.type].set("startCreationTime", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -534,7 +571,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("finishCreationTime", d);
+                    that.sr[that.type].set("finishCreationTime", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -551,11 +588,11 @@ var AdminManageView = Backbone.View.extend({
                 }
             });
             $("#queryPartnerBtn").on("click", function (e) {
-                var obj = that.sr.toJSON();
+                var obj = that.sr[that.type].toJSON();
                 for ( var attr in obj ) {
                     var $input = $("#queryUser").find("#" +attr+"_Input"), value = $input.val();
                     if (value && !$input.hasClass("date") ) {
-                        that.sr.set(attr, value);
+                        that.sr[that.type].set(attr, value);
                     }
                 }
                 app.adminManager.listPartner(that.sr, {success:that.renderResult, error:function(){}});
@@ -569,7 +606,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("startCreationTime", d);
+                    that.sr[that.type].set("startCreationTime", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -582,7 +619,7 @@ var AdminManageView = Backbone.View.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.sr.set("finishCreationTime", d);
+                    that.sr[that.type].set("finishCreationTime", d);
                     $(this).val(Utilities.getDateString(d));
                 }
             });
@@ -599,11 +636,11 @@ var AdminManageView = Backbone.View.extend({
                 }
             });
             $("#queryAdminBtn").on("click", function (e) {
-                var obj = that.sr.toJSON();
+                var obj = that.sr[that.type].toJSON();
                 for ( var attr in obj ) {
                     var $input = $("#queryUser").find("#" +attr+"_Input"), value = $input.val();
                    if (value && !$input.hasClass("date") ) {
-                        that.sr.set(attr, value);
+                        that.sr[that.type].set(attr, value);
                     }
                 }
                 app.adminManager.listAdmin(that.sr, {success:that.renderResult, error:function(){}});
@@ -665,8 +702,43 @@ var AdminManageView = Backbone.View.extend({
         this.resultView.messages.reset(array);
         this.resultView.render();
     },
+    closeActiveView: function (){
+        if (this.type === "user") {
+            $("#userSearchPanel").off();
+            $("#queryUserBtn").off();
+            $("#findUserBtn").off();
+        } else if (this.type === "course") {
+            $("#findCourseBtn").off();
+            $("#searchInput_category").off();
+            $("#searchInput_subCategory").off();
+            $("#searchInput_city").off();
+            $("#searchInput_district").off();
+            $("#queryCourseBtn").off();
+            $("#courseSearchPanel").off();
+        } else if (this.type === "booking") {
+            $("#bookingSearchPanel").off();
+            $("#bookingId_Input").off();
+            $("#findBookingBtn").off();
+            $("#queryBookingBtn").off();
+        } else if (this.type === "partner") {
+            $("#partnerSearchPanel").off();
+            $("#findPartnerBtn").off();
+            $("#queryPartnerBtn").off();
+        } else if (this.type === "admin") {
+            $("#adminSearchPanel").off();
+            $("#findAdminBtn").off();
+            $("#queryAdminBtn").off();
+        }    
+        if (this.resultView[this.type]) {
+            this.resultView[this.type].close();
+            this.$el.empty();
+        }
+    },
     close: function () {
         if (!this.isClosed) {
+            if (!this.resultView[this.type].isClosed) {
+                this.closeActiveView();
+            }
             this.isClosed = true;
             $("#sideBarClose").off();
             this.$el.empty();

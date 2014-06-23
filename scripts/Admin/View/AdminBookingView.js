@@ -8,7 +8,6 @@ var AdminBookingView = BaseFormView.extend({
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
         params = params || {};
-        var apis = new AdminApiResource();
         this.template = _.template(tpl.get("adminBooking"));
         this.fields = [
             new BaseField({

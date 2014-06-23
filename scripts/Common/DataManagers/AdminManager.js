@@ -4,7 +4,7 @@
 
     this.AdminManager = function(sessionManager){
 
-        this.apis = new AdminApiResource();
+        AdminApiResource;
 
         this.sessionManager = sessionManager;
         this.sessionManager.registerManager(this);
@@ -15,10 +15,10 @@
 
     AdminManager.prototype.createAdmin = function(admin, callback, keys){
         if (keys){
-            admin.overrideUrl(this.apis.admin_admin + '?secret1=' + keys.secret1 + '&secret2=' + keys.secret2 + '&secret3=' + keys.secret3);
+            admin.overrideUrl(AdminApiResource.admin_admin + '?secret1=' + keys.secret1 + '&secret2=' + keys.secret2 + '&secret3=' + keys.secret3);
         }
         else{
-            admin.overrideUrl(this.apis.admin_admin);
+            admin.overrideUrl(AdminApiResource.admin_admin);
         }
         admin.set('adminId', -1);
         admin.save({}, {
@@ -51,7 +51,7 @@
             return;
         }
 
-        admin.overrideUrl(this.apis.admin_admin + "/" + adminId);
+        admin.overrideUrl(AdminApiResource.admin_admin + "/" + adminId);
         admin.set('adminId', this.sessionManager.getId());
         admin.fetch({
             dataType:'json',
@@ -82,7 +82,7 @@
             queryObj.secret3 = keys.secret3;
         }
 
-        admins.overrideUrl(this.apis.admin_admin);
+        admins.overrideUrl(AdminApiResource.admin_admin);
         admins.fetch({
             data: queryObj,
             dataType:'json',
@@ -107,7 +107,7 @@
             Info.warn('AdminManager::findCourse:: session does not exist, exit');
             return;
         }
-        admin.overrideUrl(this.apis.admin_admin);
+        admin.overrideUrl(AdminApiResource.admin_admin);
         admin.save({}, {
             dataType:'json',
 
@@ -143,7 +143,7 @@
 
         $.ajax({
             type: 'PUT',
-            url: self.apis.admin_changePassword + '/' + adminId,
+            url: AdminApiResource.admin_changePassword + '/' + adminId,
             data: JSON.stringify({'password': password}),
             dataType: 'json',
             contentType: 'application/json',
@@ -175,7 +175,7 @@
             return;
         }
 
-        searchResults.overrideUrl(this.apis.admin_partner);
+        searchResults.overrideUrl(AdminApiResource.admin_partner);
         searchResults.fetch({
             data: partnerSearchRepresentation.toQueryString(),
             dataType:'json',
@@ -207,7 +207,7 @@
             return;
         }
 
-        searchResults.overrideUrl(this.apis.admin_user);
+        searchResults.overrideUrl(AdminApiResource.admin_user);
         searchResults.fetch({
             data: userSearchRepresentation.toQueryString(),
             dataType:'json',
@@ -232,7 +232,7 @@
             Info.warn('AdminManager::update:: session does not exist, exit');
             return;
         }
-        user.overrideUrl(this.apis.admin_user + "/" + user.get("userId"));
+        user.overrideUrl(AdminApiResource.admin_user + "/" + user.get("userId"));
         user.save({}, {
             dataType:'json',
             success:function(model, response){
@@ -262,7 +262,7 @@
         }
 
         var user = new User();
-        user.overrideUrl(this.apis.admin_user);
+        user.overrideUrl(AdminApiResource.admin_user);
         user.set('userId', userId);
         user.fetch({
             dataType:'json',
@@ -295,7 +295,7 @@
             return;
         }
 
-        searchResults.overrideUrl(this.apis.admin_booking);
+        searchResults.overrideUrl(AdminApiResource.admin_booking);
         searchResults.fetch({
             data: bookingSearchRepresentation.toQueryString(),
             dataType:'json',
@@ -321,7 +321,7 @@
             Info.warn('AdminManager::updateBooking:: session does not exist, exit');
             return;
         }
-        booking.overrideUrl(this.apis.admin_booking);
+        booking.overrideUrl(AdminApiResource.admin_booking);
         booking.save({},{
             dataType:'json',
 
@@ -350,7 +350,7 @@
         	return;
         }
         var booking = new Booking();
-        booking.overrideUrl(this.apis.admin_booking);
+        booking.overrideUrl(AdminApiResource.admin_booking);
         booking.set("bookingId", bookingId);
         booking.fetch({},{
             dataType:'json',

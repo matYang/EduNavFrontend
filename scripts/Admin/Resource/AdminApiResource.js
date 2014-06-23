@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    this.AdminApiResource = function () {
+    this.AdminApiResource = (function () {
 
         /*---------------  API level constants   --------------*/
         var api_modules = {
@@ -61,6 +61,6 @@
         };
 
         return api_assembler();
-    };
+    })();
 
 }).call(this);

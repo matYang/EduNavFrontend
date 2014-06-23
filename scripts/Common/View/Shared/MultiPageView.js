@@ -61,7 +61,7 @@ var MultiPageView = Backbone.View.extend({
         if (!this.messages instanceof Backbone.Collection) {
             this.messages = this.allMessages;
         }
-        this.$domContainer = this.$domContainer || $("#"+this.entryContainer);
+        this.$domContainer = $("#"+this.entryContainer);
         this.$domContainer.empty();
         if (this.messages.length > 0) {
             if (this.table) {

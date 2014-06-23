@@ -1,25 +1,26 @@
 var SearchResultView = MultiPageView.extend({
+    pageNumberClass: "searchResultPageNumber",
+    pageNumberId: "searchResultPageNumber",
+    pageNavigator: "courseSearchResultNavigator",
+    pageNavigatorClass: "page blank1 clearfix",
+    entryContainer: "searchResultDisplayPanel",
+    noMessage: '<div class="no_data"><div>很抱歉，没有找到符合您条件的课程~~</div><p>您可以尝试更换关键词搜索，或调整关键字，如""改为""。</p></div>',
+    extPn: true,
+    entryHeight: 157,
+    pageEntryNumber: 10,
+    actionClass: "viewDetail",
     
     initialize: function (allMessages, messageList, compareWidget) {
-        _.bindAll(this, "render", "bindEvents", "transferURL", "close");
-        this.messages = messageList;
-        this.allMessages = allMessages;
-        this.compareWidget = compareWidget;
-        this.entryTemplate = _.template(tpl.get("searchResultEntry"));
-        this.pageNumberClass = "searchResultPageNumber";
-        this.pageNumberId = "searchResultPageNumber";
-        this.entryEvent = this.transferURL;
-        this.pageNavigator = "courseSearchResultNavigator";
-        this.pageNavigatorClass = "page blank1 clearfix";
-        this.user = app.sessionManager.sessionModel;
-        this.entryHeight = 157;
-        this.pageEntryNumber = 10;
-        this.actionClass = "viewDetail";
-        this.entryContainer = "searchResultDisplayPanel";
-        this.$domContainer = $("#searchResultDisplayPanel");
-        this.noMessage = '<div class="no_data"><div>很抱歉，没有找到符合您条件的课程~~</div><p>您可以尝试更换关键词搜索，或调整关键字，如""改为""。</p></div>';
+        if (!this.initialized) {
+            _.bindAll(this, "bindEvents", "entryEvent", "close");
+            this.messages = messageList || this.messages;
+            this.allMessages = allMessages || this.allMessages;
+            this.compareWidget = compareWidget || this.compareWidget;
+            this.entryTemplate = _.template(tpl.get("searchResultEntry"));
+            this.user = app.sessionManager.sessionModel;
+            this.initialized = true;
+        }
         this.isClosed = false;
-        this.extPn = true;
         this.render();
         this.bindEvents();
     },
@@ -58,7 +59,7 @@ var SearchResultView = MultiPageView.extend({
         return course.get("price");
     },
 
-    transferURL: function (courseId) {
+    entryEvent: function (courseId) {
         app.navigate("course/" + courseId, true);
     },
 

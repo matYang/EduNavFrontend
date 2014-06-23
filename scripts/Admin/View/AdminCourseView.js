@@ -1,56 +1,54 @@
 var AdminCourseView = BaseFormView.extend({
     el: "#courseCRUDContainer",
-    fields: [],
     form: true,
     formElem: "adminCourseForm",
     submitButtonId: "coursePostSubmit",
     callback: "uploadTarget",
+    fields: [
+         new BaseField({
+            name: "教室照片1",
+            fieldId: "classImg1",
+            type: "file",
+            mandatory: true,
+            previewId: "preview1"
+        }), 
+        new BaseField({
+            name: "教室照片2",
+            fieldId: "classImg2",
+            type: "file",
+            mandatory: true,
+            previewId: "preview2"
+        }),
+        new BaseField({
+            name: "教室照片3",
+            fieldId: "classImg3",
+            type: "file",
+            mandatory: true,
+            previewId: "preview3"
+        }),
+        new BaseField({
+            name: "教室照片4",
+            fieldId: "classImg4",
+            type: "file",
+            mandatory: true,
+            previewId: "preview4"
+        }),
+        new BaseField({
+            name: "教室照片5",
+            fieldId: "classImg5",
+            type: "file",
+            mandatory: true,
+            previewId: "preview5"
+        }),
+    ],
     initialize: function(params){
         _.bindAll(this, "render", "bindEvents", "renderCategories", "renderSubCategories", "renderThirdCategories", "renderLocations", "renderL2Locations", "renderL3Locations", "close");
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
         params = params || {};
-        var apis = new AdminApiResource();
         this.template = _.template(tpl.get("adminCourse"));
-        this.action = apis.admin_course;
+        this.action = AdminApiResource.admin_course;
         this.create = false;
-        this.fields = [
-             new BaseField({
-                name: "教室照片1",
-                fieldId: "classImg1",
-                type: "file",
-                mandatory: true,
-                previewId: "preview1"
-            }), 
-            new BaseField({
-                name: "教室照片2",
-                fieldId: "classImg2",
-                type: "file",
-                mandatory: true,
-                previewId: "preview2"
-            }),
-            new BaseField({
-                name: "教室照片3",
-                fieldId: "classImg3",
-                type: "file",
-                mandatory: true,
-                previewId: "preview3"
-            }),
-            new BaseField({
-                name: "教室照片4",
-                fieldId: "classImg4",
-                type: "file",
-                mandatory: true,
-                previewId: "preview4"
-            }),
-            new BaseField({
-                name: "教室照片5",
-                fieldId: "classImg5",
-                type: "file",
-                mandatory: true,
-                previewId: "preview5"
-            }),
-        ];
         if (params.course) {
             this.render(params.course);
         } else if (params.courseId){
@@ -70,7 +68,7 @@ var AdminCourseView = BaseFormView.extend({
     },
 
     render: function (course) {
-        this.course = course;
+        this.course = course.clone();
         this.$el.append(this.template(course.toJSON()));
         if (this.create) {
             $("#adminCourseForm").find(".detail").hide();
@@ -255,6 +253,13 @@ var AdminCourseView = BaseFormView.extend({
     },
     close: function () {
         if (!this.isClosed) {
+            $("#createSimilarCourse").off();
+            $("#cancel").off();
+            $("#editCourse").off();
+            $("select[name=category]").off();
+            $("select[name=subCategory]").off();
+            $("select[name=province]").off();
+            $("select[name=city]").off();
             this.isClosed = false;
             this.$el.empty();
         }

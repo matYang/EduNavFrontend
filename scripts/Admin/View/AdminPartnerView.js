@@ -10,9 +10,8 @@ var AdminPartnerView = BaseFormView.extend({
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
         params = params || {};
-        var apis = new AdminApiResource();
         this.template = _.template(tpl.get("adminPartner"));
-        this.action = apis.admin_partner;
+        this.action = AdminApiResource.admin_partner;
         this.create = false;
         if (params.partner) {
             this.render(params.partner);

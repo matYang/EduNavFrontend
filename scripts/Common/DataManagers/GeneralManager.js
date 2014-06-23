@@ -27,7 +27,6 @@
     };
 
     this.GeneralManager = function(sessionManager){
-        this.apis = new ApiResource();
         this.sessionManager = sessionManager;
         this.sessionManager.registerManager(this);
 
@@ -50,7 +49,7 @@
             callback.success(testMockObj.testCourses.get(courseId));
             return;
         }
-        course.overrideUrl(this.apis.general_course);
+        course.overrideUrl(ApiResource.general_course);
         course.set('courseId', courseId);
         course.fetch({
             dataType:'json',
@@ -73,7 +72,7 @@
 
     GeneralManager.prototype.batchFetchCourses = function (courseIds, callback) {
         var courses = new Courses();
-        courses.overrideUrl(this.apis.general_courseByIdList);
+        courses.overrideUrl(ApiResource.general_courseByIdList);
         var idList = "idList=" + courseIds.join("-");
         courses.fetch({
             dataType:'json',
@@ -109,7 +108,7 @@
             return;
         }
 
-        searchResults.overrideUrl(this.apis.general_course);
+        searchResults.overrideUrl(ApiResource.general_course);
         searchResults.fetch({
             data: courseSearchRepresentation.toQueryString(),
             dataType:'json',
@@ -136,7 +135,7 @@
             return;
         }
         $.ajax({
-            url:this.apis.general_category,
+            url:ApiResource.general_category,
             type:'GET',
             dataType:'json',
             success: function(data, textStatus, jqXHR){
@@ -162,7 +161,7 @@
             return;
         }
         $.ajax({
-            url:this.apis.general_location,
+            url:ApiResource.general_location,
             type:'GET',
             dataType:'json',
             success: function(data, textStatus, jqXHR){

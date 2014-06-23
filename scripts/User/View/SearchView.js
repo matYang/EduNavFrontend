@@ -57,7 +57,7 @@ var SearchView = Backbone.View.extend({
             this.searchResultView.messages.reset(searchResult.toArray());
         }
         $("#resultNum").html(searchResults.length);
-        this.searchResultView.render.call(this);
+        this.searchResultView.render();
     },
     renderCategories: function (categories){
         this.categories = categories;

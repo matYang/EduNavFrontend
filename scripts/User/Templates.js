@@ -1185,7 +1185,7 @@
             <div class="field">
                 <label>姓<s></s>名</label>
                 <input class="text" type="text" id="inputName" value="<%= name %>">
-                <span class="action"><span class="form_tip"><span class="form_tip_top">请填写实际入学人姓名</span><span class="form_tip_bottom"></span></span></span>
+                <span class="action" id="inputName_info"><span class="form_tip"><span class="form_tip_top">请填写实际入学人姓名</span><span class="form_tip_bottom"></span></span></span>
             </div>   
             <div class="field">
                 <label>手<s></s>机</label>

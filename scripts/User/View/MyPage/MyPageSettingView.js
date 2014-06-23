@@ -2,34 +2,34 @@ var MyPageSettingView = BaseFormView.extend({
     el:"#mypage_content",
     form: false,
     submitButtonId: "updateInfo",
+
     initialize: function () {
         _.bindAll(this, 'render', 'close','submitAction', 'bindEvents', 'saveSuccess', 'saveError');
         this.isClosed = false;
+        if (!this.fields || !this.fields.length) {
+            this.fields = [
+                new BaseField({
+                    name:"名字",
+                    fieldId: "inputName",
+                    fieldType: "text",
+                    mandatory: true,
+                    modelAttr: "name",
+                    buildValidatorDiv: this.buildValidatorDiv
+                }),
+                new BaseField({
+                    name:"E-mail",
+                    fieldId: "inputEmail",
+                    fieldType: "text",
+                    mandatory: false,
+                    regex: Utilities.emailRegex,
+                    modelAttr: "email",
+                    buildValidatorDiv: this.buildValidatorDiv
+                })
+            ];
+        }
         this.template = _.template(tpl.get('mypage_setting'));
         this.model = app.sessionManager.sessionModel.clone();
         app.viewRegistration.register(this);
-        this.fields = [
-            new BaseField({
-                name:"名字",
-                fieldId: "inputName",
-                fieldType: "text",
-                mandatory: true,
-                modelAttr: "name",
-                buildValidatorDiv: this.buildValidatorDiv
-            }),
-            new BaseField({
-                name:"E-mail",
-                fieldId: "inputEmail",
-                fieldType: "text",
-                mandatory: false,
-                regex: Utilities.emailRegex,
-                modelAttr: "email",
-                buildValidatorDiv: this.buildValidatorDiv
-            })
-        ];
-        if (testMockObj.testMode === true) {
-            this.model = testMockObj.sampleUser;
-        }
         this.render();
         this.bindEvents();
     },

@@ -3,9 +3,6 @@
 
     //partner module currently is not greatest importance, it will be left to be finished when both admin and user modules are finished
     this.PartnerManager = function(sessionManager){
-
-        this.apis = new ApiResource();
-
         this.sessionManager = sessionManager;
         this.sessionManager.registerManager(this);
     };
@@ -28,7 +25,7 @@
             return;
         }
         
-        partner.overrideUrl(this.apis.partner_partner);
+        partner.overrideUrl(ApiResource.partner_partner);
         partner.set('partnerId', this.sessionManager.getId());
         partner.fetch({
             dataType:'json',
@@ -60,7 +57,7 @@
 
         $.ajax({
             type: 'GET',
-            url: self.apis.partner_changePassword + '/' + self.sessionManager.getId(),
+            url: ApiResource.partner_changePassword + '/' + self.sessionManager.getId(),
             dataType: 'json',
             success: function(data){
                 if(callback){
@@ -92,7 +89,7 @@
 
         $.ajax({
             type: 'PUT',
-            url: self.apis.partner_changePassword + '/' + self.sessionManager.getId(),
+            url: ApiResource.partner_changePassword + '/' + self.sessionManager.getId(),
             data: JSON.stringify(opt),
             dataType: 'json',
             contentType: 'application/json',
@@ -125,7 +122,7 @@
         $.ajax({
             type: 'GET',
             async: true,
-            url: self.apis.partner_forgetPassword,
+            url: ApiResource.partner_forgetPassword,
             data: $.param({'phone': phone}),
             dataType: 'json',
             success: function(data){
@@ -157,7 +154,7 @@
 
         $.ajax({
             type: 'POST',
-            url: self.apis.partner_forgetPassword,
+            url: ApiResource.partner_forgetPassword,
             data: JSON.stringify(opt),
             dataType: 'json',
             contentType: 'application/json',

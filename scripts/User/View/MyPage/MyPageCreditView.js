@@ -11,7 +11,7 @@ var MyPageCreditView = Backbone.View.extend({
     },
     render: function () {
         this.$el.append(this.template);
-        var credits = this.user.get("credits");
+        var credits = this.user.get("creditList");
         this.creditTable = new CreditTableView(credits, credits);
         this.creditStore = new CreditStoreView();
         this.creditStore.hide();

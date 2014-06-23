@@ -3,8 +3,6 @@
 
     this.UserManager = function(sessionManager){
 
-        this.apis = new ApiResource();
-
         this.sessionManager = sessionManager;
         this.sessionManager.registerManager(this);
     };
@@ -26,7 +24,7 @@
 
         $.ajax({
             type: 'GET',
-            url: self.apis.user_smsVerification,
+            url: ApiResource.user_smsVerification,
             data: $.param({'phone': phone}),
             dataType: 'json',
             success: function(data){
@@ -57,7 +55,7 @@
 
         $.ajax({
             type: 'POST',
-            url: self.apis.user_smsVerification,
+            url: ApiResource.user_smsVerification,
             data: JSON.stringify({'phone': phone, 'authCode': authCode.toUpperCase()}),
             dataType: 'json',
             contentType: 'application/json',
@@ -86,7 +84,7 @@
         }
         $.ajax({
             type: "POST",
-            url: this.apis.user_user,
+            url: ApiResource.user_user,
             dataType: "json",
             async: true,
             data: JSON.stringify(newUser),
@@ -119,7 +117,7 @@
             return;
         }
 
-        user.overrideUrl(this.apis.user_user);
+        user.overrideUrl(ApiResource.user_user);
         user.set('userId', this.sessionManager.getId());
         user.fetch({
             dataType:'json',
@@ -148,7 +146,7 @@
             return;
         }
 
-        user.overrideUrl(this.apis.user_info);
+        user.overrideUrl(ApiResource.user_info);
         user.set('userId', this.sessionManager.getId());
         user.save({},{
             dataType:'json',
@@ -180,7 +178,7 @@
 
         $.ajax({
             type: 'GET',
-            url: self.apis.user_changePassword + '/' + self.sessionManager.getId(),
+            url: ApiResource.user_changePassword + '/' + self.sessionManager.getId(),
             dataType: 'json',
             contentType: 'application/json',
             success: function(data){
@@ -213,7 +211,7 @@
         opt.authCode = opt.authCode.toUpperCase();
         $.ajax({
             type: 'PUT',
-            url: self.apis.user_changePassword + '/' + self.sessionManager.getId(),
+            url: ApiResource.user_changePassword + '/' + self.sessionManager.getId(),
             data: JSON.stringify(opt),
             dataType: 'text',
             contentType: 'application/json',
@@ -248,7 +246,7 @@
         $.ajax({
             type: 'GET',
             async: true,
-            url: self.apis.user_forgetPassword,
+            url: ApiResource.user_forgetPassword,
             data: $.param({'phone': phone}),
             dataType: 'json',
             contentType: 'application/json',
@@ -282,7 +280,7 @@
         opt.authCode = opt.authCode.toUpperCase();
         $.ajax({
             type: 'POST',
-            url: self.apis.user_forgetPassword,
+            url: ApiResource.user_forgetPassword,
             data: JSON.stringify(opt),
             dataType: 'json',
             contentType: 'application/json',
@@ -311,7 +309,7 @@
         }
 
         var bookings = new Bookings();
-        bookings.overrideUrl(this.apis.user_booking);
+        bookings.overrideUrl(ApiResource.user_booking);
         bookings.fetch({
             data: bookingSearchRepresentation.toQueryString(),
             dataType:'json',
@@ -339,7 +337,7 @@
             Info.warn('UserManager::initBooking:: invalid parameter');
             return;
         }
-        newBooking.overrideUrl(this.apis.user_booking);
+        newBooking.overrideUrl(ApiResource.user_booking);
         newBooking.set('bookingId', -1);
         newBooking.set("course", undefined);
         newBooking.set('userId', this.sessionManager.getId());
@@ -376,7 +374,7 @@
         }
 
        
-        booking.overrideUrl(this.apis.user_booking);
+        booking.overrideUrl(ApiResource.user_booking);
         booking.set('userId', this.sessionManager.getId());
         booking.save({},{
             dataType:'json',
@@ -406,7 +404,7 @@
 
         $.ajax({
             type: 'PUT',
-            url: self.apis.user_coupon + "/" + couponId,
+            url: ApiResource.user_coupon + "/" + couponId,
             dataType: 'json',
             success: function(data){
                 if(callback){

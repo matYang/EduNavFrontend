@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    this.ApiResource = function () {
+    this.ApiResource = (function () {
 
         /*---------------  API level constants   --------------*/
         var api_modules = {
@@ -97,6 +97,6 @@
         };
 
         return api_assembler();
-    };
+    })();
 
 }).call(this);

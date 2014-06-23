@@ -4,16 +4,13 @@
         this.identifier = identifier;
         switch (this.identifier){
             case EnumConfig.ModuleIdentifier.user:
-                this.apis = new ApiResource();
                 this.sessionModel = new User();
                 break;
             case EnumConfig.ModuleIdentifier.partner:
-                this.apis = new ApiResource();
                 this.sessionModel = new Partner();
                 break;
 
             case EnumConfig.ModuleIdentifier.admin:
-                this.apis = new AdminApiResource();
                 this.sessionModel = new Admin();
                 break;
             default:
@@ -57,17 +54,17 @@
         var self = this;
         switch (this.identifier){
             case EnumConfig.ModuleIdentifier.user:
-                this.sessionModel.overrideUrl(this.apis.user_findSession);
+                this.sessionModel.overrideUrl(ApiResource.user_findSession);
                 this.sessionModel.set('userId', -1);
                 break;
 
             case EnumConfig.ModuleIdentifier.partner:
-                this.sessionModel.overrideUrl(this.apis.partner_findSession);
+                this.sessionModel.overrideUrl(ApiResource.partner_findSession);
                 this.sessionModel.set('partnerId', -1);
                 break;
 
             case EnumConfig.ModuleIdentifier.admin:
-                this.sessionModel.overrideUrl(this.apis.admin_findSession);
+                this.sessionModel.overrideUrl(AdminApiResource.admin_findSession);
                 this.sessionModel.set('adminId', -1);
                 break;
 
@@ -120,21 +117,21 @@
 
         switch (this.identifier){
             case EnumConfig.ModuleIdentifier.user:
-                this.sessionModel.overrideUrl(this.apis.user_login);
+                this.sessionModel.overrideUrl(ApiResource.user_login);
                 this.sessionModel.set('phone', key);
                 this.sessionModel.set('password', password);
                 this.sessionModel.set('userId', -1);
                 break;
 
             case EnumConfig.ModuleIdentifier.partner:
-                this.sessionModel.overrideUrl(this.apis.partner_login);
+                this.sessionModel.overrideUrl(ApiResource.partner_login);
                 this.sessionModel.set('phone', key);
                 this.sessionModel.set('password', password);
                 this.sessionModel.set('partnerId', -1);
                 break;
 
             case EnumConfig.ModuleIdentifier.admin:
-                this.sessionModel.overrideUrl(this.apis.admin_login);
+                this.sessionModel.overrideUrl(AdminApiResource.admin_login);
                 this.sessionModel.set('reference', key);
                 this.sessionModel.set('password', password);
                 this.sessionModel.set('adminId', -1);
@@ -176,23 +173,21 @@
         }
         switch (this.identifier){
             case EnumConfig.ModuleIdentifier.user:
-                url = this.apis.user_logout;
-                this.sessionModel.overrideUrl(this.apis.user_logout);
+                url = ApiResource.user_logout;
                 break;
 
             case EnumConfig.ModuleIdentifier.partner:
-                url = this.apis.partner_logout;
-                this.sessionModel.overrideUrl(this.apis.partner_logout);
+                url = ApiResource.partner_logout;
                 break;
 
             case EnumConfig.ModuleIdentifier.admin:
-                url = this.apis.admin_logout;
-                this.sessionModel.overrideUrl(this.apis.admin_logout);
+                url = AdminApiResource.admin_logout;
                 break;
 
             default:
                 throw new Error('fetchSession模块识别失败');
         }
+        this.sessionModel.overrideUrl(url);
         $.ajax({
             type: 'PUT',
             url: url + "/" + this.sessionModel.id,
