@@ -261,7 +261,7 @@
                         </dd>
                     </dl>
                     <dl class="clearfix" id="invitationCodeContainer">
-                        <dt><span>*</span>邀请码：</dt>
+                        <dt>邀请码：</dt>
                         <dd>
                             <input id="invitationCodeInput" type="text" class="text" value="" placeholder="由朋友邀请注册的用户会获得额外的优惠">
                         </dd>
@@ -1261,21 +1261,32 @@
         <div class="sign_up_inner">
             <div class="sign_up_title">
                 <h2 class="fleft">忘记密码</h2>
-                <div class="fright"> <span class="active"><b>1</b>验证身份</span> <span class=""><b>2</b>设置新密码</span> <span class=""><b>3</b>成功</span></div>
             </div>
             <div class="get_password">
                <dl class="clearfix" id="cellContainer">
                     <dt><span>*</span>手机：</dt>
                     <dd>
-                        <input id="registerCellInput" type="text" class="text" value="" placeholder="请输入手机号(请不要输入特殊符号或者字母)"><span class="right"></span>
+                        <input id="findPassCellInput" type="text" class="text" value="" placeholder="请输入手机号(请不要输入特殊符号或者字母)"><span class="right"></span>
                     </dd>
                 </dl> 
-                <dl class="clearfix" id="authContainer">
+                <dl class="clearfix verify" id="authContainer">
                     <dt><span>*</span>手机验证码：</dt>
                     <dd>
                         <input id="authCode" type="text" class="text">
                         <input type="button" value="获取手机验证码" id="getSms">
-                        <p id="smsInfo" class="clear" style="font-size:12px; margin-left:5px; color:#666;">将向**发送短信，2分钟内请勿重复点击，注意查收</p>
+                        <p id="smsInfo" class="clear" style="font-size:12px; margin-left:5px; color:#666;">点击发送验证短信，2分钟内请勿重复点击，注意查收</p>
+                    </dd>
+                </dl>
+               <dl class="clearfix" id="passContainer">
+                    <dt><span>*</span>新密码：</dt>
+                    <dd>
+                        <input type="password" id="findPassPassInput" class="password" value="" placeholder=""><span class="right"></span>
+                    </dd>
+                </dl> 
+                <dl class="clearfix" id="confirmContainer">
+                    <dt><span>*</span>确认新密码：</dt>
+                    <dd>
+                        <input type="password" id="findPassConfirmInput" class="password">
                     </dd>
                 </dl>
                 <div class="btn">
@@ -1292,26 +1303,11 @@
         <div class="sign_up_inner">
             <div class="sign_up_title">
                 <h2 class="fleft">忘记密码</h2>
-                <div class="fright"> <span class="active"><b>1</b>验证身份</span> <span class="active"><b>2</b>设置新密码</span> <span class=""><b>3</b>成功</span></div>
             </div>
             <div class="get_password">
-               <dl class="clearfix">
-                    <dt><span>*</span>新密码：</dt>
-                    <dd>
-                        <input type="text" class="password" value="" placeholder=""><span class="right"></span>
-                    </dd>
-                </dl> 
-                <dl class="clearfix">
-                    <dt><span>*</span>确认新密码：</dt>
-                    <dd>
-                        <input type="text" class="password">
-                    </dd>
-                </dl>
-                <div class="btn">
-                    <input type="button" class="btn_G" value="下一步">
-                </div>                
+                <div class="get_password_s">恭喜，您的密码已经重置成功！</div>
             </div>
-            <!--account end--> 
+            <!--get_password end--> 
         </div>
     </div>
 </script>
@@ -1321,7 +1317,7 @@
         <div id="popMessage">
         </div>
         <div class="btn" style="text-align:center; padding-top:15px;">
-            <input class="btn_O" type="button" value="确认">
+            <input id="gotIt" class="btn_O" type="button" value="确认">
         </div>
     </div>
 </script>

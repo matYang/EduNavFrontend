@@ -17,7 +17,7 @@ var NewBookingView = BaseFormView.extend({
                 mandatory: true,
                 modelAttr: "name",
                 validClass: "success",
-                buildValidatorDiv: this.buildValidatorDiv            
+                buildValidatorDiv: Utilities.defaultValidDivBuilder        
             }),
             new BaseField({
                 name: "手机号码",
@@ -27,7 +27,7 @@ var NewBookingView = BaseFormView.extend({
                 modelAttr: "phone",
                 validClass: "success",
                 validatorFunction: Utilities.phoneValid,
-                buildValidatorDiv: this.buildValidatorDiv
+                buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
             new BaseField({
                 name: "E-mail",
@@ -37,7 +37,7 @@ var NewBookingView = BaseFormView.extend({
                 modelAttr: "email",
                 validClass: "success",
                 validatorFunction: Utilities.emailValid,
-                buildValidatorDiv: this.buildValidatorDiv
+                buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
             new BaseField({
                 name: "预约报名日期",
@@ -46,7 +46,7 @@ var NewBookingView = BaseFormView.extend({
                 validClass: "success",
                 type: "text",
                 mandatory: true,
-                buildValidatorDiv: this.buildValidatorDiv
+                buildValidatorDiv: Utilities.defaultValidDivBuilder
             })
         ];
         if (params.courseId) {

@@ -237,5 +237,38 @@ var Utilities = {
         if (e.data.fieldType === "number" && !(e.which >= 48 && e.which <= 57) && !(e.which >= 96 && e.which <= 105) && e.which > 13) {
             e.preventDefault();
         }
+    },
+    defaultValidDivBuilder: function (valid, type, text) {
+        //This function overloads baseField's default buildValidatorDiv. It should only be invoked by BaseField's testValue function, thus this refers the BaseForm model in this case,
+        //This function is not bound to the view.
+        $("#"+this.get("fieldId")+"_info").remove();
+        if (valid) {
+            $("#"+this.get("fieldId")).removeClass("wrong_color");
+            return '<dd class="success" id="'+this.get("fieldId")+'_right"></dd>';
+        } else if (type === "empty") {
+            $("#"+this.get("fieldId")).addClass("wrong_color");
+            return '<dd class="wrong" id="'+this.get("fieldId")+'_wrong" ><span class="form_tip"><span class="form_tip_top">' + this.get("name")+"不能为空" + '</span><span class="form_tip_bottom"></span></span></dd>';
+        } else if (text) {
+            $("#"+this.get("fieldId")).addClass("wrong_color");
+            return '<dd class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' + text + '</span><span class="form_tip_bottom"></span></span></dd>';
+        } else {
+            $("#"+this.get("fieldId")).addClass("wrong_color");
+            return '<dd class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' +  this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></dd>';
+        }
+    },
+    defaultSmsRequestHandler: function ($button, $info ) {
+        return {
+            success: function () {
+                $info.html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试").prop("disabled", true);
+                $button.val("重新发送");
+                setTimeout(function(){
+                    $("#smsInfo").prop("disabled", false);
+                }, 120000);
+            },
+            error: function () {
+                $info.html("验证码发送失败，请检查网络正常并重试");
+                $button.val("重新发送");
+            }
+        };
     }
 };

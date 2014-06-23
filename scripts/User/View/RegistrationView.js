@@ -20,7 +20,8 @@ var RegistrationView = BaseFormView.extend({
                 mandatory: true,
                 validatorFunction: Utilities.phoneValid,
                 modelAttr: "phone",
-                validatorContainer: $("#cellContainer")
+                validatorContainer: $("#cellContainer"),
+                buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
             new BaseField({
                 name: "密码",
@@ -29,7 +30,8 @@ var RegistrationView = BaseFormView.extend({
                 mandatory: true,
                 validatorFunction: Utilities.passValid,
                 modelAttr: "password",
-                validatorContainer: $("#passContainer")
+                validatorContainer: $("#passContainer"),
+                buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
             new BaseField({
                 name: "确认密码",
@@ -38,7 +40,8 @@ var RegistrationView = BaseFormView.extend({
                 mandatory: true,
                 validatorFunction: Utilities.passValid,
                 modelAttr: "confirmPassword",
-                validatorContainer: $("#confirmContainer")
+                validatorContainer: $("#confirmContainer"),
+                buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
             new BaseField({
                 name: "邀请码",
@@ -54,7 +57,8 @@ var RegistrationView = BaseFormView.extend({
                 type: "text",
                 mandatory: true,
                 modelAttr: "authCode",
-                validatorContainer: $("#authContainer")
+                validatorContainer: $("#authContainer"),
+                buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
         ];
         this.ref = params.ref;
@@ -66,19 +70,9 @@ var RegistrationView = BaseFormView.extend({
         $("#getSms").on("click", function (e) {
             if (Utilities.phoneValid(that.model.phone).valid) {
                 $("#getSms").val("发送中...");
-                app.userManager.smsVerification(that.model.phone,{
-                    success: function () {
-                        $("#smsInfo").html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试").prop("disabled", true);
-                        $("#getSms").val("重新发送");
-                        setTimeout(function(){
-                            $("#smsInfo").prop("disabled", false);
-                        }, 120000);
-                    },
-                    error: function () {
-                        $("#getSms").val("重新发送");
-                        $("#smsInfo").html("验证码发送失败，请检查网络正常并重试");
-                    },
-                });
+                app.userManager.smsVerification(that.model.phone, Utilities.defaultSmsRequestHandler($("#getSms"), $("#smsInfo") ));
+            } else {
+                $("#smsInfo").html("请先输入您的手机号");
             }
         });
         BaseFormView.prototype.bindEvents.call(this);

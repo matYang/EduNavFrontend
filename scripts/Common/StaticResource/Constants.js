@@ -23,7 +23,7 @@ var Constants = {
 
     templateResources: [
         "topBar-loggedIn", "topBar-notLoggedIn", 
-        "registration", "registration_finish",
+        "registration", "registration_finish", "findPassword_1", "findPassword_2",
         "front", "frontCategoryContainer", "search", "searchResultEntry", "courseDetail", "newBooking", "booking_submitted",
         "mypage_base", "mypage_dashboard", "mypage_bookingList", "mypage_bookingDetail", "booking_entry", 
         "mypage_coupons", "mypage_unclaimedCouponRow", "mypage_claimedCouponRow", "mypage_couponClaimed", "mypage_couponUnclaimed",

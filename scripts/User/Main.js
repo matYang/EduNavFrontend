@@ -141,8 +141,8 @@ var AppRouter = Backbone.Router.extend({
         
     },
 
-    lost: function (token) {
-        this.findPasswordView = new FindPasswordView({"token":token});
+    lost: function () {
+        this.findPasswordView = new FindPasswordView();
     },
     error: function () {
         app.navigate("search", {trigger:true, replace:true});   

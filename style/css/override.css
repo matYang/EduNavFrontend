@@ -32,3 +32,14 @@ li a, .page a {
 	cursor:pointer;
 }
 
+#topbar_loginbox {
+	z-index: 100;
+}
+
+#registerVeriCode_wrong {
+	margin-left: 132px;
+}
+
+.get_password #authCode {
+	width:100px;
+}

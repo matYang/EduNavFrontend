@@ -19,7 +19,6 @@ var AppRouter = Backbone.Router.extend({
     initialize: function () {
         //initializing the registration service, now views should be hooked to DOM via registration
         this.viewRegistration = new ViewRegistrationService ();
-        debugger;
         //initializing the storage services, some resuable user information will be persisted by local storage
         this.storage = new StorageService ();
         this.eventClearService = new EventClearService();
