@@ -72,6 +72,13 @@
 
     GeneralManager.prototype.batchFetchCourses = function (courseIds, callback) {
         var courses = new Courses();
+        if (testMockObj.testMode) {
+            for (var i = 0; i < courseIds.length; i++) {
+                courses.add(testMockObj.testCourses.get(courseIds[i]));
+            }
+            callback.success(courses);
+            return;
+        }
         courses.overrideUrl(ApiResource.general_courseByIdList);
         var idList = "idList=" + courseIds.join("-");
         courses.fetch({

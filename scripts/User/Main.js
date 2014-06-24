@@ -80,17 +80,33 @@ var AppRouter = Backbone.Router.extend({
     },
 
     front: function () {
-        this.frontPageVew = new FrontPageView();
+        if (!this.frontPageView) {
+            this.frontPageVew = new FrontPageView();
+        } else if (this.frontPageVew.isClosed) {
+            this.frontPageVew.render();
+        }
     },
 
     search: function () {
-        this.searchView = new SearchView();
+        if (!this.searchView) {
+            this.searchView = new SearchView();
+        } else if (this.searchView.isClosed) {
+            this.searchView.render();
+        }
     },
 
     encodedSearch: function (encodedSearchKey) {
-        this.searchVew = new SearchView ({
-            "searchKey": encodedSearchKey
-        });
+        if (!this.searchView) {
+            this.searchVew = new SearchView ({
+                "searchKey": encodedSearchKey
+            });
+        } else if (this.searchView.isClosed) {
+            this.searchView.render({
+                "searchKey": encodedSearchKey
+            });
+        } else {
+
+        }
         // this.advertisementView = new AdvertisementView ();
     },
     myBooking: function (id) {
@@ -129,7 +145,13 @@ var AppRouter = Backbone.Router.extend({
     },
 
     compare: function () {
-        this.compareView = new CompareView();
+        if (!this.compareView) {
+            this.compareView = new CompareView();
+        } else {
+            if (this.compareView.isClosed) {
+                this.compareView.load();
+            }
+        }
     },
 
     register: function (ref) {

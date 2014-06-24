@@ -1,7 +1,7 @@
 var MyPageBookingView = Backbone.View.extend({
-    el:"#mypage_content",
+    el: "#mypage_content",
     initialize: function () {
-        _.bindAll(this, "render", "bindEvents", "close");
+        _.bindAll(this, "render",   "close");
         this.template = _.template(tpl.get("mypage_bookingList"));
         app.viewRegistration.register(this);
         this.user = app.sessionManager.sessionModel;
@@ -12,7 +12,6 @@ var MyPageBookingView = Backbone.View.extend({
         this.$el.append(this.template);
         this.bookingListView = new BookingListView(this.user.get("bookingList"), this.user.get("bookingList"), "booking");
     },
-    bindEvents: function () {},
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();

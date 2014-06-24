@@ -31,42 +31,41 @@ var MyPageView = Backbone.View.extend({
         Info.displayErrorPage("content", "个人页面加载失败，请稍后再试");
     },
     createChildView: function () {
-        var create = true;
         switch (this.query) {
-            case "bookingDetail":
-                if (!this.reference) {
-                    throw "invalid access";
-                }
-                this.activeChildView = new BookingDetailView({reference:this.reference});
-                break;
-            case "setting" :
-                this.activeChildView = new MyPageSettingView();
-                $("#editInfo").addClass("active");
-                break;
-            case "password" :
-                this.activeChildView = new MyPagePasswordView();
-                $("#editPass").addClass("active");
-                break;
-            case "coupon" :
-                this.activeChildView = new MyPageCouponView();
-                $("#couponAccount").addClass("active");
-                break;
-            case "credit" :
-                this.activeChildView = new MyPageCreditView();
-                $("#creditAccount").addClass("active");
-                break;
-            case "dashboard":
-                this.activeChildView = new MyPageDashboardView();   
-                $("#mypage_content").css("border", "none");
-                break;
-            case "booking": 
-                $("#bookingManage").addClass("active");
-                this.activeChildView = new MyPageBookingView();
-                break;
-            default:
-                break;
+        case "bookingDetail":
+            if (!this.reference) {
+                throw "invalid access";
+            }
+            this.activeChildView = new BookingDetailView({reference: this.reference});
+            break;
+        case "setting":
+            this.activeChildView = new MyPageSettingView();
+            $("#editInfo").addClass("active");
+            break;
+        case "password":
+            this.activeChildView = new MyPagePasswordView();
+            $("#editPass").addClass("active");
+            break;
+        case "coupon":
+            this.activeChildView = new MyPageCouponView();
+            $("#couponAccount").addClass("active");
+            break;
+        case "credit":
+            this.activeChildView = new MyPageCreditView();
+            $("#creditAccount").addClass("active");
+            break;
+        case "dashboard":
+            this.activeChildView = new MyPageDashboardView();
+            $("#mypage_content").css("border", "none");
+            break;
+        case "booking":
+            $("#bookingManage").addClass("active");
+            this.activeChildView = new MyPageBookingView();
+            break;
+        default:
+            break;
         }
-    },  
+    },
 
     bindEvents: function () {
         var that = this;
@@ -115,7 +114,7 @@ var MyPageView = Backbone.View.extend({
         if (!this.isClosed) {
             if (this.activeChildView) {
                 this.activeChildView.close();
-            }   
+            }
             this.$el.empty();
             this.isClosed = true;
         }

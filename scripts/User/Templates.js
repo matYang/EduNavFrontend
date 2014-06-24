@@ -43,7 +43,7 @@
                             <input id="login_password" type="password" class="text" placeholder="请输入密码">
                         </li>
                         <li class="clearfix">
-                            <div class="checkbox checked">记住我</div>
+                            <!-- <div class="checkbox checked">记住我</div> -->
                             <a id="forget_password" class="forget_password" href="#">忘记密码？</a>
                         </li>
                         <li><input id="login_button" class="btn_topnav_login" type="button" value="登 录"></li>
@@ -57,11 +57,7 @@
 <script type="text/template" id="tpl_banner">
     <div id="visual_container">
         <ul class="slidee">
-            <li style="display: none;"><a href="#"><img src="style/images/banner.jpg" alt="" height="320"></a></li>
-            <li style="display: none;"><a href="#"><img src="style/images/banner.jpg" alt="" height="320"></a></li>
-            <li style="display: block"><a href="#"><img src="style/images/banner.jpg" alt="" height="320"></a></li>
-            <li style="display: none;"><a href="#"><img src="style/images/banner.jpg" alt="" height="320"></a></li>
-            <li style="display: none;"><a href="#"><img src="style/images/banner.jpg" alt="" height="320"></a></li>
+            <li style="display: block;"><img src="style/images/banner.jpg" alt="" height="320"></li>
         </ul>
     </div>
 </script>

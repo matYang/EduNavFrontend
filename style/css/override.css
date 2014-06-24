@@ -43,3 +43,7 @@ li a, .page a {
 .get_password #authCode {
 	width:100px;
 }
+
+#popMessage {
+	height: 65px;
+}

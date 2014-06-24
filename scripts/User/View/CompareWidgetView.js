@@ -1,21 +1,24 @@
 var CompareWidgetView = Backbone.View.extend({
     el: "#CompareWidgetContainer",
+    courses: [],
     initialize: function () {
         this.isClosed = false;
         _.bindAll(this, "load", "bindEvents", "addCourse", "removeCourse", "render", "close");
         this.template = _.template(tpl.get("compareWidget"));
-        this.$el.append(this.template);
         this.courseTemplate = _.template(tpl.get("compareWidgetEntry"));
-        this.$domContainer = $("#compareItems");
         this.courseIds = app.storage.getCoursesToCompare();
         this.reload = false;
         this.load();
     },
     load: function () {
+        this.$el.empty().append(this.template);
+        this.$domContainer = $("#compareItems");
         if (this.courseIds && this.courseIds.length) {
             app.generalManager.batchFetchCourses(this.courseIds, {
                 "success": this.render,
-                "error": function (){}
+                "error": function () {
+                    return;
+                }
             });
         } else {
             this.courseIds = [];
@@ -24,17 +27,19 @@ var CompareWidgetView = Backbone.View.extend({
     },
     render: function (courses) {
         //load local storage
-        var buf = [];
+        var buf = [], i;
         this.courses = courses || new Courses();
         if (this.courses instanceof Backbone.Collection) {
             this.courses = this.courses.toArray();
         }
-        if (!this.map && BMap) {
+        if (typeof BMap !== "undefined" && !this.map) {
             this.renderMap();
         }
-        for (var i = 0; i < this.courses.length && i < 4; i++ ) {
-            buf.push(this.courseTemplate(this.courses[i]._toJSON()));
-            this.map.getLatLng(this.courses[i].get("location"));
+        for (i = 0; i < this.courses.length && i < 4; i++) {
+            buf[i] = this.courseTemplate(this.courses[i]._toJSON());
+            if (this.map) {
+                this.map.getLatLng(this.courses[i].get("location"));
+            }
         }
         this.$domContainer.empty().append(buf.join(""));
         if (!this.reload) {
@@ -48,15 +53,17 @@ var CompareWidgetView = Backbone.View.extend({
         $("#compare").on("click", function () {
             app.navigate("compare", true);
         });
-        this.$domContainer.on("click", ".remove", function (e) {
+        this.$domContainer.on("click", ".remove", function () {
             var id = Utilities.getId($(this).parent().attr("id"));
             that.removeCourse(id);
         }).on("click", "a", function (e) {
             e.preventDefault();
-            app.navigate("course/"+Utilities.getId($(e.target).parent().parent().attr("id")), true);
+            app.navigate("course/" + Utilities.getId($(e.target).parent().parent().attr("id")), true);
         });
-        $(window).on("focus", function(){
-            if (that.isClosed) return;
+        $(window).on("focus", function () {
+            if (that.isClosed) {
+                return;
+            }
             var idList = app.storage.getCoursesToCompare();
             if (!that.courseIds.compare(idList)) {
                 that.courseIds = idList;
@@ -70,29 +77,33 @@ var CompareWidgetView = Backbone.View.extend({
         if (app.storage.addCourseToCompare(course.id)) {
             this.courseIds = app.storage.getCoursesToCompare();
             this.$domContainer.append(this.courseTemplate(course._toJSON()));
-            this.courses.push(course);
-            this.map.getLatLng(course.get("location"));
-        } else {
-
-        }
-    },
-    removeCourse: function(id) {
-        $("#compareEntry_courseId_"+id).remove();
-        for (var i = 0; i < this.courses.length; i++ ) {
-            if (this.courses[i].id === Utilities.toInt(id)) {
-                this.map.removeMarker(this.courses[i].get("location"));
+            this.courses[this.courses.length] = course;
+            if (this.map) {
+                this.map.getLatLng(course.get("location"));
             }
         }
+    },
+    removeCourse: function (id) {
+        var i;
+        $("#compareEntry_courseId_" + id).remove();
+        if (this.map) {
+            for (i = 0; i < this.courses.length; i++) {
+                if (this.courses[i].id === Utilities.toInt(id)) {
+                    this.map.removeMarker(this.courses[i].get("location"));
+                }
+            }
+        }
+        $("#compare_" + id).children("input").attr("class", "add btn_g").val("+对比");
         app.storage.removeCourseFromCompare(id);
         this.courseIds = app.storage.getCoursesToCompare();
     },
     renderMap: function () {
-        var me = this, mapParams = {
+        var mapParams = {
             div: "mainMap",
             class: "mainPage-map",
             clickable: false
         };
-        this.map = app.storage.getViewCache("BaiduMapView", mapParams);
+        this.map = new BaiduMapView(mapParams);
         this.rendered = true;
     },
     close: function () {

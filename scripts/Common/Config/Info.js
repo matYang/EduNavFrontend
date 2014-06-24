@@ -14,8 +14,7 @@ var Info = {
     },
 
     displayErrorPage: function (div, message) {
-        $("#" + div).empty();
-        $("#" + div).append("<div class='errorMessage'>" + message + "</div>");
+        app.infoModal.setMessage(message).show();
     },
     displayNotice: function (message, callback) {
         app.infoModal.setMessage(message).show();

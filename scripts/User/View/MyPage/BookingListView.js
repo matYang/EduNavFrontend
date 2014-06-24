@@ -11,7 +11,7 @@ var BookingListView = MultiPageView.extend({
     noMessage: '<div class="no_data"><div>您目前没有未入学的订单哦~~</div></div>',
     $domContainer: null,
     el: "#bookingSummary",
-    initialize: function (allMessages, messages, type) {
+    initialize: function (allMessages, messages) {
         _.bindAll(this, 'render', 'entryEvent', 'close');
         this.allMessages = allMessages;
         this.messages = messages;
@@ -27,7 +27,7 @@ var BookingListView = MultiPageView.extend({
     entryEvent: function (id) {
         app.navigate("mypage/booking/" + id, true);
     },
-    close: function (){
+    close: function () {
         if (!this.isClosed) {
             this.$el.empty();
             this.isClosed = true;

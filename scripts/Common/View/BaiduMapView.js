@@ -8,18 +8,22 @@ var BaiduMapView = Backbone.View.extend({
         this.clickable = config.clickable;
         this.class = config.class;
         this.init = config.init;
-        this.geocoder = BMap ? new BMap.Geocoder() : {getPoint: function (){}};
-        this.mapInitialize();
+        if (typeof BMap !== "undefined") {
+            this.geocoder = new BMap.Geocoder();
+            this.mapInitialize();
+        } else {
+            this.geocoder = {getPoint: function (){}};
+        }
     },
-    cacheConfig: function(config) {
+    cacheConfig: function (config) {
         this.div = config.div;
         this.location = config.location || "南京";
         this.clickable = config.clickable;
         this.init = config.init;
         this.class = config.class;
-        $("#"+this.div).after($("#mapcache").attr("id","newMap"));
+        $("#" + this.div).after($("#mapcache").attr("id", "newMap"));
         $("#mapcache").remove();
-        $("#"+this.div).remove();
+        $("#" + this.div).remove();
         if (this.class) {
             $("#newMap").attr("class", this.class);
         }
@@ -27,17 +31,17 @@ var BaiduMapView = Backbone.View.extend({
         this.mapInitialize();
     },
     mapInitialize: function () {
+        // var opts;
         this.isClosed = false;
-        var that = this;
-        if (!this.map) {
-            this.map = new BMap.Map (this.div);  //this should never expire
-        }
-        this.setCenter(this.location);
-        this.removeAllMarkers();
-        var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL};
-        this.map.addControl(new BMap.NavigationControl(opts)); 
-        if (this.clickable) {
-            this.bindClickEvent();
+        if (!this.map && typeof BMap !== "undefined") {
+            this.map = new BMap.Map(this.div, {enableMapClick: false});  //this should never expire
+            this.setCenter(this.location);
+            this.removeAllMarkers();
+            // opts = {type: BMAP_NAVIGATION_CONTROL_SMALL};
+            //this.map.addControl(new BMap.NavigationControl(opts)); 
+            if (this.clickable) {
+                this.bindClickEvent();
+            }
         }
     },
     getLatLng: function (locationString) {
@@ -58,21 +62,21 @@ var BaiduMapView = Backbone.View.extend({
     },
     setCenter: function (locationString) {
         var that = this;
-        var result = this.geocoder.getPoint(
+        this.geocoder.getPoint(
             locationString,
             function (point) {
                 if (point) {
-                    that.map.centerAndZoom(point, 11);   
+                    that.map.centerAndZoom(point, 11);
                 } else {
                     Info.warn('Geocode was not successful');
                 }
             }
         );
     },
-    addMarker: function(marker, locationString) {
+    addMarker: function (marker, locationString) {
+        var add = true, i;
         marker.locationString = locationString;
-        var add = true;
-        for (var i = 0; i < this.markers.length; i++){
+        for (i = 0; i < this.markers.length; i++) {
             if (this.markers[i].locationString === marker.locationString) {
                 add = false;
                 break;
@@ -83,34 +87,38 @@ var BaiduMapView = Backbone.View.extend({
             this.map.addOverlay(marker);
         }
     },
-    removeMarker: function(locationString) {
-        for (var i = 0; i < this.markers.length; i++){
+    removeMarker: function (locationString) {
+        var i;
+        for (i = 0; i < this.markers.length; i++) {
             if (this.markers[i].locationString === locationString) {
                 this.map.removeOverlay(this.markers[i]);
                 this.markers[i] = undefined;
             }
             if (!this.markers[i]) {
-                if ( i < this.markers.length - 1) {
-                    this.markers[i] = this.markers[i+1];
+                if (i < this.markers.length - 1) {
+                    this.markers[i] = this.markers[i + 1];
                 } else {
                     this.markers.pop();
                 }
             }
         }
     },
-    removeAllMarkers: function (){
-        for (var i = 0; i < this.markers.length; i++){
+    removeAllMarkers: function () {
+        var i;
+        for (i = 0; i < this.markers.length; i++) {
             this.map.removeOverlay(this.markers[i]);
         }
         this.markers = [];
     },
     close: function (destroy) {
-        this.map.removeEventListener('click');
+        if (this.map) {
+            this.map.removeEventListener('click');
+        }
         if (!this.isClosed) {
-            if (destroy) {
-
+            if (!destroy) {
+                $("#cache").append($("#" + this.div).attr("id", "mapcache"));
             } else {
-                $("#cache").append($("#"+this.div).attr("id","mapcache"));
+                $("#" + this.div).empty();
             }
             this.isClosed = true;
         }

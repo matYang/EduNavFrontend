@@ -20,11 +20,11 @@ var SearchResultView = MultiPageView.extend({
             this.user = app.sessionManager.sessionModel;
             this.initialized = true;
         }
-        this.isClosed = false;
         this.render();
         this.bindEvents();
     },
     render: function () {
+        this.isClosed = false;
         MultiPageView.prototype.render.call(this);
         var courseIds = app.storage.getCoursesToCompare();
         for (var i = 0; i < courseIds.length; i++ ) {
@@ -35,11 +35,11 @@ var SearchResultView = MultiPageView.extend({
         var that = this, id;
         this.$domContainer.on("click", ".compare", function (e){
             if ($(e.target).hasClass("add")) {
-                $(e.target).removeClass("add").attr("class", "remove btn_gray").val("已加入对比");
+                $(e.target).attr("class", "remove btn_gray").val("已加入对比");
                 id = Utilities.getId($(this).attr("id"));
                 that.compareWidget.addCourse(that.messages.get(Utilities.toInt(id)));
             } else {
-                $(e.target).removeClass("remove").attr("class", "add btn_g").val("+对比");
+                $(e.target).attr("class", "add btn_g").val("+对比");
                 id = Utilities.getId($(this).attr("id"));
                 that.compareWidget.removeCourse(Utilities.toInt(id));
             }
@@ -65,6 +65,10 @@ var SearchResultView = MultiPageView.extend({
 
 
     close: function () {
-        this.$domContainer.empty();
+        if (!this.isClosed) {
+            MultiPageView.prototype.close.call(this);
+            this.$domContainer.off();
+            this.$domContainer.empty();
+        }
     }
 });

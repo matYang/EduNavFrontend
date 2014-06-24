@@ -4,13 +4,10 @@ var FrontPageView = Backbone.View.extend({
     initialize: function () {
         _.bindAll(this, 'render', 'renderCategories', 'bindEvents', 'close');
         // $("#viewStyle").attr("href", "style/css/index.css");
-        app.viewRegistration.register(this);
-        this.isClosed = false;
         this.template = _.template(tpl.get('front'));
         this.lvl2Template = _.template(tpl.get("frontCategoryContainer"));
         this.user = app.sessionManager.sessionModel;
 
-        this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
         this.render();
         //app.sessionManager.fetchSession();
         this.bindEvents();
@@ -18,8 +15,15 @@ var FrontPageView = Backbone.View.extend({
     },
 
     render: function () {
+        this.isClosed = false;
+        app.viewRegistration.register(this);
+        this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
         $("body").addClass("index");
-        this.banner = new BannerView();
+        if (!this.banner) {
+            this.banner = new BannerView();
+        } else if (this.banner.isClosed) {
+            this.banner.render();
+        }
         this.$el.append(this.template);
         app.generalManager.getCategories(this);
     },
@@ -122,21 +126,20 @@ var BannerView = Backbone.View.extend({
     el: '#visualScope',
     initialize: function () {
         _.bindAll(this, 'render', 'bindEvents', 'close');
-        app.viewRegistration.register(this);
-        this.isClosed = false;
         this.template = _.template(tpl.get('banner'));
         this.render();
         //app.sessionManager.fetchSession();
-        this.bindEvents();
 
     },
 
     render: function () {
+        this.isClosed = false;
+        app.viewRegistration.register(this);
         this.$el.append(this.template);
+        this.bindEvents();
     },
 
     bindEvents: function () {
-        
     },
 
     close: function () {

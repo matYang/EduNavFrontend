@@ -298,6 +298,7 @@ var MultiPageView = Backbone.View.extend({
             this.unregisterFilterEvent();
             this.$domContainer.off();
             this.$domContainer.empty();
+            this.eventBound = false;
             this.isClosed = true;
         }
     }
