@@ -3,9 +3,6 @@
 
 
     this.AdminManager = function(sessionManager){
-
-        AdminApiResource;
-
         this.sessionManager = sessionManager;
         this.sessionManager.registerManager(this);
     };

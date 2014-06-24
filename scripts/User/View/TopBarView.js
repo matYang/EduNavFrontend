@@ -42,13 +42,19 @@ var TopBarView = Backbone.View.extend({
         this.$passwordInput = $("#login_password");
         this.$usernameInput = $("#login_username");
         $('#navigate_search').on('click', function () {
-            app.navigate("search", true);
+            if (location.hash.indexOf("search") !== 1) {
+                app.navigate("search", true);
+            }
         });
         $('#navigate_compare').on('click', function () {
-            app.navigate("compare", true);
+            if (location.hash.indexOf("compare") !== 1) {
+                app.navigate("compare", true);
+            }
         });
         $('#logo').on('click', function () {
-            app.navigate("front", true);
+            if (location.hash.indexOf("front") !== 1) {
+                app.navigate("front", true);
+            }
         });
         if (!app.sessionManager.hasSession()) {
             $('#signup_button').on('click', function (e) {

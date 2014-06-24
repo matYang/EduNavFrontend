@@ -20,7 +20,7 @@
                     if ( typeof viewRegistrationTable[view.el.id].close === 'function') {
                         viewRegistrationTable[view.el.id].close();
                         //remove the registration entry, compeletely unregister it
-                        delete viewRegistrationTable[view.el.id];
+                        //delete viewRegistrationTable[view.el.id];
                     } else {
                         alert("fatal error: viewRegistrationService:: register:: alert, member does not contain close function");
                         return;

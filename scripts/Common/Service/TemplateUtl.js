@@ -31,6 +31,7 @@ tpl = {
                         self.templates[name] = tplContent;
                     }
                     tplContainer.remove();
+                    tplContainer = null;
                     callback();
                 },
                 error: function(){

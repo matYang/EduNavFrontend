@@ -18,13 +18,15 @@ var MyPageView = Backbone.View.extend({
     },
 
     render: function (user) {
-        var that = this;
-        this.user = user;
-        var userJson = this.user._toJSON();
-        this.$el.append(this.template(userJson));
-        $("#mypage_content").css("border", "1px solid #ccc");
-        this.createChildView();
-        this.bindEvents();
+        if (!this.isClosed) {
+            var that = this;
+            this.user = user;
+            var userJson = this.user._toJSON();
+            this.$el.append(this.template(userJson));
+            $("#mypage_content").css("border", "1px solid #ccc");
+            this.createChildView();
+            this.bindEvents();
+        }
     },
 
     renderError: function () {
@@ -115,6 +117,10 @@ var MyPageView = Backbone.View.extend({
             if (this.activeChildView) {
                 this.activeChildView.close();
             }
+            $("#bookingManage").off();
+            $("#couponAccount").off();
+            $("#editPass").off();
+            $("#editInfo").off();
             this.$el.empty();
             this.isClosed = true;
         }

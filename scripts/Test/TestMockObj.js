@@ -1,5 +1,5 @@
 testMockObj = {
-    testMode: C_ENV_VAR === "REMOTE" ? false : false,
+    testMode: C_ENV_VAR === "REMOTE" ? false : true,
     testAdmin: (new Admin()).set("name", "admin1").set("phone","2260000000"),
     testUser: new User(),
     testPartner: new Partner(),

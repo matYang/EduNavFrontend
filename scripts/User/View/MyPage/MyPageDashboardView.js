@@ -9,20 +9,22 @@ var MyPageDashboardView = Backbone.View.extend({
         this.render();
     },
     render: function () {
-        var list = this.user.get("bookingList").filter(function(booking){
-            return booking.get("status") < 2; 
-        });
+        var list = this.user.get("bookingList").filter(this.filterUnconfirmed);
         var bookings = (new Bookings()).add(list);
         this.$el.append(this.template(this.user._toJSON()));
         this.bookingListView = new BookingListView(bookings, bookings, "dashboard");
         $("#mypage_content").css("border", "none");
+    },
+    filterUnconfirmed: function(booking){
+        return booking.get("status") < 2; 
     },
     bindEvents: function () {},
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
             $("#mypage_content").css("border", "1px solid #ccc");
-
+            this.bookingListView.close();
+            this.bookingListView = null;
             this.isClosed = true;
         }
     }

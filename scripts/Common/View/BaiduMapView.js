@@ -110,16 +110,14 @@ var BaiduMapView = Backbone.View.extend({
         }
         this.markers = [];
     },
-    close: function (destroy) {
+    close: function () {
         if (this.map) {
             this.map.removeEventListener('click');
         }
+        this.map = null;
+        this.geocoder = null;
         if (!this.isClosed) {
-            if (!destroy) {
-                $("#cache").append($("#" + this.div).attr("id", "mapcache"));
-            } else {
-                $("#" + this.div).empty();
-            }
+            $("#" + this.div).empty();
             this.isClosed = true;
         }
     }

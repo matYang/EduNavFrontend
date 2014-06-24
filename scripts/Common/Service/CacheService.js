@@ -12,7 +12,7 @@
         }
     };
 
-    CacheService.prototype.getCache(type, key) {
+    CacheService.prototype.getCache = function(type, key) {
         var date;
         if (this.cache[type][key]) {
             date = new Date();
@@ -21,7 +21,7 @@
         }
     }
 
-    CacheService.prototype.getCache(type, key, value) {
+    CacheService.prototype.getCache = function(type, key, value) {
         var date = new Date();
         this.cache[type][key] = {
             "timestamp": date.getTime(),

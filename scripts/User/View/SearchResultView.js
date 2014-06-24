@@ -66,9 +66,9 @@ var SearchResultView = MultiPageView.extend({
 
     close: function () {
         if (!this.isClosed) {
-            MultiPageView.prototype.close.call(this);
             this.$domContainer.off();
-            this.$domContainer.empty();
+            MultiPageView.prototype.close.call(this);
+            this.compareWidget = null;
         }
     }
 });

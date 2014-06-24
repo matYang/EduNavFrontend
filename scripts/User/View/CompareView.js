@@ -37,11 +37,12 @@ var CompareView = Backbone.View.extend({
                 if (this.courses.length > len) {
                     this.courses[len] = this.courses[len]._toJSON();
                 } else {
-                    this.courses.push((new Course())._toJSON());
+                    this.courses[len] = new Course()._toJSON();
                 }
                 len++;
             }
             this.$el.empty().append(this.template({courses: this.courses}));
+            this.courses = [];
             this.$view = $("#compareView");
             this.afterRender();
             this.bindEvents();
@@ -105,11 +106,9 @@ var CompareView = Backbone.View.extend({
             $e = $(e.target);
             if ($e.hasClass("delete")) {
                 courseId = Utilities.getId($(e.currentTarget).attr("class"));
-                that.$view.detach();
                 that.$view.find(".courseId_" + courseId).remove();
                 that.$view.find("tr").append("<td></td>");
                 that.configMoveButton();
-                that.$el.append(that.$view);
 
                 app.storage.removeCourseFromCompare(Utilities.toInt(courseId));
                 that.courseIdList = app.storage.getCoursesToCompare();
@@ -156,7 +155,6 @@ var CompareView = Backbone.View.extend({
         });
     },
     swapRow: function (index1, index2) {
-        this.$view.detach();
         var temp, i, $td, $rows;
         if (index1 > index2) {
             temp = index1;
@@ -171,7 +169,6 @@ var CompareView = Backbone.View.extend({
             $td = $($rows[i]).find("td");
             $($td[index2]).after($($td[index1]).detach());
         }
-        this.$el.append(this.$view);
         app.storage.setCoursesToCompare(this.courseIdList);
         this.configMoveButton();
     },
@@ -199,6 +196,7 @@ var CompareView = Backbone.View.extend({
             $("#compareView").off();
             $("#compareView").children(".title").off();
             $("#courseName").off();
+            this.$view = null;
             this.isClosed = true;
             this.$el.empty();
         }

@@ -1,7 +1,7 @@
 {
   "name": "Vanilla",
   "version": "1.0.0",
-  "description": "Carpool frontend",
+  "description": "iShangke frontend",
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.6.5",
