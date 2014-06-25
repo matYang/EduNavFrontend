@@ -72,6 +72,7 @@ var CourseDetailView = Backbone.View.extend({
             $(document).off();
             $("#popup").empty();
             this.isClosed = true;
+            app.courseDetailView = null;
         }
     }
 });

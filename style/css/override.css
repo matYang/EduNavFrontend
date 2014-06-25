@@ -47,3 +47,11 @@ li a, .page a {
 #popMessage {
 	height: 65px;
 }
+
+#mainMap {
+	z-index: 100;
+}
+
+.footer {
+	z-index: -1;
+}

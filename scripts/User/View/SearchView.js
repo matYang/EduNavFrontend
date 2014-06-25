@@ -35,12 +35,7 @@ var SearchView = Backbone.View.extend({
             }
             this.$el.append(this.template);
             this.compareWidgetView = new CompareWidgetView();
-            if (!this.searchResultView) {
-                this.searchResultView = new SearchResultView(new Courses(), new Courses(), this.compareWidgetView);
-            } else if (this.searchResultView.isClosed) {
-                this.searchResultView.render();
-                this.searchResultView.bindEvents();
-            }
+            this.searchResultView = new SearchResultView(new Courses(), new Courses(), this.compareWidgetView);
             app.generalManager.getCategories(this);
             app.generalManager.getLocations(this);
             this.bindEvents();
@@ -439,6 +434,7 @@ var SearchView = Backbone.View.extend({
             $("#searchReqs").off();
             this.$el.empty();
             this.isClosed = true;
+            app.searchView = null;
         }
     }
 });

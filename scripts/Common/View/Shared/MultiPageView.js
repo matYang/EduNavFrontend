@@ -53,7 +53,7 @@ var MultiPageView = Backbone.View.extend({
     $domContainer: null,
     singlePage: null,
     initialize: function () {
-        _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "close");
+        _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler", "clickPreHandler", "clickNextHandler", "close");
     },
 
     render: function () {
@@ -79,6 +79,7 @@ var MultiPageView = Backbone.View.extend({
                 buf[i] = this.entryTemplate(message._toJSON());
             }
             this.$domContainer.append(buf.join(""));
+            buf = null;
             var $divs = this.$domContainer.children("div");
             if ($divs.length) {
                 $divs.addClass(this.entryClass);
@@ -176,24 +177,27 @@ var MultiPageView = Backbone.View.extend({
         this.$pre = this.$pn.children(".pre");
         this.$next = this.$pn.children(".next");
         this.$pn.children("#" + this.pageNumberId + "_" + this.currentPage).addClass("active");
-        this.$pn.on("click", "." + this.pageNumberClass, function (e) {
-            var id = Utilities.toInt(Utilities.getId(e.target.id));
-            that.toPage(id);
-        });
+        this.$pn.on("click", "." + this.pageNumberClass, this.clickPageHandler);
         if (this.currentPage === 1) {
             this.$pre.addClass("pre-disabled");
         } else {
-            this.$pre.on("click", function () {
-                that.toPage(that.currentPage - 1);
-            });
+            this.$pre.on("click", this.clickPreHandler);
         }
         if (this.currentPage === pages) {
             this.$next.addClass("next-disabled");
         } else {
-            this.$next.on("click", function () {
-                that.toPage(that.currentPage + 1);
-            });
+            this.$next.on("click", this.clickNextHandler);
         }
+    },
+    clickPageHandler: function (e) {
+        var id = Utilities.toInt(Utilities.getId(e.target.id));
+        this.toPage(id);
+    },
+    clickNextHandler: function () {
+        this.toPage(this.currentPage + 1);
+    },
+    clickPreHandler: function () {
+        this.toPage(this.currentPage - 1);
     },
     /*
     active class should be the class indicating the selected tab/filter across the entire site.

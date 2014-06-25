@@ -81,6 +81,7 @@ var FrontPageView = Backbone.View.extend({
         });
         var activeButton = $("#lv1Button").find("a:first").addClass("active");
         $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("id") + "]").removeClass("hidden");
+        $("#content").css("padding-bottom", 0);
     },
     bindEvents: function () {
         var that = this;
@@ -123,6 +124,8 @@ var FrontPageView = Backbone.View.extend({
             this.$el.empty();
             this.isClosed = true;
             this.banner.close();
+            $("#content").css("padding-bottom", "");
+            app.frontPageView = null;
         }
     }
 });

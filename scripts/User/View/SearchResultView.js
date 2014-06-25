@@ -13,6 +13,7 @@ var SearchResultView = MultiPageView.extend({
     initialize: function (allMessages, messageList, compareWidget) {
         if (!this.initialized) {
             _.bindAll(this, "bindEvents", "entryEvent", "close");
+            MultiPageView.prototype.initialize.call(this);
             this.messages = messageList || this.messages;
             this.allMessages = allMessages || this.allMessages;
             this.compareWidget = compareWidget || this.compareWidget;

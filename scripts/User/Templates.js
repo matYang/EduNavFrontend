@@ -63,28 +63,26 @@
 </script>
 
 <script type="text/template" id="tpl_front">
-<div id="content" class="content" style="margin-bottom:0">
-        <div id="lv1Button" class="tab2">
-        </div>
-        <div class="category">
-            <div id ="lv2Categories"></div>
-            <table class="language blank2" width="100%" cellpadding="0" cellspacing="0">
-                <tbody><tr>
-                    <td><img src="style/images/s10.png"></td>
-                    <td><img src="style/images/s9.png"></td>
-                    <td><img src="style/images/s8.png"></td>
-                    <td><img src="style/images/s7.png"></td>
-                    <td><img src="style/images/s6.png"></td>
-                </tr>
-                <tr class="last">
-                    <td><img src="style/images/s5.png"></td>
-                    <td><img src="style/images/s4.png"></td>
-                    <td><img src="style/images/s3.png"></td>
-                    <td><img src="style/images/s2.png"></td>
-                    <td class="last"><img src="style/images/s1.png"></td>
-                </tr>
-            </tbody></table>
-        </div>
+    <div id="lv1Button" class="tab2">
+    </div>
+    <div class="category">
+        <div id ="lv2Categories"></div>
+        <table class="language blank2" width="100%" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                <td><img src="style/images/s10.png"></td>
+                <td><img src="style/images/s9.png"></td>
+                <td><img src="style/images/s8.png"></td>
+                <td><img src="style/images/s7.png"></td>
+                <td><img src="style/images/s6.png"></td>
+            </tr>
+            <tr class="last">
+                <td><img src="style/images/s5.png"></td>
+                <td><img src="style/images/s4.png"></td>
+                <td><img src="style/images/s3.png"></td>
+                <td><img src="style/images/s2.png"></td>
+                <td class="last"><img src="style/images/s1.png"></td>
+            </tr>
+        </tbody></table>
     </div>
 </script>
 

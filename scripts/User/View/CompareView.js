@@ -199,6 +199,7 @@ var CompareView = Backbone.View.extend({
             this.$view = null;
             this.isClosed = true;
             this.$el.empty();
+            app.compareView = null;
         }
     }
 });

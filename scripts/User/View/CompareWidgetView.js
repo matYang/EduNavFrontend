@@ -98,12 +98,7 @@ var CompareWidgetView = Backbone.View.extend({
         this.courseIds = app.storage.getCoursesToCompare();
     },
     renderMap: function () {
-        var mapParams = {
-            div: "mainMap",
-            class: "mainPage-map",
-            clickable: false
-        };
-        this.map = new BaiduMapView(mapParams);
+        this.map = new MainMapView();
         this.rendered = true;
     },
     close: function () {

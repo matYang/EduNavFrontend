@@ -1,5 +1,4 @@
 var BaiduMapView = Backbone.View.extend({
-    el: "",
     markers: [],
     initialize: function (config) {
         _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'close');
@@ -33,16 +32,9 @@ var BaiduMapView = Backbone.View.extend({
     mapInitialize: function () {
         // var opts;
         this.isClosed = false;
-        if (!this.map && typeof BMap !== "undefined") {
-            this.map = new BMap.Map(this.div, {enableMapClick: false});  //this should never expire
-            this.setCenter(this.location);
-            this.removeAllMarkers();
-            // opts = {type: BMAP_NAVIGATION_CONTROL_SMALL};
-            //this.map.addControl(new BMap.NavigationControl(opts)); 
-            if (this.clickable) {
-                this.bindClickEvent();
-            }
-        }
+        app.viewRegistration.register(this);    
+        this.map = new BMap.Map(this.div, {enableMapClick: false});  //this should never expire
+        this.setCenter(this.location);
     },
     getLatLng: function (locationString) {
         var that = this;
@@ -117,8 +109,25 @@ var BaiduMapView = Backbone.View.extend({
         this.map = null;
         this.geocoder = null;
         if (!this.isClosed) {
-            $("#" + this.div).empty();
+            this.$el.empty();
             this.isClosed = true;
+        }
+    }
+});
+
+var MainMapView = BaiduMapView.extend({
+    el:"#mainMap",
+    clickable: false,
+    class: "mainPage-map",
+    initialize: function () {
+        _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'close');
+        this.location = "南京";
+        debugger;
+        if (typeof BMap !== "undefined") {
+            this.geocoder = new BMap.Geocoder();
+            this.mapInitialize();
+        } else {
+            this.geocoder = {getPoint: function (){}};
         }
     }
 });
