@@ -12,7 +12,7 @@ var BookingListView = MultiPageView.extend({
     $domContainer: null,
     el: "#bookingSummary",
     initialize: function (allMessages, messages) {
-        _.bindAll(this, 'render', 'entryEvent', 'close');
+        MultiPageView.prototype.initialize.call(this);
         this.allMessages = allMessages;
         this.messages = messages;
         this.entryTemplate = _.template(tpl.get("booking_entry"));

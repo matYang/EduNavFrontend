@@ -4,7 +4,8 @@ var SearchResultView = MultiPageView.extend({
     pageNavigator: "courseSearchResultNavigator",
     pageNavigatorClass: "page blank1 clearfix",
     entryContainer: "searchResultDisplayPanel",
-    noMessage: '<div class="no_data"><div>很抱歉，没有找到符合您条件的课程~~</div><p>您可以尝试更换关键词搜索，或调整关键字，如""改为""。</p></div>',
+    noMessage: _.template(tpl.get("search_noMessage")),
+    entryTemplate: _.template(tpl.get("searchResultEntry")),
     extPn: true,
     entryHeight: 157,
     pageEntryNumber: 10,
@@ -17,7 +18,6 @@ var SearchResultView = MultiPageView.extend({
             this.messages = messageList || this.messages;
             this.allMessages = allMessages || this.allMessages;
             this.compareWidget = compareWidget || this.compareWidget;
-            this.entryTemplate = _.template(tpl.get("searchResultEntry"));
             this.user = app.sessionManager.sessionModel;
             this.initialized = true;
         }

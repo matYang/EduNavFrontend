@@ -55,3 +55,13 @@ li a, .page a {
 .footer {
 	z-index: -1;
 }
+
+#cancelBooking {
+	margin-top:20px;
+}
+
+#printBooking {
+	width: 49px;
+	float: right;
+	position: relative !important;
+}

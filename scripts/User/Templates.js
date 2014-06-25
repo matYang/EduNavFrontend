@@ -374,12 +374,12 @@
         <div class="bookingEntryState">
         <% if (status === EnumConfig.BookingStatus.awaiting) { %>
             <span class="sign pending">
-        <% } else if (status === EnumConfig.BookingStatus.cancelled || status === EnumConfig.BookingStatus.quit || status === EnumConfig.BookingStatus.failed) { %>
+        <% } else if ( status === 2 || status === 3 || status === 5 || status === 9 || status === 11) { %>
             <span class="sign cancelled">
         <% } else { %>            
             <span class="sign confirmed">
         <% } %>            
-            <%= EnumConfig.BookingStatusText[status] %></span>
+            <%= EnumConfig.BookingStatusUserText[status] %></span>
         </div>
     </div>
 </script>
@@ -391,58 +391,41 @@
         <div id="bookingDetail">
             <div class="row0 clearfix">
                 <div class="fleft">
-                    <p><label>订单号：1436991417</label> <span>(2014年5月23日预定)</span></p>
-                    <p><label>状<s></s>态：<b class="F_green">等待确认</b></label> <span>(2014年5月27日预定)</span></p>
+                    <p><label>订单号：<%= reference %></label> <span>(<%= creationTime %>预定)</span></p>
+                    <p><label>状<s></s>态：<b class="F_green"><%= EnumConfig.BookingStatusUserText[status] %></b></label></p>
                 </div>
-                <p class="fright price"><label>总金额：</label><span class="sign">￥</span>1999</p>
+                <p class="fright price"><label>总金额：</label><span class="sign">￥</span><%= price %></p>
             </div>
             <div class="row1">
                 <div id="process">
-                    <% if ( status === 3 ) { %>
-                        <p>订单已取消</p>
-                    <% } else if (status === 5 ) { %>
-                        <p>订单已结束</p>
+                    <% if ( status === 2 || status === 3 || status === 5 || status === 9 || status === 11 ) { %>
+                        <p><%= EnumConfig.BookingStatusUserText[status] %></p>
                     <% } else { %>
                         <% if ( status >= 0) { %>
                             <div class="node fore ready">
                         <% } else { %>
                             <div class="node fore wait">
                         <% } %>
-                            <p>提交订单</p>
-                        </div>
+                                <p>提交订单</p>
+                            </div>
                         <% if ( status > 0) { %>
                             <div class="proce ready">
                         <% } else { %>
                             <div class="proce doing">
                         <% } %>
-                            <p>&nbsp;</p>
-                        </div>
+                                <p>&nbsp;</p>
+                            </div>
                         <% if ( status >= 1) { %>
                             <div class="node ready">
+                                <p>预约成功</p>
                         <% } else { %>
                             <div class="node wait">
+                                <p>机构确认</p>
                         <% } %>
-                            <p>机构确认</p>
-                        </div>
+                            </div>
                         <% if ( status > 1) { %>
                             <div class="proce ready">
                         <% } else if (status === 1) { %>
-                            <div class="proce doing">
-                        <% } else { %>
-                            <div class="proce wait">
-                        <% } %>
-                            <p>&nbsp;</p>
-                        </div>
-                        <% if ( status >= 3) { %>
-                            <div class="node ready">
-                        <% } else { %>
-                            <div class="node wait">
-                        <% } %>
-                            <p>已经报到</p>
-                        </div>
-                        <% if ( status > 3) { %>
-                            <div class="proce ready">
-                        <% } else if (status === 3) { %>
                             <div class="proce doing">
                         <% } else { %>
                             <div class="proce wait">
@@ -454,7 +437,23 @@
                         <% } else { %>
                             <div class="node wait">
                         <% } %>
-                            <p>已经入学</p>
+                            <p>预定成功</p>
+                        </div>
+                        <% if ( status > 4) { %>
+                            <div class="proce ready">
+                        <% } else if (status === 4) { %>
+                            <div class="proce doing">
+                        <% } else { %>
+                            <div class="proce wait">
+                        <% } %>
+                            <p>&nbsp;</p>
+                        </div>
+                        <% if ( status >= 12) { %>
+                            <div class="node ready">
+                        <% } else { %>
+                            <div class="node wait">
+                        <% } %>
+                            <p>成功入学</p>
                         </div>
                     <% } %>
                 </div>
@@ -491,11 +490,11 @@
                 <p><label>支付方式:</label> 学校前台支付</p>
             </div>
         </div><!--bookingDetail end-->
-        <div id="printBooking" class="print"><a href="#">订单打印</a></div>
         <div class="btns">
             <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
             <input type="button" class="btn_W" value="取消订单" id="cancelBooking">
         </div><!--btns end-->
+        <div id="printBooking" class="print"><a href="#">订单打印</a></div>
     </div>
 </script>
 
@@ -726,7 +725,6 @@
                     <dt>教学信息</dt>
                     <dd><label>先修知识: </label><%= prerequest %></dd>
                     <dd><label>教学目标: </label><%= goal %></dd>
-                    
                     <dd><label>教材介绍: </label><%= teachingMaterialIntro %></dd>
                     <dd><label>教材费用: </label><%= teachingMaterialFee %></dd>
                     <dd><label>课程介绍: </label><%= courseIntro %></dd>
@@ -1334,4 +1332,53 @@
             </ul>
         </div>
     </div>
+</script>
+
+<script type="text/templates" id="tpl_credit_noMessage">
+    <div class="no_data" id="unclaimedNoData">
+        <div>你暂时还没有积分哦~~</div>
+        <p>积分可以通过预定课程获得</p>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_coupon_noMessage">
+    <div id="claimedNoData" class="no_data">
+        <div>你还没有消费券哦~~</div>
+        <p>快去<input type="button" value="免费获取">消费券吧</p>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_search_noMessage">
+    <div class="no_data">
+        <div>很抱歉，没有找到符合您条件的课程~~</div>
+        <p>您可以尝试更换关键词搜索，或调整关键字，如""改为""。</p>
+    </div>
+</script>
+
+
+<script type="text/templates" id="tpl_req">
+    <a href="#" data-cri="<%= criteria %>" data-req="<%= dataId %>" title="取消"><%= text %></a>
+</script>
+
+<script type="text/templates" id="tpl_subCategoryContainer">
+    <div data-id='<%= dataId %>' class='hidden subCategoryList'>
+        <label>类<s></s>别：</label>
+        <span data-id='noreq' class='active subCategory'>不限</span><%= entries %>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_subSubCategoryContainer">
+    <p data-id='<%= dataId %>' class='hidden'><%= entries %></p>
+</script>
+
+<script type="text/templates" id="tpl_subSubCategory">
+    <span data-id='<%= dataId %>' class='subSubCategory'><%= text %></span>
+</script>
+
+<script type="text/templates" id="tpl_subCategory">
+    <span data-id='<%= dataId %>' class='subCategory'><%= text %></span>
+</script>
+
+<script type="text/templates" id="tpl_category">
+    <li data-id='<%= dataId %>'><%= text %></li>
 </script>

@@ -151,12 +151,12 @@ var AppRouter = Backbone.Router.extend({
 });
 
 //warning: tpl is the global object for templating services, do not name any variable "tpl" in any context in any files
-tpl.loadTemplates(Constants.templateResources, 'scripts/User/Templates.js', function () {
+
+(function () {
     app = new AppRouter ();
     app.topBarView = new TopBarView ();
     Backbone.history.start();
     console.log("Wow, Congratulations!");
     
     console.log("はい、榛名は大丈夫です!");
-});
-
+})();

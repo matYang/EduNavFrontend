@@ -6,7 +6,7 @@ tpl = {
     // Recursively pre-load all the templates for the app.
     // This implementation should be changed in a production environment. All the template files should be
     // concatenated in a single file.
-    loadTemplates:function (names, targetUrl, callback) {
+    loadTemplates:function (names, callback) {
         var tplContainer = $("#allTemplates");
         for (i = 0; i < names.length; i++){
             name = names[i];
@@ -19,7 +19,9 @@ tpl = {
         }
         tplContainer.remove();
         tplContainer = null;
-        callback();
+        if (callback){
+            callback();
+        }
     },
 
     // Get template by name from hash of preloaded templates
@@ -32,3 +34,5 @@ tpl = {
     }
 
 };
+
+tpl.loadTemplates(Constants.templateResources);

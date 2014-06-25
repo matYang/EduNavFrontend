@@ -1,22 +1,23 @@
 var SearchView = Backbone.View.extend({
     el: '#content',
-    categoryTemplate: ["<li data-id='", undefined, "'>", undefined, "</li>"],
-    subCategoryTemplate: ["<span data-id='", undefined, "' class='subCategory'>", undefined, "</span>"],
-    subSubCategoryTemplate: ["<span data-id='", undefined, "' class='subSubCategory'>", undefined, "</span>"],
+    categoryTemplate: _.template(tpl.get("category")),
+    subCategoryTemplate: _.template(tpl.get("subCategory")),
+    subSubCategoryTemplate: _.template(tpl.get("subSubCategory")),
+    subSubCategoryContainerTemplate: _.template(tpl.get("subSubCategoryContainer")),
 
-    subCategoryContainerTemplate: ["<div data-id='", undefined, "'class='hidden subCategoryList'><label>类<s></s>别：</label><span data-id='noreq' class='active subCategory'>不限</span>", undefined, "</div>"],
-    reqTemplate: ['<a href="#" data-cri="', undefined, '" data-req="', undefined, '" title="取消">', undefined, "</a>"],
+    subCategoryContainerTemplate: _.template(tpl.get("subCategoryContainer")),
+    reqTemplate: _.template(tpl.get("req")),
     filters: {},
     timeDesc: true,
     priceDesc: true,
     isClosed: true,
+    template: _.template(tpl.get('search')),
     initialize: function (params) {
         _.bindAll(this, 'render', 'renderSearchResults', 'courseSearch', 'bindEvents', 'bindSearchEvents', 'renderCategories', 'renderLocations', 'filterResult', 'close');
         // // $("#viewStyle").attr("href", "style/css/search.css");
         this.allMessages = new Courses();
         //define the template
         this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
-        this.template = _.template(tpl.get('search'));
         this.render(params);
         //injecting the template
     },
@@ -74,34 +75,29 @@ var SearchView = Backbone.View.extend({
                 if (typeof key === "string") {
                     obj = categories[key];
                     index = categories[key].index;
-                    this.categoryTemplate[1] = key;
-                    this.categoryTemplate[3] = key;
-                    cbuf[index] = this.categoryTemplate.join("");
+                    cbuf[index] = this.categoryTemplate({dataId:key, text:key});
                     for (attr in obj ) { //level 2 and level 1 index
                         if (attr !== "index") {
                             index2 = obj[attr].index;
-                            this.subCategoryTemplate[1] = attr;
-                            this.subCategoryTemplate[3] = attr;
-                            scbuf[index2] = this.subCategoryTemplate.join("");
+                            scbuf[index2] = this.subCategoryTemplate({dataId:attr, text:attr});
                             bot = obj[attr];
                             if (bot) {
                                 for (type in bot ) { //level 3 and level 2 index
                                     if (type !== "index") {
                                         index3 = bot[type].index;
-                                        this.subSubCategoryTemplate[1] = type;
-                                        this.subSubCategoryTemplate[3] = type;
-                                        tcbuf[index3] = this.subSubCategoryTemplate.join("");
+                                        tcbuf[index3] = this.subSubCategoryTemplate({dataId:type, text:type});
                                     }
                                 }
-                                tc += "<p data-id ='" + attr + "' class='hidden'>" + tcbuf.join("") + "</p>";
+                                tc += this.subSubCategoryContainerTemplate({dataId:attr, entries:tcbuf.join("")});
                                 tcbuf = [];
                             }
                         }
                     }
                     scbuf.push(tc);
-                    this.subCategoryContainerTemplate[1] = key;
-                    this.subCategoryContainerTemplate[3] = scbuf.join("");
-                    $("#search_subCategory").append(this.subCategoryContainerTemplate.join(""));
+
+                    $("#search_subCategory").append(
+                        this.subCategoryContainerTemplate({dataId:key, entries:scbuf.join("")})
+                    );
                     scbuf = [];
                 }
             }
@@ -139,8 +135,7 @@ var SearchView = Backbone.View.extend({
             //     for (var attr in city) {
             for (key in locations["江苏"]["南京"]) {
                 if (key !== "index") {
-                    this.subCategoryTemplate[1] = this.subCategoryTemplate[3] = key;
-                    buf[locations["江苏"]["南京"][key].index] = this.subCategoryTemplate.join("");
+                    buf[locations["江苏"]["南京"][key].index] = this.subCategoryTemplate({dataId:key, text:key});
                 }
             }
             //     }

@@ -1,11 +1,10 @@
 var FrontPageView = Backbone.View.extend({
-
     el: '#content',
+    template: _.template(tpl.get('front')),
+    lvl2Template: _.template(tpl.get("frontCategoryContainer")),
     initialize: function () {
         _.bindAll(this, 'render', 'renderCategories', 'bindEvents', 'close');
         // $("#viewStyle").attr("href", "style/css/index.css");
-        this.template = _.template(tpl.get('front'));
-        this.lvl2Template = _.template(tpl.get("frontCategoryContainer"));
         this.user = app.sessionManager.sessionModel;
 
         this.render();

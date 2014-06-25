@@ -60,7 +60,7 @@ var UnclaimedCouponView = MultiPageView.extend({
     entryHeight: 36,
     extPn:true,
     initialize: function (allCoupons, coupons) {
-        _.bindAll(this, 'render', 'bindEvents', 'entryEvent', 'close');
+        MultiPageView.prototype.initialize.call(this);
         this.template = _.template(tpl.get("mypage_couponUnclaimed"));
         this.$el.append(this.template);
         this.messages = coupons;
@@ -74,10 +74,7 @@ var UnclaimedCouponView = MultiPageView.extend({
         this.actionClass = "claim";
         this.entryContainer = "unclaimedList";
         this.$domContainer = $("#unclaimedList");
-        this.noMessage = '<div class="no_data" id="unclaimedNoData">' +
-                        '<div>暂时没有可用的待激活消费券哦~~</div>' +
-                        '<p>快去<input type="button" value="免费获取">消费券吧</p>' +
-                        '</div>';
+        this.noMessage = _.template(tpl.get("coupon_noMessage"));
         this.isClosed = false;
         var that = this;
         this.render();
@@ -127,7 +124,7 @@ var ClaimedCouponView = MultiPageView.extend({
     entryHeight: 36,
     extPn:true,
     initialize: function (allCoupons, coupons) {
-        _.bindAll(this, 'render', 'bindEvents', 'close');
+        MultiPageView.prototype.initialize.call(this);
         this.template = _.template(tpl.get("mypage_couponClaimed"));
         this.$el.append(this.template);
         this.messages = coupons;
@@ -140,10 +137,7 @@ var ClaimedCouponView = MultiPageView.extend({
         this.user = app.sessionManager.sessionModel;
         this.entryContainer = "claimedList";
         this.$domContainer = $("#claimedList");
-        this.noMessage = '<div id="claimedNoData" class="no_data">' +
-                        '<div>你还没有消费券哦~~</div>' +
-                        '<p>快去<input type="button" value="免费获取">消费券吧</p>' +
-                        '</div>';
+        this.noMessage = _.template(tpl.get("coupon_noMessage"));;
         this.isClosed = false;
         var that = this;
         this.render();

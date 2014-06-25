@@ -55,7 +55,7 @@ var CreditTableView = MultiPageView.extend({
     entryHeight: 36,
     extPn:true,
     initialize: function (allCoupons, coupons) {
-        _.bindAll(this, 'render', 'bindEvents', 'entryEvent', 'close');
+        MultiPageView.prototype.initialize.call(this);
         this.template = _.template(tpl.get("mypage_creditTable"));
         this.$el.append(this.template);
         this.messages = coupons;
@@ -68,10 +68,7 @@ var CreditTableView = MultiPageView.extend({
         this.user = app.sessionManager.sessionModel;
         this.entryContainer = "creditEntryContainer";
         this.$domContainer = $("#creditEntryContainer");
-        this.noMessage = '<div class="no_data" id="unclaimedNoData">' +
-                        '<div>你暂时还没有积分哦~~</div>' +
-                        '<p>积分可以通过预定课程获得</p>' +
-                        '</div>';
+        this.noMessage =  _.template(tpl.get("credit_noMessage"));
         this.isClosed = false;
         var that = this;
         this.render();
