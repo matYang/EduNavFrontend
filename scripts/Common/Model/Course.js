@@ -71,7 +71,9 @@ var Course = Backbone.Model.extend({
             'trail': undefined,
             'bonusService': undefined,
                 
-                 
+            'noRefundDate': new Date(),
+            'cashbackDate': new Date(),
+            'bookingType': undefined,
                 
             'classImgUrls': [],
             'teacherIntros': undefined,
@@ -100,13 +102,16 @@ var Course = Backbone.Model.extend({
             data.classSize = parseInt(data.classSize , 10);
             data.cashback = parseInt(data.cashback , 10);
             data.popularity = parseInt(data.popularity , 10);
+            data.bookingType = parseInt(data.bookingType , 10);
                 
             data.startUponArrival = parseInt(data.startUponArrival, 10);
             data.cutoffDate =  Utilities.castFromAPIFormat(data.cutoffDate);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.startDate = Utilities.castFromAPIFormat(data.startDate);
             data.finishDate = Utilities.castFromAPIFormat(data.finishDate);
-                
+            data.noRefundDate = Utilities.castFromAPIFormat(data.noRefundDate);
+            data.cashbackDate = Utilities.castFromAPIFormat(data.cashbackDate);
+
             data.startTime1 = parseInt(data.startTime1 , 10);
             data.finishTime1 = parseInt(data.finishTime1 , 10);
             data.startTime2 = parseInt(data.startTime2 , 10);
@@ -205,6 +210,9 @@ var Course = Backbone.Model.extend({
         json.finishDate = Utilities.castToAPIFormat(this.get('finishDate'));
         json.cutoffDate = Utilities.castToAPIFormat(this.get('cutoffDate'));
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+
+        json.noRefundDate = Utilities.castToAPIFormat(this.get('noRefundDate'));
+        json.cashbackDate = Utilities.castToAPIFormat(this.get('cashbackDate'));
 
         return json;
     },

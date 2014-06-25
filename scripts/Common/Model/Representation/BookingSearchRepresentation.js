@@ -21,7 +21,26 @@ var BookingSearchRepresentation = Backbone.Model.extend({
             'startAdjustTime': undefined,
             'finishAdjustTime': undefined,
             'startCreationTime': undefined,
-            'finishCreationTime': undefined
+            'finishCreationTime': undefined,
+
+            'startBookingStatusAdjustTime': undefined,
+            'finishBookingStatusAdjustTime': undefined,
+                
+            'startServiceFeeStatusAdjustTime': undefined,
+            'finishServiceFeeStatusAdjustTime': undefined,
+            'startCommissionStatusAdjustTime': undefined,
+            'finishCommissionStatusAdjustTime': undefined,
+
+            'startNoRefundDate': undefined,
+            'finishNoRefundDate': undefined,
+            'startCashbackDate': undefined,
+            'finishCashbackDate': undefined,
+            'bookingType': undefined,
+            'serviceFeeStatus': undefined,
+            'commissionStatus': undefined,
+                
+            'preServiceFeeStatus': undefined,
+            'preCommissionStatus': undefined
         };
     },
 
@@ -57,7 +76,7 @@ var BookingSearchRepresentation = Backbone.Model.extend({
         queryObj.startPrice = this.get('startPrice');
         queryObj.finishPrice = this.get('finishPrice');
         queryObj.userId = this.get('userId');
-        queryObj.partnerId= this.get('partnerId');
+        queryObj.partnerId = this.get('partnerId');
         queryObj.courseId = this.get('courseId');
         queryObj.name = typeof this.get('name') === 'undefined' ? undefined : encodeURI(this.get('name'));
         queryObj.phone = typeof this.get('phone') === 'undefined' ? undefined : encodeURI(this.get('phone'));
@@ -74,6 +93,25 @@ var BookingSearchRepresentation = Backbone.Model.extend({
         queryObj.startCreationTime = typeof this.get('startCreationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startCreationTime'));
         queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishCreationTime'));
 
+
+        queryObj.startBookingStatusAdjustTime = typeof this.get('startBookingStatusAdjustTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startBookingStatusAdjustTime'));
+        queryObj.inishBookingStatusAdjustTime = typeof this.get('inishBookingStatusAdjustTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('inishBookingStatusAdjustTime'));
+            
+        queryObj.startServiceFeeStatusAdjustTime = typeof this.get('startServiceFeeStatusAdjustTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startServiceFeeStatusAdjustTime'));
+        queryObj.finishServiceFeeStatusAdjustTime = typeof this.get('finishServiceFeeStatusAdjustTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishServiceFeeStatusAdjustTime'));
+        queryObj.startCommissionStatusAdjustTime = typeof this.get('startCommissionStatusAdjustTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startCommissionStatusAdjustTime'));
+        queryObj.finishCommissionStatusAdjustTime = typeof this.get('finishCommissionStatusAdjustTime') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishCommissionStatusAdjustTime'));
+
+        queryObj.startNoRefundDate = typeof this.get('startNoRefundDate') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startNoRefundDate'));
+        queryObj.finishNoRefundDate = typeof this.get('finishNoRefundDate') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishNoRefundDate'));
+        queryObj.startCashbackDate = typeof this.get('startCashbackDate') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('startCashbackDate'));
+        queryObj.finishCashbackDate = typeof this.get('finishCashbackDate') === 'undefined' ? undefined : Utilities.castToRepresentationFormat(this.get('finishCashbackDate'));
+        queryObj.bookingType = this.get('bookingType');
+        queryObj.serviceFeeStatus = this.get('serviceFeeStatus');
+        queryObj.commissionStatus = this.get('commissionStatus');
+            
+        queryObj.preServiceFeeStatus = this.get('preServiceFeeStatus');
+        queryObj.preCommissionStatus = this.get('preCommissionStatus');
         return queryObj;
     }
 

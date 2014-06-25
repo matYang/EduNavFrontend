@@ -30,7 +30,7 @@ Array.prototype.compare = function (array) {
         }
     }
     return true;
-}; 
+};
 
 Array.prototype.containsAny = function (val) {
     for (var i = 0; i < this.length; i++) {

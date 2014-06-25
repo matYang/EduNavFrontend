@@ -24,6 +24,22 @@ var Booking = Backbone.Model.extend({
             'adjustTime': new Date(),
             'couponRecord': '',
             'actionRecord': '',
+
+            'noRefundDate': new Date(),
+            'cashbackDate': new Date(),
+            'bookingType': 0,
+            'serviceFeeStatus': 0,
+            'commissionStatus': 0,
+                
+            'preServiceFeeStatus': 0,
+            'preCommissionStatus': 0,
+            'bookingStatusAdjustTime': new Date(),
+                
+            'serviceFeeStatusAdjustTime': new Date(),
+            'commissionStatusAdjustTime': new Date(),
+            'serviceFeeActionRecord': '',
+            'commissionActionRecord': '',
+
             'course': {}
         };
     },
@@ -68,15 +84,30 @@ var Booking = Backbone.Model.extend({
             data.phone = decodeURI(data.phone);
             data.email = decodeURIComponent(data.email);
 
-            data.scheduledTime = Utilities.castFromAPIFormat(scheduledTime);
+            data.scheduledTime = Utilities.castFromAPIFormat(data.scheduledTime);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.adjustTime = Utilities.castFromAPIFormat(data.adjustTime);
 
             data.note = decodeURI(data.note);
             data.cashbackAmount = parseInt(data.cashbackAmount, 10);
             data.couponRecord = decodeURI(data.couponRecord);
-
             data.actionRecord = decodeURI(data.actionRecord);
+
+            data.noRefundDate = Utilities.castFromAPIFormat(data.noRefundDate);
+            data.cashbackDate = Utilities.castFromAPIFormat(data.cashbackDate);
+            data.bookingType = parseInt(data.bookingType, 10);
+            data.serviceFeeStatus = parseInt(data.serviceFeeStatus, 10);
+            data.commissionStatus = parseInt(data.commissionStatus, 10);
+                
+            data.preServiceFeeStatus = parseInt(data.preServiceFeeStatus, 10);
+            data.preCommissionStatus = parseInt(data.preCommissionStatus, 10);
+            data.bookingStatusAdjustTime = Utilities.castFromAPIFormat(data.bookingStatusAdjustTime);
+                
+            data.serviceFeeStatusAdjustTime = Utilities.castFromAPIFormat(data.serviceFeeStatusAdjustTime);
+            data.commissionStatusAdjustTime = Utilities.castFromAPIFormat(data.commissionStatusAdjustTime);
+            data.serviceFeeActionRecord = decodeURI(data.serviceFeeActionRecord);
+            data.commissionActionRecord = decodeURI(data.commissionActionRecord);
+
             data.course = new Course(data.course, {parse: true});
         }
         return data;
@@ -103,8 +134,12 @@ var Booking = Backbone.Model.extend({
         json.note = encodeURI(json.note);
 
         json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
-        json.adjustTime = Utilities.castToAPIFormat(this.get('adjustTime'));
+        
+        //maybe not really needed
+        json.noRefundDate = Utilities.castToAPIFormat(this.get('noRefundDate'));
+        json.cashbackDate = Utilities.castToAPIFormat(this.get('cashbackDate'));
+
+
         if (json.course instanceof Course) {
             json.course = json.course.toJSON();
         }
