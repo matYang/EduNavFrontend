@@ -155,15 +155,17 @@ var Utilities = {
         var d = date, str = [d.getFullYear(), (d.getMonth() + 1).padLeft(), d.getDate().padLeft()].join('-') + '+' + [d.getHours().padLeft(), d.getMinutes().padLeft(), d.getSeconds().padLeft()].join(':');
         return str;
     },
-    castFromRepresentationFormat: function (dateString) {
-        var match = dateString.match(/^(\d+)-(\d+)-(\d+)$/);
-        var date = new Date (match[1], match[2] - 1, match[3], 0, 0, 0, 0);
-        return date;
-    },
-    castToRepresentationFormat: function (date) {
-        var d = date, str = [d.getFullYear(), (d.getMonth() + 1).padLeft(), d.getDate().padLeft()].join('-');
-        return str;
-    },
+
+    // //deprecated
+    // castFromRepresentationFormat: function (dateString) {
+    //     var match = dateString.match(/^(\d+)-(\d+)-(\d+)$/);
+    //     var date = new Date (match[1], match[2] - 1, match[3], 0, 0, 0, 0);
+    //     return date;
+    // },
+    // castToRepresentationFormat: function (date) {
+    //     var d = date, str = [d.getFullYear(), (d.getMonth() + 1).padLeft(), d.getDate().padLeft()].join('-');
+    //     return str;
+    // },
 
 
     getUrlParams: function(name) {
