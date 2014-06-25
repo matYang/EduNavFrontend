@@ -2,6 +2,8 @@ var FrontPageView = Backbone.View.extend({
     el: '#content',
     template: _.template(tpl.get('front')),
     lvl2Template: _.template(tpl.get("frontCategoryContainer")),
+    buttonTemplate: _.template(tpl.get("frontButton")),
+    catButtonTemplate: _.template(tpl.get("frontCatButton")),
     initialize: function () {
         _.bindAll(this, 'render', 'renderCategories', 'bindEvents', 'close');
         // $("#viewStyle").attr("href", "style/css/index.css");
@@ -37,7 +39,7 @@ var FrontPageView = Backbone.View.extend({
                 obj.lvl1Cat = cat1;
                 level2 = categories[cat1];
                 index1 = level2.index;
-                buttonList[index1] = '<li data-id="' + cat1 + '"class="item' + index1 + '"><a href="#">' + cat1 + '</a></li>';
+                buttonList[index1] = this.buttonTemplate({dataId: cat1, index:index1});
                 obj.catClass = Constants.categoryClassMapper[cat1];
                 for (cat2 in level2) {
                     if (cat2 === "index") continue;
@@ -48,7 +50,7 @@ var FrontPageView = Backbone.View.extend({
                         if (cat3 !== "index") {
                             lvl3counter++;
                             index3 = level3[cat3].index;
-                            lvl3CatList[index3] = "<li data-lvl1='" + cat1 + "' data-lvl2='" + cat2 + "' data-lvl3='" + cat3 + "'><a>"+ cat3 +"</a></li>";
+                            lvl3CatList[index3] = this.catButtonTemplate({lv1:cat1, lv2:cat2, lv3:cat3});
                         }
                     }
                     padding = (Constants.categoryRowMapper[cat1] - lvl3counter % Constants.categoryRowMapper[cat1])% Constants.categoryRowMapper[cat1];
@@ -97,23 +99,9 @@ var FrontPageView = Backbone.View.extend({
                 that.searchRepresentation.set("category", $(e.currentTarget).data("lvl1"));
                 that.searchRepresentation.set("subCategory", $(e.currentTarget).data("lvl2"));
                 that.searchRepresentation.set("subSubCategory", $(e.currentTarget).data("lvl3"));
-                app.navigate("search/"+that.searchRepresentation.toQueryString(), true);
+                app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
             }
         });
-    },
-    buildCategoryTable: function (category, toplevel, secondlevel) {
-        var buf = "<ul class='blank1' width='100%' cellpadding='0' cellspacing='0' data-parent='" + toplevel + "'><tbody>";
-        var trBuf = "<tr>";
-        var cellBuffer = [];
-        var row = 0;
-        for (var attr in category[toplevel][secondlevel]) {
-            var cellCounter = 0;
-            if (row === 0) {
-                trBuf+='<th rowspan="10"><a>'+ secondlevel +'</a><div class="top_arrow"></div></th>';
-            }
-            cellBuffer[category[toplevel][secondlevel][attr].index] = "<td data-id='"+attr+"'>" + attr + "</td>";
-        }
-
     },
     close: function () {
         if (!this.isClosed) {

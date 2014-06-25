@@ -1382,3 +1382,11 @@
 <script type="text/templates" id="tpl_category">
     <li data-id='<%= dataId %>'><%= text %></li>
 </script>
+
+<script type="text/templates" id="tpl_frontButton">
+<li data-id="<%= dataId %>"class="item<%= index %>"><a href="#"><%= dataId %></a></li>
+</script>
+
+<script type="text/templates" id="tpl_frontCatButton">
+<li data-lvl1='<%= lv1 %>' data-lvl2='<%= lv2 %>' data-lvl3='<%= lv3 %>"'><a><%= lv3 %></a></li>
+</script>
