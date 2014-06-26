@@ -92,6 +92,19 @@ var FrontPageView = Backbone.View.extend({
             $(this).find("a").addClass("active");
             $("#lv2Categories").children(".hidden").removeClass("hidden");
             $("#lv2Categories").children("div[data-parent!=" + category + "]").addClass("hidden");
+        }).on("click", "li", function (e) {
+            e.preventDefault();
+            debugger;
+            that.searchRepresentation.set("category", $(this).data("id"));
+            app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
+        });
+        $("#lv2Categories").on("click", ".fleft", function (e) {
+            if (e.target.tagName === "A") {
+                e.preventDefault();
+                that.searchRepresentation.set("category", $(this).parent().data("parent"));
+                that.searchRepresentation.set("subCategory", $(e.target).html());
+                app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
+            }
         });
         $(".lv2category").on("click", "li", function (e) {
             if (e.target.tagName === "A") {
