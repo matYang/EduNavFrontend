@@ -17,9 +17,19 @@ var TopBarView = Backbone.View.extend({
     },
 
     render: function () {
+        var time, date = new Date();
+        var hour = date.getHours() + 1;
         this.$pdropdown = $('#profileDropdown>dd');
         if (app.sessionManager.hasSession()) {
             this.$el.append(this.loggedInTemplate(this.sessionUser._toJSON()));
+            if (hour > 4 && hour < 12) {
+                time = "早上";
+            } else if (hour >= 12 && hour < 6) {
+                time = "下午";
+            } else {
+                time = "晚上";
+            }
+            $("#greeting").html(time);
         } else {
             this.$el.append(this.notLoggedInTemplate);
             $("#topbar_loginbox").hide();

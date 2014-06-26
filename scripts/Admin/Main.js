@@ -124,12 +124,7 @@ var AppRouter = Backbone.Router.extend({
     },
 });
 
-//warning: tpl is the global object for templating services, do not name any variable "tpl" in any context in any files
-
-tpl.loadTemplates(AdminConstants.templateResources, 'scripts/Admin/Template.js', function () {
-
+(function () {
     app = new AppRouter ();
-    // app.sideBarView = new sideBarView();
-    Backbone.history.start();
-});
-
+    Backbone.history.start();    
+})();

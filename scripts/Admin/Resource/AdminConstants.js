@@ -10,3 +10,5 @@ var AdminConstants = {
         "verified": 1
     }
 };
+
+Constants.templateResources = AdminConstants.templateResources;

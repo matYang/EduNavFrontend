@@ -98,7 +98,6 @@ var CompareWidgetView = Backbone.View.extend({
         this.courseIds = app.storage.getCoursesToCompare();
     },
     renderMap: function () {
-        debugger;
         this.map = new MainMapView();
         for (i = 0; i < this.courses.length && i < 4; i++) {
             this.map.getLatLng(this.courses[i].get("location"));

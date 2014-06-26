@@ -129,7 +129,6 @@ var MultiPageView = Backbone.View.extend({
     setPageNavigator: function () {
         var buf = ['<a class="pre"></a>'],
             divBuf = ["<a id='", this.pageNumberId, "_", 0, "' class='", this.pageNumberClass, "'> ", 0, "</a>"],
-            that = this,
             pages,
             length,
             i,
@@ -207,6 +206,7 @@ var MultiPageView = Backbone.View.extend({
         var that = this;
         if ($selector.prop("tagName") === "SELECT") {
             $selector.on("change", function () {
+                that.currentPage = 1;
                 if (that.allMessages) {
                     if (filter) {
                         that.messages.reset(that.allMessages.filter(filter, inst));
@@ -221,6 +221,7 @@ var MultiPageView = Backbone.View.extend({
             });
         } else if ($selector.attr("type") === "checkbox") {
             $selector.on("change", function () {
+                that.currentPage = 1;
                 if (that.allMessages) {
                     if (filter) {
                         that.messages.reset(that.allMessages.filter(filter, inst, true));
@@ -235,6 +236,7 @@ var MultiPageView = Backbone.View.extend({
             });
         } else {
             $selector.on("click", function () {
+                that.currentPage = 1;
                 $selector.siblings().removeClass("active");
                 $selector.addClass("active");
                 if (that.allMessages) {

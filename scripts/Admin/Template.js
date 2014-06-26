@@ -506,6 +506,8 @@
         <div><label>开始日期: </label><div class="detail"><%= startDate %></div><div class="edit"><input type="text" class="date" name="startDate"/></div></div>
         <div><label>结束日期: </label><div class="detail"><%= finishDate %></div><div class="edit"><input type="text" class="date" name="finishDate"/></div></div>
         <div><label>截止日期: </label><div class="detail"><%= cutoffDate %></div><div class="edit"><input type="text" class="date" name="cutoffDate"/></div></div>
+        <div><label>无退款日期: </label><div class="detail"><%= noRefundDate %></div><div class="edit"><input type="text" class="date" name="noRefundDate"/></div></div>
+        <div><label>返金日期: </label><div class="detail"><%= cashbackDate %></div><div class="edit"><input type="text" class="date" name="cashbackDate"/></div></div>
         <div><label>上学时间1: </label><div class="detail"><%= startTime1 %></div><div class="edit"><input type="text" name="startTime1"/></div></div>
         <div><label>放学时间1: </label><div class="detail"><%= finishTime1 %></div><div class="edit"><input type="text" name="finishTime1"/></div></div>
         <div><label>上学时间2: </label><div class="detail"><%= startTime2 %></div><div class="edit"><input type="text" name="startTime2"/></div></div>
@@ -523,6 +525,12 @@
         
         <div><label>reference: </label><span class="detail"><%= reference %></span><span class="edit"><input type="text" name="reference"/></span></div>
         <div><label>course Reference: </label><span class="detail"><%= partnerCourseReference %></span><span class="edit"><input type="text" name="partnerCourseReference"/></span></div>
+        <div><label>订单类型: </label><span class="detail"><%= bookingType %></span><span class="edit">
+            <select name="bookingType">
+                <option value=0>offline</option>
+                <option value=1>online</option>
+            </select>
+        </span></div>
         
         <div><label>开课要求: </label><span class="detail"><%= openCourseRequirement %></span><span class="edit"><input type="text" name="openCourseRequirement"/></span></div>
         <div><label>教课资格: </label><span class="detail"><%= partnerQualification %></span><span class="edit">

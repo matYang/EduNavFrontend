@@ -32,7 +32,6 @@ var AdminUserSearchResultView = MultiPageView.extend({
     close: function () {
         if (!this.isClosed){
             MultiPageView.prototype.close.call(this);
-            this.$domContainer.empty();
             this.isClosed = true;
         }
     }
@@ -97,7 +96,6 @@ var AdminCourseSearchResultView = MultiPageView.extend({
             $("#createCourse").off();
             $("#searchCourse").off();
             MultiPageView.prototype.close.call(this);
-            this.$domContainer.empty();
             this.isClosed = true;
         }
     }
@@ -132,7 +130,6 @@ var AdminBookingSearchResultView = MultiPageView.extend({
     close: function () {
         if (!this.isClosed){
             MultiPageView.prototype.close.call(this);
-            this.$domContainer.empty();
             this.isClosed = true;
         }
     }
@@ -187,7 +184,6 @@ var AdminAdminSearchResultView = MultiPageView.extend({
             $("#createAdmin").off();
             $("#searchAdmin").off();
             MultiPageView.prototype.close.call(this);
-            this.$domContainer.empty();
             this.isClosed = true;
         }
     }
@@ -240,7 +236,6 @@ var AdminPartnerSearchResultView = MultiPageView.extend({
     close: function () {
         if (!this.isClosed){
             MultiPageView.prototype.close.call(this);
-            this.$domContainer.empty();
             this.isClosed = true;
         }
     }
