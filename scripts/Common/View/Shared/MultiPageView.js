@@ -46,7 +46,7 @@ var MultiPageView = Backbone.View.extend({
     entryHeight: -1,
     entryRowNum: 1,
     minHeight: 0,
-    noMessage: "暂无消息",
+    noMessage: _.template("暂无消息"),
     _filters: [],
     _sorter: [],
     eventBound: false,
@@ -90,10 +90,10 @@ var MultiPageView = Backbone.View.extend({
             }
         } else {
             if (!this.table) {
-                this.$domContainer.append("<div class = 'noMessage'>" + this.noMessage + "</div>");
+                this.$domContainer.append("<div class = 'noMessage'>" + this.noMessage() + "</div>");
             } else {
                 $(this.table).hide();
-                $(this.table).after("<div class = 'noMessage'>" + this.noMessage + "</div>");
+                $(this.table).after("<div class = 'noMessage'>" + this.noMessage() + "</div>");
             }
         }
         if (this.entryHeight) {

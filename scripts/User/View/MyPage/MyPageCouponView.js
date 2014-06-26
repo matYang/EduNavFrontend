@@ -27,6 +27,10 @@ var MyPageCouponView = Backbone.View.extend({
             $(e.target).addClass("active");
             that.switchView($(e.target).data("id"));
         });
+        $("#go_activate").on("click", function (e) {
+            e.preventDefault();
+            that.switchView("unclaimed");
+        });
     },
     switchView: function (name) {
         if (this.listName === name) return;

@@ -28,7 +28,7 @@ var RegistrationView = BaseFormView.extend({
                 fieldId: "registerPasswordInput",
                 type: "text",
                 mandatory: true,
-                validatorFunction: Utilities.passValid,
+                validatorFunction: this.passValid,
                 modelAttr: "password",
                 validatorContainer: $("#passContainer"),
                 buildValidatorDiv: Utilities.defaultValidDivBuilder
@@ -38,7 +38,7 @@ var RegistrationView = BaseFormView.extend({
                 fieldId: "registerPasswordConfirmInput",
                 type: "text",
                 mandatory: true,
-                validatorFunction: Utilities.passValid,
+                validatorFunction: this.confirmValid,
                 modelAttr: "confirmPassword",
                 validatorContainer: $("#confirmContainer"),
                 buildValidatorDiv: Utilities.defaultValidDivBuilder
@@ -90,8 +90,8 @@ var RegistrationView = BaseFormView.extend({
                     app.navigate(toPage, true);
                 },5000);
             },
-            error: function () {
-
+            error: function (data) {
+                
             }
         });
 
@@ -100,9 +100,31 @@ var RegistrationView = BaseFormView.extend({
         this.phoneCache = true;
         app.userManager.registerUser(this.model, {
             success: this.successCallback,
-            error: function (){}
+            error: function (data){
+                Info.displayNotice(data);
+            }
         });
 
+    },
+    passValid: function (val) {
+        var p1 = val, p2 = $("#registerPasswordConfirmInput").val();
+        if ( p1 !== p2 ) {
+            return {valid: false, text:"两次输入密码不匹配"};
+        } else if (val.length < 6 ){
+            return {valid: false, text:"密码长度至少为6位"};
+        } else {
+            return {valid:true};
+        }
+    },
+    confirmValid: function (val) {
+        var p1 = $("#registerPasswordInput").val(), p2 = val;
+        if ( p1 !== p2 ) {
+            return {valid: false, text:"两次输入密码不匹配"};
+        } else if (val.length < 6 ){
+            return {valid: false, text:"密码长度至少为6位"};
+        } else {
+            return {valid:true};
+        }
     },
     close: function(){
         if (!this.isClosed){

@@ -97,16 +97,16 @@ body > .main { height: auto; min-height: 100%; }
 .success{ display:inline-block; height:16px; background:url(../images/icon.png) no-repeat 0 -727px; padding-left:25px; vertical-align:middle; padding-right:5px;}
 .action{ background:url(../images/form_tip.gif) no-repeat 0 0;}
 .action .form_tip,.wrong .form_tip{ position:absolute; left:0; top:0;}
-.reg_content input.wrong_color {border: 1px solid #ff9a9a; background:#feffe3 url(../images/inp_text_bg.gif) left top repeat-x;}
+.reg_content input.wrong_color {border: 1px solid #ff9a9a; background:#feffe3 left top repeat-x;}
 
 .action .form_tip_top{display:block;width:237px;padding:3px 10px 0 40px;min-height:10px;_height:10px; background:url(../images/form_tip.gif) no-repeat 0px 0;}
 .action .form_tip_bottom{display:block;width:287px;height:5px;background:url(../images/form_tip.gif) no-repeat 0px -185px;overflow:hidden;}
-.reg_content input.action_color{ border:1px solid #1d95f6;  background:#feffe3 url(../images/inp_text_bg.gif) left top repeat-x;}
+.reg_content input.action_color{ border:1px solid #1d95f6;  background:#feffe3 left top repeat-x;}
 
 .wrong{ background:url(../images/form_tip.gif) no-repeat 0 -190px;}
 .wrong .form_tip_top{ display:block; width:287px; padding:4px 10px 0 40px; min-height:10px; _height:10px; background:url(../images/form_tip.gif) no-repeat 0px -190px;}
 .wrong .form_tip_bottom{ display:block; width:287px; height:5px; background:url(../images/form_tip.gif) no-repeat 0px -375px; overflow:hidden;}
-input.wrong_color{  border:1px solid #ff9a9a; background:#feffe3 url(../images/inp_text_bg.gif) left top repeat-x;}
+input.wrong_color{  border:1px solid #ff9a9a; background:#feffe3 left top repeat-x;}
 
 
 /*返回顶部*/
