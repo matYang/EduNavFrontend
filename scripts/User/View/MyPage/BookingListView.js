@@ -8,7 +8,7 @@ var BookingListView = MultiPageView.extend({
     pageNumberId: "bookingPage",
     entryRowNum: 1,
     entryHeight: 106,
-    noMessage: _.template("booking_noMessage"),
+    noMessage: _.template(tpl.get("booking_noMessage")),
     $domContainer: null,
     el: "#bookingSummary",
     initialize: function (allMessages, messages) {
