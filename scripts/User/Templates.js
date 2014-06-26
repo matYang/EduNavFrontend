@@ -1355,6 +1355,9 @@
     </div>
 </script>
 
+<script type="text/templates" id="tpl_booking_noMessage">
+    <div class="no_data"><div>您目前没有未入学的订单哦~~</div></div>
+</script>
 
 <script type="text/templates" id="tpl_req">
     <a href="#" data-cri="<%= criteria %>" data-req="<%= dataId %>" title="取消"><%= text %></a>
