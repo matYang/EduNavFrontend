@@ -272,12 +272,11 @@ var SearchView = Backbone.View.extend({
         $filter.find(".active").removeClass("active");
         $filter.find("span[data-id=" + dataId + "]").addClass("active");
         var criteria = $filter.attr("id").split("_")[1];
-        this.reqTemplate[1] = criteria;
-        this.reqTemplate[3] = dataId;
-        this.reqTemplate[5] = $("[data-id=" + dataId + "]").html();
         $("a[data-cri=" + criteria + "]").remove();
         if (dataId !== "noreq" && $filter.attr("id").indexOf("filter") > -1) {
-            $("#searchReqs").append(this.reqTemplate.join(""));
+            $("#searchReqs").append(this.reqTemplate(
+                {criteria: criteria, dataId: dataId, text:$("[data-id=" + dataId + "]").html()}
+            ));
         }
         if ($("#searchReqs").find("a").length) {
             $("#searchReqs").removeClass("hidden");
