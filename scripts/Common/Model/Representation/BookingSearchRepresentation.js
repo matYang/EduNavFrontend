@@ -95,7 +95,7 @@ var BookingSearchRepresentation = Backbone.Model.extend({
 
 
         queryObj.startBookingStatusAdjustTime = typeof this.get('startBookingStatusAdjustTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startBookingStatusAdjustTime'));
-        queryObj.inishBookingStatusAdjustTime = typeof this.get('inishBookingStatusAdjustTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('inishBookingStatusAdjustTime'));
+        queryObj.finishBookingStatusAdjustTime = typeof this.get('finishBookingStatusAdjustTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('inishBookingStatusAdjustTime'));
             
         queryObj.startServiceFeeStatusAdjustTime = typeof this.get('startServiceFeeStatusAdjustTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startServiceFeeStatusAdjustTime'));
         queryObj.finishServiceFeeStatusAdjustTime = typeof this.get('finishServiceFeeStatusAdjustTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishServiceFeeStatusAdjustTime'));

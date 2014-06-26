@@ -149,3 +149,28 @@ body{width:100%; background:#f6f6f6 url(../images/left_bar_bg.png) repeat-y;}
 	width:100% !important;
 	height:150px !important;
 }
+
+dd.wrong {
+	position: relative;
+	color: #ff0000;
+	margin-right:700px;
+	float:right;
+}
+.selectBox{
+	width:100%;
+	height:150px;
+	float:left;
+}
+.selectBox select {
+	width:200px;
+	float:left;
+	margin:10px;
+}
+.selectBox div{
+	width:250px;
+	float:left;
+	margin:10px;
+}
+.selectBox input{
+	float:right;
+}

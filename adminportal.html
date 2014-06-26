@@ -25,7 +25,7 @@
         <div id = 'overlay'>
         
         <div id = "allTemplates">
-            <script type="text/templates" id="tpl_adminLogin">
+<script type="text/templates" id="tpl_adminLogin">
     <div class="form">
         <div class="user_name">
             <input id="login_username" type="text" class="text" value="" placeholder="用户名"/>
@@ -150,33 +150,35 @@
                 </div>
                 <div id="queryCourse" class="hidden">
                     <div class="clearfix">
-                    <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
-                    <input id="userId_Input" class="text" type="text" placeholder="用户id"/>
-                    <input id="courseReference_Input" class="text" type="text" placeholder="course reference"/>
-                    <input id="partnerReference_Input" class="text" type="text" placeholder="partner reference"/>
-                    <input id="institutionName_Input" class="text" type="text" placeholder="学校名"/>
-                    <select id="category_Input">
-                        <option value="" disabled selected>一级分类</option>
-                    </select>
-                    <select id="subCategory_Input">
-                        <option value="" disabled selected>二级分类</option>
-                    </select>
-                    <select id="thirdCategory_Input">
-                        <option value="" disabled selected>三级分类</option>
-                    </select>
-                    <select id="city_Input">
-                        <option value="" disabled selected>城市</option>
-                    </select>
-                    <select id="district_Input">
-                        <option value="" disabled selected>地区</option>
-                    </select>
-                    <select id="startUponArrival_Input">
-                        <option value="" disabled selected>报名即开始</option>
-                        <option value="0">否</option>
-                        <option value="1">是</option>
-                    </select>
+                        <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
+                        <input id="userId_Input" class="text" type="text" placeholder="用户id"/>
+                        <input id="courseReference_Input" class="text" type="text" placeholder="course reference"/>
+                        <input id="partnerReference_Input" class="text" type="text" placeholder="partner reference"/>
+                        <input id="institutionName_Input" class="text" type="text" placeholder="学校名"/>
+                        <div class="selectBox clearfix">
+                            <select id="category_Input">
+                                <option value="" disabled selected>一级分类</option>
+                            </select>
+                            <select id="subCategory_Input">
+                                <option value="" disabled selected>二级分类</option>
+                            </select>
+                            <select id="thirdCategory_Input">
+                                <option value="" disabled selected>三级分类</option>
+                            </select>
+                            <select id="city_Input">
+                                <option value="" disabled selected>城市</option>
+                            </select>
+                            <select id="district_Input">
+                                <option value="" disabled selected>地区</option>
+                            </select>
+                            <select id="startUponArrival_Input">
+                                <option value="" disabled selected>报名即开始</option>
+                                <option value="0">否</option>
+                                <option value="1">是</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="clearfix">
+                    <div class="clearfix selectBox">
                         <div>
                             最低价格：<input type="number" id="startPrice_Input" placeholder="最低价格"/>
                         </div>
@@ -318,7 +320,67 @@
                     <input id="finishAdjustTime_Input" class="date" type="text" placeholder="调整时间结束"/>
                     <input id="startCreationTime_Input" class="date" type="text" placeholder="创建时间开始"/>
                     <input id="finishCreationTime_Input" class="date" type="text" placeholder="创建时间结束"/>
-                    
+                    <input id="startBookingStatusAdjustTime_Input" class="date" type="text" placeholder="状态调整时间开始"/>
+                    <input id="finishBookingStatusAdjustTime_Input" class="date" type="text" placeholder="状态调整时间结束"/>
+                    <input id="startServiceFeeStatusAdjustTime_Input" class="date" type="text" placeholder="服务费状态调整时间开始"/>
+                    <input id="finishServiceFeeStatusAdjustTime_Input" class="date" type="text" placeholder="服务费状态调整时间结束"/>
+                    <input id="startCommissionStatusAdjustTime_Input" class="date" type="text" placeholder="佣金调整时间开始"/>
+                    <input id="finishCommissionStatusAdjustTime_Input" class="date" type="text" placeholder="佣金调整时间结束"/>
+                    <input id="startNoRefundDate_Input" class="date" type="text" placeholder="无退款时间开始"/>
+                    <input id="finishNoRefundDate_Input" class="date" type="text" placeholder="无退款时间结束"/>
+                    <input id="startCashbackDate_Input" class="date" type="text" placeholder="返金时间开始"/>
+                    <input id="finishCashbackDate_Input" class="date" type="text" placeholder="返金时间结束"/>
+                    <div>
+                        <label>订单类型</label>
+                        <select id="bookingType_Input">
+                            <option value=0>offline</option>
+                            <option value=1>online</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>服务费状态</label>
+                        <select id="serviceFeeStatus_Input">
+                            <option value=0>应收服务费</option>
+                            <option value=1>已收服务费</option>
+                            <option value=2>退换服务费</option>
+                            <option value=3>无服务费</option>
+                            <option value=4>服务费完结</option>
+                            <option value=5>空</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>佣金状态</label>
+                        <select id="commissionStatus_Input">
+                            <option value=0>应收佣金</option>
+                            <option value=1>已收佣金</option>
+                            <option value=2>退还佣金</option>
+                            <option value=3>无佣金</option>
+                            <option value=4>佣金完结</option>
+                            <option value=5>空</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>前服务费状态</label>
+                        <select id="preServiceFeeStatus_Input">
+                            <option value=0>应收服务费</option>
+                            <option value=1>已收服务费</option>
+                            <option value=2>退换服务费</option>
+                            <option value=3>无服务费</option>
+                            <option value=4>服务费完结</option>
+                            <option value=5>空</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>前佣金状态</label>
+                        <select id="preCommissionStatus_Input">
+                            <option value=0>应收佣金</option>
+                            <option value=1>已收佣金</option>
+                            <option value=2>退还佣金</option>
+                            <option value=3>无佣金</option>
+                            <option value=4>佣金完结</option>
+                            <option value=5>空</option>
+                        </select>
+                    </div>
                     <div>已经报道<input id="wasConfirmedIndex_Input" type="checkbox"></div>
                     <input id="queryBookingBtn" class="btn" type="button" value="搜索"/>
                     <a style="float:left" id="goTo_findBooking" class="button">Get</a>
@@ -717,8 +779,7 @@
         <span class="edit"><input id="adminPostSubmit" type="button" value="提交"></span>
         <span class="edit"><div id="cancel">Cancel</div>
     </form>
-</script>
-        </div>
+</script>        </div>
     
 
         <!-- load libraries-->

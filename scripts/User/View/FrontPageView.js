@@ -119,6 +119,7 @@ var FrontPageView = Backbone.View.extend({
         if (!this.isClosed) {
             $("#lv1Button").off();
             $(".lv2category").off();
+             $("#lv2Categories").off();
             $("body").removeClass("index");
             this.$el.empty();
             this.isClosed = true;
