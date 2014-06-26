@@ -868,9 +868,9 @@
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>">
                     <% if (course.partnerIntro && course.partnerIntro.length>30) { %>
-                        <%= course.partnerIntro.strstring(0,24) %>...
-                        <a class="F_green" href="#">[展开]</a></td>
-                        <>
+                        <%= course.partnerIntro.substring(0,24) %>...
+                        <a class="F_green expand" href="#">[展开]</a></td>
+                        
                     <% } else {%>
                         <%= course.partnerIntro %>
                     <% } %>

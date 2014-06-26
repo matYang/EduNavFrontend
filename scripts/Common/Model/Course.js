@@ -227,6 +227,9 @@ var Course = Backbone.Model.extend({
     // },
     td: function(){
         return "<td width='195' class='row_" + this.courseId + "'>";
+    },
+    isNew: function () {
+        return !!this.get("courseId");
     }
 });
 

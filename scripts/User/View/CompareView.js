@@ -42,7 +42,6 @@ var CompareView = Backbone.View.extend({
                 len++;
             }
             this.$el.empty().append(this.template({courses: this.courses}));
-            this.courses = [];
             this.$view = $("#compareView");
             this.afterRender();
             this.bindEvents();
@@ -100,7 +99,8 @@ var CompareView = Backbone.View.extend({
             if (e.target.tagName === "INPUT") {
                 app.navigate("booking/c" + Utilities.getId($(e.currentTarget).attr("class")), true);
                 return;
-            } else if (e.target.tagName !== "A") {
+            }
+            if (e.target.tagName !== "A") {
                 return;
             }
             e.preventDefault();
@@ -154,6 +154,34 @@ var CompareView = Backbone.View.extend({
                 that.load();
             }
         });
+        $("#partnerIntro").on("click", "a", function (e) {
+            e.preventDefault();
+            var cc, $pi = $(e.delegateTarget), text, course;
+            if ($(this).hasClass("expand")) {
+                for (cc = 0; cc < 4; cc++) {
+                    course = that.courses[cc];
+                    if (course.courseId) {
+                        $pi.find(".courseId_" + course.courseId).html(
+                            course.partnerIntro + (course.partnerIntro.length <= 30 ? "" :
+                                    '<a class="F_green collapse" href="#">[收起]</a></td>')
+                        );
+                    }
+                }
+            } else {
+                for (cc = 0; cc < 4; cc++) {
+                    course = that.courses[cc];
+                    if (course.courseId) {
+                        if (course.partnerIntro.length <= 30) {
+                            text = course.partnerIntro;
+                        } else {
+                            text = course.partnerIntro.substring(0, 28)
+                                + '...<a class="F_green expand" href="#">[展开]</a></td>';
+                        }
+                        $pi.find(".courseId_" + course.courseId).html(text);
+                    }
+                }
+            }
+        });
     },
     swapRow: function (index1, index2) {
         var temp, i, $td, $rows;
@@ -200,6 +228,7 @@ var CompareView = Backbone.View.extend({
             this.$view = null;
             this.isClosed = true;
             this.$el.empty();
+            this.courses = [];
             app.compareView = null;
         }
     }
