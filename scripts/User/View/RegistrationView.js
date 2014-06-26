@@ -101,6 +101,9 @@ var RegistrationView = BaseFormView.extend({
         app.userManager.registerUser(this.model, {
             success: this.successCallback,
             error: function (data){
+                if (data === "error" || !data) {
+                    data = "服务器连接失败，请稍后再试。";
+                }
                 Info.displayNotice(data);
             }
         });
@@ -108,7 +111,7 @@ var RegistrationView = BaseFormView.extend({
     },
     passValid: function (val) {
         var p1 = val, p2 = $("#registerPasswordConfirmInput").val();
-        if ( p1 !== p2 ) {
+        if ( p2 && p1 !== p2 ) {
             return {valid: false, text:"两次输入密码不匹配"};
         } else if (val.length < 6 ){
             return {valid: false, text:"密码长度至少为6位"};
@@ -123,6 +126,10 @@ var RegistrationView = BaseFormView.extend({
         } else if (val.length < 6 ){
             return {valid: false, text:"密码长度至少为6位"};
         } else {
+            if ($("#registerPasswordInput_wrong").length) {
+                $("#registerPasswordInput_wrong").remove();
+                $("#passContainer").append($("<div>").attr("id","registerPasswordInput_right").attr("class", "success"));
+            }
             return {valid:true};
         }
     },

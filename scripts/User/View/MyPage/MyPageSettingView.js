@@ -57,8 +57,8 @@ var MyPageSettingView = BaseFormView.extend({
             trigger: true
         });
     },
-    saveError: function () {
-        Info.warn("Personal info update failed");
+    saveError: function (data) {
+        Info.displayNotice(data ? data : "服务器连接失败，请稍后再试。");
         $("#updateInfo").attr("value", "更新失败(重试)");
     },
 

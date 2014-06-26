@@ -18,6 +18,7 @@ var TopBarView = Backbone.View.extend({
 
     render: function () {
         this.$pdropdown = $('#profileDropdown>dd');
+        debugger;
         if (app.sessionManager.hasSession()) {
             this.$el.append(this.loggedInTemplate(this.sessionUser._toJSON()));
         } else {
