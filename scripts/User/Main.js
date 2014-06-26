@@ -89,7 +89,7 @@ var AppRouter = Backbone.Router.extend({
     },
 
     encodedSearch: function (encodedSearchKey) {
-            this.searchVew = new SearchView ({
+            this.searchView = new SearchView ({
                 "searchKey": encodedSearchKey
             });
         // this.advertisementView = new AdvertisementView ();

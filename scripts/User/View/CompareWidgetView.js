@@ -3,7 +3,7 @@ var CompareWidgetView = Backbone.View.extend({
     courses: [],
     initialize: function () {
         this.isClosed = false;
-        _.bindAll(this, "load", "bindEvents", "addCourse", "removeCourse", "render", "close");
+        _.bindAll(this, "load", "bindEvents", "addCourse", "removeCourse", "renderMap", "render", "close");
         this.template = _.template(tpl.get("compareWidget"));
         this.courseTemplate = _.template(tpl.get("compareWidgetEntry"));
         this.courseIds = app.storage.getCoursesToCompare();
@@ -98,7 +98,11 @@ var CompareWidgetView = Backbone.View.extend({
         this.courseIds = app.storage.getCoursesToCompare();
     },
     renderMap: function () {
+        debugger;
         this.map = new MainMapView();
+        for (i = 0; i < this.courses.length && i < 4; i++) {
+            this.map.getLatLng(this.courses[i].get("location"));
+        }
         this.rendered = true;
     },
     close: function () {

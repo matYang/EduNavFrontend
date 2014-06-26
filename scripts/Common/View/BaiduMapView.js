@@ -115,14 +115,8 @@ var MainMapView = BaiduMapView.extend({
     clickable: false,
     class: "mainPage-map",
     initialize: function () {
-        _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'close');
         this.location = "南京";
-        if (typeof BMap !== "undefined") {
-            this.geocoder = new BMap.Geocoder();
-            this.mapInitialize();
-        } else {
-            this.geocoder = {getPoint: function (){}};
-        }
+        BaiduMapView.prototype.initialize.call(this);
     }
 });
 
