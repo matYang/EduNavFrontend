@@ -682,7 +682,9 @@
                 </div>
                 <div class="course_map">
                     <div class="addr">地址：<%= location %></div>
-                    <div id="courseMap" class="map" width="328" height="183"></div>
+                    <div id="courseMap" class="map" width="328" height="183">
+                        <img src="http://api.map.baidu.com/staticimage?width=328&height=183&zoom=14&center=<%= location %>" />
+                    </div>
                 </div>
             </div>
         </div>

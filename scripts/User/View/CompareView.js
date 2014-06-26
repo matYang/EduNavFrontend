@@ -50,7 +50,8 @@ var CompareView = Backbone.View.extend({
     },
     renderError: function () {
         if (!this.isClosed) {
-            this.$el.empty().append("<div>课程信息好像载入失败了....诶嘿(<ゝω·) <a id='retry'>重试</a></div>");
+            Info.displayNotice("课程信息好像载入失败了....诶嘿");
+            app.navigate("search", true);
         }
     },
     afterRender: function () {

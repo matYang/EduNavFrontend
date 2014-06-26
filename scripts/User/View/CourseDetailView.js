@@ -26,14 +26,14 @@ var CourseDetailView = Backbone.View.extend({
     render: function () {
         $(document).scrollTop(0);
         this.$el.append(this.template(this.course._toJSON()));
-        var mapParams = {
-            div: "courseMap",
-            clickable: false,
-            class: "map",
-            location: this.course.get("location")
-        };
+        // var mapParams = {
+        //     div: "courseMap",
+        //     clickable: false,
+        //     class: "map",
+        //     location: this.course.get("location")
+        // };
 
-        this.map = new BaiduMapView(mapParams);
+        // this.map = new BaiduMapView(mapParams);
         //this.map = app.storage.getViewCache("MapView", mapParams);
     },
     bindEvents: function () {
@@ -62,10 +62,9 @@ var CourseDetailView = Backbone.View.extend({
 
     close: function () {
         if (!this.isClosed) {
-            if (this.map) {
-                this.map.close();
-            }
-
+            // if (this.map) {
+            //     this.map.close();
+            // }
             if (this.$el !== 'undefined') {
                 this.$el.empty();
             }

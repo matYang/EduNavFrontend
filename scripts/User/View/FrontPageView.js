@@ -94,7 +94,6 @@ var FrontPageView = Backbone.View.extend({
             $("#lv2Categories").children("div[data-parent!=" + category + "]").addClass("hidden");
         }).on("click", "li", function (e) {
             e.preventDefault();
-            debugger;
             that.searchRepresentation.set("category", $(this).data("id"));
             app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
         });
