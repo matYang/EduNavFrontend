@@ -683,7 +683,9 @@
                 <div class="course_map">
                     <div class="addr">地址：<%= location %></div>
                     <div id="courseMap" class="map" width="328" height="183">
+                    <a href="http://api.map.baidu.com/geocoder?address=<%= location %>&output=html" target="_blank">
                         <img src="http://api.map.baidu.com/staticimage?width=328&height=183&zoom=14&center=<%= location %>" />
+                    </a>
                     </div>
                 </div>
             </div>

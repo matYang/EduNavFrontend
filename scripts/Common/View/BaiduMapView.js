@@ -2,11 +2,6 @@ var BaiduMapView = Backbone.View.extend({
     markers: [],
     initialize: function (config) {
         _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'close');
-        this.div = config.div;
-        this.location = config.location || "南京";
-        this.clickable = config.clickable;
-        this.class = config.class;
-        this.init = config.init;
         if (typeof BMap !== "undefined") {
             this.geocoder = new BMap.Geocoder();
             this.mapInitialize();
@@ -14,26 +9,26 @@ var BaiduMapView = Backbone.View.extend({
             this.geocoder = {getPoint: function (){}};
         }
     },
-    cacheConfig: function (config) {
-        this.div = config.div;
-        this.location = config.location || "南京";
-        this.clickable = config.clickable;
-        this.init = config.init;
-        this.class = config.class;
-        $("#" + this.div).after($("#mapcache").attr("id", "newMap"));
-        $("#mapcache").remove();
-        $("#" + this.div).remove();
-        if (this.class) {
-            $("#newMap").attr("class", this.class);
-        }
-        $("#newMap").attr("id", this.div);
-        this.mapInitialize();
-    },
+    // cacheConfig: function (config) {
+    //     this.div = config.div;
+    //     this.location = config.location || "南京";
+    //     this.clickable = config.clickable;
+    //     this.init = config.init;
+    //     this.class = config.class;
+    //     $("#" + this.div).after($("#mapcache").attr("id", "newMap"));
+    //     $("#mapcache").remove();
+    //     $("#" + this.div).remove();
+    //     if (this.class) {
+    //         $("#newMap").attr("class", this.class);
+    //     }
+    //     $("#newMap").attr("id", this.div);
+    //     this.mapInitialize();
+    // },
     mapInitialize: function () {
         // var opts;
         this.isClosed = false;
         app.viewRegistration.register(this);    
-        this.map = new BMap.Map(this.div, {enableMapClick: false});  //this should never expire
+        this.map = new BMap.Map(this.el.id, {enableMapClick: false});  //this should never expire
         this.setCenter(this.location);
     },
     getLatLng: function (locationString) {
