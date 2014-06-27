@@ -1,7 +1,11 @@
 var Info = {
 
-    alert: function (data, options) {
-        app.infoModal.setMessage(data).show();
+    alert: function (data) {
+        if (app.infoModal) {
+            app.infoModal.setMessage(data).show();
+        } else {
+            alert(data);
+        }
         // Info.displayErrorPage("content", data);
     },
 

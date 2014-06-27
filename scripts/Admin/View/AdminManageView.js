@@ -1,5 +1,5 @@
 var AdminUserSearchResultView = MultiPageView.extend({
-    extPn:true,
+    extPn: true,
     entryContainer: "searchResultContainer",
     pageNumberClass: "searchResultPageNumber",
     pageNumberId: "searchResultPageNumber",
@@ -22,7 +22,7 @@ var AdminUserSearchResultView = MultiPageView.extend({
         MultiPageView.prototype.render.call(this);
     },
     entryEvent: function (id) {
-        app.navigate("manage/user/"+id);
+        app.navigate("manage/user/" + id);
         if (!this.userView) {
             this.userView = new AdminUserView({user: this.allMessages.get(id)});
         } else {
@@ -30,7 +30,7 @@ var AdminUserSearchResultView = MultiPageView.extend({
         }
     },
     close: function () {
-        if (!this.isClosed){
+        if (!this.isClosed) {
             MultiPageView.prototype.close.call(this);
             this.isClosed = true;
         }
@@ -64,14 +64,14 @@ var AdminCourseSearchResultView = MultiPageView.extend({
 
     },
     entryEvent: function (id) {
-        app.navigate("manage/course/"+id);
-        this.adminCourseView = new AdminCourseView({"courseId":id});
+        app.navigate("manage/course/" + id);
+        this.adminCourseView = new AdminCourseView({"courseId": id});
         $("#courseCRUDContainer").removeClass("hidden");
         $("#searchResult").addClass("hidden");
     },
     bindEvents: function () {
         var that = this;
-        $("#createCourse").on("click", function(){
+        $("#createCourse").on("click", function () {
             $(this).addClass("active");
             $("#updateCourse").removeClass("active");
             $("#courseCRUDContainer").removeClass("hidden");
@@ -82,7 +82,7 @@ var AdminCourseSearchResultView = MultiPageView.extend({
                 that.adminCourseView.initialize();
             }
         });
-        $("#searchCourse").on("click", function(){
+        $("#searchCourse").on("click", function () {
             $(this).addClass("active");
             $("#createCourse").removeClass("active");
             $("#searchResult").removeClass("hidden");
@@ -92,7 +92,7 @@ var AdminCourseSearchResultView = MultiPageView.extend({
         });
     },
     close: function () {
-        if (!this.isClosed){
+        if (!this.isClosed) {
             $("#createCourse").off();
             $("#searchCourse").off();
             MultiPageView.prototype.close.call(this);
@@ -125,10 +125,10 @@ var AdminBookingSearchResultView = MultiPageView.extend({
         MultiPageView.prototype.render.call(this);
     },
     entryEvent: function (id) {
-        app.navigate("manage/booking/"+id, true);
+        app.navigate("manage/booking/" + id, true);
     },
     close: function () {
-        if (!this.isClosed){
+        if (!this.isClosed) {
             MultiPageView.prototype.close.call(this);
             this.isClosed = true;
         }
@@ -161,14 +161,14 @@ var AdminAdminSearchResultView = MultiPageView.extend({
     },
     bindEvents: function () {
         var that = this;
-        $("#createAdmin").on("click", function(){
+        $("#createAdmin").on("click", function () {
             $(this).addClass("active");
             $("#updateAdmin").removeClass("active");
             $("#adminCRUDContainer").removeClass("hidden");
             $("#searchResult").addClass("hidden");
             that.adminAdminView = new AdminAdminView(); //Create
         });
-        $("#searchAdmin").on("click", function(){
+        $("#searchAdmin").on("click", function () {
             $(this).addClass("active");
             $("#createAdmin").removeClass("active");
             $("#searchResult").removeClass("hidden");
@@ -177,10 +177,10 @@ var AdminAdminSearchResultView = MultiPageView.extend({
         });
     },
     entryEvent: function (id) {
-        app.navigate("manage/admin/"+id, true);
+        app.navigate("manage/admin/" + id, true);
     },
     close: function () {
-        if (!this.isClosed){
+        if (!this.isClosed) {
             $("#createAdmin").off();
             $("#searchAdmin").off();
             MultiPageView.prototype.close.call(this);
@@ -215,14 +215,14 @@ var AdminPartnerSearchResultView = MultiPageView.extend({
     },
     bindEvents: function () {
         var that = this;
-        $("#createPartner").on("click", function(){
+        $("#createPartner").on("click", function () {
             $(this).addClass("active");
             $("#updatePartner").removeClass("active");
             $("#partnerCRUDContainer").removeClass("hidden");
             $("#searchResult").addClass("hidden");
             that.adminPartnerView = new AdminPartnerView(); //Create
         });
-        $("#searchPartner").on("click", function(){
+        $("#searchPartner").on("click", function () {
             $(this).addClass("active");
             $("#createPartner").removeClass("active");
             $("#searchResult").removeClass("hidden");
@@ -231,10 +231,10 @@ var AdminPartnerSearchResultView = MultiPageView.extend({
         });
     },
     entryEvent: function (id) {
-        app.navigate("manage/partner/"+id, true);
+        app.navigate("manage/partner/" + id, true);
     },
     close: function () {
-        if (!this.isClosed){
+        if (!this.isClosed) {
             MultiPageView.prototype.close.call(this);
             this.isClosed = true;
         }
@@ -242,7 +242,7 @@ var AdminPartnerSearchResultView = MultiPageView.extend({
 });
 
 var AdminManageView = Backbone.View.extend({
-    el:"#main_content",
+    el: "#main_content",
     resultView: {},
     templates: {
         user: _.template(tpl.get('adminUserManage')),
@@ -251,8 +251,9 @@ var AdminManageView = Backbone.View.extend({
         admin: _.template(tpl.get('adminAdminManage')),
         partner: _.template(tpl.get('adminPartnerManage'))
     },
+    optionTemplate: _.template(tpl.get('simpleOption')),
     initialize: function (params) {
-        _.bindAll(this, "render", "switchView", "bindEvents", "bindSearchEvent", "renderResult", "renderCategories", "renderSubCategories", "renderLocations", "renderDistrict", "close", "search");
+        _.bindAll(this, "render", "switchView", "bindEvents", "bindSearchEvent", "renderResult", "renderCategories", "renderSubCategories", "renderLocations", "renderDistrict", "close");
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.sr = {
@@ -276,37 +277,36 @@ var AdminManageView = Backbone.View.extend({
         this.bindEvents();
     },
     render: function () {
-        var view;
         $("#sideBar").find(".active").removeClass("active");
         $("#" + this.type + "Manage").addClass("active");
         if (this.resultView[this.type]) {
             this.resultView[this.type].initialize();
         } else {
             switch (this.type) {
-                case "user":
-                    this.allMessages = new Users();
-                    this.resultView[this.type] = new AdminUserSearchResultView(this.allMessages, this.allMessages);
-                    break;
-                case "course":
-                    this.allMessages = new Courses();
-                    this.resultView[this.type] = new AdminCourseSearchResultView(this.allMessages, this.allMessages);
-                    app.generalManager.getCategories(this);
-                    break;
-                case "booking":
-                    this.allMessages = new Bookings();
-                    this.resultView[this.type] = new AdminBookingSearchResultView(this.allMessages, this.allMessages);
-                    break;
-                case "admin":
-                    this.allMessages = new Admins();
-                    this.resultView[this.type] = new AdminAdminSearchResultView(this.allMessages, this.allMessages);
-                    break;
-                case "partner":
-                    this.allMessages = new Partners();
-                    this.resultView[this.type] = new AdminPartnerSearchResultView(this.allMessages, this.allMessages);
-                    break;
-                default:
-                    alert("invalid");
-                    break;
+            case "user":
+                this.allMessages = new Users();
+                this.resultView[this.type] = new AdminUserSearchResultView(this.allMessages, this.allMessages);
+                break;
+            case "course":
+                this.allMessages = new Courses();
+                this.resultView[this.type] = new AdminCourseSearchResultView(this.allMessages, this.allMessages);
+                app.generalManager.getCategories(this);
+                break;
+            case "booking":
+                this.allMessages = new Bookings();
+                this.resultView[this.type] = new AdminBookingSearchResultView(this.allMessages, this.allMessages);
+                break;
+            case "admin":
+                this.allMessages = new Admins();
+                this.resultView[this.type] = new AdminAdminSearchResultView(this.allMessages, this.allMessages);
+                break;
+            case "partner":
+                this.allMessages = new Partners();
+                this.resultView[this.type] = new AdminPartnerSearchResultView(this.allMessages, this.allMessages);
+                break;
+            default:
+                Info.alert("invalid");
+                break;
             }
         }
         if (this.query) {
@@ -320,400 +320,195 @@ var AdminManageView = Backbone.View.extend({
     },
     bindSearchEvent: function () {
         var that = this;
+        $("input[class=date]").datepicker({
+            buttonImageOnly: true,
+            buttonImage: "calendar.gif",
+            buttonText: "Calendar",
+            onSelect: function (text, inst) {
+                var d = new Date();
+                d.setDate(inst.selectedDay);
+                d.setMonth(inst.selectedMonth);
+                d.setYear(inst.selectedYear);
+                that.sr[that.type].set($(this).attr("id").split("_")[0], d);
+                $(this).val(Utilities.getDateString(d));
+            }
+        });
         if (this.type === "user") {
             $("#userSearchPanel").on("click", "a", function (e) {
                 var id = e.target.id.split("_")[1];
                 $(e.delegateTarget).children("div").addClass("hidden");
-                $("#"+id).removeClass("hidden");
+                $("#" + id).removeClass("hidden");
             });
-            $("#queryUserBtn").on("click", function (e) {
-                var obj = that.sr[that.type].toJSON();
-                for ( var attr in obj ) {
-                    var $input = $("#queryUser").find("#" +attr+"_Input"), value = $input.val();
-                    if (value && !$input.hasClass("date") ) {
+            $("#queryUserBtn").on("click", function () {
+                var obj = that.sr[that.type].toJSON(), attr, $input, value;
+                for (attr in obj) {
+                    $input = $("#queryUser").find("#" + attr + "_Input");
+                    value = $input.val();
+                    if (value && !$input.hasClass("date")) {
                         that.sr[that.type].set(attr, $input.attr("type") === "number" ? Utilities.toInt(value) : value);
                     }
                 }
-                app.adminManager.listUser(that.sr[this.type], {success:that.renderResult, error:function(){}});
+                app.adminManager.listUser(that.sr[this.type], {success: that.renderResult, error: Utilities.defaultErrorHandler});
             });
-            $("#findUserBtn").on("click", function (e) {
+            $("#findUserBtn").on("click", function () {
                 var id = $("#userId_Input").val();
                 if (id) {
-                    app.navigate("manage/user/" + id, true );
-                }
-            });
-            $("#startCreationTime_Input").datepicker({
-                buttonImageOnly: true,
-                buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                minDate: new Date (),
-                onSelect: function (text, inst) {
-                    var d = new Date ();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    that.sr[that.type].set("startScheduledTime", d);
-                    $(this).val(Utilities.getDateString(d));
-                }
-            });
-            $("#finishCreationTime_Input").datepicker({
-                buttonImageOnly: true,
-                buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                minDate: new Date (),
-                onSelect: function (text, inst) {
-                    var d = new Date ();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    that.sr[that.type].set("startScheduledTime", d);
-                    $(this).val(Utilities.getDateString(d));
+                    app.navigate("manage/user/" + id, true);
                 }
             });
         } else if (this.type === "course") {
-            $("#findCourseBtn").on("click", function() {
+            $("#findCourseBtn").on("click", function () {
                 var id = $("#courseId_Input").val();
                 if (id) {
-                    app.navigate("manage/course/" + id, true );
+                    app.navigate("manage/course/" + id, true);
                 }
             });
-            $("#startDate_Input").datepicker({
-                buttonImageOnly: true,
-                buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                onSelect: function (text, inst) {
-                    var d = new Date ();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    that.sr[that.type].set("startDate", d);
-                    $(this).val(Utilities.getDateString(d));
-                }
-            });
-            $("#finishDate_Input").datepicker({
-                buttonImageOnly: true,
-                buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                onSelect: function (text, inst) {
-                    var d = new Date ();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    that.sr[that.type].set("finishDate", d);
-                    $(this).val(Utilities.getDateString(d));
-                }
-            });
-            $("#startCutoffDate_Input").datepicker({
-                buttonImageOnly: true,
-                buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                onSelect: function (text, inst) {
-                    var d = new Date ();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    that.sr[that.type].set("startCutoffDate", d);
-                    $(this).val(Utilities.getDateString(d));
-                }
-            });
-            $("#finishCutoffDate_Input").datepicker({
-                buttonImageOnly: true,
-                buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                onSelect: function (text, inst) {
-                    var d = new Date ();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    that.sr[that.type].set("finishCutoffDate", d);
-                    $(this).val(Utilities.getDateString(d));
-                }
-            });
-            $("#searchInput_category").on("change", function() {
+            $("#searchInput_category").on("change", function () {
                 var category = $(this).val();
                 that.sr[that.type].set("category", category);
                 that.sr[that.type].set("subCategory", undefined);
                 that.renderSubCategory(category);
             });
-            $("#searchInput_subCategory").on("change", function() {
+            $("#searchInput_subCategory").on("change", function () {
                 that.sr[that.type].set("subCategory", $(this).val());
             });
-            $("#searchInput_city").on("change", function() {
+            $("#searchInput_city").on("change", function () {
                 var city = $(this).val();
                 that.sr[that.type].set("city", city);
                 that.sr[that.type].set("district", undefined);
                 that.renderDistrict(city);
             });
-            $("#searchInput_district").on("change", function() {
+            $("#searchInput_district").on("change", function () {
                 that.sr[that.type].set("district", $(this).val());
             });
             $("#queryCourseBtn").on("click", function (e) {
-                var obj = that.sr[that.type].toJSON();
-                for ( var attr in obj ) {
-                    var $input = $("#queryCourse").find("#" +attr+"_Input"), value = $input.val();
-                    if (value && !$input.hasClass("date") ) {
+                var obj = that.sr[that.type].toJSON(), attr, $input, value;
+                for (attr in obj) {
+                    $input = $("#queryCourse").find("#" + attr + "_Input");
+                    value = $input.val();
+                    if (value && !$input.hasClass("date")) {
                         that.sr[that.type].set(attr, $input.attr("type") === "number" ? Utilities.toInt(value) : value);
                     }
                 }
-                app.generalManager.findCourse(that.sr, {success:that.renderResult, error:function(){}});
+                app.generalManager.findCourse(that.sr[that.type], {success: that.renderResult, error: Utilities.defaultErrorHandler});
             });
             $("#courseSearchPanel").on("click", "a", function (e) {
                 var id = e.target.id.split("_")[1];
                 $(e.delegateTarget).children("div").addClass("hidden");
-                $("#"+id).removeClass("hidden");
+                $("#" + id).removeClass("hidden");
             });
         } else if (this.type === "booking") {
             $("#bookingSearchPanel").on("click", "a", function (e) {
                 var id = e.target.id.split("_")[1];
                 $(e.delegateTarget).children("div").addClass("hidden");
-                $("#"+id).removeClass("hidden");
+                $("#" + id).removeClass("hidden");
             });
             $("#bookingId_Input").on("keypress", function (e) {
                 if (e.which === 13) {
                     var bookingId = $(this).val();
                     if (bookingId) {
-                        app.navigate("manage/booking/"+ bookingId, true);
-                    }    
+                        app.navigate("manage/booking/" + bookingId, true);
+                    }
                 }
             });
-            $("#findBookingBtn").on("click", function (e) {
+            $("#findBookingBtn").on("click", function () {
                 var bookingId = $("#bookingId_Input").val();
                 if (bookingId) {
-                    app.navigate("manage/booking/"+ bookingId, true);
+                    app.navigate("manage/booking/" + bookingId, true);
                 }
             });
-            $("#queryBookingBtn").on("click", function (e) {
-                var obj = that.sr[that.type].toJSON();
-                for ( var attr in obj ) {
-                    var $input = $("#queryBooking").find("#" +attr+"_Input"), value = $input.val();
-                    if (value && !$input.hasClass("date") ) {
+            $("#queryBookingBtn").on("click", function () {
+                var obj = that.sr[that.type].toJSON(), attr, $input, value;
+                for (attr in obj) {
+                    $input = $("#queryBooking").find("#"  + attr + "_Input");
+                    value = $input.val();
+                    if (value && !$input.hasClass("date")) {
                         that.sr[that.type].set(attr, value);
                     }
                 }
-                app.adminManager.listBooking(that.sr, {success:that.renderResult, error:function(){}});
+                app.adminManager.listBooking(that.sr[that.type], {success: that.renderResult, error: Utilities.defaultErrorHandler});
             });
-            // $("#startScheduledTime_Input").datepicker({
-            //     buttonImageOnly: true,
-            //     buttonImage: "calendar.gif",
-            //     buttonText: "Calendar",
-            //     onSelect: function (text, inst) {
-            //         var d = new Date ();
-            //         d.setDate(inst.selectedDay);
-            //         d.setMonth(inst.selectedMonth);
-            //         d.setYear(inst.selectedYear);
-            //         that.sr[that.type].set("startScheduledTime", d);
-            //         $(this).val(Utilities.getDateString(d));
-            //     }
-            // });
-            // $("#finishScheduledTime_Input").datepicker({
-            //     buttonImageOnly: true,
-            //     buttonImage: "calendar.gif",
-            //     buttonText: "Calendar",
-            //     onSelect: function (text, inst) {
-            //         var d = new Date ();
-            //         d.setDate(inst.selectedDay);
-            //         d.setMonth(inst.selectedMonth);
-            //         d.setYear(inst.selectedYear);
-            //         that.sr[that.type].set("finishScheduledTime", d);
-            //         $(this).val(Utilities.getDateString(d));
-            //     }
-            // });
-            // $("#startAdjustTime_Input").datepicker({
-            //     buttonImageOnly: true,
-            //     buttonImage: "calendar.gif",
-            //     buttonText: "Calendar",
-            //     onSelect: function (text, inst) {
-            //         var d = new Date ();
-            //         d.setDate(inst.selectedDay);
-            //         d.setMonth(inst.selectedMonth);
-            //         d.setYear(inst.selectedYear);
-            //         that.sr[that.type].set("startAdjustTime", d);
-            //         $(this).val(Utilities.getDateString(d));
-            //     }
-            // });
-            // $("#finishSdjustTime_Input").datepicker({
-            //     buttonImageOnly: true,
-            //     buttonImage: "calendar.gif",
-            //     buttonText: "Calendar",
-            //     onSelect: function (text, inst) {
-            //         var d = new Date ();
-            //         d.setDate(inst.selectedDay);
-            //         d.setMonth(inst.selectedMonth);
-            //         d.setYear(inst.selectedYear);
-            //         that.sr[that.type].set("finishAdjustTime", d);
-            //         $(this).val(Utilities.getDateString(d));
-            //     }
-            // });
-            // $("#startCreationTime_Input").datepicker({
-            //     buttonImageOnly: true,
-            //     buttonImage: "calendar.gif",
-            //     buttonText: "Calendar",
-            //     onSelect: function (text, inst) {
-            //         var d = new Date ();
-            //         d.setDate(inst.selectedDay);
-            //         d.setMonth(inst.selectedMonth);
-            //         d.setYear(inst.selectedYear);
-            //         that.sr[that.type].set("startCreationTime", d);
-            //         $(this).val(Utilities.getDateString(d));
-            //     }
-            // });
-            // $("#finishCreationTime_Input").datepicker({
-            //     buttonImageOnly: true,
-            //     buttonImage: "calendar.gif",
-            //     buttonText: "Calendar",
-            //     onSelect: function (text, inst) {
-            //         var d = new Date ();
-            //         d.setDate(inst.selectedDay);
-            //         d.setMonth(inst.selectedMonth);
-            //         d.setYear(inst.selectedYear);
-            //         that.sr[that.type].set("finishCreationTime", d);
-            //         $(this).val(Utilities.getDateString(d));
-            //     }
-            // });
-            // $("#startBookingStatusAdjustTime_Input").datepicker({
-            //     buttonImageOnly: true,
-            //     buttonImage: "calendar.gif",
-            //     buttonText: "Calendar",
-            //     onSelect: function (text, inst) {
-            //         var d = new Date ();
-            //         d.setDate(inst.selectedDay);
-            //         d.setMonth(inst.selectedMonth);
-            //         d.setYear(inst.selectedYear);
-            //         that.sr[that.type].set("finishCreationTime", d);
-            //         $(this).val(Utilities.getDateString(d));
-            //     }
-            // });
-            $("input[class=date]").datepicker({
-                buttonImageOnly: true,
-                buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                onSelect: function (text, inst) {
-                    var d = new Date ();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    that.sr[that.type].set($(this).attr("id").split("_")[0], d);
-                    $(this).val(Utilities.getDateString(d));
-                }
-            });
+
         } else if (this.type === "partner") {
             $("#partnerSearchPanel").on("click", "a", function (e) {
                 var id = e.target.id.split("_")[1];
                 $(e.delegateTarget).children("div").addClass("hidden");
-                $("#"+id).removeClass("hidden");
+                $("#" + id).removeClass("hidden");
             });
-            $("#findPartnerBtn").on("click", function (e) {
+            $("#findPartnerBtn").on("click", function () {
                 var partnerId = $("#partnerId_Input").val();
                 if (partnerId) {
-                    app.navigate("manage/partner/"+ partnerId, true);
+                    app.navigate("manage/partner/" + partnerId, true);
                 }
             });
-            $("#queryPartnerBtn").on("click", function (e) {
-                var obj = that.sr[that.type].toJSON();
-                for ( var attr in obj ) {
-                    var $input = $("#queryUser").find("#" +attr+"_Input"), value = $input.val();
-                    if (value && !$input.hasClass("date") ) {
+            $("#queryPartnerBtn").on("click", function () {
+                var obj = that.sr[that.type].toJSON(), attr, $input, value;
+                for (attr in obj) {
+                    $input = $("#queryUser").find("#" + attr + "_Input");
+                    value = $input.val();
+                    if (value && !$input.hasClass("date")) {
                         that.sr[that.type].set(attr, value);
                     }
                 }
-                app.adminManager.listPartner(that.sr, {success:that.renderResult, error:function(){}});
-            });
-            $("#startCreationTime_Input").datepicker({
-                buttonImageOnly: true,
-                buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                onSelect: function (text, inst) {
-                    var d = new Date ();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    that.sr[that.type].set("startCreationTime", d);
-                    $(this).val(Utilities.getDateString(d));
-                }
-            });
-            $("#finishCreationTime_Input").datepicker({
-                buttonImageOnly: true,
-                buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                onSelect: function (text, inst) {
-                    var d = new Date ();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    that.sr[that.type].set("finishCreationTime", d);
-                    $(this).val(Utilities.getDateString(d));
-                }
+                app.adminManager.listPartner(that.sr[that.type], {success: that.renderResult, error: Utilities.defaultErrorHandler});
             });
         } else if (this.type === "admin") {
             $("#adminSearchPanel").on("click", "a", function (e) {
                 var id = e.target.id.split("_")[1];
                 $(e.delegateTarget).children("div").addClass("hidden");
-                $("#"+id).removeClass("hidden");
+                $("#" + id).removeClass("hidden");
             });
-            $("#findAdminBtn").on("click", function (e) {
+            $("#findAdminBtn").on("click", function () {
                 var adminId = $("#adminId_Input").val();
                 if (adminId) {
-                    app.navigate("manage/admin/"+ adminId, true);
+                    app.navigate("manage/admin/" + adminId, true);
                 }
             });
-            $("#queryAdminBtn").on("click", function (e) {
-                var obj = that.sr[that.type].toJSON();
-                for ( var attr in obj ) {
-                    var $input = $("#queryUser").find("#" +attr+"_Input"), value = $input.val();
-                   if (value && !$input.hasClass("date") ) {
+            $("#queryAdminBtn").on("click", function () {
+                var obj = that.sr[that.type].toJSON(), attr, value, $input;
+                for (attr in obj) {
+                    $input = $("#queryUser").find("#" + attr + "_Input");
+                    value = $input.val();
+                    if (value && !$input.hasClass("date")) {
                         that.sr[that.type].set(attr, value);
                     }
                 }
-                app.adminManager.listAdmin(that.sr, {success:that.renderResult, error:function(){}});
+                app.adminManager.listAdmin(that.sr[that.type], {success: that.renderResult, error: Utilities.defaultErrorHandler});
             });
         }
     },
-    search: function () {
-        var val = $("#searchInput").val(), regex = /[0-9]+/;
-        if (this.type === "user") {
-            app.adminManager.listUser(this.sr, {success:this.renderResult, error:function(){}});
-        } else if (this.type === "course") {
-            app.generalManager.findCourse(this.sr, {success:this.renderResult, error:function(){}});
-        } else if (this.type === "booking") {
-            if (val) {
-                app.navigate("manage/booking/" + val, true);
-            } else {
-                
-            }
-        } else if (this.type === "partner") {
-
-        }
-    },
     renderCategories: function (categories) {
-        this.categories = categories;
-        var buf = [], obj;
-        for ( var key in categories) {
-            buf.push("<option value='" + key + "'>" + key + "</option>");
+        var count = 0, buf = [], key;
+        this.categories = categories
+        for (key in categories) {
+            buf[count] = this.optionTemplate({val: key, text: key});
+            count++;
         }
         $("#searchInput_category").append(buf.join());
     },
     renderSubCategories: function (category) {
-        var subCategories = this.categories[category], buf = [];
-        for ( var key in subCategories) {
-            buf.push("<option value='" + key + "'>" + key + "</option>");
+        var subCategories = this.categories[category], buf = [], key, count = 0;
+        for (key in subCategories) {
+            buf[count] = this.optionTemplate({val: key, text: key});
+            count++;
         }
         $("#searchInput_district").empty().append(buf.join());
     },
     renderLocations: function (list) {
         this.locations = list;
-        var len = list.length, buf = [], obj;
-        for ( var i = 0; i < len; i ++) {
+        var len = list.length, buf = [], obj, i, attr;
+        for (i = 0; i < len; i++) {
             obj = this.locations[i];
-            for ( var attr in obj ) {
-                buf.push("<option value='" + attr + "'>" + attr + "</option>");
+            for (attr in obj) {
+                buf[i] = this.optionTemplate({val: attr, text: attr});
             }
         }
         $("#searchInput_city").append(buf.join());
     },
     renderDistrict: function (city) {
-        var districts = this.locations[city], len = districts.length, buf = [], obj;
-        for ( var i = 0; i < len; i ++) {
-            buf.push("<option value='" + districts[i] + "'>" + districts[i] + "</option>");
+        var districts = this.locations[city], len = districts.length, buf = [], i;
+        for (i = 0; i < len; i++) {
+            buf[i] = this.optionTemplate({val: districts[i], text: districts[i]});
         }
         $("#searchInput_district").empty().append(buf.join());
     },
@@ -723,7 +518,7 @@ var AdminManageView = Backbone.View.extend({
         this.resultView[this.type].messages.reset(array);
         this.resultView[this.type].render();
     },
-    closeActiveView: function (){
+    closeActiveView: function () {
         if (this.type === "user") {
             $("#userSearchPanel").off();
             $("#queryUserBtn").off();
@@ -749,7 +544,7 @@ var AdminManageView = Backbone.View.extend({
             $("#adminSearchPanel").off();
             $("#findAdminBtn").off();
             $("#queryAdminBtn").off();
-        }    
+        }
         if (this.resultView[this.type]) {
             this.resultView[this.type].close();
             this.$el.empty();

@@ -9,9 +9,9 @@ var Utilities = {
     getDateString: function (targetDate, relativeFlag) {
         if (!targetDate) {
             Info.log("Utilities::getDateString invalid parameter, null or undefined");
-            targetDate = new Date ();
+            targetDate = new Date();
         }
-        var tempDate = new Date (), curDate = new Date (targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate()), today = new Date (tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate()), dayDifference = Math.floor((curDate.getTime() - today.getTime()) / Constants.miliSecInDay), time = "";
+        var tempDate = new Date(), curDate = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate()), today = new Date(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate()), dayDifference = Math.floor((curDate.getTime() - today.getTime()) / Constants.miliSecInDay), time = "";
 
         if (!relativeFlag) {
             return (curDate.getMonth() + 1) + "月" + curDate.getDate() + "日";
@@ -19,15 +19,20 @@ var Utilities = {
 
         if (dayDifference === 0) {
             return "今天" + time;
-        } else if (dayDifference === 1) {
+        }
+        if (dayDifference === 1) {
             return "明天" + time;
-        } else if (dayDifference === 2) {
+        }
+        if (dayDifference === 2) {
             return "后天" + time;
-        } else if (dayDifference === -1) {
+        }
+        if (dayDifference === -1) {
             return "昨天" + time;
-        } else if (dayDifference === -2) {
+        }
+        if (dayDifference === -2) {
             return "前天" + time;
-        } else if (dayDifference < -2 && dayDifference > -8) {
+        }
+        if (dayDifference < -2 && dayDifference > -8) {
             return (0 - dayDifference) + "天前" + time;
         }
 
@@ -44,9 +49,8 @@ var Utilities = {
 
         if (days > 6) {
             return "下" + Constants.weekDayArray[curDayOfWeek];
-        } else {
-            return "date display error";
         }
+        return "date display error";
     },
 
     //get the time range in the same day, startTime and endTime should be on the same day
@@ -54,11 +58,11 @@ var Utilities = {
     getTimeRange: function (startTime, endTime) {
         if (!startTime) {
             Info.log("Utilities::getTimeRange  invalid startTime paramters, either null or undefined");
-            startTime = new Date ();
+            startTime = new Date();
         }
         if (!endTime) {
             Info.log("Utilities::getTimeRange  invalid endTime paramters, either null or undefined");
-            endTime = new Date ();
+            endTime = new Date();
         }
         if (startTime.getFullYear() !== endTime.getFullYear || startTime.getMonth() !== endTime.getMonth() || startTime.getDate() !== endTime.getDate()) {
             Info.log("Utilities::getTimeRange warning, startTime and endTime are not on the date day");
@@ -75,11 +79,11 @@ var Utilities = {
     getDuration: function (startTime, endTime) {
         if (!startTime) {
             Info.log("Utilities::getTimeRange  invalid startTime paramters, either null or undefined");
-            startTime = new Date ();
+            startTime = new Date();
         }
         if (!endTime) {
             Info.log("Utilities::getTimeRange  invalid endTime paramters, either null or undefined");
-            endTime = new Date ();
+            endTime = new Date();
         }
         if (startTime.getFullYear() !== endTime.getFullYear || startTime.getMonth() !== endTime.getMonth() || startTime.getDate() !== endTime.getDate()) {
             Info.log("Utilities::getDuration warning, startTime and endTime are not on the date day");
@@ -96,19 +100,18 @@ var Utilities = {
 
         if (hourDif > 0) {
             return hourDif + "小时" + minuteDif + "分钟";
-        } else {
-            return minuteDif + "分钟";
         }
+        return minuteDif + "分钟";
     },
 
     getHourlyRate: function (startTime, endTime, price) {
         if (!startTime) {
             Info.log("Utilities::getTimeRange  invalid startTime paramters, either null or undefined");
-            startTime = new Date ();
+            startTime = new Date();
         }
         if (!endTime) {
             Info.log("Utilities::getTimeRange  invalid endTime paramters, either null or undefined");
-            endTime = new Date ();
+            endTime = new Date();
         }
         if (startTime.getFullYear() !== endTime.getFullYear || startTime.getMonth() !== endTime.getMonth() || startTime.getDate() !== endTime.getDate()) {
             Info.log("Utilities::getHourlyRate warning, startTime and endTime are not on the date day");
@@ -148,7 +151,7 @@ var Utilities = {
     castFromAPIFormat: function (dateString) {
         dateString = decodeURIComponent(dateString);
         var match = dateString.match(/^(\d+)-(\d+)-(\d+)\+(\d+)\:(\d+)\:(\d+)$/);
-        var date = new Date (match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
+        var date = new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
         return date;
     },
     castToAPIFormat: function (date) {
@@ -168,40 +171,42 @@ var Utilities = {
     // },
 
 
-    getUrlParams: function(name) {
-        if(name===(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search));
-              return decodeURIComponent(name[1]);
+    getUrlParams: function (name) {
+        if (name === (new RegExp('[?&]' + encodeURIComponent(name) + '=([^&]*)')).exec(location.search)) {
+            return decodeURIComponent(name[1]);
+        }
     },
-    getCookie: function(c_name){
+    getCookie: function (c_name) {
         var i, x, y, ARRcookies = document.cookie.split(";");
-        if (ARRcookies[0] === "" ) {
+        if (ARRcookies[0] === "") {
             ARRcookies[0] = document.cookie;
         }
         for (i = 0; i < ARRcookies.length; i++) {
             x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
             y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
             x = x.replace(/^\s+|\s+$/g, "");
-            if (x == c_name) {
+            if (x === c_name) {
                 return unescape(y);
             }
         }
     },
-    parseQueryParam: function(queryString){
+    parseQueryParam: function (queryString) {
         var params = {};
-        if(queryString){
+        if (queryString) {
             _.each(
-                _.map(decodeURI(queryString).split(/&/g),function(el,i){
+                _.map(decodeURI(queryString).split(/&/g), function (el, i) {
                     var aux = el.split('='), o = {};
-                    if(aux.length >= 1){
+                    if (aux.length >= 1) {
                         var val;
-                        if(aux.length == 2)
+                        if (aux.length === 2) {
                             val = aux[1];
+                        }
                         o[aux[0]] = val;
                     }
                     return o;
                 }),
-                function(o){
-                    _.extend(params,o);
+                function (o) {
+                    _.extend(params, o);
                 }
             );
         }
@@ -209,28 +214,26 @@ var Utilities = {
     },
     passValid: function (val) {
         var p1 = $("#password").val(), p2 = $("#passwordConfirm").val();
-        if ( p1 !== p2 ) {
-            return {valid: false, text:"密码长度至少为6位"};
-        } else if (val.length < 6 ){
-            return {valid: false, text:"两次输入密码不匹配"};
-        } else {
-            return {valid:true};
+        if (p1 !== p2) {
+            return {valid: false, text: "密码长度至少为6位"};
         }
+        if (val.length < 6) {
+            return {valid: false, text: "两次输入密码不匹配"};
+        }
+        return {valid: true};
     },
 
-    phoneValid: function(phone) {
+    phoneValid: function (phone) {
         if (phone && phone.length === 11 && !isNaN(Utilities.toInt(phone))) {
-            return {valid:true};
-        } else {
-            return {valid:false, text: "电话号码格式不正确"};
+            return {valid: true};
         }
+        return {valid: false, text: "电话号码格式不正确"};
     },
     emailValid: function (email) {
         if (Utilities.emailRegex.test(email)) {
-            return {valid:true};
-        } else {
-            return {valid:false, text: "邮箱格式不正确"};
+            return {valid: true};
         }
+        return {valid: false, text: "邮箱格式不正确"};
     },
     preventDefault: function (e) {
         e.preventDefault();
@@ -243,27 +246,28 @@ var Utilities = {
     defaultValidDivBuilder: function (valid, type, text) {
         //This function overloads baseField's default buildValidatorDiv. It should only be invoked by BaseField's testValue function, thus this refers the BaseForm model in this case,
         //This function is not bound to the view.
-        $("#"+this.get("fieldId")+"_info").remove();
+        $("#" + this.get("fieldId") + "_info").remove();
         if (valid) {
-            $("#"+this.get("fieldId")).removeClass("wrong_color");
-            return '<dd class="success" id="'+this.get("fieldId")+'_right"></dd>';
-        } else if (type === "empty") {
-            $("#"+this.get("fieldId")).addClass("wrong_color");
-            return '<dd class="wrong" id="'+this.get("fieldId")+'_wrong" ><span class="form_tip"><span class="form_tip_top">' + this.get("name")+"不能为空" + '</span><span class="form_tip_bottom"></span></span></dd>';
-        } else if (text) {
-            $("#"+this.get("fieldId")).addClass("wrong_color");
-            return '<dd class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' + text + '</span><span class="form_tip_bottom"></span></span></dd>';
-        } else {
-            $("#"+this.get("fieldId")).addClass("wrong_color");
-            return '<dd class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' +  this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></dd>';
+            $("#" + this.get("fieldId")).removeClass("wrong_color");
+            return '<dd class="success" id="' + this.get("fieldId") + '_right"></dd>';
         }
+        if (type === "empty") {
+            $("#" + this.get("fieldId")).addClass("wrong_color");
+            return '<dd class="wrong" id="' + this.get("fieldId") + '_wrong" ><span class="form_tip"><span class="form_tip_top">' + this.get("name") + "不能为空" + '</span><span class="form_tip_bottom"></span></span></dd>';
+        }
+        if (text) {
+            $("#" + this.get("fieldId")).addClass("wrong_color");
+            return '<dd class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' + text + '</span><span class="form_tip_bottom"></span></span></dd>';
+        }
+        $("#" + this.get("fieldId")).addClass("wrong_color");
+        return '<dd class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' +  this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></dd>';
     },
-    defaultSmsRequestHandler: function ($button, $info ) {
+    defaultSmsRequestHandler: function ($button, $info) {
         return {
             success: function () {
                 $info.html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试").prop("disabled", true);
                 $button.val("重新发送");
-                setTimeout(function(){
+                setTimeout(function () {
                     $("#smsInfo").prop("disabled", false);
                 }, 120000);
             },
@@ -272,5 +276,8 @@ var Utilities = {
                 $button.val("重新发送");
             }
         };
+    },
+    defaultErrorHandler: function (response) {
+        Info.alert(response);
     }
 };

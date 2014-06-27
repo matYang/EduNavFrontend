@@ -69,5 +69,8 @@ var Constants = {
         "学历文凭":10,
         "财会·金融":5,
         "资格认证":5
+    },
+    voidFunction: function(){
+        
     }
 };

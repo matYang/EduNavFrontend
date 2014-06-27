@@ -188,13 +188,17 @@
             <thead>
                 <tr>
                     <td width="80">课程id</td>
-                    <td width="120">课程</td>
+                    <td width="100">lv1分类</td>
+                    <td width="100">lv2分类</td>
+                    <td width="100">lv3分类</td>
+                    <td width="120">课程名</td>
                     <td width="360">学校名</td>
+                    <td width="100">报名截止日期</td>
                     <td width="100">开始时间</td>
                     <td width="100">结束时间</td>
                     <td width="100">价格</td>
+                    <td width="100">返金</td>
                     <td width="100">座位数</td>
-                    <td width="100">剩余座位</td>
                     <td width="100">新建时间</td>
                     <td>--</td>
                 </tr>
@@ -228,12 +232,12 @@
                 <input id="organizationNum_Input" class="text" type="text" placeholder="organization number"/>
                 <input id="reference_Input" class="text" type="text" placeholder="参考号"/>
                 <input id="phone_Input" class="text" type="text" placeholder="电话"/>
-                <div>状态<select id="status_Input" class="text" type="text">
-                    <option value=""></option>
-                </select></div>
                 <input id="instName_Input" class="text" type="text" placeholder="学校名"/>
                 <input id="startCreationTime_Input" class="date" type="text" placeholder="建立开始时间" />
                 <input id="finishCreationTime_Input" class="date" type="text" placeholder="建立结束时间" />
+                <div>状态<select id="status_Input" class="text" type="text">
+                    <option value=""></option>
+                </select></div>
 
                 <input id="queryPartnerBtn" class="btn" type="button" value="搜索"/>
 
@@ -454,15 +458,20 @@
         <td><a class="view" href="#">查看</a></td>
     </tr>
 </script>
-
+ 
 <script type="text/templates" id="tpl_adminCourseRow">
     <tr class="courseResult">
         <td><%= courseId %></td>
+        <td><%= category %></td>
+        <td><%= subCategory %></td>
+        <td><%= subSubCategory %></td>
         <td><%= courseName %></td>
         <td><%= instName %></td>
+        <td><%= cutoffDate %></td>
         <td><%= startDate %></td>
         <td><%= finishDate %></td>
         <td><%= price %></td>
+        <td><%= cashback %></td>
         <td><%= classSize %></td>
         <td><%= creationTime %></td>
         <td><a id="viewCourse_<%= courseId %>" class="view" href="#">查看</a></td>
@@ -752,4 +761,8 @@
         <span class="edit"><input id="adminPostSubmit" type="button" value="提交"></span>
         <span class="edit"><div id="cancel">Cancel</div>
     </form>
+</script>
+
+<script type="text/templates" id="tpl_simpleOption">
+    <option value="<%= val %>"><%= text %></option>
 </script>

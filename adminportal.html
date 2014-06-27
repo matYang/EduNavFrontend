@@ -23,7 +23,7 @@
             
         </div>
         <div id = 'overlay'>
-        
+        <div id="popup" class="hidden pop" style=" top:200px; left: 50%; width:500px; height:150px; margin-left: -250px;"></div>
         <div id = "allTemplates">
 <script type="text/templates" id="tpl_adminLogin">
     <div class="form">
@@ -215,13 +215,17 @@
             <thead>
                 <tr>
                     <td width="80">课程id</td>
-                    <td width="120">课程</td>
+                    <td width="100">lv1分类</td>
+                    <td width="100">lv2分类</td>
+                    <td width="100">lv3分类</td>
+                    <td width="120">课程名</td>
                     <td width="360">学校名</td>
+                    <td width="100">报名截止日期</td>
                     <td width="100">开始时间</td>
                     <td width="100">结束时间</td>
                     <td width="100">价格</td>
+                    <td width="100">返金</td>
                     <td width="100">座位数</td>
-                    <td width="100">剩余座位</td>
                     <td width="100">新建时间</td>
                     <td>--</td>
                 </tr>
@@ -255,12 +259,12 @@
                 <input id="organizationNum_Input" class="text" type="text" placeholder="organization number"/>
                 <input id="reference_Input" class="text" type="text" placeholder="参考号"/>
                 <input id="phone_Input" class="text" type="text" placeholder="电话"/>
-                <div>状态<select id="status_Input" class="text" type="text">
-                    <option value=""></option>
-                </select></div>
                 <input id="instName_Input" class="text" type="text" placeholder="学校名"/>
                 <input id="startCreationTime_Input" class="date" type="text" placeholder="建立开始时间" />
                 <input id="finishCreationTime_Input" class="date" type="text" placeholder="建立结束时间" />
+                <div>状态<select id="status_Input" class="text" type="text">
+                    <option value=""></option>
+                </select></div>
 
                 <input id="queryPartnerBtn" class="btn" type="button" value="搜索"/>
 
@@ -330,56 +334,58 @@
                     <input id="finishNoRefundDate_Input" class="date" type="text" placeholder="无退款时间结束"/>
                     <input id="startCashbackDate_Input" class="date" type="text" placeholder="返金时间开始"/>
                     <input id="finishCashbackDate_Input" class="date" type="text" placeholder="返金时间结束"/>
-                    <div>
-                        <label>订单类型</label>
-                        <select id="bookingType_Input">
-                            <option value=0>offline</option>
-                            <option value=1>online</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>服务费状态</label>
-                        <select id="serviceFeeStatus_Input">
-                            <option value=0>应收服务费</option>
-                            <option value=1>已收服务费</option>
-                            <option value=2>退换服务费</option>
-                            <option value=3>无服务费</option>
-                            <option value=4>服务费完结</option>
-                            <option value=5>空</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>佣金状态</label>
-                        <select id="commissionStatus_Input">
-                            <option value=0>应收佣金</option>
-                            <option value=1>已收佣金</option>
-                            <option value=2>退还佣金</option>
-                            <option value=3>无佣金</option>
-                            <option value=4>佣金完结</option>
-                            <option value=5>空</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>前服务费状态</label>
-                        <select id="preServiceFeeStatus_Input">
-                            <option value=0>应收服务费</option>
-                            <option value=1>已收服务费</option>
-                            <option value=2>退换服务费</option>
-                            <option value=3>无服务费</option>
-                            <option value=4>服务费完结</option>
-                            <option value=5>空</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>前佣金状态</label>
-                        <select id="preCommissionStatus_Input">
-                            <option value=0>应收佣金</option>
-                            <option value=1>已收佣金</option>
-                            <option value=2>退还佣金</option>
-                            <option value=3>无佣金</option>
-                            <option value=4>佣金完结</option>
-                            <option value=5>空</option>
-                        </select>
+                    <div class="selectBox" style="height: 80px">
+                        <div>
+                            <label>订单类型</label>
+                            <select id="bookingType_Input">
+                                <option value=0>offline</option>
+                                <option value=1>online</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>服务费状态</label>
+                            <select id="serviceFeeStatus_Input">
+                                <option value=0>应收服务费</option>
+                                <option value=1>已收服务费</option>
+                                <option value=2>退换服务费</option>
+                                <option value=3>无服务费</option>
+                                <option value=4>服务费完结</option>
+                                <option value=5>空</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>佣金状态</label>
+                            <select id="commissionStatus_Input">
+                                <option value=0>应收佣金</option>
+                                <option value=1>已收佣金</option>
+                                <option value=2>退还佣金</option>
+                                <option value=3>无佣金</option>
+                                <option value=4>佣金完结</option>
+                                <option value=5>空</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>前服务费状态</label>
+                            <select id="preServiceFeeStatus_Input">
+                                <option value=0>应收服务费</option>
+                                <option value=1>已收服务费</option>
+                                <option value=2>退换服务费</option>
+                                <option value=3>无服务费</option>
+                                <option value=4>服务费完结</option>
+                                <option value=5>空</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>前佣金状态</label>
+                            <select id="preCommissionStatus_Input">
+                                <option value=0>应收佣金</option>
+                                <option value=1>已收佣金</option>
+                                <option value=2>退还佣金</option>
+                                <option value=3>无佣金</option>
+                                <option value=4>佣金完结</option>
+                                <option value=5>空</option>
+                            </select>
+                        </div>
                     </div>
                     <div>已经报道<input id="wasConfirmedIndex_Input" type="checkbox"></div>
                     <input id="queryBookingBtn" class="btn" type="button" value="搜索"/>
@@ -403,7 +409,7 @@
                     <td width="130">订单日期</td>
                     <td width="130">报道日期</td>
                     <td width="100">价格</td>
-                    <td width="100">已确认</td>
+                    <td width="100">当前状态</td>
                     <td>--</td>
                 </tr>
             </thead>
@@ -481,15 +487,20 @@
         <td><a class="view" href="#">查看</a></td>
     </tr>
 </script>
-
+ 
 <script type="text/templates" id="tpl_adminCourseRow">
     <tr class="courseResult">
         <td><%= courseId %></td>
+        <td><%= category %></td>
+        <td><%= subCategory %></td>
+        <td><%= subSubCategory %></td>
         <td><%= courseName %></td>
         <td><%= instName %></td>
+        <td><%= cutoffDate %></td>
         <td><%= startDate %></td>
         <td><%= finishDate %></td>
         <td><%= price %></td>
+        <td><%= cashback %></td>
         <td><%= classSize %></td>
         <td><%= creationTime %></td>
         <td><a id="viewCourse_<%= courseId %>" class="view" href="#">查看</a></td>
@@ -521,7 +532,7 @@
         <td><%= creationTime %></td>
         <td><%= scheduledTime %></td>
         <td><%= price %></td>
-        <td><%= wasConfirmed %></td>
+        <td><%= status %></td>
         <td><a class="view" href="#">查看</a></td>
     </tr>
 </script>
@@ -628,12 +639,10 @@
                 <option value=1>有</option>
             </select>
         </span></div>
-        <div><label>机构简介: </label><span class="detail"><%= partnerIntro %></span><span class="edit"><input type="text" name="partnerIntro"/></span></div>
         <div><label>教材简介: </label><span class="detail"><%= teachingMaterialIntro %></span><span class="edit"><input type="text" name="teachingMaterialIntro"/></span></div>
         <div><label>教材费用: </label><span class=  "detail"><%= teachingMaterialFee %></span><span class="edit"><input type="text" name="teachingMaterialFee"/></span></div>
         <div><label>学前要求: </label><span class="detail"><%= prerequest %></span><span class="edit"><input type="text" name="prerequest"/></span></div>
 
-        <div style="height:220px;"><label>提纲：</label><span class="detail"><%= outline %></span><span class="edit"><textarea name="outline" style="width:300px;height:200px;"></textarea></span></div>
         <div><label>下载材料: </label><span class="detail"><%= downloadMaterials %></span><span class="edit"><input type="checkbox" name="downloadMaterials"/></span></div>
         <div><label>题库: </label><span class="detail"><%= questionBank %></span><span class="edit"><input type="text" name="questionBank"/></span></div>
         <div><label>高分奖励: </label><span class="detail"><%= highScoreReward %></span><span class="edit"><input type="text" name="highScoreReward"/></span></div>
@@ -679,6 +688,10 @@
                 </div>
             <% } %>
         <% } %>
+        <div style="height:220px"><label>机构简介: </label><span class="detail" style="height:220px; width:380px; overflow:scroll"><%= partnerIntro %></span><span class="edit">
+            <textarea name="partnerIntro" style="width:360px;height:200px;"></textarea>
+            </span></div>
+        <div style="height:220px;"><label>提纲：</label><span class="detail"><%= outline %></span><span class="edit"><textarea name="outline" style="width:360px;height:200px;"></textarea></span></div>
         <% for ( var i = 0; i < 5; i++) { %>
             <% if (teacherNames && teacherNames[i]) {%>
                 <div class="imgblock"><label>教室照片<%= i+1 %>: </label><span class="detail"><img class="preview" src="<%= classImgUrls[i] %>" /></span><span class="edit"><input type="file" id="classroomImg<%= i+1 %>" name="classImg<%= i+1 %>"/><img id="preview<%= i+1 %>" class="preview"/></span></div>
@@ -779,7 +792,12 @@
         <span class="edit"><input id="adminPostSubmit" type="button" value="提交"></span>
         <span class="edit"><div id="cancel">Cancel</div>
     </form>
-</script>        </div>
+</script>
+
+<script type="text/templates" id="tpl_simpleOption">
+    <option value="<%= val %>"><%= text %></option>
+</script>
+        </div>
     
 
         <!-- load libraries-->

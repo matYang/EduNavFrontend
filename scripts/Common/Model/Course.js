@@ -10,7 +10,7 @@ var Course = Backbone.Model.extend({
             'courseHourNum': undefined,
 
             'courseHourLength': undefined,
-                
+
             'classSize': undefined,
             'cashback': undefined,
             'popularity': undefined,
@@ -22,12 +22,12 @@ var Course = Backbone.Model.extend({
             'finishDate': new Date(),
             'studyDays': undefined,
             'studyDaysNote': undefined,
-                
+
             'startTime1': undefined,
             'finishTime1': undefined,
             'startTime2': undefined,
             'finishTime2': undefined,
-                
+
             'category': undefined,
             'subCategory': undefined,
             'subSubCategory': undefined,
@@ -55,7 +55,7 @@ var Course = Backbone.Model.extend({
             'marking': undefined,
             'certification': undefined,
             'extracurricular': undefined,
-                
+
             'status': undefined,
             
             'phone': undefined,
@@ -70,16 +70,16 @@ var Course = Backbone.Model.extend({
             'questionSession': undefined,
             'trail': undefined,
             'bonusService': undefined,
-                
+
             'noRefundDate': new Date(),
             'cashbackDate': new Date(),
             'bookingType': undefined,
-                
+
             'classImgUrls': [],
             'teacherIntros': undefined,
             'teacherImgUrls': [],
             'teacherNames': undefined
-                
+
 
         };
     },
@@ -87,7 +87,9 @@ var Course = Backbone.Model.extend({
     parse: function (data) {
         var i = 0,
             introArr = [],
-            nameArr = [];
+            nameArr = [],
+            imgArr = [],
+            classImgArr = [];
         if ( typeof data !== 'undefined') {
             data.courseId = parseInt(data.courseId, 10);
             data.courseName = decodeURI(data.courseName);
@@ -98,12 +100,12 @@ var Course = Backbone.Model.extend({
             data.price = parseInt(data.price , 10);
             data.courseHourNum = parseInt(data.courseHourNum , 10);
             data.courseHourLength = parseInt(data.courseHourLength , 10);
-                
+
             data.classSize = parseInt(data.classSize , 10);
             data.cashback = parseInt(data.cashback , 10);
             data.popularity = parseInt(data.popularity , 10);
             data.bookingType = parseInt(data.bookingType , 10);
-                
+
             data.startUponArrival = parseInt(data.startUponArrival, 10);
             data.cutoffDate =  Utilities.castFromAPIFormat(data.cutoffDate);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
@@ -116,7 +118,7 @@ var Course = Backbone.Model.extend({
             data.finishTime1 = parseInt(data.finishTime1 , 10);
             data.startTime2 = parseInt(data.startTime2 , 10);
             data.finishTime2 = parseInt(data.finishTime2 , 10);
-                
+
             data.category = decodeURI(data.category);
             data.subCategory = decodeURI(data.subCategory);
             data.subSubCategory = decodeURI(data.subSubCategory);
@@ -143,7 +145,7 @@ var Course = Backbone.Model.extend({
             data.passAgreement = decodeURI(data.passAgreement);
             data.extracurricular = decodeURI(data.extracurricular);
             data.phone = decodeURI(data.phone);
-                
+
             data.partnerDistinction = decodeURI(data.partnerDistinction);
             data.outline = decodeURI(data.outline);
             data.goal = decodeURI(data.goal);
@@ -156,20 +158,23 @@ var Course = Backbone.Model.extend({
             data.bonusService = decodeURI(data.bonusService);
             data.downloadMaterials = decodeURI(data.downloadMaterials);
             data.teachingMaterialFee = decodeURI(data.teachingMaterialFee);
-                
+
             data.status = parseInt(data.status, 10);
             data.partnerQualification = parseInt(data.partnerQualification, 10);
-                 
-            data.studyDays = data.studyDays;
-            data.classImgUrls = data.classImgUrls;
-            data.teacherImgUrls = data.teacherImgUrls;
-
-            for (i = 0; i < data.teacherIntros.length; i++){
-                introArr.push(decodeURI(data.teacherIntros[i]));
+            for (i = 0; i < data.classImgUrls.length; i++) {
+                classImgArr[i] = (decodeURI(data.classImgUrls[i]));
+            } 
+            data.classImgUrls = classImgArr;
+            for (i = 0; i < data.teacherImgUrls.length; i++) {
+                imgArr[i] = (decodeURI(data.teacherImgUrls[i]));
+            }
+            data.teacherImgUrls = imgArr;
+            for (i = 0; i < data.teacherIntros.length; i++) {
+                introArr[i] = (decodeURI(data.teacherIntros[i]));
             }
             data.teacherIntros = introArr;
-            for (i = 0; i < data.teacherNames.length; i++){
-                nameArr.push(decodeURI(data.teacherNames[i]));
+            for (i = 0; i < data.teacherNames.length; i++) {
+                nameArr[i] = (decodeURI(data.teacherNames[i]));
             }
             data.teacherNames = nameArr;
 
@@ -185,13 +190,13 @@ var Course = Backbone.Model.extend({
         json.finishDate = Utilities.getDateString(this.get('finishDate'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         json.cutoffDate = Utilities.getDateString(this.get('cutoffDate'));
-        json.startTime1 = Math.floor(json.startTime1/100) + ":" + json.startTime1%100;
-        json.startTime2 = Math.floor(json.startTime2/100) + ":" + json.startTime2%100;
-        json.finishTime1 = Math.floor(json.finishTime1/100) + ":" + json.finishTime1%100;
-        json.finishTime2 = Math.floor(json.finishTime2/100) + ":" + json.finishTime2%100;
+        json.startTime1 = Math.floor(json.startTime1 / 100) + ":" + json.startTime1 % 100;
+        json.startTime2 = Math.floor(json.startTime2 / 100) + ":" + json.startTime2 % 100;
+        json.finishTime1 = Math.floor(json.finishTime1 / 100) + ":" + json.finishTime1 % 100;
+        json.finishTime2 = Math.floor(json.finishTime2 / 100) + ":" + json.finishTime2 % 100;
         if (studyDays) {
             var studyDays = "每周";
-            for (var i = 0; i < json.studyDays.length; i++ ){
+            for (var i = 0; i < json.studyDays.length; i++ ) {
                 studyDays = studyDays + Constants.weekDayArray[json.studyDays [i]];
                 if (i < json.studyDays.length - 1) {
                     studyDays += ", ";
@@ -217,7 +222,7 @@ var Course = Backbone.Model.extend({
         return json;
     },
     /* generate object with html wrapping as values, these values will append to the compare table one by one */
-    // parseToCompare: function(){
+    // parseToCompare: function () {
     //     var obj = {};
     //     obj.courseName = this.td() +  '<h2 class="F_green">' + this.get("courseName") + '</h2>'+
     //                 '<div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>' +
@@ -225,7 +230,7 @@ var Course = Backbone.Model.extend({
     //     obj.suitableStudent = this.td() + this.get("suitableStudent") + "</td>";
     //     obj.s
     // },
-    td: function(){
+    td: function () {
         return "<td width='195' class='row_" + this.courseId + "'>";
     },
     isNew: function () {
