@@ -1,11 +1,11 @@
 var BaiduMapView = Backbone.View.extend({
-    initialize: function (config) {
+    initialize: function () {
         this.markers = [];
-        if (typeof BMap !== "undefined") {
+        if (BMap !== undefined) {
             this.geocoder = new BMap.Geocoder();
             this.mapInitialize();
         } else {
-            this.geocoder = {getPoint: function (){}};
+            this.geocoder = {getPoint: Constants.voidFunction};
         }
     },
     // cacheConfig: function (config) {
@@ -26,25 +26,25 @@ var BaiduMapView = Backbone.View.extend({
     mapInitialize: function () {
         // var opts;
         this.isClosed = false;
-        app.viewRegistration.register(this);    
+        app.viewRegistration.register(this);
         this.map = new BMap.Map(this.el.id, {enableMapClick: false});  //this should never expire
         this.setCenter(this.location);
     },
     getLatLng: function (locationString) {
-        var that = this;
-        var point = app.cache.get("poi", locationString);
-        if (point) {
-            this.poi(point);
+        var poi = app.cache.get("poi", locationString);
+        if (poi) {
+            this.poi(poi, {address: locationString});
             return;
         }
         this.geocoder.getPoint(locationString, this.poi);
     },
-    poi: function (point) {
-        if (point) {
-            if (that.markers.length === 0) {
-                that.map.centerAndZoom(point, 12);
+    poi: function (poi, locationString) {   //っぽい
+        if (poi) {
+            if (this.markers.length === 0) {
+                this.map.centerAndZoom(poi, 12);
             }
-            that.addMarker(new BMap.Marker(point), locationString);        // 创建标注    
+            this.addMarker(new BMap.Marker(poi), locationString.address);
+            app.cache.set("poi", locationString.address, poi);
         } else {
             Info.warn('Geocode was not successful');
         }
@@ -114,7 +114,7 @@ var BaiduMapView = Backbone.View.extend({
 });
 
 var MainMapView = BaiduMapView.extend({
-    el:"#mainMap",
+    el: "#mainMap",
     clickable: false,
     class: "mainPage-map",
     initialize: function () {
@@ -123,7 +123,7 @@ var MainMapView = BaiduMapView.extend({
         BaiduMapView.prototype.initialize.call(this);
 
     },
-    close: function(){
+    close: function () {
         this.removeAllMarkers();
         BaiduMapView.prototype.close.call(this);
     }

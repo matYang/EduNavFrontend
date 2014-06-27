@@ -148,7 +148,7 @@ var SearchView = Backbone.View.extend({
     },
     courseSearch: function () {
         app.navigate("search/" + this.searchRepresentation.toQueryString(), {trigger: false, replace: true});
-        $("#searchResultDisplayPanel").empty().append('<div class="messageDetail-middle-autoMatch-loading">正在为您寻找信息</div>');
+        $("#searchResultDisplayPanel").empty().append('<div class="loading"></div>');
         app.generalManager.findCourse(this.searchRepresentation, {
             "success": this.renderSearchResults,
             "error": this.renderError
