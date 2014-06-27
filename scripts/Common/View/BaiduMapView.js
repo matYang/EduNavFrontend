@@ -32,19 +32,22 @@ var BaiduMapView = Backbone.View.extend({
     },
     getLatLng: function (locationString) {
         var that = this;
-        var result = this.geocoder.getPoint(
-            locationString,
-            function (point) {
-                if (point) {
-                    if (that.markers.length === 0) {
-                        that.map.centerAndZoom(point, 12);
-                    }
-                    that.addMarker(new BMap.Marker(point), locationString);        // 创建标注    
-                } else {
-                    Info.warn('Geocode was not successful');
-                }
+        var point = app.cache.get("poi", locationString);
+        if (point) {
+            this.poi(point);
+            return;
+        }
+        this.geocoder.getPoint(locationString, this.poi);
+    },
+    poi: function (point) {
+        if (point) {
+            if (that.markers.length === 0) {
+                that.map.centerAndZoom(point, 12);
             }
-        );
+            that.addMarker(new BMap.Marker(point), locationString);        // 创建标注    
+        } else {
+            Info.warn('Geocode was not successful');
+        }
     },
     setCenter: function (locationString) {
         var that = this;
@@ -116,7 +119,7 @@ var MainMapView = BaiduMapView.extend({
     class: "mainPage-map",
     initialize: function () {
         this.location = "南京";
-        _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'close');
+        _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'poi', 'close');
         BaiduMapView.prototype.initialize.call(this);
 
     },

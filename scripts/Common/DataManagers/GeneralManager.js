@@ -44,6 +44,12 @@
     GeneralManager.prototype.release = function() {};
 
     GeneralManager.prototype.fetchCourse = function (courseId, callback) {
+        var cache = app.cache.get("course", courseId);
+        if (cache) {
+            if(callback){
+                callback.success(cache);
+            }
+        }
         var course = new Course();
         if (testMockObj.testMode) {
             callback.success(testMockObj.testCourses.get(courseId));
@@ -57,6 +63,7 @@
             success:function(model, response){
                 if(callback){
                     callback.success(model);
+                    app.cache.set("course", courseId, course);
                 }
             },
 
@@ -71,7 +78,7 @@
     };
 
     GeneralManager.prototype.batchFetchCourses = function (courseIds, callback) {
-        var courses = new Courses();
+        var cache, i, requestList = [], courses = new Courses();
         if (testMockObj.testMode) {
             for (var i = 0; i < courseIds.length; i++) {
                 courses.add(testMockObj.testCourses.get(courseIds[i]));
@@ -79,15 +86,35 @@
             callback.success(courses);
             return;
         }
-        courses.overrideUrl(ApiResource.general_courseByIdList);
-        var idList = "idList=" + courseIds.join("-");
+        for (i = 0; i < courseIds.length; i++) {
+            cache = app.cache.get("course", courseIds[i]);
+            if (cache) {
+                courses.add(cache);
+            } else {
+                requestList.push(courseIds[i]);
+            }
+        }
+        if (requestList.length === 0) {
+            if(callback){
+                callback.success(courses);
+            }
+            return;
+        }
+        var requestCourses = new Courses();
+        requestCourses.overrideUrl(ApiResource.general_courseByIdList);
+        var idList = "idList=" + requestList.join("-");
         courses.fetch({
             dataType:'json',
             data: idList,
             success:function(model, response){
-                if(callback){
-                    app.storage.setCoursesToCompare(courses.pluck("courseId"));
-                    callback.success(model);
+                if (callback) {
+                    var array = requestCourses.toArray(), i = 0;
+                    for (i = 0; i < array.length; i++ ) {
+                        app.cache.set("course", array[i].get("courseId"), array[i]);
+                    }
+                    courses.add(array);
+                    // app.storage.setCoursesToCompare(courses.pluck("courseId"));
+                    callback.success(courses);
                 }
             },
 
@@ -105,7 +132,7 @@
     GeneralManager.prototype.findCourse = function(courseSearchRepresentation, callback) {
         var self = this,
             searchResults = new Courses();
-        if(testMockObj.testMode){
+        if (testMockObj.testMode){
             searchResults = testMockObj.testCourses;
             callback.success(searchResults);
             return;
@@ -122,6 +149,10 @@
 
             success:function(model, response){
                 if(callback){
+                    for (var i = 0; i < searchResults.length; i++) {
+                        app.cache.set("course", searchResults.at(i).get("courseId"), searchResults.at(i));
+                    }
+
                     callback.success(searchResults);
                 }
             },

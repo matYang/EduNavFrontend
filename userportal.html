@@ -58,7 +58,7 @@
 </script>
 
 <script type="text/template" id="tpl_topBar-notLoggedIn">
-    <div class="topBar">
+    <div class="topBar unselectable">
         <div class="topBar-inner clearfix">
             <h1 id="logo" class="topBar-logo">
                 <a></a>
@@ -103,9 +103,9 @@
 </script>
 
 <script type="text/template" id="tpl_front">
-    <div id="lv1Button" class="tab2">
+    <div id="lv1Button" class="tab2 unselectable">
     </div>
-    <div class="category">
+    <div class="category unselectable">
         <div id ="lv2Categories"></div>
         <table class="language blank2" width="100%" cellpadding="0" cellspacing="0">
             <tbody><tr>
@@ -128,7 +128,7 @@
 
 <script type="text/template" id="tpl_search">
     <!--筛选框-->
-    <div id="searchPanel" class="filter">
+    <div id="searchPanel" class="filter unselectable">
         <ul id="search_category"  class="tab">
         </ul>
         
@@ -180,7 +180,7 @@
     
     <!--筛选结果-->
     
-    <div id="searchReqs" class="blank1 hidden">
+    <div id="searchReqs" class="blank1 unselectable hidden">
         <span><span id="resultNum"></span>个课程满足以下条件</span>
     </div>
     
@@ -188,7 +188,7 @@
         
         <!--左栏开始-->
         <div class="fleft w_730">
-            <div id="searchResultSorter" class="clearfix">
+            <div id="searchResultSorter" class="clearfix unselectable">
                 <ul class="sorter">
                     <li id="editorPick" class="active">爱上课推荐</li>
                     <li class="line"></li>
@@ -210,7 +210,7 @@
         </div>
         
         <!--右栏开始-->
-        <div id="searchWidgets" class="fright w_250">
+        <div id="searchWidgets" class="fright w_250 unselectable">
             <div id="CompareWidgetContainer">
             </div>
             <div id="mainMap" class="blank1">
@@ -1466,6 +1466,7 @@
 
 
         <script src="scripts/Common/Service/StorageService.js" type="text/javascript"></script>
+        <script src="scripts/Common/Service/CacheService.js" type="text/javascript"></script>
         <script src="scripts/Common/Service/TemplateUtl.js" type="text/javascript"></script>
         <script src="scripts/Common/Service/ViewRegistrationService.js" type="text/javascript"></script>
         <script src="scripts/Common/Service/EventClearService.js" type="text/javascript"></script>

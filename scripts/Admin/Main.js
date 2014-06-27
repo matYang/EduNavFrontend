@@ -22,7 +22,8 @@ var AppRouter = Backbone.Router.extend({
         //initializing the storage services, some resuable user information will be persisted by local storage
         this.storage = new StorageService ();
         this.eventClearService = new EventClearService();
-
+        this.cache = new CacheService();
+        this.cache.enableCache = false;
         //initializing all the data managers
         this.sessionManager = new SessionManager (EnumConfig.ModuleIdentifier.admin);
 
