@@ -120,7 +120,7 @@
                 <span data-id="night_weekend">周末晚上</span>
             </div>
             <div id="filter_classMode" class="filterCriteria">
-                <label>班级类型：</label>
+                <label>班级人数：</label>
                 <span data-id="noreq" class="active">不限</span>
                 <span data-id="0-5">小于6人</span>
                 <span data-id="6-29">6-30人</span>
@@ -473,7 +473,7 @@
                 <div class="clearfix">
                     <div class="fleft">
                         <p><label>开课时间:</label> <%= course.startDate %> - <%= course.finishDate %></p>
-                        <p><label>班级类型:</label> <%= course.classModel %></p>
+                        <p><label>班级人数:</label> <%= course.classSize %></p>
                         <p><label>联系方式:</label> <%= phone %></p>
                         <p><label>入学人姓名:</label> <%= name %></p>
                     </div>
@@ -622,7 +622,7 @@
             <p><label>上课地址: </label><%= course.phone %></p>
             <p><label>咨询电话: </label<%= course.location %></p>
             <p><label>开课时间: </label><%= course.startDate %>-<%= course.finishDate %></p>
-            <p><label>班级类型: </label><%= course.classModel %></p>
+            <p><label>班级人数: </label><%= course.classSize %></p>
             <p><label>预约报道: </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
             <p><label>费用总计: </label> ￥<b class="price"><%= price %></b> <span>（到校付款）</span></p>
             <p class="extra">* 到达学校后，请您凭入学人的有效证件办理入学</p>
@@ -704,7 +704,7 @@
                     <dd><label>开课日期: </label><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDaysNote %></dd>
                     <dd><label>上课时间: </label><%= startTime1 %>-<%= finishTime1 %></dd>
                     <dd><label>上课课时: </label><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</dd>
-                    <dd><label>班级类型: </label><%= classSize %>人</dd>
+                    <dd><label>班级人数: </label><%= classSize %>人</dd>
                     <dd><label>开班要求: </label><%= openCourseRequirement%></dd>
                     <dd><label>报名日期: </label>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</dd>
                     <dd><label>机构全称: </label><%= wholeName %></dd>
@@ -834,7 +834,7 @@
                 <% }); %>
             </tr>
             <tr id="classSize">
-                <th>班级类型</th>
+                <th>班级人数</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>"><%= course.classSize %>人</td>
                 <% }); %>

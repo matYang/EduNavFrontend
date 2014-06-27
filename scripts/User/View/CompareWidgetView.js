@@ -1,12 +1,12 @@
 var CompareWidgetView = Backbone.View.extend({
     el: "#CompareWidgetContainer",
-    courses: [],
     initialize: function () {
         this.isClosed = false;
         _.bindAll(this, "load", "bindEvents", "addCourse", "removeCourse", "renderMap", "render", "close");
         this.template = _.template(tpl.get("compareWidget"));
         this.courseTemplate = _.template(tpl.get("compareWidgetEntry"));
         this.courseIds = app.storage.getCoursesToCompare();
+        this.courses = [];
         this.reload = false;
         this.load();
     },

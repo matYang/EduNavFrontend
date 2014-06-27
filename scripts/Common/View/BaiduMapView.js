@@ -1,7 +1,6 @@
 var BaiduMapView = Backbone.View.extend({
-    markers: [],
     initialize: function (config) {
-        _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'close');
+        this.markers = [];
         if (typeof BMap !== "undefined") {
             this.geocoder = new BMap.Geocoder();
             this.mapInitialize();
@@ -94,6 +93,7 @@ var BaiduMapView = Backbone.View.extend({
         var i;
         for (i = 0; i < this.markers.length; i++) {
             this.map.removeOverlay(this.markers[i]);
+            delete this.markers[i];
         }
         this.markers = [];
     },
@@ -116,7 +116,13 @@ var MainMapView = BaiduMapView.extend({
     class: "mainPage-map",
     initialize: function () {
         this.location = "南京";
+        _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'close');
         BaiduMapView.prototype.initialize.call(this);
+
+    },
+    close: function(){
+        this.removeAllMarkers();
+        BaiduMapView.prototype.close.call(this);
     }
 });
 
