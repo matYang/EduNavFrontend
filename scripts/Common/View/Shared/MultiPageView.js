@@ -207,6 +207,7 @@ var MultiPageView = Backbone.View.extend({
         if ($selector.prop("tagName") === "SELECT") {
             $selector.on("change", function () {
                 that.currentPage = 1;
+                that.startIndex = 0;
                 if (that.allMessages) {
                     if (filter) {
                         that.messages.reset(that.allMessages.filter(filter, inst));

@@ -54,7 +54,7 @@ var CompareView = Backbone.View.extend({
         }
     },
     afterRender: function () {
-        $(".courseId_").html("");
+        $(".courseId_-1").html("");
         this.configMoveButton();
     },
     configMoveButton: function () {

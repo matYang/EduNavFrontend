@@ -1,5 +1,6 @@
 var CourseDetailView = Backbone.View.extend({
     el: "#content",
+    template: _.template(tpl.get('courseDetail')),
     initialize: function (courseIdWrapper) {
         _.bindAll(this, 'render', 'bindEvents', 'close');
         app.viewRegistration.register(this);
@@ -7,8 +8,7 @@ var CourseDetailView = Backbone.View.extend({
 
         this.user = app.sessionManager.sessionModel;
         var self = this;
-        this.newBooking = new Booking();
-        this.template = _.template(tpl.get('courseDetail'));
+        // this.newBooking = new Booking();
         // $("#viewStyle").attr("href", "style/css/courseDetail.css");
         app.generalManager.fetchCourse(courseIdWrapper.courseId, {
             success: function (course) {
@@ -49,7 +49,7 @@ var CourseDetailView = Backbone.View.extend({
             $(e.target).addClass("active");
         });
         $(document).on("scroll", function () {
-            if ($(this).scrollTop() >= 522) {
+            if ($(this).scrollTop() >= 561) {
                 $("#courseNavigateTab").addClass("stickyHeader");
             } else {
                 $("#courseNavigateTab").removeClass("stickyHeader");
@@ -69,6 +69,7 @@ var CourseDetailView = Backbone.View.extend({
                 this.$el.empty();
             }
             $(document).off();
+            $("#courseNavigateTab").off();
             this.isClosed = true;
             app.courseDetailView = null;
         }

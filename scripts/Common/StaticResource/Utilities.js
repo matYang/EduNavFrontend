@@ -104,32 +104,6 @@ var Utilities = {
         return minuteDif + "分钟";
     },
 
-    getHourlyRate: function (startTime, endTime, price) {
-        if (!startTime) {
-            Info.log("Utilities::getTimeRange  invalid startTime paramters, either null or undefined");
-            startTime = new Date();
-        }
-        if (!endTime) {
-            Info.log("Utilities::getTimeRange  invalid endTime paramters, either null or undefined");
-            endTime = new Date();
-        }
-        if (startTime.getFullYear() !== endTime.getFullYear || startTime.getMonth() !== endTime.getMonth() || startTime.getDate() !== endTime.getDate()) {
-            Info.log("Utilities::getHourlyRate warning, startTime and endTime are not on the date day");
-        }
-        if (price === undefined || price < 0) {
-            Info.log("Utilities::getHourlyRate warning, price undefined or less than 0");
-        }
-
-        var miliDif = endTime.getTime() - startTime.getTime(), hourLength = 0;
-
-        if (miliDif <= 0) {
-            Info.log("Utilities::getHourlyRate warning, endTime is earlier or equal startTime");
-        }
-
-        hourLength = miliDif / (1000 * 60 * 60);
-
-        return Math.round(price / hourLength);
-    },
 
     toInt: function (number) {
         return parseInt(number, 10);
@@ -149,12 +123,20 @@ var Utilities = {
 
 
     castFromAPIFormat: function (dateString) {
+        if (!dateString) {
+            Info.warn("castFromAPIFormat: dateString is null");
+            return null;
+        }
         dateString = decodeURIComponent(dateString);
         var match = dateString.match(/^(\d+)-(\d+)-(\d+)\+(\d+)\:(\d+)\:(\d+)$/);
         var date = new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
         return date;
     },
     castToAPIFormat: function (date) {
+        if (!date) {
+            Info.warn("castFromAPIFormat: date is null");
+            return null;
+        }
         var d = date, str = [d.getFullYear(), (d.getMonth() + 1).padLeft(), d.getDate().padLeft()].join('-') + '+' + [d.getHours().padLeft(), d.getMinutes().padLeft(), d.getSeconds().padLeft()].join(':');
         return str;
     },

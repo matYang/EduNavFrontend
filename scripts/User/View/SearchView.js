@@ -18,6 +18,7 @@ var SearchView = Backbone.View.extend({
         this.allMessages = new Courses();
         //define the template
         this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
+        this.srs = {};
         this.render(params);
         //injecting the template
     },
@@ -29,6 +30,7 @@ var SearchView = Backbone.View.extend({
                 try {
                     this.searchRepresentation.castFromQuery(params.searchKey);
                     app.storage.setSearchRepresentationCache(this.searchRepresentation);
+                    this.srs[this.searchRepresentation.get("category")] = this.searchRepresentation;
                 } catch (e) {
                     app.navigate("search", {replace: true, trigger: false});
                     this.searchRepresentation = new CourseSearchRepresentation();
@@ -60,6 +62,8 @@ var SearchView = Backbone.View.extend({
                 this.searchResultView.messages.reset(searchResults.toArray());
             }
             $("#resultNum").html(searchResults.length);
+            this.searchResultView.startIndex = 0;
+            this.searchResultView.currentPage = 1;
             this.searchResultView.render();
         }
     },
@@ -94,7 +98,6 @@ var SearchView = Backbone.View.extend({
                         }
                     }
                     scbuf.push(tc);
-
                     $("#search_subCategory").append(
                         this.subCategoryContainerTemplate({dataId:key, entries:scbuf.join("")})
                     );
@@ -124,8 +127,10 @@ var SearchView = Backbone.View.extend({
         }
     },
     renderError: function () {
-        this.$resultp = this.$resultp || $("#searchResultDisplayPanel");
-        this.$resultp.empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
+        if (!this.isClosed) {
+            this.$resultp = this.$resultp || $("#searchResultDisplayPanel");
+            this.$resultp.empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
+        }
     },
     renderLocations: function (locations) {
         if (!this.isClosed) {
@@ -224,20 +229,40 @@ var SearchView = Backbone.View.extend({
     bindSearchEvents: function () {
         var that = this;
         $("#search_category").on("click", "li", function (e) {
+            if ($(this).hasClass("active")) {
+                return;
+            }
             var dataId = $(e.target).data("id");
+            if (that.srs[dataId]) {
+                that.searchRepresentation = that.srs[dataId];
+            } else {
+                that.searchRepresentation = new CourseSearchRepresentation();
+                that.searchRepresentation.set("category", dataId);
+            }
             $(e.delegateTarget).children(".active").removeClass("active");
             $(this).addClass("active");
             $("#search_subCategory").children("div").addClass("hidden");
             var $scCont = $("#search_subCategory").children("div[data-id=" + dataId + "]");
             $scCont.removeClass("hidden");
-            $scCont.find(".active").removeClass("active");
-            $scCont.find("span[data-id=noreq]").addClass("active");
-            that.searchRepresentation.set("category", dataId);
-            that.searchRepresentation.set("subCategory", undefined);
+            if (that.searchRepresentation.get("subCategory")) {
+                $scCont.find("span[data-id=" + that.searchRepresentation.get("subCategory") + "]").addClass("active");
+                var $sscCont = $scCont.find("p[data-id=" + that.searchRepresentation.get("subCategory") + "]").removeClass("hidden");
+                if (that.searchRepresentation.get("subSubCategory")) {
+                    $sscCont.find("span[data-id=" + that.searchRepresentation.get("subSubCategory") + "]").addClass("active");
+                }
+            } else {
+                $scCont.find("span[data-id=noreq]").addClass("active");
+                $scCont.find("p").addClass("hidden");
+            }
+            
+            that.srs[dataId] = that.searchRepresentation;
             that.courseSearch();
         });
         $("#search_subCategory").on("click", ".subCategory", function (e) {
             var $this = $(this);
+            if ($this.hasClass("active")) {
+                return;
+            }
             $this.siblings(".subCategory").removeClass("active");
             $(e.currentTarget).addClass("active");
             that.searchRepresentation.set("category", $("#search_category").find(".active").data("id"));
@@ -245,8 +270,11 @@ var SearchView = Backbone.View.extend({
             if (val === "noreq") {
                 that.searchRepresentation.set("subCategory", undefined);
                 that.searchRepresentation.set("subSubCategory", undefined);
+                $this.siblings("p").find(".active").removeClass("active");
             } else {
                 that.searchRepresentation.set("subCategory", val);
+                that.searchRepresentation.set("subSubCategory", undefined);
+                $this.siblings("p").find(".active").removeClass("active");
             }
             $this.siblings("p").addClass("hidden");
             $this.siblings("[data-id=" + val + "]").removeClass("hidden");

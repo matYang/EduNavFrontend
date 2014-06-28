@@ -35,7 +35,7 @@ var Transaction = Backbone.Model.extend({
             data.transactionType = parseInt(data.transactionType, 10);
 
             data.transactionAmount = parseInt(data.transactionAmount, 10);
-            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            data.creationTime = Utilities.castFromAPIFormat(decodeURI(data.creationTime));
         }
         return data;
     },
@@ -49,7 +49,7 @@ var Transaction = Backbone.Model.extend({
     toJSON: function () {
         var json = _.clone(this.attributes);
 
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+        json.creationTime = encodeURI(Utilities.castToAPIFormat(this.get('creationTime')));
         return json;
     }
 

@@ -50,6 +50,7 @@ li a, .page a {
 
 #mainMap {
 	z-index: 100;
+	background-color: #eee;
 }
 
 .footer {

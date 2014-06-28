@@ -28,7 +28,7 @@ input { font-family: '微软雅黑'; }
 /*登录*/
 .login { background:#5a9bae url(../images/login_bg.jpg) repeat-x;}
 .login_box{ position:relative; width:522px; height:442px;  margin:170px auto 0; background:url(../images/login_box.png) no-repeat;}
-.login_box input.text{width:354px; height:30px; line-height:30px\9; padding-left:10px; border:none; font-size:14px; }
+.login_box input.text{width:354px; height:33px; line-height:30px\9; padding-left:10px; border:none; font-size:14px; }
 .login_box .user_name{ position:absolute; left:74px; top:90px;}
 .login_box .password{ position:absolute; left:74px; top:152px;}
 .login_box .btn{ position:absolute; left:74px; top:212px;}
@@ -39,7 +39,7 @@ body{width:100%; background:#f6f6f6 url(../images/left_bar_bg.png) repeat-y;}
 #wrap .left_bar{float:left; width:205px; position:relative; margin-right:20px;}
 #wrap .left_bar h1{height:94px; background:#57b7e1 url(../images/logo.png) no-repeat 15px 15px; text-indent:-9999px;}
 #wrap .left_bar dl{ color:#dcdcdc; margin-bottom:35px; margin-top:30px;}
-#wrap .left_bar dt{height:40px; margin-bottom:5px; background:url(../images/arrow.png) no-repeat left bottom; padding-left:26px;}
+#wrap .left_bar dt{height:40px; margin-bottom:5px; padding-left:26px;}
 #wrap .left_bar dd{ padding-left:26px; line-height:28px; cursor:pointer;}
 #wrap .left_bar dd.active{ background:url(../images/arrow_white.png) no-repeat 90% center; color:#fff;}
 .close{ position:absolute; top:50%; right:-19px; cursor:pointer; width:19px; height:43px; background:url(../images/left_bar_arrow.png) no-repeat; text-indent:-9999px;}

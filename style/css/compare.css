@@ -29,7 +29,7 @@
 .compare table td .set a.next-disabled{ background-position:-65px 0;}
 
 .compare table td .price{float:left; font-weight:bold; margin-right:10px;}
-.compare table td .cashback{float:left;}
+.compare table td .cashback{float:left; padding-left:4px;}
 
 .compare .stickyHeader {
 	position: fixed;

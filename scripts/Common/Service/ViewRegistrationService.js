@@ -21,7 +21,6 @@
                         viewRegistrationTable[view.el.id].close();
                         viewRegistrationTable[view.el.id].stopListening();
                         delete viewRegistrationTable[view.el.id].el;
-                        delete viewRegistrationTable[view.el.id].$el;
                         //remove the registration entry, compeletely unregister it
                         //delete viewRegistrationTable[view.el.id];
                     } else {

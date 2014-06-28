@@ -1,7 +1,7 @@
 var Course = Backbone.Model.extend({
     defaults: function () {
         return {
-            'courseId': undefined,
+            'courseId': -1,
             'partnerId': undefined,
             'courseName': undefined,
             'courseIntro': undefined,
@@ -161,24 +161,31 @@ var Course = Backbone.Model.extend({
 
             data.status = parseInt(data.status, 10);
             data.partnerQualification = parseInt(data.partnerQualification, 10);
-            for (i = 0; i < data.classImgUrls.length; i++) {
-                classImgArr[i] = (decodeURI(data.classImgUrls[i]));
-            } 
-            data.classImgUrls = classImgArr;
-            for (i = 0; i < data.teacherImgUrls.length; i++) {
-                imgArr[i] = (decodeURI(data.teacherImgUrls[i]));
+            if (data.classImgUrls) {
+                for (i = 0; i < data.classImgUrls.length; i++) {
+                    classImgArr[i] = (decodeURIComponent(data.classImgUrls[i]));
+                } 
+                data.classImgUrls = classImgArr;
             }
-            data.teacherImgUrls = imgArr;
-            for (i = 0; i < data.teacherIntros.length; i++) {
-                introArr[i] = (decodeURI(data.teacherIntros[i]));
+            if (data.teacherImgUrls) {
+                for (i = 0; i < data.teacherImgUrls.length; i++) {
+                    imgArr[i] = (decodeURIComponent(data.teacherImgUrls[i]));
+                }
+                data.teacherImgUrls = imgArr;
             }
-            data.teacherIntros = introArr;
-            for (i = 0; i < data.teacherNames.length; i++) {
-                nameArr[i] = (decodeURI(data.teacherNames[i]));
+            if (data.teacherImgUrls) {
+                for (i = 0; i < data.teacherIntros.length; i++) {
+                    introArr[i] = (decodeURIComponent(data.teacherIntros[i]));
+                }
+                data.teacherIntros = introArr;
             }
-            data.teacherNames = nameArr;
-
-            data.logoUrl = decodeURI(data.logoUrl);
+            if (data.teacherImgUrls) {
+                for (i = 0; i < data.teacherNames.length; i++) {
+                    nameArr[i] = (decodeURIComponent(data.teacherNames[i]));
+                }
+                data.teacherNames = nameArr;
+            }
+            data.logoUrl = decodeURIComponent(data.logoUrl);
             data.instName = decodeURI(data.instName);
             data.wholeName = decodeURI(data.wholeName);
         }
@@ -234,7 +241,7 @@ var Course = Backbone.Model.extend({
         return "<td width='195' class='row_" + this.courseId + "'>";
     },
     isNew: function () {
-        return !!this.get("courseId");
+        return this.get("courseId") === -1;
     }
 });
 

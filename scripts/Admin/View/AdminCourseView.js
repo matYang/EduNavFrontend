@@ -10,35 +10,41 @@ var AdminCourseView = BaseFormView.extend({
             fieldId: "classImg1",
             type: "file",
             mandatory: false,
-            previewId: "preview1"
+            previewId: "preview1",
+            validatorFunction: this.classImgValid
         }), 
         new BaseField({
             name: "教室照片2",
             fieldId: "classImg2",
             type: "file",
             mandatory: false,
-            previewId: "preview2"
+            previewId: "preview2",
+            validatorFunction: this.classImgValid
         }),
         new BaseField({
             name: "教室照片3",
             fieldId: "classImg3",
             type: "file",
             mandatory: false,
-            previewId: "preview3"
+            previewId: "preview3",
+            validatorFunction: this.classImgValid
         }),
         new BaseField({
             name: "教室照片4",
             fieldId: "classImg4",
             type: "file",
             mandatory: false,
-            previewId: "preview4"
+            previewId: "preview4",
+            validatorFunction: this.classImgValid
         }),
         new BaseField({
             name: "教室照片5",
             fieldId: "classImg5",
             type: "file",
             mandatory: false,
-            previewId: "preview5"
+            previewId: "preview5",
+            validatorFunction: this.classImgValid
+
         }),
         new BaseField({
             name: "教师照片1",
@@ -121,7 +127,7 @@ var AdminCourseView = BaseFormView.extend({
             $("#adminCourseForm").find(".edit").show();
             $("#adminCourseForm").find(".detail").hide();
             for (attr in json) {
-                var $edit = $("[name="+attr+"]");
+                var $edit = $("[name=" + attr + "]");
                 if ($edit.attr("type") === "checkbox") {
                     $edit.prop("checked", json[attr]);
                 } else if ($edit.prop("tagName") === "TEXTAREA") {
@@ -140,7 +146,7 @@ var AdminCourseView = BaseFormView.extend({
             $("#adminCourseForm").find(".detail").hide(); 
             var json = that.course._toJSON();
             for (var attr in json) {
-                var $edit = $("input[name="+attr+"]");
+                var $edit = $("input[name=" + attr + "]");
                 if ($edit.attr("type") === "checkbox") {
                     $edit.prop("checked", json[attr]);
                 } else if ($edit.prop("tagName") === "TEXTAREA") {
@@ -197,7 +203,17 @@ var AdminCourseView = BaseFormView.extend({
     successCallback: function () {
         app.navigate("manage/course", true);
     },
-    
+    errorCallback: function () {
+        var i, id, $field, s;
+        for (i = 0; i < this.fields.length; i++ ) {
+            id = this.fields[i].get("fieldId");
+            $field = $("#" + id);
+            if (!$field.attr("type") === "text")  {
+                $field.attr("type", "file").removeClass("hidden").val("");
+            }
+        }
+
+    },
     renderCategories: function (categories) {
         this.categories = categories;
         var buf = [];
@@ -279,16 +295,17 @@ var AdminCourseView = BaseFormView.extend({
     submitAction: function (e) {
         var i, id, $field, s;
         for (i = 0; i < this.fields.length; i++ ) {
-            id = this.fields.get("fieldId");
+            id = this.fields[i].get("fieldId");
+            $field = $("#" + id);
             if (!$field.val()) {
-                $field.attr("type", text).val(
-                    this.course.get(id.substr(0, id.length-1))[Utilities.toInt(id.substr(0, id.length-1)]));
+                $field.attr("type", "text").addClass("hidden").val(
+                    this.course.get(id.substr(0, id.length-1) + "Urls")[Utilities.toInt(id.substr(id.length-1, 1))]);
             }
         }
 
     },
-    fileValid: function () {
-
+    classImgValid: function () {
+        
     },
     close: function () {
         if (!this.isClosed) {

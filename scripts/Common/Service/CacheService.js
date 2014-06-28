@@ -5,12 +5,18 @@
 
     this.CacheService = function () {
         this.enableCache = true;
-        this.cache = {
-            "course":{},
-            "poi":{}    //
+        if (localStorage.cache) {
+            this.cache = JSON.parse(localStorage.cache);
+        } else {
+            this.cache = {
+                "course":{},
+                "queryCourse": {},
+                "poi":{}    //
+            }
         }
         this.expireTime = {
             "course":86400000,
+            "queryCourse": 300000,
             "poi": -1
         }
     };
@@ -26,7 +32,13 @@
             }
             date = new Date();
 
-            return date.getTime < this.cache[type][key].timestamp + this.expireTime[type] ? this.cache[type][key].value: null;
+            if (date.getTime < this.cache[type][key].timestamp + this.expireTime[type]) {
+                return this.cache[type][key].value;
+            } else {
+                this.cache[type][key] = null;
+                localStorage.cache = JSON.stringify(this.cache);
+                return null;
+            }
         } else {
             return null;
         }
@@ -44,6 +56,7 @@
             "timestamp": date.getTime(),
             "value": value
         }
+        localStorage.cache = JSON.stringify(this.cache);
     }    
 
 }).call(this);

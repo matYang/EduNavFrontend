@@ -130,15 +130,20 @@
 
 
     GeneralManager.prototype.findCourse = function(courseSearchRepresentation, callback) {
-        var self = this,
-            searchResults = new Courses();
+        var self = this, cache, i, requestList = [], searchResults = new Courses();
+        if (!(courseSearchRepresentation instanceof Backbone.Model)){
+            Info.warn('GeneralManager::findCourse invalid parameter, exit');
+            return;
+        }
+        cache = app.cache.get("queryCourse", courseSearchRepresentation.toQueryString());
+        if (cache) {
+            this.batchFetchCourses(cache, callback);
+            return;
+        }
+
         if (testMockObj.testMode){
             searchResults = testMockObj.testCourses;
             callback.success(searchResults);
-            return;
-        }
-        if (!(courseSearchRepresentation instanceof Backbone.Model)){
-            Info.warn('CourseManager:: invalid parameter, exit');
             return;
         }
 
@@ -152,7 +157,7 @@
                     for (var i = 0; i < searchResults.length; i++) {
                         app.cache.set("course", searchResults.at(i).get("courseId"), searchResults.at(i));
                     }
-
+                    app.cache.set("queryCourse", courseSearchRepresentation.toQueryString(), searchResults.pluck("courseId"));
                     callback.success(searchResults);
                 }
             },
