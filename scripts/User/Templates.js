@@ -183,7 +183,7 @@
     <div class="searchResultEntry clearfix">
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/><span><%= instName%></span></div>
         <div class="col1">
-            <p class="title"><a class="F_green" href="#"><%= courseName %></a></p>
+            <p class="title"><a class="F_green" class="viewDetail" id="viewAll_<%= courseId %>" href="#"><%= courseName %></a></p>
             <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
             <p class="desc"><span>开课时间:</span> <%= startDate %></p>
             <p class="desc"><span>地<s></s>址:</span> <%= location %></p>

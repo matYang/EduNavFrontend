@@ -73,7 +73,7 @@ var BaseFormView = Backbone.View.extend({
                 valid = valid && field.testValue($field.val(), $field);
             }
             if (valid) {
-                that.submitAction();
+                that.submitAction(e);
             } else {
                 e.preventDefault();
             }

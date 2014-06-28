@@ -64,7 +64,7 @@ var RegistrationView = BaseFormView.extend({
         this.ref = params.ref;
         this.render();
     },
-    render: function(){
+    render: function () {
         var that = this;
         $("#loginBox").hide();
         $("#getSms").on("click", function (e) {
@@ -84,9 +84,9 @@ var RegistrationView = BaseFormView.extend({
         app.sessionManager.sessionModel = new User(data, {parse: true});
         this.$el.empty().append(this.finishTemplate);
         app.sessionManager.fetchSession(true, {
-            success:function(){
+            success:function () {
                 app.topBarView.reRender();
-                setTimeout(function(){
+                setTimeout(function () {
                     app.navigate(toPage, true);
                 },5000);
             },
@@ -113,8 +113,8 @@ var RegistrationView = BaseFormView.extend({
         var p1 = val, p2 = $("#registerPasswordConfirmInput").val();
         if ( p2 && p1 !== p2 ) {
             return {valid: false, text:"两次输入密码不匹配"};
-        } else if (val.length < 6 ){
-            return {valid: false, text:"密码长度至少为6位"};
+        } else if (val.length < 8 ){
+            return {valid: false, text:"密码长度至少为8位"};
         } else {
             return {valid:true};
         }
@@ -123,8 +123,8 @@ var RegistrationView = BaseFormView.extend({
         var p1 = $("#registerPasswordInput").val(), p2 = val;
         if ( p1 !== p2 ) {
             return {valid: false, text:"两次输入密码不匹配"};
-        } else if (val.length < 6 ){
-            return {valid: false, text:"密码长度至少为6位"};
+        } else if (val.length < 8 ){
+            return {valid: false, text:"密码长度至少为8位"};
         } else {
             if ($("#registerPasswordInput_wrong").length) {
                 $("#registerPasswordInput_wrong").remove();
@@ -133,7 +133,7 @@ var RegistrationView = BaseFormView.extend({
             return {valid:true};
         }
     },
-    close: function(){
+    close: function () {
         if (!this.isClosed){
             BaseFormView.prototype.close.call(this);
             this.$el.empty();

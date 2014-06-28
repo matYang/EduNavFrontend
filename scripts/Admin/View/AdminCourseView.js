@@ -9,36 +9,64 @@ var AdminCourseView = BaseFormView.extend({
             name: "教室照片1",
             fieldId: "classImg1",
             type: "file",
-            mandatory: true,
+            mandatory: false,
             previewId: "preview1"
         }), 
         new BaseField({
             name: "教室照片2",
             fieldId: "classImg2",
             type: "file",
-            mandatory: true,
+            mandatory: false,
             previewId: "preview2"
         }),
         new BaseField({
             name: "教室照片3",
             fieldId: "classImg3",
             type: "file",
-            mandatory: true,
+            mandatory: false,
             previewId: "preview3"
         }),
         new BaseField({
             name: "教室照片4",
             fieldId: "classImg4",
             type: "file",
-            mandatory: true,
+            mandatory: false,
             previewId: "preview4"
         }),
         new BaseField({
             name: "教室照片5",
             fieldId: "classImg5",
             type: "file",
-            mandatory: true,
+            mandatory: false,
             previewId: "preview5"
+        }),
+        new BaseField({
+            name: "教师照片1",
+            fieldId: "teacherImg1",
+            type: "file",
+            mandatory: false,
+            previewId: "teacherPreview1"
+        }),
+        new BaseField({
+            name: "教师照片2",
+            fieldId: "teacherImg2",
+            type: "file",
+            mandatory: false,
+            previewId: "teacherPreview2"
+        }),
+        new BaseField({
+            name: "教师照片3",
+            fieldId: "teacherImg3",
+            type: "file",
+            mandatory: false,
+            previewId: "teacherPreview3"
+        }),
+        new BaseField({
+            name: "教师照片4",
+            fieldId: "teacherImg4",
+            type: "file",
+            mandatory: false,
+            previewId: "teacherPreview4"
         }),
     ],
     initialize: function(params){
@@ -89,10 +117,10 @@ var AdminCourseView = BaseFormView.extend({
         var that = this;
         BaseFormView.prototype.bindEvents.call(this);
         $("#createSimilarCourse").on("click", function() {
+            var json = that.course.toJSON(), attr;
             $("#adminCourseForm").find(".edit").show();
             $("#adminCourseForm").find(".detail").hide();
-            var json = that.course.toJSON();
-            for (var attr in json) {
+            for (attr in json) {
                 var $edit = $("[name="+attr+"]");
                 if ($edit.attr("type") === "checkbox") {
                     $edit.prop("checked", json[attr]);
@@ -248,7 +276,18 @@ var AdminCourseView = BaseFormView.extend({
         }
         $("select[name=district]").empty().append(buf.join()).val(first);
     },
-    submitAction: function () {
+    submitAction: function (e) {
+        var i, id, $field, s;
+        for (i = 0; i < this.fields.length; i++ ) {
+            id = this.fields.get("fieldId");
+            if (!$field.val()) {
+                $field.attr("type", text).val(
+                    this.course.get(id.substr(0, id.length-1))[Utilities.toInt(id.substr(0, id.length-1)]));
+            }
+        }
+
+    },
+    fileValid: function () {
 
     },
     close: function () {

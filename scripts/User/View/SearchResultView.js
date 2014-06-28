@@ -45,6 +45,10 @@ var SearchResultView = MultiPageView.extend({
                 that.compareWidget.removeCourse(Utilities.toInt(id));
             }
 
+        }).on("click", ".courseTitle", function (e) {
+            e.preventDefault();
+            id = Utilities.getId($(this).attr("id"));
+            app.navigate("course/" + id, true);
         });
         this.registerSortEvent($("#courseSortTime"), this.compareTime, this.timeDesc, this, function(){
             that.timeDesc = !that.timeDesc;
