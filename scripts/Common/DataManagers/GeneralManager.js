@@ -48,6 +48,7 @@
         if (cache) {
             if(callback){
                 callback.success(new Course(cache, {parse: true}));
+                return;
             }
         }
         var course = new Course();
@@ -110,7 +111,6 @@
                 if (callback) {
                     var array = requestCourses.toArray(), i = 0;
                     for (i = 0; i < array.length; i++ ) {
-                        debugger;
                         app.cache.set("course", array[i].get("courseId"), array[i].toJSON());
                     }
                     courses.add(array);
@@ -136,7 +136,6 @@
             Info.warn('GeneralManager::findCourse invalid parameter, exit');
             return;
         }
-        debugger;
         cache = app.cache.get("queryCourse", courseSearchRepresentation.toQueryString());
         if (cache) {
             this.batchFetchCourses(cache, callback);
@@ -156,7 +155,6 @@
 
             success:function(model, response){
                 if(callback){
-                    debugger;
                     for (var i = 0; i < searchResults.length; i++) {
                         app.cache.set("course", searchResults.at(i).get("courseId"), searchResults.at(i).toJSON());
                     }

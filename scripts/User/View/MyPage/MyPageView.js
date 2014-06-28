@@ -111,6 +111,14 @@ var MyPageView = Backbone.View.extend({
                 that.createChildView();
             }
         });
+        $("#mypage_sidebar").children(".mypage_sidebar_title").on("click", function () {
+            if (that.query !== "dashboard") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "dashboard";
+                app.navigate("mypage/dashboard");
+                that.createChildView();
+            }
+        });
     },
     close: function () {
         if (!this.isClosed) {

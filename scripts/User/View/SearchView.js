@@ -182,6 +182,13 @@ var SearchView = Backbone.View.extend({
             var cri = $(e.target).data("cri");
             that.filterResult($("#filter_" + cri), "noreq");
         });
+
+        $("#toTop").on("click", function (e) {
+            e.preventDefault();
+            $.smoothScroll({
+                scrollTarget: "topBar"
+            });
+        });
     },
     bindSortEvents: function () {
         this.searchResultView.registerSortEvent($("#time"), "startDate", "timeDesc", this,

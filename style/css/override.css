@@ -75,3 +75,7 @@ li a, .page a {
   -ms-user-select: none;
   user-select: none;
 }
+
+.mypage_sidebar_title {
+	cursor: pointer;
+}

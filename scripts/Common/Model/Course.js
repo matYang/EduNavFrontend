@@ -7,6 +7,7 @@ var Course = Backbone.Model.extend({
             'courseIntro': undefined,
             'suitableStudent': undefined,
             'price': undefined,
+            'originalPrice': undefined,
             'courseHourNum': undefined,
 
             'courseHourLength': undefined,
@@ -99,6 +100,7 @@ var Course = Backbone.Model.extend({
             json.courseId = parseInt(data.courseId, 10);
             json.partnerId = parseInt(data.partnerId , 10);
             json.price = parseInt(data.price , 10);
+            json.originalPrice = parseInt(data.price , 10);
             json.courseHourNum = parseInt(data.courseHourNum , 10);
             json.courseHourLength = parseInt(data.courseHourLength , 10);
 

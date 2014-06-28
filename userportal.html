@@ -217,6 +217,10 @@
             </div>
         </div>
     </div><!--search_result end-->
+    <!-- 回到页顶 -->
+    <div id="toTop" class="to_top">
+        <div class="to_top_inner"><a href="#none" class="backtop" target="_self"><s></s>顶部</a><s></s></div>
+    </div>
 </script>
 
 <script type="text/template" id="tpl_searchResultEntry" >
@@ -367,9 +371,9 @@
                 <div class="mypage_sidebar_sectionContent">
                     <div class="mypage_sidebar_tab" id="editInfo">个人资料</div>
                     <div class="mypage_sidebar_tab" id="editPass">密码修改</div>
-                    <div class="mypage_sidebar_tab" id="inviteCode">邀请码</div>
+                <!-- <div class="mypage_sidebar_tab" id="inviteCode">邀请码</div>
 
-                <!--    <div class="mypage_sidebar_tab" id="wtf">常用学员信息</div> -->
+                  <div class="mypage_sidebar_tab" id="wtf">常用学员信息</div> -->
                 </div>
             </div>
         </div>
@@ -543,8 +547,8 @@
         <div class="row1 clearfix">
             <div class="fleft"><img src="images/pic.jpg" width="90" height="71"/></div>
             <div class="fright">
-                <div class="title">六级考前词汇串讲班</div>
-                <div class="desc ">适合学员： 即将参加六级考试的学生。</div>
+                <div class="title"><%= course.courseTitle %></div>
+                <div class="desc ">适合学员： <%= course.suitableStudent %></div>
             </div>
         </div>
         <div class="row2">
@@ -555,20 +559,22 @@
             <div class="section"><label>上课地址：</label> <span><%= course.location %></span></div>
         </div>
         <div class="row3">
-            若该教学机构在您取消与本机构的课程订单后，给予您更多诱惑，您将获得100元反金券。
+            若该教学机构在您取消与本机构的课程订单后，给予您更多诱惑，您将获得500元反金券。
         </div>
         <div class="row4">
+        <!--
             <div class="title">需要帮助?</div>
             <div class="link">查看常见问题</div>
             <div class="link">在线客服</div>
             <div class="link">客服电话</div>
+            -->
         </div>
     </div>
     <form id="bookingDetail" class="newBooking">
         <div class="header">填写订单信息</div>
         <div class="title">
-            <h3>六级考前词汇串讲班</h3>
-            <div class="fright ">Wow, Congratulations!</div>
+            <h3><%= course.courseTitle %></h3>
+            <div class="fright ">恭喜您获得了该学科最佳课程</div>
         </div>
         <div class="row1">
             <div class="field">
@@ -584,7 +590,7 @@
             </div>
             <div class="field">
                 <label>有效日期</label>
-                <%= scheduledTime %> <span>（<%= scheduledTime %>前须到教学机构进行报名，否则优惠价格将自动失效）</span>
+                <%= course.cutoffDate %> <span>（<%= course.cutoffDate %>前须到教学机构进行报名，否则优惠价格将自动失效）</span>
             </div>
             <div class="field">
                 <label>课程费用</label>
@@ -688,8 +694,8 @@
                     <dd>
                         <input type="button" id="bookNow" value="立即预定" class="btn_O">
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <input style="margin-top:10px;" type="button" id="getTrial" value="我要预约试听" class="btn_G">
-                        <!-- <span>预约名额有限（仅剩<b class="F_orange">3</b>个名额），快抢吧！</span> -->
+                        <!-- <input style="margin-top:10px;" type="button" id="getTrial" value="我要预约试听" class="btn_G">
+                        <span>预约名额有限（仅剩<b class="F_orange">3</b>个名额），快抢吧！</span> -->
                     </dd>
                 </dl>
                 <div class="col2">
@@ -1514,7 +1520,6 @@
         <script src="scripts/User/View/TopBarView.js" type="text/javascript"></script>
         <script src="scripts/User/View/FindPasswordView.js" type="text/javascript"></script>
         <script src="scripts/User/View/FrontPageView.js" type="text/javascript"></script>
-        <script src="scripts/User/View/SearchView.js" type="text/javascript"></script>
         <script src="scripts/User/View/CompareWidgetView.js" type="text/javascript"></script>
         <script src="scripts/User/View/InfoModal.js" type="text/javascript"></script>
         <script src="scripts/User/Main.js" type="text/javascript"></script>

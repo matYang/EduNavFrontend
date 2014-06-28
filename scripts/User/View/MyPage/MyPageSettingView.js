@@ -50,9 +50,11 @@ var MyPageSettingView = BaseFormView.extend({
         $("#updateInfo").attr("value", "保存中...");
     },
 
-    saveSuccess: function () {
+    saveSuccess: function (user) {
+        this.model = user;
         $("#updateInfo").attr("value", "更新完毕");
-        $("#myPage_myInfo").find("p[data-id=name]").html("姓名："+this.model.get("name"));
+        $("#mypage_info").find("p[class=name]").html(this.model.get("name"));
+        $("#mypage_info").find("p[class=email]").html("<span></span>" + this.model.get("email"));
         app.navigate("mypage/setting", {
             trigger: true
         });

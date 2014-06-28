@@ -156,7 +156,7 @@ var AppRouter = Backbone.Router.extend({
     app = new AppRouter ();
     app.topBarView = new TopBarView ();
     Backbone.history.start();
-    console.log("Wow, Congratulations!");
+    // console.log("Wow, Congratulations!");
     
-    console.log("はい、榛名は大丈夫です!");
+    // console.log("はい、榛名は大丈夫です!");
 })();
