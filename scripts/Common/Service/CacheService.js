@@ -16,7 +16,7 @@
         }
         this.expireTime = {
             "course":86400000,
-            "queryCourse": 300000,
+            "queryCourse": 600000,
             "poi": -1
         }
     };
@@ -32,7 +32,7 @@
             }
             date = new Date();
 
-            if (date.getTime < this.cache[type][key].timestamp + this.expireTime[type]) {
+            if (date.getTime() < this.cache[type][key].timestamp + this.expireTime[type]) {
                 return this.cache[type][key].value;
             } else {
                 this.cache[type][key] = null;

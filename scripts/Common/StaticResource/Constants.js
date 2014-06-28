@@ -6,7 +6,7 @@ var getEnvironmentServerOrigin = function () {
     var isOnLocal = C_ENV_VAR !== 'REMOTE';
     return {
         'httpOrigin': isOnLocal ? 'http://localhost:8015' : '..',
-        'socketOrigin': isOnLocal ? 'http://localhost:3000' : 'https://www.routea.ca:3000',
+        'adminOrigin': isOnLocal ? 'http://localhost:8017' : '..',
         'env': isOnLocal
     };
 
@@ -16,7 +16,7 @@ var Constants = {
 
 
     origin: getEnvironmentServerOrigin().httpOrigin,
-    socketOrigin: getEnvironmentServerOrigin().socketOrigin,
+    adminOrigin: getEnvironmentServerOrigin().adminOrigin,
     isOnLocal: getEnvironmentServerOrigin().isOnLocal,
 
     miliSecInDay: 86400000,

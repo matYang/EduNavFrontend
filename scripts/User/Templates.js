@@ -183,7 +183,7 @@
     <div class="searchResultEntry clearfix">
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/><span><%= instName%></span></div>
         <div class="col1">
-            <p class="title"><a class="F_green" class="viewDetail" id="viewAll_<%= courseId %>" href="#"><%= courseName %></a></p>
+            <p class="title"><a class="F_green courseTitle" id="viewAllTitle_<%= courseId %>" href="#"><%= courseName %></a></p>
             <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
             <p class="desc"><span>开课时间:</span> <%= startDate %></p>
             <p class="desc"><span>地<s></s>址:</span> <%= location %></p>
@@ -637,7 +637,7 @@
 
 <script type="text/template" id="tpl_courseDetail">
     <div class="sitemap">
-        <span>初中辅导</span> &gt; <span>英语</span>
+        <span><%= category %></span> &gt; <span><%= subCategory %></span> &gt; <span><%= subSubCategory %></span> 
     </div>
     <div class="courseDetail blank">
         <div class="banner">
