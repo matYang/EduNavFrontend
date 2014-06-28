@@ -10,8 +10,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="/res/favicon.ico" />
         <link href="style/lib/jquery-ui.css" rel="stylesheet" type="text/css" />
         <link href="build/style/css/style-min.css" rel="stylesheet" type="text/css" />
-
-        
     </head>
     <body>
         <div id = 'topBar' class = 'unselectable'></div>
@@ -26,7 +24,7 @@
         <div class="footer">
             <div class="footer_inner">
                 <div id="footer_service_link" class="footer-upperContent"> <a id="footer_about" href="#">关于我们</a><a id="footer_faq" href="#">常见问题</a><a id="footer_career" href="#">诚聘英才</a><a id="footer_term" href="#">隐私条款</a><a id="footer_feedback" href="#">意见反馈</a> </div>
-                <div class="footer-copyright"> Copyright  2013 RouteA.ca&#169;. All Rights Reserved</div>
+                <div class="footer-copyright"> Copyright  2013 ishangke.cn&#169;. All Rights Reserved</div>
             </div>
         </div>
         <div id="allTemplates">
@@ -50,7 +48,7 @@
 </script>
 
 <script type="text/template" id="tpl_topBar-notLoggedIn">
-    <div class="topBar">
+    <div class="topBar unselectable">
         <div class="topBar-inner clearfix">
             <h1 id="logo" class="topBar-logo">
                 <a></a>
@@ -95,9 +93,9 @@
 </script>
 
 <script type="text/template" id="tpl_front">
-    <div id="lv1Button" class="tab2">
+    <div id="lv1Button" class="tab2 unselectable">
     </div>
-    <div class="category">
+    <div class="category unselectable">
         <div id ="lv2Categories"></div>
         <table class="language blank2" width="100%" cellpadding="0" cellspacing="0">
             <tbody><tr>
@@ -120,7 +118,7 @@
 
 <script type="text/template" id="tpl_search">
     <!--筛选框-->
-    <div id="searchPanel" class="filter">
+    <div id="searchPanel" class="filter unselectable">
         <ul id="search_category"  class="tab">
         </ul>
         
@@ -172,7 +170,7 @@
     
     <!--筛选结果-->
     
-    <div id="searchReqs" class="blank1 hidden">
+    <div id="searchReqs" class="blank1 unselectable hidden">
         <span><span id="resultNum"></span>个课程满足以下条件</span>
     </div>
     
@@ -180,7 +178,7 @@
         
         <!--左栏开始-->
         <div class="fleft w_730">
-            <div id="searchResultSorter" class="clearfix">
+            <div id="searchResultSorter" class="clearfix unselectable">
                 <ul class="sorter">
                     <li id="editorPick" class="active">爱上课推荐</li>
                     <li class="line"></li>
@@ -202,20 +200,24 @@
         </div>
         
         <!--右栏开始-->
-        <div id="searchWidgets" class="fright w_250">
+        <div id="searchWidgets" class="fright w_250 unselectable">
             <div id="CompareWidgetContainer">
             </div>
             <div id="mainMap" class="blank1">
             </div>
         </div>
     </div><!--search_result end-->
+    <!-- 回到页顶 -->
+    <div id="toTop" class="to_top">
+        <div class="to_top_inner"><a href="#none" class="backtop" target="_self"><s></s>顶部</a><s></s></div>
+    </div>
 </script>
 
 <script type="text/template" id="tpl_searchResultEntry" >
     <div class="searchResultEntry clearfix">
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/><span><%= instName%></span></div>
         <div class="col1">
-            <p class="title"><a class="F_green" href="#"><%= courseName %></a></p>
+            <p class="title"><a class="F_green courseTitle" id="viewAllTitle_<%= courseId %>" href="#"><%= courseName %></a></p>
             <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
             <p class="desc"><span>开课时间:</span> <%= startDate %></p>
             <p class="desc"><span>地<s></s>址:</span> <%= location %></p>
@@ -361,7 +363,7 @@
                     <div class="mypage_sidebar_tab" id="editPass">密码修改</div>
                 <!-- <div class="mypage_sidebar_tab" id="inviteCode">邀请码</div>
 
-                <div class="mypage_sidebar_tab" id="wtf">常用学员信息</div> -->
+                  <div class="mypage_sidebar_tab" id="wtf">常用学员信息</div> -->
                 </div>
             </div>
         </div>
@@ -535,8 +537,8 @@
         <div class="row1 clearfix">
             <div class="fleft"><img src="images/pic.jpg" width="90" height="71"/></div>
             <div class="fright">
-                <div class="title">六级考前词汇串讲班</div>
-                <div class="desc ">适合学员： 即将参加六级考试的学生。</div>
+                <div class="title"><%= course.courseTitle %></div>
+                <div class="desc ">适合学员： <%= course.suitableStudent %></div>
             </div>
         </div>
         <div class="row2">
@@ -547,20 +549,22 @@
             <div class="section"><label>上课地址：</label> <span><%= course.location %></span></div>
         </div>
         <div class="row3">
-            若该教学机构在您取消与本机构的课程订单后，给予您更多诱惑，您将获得100元反金券。
+            若该教学机构在您取消与本机构的课程订单后，给予您更多诱惑，您将获得500元反金券。
         </div>
         <div class="row4">
+        <!--
             <div class="title">需要帮助?</div>
             <div class="link">查看常见问题</div>
             <div class="link">在线客服</div>
             <div class="link">客服电话</div>
+            -->
         </div>
     </div>
     <form id="bookingDetail" class="newBooking">
         <div class="header">填写订单信息</div>
         <div class="title">
-            <h3>六级考前词汇串讲班</h3>
-            <div class="fright ">Wow, Congratulations!</div>
+            <h3><%= course.courseTitle %></h3>
+            <div class="fright ">恭喜您获得了该学科最佳课程</div>
         </div>
         <div class="row1">
             <div class="field">
@@ -576,7 +580,7 @@
             </div>
             <div class="field">
                 <label>有效日期</label>
-                <%= scheduledTime %> <span>（<%= scheduledTime %>前须到教学机构进行报名，否则优惠价格将自动失效）</span>
+                <%= course.cutoffDate %> <span>（<%= course.cutoffDate %>前须到教学机构进行报名，否则优惠价格将自动失效）</span>
             </div>
             <div class="field">
                 <label>课程费用</label>
@@ -669,7 +673,7 @@
 
 <script type="text/template" id="tpl_courseDetail">
     <div class="sitemap">
-        <span>初中辅导</span> &gt; <span>英语</span>
+        <span><%= category %></span> &gt; <span><%= subCategory %></span> &gt; <span><%= subSubCategory %></span> 
     </div>
     <div class="courseDetail blank">
         <div class="banner">
@@ -680,8 +684,8 @@
                     <dd>
                         <input type="button" id="bookNow" value="立即预定" class="btn_O">
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <input style="margin-top:10px;" type="button" id="getTrial" value="我要预约试听" class="btn_G">
-                        <!-- <span>预约名额有限（仅剩<b class="F_orange">3</b>个名额），快抢吧！</span> -->
+                        <!-- <input style="margin-top:10px;" type="button" id="getTrial" value="我要预约试听" class="btn_G">
+                        <span>预约名额有限（仅剩<b class="F_orange">3</b>个名额），快抢吧！</span> -->
                     </dd>
                 </dl>
                 <div class="col2">
@@ -1433,7 +1437,6 @@
         <!-- load libraries-->
         <script src="build/common.min.js" type="text/javascript"></script>
         <script src="build/main.min.js" type="text/javascript"></script>  
-
     </body>
 </html>
 
