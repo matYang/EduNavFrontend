@@ -9,9 +9,8 @@
             register: function (view) {
                 var registrationTarget, i = 0;
                     //check if the any anti-requested views has been registered, if so, attemp to close it
-                if (!view.el.tagName) {
+                if (!view.el || !view.el.tagName) {
 
-                    alert("fatal error: viewRegistrationService:: view's el attribute is not set");
                     return;
                 }
                 if (viewRegistrationTable[view.el.id]) {
