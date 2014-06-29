@@ -74,6 +74,7 @@ var RegistrationView = BaseFormView.extend({
             } else {
                 $("#smsInfo").html("请先输入您的手机号");
             }
+            $("#registerVeriCode_wrong").remove();
         });
         BaseFormView.prototype.bindEvents.call(this);
     },

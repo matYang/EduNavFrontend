@@ -256,8 +256,8 @@ var Utilities = {
                     $("#smsInfo").prop("disabled", false);
                 }, 120000);
             },
-            error: function () {
-                $info.html("验证码发送失败，请检查网络正常并重试");
+            error: function (response) {
+                $info.html((response && response.responseText) ? response.responseText : "验证码发送失败，请检查网络正常并重试");
                 $button.val("重新发送");
             }
         };
