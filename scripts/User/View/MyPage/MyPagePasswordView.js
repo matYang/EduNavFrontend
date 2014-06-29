@@ -100,7 +100,7 @@ var MyPagePasswordView = BaseFormView.extend({
     },
     newPasswordValid: function (val) {
         var value2 = $("#confirmPassword").val();
-        if (value2 !== undefined && value2.length === 0 && val !== value2) {
+        if (value2 !== undefined && value2.length > 0 && val !== value2) {
             return {valid:false, text:"两次密码不一致"};
         }
         if (!val || val.length < 8) {
@@ -166,7 +166,7 @@ var MyPagePasswordView = BaseFormView.extend({
             $("#"+this.get("fieldId")).addClass("wrong_color");
         }
         return "";
-    }, 
+    },
     close: function (){
         if (!this.isClosed) {
             this.isClosed = true;
