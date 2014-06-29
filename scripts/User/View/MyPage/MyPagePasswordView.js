@@ -48,15 +48,12 @@ var MyPagePasswordView = BaseFormView.extend({
         this.sessionUser = app.userManager.sessionModel;
         this.template = _.template(tpl.get('mypage_password'));
 
-        $("#oldPassword").val("");
-        $("#newPassword").val("");
-        $("#confirmPassword").val("");
-
         this.render();
         this.bindEvents();
     },
     render: function (){
         this.$el.append(this.template);
+        this.clearPassword();
     },
     bindEvents:function (){
         var that = this;
