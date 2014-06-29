@@ -53,12 +53,12 @@ var MyPageSettingView = BaseFormView.extend({
     saveSuccess: function (user) {
         this.model.set("name", user.get("name"));
         this.model.set("email", user.get("email"));
-        app.sessionManager.sessionModel.set("email", user.get("email"));
+        app.sessionManager.sessionModel.set("name", user.get("name"));
         app.sessionManager.sessionModel.set("email", user.get("email"));
         $("#updateInfo").attr("value", "更新完毕");
         $("#mypage_info").find("p[class=name]").html(this.model.get("name"));
         $("#mypage_info").find("p[class=email]").html("<span></span>" + this.model.get("email"));
-        this
+
         app.navigate("mypage/setting", {
             trigger: true
         });
@@ -91,6 +91,6 @@ var MyPageSettingView = BaseFormView.extend({
         } else {
             return '<span class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' +  this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></span>';
         }
-    }, 
+    }
 });
 
