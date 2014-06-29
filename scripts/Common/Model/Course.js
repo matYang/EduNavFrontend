@@ -317,6 +317,20 @@ var Course = Backbone.Model.extend({
     },
     isNew: function () {
         return this.get("courseId") === -1;
+    },
+    _toSimpleJSON: function() {
+        var json = {};
+        json.courseId = this.get("courseId");
+        json.courseName = this.get("courseName");
+        json.suitableStudent = this.get("suitableStudent");
+        json.startDate = Utilities.getDateString(this.get('startDate'));
+        json.location = this.get("location");
+        json.logoUrl = this.get("logoUrl");
+        json.price = this.get("price");
+        json.courseHourNum = this.get("courseHourNum");
+        json.cashback = this.get("cashback");
+        json.instName = this.get("instName");
+        return json;
     }
 });
 

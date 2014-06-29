@@ -156,6 +156,9 @@ var AppRouter = Backbone.Router.extend({
     app = new AppRouter ();
     app.topBarView = new TopBarView ();
     Backbone.history.start();
+    $(window).unload(function(){
+        localStorage.cache = JSON.stringify(app.cache.cache);
+    });
     // console.log("Wow, Congratulations!");
     
     // console.log("はい、榛名は大丈夫です!");

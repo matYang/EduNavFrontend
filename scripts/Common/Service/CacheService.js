@@ -36,7 +36,6 @@
                 return this.cache[type][key].value;
             } else {
                 this.cache[type][key] = null;
-                localStorage.cache = JSON.stringify(this.cache);
                 return null;
             }
         } else {
@@ -56,7 +55,6 @@
             "timestamp": date.getTime(),
             "value": value
         }
-        localStorage.cache = JSON.stringify(this.cache);
     }    
 
 }).call(this);
