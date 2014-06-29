@@ -142,7 +142,7 @@
                 <span data-id="noreq" class="active">不限</span>
             </div>
             <div id="filter_startTime" class="filterCriteria">
-                <label>开课时间：</label>
+                <label>开课日期：</label>
                 <span data-id="noreq" class="active">不限</span>
                 <span data-id="thisMonth">当月</span>
                 <span data-id="nextMonth">下月</span>
@@ -231,7 +231,7 @@
         <div class="col1">
             <p class="title"><a class="F_green courseTitle" id="viewAllTitle_<%= courseId %>" href="#"><%= courseName %></a></p>
             <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
-            <p class="desc"><span>开课时间:</span> <%= startDate %></p>
+            <p class="desc"><span>开课日期:</span> <%= startDate %></p>
             <p class="desc"><span>地<s></s>址:</span> <%= location %></p>
         </div>
         <div class="col2">
@@ -523,7 +523,7 @@
                 <h3>入学信息</h3>
                 <div class="clearfix">
                     <div class="fleft">
-                        <p><label>开课时间:</label> <%= course.startDate %> - <%= course.finishDate %></p>
+                        <p><label>开课日期:</label> <%= course.startDate %> - <%= course.finishDate %></p>
                         <p><label>班级人数:</label> <%= course.classSize %></p>
                         <p><label>联系方式:</label> <%= phone %></p>
                         <p><label>入学人姓名:</label> <%= name %></p>
@@ -562,7 +562,7 @@
         </div>
         <div class="row2">
             <div class="section"><label>班级类型：</label> <span><%= course.classSize %>人</span></div>
-            <div class="section"><label>开课时间：</label> <span><%= course.startDate %> - <%= course.finishDate %> <%= course.studyDays%> <%= course.studyDaysNote %>
+            <div class="section"><label>开课日期：</label> <span><%= course.startDate %> - <%= course.finishDate %> <%= course.studyDays%> <%= course.studyDaysNote %>
             </span></div>
             <div class="section"><label>上课时间：</label> <span><%= course.startTime1 %> - <%= course.finishTime1 %>, <%= course.startTime2 %> - <%= course.finishTime2 %></span></div>
             <div class="section"><label>上课地址：</label> <span><%= course.location %></span></div>
@@ -676,7 +676,7 @@
             <p><label>教育机构: </label><%= course.instName %></p>
             <p><label>上课地址: </label><%= course.phone %></p>
             <p><label>咨询电话: </label<%= course.location %></p>
-            <p><label>开课时间: </label><%= course.startDate %>-<%= course.finishDate %></p>
+            <p><label>开课日期: </label><%= course.startDate %>-<%= course.finishDate %></p>
             <p><label>班级人数: </label><%= course.classSize %></p>
             <p><label>预约报道: </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
             <p><label>费用总计: </label> ￥<b class="price"><%= price %></b> <span>（到校付款）</span></p>
@@ -738,7 +738,7 @@
                     </div>
                 </div>
                 <div class="course_map">
-                    <div class="addr">地址：<%= location %></div>
+                    <div class="addr">上课地点：<%= location %></div>
                     <div id="courseMap" class="map" width="328" height="183">
                     <a href="http://api.map.baidu.com/geocoder?address=<%= location %>&output=html" target="_blank">
                         <img src="http://api.map.baidu.com/staticimage?width=328&height=183&zoom=14&center=<%= location %>" />
