@@ -282,7 +282,7 @@
             type: 'POST',
             url: ApiResource.user_forgetPassword,
             data: JSON.stringify(opt),
-            dataType: 'json',
+            dataType: 'text',
             contentType: 'application/json',
             success: function(data){
                 self.sessionManager.fetchSession(false, callback);

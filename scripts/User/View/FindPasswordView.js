@@ -86,18 +86,10 @@ var FindPasswordView = BaseFormView.extend({
     },
     successCallback: function () {
         $("#confirmChange").val("修改成功");
+        app.navigate("mypage", true);
     },
     changeError: function (data) {
-        var message;
-        $("#confirmChange").val("确定");
-        if (data.status === 401) {
-            message = "更改密码请求无效或已过期";
-        } else if (data.status === 400) {
-            message = "更改密码请求无效";
-        } else {
-            message = "请稍后再试";
-        }
-        Info.displayNotice(message);
+        Info.displayNotice(data.responseText);
     },
     close: function () {
         if (!this.isClosed) {
