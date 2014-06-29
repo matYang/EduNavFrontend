@@ -442,7 +442,7 @@
             <div class="row0 clearfix">
                 <div class="fleft">
                     <p><label>订单号：<%= reference %></label> <span>(<%= creationTime %>预定)</span></p>
-                    <p><label>状<s></s>态：<b class="F_green"><%= EnumConfig.BookingStatusUserText[status] %></b></label></p>
+                    <p><label>状<s></s>态：<b class="F_green" id="bookingStatus"><%= EnumConfig.BookingStatusUserText[status] %></b></label></p>
                 </div>
                 <p class="fright price"><label>总金额：</label><span class="sign">￥</span><%= price %></p>
             </div>
@@ -542,7 +542,9 @@
         </div><!--bookingDetail end-->
         <div class="btns">
             <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
-            <input type="button" class="btn_W" value="取消订单" id="cancelBooking">
+            <% if ( status !== 2 && status < 6 ) { %>
+                <input type="button" class="btn_W" value="取消订单" id="cancelBooking">
+            <% } %>
         </div><!--btns end-->
         <div id="printBooking" class="print"><a href="#">订单打印</a></div>
     </div>

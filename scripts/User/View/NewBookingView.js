@@ -169,6 +169,7 @@ var NewBookingView = BaseFormView.extend({
     submitAction:function () {
         var that = this;
         $("#"+ this.submitButtonId).val("预订中...");
+        this.model.set("cashback", this.model.get("cashbackAmount"));
         app.userManager.initBooking(this.model, {
             success: this.bookingSuccess,
             error: function(){

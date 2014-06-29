@@ -49,6 +49,7 @@ var BookingDetailView = Backbone.View.extend({
             app.userManager.changeBookingState(booking, {
                 success: function(){
                     $("#process").html("<p>订单已取消</p>");
+                    $("#bookingStatus").html(EnumConfig.BookingStatusUserText[2]);
                     $("#cancelBooking").remove();
                     $("#editBooking").remove();
                 },

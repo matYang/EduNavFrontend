@@ -103,7 +103,7 @@
 #mypage_content .no_data{ margin-top:100px; margin-left:140px; padding-left:60px; background:url(../images/no_data.png) no-repeat left center;}
 #mypage_content .no_data div{ padding:12px 0 12px; font-size:24px; font-family:微软雅黑; color:#128d56;}
 
-#mypage_content #bookingSummary .no_data{ width:292px; margin-left:auto; margin-right:auto;}
+#mypage_content #bookingSummary .no_data{ width:333px; margin-left:auto; margin-right:auto;}
 
 #mypage_content #bookingNavigator{margin-bottom: 10px;}
 
