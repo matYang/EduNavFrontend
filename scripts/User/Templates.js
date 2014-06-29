@@ -369,7 +369,7 @@
     <div class="bookingEntry" id="booking_reference_<%= reference %>">
         <div class="bookingEntryTime">
             <div class="date"><%= course.startDate %></div>
-            <div class="dayOfWeek"></div>
+            <div class="dayOfWeek"><%= course.studyDays %> <%= course.studyDaysNote %></div>
         </div>
         <div class="bookingEntryDetail">
             <h3><a class="F_green" href="#">【<%= course.instName %>】<%= course.courseName %></a></h3>
