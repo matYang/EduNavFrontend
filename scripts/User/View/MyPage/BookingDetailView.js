@@ -19,7 +19,9 @@ var BookingDetailView = Backbone.View.extend({
                 this.sr.set("reference", this.reference);
                 app.userManager.fetchBookings(this.sr, {
                     success: this.render,
-                    error: function () {}
+                    error: function (data) {
+                        Info.displayNotice(data.responseText);
+                    }
                 });
             }
         }
@@ -53,8 +55,11 @@ var BookingDetailView = Backbone.View.extend({
                     $("#cancelBooking").remove();
                     $("#editBooking").remove();
                 },
-                error: function(){
+                error: function(data){
                     $("#cancelBooking").val("取消失败，请重试");
+                    if (data) {
+                        Info.displayNotice(data.responseText);
+                    }
                 }
             });
         });

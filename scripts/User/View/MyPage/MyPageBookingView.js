@@ -1,7 +1,7 @@
 var MyPageBookingView = Backbone.View.extend({
     el: "#mypage_content",
     initialize: function () {
-        _.bindAll(this, "render",   "close");
+        _.bindAll(this, "render", "renderError", "close");
         this.template = _.template(tpl.get("mypage_bookingList"));
         app.viewRegistration.register(this);
         this.user = app.sessionManager.sessionModel;
@@ -13,6 +13,9 @@ var MyPageBookingView = Backbone.View.extend({
             success: this.render,
             error: this.render
         })
+    },
+    renderError: function (data) {
+        Info.displayNotice(data ? data.responseText : "订单页面加载失败，请稍后重试。");
     },
     render: function (bookingList) {
         this.$el.empty().append(this.template);

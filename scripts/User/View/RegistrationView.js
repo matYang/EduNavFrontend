@@ -110,10 +110,6 @@ var RegistrationView = BaseFormView.extend({
                 if (data && data.responseText) {
                     data = data.responseText;
                 }
-                if (data === "error"){
-                    data = "服务器连接失败，请稍后再试";
-                }
-
                 Info.displayNotice(data);
             }
         });
