@@ -28,7 +28,6 @@ var CourseDetailView = Backbone.View.extend({
         this.$el.append(this.template(this.course._toJSON()));
         var $teachers = $(".teacherInfo"), i, maxHeight = -1, $teacher;
         for (i = 0; i < $teachers.length; i++) {
-            debugger;
             $teacher = $($teachers[i]);
             maxHeight = maxHeight > $teacher.height() ? maxHeight : $teacher.height();
         }

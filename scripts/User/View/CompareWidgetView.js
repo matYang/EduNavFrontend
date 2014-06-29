@@ -45,8 +45,6 @@ var CompareWidgetView = Backbone.View.extend({
         if (!this.reload) {
             this.bindEvents();
         }
-
-
     },
     bindEvents: function () {
         var that = this;
@@ -103,6 +101,9 @@ var CompareWidgetView = Backbone.View.extend({
         this.map = new MainMapView();
         for (i = 0; i < this.courses.length && i < 4; i++) {
             this.map.getLatLng(this.courses[i].get("location"), this.courses[i].get("instName"));
+        }
+        if (this.courses.length === 0 && this.map) {
+            this.map.setCenter("南京");
         }
         this.rendered = true;
     },

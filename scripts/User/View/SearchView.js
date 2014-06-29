@@ -173,7 +173,6 @@ var SearchView = Backbone.View.extend({
         var that = this;
         this.bindSortEvents();
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
-            debugger;
             that.filterResult($(e.delegateTarget), $(e.target).data("id"));
         });
         this.scrollSensorOn = true;
