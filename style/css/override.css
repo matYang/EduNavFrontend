@@ -114,3 +114,7 @@ li a, .page a {
 	float: left;
 	width: 134px;
 }
+
+#compareView #logoUrl img {
+	max-width: 195px
+}
