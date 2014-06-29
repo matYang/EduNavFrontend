@@ -70,7 +70,7 @@ var SearchView = Backbone.View.extend({
     renderCategories: function (categories) {
         if (!this.isClosed) {
             this.categories = categories;
-            var  cbuf = [], scbuf = [], tcbuf = [], tc = "", key, attr, index, index2, bot, type, index3, obj, $subCat, $subsubCat;
+            var  cbuf = [], scbuf = [], tcbuf = [], tc = "", key, attr, index, index2, bot, type, index3, obj, $subCat, $subsubCat, $dist;
             if (!this.searchRepresentation.get("category")) {
                 this.searchRepresentation.set("category", Object.keys(categories)[0]);
             }
@@ -120,6 +120,13 @@ var SearchView = Backbone.View.extend({
             } else {
                 $subCat.find("span[data-id=noreq]").addClass("active");
             }
+            $dist = $("#search_district");
+            if (this.searchRepresentation.get("district")) {
+                $dist.find("span[data-id=noreq]").removeClass("active");
+                $dist.find("span[data-id=" + this.searchRepresentation.get("district") + "]").addClass("active");
+            } else {
+                $dist.find("span[data-id=noreq]").addClass("active");
+            }
             $subCat = null;
             $subsubCat = null;
             this.bindSearchEvents();
@@ -166,6 +173,7 @@ var SearchView = Backbone.View.extend({
         var that = this;
         this.bindSortEvents();
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
+            debugger;
             that.filterResult($(e.delegateTarget), $(e.target).data("id"));
         });
         this.scrollSensorOn = true;
@@ -295,6 +303,9 @@ var SearchView = Backbone.View.extend({
             that.courseSearch();
         });
         $("#search_subCategory").on("click", ".subSubCategory", function (e) {
+            if ($(e.currentTarget).hasClass("active")) {
+                return;
+            }
             $(this).siblings(".subSubCategory").removeClass("active");
             $(e.currentTarget).addClass("active");
             var val = $(this).data("id");
@@ -305,9 +316,24 @@ var SearchView = Backbone.View.extend({
             }
             that.courseSearch();
         });
+
+        $("#search_district").on("click", "span", function (e) {
+            if ($(e.currentTarget).hasClass("active")) {
+                return;
+            }
+            $(e.currentTarget).siblings(".active").removeClass("active");
+            $(e.currentTarget).addClass("active");
+            var dataId = $(e.target).data("id");
+            if (dataId === "noreq") {
+                that.searchRepresentation.set("district", undefined);
+            } else {
+                that.searchRepresentation.set("district", dataId);
+            }
+            that.courseSearch();
+        });
     },
     filterResult: function ($filter, dataId) {
-        if ($filter.find("span[data-id=" + dataId + "]").hasClass("active")) {
+        if ($filter.find("span[data-id=" + dataId + "]").hasClass("active") || $filter.attr("id").indexOf("search") >= 0) {
             return;
         }
         $filter.find(".active").removeClass("active");
@@ -348,13 +374,6 @@ var SearchView = Backbone.View.extend({
                 this.searchRepresentation.set("startDate", date);
             } else {
                 this.searchRepresentation.set("startDate", undefined);
-            }
-            this.courseSearch();
-        } else if (criteria === "district") {
-            if (dataId === "noreq") {
-                this.searchRepresentation.set("district", undefined);
-            } else {
-                this.searchRepresentation.set(criteria, dataId);
             }
             this.courseSearch();
         } else if (criteria === "price") {
