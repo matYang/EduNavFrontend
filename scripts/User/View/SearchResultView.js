@@ -10,6 +10,7 @@ var SearchResultView = MultiPageView.extend({
     entryHeight: 157,
     pageEntryNumber: 10,
     actionClass: "viewDetail",
+    autoHeight: true,
     
     initialize: function (allMessages, messageList, compareWidget) {
         if (!this.initialized) {

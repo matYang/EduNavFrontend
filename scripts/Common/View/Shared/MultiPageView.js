@@ -96,7 +96,9 @@ var MultiPageView = Backbone.View.extend({
                 $(this.table).after("<div class = 'noMessage'>" + this.noMessage() + "</div>");
             }
         }
-        if (this.entryHeight) {
+        if (this.autoHeight) {
+            this.$domContainer.css("height", "auto");
+        } else if (this.entryHeight) {
             height = Math.ceil(length / this.entryRowNum) * this.entryHeight;
             height = (height > this.minHeight) ? height : this.minHeight;
             this.$domContainer.css("height", height + "px");
