@@ -25,9 +25,11 @@ var BaiduMapView = Backbone.View.extend({
     // },
     mapInitialize: function () {
         // var opts;
+        var poi = new BMap.Point(121.442823, 31.194107);
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.map = new BMap.Map(this.el.id, {enableMapClick: false});  //this should never expire
+        this.map.centerAndZoom(poi, 11);
         // this.setCenter(this.location);
     },
     getLatLng: function (locationString) {
@@ -54,7 +56,7 @@ var BaiduMapView = Backbone.View.extend({
         this.geocoder.getPoint(
             locationString,
             function (point) {
-                if (point & that.map) {
+                if (point && that.map) {
                     that.map.centerAndZoom(point, 11);
                 } else {
                     Info.warn('Geocode was not successful');
