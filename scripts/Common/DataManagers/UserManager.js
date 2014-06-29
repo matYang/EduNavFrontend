@@ -307,7 +307,10 @@
             Info.warn('UserManager::fetchBookings:: session does not exist, exit');
             return;
         }
-
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testBookings);
+            return;
+        }
         var bookings = new Bookings();
         bookings.overrideUrl(ApiResource.user_booking);
         bookings.fetch({
