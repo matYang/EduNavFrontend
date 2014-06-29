@@ -46,7 +46,7 @@ var SearchResultView = MultiPageView.extend({
                 that.compareWidget.removeCourse(Utilities.toInt(id));
             }
 
-        }).on("click", ".courseTitle", function (e) {
+        }).on("click", ".courseTitle,.blank", function (e) {
             e.preventDefault();
             id = Utilities.getId($(this).attr("id"));
             app.navigate("course/" + id, true);

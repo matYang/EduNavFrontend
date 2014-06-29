@@ -30,7 +30,7 @@
         <div id="allTemplates">
 <script type="text/template" id="tpl_topBar-loggedIn">
     <div class="topBar">
-        <div class="topBar-inner clearfix">
+        <div class="link topBar-inner clearfix">
             <h1 id="logo" class="topBar-logo">
                 <a></a>
             </h1>
@@ -50,7 +50,7 @@
 <script type="text/template" id="tpl_topBar-notLoggedIn">
     <div class="topBar unselectable">
         <div class="topBar-inner clearfix">
-            <h1 id="logo" class="topBar-logo">
+            <h1 id="logo" class="link topBar-logo">
                 <a></a>
             </h1>
             <ul class="topBar-navigation">
@@ -239,7 +239,8 @@
             </div>
         <div class="col3">
             <div class="compare" id="compare_<%= courseId %>"><input class="btn_g add" type="button" value="+对比"/></div>
-            <div class="viewDetail" id="viewAll_<%= courseId %>"><a class="F_green" href="#">查看更多</a></div>
+            <div class="blank" id="trial_<%= courseId %>"><input class="btn_o" value="免费试听" type="button"></div>
+            <div class="viewDetail" id="viewAll_<%= courseId %>"><a class="F_green" href="#">查看详细</a></div>
         </div>
     </div>
 </script>
@@ -300,6 +301,9 @@
                             <input id="registerVeriCode" type="text" class="text" placeholder="获取手机验证码">
                             <input type="button" value="获取手机验证码" id="getSms" />
                         </dd>
+                    </dl>
+                    <dl class="clearfix" id="authContainer">
+                        <dd id="smsInfo"></dd>
                     </dl>
                     <div class="btns">
                         <input id="complete" type="button" class="btn_O_long" value="立即注册">
@@ -592,7 +596,7 @@
                     <div class="fleft cashback"><%= course.cashback %>元</div>
                 <% } %>
             </div>
-                <div class="fleft login_reg1" id="booking_loginnote"><a class="link F_green" id="quickLogin">登录</a> 或 <a class="link F_green" id="quickRegister">注册</a>后可使用优惠券，入学后获得<%= course.cashback %>元现金返还</div>
+                <div class="fleft login_reg1 clearfix" id="booking_loginnote"><a class="link F_green">登录</a>后可使用优惠券，入学后获得<%= course.cashback %>元现金返还</div>
                 <div id="booking_loginbox" class="loginbox">
                     <div class="loginbox_inner">
                         <div>
@@ -600,9 +604,9 @@
                             <label>密码</label> <input class="text" type="password" id="booking_loginPassword"/>
                         </div>
                         <div class="btns">
-                            <input type="button" value="登录" id="booking_login" />
-                            <a class="button" id="booking_forgotPassword">忘记密码?</a>
-                            <a class="button" id="booking_forgotPassword">还不是会员?</a>
+                            <input class="link" type="button" value="登录" id="booking_login" />
+                            <a class="button link" id="booking_forgotPassword">忘记密码?</a>
+                            <a class="button link" id="quickRegister">还不是会员?</a>
                         </div>
                         <!-- <div class="close">关闭</div> -->
                     </div>
@@ -735,7 +739,7 @@
                 <li id="tab_service">特色服务</li>
             </ul>
             <div class="course_content">
-                <dl id="content_basic">
+                <dl id="content_basic" class="clearfix">
                     <dt>基本信息</dt>
                     <dd><label>开课日期: </label><div><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDaysNote %></div></dd>
                     <dd><label>上课时间: </label><div><%= startTime1 %>-<%= finishTime1 %></div></dd>
@@ -761,7 +765,7 @@
                         </div>
                     </dd>
                 </dl>
-                <dl id="content_teaching">
+                <dl id="content_teaching" class="clearfix">
                     <dt>教学信息</dt>
                     <dd><label>先修知识: </label><div><%= prerequest %></div></dd>
                     <dd><label>教学目标: </label><div><%= goal %></div></dd>
@@ -775,7 +779,7 @@
                          </div>
                     </dd>
                 </dl>
-                <dl id="content_etc">
+                <dl id="content_etc" class="clearfix">
                     <dt>教学补充</dt>
                     <dd><label>课件下载: </label><div><%= downloadMaterials %></div></dd>
                     <dd><label>题库支持: </label><div><%= questionBank %></div></dd>
@@ -785,12 +789,12 @@
                     <dd><label>课后作业: </label><div><%= assignments %></div></dd>
                     <dd><label>作业批改: </label><div><%= marking %></div></dd>
                 </dl>
-                <dl id="content_guarantee">
+                <dl id="content_guarantee" class="clearfix">
                     <dt>教学保障</dt>
                     <dd><label>签约保过: </label><div><%= passAgreement %></div></dd>
                     <dd><label>高分奖励: </label><div><%= highScoreReward %></div></dd>
                 </dl>
-                <dl id="content_service">
+                <dl id="content_service" class="clearfix">
                     <dt>特色服务</dt>
                     <dd><label>结业证书: </label><div><%= certification %></div></dd>
                     <dd><label>课后互动: </label><div><%= extracurricular %></div></dd>
@@ -972,7 +976,7 @@
             <tr>
                 <th>课程提纲</th>
                 <% _.each(courses, function(course) { %>
-                    <td>
+                    <td class="courseId_<%= course.courseId %>">
                         <%= course.outline %>
                     </td>
                 <% }); %>

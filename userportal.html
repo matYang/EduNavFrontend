@@ -249,7 +249,10 @@
             </div>
         <div class="col3">
             <div class="compare" id="compare_<%= courseId %>"><input class="btn_g add" type="button" value="+对比"/></div>
-            <div class="viewDetail" id="viewAll_<%= courseId %>"><a class="F_green" href="#">查看更多</a></div>
+            
+                <div class="blank" id="trial_<%= courseId %>"><input class="btn_o" value="免费试听" type="button"></div>
+
+            <div class="viewDetail" id="viewAll_<%= courseId %>"><a class="F_green" href="#">查看详情</a></div>
         </div>
     </div>
 </script>
@@ -697,8 +700,10 @@
                     <dd>
                         <input type="button" id="bookNow" value="立即预定" class="btn_O">
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <!-- <input style="margin-top:10px;" type="button" id="getTrial" value="我要预约试听" class="btn_G">
-                        <span>预约名额有限（仅剩<b class="F_orange">3</b>个名额），快抢吧！</span> -->
+                        <% if (trail) { %>
+                        <input style="margin-top:10px;" type="button" id="getTrial" value="我要预约试听" class="btn_G">
+                        <% } %>
+                        <!-- <span>预约名额有限（仅剩<b class="F_orange">3</b>个名额），快抢吧！</span> -->
                     </dd>
                 </dl>
                 <div class="col2">

@@ -74,6 +74,7 @@ var BaiduMapView = Backbone.View.extend({
         if (add) {
             this.markers.push(marker);
             this.map.addOverlay(marker);
+            this.map.centerAndZoom(marker.point);
         }
     },
     removeMarker: function (locationString) {

@@ -330,6 +330,7 @@ var Course = Backbone.Model.extend({
         json.courseHourNum = this.get("courseHourNum");
         json.cashback = this.get("cashback");
         json.instName = this.get("instName");
+        json.trail = this.get("trail");
         return json;
     }
 });

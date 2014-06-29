@@ -1,6 +1,6 @@
 <script type="text/template" id="tpl_topBar-loggedIn">
     <div class="topBar">
-        <div class="topBar-inner clearfix">
+        <div class="link topBar-inner clearfix">
             <h1 id="logo" class="topBar-logo">
                 <a></a>
             </h1>
@@ -20,7 +20,7 @@
 <script type="text/template" id="tpl_topBar-notLoggedIn">
     <div class="topBar unselectable">
         <div class="topBar-inner clearfix">
-            <h1 id="logo" class="topBar-logo">
+            <h1 id="logo" class="link topBar-logo">
                 <a></a>
             </h1>
             <ul class="topBar-navigation">
@@ -271,6 +271,9 @@
                             <input type="button" value="获取手机验证码" id="getSms" />
                         </dd>
                     </dl>
+                    <dl class="clearfix" id="authContainer">
+                        <dd id="smsInfo"></dd>
+                    </dl>
                     <div class="btns">
                         <input id="complete" type="button" class="btn_O_long" value="立即注册">
                     </div>
@@ -331,8 +334,9 @@
                 <div class="mypage_sidebar_sectionContent">
                     <div class="mypage_sidebar_tab" id="editInfo">个人资料</div>
                     <div class="mypage_sidebar_tab" id="editPass">密码修改</div>
-                    <!-- <div class="mypage_sidebar_tab" id="inviteCode">邀请码</div>
-                        <div class="mypage_sidebar_tab" id="wtf">常用学员信息</div> -->
+                <!-- <div class="mypage_sidebar_tab" id="inviteCode">邀请码</div>
+
+                  <div class="mypage_sidebar_tab" id="wtf">常用学员信息</div> -->
                 </div>
             </div>
         </div>
@@ -556,12 +560,12 @@
                 <b class="price">￥<%= course.price %></b>/位 <span>（预定免费，入学后学校前台付款）</span>
             </div>
             <% if (!app.sessionManager.hasSession()) { %>
-            <div class="field clearfix">
+            <div class="field">
                 <% if (course.cashback) { %>
                     <div class="fleft cashback"><%= course.cashback %>元</div>
                 <% } %>
             </div>
-                <div class="fleft login_reg1" id="booking_loginnote"><a class="link F_green">登录</a> 或 <a class="link F_green">注册</a>后可使用优惠券，入学后获得<%= course.cashback %>元现金返还</div>
+                <div class="fleft login_reg1 clearfix" id="booking_loginnote"><a class="link F_green">登录</a>后可使用优惠券，入学后获得<%= course.cashback %>元现金返还</div>
                 <div id="booking_loginbox" class="loginbox">
                     <div class="loginbox_inner">
                         <div>
@@ -569,9 +573,9 @@
                             <label>密码</label> <input class="text" type="password" id="booking_loginPassword"/>
                         </div>
                         <div class="btns">
-                            <input type="button" value="登录" id="booking_login" />
-                            <a class="button" id="booking_forgotPassword">忘记密码?</a>
-                            <a class="button" id="booking_forgotPassword">还不是会员?</a>
+                            <input class="link" type="button" value="登录" id="booking_login" />
+                            <a class="button link" id="booking_forgotPassword">忘记密码?</a>
+                            <a class="button link" id="quickRegister">还不是会员?</a>
                         </div>
                         <!-- <div class="close">关闭</div> -->
                     </div>
@@ -653,7 +657,7 @@
                     <dd>
                         <input type="button" id="bookNow" value="立即预定" class="btn_O">
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <!--  <input style="margin-top:10px;" type="button" id="getTrial" value="我要预约试听" class="btn_G">
+                        <!-- <input style="margin-top:10px;" type="button" id="getTrial" value="我要预约试听" class="btn_G">
                         <span>预约名额有限（仅剩<b class="F_orange">3</b>个名额），快抢吧！</span> -->
                     </dd>
                 </dl>
@@ -941,7 +945,7 @@
             <tr>
                 <th>课程提纲</th>
                 <% _.each(courses, function(course) { %>
-                    <td>
+                    <td class="courseId_<%= course.courseId %>">
                         <%= course.outline %>
                     </td>
                 <% }); %>
