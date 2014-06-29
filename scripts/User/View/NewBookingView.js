@@ -191,6 +191,7 @@ var NewBookingView = BaseFormView.extend({
     },
     close: function () {
         if (!this.isClosed) {
+            $("#booking_date").datepicker( "destroy" );
             this.$el.empty();
             this.isClosed = true;
         }
