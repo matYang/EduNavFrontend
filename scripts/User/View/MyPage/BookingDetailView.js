@@ -17,7 +17,7 @@ var BookingDetailView = Backbone.View.extend({
             } else {
                 this.sr = new BookingSearchRepresentation();
                 this.sr.set("reference", this.reference);
-                app.userManager.fetchUser({
+                app.userManager.fetchBookings({
                     success: this.render,
                     error: function () {}
                 });
