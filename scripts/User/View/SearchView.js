@@ -170,22 +170,25 @@ var SearchView = Backbone.View.extend({
     },
 
     bindEvents: function () {
-        var that = this;
+        var that = this, $searchPanel = $("#searchPanel"), $searchReqs = $("#searchReqs");
         this.bindSortEvents();
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
             that.filterResult($(e.delegateTarget), $(e.target).data("id"));
         });
         this.scrollSensorOn = true;
         $(document).on("scroll", function () {
-            var scroll = $(this).scrollTop();
-            if (scroll > 402) {
-                $("#searchWidgets").addClass("stickyHeader");
-            } else {
-                $("#searchWidgets").removeClass("stickyHeader");
+            var scroll = $(this).scrollTop(), srh = $searchReqs.hasClass("hidden") ? 0 : 46;
+
+            if ($("#searchResultContent").height() > $("#searchWidgets").height()) {
+                if (scroll > $searchPanel.height() +  srh + 100) {
+                    $("#searchWidgets").addClass("stickyHeader");
+                } else {
+                    $("#searchWidgets").removeClass("stickyHeader");
+                }
             }
         });
 
-        $("#searchReqs").on("click", "a", function (e) {
+        $searchReqs.on("click", "a", function (e) {
             e.preventDefault();
             var cri = $(e.target).data("cri");
             that.filterResult($("#filter_" + cri), "noreq");
