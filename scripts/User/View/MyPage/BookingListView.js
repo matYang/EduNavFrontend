@@ -23,7 +23,6 @@ var BookingListView = MultiPageView.extend({
     }, 
     render: function () {
         MultiPageView.prototype.render.call(this);
-        //$("#bookingSummary").prepend("<h2 class='title'>未入学订单</h2>")
     },
     entryEvent: function (id) {
         app.navigate("mypage/booking/" + id, true);
