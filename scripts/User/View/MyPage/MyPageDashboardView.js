@@ -6,11 +6,18 @@ var MyPageDashboardView = Backbone.View.extend({
         this.template = _.template(tpl.get("mypage_dashboard"));
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
-        this.render();
+        this.bookingSr = new BookingSearchRepresentation ();
+        this.bookingSr.set("userId", this.user.get("phone"));
+        debugger;
+        app.userManager.fetchBookings(this.bookingSr, {
+            success: this.render,
+            error: this.render
+        })
+
     },
-    render: function () {
-        var list = this.user.get("bookingList").filter(this.filterUnconfirmed);
-        var bookings = (new Bookings()).add(list);
+    render: function (bookingList) {
+        bookingList = bookingList || new Bookings();
+        var bookings = (new Bookings()).add(bookingList.filter(this.filterUnconfirmed));
         this.$el.append(this.template(this.user._toJSON()));
         this.bookingListView = new BookingListView(bookings, bookings, "dashboard");
         $("#mypage_content").css("border", "none");
