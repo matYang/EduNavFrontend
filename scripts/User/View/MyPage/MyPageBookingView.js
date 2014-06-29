@@ -12,7 +12,7 @@ var MyPageBookingView = Backbone.View.extend({
         app.userManager.fetchBookings(this.bookingSr, {
             success: this.render,
             error: this.render
-        })
+        });
     },
     render: function (bookingList) {
         this.$el.empty().append(this.template);
@@ -22,7 +22,7 @@ var MyPageBookingView = Backbone.View.extend({
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
-            this.bookingListView.close()
+            this.bookingListView.close();
             this.bookingListView = null;
             this.isClosed = true;
         }
