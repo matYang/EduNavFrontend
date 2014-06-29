@@ -181,6 +181,9 @@ var NewBookingView = BaseFormView.extend({
         $("#viewMore").on("click", function() {
             app.navigate("search", true);
         });
+        $("#viewBooking").on("click", function() {
+            app.navigate("mypage/booking", true);
+        });
         $("#printBooking").on("click", function () {
             window.print();
         });
