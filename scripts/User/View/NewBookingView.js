@@ -107,12 +107,14 @@ var NewBookingView = BaseFormView.extend({
         }
     },
     loginSuccess: function(){
+        var that = this;
         app.sessionManager.fetchSession(true, {
             success: function () {
                 $("#booking_loginbox").remove();
                 $("#booking_loginnote").remove();
-                $("#"+ this.submitButtonId).removeClass("hidden");
+                $("#"+ that.submitButtonId).removeClass("hidden");
                 $("#bookingDesc").removeClass("hidden");
+                $("#initBooking").removeClass("")
                 app.topBarView.reRender();
             },
             error: function (response) {
@@ -134,7 +136,7 @@ var NewBookingView = BaseFormView.extend({
                 app.navigate("register", true);
             });
             $("#booking_login").on("click", this.login);
-            $("#booking_loginUsername").on("keypress", function (e) {
+            $("#booking_loginUsername,#booking_loginPassword").on("keypress", function (e) {
                 if (e.which === 13) {
                     var username = $("#booking_loginUsername").val(), pwd = $("#booking_loginPassword").val();
                     if (username && pwd) {
