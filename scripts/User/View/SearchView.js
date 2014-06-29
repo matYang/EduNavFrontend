@@ -178,7 +178,7 @@ var SearchView = Backbone.View.extend({
         this.scrollSensorOn = true;
         $(document).on("scroll", function () {
             var scroll = $(this).scrollTop();
-            if (scroll > 402) {
+            if (scroll > 402 && $("#searchResultContent").height() > $("#searchWidgets").height()) {
                 $("#searchWidgets").addClass("stickyHeader");
             } else {
                 $("#searchWidgets").removeClass("stickyHeader");
