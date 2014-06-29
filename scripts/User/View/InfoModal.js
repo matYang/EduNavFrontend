@@ -2,7 +2,7 @@ var InfoModal = Backbone.View.extend({
 	el:"#popup",
 	template: _.template(tpl.get("infoModal")),
 	initialize: function () {
-		_.bindAll(this, "render", "setMessage", "show", "bindEvents", "close");
+		_.bindAll(this, "render", "setMessage", "show", "bindEvents", "hide", "close");
 		this.isClosed = false;
 		this.render();
 		this.bindEvents();
@@ -20,10 +20,11 @@ var InfoModal = Backbone.View.extend({
 	},
 	bindEvents: function () {
 		var that = this;
-		$("#gotIt").on("click", function () {
-			that.$el.addClass("hidden");
-			$("#overlay").addClass("hidden");
-		}); 
+		$("#gotIt").on("click", this.hide);
+	},
+	hide: function () {
+		this.$el.addClass("hidden");
+		$("#overlay").addClass("hidden");
 	},
 	close: function () {
 		if (!this.isClosed) {

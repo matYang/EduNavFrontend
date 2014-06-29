@@ -54,22 +54,26 @@ var TopBarView = Backbone.View.extend({
         $('#navigate_search').on('click', function () {
             if (location.hash.indexOf("search") !== 1) {
                 app.navigate("search", true);
+                app.infoModal.hide();
             }
         });
         $('#navigate_compare').on('click', function () {
             if (location.hash.indexOf("compare") !== 1) {
+                app.infoModal.hide();
                 app.navigate("compare", true);
             }
         });
         $('#logo').on('click', function () {
             if (location.hash.indexOf("front") !== 1) {
                 app.navigate("front", true);
+                app.infoModal.hide();
             }
         });
         if (!app.sessionManager.hasSession()) {
             $('#signup_button').on('click', function (e) {
                 e.preventDefault();
                 app.navigate("/register", {trigger: true, replace: true});
+                app.infoModal.hide();
             });
             $('#login_toggle').on('click', function (e) {
                 e.preventDefault();

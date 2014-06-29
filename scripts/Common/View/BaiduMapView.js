@@ -35,7 +35,6 @@ var BaiduMapView = Backbone.View.extend({
     },
     getLatLng: function (locationString, title) {
         this.locationInstMapper[locationString] = title;
-        debugger;
         var poi = app.cache.get("poi", locationString);
         if (poi) {
             this.poi(poi, {address: locationString});

@@ -324,7 +324,7 @@ var SearchView = Backbone.View.extend({
             date.setDate(1);
             var month = date.getMonth();
             if (dataId === "thisMonth") {
-                this.searchRepresentation.set("startTime", date);
+                this.searchRepresentation.set("startDate", date);
             } else if (dataId === "nextMonth") {
                 if (month === 11) {
                     date.setMonth(0);
@@ -332,7 +332,7 @@ var SearchView = Backbone.View.extend({
                 } else {
                     date.setMonth(date.getMonth() + 1);
                 }
-                this.searchRepresentation.set("startTime", date);
+                this.searchRepresentation.set("startDate", date);
             } else if (dataId === "twoMonthsAfter") {
                 if (month >= 10) {
                     date.setMonth((date.getMonth() + 2) % 12);
@@ -340,9 +340,9 @@ var SearchView = Backbone.View.extend({
                 } else {
                     date.setMonth(date.getMonth() + 2);
                 }
-                this.searchRepresentation.set("startTime", date);
+                this.searchRepresentation.set("startDate", date);
             } else {
-                this.searchRepresentation.set("startTime", undefined);
+                this.searchRepresentation.set("startDate", undefined);
             }
             this.courseSearch();
         } else if (criteria === "district") {
@@ -405,7 +405,7 @@ var SearchView = Backbone.View.extend({
         //todo
     },
     filterClassSize: function (course) {
-        return (course.get("seatsTotal") >= this.filters.classSize.minSize && (this.filters.classSize.maxPrice ? course.get("seatsTotal") <= this.filters.classSize.maxSize : true));
+        return (course.get("classSize") >= this.filters.classSize.minSize && (this.filters.classSize.maxSize ? course.get("classSize") <= this.filters.classSize.maxSize : true));
     },
     filterClassTime: function (course) {
         var valid = true, start1 = course.get("startTime1"), start2 = course.get("startTime2");

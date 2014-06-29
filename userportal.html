@@ -29,7 +29,7 @@
         </div>
         <div id = 'infoLayer'></div>
         <div id = 'overlay' class="mask1" class="hidden"></div>
-        <div id="popup" class="hidden pop" style=" top:200px; left: 50%; width:500px; height:150px; margin-left: -250px;"></div>
+        <div id="popup" class="hidden pop" style=" top:200px; left: 50%; width:500px; height:150px; margin-left: -250px; z-index:200;"></div>
         <div id = 'cache' style="display: none;"></div>
         <div class="footer">
             <div class="footer_inner">
@@ -415,7 +415,7 @@
             <div class="dayOfWeek"><%= course.studyDays %> <%= course.studyDaysNote %></div>
         </div>
         <div class="bookingEntryDetail">
-            <h3><a class="F_green bookingTitle" href="#">【<%= course.instName %>】<%= course.courseName %></a></h3>
+            <h3><a class="F_green bookingTitle" id="bookingTitle_reference_<%= reference %>" href="#">【<%= course.instName %>】<%= course.courseName %></a></h3>
             <p class="address"><b>地址：</b><%= course.location %></p>
         </div>
         <div class="bookingEntryPrice">
