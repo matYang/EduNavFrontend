@@ -76,8 +76,8 @@ var MyPagePasswordView = BaseFormView.extend({
         $("#getAuthCode").prop("disable", false).val("发送验证码").addClass("hidden");
         $("#gotAuthCode").removeClass("hidden");
     },
-    getSmsError: function () {
-        $("#getAuthCodeNote").html("验证请求失败，请检查网络状态然后重试。").removeClass("hidden");
+    getSmsError: function (data) {
+        $("#getAuthCodeNote").html(data ? data : "验证请求失败，请检查网络状态然后重试。").removeClass("hidden");
         $("#getAuthCode").prop("disable", false).val("发送验证码").removeClass("hidden");
         $("#gotAuthCode").addClass("hidden");
     },
