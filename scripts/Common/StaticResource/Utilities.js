@@ -131,7 +131,7 @@ var Utilities = {
             return dateString;
         }
         dateString = decodeURIComponent(dateString);
-        var match = dateString.match(/^(\d+)-(\d+)-(\d+)\+(\d+)\:(\d+)\:(\d+)$/);
+        var match = dateString.match(/^(\d+)-(\d+)-(\d+) (\d+)\:(\d+)\:(\d+)$/);
         var date = new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
         return date;
     },
