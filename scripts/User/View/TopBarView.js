@@ -96,6 +96,15 @@ var TopBarView = Backbone.View.extend({
             $('#login_button').on('click', function () {
                 self.login();
             });
+            $(document).on("click", function (e) {
+                var container = $("#topbar_loginbox");
+                if (!container.is(e.target) // if the target of the click isn't the container...
+                    && container.has(e.target).length === 0 && e.target.id !== "login_toggle") // ... nor a descendant of the container
+                {
+                    container.hide();
+                }
+                e.stopPropagation();
+            });
         } else {
             $('#logout').on('click', function (e) {
                 e.preventDefault();

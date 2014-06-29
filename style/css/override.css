@@ -88,3 +88,19 @@ li a, .page a {
 .course_content .teacherInfo .teacherPhoto {
 	margin: 8px !important;
 }
+.course_content dd div {
+	float:left;
+	width:888px;
+}
+.course_content dd label {
+	float:left;
+}
+
+.courseDetail .courseMain .course_content dt {
+	float:left;
+	width: 100%;
+}
+
+.link {
+	cursor: pointer;
+}

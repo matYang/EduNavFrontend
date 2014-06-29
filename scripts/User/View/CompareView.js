@@ -105,8 +105,14 @@ var CompareView = Backbone.View.extend({
             $e = $(e.target);
             if ($e.hasClass("delete")) {
                 courseId = Utilities.getId($(e.currentTarget).attr("class"));
-                that.$view.find(".courseId_" + courseId).remove();
-                that.$view.find("tr").append("<td></td>");
+                var removed = false;
+                that.$view.find(".courseId_" + courseId).fadeOut(200, function () {
+                    if (!removed) {
+                        that.$view.find(".courseId_" + courseId).remove();
+                        that.$view.find("tr").append("<td class='courseId_-1' width='195'></td>");
+                        removed = true;
+                    }
+                });
                 that.configMoveButton();
 
                 app.storage.removeCourseFromCompare(Utilities.toInt(courseId));

@@ -704,17 +704,17 @@
                 <li id="tab_service">特色服务</li>
             </ul>
             <div class="course_content">
-                <dl id="content_basic">
+                <dl id="content_basic" class="clearfix">
                     <dt>基本信息</dt>
-                    <dd><label>开课日期: </label><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDaysNote %></dd>
-                    <dd><label>上课时间: </label><%= startTime1 %>-<%= finishTime1 %></dd>
-                    <dd><label>上课课时: </label><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</dd>
-                    <dd><label>班级人数: </label><%= classSize %>人</dd>
-                    <dd><label>开班要求: </label><%= openCourseRequirement%></dd>
-                    <dd><label>报名日期: </label>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</dd>
-                    <dd><label>机构全称: </label><%= wholeName %></dd>
-                    <dd><label>机构荣誉: </label><%= partnerQualification %></dd>
-                    <dd><label>机构概况: </label><%= partnerIntro %></dd>
+                    <dd><label>开课日期: </label><div><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDaysNote %></div></dd>
+                    <dd><label>上课时间: </label><div><%= startTime1 %>-<%= finishTime1 %></div></dd>
+                    <dd><label>上课课时: </label><div><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</div></dd>
+                    <dd><label>班级人数: </label><div><%= classSize %>人</div></dd>
+                    <dd><label>开班要求: </label><div><%= openCourseRequirement%></div></dd>
+                    <dd><label>报名日期: </label><div>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</div></dd>
+                    <dd><label>机构全称: </label><div><%= wholeName %></div></dd>
+                    <dd><label>机构荣誉: </label><div><%= partnerQualification %></div></dd>
+                    <dd><label>机构概况: </label><div><%= partnerIntro %></div></dd>
                     <dd class="teacher clearfix">
                         <label>老师介绍: </label>
                         <div class="clearfix blank">
@@ -730,13 +730,13 @@
                         </div>
                     </dd>
                 </dl>
-                <dl id="content_teaching">
+                <dl id="content_teaching" class="clearfix">
                     <dt>教学信息</dt>
-                    <dd><label>先修知识: </label><%= prerequest %></dd>
-                    <dd><label>教学目标: </label><%= goal %></dd>
-                    <dd><label>教材介绍: </label><%= teachingMaterialIntro %></dd>
-                    <dd><label>教材费用: </label><%= teachingMaterialFee %></dd>
-                    <dd><label>课程介绍: </label><%= courseIntro %></dd>
+                    <dd><label>先修知识: </label><div><%= prerequest %></div></dd>
+                    <dd><label>教学目标: </label><div><%= goal %></div></dd>
+                    <dd><label>教材介绍: </label><div><%= teachingMaterialIntro %></div></dd>
+                    <dd><label>教材费用: </label><div><%= teachingMaterialFee %></div></dd>
+                    <dd><label>课程介绍: </label><div><%= courseIntro %></div></dd>
                     <dd class="course_syllabus">
                          <label>课程提纲: </label>
                          <div>
@@ -744,26 +744,26 @@
                          </div>
                     </dd>
                 </dl>
-                <dl id="content_etc">
+                <dl id="content_etc" class="clearfix">
                     <dt>教学补充</dt>
-                    <dd><label>课件下载: </label><%= downloadMaterials %></dd>
-                    <dd><label>题库支持: </label><%= questionBank %></dd>
-                    <dd><label>讲练结合: </label><%= teachingAndExercise %></dd>
-                    <dd><label>阶段测评: </label><%= quiz %></dd>
-                    <dd><label>课后答疑: </label><%= questionSession %></dd>
-                    <dd><label>课后作业: </label><%= assignments %></dd>
-                    <dd><label>作业批改: </label><%= marking %></dd>
+                    <dd><label>课件下载: </label><div><%= downloadMaterials %></div></dd>
+                    <dd><label>题库支持: </label><div><%= questionBank %></div></dd>
+                    <dd><label>讲练结合: </label><div><%= teachingAndExercise %></div></dd>
+                    <dd><label>阶段测评: </label><div><%= quiz %></div></dd>
+                    <dd><label>课后答疑: </label><div><%= questionSession %></div></dd>
+                    <dd><label>课后作业: </label><div><%= assignments %></div></dd>
+                    <dd><label>作业批改: </label><div><%= marking %></div></dd>
                 </dl>
-                <dl id="content_guarantee">
+                <dl id="content_guarantee" class="clearfix">
                     <dt>教学保障</dt>
-                    <dd><label>签约保过: </label><%= passAgreement %></dd>
-                    <dd><label>高分奖励: </label><%= highScoreReward %></dd>
+                    <dd><label>签约保过: </label><div><%= passAgreement %></div></dd>
+                    <dd><label>高分奖励: </label><div><%= highScoreReward %></div></dd>
                 </dl>
-                <dl id="content_service">
+                <dl id="content_service" class="clearfix">
                     <dt>特色服务</dt>
-                    <dd><label>结业证书: </label><%= certification %></dd>
-                    <dd><label>课后互动: </label><%= extracurricular %></dd>
-                    <dd><label>赠送服务: </label><%= bonusService %></dd>
+                    <dd><label>结业证书: </label><div><%= certification %></div></dd>
+                    <dd><label>课后互动: </label><div><%= extracurricular %></div></dd>
+                    <dd><label>赠送服务: </label><div><%= bonusService %></div></dd>
                 </dl>
             </div>
         </div>

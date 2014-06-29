@@ -126,10 +126,10 @@ var NewBookingView = BaseFormView.extend({
     bindEvents: function () {
         var that = this;
         if (!app.sessionManager.hasSession()) {
-            $("#booking_signIn").on("click", function(){
+            $("#quickLogin").on("click", function(){
                 $("#booking_loginbox").show();
             });
-            $("#booking_register").on("click", function(){
+            $("#quickRegister").on("click", function(){
                 app.navigate("register", true);
             });
             $("#booking_login").on("click", this.login);
@@ -140,6 +140,10 @@ var NewBookingView = BaseFormView.extend({
                 } else if (username) {
                     $("#booking_loginPassword").focus();
                 }
+            });
+            $("#booking_forgotPassword").on("click", function (e) {
+                e.preventDefault();
+                app.navigate("forgetPassword/", true);
             });
             $("#"+ this.submitButtonId).addClass("hidden");
             $("#bookingDesc").addClass("hidden");
