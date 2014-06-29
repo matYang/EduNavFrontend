@@ -4,7 +4,7 @@ var NewBookingView = BaseFormView.extend({
     submitButtonId:"initBooking",
     initialize: function (params) {
         this.isClosed = false;
-        _.bindAll(this, "render", "bindEvents", "bookingSuccess", "close");
+        _.bindAll(this, "render", "bindEvents", "bookingSuccess", "login", "loginSuccess", "loginError", "close");
         app.viewRegistration.register(this);
         // $("#viewStyle").attr("href", "style/css/booking.css");
         this.template = _.template(tpl.get("newBooking"));
@@ -113,6 +113,7 @@ var NewBookingView = BaseFormView.extend({
                 $("#booking_loginnote").remove();
                 $("#"+ this.submitButtonId).removeClass("hidden");
                 $("#bookingDesc").removeClass("hidden");
+                app.topBarView.reRender();
             },
             error: function (response) {
                 Info.displayNotice(response);
@@ -133,12 +134,14 @@ var NewBookingView = BaseFormView.extend({
                 app.navigate("register", true);
             });
             $("#booking_login").on("click", this.login);
-            $("#booking_loginUsername").on("click", function(){
-                var username = $("#booking_loginUsername").val(), pwd = $("#booking_loginPassword").val();
-                if (username && pwd) {
-                    that.login();
-                } else if (username) {
-                    $("#booking_loginPassword").focus();
+            $("#booking_loginUsername").on("keypress", function (e) {
+                if (e.which === 13) {
+                    var username = $("#booking_loginUsername").val(), pwd = $("#booking_loginPassword").val();
+                    if (username && pwd) {
+                        that.login();
+                    } else if (username) {
+                        $("#booking_loginPassword").focus();
+                    }
                 }
             });
             $("#booking_forgotPassword").on("click", function (e) {
