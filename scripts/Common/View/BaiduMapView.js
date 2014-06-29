@@ -54,7 +54,7 @@ var BaiduMapView = Backbone.View.extend({
         this.geocoder.getPoint(
             locationString,
             function (point) {
-                if (point) {
+                if (point & that.map) {
                     that.map.centerAndZoom(point, 11);
                 } else {
                     Info.warn('Geocode was not successful');
