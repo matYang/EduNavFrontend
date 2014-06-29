@@ -15,6 +15,7 @@ var MyPageBookingView = Backbone.View.extend({
     },
     render: function (bookingList) {
         this.$el.append(this.template);
+        app.sessionManager.sessionModel.set("bookingList", bookingList);
         this.bookingListView = new BookingListView(bookingList, bookingList, "booking");
     },
     close: function () {

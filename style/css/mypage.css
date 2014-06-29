@@ -46,7 +46,7 @@
 #mypage_content .bookingEntryTime .date{ margin-top:20px; padding-left:10px; margin-bottom:15px; background:url(../images/icon_date.png) no-repeat 18px;}
 
 #mypage_content .bookingEntryDetail{float:left; width:377px; padding-left:15px; height:105px; border-right:1px solid #ccc;}
-#mypage_content .bookingEntryDetail h3{ font-weight:bold; margin-top:25px; margin-bottom:20px; font-size:14px;}
+#mypage_content .bookingEntryDetail h3{ font-weight:bold; margin-top:10px; margin-bottom:20px; font-size:14px;}
 #mypage_content .address{ margin-left:5px;}
 
 #mypage_content .bookingEntryPrice{float:left; width:118px; height:105px; line-height:105px; font-family:微软雅黑; font-size:18px; color:#ff5500; border-right:1px solid #ccc; text-align:center;}
