@@ -134,6 +134,7 @@ var MyPagePasswordView = BaseFormView.extend({
         this.clearPassword();
     },
     clearPassword: function () {
+        this.model = {};
         $("#oldPassword").val("");
         $("#newPassword").val("");
         $("#confirmPassword").val("");
