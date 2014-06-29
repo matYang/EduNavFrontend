@@ -101,6 +101,10 @@ var CompareView = Backbone.View.extend({
         });
         $("#courseName").on("click", "td", function (e) {
             var $e, index, index2, courseId;
+            if (e.target.tagName === "H2") {
+                app.navigate("course/" + Utilities.getId($(e.currentTarget).attr("class")), true);
+                return;
+            }
             if (e.target.tagName === "INPUT") {
                 app.navigate("booking/c" + Utilities.getId($(e.currentTarget).attr("class")), true);
                 return;

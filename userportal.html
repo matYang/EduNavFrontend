@@ -833,7 +833,7 @@
                 <th width="64px">课程名称</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>" width="195">
-                        <h2 class="F_green"><%= course.courseName %></h2>
+                        <h2 class="F_green courseTitle" style="cursor:pointer;"><%= course.courseName %></h2>
                         <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
                         <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div>
                     </td>
