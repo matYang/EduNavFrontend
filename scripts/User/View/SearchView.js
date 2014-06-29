@@ -262,7 +262,12 @@ var SearchView = Backbone.View.extend({
                 $scCont.find("span[data-id=noreq]").addClass("active");
                 $scCont.find("p").addClass("hidden");
             }
-            
+            $("#search_district").find(".active").removeClass("active");
+            if (that.searchRepresentation.get("district")) {
+                $("#search_district").find("span[data-id=" + that.searchRepresentation.get("district") + "]").addClass("active");
+            } else {
+                $("#search_district").find("span[data-id=noreq]").addClass("active");
+            }
             that.srs[dataId] = that.searchRepresentation;
             that.courseSearch();
         });
@@ -347,7 +352,7 @@ var SearchView = Backbone.View.extend({
             this.courseSearch();
         } else if (criteria === "district") {
             if (dataId === "noreq") {
-                this.searchRepresentation.set("startTime", undefined);
+                this.searchRepresentation.set("district", undefined);
             } else {
                 this.searchRepresentation.set(criteria, dataId);
             }

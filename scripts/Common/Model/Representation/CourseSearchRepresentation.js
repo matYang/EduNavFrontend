@@ -30,7 +30,7 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'partnerId': undefined,
             'userId': undefined,
 
-            'useCache': undefined,
+            'useCache': 1,
 
             'startCreationTime': undefined,
             'finishCreationTime': undefined,

@@ -15,7 +15,7 @@
 #searchPanel .filterCriteria span{ padding:3px 8px; cursor:pointer; display:inline-block;}
 #searchPanel .filterCriteria span.active{ background:#128d56; color:#fff;}
 
-#searchPanel #search_subCategory p{ margin:10px 0 0 68px; border:1px solid #ccc; padding:10px;}
+#searchPanel #search_subCategory p{ margin:10px 0 0 68px; border:1px solid #ccc; padding:10px; background: none repeat scroll 0% 0% #E7F3EE;}
 #searchPanel #search_subCategory p span{padding:3px 8px;}
 
 /*搜索结果*/

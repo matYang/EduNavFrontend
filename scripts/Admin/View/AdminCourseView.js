@@ -38,15 +38,6 @@ var AdminCourseView = BaseFormView.extend({
             validatorFunction: this.classImgValid
         }),
         new BaseField({
-            name: "教室照片5",
-            fieldId: "classImg5",
-            type: "file",
-            mandatory: false,
-            previewId: "preview5",
-            validatorFunction: this.classImgValid
-
-        }),
-        new BaseField({
             name: "教师照片1",
             fieldId: "teacherImg1",
             type: "file",

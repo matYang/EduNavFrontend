@@ -36,10 +36,13 @@ var SearchResultView = MultiPageView.extend({
     bindEvents: function (){
         var that = this, id;
         this.$domContainer.on("click", ".compare", function (e){
-            if ($(e.target).hasClass("add")) {
-                $(e.target).attr("class", "remove btn_gray").val("已加入对比");
+            if ($(e.target).hasClass("add") ) {
                 id = Utilities.getId($(this).attr("id"));
-                that.compareWidget.addCourse(that.messages.get(Utilities.toInt(id)));
+                if (that.compareWidget.addCourse(that.messages.get(Utilities.toInt(id)))) {
+                    $(e.target).attr("class", "remove btn_gray").val("已加入对比");
+                } else {
+                    Info.displayNotice("您最多只能同时比较四个不同的科目。");
+                }
             } else {
                 $(e.target).attr("class", "add btn_g").val("+对比");
                 id = Utilities.getId($(this).attr("id"));

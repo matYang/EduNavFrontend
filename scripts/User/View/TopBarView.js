@@ -63,7 +63,7 @@ var TopBarView = Backbone.View.extend({
                 app.navigate("compare", true);
             }
         });
-        $('#logo').on('click', function () {
+        $('#logo,#navigate_home').on('click', function () {
             if (location.hash.indexOf("front") !== 1) {
                 app.navigate("front", true);
                 app.infoModal.hide();

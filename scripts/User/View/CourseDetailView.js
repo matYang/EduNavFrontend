@@ -26,6 +26,13 @@ var CourseDetailView = Backbone.View.extend({
     render: function () {
         $(document).scrollTop(0);
         this.$el.append(this.template(this.course._toJSON()));
+        var $teachers = $(".teacherInfo"), i, maxHeight = -1, $teacher;
+        for (i = 0; i < $teachers.length; i++) {
+            debugger;
+            $teacher = $($teachers[i]);
+            maxHeight = maxHeight > $teacher.height() ? maxHeight : $teacher.height();
+        }
+        $teachers.css("height", maxHeight);
         // var mapParams = {
         //     div: "courseMap",
         //     clickable: false,

@@ -692,7 +692,7 @@
             <textarea name="partnerIntro" style="width:360px;height:200px;"></textarea>
             </span></div>
         <div style="height:220px;"><label>提纲：</label><span class="detail"><%= outline %></span><span class="edit"><textarea name="outline" style="width:360px;height:200px;"></textarea></span></div>
-        <% for ( var i = 0; i < 5; i++) { %>
+        <% for ( var i = 0; i < 4; i++) { %>
             <% if (teacherNames && teacherNames[i]) {%>
                 <div class="imgblock"><label>教室照片<%= i+1 %>: </label><span class="detail"><img class="preview" src="<%= classImgUrls[i] %>" /></span><span class="edit"><input type="file" id="classroomImg<%= i+1 %>" name="classImg<%= i+1 %>"/><img id="preview<%= i+1 %>" class="preview"/></span></div>
             <% } else { %>

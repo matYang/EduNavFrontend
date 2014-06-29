@@ -20,9 +20,9 @@
 .courseDetail .banner .row2 {padding:15px;}
  
  /*相册*/
-.courseDetail .banner .row2 .gallary{float:left; width:600px;}
+.courseDetail .banner .row2 .gallary{float:left; width:626px;}
 .courseDetail .banner .row2 .small_pic{float:left;}
-.courseDetail .banner .row2 .big_pic{float:right;}
+.courseDetail .banner .row2 .big_pic{float:right; overflow:hidden; height:216px; width:300px;}
 .courseDetail .banner .row2 .small_pic .top{ overflow:hidden;}
 .courseDetail .banner .row2 .small_pic .bottom{overflow:hidden;}
 .courseDetail .banner .row2 .small_pic .top .pic1,
@@ -43,7 +43,7 @@
 .courseDetail .courseMain .course_content label{ margin-right:10px;}
 
  /*教师信息*/
-.courseDetail .courseMain .teacherInfo{float:left; width:300px; height:120px; border:1px solid #d1d1d1; margin-right:20px;}
+.courseDetail .courseMain .teacherInfo{float:left; width:300px; border:1px solid #d1d1d1; margin-right:20px;}
 .courseDetail .courseMain .teacherInfo div{color:#128d56; margin:5px 10px;}
 .courseDetail .courseMain .teacherInfo p{ margin:5px 10px 0; font-size:12px; line-height:20px;}
 .courseDetail .courseMain .teacherInfo .teacherPhoto{float:right;}

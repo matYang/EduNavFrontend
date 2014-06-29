@@ -81,7 +81,9 @@ var CompareWidgetView = Backbone.View.extend({
             if (this.map) {
                 this.map.getLatLng(course.get("location"), course.get("instName"));
             }
+            return true;
         }
+        return false;
     },
     removeCourse: function (id) {
         var i;

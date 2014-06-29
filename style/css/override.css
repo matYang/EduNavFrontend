@@ -47,6 +47,9 @@ li a, .page a {
 #popMessage {
 	height: 65px;
 }
+#popup {
+	position: fixed;
+}
 
 #mainMap {
 	z-index: 100;
@@ -85,7 +88,7 @@ li a, .page a {
 
 .course_content .teacherInfo {
 	margin-bottom: 10px;
-	height: auto !important;
+	
 }
 .course_content .teacherInfo .teacherPhoto {
 	margin: 8px !important;
@@ -105,4 +108,9 @@ li a, .page a {
 
 .link {
 	cursor: pointer;
+}
+
+.teacherInfo .name {
+	float: left;
+	width: 134px;
 }
