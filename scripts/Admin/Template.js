@@ -633,9 +633,6 @@
             </select>
         </span></div>
         <div><label>学校电话: </label><span class="detail"><%= phone %></span><span class="edit"><input type="text" name="phone"/></span></div>
-        <div><label>logo: </label><span class="detail"><%= logoUrl %></span><span class="edit"><input type="text" name="logoUrl"/></span></div>
-        <div><label>学校名: </label><span class="detail"><%= instName %></span><span class="edit"><input type="text" name="instName"/></span></div>
-        <div><label>机构全称: </label><span class="detail"><%= wholeName %></span><span class="edit"><input type="text" name="wholeName"/></span></div> 
 
         <div><label>机构荣誉: </label><span class="detail"><%= partnerDistinction %></span><span class="edit"><input type="text" name="partnerDistinction"/></span></div> 
         <div><label>教学目标: </label><span class="detail"><%= goal %></span><span class="edit"><input type="text" name="goal"/></span></div> 
@@ -644,7 +641,6 @@
         <div><label>问答时间: </label><span class="detail"><%= questionSession %></span><span class="edit"><input type="text" name="questionSession"/></span></div> 
         <div><label>试听: </label><span class="detail"><%= trail %></span><span class="edit"><input type="text" name="trail"/></span></div> 
         <div><label>附加服务: </label><span class="detail"><%= bonusService %></span><span class="edit"><input type="text" name="bonusService"/></span></div> 
-
 
         <% for ( var i = 0; i < 4; i++) { %>
             <% if (teacherNames && teacherNames[i]) {%>

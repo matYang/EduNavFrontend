@@ -1,7 +1,5 @@
 var CompareView = Backbone.View.extend({
     el: "#content",
-    highlighted: false,
-    hided: false,
     initialize: function () {
         // $("#viewStyle").attr("href", "style/css/compare.css");
         _.bindAll(this, "load", "render", "bindEvents", "renderError", "close");

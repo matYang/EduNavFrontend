@@ -7,10 +7,6 @@ var SearchView = Backbone.View.extend({
 
     subCategoryContainerTemplate: _.template(tpl.get("subCategoryContainer")),
     reqTemplate: _.template(tpl.get("req")),
-    filters: {},
-    timeDesc: true,
-    priceDesc: true,
-    isClosed: true,
     template: _.template(tpl.get('search')),
     initialize: function (params) {
         _.bindAll(this, 'render', 'renderSearchResults', 'courseSearch', 'bindEvents', 'bindSearchEvents', 'renderCategories', 'renderLocations', 'filterResult', 'close');
@@ -19,6 +15,10 @@ var SearchView = Backbone.View.extend({
         //define the template
         this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
         this.srs = {};
+        this.timeDesc = true;
+        this.priceDesc = true;
+        this.isClosed = true;
+        this.filters = {};
         this.render(params);
         //injecting the template
     },

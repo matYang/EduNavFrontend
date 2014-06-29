@@ -1,9 +1,9 @@
 var InfoModal = Backbone.View.extend({
 	el:"#popup",
-	isClosed: false,
+	template: _.template(tpl.get("infoModal")),
 	initialize: function () {
 		_.bindAll(this, "render", "setMessage", "show", "bindEvents", "close");
-		this.template = _.template(tpl.get("infoModal"));
+		this.isClosed = false;
 		this.render();
 		this.bindEvents();
 	},

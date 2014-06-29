@@ -73,7 +73,7 @@ var AdminCourseView = BaseFormView.extend({
             type: "file",
             mandatory: false,
             previewId: "teacherPreview4"
-        }),
+        })
     ],
     initialize: function(params){
         _.bindAll(this, "render", "bindEvents", "renderCategories", "renderSubCategories", "renderThirdCategories", "renderLocations", "renderL2Locations", "renderL3Locations", "close");
