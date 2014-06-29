@@ -76,6 +76,11 @@ var RegistrationView = BaseFormView.extend({
             }
             $("#registerVeriCode_wrong").remove();
         });
+        this.$el.find("input").on("keypress", function (e) {
+            if (e.which === 13) {
+                $("#" + that.submitButtonId).trigger("click");
+            }
+        });
         BaseFormView.prototype.bindEvents.call(this);
     },
     successCallback: function(data){
