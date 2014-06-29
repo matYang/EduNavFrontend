@@ -11,8 +11,6 @@ var FrontPageView = Backbone.View.extend({
 
         this.render();
         //app.sessionManager.fetchSession();
-        this.bindEvents();
-
     },
 
     render: function () {
@@ -70,6 +68,7 @@ var FrontPageView = Backbone.View.extend({
             }
             $("#lv1Button").append(buttonList.join(""));
             this.afterRender();
+            this.bindEvents();
         }
     },
     afterRender: function () {

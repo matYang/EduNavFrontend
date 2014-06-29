@@ -138,6 +138,9 @@ var TopBarView = Backbone.View.extend({
                             Info.displayNotice("登录失败，请稍后再试");
                         }
                     });
+                    if (location.hash.indexOf("register") > -1) {
+                        app.navigate("front", true);
+                    }
                 },
                 error: function (response) {
                     $("#credentialWrong").show().html(response.responseText || "服务器好像睡着了，请稍后再试");
