@@ -38,7 +38,7 @@ var CompareWidgetView = Backbone.View.extend({
         for (i = 0; i < this.courses.length && i < 4; i++) {
             buf[i] = this.courseTemplate(this.courses[i]._toJSON());
             if (this.map) {
-                this.map.getLatLng(this.courses[i].get("location"));
+                this.map.getLatLng(this.courses[i].get("location"), this.courses[i].get("instName"));
             }
         }
         this.$domContainer.empty().append(buf.join(""));
@@ -79,7 +79,7 @@ var CompareWidgetView = Backbone.View.extend({
             this.$domContainer.append(this.courseTemplate(course._toJSON()));
             this.courses[this.courses.length] = course;
             if (this.map) {
-                this.map.getLatLng(course.get("location"));
+                this.map.getLatLng(course.get("location"), course.get("instName"));
             }
         }
     },
@@ -100,7 +100,7 @@ var CompareWidgetView = Backbone.View.extend({
     renderMap: function () {
         this.map = new MainMapView();
         for (i = 0; i < this.courses.length && i < 4; i++) {
-            this.map.getLatLng(this.courses[i].get("location"));
+            this.map.getLatLng(this.courses[i].get("location"), this.courses[i].get("instName"));
         }
         this.rendered = true;
     },
