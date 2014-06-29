@@ -29,10 +29,13 @@ var BaiduMapView = Backbone.View.extend({
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.map = new BMap.Map(this.el.id, {enableMapClick: false});  //this should never expire
+        var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL}    
+        this.map.addControl(new BMap.NavigationControl(opts));
         this.setCenter(this.location);
     },
     getLatLng: function (locationString, title) {
         this.locationInstMapper[locationString] = title;
+        debugger;
         var poi = app.cache.get("poi", locationString);
         if (poi) {
             this.poi(poi, {address: locationString});
@@ -42,10 +45,10 @@ var BaiduMapView = Backbone.View.extend({
     },
     poi: function (poi, locationString) {   //っぽい
         if (poi) {
-                this.map.centerAndZoom(poi, 11);
             this.addMarker(new BMap.Label(this.locationInstMapper[locationString.address], {
                 position: poi
             }), locationString.address);
+            this.map.centerAndZoom(poi, 11);
             app.cache.set("poi", locationString.address, poi);
         } else {
             Info.warn('Geocode was not successful');

@@ -8,13 +8,14 @@ var MyPageBookingView = Backbone.View.extend({
         this.isClosed = false;
         this.bookingSr = new BookingSearchRepresentation ();
         this.bookingSr.set("userId", this.user.get("phone"));
+        this.$el.append("<div class='loading'></div>");
         app.userManager.fetchBookings(this.bookingSr, {
             success: this.render,
             error: this.render
         })
     },
     render: function (bookingList) {
-        this.$el.append(this.template);
+        this.$el.empty().append(this.template);
         app.sessionManager.sessionModel.set("bookingList", bookingList);
         this.bookingListView = new BookingListView(bookingList, bookingList, "booking");
     },
