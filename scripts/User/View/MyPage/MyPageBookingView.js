@@ -12,7 +12,7 @@ var MyPageBookingView = Backbone.View.extend({
         app.userManager.fetchBookings(this.bookingSr, {
             success: this.render,
             error: this.render
-        })
+        });
     },
     renderError: function (data) {
         Info.displayNotice(data ? data.responseText : "订单页面加载失败，请稍后重试。");
@@ -25,7 +25,7 @@ var MyPageBookingView = Backbone.View.extend({
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
-            this.bookingListView.close()
+            this.bookingListView.close();
             this.bookingListView = null;
             this.isClosed = true;
         }

@@ -20,7 +20,7 @@ var BookingListView = MultiPageView.extend({
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.render();
-    }, 
+    },
     render: function () {
         MultiPageView.prototype.render.call(this);
     },
