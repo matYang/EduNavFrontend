@@ -23,7 +23,8 @@ var MyPageSettingView = BaseFormView.extend({
                     mandatory: false,
                     regex: Utilities.emailRegex,
                     modelAttr: "email",
-                    buildValidatorDiv: this.buildValidatorDiv
+                    buildValidatorDiv: this.buildValidatorDiv,
+                    errorText: "邮箱格式不正确"
                 })
             ];
         }

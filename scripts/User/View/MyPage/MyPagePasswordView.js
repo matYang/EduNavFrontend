@@ -48,6 +48,10 @@ var MyPagePasswordView = BaseFormView.extend({
         this.sessionUser = app.userManager.sessionModel;
         this.template = _.template(tpl.get('mypage_password'));
 
+        $("#oldPassword").val("");
+        $("#newPassword").val("");
+        $("#confirmPassword").val("");
+
         this.render();
         this.bindEvents();
     },
@@ -96,7 +100,7 @@ var MyPagePasswordView = BaseFormView.extend({
     },
     newPasswordValid: function (val) {
         var value2 = $("#confirmPassword").val();
-        if (val !== value2) {
+        if (value2 !== undefined && value2.length === 0 && val !== value2) {
             return {valid:false, text:"两次密码不一致"};
         }
         if (!val || val.length < 8) {
