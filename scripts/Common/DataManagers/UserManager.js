@@ -98,7 +98,7 @@
                 Info.warn('UserManager::register failed');
                 Info.warn(response);
                 if(callback){
-                    callback.error(response);
+                    callback.error(data);
                 }
             }
         });
@@ -160,7 +160,7 @@
                 Info.warn('UserManager::changeContactInfo failed');
                 Info.warn(response);
                 if(callback){
-                    callback.error(response.responseText);
+                    callback.error(response);
                 }
             }
         });

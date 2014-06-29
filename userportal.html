@@ -704,10 +704,10 @@
                     <dd>
                         <input type="button" id="bookNow" value="立即预定" class="btn_O">
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <% if (trail) { %>
+                        <!--  <% if (trail) { %>
                         <input style="margin-top:10px;" type="button" id="getTrial" value="我要预约试听" class="btn_G">
-                        <% } %>
-                        <!-- <span>预约名额有限（仅剩<b class="F_orange">3</b>个名额），快抢吧！</span> -->
+                        <span>预约名额有限（仅剩<b class="F_orange">3</b>个名额），快抢吧！</span> 
+                        <% } %>-->
                     </dd>
                 </dl>
                 <div class="col2">
@@ -1405,13 +1405,13 @@
 
 <script type="text/templates" id="tpl_claimed_coupon_noMessage">
     <div id="claimedNoData" class="no_data">
-        <div>你还没有消费券哦~~</div>
+        <div>你还没有可用的消费券哦~~</div>
     </div>
 </script>
 
 <script type="text/templates" id="tpl_unclaimed_coupon_noMessage">
     <div id="unclaimedNoData" class="no_data">
-        <div>你还没有消费券哦~~</div>
+        <div>你没有待激活的消费券哦~~</div>
     </div>
 </script>
 

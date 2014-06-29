@@ -189,9 +189,9 @@
                     callback.success(self.categoryList);
                 }
             },
-            error: function() {
+            error: function(data, textStatus, jqXHR) {
                 if (callback) {
-                    callback.error();
+                    callback.error(data);
                 }
             }
         });
@@ -215,9 +215,9 @@
                     callback.success(self.locationList);
                 }
             },
-            error: function() {
+            error: function(data, textStatus, jqXHR) {
                 if (callback) {
-                    callback.error();
+                    callback.error(data);
                 }
             }
         });

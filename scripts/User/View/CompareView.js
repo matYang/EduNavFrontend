@@ -28,6 +28,13 @@ var CompareView = Backbone.View.extend({
         }
     },
     render: function (courses) {
+        if (!courses.length) {
+            //In case of backend fails, no courses will be loaded even if the batchFetchCourse call succeeded
+            Info.displayNotice("你还没有选中比较的课程，先去逛逛吧");
+            this.isClosed = true;
+            app.navigate("search", {trigger: true, replace: true});
+            return;
+        }
         if (!this.isClosed) {
             this.courses = courses.toArray();
             var len = 0;

@@ -32,15 +32,6 @@ var CourseDetailView = Backbone.View.extend({
             maxHeight = maxHeight > $teacher.height() ? maxHeight : $teacher.height();
         }
         $teachers.css("height", maxHeight);
-        // var mapParams = {
-        //     div: "courseMap",
-        //     clickable: false,
-        //     class: "map",
-        //     location: this.course.get("location")
-        // };
-
-        // this.map = new BaiduMapView(mapParams);
-        //this.map = app.storage.getViewCache("MapView", mapParams);
     },
     bindEvents: function () {
         var that = this;

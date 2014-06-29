@@ -76,6 +76,11 @@ var RegistrationView = BaseFormView.extend({
             }
             $("#registerVeriCode_wrong").remove();
         });
+        this.$el.find("input").on("keypress", function (e) {
+            if (e.which === 13) {
+                $("#" + that.submitButtonId).trigger("click");
+            }
+        });
         BaseFormView.prototype.bindEvents.call(this);
     },
     successCallback: function(data){
@@ -105,10 +110,6 @@ var RegistrationView = BaseFormView.extend({
                 if (data && data.responseText) {
                     data = data.responseText;
                 }
-                if (data === "error"){
-                    data = "服务器连接失败，请稍后再试";
-                }
-
                 Info.displayNotice(data);
             }
         });

@@ -29,8 +29,8 @@ var MyPageView = Backbone.View.extend({
         }
     },
 
-    renderError: function () {
-        Info.displayErrorPage("content", "个人页面加载失败，请稍后再试");
+    renderError: function (data) {
+        Info.displayErrorPage("content", data.responseText);
     },
     createChildView: function () {
         switch (this.query) {
