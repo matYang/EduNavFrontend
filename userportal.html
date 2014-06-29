@@ -197,7 +197,7 @@
                     <li id="price">价格</li>
                 </ul>
                 <div class="fright">
-                    当前促销：<input type="checkbox" name="cashback" /><label>返现</label>
+                    当前促销：<label><input type="checkbox" name="cashback" />返现</label>
                     <!-- <input type="checkbox" name="flashdeal" /><label>限时抢</label> -->
 
                 </div>
@@ -353,7 +353,7 @@
                     </div>
                     <div id="mypage_info">
                         <p class="phone"><span></span><%= phone %></p>
-                        <% if (email) { %><p class="email"><span></span><%= email %></p> <% } %>
+                        <p class="email <% if (email) { %> hidden <% } %>"><span></span><%= email %></p>
                     </div>
                 </div>
             </div>
@@ -1393,16 +1393,21 @@
 </script>
 
 <script type="text/templates" id="tpl_credit_noMessage">
-    <div class="no_data" id="unclaimedNoData">
+    <div class="no_data" id="creditNoData">
         <div>你暂时还没有积分哦~~</div>
         <p>积分可以通过预定课程获得</p>
     </div>
 </script>
 
-<script type="text/templates" id="tpl_coupon_noMessage">
+<script type="text/templates" id="tpl_claimed_coupon_noMessage">
     <div id="claimedNoData" class="no_data">
         <div>你还没有消费券哦~~</div>
-        <p>快去<input type="button" value="免费获取">消费券吧</p>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_unclaimed_coupon_noMessage">
+    <div id="unclaimedNoData" class="no_data">
+        <div>你还没有消费券哦~~</div>
     </div>
 </script>
 

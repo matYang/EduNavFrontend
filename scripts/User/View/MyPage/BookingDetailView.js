@@ -46,7 +46,7 @@ var BookingDetailView = Backbone.View.extend({
             var booking = that.booking.clone();
             booking.set("status", EnumConfig.BookingStatus.cancelled);
             $("#cancelBooking").val("取消中...");
-            app.userManager.changeBookingState(that.booking, {
+            app.userManager.changeBookingState(booking, {
                 success: function(){
                     $("#process").html("<p>订单已取消</p>");
                     $("#cancelBooking").remove();

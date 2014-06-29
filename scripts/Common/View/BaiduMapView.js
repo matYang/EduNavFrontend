@@ -42,9 +42,7 @@ var BaiduMapView = Backbone.View.extend({
     },
     poi: function (poi, locationString) {   //っぽい
         if (poi) {
-            if (this.markers.length === 0) {
-                this.map.centerAndZoom(poi, 12);
-            }
+                this.map.centerAndZoom(poi, 11);
             this.addMarker(new BMap.Label(this.locationInstMapper[locationString.address], {
                 position: poi
             }), locationString.address);

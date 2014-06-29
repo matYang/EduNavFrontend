@@ -89,7 +89,7 @@ var RegistrationView = BaseFormView.extend({
                 app.topBarView.reRender();
                 setTimeout(function () {
                     app.navigate(toPage, true);
-                },5000);
+                }, 5000);
             },
             error: function (data) {
                 
@@ -102,9 +102,13 @@ var RegistrationView = BaseFormView.extend({
         app.userManager.registerUser(this.model, {
             success: this.successCallback,
             error: function (data){
-                if (data === "error" || !data) {
-                    data = "服务器连接失败，请稍后再试。";
+                if (data && data.responseText) {
+                    data = data.responseText;
                 }
+                if (data === "error"){
+                    data = "服务器连接失败，请稍后再试";
+                }
+
                 Info.displayNotice(data);
             }
         });

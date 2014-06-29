@@ -78,7 +78,7 @@ var UnclaimedCouponView = MultiPageView.extend({
         this.actionClass = "claim";
         this.entryContainer = "unclaimedList";
         this.$domContainer = $("#unclaimedList");
-        this.noMessage = _.template(tpl.get("coupon_noMessage"));
+        this.noMessage = _.template(tpl.get("unclaimed_coupon_noMessage"));
         this.isClosed = false;
         var that = this;
         this.render();
@@ -141,7 +141,7 @@ var ClaimedCouponView = MultiPageView.extend({
         this.user = app.sessionManager.sessionModel;
         this.entryContainer = "claimedList";
         this.$domContainer = $("#claimedList");
-        this.noMessage = _.template(tpl.get("coupon_noMessage"));;
+        this.noMessage = _.template(tpl.get("claimed_coupon_noMessage"));;
         this.isClosed = false;
         var that = this;
         this.render();
