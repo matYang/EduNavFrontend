@@ -79,3 +79,12 @@ li a, .page a {
 .mypage_sidebar_title {
 	cursor: pointer;
 }
+
+
+.course_content .teacherInfo {
+	margin-bottom: 10px;
+	height: auto !important;
+}
+.course_content .teacherInfo .teacherPhoto {
+	margin: 8px !important;
+}
