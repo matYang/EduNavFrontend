@@ -65,7 +65,7 @@ var MyPageSettingView = BaseFormView.extend({
         });
     },
     saveError: function (data) {
-        Info.displayNotice(data ? data : "服务器连接失败，请稍后再试。");
+        Info.displayNotice(data.responseText  ? data.responseText  : "服务器连接失败，请稍后再试。");
         $("#updateInfo").attr("value", "更新失败(重试)");
     },
 
