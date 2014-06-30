@@ -554,7 +554,7 @@
 <script type="text/template" id="tpl_newBooking">
     <div class="courseBrief">
         <div class="row1 clearfix">
-            <div class="fleft"><img src="images/pic.jpg" width="90" height="71"/></div>
+            <div class="fleft"><img src="<%= course.logoUrl %>" width="90"/></div>
             <div class="fright">
                 <div class="title"><%= course.courseName %></div>
                 <div class="desc ">适合学员： <%= course.suitableStudent %></div>
@@ -585,7 +585,7 @@
             <h3><%= course.courseName %></h3>
             <div class="fright ">恭喜您获得了该学科最佳课程</div>
         </div>
-        <div class="row1">
+        <div class="row1" style="min-height:104px">
             <div class="field">
                 <label>报名人数</label>
                <!-- <select name="enrollNum">
@@ -833,7 +833,7 @@
                 <th width="64px">课程名称</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>" width="195">
-                        <h2 class="F_green"><%= course.courseName %></h2>
+                        <h2 class="F_green courseTitle" style="cursor:pointer;"><%= course.courseName %></h2>
                         <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
                         <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div>
                     </td>

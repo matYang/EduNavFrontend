@@ -46,8 +46,12 @@ var MyPageCouponView = Backbone.View.extend({
     },
     close: function () {
         if (!this.isClosed) {
-            this.unclaimedCouponView.close();
-            this.claimedCouponView.close();
+            if (this.unclaimedCouponView) {
+                this.unclaimedCouponView.close();
+            }
+            if (this.claimedCouponView) {
+                this.claimedCouponView.close();
+            }
             this.unclaimedCouponView = null;
             this.claimedCouponView = null;
             this.$el.empty();

@@ -36,7 +36,9 @@ var MyPageDashboardView = Backbone.View.extend({
         if (!this.isClosed) {
             this.$el.empty();
             $("#mypage_content").css("border", "1px solid #ccc");
-            this.bookingListView.close();
+            if (this.bookingListView) {
+                this.bookingListView.close();
+            }
             this.bookingListView = null;
             this.isClosed = true;
         }

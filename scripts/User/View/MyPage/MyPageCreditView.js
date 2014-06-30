@@ -39,6 +39,12 @@ var MyPageCreditView = Backbone.View.extend({
     },
     close: function () {
         if (!this.isClosed) {
+            if (this.creditTable) {
+                this.creditTable.close();
+            }
+            if (this.creditStore) {
+                this.creditStore.close();   
+            }
             this.$el.empty();
             this.isClosed = true;
         }
