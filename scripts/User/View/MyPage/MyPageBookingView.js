@@ -11,7 +11,7 @@ var MyPageBookingView = Backbone.View.extend({
         this.$el.append("<div class='loading'></div>");
         app.userManager.fetchBookings(this.bookingSr, {
             success: this.render,
-            error: this.render
+            error: this.renderError
         });
     },
     renderError: function (data) {

@@ -12,7 +12,7 @@ var MyPageDashboardView = Backbone.View.extend({
         $("#bookingSummary").append("<div class='loading'></div>");
         app.userManager.fetchBookings(this.bookingSr, {
             success: this.render,
-            error: this.render
+            error: this.renderError
         })
 
     },
