@@ -93,10 +93,7 @@ li a, .page a {
 .course_content .teacherInfo .teacherPhoto {
 	margin: 8px !important;
 }
-.course_content dd div {
-	float:left;
-	width:888px;
-}
+
 .course_content dd label {
 	float:left;
 }
@@ -117,4 +114,8 @@ li a, .page a {
 
 #compareView #logoUrl img {
 	max-width: 195px
+}
+
+.compare_button {
+	cursor: pointer;
 }

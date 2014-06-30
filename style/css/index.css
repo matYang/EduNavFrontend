@@ -25,10 +25,10 @@
 .index .tab2{ height:88px; width:1000px; background:url(../images/tab2.png) no-repeat;}
 .index .tab2 li{float:left; width:250px; height:88px; line-height:68px; margin-top:5px; text-align:center; font-family:微软雅黑; font-size:24px; color:#fff}
 .index .tab2 li a,.tab2 li a:visited{display:block; height:88px; color:#fff; text-decoration:none;}
-.index .tab2 li.item1 a.active{ background:url(../images/tab2_active.png) no-repeat 0 68px;}
-.index .tab2 li.item2 a.active{ background:url(../images/tab2_active.png) no-repeat -250px 68px;}
-.index .tab2 li.item3 a.active{ background:url(../images/tab2_active.png) no-repeat -500px 68px;}
-.index .tab2 li.item4 a.active{ background:url(../images/tab2_active.png) no-repeat -750px 68px;}
+.index .tab2 li.item1 a.active{ background:url(../images/tab2_active.png) no-repeat 0 -5px;}
+.index .tab2 li.item2 a.active{ background:url(../images/tab2_active.png) no-repeat -250px -5px;}
+.index .tab2 li.item3 a.active{ background:url(../images/tab2_active.png) no-repeat -500px -5px;}
+.index .tab2 li.item4 a.active{ background:url(../images/tab2_active.png) no-repeat -750px -5px;}
 
 .index .c_item{}
 .index .c_item .fleft{position:relative; width:148px; text-align:center;}
