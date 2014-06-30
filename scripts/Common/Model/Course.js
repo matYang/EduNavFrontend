@@ -77,9 +77,9 @@ var Course = Backbone.Model.extend({
             'bookingType': undefined,
 
             'classImgUrls': [],
-            'teacherIntros': undefined,
+            'teacherIntros': [],
             'teacherImgUrls': [],
-            'teacherNames': undefined
+            'teacherNames': [],
 
 
         };

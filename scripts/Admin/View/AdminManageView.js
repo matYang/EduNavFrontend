@@ -364,22 +364,42 @@ var AdminManageView = Backbone.View.extend({
                     app.navigate("manage/course/" + id, true);
                 }
             });
-            $("#searchInput_category").on("change", function () {
+            $("#category_Input").on("change", function () {
                 var category = $(this).val();
                 that.sr[that.type].set("category", category);
                 that.sr[that.type].set("subCategory", undefined);
-                that.renderSubCategory(category);
+                that.sr[that.type].set("subSubCategory", undefined);
+                that.renderSubCategories(category);
+                $("#subCategory_Input").val("");
+                $("#subSubCategory_Input").val("");
             });
-            $("#searchInput_subCategory").on("change", function () {
+            $("#subCategory_Input").on("change", function () {
+                that.sr[that.type].set("subCategory", $(this).val());
+                that.sr[that.type].set("subSubCategory", undefined);
+                that.renderSubSubCategories( that.sr[that.type].get("category"), $(this).val());
+                $("#subSubCategory_Input").val("");
+            });
+            $("#subSubCategory_Input").on("change", function () {
                 that.sr[that.type].set("subCategory", $(this).val());
             });
-            $("#searchInput_city").on("change", function () {
+            
+            $("#province_Input").on("change", function () {
+                var province = $(this).val();
+                that.sr[that.type].set("province", province);
+                that.sr[that.type].set("city", undefined);
+                that.sr[that.type].set("district", undefined);
+                that.renderCity(province);
+                $("#city_Input").val("");
+                $("#district_Input").val("");
+            });
+            $("#city_Input").on("change", function () {
                 var city = $(this).val();
                 that.sr[that.type].set("city", city);
                 that.sr[that.type].set("district", undefined);
-                that.renderDistrict(city);
+                that.renderDistrict(that.sr[that.type].get("province"), city);
+                $("#district_Input").val("");
             });
-            $("#searchInput_district").on("change", function () {
+            $("#district_Input").on("change", function () {
                 that.sr[that.type].set("district", $(this).val());
             });
             $("#queryCourseBtn").on("click", function (e) {
@@ -479,44 +499,81 @@ var AdminManageView = Backbone.View.extend({
         }
     },
     renderCategories: function (categories) {
-        var count = 0, buf = [], key;
-        this.categories = categories
+        var buf = [], key, index, val;
+        this.categories = categories;
         for (key in categories) {
             if (key !== "index") {
-                buf[count] = this.optionTemplate({val: key, text: key});
-                count++;
+                index = categories[key].index;
+                buf[index] = this.optionTemplate({val: key, text: key});
+                if (index === 0) {
+                    val = key;
+                }
             }
         }
-        $("#searchInput_category").append(buf.join());
+        $("#category_Input").empty().append('<option value="" disabled="" selected="">一级分类</option>' + buf.join(""));
+        $("#subCategory_Input").empty().append('<option value="" disabled="" selected="">二级分类</option>');
+        $("#subSubCategory_Input").empty().append('<option value="" disabled="" selected="">三级分类</option>');
     },
     renderSubCategories: function (category) {
-        var subCategories = this.categories[category], buf = [], key, count = 0;
+        var subCategories = this.categories[category], buf = [], key, index, val;
         for (key in subCategories) {
             if (key !== "index") {
-                buf[count] = this.optionTemplate({val: key, text: key});
-                count++;
+                index = subCategories[key].index;
+                buf[index] = this.optionTemplate({val: key, text: key});
+                if (index === 0) {
+                    val = key;
+                }
             }
         }
-        $("#searchInput_district").empty().append(buf.join());
+        $("#subCategory_Input").empty().append('<option value="" disabled="" selected="">二级分类</option>' + buf.join(""));
+        $("#subSubCategory_Input").empty().append('<option value="" disabled="" selected="">三级分类</option>');
+    },
+    renderSubSubCategories: function (category, subCatgory) {
+        var subSubCategories = this.categories[category][subCatgory], buf = [], key, index, val;
+        for (key in subSubCategories) {
+            if (key !== "index") {
+                index = subSubCategories[key].index;
+                buf[index] = this.optionTemplate({val: key, text: key});
+                if (index === 0) {
+                    val = key;
+                }
+            }
+        }
+        $("#subSubCategory_Input").empty().append('<option value="" disabled="" selected="">三级分类</option>' + buf.join(""));
     },
     renderLocations: function (list) {
-        debugger;
         this.locations = list;
-        var len = list.length, buf = [], obj, i, attr;
-        for (i = 0; i < len; i++) {
-            obj = this.locations[i];
-            for (attr in obj) {
-                buf[i] = this.optionTemplate({val: attr, text: attr});
+        var buf = [], attr, index;
+        for (attr in list) {
+            if (attr !== "index") {
+                index = list[attr].index;
+                buf[index] = this.optionTemplate({val: attr, text: attr});
             }
         }
-        $("#searchInput_city").append(buf.join());
+        $("#province_Input").empty().append('<option value="" disabled="" selected="">省份</option>' + buf.join(""));
+        $("#city_Input").empty().append('<option value="" disabled="" selected="">城市</option>');
+        $("#district_Input").empty().append('<option value="" disabled="" selected="">地区</option>');
     },
-    renderDistrict: function (city) {
-        var districts = this.locations[city], len = districts.length, buf = [], i;
-        for (i = 0; i < len; i++) {
-            buf[i] = this.optionTemplate({val: districts[i], text: districts[i]});
+    renderCity: function (province) {
+        var cities = this.locations[province], buf = [], city, index;
+        for (city in cities) {
+            if (city !== "index") {
+                index = cities[city].index;
+                buf[index] = this.optionTemplate({val: city, text: city});
+            }
         }
-        $("#searchInput_district").empty().append(buf.join());
+        $("#city_Input").empty().append('<option value="" disabled="" selected="">城市</option>' + buf.join(""));
+        $("#district_Input").empty().append('<option value="" disabled="" selected="">地区</option>');
+    },
+    renderDistrict: function (province, city) {
+        var districts = this.locations[province][city], buf = [], district, index;
+        for (district in districts) {
+            if (district !== "index") {
+                index = districts[district].index;
+                buf[index] = this.optionTemplate({val: district, text: district});
+            }
+        }
+        $("#district_Input").empty().append('<option value="" disabled="" selected="">地区</option>' + buf.join(""));
     },
     renderResult: function (results) {
         var array = results.toArray();
