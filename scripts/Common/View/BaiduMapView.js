@@ -119,7 +119,7 @@ var BaiduMapView = Backbone.View.extend({
 var MainMapView = BaiduMapView.extend({
     el: "#mainMap",
     clickable: false,
-    class: "mainPage-map",
+    cssClass: "mainPage-map",
     initialize: function () {
         this.location = "南京";
         _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'poi', 'close');
