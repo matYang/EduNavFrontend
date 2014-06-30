@@ -611,12 +611,12 @@
                 <label>课程费用</label>
                 <b class="price">￥<%= course.price %></b>/位 <span>（预定免费，入学后学校前台付款）</span>
             </div>
-            <% if (!app.sessionManager.hasSession()) { %>
             <div class="field">
                 <% if (course.cashback) { %>
                     <div class="fleft cashback"><%= course.cashback %>元</div>
                 <% } %>
             </div>
+            <% if (!app.sessionManager.hasSession()) { %>
                 <div class="fleft login_reg1 clearfix" id="booking_loginnote"><a class="link F_green">登录</a>后可使用优惠券，入学后获得<%= course.cashback %>元现金返还</div>
                 <div id="booking_loginbox" class="loginbox">
                     <div class="loginbox_inner">
