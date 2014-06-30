@@ -148,7 +148,7 @@ var CompareView = Backbone.View.extend({
             if ($(this).scrollTop() >= 145) {
                 $("#courseName").addClass("stickyHeader");
                 if ($("#stickyPlaceholder").length === 0) {
-                    $("#courseName").after("<tr id='stickyPlaceholder' style='height:160px'></tr>");
+                    $("#courseName").after("<tr id='stickyPlaceholder' style='height:160px' width='195'></tr>");
                 }
             } else {
                 $("#courseName").removeClass("stickyHeader");
