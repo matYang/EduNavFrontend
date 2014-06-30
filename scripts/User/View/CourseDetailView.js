@@ -92,7 +92,7 @@ var CourseDetailView = Backbone.View.extend({
             case "lv2cat":
                 that.sr.set("category", $("#lv1cat").html());
                 that.sr.set("subCategory", $("#lv2cat").html());
-                that.sr.set("subSubCategory",undefined);
+                that.sr.set("subSubCategory", undefined);
                 break;
             case "lv1cat":
                 that.sr.set("category", $("#lv1cat").html());
