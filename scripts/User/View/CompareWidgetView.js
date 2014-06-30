@@ -175,15 +175,17 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
             if ($content.hasClass("hidden")) {
                 $content.removeClass("hidden");
                 that.$el.find(".compare").css("width", 250);
+                $(this).css("width", 50);
             } else {
                 $content.addClass("hidden");
                 that.$el.find(".compare").css("width", 0);
+                $(this).css("width", 51);
             }
         });
     },
     removeCourse: function (id) {
         var i;
-        $("#detail_compare_"+id).attr("class", "add btn_g").val("+对比");
+        $("#detail_compare_" + id).attr("class", "add btn_g").val("+对比");
         $("#compareEntry_courseId_" + id).remove();
         app.storage.removeCourseFromCompare(id);
         this.courseIds = app.storage.getCoursesToCompare();

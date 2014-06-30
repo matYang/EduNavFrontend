@@ -5,7 +5,7 @@ var CourseDetailView = Backbone.View.extend({
         _.bindAll(this, 'render', 'bindEvents', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
-
+        this.sr = new CourseSearchRepresentation();
         this.user = app.sessionManager.sessionModel;
         var self = this;
         // this.newBooking = new Booking();
@@ -38,15 +38,19 @@ var CourseDetailView = Backbone.View.extend({
     bindEvents: function () {
         var that = this;
         $("#detail_compare_" + this.course.id).on("click", function () {
-            debugger;
             if ($(this).hasClass("add")) {
-                that.compareWidget.addCourse(that.course);
-                $(this).attr("class", "remove btn_gray").val("已加入对比");
+                if (that.compareWidget.addCourse(that.course)) {
+                    $(this).attr("class", "remove btn_gray").val("已加入对比");
+                } else {
+                    Info.displayNotice("您最多只能同时比较四个不同的科目。");
+                }
+
             } else {
                 that.compareWidget.removeCourse(that.course.id);
                 $(this).attr("class", "add btn_g").val("+对比");
             }
         });
+
         $("#courseNavigateTab").on("click", "li", function (e) {
             var id = e.target.id;
             id = "#content_" + id.split("_")[1];
@@ -72,6 +76,33 @@ var CourseDetailView = Backbone.View.extend({
         });
         $("#bookNow").on("click", function () {
             app.navigate("booking/c" + that.courseId, true);
+        });
+
+        $("#siteMap").on("click", "span", function (e) {
+            var id = e.target.id;
+            if (id === "siteMap") {
+                return;
+            }
+            switch (id) {
+            case "lv3cat":
+                that.sr.set("category", $("#lv1cat").html());
+                that.sr.set("subCategory", $("#lv2cat").html());
+                that.sr.set("subSubCategory", $("#lv3cat").html());
+                break;
+            case "lv2cat":
+                that.sr.set("category", $("#lv1cat").html());
+                that.sr.set("subCategory", $("#lv2cat").html());
+                that.sr.set("subSubCategory",undefined);
+                break;
+            case "lv1cat":
+                that.sr.set("category", $("#lv1cat").html());
+                that.sr.set("subCategory", undefined);
+                that.sr.set("subSubCategory", undefined);
+                break;
+            default:
+                break;
+            }
+            app.navigate("search/" + that.sr.toQueryString(), true);
         });
     },
 

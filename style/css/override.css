@@ -109,7 +109,7 @@ li a, .page a {
 
 .teacherInfo .name {
 	float: left;
-	width: 134px;
+	width: 200px;
 }
 
 #compareView #logoUrl img {
@@ -117,5 +117,9 @@ li a, .page a {
 }
 
 .compare_button {
+	cursor: pointer;
+}
+
+#siteMap span {
 	cursor: pointer;
 }

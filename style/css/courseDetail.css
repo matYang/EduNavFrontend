@@ -15,8 +15,8 @@
 
 .courseDetail .banner .price{ font-size:26px;}
 .courseDetail .banner .price .sign{ color:#333;}
-.courseDetail .banner .cashback{ margin-left:18px;}
-.courseDetail .banner .cashback em{ margin-left:22px;}
+.courseDetail .banner .cashback{ margin-left:18px; text-align: center;}
+.courseDetail .banner .cashback em{ margin-left:18px;}
 
 .courseDetail .banner .row2 {padding:15px;}
  
