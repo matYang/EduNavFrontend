@@ -41,10 +41,8 @@ var CompareWidgetView = Backbone.View.extend({
                 this.map.getLatLng(this.courses[i].get("location"), this.courses[i].get("instName"));
             }
         }
-        this.$domContainer.empty().append(buf.join(""));
-        if (!this.reload) {
-            this.bindEvents();
-        }
+        this.$domContainer.off().empty().append(buf.join(""));
+        this.bindEvents();
     },
     bindEvents: function () {
         var that = this;
@@ -56,16 +54,20 @@ var CompareWidgetView = Backbone.View.extend({
             that.removeCourse(id);
         }).on("click", "a", function (e) {
             e.preventDefault();
-            app.navigate("course/" + Utilities.getId($(e.target).parent().parent().attr("id")), true);
+            app.navigate("course/" + Utilities.getId($(e.target).parent().parent().atr("id")), true);
         });
         $(window).on("focus", function () {
             if (that.isClosed) {
                 return;
             }
-            var idList = app.storage.getCoursesToCompare();
+            var idList = app.storage.getCoursesToCompare(), i;
             if (!that.courseIds.compare(idList)) {
                 that.courseIds = idList;
                 that.reload = true;
+                $("#searchResultDisplayPanel").find(".compare").children("input").attr("class", "add btn_g").val("+对比");
+                for (i = 0; i < that.courseIds.length; i++) {
+                    $("#compare_" + that.courseIds[i]).children("input").attr("class", "add btn_gray").val("已加入对比");
+                }
                 that.load();
             }
         });
