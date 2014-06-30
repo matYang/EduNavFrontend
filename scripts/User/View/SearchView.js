@@ -75,34 +75,37 @@ var SearchView = Backbone.View.extend({
             this.categoryList = [];
             for (key in categories ) { //level 1
                 if (typeof key === "string") {
-                    obj = categories[key];
-                    index = categories[key].index;
-                    cbuf[index] = this.categoryTemplate({dataId:key, text:key});
-                    if (index === 0 && !this.searchRepresentation.get("category")) {
-                        this.searchRepresentation.set("category", key);
-                    }
-                    for (attr in obj ) { //level 2 and level 1 index
-                        if (attr !== "index") {
-                            index2 = obj[attr].index;
-                            scbuf[index2] = this.subCategoryTemplate({dataId:attr, text:attr});
-                            bot = obj[attr];
-                            if (bot) {
-                                for (type in bot ) { //level 3 and level 2 index
-                                    if (type !== "index") {
-                                        index3 = bot[type].index;
-                                        tcbuf[index3] = this.subSubCategoryTemplate({dataId:type, text:type});
+                    if (key !== "index") {
+                        obj = categories[key];
+                        index = categories[key].index;
+                        cbuf[index] = this.categoryTemplate({dataId:key, text:key});
+                        if (index === 0 && !this.searchRepresentation.get("category")) {
+                            this.searchRepresentation.set("category", key);
+                        }
+                        for (attr in obj ) { //level 2 and level 1 index
+                            if (attr !== "index") {
+                                index2 = obj[attr].index;
+                                scbuf[index2] = this.subCategoryTemplate({dataId:attr, text:attr});
+                                bot = obj[attr];
+                                if (bot) {
+                                    for (type in bot ) { //level 3 and level 2 index
+                                        if (type !== "index") {
+                                            index3 = bot[type].index;
+                                            tcbuf[index3] = this.subSubCategoryTemplate({dataId:type, text:type});
+                                        }
                                     }
+                                    tc += this.subSubCategoryContainerTemplate({dataId:attr, entries:tcbuf.join("")});
+                                    tcbuf = [];
                                 }
-                                tc += this.subSubCategoryContainerTemplate({dataId:attr, entries:tcbuf.join("")});
-                                tcbuf = [];
                             }
                         }
+                            
+                        scbuf.push(tc);
+                        $("#search_subCategory").append(
+                            this.subCategoryContainerTemplate({dataId:key, entries:scbuf.join("")})
+                        );
+                        scbuf = [];
                     }
-                    scbuf.push(tc);
-                    $("#search_subCategory").append(
-                        this.subCategoryContainerTemplate({dataId:key, entries:scbuf.join("")})
-                    );
-                    scbuf = [];
                 }
             }
             $("#search_category").append(cbuf.join(""));
@@ -224,7 +227,6 @@ var SearchView = Backbone.View.extend({
                     $("#price").html("价格↑");
                 }
                 this.priceDesc = !this.priceDesc;
-                
                 this.searchResultView.render();
             });
         this.searchResultView.registerSortEvent($("#editorPick"), "popularity", true, this,
@@ -232,7 +234,6 @@ var SearchView = Backbone.View.extend({
                 $("#time").html("时间");
                 $("#price").html("价格");
                 $("#editorPick").html("爱上课推荐");
-                
                 this.searchResultView.render();
             });
         this.searchResultView.registerFilterEvent($("input[name=cashback]"), this.cashbackFilter, this,
@@ -345,7 +346,7 @@ var SearchView = Backbone.View.extend({
         $("a[data-cri=" + criteria + "]").remove();
         if (dataId !== "noreq" && $filter.attr("id").indexOf("filter") > -1) {
             $("#searchReqs").append(this.reqTemplate(
-                {criteria: criteria, dataId: dataId, text:$("[data-id=" + dataId + "]").html()}
+                {criteria: criteria, dataId: dataId, text: $("[data-id=" + dataId + "]").html()}
             ));
         }
         if ($("#searchReqs").find("a").length) {
