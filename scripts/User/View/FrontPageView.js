@@ -37,7 +37,7 @@ var FrontPageView = Backbone.View.extend({
                 obj.lvl1Cat = cat1;
                 level2 = categories[cat1];
                 index1 = level2.index;
-                buttonList[index1] = this.buttonTemplate({dataId: cat1, index:index1});
+                buttonList[index1] = this.buttonTemplate({dataId: cat1, index: index1+1});
                 obj.catClass = Constants.categoryClassMapper[cat1];
                 for (cat2 in level2) {
                     if (cat2 === "index") continue;
