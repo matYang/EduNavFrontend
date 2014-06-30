@@ -291,6 +291,7 @@ var AdminManageView = Backbone.View.extend({
                 this.allMessages = new Courses();
                 this.resultView[this.type] = new AdminCourseSearchResultView(this.allMessages, this.allMessages);
                 app.generalManager.getCategories(this);
+                app.generalManager.getLocations(this);
                 break;
             case "booking":
                 this.allMessages = new Bookings();
@@ -348,7 +349,7 @@ var AdminManageView = Backbone.View.extend({
                         that.sr[that.type].set(attr, $input.attr("type") === "number" ? Utilities.toInt(value) : value);
                     }
                 }
-                app.adminManager.listUser(that.sr[this.type], {success: that.renderResult, error: Utilities.defaultErrorHandler});
+                app.adminManager.listUser(that.sr[that.type], {success: that.renderResult, error: Utilities.defaultErrorHandler});
             });
             $("#findUserBtn").on("click", function () {
                 var id = $("#userId_Input").val();
@@ -481,20 +482,25 @@ var AdminManageView = Backbone.View.extend({
         var count = 0, buf = [], key;
         this.categories = categories
         for (key in categories) {
-            buf[count] = this.optionTemplate({val: key, text: key});
-            count++;
+            if (key !== "index") {
+                buf[count] = this.optionTemplate({val: key, text: key});
+                count++;
+            }
         }
         $("#searchInput_category").append(buf.join());
     },
     renderSubCategories: function (category) {
         var subCategories = this.categories[category], buf = [], key, count = 0;
         for (key in subCategories) {
-            buf[count] = this.optionTemplate({val: key, text: key});
-            count++;
+            if (key !== "index") {
+                buf[count] = this.optionTemplate({val: key, text: key});
+                count++;
+            }
         }
         $("#searchInput_district").empty().append(buf.join());
     },
     renderLocations: function (list) {
+        debugger;
         this.locations = list;
         var len = list.length, buf = [], obj, i, attr;
         for (i = 0; i < len; i++) {

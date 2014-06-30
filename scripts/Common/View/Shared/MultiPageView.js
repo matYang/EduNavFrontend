@@ -76,11 +76,11 @@ var MultiPageView = Backbone.View.extend({
                 } else {
                     message = this.messages[i + this.startIndex];
                 }
-                if (message._toSimpleJSON) {
-                    buf[i] = this.entryTemplate(message._toSimpleJSON());
-                } else {
+                // if (message._toSimpleJSON) {
+                //     buf[i] = this.entryTemplate(message._toSimpleJSON());
+                // } else {
                     buf[i] = this.entryTemplate(message._toJSON());
-                }
+                //}
             }
             this.$domContainer.append(buf.join(""));
             buf = null;
