@@ -62,6 +62,18 @@ var CourseDetailView = Backbone.View.extend({
             $(e.target).addClass("active");
         });
         $(document).on("scroll", function () {
+            var $btn = $("#trialButton");
+            if ($(this).scrollTop() >= 210) {
+                if (!$btn.hasClass("shown")){
+                    $btn.animate({marginRight: "0px"}, 500);
+                    $btn.addClass("shown");
+                }
+            } else {
+                if ($btn.hasClass("shown")){
+                    $btn.animate({marginRight: "-350px"}, 500);
+                    $btn.removeClass("shown");
+                }
+            }
             if ($(this).scrollTop() >= 492) {
                 if ($("#navTabPlaceholder").length === 0) {
                     $("#courseNavigateTab").after("<ul id='navTabPlaceholder' class='tabButton tab'></ul>");
@@ -104,6 +116,31 @@ var CourseDetailView = Backbone.View.extend({
             }
             app.navigate("search/" + that.sr.toQueryString(), true);
         });
+        $("#trialButton").on("click", function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            if ($(e.target).hasClass("close")) {
+                $this.find("img").attr("src", "style/images/up_mianfei.png").css("margin-left", 200);
+                $this.addClass("shrinked");
+                $(e.target).addClass("hidden");
+            } else if (e.target.tagName === "IMG") {
+                if ($this.hasClass("shrinked")) {
+                    $this.find("img").attr("src", "style/images/shiting.png").css("margin-left", 0);
+                    $this.removeClass("shrinked");
+                    $this.find(".close").removeClass("hidden");
+                } else {
+                    app.navigate("booking/c" + that.courseId, true);
+                }
+            }
+        }).on("mouseover", "img", function (e) {
+            if ($(e.delegateTarget).hasClass("shrinked")) {
+                $(e.target).attr("src", "style/images/up_shiting.png");
+            }
+        }).on("mouseout", "img", function (e) {
+            if ($(e.delegateTarget).hasClass("shrinked")) {
+                $(e.target).attr("src", "style/images/up_mianfei.png");
+            }
+        });
     },
 
     close: function () {
@@ -117,6 +154,7 @@ var CourseDetailView = Backbone.View.extend({
             $(document).off();
             $("#courseNavigateTab").off();
             $("body").removeClass("courseDetail");
+            $("#trialButton").off();
             this.isClosed = true;
             app.courseDetailView = null;
         }
