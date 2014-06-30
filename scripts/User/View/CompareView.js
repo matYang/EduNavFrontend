@@ -7,7 +7,6 @@ var CompareView = Backbone.View.extend({
         this.load();
     },
     load: function () {
-        $(document).scrollTop(0);
         this.courseIdList = app.storage.getCoursesToCompare(); // array of items to compare
         if (!this.courseIdList.length) {
             Info.displayNotice("你还没有选中比较的课程，先去逛逛吧");
@@ -15,6 +14,7 @@ var CompareView = Backbone.View.extend({
             app.navigate("search", {trigger: true, replace: true});
             return;
         }
+        $(document).scrollTop(0);
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.courses = [];
