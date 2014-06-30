@@ -5,7 +5,7 @@
 
     this.CacheService = function () {
         this.enableCache = false;
-        if (localStorage.cache) {
+        if (localStorage && localStorage.cache) {
             this.cache = JSON.parse(localStorage.cache);
         } else {
             this.cache = {
