@@ -54,7 +54,7 @@ var CompareWidgetView = Backbone.View.extend({
             that.removeCourse(id);
         }).on("click", "a", function (e) {
             e.preventDefault();
-            app.navigate("course/" + Utilities.getId($(e.target).parent().parent().atr("id")), true);
+            app.navigate("course/" + Utilities.getId($(e.target).parent().parent().attr("id")), true);
         });
         $(window).on("focus", function () {
             if (that.isClosed) {
