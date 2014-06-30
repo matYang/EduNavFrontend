@@ -1,5 +1,5 @@
 (function () {
-    'use strict';
+    
 
 
     this.AdminManager = function(sessionManager){

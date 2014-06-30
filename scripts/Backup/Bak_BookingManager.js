@@ -1,5 +1,5 @@
 (function () {
-	'use strict';
+	
 
 
 	this.BookingManager = function(sessionManager, userManager){

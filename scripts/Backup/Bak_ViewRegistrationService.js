@@ -1,4 +1,4 @@
-(function () {'use strict';
+(function () {
 
     //used for top-level view management upon page switches, it only deals with the sudo divs that are defined in
     // index.html

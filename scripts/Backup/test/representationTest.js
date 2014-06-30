@@ -1,6 +1,6 @@
 //	deprecated
 // (function () {
-// 	'use strict';
+// 	
 
 // 	var assert = function(condition, message) {
 // 		if (condition !== true) {

@@ -1,5 +1,5 @@
 (function () {
-    'use strict';
+    
 
     //partner module currently is not greatest importance, it will be left to be finished when both admin and user modules are finished
     this.PartnerManager = function(sessionManager){

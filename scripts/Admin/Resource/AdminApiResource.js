@@ -1,5 +1,5 @@
 (function () {
-    'use strict';
+    
     this.AdminApiResource = (function () {
 
         /*---------------  API level constants   --------------*/

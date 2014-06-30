@@ -1,5 +1,5 @@
 (function () {
-    'use strict';
+    
     this.SessionManager = function(identifier){
         this.identifier = identifier;
         switch (this.identifier){

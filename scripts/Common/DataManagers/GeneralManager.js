@@ -1,5 +1,5 @@
 (function () {
-    'use strict';
+    
 
     var addToQueue = function(queue, reference){
         var i = 0;

@@ -1,5 +1,5 @@
 (function () {
-    'use strict';
+    
 
     var postCount = 0;
     var firstSuccessCourse = null;

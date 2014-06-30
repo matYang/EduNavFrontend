@@ -1,5 +1,5 @@
 (function () {
-    'use strict';
+    
     //wooooooola, no more global objects, globals are bad, very bad
 
     //note this is not a global helper function, it is encapsulated inside this modular function scope
