@@ -71,15 +71,16 @@ var SearchView = Backbone.View.extend({
         if (!this.isClosed) {
             this.categories = categories;
             var  cbuf = [], scbuf = [], tcbuf = [], tc = "", key, attr, index, index2, bot, type, index3, obj, $subCat, $subsubCat, $dist;
-            if (!this.searchRepresentation.get("category")) {
-                this.searchRepresentation.set("category", Object.keys(categories)[0]);
-            }
+
             this.categoryList = [];
             for (key in categories ) { //level 1
                 if (typeof key === "string") {
                     obj = categories[key];
                     index = categories[key].index;
                     cbuf[index] = this.categoryTemplate({dataId:key, text:key});
+                    if (index === 0 && !this.searchRepresentation.get("category")) {
+                        this.searchRepresentation.set("category", key);
+                    }
                     for (attr in obj ) { //level 2 and level 1 index
                         if (attr !== "index") {
                             index2 = obj[attr].index;
