@@ -318,6 +318,19 @@ var AdminManageView = Backbone.View.extend({
     },
     bindEvents: function () {
         this.bindSearchEvent();
+        this.bindPageEvent();
+    },
+    bindPageEvent: function(){
+        $('a.more').on('click',function(){
+            $('div.more').animate({height:'200px',opacity:1},300);
+            $(this).hide();
+            $('a.less').show();
+        })
+        $('a.less').on('click',function(){
+            $('div.more').animate({height:'0',opacity:0},300);
+            $(this).hide();
+            $('a.more').show()
+        })
     },
     bindSearchEvent: function () {
         var that = this;
@@ -335,7 +348,7 @@ var AdminManageView = Backbone.View.extend({
             }
         });
         if (this.type === "user") {
-            $("#userSearchPanel").on("click", "a", function (e) {
+            $("#userSearchPanel").on("click", "a.search", function (e) {
                 var id = e.target.id.split("_")[1];
                 $(e.delegateTarget).children("div").addClass("hidden");
                 $("#" + id).removeClass("hidden");
@@ -413,13 +426,13 @@ var AdminManageView = Backbone.View.extend({
                 }
                 app.generalManager.findCourse(that.sr[that.type], {success: that.renderResult, error: Utilities.defaultErrorHandler});
             });
-            $("#courseSearchPanel").on("click", "a", function (e) {
+            $("#courseSearchPanel").on("click", "a.search", function (e) {
                 var id = e.target.id.split("_")[1];
                 $(e.delegateTarget).children("div").addClass("hidden");
                 $("#" + id).removeClass("hidden");
             });
         } else if (this.type === "booking") {
-            $("#bookingSearchPanel").on("click", "a", function (e) {
+            $("#bookingSearchPanel").on("click", "a.search", function (e) {
                 var id = e.target.id.split("_")[1];
                 $(e.delegateTarget).children("div").addClass("hidden");
                 $("#" + id).removeClass("hidden");
@@ -451,7 +464,7 @@ var AdminManageView = Backbone.View.extend({
             });
 
         } else if (this.type === "partner") {
-            $("#partnerSearchPanel").on("click", "a", function (e) {
+            $("#partnerSearchPanel").on("click", "a.search", function (e) {
                 var id = e.target.id.split("_")[1];
                 $(e.delegateTarget).children("div").addClass("hidden");
                 $("#" + id).removeClass("hidden");
@@ -474,7 +487,7 @@ var AdminManageView = Backbone.View.extend({
                 app.adminManager.listPartner(that.sr[that.type], {success: that.renderResult, error: Utilities.defaultErrorHandler});
             });
         } else if (this.type === "admin") {
-            $("#adminSearchPanel").on("click", "a", function (e) {
+            $("#adminSearchPanel").on("click", "a.search", function (e) {
                 var id = e.target.id.split("_")[1];
                 $(e.delegateTarget).children("div").addClass("hidden");
                 $("#" + id).removeClass("hidden");
