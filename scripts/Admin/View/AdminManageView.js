@@ -322,7 +322,7 @@ var AdminManageView = Backbone.View.extend({
     },
     bindPageEvent: function(){
         $('a.more').on('click',function(){
-            $('div.more').animate({height:'150px',opacity:1},300);
+            $('div.more').animate({height:'200px',opacity:1},300);
             $(this).hide();
             $('a.less').show();
         })

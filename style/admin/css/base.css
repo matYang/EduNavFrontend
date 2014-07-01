@@ -58,15 +58,23 @@ body{width:100%; background:#f6f6f6 url(../images/left_bar_bg.png) repeat-y;}
     overflow: hidden;/*clear float*/
 }
 .item-query label,.item-query input,.item-query select{ float: left}
-.item-query label{ width:40%; padding-top: 6px;padding-right: 5px;text-align: right}
-.item-query input,.item-query select{ width:60%;height: 30px;
+.item-query label{
+    width:45%;
+    padding-top: 6px;padding-right: 5px;
+    text-align: right
+}
+.item-query input[type='text'],.item-query select{
+    width:55%;height: 30px;
     padding: 5px 10px;
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;}
+.item-query input[type='checkbox']{
+    height: 26px;
+}
 a.more,a.less{ font-size: 14px;}
 a.more:hover,a.less:hover{ text-decoration: none;cursor: pointer}
-.more .form-group{margin-bottom: 0}
+.more .form-group{margin-bottom: 0;overflow:hidden}
 div.more{
     width:100%;height:0;
     opacity: 0;

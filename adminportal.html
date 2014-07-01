@@ -322,11 +322,13 @@
                         <div class="form-group form-group-sm">
                             <div class="item-query">
                                 <label>班级最低人数</label>
-                                <input id="startClassSize_Input" class="form-control" type="number" placeholder="班级最低人数"/>
+                                <input id="startClassSize_Input" class="form-control" type="number"
+                                       placeholder="班级最低人数"/>
                             </div>
                             <div class="item-query">
                                 <label>班级最高人数</label>
-                                <input id="finishClassSize_Input" class="form-control" type="number" placeholder="班级最高人数"/>
+                                <input id="finishClassSize_Input" class="form-control" type="number"
+                                       placeholder="班级最高人数"/>
                             </div>
                         </div>
                         <div class="form-group form-group-sm">
@@ -343,11 +345,13 @@
                         <div class="form-group form-group-sm">
                             <div class="item-query">
                                 <label>最早截止日期</label>
-                                <input id="startCutoffDate_Input" class="form-control" type="number" placeholder="最早截止日期"/>
+                                <input id="startCutoffDate_Input" class="form-control" type="number"
+                                       placeholder="最早截止日期"/>
                             </div>
                             <div class="item-query">
                                 <label>最晚截止日期</label>
-                                <input id="finishCutoffDate_Input" class="form-control" type="number" placeholder="最晚截止日期"/>
+                                <input id="finishCutoffDate_Input" class="form-control" type="number"
+                                       placeholder="最晚截止日期"/>
                             </div>
                         </div>
                     </div>
@@ -404,7 +408,7 @@
             <div id="findPartner" class="fleft search">
                 <input id="partnerId_Input" class="text" type="text" placeholder="请输入学校名或者学校id"/>
                 <input id="findPartnerBtn" class="btn" type="button" value="搜索"/>
-                <a id="goTo_queryPartner" class="button search">Query</a>
+                <a id="goTo_queryPartner" class="button search">高级搜索</a>
             </div>
             <div id="queryPartner" class="fleft search hidden form-horizontal">
                 <div class="form-group">
@@ -448,7 +452,7 @@
                 </div>
                 <div class="buttons pull-right">
                     <input id="queryPartnerBtn" class="btn" type="button" value="搜索"/>
-                    <a id="goTo_findPartner" class="button search">Get</a>
+                    <a id="goTo_findPartner" class="button search">退出高级搜索</a>
                 </div>
 
             </div>
@@ -457,7 +461,7 @@
         <table class="table table-hover" width="100%" cellpadding="0" cellspacing="0">
             <thead>
             <tr>
-                <th width="100">partner id</th>
+                <th width="100">合作伙伴ID</th>
                 <th width="200">全名</th>
                 <th width="120">执照</th>
                 <th width="120">机构号</th>
@@ -465,7 +469,6 @@
                 <th width="100">Phone</th>
                 <th width="100">状态</th>
                 <th width="100">新建时间</th>
-                <th>--</th>
             </tr>
             </thead>
             <tbody id="searchResultContainer">
@@ -481,131 +484,239 @@
 
 
 <script type="text/templates" id="tpl_adminBookingManage">
-    <div class="fright" style="line-height:40px">
-        欢迎您，<span id="adminUserName" class="F_orange"></span>
-    </div>
-    <div id="searchResult">
-        <div class="clearfix">
-            <div id="bookingSearchPanel">
-                <div id="findBooking" class="fleft search">
-                    <input id="bookingId_Input" class="text" type="text" placeholder="请输入订单id"/>
-                    <input id="findBookingBtn" class="btn" type="button" value="进入"/>
-                    <a id="goTo_queryBooking" class="button search">Query</a>
+<div class="fright" style="line-height:40px">
+    欢迎您，<span id="adminUserName" class="F_orange"></span>
+</div>
+<div id="searchResult">
+<div class="clearfix">
+    <div id="bookingSearchPanel">
+        <div id="findBooking" class="fleft search">
+            <input id="bookingId_Input" class="text" type="text" placeholder="请输入订单id"/>
+            <input id="findBookingBtn" class="btn" type="button" value="进入"/>
+            <a id="goTo_queryBooking" class="button search">高级搜索</a>
+        </div>
+        <div id="queryBooking" class="fleft search hidden">
+            <div class="form-group form-group-sm">
+                <div class="item-query">
+                    <label>用户ID</label>
+                    <input id="userId_Input" class="form-control" type="text" placeholder="用户ID"/>
                 </div>
-                <div id="queryBooking" class="fleft search hidden">
-                    <input id="userId_Input" class="text" type="text" placeholder="用户Id"/>
-                    <input id="name_Input" class="text" type="text" placeholder="姓名"/>
-                    <input id="phone_Input" class="text" type="text" placeholder="用户手机"/>
-                    <input id="courseId_Input" class="text" type="text" placeholder="course Id"/>
-                    <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
-                    <input id="reference_Input" class="text" type="text" placeholder="reference"/>
-                    <input id="startPrice_Input" class="text" type="text" placeholder="最低价格"/>
-                    <input id="finishPrice_Input" class="text" type="text" placeholder="最高价格"/>
-                    <input id="startScheduledTime_Input" class="date" type="text" placeholder="预约时间开始"/>
-                    <input id="finishScheduledTime_Input" class="date" type="text" placeholder="预约时间结束"/>
-                    <input id="startAdjustTime_Input" class="date" type="text" placeholder="调整时间开始"/>
-                    <input id="finishAdjustTime_Input" class="date" type="text" placeholder="调整时间结束"/>
-                    <input id="startCreationTime_Input" class="date" type="text" placeholder="创建时间开始"/>
-                    <input id="finishCreationTime_Input" class="date" type="text" placeholder="创建时间结束"/>
-                    <input id="startBookingStatusAdjustTime_Input" class="date" type="text" placeholder="状态调整时间开始"/>
-                    <input id="finishBookingStatusAdjustTime_Input" class="date" type="text" placeholder="状态调整时间结束"/>
-                    <input id="startServiceFeeStatusAdjustTime_Input" class="date" type="text"
-                           placeholder="服务费状态调整时间开始"/>
-                    <input id="finishServiceFeeStatusAdjustTime_Input" class="date" type="text"
-                           placeholder="服务费状态调整时间结束"/>
-                    <input id="startCommissionStatusAdjustTime_Input" class="date" type="text" placeholder="佣金调整时间开始"/>
-                    <input id="finishCommissionStatusAdjustTime_Input" class="date" type="text" placeholder="佣金调整时间结束"/>
-                    <input id="startNoRefundDate_Input" class="date" type="text" placeholder="无退款时间开始"/>
-                    <input id="finishNoRefundDate_Input" class="date" type="text" placeholder="无退款时间结束"/>
-                    <input id="startCashbackDate_Input" class="date" type="text" placeholder="返金时间开始"/>
-                    <input id="finishCashbackDate_Input" class="date" type="text" placeholder="返金时间结束"/>
+                <div class="item-query">
+                    <label>姓名</label>
+                    <input id="name_Input" class="form-control" type="text" placeholder="姓名"/>
+                </div>
 
-                    <div class="selectBox" style="height: 80px">
-                        <div>
-                            <label>订单类型</label>
-                            <select id="bookingType_Input">
-                                <option value=0>offline</option>
-                                <option value=1>online</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>服务费状态</label>
-                            <select id="serviceFeeStatus_Input">
-                                <option value=0>应收服务费</option>
-                                <option value=1>已收服务费</option>
-                                <option value=2>退换服务费</option>
-                                <option value=3>无服务费</option>
-                                <option value=4>服务费完结</option>
-                                <option value=5>空</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>佣金状态</label>
-                            <select id="commissionStatus_Input">
-                                <option value=0>应收佣金</option>
-                                <option value=1>已收佣金</option>
-                                <option value=2>退还佣金</option>
-                                <option value=3>无佣金</option>
-                                <option value=4>佣金完结</option>
-                                <option value=5>空</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>前服务费状态</label>
-                            <select id="preServiceFeeStatus_Input">
-                                <option value=0>应收服务费</option>
-                                <option value=1>已收服务费</option>
-                                <option value=2>退换服务费</option>
-                                <option value=3>无服务费</option>
-                                <option value=4>服务费完结</option>
-                                <option value=5>空</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>前佣金状态</label>
-                            <select id="preCommissionStatus_Input">
-                                <option value=0>应收佣金</option>
-                                <option value=1>已收佣金</option>
-                                <option value=2>退还佣金</option>
-                                <option value=3>无佣金</option>
-                                <option value=4>佣金完结</option>
-                                <option value=5>空</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>已经报道<input id="wasConfirmedIndex_Input" type="checkbox"></div>
-                    <input id="queryBookingBtn" class="btn" type="button" value="搜索"/>
-                    <a id="goTo_findBooking" class="button search">Get</a>
+                <div class="item-query">
+                    <label>用户手机</label>
+                    <input id="phone_Input" class="form-control" type="text" placeholder="用户手机"/>
+                </div>
+                <div class="item-query">
+                    <label>课程ID</label>
+                    <input id="courseId_Input" class="form-control" type="text" placeholder="课程ID"/>
+                </div>
+                <div class="item-query">
+                    <label>合作伙伴ID</label>
+                    <input id="partnerId_Input" class="form-control" type="text" placeholder="合作伙伴ID"/>
+                </div>
+                <div class="item-query">
+                    <label>reference</label>
+                    <input id="reference_Input" class="form-control" type="text" placeholder="reference"/>
+                </div>
+                <div class="item-query">
+                    <label>订单类型</label>
+                    <select id="bookingType_Input">
+                        <option value=0>offline</option>
+                        <option value=1>online</option>
+                    </select>
+                </div>
+                <div class="item-query">
+                    <label>服务费状态</label>
+                    <select id="serviceFeeStatus_Input">
+                        <option value=0>应收服务费</option>
+                        <option value=1>已收服务费</option>
+                        <option value=2>退换服务费</option>
+                        <option value=3>无服务费</option>
+                        <option value=4>服务费完结</option>
+                        <option value=5>空</option>
+                    </select>
+                </div>
+                <div class="item-query">
+                    <label>佣金状态</label>
+                    <select id="commissionStatus_Input">
+                        <option value=0>应收佣金</option>
+                        <option value=1>已收佣金</option>
+                        <option value=2>退还佣金</option>
+                        <option value=3>无佣金</option>
+                        <option value=4>佣金完结</option>
+                        <option value=5>空</option>
+                    </select>
+                </div>
+                <div class="item-query">
+                    <label>前服务费状态</label>
+                    <select id="preServiceFeeStatus_Input">
+                        <option value=0>应收服务费</option>
+                        <option value=1>已收服务费</option>
+                        <option value=2>退换服务费</option>
+                        <option value=3>无服务费</option>
+                        <option value=4>服务费完结</option>
+                        <option value=5>空</option>
+                    </select>
+                </div>
+                <div class="item-query">
+                    <label>前佣金状态</label>
+                    <select id="preCommissionStatus_Input">
+                        <option value=0>应收佣金</option>
+                        <option value=1>已收佣金</option>
+                        <option value=2>退还佣金</option>
+                        <option value=3>无佣金</option>
+                        <option value=4>佣金完结</option>
+                        <option value=5>空</option>
+                    </select>
+                </div>
+                <div class="item-query">
+                    <label>已经报道</label>
+                    <input id="wasConfirmedIndex_Input" type="checkbox">
+                </div>
+                <div class="item-query">
+                    <a class="more block pull-right control-label"><span
+                            class="glyphicon glyphicon-chevron-down"></span> 更多选项</a>
+                    <a class="less block pull-right control-label" style="display: none"><span
+                            class="glyphicon glyphicon-chevron-up"></span> 收起</a>
                 </div>
             </div>
 
-        </div>
-        <table class="table table-hover" width="100%" cellpadding="0" cellspacing="0">
-            <thead>
-            <tr>
-                <th width="120">订单id</th>
-                <th width="120">用户id</th>
-                <th width="120">用户名</th>
-                <th width="120">交易id</th>
-                <th width="120">合作伙伴id</th>
-                <th width="120">优惠券Id</th>
-                <th width="120">课程Id</th>
-                <th width="130">订单日期</th>
-                <th width="130">报道日期</th>
-                <th width="100">价格</th>
-                <th width="100">当前状态</th>
-                <th>--</th>
-            </tr>
-            </thead>
-            <tbody id="searchResultContainer">
+            <div class="more">
+                <div class="form-group form-group-sm">
+                    <div class="item-query">
+                        <label>最低价格</label>
+                        <input id="startPrice_Input" class="form-control" type="text" placeholder="最低价格"/>
+                    </div>
+                    <div class="item-query">
+                        <label>最高价格</label>
+                        <input id="finishPrice_Input" class="form-control" type="text" placeholder="最高价格"/>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="item-query">
+                        <label>预约时间开始</label>
+                        <input id="startScheduledTime_Input" class="form-control" type="text" placeholder="预约时间开始"/>
+                    </div>
+                    <div class="item-query">
+                        <label>预约时间结束</label>
+                        <input id="finishScheduledTime_Input" class="form-control" type="text" placeholder="预约时间结束"/>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="item-query">
+                        <label>调整时间开始</label>
+                        <input id="startAdjustTime_Input" class="form-control" type="text" placeholder="调整时间开始"/>
+                    </div>
+                    <div class="item-query">
+                        <label>调整时间结束</label>
+                        <input id="finishAdjustTime_Input" class="form-control" type="text" placeholder="调整时间结束"/>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="item-query">
+                        <label>创建时间开始</label>
+                        <input id="startCreationTime_Input" class="form-control" type="text" placeholder="创建时间开始"/>
+                    </div>
+                    <div class="item-query">
+                        <label>创建时间结束</label>
+                        <input id="finishCreationTime_Input" class="form-control" type="text" placeholder="创建时间结束"/>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="item-query">
+                        <label>状态调整时间开始</label>
+                        <input id="startBookingStatusAdjustTime_Input" class="form-control" type="text"
+                               placeholder="状态调整时间开始"/>
+                    </div>
+                    <div class="item-query">
+                        <label>状态调整时间结束</label>
+                        <input id="finishBookingStatusAdjustTime_Input" class="form-control" type="text"
+                               placeholder="状态调整时间结束"/>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="item-query">
+                        <label>服务费状态调整时间开始</label>
+                        <input id="startServiceFeeStatusAdjustTime_Input" class="form-control" type="text"
+                               placeholder="服务费状态调整时间开始"/>
+                    </div>
+                    <div class="item-query">
+                        <label>服务费状态调整时间结束</label>
+                        <input id="finishServiceFeeStatusAdjustTime_Input" class="form-control" type="text"
+                               placeholder="服务费状态调整时间结束"/>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="item-query">
+                        <label>佣金调整时间开始</label>
+                        <input id="startCommissionStatusAdjustTime_Input" class="form-control" type="text"
+                               placeholder="佣金调整时间开始"/>
+                    </div>
+                    <div class="item-query">
+                        <label>佣金调整时间结束</label>
+                        <input id="finishCommissionStatusAdjustTime_Input" class="form-control" type="text"
+                               placeholder="佣金调整时间结束"/>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="item-query">
+                        <label>无退款时间开始</label>
+                        <input id="startNoRefundDate_Input" class="form-control" type="text" placeholder="无退款时间开始"/>
+                    </div>
+                    <div class="item-query">
+                        <label>无退款时间结束</label>
+                        <input id="finishNoRefundDate_Input" class="form-control" type="text" placeholder="无退款时间结束"/>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="item-query">
+                        <label>返金时间开始</label>
+                        <input id="startCashbackDate_Input" class="form-control" type="text" placeholder="返金时间开始"/>
+                    </div>
+                    <div class="item-query">
+                        <label>返金时间结束</label>
+                        <input id="finishCashbackDate_Input" class="form-control" type="text" placeholder="返金时间结束"/>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons pull-right">
+                <input id="queryBookingBtn" class="btn" type="button" value="搜索"/>
+                <a id="goTo_findBooking" class="button search">退出高级搜索</a>
+            </div>
 
-            </tbody>
-        </table>
-        <div id="bookingSearchNavigator" class="page clearfix">
         </div>
     </div>
-    <div id="bookingCRUDContainer">
-    </div>
+
+</div>
+<table class="table table-hover" width="100%" cellpadding="0" cellspacing="0">
+    <thead>
+    <tr>
+        <th width="120">订单id</th>
+        <th width="120">用户id</th>
+        <th width="120">用户名</th>
+        <th width="120">交易id</th>
+        <th width="120">合作伙伴id</th>
+        <th width="120">优惠券Id</th>
+        <th width="120">课程Id</th>
+        <th width="130">订单日期</th>
+        <th width="130">报道日期</th>
+        <th width="100">价格</th>
+        <th width="100">当前状态</th>
+    </tr>
+    </thead>
+    <tbody id="searchResultContainer">
+
+    </tbody>
+</table>
+<div id="bookingSearchNavigator" class="page clearfix">
+</div>
+</div>
+<div id="bookingCRUDContainer">
+</div>
 </script>
 
 <script type="text/templates" id="tpl_adminAdminManage">
@@ -622,7 +733,7 @@
                 <div id="findAdmin" class="fleft search">
                     <input id="adminId_Input" class="text" type="text" placeholder="请管理员id"/>
                     <input id="findAdminBtn" class="btn" type="button" value="进入"/>
-                    <a id="goTo_queryAdmin" class="button search">Query</a>
+                    <a id="goTo_queryAdmin" class="button search">高级搜索</a>
                 </div>
                 <form id="queryAdmin" class="form-horizontal search hidden">
                     <div class="form-group form-group-sm">
@@ -653,7 +764,7 @@
                     </div>
                     <div class="buttons pull-right">
                         <input id="queryAdminBtn" class="btn" type="button" value="搜索"/>
-                        <a id="goTo_findAdmin" class="button search">Get</a>
+                        <a id="goTo_findAdmin" class="button search">退出高级搜索</a>
                     </div>
                 </form>
             </div>
