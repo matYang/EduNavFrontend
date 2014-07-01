@@ -86,7 +86,7 @@
             <input id="findUserBtn" class="btn" type="button" value="搜索"/>
             <a id="goTo_queryUser" class="button search">高级搜索</a>
         </div>
-        <form id="queryUser" class="form-horizontal hidden" role="form">
+        <div id="queryUser" class="form-horizontal hidden" role="form">
             <!--base options start-->
             <div class="form-group form-group-sm">
                 <div class="item-query">
@@ -178,14 +178,12 @@
                 </div>
             </div>
             <!--more options end-->
-
-
             <div class="buttons pull-right">
                 <input id="queryUserBtn" class="btn" type="button" value="搜索"/>
                 <a id="goTo_findUser" class="button search">退出高级搜索</a>
             </div>
 
-        </form>
+        </div>
 
     </div>
     <table class="table table-hover" width="100%" cellpadding="0" cellspacing="0">
@@ -224,29 +222,63 @@
                     <a id="goTo_queryCourse" class="button search">Query</a>
                 </div>
                 <div id="queryCourse" class="hidden">
-                    <div class="clearfix">
-                        <input id="partnerId_Input" class="text" type="text" placeholder="partner Id"/>
-                        <input id="userId_Input" class="text" type="text" placeholder="用户id"/>
-                        <input id="courseReference_Input" class="text" type="text" placeholder="course reference"/>
-                        <input id="partnerReference_Input" class="text" type="text" placeholder="partner reference"/>
-                        <input id="institutionName_Input" class="text" type="text" placeholder="学校名"/>
+                    <div class="form-group form-group-sm">
+                        <div class="item-query">
+                            <label>合作伙伴Id</label>
+                            <input id="partnerId_Input" class="form-control" type="text" placeholder="合作伙伴Id"/>
+                        </div>
+                        <div class="item-query">
+                            <label>用户Id</label>
+                            <input id="userId_Input" class="form-control" type="text" placeholder="用户Id"/>
+                        </div>
 
-                        <div class="selectBox clearfix">
+                        <div class="item-query">
+                            <label>课程来源</label>
+                            <input id="courseReference_Input" class="form-control" type="text" placeholder="课程来源"/>
+                        </div>
+                        <div class="item-query">
+                            <label>合作伙伴来源</label>
+                            <input id="partnerReference_Input" class="form-control" type="text" placeholder="合作伙伴来源"/>
+                        </div>
+                        <div class="item-query">
+                            <label>机构名</label>
+                            <input id="institutionName_Input" class="form-control" type="text" placeholder="机构名"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-sm">
+                        <div class="item-query">
+                            <label>一级分类</label>
                             <select id="category_Input">
                                 <option value="" disabled selected>一级分类</option>
                             </select>
+                        </div>
+                        <div class="item-query">
+                            <label>二级分类</label>
                             <select id="subCategory_Input">
                                 <option value="" disabled selected>二级分类</option>
                             </select>
+                        </div>
+                        <div class="item-query">
+                            <label>三级分类</label>
                             <select id="thirdCategory_Input">
                                 <option value="" disabled selected>三级分类</option>
                             </select>
+                        </div>
+                        <div class="item-query">
+                            <label>城市</label>
                             <select id="city_Input">
                                 <option value="" disabled selected>城市</option>
                             </select>
+                        </div>
+                        <div class="item-query">
+                            <label>地区</label>
                             <select id="district_Input">
                                 <option value="" disabled selected>地区</option>
                             </select>
+                        </div>
+                        <div class="item-query">
+                            <label>报名即开始</label>
                             <select id="startUponArrival_Input">
                                 <option value="" disabled selected>报名即开始</option>
                                 <option value="0">否</option>
@@ -254,34 +286,64 @@
                             </select>
                         </div>
                     </div>
-                    <div class="clearfix selectBox">
-                        <div>
-                            最低价格：<input type="number" id="startPrice_Input" placeholder="最低价格"/>
+                    <div class="more">
+                        <div class="form-group form-group-sm">
+                            <div class="item-query">
+                                <label>最低价格</label>
+                                <input id="startPrice_Input" class="form-control" type="number" placeholder="最低价格"/>
+                            </div>
+                            <div class="item-query">
+                                <label>最高价格</label>
+                                <input id="finishPrice_Input" class="form-control" type="number" placeholder="最高价格"/>
+                            </div>
                         </div>
-                        <div>
-                            最高价格：<input type="number" id="finishPrice_Input" placeholder="最高价格"/>
+                        <div class="form-group form-group-sm">
+                            <div class="item-query">
+                                <label>最低返金</label>
+                                <input id="startCashback_Input" class="form-control" type="number" placeholder="最低返金"/>
+                            </div>
+                            <div class="item-query">
+                                <label>最高返金</label>
+                                <input id="finishCashback_Input" class="form-control" type="number" placeholder="最高返金"/>
+                            </div>
                         </div>
-                        <div>
-                            最低返金：<input type="number" id="startCashback_Input" placeholder="最低返金"/>
+                        <div class="form-group form-group-sm">
+                            <div class="item-query">
+                                <label>班级最低人数</label>
+                                <input id="startClassSize_Input" class="form-control" type="number" placeholder="班级最低人数"/>
+                            </div>
+                            <div class="item-query">
+                                <label>班级最高人数</label>
+                                <input id="finishClassSize_Input" class="form-control" type="number" placeholder="班级最高人数"/>
+                            </div>
                         </div>
-                        <div>
-                            最高返金：<input type="number" id="finishCashback_Input" placeholder="最高返金"/>
+                        <div class="form-group form-group-sm">
+                            <div class="item-query">
+                                <label>开始日期</label>
+                                <input id="startDate_Input" class="form-control" type="number" placeholder="开始日期"/>
+                            </div>
+                            <div class="item-query">
+                                <label>结束日期</label>
+                                <input id="finishDate_Input" class="form-control" type="number" placeholder="结束日期"/>
+                            </div>
                         </div>
-                        <div>
-                            班级最低人数：<input type="number" id="startClassSize_Input" placeholder="最低返金"/>
-                        </div>
-                        <div>
-                            班级最高人数：<input type="number" id="finishClassSize_Input" placeholder="最高返金"/>
-                        </div>
-                        <div>开始日期:<input type="text" class="date" id="startDate_Input" placeholder="开始日期"/></div>
-                        <div>结束日期:<input type="text" class="date" id="finishDate_Input" placeholder="结束日期"/></div>
-                        <div>最早截止日期:<input type="text" class="date" id="startCutoffDate_Input" placeholder="最早截止日期"/>
-                        </div>
-                        <div>最晚截止日期:<input type="text" class="date" id="finishCutoffDate_Input" placeholder="最晚截止日期"/>
+
+                        <div class="form-group form-group-sm">
+                            <div class="item-query">
+                                <label>最早截止日期</label>
+                                <input id="startCutoffDate_Input" class="form-control" type="number" placeholder="最早截止日期"/>
+                            </div>
+                            <div class="item-query">
+                                <label>最晚截止日期</label>
+                                <input id="finishCutoffDate_Input" class="form-control" type="number" placeholder="最晚截止日期"/>
+                            </div>
                         </div>
                     </div>
-                    <input id="queryCourseBtn" class="btn" type="button" value="搜索"/>
-                    <a id="goTo_findCourse" class="button search">get</a>
+                    <div class="buttons pull-right">
+                        <input id="queryCourseBtn" class="btn" type="button" value="搜索"/>
+                        <a id="goTo_findCourse" class="button search">退出高级搜索</a>
+                    </div>
+
                 </div>
 
             </div>
