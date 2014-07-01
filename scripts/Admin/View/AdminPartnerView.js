@@ -18,7 +18,8 @@ var AdminPartnerView = BaseFormView.extend({
         } else if (params.partnerId){
             app.generalManager.fetchPartner(params.partnerId, {
                 success: this.render,
-                error: function() {
+                error: function(data) {
+                    alert(data.responseText ? data.responseText : Resources.networkErrorText);
                     app.navigate("manage", true);
                 }
             });
