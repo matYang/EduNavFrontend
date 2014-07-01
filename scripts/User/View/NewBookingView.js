@@ -121,18 +121,20 @@ var NewBookingView = BaseFormView.extend({
                 Info.displayNotice(response);
             }
         });
-
     },
     loginError: function(){
         $("#booking_loginPassword").val("");
     },
     bindEvents: function () {
         var that = this;
+        $("#gotoCourse").on("click", function () {
+            app.navigate("course/" + that.model.get("courseId"), true);
+        });
         if (!app.sessionManager.hasSession()) {
-            $("#quickLogin").on("click", function(){
+            $("#quickLogin").on("click", function () {
                 $("#booking_loginbox").show();
             });
-            $("#quickRegister").on("click", function(){
+            $("#quickRegister").on("click", function () {
                 app.navigate("register", true);
             });
             $("#booking_login").on("click", this.login);
@@ -174,6 +176,7 @@ var NewBookingView = BaseFormView.extend({
     submitAction:function () {
         var that = this;
         $("#"+ this.submitButtonId).val("预订中...");
+        this.model.set("userId", app.sessionManager.sessionModel.get("userId"));
         this.model.set("cashback", this.model.get("cashbackAmount"));
         this.model.set("course", undefined);
         app.userManager.initBooking(this.model, {
