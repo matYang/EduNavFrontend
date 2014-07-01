@@ -1,6 +1,9 @@
 var BaiduMapView = Backbone.View.extend({
+    labelTemplate: _.template(tpl.get("mapLabel")),
     initialize: function () {
         this.markers = [];
+        this.markerCount = {};
+        this.markerName = {};
         if (BMap !== undefined) {
             this.geocoder = new BMap.Geocoder();
             this.mapInitialize();
@@ -30,23 +33,29 @@ var BaiduMapView = Backbone.View.extend({
         app.viewRegistration.register(this);
         this.map = new BMap.Map(this.el.id, {enableMapClick: false});  //this should never expire
         this.map.centerAndZoom(poi, 11);
+        var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL}    
+        this.map.addControl(new BMap.NavigationControl(opts));
         // this.setCenter(this.location);
     },
-    getLatLng: function (locationString) {
+    getLatLng: function (locationString, instName) {
         var poi = app.cache.get("poi", locationString);
+        this.markerName[locationString] = instName;
         if (poi) {
             this.poi(poi, {address: locationString});
             return;
         }
         this.geocoder.getPoint(locationString, this.poi);
     },
-    poi: function (poi, locationString) {   //っぽい
+    poi: function (poi, locationObj) {   //っぽい
+        var label;
         if (poi) {
             if (this.markers.length === 0) {
-                this.map.centerAndZoom(poi, 12);
+                this.map.panTo(poi);
             }
-            this.addMarker(new BMap.Marker(poi), locationString.address);
-            app.cache.set("poi", locationString.address, poi);
+            debugger;
+            label = new BMap.Label(this.labelTemplate({text: this.markerName[locationObj.address]}), {position:poi});
+            this.addMarker(label, locationObj.address);
+            app.cache.set("poi", locationObj.address, poi);
         } else {
             Info.warn('Geocode was not successful');
         }
@@ -57,7 +66,7 @@ var BaiduMapView = Backbone.View.extend({
             locationString,
             function (point) {
                 if (point && that.map) {
-                    that.map.centerAndZoom(point, 11);
+                    that.map.panTo(point, 11);
                 } else {
                     Info.warn('Geocode was not successful');
                 }
@@ -67,7 +76,9 @@ var BaiduMapView = Backbone.View.extend({
     addMarker: function (marker, locationString) {
         var add = true, i;
         marker.locationString = locationString;
+        debugger;
         for (i = 0; i < this.markers.length; i++) {
+            debugger;
             if (this.markers[i].locationString === marker.locationString) {
                 add = false;
                 break;
@@ -76,15 +87,22 @@ var BaiduMapView = Backbone.View.extend({
         if (add) {
             this.markers.push(marker);
             this.map.addOverlay(marker);
-            this.map.centerAndZoom(marker.N, 11);
+            this.markerCount[locationString] = 0;
         }
+        this.map.panTo(new BMap.Point(marker.N.lng, marker.N.lat));
+        this.markerCount[locationString]++;
     },
     removeMarker: function (locationString) {
         var i;
         for (i = 0; i < this.markers.length; i++) {
             if (this.markers[i].locationString === locationString) {
-                this.map.removeOverlay(this.markers[i]);
-                this.markers[i] = undefined;
+                if (this.markerCount[locationString] === 1) {
+                    this.map.removeOverlay(this.markers[i]);
+                    this.markers[i] = undefined;
+                } else {
+                    this.markerCount[locationString]--;
+                    return;           
+                }
             }
             if (!this.markers[i]) {
                 if (i < this.markers.length - 1) {

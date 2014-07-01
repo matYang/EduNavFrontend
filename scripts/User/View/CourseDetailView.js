@@ -70,7 +70,7 @@ var CourseDetailView = Backbone.View.extend({
                 }
             } else {
                 if ($btn.hasClass("shown")){
-                    $btn.animate({marginRight: "-350px"}, 500);
+                    $btn.animate({marginRight: "-280px"}, 500);
                     $btn.removeClass("shown");
                 }
             }

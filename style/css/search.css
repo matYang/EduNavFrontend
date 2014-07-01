@@ -42,11 +42,12 @@
 .search_result .col1 .desc{}
 .search_result .col1 .desc s{margin:0 12px;}
 
-.search_result .col2{float:left; position:relative; width:128px; height:105px; text-align:center; border-right:1px solid #ccc; font-size:14px;}
-.search_result .col2 .classHour{ margin-top:10px;}
-.search_result .col2 .price{font-size:30px; color:#ff5500; font-family:微软雅黑; margin-top:10px;}
+.search_result .col2{float:left; position:relative; width:128px; height:105px; text-align:center; border-right:1px solid #eee; font-size:14px;}
+.search_result .col2 .price{font-size:24px; color:#ff5500; font-family:微软雅黑; margin-top:5px;}
 .search_result .col2 .price .sign{font-size:14px; color:#333333;}
-.search_result .col2 .cashback{ margin-left:40px;} 
+.search_result .col2 .cashback{ margin-left:40px; margin-top:5px;} 
+.search_result .col2 .original_cost{ font-size:12px; margin-top:5px;}
+.search_result .col2 .original_cost span{ text-decoration:line-through; font-family:微软雅黑; } 
 
 .search_result .col3{float:left; width:140px; height:105px; text-align:center;}
 .search_result .col3  input.btn_g,
@@ -68,7 +69,13 @@
 #CompareWidgetContainer .compareEntry .remove:hover{ background:url(../images/close3_hover.png) no-repeat;}
 #CompareWidgetContainer .btns{ text-align:center; margin:10px auto;}
 #CompareWidgetContainer #compare{width:215px; height:32px; border:none; font-size:14px; font-family:微软雅黑; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
-#mainMap{border:1px solid #ccc; width:248px; height:338px;z-index:10;}
+
+#mainMap{ position:relative; border:1px solid #ccc; width:248px; height:338px; z-index:9999;}
+#mainMap .map_icon{ position:absolute; cursor:pointer; z-index:999999}
+#mainMap .map_icon span{display:inline-block; height:30px; padding-left:28px; height:30px; line-height:24px; background:url(../images/map_icon.png) no-repeat 0 -31px;font-size:12px; color:#ea5514;}
+#mainMap .map_icon em{ display:inline-block; position:relative; top:6px; width:10px; height:20px; background:url(../images/map_icon.png) no-repeat -191px -33px;}
+#mainMap .map_icon:hover span{display:inline-block; height:30px; padding-left:28px; height:30px; line-height:24px; background:url(../images/map_icon.png) no-repeat 0 0;font-size:12px;color:#15ae67;}
+#mainMap .map_icon:hover em{ display:inline-block; position:relative; top:6px; width:10px; height:20px; background:url(../images/map_icon.png) no-repeat -191px -2px;}
 
 #searchWidgets.stickyHeader{position:fixed;top:5px;margin-left:750px;}
 #searchWidgets.stickyHeader #compare {margin-left:-1px;}

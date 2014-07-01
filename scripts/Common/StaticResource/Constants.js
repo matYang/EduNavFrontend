@@ -31,8 +31,8 @@ var Constants = {
         "mypage_coupons", "mypage_unclaimedCouponRow", "mypage_claimedCouponRow", "mypage_couponClaimed", "mypage_couponUnclaimed", "claimed_coupon_noMessage", "unclaimed_coupon_noMessage",
         "mypage_credit", "mypage_creditTable", "mypage_creditRow", "mypage_creditStore", "credit_noMessage",
         "mypage_password", "mypage_setting",
-        "compareWidget", "compareWidgetEntry", "compareView", "courseDetailCompareWidget",
-        "infoModal", "banner"
+        "compareWidget", "compareWidgetEntry", "compareView", "courseDetailCompareWidget", "mapLabel",
+        "infoModal", "banner",
     ],
 
     partnerTemplateResource: [
