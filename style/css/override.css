@@ -123,3 +123,23 @@ li a, .page a {
 #siteMap span {
 	cursor: pointer;
 }
+
+.courseDetail .bottom {
+	margin-top: 5px;
+}
+
+.courseDetail div.pic1, div.pic2, div.pic3, div.pic4 {
+	max-height: 106px;	
+	overflow: hidden;
+}
+
+.courseDetail div.pic2, div.pic3 {
+	max-width: 190px;
+}
+.courseDetail div.pic1, div.pic4 {
+	max-width: 116px;
+}
+.courseDetail div.pic1 img, div.pic2 img, div.pic3 img, div.pic4 img {
+	width:100%;
+	height:100%;
+}
