@@ -85,22 +85,25 @@ var RegistrationView = BaseFormView.extend({
     },
     successCallback: function(data){
         this.state = "finish";
-        var that = this;
-        var toPage = this.ref || "mypage";
-        app.sessionManager.sessionModel = new User(data, {parse: true});
-        this.$el.empty().append(this.finishTemplate);
+        var that = this, counter = 5;
         app.sessionManager.fetchSession(true, {
             success:function () {
                 app.topBarView.reRender();
-                setTimeout(function () {
-                    app.navigate(toPage, true);
-                }, 5000);
             },
             error: function (data) {
                 
             }
         });
-
+        var toPage = this.ref || "mypage";
+        app.sessionManager.sessionModel = new User(data, {parse: true});
+        this.$el.empty().append(this.finishTemplate);
+        var timeout = setInterval(function () {
+            $("#countdown").html(--counter); 
+            if (counter === 0) {
+                clearInterval(timeout);
+                app.navigate(counter, true);
+            }
+        }, 1000);
     },
     submitAction: function () {
         this.phoneCache = true;

@@ -77,7 +77,6 @@
 
     UserManager.prototype.registerUser = function(newUser, callback) {
         var self = this;
-
         if (this.sessionManager.hasSession()){
             Info.warn('UserManager::registerUser::currentUser already has session, conflict, exit');
             return;

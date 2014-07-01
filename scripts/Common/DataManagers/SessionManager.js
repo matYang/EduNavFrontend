@@ -70,8 +70,7 @@
 
             default:
                 throw new Error('fetchSession模块识别失败');
-        }
-        
+        }        
         if (testMockObj.testMode) {
             this.sessionModel = testMockObj[this.identifier];
             if(callback){
