@@ -110,12 +110,7 @@ var NewBookingView = BaseFormView.extend({
         var that = this;
         app.sessionManager.fetchSession(true, {
             success: function () {
-                $("#booking_loginbox").remove();
-                $("#booking_loginnote").remove();
-                $("#"+ that.submitButtonId).removeClass("hidden");
-                $("#bookingDesc").removeClass("hidden");
-                $("#initBooking").removeClass("")
-                app.topBarView.reRender();
+
             },
             error: function (response) {
                 Info.displayNotice(response);
@@ -127,6 +122,22 @@ var NewBookingView = BaseFormView.extend({
     },
     bindEvents: function () {
         var that = this;
+        app.sessionManager.sessionModel.on("change", function () {
+            if (this.get("userId") >= 0) {
+                $("#booking_loginbox").addClass("hidden");
+                $("#booking_loginnote").addClass("hidden");
+                $("#"+ that.submitButtonId).removeClass("hidden");
+                $("#bookingDesc").removeClass("hidden");
+                $("#initBooking").removeClass("")
+            } else {
+                $("#booking_loginbox").removeClass("hidden");
+                $("#booking_loginnote").removeClass("hidden");
+                $("#"+ that.submitButtonId).addClass("hidden");
+                $("#bookingDesc").addClass("hidden");
+                $("#initBooking").addClass("")
+            }
+            app.topBarView.reRender();
+        })
         $("#gotoCourse").on("click", function () {
             app.navigate("course/" + that.model.get("courseId"), true);
         });
