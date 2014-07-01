@@ -318,6 +318,19 @@ var AdminManageView = Backbone.View.extend({
     },
     bindEvents: function () {
         this.bindSearchEvent();
+        this.bindPageEvent();
+    },
+    bindPageEvent: function(){
+        $('a.more').on('click',function(){
+            $('div.more').animate({height:'150px',opacity:1},300);
+            $(this).hide();
+            $('a.less').show();
+        })
+        $('a.less').on('click',function(){
+            $('div.more').animate({height:'0',opacity:0},300);
+            $(this).hide();
+            $('a.more').show()
+        })
     },
     bindSearchEvent: function () {
         var that = this;
@@ -500,7 +513,7 @@ var AdminManageView = Backbone.View.extend({
         $("#searchInput_district").empty().append(buf.join());
     },
     renderLocations: function (list) {
-        debugger;
+//        debugger;
         this.locations = list;
         var len = list.length, buf = [], obj, i, attr;
         for (i = 0; i < len; i++) {
