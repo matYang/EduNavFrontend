@@ -33,7 +33,7 @@
 .index .c_item{}
 .index .c_item .fleft{position:relative; width:148px; text-align:center;}
 .index .c_item .fleft a{color:#fff;vertical-align:middle; text-align:center; font-family:微软雅黑; font-size:22px; font-weight:normal;}
-.index .c_item .fleft .top_arrow{ position:absolute; top:-1px; left:-1px; width:50px; height:50px;}
+.index .c_item .fleft .top_arrow{ position:absolute; top:-1px; left:-1px; width:50px; height:49px;}
 .index .c_item .fright{width:850px;}
 
 .index .c_h1 .fleft{height:48px; line-height:48px; }

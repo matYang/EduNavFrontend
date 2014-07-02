@@ -1,5 +1,5 @@
 var AdminPartnerPhotoView = BaseFormView.extend({
-    el: "#partnerCRUDContainer",
+    el: "#main_content",
     teacherBlockTemplate: _.template(tpl.get("teacherInputBlock")),
     imageBlockTemplate: _.template(tpl.get("imageInputBlock")),
     template: _.template(tpl.get("adminPartnerPhotoManage")),
@@ -9,7 +9,7 @@ var AdminPartnerPhotoView = BaseFormView.extend({
     form:true,
     callback: "uploadTarget",
     initialize: function(params){
-        _.bindAll(this, "render", "bindEvents", "close");
+        _.bindAll(this, "render", "bindEvents", "close", "addTeacherInfo", "addClassImg", "removeClassImg", "removeTeacherInfo");
         this.fields = [];
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
@@ -47,7 +47,7 @@ var AdminPartnerPhotoView = BaseFormView.extend({
         var that = this;
         BaseFormView.prototype.bindEvents.call(this);
         $("#addTeacherInfo").on("click", this.addTeacherInfo);
-        $("#addClassImg").on("click", this.addClassImg);
+        $("#addPhoto").on("click", this.addClassImg);
         $("#cancel").on("click", function () {
             app.navigate("manage/partner/" + this.partnerId, true);
         });
@@ -84,6 +84,7 @@ var AdminPartnerPhotoView = BaseFormView.extend({
             mandatory: false,
             previewId: "preview" + this.classCount,
         }));
+        debugger;
         this.$schools.append(this.imageBlockTemplate({text:"学校照片" + this.classCount, count: this.classCount, url:""}));
         this.classCount++;
     },
@@ -100,7 +101,7 @@ var AdminPartnerPhotoView = BaseFormView.extend({
             type: "file",
             mandatory: false,
         }));
-        this.$teachers.append(this.teacherBlockTemplate({count: this.classCount}));
+        this.$teachers.append(this.teacherBlockTemplate({count: this.teacherCount}));
         this.teacherCount++;
     },
     close: function () {

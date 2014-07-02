@@ -1206,11 +1206,12 @@
         </div>
         <div id="schoolImgs" class="imgblock"><label>学校照片: </label>
         </div>
-
-        <span class="detail"><input type="button" id="addTeacherInfo" value="增加教师信息"/></span>
-        <span class="detail"><input type="button" id="addPhoto" value="增加学校照片"/></span>
-        <span class="edit"><input id="partnerPhotoPostSubmit" type="submit" value="提交"></span>
-        <span class="edit"><input id="cancel" type="button" value="取消修改"></span>
+        <div class="btns" style="float:left;">
+            <span class="detail"><input type="button" id="addTeacherInfo" value="增加教师信息"/></span>
+            <span class="detail"><input type="button" id="addPhoto" value="增加学校照片"/></span>
+            <span class="edit"><input id="partnerPhotoPostSubmit" type="submit" value="提交"></span>
+            <span class="edit"><input id="cancel" type="button" value="取消修改"></span>
+        </div>
     </form>
 </script>
 
@@ -1314,15 +1315,15 @@
 </script>
 
 <script type="text/templates" id="tpl_imageInputBlock">
-    <div class="imgblock">
+    <div style="width:100%; height:210px;">
         <label><%= text %>: </label>
-        <span class="detail"><img class="preview" src="<%= url %>" /></span>
-        <span class="edit"><input type="file" id="classImg<%= count %>" name="classImg<%= count %>"/><img class="preview" id="preview<%= count %>" src="<%= url %>" /></span>
+        <img class="preview" src="<%= url %>" />
+        <input type="file" id="classImg<%= count %>" name="classImg<%= count %>"/><img class="preview" id="preview<%= count %>" src="<%= url %>" />
     </div>
 </script>
 
 <script type="text/templates" id="tpl_teacherInputBlock">
-    <div style="width:100%; height:150px;">
+    <div style="width:100%; height:210px;">
         <div><label>教师名<%= count %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherName<%= count %>"/></span></div>
         <div><label>教师照片<%= count %>: </label><span class="detail"></span><span class="edit"><input type="file" name="teacherImg<%= count %>"/><img id="teacherImgPreview<%= count %>"/></span></div>
         <div><label>教师简介<%= count %>: </label><span class="detail"></span><span class="edit"><textarea style="width:300px;height:100px" name="teacherIntro<%= count %>"></textarea></span></div>
@@ -1378,6 +1379,7 @@
 <script src="scripts/Common/Model/Booking.js" type="text/javascript"></script>
 <script src="scripts/Common/Model/User.js" type="text/javascript"></script>
 <script src="scripts/Common/Model/Teacher.js" type="text/javascript"></script>
+<script src="scripts/Common/Model/Photo.js" type="text/javascript"></script>
 <script src="scripts/Common/Model/Partner.js" type="text/javascript"></script>
 <script src="scripts/Common/Model/Admin.js" type="text/javascript"></script>
 <script src="scripts/Common/Model/Course.js" type="text/javascript"></script>
