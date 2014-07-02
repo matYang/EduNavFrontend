@@ -10,10 +10,9 @@
     <!--watch out for IE-->
     <title>iShangke.cn爱上课管理中心</title>
     <link rel="shortcut icon" type="image/x-icon" href="/res/favicon.ico"/>
-    <link href="style/admin/css/base.css" rel="stylesheet" type="text/css"/>
-    <link href="style/admin/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="style/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="style/lib/jquery-ui.css" rel="stylesheet" type="text/css"/>
-
+    <link href="style/admin/css/base.css" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -443,7 +442,8 @@
                     </div>
                     <div class="item-query">
                         <label>建立结束时间</label>
-                        <input id="finishCreationTime_Input" class="date form-control" type="text" placeholder="建立结束时间"/>
+                        <input id="finishCreationTime_Input" class="date form-control" type="text"
+                               placeholder="建立结束时间"/>
                     </div>
                 </div>
                 <div class="buttons pull-right">
@@ -881,8 +881,8 @@
         <div class="btns" style="float:left;width:100%;">
             <span class="detail"><input type="button" id="editUser" value="修改课程"/></span>
         <span class="edit">
-            <input id="userSubmit" type="button" value="提交">
-            <input id="cancel" value="取消" type="button"/>
+            <input id="userSubmit" type="button" class="btn btn-success" value="提交">
+            <input id="cancel" value="取消" class="btn btn-default" type="button"/>
         </span>
         </div>
 
@@ -1157,48 +1157,94 @@
     <span class="edit"><input type="button" id="addTeacher" value="增加教师"/></span>
 </div>
 <div>
-<div class="btns">
-            <span class="detail">   
-            <input type="button" id="createSimilarCourse" value="新建类似课程"/>
-            <input type="button" id="deleteCourse" value="删除课程"/>
-            <input type="button" id="editCourse" value="修改课程"/></span>
-            <span class="edit"><input id="coursePostSubmit" type="submit" value="提交"><input id="cancel" value="取消" type="button"/></span>
-</div>
+    <div class="btns">
+        <span class="detail">   
+        <input type="button" id="createSimilarCourse" value="新建类似课程"/>
+        <input type="button" id="deleteCourse" value="删除课程"/>
+        <input type="button" id="editCourse" value="修改课程"/></span>
+        <span class="edit">
+            <input id="coursePostSubmit" type="submit" class="btn btn-success" value="提交">
+            <input id="cancel" value="取消" class="btn btn-default" type="button"/>
+        </span>
+    </div>
 </form>
 </script>
 
 <script type="text/templates" id="tpl_adminPartner">
-    <form id="adminPartnerForm">
-        <div><label>partner Id: </label><span class="detail"><%= partnerId %></span></div>
-        <div><label>机构全称: </label><span class="detail"><%= wholeName %></span><span class="edit"><input type="text"
-                                                                                                        name="wholeName"/></span>
+    <form id="adminPartnerForm" class="form-horizontal">
+
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">合作机构ID</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= partnerId %></span>
+            </div>
         </div>
-        <div><label>执照: </label><span class="detail"><%= license %></span><span class="edit"><input type="text"
-                                                                                                    name="license"/></span>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">机构全称:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= wholeName  %></span>
+                <span class="edit"><input type="text" class="form-control" name="wholeName"/></span>
+            </div>
         </div>
-        <div><label>机构号: </label><span class="detail"><%= organizationNum %></span><span class="edit"><input type="text"
-                                                                                                             name="organizationNum"/></span>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">执照:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= license  %></span>
+                <span class="edit"><input type="text" class="form-control" name="license"/></span>
+            </div>
         </div>
-        <div><label>reference: </label><span class="detail"><%= reference %></span><span class="edit"><input type="text"
-                                                                                                             name="reference"/></span>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">机构号:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= organizationNum  %></span>
+                <span class="edit"><input type="text" class="form-control" name="organizationNum"/></span>
+            </div>
         </div>
-        <div><label>电话: </label><span class="detail"><%= phone %></span><span class="edit"><input type="text"
-                                                                                                  name="phone"/></span>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">reference:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= reference  %></span>
+                <span class="edit"><input type="text" class="form-control" name="reference"/></span>
+            </div>
         </div>
-        <div><label>状态: </label><span class="detail"><%= status %></span><span class="edit"><input type="text"
-                                                                                                   name="status"/></span>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">电话:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= phone  %></span>
+                <span class="edit"><input type="text" class="form-control" name="phone"/></span>
+            </div>
         </div>
-        <div><label>学校名: </label><span class="detail"><%= instName %></span><span class="edit"><input type="text"
-                                                                                                      name="instName"/></span>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">状态:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= status  %></span>
+                <span class="edit"><input type="text" class="form-control" name="status"/></span>
+            </div>
         </div>
-        <div class="imgblock"><label>logo: </label>
-            <span class="detail"><img class="preview" src="<%= logoUrl %>"/></span>
-            <span class="edit"><input type="file" name="logoUrl"/><img class="preview" id="logoPreview" src="<%= logoUrl %>"/></span>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">学校名:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= instName  %></span>
+                <span class="edit"><input type="text" class="form-control" name="instName"/></span>
+            </div>
         </div>
-        <span class="detail"><input type="button" id="managePhoto" value="管理照片"/></span>
-        <span class="detail"><input type="button" id="editPartner" value="编辑资料"/></span>
-        <span class="edit"><input id="partnerPostSubmit" type="submit" value="提交修改"></span>
-        <span class="edit"><input id="cancel" type="button" value="取消修改"></span>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">logo:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><img class="preview" src="<%= logoUrl %>"/></span>
+                <span class="edit"><input type="file" name="logoUrl"/><img class="preview" id="logoPreview"
+                                                                       src="<%= logoUrl %>"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label"> </label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><input type="button" id="managePhoto" value="管理照片"/></span>
+                <span class="detail"><input type="button" id="editPartner" value="编辑资料"/></span>
+                <span class="edit"><input id="partnerPostSubmit" type="submit" value="提交修改" class="btn btn-success"></span>
+                <span class="edit"><input id="cancel" type="button" value="取消修改"></span>
+            </div>
+        </div>
     </form>
 </script>
 
@@ -1275,42 +1321,85 @@
         </div>
         <div class="btns" style="width:100%">
             <span class="detail"><input type="button" id="editBooking" value="edit"/></span>
-            <span class="edit"><input id="cancel" type="button" value="取消"></span>
-            <span class="edit"><input id="bookingPostSubmit" type="button" value="提交"></span>
+            <span class="edit"><input id="cancel" type="button" value="取消" class="btn btn-default"></span>
+            <span class="edit"><input id="bookingPostSubmit" type="button" class="btn btn-success" value="提交"></span>
         </div>
     </form>
 </script>
 
 <script type="text/templates" id="tpl_adminAdmin">
-    <form id="adminAdminForm">
-        <div><span class="detail"><label>admin Id: </label><%= adminId %></span></div>
-        <div><label>电话: </label><span class="detail"><%= phone %></span><span class="edit"><input type="text"
-                                                                                                  id="adminPhone"
-                                                                                                  name="phone"/></span>
+    <form id="adminAdminForm" class="form-horizontal">
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label colsm">admin Id: </label>
+            <span class="col-sm-3 detail form-control-static"><%= adminId %></span>
         </div>
-        <div><label>名字: </label><span class="detail"><%= name %></span><span class="edit"><input type="text"
-                                                                                                 id="adminName"
-                                                                                                 name="name"/></span>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">电话: </label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= phone %></span>
+                <span class="edit"><input type="text" id="adminPhone" name="phone" class="form-control"/></span>
+            </div>
         </div>
-        <div><span class="edit"><label>密码: </label><input type="password" id="adminPassword" name="phone"/></span></div>
-        <div><span class="edit"><label>确认密码: </label><input type="password" id="adminConfirm" name="name"/></span></div>
-        <div><label>权限: </label><span class="detail"><%= privilege %></span><span class="edit">
-            <select id="adminPrevilege" name="privilege">
-                <option value="0">root</option>
-                <option value="1">management</option>
-                <option value="2">routine</option>
-            </select>
-        </span></div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">名字: </label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= name %></span>
+                <span class="edit"><input type="text" id="adminName" name="name" class="form-control"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">密码: </label>
+            <div class="col-sm-3 form-control-static">
+                <span class="edit"><input type="password" id="adminPassword" name="adminPassword" class="form-control"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">确认密码: </label>
+            <div class="col-sm-3 form-control-static">
+                <span class="edit"><input type="password" id="adminConfirm" name="adminConfirm" class="form-control"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">权限: </label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= privilege %></span>
+                <span class="edit">
+                <select id="adminPrevilege" name="privilege" class="form-control">
+                    <option value="0">root</option>
+                    <option value="1">management</option>
+                    <option value="2">routine</option>
+                </select>
+            </span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">key1: </label>
+            <div class="col-sm-3 form-control-static">
+                <span class="edit"><input type="text" name="key1" class="form-control"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">key2: </label>
+            <div class="col-sm-3 form-control-static">
+                <span class="edit"><input type="text" name="key2" class="form-control"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">key3: </label>
+            <div class="col-sm-3 form-control-static">
+                <span class="edit"><input type="text" name="key3" class="form-control"/></span>
+            </div>
+        </div>
 
-
-        <div><span class="edit"><label>key1: </label><input type="text" name="key1"/></span></div>
-        <div><span class="edit"><label>key2: </label><input type="text" name="key2"/></span></div>
-        <div><span class="edit"><label>key3: </label><input type="text" name="key3"/></span></div>
-
-        <span class="detail"><input type="button" id="deleteAdmin" value="delete"/></span>
-        <span class="detail"><input type="button" id="editAdmin" value="edit"/></span>
-        <span class="edit"><input id="adminPostSubmit" type="button" value="提交"></span>
-        <span class="edit"><div id="cancel">Cancel</div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label"> </label>
+            <div class="col-sm-3">
+                <span class="detail"><input type="button" id="deleteAdmin" value="delete"/></span>
+                <span class="detail"><input type="button" id="editAdmin" value="edit"/></span>
+                <span class="edit"><input id="adminPostSubmit" type="button" class="btn btn-success" value="提交"></span>
+                <span class="edit"><div id="cancel" class="btn btn-default">Cancel</div>
+            </div>
+        </div>
     </form>
 </script>
 
@@ -1321,7 +1410,6 @@
 <script type="text/templates" id="tpl_imageInputBlock">
     <div style="width:100%; height:210px;">
         <label><%= text %>: </label>
-        <img class="preview" src="<%= url %>" />
         <img class="preview" id="preview<%= count %>" src="<%= url %>" />
         <input type="file" id="classImg<%= count %>" name="classImg<%= count %>"/>
         <input type="checkbox" name="imageDelete<%= count %>"/>
