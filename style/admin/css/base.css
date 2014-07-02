@@ -218,3 +218,11 @@ dd.wrong {
 	float:right;
 }
 
+
+
+/** photo manage view**/
+
+#teacherInfo, #schoolImgs {
+	width:49%;
+	margin-left:10px;
+}

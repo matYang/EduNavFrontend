@@ -266,6 +266,6 @@ var Utilities = {
         };
     },
     defaultErrorHandler: function (response) {
-        Info.alert(response.reponseText);
+        Info.alert(response.responseText || Resources.networkErrorText);
     }
 };

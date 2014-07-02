@@ -1,24 +1,19 @@
-var AdminPartnerView = BaseFormView.extend({
+var AdminPartnerPhotoView = BaseFormView.extend({
     el: "#partnerCRUDContainer",
-    fields: [
-        new BaseField({
-            name: "学校标志",
-            fieldId: "logo",
-            type: "file",
-            mandatory: true,
-            previewId: "logoPreview",
-        })
-    ],
-    formElem: "adminPartnerForm",
-    submitButtonId: "partnerManagePostSubmit",
+    teacherBlockTemplate: _.template(tpl.get("teacherInputBlock")),
+    imageBlockTemplate: _.template(tpl.get("imageInputBlock")),
+    template: _.template(tpl.get("adminPartnerPhotoManage")),
+    formElem: "adminPartnerPhotoForm",
+    
+    submitButtonId: "partnerPostSubmit",
     form:true,
     callback: "uploadTarget",
     initialize: function(params){
         _.bindAll(this, "render", "bindEvents", "close");
+        this.fields = [];
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
         params = params || {};
-        this.template = _.template(tpl.get("adminPartner"));
         this.action = AdminApiResource.admin_partner;
         this.create = false;
         if (params.partner) {
@@ -46,43 +41,15 @@ var AdminPartnerView = BaseFormView.extend({
         this.$schools = $("#schoolImgs");
         this.$teachers = $("#teacherInfo");
         $("#searchResult").addClass("hidden");
-        if (this.create) {
-            $("#adminPartnerForm").find(".detail").hide();
-            $("#adminPartnerForm").find(".edit").show();
-            $("#cancel").hide();
-        } else {
-            $("#adminPartnerForm").find(".edit").hide();
-            $("#adminPartnerForm").find(".detail").show();
-        }
         this.bindEvents();
     },
     bindEvents: function () {
         var that = this;
         BaseFormView.prototype.bindEvents.call(this);
-        $("#createSimilarPartner").on("click", function() {
-            $("#adminPartnerForm").find("edit").show();
-            $("#adminPartnerForm").find("detail").hide();
-            var json = that.partner.toJSON();
-            for (var attr in json) {
-                var $edit = $("input[name=" + attr + "]");
-                if ($edit.attr("type") === "checkbox") {
-                    $edit.prop("checked", json[attr]);
-                }
-                $edit.val(json[attr]);
-            }
-        });
-        $("#editPartner").on("click", function () {
-            that.partnerCopy = that.partner.clone();
-            $("#adminPartnerForm").find(".detail").hide();
-            $("#adminPartnerForm").find(".edit").show();
-        });
-        $("#managePhoto").on("click", function () {
-            app.navigate("manage/partnerPhoto/" + that.partner.get("partnerId"), true);
-        });
+        $("#addTeacherInfo").on("click", this.addTeacherInfo);
+        $("#addClassImg").on("click", this.addClassImg);
         $("#cancel").on("click", function () {
-            that.partner = that.partnerCopy;
-            $("#adminPartnerForm").find(".edit").hide();
-            $("#adminPartnerForm").find(".detail").show();   
+            app.navigate("manage/partner/" + this.partnerId, true);
         });
     },  
     successCallback: function () {
@@ -98,6 +65,43 @@ var AdminPartnerView = BaseFormView.extend({
                     this.course.get(id.substr(0, id.length-1) + "Urls")[Utilities.toInt(id.substr(id.length-1, 1))]);
             }
         }
+    },
+
+    findField: function (field, context) {
+        return field.get("fieldId") === this.rejectId;
+    },
+    removeClassImg: function (id) {
+        this.rejectId = id;
+        this.fields = _.reject(this.fields, this.findField, this);
+        $("#" + this.rejectId).remove();
+        this.classCount--;
+    },
+    addClassImg: function () {
+        this.fields.push(new BaseField({
+            name: "学校照片" + this.classCount,
+            fieldId: "classImg" + this.classCount,
+            type: "file",
+            mandatory: false,
+            previewId: "preview" + this.classCount,
+        }));
+        this.$schools.append(this.imageBlockTemplate({text:"学校照片" + this.classCount, count: this.classCount, url:""}));
+        this.classCount++;
+    },
+    removeTeacherInfo: function (id) {
+        this.rejectId = id;
+        this.fields = _.reject(this.fields, this.findField, this);
+        $("#" + this.rejectId).remove();
+        this.teacherCount--;
+    },
+    addTeacherInfo: function () {
+        this.fields.push(new BaseField({
+            name: "教师照片" + this.teacherCount,
+            fieldId: "teacherImg" + this.teacherCount,
+            type: "file",
+            mandatory: false,
+        }));
+        this.$teachers.append(this.teacherBlockTemplate({count: this.classCount}));
+        this.teacherCount++;
     },
     close: function () {
         if (!this.isClosed) {

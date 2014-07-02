@@ -163,6 +163,40 @@
     /****************
     *   Partner Related
     ****************/
+    AdminManager.prototype.fetchPartner = function(partnerId, callback){
+        var self = this;
+        var partner = new Partner();
+        
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testPartner);
+            return;
+        }
+        if (!this.sessionManager.hasSession()){
+            Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
+            return;
+        }
+        
+        partner.overrideUrl(ApiResource.partner_partner);
+        partner.set('partnerId', partnerId);
+        partner.fetch({
+            dataType:'json',
+
+            success:function(model, response){
+                if(callback){
+                    callback.success(partner);
+                }
+            },
+            error: function(model, response){
+                Info.warn('PartnerManager::fetchPartner:: fetch failed with response:');
+                Info.warn(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
+
     AdminManager.prototype.listPartner = function(partnerSearchRepresentation, callback){
         var self = this,
             searchResults = new Partners();
