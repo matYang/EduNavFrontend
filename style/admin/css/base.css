@@ -18,7 +18,7 @@ label {display:block; font-size: 1.1em; font-weight: bold;}
     font-weight: bold;
     border-radius: 4px;
 }
-select {height:38px; width:160px; margin-right:10px; display:block;}
+select {min-width:120px;display:block;}
 textarea {resize:none;}
 
 .fleft { float: left; }
@@ -36,9 +36,6 @@ a.F_green, a.F_green:visited { color: #3aae36; }
 .wd-auto{width: auto}
 
 .block{ display: block}
-
-
-
 /*登录*/
 .login { background:#5a9bae url(../images/login_bg.jpg) repeat-x;}
 .login_box{ position:relative; width:522px; height:442px;  margin:170px auto 0; background:url(../images/login_box.png) no-repeat;}
@@ -191,8 +188,7 @@ div.more{
 dd.wrong {
 	position: relative;
 	color: #ff0000;
-	margin-right:700px;
-	float:right;
+	/*float:right;*/
 }
 .selectBox{
 	width:100%;
