@@ -52,7 +52,6 @@ var BaiduMapView = Backbone.View.extend({
             if (this.markers.length === 0) {
                 this.map.panTo(poi);
             }
-            debugger;
             label = new BMap.Label(this.labelTemplate({text: this.markerName[locationObj.address]}), {position:poi});
             this.addMarker(label, locationObj.address);
             app.cache.set("poi", locationObj.address, poi);
@@ -76,9 +75,7 @@ var BaiduMapView = Backbone.View.extend({
     addMarker: function (marker, locationString) {
         var add = true, i;
         marker.locationString = locationString;
-        debugger;
         for (i = 0; i < this.markers.length; i++) {
-            debugger;
             if (this.markers[i].locationString === marker.locationString) {
                 add = false;
                 break;

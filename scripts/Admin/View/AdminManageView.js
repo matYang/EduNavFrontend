@@ -500,7 +500,6 @@ var AdminManageView = Backbone.View.extend({
         $("#searchInput_district").empty().append(buf.join());
     },
     renderLocations: function (list) {
-        debugger;
         this.locations = list;
         var len = list.length, buf = [], obj, i, attr;
         for (i = 0; i < len; i++) {
