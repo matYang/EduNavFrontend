@@ -28,7 +28,7 @@ var SearchView = Backbone.View.extend({
             app.viewRegistration.register(this);
             if (params) {
                 try {
-                    thsi.searchRepresentation = new CourseSearchRepresentation(); 
+                    this.searchRepresentation = new CourseSearchRepresentation(); 
                     this.searchRepresentation.castFromQuery(params.searchKey);
                     app.storage.setSearchRepresentationCache(this.searchRepresentation);
                     this.srs[this.searchRepresentation.get("category")] = this.searchRepresentation;
