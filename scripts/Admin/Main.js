@@ -11,6 +11,8 @@ var AppRouter = Backbone.Router.extend({
         "manage/course/:id": "course",
         "manage/user/:id": "user",
         "manage/booking/:id": "booking",
+        "manage/partner/:id": "partner",
+        "manage/partnerPhoto/:id": "partnerPhoto",
         "manage/admin/:id": "admin",
         "manage": "manage",
         "*default" : "defaultRoute"
@@ -99,6 +101,27 @@ var AppRouter = Backbone.Router.extend({
         this.manageView = new AdminManageView({type:"user"});
         if (id) {
             this.userView = new AdminUserView({userId:id});
+        }
+    },
+    partner: function (id) {
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("login", {trigger:true, replace:true});
+        } else if (!this.baseView) {
+            this.baseView = new AdminBaseView(this.sessionManager);
+        }
+        this.manageView = new AdminManageView({type:"partner"});
+        if (id) {
+            this.userView = new AdminPartnerView({partnerId:id});
+        }
+    },
+    partnerPhoto: function (id) {
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("login", {trigger:true, replace:true});
+        } else if (!this.baseView) {
+            this.baseView = new AdminBaseView(this.sessionManager);
+        }
+        if (id) {
+            this.userView = new AdminPartnerPhotoView({partnerId:id});
         }
     },
     booking: function (id) {

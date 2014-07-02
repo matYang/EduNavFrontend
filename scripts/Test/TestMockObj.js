@@ -71,7 +71,7 @@ testMockObj = {
                     "剑桥英语":{"index":14},
                     "新概念英语":{"index":15},
                     "口译笔译":{"index":16},
-                    "金融英语":{"index":17},
+                    "金融英语":{"index":0},
                     "index":1
                 },
                 "小语种":{
@@ -85,16 +85,16 @@ testMockObj = {
                     "葡萄牙语":{"index":8},
                     "阿拉伯语":{"index":9},
                     "荷兰语":{"index":10},
-                    "index":2
+                    "index":0
                 },
-                "index":1
+                "index":0
             },
             "学历文凭": {
                 "考研":{
-                    "考研":{"index":1},
-                    "index":1
+                    "考研":{"index":0},
+                    "index":0
                 },
-                "index":2
+                "index":1
             },
             "财会·金融":{
                 "财务会计":{
@@ -110,8 +110,8 @@ testMockObj = {
                     "CMA":{"index":10},
                     "AIA":{"index":11},
                     "ACCA":{"index":12},
-                    "CPA":{"index":13},
-                    "index":1
+                    "CPA":{"index":0},
+                    "index":0
                 },
                 "金融":{
                     "银行从业资格":{"index":1},
@@ -132,10 +132,10 @@ testMockObj = {
                     "统计师":{"index":16},
                     "审计师":{"index":17},
                     "精算师":{"index":18},
-                    "CFA":{"index":19},
-                    "index":2
+                    "CFA":{"index":0},
+                    "index":1
                 },
-                "index":3
+                "index":2
             },
             "资格认证":{
                 "国家公职":{
@@ -144,7 +144,7 @@ testMockObj = {
                     "幼师资格":{"index":3},
                     "司法考试":{"index":4},
                     "军转干考":{"index":5},
-                    "企业法律顾问":{"index":6},
+                    "企业法律顾问":{"index":0},
                     "index":1
                 },  
                 "外贸":{
@@ -155,10 +155,10 @@ testMockObj = {
                     "货代员":{"index":5},
                     "物流师":{"index":6},
                     "报检员":{"index":7},
-                    "国际商务师":{"index":8},
-                    "index":2
+                    "国际商务师":{"index":0},
+                    "index":0
                 },
-                "index":4
+                "index":3
             }
         },
     testLocations: {
@@ -171,30 +171,30 @@ testMockObj = {
                             "浦口":{"index":5},
                             "栖霞":{"index":6},
                             "雨花":{"index":7},
-                            "江宁":{"index":8},
+                            "江宁":{"index":0},
                             "index":1
                         },
                         "苏州":{
-                            "马修":{"index":1},
-                            "index":2
+                            "马修":{"index":0},
+                            "index":0
                         },
-                        "index":1
+                        "index":0
                     },
                     "上海":{
                         "上海":{
                             "浦东":{"index":1},
                             "虹桥":{"index":2},
                             "宝山":{"index":3},
-                            "金山":{"index":4},
-                            "index":1
+                            "金山":{"index":0},
+                            "index":0
                         },
                         "日本":{
-                            "东京":{"index":1},
-                            "小仓":{"index":2},
-                            "广岛":{"index":3},
-                            "index":2
+                            "东京":{"index":0},
+                            "小仓":{"index":1},
+                            "广岛":{"index":2},
+                            "index":1
                         },
-                        "index":2
+                        "index":1
                     }
                 }
 };

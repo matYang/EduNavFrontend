@@ -77,9 +77,9 @@ var Course = Backbone.Model.extend({
             'bookingType': undefined,
 
             'classImgUrls': [],
-            'teacherIntros': undefined,
+            'teacherIntros': [],
             'teacherImgUrls': [],
-            'teacherNames': undefined
+            'teacherNames': [],
 
 
         };
@@ -176,13 +176,13 @@ var Course = Backbone.Model.extend({
                 }
                 json.teacherImgUrls = imgArr;
             }
-            if (data.teacherImgUrls) {
+            if (data.teacherIntros) {
                 for (i = 0; i < data.teacherIntros.length; i++) {
                     introArr[i] = (decodeURIComponent(data.teacherIntros[i]));
                 }
                 json.teacherIntros = introArr;
             }
-            if (data.teacherImgUrls) {
+            if (data.teacherNames) {
                 for (i = 0; i < data.teacherNames.length; i++) {
                     nameArr[i] = (decodeURIComponent(data.teacherNames[i]));
                 }

@@ -13,6 +13,9 @@ var Partner = Backbone.Model.extend({
             'status': 0,
             'instName': '',
             'logoUrl':'',
+
+            'classImgUrls': [],
+            'teachers': new Teachers(),
             
             'creationTime': new Date(),
             'lastLogin': new Date()
@@ -23,22 +26,37 @@ var Partner = Backbone.Model.extend({
     urlRoot: Constants.origin + '/p-api/v1.0/partner/partner',
 
     parse: function (data) {
+        var json = {}, urls = [], teachers = [];
         if ( typeof data !== 'undefined') {
             
-            data.partnerId = parseInt(data.partnerId, 10);
-            data.wholeName = decodeURI(data.wholeName);
+            json.partnerId = parseInt(data.partnerId, 10);
+            json.wholeName = decodeURI(data.wholeName);
 
-            data.license = decodeURI(data.license);
-            data.organizationNum = decodeURI(data.organizationNum);
-            data.reference = decodeURI(data.reference);
+            json.license = decodeURI(data.license);
+            json.organizationNum = decodeURI(data.organizationNum);
+            json.reference = decodeURI(data.reference);
 
-            data.phone = decodeURI(data.phone);
-            data.status = parseInt(data.status, 10);
-            data.instName = decodeURI(data.instName);
-            data.logoUrl = decodeURI(data.logoUrl);
+            json.phone = decodeURI(data.phone);
+            json.status = parseInt(data.status, 10);
+            json.instName = decodeURI(data.instName);
+            json.logoUrl = decodeURI(data.logoUrl);
 
-            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
-            data.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
+            if (json.classImgUrls) {
+                for (var i = 0; i < data.classImgUrls.length; i++ ) {
+                    urls[i] = decodeURI(data.classImgUrls[i]);
+                }
+                json.classImgUrls = urls;
+            }
+
+            if (json.teachers) {
+                for (var i = 0; i < data.teachers.length; i++ ) {
+                    teachers[i] = new Teacher(data.teachers[i], {parse: true});
+                }
+                json.teachers = teachers;
+            }
+
+            json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            json.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
             
         }
         return data;
@@ -46,7 +64,11 @@ var Partner = Backbone.Model.extend({
     _toJSON: function () {
         var json = _.clone(this.attributes);
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
-        json.lastLogin = Utilities.getDateString(this.get('lastLogin'));
+        if (json.teachers) {
+            for (var i = 0; i < json.teachers.length; i++ ) {
+                json.teachers[i] = json.teachers[i]._toJSON();
+            }
+        }
         return json;
     },
     toJSON: function () {
@@ -60,9 +82,18 @@ var Partner = Backbone.Model.extend({
         json.phone = encodeURI(json.phone);
         json.instName = encodeURI(json.instName);
         json.logoUrl = encodeURI(json.logoUrl);
+        if (json.classImgUrls) {
+            for (var i = 0; i < json.classImgUrls.length; i++ ) {
+                json.classImgUrls[i] = encodeURI(json.classImgUrls[i]);
+            }
+        }
 
+        if (json.teachers) {
+            for (var i = 0; i < json.teachers.length; i++ ) {
+                json.teachers[i] = json.teachers[i].toJSON();
+            }
+        }
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
-        json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
         return json;
     }
 });
