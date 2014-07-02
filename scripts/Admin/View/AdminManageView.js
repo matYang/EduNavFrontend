@@ -334,7 +334,7 @@ var AdminManageView = Backbone.View.extend({
     },
     bindSearchEvent: function () {
         var that = this;
-        $("input[class=date]").datepicker({
+        $("input.date").datepicker({
             buttonImageOnly: true,
             buttonImage: "calendar.gif",
             buttonText: "Calendar",

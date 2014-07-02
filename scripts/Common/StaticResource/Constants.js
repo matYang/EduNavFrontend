@@ -3,9 +3,11 @@
  */
 
 var getEnvironmentServerOrigin = function () {
-    var isOnLocal = C_ENV_VAR !== 'REMOTE';
+    var isOnLocal = C_ENV_VAR === 'LOCAL';
+
     return {
         'httpOrigin': isOnLocal ? 'http://usertest.ishangke.cn/' : '..',
+        'partnerOrigin': isOnLocal ? 'http://usertest.ishangke.cn/' : '..',
         'adminOrigin': isOnLocal ? 'http://localhost:8017' : '..',
         'env': isOnLocal
     };

@@ -1,75 +1,11 @@
 var AdminCourseView = BaseFormView.extend({
     el: "#courseCRUDContainer",
-    form: true,
+    form: false,
     formElem: "adminCourseForm",
-    submitButtonId: "coursePostSubmit",
-    callback: "uploadTarget",
-    fields: [
-         new BaseField({
-            name: "教室照片1",
-            fieldId: "classImg1",
-            type: "file",
-            mandatory: false,
-            previewId: "preview1",
-            validatorFunction: this.classImgValid
-        }), 
-        new BaseField({
-            name: "教室照片2",
-            fieldId: "classImg2",
-            type: "file",
-            mandatory: false,
-            previewId: "preview2",
-            validatorFunction: this.classImgValid
-        }),
-        new BaseField({
-            name: "教室照片3",
-            fieldId: "classImg3",
-            type: "file",
-            mandatory: false,
-            previewId: "preview3",
-            validatorFunction: this.classImgValid
-        }),
-        new BaseField({
-            name: "教室照片4",
-            fieldId: "classImg4",
-            type: "file",
-            mandatory: false,
-            previewId: "preview4",
-            validatorFunction: this.classImgValid
-        }),
-        new BaseField({
-            name: "教师照片1",
-            fieldId: "teacherImg1",
-            type: "file",
-            mandatory: false,
-            previewId: "teacherPreview1"
-        }),
-        new BaseField({
-            name: "教师照片2",
-            fieldId: "teacherImg2",
-            type: "file",
-            mandatory: false,
-            previewId: "teacherPreview2"
-        }),
-        new BaseField({
-            name: "教师照片3",
-            fieldId: "teacherImg3",
-            type: "file",
-            mandatory: false,
-            previewId: "teacherPreview3"
-        }),
-        new BaseField({
-            name: "教师照片4",
-            fieldId: "teacherImg4",
-            type: "file",
-            mandatory: false,
-            previewId: "teacherPreview4"
-        })
-    ],
+    submitButtonId: "coursePostSubmit",    
     initialize: function(params){
         _.bindAll(this, "render", "bindEvents", "renderCategories", "renderSubCategories", "renderThirdCategories", "renderLocations", "renderL2Locations", "renderL3Locations", "close");
         BaseFormView.prototype.initialize.call(this);
-        app.viewRegistration.register(this);
         params = params || {};
         this.template = _.template(tpl.get("adminCourse"));
         this.action = AdminApiResource.admin_course;
@@ -94,7 +30,15 @@ var AdminCourseView = BaseFormView.extend({
 
     render: function (course) {
         this.course = course.clone();
-        this.$el.append(this.template(course.toJSON()));
+        this.isClosed = false;
+        if (course.get("partnerId") >= 0) {
+            app.adminManager.fetchPartner(course.get("partnerId"), {
+                "success": function () {},
+                "error": Utilities.defaultErrorHandler
+            })
+        }
+        app.viewRegistration.register(this);
+        this.$el.append(this.template(course._toJSON()));
         if (this.create) {
             $("#adminCourseForm").find(".detail").hide();
             $("#adminCourseForm").find(".edit").show();
@@ -114,7 +58,9 @@ var AdminCourseView = BaseFormView.extend({
         var that = this;
         BaseFormView.prototype.bindEvents.call(this);
         $("#createSimilarCourse").on("click", function() {
-            var json = that.course.toJSON(), attr;
+            that.modelCopy = that.model;
+            that.model = that.modelCopy.clone().set("courseId", -1);;
+            var json = that.course._toJSON(), attr;
             $("#adminCourseForm").find(".edit").show();
             $("#adminCourseForm").find(".detail").hide();
             for (attr in json) {
@@ -129,6 +75,7 @@ var AdminCourseView = BaseFormView.extend({
             }
         });
         $("#cancel").on("click", function () {
+            that.model = that.modelCopy;
             $("#adminCourseForm").find(".edit").hide();
             $("#adminCourseForm").find(".detail").show();   
         });
@@ -143,7 +90,7 @@ var AdminCourseView = BaseFormView.extend({
                 } else if ($edit.prop("tagName") === "TEXTAREA") {
                     $edit.html(json[attr]);
                 } else if ($edit.hasClass("date")) {
-                    $edit.val(Utilities.castToAPIFormat(that.course.get(attr)));
+                    $edit.val(Utilities.getDateString(that.course.get(attr)));
                 } else {
                     $edit.val(json[attr]);
                 }
@@ -158,7 +105,7 @@ var AdminCourseView = BaseFormView.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    $(this).val(Utilities.castToAPIFormat(d));
+                    $(this).val(Utilities.getDateString(d));
                 }
             });
         $("select[name=category]").on("change", function() {
@@ -177,7 +124,7 @@ var AdminCourseView = BaseFormView.extend({
             var city = $(this).val();
             that.renderL3Locations($("select[name=province]").val(), city);
         });
-        $("input[class=date]").datepicker({
+        $("input.date").datepicker({
                 buttonImageOnly: true,
                 buttonImage: "calendar.gif",
                 buttonText: "Calendar",
@@ -186,7 +133,7 @@ var AdminCourseView = BaseFormView.extend({
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    $(this).val(Utilities.castToAPIFormat(d));
+                    $(this).val(Utilities.getDateString(d));
                 }
             });
 
@@ -284,19 +231,7 @@ var AdminCourseView = BaseFormView.extend({
         $("select[name=district]").empty().append(buf.join()).val(first);
     },
     submitAction: function (e) {
-        var i, id, $field, s;
-        for (i = 0; i < this.fields.length; i++ ) {
-            id = this.fields[i].get("fieldId");
-            $field = $("#" + id);
-            if (!$field.val()) {
-                $field.attr("type", "text").addClass("hidden").val(
-                    this.course.get(id.substr(0, id.length-1) + "Urls")[Utilities.toInt(id.substr(id.length-1, 1))]);
-            }
-        }
 
-    },
-    classImgValid: function () {
-        
     },
     close: function () {
         if (!this.isClosed) {
@@ -307,7 +242,7 @@ var AdminCourseView = BaseFormView.extend({
             $("select[name=subCategory]").off();
             $("select[name=province]").off();
             $("select[name=city]").off();
-            this.isClosed = false;
+            this.isClosed = true;
             this.$el.empty();
         }
     }
