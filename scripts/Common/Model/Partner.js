@@ -94,6 +94,8 @@ var Partner = Backbone.Model.extend({
             }
         }
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+        json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
+
         return json;
     }
 });
