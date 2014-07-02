@@ -84,7 +84,6 @@ var AdminPartnerPhotoView = BaseFormView.extend({
             mandatory: false,
             previewId: "preview" + this.classCount,
         }));
-        debugger;
         this.$schools.append(this.imageBlockTemplate({text:"学校照片" + this.classCount, count: this.classCount, url:""}));
         this.classCount++;
     },

@@ -1131,7 +1131,7 @@
                                                                                            name="goal"/></span>
 </div>
 <div><label>班主任导读: </label><span class="detail"><%= classTeacher %></span><span class="edit"><input type="text"
-                                                                                                    name="classTeacher"/></span>
+                                                                                                        name="classTeacher"/></span>
 </div>
 <div><label>讲练结合: </label><span class="detail"><%= teachingAndExercise %></span><span class="edit"><input
         type="text" name="teachingAndExercise"/></span></div>
@@ -1145,11 +1145,16 @@
 </div>
 <div id="teacherInfo">
     <label>教师信息: </label>
-    <% for (var i = 0; i < teacherNames.length; i++ ) { %>
-    <span class="detail"> <% teacherNames[i] %> </span>
-    <span class="edit"> <select value="<% teacherNames[i] %>" ><option></option></select> </span>
+    <div id = "existingTeachers">
+    <% for (var i = 0; i < teacherIdList.length; i++ ) { %>
+        <span class="detail"> <% teacherNames[i] %> </span>
+        <span class="edit selectTeacher" id="teacher<%= i %>"></span>
     <% } %>
-    <span class="edit"><input type="button" id="addTeacher" value="增加教师"/><p>若是想添加的教师不在列表里, 请先创建</p></span>
+    </div>
+    <div id="newTeachers">
+
+    </div>
+    <span class="edit"><input type="button" id="addTeacher" value="增加教师"/></span>
 </div>
 <div>
 <div class="btns">
@@ -1157,8 +1162,7 @@
             <input type="button" id="createSimilarCourse" value="新建类似课程"/>
             <input type="button" id="deleteCourse" value="删除课程"/>
             <input type="button" id="editCourse" value="修改课程"/></span>
-            <span class="edit"><input id="coursePostSubmit" type="submit" value="提交"><input id="cancel" value="取消"
-                                                                                            type="button"/></span>
+            <span class="edit"><input id="coursePostSubmit" type="submit" value="提交"><input id="cancel" value="取消" type="button"/></span>
 </div>
 </form>
 </script>
@@ -1318,13 +1322,15 @@
     <div style="width:100%; height:210px;">
         <label><%= text %>: </label>
         <img class="preview" src="<%= url %>" />
-        <input type="file" id="classImg<%= count %>" name="classImg<%= count %>"/><img class="preview" id="preview<%= count %>" src="<%= url %>" />
+        <img class="preview" id="preview<%= count %>" src="<%= url %>" />
+        <input type="file" id="classImg<%= count %>" name="classImg<%= count %>"/>
+        <input type="checkbox" name="imageDelete<%= count %>"/>
     </div>
 </script>
 
 <script type="text/templates" id="tpl_teacherInputBlock">
     <div style="width:100%; height:210px;">
-        <div><label>教师名<%= count %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherName<%= count %>"/></span></div>
+        <div><label>教师名<%= count %>: </label><span class="detail"></span><span class="edit"><input type="text" name="teacherName<%= count %>"/></span><input type="checkbox" name="teacherDelete<%= count %>"/></div> 
         <div><label>教师照片<%= count %>: </label><span class="detail"></span><span class="edit"><input type="file" name="teacherImg<%= count %>"/><img id="teacherImgPreview<%= count %>"/></span></div>
         <div><label>教师简介<%= count %>: </label><span class="detail"></span><span class="edit"><textarea style="width:300px;height:100px" name="teacherIntro<%= count %>"></textarea></span></div>
     </div>

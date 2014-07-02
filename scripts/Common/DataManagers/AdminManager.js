@@ -405,6 +405,28 @@
     *   Course Related
     ****************/
     //multi-form
-
+    AdminManager.prototype.updateCourse = function(course, callback) {
+        if (!this.sessionManager.hasSession()){
+            Info.warn('AdminManager::updateBooking:: session does not exist, exit');
+            return;
+        }
+        
+        course.overrideUrl(AdminApiResource.admin_course);
+        course.save({},{
+            dataType:'json',
+            success:function(model, response){
+                if(callback){
+                    callback.success(course);
+                }
+            },
+            error: function(model, response){
+                Info.warn('AdminManager::updateBooking:: save failed with response:');
+                Info.warn(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
 
 }).call(this);

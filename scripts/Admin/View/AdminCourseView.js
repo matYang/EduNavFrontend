@@ -2,12 +2,14 @@ var AdminCourseView = BaseFormView.extend({
     el: "#courseCRUDContainer",
     form: false,
     formElem: "adminCourseForm",
+    template: _.template(tpl.get("adminCourse")),
+    optionTemplate: _.template(tpl.get("simpleOption")),
+    selectTemplate: _.template("<select><option value='-1'>删除</option><%= options %></select>"),
     submitButtonId: "coursePostSubmit",    
     initialize: function(params){
-        _.bindAll(this, "render", "bindEvents", "renderCategories", "renderSubCategories", "renderThirdCategories", "renderLocations", "renderL2Locations", "renderL3Locations", "close");
+        _.bindAll(this, "render", "bindEvents", "renderCategories", "renderSubCategories", "renderThirdCategories", "renderLocations", "renderL2Locations", "renderL3Locations", "getPartnerTeacherList", "close");
         BaseFormView.prototype.initialize.call(this);
         params = params || {};
-        this.template = _.template(tpl.get("adminCourse"));
         this.action = AdminApiResource.admin_course;
         this.create = false;
         if (params.course) {
@@ -27,18 +29,37 @@ var AdminCourseView = BaseFormView.extend({
         }
         
     },
-
+    fetchPartnerTeacherList: function () {
+        var that = this;
+        app.adminManager.fetchPartner(course.get("partnerId"), {        //Fetch all teachers belong to the partner (partner Id is supplied by admin input)
+            "success": function (teachers) {
+                var buf = [], i, $teacherDom;
+                that.partnerTeacherList = teachers;
+                for (i = 0; i < that.partnerTeacherList.length; i++) {      //Build select List
+                    buf[i] = that.optionTemplate({
+                        val: that.optionTemplatethat.partnerTeacherList.at(i).get("teacherId"), 
+                        text: that.optionTemplatethat.partnerTeacherList.at(i).get("name")
+                    });
+                }
+                that.teacherSelectHtml = that.selectTemplate({options: buf.join("")});         //This will be reused when admin adds more teachers
+                $teacherDom = $(".selectTeacher").empty().append(that.teacherSelectHtml);      //When this line of code is being excuted, the webpage should always have enough select tags for existing teachers in this course
+                for (i = 0; i < that.course.teacherIdList.length; i++ ) {
+                    $($teacherDom[i]).val(that.course.teacherIdList[i]);
+                }
+            },
+            "error": function () {
+                alert("invalid partnerId, or network is down");
+            }
+        });
+    },
     render: function (course) {
         this.course = course.clone();
         this.isClosed = false;
-        if (course.get("partnerId") >= 0) {
-            app.adminManager.fetchPartner(course.get("partnerId"), {
-                "success": function () {},
-                "error": Utilities.defaultErrorHandler
-            })
-        }
         app.viewRegistration.register(this);
         this.$el.append(this.template(course._toJSON()));
+        if (course.get("partnerId") >= 0) {
+            this.fetchPartnerTeacherList();
+        }
         if (this.create) {
             $("#adminCourseForm").find(".detail").hide();
             $("#adminCourseForm").find(".edit").show();
@@ -74,6 +95,7 @@ var AdminCourseView = BaseFormView.extend({
                 }
             }
         });
+        $("input[name=partnerId]").on("change", this.fetchPartnerTeacherList);
         $("#cancel").on("click", function () {
             that.model = that.modelCopy;
             $("#adminCourseForm").find(".edit").hide();
@@ -136,7 +158,13 @@ var AdminCourseView = BaseFormView.extend({
                     $(this).val(Utilities.getDateString(d));
                 }
             });
-
+        $("#addTeacher").on("click", function () {
+            if ($("#newTeachers").children("div").length + $("#existingTeachers").children("div").length >= 4) {
+                return;
+            } else {
+                $("#newTeachers").append();
+            }
+        });
     },  
     successCallback: function () {
         app.navigate("manage/course", true);
@@ -231,7 +259,20 @@ var AdminCourseView = BaseFormView.extend({
         $("select[name=district]").empty().append(buf.join()).val(first);
     },
     submitAction: function (e) {
-
+        var $teachers = $(".selectTeacher"), i, idList, count = 0, id;
+        for (i = 0; i < $teachers.length; i++) {
+            id = $($teachers[i]).val();
+            if (id !== -1) {
+                idList[count++] = id;
+            }
+        }
+        this.model.teacherIdList = idList;
+        app.adminManager.updateCourse(this.model, {
+            "success": function (model) {
+                app.navigate("manage/course/" + model.get("courseId"), true);
+            },
+            "error": Utilities.defaultErrorHandler
+        });
     },
     close: function () {
         if (!this.isClosed) {
