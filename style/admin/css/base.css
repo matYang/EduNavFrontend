@@ -49,7 +49,7 @@ a.F_green, a.F_green:visited { color: #3aae36; }
 .login_box .btn_login{width:125px; height:40px; background:url(../images/btn_login.png) no-repeat; font-size:14px; color:#fff; border:none;}
 
 /*左侧栏*/
-body{width:100%; background:#f6f6f6 url(../images/left_bar_bg.png) repeat-y;}
+body{width:100%; background:url(../images/left_bar_bg.png) repeat-y;}
 #wrap .left_bar{float:left; width:205px; position:relative; margin-right:20px;}
 #wrap .left_bar h1{height:94px; background:#57b7e1 url(../images/logo.png) no-repeat 15px 15px; text-indent:-9999px;}
 #wrap .left_bar dl{ color:#dcdcdc; margin-bottom:35px; margin-top:30px;}
