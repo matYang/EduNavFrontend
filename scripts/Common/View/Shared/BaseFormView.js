@@ -25,6 +25,7 @@ var BaseFormView = Backbone.View.extend({
     submitButtonId: "",
     model: undefined,
     create: true,
+    loginCheck: undefined,
     initialize: function(params){
         _.bindAll(this, "bindEvents", "render", "unbindValidators", "submitAction", "formReady", "displayImagePreview");
         this.closed = false;
@@ -67,6 +68,9 @@ var BaseFormView = Backbone.View.extend({
             }
         }
         $("#"+this.submitButtonId).on("click", function (e) {
+            if (that.loginCheck) {
+                that.loginCheck();
+            }
             var valid = true;
             for ( i = 0; i < that.fieldNum; i++ ){
                 var field = that.fields[i], $field = $("#"+  field.get("fieldId"));

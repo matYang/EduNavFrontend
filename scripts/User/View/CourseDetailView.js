@@ -86,15 +86,18 @@ var CourseDetailView = Backbone.View.extend({
                 $("#courseNavigateTab").removeClass("stickyHeader");
             }
         });
-        $("#bookNow").on("click", function () {
-            app.navigate("booking/c" + that.courseId, true);
-        });
+        if (this.course.get("status") === EnumConfig.CourseStatus.openEnroll) {
+            $("#bookNow").on("click", function () {
+                app.navigate("booking/c" + that.courseId, true);
+            });
+        } else {
+            $("#bookNow").attr("class", "btn_W").val("报名已截止").prop("disabled", true);
+        }
 
         $("#siteMap").on("click", "span", function (e) {
             var id = e.target.id;
             if (id === "siteMap") {
-                return;
-            }
+                return;            }
             switch (id) {
             case "lv3cat":
                 that.sr.set("category", $("#lv1cat").html());
