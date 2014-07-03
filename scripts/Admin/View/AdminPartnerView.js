@@ -40,7 +40,7 @@ var AdminPartnerView = BaseFormView.extend({
  
     render: function (partner) {
         this.partner = partner;
-        this.classCount = partner.get("classImgUrls").length + 1;
+        this.classCount = partner.get("classImgList").length + 1;
         this.teacherCount = partner.get("teacherList").length + 1;
         this.$el.append(this.template(partner.toJSON()));
         this.$schools = $("#schoolImgs");
@@ -76,9 +76,19 @@ var AdminPartnerView = BaseFormView.extend({
             $("#adminPartnerForm").find(".detail").hide();
             $("#adminPartnerForm").find(".edit").show();
         });
-        $("#managePhoto").on("click", function () {
-            app.navigate("manage/partnerPhoto/" + that.partner.get("partnerId"), true);
+        $("#addPhoto").on("click", function () {
+            app.navigate("manage/addPhoto/" + that.partner.get("partnerId"), true);
         });
+        $("#managePhoto").on("click", function () {
+            app.navigate("manage/managePhoto/" + that.partner.get("partnerId"), true);
+        });
+        $("#addTeacher").on("click", function () {
+            app.navigate("manage/addTeacher/" + that.partner.get("partnerId"), true);
+        });
+        $("#manageTeacher").on("click", function () {
+            app.navigate("manage/manageTeacher/" + that.partner.get("partnerId"), true);
+        });
+
         $("#cancel").on("click", function () {
             that.partner = that.partnerCopy;
             $("#adminPartnerForm").find(".edit").hide();

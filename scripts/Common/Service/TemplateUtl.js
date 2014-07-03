@@ -27,7 +27,8 @@ tpl = {
     // Get template by name from hash of preloaded templates
     get:function (name) {
         if (this.templates[name] === undefined || this.templates[name] === null){
-            alert("FATAL ERROR: Retrived template data is not loaded");
+
+            alert("FATAL ERROR: Retrived template " + name + "data is not loaded");
             throw new Error();
         }
         return this.templates[name];

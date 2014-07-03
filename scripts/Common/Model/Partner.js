@@ -14,7 +14,8 @@ var Partner = Backbone.Model.extend({
             'instName': '',
             'logoUrl':'',
 
-            'classImgUrls': [],
+            'classImgList': [],
+            'classImgIdList': [],
             'teacherList': [],
             'teacherIdList': [],
             
@@ -73,7 +74,7 @@ var Partner = Backbone.Model.extend({
         var json = _.clone(this.attributes);
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         if (json.teacherList) {
-            for (var i = 0; i < json.teachers.length; i++ ) {
+            for (var i = 0; i < json.teacherList.length; i++ ) {
                 json.teacherList[i] = json.teacherList.at(i)._toJSON();
             }
         }

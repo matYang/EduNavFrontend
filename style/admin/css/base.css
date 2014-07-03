@@ -220,9 +220,20 @@ dd.wrong {
 /** photo manage view**/
 
 #teacherInfo, #schoolImgs {
-    width: 49%;
+    width: 100%;
     margin-left: 10px;
     float: left;
     height: auto;
     min-height: 200px;
+}
+
+.teacherBlock {
+    border: 1px solid #ccc;
+    padding:5px;
+    margin:5px;
+}
+
+.teacherBlock .subBlock {
+    width:60%;
+    float:left;
 }

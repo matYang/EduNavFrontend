@@ -4,7 +4,7 @@ var AdminCourseView = BaseFormView.extend({
     formElem: "adminCourseForm",
     template: _.template(tpl.get("adminCourse")),
     optionTemplate: _.template(tpl.get("simpleOption")),
-    selectTemplate: _.template("<select class='selectTeacher'><option value='-1'>删除</option><%= options %></select>"),
+    selectTemplate: _.template("<select class='selectTeacher'><option value='-1'>无</option><%= options %></select>"),
     submitButtonId: "coursePostSubmit",    
     initialize: function(params){
         _.bindAll(this, "render", "bindEvents", "renderCategories", "renderSubCategories", "renderThirdCategories", "renderLocations", "renderL2Locations", "renderL3Locations", "fetchPartnerTeacherList", "submitAction", "close");
@@ -159,6 +159,9 @@ var AdminCourseView = BaseFormView.extend({
                 }
             });
         $("#addTeacher").on("click", function () {
+            if (!that.teacherSelectHtml) {
+                alert("你还没有输入合作伙伴ID，或者改合作伙伴尚未建立教师档案");
+            }
             if (($("#newTeachers").children("select").length + $("#existingTeachers").children("select").length) >= 4) {
                 return;
             } else {
@@ -182,10 +185,10 @@ var AdminCourseView = BaseFormView.extend({
     },
     renderCategories: function (categories) {
         this.categories = categories;
-        var buf = [];
+        var buf = [], first = "";
         for ( var key in categories ) {
             buf.push("<option value='" + key + "'>" + key + "</option>");
-            if (categories[key].index === 1) {
+            if (categories[key].index === 0) {
                 first = key;
             }
         }
@@ -198,7 +201,7 @@ var AdminCourseView = BaseFormView.extend({
         for ( var key in subCategory) {
             if (key !== "index") {
                 buf[subCategory[key].index]="<option value='" + key + "'>" + key + "</option>";
-                if (subCategory[key].index === 1) {
+                if (subCategory[key].index === 0) {
                     first = key;
                 }
             }
@@ -212,7 +215,7 @@ var AdminCourseView = BaseFormView.extend({
         for ( var key in l3Category) {
             if (key !== "index") {
                 buf[l3Category[key].index]="<option value='" + key + "'>" + key + "</option>";
-                if (l3Category[key].index === 1) {
+                if (l3Category[key].index === 0) {
                     first = key;
                 }
             }
@@ -221,11 +224,11 @@ var AdminCourseView = BaseFormView.extend({
     },
     renderLocations: function (list) {
         this.locations = list;
-         var buf = [];
+         var buf = [], first = "";
         for ( var key in this.locations ) {
             if (key !== "index") {
                 buf.push("<option value='" + key + "'>" + key + "</option>");
-                if (this.locations[key].index === 1) {
+                if (this.locations[key].index === 0) {
                     first = key;
                 }
             }
@@ -234,11 +237,11 @@ var AdminCourseView = BaseFormView.extend({
         this.renderL2Locations(first);
     },
     renderL2Locations: function (loc1) {
-        var buf = [];
+        var buf = [], first = "";
         for ( var key in this.locations[loc1] ) {
             if (key !== "index") {
                 buf.push("<option value='" + key + "'>" + key + "</option>");
-                if (this.locations[loc1][key].index === 1) {
+                if (this.locations[loc1][key].index === 0) {
                     first = key;
                 }
             }
@@ -247,11 +250,11 @@ var AdminCourseView = BaseFormView.extend({
         this.renderL3Locations(loc1, first);
     },
     renderL3Locations: function (loc1, loc2) {
-        var l3Location = this.locations[loc1][loc2], buf = [], first;
+        var l3Location = this.locations[loc1][loc2], buf = [], first = "";
         for ( var key in l3Location ) {
             if (key !== "index") {
                 buf.push("<option value='" + key + "'>" + key + "</option>");
-                if (l3Location[key].index === 1) {
+                if (l3Location[key].index === 0) {
                     first = key;
                 }
             }

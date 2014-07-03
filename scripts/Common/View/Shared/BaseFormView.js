@@ -127,7 +127,7 @@ var BaseFormView = Backbone.View.extend({
         var handler = function(e) {
               // Render thumbnail.
                 if (evt.data) {
-                    evt.data.attr("src", e.target.result).attr("title", escape(theFile.name));
+                    evt.data.attr("src", e.target.result);
                 }
             };
         for ( i=0; files[i]; i++) {
@@ -140,7 +140,7 @@ var BaseFormView = Backbone.View.extend({
             var reader = new FileReader();
 
             // Closure to capture the file information.
-            reader.onload = (function(theFile) {
+            reader.onload = (function() {
                 return handler;
             })(f);
 
@@ -176,6 +176,12 @@ var BaseFormView = Backbone.View.extend({
             } else {
                 that.model[field.get("modelAttr")] = "";
             }
+        }
+    },
+    unbindFields: function () {
+        var i;
+        for (i = 0; i < this.fields.length; i++) {
+            $("#"+this.fields[i].get("fieldId")).off();
         }
     },
     close: function () {
