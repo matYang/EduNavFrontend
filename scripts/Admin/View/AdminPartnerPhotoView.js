@@ -1,6 +1,6 @@
 var AdminPartnerAddPhotoView = BaseFormView.extend({
     el: "#main_content",
-    teacherBlockTemplate: _.template(tpl.get("teacherInputBlock")),
+    teacherBlockTemplate: _.template(tpl.get("photoInputBlock")),
     template: _.template(tpl.get("adminPartnerAdd")),
     formElem: "adminPartnerAddForm",
     
@@ -45,7 +45,7 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
         BaseFormView.prototype.bindEvents.call(this);
         $("#addMore").on("click", this.addPhoto);
         $("#cancel").on("click", function () {
-            app.navigate("manage/partner/" + this.partnerId, true);
+            app.navigate("manage/partner/" + that.partner.get("partnerId"), true);
         });
         this.$photos.on("click", ".removeTeacher", function (e) {
             var id = Utilities.toInt(Utilities.getId(e.target.id));
@@ -122,7 +122,7 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
 
 var AdminPartnerManagePhotoView = BaseFormView.extend({
     el: "#main_content",
-    teacherBlockTemplate: _.template(tpl.get("teacherEditBlock")),
+    photoBlockTemplate: _.template(tpl.get("photoEditBlock")),
     template: _.template(tpl.get("adminPartnerEdit")),
     formElem: "adminPartnerEditForm",
     
@@ -154,7 +154,7 @@ var AdminPartnerManagePhotoView = BaseFormView.extend({
  
     render: function (partner) {
         this.partner = partner;
-        this.$el.append(this.template({entryTemplate: this.teacherBlockTemplate, partner: partner._toJSON(), list: partner._toJSON().classImgList}));
+        this.$el.append(this.template({entryTemplate: this.photoBlockTemplate, partner: partner._toJSON(), list: partner._toJSON().classImgList}));
         this.$photos = $("#entries");
         $("#searchResult").addClass("hidden");
         this.bindEvents();
@@ -165,7 +165,7 @@ var AdminPartnerManagePhotoView = BaseFormView.extend({
         $("#cancel").on("click", function () {
             app.navigate("manage/partner/" + that.partner.get("partnerId"), true);
         });
-        this.$photos.on("click", ".removeTeacher", function (e) {
+        this.$photos.on("click", ".removePhoto", function (e) {
             var id = Utilities.toInt(Utilities.getId(e.target.id));
             that.removePhoto(id);
         });
@@ -177,37 +177,14 @@ var AdminPartnerManagePhotoView = BaseFormView.extend({
         return field.get("fieldId") === this.rejectId;
     },
     removePhoto: function (id) {
-        BaseFormView.prototype.unbindFields.call(this);
-        this.rejectId = "imgUrl" + id;
-        this.fields = _.reject(this.fields, this.findField, this);
-        $("#teacherBlock" + id).remove();
-        this.teacherCount--;
-        this.reNumber();
-    },
-    reNumber: function () {
-        var $blocks = this.$photos.find(".teacherBlock"), count, $block, labelNum, preview;
-        for (count = 0; count < $blocks.length; count++) {
-            labelNum = (count+1);
-            $block = $($blocks[count]).attr("id", "teacherBlock" + labelNum);
-            $block.find(".name").attr("name", "name" + labelNum);
-            $block.find(".intro").attr("name", "intro" + labelNum);
-            $block.find(".removeTeacher").attr("id", "remove_" + labelNum);
-            $block.find(".nameLabel").html("教师名" + labelNum);
-            $block.find(".imgLabel").html("教师照片" + labelNum);
-            $block.find(".introLabel").html("教师简介" + labelNum);
-        }
+        $("#photoBlock" + id).remove();
     },
     submitAction: function () {
         var i, $blocks = this.$photos.find(".photoBlock"), $block, id, photos = new Photos(), photo;
         for (i = 0; i < $blocks.length; i++) {
-            photo = new Photo();
             $block = $($blocks[i]);
             id = Utilities.toInt($block.data("id"));
-            photo.set("teacherId", id);
-            photo.set("name", $block.find(".name").val());
-            photo.set("intro", $block.find(".intro").html());
-            photo.set("imgUrl", this.partner.get("classImgList").get(id).get("imgUrl"));
-            photos.add(photo);
+            photos.add(this.partner.get("classImgList").get(id));
         }
         this.partner.set("classImgList", photos);
     },

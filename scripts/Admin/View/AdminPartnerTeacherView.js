@@ -45,7 +45,7 @@ var AdminPartnerAddTeacherView = BaseFormView.extend({
         BaseFormView.prototype.bindEvents.call(this);
         $("#addMore").on("click", this.addTeacherInfo);
         $("#cancel").on("click", function () {
-            app.navigate("manage/partner/" + this.partnerId, true);
+            app.navigate("manage/partner/" + that.partner.get("partnerId"), true);
         });
         this.$teachers.on("click", ".removeTeacher", function (e) {
             var id = Utilities.toInt(Utilities.getId(e.target.id));
@@ -129,7 +129,7 @@ var AdminPartnerManageTeacherView = BaseFormView.extend({
     form:false,
     callback: "uploadTarget",
     initialize: function(params){
-        _.bindAll(this, "render", "bindEvents", "close", "removeTeacherInfo");
+        _.bindAll(this, "render", "bindEvents", "close", "removeTeacherInfo", "successCallback");
         this.fields = [];
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
@@ -197,7 +197,7 @@ var AdminPartnerManageTeacherView = BaseFormView.extend({
         }
     },
     submitAction: function () {
-        var i, $blocks = this.$teachers.find(".teacherBlock"), $block, id, teachers = new Teachers(), teacher;
+        var i, $blocks = this.$teachers.find(".teacherBlock"), $block, id, teachers = new Teachers(), teacher, that = this;
         for (i = 0; i < $blocks.length; i++) {
             teacher = new Teacher();
             $block = $($blocks[i]);
@@ -209,7 +209,12 @@ var AdminPartnerManageTeacherView = BaseFormView.extend({
             teachers.add(teacher);
         }
         this.partner.set("teacherList", teachers);
-        app.updatePartner
+        app.updatePartner(this.partner, {
+            success: function() {
+                app.navigate("manage/partner/" + that.partner.get("courseId"))
+            },
+            error: Utilities.defaultErrorHandler
+        })
     },
     close: function () {
         if (!this.isClosed) {

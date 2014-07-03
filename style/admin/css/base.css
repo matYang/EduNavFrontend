@@ -227,13 +227,19 @@ dd.wrong {
     min-height: 200px;
 }
 
-.teacherBlock {
+.teacherBlock, .photoBlock {
     border: 1px solid #ccc;
     padding:5px;
     margin:5px;
 }
 
-.teacherBlock .subBlock {
+.teacherBlock .subBlock,
+.photoBlock .subBlock {
     width:60%;
     float:left;
+}
+
+dd.wrong {
+    float:left;
+    width:250px;
 }

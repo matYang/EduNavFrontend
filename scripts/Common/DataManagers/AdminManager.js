@@ -183,7 +183,6 @@
 
             success:function(model, response){
                 if(callback){
-                    debugger;
                     callback.success(partner);
                 }
             },

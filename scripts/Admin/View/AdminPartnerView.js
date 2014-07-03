@@ -3,11 +3,54 @@ var AdminPartnerView = BaseFormView.extend({
     fields: [
         new BaseField({
             name: "学校标志",
-            fieldId: "logo",
+            fieldId: "logoUrl",
             type: "file",
             mandatory: true,
             previewId: "logoPreview",
-        })
+        }),
+        new BaseField({
+            name: "机构全称",
+            fieldId: "wholeName",
+            type: "text",
+            mandatory: true,
+        }),
+        new BaseField({
+            name: "执照",
+            fieldId: "license",
+            type: "text",
+            mandatory: true,
+        }),
+        new BaseField({
+            name: "机构号",
+            fieldId: "organizationNum",
+            type: "text",
+            mandatory: true,
+        }),
+        new BaseField({
+            name: "识别号",
+            fieldId: "reference",
+            type: "text",
+            mandatory: true,
+        }),
+        new BaseField({
+            name: "电话",
+            fieldId: "phone",
+            type: "text",
+            mandatory: true,
+            validatorFunction: Utilities.phoneValid
+        }),
+        new BaseField({
+            name: "状态",
+            fieldId: "status",
+            type: "text",
+            mandatory: true,
+        }),
+        new BaseField({
+            name: "学校名",
+            fieldId: "instName",
+            type: "text",
+            mandatory: true,
+        }),
     ],
     formElem: "adminPartnerForm",
     submitButtonId: "partnerManagePostSubmit",
@@ -100,12 +143,11 @@ var AdminPartnerView = BaseFormView.extend({
     },
     submitAction: function () {
         var i, id, $field, s;
-        for (i = 0; i < this.fields.length; i++ ) {
-            id = this.fields[i].get("fieldId");
-            $field = $("#" + id);
-            if (!$field.val()) {
-                $field.attr("type", "text").addClass("hidden").val(
-                    this.course.get(id.substr(0, id.length-1) + "Urls")[Utilities.toInt(id.substr(id.length-1, 1))]);
+        if (!$("#logoUrl").val()) {
+            if (this.partner.get("logoUrl")) {
+                $("#logoUrl").attr("type", "text").val(this.partner.get("logoUrl")).addClass("hidden");
+            } else {
+                alert("学校标志不能为空");
             }
         }
     },

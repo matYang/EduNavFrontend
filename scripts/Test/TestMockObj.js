@@ -15,6 +15,14 @@ testMockObj = {
     testTeacher3: new Teacher().set("teacherId", 3).set("name", "Teacher C"),
     testTeacher4: new Teacher().set("teacherId", 4).set("name", "Teacher D"),
     testTeacher5: new Teacher().set("teacherId", 5).set("name", "Teacher E"),
+    testPhotos: new Photos(),
+    testPhoto1: (new Photo()).set("photoId", 1).set("imgUrl", "/testUrl1"),
+    testPhoto2: new Photo().set("photoId", 2).set("imgUrl", "/testUrl2"),
+    testPhoto3: new Photo().set("photoId", 3).set("imgUrl", "/testUrl3"),
+    testPhoto4: new Photo().set("photoId", 4).set("imgUrl", "/testUrl4"),
+    testPhoto5: new Photo().set("photoId", 5).set("imgUrl", "/testUrl5"),
+    testPhoto6: new Photo().set("photoId", 6).set("imgUrl", "/testUrl6"),
+
     testCourses: new Courses(),
     testCourse1: (new Course()).set("partnerIntro", longText).set("courseId", 1).set("courseName", "雅思英语").set("price", 10800).set("instName", "南京新东方").set("location", "南京市玄武区").set("cashback", 0),
     testCourse2: (new Course()).set("partnerIntro", longText).set("courseId", 2).set("courseName", "SAT").set("price", 10800).set("instName", "School A").set("location", "南京市白下区").set("cashback", 50),
@@ -221,16 +229,29 @@ testMockObj.testCredits.add([testMockObj.testCredit1,testMockObj.testCredit2,tes
                             testMockObj.testCredit5,testMockObj.testCredit6,testMockObj.testCredit7,testMockObj.testCredit8,
                             testMockObj.testCredit9,testMockObj.testCredit10,testMockObj.testCredit11,testMockObj.testCredit12]);
 testMockObj.testTeachers.add([testMockObj.testTeacher1, testMockObj.testTeacher2, testMockObj.testTeacher3, testMockObj.testTeacher4, testMockObj.testTeacher5]);
+testMockObj.testPhotos.add([testMockObj.testPhoto1, testMockObj.testPhoto2, testMockObj.testPhoto3, testMockObj.testPhoto4, testMockObj.testPhoto5]);
 testMockObj.testPartner1.set("teacherIdList", [1, 2, 3, 4, 5]);
 testMockObj.testPartner2.set("teacherIdList", [1, 2, 3, 4, 5]);
 testMockObj.testPartner3.set("teacherIdList", [1, 2, 3, 4, 5]);
 testMockObj.testPartner4.set("teacherIdList", [1, 2, 3, 4, 5]);
 testMockObj.testPartner5.set("teacherIdList", [1, 2, 3, 4, 5]);
+
+testMockObj.testPartner1.set("classImgIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner2.set("classImgIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner3.set("classImgIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner4.set("classImgIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner5.set("classImgIdList", [1, 2, 3, 4, 5]);
 testMockObj.testPartner1.set("teacherList", testMockObj.testTeachers);
 testMockObj.testPartner2.set("teacherList", testMockObj.testTeachers);
 testMockObj.testPartner3.set("teacherList", testMockObj.testTeachers);
 testMockObj.testPartner4.set("teacherList", testMockObj.testTeachers);
 testMockObj.testPartner5.set("teacherList", testMockObj.testTeachers);
+testMockObj.testPartner1.set("classImgList", testMockObj.testPhotos);
+testMockObj.testPartner2.set("classImgList", testMockObj.testPhotos);
+testMockObj.testPartner3.set("classImgList", testMockObj.testPhotos);
+testMockObj.testPartner4.set("classImgList", testMockObj.testPhotos);
+testMockObj.testPartner5.set("classImgList", testMockObj.testPhotos);
+
 testMockObj.testPartners.add([testMockObj.testPartner1, testMockObj.testPartner2, testMockObj.testPartner3, testMockObj.testPartner4, testMockObj.testPartner5]);
 
 testMockObj.testBooking1.set("course", testMockObj.testCourse1);

@@ -1183,56 +1183,56 @@
             <label class="col-sm-3 control-label">机构全称:</label>
             <div class="col-sm-3 form-control-static">
                 <span class="detail"><%= wholeName  %></span>
-                <span class="edit"><input type="text" class="form-control" name="wholeName"/></span>
+                <span class="edit"><input type="text" class="form-control" id="wholeName" name="wholeName"/></span>
             </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">执照:</label>
             <div class="col-sm-3 form-control-static">
                 <span class="detail"><%= license  %></span>
-                <span class="edit"><input type="text" class="form-control" name="license"/></span>
+                <span class="edit"><input type="text" class="form-control" id="license" name="license"/></span>
             </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">机构号:</label>
             <div class="col-sm-3 form-control-static">
                 <span class="detail"><%= organizationNum  %></span>
-                <span class="edit"><input type="text" class="form-control" name="organizationNum"/></span>
+                <span class="edit"><input type="text" class="form-control" id="organizationNum" name="organizationNum"/></span>
             </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">reference:</label>
             <div class="col-sm-3 form-control-static">
                 <span class="detail"><%= reference  %></span>
-                <span class="edit"><input type="text" class="form-control" name="reference"/></span>
+                <span class="edit"><input type="text" class="form-control" id="reference" name="reference"/></span>
             </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">电话:</label>
             <div class="col-sm-3 form-control-static">
                 <span class="detail"><%= phone  %></span>
-                <span class="edit"><input type="text" class="form-control" name="phone"/></span>
+                <span class="edit"><input type="text" class="form-control" id="phone" name="phone"/></span>
             </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">状态:</label>
             <div class="col-sm-3 form-control-static">
                 <span class="detail"><%= status  %></span>
-                <span class="edit"><input type="text" class="form-control" name="status"/></span>
+                <span class="edit"><input type="text" class="form-control" id="status" name="status"/></span>
             </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">学校名:</label>
             <div class="col-sm-3 form-control-static">
                 <span class="detail"><%= instName  %></span>
-                <span class="edit"><input type="text" class="form-control" name="instName"/></span>
+                <span class="edit"><input type="text" class="form-control" id="instName" name="instName"/></span>
             </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">logo:</label>
             <div class="col-sm-3 form-control-static">
                 <span class="detail"><img class="preview" src="<%= logoUrl %>"/></span>
-                <span class="edit"><input type="file" name="logoUrl"/><img class="preview" id="logoPreview"
+                <span class="edit"><input type="file" id="logoUrl" name="logoUrl"/><img class="preview" id="logoPreview"
                                                                        src="<%= logoUrl %>"/></span>
             </div>
         </div>
@@ -1449,6 +1449,21 @@
         <a class="removeTeacher" id="remove_<%= count %>">删除教师</a></div> 
         <img id="imgPreview<%= count %>" src="<%= entry.imgUrl %>" style="float:right; max-height:250px; max-width:220px; background-color:#ddd" />
         <div class="subBlock"><label class="introLabel">教师简介<%= count %> </label><textarea style="width:300px;height:100px" class="intro" name="intro<%= count %>"><%= entry.intro %></textarea></div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_photoInputBlock">
+    <div class="photoBlock" id="photoBlock<%= count %>" style="width:30%; height:200px; float:left">
+        <img id="imgPreview<%= count %>" style="float:right; max-height:100%; max-width:220px; background-color:#ddd" />
+        <div class="subBlock"><input type="file" class="img" id="imgUrl<%= count %>" name="imgUrl<%= count %>"/></div>
+        <a class="removePhoto" id="remove_<%= count %>">删除照片</a></div> 
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_photoEditBlock">
+    <div class="photoBlock" id="photoBlock<%= count %>" data-id="<%= entry.photoId %>"style="width:30%; height:200px; float:left">
+        <img id="imgPreview<%= count %>" src="<%= entry.imgUrl %>" style="float:right; max-height:100%; max-width:220px; background-color:#ddd" />
+        <a class="removePhoto" id="remove_<%= count %>">删除照片</a>
     </div>
 </script>
 

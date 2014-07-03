@@ -28,7 +28,7 @@ var Partner = Backbone.Model.extend({
     urlRoot: Constants.origin + '/p-api/v1.0/partner/partner',
 
     parse: function (data) {
-        var json = {}, urls = [], teachers = [], teacherIds = [];
+        var json = {}, photos = [], photoIds = [], teachers = [], teacherIds = [];
         if ( typeof data !== 'undefined') {
             
             json.partnerId = parseInt(data.partnerId, 10);
@@ -43,11 +43,17 @@ var Partner = Backbone.Model.extend({
             json.instName = decodeURI(data.instName);
             json.logoUrl = decodeURI(data.logoUrl);
 
-            if (json.classImgUrls) {
-                for (var i = 0; i < data.classImgUrls.length; i++ ) {
-                    urls[i] = decodeURI(data.classImgUrls[i]);
+            if (json.classImgList) {
+                for (var i = 0; i < data.classImgList.length; i++ ) {
+                    photos[i] = decodeURI(data.classImgList[i]);
                 }
-                json.classImgUrls = urls;
+                json.classImgList = photos;
+            }
+            if (json.classImgIdList) {
+                for (var i = 0; i < data.classImgIdList.length; i++ ) {
+                    photoIds[i] = Utilities.toInt(data.classImgIdList[i]);
+                }
+                json.classImgList = photoIds;
             }
 
             if (json.teacherList) {
@@ -71,11 +77,16 @@ var Partner = Backbone.Model.extend({
         return data;
     },
     _toJSON: function () {
-        var json = _.clone(this.attributes);
+        var json = _.clone(this.attributes), i;
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         if (json.teacherList) {
-            for (var i = 0; i < json.teacherList.length; i++ ) {
+            for (i = 0; i < json.teacherList.length; i++ ) {
                 json.teacherList[i] = json.teacherList.at(i)._toJSON();
+            }
+        }
+        if (json.classImgList) {
+            for (i = 0; i < json.classImgList.length; i++ ) {
+                json.classImgList[i] = json.classImgList.at(i)._toJSON();
             }
         }
         return json;
@@ -91,12 +102,11 @@ var Partner = Backbone.Model.extend({
         json.phone = encodeURI(json.phone);
         json.instName = encodeURI(json.instName);
         json.logoUrl = encodeURI(json.logoUrl);
-        if (json.classImgUrls) {
-            for (var i = 0; i < json.classImgUrls.length; i++ ) {
-                json.classImgUrls[i] = encodeURI(json.classImgUrls[i]);
+        if (json.classImgList) {
+            for (var i = 0; i < json.classImgList.length; i++ ) {
+                json.classImgList[i] = encodeURI(json.classImgList[i]);
             }
         }
-
         if (json.teacherList) {
             for (var i = 0; i < json.teacherList.length; i++ ) {
                 json.teacherList[i] = json.teacherList.at(i).toJSON();
