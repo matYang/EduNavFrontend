@@ -8,7 +8,7 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
     form:true,
     callback: "uploadTarget",
     initialize: function(params){
-        _.bindAll(this, "render", "bindEvents", "close", "addPhoto", "removePhoto", "reNumber", "findField");
+        _.bindAll(this, "render", "bindEvents", "close", "addPhoto", "removePhoto", "findField");
         this.fields = [];
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
@@ -55,17 +55,6 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
     successCallback: function () {
         app.navigate("manage/partner", true);
     },
-    submitAction: function () {
-        var i, id, $field, s;
-        for (i = 0; i < this.fields.length; i++ ) {
-            id = this.fields[i].get("fieldId");
-            $field = $("#" + id);
-            if (!$field.val()) {
-                $field.attr("type", "text").addClass("hidden").val(
-                    this.course.get(id.substr(0, id.length-1) + "Urls")[Utilities.toInt(id.substr(id.length-1, 1))]);
-            }
-        }
-    },
 
     findField: function (field, context) {
         return field.get("fieldId") === this.rejectId;
@@ -77,25 +66,6 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
         this.fields = _.reject(this.fields, this.findField, this);
         $("#teacherBlock" + id).remove();
         this.photoCount--;
-        this.reNumber();
-    },
-    reNumber: function () {
-        var $blocks = this.$photos.find(".teacherBlock"), count, $block, labelNum, preview;
-        for (count = 0; count < $blocks.length; count++) {
-            labelNum = (count+1);
-            $block = $($blocks[count]).attr("id", "teacherBlock" + labelNum);
-            $block.find(".name").attr("name", "name" + labelNum);
-            $block.find(".img").attr("name", "imgUrl" + labelNum).attr("id", "imgUrl" + labelNum);
-            $block.find(".intro").attr("name", "intro" + labelNum);
-            $block.find(".removeTeacher").attr("id", "remove_" + labelNum);
-            $block.find(".nameLabel").html("教师名" + labelNum);
-            $block.find(".imgLabel").html("教师照片" + labelNum);
-            $block.find(".introLabel").html("教师简介" + labelNum);
-            this.fields[count].set("name", "教师照片" + labelNum);
-            this.fields[count].set("fieldId", "imgUrl" + labelNum);
-            preview = $("#"+this.fields[count].get("previewId"));
-            $("#imgUrl"+labelNum).on("change", preview, this.displayImagePreview).on("keydown", Utilities.preventDefault);
-        }
     },
     addPhoto: function () {
         this.fields.push(new BaseField({

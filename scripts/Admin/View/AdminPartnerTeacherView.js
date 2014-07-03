@@ -55,18 +55,6 @@ var AdminPartnerAddTeacherView = BaseFormView.extend({
     successCallback: function () {
         app.navigate("manage/partner", true);
     },
-    submitAction: function () {
-        var i, id, $field, s;
-        for (i = 0; i < this.fields.length; i++ ) {
-            id = this.fields[i].get("fieldId");
-            $field = $("#" + id);
-            if (!$field.val()) {
-                $field.attr("type", "text").addClass("hidden").val(
-                    this.course.get(id.substr(0, id.length-1) + "Urls")[Utilities.toInt(id.substr(id.length-1, 1))]);
-            }
-        }
-    },
-
     findField: function (field, context) {
         return field.get("fieldId") === this.rejectId;
     },
