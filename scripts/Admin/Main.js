@@ -149,6 +149,9 @@ var AppRouter = Backbone.Router.extend({
 });
 
 (function () {
+    $.ajaxSetup({
+        cache: false
+    });
     app = new AppRouter ();
     Backbone.history.start();    
 })();
