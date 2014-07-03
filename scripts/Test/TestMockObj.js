@@ -3,7 +3,18 @@ testMockObj = {
     testMode: C_ENV_VAR === "REMOTE" ? false : true,
     testAdmin: (new Admin()).set("name", "admin1").set("phone", "2260000000"),
     testUser: new User(),
-    testPartner: new Partner(),
+    testPartners: new Partners(),
+    testPartner1: new Partner().set("partnerId", 1),
+    testPartner2: new Partner().set("partnerId", 2),
+    testPartner3: new Partner().set("partnerId", 3),
+    testPartner4: new Partner().set("partnerId", 4),
+    testPartner5: new Partner().set("partnerId", 5),
+    testTeachers: new Teachers(),
+    testTeacher1: new Teacher().set("teacherId", 1).set("name", "Teacher A"),
+    testTeacher2: new Teacher().set("teacherId", 2).set("name", "Teacher B"),
+    testTeacher3: new Teacher().set("teacherId", 3).set("name", "Teacher C"),
+    testTeacher4: new Teacher().set("teacherId", 4).set("name", "Teacher D"),
+    testTeacher5: new Teacher().set("teacherId", 5).set("name", "Teacher E"),
     testCourses: new Courses(),
     testCourse1: (new Course()).set("partnerIntro", longText).set("courseId", 1).set("courseName", "雅思英语").set("price", 10800).set("instName", "南京新东方").set("location", "南京市玄武区").set("cashback", 0),
     testCourse2: (new Course()).set("partnerIntro", longText).set("courseId", 2).set("courseName", "SAT").set("price", 10800).set("instName", "School A").set("location", "南京市白下区").set("cashback", 50),
@@ -209,6 +220,18 @@ testMockObj.testCoupons.add([testMockObj.testCoupon1,testMockObj.testCoupon2,tes
 testMockObj.testCredits.add([testMockObj.testCredit1,testMockObj.testCredit2,testMockObj.testCredit3,testMockObj.testCredit4,
                             testMockObj.testCredit5,testMockObj.testCredit6,testMockObj.testCredit7,testMockObj.testCredit8,
                             testMockObj.testCredit9,testMockObj.testCredit10,testMockObj.testCredit11,testMockObj.testCredit12]);
+testMockObj.testTeachers.add([testMockObj.testTeacher1, testMockObj.testTeacher2, testMockObj.testTeacher3, testMockObj.testTeacher4, testMockObj.testTeacher5]);
+testMockObj.testPartner1.set("teacherIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner2.set("teacherIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner3.set("teacherIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner4.set("teacherIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner5.set("teacherIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner1.set("teacherList", testMockObj.testTeachers);
+testMockObj.testPartner2.set("teacherList", testMockObj.testTeachers);
+testMockObj.testPartner3.set("teacherList", testMockObj.testTeachers);
+testMockObj.testPartner4.set("teacherList", testMockObj.testTeachers);
+testMockObj.testPartner5.set("teacherList", testMockObj.testTeachers);
+testMockObj.testPartners.add([testMockObj.testPartner1, testMockObj.testPartner2, testMockObj.testPartner3, testMockObj.testPartner4, testMockObj.testPartner5]);
 
 testMockObj.testBooking1.set("course", testMockObj.testCourse1);
 testMockObj.testBooking2.set("course", testMockObj.testCourse2);

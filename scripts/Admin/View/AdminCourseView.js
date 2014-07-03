@@ -4,10 +4,10 @@ var AdminCourseView = BaseFormView.extend({
     formElem: "adminCourseForm",
     template: _.template(tpl.get("adminCourse")),
     optionTemplate: _.template(tpl.get("simpleOption")),
-    selectTemplate: _.template("<select><option value='-1'>删除</option><%= options %></select>"),
+    selectTemplate: _.template("<select class='selectTeacher'><option value='-1'>删除</option><%= options %></select>"),
     submitButtonId: "coursePostSubmit",    
     initialize: function(params){
-        _.bindAll(this, "render", "bindEvents", "renderCategories", "renderSubCategories", "renderThirdCategories", "renderLocations", "renderL2Locations", "renderL3Locations", "getPartnerTeacherList", "close");
+        _.bindAll(this, "render", "bindEvents", "renderCategories", "renderSubCategories", "renderThirdCategories", "renderLocations", "renderL2Locations", "renderL3Locations", "fetchPartnerTeacherList", "submitAction", "close");
         BaseFormView.prototype.initialize.call(this);
         params = params || {};
         this.action = AdminApiResource.admin_course;
@@ -24,27 +24,27 @@ var AdminCourseView = BaseFormView.extend({
         } else {
             //Create new course
             this.create = true;
-            this.course = new Course();
-            this.render(this.course);
+            this.render(new Course());
         }
         
     },
     fetchPartnerTeacherList: function () {
         var that = this;
-        app.adminManager.fetchPartner(course.get("partnerId"), {        //Fetch all teachers belong to the partner (partner Id is supplied by admin input)
-            "success": function (teachers) {
+        app.adminManager.fetchPartner(this.model.get("partnerId"), {        //Fetch all teachers belong to the partner (partner Id is supplied by admin input)
+            "success": function (partner) {
+                teachers = partner.get("teacherList");
                 var buf = [], i, $teacherDom;
                 that.partnerTeacherList = teachers;
                 for (i = 0; i < that.partnerTeacherList.length; i++) {      //Build select List
                     buf[i] = that.optionTemplate({
-                        val: that.optionTemplatethat.partnerTeacherList.at(i).get("teacherId"), 
-                        text: that.optionTemplatethat.partnerTeacherList.at(i).get("name")
+                        val: that.partnerTeacherList.at(i).get("teacherId"), 
+                        text: that.partnerTeacherList.at(i).get("name")
                     });
                 }
                 that.teacherSelectHtml = that.selectTemplate({options: buf.join("")});         //This will be reused when admin adds more teachers
                 $teacherDom = $(".selectTeacher").empty().append(that.teacherSelectHtml);      //When this line of code is being excuted, the webpage should always have enough select tags for existing teachers in this course
-                for (i = 0; i < that.course.teacherIdList.length; i++ ) {
-                    $($teacherDom[i]).val(that.course.teacherIdList[i]);
+                for (i = 0; i < that.model.get("teacherIdList").length; i++ ) {
+                    $($teacherDom[i]).val(that.model.get("teacherIdList")[i]);
                 }
             },
             "error": function () {
@@ -53,7 +53,7 @@ var AdminCourseView = BaseFormView.extend({
         });
     },
     render: function (course) {
-        this.course = course.clone();
+        this.model = course.clone();
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.$el.append(this.template(course._toJSON()));
@@ -81,7 +81,7 @@ var AdminCourseView = BaseFormView.extend({
         $("#createSimilarCourse").on("click", function() {
             that.modelCopy = that.model;
             that.model = that.modelCopy.clone().set("courseId", -1);;
-            var json = that.course._toJSON(), attr;
+            var json = that.model._toJSON(), attr;
             $("#adminCourseForm").find(".edit").show();
             $("#adminCourseForm").find(".detail").hide();
             for (attr in json) {
@@ -104,7 +104,7 @@ var AdminCourseView = BaseFormView.extend({
         $("#editCourse").on("click", function () {
             $("#adminCourseForm").find(".edit").show();
             $("#adminCourseForm").find(".detail").hide(); 
-            var json = that.course._toJSON();
+            var json = that.model._toJSON();
             for (var attr in json) {
                 var $edit = $("input[name=" + attr + "]");
                 if ($edit.attr("type") === "checkbox") {
@@ -112,7 +112,7 @@ var AdminCourseView = BaseFormView.extend({
                 } else if ($edit.prop("tagName") === "TEXTAREA") {
                     $edit.html(json[attr]);
                 } else if ($edit.hasClass("date")) {
-                    $edit.val(Utilities.getDateString(that.course.get(attr)));
+                    $edit.val(Utilities.getDateString(that.model.get(attr)));
                 } else {
                     $edit.val(json[attr]);
                 }
@@ -159,10 +159,10 @@ var AdminCourseView = BaseFormView.extend({
                 }
             });
         $("#addTeacher").on("click", function () {
-            if ($("#newTeachers").children("div").length + $("#existingTeachers").children("div").length >= 4) {
+            if (($("#newTeachers").children("select").length + $("#existingTeachers").children("select").length) >= 4) {
                 return;
             } else {
-                $("#newTeachers").append();
+                $("#newTeachers").append(that.teacherSelectHtml);
             }
         });
     },  
@@ -259,14 +259,14 @@ var AdminCourseView = BaseFormView.extend({
         $("select[name=district]").empty().append(buf.join()).val(first);
     },
     submitAction: function (e) {
-        var $teachers = $(".selectTeacher"), i, idList, count = 0, id;
+        var $teachers = $(".selectTeacher"), i, idList = [], count = 0, id;
         for (i = 0; i < $teachers.length; i++) {
             id = $($teachers[i]).val();
             if (id !== -1) {
                 idList[count++] = id;
             }
         }
-        this.model.teacherIdList = idList;
+        this.model.set("teacherIdList", idList);
         app.adminManager.updateCourse(this.model, {
             "success": function (model) {
                 app.navigate("manage/course/" + model.get("courseId"), true);
@@ -283,6 +283,7 @@ var AdminCourseView = BaseFormView.extend({
             $("select[name=subCategory]").off();
             $("select[name=province]").off();
             $("select[name=city]").off();
+            $("input[name=partnerId]").off();
             this.isClosed = true;
             this.$el.empty();
         }

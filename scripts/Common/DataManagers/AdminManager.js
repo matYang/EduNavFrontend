@@ -168,7 +168,7 @@
         var partner = new Partner();
         
         if (testMockObj.testMode) {
-            callback.success(testMockObj.testPartner);
+            callback.success(testMockObj.testPartner1);
             return;
         }
         if (!this.sessionManager.hasSession()){
@@ -183,6 +183,7 @@
 
             success:function(model, response){
                 if(callback){
+                    debugger;
                     callback.success(partner);
                 }
             },

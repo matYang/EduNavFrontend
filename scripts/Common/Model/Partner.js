@@ -15,7 +15,8 @@ var Partner = Backbone.Model.extend({
             'logoUrl':'',
 
             'classImgUrls': [],
-            'teachers': new Teachers(),
+            'teacherList': [],
+            'teacherIdList': [],
             
             'creationTime': new Date(),
             'lastLogin': new Date()
@@ -26,7 +27,7 @@ var Partner = Backbone.Model.extend({
     urlRoot: Constants.origin + '/p-api/v1.0/partner/partner',
 
     parse: function (data) {
-        var json = {}, urls = [], teachers = [];
+        var json = {}, urls = [], teachers = [], teacherIds = [];
         if ( typeof data !== 'undefined') {
             
             json.partnerId = parseInt(data.partnerId, 10);
@@ -48,11 +49,18 @@ var Partner = Backbone.Model.extend({
                 json.classImgUrls = urls;
             }
 
-            if (json.teachers) {
-                for (var i = 0; i < data.teachers.length; i++ ) {
-                    teachers[i] = new Teacher(data.teachers[i], {parse: true});
+            if (json.teacherList) {
+                for (var i = 0; i < data.teacherList.length; i++ ) {
+                    teachers[i] = new Teacher(data.teacherList[i], {parse: true});
                 }
-                json.teachers = teachers;
+                json.teacherList = teachers;
+            }
+
+            if (json.teacherIdList) {
+                for (var i = 0; i < data.teacherIdList.length; i++ ) {
+                    teacherIds[i] = Utilities.toInt(data.teacherIds[i]);
+                }
+                json.teacherIdList = teacherIds;
             }
 
             json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
@@ -64,9 +72,9 @@ var Partner = Backbone.Model.extend({
     _toJSON: function () {
         var json = _.clone(this.attributes);
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
-        if (json.teachers) {
+        if (json.teacherList) {
             for (var i = 0; i < json.teachers.length; i++ ) {
-                json.teachers[i] = json.teachers[i]._toJSON();
+                json.teacherList[i] = json.teacherList.at(i)._toJSON();
             }
         }
         return json;
@@ -88,9 +96,9 @@ var Partner = Backbone.Model.extend({
             }
         }
 
-        if (json.teachers) {
-            for (var i = 0; i < json.teachers.length; i++ ) {
-                json.teachers[i] = json.teachers[i].toJSON();
+        if (json.teacherList) {
+            for (var i = 0; i < json.teacherList.length; i++ ) {
+                json.teacherList[i] = json.teacherList.at(i).toJSON();
             }
         }
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));

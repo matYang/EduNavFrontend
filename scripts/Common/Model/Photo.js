@@ -1,4 +1,4 @@
-var Classroom = new Backbone.Model.extend({
+var Photo = new Backbone.Model.extend({
     defaults: function () {
         return {
             'photoId': -1,
@@ -39,6 +39,7 @@ var Classroom = new Backbone.Model.extend({
         json.title = encodeURI(json.title);
         json.description = encodeURI(json.description);
         json.imgUrl = encodeURI(json.imgUrl);
+
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         return json;
     }
