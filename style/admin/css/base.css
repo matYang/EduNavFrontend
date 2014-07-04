@@ -243,3 +243,8 @@ dd.wrong {
     float:left;
     width:250px;
 }
+
+input[type=checkbox] {
+    width:20px;
+    height:20px;
+}

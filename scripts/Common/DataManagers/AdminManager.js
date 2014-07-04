@@ -433,7 +433,7 @@
     /****************
     *   Course Related
     ****************/
-    //multi-form
+    //JSON, use for both create and update
     AdminManager.prototype.updateCourse = function(course, callback) {
         if (!this.sessionManager.hasSession()){
             Info.warn('AdminManager::updateBooking:: session does not exist, exit');

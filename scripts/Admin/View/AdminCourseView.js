@@ -10,7 +10,6 @@ var AdminCourseView = BaseFormView.extend({
         _.bindAll(this, "render", "bindEvents", "renderCategories", "renderSubCategories", "renderThirdCategories", "renderLocations", "renderL2Locations", "renderL3Locations", "fetchPartnerTeacherList", "submitAction", "close");
         BaseFormView.prototype.initialize.call(this);
         params = params || {};
-        this.action = AdminApiResource.admin_course;
         this.create = false;
         if (params.course) {
             this.render(params.course);
@@ -37,7 +36,7 @@ var AdminCourseView = BaseFormView.extend({
                 that.partnerTeacherList = teachers;
                 for (i = 0; i < that.partnerTeacherList.length; i++) {      //Build select List
                     buf[i] = that.optionTemplate({
-                        val: that.partnerTeacherList.at(i).get("teacherId"), 
+                        val: that.partnerTeacherList.at(i).get("teacherId"),
                         text: that.partnerTeacherList.at(i).get("name")
                     });
                 }
@@ -48,7 +47,7 @@ var AdminCourseView = BaseFormView.extend({
                 }
             },
             "error": function () {
-                alert("invalid partnerId, or network is down");
+                alert("合作伙伴ID无效");
             }
         });
     },
@@ -70,7 +69,6 @@ var AdminCourseView = BaseFormView.extend({
         }
         app.generalManager.getCategories(this);
         app.generalManager.getLocations(this);
-        $("#adminCourseForm").children("div:even").css("background-color","#f0f0f0");
         $("#searchResult").addClass("hidden");
         this.bindEvents();
     },
@@ -160,7 +158,7 @@ var AdminCourseView = BaseFormView.extend({
             });
         $("#addTeacher").on("click", function () {
             if (!that.teacherSelectHtml) {
-                alert("你还没有输入合作伙伴ID，或者改合作伙伴尚未建立教师档案");
+                alert("你还没有输入合作伙伴ID，或者该合作伙伴尚未建立教师档案");
             }
             if (($("#newTeachers").children("select").length + $("#existingTeachers").children("select").length) >= 4) {
                 return;
