@@ -3,11 +3,10 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
     teacherBlockTemplate: _.template(tpl.get("photoInputBlock")),
     template: _.template(tpl.get("adminPartnerAdd")),
     formElem: "adminPartnerAddForm",
-    
     submitButtonId: "createSubmit",
-    form:true,
     callback: "uploadTarget",
-    initialize: function(params){
+    form: true,
+    initialize: function (params) {
         _.bindAll(this, "render", "bindEvents", "close", "addPhoto", "removePhoto", "findField");
         this.fields = [];
         BaseFormView.prototype.initialize.call(this);
@@ -17,7 +16,7 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
         this.create = false;
         if (params.partner) {
             this.render(params.partner);
-        } else if (params.partnerId){
+        } else if (params.partnerId) {
             app.adminManager.fetchPartner(params.partnerId, {
                 success: this.render,
                 error: function() {
@@ -29,9 +28,9 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
             this.create = true;
             this.render(new Partner());
         }
-        
+
     },
- 
+
     render: function (partner) {
         this.partner = partner;
         this.photoCount = 1;
@@ -51,7 +50,7 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
             var id = Utilities.toInt(Utilities.getId(e.target.id));
             that.removeTeacherInfo(id);
         });
-    },  
+    },
     successCallback: function () {
         app.navigate("manage/partner", true);
     },
@@ -76,8 +75,8 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
             previewId: "imgPreview" + this.photoCount
         }));
         this.$photos.append(this.teacherBlockTemplate({count: this.photoCount}));
-        var preview = $("#"+this.fields[this.photoCount-1].get("previewId")), that = this;
-        $("#imgUrl"+(this.photoCount)).on("change", preview, function (e) {
+        var preview = $("#" + this.fields[this.photoCount - 1].get("previewId")), that = this;
+        $("#imgUrl" + (this.photoCount)).on("change", preview, function (e) {
             that.displayImagePreview(e);
         }).on("keydown", Utilities.preventDefault);
         this.photoCount++;
@@ -95,33 +94,30 @@ var AdminPartnerManagePhotoView = BaseFormView.extend({
     photoBlockTemplate: _.template(tpl.get("photoEditBlock")),
     template: _.template(tpl.get("adminPartnerEdit")),
     formElem: "adminPartnerEditForm",
-    
     submitButtonId: "editSubmit",
-    form:false,
-    callback: "uploadTarget",
-    initialize: function(params){
+    form: false,
+    initialize: function (params) {
         _.bindAll(this, "render", "bindEvents", "close", "removePhoto");
         this.fields = [];
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
         params = params || {};
-        this.action = AdminApiResource.admin_partner;
         this.create = false;
         if (params.partner) {
             this.render(params.partner);
-        } else if (params.partnerId){
+        } else if (params.partnerId) {
             app.adminManager.fetchPartner(params.partnerId, {
                 success: this.render,
-                error: function() {
+                error: function () {
                     app.navigate("manage", true);
                 }
             });
         } else {
             app.navigate("manage", true);
         }
-        
+
     },
- 
+
     render: function (partner) {
         this.partner = partner;
         this.$el.append(this.template({entryTemplate: this.photoBlockTemplate, partner: partner._toJSON(), list: partner._toJSON().classImgList}));
@@ -139,7 +135,7 @@ var AdminPartnerManagePhotoView = BaseFormView.extend({
             var id = Utilities.toInt(Utilities.getId(e.target.id));
             that.removePhoto(id);
         });
-    },  
+    },
     successCallback: function () {
         app.navigate("manage/partner/" + this.partner.get("partnerId"), true);
     },
@@ -150,7 +146,7 @@ var AdminPartnerManagePhotoView = BaseFormView.extend({
         $("#photoBlock" + id).remove();
     },
     submitAction: function () {
-        var i, $blocks = this.$photos.find(".photoBlock"), $block, id, photos = new Photos(), photo;
+        var i, $blocks = this.$photos.find(".photoBlock"), $block, id, photos = new Photos();
         for (i = 0; i < $blocks.length; i++) {
             $block = $($blocks[i]);
             id = Utilities.toInt($block.data("id"));
