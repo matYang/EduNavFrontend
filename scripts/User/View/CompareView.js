@@ -1,9 +1,10 @@
 var CompareView = Backbone.View.extend({
     el: "#content",
+    template: _.template(tpl.get("compareView")),
     initialize: function () {
         // $("#viewStyle").attr("href", "style/css/compare.css");
+        $(document).scrollTop(0);
         _.bindAll(this, "load", "render", "bindEvents", "renderError", "close");
-        this.template = _.template(tpl.get("compareView"));
         this.load();
     },
     load: function () {
