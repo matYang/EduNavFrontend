@@ -38,7 +38,7 @@ module.exports = function(grunt) {
               "scripts/Common/DataManagers/SessionManager.js",
               "scripts/Common/DataManagers/AdminManager.js",
               "scripts/Admin/Manager/*.js",
-              "scripts/Common/View/shared/*.js",
+              "scripts/Common/View/Shared/*.js",
               "scripts/Admin/View/*.js",
               "scripts/Admin/Main.js"
               ],
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
       //         "scripts/Common/DataManagers/GeneralManager.js",
       //         "scripts/Common/DataManagers/SessionManager.js",
       //         "scripts/Common/DataManagers/PartnerManager.js",
-      //         "scripts/Common/View/shared/*.js",
+      //         "scripts/Common/View/Shared/*.js",
       //         "scripts/Common/View/*.js",
       //         "scripts/Partner/Main.js"
       //         ],
@@ -86,7 +86,7 @@ module.exports = function(grunt) {
               "scripts/Common/DataManagers/GeneralManager.js",
               "scripts/Common/DataManagers/SessionManager.js",
               "scripts/Common/DataManagers/UserManager.js",
-              "scripts/Common/View/shared/*.js",
+              "scripts/Common/View/Shared/*.js",
               "scripts/Common/View/*.js",
               "scripts/User/baiduLoad",
               "scripts/User/View/MyPage/*.js",
