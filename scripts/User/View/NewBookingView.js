@@ -4,7 +4,7 @@ var NewBookingView = BaseFormView.extend({
     submitButtonId:"initBooking",
     initialize: function (params) {
         this.isClosed = false;
-        _.bindAll(this, "render", "bindEvents", "bookingSuccess", "login", "loginSuccess", "loginError", "close");
+        _.bindAll(this, "render", "bindEvents", "bookingSuccess", "login", "loginCheck", "loginSuccess", "loginError", "close");
         app.viewRegistration.register(this);
         // $("#viewStyle").attr("href", "style/css/booking.css");
         this.template = _.template(tpl.get("newBooking"));
@@ -72,6 +72,15 @@ var NewBookingView = BaseFormView.extend({
         }
     },
     render: function (course) {
+        var date = new Date();
+        if (date.getTime() > course.get("cutoffDate").getTime()) {
+            Info.displayNotice("该课程报名已经结束，看一下其他类似的课程吧。")
+            var sr = new CourseSearchRepresentation();
+            sr.set("category", course.get("category"));
+            sr.set("subCategory", course.get("subCategory"));
+            sr.set("subSubCategory", course.get("subSubCategory"));
+            app.navigate("search/" + sr.toQueryString(), {replace: true, trigger: true});
+        }
         this.model = new Booking();
         this.model.set("course", course);
         this.$el.append(this.template(this.model._toJSON()));
@@ -126,15 +135,9 @@ var NewBookingView = BaseFormView.extend({
             if (this.get("userId") >= 0) {
                 $("#booking_loginbox").addClass("hidden");
                 $("#booking_loginnote").addClass("hidden");
-                $("#"+ that.submitButtonId).removeClass("hidden");
-                $("#bookingDesc").removeClass("hidden");
-                $("#initBooking").removeClass("")
             } else {
                 $("#booking_loginbox").removeClass("hidden");
                 $("#booking_loginnote").removeClass("hidden");
-                $("#"+ that.submitButtonId).addClass("hidden");
-                $("#bookingDesc").addClass("hidden");
-                $("#initBooking").addClass("")
             }
             app.topBarView.reRender();
         })
@@ -163,8 +166,6 @@ var NewBookingView = BaseFormView.extend({
                 e.preventDefault();
                 app.navigate("forgetPassword/", true);
             });
-            $("#"+ this.submitButtonId).addClass("hidden");
-            $("#bookingDesc").addClass("hidden");
         }
         $("#booking_date").on("keypress", function(e){
             e.preventDefault();
@@ -173,6 +174,7 @@ var NewBookingView = BaseFormView.extend({
             buttonImage: "calendar.gif",
             buttonText: "Calendar",
             minDate: new Date (),
+            maxDate: this.model.get("course").get("cutoffDate"),
             onSelect: function (text, inst) {
                 var d = new Date ();
                 d.setDate(inst.selectedDay);
@@ -183,6 +185,12 @@ var NewBookingView = BaseFormView.extend({
             }
         });
         BaseFormView.prototype.bindEvents.call(this);
+    },
+    loginCheck: function() {
+        if (!app.sessionManager.hasSession()) {
+            Info.displayNotice("您尚未登录，请先登录再进行预定");
+            return;
+        }
     },
     submitAction:function () {
         var that = this;
@@ -211,7 +219,7 @@ var NewBookingView = BaseFormView.extend({
     },
     close: function () {
         if (!this.isClosed) {
-            $("#booking_date").datepicker( "destroy" );
+            $("#booking_date").datepicker("destroy");
             this.$el.empty();
             this.isClosed = true;
         }
