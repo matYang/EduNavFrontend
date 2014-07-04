@@ -31,11 +31,13 @@ var SearchView = Backbone.View.extend({
                     this.searchRepresentation = new CourseSearchRepresentation(); 
                     this.searchRepresentation.castFromQuery(params.searchKey);
                     app.storage.setSearchRepresentationCache(this.searchRepresentation);
-                    this.srs[this.searchRepresentation.get("category")] = this.searchRepresentation;
                 } catch (e) {
                     app.navigate("search", {replace: true, trigger: false});
                     this.searchRepresentation = new CourseSearchRepresentation();
                 }
+            }
+            if (this.searchRepresentation.get("category")) {
+                this.srs[this.searchRepresentation.get("category")] = this.searchRepresentation;
             }
             this.$el.append(this.template);
             this.compareWidgetView = new CompareWidgetView();

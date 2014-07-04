@@ -8,11 +8,10 @@ module.exports = function(grunt) {
           "scripts/Lib/LoadFirst/*min.js",
           "scripts/Lib/backbone-min.js",
           "scripts/Lib/jquery-ui-1.10.0.custom.min.js",
+          "scripts/Lib/datepicker-zh.js",
           "scripts/Lib/jquery.placeholder.min.js",
           "scripts/Lib/jquery.smooth-scroll.min.js",
-          "scripts/Lib/json2.js",
-          "scripts/Lib/DD_belatedPNG_0.0.8a.js",
-          "scripts/Lib/baiduMap.js",
+          "scripts/Lib/json2.js"
         ],
         dest: 'build/Common.js'
      },
@@ -39,7 +38,7 @@ module.exports = function(grunt) {
               "scripts/Common/DataManagers/SessionManager.js",
               "scripts/Common/DataManagers/AdminManager.js",
               "scripts/Admin/Manager/*.js",
-              "scripts/Common/View/shared/*.js",
+              "scripts/Common/View/Shared/*.js",
               "scripts/Admin/View/*.js",
               "scripts/Admin/Main.js"
               ],
@@ -66,7 +65,7 @@ module.exports = function(grunt) {
       //         "scripts/Common/DataManagers/GeneralManager.js",
       //         "scripts/Common/DataManagers/SessionManager.js",
       //         "scripts/Common/DataManagers/PartnerManager.js",
-      //         "scripts/Common/View/shared/*.js",
+      //         "scripts/Common/View/Shared/*.js",
       //         "scripts/Common/View/*.js",
       //         "scripts/Partner/Main.js"
       //         ],
@@ -87,8 +86,9 @@ module.exports = function(grunt) {
               "scripts/Common/DataManagers/GeneralManager.js",
               "scripts/Common/DataManagers/SessionManager.js",
               "scripts/Common/DataManagers/UserManager.js",
-              "scripts/Common/View/shared/*.js",
+              "scripts/Common/View/Shared/*.js",
               "scripts/Common/View/*.js",
+              "scripts/User/baiduLoad",
               "scripts/User/View/MyPage/*.js",
               "scripts/User/View/*.js",
               "scripts/User/Main.js"
