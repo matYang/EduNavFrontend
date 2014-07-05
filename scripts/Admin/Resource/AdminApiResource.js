@@ -26,7 +26,11 @@
                     changePassword: '/changePassword'
                 },
                 'partner': {
-                    partner: '/partner'
+                    partner: '/partner',
+                    postClassPhoto: '/postClassPhoto',
+                    updateClassPhoto: '/updateClassPhoto',
+                    postTeacher: '/postTeacher',
+                    updateTeacher: '/updateTeacher',
                 },
                 'user': {
                     user: '/user'
@@ -56,7 +60,12 @@
                 admin_partner: api_maker('partner', 'partner'),
                 admin_user: api_maker('user', 'user'),
                 admin_booking: api_maker('booking', 'booking'),
-                admin_course: api_maker('course', 'course')
+                admin_course: api_maker('course', 'course'),
+
+                admin_postTeacher: api_maker('partner', 'postTeacher'),
+                admin_updateTeacher: api_maker('partner', 'updateTeacher'),
+                admin_postPhoto: api_maker('partner', 'postClassPhoto'),
+                admin_updatePhoto: api_maker('partner', 'updateClassPhoto'),
             };
         };
 

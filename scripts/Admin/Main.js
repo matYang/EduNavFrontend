@@ -11,8 +11,12 @@ var AppRouter = Backbone.Router.extend({
         "manage/course/:id": "course",
         "manage/user/:id": "user",
         "manage/booking/:id": "booking",
+        "manage/addPhoto/:id": "addPhoto",
+        "manage/managePhoto/:id": "managePhoto",
+        "manage/addTeacher/:id": "addTeacher",
+        "manage/manageTeacher/:id": "manageTeacher",
+
         "manage/partner/:id": "partner",
-        "manage/partnerPhoto/:id": "partnerPhoto",
         "manage/admin/:id": "admin",
         "manage": "manage",
         "*default" : "defaultRoute"
@@ -114,14 +118,44 @@ var AppRouter = Backbone.Router.extend({
             this.userView = new AdminPartnerView({partnerId:id});
         }
     },
-    partnerPhoto: function (id) {
+    addPhoto: function (id) {
         if (!this.sessionManager.hasSession()) {
             this.navigate("login", {trigger:true, replace:true});
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
         }
         if (id) {
-            this.userView = new AdminPartnerPhotoView({partnerId:id});
+            this.userView = new AdminPartnerAddPhotoView({partnerId:id});
+        }
+    },
+    managePhoto: function (id) {
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("login", {trigger:true, replace:true});
+        } else if (!this.baseView) {
+            this.baseView = new AdminBaseView(this.sessionManager);
+        }
+        if (id) {
+            this.userView = new AdminPartnerManagePhotoView({partnerId:id});
+        }
+    },
+    addTeacher: function (id) {
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("login", {trigger:true, replace:true});
+        } else if (!this.baseView) {
+            this.baseView = new AdminBaseView(this.sessionManager);
+        }
+        if (id) {
+            this.userView = new AdminPartnerAddTeacherView({partnerId:id});
+        }
+    },
+    manageTeacher: function (id) {
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("login", {trigger:true, replace:true});
+        } else if (!this.baseView) {
+            this.baseView = new AdminBaseView(this.sessionManager);
+        }
+        if (id) {
+            this.userView = new AdminPartnerManageTeacherView({partnerId:id});
         }
     },
     booking: function (id) {

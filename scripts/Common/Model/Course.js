@@ -76,12 +76,10 @@ var Course = Backbone.Model.extend({
             'cashbackDate': new Date(),
             'bookingType': undefined,
 
-            'classImgUrls': [],
-            'teacherIntros': [],
-            'teacherImgUrls': [],
-            'teacherNames': [],
-
-
+            'classPhotoList': [],
+            'classPhotoIdList': [],
+            'teacherList': [],
+            'teacherIdList': []
         };
     },
     idAttribute: 'courseId',

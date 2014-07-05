@@ -168,7 +168,7 @@
         var partner = new Partner();
         
         if (testMockObj.testMode) {
-            callback.success(testMockObj.testPartner);
+            callback.success(testMockObj.testPartner1);
             return;
         }
         if (!this.sessionManager.hasSession()){
@@ -181,6 +181,88 @@
         partner.fetch({
             dataType:'json',
 
+            success:function(model, response){
+                if(callback){
+                    callback.success(partner);
+                }
+            },
+            error: function(model, response){
+                Info.warn('PartnerManager::fetchPartner:: fetch failed with response:');
+                Info.warn(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
+    AdminManager.prototype.updatePartner = function(partner, callback){
+        var self = this;
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testPartner1);
+            return;
+        }
+        if (!this.sessionManager.hasSession()){
+            Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
+            return;
+        }
+        
+        partner.overrideUrl(ApiResource.partner_partner);
+        partner.save({}, {
+            dataType:'json',
+            success:function(model, response){
+                if(callback){
+                    callback.success(partner);
+                }
+            },
+            error: function(model, response){
+                Info.warn('PartnerManager::fetchPartner:: fetch failed with response:');
+                Info.warn(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
+    AdminManager.prototype.updatePhoto = function(partner, callback){
+        var self = this;
+        if (!this.sessionManager.hasSession()){
+            Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
+            return;
+        }
+        partner.overrideUrl(ApiResource.admin_updatePhoto + "/" +
+                            partner.get("partnerId") + "?totalNumber=" +
+                            partner.get("classImgList").length);
+        partner.save({}, {
+            dataType:'json',
+            success:function(model, response){
+                if(callback){
+                    callback.success(partner);
+                }
+            },
+            error: function(model, response){
+                Info.warn('PartnerManager::fetchPartner:: fetch failed with response:');
+                Info.warn(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
+    AdminManager.prototype.updateTeacher = function(partner, callback){
+        var self = this;
+        if (!this.sessionManager.hasSession()){
+            Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
+            return;
+        }
+        
+        partner.overrideUrl(ApiResource.admin_updateTeacher + "/" +
+                            partner.get("partnerId") + "?totalNumber=" +
+                            partner.get("teacherList").length);
+        partner.save({}, {
+            dataType:'json',
             success:function(model, response){
                 if(callback){
                     callback.success(partner);
@@ -404,7 +486,29 @@
     /****************
     *   Course Related
     ****************/
-    //multi-form
-
+    //JSON, use for both create and update
+    AdminManager.prototype.updateCourse = function(course, callback) {
+        if (!this.sessionManager.hasSession()){
+            Info.warn('AdminManager::updateBooking:: session does not exist, exit');
+            return;
+        }
+        
+        course.overrideUrl(AdminApiResource.admin_course);
+        course.save({},{
+            dataType:'json',
+            success:function(model, response){
+                if(callback){
+                    callback.success(course);
+                }
+            },
+            error: function(model, response){
+                Info.warn('AdminManager::updateBooking:: save failed with response:');
+                Info.warn(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
 
 }).call(this);

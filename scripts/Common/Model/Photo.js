@@ -1,4 +1,4 @@
-var Photo = new Backbone.Model.extend({
+var Photo = Backbone.Model.extend({
     defaults: function () {
         return {
             'photoId': -1,

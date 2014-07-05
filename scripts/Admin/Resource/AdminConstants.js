@@ -4,7 +4,7 @@ var AdminConstants = {
         "adminUserManage", "adminCourseManage","adminBookingManage", "adminAdminManage", "adminPartnerManage",
         "adminUserRow", "adminCourseRow", "adminBookingRow", "adminAdminRow", "adminPartnerRow",
         "adminUser", "adminCourse", "adminPartner", "adminBooking", "adminAdmin", "simpleOption",
-        "adminPartnerPhotoManage", "imageInputBlock", "teacherInputBlock"
+        "adminPartnerAdd", "adminPartnerEdit", "imageInputBlock", "teacherInputBlock", "teacherEditBlock", "photoInputBlock", "photoEditBlock"
     ],
     verifcationResult: {
         "rejected": 0,

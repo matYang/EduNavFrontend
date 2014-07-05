@@ -45,6 +45,8 @@
                     login: '/login',
                     logout: '/logout',
                     partner: '/partner',
+                    teacher: '/teacher',
+                    photo: '/photo',
                     forgetPassword: '/forgetPassword',
                     changePassword: '/changePassword',
                 },
