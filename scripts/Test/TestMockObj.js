@@ -1,6 +1,6 @@
 var longText = "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊";
 testMockObj = {
-    testMode: C_ENV_VAR === "REMOTE" ? false : true,
+    testMode: (C_ENV_VAR === "Local") ? false : false,
     testAdmin: (new Admin()).set("name", "admin1").set("phone", "2260000000"),
     testUser: new User(),
     testPartners: new Partners(),
@@ -236,11 +236,11 @@ testMockObj.testPartner3.set("teacherIdList", [1, 2, 3, 4, 5]);
 testMockObj.testPartner4.set("teacherIdList", [1, 2, 3, 4, 5]);
 testMockObj.testPartner5.set("teacherIdList", [1, 2, 3, 4, 5]);
 
-testMockObj.testPartner1.set("classImgIdList", [1, 2, 3, 4, 5]);
-testMockObj.testPartner2.set("classImgIdList", [1, 2, 3, 4, 5]);
-testMockObj.testPartner3.set("classImgIdList", [1, 2, 3, 4, 5]);
-testMockObj.testPartner4.set("classImgIdList", [1, 2, 3, 4, 5]);
-testMockObj.testPartner5.set("classImgIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner1.set("classPhotoIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner2.set("classPhotoIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner3.set("classPhotoIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner4.set("classPhotoIdList", [1, 2, 3, 4, 5]);
+testMockObj.testPartner5.set("classPhotoIdList", [1, 2, 3, 4, 5]);
 testMockObj.testPartner1.set("teacherList", testMockObj.testTeachers);
 testMockObj.testPartner2.set("teacherList", testMockObj.testTeachers);
 testMockObj.testPartner3.set("teacherList", testMockObj.testTeachers);
