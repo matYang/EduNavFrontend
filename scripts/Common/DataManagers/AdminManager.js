@@ -176,7 +176,7 @@
             return;
         }
         
-        partner.overrideUrl(ApiResource.partner_partner);
+        partner.overrideUrl(AdminApiResource.admin_partner);
         partner.set('partnerId', partnerId);
         partner.fetch({
             dataType:'json',
@@ -207,7 +207,7 @@
             return;
         }
         
-        partner.overrideUrl(ApiResource.partner_partner);
+        partner.overrideUrl(AdminApiResource.admin_partner);
         partner.save({}, {
             dataType:'json',
             success:function(model, response){
@@ -231,7 +231,7 @@
             Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
             return;
         }
-        partner.overrideUrl(ApiResource.admin_updatePhoto + "/" +
+        partner.overrideUrl(AdminApiResource.admin_updatePhoto + "/" +
                             partner.get("partnerId") + "?totalNumber=" +
                             partner.get("classPhotoList").length);
         partner.save({}, {
@@ -258,7 +258,7 @@
             return;
         }
         
-        partner.overrideUrl(ApiResource.admin_updateTeacher + "/" +
+        partner.overrideUrl(AdminApiResource.admin_updateTeacher + "/" +
                             partner.get("partnerId") + "?totalNumber=" +
                             partner.get("teacherList").length);
         partner.save({}, {
