@@ -70,7 +70,7 @@ var AdminPartnerView = BaseFormView.extend({
             app.adminManager.fetchPartner(params.partnerId, {
                 success: this.render,
                 error: function() {
-                    app.navigate("manage", true);
+                    app.navigate("manage/partner", true);
                 }
             });
         } else {

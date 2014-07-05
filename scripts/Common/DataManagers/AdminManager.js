@@ -167,15 +167,15 @@
         var self = this;
         var partner = new Partner();
         
-        if (testMockObj.testMode) {
-            callback.success(testMockObj.testPartner1);
-            return;
-        }
         if (!this.sessionManager.hasSession()){
-            Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
+            Info.warn('AdminManager::fetchPartner::current admin does not have session, exit');
             return;
         }
         
+        // if (testMockObj.testMode) {
+        //     callback.success(testMockObj.testPartner1);
+        //     return;
+        // }
         partner.overrideUrl(AdminApiResource.admin_partner);
         partner.set('partnerId', partnerId);
         partner.fetch({
@@ -187,7 +187,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn('PartnerManager::fetchPartner:: fetch failed with response:');
+                Info.warn('AdminManager::fetchPartner:: fetch failed with response:');
                 Info.warn(response);
                 if(callback){
                     callback.error(response);
@@ -203,7 +203,7 @@
             return;
         }
         if (!this.sessionManager.hasSession()){
-            Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
+            Info.warn('AdminManager::updatePartner::current admin does not have session, exit');
             return;
         }
         
@@ -216,7 +216,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn('PartnerManager::fetchPartner:: fetch failed with response:');
+                Info.warn('AdminManager::updatePartner:: update failed with response:');
                 Info.warn(response);
                 if(callback){
                     callback.error(response);
@@ -228,7 +228,7 @@
     AdminManager.prototype.updatePhoto = function(partner, callback){
         var self = this;
         if (!this.sessionManager.hasSession()){
-            Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
+            Info.warn('AdminManager::updatePhoto::current admin does not have session, exit');
             return;
         }
         partner.overrideUrl(AdminApiResource.admin_updatePhoto + "/" +
@@ -242,7 +242,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn('PartnerManager::fetchPartner:: fetch failed with response:');
+                Info.warn('AdminManager::updatePhoto:: update failed with response:');
                 Info.warn(response);
                 if(callback){
                     callback.error(response);
@@ -254,7 +254,7 @@
     AdminManager.prototype.updateTeacher = function(partner, callback){
         var self = this;
         if (!this.sessionManager.hasSession()){
-            Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
+            Info.warn('AdminManager::updateTeacher::current admin does not have session, exit');
             return;
         }
         
@@ -269,7 +269,7 @@
                 }
             },
             error: function(model, response){
-                Info.warn('PartnerManager::fetchPartner:: fetch failed with response:');
+                Info.warn('AdminManager::updateTeacher:: update failed with response:');
                 Info.warn(response);
                 if(callback){
                     callback.error(response);
