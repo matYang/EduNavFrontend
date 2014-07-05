@@ -271,13 +271,22 @@ var Course = Backbone.Model.extend({
         json.partnerQualification = parseInt(json.partnerQualification, 10);
         if (json.classPhotoList) {
             for (i = 0; i < json.classPhotoList.length; i++) {
-                classImgArr[i] = json.classPhotoList[i].toJSON();
+                if (json.classPhotoList[i] instanceof Photo) {
+                    classImgArr[i] = json.classPhotoList[i].toJSON();
+                } else {
+                    classImgArr[i] = json.classPhotoList[i];
+
+                }
             } 
             json.classPhotoList = classImgArr;
         }
         if (json.teacherList) {
             for (i = 0; i < json.teacherList.length; i++) {
-                imgArr[i] = json.teacherList[i].toJSON();
+                if (json.classPhotoList[i] instanceof Teacher) {
+                    imgArr[i] = json.teacherList[i].toJSON();
+                } else {
+                    imgArr[i] = json.teacherList[i];
+                }
             }
             json.teacherList = imgArr;
         }
