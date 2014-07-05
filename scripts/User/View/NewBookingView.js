@@ -220,6 +220,7 @@ var NewBookingView = BaseFormView.extend({
     close: function () {
         if (!this.isClosed) {
             $("#booking_date").datepicker("destroy");
+            $("#ui-datepicker-div").remove();	//The destroy method does not work in IE, therefore manually remove it.
             this.$el.empty();
             this.isClosed = true;
         }

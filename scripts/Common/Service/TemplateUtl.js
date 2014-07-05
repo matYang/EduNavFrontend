@@ -10,6 +10,9 @@ tpl = {
         var tplContainer = $("#allTemplates");
         for (i = 0; i < names.length; i++){
             name = names[i];
+            if (!name) {
+            	continue;
+            }
             tplContent = tplContainer.find('#tpl_' + name).html();
             if (tplContent === undefined || tplContent === null){
                 alert("FATAL ERROR: Template with name: " + name + " not found, if you see this, please contact us");
