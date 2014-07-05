@@ -6,8 +6,8 @@ var getEnvironmentServerOrigin = function () {
     var isOnLocal = C_ENV_VAR === 'LOCAL';
 
     return {
-        'httpOrigin': isOnLocal ? 'http://a.ishangke.cn/' : '..',
-        'partnerOrigin': isOnLocal ? 'http://a.ishangke.cn/' : '..',
+        'httpOrigin': isOnLocal ? 'http://a.ishangke.cn' : '..',
+        'partnerOrigin': isOnLocal ? 'http://a.ishangke.cn' : '..',
         'adminOrigin': isOnLocal ? 'http://admin.ishangke.cn:8017' : '..',
         'env': isOnLocal
     };
