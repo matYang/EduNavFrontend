@@ -23,7 +23,7 @@ var Teacher = Backbone.Model.extend({
             json.name = decodeURI(data.name);
 
             json.intro = decodeURI(data.intro);
-            json.imgUrl = decodeURIComponenet(data.imgUrl);
+            json.imgUrl = decodeURIComponent(data.imgUrl);
 
             json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
         }

@@ -38,7 +38,7 @@ var Photo = Backbone.Model.extend({
 
         json.title = encodeURI(json.title);
         json.description = encodeURI(json.description);
-        json.imgUrl = encodeURIComponenet(json.imgUrl);
+        json.imgUrl = encodeURIComponent(json.imgUrl);
 
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         return json;
