@@ -23,7 +23,7 @@ var Teacher = Backbone.Model.extend({
             json.name = decodeURI(data.name);
 
             json.intro = decodeURI(data.intro);
-            json.imgUrl = decodeURI(data.imgUrl);
+            json.imgUrl = decodeURIComponenet(data.imgUrl);
 
             json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
         }
@@ -39,7 +39,7 @@ var Teacher = Backbone.Model.extend({
 
         json.name = encodeURI(json.name);
         json.intro = encodeURI(json.intro);
-        json.imgUrl = encodeURI(json.imgUrl);
+        json.imgUrl = encodeURIComponent(json.imgUrl);
 
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         return json;
