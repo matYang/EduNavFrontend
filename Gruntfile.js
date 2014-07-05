@@ -33,7 +33,7 @@ module.exports = function(grunt) {
               
               "scripts/Common/Service/*.js",
               
-              "scripts/Test/testMockObj.js",
+              "scripts/Test/TestMockObj.js",
               "scripts/Common/DataManagers/GeneralManager.js",
               "scripts/Common/DataManagers/SessionManager.js",
               "scripts/Common/DataManagers/AdminManager.js",
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
               
       //         "scripts/Common/Service/*.js",
               
-      //         "scripts/Test/testMockObj.js",
+      //         "scripts/Test/TestMockObj.js",
       //         "scripts/Common/DataManagers/GeneralManager.js",
       //         "scripts/Common/DataManagers/SessionManager.js",
       //         "scripts/Common/DataManagers/PartnerManager.js",
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
               "scripts/Common/Model/Representation/*.js",
               "scripts/Common/Model/*.js",
               "scripts/Common/Service/*.js",
-              "scripts/Test/testMockObj.js",
+              "scripts/Test/TestMockObj.js",
               "scripts/Common/DataManagers/GeneralManager.js",
               "scripts/Common/DataManagers/SessionManager.js",
               "scripts/Common/DataManagers/UserManager.js",
