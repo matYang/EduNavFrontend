@@ -5,7 +5,7 @@
         /*---------------  API level constants   --------------*/
         var api_modules = {
 
-            rootPrefix: Constants.adminOrigin +  (C_ENV_VAR === 'TEST' ? '/test-a-api' : '/a-api'),
+            rootPrefix: Constants.adminOrigin +  (C_ENV_VAR === 'TEST' ? 'test-a-api' : 'a-api'),
 
             versionPrefix: '/v1.0',
 
