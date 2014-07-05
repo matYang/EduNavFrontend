@@ -6,14 +6,13 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
     submitButtonId: "createSubmit",
     callback: "uploadTarget",
     form: true,
+    create: true,
     initialize: function (params) {
-        _.bindAll(this, "render", "bindEvents", "close", "addPhoto", "removePhoto", "findField");
+        _.bindAll(this, "render", "bindEvents", "close", "addPhoto", "removePhoto", "findField", "submitAction");
         this.fields = [];
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
         params = params || {};
-        this.action = AdminApiResource.admin_partner;
-        this.create = false;
         if (params.partner) {
             this.render(params.partner);
         } else if (params.partnerId) {
@@ -25,14 +24,15 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
             });
         } else {
             //Create new partner
-            this.create = true;
-            this.render(new Partner());
+            alert("invalid partner id");
+            app.navigate("manage", true);
         }
 
     },
 
     render: function (partner) {
         this.partner = partner;
+        this.action = AdminApiResource.admin_postPhoto + "/" + partner.get("partnerId");
         this.photoCount = 1;
         this.$el.append(this.template(partner.toJSON()));
         this.$photos = $("#entries");
@@ -58,7 +58,9 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
     findField: function (field, context) {
         return field.get("fieldId") === this.rejectId;
     },
-
+    submitAction: function () {
+        document.getElementById(this.formElem).setAttribute('action', this.action + "?totalNumber=" + (this.photoCount - 1));
+    },
     removePhoto: function (id) {
         BaseFormView.prototype.unbindFields.call(this);
         this.rejectId = "imgUrl" + id;

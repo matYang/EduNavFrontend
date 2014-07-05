@@ -5,40 +5,42 @@ var AdminPartnerAddTeacherView = BaseFormView.extend({
     formElem: "adminPartnerAddForm",
     submitButtonId: "ccreateSubmit",
     form: true,
-    action: AdminApiResource.admin_partner,
+    create: true,
     callback: "uploadTarget",
     initialize: function (params) {
-        _.bindAll(this, "render", "bindEvents", "close", "addTeacherInfo", "removeTeacherInfo", "reNumber", "findField");
+        _.bindAll(this, "render", "bindEvents", "close", "addTeacherInfo", "removeTeacherInfo", "reNumber", "findField", "submitAction");
         this.fields = [];
         BaseFormView.prototype.initialize.call(this);
         app.viewRegistration.register(this);
         params = params || {};
-        this.create = false;
         if (params.partner) {
             this.render(params.partner);
         } else if (params.partnerId) {
             app.adminManager.fetchPartner(params.partnerId, {
                 success: this.render,
                 error: function () {
-                    app.navigate("manage", true);
+                    app.navigate("manage/partner", true);
                 }
             });
         } else {
             //Create new partner
-            this.create = true;
-            this.render(new Partner());
+            alert("invalid partner id");
+            app.navigate("manage/partner", true);
+
         }
 
     },
 
     render: function (partner) {
         this.partner = partner;
+        this.action = AdminApiResource.admin_postTeacher + "/" + partner.get("partnerId");
         this.teacherCount = 1;
         this.$el.append(this.template(partner._toJSON()));
         this.$teachers = $("#entries");
         $("#searchResult").addClass("hidden");
         this.bindEvents();
     },
+    
     bindEvents: function () {
         var that = this;
         BaseFormView.prototype.bindEvents.call(this);
@@ -97,6 +99,9 @@ var AdminPartnerAddTeacherView = BaseFormView.extend({
             that.displayImagePreview(e);
         }).on("keydown", Utilities.preventDefault);
         this.teacherCount++;
+    },
+    submitAction: function () {
+        document.getElementById(this.formElem).setAttribute('action', this.action + "?totalNumber=" + (this.teacherCount - 1));
     },
     close: function () {
         if (!this.isClosed) {

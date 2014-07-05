@@ -225,6 +225,59 @@
         });
     };
 
+    AdminManager.prototype.updatePhoto = function(partner, callback){
+        var self = this;
+        if (!this.sessionManager.hasSession()){
+            Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
+            return;
+        }
+        partner.overrideUrl(ApiResource.admin_updatePhoto + "/" +
+                            partner.get("partnerId") + "?totalNumber=" +
+                            partner.get("classImgList").length);
+        partner.save({}, {
+            dataType:'json',
+            success:function(model, response){
+                if(callback){
+                    callback.success(partner);
+                }
+            },
+            error: function(model, response){
+                Info.warn('PartnerManager::fetchPartner:: fetch failed with response:');
+                Info.warn(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
+    AdminManager.prototype.updateTeacher = function(partner, callback){
+        var self = this;
+        if (!this.sessionManager.hasSession()){
+            Info.warn('PartnerManager::fetchPartner::currentPartner does not have session, exit');
+            return;
+        }
+        
+        partner.overrideUrl(ApiResource.admin_updateTeacher + "/" +
+                            partner.get("partnerId") + "?totalNumber=" +
+                            partner.get("teacherList").length);
+        partner.save({}, {
+            dataType:'json',
+            success:function(model, response){
+                if(callback){
+                    callback.success(partner);
+                }
+            },
+            error: function(model, response){
+                Info.warn('PartnerManager::fetchPartner:: fetch failed with response:');
+                Info.warn(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
 
     AdminManager.prototype.listPartner = function(partnerSearchRepresentation, callback){
         var self = this,
