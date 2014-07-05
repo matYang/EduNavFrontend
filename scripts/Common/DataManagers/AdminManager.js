@@ -233,7 +233,7 @@
         }
         partner.overrideUrl(ApiResource.admin_updatePhoto + "/" +
                             partner.get("partnerId") + "?totalNumber=" +
-                            partner.get("classImgList").length);
+                            partner.get("classPhotoList").length);
         partner.save({}, {
             dataType:'json',
             success:function(model, response){

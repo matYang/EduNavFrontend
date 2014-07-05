@@ -14,10 +14,8 @@ var Partner = Backbone.Model.extend({
             'instName': '',
             'logoUrl':'',
 
-            'classImgList': [],
-            'classImgIdList': [],
+            'classPhotoList': [],
             'teacherList': [],
-            'teacherIdList': [],
             
             'creationTime': new Date(),
             'lastLogin': new Date()
@@ -43,31 +41,17 @@ var Partner = Backbone.Model.extend({
             json.instName = decodeURI(data.instName);
             json.logoUrl = decodeURI(data.logoUrl);
 
-            if (json.classImgList) {
-                for (var i = 0; i < data.classImgList.length; i++ ) {
-                    photos[i] = decodeURI(data.classImgList[i]);
+            if (json.classPhotoList) {
+                for (var i = 0; i < data.classPhotoList.length; i++ ) {
+                    photos[i] = decodeURI(data.classPhotoList[i]);
                 }
-                json.classImgList = photos;
+                json.classPhotoList = photos;
             }
-            if (json.classImgIdList) {
-                for (var i = 0; i < data.classImgIdList.length; i++ ) {
-                    photoIds[i] = Utilities.toInt(data.classImgIdList[i]);
-                }
-                json.classImgList = photoIds;
-            }
-
             if (json.teacherList) {
                 for (var i = 0; i < data.teacherList.length; i++ ) {
                     teachers[i] = new Teacher(data.teacherList[i], {parse: true});
                 }
                 json.teacherList = teachers;
-            }
-
-            if (json.teacherIdList) {
-                for (var i = 0; i < data.teacherIdList.length; i++ ) {
-                    teacherIds[i] = Utilities.toInt(data.teacherIds[i]);
-                }
-                json.teacherIdList = teacherIds;
             }
 
             json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
@@ -84,9 +68,9 @@ var Partner = Backbone.Model.extend({
                 json.teacherList[i] = json.teacherList.at(i)._toJSON();
             }
         }
-        if (json.classImgList) {
-            for (i = 0; i < json.classImgList.length; i++ ) {
-                json.classImgList[i] = json.classImgList.at(i)._toJSON();
+        if (json.classPhotoList) {
+            for (i = 0; i < json.classPhotoList.length; i++ ) {
+                json.classPhotoList[i] = json.classPhotoList.at(i)._toJSON();
             }
         }
         return json;
@@ -102,9 +86,9 @@ var Partner = Backbone.Model.extend({
         json.phone = encodeURI(json.phone);
         json.instName = encodeURI(json.instName);
         json.logoUrl = encodeURI(json.logoUrl);
-        if (json.classImgList) {
-            for (var i = 0; i < json.classImgList.length; i++ ) {
-                json.classImgList[i] = encodeURI(json.classImgList[i]);
+        if (json.classPhotoList) {
+            for (var i = 0; i < json.classPhotoList.length; i++ ) {
+                json.classPhotoList[i] = encodeURI(json.classPhotoList[i]);
             }
         }
         if (json.teacherList) {

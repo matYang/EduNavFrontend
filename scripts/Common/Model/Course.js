@@ -162,29 +162,17 @@ var Course = Backbone.Model.extend({
 
             json.status = parseInt(data.status, 10);
             json.partnerQualification = parseInt(data.partnerQualification, 10);
-            if (data.classImgUrls) {
+            if (data.classPhotoList) {
                 for (i = 0; i < data.classImgUrls.length; i++) {
-                    classImgArr[i] = (decodeURIComponent(data.classImgUrls[i]));
+                    classImgArr[i] = new Photo(data.classImgUrls[i], {parse: true});
                 } 
-                json.classImgUrls = classImgArr;
+                json.classPhotoList = classImgArr;
             }
-            if (data.teacherImgUrls) {
-                for (i = 0; i < data.teacherImgUrls.length; i++) {
-                    imgArr[i] = (decodeURIComponent(data.teacherImgUrls[i]));
+            if (data.teacherList) {
+                for (i = 0; i < data.teacherList.length; i++) {
+                    imgArr[i] = new Teacher(data.teacherList[i], {parse: true});
                 }
-                json.teacherImgUrls = imgArr;
-            }
-            if (data.teacherIntros) {
-                for (i = 0; i < data.teacherIntros.length; i++) {
-                    introArr[i] = (decodeURIComponent(data.teacherIntros[i]));
-                }
-                json.teacherIntros = introArr;
-            }
-            if (data.teacherNames) {
-                for (i = 0; i < data.teacherNames.length; i++) {
-                    nameArr[i] = (decodeURIComponent(data.teacherNames[i]));
-                }
-                json.teacherNames = nameArr;
+                json.teacherList = imgArr;
             }
             json.logoUrl = decodeURIComponent(data.logoUrl);
             json.instName = decodeURI(data.instName);
@@ -272,29 +260,17 @@ var Course = Backbone.Model.extend({
         json.teachingMaterialFee = encodeURI(json.teachingMaterialFee);
 
         json.partnerQualification = parseInt(json.partnerQualification, 10);
-        if (json.classImgUrls) {
-            for (i = 0; i < json.classImgUrls.length; i++) {
-                classImgArr[i] = (encodeURIComponent(json.classImgUrls[i]));
+        if (json.classPhotoList) {
+            for (i = 0; i < json.classPhotoList.length; i++) {
+                classImgArr[i] = json.classPhotoList[i].toJSON();
             } 
             json.classImgUrls = classImgArr;
         }
-        if (json.teacherImgUrls) {
-            for (i = 0; i < json.teacherImgUrls.length; i++) {
-                imgArr[i] = (encodeURIComponent(json.teacherImgUrls[i]));
+        if (json.teacherList) {
+            for (i = 0; i < json.teacherList.length; i++) {
+                imgArr[i] = json.classPhotoList[i].toJSON();
             }
             json.teacherImgUrls = imgArr;
-        }
-        if (json.teacherImgUrls) {
-            for (i = 0; i < json.teacherIntros.length; i++) {
-                introArr[i] = (encodeURIComponent(json.teacherIntros[i]));
-            }
-            json.teacherIntros = introArr;
-        }
-        if (json.teacherImgUrls) {
-            for (i = 0; i < json.teacherNames.length; i++) {
-                nameArr[i] = (encodeURIComponent(json.teacherNames[i]));
-            }
-            json.teacherNames = nameArr;
         }
         json.logoUrl = encodeURIComponent(json.logoUrl);
         json.instName = encodeURI(json.instName);

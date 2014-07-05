@@ -122,7 +122,7 @@ var AdminPartnerManagePhotoView = BaseFormView.extend({
 
     render: function (partner) {
         this.partner = partner;
-        this.$el.append(this.template({entryTemplate: this.photoBlockTemplate, partner: partner._toJSON(), list: partner._toJSON().classImgList}));
+        this.$el.append(this.template({entryTemplate: this.photoBlockTemplate, partner: partner._toJSON(), list: partner._toJSON().classPhotoList}));
         this.$photos = $("#entries");
         $("#searchResult").addClass("hidden");
         this.bindEvents();
@@ -152,9 +152,9 @@ var AdminPartnerManagePhotoView = BaseFormView.extend({
         for (i = 0; i < $blocks.length; i++) {
             $block = $($blocks[i]);
             id = Utilities.toInt($block.data("id"));
-            photos.add(this.partner.get("classImgList").get(id));
+            photos.add(this.partner.get("classPhotoList").get(id));
         }
-        this.partner.set("classImgList", photos);
+        this.partner.set("classPhotoList", photos);
     },
     close: function () {
         if (!this.isClosed) {

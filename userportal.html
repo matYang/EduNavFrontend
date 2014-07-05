@@ -746,14 +746,14 @@
                     <div class="small_pic">
                         <div class="top">
                             <div class="pic1"><img src="<%= logoUrl %>" width="116" height="106"/></div>
-                            <div class="pic2"><img src="<%= classImgUrls[0] %>"  width="156" height="106"/></div>
+                            <div class="pic2"><img src="<%= classPhotoList[0] ? classPhotoList[0].imgUrl : null %>"  width="156" height="106"/></div>
                         </div>
                         <div class="bottom">
-                            <div class="pic3"><img src="<%= classImgUrls[1] %>" width="156" height="101"/></div>
-                            <div class="pic4"><img src="<%= classImgUrls[2] %>" width="116" height="101"/></div>
+                            <div class="pic3"><img src="<%= classPhotoList[1] ? classPhotoList[1].imgUrl : null %>" width="156" height="101"/></div>
+                            <div class="pic4"><img src="<%= classPhotoList[2] ? classPhotoList[2].imgUrl : null %>" width="116" height="101"/></div>
                         </div>
                     </div>
-                    <div class="big_pic"> <img src="<%= classImgUrls[3] %>" width="306" height="216"/> </div>
+                    <div class="big_pic"> <img src="<%= classPhotoList[3] ? classPhotoList[3].imgUrl : null %>" width="306" height="216"/> </div>
                 </div>
                 <div class="course_map">
                     <div class="addr">上课地点：<%= location %></div>
@@ -789,12 +789,12 @@
                     <dd class="teacher clearfix">
                         <label>老师介绍: </label>
                         <div class="clearfix blank" style="margin-left: 90px;">
-                            <% if (teacherNames) { %>
-                                <% for (var i =0; i < teacherNames.length; i++) { %>
+                            <% if (teacherList) { %>
+                                <% for (var i =0; i < teacherList.length; i++) { %>
                                     <div class="teacherInfo">
-                                        <img class="teacherPhoto" src="<%= teacherImgUrls[i] %>" width="120" height="120"/>
-                                        <div class="name"><%= teacherNames[i] %></div>
-                                        <div class=""><%= teacherIntros[i] %></div>
+                                        <img class="teacherPhoto" src="<%= teacherList[i].imgUrl %>" width="120" height="120"/>
+                                        <div class="name"><%= teacherList[i].name %></div>
+                                        <div class=""><%= teacherList[i].intro %></div>
                                     </div>
                                 <% } %>
                             <% } %>
@@ -1516,6 +1516,8 @@
         <script src="scripts/Common/Model/Representation/CourseSearchRepresentation.js" type="text/javascript"></script>
         <script src="scripts/Common/Model/Representation/PartnerSearchRepresentation.js" type="text/javascript"></script>
         <script src="scripts/Common/Model/Representation/UserSearchRepresentation.js" type="text/javascript"></script>
+        <script src="scripts/Common/Model/Photo.js" type="text/javascript"></script>
+        <script src="scripts/Common/Model/Teacher.js" type="text/javascript"></script>
         <script src="scripts/Common/Model/Course.js" type="text/javascript"></script>
         <script src="scripts/Common/Model/Transaction.js" type="text/javascript"></script>
         <script src="scripts/Common/Model/Coupon.js" type="text/javascript"></script>

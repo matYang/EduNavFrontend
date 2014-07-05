@@ -246,11 +246,11 @@ testMockObj.testPartner2.set("teacherList", testMockObj.testTeachers);
 testMockObj.testPartner3.set("teacherList", testMockObj.testTeachers);
 testMockObj.testPartner4.set("teacherList", testMockObj.testTeachers);
 testMockObj.testPartner5.set("teacherList", testMockObj.testTeachers);
-testMockObj.testPartner1.set("classImgList", testMockObj.testPhotos);
-testMockObj.testPartner2.set("classImgList", testMockObj.testPhotos);
-testMockObj.testPartner3.set("classImgList", testMockObj.testPhotos);
-testMockObj.testPartner4.set("classImgList", testMockObj.testPhotos);
-testMockObj.testPartner5.set("classImgList", testMockObj.testPhotos);
+testMockObj.testPartner1.set("classPhotoList", testMockObj.testPhotos);
+testMockObj.testPartner2.set("classPhotoList", testMockObj.testPhotos);
+testMockObj.testPartner3.set("classPhotoList", testMockObj.testPhotos);
+testMockObj.testPartner4.set("classPhotoList", testMockObj.testPhotos);
+testMockObj.testPartner5.set("classPhotoList", testMockObj.testPhotos);
 
 testMockObj.testPartners.add([testMockObj.testPartner1, testMockObj.testPartner2, testMockObj.testPartner3, testMockObj.testPartner4, testMockObj.testPartner5]);
 

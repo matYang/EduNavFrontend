@@ -83,7 +83,7 @@ var AdminPartnerView = BaseFormView.extend({
  
     render: function (partner) {
         this.partner = partner;
-        this.classCount = partner.get("classImgList").length + 1;
+        this.classCount = partner.get("classPhotoList").length + 1;
         this.teacherCount = partner.get("teacherList").length + 1;
         this.$el.append(this.template(partner.toJSON()));
         this.$schools = $("#schoolImgs");
