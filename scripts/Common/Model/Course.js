@@ -201,7 +201,16 @@ var Course = Backbone.Model.extend({
             json.studyDays = studyDays;
         }
         json.studyDaysNote =json.studyDaysNote ? "(" + json.studyDaysNote + ")" : "" ;
-
+        if (json.teacherList) {
+            for (i = 0; i < json.teacherList.length; i++) {
+                json.teacherList[i] = json.teacherList[i]._toJSON();
+            }
+        }
+        if (json.classPhotoList) {
+            for (i = 0; i < json.classPhotoList.length; i++) {
+                json.classPhotoList[i] = json.classPhotoList[i]._toJSON();
+            }
+        }
         return json;
     },
     //simplified toJSON, as courses are not updated by Ajax but by html form
