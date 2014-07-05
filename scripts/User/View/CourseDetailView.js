@@ -12,7 +12,7 @@ var CourseDetailView = Backbone.View.extend({
         // $("#viewStyle").attr("href", "style/css/courseDetail.css");
         app.generalManager.fetchCourse(courseIdWrapper.courseId, {
             success: function (course) {
-                self.course = course;
+                self.course = course.clone();
                 self.courseId = course.get("courseId");
                 self.render();
                 self.bindEvents();
