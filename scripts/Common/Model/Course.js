@@ -163,8 +163,8 @@ var Course = Backbone.Model.extend({
             json.status = parseInt(data.status, 10);
             json.partnerQualification = parseInt(data.partnerQualification, 10);
             if (data.classPhotoList) {
-                for (i = 0; i < data.classImgUrls.length; i++) {
-                    classImgArr[i] = new Photo(data.classImgUrls[i], {parse: true});
+                for (i = 0; i < data.classPhotoList.length; i++) {
+                    classImgArr[i] = new Photo(data.classPhotoList[i], {parse: true});
                 } 
                 json.classPhotoList = classImgArr;
             }
@@ -264,13 +264,13 @@ var Course = Backbone.Model.extend({
             for (i = 0; i < json.classPhotoList.length; i++) {
                 classImgArr[i] = json.classPhotoList[i].toJSON();
             } 
-            json.classImgUrls = classImgArr;
+            json.classPhotoList = classImgArr;
         }
         if (json.teacherList) {
             for (i = 0; i < json.teacherList.length; i++) {
                 imgArr[i] = json.classPhotoList[i].toJSON();
             }
-            json.teacherImgUrls = imgArr;
+            json.teacherList = imgArr;
         }
         json.logoUrl = encodeURIComponent(json.logoUrl);
         json.instName = encodeURI(json.instName);
