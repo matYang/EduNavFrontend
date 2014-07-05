@@ -268,7 +268,7 @@ var Course = Backbone.Model.extend({
         }
         if (json.teacherList) {
             for (i = 0; i < json.teacherList.length; i++) {
-                imgArr[i] = json.classPhotoList[i].toJSON();
+                imgArr[i] = json.teacherList[i].toJSON();
             }
             json.teacherList = imgArr;
         }
