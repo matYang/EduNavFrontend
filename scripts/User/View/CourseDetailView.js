@@ -33,6 +33,11 @@ var CourseDetailView = Backbone.View.extend({
             maxHeight = maxHeight > $teacher.height() ? maxHeight : $teacher.height();
         }
         $teachers.css("height", maxHeight);
+        this.basicPos = $("#content_basic").position().top;
+        this.teachingPos = $("#content_teaching").position().top;
+        this.etcPos = $("#content_etc").position().top;
+        this.guaranteePos = $("#content_guarantee").position().top;
+        this.servicePos = $("#content_service").position().top;
         this.compareWidget = new CourseDetailCompareWidgetView();
     },
     bindEvents: function () {
@@ -62,8 +67,8 @@ var CourseDetailView = Backbone.View.extend({
             $(e.target).addClass("active");
         });
         $(document).on("scroll", function () {
-            var $btn = $("#trialButton");
-            if ($(this).scrollTop() >= 210) {
+            var $btn = $("#trialButton"), position = $(this).scrollTop(), height = $(window).height() - 100;
+            if (position >= 210) {
                 if (!$btn.hasClass("shown")){
                     $btn.animate({marginRight: "0px"}, 500);
                     $btn.addClass("shown");
@@ -74,7 +79,7 @@ var CourseDetailView = Backbone.View.extend({
                     $btn.removeClass("shown");
                 }
             }
-            if ($(this).scrollTop() >= 492) {
+            if (position >= 492) {
                 if ($("#navTabPlaceholder").length === 0) {
                     $("#courseNavigateTab").after("<ul id='navTabPlaceholder' class='tabButton tab'></ul>");
                 }
@@ -84,6 +89,18 @@ var CourseDetailView = Backbone.View.extend({
                     $("#navTabPlaceholder").remove();
                 }
                 $("#courseNavigateTab").removeClass("stickyHeader");
+            }
+            $("#courseNavigateTab").find(".active").removeClass("active");
+            if (position < that.teachingPos + height) {
+                $("#tab_basic").addClass("active")
+            } else if (position >= that.teachingPos + height && position < that.etcPos + height) {
+                $("#tab_teaching").addClass("active")
+            } else if (position >= that.etcPos + height && position < that.guaranteePos + height) {
+                $("#tab_etc").addClass("active")
+            } else if (position >= that.guaranteePos + height && position < that.servicePos + height) {
+                $("#tab_guarantee").addClass("active")
+            } else {
+                $("#tab_service").addClass("active")
             }
         });
         if (this.course.get("status") === EnumConfig.CourseStatus.openEnroll) {

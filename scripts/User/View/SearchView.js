@@ -53,6 +53,9 @@ var SearchView = Backbone.View.extend({
         if (!this.isClosed) {
             //prevent memory leaks
             $("#searchResultDisplayPanel").empty();
+            if (this.compareWidgetView.map) {
+                this.compareWidgetView.map.removeAllMarkers();
+            }
             searchResults = searchResults || new Courses();
             if (!byFilter) {
                 this.allMessages = searchResults;
@@ -65,6 +68,11 @@ var SearchView = Backbone.View.extend({
                 this.searchResultView.messages.reset(searchResults.toArray());
             }
             $("#resultNum").html(searchResults.length);
+            for (i = 0; i < searchResults.length; i++) {
+                if (this.compareWidgetView.map) {
+                    this.compareWidgetView.map.getLatLng(searchResults.at(i).get("location"), searchResults.at(i).get("instName"));
+                }
+            }
             this.searchResultView.startIndex = 0;
             this.searchResultView.currentPage = 1;
             this.searchResultView.render();

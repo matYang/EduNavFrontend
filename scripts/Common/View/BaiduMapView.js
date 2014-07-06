@@ -32,7 +32,6 @@ var BaiduMapView = Backbone.View.extend({
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.map = new BMap.Map(this.el.id, {enableMapClick: false});  //this should never expire
-        this.map.centerAndZoom(poi, 11);
         var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL}    
         this.map.addControl(new BMap.NavigationControl(opts));
         // this.setCenter(this.location);
@@ -116,6 +115,7 @@ var BaiduMapView = Backbone.View.extend({
             this.map.removeOverlay(this.markers[i]);
             delete this.markers[i];
         }
+        this.markerCount = [];
         this.markers = [];
     },
     close: function () {

@@ -37,9 +37,6 @@ var CompareWidgetView = Backbone.View.extend({
         }
         for (i = 0; i < this.courses.length && i < 4; i++) {
             buf[i] = this.courseTemplate(this.courses[i]._toJSON());
-            if (this.map) {
-                this.map.getLatLng(this.courses[i].get("location"), this.courses[i].get("instName"));
-            }
         }
         this.$domContainer.off().empty().append(buf.join(""));
         this.bindEvents();
@@ -78,9 +75,6 @@ var CompareWidgetView = Backbone.View.extend({
             this.courseIds = app.storage.getCoursesToCompare();
             this.$domContainer.append(this.courseTemplate(course._toJSON()));
             this.courses[this.courses.length] = course;
-            if (this.map) {
-                this.map.getLatLng(course.get("location"), course.get("instName"));
-            }
             return true;
         }
         return false;
@@ -88,24 +82,16 @@ var CompareWidgetView = Backbone.View.extend({
     removeCourse: function (id) {
         var i;
         $("#compareEntry_courseId_" + id).remove();
-        if (this.map) {
-            for (i = 0; i < this.courses.length; i++) {
-                if (this.courses[i].id === Utilities.toInt(id)) {
-                    this.map.removeMarker(this.courses[i].get("location"));
-                }
-            }
-        }
         $("#compare_" + id).children("input").attr("class", "add btn_g").val("+对比");
         app.storage.removeCourseFromCompare(id);
         this.courseIds = app.storage.getCoursesToCompare();
     },
     renderMap: function () {
+        var i = 0, courses = app.searchView.searchResultView.messages;
         this.map = new MainMapView();
-        for (i = 0; i < this.courses.length && i < 4; i++) {
-            this.map.getLatLng(this.courses[i].get("location"), this.courses[i].get("instName"));
-        }
-        if (this.courses.length === 0 && this.map) {
-            this.map.setCenter("南京");
+        this.map.map.centerAndZoom(app.searchView.searchRepresentation.get("city") || "南京", 9);
+        for (i = 0; i < courses.length; i++) {
+             this.map.getLatLng(courses.at(i).get("location"), courses.at(i).get("instName"));
         }
         this.rendered = true;
     },
