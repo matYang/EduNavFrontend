@@ -32,7 +32,7 @@ var CompareWidgetView = Backbone.View.extend({
         if (this.courses instanceof Backbone.Collection) {
             this.courses = this.courses.toArray();
         }
-        if (typeof BMap !== "undefined" && !this.map) {
+        if (typeof BMap !== "undefined" && !this.map && app.searchView) {
             this.renderMap();
         }
         for (i = 0; i < this.courses.length && i < 4; i++) {
@@ -90,8 +90,12 @@ var CompareWidgetView = Backbone.View.extend({
         var i = 0, courses = app.searchView.searchResultView.messages;
         this.map = new MainMapView();
         if (app.searchView.searchRepresentation) {
-            this.map.map.centerAndZoom(app.searchView.searchRepresentation.get("district") ||
-                                    app.searchView.searchRepresentation.get("city") || "南京", 9);
+            if (app.searchView.searchRepresentation.get("district")) {
+                this.map.map.centerAndZoom((app.searchView.searchRepresentation.get("city")  || "南京") + "市" + 
+                    app.searchView.searchRepresentation.get("district") + "区", 11);
+            } else {
+                this.map.map.centerAndZoom(app.searchView.searchRepresentation.get("city") || "南京", 9);
+            }
         } else {
             this.map.map.centerAndZoom("南京", 9);
         }

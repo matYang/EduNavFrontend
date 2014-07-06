@@ -53,6 +53,9 @@ var SearchView = Backbone.View.extend({
         if (!this.isClosed) {
             //prevent memory leaks
             $("#searchResultDisplayPanel").empty();
+            if (typeof BMap !== "undefined" && !this.compareWidgetView.map) {
+                this.compareWidgetView.renderMap();
+            }
             if (this.compareWidgetView.map) {
                 this.compareWidgetView.map.removeAllMarkers();
             }
@@ -135,13 +138,6 @@ var SearchView = Backbone.View.extend({
             } else {
                 $subCat.find("span[data-id=noreq]").addClass("active");
             }
-            $dist = $("#search_district");
-            if (this.searchRepresentation.get("district")) {
-                $dist.find("span[data-id=noreq]").removeClass("active");
-                $dist.find("span[data-id=" + this.searchRepresentation.get("district") + "]").addClass("active");
-            } else {
-                $dist.find("span[data-id=noreq]").addClass("active");
-            }
             $subCat = null;
             $subsubCat = null;
             this.bindSearchEvents();
@@ -168,8 +164,13 @@ var SearchView = Backbone.View.extend({
             //     }
             // }
             $("#search_district").append(buf.join(""));
+            this.searchRepresentation.set("city", "南京");
+            $dist = $("#search_district");
             if (this.searchRepresentation.get("district")) {
-                $("#filter_district").find("span[data-id=" + this.searchRepresentation.get("district") + "]").trigger("click");
+                $dist.find("span[data-id=noreq]").removeClass("active");
+                $dist.find("span[data-id=" + this.searchRepresentation.get("district") + "]").addClass("active");
+            } else {
+                $dist.find("span[data-id=noreq]").addClass("active");
             }
         }
     },
@@ -341,9 +342,16 @@ var SearchView = Backbone.View.extend({
             var dataId = $(e.target).data("id");
             if (dataId === "noreq") {
                 that.searchRepresentation.set("district", undefined);
+                if (that.compareWidgetView.map) {
+                    that.compareWidgetView.map.setCenter(that.searchRepresentation.get("city") + "市");
+                    that.compareWidgetView.map.map.setZoom(9);
+                }
             } else {
                 that.searchRepresentation.set("district", dataId);
-                that.compareWidgetView.map.setCenter(dataId);
+                if (that.compareWidgetView.map) {
+                    that.compareWidgetView.map.setCenter(that.searchRepresentation.get("city") + "市" + dataId + "区");
+                    that.compareWidgetView.map.map.setZoom(11);
+                }
             }
             that.courseSearch();
         });
