@@ -858,16 +858,13 @@
         <div><label>userId: </label><span><%= userId %></span><span class="edit"><input type="hidden" name="userId"/ value="<%= userId %>"></span>
         </div>
         <div><label>name: </label><span class="detail"><%= name %></span><span class="edit"><input type="text"
-                                                                                                   id="userName"
-                                                                                                   name="name"/></span>
+ id="userName" name="name"/></span>
         </div>
         <div><label>phone: </label><span class="detail"><%= phone %></span><span class="edit"><input type="text"
-                                                                                                     id="userPhone"
-                                                                                                     name="phone"/></span>
+ id="userPhone" name="phone"/></span>
         </div>
         <div><label>email: </label><span class="detail"><%= email %></span><span class="edit"><input type="text"
-                                                                                                     id="userEmail"
-                                                                                                     name="email"/></span>
+ id="userEmail" name="email"/></span>
         </div>
         <div>
             <div><label>用户状态：</label><span class="detail"><%= status %></span></div>
@@ -978,7 +975,6 @@
     <div class="edit"><input type="text" class="date form-control" name="cutoffDate"/></div>
 </div>
 <div><label>无退款日期: </label>
-
     <div class="detail"><%= noRefundDate %></div>
     <div class="edit"><input type="text" class="date form-control" name="noRefundDate"/></div>
 </div>
@@ -1053,12 +1049,15 @@
     <div class="detail"><%= location %></div>
     <div class="edit"><input class="form-control" type="text" name="location"/></div>
 </div>
+<div><label>注册地点: </label>
 
-<div><label>查询号: </label><span class="detail"><%= reference %></span><span class="edit"><input class="form-control" type="text"
-                                                                                                     name="reference"/></span>
+    <div class="detail"><%= registraLocation %></div>
+    <div class="edit"><input class="form-control" type="text" name="registraLocation"/></div>
 </div>
-<div><label>内部查询号: </label><span class="detail"><%= partnerCourseReference %></span><span
-        class="edit"><input class="form-control" type="text" name="partnerCourseReference"/></span></div>
+
+<div><label>查询号: </label><span class="detail"><%= reference %></span><span class="edit"><input class="form-control" type="text" name="reference"/></span>
+</div>
+
 <div><label>订单类型: </label><span class="detail"><%= bookingType %></span><span class="edit">
             <select class="form-control" name="bookingType">
                 <option value=0>offline</option>
@@ -1078,70 +1077,55 @@
         class="form-control" type="text" name="teachingMaterialIntro"/></span></div>
 <div><label>教材费用: </label><span class="detail"><%= teachingMaterialFee %></span><span class="edit"><input
         class="form-control" type="text" name="teachingMaterialFee"/></span></div>
-<div><label>学前要求: </label><span class="detail"><%= prerequest %></span><span class="edit"><input class="form-control" type="text"
-                                                                                                 name="prerequest"/></span>
+<div><label>教学方式: </label><span class="detail"><%= teachingMethod %></span><span class="edit"><input
+        class="form-control" type="text" name="teachingMethod"/></span></div>
+<div><label>学前要求: </label><span class="detail"><%= prerequest %></span><span class="edit"><input class="form-control" type="text" name="prerequest"/></span>
 </div>
 
 <div><label>下载材料: </label><span class="detail"><%= downloadMaterials %></span><span class="edit"><input
         class="form-control" type="checkbox" name="downloadMaterials"/></span></div>
-<div><label>题库: </label><span class="detail"><%= questionBank %></span><span class="edit"><input class="form-control" type="text"
-                                                                                                 name="questionBank"/></span>
+<div><label>题库: </label><span class="detail"><%= questionBank %></span><span class="edit"><input class="form-control" type="text" name="questionBank"/></span>
+</div>
+<div><label>质量保证: </label><span class="detail"><%= qualityAssurance %></span><span class="edit"><input class="form-control" type="text" name="qualityAssurance"/></span>
 </div>
 <div><label>高分奖励: </label><span class="detail"><%= highScoreReward %></span><span class="edit"><input
         class="form-control" type="text" name="highScoreReward"/></span></div>
-<div><label>保过协议: </label><span class="detail"><%= passAgreement %></span><span class="edit"><input class="form-control" type="text"
-                                                                                                    name="passAgreement"/></span>
+<div><label>保过协议: </label><span class="detail"><%= passAgreement %></span><span class="edit"><input class="form-control" type="text" name="passAgreement"/></span>
 </div>
-<div><label>阶段评估: </label><span class="detail"><%= quiz %></span><span class="edit"><input class="form-control" type="text"
-                                                                                           name="quiz"/></span>
+<div><label>阶段评估: </label><span class="detail"><%= quiz %></span><span class="edit"><input class="form-control" type="text" name="quiz"/></span>
 </div>
-<div><label>课后作业: </label><span class="detail"><%= assignments %></span><span class="edit"><input class="form-control" 
-        type="checkbox" name="assignments"/></span></div>
-<div><label>作业批改: </label><span class="detail"><%= marking %></span><span class="edit"><input class="form-control" type="checkbox"
-                                                                                              name="marking"/></span>
+<div><label>课后作业: </label><span class="detail"><%= assignments %></span><span class="edit"><input class="form-control" type="checkbox" name="assignments"/></span></div>
+<div><label>作业批改: </label><span class="detail"><%= marking %></span><span class="edit"><input class="form-control" type="checkbox" name="marking"/></span>
 </div>
-<div><label>结业证书: </label><span class="detail"><%= certification %></span><span class="edit"><input class="form-control"  type="text"
-                                                                                                    name="certification"/></span>
+<div><label>结业证书: </label><span class="detail"><%= certification %></span><span class="edit"><input class="form-control"  type="text" name="certification"/></span>
 </div>
 <div><label>课后活动: </label><span class="detail"><%= extracurricular %></span><span class="edit"><input
         class="form-control" type="text" name="extracurricular"/></span></div>
-
 <div><label>状态: </label><span class="detail"><%= status %></span><span class="edit">
             <select class="form-control" name="status">
                 <option value=0>activate</option>
                 <option value=1>deactivate</option>
             </select>
         </span></div>
-<div><label>学校电话: </label><span class="detail"><%= phone %></span><span class="edit"><input class="form-control" type="text"
-                                                                                            name="phone"/></span>
+
+<div><label>联系方式: </label><span class="detail"><%= contact %></span><span class="edit"><input class="form-control" type="text" name="contact"/></span>
 </div>
-<div><label>logo: </label><span class="detail"><%= logoUrl %></span><span class="edit"><input class="form-control" type="text"
-                                                                                              name="logoUrl"/></span>
-</div>
-<div><label>学校名: </label><span class="detail"><%= instName %></span><span class="edit"><input class="form-control" type="text"
-                                                                                              name="instName"/></span>
-</div>
-<div><label>机构全称: </label><span class="detail"><%= wholeName %></span><span class="edit"><input class="form-control" type="text"
-                                                                                                name="wholeName"/></span>
+<div><label>报名电话: </label><span class="detail"><%= registraPhone %></span><span class="edit"><input class="form-control" type="text" name="registraPhone"/></span>
 </div>
 
-<div><label>机构荣誉: </label><span class="detail"><%= partnerDistinction %></span><span class="edit"><input
-        class="form-control" type="text" name="partnerDistinction"/></span></div>
-<div><label>教学目标: </label><span class="detail"><%= goal %></span><span class="edit"><input class="form-control" type="text"
-                                                                                           name="goal"/></span>
+<div><label>提纲: </label><span class="detail"><%= outline %></span><span class="edit"><textarea class="form-control" type="text" name="outline"/><%= outline %></textarea></span>
 </div>
-<div><label>班主任导读: </label><span class="detail"><%= classTeacher %></span><span class="edit"><input class="form-control" type="text"
-                                                                                                        name="classTeacher"/></span>
+<div><label>教学目标: </label><span class="detail"><%= goal %></span><span class="edit"><input class="form-control" type="text" name="goal"/></span>
+</div>
+<div><label>班主任导读: </label><span class="detail"><%= classTeacher %></span><span class="edit"><input class="form-control" type="text" name="classTeacher"/></span>
 </div>
 <div><label>讲练结合: </label><span class="detail"><%= teachingAndExercise %></span><span class="edit"><input
         class="form-control" type="text" name="teachingAndExercise"/></span></div>
 <div><label>问答时间: </label><span class="detail"><%= questionSession %></span><span class="edit"><input class="form-control" 
         type="text" name="questionSession"/></span></div>
-<div><label>试听: </label><span class="detail"><%= trail %></span><span class="edit"><input type="text" class="form-control" 
-                                                                                          name="trail"/></span>
+<div><label>试听: </label><span class="detail"><%= trail %></span><span class="edit"><input type="text" class="form-control" name="trail"/></span>
 </div>
-<div><label>附加服务: </label><span class="detail"><%= bonusService %></span><span class="edit"><input type="text" class="form-control" 
-                                                                                                   name="bonusService"/></span>
+<div><label>附加服务: </label><span class="detail"><%= bonusService %></span><span class="edit"><input type="text" class="form-control" name="bonusService"/></span>
 </div>
 <div id="teacherInfo">
     <label>教师信息: </label>
@@ -1187,6 +1171,118 @@
             </div>
         </div>
         <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">机构简介:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= partnerIntro  %></span>
+                <span class="edit"><input type="text" class="form-control" id="partnerIntro" name="partnerIntro"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">机构荣誉:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= partnerDistinction  %></span>
+                <span class="edit"><input type="text" class="form-control" id="partnerDistinction" name="partnerDistinction"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">合作伙伴资格:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= partnerQualification  %></span>
+                <span class="edit"><input type="text" class="form-control" id="partnerQualification" name="partnerQualification"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">公司总部地址:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= hqLocation %></span>
+                <span class="edit"><input type="text" class="form-control" id="hqLocation" name="hqLocation"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">校区地址:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= subLocations %></span>
+                <span class="edit"><input type="text" class="form-control" id="subLocations" name="subLocations"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">报名地址一致:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= uniformRegistraLocation %></span>
+                <span class="edit"><input type="text" class="form-control" id="uniformRegistraLocation" name="uniformRegistraLocation"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">总部合作关系对接人:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= hqContact %></span>
+                <span class="edit"><input type="text" class="form-control" id="hqContact" name="hqContact"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">总部对接人联系电话:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= hqContactPhone %></span>
+                <span class="edit"><input type="text" class="form-control" id="hqContactPhone" name="hqContactPhone"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">课程详情联联络人:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= courseContact %></span>
+                <span class="edit"><input type="text" class="form-control" id="courseContact" name="courseContact"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">课程联络人联系电话:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= courseContactPhone %></span>
+                <span class="edit"><input type="text" class="form-control" id="courseContactPhone" name="courseContactPhone"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">学员咨询联系电话:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= studentInqueryPhone %></span>
+                <span class="edit"><input type="text" class="form-control" id="studentInqueryPhone" name="studentInqueryPhone"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">报名学员入学状态对接人:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= registraContact %></span>
+                <span class="edit"><input type="text" class="form-control" id="registraContact" name="registraContact"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">报名学员入学状态联系电话:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= registraContactPhone %></span>
+                <span class="edit"><input type="text" class="form-control" id="registraContactPhone" name="registraContactPhone"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">报名学员入学状态传真号码:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= registraContactFax %></span>
+                <span class="edit"><input type="text" class="form-control" id="registraContactFax" name="registraContactFax"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">默认课程截止日:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= defaultCutoffDay %></span>
+                <span class="edit"><input type="text" class="form-control" id="defaultCutoffDay" name="defaultCutoffDay"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">默认截止日几点截止:</label>
+            <div class="col-sm-3 form-control-static">
+                <span class="detail"><%= defaultCutoffDay %></span>
+                <span class="edit"><input type="text" class="form-control" id="defaultCutoffTime" name="defaultCutoffTime"/></span>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">执照:</label>
             <div class="col-sm-3 form-control-static">
                 <span class="detail"><%= license  %></span>
@@ -1205,13 +1301,6 @@
             <div class="col-sm-3 form-control-static">
                 <span class="detail"><%= reference  %></span>
                 <span class="edit"><input type="text" class="form-control" id="reference" name="reference"/></span>
-            </div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">电话:</label>
-            <div class="col-sm-3 form-control-static">
-                <span class="detail"><%= phone  %></span>
-                <span class="edit"><input type="text" class="form-control" id="phone" name="phone"/></span>
             </div>
         </div>
         <div class="form-group form-group-sm">

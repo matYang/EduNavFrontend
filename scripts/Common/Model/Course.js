@@ -261,7 +261,6 @@ var Course = Backbone.Model.extend({
         json.highScoreReward = encodeURI(json.highScoreReward);
         json.courseName = encodeURI(json.courseName);
         json.studyDaysNote = encodeURI(json.studyDaysNote);
-        json.partnerCourseReference = encodeURI(json.partnerCourseReference);
         json.partnerIntro = encodeURI(json.partnerIntro);
         json.teachingMaterialIntro = encodeURI(json.teachingMaterialIntro);
 

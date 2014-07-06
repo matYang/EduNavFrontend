@@ -15,6 +15,18 @@ var AdminPartnerView = BaseFormView.extend({
             mandatory: true,
         }),
         new BaseField({
+            name: "机构简介",
+            fieldId: "partnerIntro",
+            type: "text",
+            mandatory: false
+        }),
+        new BaseField({
+            name: "机构荣誉",
+            fieldId: "partnerDistinction",
+            type: "text",
+            mandatory: false
+        }),
+        new BaseField({
             name: "执照",
             fieldId: "license",
             type: "text",
@@ -30,14 +42,91 @@ var AdminPartnerView = BaseFormView.extend({
             name: "识别号",
             fieldId: "reference",
             type: "text",
-            mandatory: true,
+            mandatory: true
         }),
         new BaseField({
-            name: "电话",
-            fieldId: "phone",
+            name: "公司总部地址",
+            fieldId: "hqLocation",
             type: "text",
-            mandatory: true,
+            mandatory: true
+        }),
+        new BaseField({
+            name: "校区地址",
+            fieldId: "subLocations",
+            type: "text",
+            mandatory: true
+        }),
+        new BaseField({
+            name: "报名地址一致",
+            fieldId: "uniformRegistraLocation",
+            type: "checkbox",
+            mandatory: true
+        }),
+        new BaseField({
+            name: "总部合作关系对接人",
+            fieldId: "hqContact",
+            type: "text",
+            mandatory: false
+        }),
+
+        new BaseField({
+            name: "总部合作关系对接人联系电话",
+            fieldId: "hqContactPhone",
+            type: "text",
+            mandatory: false,
             validatorFunction: Utilities.phoneValid
+        }),
+        new BaseField({
+            name: "课程详情联联络人",
+            fieldId: "courseContact",
+            type: "text",
+            mandatory: false
+        }),
+        new BaseField({
+            name: "课程详情联络人联系电话",
+            fieldId: "courseContactPhone",
+            type: "text",
+            mandatory: false,
+            validatorFunction: Utilities.phoneValid
+        }),
+        new BaseField({
+            name: "学员咨询联系电话",
+            fieldId: "studentInqueryPhone",
+            type: "text",
+            mandatory: false,
+            validatorFunction: Utilities.phoneValid
+        }),
+        new BaseField({
+            name: "报名学员入学状态对接人",
+            fieldId: "registraContact",
+            type: "text",
+            mandatory: false,
+        }),
+        new BaseField({
+            name: "报名学员入学状态联系电话",
+            fieldId: "registraContactPhone",
+            type: "text",
+            mandatory: false,
+            validatorFunction: Utilities.phoneValid
+        }),
+        new BaseField({
+            name: "报名学员入学状态传真号码",
+            fieldId: "registraContactFax",
+            type: "text",
+            mandatory: false,
+            validatorFunction: Utilities.phoneValid
+        }),
+        new BaseField({
+            name: "默认课程截止日",
+            fieldId: "defaultCutoffDay",
+            type: "text",
+            mandatory: false
+        }),
+        new BaseField({
+            name: "默认截止日几点截止",
+            fieldId: "defaultCutoffTime",
+            type: "text",
+            mandatory: false
         }),
         new BaseField({
             name: "状态",
@@ -50,7 +139,14 @@ var AdminPartnerView = BaseFormView.extend({
             fieldId: "instName",
             type: "text",
             mandatory: true,
+        }),
+        new BaseField({
+            name: "合作伙伴资格",
+            fieldId: "partnerQualification",
+            type: "text",
+            mandatory: true,
         })
+
     ],
     formElem: "adminPartnerForm",
     submitButtonId: "partnerManagePostSubmit",

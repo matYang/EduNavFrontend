@@ -11,6 +11,7 @@ var Partner = Backbone.Model.extend({
             'taxRegistrationImgUrl': '',
             'eduQualificationImgUrl': '',
             'hqLocation': '',
+            'subLocations': [],
             'uniformRegistraLocation': undefined,
             'hqContact': '',
             'hqContactPhone': '',
