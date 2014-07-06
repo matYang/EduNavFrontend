@@ -6,14 +6,34 @@ var Partner = Backbone.Model.extend({
             'wholeName':'',
             'license': '',
             'organizationNum': '',
+
+            'liscenceImgUrl': '',
+            'taxRegistrationImgUrl': '',
+            'eduQualificationImgUrl': '',
+            'hqLocation': '',
+            'uniformRegistraLocation': undefined,
+            'hqContact': '',
+            'hqContactPhone': '',
+            'hqContactSecOpt': '',
+            'courseContact': '',
+            'courseContactPhone': '',
+            'studentInqueryPhone': '',
+            'registraContact': '',
+            'registraContactPhone': '',
+            'registraContactFax': '',
+            'defaultCutoffDay': '',
+            'defaultCutoffTime': '',
+            'partnerQualification': '',
+
             'reference': '',
             'password':'',
 
-            'phone':'',
             'status': 0,
             'instName': '',
-            'logoUrl':'',
+            'partnerIntro': '',
+            'partnerDistinction': '',
 
+            'logoUrl':'',
             'classPhotoList': [],
             'teacherList': [],
             
@@ -26,17 +46,42 @@ var Partner = Backbone.Model.extend({
     urlRoot: Constants.origin + '/p-api/v1.0/partner/partner',
 
     parse: function (data) {
-        var json = {}, photos = [], photoIds = [], teachers = [], teacherIds = [];
+        var i, json = {}, photos = [], photoIds = [], teachers = [], teacherIds = [];
         if ( typeof data !== 'undefined') {
             
             json.partnerId = parseInt(data.partnerId, 10);
             json.wholeName = decodeURI(data.wholeName);
 
+            json.partnerIntro = decodeURI(data.partnerIntro);
+            json.partnerDistinction = decodeURI(data.partnerDistinction);
+            json.liscenceImgUrl = decodeURI(data.liscenceImgUrl);
+            json.taxRegistrationImgUrl = decodeURI(data.taxRegistrationImgUrl);
+            json.eduQualificationImgUrl = decodeURI(data.eduQualificationImgUrl);
+            json.hqLocation = decodeURI(data.hqLocation);
+            json.subLocations = [];
+            if (data.subLocations) {
+                for (i = 0; i < data.subLocations.length; i++) {
+                    json.subLocations[i] = decodeURI(data.subLocations[i]);
+                }
+            }
+            json.uniformRegistraLocation = (data.uniformRegistraLocation == true);
+            json.hqContact = decodeURI(data.hqContact);
+            json.hqContactPhone = decodeURI(data.hqContactPhone);
+            json.hqContactSecOpt = decodeURI(data.hqContactSecOpt);
+            json.courseContact = decodeURI(data.courseContact);
+            json.courseContactPhone = decodeURI(data.courseContactPhone);
+            json.studentInqueryPhone = decodeURI(data.studentInqueryPhone);
+            json.registraContact = decodeURI(data.registraContact);
+            json.registraContactPhone = decodeURI(data.registraContactPhone);
+            json.registraContactFax = decodeURI(data.registraContactFax);
+            json.defaultCutoffDay = Utilities.toInt(data.defaultCutoffDay);
+            json.defaultCutoffTime = Utilities.toInt(data.defaultCutoffTime);
+            json.partnerQualification = Utilities.toInt(data.partnerQualification);
+
             json.license = decodeURI(data.license);
             json.organizationNum = decodeURI(data.organizationNum);
             json.reference = decodeURI(data.reference);
 
-            json.phone = decodeURI(data.phone);
             json.status = parseInt(data.status, 10);
             json.instName = decodeURI(data.instName);
             json.logoUrl = decodeURI(data.logoUrl);
@@ -83,7 +128,6 @@ var Partner = Backbone.Model.extend({
         json.organizationNum = encodeURI(json.organizationNum);
         json.reference = encodeURI(json.reference);
         json.password = encodeURI(json.password);
-        json.phone = encodeURI(json.phone);
         json.instName = encodeURI(json.instName);
         json.logoUrl = encodeURI(json.logoUrl);
         if (json.classPhotoList) {
@@ -98,7 +142,25 @@ var Partner = Backbone.Model.extend({
         }
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
-
+        json.liscenceImgUrl = encodeURI(json.liscenceImgUrl);
+        json.taxRegistrationImgUrl = encodeURI(json.taxRegistrationImgUrl);
+        json.eduQualificationImgUrl = encodeURI(json.eduQualificationImgUrl);
+        json.hqLocation = encodeURI(json.hqLocation);
+        if (json.subLocations) {
+            for (i = 0; i < json.subLocations.length; i++) {
+                json.subLocations[i] = encodeURI(json.subLocations[i]);
+            }
+        }
+        json.uniformRegistraLocation = (json.uniformRegistraLocation == true);
+        json.hqContact = encodeURI(json.hqContact);
+        json.hqContactPhone = encodeURI(json.hqContactPhone);
+        json.hqContactSecOpt = encodeURI(json.hqContactSecOpt);
+        json.courseContact = encodeURI(json.courseContact);
+        json.courseContactPhone = encodeURI(json.courseContactPhone);
+        json.studentInqueryPhone = encodeURI(json.studentInqueryPhone);
+        json.registraContact = encodeURI(json.registraContact);
+        json.registraContactPhone = encodeURI(json.registraContactPhone);
+        json.registraContactFax = encodeURI(json.registraContactFax);
         return json;
     }
 });

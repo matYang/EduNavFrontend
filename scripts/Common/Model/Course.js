@@ -3,27 +3,25 @@ var Course = Backbone.Model.extend({
         return {
             'courseId': -1,
             'partnerId': undefined,
-            'courseName': undefined,
-            'courseIntro': undefined,
-            'suitableStudent': undefined,
             'price': undefined,
             'originalPrice': undefined,
             'courseHourNum': undefined,
-
             'courseHourLength': undefined,
 
             'classSize': undefined,
             'cashback': undefined,
             'popularity': undefined,
             
-            'startUponArrival': undefined,
-            'cutoffDate': new Date(),
             'creationTime': new Date(),
             'startDate': new Date(),
             'finishDate': new Date(),
-            'studyDays': undefined,
-            'studyDaysNote': undefined,
+            'cutoffDate': new Date(),
 
+            'noRefundDate': new Date(),
+            'cashbackDate': new Date(),
+            'bookingType': undefined,
+
+            'startUponArrival': undefined,
             'startTime1': undefined,
             'finishTime1': undefined,
             'startTime2': undefined,
@@ -33,53 +31,57 @@ var Course = Backbone.Model.extend({
             'subCategory': undefined,
             'subSubCategory': undefined,
             'location': undefined,
+            'registraLocation': undefined,
             'province': undefined,
             'city': undefined,
             'district': undefined,
-
-            'reference': undefined,
-            'partnerCourseReference': undefined,
-            'openCourseRequirement': undefined,
-            'partnerQualification': undefined,
-            'partnerIntro': undefined,
-            'teachingMaterialIntro': undefined,
-            'teachingMaterialFee': undefined,
-            'prerequest': undefined,
+			'reference': undefined,
             
-            'outline': undefined,
-            'downloadMaterials': undefined,
-            'questionBank': undefined,
-            'highScoreReward': undefined,
-            'passAgreement': undefined,
+            'courseIntro': undefined,
             'quiz': undefined,
-            'assignments': undefined,
-            'marking': undefined,
             'certification': undefined,
+            'openCourseRequirement': undefined,
+            'suitableStudent': undefined,
+            'prerequest': undefined,
+            'highScoreReward': undefined,
+            'courseName': undefined,
+            'studyDaysNote': undefined,
+            'teachingMaterialIntro': undefined,
+            'questionBank': undefined,
+            'qualityAssurance': undefined,
+            'passAgreement': undefined,
             'extracurricular': undefined,
 
-            'status': undefined,
-            
-            'phone': undefined,
-            'logoUrl': undefined,
-            'instName': undefined,
-            'wholeName': undefined,
-
-            'partnerDistinction': undefined,
+            'contact': undefined,
+            'registraPhone': undefined,
+            'outline': undefined,
             'goal': undefined,
             'classTeacher': undefined,
             'teachingAndExercise': undefined,
             'questionSession': undefined,
             'trail': undefined,
+            'assignments': undefined,
+            'marking': undefined,
             'bonusService': undefined,
+            'downloadMaterials': undefined,
+            'teachingMaterialFee': undefined,
+            
+            'teachingMethod': undefined,
 
-            'noRefundDate': new Date(),
-            'cashbackDate': new Date(),
-            'bookingType': undefined,
+            'status': undefined,
+            'studyDays': undefined,
 
             'classPhotoList': [],
             'classPhotoIdList': [],
             'teacherList': [],
-            'teacherIdList': []
+            'teacherIdList': [],
+
+            'logoUrl': undefined,
+            'instName': undefined,
+            'wholeName': undefined,
+            'partnerIntro': undefined,
+            'partnerQualification': undefined,
+            'partnerDistinction': undefined
         };
     },
     idAttribute: 'courseId',
@@ -124,6 +126,7 @@ var Course = Backbone.Model.extend({
             json.subCategory = decodeURI(data.subCategory);
             json.subSubCategory = decodeURI(data.subSubCategory);
             json.location = decodeURI(data.location);
+        	json.registraLocation = decodeURI(data.registraLocation);
             json.province = decodeURI(data.province);
             json.city = decodeURI(data.city);
             json.district = decodeURI(data.district);
@@ -138,15 +141,16 @@ var Course = Backbone.Model.extend({
             json.highScoreReward = decodeURI(data.highScoreReward);
             json.courseName = decodeURI(data.courseName);
             json.studyDaysNote = decodeURI(data.studyDaysNote);
-            json.partnerCourseReference = decodeURI(data.partnerCourseReference);
             json.partnerIntro = decodeURI(data.partnerIntro);
             json.teachingMaterialIntro = decodeURI(data.teachingMaterialIntro);
-
+            json.qualityAssurance = decodeURI(data.qualityAssurance);
             json.questionBank = decodeURI(data.questionBank);
             json.passAgreement = decodeURI(data.passAgreement);
             json.extracurricular = decodeURI(data.extracurricular);
-            json.phone = decodeURI(data.phone);
-
+            json.registraPhone = decodeURI(data.registraPhone);
+            json.contact = decodeURI(data.contact);
+			json.teachingMethod = decodeURI(data.teachingMethod);
+            
             json.partnerDistinction = decodeURI(data.partnerDistinction);
             json.outline = decodeURI(data.outline);
             json.goal = decodeURI(data.goal);
@@ -241,6 +245,8 @@ var Course = Backbone.Model.extend({
         json.subCategory = encodeURI(json.subCategory);
         json.subSubCategory = encodeURI(json.subSubCategory);
         json.location = encodeURI(json.location);
+        json.registraLocation = encodeURI(json.registraLocation);
+
         json.province = encodeURI(json.province);
         json.city = encodeURI(json.city);
         json.district = encodeURI(json.district);
@@ -259,10 +265,13 @@ var Course = Backbone.Model.extend({
         json.partnerIntro = encodeURI(json.partnerIntro);
         json.teachingMaterialIntro = encodeURI(json.teachingMaterialIntro);
 
+        json.qualityAssurance = encodeURI(json.qualityAssurance);
         json.questionBank = encodeURI(json.questionBank);
         json.passAgreement = encodeURI(json.passAgreement);
         json.extracurricular = encodeURI(json.extracurricular);
-        json.phone = encodeURI(json.phone);
+        json.registraPhone = encodeURI(json.registraPhone);
+		json.contact = encodeURI(json.contact);
+		json.teachingMethod = encodeURI(json.teachingMethod);
 
         json.partnerDistinction = encodeURI(json.partnerDistinction);
         json.outline = encodeURI(json.outline);
