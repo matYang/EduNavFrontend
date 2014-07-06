@@ -88,7 +88,7 @@ module.exports = function(grunt) {
               "scripts/Common/DataManagers/UserManager.js",
               "scripts/Common/View/Shared/*.js",
               "scripts/Common/View/*.js",
-              "scripts/User/baiduLoad",
+              "scripts/User/baiduLoadScript.js",
               "scripts/User/View/MyPage/*.js",
               "scripts/User/View/*.js",
               "scripts/User/Main.js"

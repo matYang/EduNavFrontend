@@ -50,7 +50,7 @@ var AdminPartnerView = BaseFormView.extend({
             fieldId: "instName",
             type: "text",
             mandatory: true,
-        }),
+        })
     ],
     formElem: "adminPartnerForm",
     submitButtonId: "partnerManagePostSubmit",

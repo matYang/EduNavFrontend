@@ -51,7 +51,7 @@ var AdminBookingView = BaseFormView.extend({
                 validClass: "success",
                 type: "text",
                 mandatory: false
-            }),
+            })
         ];
         if (params.booking) {
             this.render(params.booking);

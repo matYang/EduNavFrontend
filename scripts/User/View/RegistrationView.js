@@ -59,7 +59,7 @@ var RegistrationView = BaseFormView.extend({
                 modelAttr: "authCode",
                 validatorContainer: $("#authContainer"),
                 buildValidatorDiv: Utilities.defaultValidDivBuilder
-            }),
+            })
         ];
         this.ref = params.ref;
         this.render();

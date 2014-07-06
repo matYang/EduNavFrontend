@@ -48,7 +48,7 @@ var AdminAdminView = BaseFormView.extend({
                 fieldType: "text",
                 mandatory: true,
                 modelAttr: "privilege"
-            }),
+            })
         ];
         if (params.admin) {
             this.render(params.admin);

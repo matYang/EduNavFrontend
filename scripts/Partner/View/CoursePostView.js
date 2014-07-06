@@ -121,7 +121,7 @@ var CoursePostView = BaseFormView.extend({
                 mandatory: true,
                 validatorContainer: null,
                 name: "区域", //Used for error Text
-            }),
+            })
         ];
         this.template: _.template(tpl.get("coursePostView")),
 

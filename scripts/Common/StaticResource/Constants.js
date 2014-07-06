@@ -34,7 +34,7 @@ var Constants = {
         "mypage_credit", "mypage_creditTable", "mypage_creditRow", "mypage_creditStore", "credit_noMessage",
         "mypage_password", "mypage_setting",
         "compareWidget", "compareWidgetEntry", "compareView", "courseDetailCompareWidget", "mapLabel",
-        "infoModal", "banner",
+        "infoModal", "banner"
     ],
 
     partnerTemplateResource: [
