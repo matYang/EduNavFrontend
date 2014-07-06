@@ -89,7 +89,8 @@ var CompareWidgetView = Backbone.View.extend({
     renderMap: function () {
         var i = 0, courses = app.searchView.searchResultView.messages;
         this.map = new MainMapView();
-        this.map.map.centerAndZoom(app.searchView.searchRepresentation.get("city") || "南京", 9);
+        this.map.map.centerAndZoom(app.searchView.searchRepresentation.get("district") ||
+                                    app.searchView.searchRepresentation.get("city") || "南京", 9);
         for (i = 0; i < courses.length; i++) {
              this.map.getLatLng(courses.at(i).get("location"), courses.at(i).get("instName"));
         }

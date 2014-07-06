@@ -61,13 +61,11 @@ var CourseDetailView = Backbone.View.extend({
             id = "#content_" + id.split("_")[1];
             $.smoothScroll({
                 scrollTarget: id,
-                offset: -36
+                offset: -40
             });
-            $(e.delegateTarget).find(".active").removeClass("active");
-            $(e.target).addClass("active");
         });
         $(document).on("scroll", function () {
-            var $btn = $("#trialButton"), position = $(this).scrollTop(), height = $(window).height() - 100;
+            var $btn = $("#trialButton"), position = $(this).scrollTop(), height = $(window).height() - 140;
             if (position >= 210) {
                 if (!$btn.hasClass("shown")){
                     $btn.animate({marginRight: "0px"}, 500);

@@ -49,7 +49,7 @@ var BaiduMapView = Backbone.View.extend({
         var label;
         if (poi) {
             if (this.markers.length === 0) {
-                this.map.panTo(poi);
+                //this.map.panTo(poi);
             }
             label = new BMap.Label(this.labelTemplate({text: this.markerName[locationObj.address]}), {position:poi});
             this.addMarker(label, locationObj.address);

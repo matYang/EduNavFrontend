@@ -343,6 +343,7 @@ var SearchView = Backbone.View.extend({
                 that.searchRepresentation.set("district", undefined);
             } else {
                 that.searchRepresentation.set("district", dataId);
+                that.compareWidgetView.map.setCenter(dataId);
             }
             that.courseSearch();
         });
