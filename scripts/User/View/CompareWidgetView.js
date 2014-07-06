@@ -87,9 +87,12 @@ var CompareWidgetView = Backbone.View.extend({
         this.courseIds = app.storage.getCoursesToCompare();
     },
     renderMap: function () {
-        var i = 0, courses = app.searchView.searchResultView.messages;
+        var i = 0, courses = [];
+        if (app.searchView && app.searchView.searchResultView) {
+            courses = app.searchView.searchResultView.messages;
+        }
         this.map = new MainMapView();
-        if (app.searchView.searchRepresentation) {
+        if (app.searchView && app.searchView.searchRepresentation) {
             if (app.searchView.searchRepresentation.get("district")) {
                 this.map.map.centerAndZoom((app.searchView.searchRepresentation.get("city")  || "南京") + "市" + 
                     app.searchView.searchRepresentation.get("district") + "区", 11);
