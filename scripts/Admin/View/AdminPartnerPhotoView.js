@@ -34,7 +34,7 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
         this.partner = partner;
         this.action = AdminApiResource.admin_postPhoto + "/" + partner.get("partnerId");
         this.photoCount = 1;
-        this.$el.append(this.template(partner.toJSON()));
+        this.$el.append(this.template(partner._toJSON()));
         this.$photos = $("#entries");
         $("#searchResult").addClass("hidden");
         this.bindEvents();
@@ -44,6 +44,7 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
         BaseFormView.prototype.bindEvents.call(this);
         $("#addMore").on("click", this.addPhoto);
         $("#cancel").on("click", function () {
+            app.manageView = new AdminManageView({type: "user"});
             app.partnerView = new AdminPartnerView({partner: that.partner});
         });
         this.$photos.on("click", ".removeTeacher", function (e) {
@@ -131,7 +132,8 @@ var AdminPartnerManagePhotoView = BaseFormView.extend({
         var that = this;
         BaseFormView.prototype.bindEvents.call(this);
         $("#cancel").on("click", function () {
-            app.navigate("manage/partner/" + that.partner.get("partnerId"), true);
+            app.manageView = new AdminManageView({type: "user"});
+            app.partnerView = new AdminPartnerView({partner: that.partner});
         });
         this.$photos.on("click", ".removePhoto", function (e) {
             var id = Utilities.toInt(Utilities.getId(e.target.id));
