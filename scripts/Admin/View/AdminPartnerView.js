@@ -116,12 +116,6 @@ var AdminPartnerView = BaseFormView.extend({
             mandatory: false
         }),
         new BaseField({
-            name: "状态",
-            fieldId: "status",
-            type: "text",
-            mandatory: true
-        }),
-        new BaseField({
             name: "学校名",
             fieldId: "instName",
             type: "text",
