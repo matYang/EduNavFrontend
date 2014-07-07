@@ -100,8 +100,8 @@ var Partner = Backbone.Model.extend({
                 json.teacherList = teachers;
             }
 
-            json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
-            json.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
+            json.creationTime = Utilities.castFromAPIFormat(decodeURIComponent(data.creationTime));
+            json.lastLogin = Utilities.castFromAPIFormat(decodeURIComponent(data.lastLogin));
             
         }
         return data;
