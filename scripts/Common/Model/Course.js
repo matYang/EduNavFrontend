@@ -110,12 +110,12 @@ var Course = Backbone.Model.extend({
             json.bookingType = parseInt(data.bookingType , 10);
 
             json.startUponArrival = parseInt(data.startUponArrival, 10);
-            json.cutoffDate =  Utilities.castFromAPIFormat(decodeURIComponent(data.cutoffDate));
-            json.creationTime = Utilities.castFromAPIFormat(decodeURIComponent(data.creationTime));
-            json.startDate = Utilities.castFromAPIFormat(decodeURIComponent(data.startDate));
-            json.finishDate = Utilities.castFromAPIFormat(decodeURIComponent(data.finishDate));
-            json.noRefundDate = Utilities.castFromAPIFormat(decodeURIComponent(data.noRefundDate));
-            json.cashbackDate = Utilities.castFromAPIFormat(decodeURIComponent(data.cashbackDate));
+            json.cutoffDate =  Utilities.castFromAPIFormat(data.cutoffDate);
+            json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            json.startDate = Utilities.castFromAPIFormat(data.startDate);
+            json.finishDate = Utilities.castFromAPIFormat(data.finishDate);
+            json.noRefundDate = Utilities.castFromAPIFormat(data.noRefundDate);
+            json.cashbackDate = Utilities.castFromAPIFormat(data.cashbackDate);
 
             json.startTime1 = parseInt(data.startTime1 , 10);
             json.finishTime1 = parseInt(data.finishTime1 , 10);
