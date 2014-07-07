@@ -44,7 +44,7 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
         BaseFormView.prototype.bindEvents.call(this);
         $("#addMore").on("click", this.addPhoto);
         $("#cancel").on("click", function () {
-            app.manageView = new AdminManageView({type: "user"});
+            app.manageView = new AdminManageView({type: "partner"});
             app.partnerView = new AdminPartnerView({partner: that.partner});
         });
         this.$photos.on("click", ".removeTeacher", function (e) {
@@ -132,7 +132,7 @@ var AdminPartnerManagePhotoView = BaseFormView.extend({
         var that = this;
         BaseFormView.prototype.bindEvents.call(this);
         $("#cancel").on("click", function () {
-            app.manageView = new AdminManageView({type: "user"});
+            app.manageView = new AdminManageView({type: "partner"});
             app.partnerView = new AdminPartnerView({partner: that.partner});
         });
         this.$photos.on("click", ".removePhoto", function (e) {
