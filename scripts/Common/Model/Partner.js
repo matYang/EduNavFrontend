@@ -109,16 +109,6 @@ var Partner = Backbone.Model.extend({
     _toJSON: function () {
         var json = _.clone(this.attributes), i;
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
-        if (json.teacherList) {
-            for (i = 0; i < json.teacherList.length; i++ ) {
-                json.teacherList[i] = json.teacherList[i]._toJSON();
-            }
-        }
-        if (json.classPhotoList) {
-            for (i = 0; i < json.classPhotoList.length; i++ ) {
-                json.classPhotoList[i] = json.classPhotoList[i]._toJSON();
-            }
-        }
         return json;
     },
     toJSON: function () {
@@ -133,12 +123,16 @@ var Partner = Backbone.Model.extend({
         json.logoUrl = encodeURI(json.logoUrl);
         if (json.classPhotoList) {
             for (var i = 0; i < json.classPhotoList.length; i++ ) {
-                json.classPhotoList[i] = encodeURI(json.classPhotoList[i]);
+                if (json.classPhotoList[i] instanceof Photo) {
+                    json.classPhotoList[i] = json.classPhotoList[i].toJSON();
+                }
             }
         }
         if (json.teacherList) {
             for (var i = 0; i < json.teacherList.length; i++ ) {
-                json.teacherList[i] = json.teacherList[i].toJSON();
+                if (json.teacherList[i] instanceof Teacher) {
+                    json.teacherList[i] = json.teacherList[i].toJSON();
+                }
             }
         }
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
