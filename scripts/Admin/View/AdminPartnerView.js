@@ -136,16 +136,15 @@ var AdminPartnerView = BaseFormView.extend({
 
     ],
     formElem: "adminPartnerForm",
-    submitButtonId: "partnerManagePostSubmit",
+    submitButtonId: "partnerPostSubmit",
+    template: _.template(tpl.get("adminPartner")),
+    action: AdminApiResource.admin_partner,
     form:true,
     callback: "uploadTarget",
     initialize: function(params){
         _.bindAll(this, "render", "bindEvents", "close");
         BaseFormView.prototype.initialize.call(this);
-        app.viewRegistration.register(this);
         params = params || {};
-        this.template = _.template(tpl.get("adminPartner"));
-        this.action = AdminApiResource.admin_partner;
         this.create = false;
         if (params.partner) {
             this.render(params.partner);
@@ -170,6 +169,7 @@ var AdminPartnerView = BaseFormView.extend({
         this.teacherCount = partner.get("teacherList").length + 1;
         this.subLocationCount = partner.get("subLocations").length ? partner.get("subLocations").length + 1 : 2;
         this.uniform = partner.get("uniformRegistraLocation") || false;
+        app.viewRegistration.register(this);
         this.$el.append(this.template(partner._toJSON()));
         this.$schools = $("#schoolImgs");
         this.$teachers = $("#teacherInfo");
@@ -241,7 +241,12 @@ var AdminPartnerView = BaseFormView.extend({
         });
     },  
     successCallback: function () {
-        app.navigate("manage/partner", true);
+        alert("新建/更新成功");
+        if (this.partner.get("partnerId") > -1) {
+            app.navigate("manage/partner/" + this.partner.get("partnerId"), true);
+        } else {
+            app.navigate("manage/partner", true);
+        }
     },
     submitAction: function () {
         var i, id, $field, s;
