@@ -192,18 +192,18 @@ var AdminPartnerView = BaseFormView.extend({
             $("#adminPartnerForm").find(".edit").show();
         });
         $("#addPhoto").on("click", function () {
-            app.addPhotoView = new AdminPartnerAddPhotoView({partner: that.partner});
+            app.partnerView = new AdminPartnerAddPhotoView({partner: that.partner});
         });
         $("#managePhoto").on("click", function () {
-            app.addPhotoView = new AdminPartnerManagePhotoView({partner: that.partner});
+            app.partnerView = new AdminPartnerManagePhotoView({partner: that.partner});
             // app.navigate("manage/managePhoto/" + that.partner.get("partnerId"), true);
         });
         $("#addTeacher").on("click", function () {
-            app.addPhotoView = new AdminPartnerAddTeacherView({partner: that.partner});
+            app.partnerView = new AdminPartnerAddTeacherView({partner: that.partner});
             // app.navigate("manage/addTeacher/" + that.partner.get("partnerId"), true);
         });
         $("#manageTeacher").on("click", function () {
-            app.addPhotoView = new AdminPartnerManageTeacherView({partner: that.partner});
+            app.partnerView = new AdminPartnerManageTeacherView({partner: that.partner});
             // app.navigate("manage/manageTeacher/" + that.partner.get("partnerId"), true);
         });
         $("#addLocation").on("click", function () {

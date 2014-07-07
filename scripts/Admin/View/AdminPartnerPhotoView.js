@@ -44,7 +44,7 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
         BaseFormView.prototype.bindEvents.call(this);
         $("#addMore").on("click", this.addPhoto);
         $("#cancel").on("click", function () {
-            app.navigate("manage/partner/" + that.partner.get("partnerId"), true);
+            app.partnerView = new AdminPartnerView({partner: that.partner});
         });
         this.$photos.on("click", ".removeTeacher", function (e) {
             var id = Utilities.toInt(Utilities.getId(e.target.id));
@@ -52,7 +52,7 @@ var AdminPartnerAddPhotoView = BaseFormView.extend({
         });
     },
     successCallback: function () {
-        app.navigate("manage/partner", true);
+        app.partnerView = new AdminPartnerView({partner: that.partner});
     },
 
     findField: function (field, context) {
@@ -139,7 +139,7 @@ var AdminPartnerManagePhotoView = BaseFormView.extend({
         });
     },
     successCallback: function () {
-        app.navigate("manage/partner/" + this.partner.get("partnerId"), true);
+        app.partnerView = new AdminPartnerView({partner: that.partner});
     },
     findField: function (field, context) {
         return field.get("fieldId") === this.rejectId;

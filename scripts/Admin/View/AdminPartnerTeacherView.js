@@ -46,7 +46,7 @@ var AdminPartnerAddTeacherView = BaseFormView.extend({
         BaseFormView.prototype.bindEvents.call(this);
         $("#addMore").on("click", this.addTeacherInfo);
         $("#cancel").on("click", function () {
-            app.navigate("manage/partner/" + that.partner.get("partnerId"), true);
+            app.partnerView = new AdminPartnerView({partner: that.partner});
         });
         this.$teachers.on("click", ".removeTeacher", function (e) {
             var id = Utilities.toInt(Utilities.getId(e.target.id));
@@ -153,7 +153,7 @@ var AdminPartnerManageTeacherView = BaseFormView.extend({
         var that = this;
         BaseFormView.prototype.bindEvents.call(this);
         $("#cancel").on("click", function () {
-            app.navigate("manage/partner/" + that.partner.get("partnerId"), true);
+            app.partnerView = new AdminPartnerView({partner: that.partner});            
         });
         this.$teachers.on("click", ".removeTeacher", function (e) {
             var id = Utilities.toInt(Utilities.getId(e.target.id));
