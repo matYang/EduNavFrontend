@@ -6,10 +6,10 @@ var AppRouter = Backbone.Router.extend({
     routes: {
         "": "defaultRoute",
         "login": "login",
-        "manage/:type":"manage",
-        "manage/:type/q:query":"manage",
-        "manage/course/:id": "course",
-        "manage/user/:id": "user",
+        "manage/:type": "manage",
+        "manage/:type/q:query": "manage",
+        "manage/course/: id": "course",
+        "manage/user/: id": "user",
         "manage/booking/:id": "booking",
         "manage/addPhoto/:id": "addPhoto",
         "manage/managePhoto/:id": "managePhoto",
@@ -31,10 +31,10 @@ var AppRouter = Backbone.Router.extend({
         this.cache = new CacheService();
         this.cache.enableCache = false;
         //initializing all the data managers
-        this.sessionManager = new SessionManager (EnumConfig.ModuleIdentifier.admin);
+        this.sessionManager = new SessionManager(EnumConfig.ModuleIdentifier.admin);
 
-        this.generalManager = new GeneralManager (this.sessionManager);
-        this.adminManager = new AdminManager (this.sessionManager);
+        this.generalManager = new GeneralManager(this.sessionManager);
+        this.adminManager = new AdminManager(this.sessionManager);
 
         //determine if the user has logged in or not
         var that = this;
@@ -55,9 +55,9 @@ var AppRouter = Backbone.Router.extend({
     },
     defaultRoute: function () {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("login", {trigger:true, replace:true});
+            this.navigate("login", {trigger: true, replace: true});
         }
-        this.navigate("manage", {trigger:true, replace:true});
+        this.navigate("manage", {trigger: true, replace: true});
     },
     login: function () {
         if (this.sessionManager.hasSession()) {
@@ -68,14 +68,14 @@ var AppRouter = Backbone.Router.extend({
     },
     manage: function (type, query) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("login", {trigger:true, replace:true});
+            this.navigate("login", {trigger: true, replace: true});
             return;
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
             type = type || "user";
         }
         if (!this.manageView) {
-            this.manageView = new AdminManageView({type:type, query:query});
+            this.manageView = new AdminManageView({type: type, query: query});
         } else {
             if (!this.manageView.isClosed) {
                 this.manageView.switchView(type, query);
@@ -87,97 +87,97 @@ var AppRouter = Backbone.Router.extend({
     },
     course: function (id) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("login", {trigger:true, replace:true});
+            this.navigate("login", {trigger: true, replace: true});
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
         }
-        this.manageView = new AdminManageView({type:"course"});
+        this.manageView = new AdminManageView({type: "course"});
         if (id) {
-            this.courseView = new AdminCourseView({courseId:id});
+            this.courseView = new AdminCourseView({courseId: id});
         }
     },
     user: function (id) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("login", {trigger:true, replace:true});
+            this.navigate("login", {trigger: true, replace: true});
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
         }
-        this.manageView = new AdminManageView({type:"user"});
+        this.manageView = new AdminManageView({type: "user"});
         if (id) {
-            this.userView = new AdminUserView({userId:id});
+            this.userView = new AdminUserView({userId: id});
         }
     },
     partner: function (id) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("login", {trigger:true, replace:true});
+            this.navigate("login", {trigger: true, replace: true});
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
         }
-        this.manageView = new AdminManageView({type:"partner"});
+        this.manageView = new AdminManageView({type: "partner"});
         if (id) {
-            this.userView = new AdminPartnerView({partnerId:id});
+            this.partnerView = new AdminPartnerView({partnerId: id});
         }
     },
     addPhoto: function (id) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("login", {trigger:true, replace:true});
+            this.navigate("login", {trigger: true, replace: true});
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
         }
         if (id) {
-            this.userView = new AdminPartnerAddPhotoView({partnerId:id});
+            this.userView = new AdminPartnerAddPhotoView({partnerId: id});
         }
     },
     managePhoto: function (id) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("login", {trigger:true, replace:true});
+            this.navigate("login", {trigger: true, replace: true});
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
         }
         if (id) {
-            this.userView = new AdminPartnerManagePhotoView({partnerId:id});
+            this.userView = new AdminPartnerManagePhotoView({partnerId: id});
         }
     },
     addTeacher: function (id) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("login", {trigger:true, replace:true});
+            this.navigate("login", {trigger: true, replace: true});
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
         }
         if (id) {
-            this.userView = new AdminPartnerAddTeacherView({partnerId:id});
+            this.userView = new AdminPartnerAddTeacherView({partnerId: id});
         }
     },
     manageTeacher: function (id) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("login", {trigger:true, replace:true});
+            this.navigate("login", {trigger: true, replace: true});
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
         }
         if (id) {
-            this.userView = new AdminPartnerManageTeacherView({partnerId:id});
+            this.userView = new AdminPartnerManageTeacherView({partnerId: id});
         }
     },
     booking: function (id) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("login", {trigger:true, replace:true});
+            this.navigate("login", {trigger: true, replace: true});
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
         }
-        this.manageView = new AdminManageView({type:"booking"});
+        this.manageView = new AdminManageView({type: "booking"});
         if (id) {
-            this.courseView = new AdminBookingView({bookingId:id});
+            this.bookingView = new AdminBookingView({bookingId: id});
         }
     },
     admin: function (id) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("login", {trigger:true, replace:true});
+            this.navigate("login", {trigger: true, replace: true});
         } else if (!this.baseView) {
             this.baseView = new AdminBaseView(this.sessionManager);
         }
-        this.manageView = new AdminManageView({type:"admin"});
+        this.manageView = new AdminManageView({type: "admin"});
         if (id) {
-            this.adminView = new AdminAdminView({adminId:id});
+            this.adminView = new AdminAdminView({adminId: id});
         }
     },
 });
@@ -186,6 +186,6 @@ var AppRouter = Backbone.Router.extend({
     $.ajaxSetup({
         cache: false
     });
-    app = new AppRouter ();
-    Backbone.history.start();    
+    app = new AppRouter();
+    Backbone.history.start();
 })();

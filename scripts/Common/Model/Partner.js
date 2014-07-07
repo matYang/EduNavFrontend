@@ -4,7 +4,7 @@ var Partner = Backbone.Model.extend({
         return {
             'partnerId': -1,
             'wholeName':'',
-            'license': '',
+            'licence': '',
             'organizationNum': '',
 
             'liscenceImgUrl': '',
@@ -79,7 +79,7 @@ var Partner = Backbone.Model.extend({
             json.defaultCutoffTime = Utilities.toInt(data.defaultCutoffTime);
             json.partnerQualification = Utilities.toInt(data.partnerQualification);
 
-            json.license = decodeURI(data.license);
+            json.licence = decodeURI(data.licence);
             json.organizationNum = decodeURI(data.organizationNum);
             json.reference = decodeURI(data.reference);
 
@@ -125,7 +125,7 @@ var Partner = Backbone.Model.extend({
         var json = _.clone(this.attributes);
 
         json.wholeName = encodeURI(json.wholeName);
-        json.license = encodeURI(json.license);
+        json.licence = encodeURI(json.licence);
         json.organizationNum = encodeURI(json.organizationNum);
         json.reference = encodeURI(json.reference);
         json.password = encodeURI(json.password);

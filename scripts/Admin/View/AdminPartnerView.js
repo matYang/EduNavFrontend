@@ -28,7 +28,7 @@ var AdminPartnerView = BaseFormView.extend({
         }),
         new BaseField({
             name: "执照",
-            fieldId: "license",
+            fieldId: "licence",
             type: "text",
             mandatory: true
         }),

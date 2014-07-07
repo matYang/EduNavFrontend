@@ -228,7 +228,7 @@
             </div>
             <div id="queryPartner" class="fleft search hidden">
                 <input id="wholeName_Input" class="text" type="text" placeholder="请输入机构名"/>
-                <input id="license_Input" class="text" type="text" placeholder="学校执照"/>
+                <input id="licence_Input" class="text" type="text" placeholder="学校执照"/>
                 <input id="organizationNum_Input" class="text" type="text" placeholder="organization number"/>
                 <input id="reference_Input" class="text" type="text" placeholder="参考号"/>
                 <input id="phone_Input" class="text" type="text" placeholder="电话"/>
@@ -482,7 +482,7 @@
     <tr class="partnerResult">
         <td><%= partnerId %></td>
         <td><%= wholeName %></td>
-        <td><%= license %></td>
+        <td><%= licence %></td>
         <td><%= organizationNum %></td>
         <td><%= reference %></td>
         <td><%= phone %></td>
@@ -678,7 +678,7 @@
     <form id="adminPartnerForm">
         <div><label>partner Id: </label><span class="detail"><%= partnerId %></span></div> 
         <div><label>机构全称: </label><span class="detail"><%= wholeName %></span><span class="edit"><input type="text" name="wholeName"/></span></div> 
-        <div><label>执照: </label><span class="detail"><%= license %></span><span class="edit"><input type="text" name="license"/></span></div> 
+        <div><label>执照: </label><span class="detail"><%= licence %></span><span class="edit"><input type="text" name="licence"/></span></div> 
         <div><label>机构号: </label><span class="detail"><%= organizationNum %></span><span class="edit"><input type="text" name="organizationNum"/></span></div> 
         <div><label>reference: </label><span class="detail"><%= reference %></span><span class="edit"><input type="text" name="reference"/></span></div> 
         <div><label>电话: </label><span class="detail"><%= phone %></span><span class="edit"><input type="text" name="phone"/></span></div> 
