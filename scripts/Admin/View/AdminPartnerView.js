@@ -170,7 +170,7 @@ var AdminPartnerView = BaseFormView.extend({
         this.teacherCount = partner.get("teacherList").length + 1;
         this.subLocationCount = partner.get("subLocations").length ? partner.get("subLocations").length + 1 : 2;
         this.uniform = partner.get("uniformRegistraLocation") || false;
-        this.$el.append(this.template(partner.toJSON()));
+        this.$el.append(this.template(partner._toJSON()));
         this.$schools = $("#schoolImgs");
         this.$teachers = $("#teacherInfo");
         $("#searchResult").addClass("hidden");
