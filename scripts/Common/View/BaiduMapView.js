@@ -80,7 +80,7 @@ var BaiduMapView = Backbone.View.extend({
                 break;
             }
         }
-        if (add) {
+        if (add && this.map) {
             this.markers.push(marker);
             this.map.addOverlay(marker);
             this.markerCount[locationString] = 0;
@@ -112,8 +112,10 @@ var BaiduMapView = Backbone.View.extend({
     removeAllMarkers: function () {
         var i;
         for (i = 0; i < this.markers.length; i++) {
-            this.map.removeOverlay(this.markers[i]);
-            delete this.markers[i];
+            if (this.map) {
+                this.map.removeOverlay(this.markers[i]);
+                delete this.markers[i];
+            }
         }
         this.markerCount = [];
         this.markers = [];
