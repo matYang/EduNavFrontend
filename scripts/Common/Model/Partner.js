@@ -87,13 +87,13 @@ var Partner = Backbone.Model.extend({
             json.instName = decodeURI(data.instName);
             json.logoUrl = decodeURIComponent(data.logoUrl);
 
-            if (json.classPhotoList) {
+            if (data.classPhotoList) {
                 for (var i = 0; i < data.classPhotoList.length; i++ ) {
                     photos[i] = decodeURI(data.classPhotoList[i]);
                 }
                 json.classPhotoList = photos;
             }
-            if (json.teacherList) {
+            if (data.teacherList) {
                 for (var i = 0; i < data.teacherList.length; i++ ) {
                     teachers[i] = new Teacher(data.teacherList[i], {parse: true});
                 }
