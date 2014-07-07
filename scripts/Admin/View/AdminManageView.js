@@ -23,11 +23,7 @@ var AdminUserSearchResultView = MultiPageView.extend({
     },
     entryEvent: function (id) {
         app.navigate("manage/user/" + id);
-        if (!this.userView) {
-            this.userView = new AdminUserView({user: this.allMessages.get(id)});
-        } else {
-            this.userView.initialize({user: this.allMessages.get(id)});
-        }
+        app.userView = new AdminUserView({user: this.allMessages.get(id)});
     },
     close: function () {
         if (!this.isClosed) {
@@ -65,9 +61,7 @@ var AdminCourseSearchResultView = MultiPageView.extend({
     },
     entryEvent: function (id) {
         app.navigate("manage/course/" + id);
-        this.adminCourseView = new AdminCourseView({"courseId": id});
-        $("#courseCRUDContainer").removeClass("hidden");
-        $("#searchResult").addClass("hidden");
+        app.adminCourseView = new AdminCourseView({"course": this.messages.get(id)});
     },
     bindEvents: function () {
         var that = this;
@@ -121,7 +115,8 @@ var AdminBookingSearchResultView = MultiPageView.extend({
         MultiPageView.prototype.render.call(this);
     },
     entryEvent: function (id) {
-        app.navigate("manage/booking/" + id, true);
+        app.navigate("manage/booking/" + id);
+        app.bookingView = new AdminBookingView({booking:this.messages.get(id)});
     },
     close: function () {
         if (!this.isClosed) {
@@ -173,7 +168,8 @@ var AdminAdminSearchResultView = MultiPageView.extend({
         });
     },
     entryEvent: function (id) {
-        app.navigate("manage/admin/" + id, true);
+        app.navigate("manage/admin/" + id);
+        app.adminView = new AdminAdminView({admin:this.messages.get(id)});
     },
     close: function () {
         if (!this.isClosed) {
@@ -228,6 +224,7 @@ var AdminPartnerSearchResultView = MultiPageView.extend({
     },
     entryEvent: function (id) {
         app.navigate("manage/partner/" + id, true);
+        this.partnerView = new AdminPartnerView({partner: this.messages.get(id)})
     },
     close: function () {
         if (!this.isClosed) {
