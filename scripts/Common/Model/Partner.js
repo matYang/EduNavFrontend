@@ -89,7 +89,7 @@ var Partner = Backbone.Model.extend({
 
             if (data.classPhotoList) {
                 for (var i = 0; i < data.classPhotoList.length; i++ ) {
-                    photos[i] = decodeURI(data.classPhotoList[i]);
+                    photos[i] = new Photo(data.classPhotoList[i], {parse: true});
                 }
                 json.classPhotoList = photos;
             }
