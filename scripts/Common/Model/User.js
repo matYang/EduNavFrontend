@@ -45,6 +45,9 @@ var User = Backbone.Model.extend({
 
     parse: function (data) {
         if ( typeof data !== 'undefined') {
+            if (data instanceof Array) {
+                data = data[0];
+            }
             data.userId = parseInt(data.userId, 10);
 
             data.balance = parseInt(data.balance, 10);

@@ -18,6 +18,9 @@ var Admin = Backbone.Model.extend({
     idAttribute: 'adminId',
     parse: function (data) {
         if ( typeof data !== 'undefined') {
+            if (data instanceof Array) {
+                data = data[0];
+            }
             data.adminId = parseInt(data.adminId, 10);
             data.name = decodeURI(data.name);
             data.phone = decodeURI(data.phone);

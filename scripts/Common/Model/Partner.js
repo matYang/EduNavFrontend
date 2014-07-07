@@ -49,7 +49,9 @@ var Partner = Backbone.Model.extend({
     parse: function (data) {
         var i, json = {}, photos = [], photoIds = [], teachers = [], teacherIds = [];
         if ( typeof data !== 'undefined') {
-            
+            if (data instanceof Array) {
+                data = data[0];
+            }
             json.partnerId = parseInt(data.partnerId, 10);
             json.wholeName = decodeURI(data.wholeName);
 
