@@ -2,13 +2,6 @@ var AdminPartnerView = BaseFormView.extend({
     el: "#partnerCRUDContainer",
     fields: [
         new BaseField({
-            name: "学校标志",
-            fieldId: "logoUrl",
-            type: "file",
-            mandatory: true,
-            previewId: "logoPreview"
-        }),
-        new BaseField({
             name: "机构全称",
             fieldId: "wholeName",
             type: "text",
@@ -164,7 +157,7 @@ var AdminPartnerView = BaseFormView.extend({
         this.subLocationCount = partner.get("subLocations").length ? partner.get("subLocations").length + 1 : 2;
         this.uniform = partner.get("uniformRegistraLocation") || false;
         app.viewRegistration.register(this);
-        this.$el.append(this.template(partner._toJSON()));
+        this.$el.append(this.template(partner._toJSON())).removeClass("hidden");
         this.$schools = $("#schoolImgs");
         this.$teachers = $("#teacherInfo");
         $("#searchResult").addClass("hidden");
@@ -199,16 +192,19 @@ var AdminPartnerView = BaseFormView.extend({
             $("#adminPartnerForm").find(".edit").show();
         });
         $("#addPhoto").on("click", function () {
-            app.navigate("manage/addPhoto/" + that.partner.get("partnerId"), true);
+            app.addPhotoView = new AdminPartnerAddPhotoView({partner: that.partner});
         });
         $("#managePhoto").on("click", function () {
-            app.navigate("manage/managePhoto/" + that.partner.get("partnerId"), true);
+            app.addPhotoView = new AdminPartnerManagePhotoView({partner: that.partner});
+            // app.navigate("manage/managePhoto/" + that.partner.get("partnerId"), true);
         });
         $("#addTeacher").on("click", function () {
-            app.navigate("manage/addTeacher/" + that.partner.get("partnerId"), true);
+            app.addPhotoView = new AdminPartnerAddTeacherView({partner: that.partner});
+            // app.navigate("manage/addTeacher/" + that.partner.get("partnerId"), true);
         });
         $("#manageTeacher").on("click", function () {
-            app.navigate("manage/manageTeacher/" + that.partner.get("partnerId"), true);
+            app.addPhotoView = new AdminPartnerManageTeacherView({partner: that.partner});
+            // app.navigate("manage/manageTeacher/" + that.partner.get("partnerId"), true);
         });
         $("#addLocation").on("click", function () {
             if (!that.uniform) {
