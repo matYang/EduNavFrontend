@@ -1113,7 +1113,7 @@
 <div><label>报名电话: </label><span class="detail"><%= registraPhone %></span><span class="edit"><input class="form-control" type="text" name="registraPhone"/></span>
 </div>
 
-<div><label>提纲: </label><span class="detail"><%= outline %></span><span class="edit"><textarea class="form-control" type="text" name="outline"/><%= outline %></textarea></span>
+<div style="height:300px;"><label>提纲: </label><span class="detail"><%= outline %></span><span class="edit"><textarea class="form-control" style="width:300px; height:250px; overflow: scroll;" type="text" name="outline"/><%= outline %></textarea></span>
 </div>
 <div><label>教学目标: </label><span class="detail"><%= goal %></span><span class="edit"><input class="form-control" type="text" name="goal"/></span>
 </div>
@@ -1187,8 +1187,11 @@
         <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">合作伙伴资格:</label>
             <div class="col-sm-3 form-control-static">
-                <span class="detail"><%= partnerQualification  %></span>
-                <span class="edit"><input type="text" class="form-control" id="partnerQualification" name="partnerQualification"/></span>
+                <span class="detail"><%= partnerQualification %></span>
+                <span class="edit"><select class="form-control" id="partnerQualification" name="partnerQualification">
+                    <option value="0">已认证</option>
+                    <option value="1">未认证</option>
+                </select></span>
             </div>
         </div>
         <div class="form-group form-group-sm">
@@ -1201,15 +1204,19 @@
         <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">校区地址:</label>
             <div class="col-sm-3 form-control-static">
-                <span class="detail"><%= subLocations %></span>
-                <span class="edit"><input type="text" class="form-control" id="subLocations" name="subLocations"/></span>
+                <span class="detail">
+                <% for (var i = 0; i < subLocations; i++) { %>
+                    <p><%= subLocations[i] %></p>
+                <% } %>
+                </span>
+                <span class="edit"><input type="text" class="form-control subLocations" id="subLocations1" name="subLocations1"/><a id="addLocation">增加更多地址</a></span>
             </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">报名地址一致:</label>
             <div class="col-sm-3 form-control-static">
                 <span class="detail"><%= uniformRegistraLocation %></span>
-                <span class="edit"><input type="text" class="form-control" id="uniformRegistraLocation" name="uniformRegistraLocation"/></span>
+                <span class="edit"><input type="checkbox" class="form-control" id="uniformRegistraLocation" name="uniformRegistraLocation"/></span>
             </div>
         </div>
         <div class="form-group form-group-sm">

@@ -6,13 +6,13 @@ var AdminPartnerView = BaseFormView.extend({
             fieldId: "logoUrl",
             type: "file",
             mandatory: true,
-            previewId: "logoPreview",
+            previewId: "logoPreview"
         }),
         new BaseField({
             name: "机构全称",
             fieldId: "wholeName",
             type: "text",
-            mandatory: true,
+            mandatory: true
         }),
         new BaseField({
             name: "机构简介",
@@ -30,13 +30,13 @@ var AdminPartnerView = BaseFormView.extend({
             name: "执照",
             fieldId: "license",
             type: "text",
-            mandatory: true,
+            mandatory: true
         }),
         new BaseField({
             name: "机构号",
             fieldId: "organizationNum",
             type: "text",
-            mandatory: true,
+            mandatory: true
         }),
         new BaseField({
             name: "识别号",
@@ -51,24 +51,11 @@ var AdminPartnerView = BaseFormView.extend({
             mandatory: true
         }),
         new BaseField({
-            name: "校区地址",
-            fieldId: "subLocations",
-            type: "text",
-            mandatory: true
-        }),
-        new BaseField({
-            name: "报名地址一致",
-            fieldId: "uniformRegistraLocation",
-            type: "checkbox",
-            mandatory: true
-        }),
-        new BaseField({
             name: "总部合作关系对接人",
             fieldId: "hqContact",
             type: "text",
             mandatory: false
-        }),
-
+        }), 
         new BaseField({
             name: "总部合作关系对接人联系电话",
             fieldId: "hqContactPhone",
@@ -132,19 +119,19 @@ var AdminPartnerView = BaseFormView.extend({
             name: "状态",
             fieldId: "status",
             type: "text",
-            mandatory: true,
+            mandatory: true
         }),
         new BaseField({
             name: "学校名",
             fieldId: "instName",
             type: "text",
-            mandatory: true,
+            mandatory: true
         }),
         new BaseField({
             name: "合作伙伴资格",
             fieldId: "partnerQualification",
             type: "text",
-            mandatory: true,
+            mandatory: true
         })
 
     ],
@@ -181,6 +168,8 @@ var AdminPartnerView = BaseFormView.extend({
         this.partner = partner;
         this.classCount = partner.get("classPhotoList").length + 1;
         this.teacherCount = partner.get("teacherList").length + 1;
+        this.subLocationCount = partner.get("subLocations").length ? partner.get("subLocations").length + 1 : 2;
+        this.uniform = partner.get("uniformRegistraLocation") || false;
         this.$el.append(this.template(partner.toJSON()));
         this.$schools = $("#schoolImgs");
         this.$teachers = $("#teacherInfo");
@@ -226,6 +215,23 @@ var AdminPartnerView = BaseFormView.extend({
         });
         $("#manageTeacher").on("click", function () {
             app.navigate("manage/manageTeacher/" + that.partner.get("partnerId"), true);
+        });
+        $("#addLocation").on("click", function () {
+            if (!that.uniform) {
+                $(this).before('<input type="text" class="form-control subLocations" id="subLocations' +
+                                that.subLocationCount + '" name="subLocations' +
+                                that.subLocationCount +'"/>');
+                that.subLocationCount++;
+            }
+        });
+        $("#uniformRegistraLocation").on("change", function () {
+            if ($(this).prop("checked")) {
+                $(".subLocations").prop("disabled", true);
+                that.uniform = true;
+            } else {
+                $(".subLocations").prop("disabled", false);
+                that.uniform = false;
+            }
         });
 
         $("#cancel").on("click", function () {
