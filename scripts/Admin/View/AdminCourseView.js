@@ -36,8 +36,8 @@ var AdminCourseView = BaseFormView.extend({
                 that.partnerTeacherList = teachers;
                 for (i = 0; i < that.partnerTeacherList.length; i++) {      //Build select List
                     buf[i] = that.optionTemplate({
-                        val: that.partnerTeacherList.at(i).get("teacherId"),
-                        text: that.partnerTeacherList.at(i).get("name")
+                        val: that.partnerTeacherList[i].get("teacherId"),
+                        text: that.partnerTeacherList[i].get("name")
                     });
                 }
                 that.teacherSelectHtml = that.selectTemplate({options: buf.join("")});         //This will be reused when admin adds more teachers
