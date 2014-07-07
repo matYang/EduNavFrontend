@@ -3,7 +3,7 @@ var AdminPartnerAddTeacherView = BaseFormView.extend({
     teacherBlockTemplate: _.template(tpl.get("teacherInputBlock")),
     template: _.template(tpl.get("adminPartnerAdd")),
     formElem: "adminPartnerAddForm",
-    submitButtonId: "ccreateSubmit",
+    submitButtonId: "createSubmit",
     form: true,
     create: true,
     callback: "uploadTarget",
