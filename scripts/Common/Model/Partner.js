@@ -111,12 +111,12 @@ var Partner = Backbone.Model.extend({
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         if (json.teacherList) {
             for (i = 0; i < json.teacherList.length; i++ ) {
-                json.teacherList[i] = json.teacherList.at(i)._toJSON();
+                json.teacherList[i] = json.teacherList[i]._toJSON();
             }
         }
         if (json.classPhotoList) {
             for (i = 0; i < json.classPhotoList.length; i++ ) {
-                json.classPhotoList[i] = json.classPhotoList.at(i)._toJSON();
+                json.classPhotoList[i] = json.classPhotoList[i]._toJSON();
             }
         }
         return json;
@@ -138,7 +138,7 @@ var Partner = Backbone.Model.extend({
         }
         if (json.teacherList) {
             for (var i = 0; i < json.teacherList.length; i++ ) {
-                json.teacherList[i] = json.teacherList.at(i).toJSON();
+                json.teacherList[i] = json.teacherList[i].toJSON();
             }
         }
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
