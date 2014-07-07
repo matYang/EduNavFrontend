@@ -109,6 +109,20 @@ var Partner = Backbone.Model.extend({
     _toJSON: function () {
         var json = _.clone(this.attributes), i;
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        if (json.classPhotoList) {
+            for (var i = 0; i < json.classPhotoList.length; i++ ) {
+                if (json.classPhotoList[i] instanceof Photo) {
+                    json.classPhotoList[i] = json.classPhotoList[i]._toJSON();
+                }
+            }
+        }
+        if (json.teacherList) {
+            for (var i = 0; i < json.teacherList.length; i++ ) {
+                if (json.teacherList[i] instanceof Teacher) {
+                    json.teacherList[i] = json.teacherList[i]._toJSON();
+                }
+            }
+        }
         return json;
     },
     toJSON: function () {
