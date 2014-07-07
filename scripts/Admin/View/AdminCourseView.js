@@ -55,7 +55,7 @@ var AdminCourseView = BaseFormView.extend({
         this.model = course.clone();
         this.isClosed = false;
         app.viewRegistration.register(this);
-        this.$el.append(this.template(course._toJSON()));
+        this.$el.empty().append(this.template(course._toJSON())).removeClass("hidden");
         if (course.get("partnerId") >= 0) {
             this.fetchPartnerTeacherList();
         }

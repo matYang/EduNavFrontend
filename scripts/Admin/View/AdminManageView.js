@@ -76,11 +76,7 @@ var AdminCourseSearchResultView = MultiPageView.extend({
             $("#updateCourse").removeClass("active");
             $("#courseCRUDContainer").removeClass("hidden");
             $("#searchResult").addClass("hidden");
-            if (!that.adminCourseView) {
-                that.adminCourseView = new AdminCourseView(); //Create
-            } else {
-                that.adminCourseView.initialize();
-            }
+            that.adminCourseView = new AdminCourseView(); //Create
         });
         $("#searchCourse").on("click", function () {
             $(this).addClass("active");
