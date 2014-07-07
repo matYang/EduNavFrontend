@@ -223,7 +223,7 @@ var AdminPartnerSearchResultView = MultiPageView.extend({
         });
     },
     entryEvent: function (id) {
-        app.navigate("manage/partner/" + id, true);
+        app.navigate("manage/partner/" + id);
         this.partnerView = new AdminPartnerView({partner: this.messages.get(id)})
     },
     close: function () {
