@@ -125,21 +125,21 @@ var Course = Backbone.Model.extend({
             json.category = decodeURI(data.category);
             json.subCategory = decodeURI(data.subCategory);
             json.subSubCategory = decodeURI(data.subSubCategory);
-            json.location = decodeURI(data.location);
-        	json.registraLocation = decodeURI(data.registraLocation);
+            json.location = decodeURIComponent(data.location);
+        	json.registraLocation = decodeURIComponent(data.registraLocation);
             json.province = decodeURI(data.province);
             json.city = decodeURI(data.city);
             json.district = decodeURI(data.district);
             json.reference = decodeURI(data.reference);
 
-            json.courseIntro = decodeURI(data.courseIntro);
-            json.quiz = decodeURI(data.quiz);
-            json.certification = decodeURI(data.certification);
-            json.openCourseRequirement = decodeURI(data.openCourseRequirement);
-            json.suitableStudent = decodeURI(data.suitableStudent);
-            json.prerequest = decodeURI(data.prerequest);
-            json.highScoreReward = decodeURI(data.highScoreReward);
-            json.courseName = decodeURI(data.courseName);
+            json.courseIntro = decodeURIComponent(data.courseIntro);
+            json.quiz = decodeURIComponent(data.quiz);
+            json.certification = decodeURIComponent(data.certification);
+            json.openCourseRequirement = decodeURIComponent(data.openCourseRequirement);
+            json.suitableStudent = decodeURIComponent(data.suitableStudent);
+            json.prerequest = decodeURIComponent(data.prerequest);
+            json.highScoreReward = decodeURIComponent(data.highScoreReward);
+            json.courseName = decodeURIComponent(data.courseName);
             json.studyDaysNote = decodeURI(data.studyDaysNote);
             json.partnerIntro = decodeURI(data.partnerIntro);
             json.teachingMaterialIntro = decodeURI(data.teachingMaterialIntro);
@@ -149,20 +149,20 @@ var Course = Backbone.Model.extend({
             json.extracurricular = decodeURI(data.extracurricular);
             json.registraPhone = decodeURI(data.registraPhone);
             json.contact = decodeURI(data.contact);
-			json.teachingMethod = decodeURI(data.teachingMethod);
+			json.teachingMethod = decodeURIComponent(data.teachingMethod);
             
-            json.partnerDistinction = decodeURI(data.partnerDistinction);
-            json.outline = decodeURI(data.outline);
-            json.goal = decodeURI(data.goal);
-            json.classTeacher = decodeURI(data.classTeacher);
-            json.teachingAndExercise = decodeURI(data.teachingAndExercise);
-            json.questionSession = decodeURI(data.questionSession);
-            json.trail = decodeURI(data.trail);
-            json.assignments = decodeURI(data.assignments);
-            json.marking = decodeURI(data.marking);
-            json.bonusService = decodeURI(data.bonusService);
-            json.downloadMaterials = decodeURI(data.downloadMaterials);
-            json.teachingMaterialFee = decodeURI(data.teachingMaterialFee);
+            json.partnerDistinction = decodeURIComponent(data.partnerDistinction);
+            json.outline = decodeURIComponent(data.outline);
+            json.goal = decodeURIComponent(data.goal);
+            json.classTeacher = decodeURIComponent(data.classTeacher);
+            json.teachingAndExercise = decodeURIComponent(data.teachingAndExercise);
+            json.questionSession = decodeURIComponent(data.questionSession);
+            json.trail = decodeURIComponent(data.trail);
+            json.assignments = decodeURIComponent(data.assignments);
+            json.marking = decodeURIComponent(data.marking);
+            json.bonusService = decodeURIComponent(data.bonusService);
+            json.downloadMaterials = decodeURIComponent(data.downloadMaterials);
+            json.teachingMaterialFee = decodeURIComponent(data.teachingMaterialFee);
 
             json.status = parseInt(data.status, 10);
             json.partnerQualification = parseInt(data.partnerQualification, 10);
@@ -179,8 +179,8 @@ var Course = Backbone.Model.extend({
                 json.teacherList = imgArr;
             }
             json.logoUrl = decodeURIComponent(data.logoUrl);
-            json.instName = decodeURI(data.instName);
-            json.wholeName = decodeURI(data.wholeName);
+            json.instName = decodeURIComponent(data.instName);
+            json.wholeName = decodeURIComponent(data.wholeName);
         }
         return json;
     },
