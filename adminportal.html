@@ -901,10 +901,10 @@
 <form id="adminCourseForm" method="post">
 <div><label>courseId: </label>
 
-    <div class="detail"><%= courseId %></div>
     <% if (courseId > -1) { %>
-    <div class="edit"><input type="hidden" id="courseId" name="courseId"/ value="<%= courseId %>"></div>
+        <div class="detail"><%= courseId %></div>
     <% } %>
+    <div class="edit"><input type="hidden" id="courseId" name="courseId"/ value="<%= courseId %>"></div>
 </div>
 <div><label>合作伙伴Id: </label>
 
