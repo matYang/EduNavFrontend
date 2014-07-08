@@ -791,7 +791,7 @@
                             <% if (teacherList) { %>
                                 <% for (var i =0; i < teacherList.length; i++) { %>
                                     <div class="teacherInfo">
-                                        <img class="teacherPhoto" src="<%= teacherList[i].imgUrl %>" width="120" height="120"/>
+                                        <div style="width:120px;height:120px;overflow:hidden;float:right"><img class="teacherPhoto" src="<%= teacherList[i].imgUrl %>" style="height:100%"/></div>
                                         <div class="name"><%= teacherList[i].name %></div>
                                         <div class=""><%= teacherList[i].intro %></div>
                                     </div>
