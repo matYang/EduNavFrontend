@@ -32,6 +32,7 @@ var CourseDetailView = Backbone.View.extend({
             $teacher = $($teachers[i]);
             maxHeight = maxHeight > $teacher.height() ? maxHeight : $teacher.height();
         }
+        this.offSetHeight = 430;
         $teachers.css("height", maxHeight);
         this.basicPos = $("#content_basic").position().top;
         this.teachingPos = $("#content_teaching").position().top;
@@ -61,11 +62,12 @@ var CourseDetailView = Backbone.View.extend({
             id = "#content_" + id.split("_")[1];
             $.smoothScroll({
                 scrollTarget: id,
-                offset: -40
+                offset: -40,
+                speed:650
             });
         });
         $(document).on("scroll", function () {
-            var $btn = $("#trialButton"), position = $(this).scrollTop(), height = $(window).height() - 140;
+            var $btn = $("#trialButton"), position = $(this).scrollTop();
             if (position >= 210) {
                 if (!$btn.hasClass("shown")){
                     $btn.animate({marginRight: "0px"}, 500);
@@ -89,13 +91,13 @@ var CourseDetailView = Backbone.View.extend({
                 $("#courseNavigateTab").removeClass("stickyHeader");
             }
             $("#courseNavigateTab").find(".active").removeClass("active");
-            if (position < that.teachingPos + height) {
+            if (position < that.teachingPos + that.offSetHeight) {
                 $("#tab_basic").addClass("active")
-            } else if (position >= that.teachingPos + height && position < that.etcPos + height) {
+            } else if (position >= that.teachingPos + that.offSetHeight && position < that.etcPos + that.offSetHeight) {
                 $("#tab_teaching").addClass("active")
-            } else if (position >= that.etcPos + height && position < that.guaranteePos + height) {
+            } else if (position >= that.etcPos + that.offSetHeight && position < that.guaranteePos + that.offSetHeight) {
                 $("#tab_etc").addClass("active")
-            } else if (position >= that.guaranteePos + height && position < that.servicePos + height) {
+            } else if (position >= that.guaranteePos + that.offSetHeight && position < that.servicePos + that.offSetHeight) {
                 $("#tab_guarantee").addClass("active")
             } else {
                 $("#tab_service").addClass("active")
