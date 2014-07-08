@@ -162,7 +162,9 @@ var TopBarView = Backbone.View.extend({
                 app.sessionManager.fetchSession(true, {
                     success: function () {
                         app.userManager.sessionUser = app.sessionManager.sessionModel;
-                        location.reload();
+                        if (location.hash.indexOf("mypage") > -1) {
+                            app.navigate("front", true);
+                        }
                     },
                     error: function () {
                         Info.warn("Session fetch failed");
