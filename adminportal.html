@@ -903,13 +903,13 @@
 
     <div class="detail"><%= courseId %></div>
     <% if (courseId > -1) { %>
-    <div class="edit"><input type="hidden" name="courseId"/ value="<%= courseId %>"></div>
+    <div class="edit"><input type="hidden" id="courseId" name="courseId"/ value="<%= courseId %>"></div>
     <% } %>
 </div>
 <div><label>合作伙伴Id: </label>
 
     <div class="detail"><%= partnerId %></div>
-    <div class="edit"><input class="form-control" type="text" name="partnerId"/></div>
+    <div class="edit"><input class="form-control" type="text" id="partnerId" name="partnerId"/></div>
 </div>
 <div><label>创建时间: </label>
 
@@ -918,208 +918,208 @@
 <div><label>课程名: </label>
 
     <div class="detail"><%= courseName %></div>
-    <div class="edit"><input class="form-control" type="text" name="courseName"/></div>
+    <div class="edit"><input class="form-control" type="text" id="courseName" name="courseName"/></div>
 </div>
 <div><label>课程简介: </label>
 
     <div class="detail"><%= courseIntro %></div>
-    <div class="edit"><input class="form-control" type="text" name="courseIntro"/></div>
+    <div class="edit"><input class="form-control" type="text" id="courseIntro" name="courseIntro"/></div>
 </div>
 <div><label>适合学生: </label><span class="detail"><%= suitableStudent %></span><span class="edit"><input
         class="form-control" type="text" name="suitableStudent"/></span></div>
 <div><label>价格: </label>
 
     <div class="detail"><%= price %></div>
-    <div class="edit"><input class="form-control" type="text" name="price"/></div>
+    <div class="edit"><input class="form-control" type="text" id="price" name="price"/></div>
 </div>
 <div><label>学时: </label>
 
     <div class="detail"><%= courseHourNum %></div>
-    <div class="edit"><input class="form-control" type="text" name="courseHourNum"/></div>
+    <div class="edit"><input class="form-control" type="text" id="courseHourNum" name="courseHourNum"/></div>
 </div>
 <div><label>学时时间: </label>
 
     <div class="detail"><%= courseHourLength %></div>
-    <div class="edit"><input class="form-control" type="text" name="courseHourLength"/></div>
+    <div class="edit"><input class="form-control" type="text" id="courseHourLength" name="courseHourLength"/></div>
 </div>
 
 <div><label>招生人数: </label>
 
     <div class="detail"><%= classSize %></div>
-    <div class="edit"><input class="form-control" type="text" name="classSize"/></div>
+    <div class="edit"><input class="form-control" type="text" id="classSize" name="classSize"/></div>
 </div>
 <div><label>反金金额: </label>
 
     <div class="detail"><%= cashback %></div>
-    <div class="edit"><input class="form-control" type="text" name="cashback"/></div>
+    <div class="edit"><input class="form-control" type="text" id="cashback" name="cashback"/></div>
 </div>
 <div><label>人气值: </label>
 
     <div class="detail"><%= popularity %></div>
-    <div class="edit"><input class="form-control" type="text" name="popularity"/></div>
+    <div class="edit"><input class="form-control" type="text" id="popularity" name="popularity"/></div>
 </div>
 
 <div><label>开始日期: </label>
 
     <div class="detail"><%= startDate %></div>
-    <div class="edit"><input type="text" class="date form-control" name="startDate"/></div>
+    <div class="edit"><input type="text" class="date form-control" id="startDate" name="startDate"/></div>
 </div>
 <div><label>结束日期: </label>
 
     <div class="detail"><%= finishDate %></div>
-    <div class="edit"><input type="text" class="date form-control" name="finishDate"/></div>
+    <div class="edit"><input type="text" class="date form-control" id="finishDate" name="finishDate"/></div>
 </div>
 <div><label>截止日期: </label>
 
     <div class="detail"><%= cutoffDate %></div>
-    <div class="edit"><input type="text" class="date form-control" name="cutoffDate"/></div>
+    <div class="edit"><input type="text" class="date form-control" id="cutoffDate" name="cutoffDate"/></div>
 </div>
 <div><label>无退款日期: </label>
     <div class="detail"><%= noRefundDate %></div>
-    <div class="edit"><input type="text" class="date form-control" name="noRefundDate"/></div>
+    <div class="edit"><input type="text" class="date form-control" id="noRefundDate" name="noRefundDate"/></div>
 </div>
 <div><label>返金日期: </label>
 
     <div class="detail"><%= cashbackDate %></div>
-    <div class="edit"><input type="text" class="date form-control" name="cashbackDate"/></div>
+    <div class="edit"><input type="text" class="date form-control" id="cashbackDate" name="cashbackDate"/></div>
 </div>
 <div><label>上学时间1: </label>
 
     <div class="detail"><%= startTime1 %></div>
-    <div class="edit"><input type="text" class="form-control" name="startTime1"/></div>
+    <div class="edit"><input type="text" class="form-control" id="startTime1" name="startTime1"/></div>
 </div>
 <div><label>放学时间1: </label>
 
     <div class="detail"><%= finishTime1 %></div>
-    <div class="edit"><input type="text"class="form-control"  name="finishTime1"/></div>
+    <div class="edit"><input type="text"class="form-control"  id="finishTime1" name="finishTime1"/></div>
 </div>
 <div><label>上学时间2: </label>
 
     <div class="detail"><%= startTime2 %></div>
-    <div class="edit"><input type="text" class="form-control" name="startTime2"/></div>
+    <div class="edit"><input type="text" class="form-control" id="startTime2" name="startTime2"/></div>
 </div>
 <div><label>放学时间2: </label>
 
     <div class="detail"><%= finishTime2 %></div>
-    <div class="edit"><input type="text" class="form-control" name="finishTime2"/></div>
+    <div class="edit"><input type="text" class="form-control" id="finishTime2" name="finishTime2"/></div>
 </div>
 <div><label>上课日: </label>
 
     <div class="detail"><%= studyDays %></div>
-    <div class="edit"><input type="text" class="form-control" name="studyDays"/></div>
+    <div class="edit"><input type="text" class="form-control" id="studyDays" name="studyDays"/></div>
 </div>
 <div><label>上课日备注: </label>
 
     <div class="detail"><%= studyDaysNote %></div>
-    <div class="edit"><input type="text" class="form-control" name="studyDaysNote"/></div>
+    <div class="edit"><input type="text" class="form-control" id="studyDaysNote" name="studyDaysNote"/></div>
 </div>
 
 <div><label>一级分类: </label>
 
     <div class="detail"><%= category %></div>
-    <div class="edit"><select class="form-control" name="category"></select></div>
+    <div class="edit"><select class="form-control" id="category" name="category"></select></div>
 </div>
 <div><label>二级分类: </label>
 
     <div class="detail"><%= subCategory %></div>
-    <div class="edit"><select class="form-control" name="subCategory"></select></div>
+    <div class="edit"><select class="form-control" id="subCategory" name="subCategory"></select></div>
 </div>
 <div><label>三级分类: </label>
 
     <div class="detail"><%= subSubCategory %></div>
-    <div class="edit"><select class="form-control" name="subSubCategory"></select></div>
+    <div class="edit"><select class="form-control" id="subSubCategory" name="subSubCategory"></select></div>
 </div>
 <div><label>省份: </label>
 
     <div class="detail"><%= province %></div>
-    <div class="edit"><select class="form-control" name="province"></select></div>
+    <div class="edit"><select class="form-control" id="province" name="province"></select></div>
 </div>
 <div><label>城市: </label>
 
     <div class="detail"><%= city %></div>
-    <div class="edit"><select class="form-control" name="city"></select></div>
+    <div class="edit"><select class="form-control" id="city" name="city"></select></div>
 </div>
 <div><label>地区: </label>
 
     <div class="detail"><%= district %></div>
-    <div class="edit"><select class="form-control" name="district"></select></div>
+    <div class="edit"><select class="form-control" id="district" name="district"></select></div>
 </div>
 <div><label>地址: </label>
 
     <div class="detail"><%= location %></div>
-    <div class="edit"><input class="form-control" type="text" name="location"/></div>
+    <div class="edit"><input class="form-control" id="location" type="text" name="location"/></div>
 </div>
 <div><label>注册地点: </label>
 
     <div class="detail"><%= registraLocation %></div>
-    <div class="edit"><input class="form-control" type="text" name="registraLocation"/></div>
+    <div class="edit"><input class="form-control" id="registraLocation" type="text" name="registraLocation"/></div>
 </div>
 
-<div><label>查询号: </label><span class="detail"><%= reference %></span><span class="edit"><input class="form-control" type="text" name="reference"/></span>
+<div><label>查询号: </label><span class="detail"><%= reference %></span><span class="edit"><input class="form-control" type="text" id="reference" name="reference"/></span>
 </div>
 
 <div><label>订单类型: </label><span class="detail"><%= bookingType %></span><span class="edit">
-            <select class="form-control" name="bookingType">
+            <select class="form-control" id="bookingType" name="bookingType">
                 <option value=0>offline</option>
                 <option value=1>online</option>
             </select>
         </span></div>
 
 <div><label>开课要求: </label><span class="detail"><%= openCourseRequirement %></span><span class="edit"><input
-        class="form-control" type="text" name="openCourseRequirement"/></span></div>
+        class="form-control" type="text" id="openCourseRequirement" name="openCourseRequirement"/></span></div>
 <div><label>教材简介: </label><span class="detail"><%= teachingMaterialIntro %></span><span class="edit"><input
-        class="form-control" type="text" name="teachingMaterialIntro"/></span></div>
+        class="form-control" type="text" id="teachingMaterialIntro" name="teachingMaterialIntro"/></span></div>
 <div><label>教材费用: </label><span class="detail"><%= teachingMaterialFee %></span><span class="edit"><input
-        class="form-control" type="text" name="teachingMaterialFee"/></span></div>
+        class="form-control" type="text" id="teachingMaterialFee" name="teachingMaterialFee"/></span></div>
 <div><label>教学方式: </label><span class="detail"><%= teachingMethod %></span><span class="edit"><input
-        class="form-control" type="text" name="teachingMethod"/></span></div>
-<div><label>学前要求: </label><span class="detail"><%= prerequest %></span><span class="edit"><input class="form-control" type="text" name="prerequest"/></span>
+        class="form-control" type="text" id="teachingMethod" name="teachingMethod"/></span></div>
+<div><label>学前要求: </label><span class="detail"><%= prerequest %></span><span class="edit"><input class="form-control" type="text" id="prerequest" name="prerequest"/></span>
 </div>
 
 <div><label>下载材料: </label><span class="detail"><%= downloadMaterials %></span><span class="edit"><input
-        class="form-control" type="text" name="downloadMaterials"/></span></div>
-<div><label>题库: </label><span class="detail"><%= questionBank %></span><span class="edit"><input class="form-control" type="text" name="questionBank"/></span>
+        class="form-control" type="text" id="downloadMaterials" name="downloadMaterials"/></span></div>
+<div><label>题库: </label><span class="detail"><%= questionBank %></span><span class="edit"><input class="form-control" type="text" id="questionBank" name="questionBank"/></span>
 </div>
-<div><label>质量保证: </label><span class="detail"><%= qualityAssurance %></span><span class="edit"><input class="form-control" type="text" name="qualityAssurance"/></span>
+<div><label>质量保证: </label><span class="detail"><%= qualityAssurance %></span><span class="edit"><input class="form-control" type="text" id="qualityAssurance" name="qualityAssurance"/></span>
 </div>
 <div><label>高分奖励: </label><span class="detail"><%= highScoreReward %></span><span class="edit"><input
-        class="form-control" type="text" name="highScoreReward"/></span></div>
-<div><label>保过协议: </label><span class="detail"><%= passAgreement %></span><span class="edit"><input class="form-control" type="text" name="passAgreement"/></span>
+        class="form-control" type="text" id="highScoreReward" name="highScoreReward"/></span></div>
+<div><label>保过协议: </label><span class="detail"><%= passAgreement %></span><span class="edit"><input class="form-control" type="text" id="passAgreement" name="passAgreement"/></span>
 </div>
-<div><label>阶段评估: </label><span class="detail"><%= quiz %></span><span class="edit"><input class="form-control" type="text" name="quiz"/></span>
+<div><label>阶段评估: </label><span class="detail"><%= quiz %></span><span class="edit"><input class="form-control" type="text" id="quiz" name="quiz"/></span>
 </div>
-<div><label>课后作业: </label><span class="detail"><%= assignments %></span><span class="edit"><input class="form-control" type="text" name="assignments"/></span></div>
-<div><label>作业批改: </label><span class="detail"><%= marking %></span><span class="edit"><input class="form-control" type="text" name="marking"/></span>
+<div><label>课后作业: </label><span class="detail"><%= assignments %></span><span class="edit"><input class="form-control" type="text" id="assignments" name="assignments"/></span></div>
+<div><label>作业批改: </label><span class="detail"><%= marking %></span><span class="edit"><input class="form-control" type="text" id="marking" name="marking"/></span>
 </div>
-<div><label>结业证书: </label><span class="detail"><%= certification %></span><span class="edit"><input class="form-control"  type="text" name="certification"/></span>
+<div><label>结业证书: </label><span class="detail"><%= certification %></span><span class="edit"><input class="form-control"  type="text" id="certification" name="certification"/></span>
 </div>
 <div><label>课后活动: </label><span class="detail"><%= extracurricular %></span><span class="edit"><input
-        class="form-control" type="text" name="extracurricular"/></span></div>
+        class="form-control" type="text" id="extracurricular" name="extracurricular"/></span></div>
 <div><label>状态: </label><span class="detail"><%= status %></span><span class="edit">
-            <select class="form-control" name="status">
+            <select class="form-control" id="status" name="status">
                 <option value=0>activate</option>
                 <option value=1>deactivate</option>
             </select>
         </span></div>
 
-<div><label>联系方式: </label><span class="detail"><%= contact %></span><span class="edit"><input class="form-control" type="text" name="contact"/></span>
+<div><label>联系方式: </label><span class="detail"><%= contact %></span><span class="edit"><input class="form-control" type="text" id="contact" name="contact"/></span>
 </div>
-<div><label>报名电话: </label><span class="detail"><%= registraPhone %></span><span class="edit"><input class="form-control" type="text" name="registraPhone"/></span>
+<div><label>报名电话: </label><span class="detail"><%= registraPhone %></span><span class="edit"><input class="form-control" type="text" id="registraPhone" name="registraPhone"/></span>
 </div>
 
-<div style="height:300px;"><label>提纲: </label><span class="detail"><%= outline %></span><span class="edit"><textarea class="form-control" style="width:300px; height:250px; overflow: scroll;" type="text" name="outline"/><%= outline %></textarea></span>
+<div style="height:300px;"><label>提纲: </label><span class="detail"><%= outline %></span><span class="edit"><textarea class="form-control" style="width:300px; height:250px; overflow: scroll;" type="text" id="outline" name="outline"/><%= outline %></textarea></span>
 </div>
-<div><label>教学目标: </label><span class="detail"><%= goal %></span><span class="edit"><input class="form-control" type="text" name="goal"/></span>
+<div><label>教学目标: </label><span class="detail"><%= goal %></span><span class="edit"><input class="form-control" type="text" id="goal" name="goal"/></span>
 </div>
-<div><label>班主任导读: </label><span class="detail"><%= classTeacher %></span><span class="edit"><input class="form-control" type="text" name="classTeacher"/></span>
+<div><label>班主任导读: </label><span class="detail"><%= classTeacher %></span><span class="edit"><input class="form-control" type="text" id="classTeacher" name="classTeacher"/></span>
 </div>
 <div><label>讲练结合: </label><span class="detail"><%= teachingAndExercise %></span><span class="edit"><input
-        class="form-control" type="text" name="teachingAndExercise"/></span></div>
+        class="form-control" type="text" id="teachingAndExercise" name="teachingAndExercise"/></span></div>
 <div><label>问答时间: </label><span class="detail"><%= questionSession %></span><span class="edit"><input class="form-control" 
-        type="text" name="questionSession"/></span></div>
-<div><label>试听: </label><span class="detail"><%= trail %></span><span class="edit"><input type="text" class="form-control" name="trail"/></span>
+        type="text" id="questionSession" name="questionSession"/></span></div>
+<div><label>试听: </label><span class="detail"><%= trail %></span><span class="edit"><input type="text" class="form-control" id="trail" name="trail"/></span>
 </div>
-<div><label>附加服务: </label><span class="detail"><%= bonusService %></span><span class="edit"><input type="text" class="form-control" name="bonusService"/></span>
+<div><label>附加服务: </label><span class="detail"><%= bonusService %></span><span class="edit"><input type="text" class="form-control" id="bonusService" name="bonusService"/></span>
 </div>
 <div id="teacherInfo">
     <label>教师信息: </label>
