@@ -951,20 +951,18 @@
                     <% } %>
                 <% }); %>
             </tr>
-            <!--
             <tr id="teacherInfo">
                 <th>老师介绍</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>">
-                        <% if (course.tearcherName) { %>
-                            <% for ( var i; i < course.teacherName.length; i++ ) { %>
-                                <p><b class="F_green">course.teacherName[i]</b> course.teacherIntro[i]</p>
+                        <% if (course.teacherList) { %>
+                            <% for ( var i; i < course.teacherList.length; i++ ) { %>
+                                <p><b class="F_green"><%= course.teacherList[i].name %></b><%= course.teacherList[i].intro %></p>
                             <% } %>
                         <% } %>
                     </td>
                 <% }); %>
             </tr>
-            -->
         </table>
         
         <div class="title clearfix" style="border-top:none;" id="teaching_collapse">

@@ -171,7 +171,7 @@ var CourseDetailView = Backbone.View.extend({
             if (this.compareWidget) {
                 this.compareWidget.close();
             }
-            $(document).off();
+            $(document).off("scroll");
             $("#courseNavigateTab").off();
             $("body").removeClass("courseDetail");
             $("#trialButton").off();
