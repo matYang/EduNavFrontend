@@ -167,6 +167,11 @@ var NewBookingView = BaseFormView.extend({
                 app.navigate("forgetPassword/", true);
             });
         }
+        $("#bookingInfo").on("keypress", "input", function (e) {
+        	if (e.which === 13) {
+        		$("#initBooking").trigger("click");
+        	}
+        });
         $("#booking_date").on("keypress", function(e){
             e.preventDefault();
         }).datepicker({
