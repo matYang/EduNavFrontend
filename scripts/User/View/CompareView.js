@@ -37,6 +37,7 @@ var CompareView = Backbone.View.extend({
             return;
         }
         if (!this.isClosed) {
+            $("title").html("爱上课 | 课程比较");
             this.courses = courses.toArray();
             var len = 0;
             while (len < 4) {

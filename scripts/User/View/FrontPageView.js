@@ -14,6 +14,7 @@ var FrontPageView = Backbone.View.extend({
     },
 
     render: function () {
+        $("title").html("爱上课 | 为您选择最合适，最优惠的课程");
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.searchRepresentation = app.storage.getSearchRepresentationCache("course");

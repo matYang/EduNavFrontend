@@ -83,7 +83,6 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         queryObj.subSubCategory = typeof this.get('subSubCategory') === 'undefined' ? undefined : encodeURI(this.get('subSubCategory'));
         queryObj.city = typeof this.get('city') === 'undefined' ? undefined : encodeURI(this.get('city'));
         queryObj.district = typeof this.get('district') === 'undefined' ? undefined : encodeURI(this.get('district'));
-
         queryObj.startDate = typeof this.get('startDate') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startDate'));
         queryObj.finishDate = typeof this.get('finishDate') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishDate'));
 
@@ -107,6 +106,14 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishCreationTime'));
 
         return queryObj;
+    },
+    toTitleString: function() {
+        var buf = "";
+        buf += (typeof this.get('district') === 'undefined') ? "" :  this.get('district') + " " ;
+        buf += (typeof this.get('category') === 'undefined') ? "" : this.get('category');
+        buf += (typeof this.get('subCategory') === 'undefined') ? "" : (">" + this.get('subCategory'));
+        buf += (typeof this.get('subSubCategory') === 'undefined') ? "" : (">" + this.get('subSubCategory'));
+        return buf;
     }
 
 });
