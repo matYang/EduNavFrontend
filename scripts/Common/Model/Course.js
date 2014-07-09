@@ -94,7 +94,7 @@ var Course = Backbone.Model.extend({
             json = {};
         if ( typeof data !== 'undefined') {
             json.courseId = parseInt(data.courseId, 10);
-            json.courseName = decodeURIComponenet(data.courseName);
+            json.courseName = decodeURIComponent(data.courseName);
             
 
             json.courseId = parseInt(data.courseId, 10);
@@ -122,15 +122,15 @@ var Course = Backbone.Model.extend({
             json.startTime2 = parseInt(data.startTime2 , 10);
             json.finishTime2 = parseInt(data.finishTime2 , 10);
 
-            json.category = decodeURIComponenet(data.category);
-            json.subCategory = decodeURIComponenet(data.subCategory);
-            json.subSubCategory = decodeURIComponenet(data.subSubCategory);
+            json.category = decodeURIComponent(data.category);
+            json.subCategory = decodeURIComponent(data.subCategory);
+            json.subSubCategory = decodeURIComponent(data.subSubCategory);
             json.location = decodeURIComponent(data.location);
         	json.registraLocation = decodeURIComponent(data.registraLocation);
-            json.province = decodeURIComponenet(data.province);
-            json.city = decodeURIComponenet(data.city);
-            json.district = decodeURIComponenet(data.district);
-            json.reference = decodeURIComponenet(data.reference);
+            json.province = decodeURIComponent(data.province);
+            json.city = decodeURIComponent(data.city);
+            json.district = decodeURIComponent(data.district);
+            json.reference = decodeURIComponent(data.reference);
 
             json.courseIntro = decodeURIComponent(data.courseIntro);
             json.quiz = decodeURIComponent(data.quiz);
@@ -140,15 +140,15 @@ var Course = Backbone.Model.extend({
             json.prerequest = decodeURIComponent(data.prerequest);
             json.highScoreReward = decodeURIComponent(data.highScoreReward);
             json.courseName = decodeURIComponent(data.courseName);
-            json.studyDaysNote = decodeURIComponenet(data.studyDaysNote);
-            json.partnerIntro = decodeURIComponenet(data.partnerIntro);
-            json.teachingMaterialIntro = decodeURIComponenet(data.teachingMaterialIntro);
-            json.qualityAssurance = decodeURIComponenet(data.qualityAssurance);
-            json.questionBank = decodeURIComponenet(data.questionBank);
-            json.passAgreement = decodeURIComponenet(data.passAgreement);
-            json.extracurricular = decodeURIComponenet(data.extracurricular);
-            json.registraPhone = decodeURIComponenet(data.registraPhone);
-            json.contact = decodeURIComponenet(data.contact);
+            json.studyDaysNote = decodeURIComponent(data.studyDaysNote);
+            json.partnerIntro = decodeURIComponent(data.partnerIntro);
+            json.teachingMaterialIntro = decodeURIComponent(data.teachingMaterialIntro);
+            json.qualityAssurance = decodeURIComponent(data.qualityAssurance);
+            json.questionBank = decodeURIComponent(data.questionBank);
+            json.passAgreement = decodeURIComponent(data.passAgreement);
+            json.extracurricular = decodeURIComponent(data.extracurricular);
+            json.registraPhone = decodeURIComponent(data.registraPhone);
+            json.contact = decodeURIComponent(data.contact);
 			json.teachingMethod = decodeURIComponent(data.teachingMethod);
             
             json.partnerDistinction = decodeURIComponent(data.partnerDistinction);
