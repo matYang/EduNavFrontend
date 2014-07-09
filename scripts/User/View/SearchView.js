@@ -202,6 +202,8 @@ var SearchView = Backbone.View.extend({
                 } else {
                     $("#searchWidgets").removeClass("stickyHeader");
                 }
+            } else {
+                $("#searchWidgets").removeClass("stickyHeader");
             }
         });
 
