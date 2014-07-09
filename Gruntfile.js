@@ -113,7 +113,18 @@ module.exports = function(grunt) {
     cssmin: {
       dist: {
         files: {
-          'build/style/css/style-min.css': ['style/css/*.css']
+          'build/style/css/style-min.css': [
+            'style/css/Global.css',
+            'style/css/topBar.css',
+            'style/css/override.css',
+            'style/css/index.css',
+            'style/css/reg.css',
+            'style/css/search.css',
+            'style/css/mypage.css',
+            'style/css/courseDetail.css',
+            'style/css/compare.css',
+            'style/css/booking.css'
+          ]
         }
       }
     }
