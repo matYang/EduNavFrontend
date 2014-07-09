@@ -747,21 +747,21 @@
                 <div class="gallary clearfix">
                     <div class="small_pic">
                         <div class="top">
-                            <div class="pic1"><img src="<%= logoUrl %>" width="116" height="106"/></div>
-                            <div class="pic2"><img src="<%= classPhotoList[0] ? classPhotoList[0].imgUrl : null %>"  width="156" height="106"/></div>
+                            <div class="pic1"><img src="<%= logoUrl %>" width="100%" height="100%"/></div>
+                            <div class="pic2"><img src="<%= classPhotoList[0] ? classPhotoList[0].imgUrl : null %>"  width="100%"/></div>
                         </div>
                         <div class="bottom">
-                            <div class="pic3"><img src="<%= classPhotoList[1] ? classPhotoList[1].imgUrl : null %>" width="156" height="101"/></div>
-                            <div class="pic4"><img src="<%= classPhotoList[2] ? classPhotoList[2].imgUrl : null %>" width="116" height="101"/></div>
+                            <div class="pic3"><img src="<%= classPhotoList[1] ? classPhotoList[1].imgUrl : null %>" width="100%"/></div>
+                            <div class="pic4"><img src="<%= classPhotoList[2] ? classPhotoList[2].imgUrl : null %>" width="100%" height="100%"/></div>
                         </div>
                     </div>
-                    <div class="big_pic"> <img src="<%= classPhotoList[3] ? classPhotoList[3].imgUrl : null %>" width="306" height="216"/> </div>
+                    <div class="big_pic"> <img src="<%= classPhotoList[3] ? classPhotoList[3].imgUrl : null %>" width="306" height="218"/> </div>
                 </div>
                 <div class="course_map">
                     <div class="addr">上课地点：<%= location %></div>
                     <div class="map">
                         <a href="http://api.map.baidu.com/geocoder?address=<%= location %>&output=html" target="_blank">
-                            <img src="http://api.map.baidu.com/staticimage?width=328&height=183&zoom=14&center=<%= location %>" />
+                            <img src="http://api.map.baidu.com/staticimage?width=328&height=184&zoom=14&center=<%= location %>" />
                         </a>
                     </div>
                 </div>
