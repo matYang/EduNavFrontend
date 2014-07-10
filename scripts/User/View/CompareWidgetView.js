@@ -96,9 +96,9 @@ var CompareWidgetView = Backbone.View.extend({
         if (app.searchView && app.searchView.searchRepresentation) {
             if (app.searchView.searchRepresentation.get("district")) {
                 this.map.map.centerAndZoom((app.searchView.searchRepresentation.get("city")  || "南京") + "市" + 
-                    app.searchView.searchRepresentation.get("district") + "区", 11);
+                    app.searchView.searchRepresentation.get("district") + "区", 12);
             } else {
-                this.map.map.centerAndZoom(app.searchView.searchRepresentation.get("city") || "南京", 9);
+                this.map.map.centerAndZoom(app.searchView.searchRepresentation.get("city") || "南京", 10);
             }
         } else {
             this.map.map.centerAndZoom("南京", 9);
