@@ -44,6 +44,26 @@ var CourseDetailView = Backbone.View.extend({
         this.guaranteePos = $("#content_guarantee").position().top;
         this.servicePos = $("#content_service").position().top;
         this.compareWidget = new CourseDetailCompareWidgetView();
+        if ($("#content_basic>dd").length === 0) {
+            $("#content_basic").remove();
+            $("#tab_basic").remove();
+        }
+        if ($("#content_teaching>dd").length === 0) {
+            $("#content_teaching").remove();
+            $("#tab_teaching").remove();
+        }
+        if ($("#content_etc>dd").length === 0) {
+            $("#content_etc").remove();
+            $("#tab_etc").remove();
+        }
+        if ($("#content_guarantee>dd").length === 0) {
+            $("#content_guarantee").remove();
+            $("#tab_guarantee").remove();
+        }
+        if ($("#content_service>dd").length === 0) {
+            $("#content_service").remove();
+            $("#tab_service").remove();
+        }
     },
     bindEvents: function () {
         var that = this;
