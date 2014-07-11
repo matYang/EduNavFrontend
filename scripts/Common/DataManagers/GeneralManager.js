@@ -1,3 +1,6 @@
+//该模块为用户，合作伙伴，管理员的通用接口
+//该模块用来拉取课程，地址，分类等公开信息
+
 (function () {
     
 
@@ -14,7 +17,8 @@
         queue.push(reference);
         return (queue.length - 1);
     };
-
+    
+    //判断是否需要重新拉取地区/分类信息
     var shouldReload = function(timeStamp) {
         if (typeof timeStamp === 'undefined'){
             return true;
@@ -43,6 +47,7 @@
     //reset the manager state upon logout
     GeneralManager.prototype.release = function() {};
 
+    //根据ID拉取单个课程
     GeneralManager.prototype.fetchCourse = function (courseId, callback) {
         var cache = app.cache.get("course", courseId);
         if (cache) {
@@ -64,7 +69,7 @@
             success:function(model, response){
                 if(callback){
                     callback.success(model);
-                    app.cache.set("course", courseId, course.toJSON());
+                    app.cache.set("course", courseId, course.toJSON()); //course很少会发生变化，所以缓存起来
                 }
             },
 
@@ -78,6 +83,7 @@
         });
     };
 
+    //根据ID列表批量拉取单个课程
     GeneralManager.prototype.batchFetchCourses = function (courseIds, callback) {
         var cache, i, requestList = [], courses = new Courses();
         if (testMockObj.testMode) {
@@ -87,12 +93,13 @@
             callback.success(courses);
             return;
         }
+        //优先检查缓存里课程是否已经存在，仅重新拉取过期或者不存在的课程
         for (i = 0; i < courseIds.length; i++) {
             cache = app.cache.get("course", courseIds[i]);
             if (cache) {
                 courses.add(new Course(cache, {parse: true}));
             } else {
-                requestList.push(courseIds[i]);
+                requestList.push(courseIds[i]); //根据缓存那内容重新建立拉取列表
             }
         }
         if (requestList.length === 0) {
@@ -129,7 +136,8 @@
         });
     };
 
-
+    //根据搜索条件搜索课程
+    //具体条件参考CourseSearchRepresentation.js
     GeneralManager.prototype.findCourse = function(courseSearchRepresentation, callback) {
         var self = this, cache, i, requestList = [], searchResults = new Courses();
         if (!(courseSearchRepresentation instanceof Backbone.Model)){
@@ -172,6 +180,7 @@
         });
     };
 
+    //拉取课程类目
     GeneralManager.prototype.fetchCategories = function(callback) {
         var self = this;
         if (testMockObj.testMode) {
@@ -197,7 +206,7 @@
         });
     };
 
-    
+    //拉取地点
     GeneralManager.prototype.fetchLocations = function(callback) {
         var self = this;
         if (testMockObj.testMode) {
@@ -224,6 +233,10 @@
     };
 
     //caller view must provide a function called renderCategories || renderLocations, must store the returned index and call remove when close
+    //如果本地存有类目的缓存并且尚为过期，该方法会自动调用reference里的renderCategories方法。
+    //如果本地没有类目信息或者类目信息已经过期，该方法会触发fetchCategories方法，并在成功后触发reference里的renderCategories方法
+    //reference为调用该方法的view的自身 
+    //e.g: app.generalManager.getCategoreis(this)
     GeneralManager.prototype.getCategories = function(reference){
         var index = -1;
         if (this.categoryList.length === 0 || shouldReload(this.categoryTimeStamp)){
@@ -238,6 +251,11 @@
         }
         return index;
     };
+
+    //如果本地存有地区信息的缓存并且尚为过期，该方法会自动调用reference里的renderLocations方法。
+    //如果本地没有地区信息或者地区信息已经过期，该方法会触发fetchCategories方法，并在成功后触发reference里的renderLocations方法
+    //reference为调用该方法的view的自身 
+    //e.g: app.generalManager.getCategoreis(this)
     GeneralManager.prototype.getLocations = function(reference) {
         var index = -1;
         if (this.locationList.length === 0 || shouldReload(this.locationTimeStamp)){
@@ -252,6 +270,8 @@
         }
         return index;
     };
+
+    //@deprecated (actually I don't know what this method does, it's never used)
     GeneralManager.prototype.removeFromCategoryQueue = function(index){
         if (typeof index === 'undefined' && index < 0){
             return;
@@ -259,6 +279,7 @@
         this.categoryQueue[index] = null;
     };
 
+    //@deprecated (actually I don't know what this method does, it's never used)
     GeneralManager.prototype.removeFromLocationQueue = function(index) {
         if (typeof index === 'undefined' && index < 0){
             return;

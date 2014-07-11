@@ -267,5 +267,17 @@ var Utilities = {
     },
     defaultErrorHandler: function (response) {
         Info.alert(response.responseText || Resources.networkErrorText);
+    },
+    calcCompleteness: function (course) {
+        var json = course._toJSON(), attr, comp = 0;
+        for (attr in json) {
+            if (json[attr]) {
+                comp+=1;
+                if (attr === "popularity") {
+                    comp += Math.round(Math.sqrt(json[attr]));
+                }
+            }
+        }
+        return comp;
     }
 };

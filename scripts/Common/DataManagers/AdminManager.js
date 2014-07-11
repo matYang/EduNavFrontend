@@ -1,15 +1,16 @@
+//AdminManager用于管理员模块与后台的交互。
+//该模块的所有方法都需要管理员权限。
+//该模块应该仅在管理员主页被加载。
 (function () {
-    
-
-
     this.AdminManager = function(sessionManager){
         this.sessionManager = sessionManager;
         this.sessionManager.registerManager(this);
     };
 
-
     AdminManager.prototype.release = function() {};
 
+    //新建管理员。需要传入管理员的设置和秘钥
+    //秘钥keys包含三个secret，具体值请询问matthew
     AdminManager.prototype.createAdmin = function(admin, callback, keys){
         if (keys){
             admin.overrideUrl(AdminApiResource.admin_admin + '?secret1=' + keys.secret1 + '&secret2=' + keys.secret2 + '&secret3=' + keys.secret3);
@@ -36,6 +37,7 @@
         });
     };
 
+    //通过admin Id拉取管理员
     AdminManager.prototype.fetchAdmin = function(adminId, callback) {
         var self = this;
         var admin = new Admin();
@@ -68,7 +70,8 @@
         });
     };
 
-
+    //根据搜索条件拉取符合条件的管理员
+    //似乎也需要keys? 不应该啊
     AdminManager.prototype.listAdmin = function(adminSearchRepresentation, callback, keys){
         var admins = new Users();
         var queryObj = adminSearchRepresentation.toQueryString();
@@ -99,6 +102,8 @@
         });
     };
 
+    //修改其他管理员的信息。
+    //需要比一般管理员更高的权限才能成功。
     AdminManager.prototype.updateAdmin = function(admin, callback){
         if (!this.sessionManager.hasSession()){
             Info.warn('AdminManager::findCourse:: session does not exist, exit');
@@ -127,6 +132,7 @@
     /****************
     *   Authentication Related
     ****************/
+    //修改密码，暂时没有调用的地方
     AdminManager.prototype.changePassword = function(adminId, password, callback){
         var self = this;
         if (!(adminId && password)){
@@ -163,6 +169,8 @@
     /****************
     *   Partner Related
     ****************/
+    //根据partnerId拉取合作伙伴的情报
+    //拉取的结果包含完整的partner，以及teacherList和classPhotoList
     AdminManager.prototype.fetchPartner = function(partnerId, callback){
         var self = this;
         var partner = new Partner();
@@ -196,6 +204,7 @@
         });
     };
 
+    //更新合作伙伴 (似乎暂时没有用到)
     AdminManager.prototype.updatePartner = function(partner, callback){
         var self = this;
         if (testMockObj.testMode) {
@@ -225,6 +234,8 @@
         });
     };
 
+    //更新合作伙伴的照片
+    //仅可以删除或者修改已有照片的名字/说明 (增加是通过Multipart-form post实现的，非AJAX)
     AdminManager.prototype.updatePhoto = function(partner, callback){
         var self = this;
         if (!this.sessionManager.hasSession()){
@@ -250,7 +261,8 @@
             }
         });
     };
-
+    //修改合作伙伴的教师信息
+    //仅可以删除已有的教师或者修改教师的名字/说明 (增加是通过Multipart-form post实现的，非AJAX)
     AdminManager.prototype.updateTeacher = function(partner, callback){
         var self = this;
         if (!this.sessionManager.hasSession()){
@@ -277,8 +289,8 @@
             }
         });
     };
-
-
+    //根据搜索条件搜索合作伙伴
+    //具体条件请参考PartnerSearchRepresentation.js
     AdminManager.prototype.listPartner = function(partnerSearchRepresentation, callback){
         var self = this,
             searchResults = new Partners();
@@ -312,6 +324,8 @@
     /****************
     *   User Related
     ****************/
+    //根据搜索条件搜索用户
+    //具体条件请参考UserSearchRepresentation.js
     AdminManager.prototype.listUser = function(userSearchRepresentation, callback){
         var self = this,
             searchResults = new Users();
@@ -340,6 +354,7 @@
         });
     };
 
+    //修改用户设置
     AdminManager.prototype.updateUser = function(user, callback){
         if (!this.sessionManager.hasSession()){
             Info.warn('AdminManager::update:: session does not exist, exit');
@@ -363,6 +378,7 @@
         });
     };
 
+    //根据用户Id拉取用户
     AdminManager.prototype.fetchUser = function(userId, callback){
         var self = this;
         if (testMockObj.testMode) {
@@ -399,6 +415,8 @@
     /****************
     *   Booking Related
     ****************/
+    //根据搜索条件搜索订单
+    //具体搜索条件参考BookingSearchRepresentation.js
     AdminManager.prototype.listBooking = function(bookingSearchRepresentation, callback){
         var self = this,
             searchResults = new Bookings();
@@ -428,7 +446,8 @@
         });
     };
 
-
+    //修改一个订单
+    //主要用于更改状态
     AdminManager.prototype.updateBooking = function(booking, callback) {
         if (!this.sessionManager.hasSession()){
             Info.warn('AdminManager::updateBooking:: session does not exist, exit');
@@ -453,6 +472,7 @@
         });
     };
 
+    //根据booking id拉取订单
     AdminManager.prototype.getBooking = function(bookingId, callback) {
         if (!this.sessionManager.hasSession()){
             Info.warn('AdminManager::updateBooking:: session does not exist, exit');
@@ -487,6 +507,7 @@
     *   Course Related
     ****************/
     //JSON, use for both create and update
+    //创建/更改一个课程
     AdminManager.prototype.updateCourse = function(course, callback) {
         if (!this.sessionManager.hasSession()){
             Info.warn('AdminManager::updateBooking:: session does not exist, exit');

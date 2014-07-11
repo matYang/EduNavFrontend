@@ -1,6 +1,7 @@
+//处理用户模块与后台交互的服务
+
 (function () {
     
-
     this.UserManager = function(sessionManager){
 
         this.sessionManager = sessionManager;
@@ -11,6 +12,8 @@
     //reset the manager state upon logout
     UserManager.prototype.release = function() {};
 
+    //短信验证
+    //该方法用于发送注册时的验证短信
     UserManager.prototype.smsVerification = function(phone, callback) {
         var self = this;
         if (!phone){
@@ -42,6 +45,7 @@
         });
     };
 
+    //@Deprecated
     UserManager.prototype.verifySMSAuthCode = function(phone, authCode, callback) {
         var self = this;
         if (!phone){
@@ -74,7 +78,8 @@
         });
     };
 
-
+    //注册用户
+    //new User是一个native javascript object, 包含手机，密码，密码确认，邀请码(可选)，短信验证码
     UserManager.prototype.registerUser = function(newUser, callback) {
         var self = this;
         if (this.sessionManager.hasSession()){
@@ -103,6 +108,7 @@
         });
     };
 
+    //用户登陆后，获取当前用户(用于更新前端的用户对象，使其与后台数据同步)
     UserManager.prototype.fetchUser = function(callback){
         var self = this;
         var user = new User();
@@ -168,6 +174,8 @@
     /****************
     *   Authentication Related
     ****************/
+
+    //用于发送修改密码时所需的验证短信
     UserManager.prototype.changePasswordVerification = function(callback) {
         var self = this;
         if (!this.sessionManager.hasSession()){
@@ -195,6 +203,7 @@
         });
     };
 
+    //用于修改密码
     //desired opt format:  { 'oldPassword': oldPassword, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword, 'authCode': authCode}
     UserManager.prototype.changePassword = function(opt, callback) {
         var self = this;
@@ -229,8 +238,7 @@
         });
     };
 
-
-
+    //用于用户选择重设密码时发送取回密码用的验证短信
     UserManager.prototype.forgetPassword = function(phone, callback) {
         var self = this;
         if (!phone){
@@ -265,6 +273,7 @@
         });
     };
 
+    //用于重新设定密码
     //desired opt format:  { 'phone': phone, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword, 'authCode': authCode}
     UserManager.prototype.recoverPassword = function(opt, callback) {
         var self = this;
@@ -299,6 +308,8 @@
     /****************
     *   User Relations
     ****************/
+    //查找订单
+    //具体参考BookingSearchRepresentation
     UserManager.prototype.fetchBookings = function(bookingSearchRepresentation, callback) {
         var self = this;
 
@@ -332,6 +343,7 @@
         });
     };
 
+    //发起订单
     UserManager.prototype.initBooking = function(newBooking, callback){
         var self = this;
         if (testMockObj.testMode) {
@@ -365,7 +377,7 @@
 
     };
 
-
+    //用于取消订单
     UserManager.prototype.changeBookingState = function(booking, callback) {
         var self = this;
 
@@ -400,6 +412,7 @@
     };
 
     /* Coupons */
+    //用于激活消费券
     UserManager.prototype.claimCoupon =  function (couponId, callback) {
         var self = this;
         if (!this.sessionManager.hasSession()){

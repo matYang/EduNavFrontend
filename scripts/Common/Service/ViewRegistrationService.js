@@ -13,7 +13,7 @@
 
                     return;
                 }
-                if (viewRegistrationTable[view.el.id]) {
+                if (viewRegistrationTable[view.el.id]) { //Backbone会在view建立的时候将el转换成DOM object,
                     //check if the view is valid with a close function, if so, close it, then deletes the
                     // registration record
                     if ( typeof viewRegistrationTable[view.el.id].close === 'function') {
@@ -34,3 +34,7 @@
     };
 
 }).call(this);
+
+// 该服务用于保证在一个DOM里只存在最多一个view
+// 所有view需要在渲染前调用该服务的register方法并传入改view的对象, 来强制关闭同一DOM里尚未关闭的view, 
+// 并保证这个新的view会在页面切换时被强制关闭。

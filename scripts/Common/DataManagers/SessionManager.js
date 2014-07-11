@@ -1,3 +1,6 @@
+//该模块为用户，合作伙伴，管理员的会话管理服务
+//该模块用来处理用户登录，登出，以及检查登录状态
+
 (function () {
     
     this.SessionManager = function(identifier){
@@ -21,6 +24,7 @@
         this.sessionCookie = document.cookie;
     };
 
+    //记录其他的数据管理服务
     SessionManager.prototype.registerManager = function(manager) {
         this.sessionRegistraTable.push(manager);
     };
@@ -31,12 +35,14 @@
         }
     };
 
+    //检查当前用户是否有会话(是否在已登录状态)
     SessionManager.prototype.hasSession = function(){
         if (testMockObj.testMode) return true;
         return this.sessionModel.id > 0;
     };
 
     //avoid using this
+    //获取当前会话的用户对象
     SessionManager.prototype.getSessionModel = function(){
         if (testMockObj.testMode) {
             return testMockObj.sessionModel[this.identifier];
@@ -44,12 +50,18 @@
         return this.sessionModel;
     };
 
+    //获取当前用户的id
     SessionManager.prototype.getId = function() {
         return  this.sessionModel.id;
     };
 
     
     //using the find session API to determine if the uer has logged in or not
+    //尝试获取会话
+    //若是用户与服务器能正常连接，ajax请求应该会返回一个成功的结果。
+    //若是用户有一个有效的cookie, 服务器会将当前用户的对象的id填充，以此告知当前用户在已登录状态
+    //若是用户没有cookie, 服务器同样会告知前端拉取会话才成功，但用户的id仍然会是-1, 以此表示用户是未登录状态。
+    //该方法需要在每次login, logout的回调方法里使用，因为login logout不会改变前端用户对象的id。
     SessionManager.prototype.fetchSession = function(asyncFlag, callback){
         var self = this;
         switch (this.identifier){
@@ -102,6 +114,7 @@
         });
     };
 
+    //登陆
     SessionManager.prototype.login = function(key, password, callback){
         var self = this;
 
@@ -161,6 +174,7 @@
 
     };
 
+    //登出
     SessionManager.prototype.logout = function(callback){
         var self = this, url;
 
