@@ -190,10 +190,10 @@ var Course = Backbone.Model.extend({
         json.finishDate = Utilities.getDateString(this.get('finishDate'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         json.cutoffDate = Utilities.getDateString(this.get('cutoffDate'));
-        json.startTime1 = Math.floor(json.startTime1 / 100) + ":" + json.startTime1 % 100;
-        json.startTime2 = Math.floor(json.startTime2 / 100) + ":" + json.startTime2 % 100;
-        json.finishTime1 = Math.floor(json.finishTime1 / 100) + ":" + json.finishTime1 % 100;
-        json.finishTime2 = Math.floor(json.finishTime2 / 100) + ":" + json.finishTime2 % 100;
+        json.startTime1 = Math.floor(json.startTime1 / 100) + ":" + ((json.startTime1 % 100 < 10) ? "0" + json.startTime1 % 100 : json.startTime1 % 100);
+        json.startTime2 = Math.floor(json.startTime2 / 100) + ":" + ((json.startTime2 % 100 < 10) ? "0" + json.startTime2 % 100 : json.startTime2 % 100);
+        json.finishTime1 = Math.floor(json.finishTime1 / 100) + ":" + ((json.finishTime1 % 100 < 10) ? "0" + json.finishTime1 % 100 : json.finishTime1 % 100);
+        json.finishTime2 = Math.floor(json.finishTime2 / 100) + ":" + ((json.finishTime2 % 100 < 10) ? "0" + json.finishTime2 % 100 : json.finishTime2 % 100);
         if (json.studyDays) {
             studyDays = "每周";
             for (i = 0; i < json.studyDays.length; i++ ) {

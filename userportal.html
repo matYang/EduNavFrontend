@@ -561,7 +561,9 @@
                     </div>
                     <div class="fleft">
                         <p><label>上课时间1:</label> <%= course.startTime1 %> - <%= course.finishTime1 %></p>
+                        <% if (course.startTime2 > 0) {%>
                         <p><label>上课时间2:</label> <%= course.startTime2 %> - <%= course.finishTime2 %></p>
+                        <% } %>
                         <p><label>预定人数:</label>1人</p>
                         <p><label>邮箱:</label><%= email %></p>
                     </div>
@@ -595,7 +597,11 @@
             <div class="section"><label>班级类型：</label> <span><%= course.classSize %>人</span></div>
             <div class="section"><label>开课日期：</label> <span><%= course.startDate %> - <%= course.finishDate %> <%= course.studyDays%> <%= course.studyDaysNote %>
             </span></div>
-            <div class="section"><label>上课时间：</label> <span><%= course.startTime1 %> - <%= course.finishTime1 %>, <%= course.startTime2 %> - <%= course.finishTime2 %></span></div>
+            <div class="section"><label>上课时间：</label> <span><%= course.startTime1 %> - <%= course.finishTime1 %>
+            <% if (course.startTime2 > 0) { %>
+            , <%= course.startTime2 %> - <%= course.finishTime2 %>
+            <% } %>
+            </span></div>
             <div class="section"><label>上课地址：</label> <span><%= course.location %></span></div>
         </div>
         <div class="row3">
@@ -782,7 +788,11 @@
                 <dl id="content_basic" class="clearfix">
                     <dt>基本信息</dt>
                     <dd class="clearfix"><label>开课日期: </label><p><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDaysNote %></p></dd>
-                    <dd class="clearfix"><label>上课时间: </label><p><%= startTime1 %>-<%= finishTime1 %></p></dd>
+                    <dd class="clearfix"><label>上课时间: </label>
+                        <p><%= startTime1 %>-<%= finishTime1 %>
+                            <% if (startTime2 > 0) { %>, <%= startTime2 %> - <%= finishTime2 %><% } %>
+                        </p>
+                    </dd>
                     <dd class="clearfix"><label>上课课时: </label><p><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</p></dd>
                     <dd class="clearfix"><label>班级人数: </label><p><%= classSize %>人</p></dd>
                     <dd class="clearfix"><label>开班要求: </label><p><%= openCourseRequirement%></p></dd>
@@ -894,7 +904,9 @@
             <tr id="startTime1">
                 <th>上课时间</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.startTime1 %>-<%= course.finishTime1 %> <%= course.studyDays %><%= course.studyDaysNote %></td>
+                    <td class="courseId_<%= course.courseId %>"><%= course.startTime1 %>-<%= course.finishTime1 %>
+                    <% if (course.startTime2 > 0) { %>, <%= course.startTime2 %> - <%= course.finishTime2 %><% } %>
+                    <%= course.studyDays %><%= course.studyDaysNote %></td>
                 <% }); %>
             </tr>
             <tr id="courseHourNum">
