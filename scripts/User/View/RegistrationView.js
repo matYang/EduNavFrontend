@@ -101,7 +101,7 @@ var RegistrationView = BaseFormView.extend({
             $("#countdown").html(--counter); 
             if (counter === 0) {
                 clearInterval(timeout);
-                app.navigate(counter, true);
+                app.navigate(toPage, true);
             }
         }, 1000);
     },
