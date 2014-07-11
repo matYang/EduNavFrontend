@@ -72,7 +72,7 @@ var TopBarView = Backbone.View.extend({
         if (!app.sessionManager.hasSession()) {
             $('#signup_button').on('click', function (e) {
                 e.preventDefault();
-                app.navigate("/register", {trigger: true, replace: true});
+                app.navigate("/register/ref=" + location.hash.substr(1, location.hash.length-1), {trigger: true, replace: true});
                 app.infoModal.hide();
             });
             $('#login_toggle').on('click', function (e) {

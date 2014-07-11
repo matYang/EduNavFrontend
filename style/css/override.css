@@ -136,3 +136,7 @@ li a, .page a {
 .courseDetail div.pic1, div.pic4 {
 	max-width: 116px;
 }
+
+#booking_loginnote{
+	margin-left: 128px;
+}

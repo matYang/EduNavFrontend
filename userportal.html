@@ -645,10 +645,15 @@
             <div class="field">
                 <% if (course.cashback) { %>
                     <div class="fleft cashback"><%= course.cashback %>元</div>
+                    <label><input type="checkbox" id="booking_useCashback"/>使用返利券</label>
                 <% } %>
             </div>
             <% if (!app.sessionManager.hasSession()) { %>
-                <div class="fleft login_reg1 clearfix" id="booking_loginnote"><a class="link F_green">登录</a>后可使用优惠券，入学后获得<%= course.cashback %>元现金返还</div>
+                <div class="fleft login_reg1 clearfix" id="booking_loginnote"><a class="link F_green">登录</a>
+                <% if (course.cashback) {%>
+                    后可使用优惠券，入学后获得<%= course.cashback %>元现金返还
+                <% } %>
+                </div>
                 <div id="booking_loginbox" class="loginbox">
                     <div class="loginbox_inner">
                         <div>

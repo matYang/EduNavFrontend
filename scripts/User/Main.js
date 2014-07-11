@@ -23,7 +23,7 @@ var AppRouter = Backbone.Router.extend({
         "compare": "compare",
         "compare/*anything" : "compare",
         "register": "register",
-        "register/*ref": "register",
+        "register/ref=*ref": "register",
         "lost/": "lost",
         "lost" : "lost",
         "forgetPassword/*token" : "lost",
