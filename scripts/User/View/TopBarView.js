@@ -154,6 +154,7 @@ var TopBarView = Backbone.View.extend({
         }
     },
     logout: function () {
+        var that = this;
         app.sessionManager.logout({
             success: function (response) {
                 Info.log("server logout response: ");
@@ -165,6 +166,7 @@ var TopBarView = Backbone.View.extend({
                         if (location.hash.indexOf("mypage") > -1) {
                             app.navigate("front", true);
                         }
+                        that.reRender();
                     },
                     error: function () {
                         Info.warn("Session fetch failed");
