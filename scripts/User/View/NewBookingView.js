@@ -149,7 +149,7 @@ var NewBookingView = BaseFormView.extend({
                 $("#booking_loginbox").show();
             });
             $("#quickRegister").on("click", function () {
-                app.navigate("register", true);
+                app.navigate("register/ref=" + location.hash.substr(1, location.hash.length-1), true);
             });
             $("#booking_login").on("click", this.login);
             $("#booking_loginUsername,#booking_loginPassword").on("keypress", function (e) {
