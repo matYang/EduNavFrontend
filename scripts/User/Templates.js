@@ -201,7 +201,7 @@
                     <div class="tip">
                         <div class="arrow"></div>
                         <div class="tip_content">
-                            用“消费券”预订此课程，每人每课程返还<%= cashback %>元现金！入学后7个工作日可至您的账户里提现。
+                            用“返利券”预订此课程，每人每课程返还<%= cashback %>元现金！入学后7个工作日可至您的账户里提现。
                         </div>
                     </div>
                 </a>
@@ -325,7 +325,7 @@
                 <div class="mypage_sidebar_sectionContent">
 
                 <!--    <div class="mypage_sidebar_tab" id="cashAccount">现金账户</div> -->
-                    <div class="mypage_sidebar_tab" id="couponAccount">消费券</div>
+                    <div class="mypage_sidebar_tab" id="couponAccount">返利券</div>
                     <div class="mypage_sidebar_tab" id="creditAccount">积分</div> 
                 </div>
             </div>
@@ -350,7 +350,7 @@
     <div id="walletSummary">
         <div class="summaryItem1"><span class="F_orange"><%= balance %></span>元现金</div>
         <div class="line"></div>
-        <div class="summaryItem2"><span class="F_orange"><%= coupon %></span>元消费券</div>
+        <div class="summaryItem2"><span class="F_orange"><%= coupon %></span>元返利券</div>
         <div class="line"></div>
         <div class="summaryItem3"><span class="F_orange"><%= credit %></span>积分</div>
     </div>
@@ -522,7 +522,7 @@
             <div class="section"><label>上课地址：</label> <span><%= course.location %></span></div>
         </div>
         <div class="row3">
-            若该教学机构在您取消与本机构的课程订单后，给予您更多诱惑，您将获得500元反金券。
+            若该教学机构在您取消与本机构的课程订单后，给予您更多优惠，您将获得500元反金券。
         </div>
         <div class="row4">
         <!--
@@ -667,7 +667,7 @@
                         <a class="cashback"> <em><%= cashback %>元</em>
                         <div class="tip">
                             <div class="arrow"></div>
-                            <div class="tip_content"> 用“消费券”预订此课程，每人每课程返还<%= cashback %>元现金！入学后7个工作日可至您的账户里提现。 </div>
+                            <div class="tip_content"> 用“返利券”预订此课程，每人每课程返还<%= cashback %>元现金！入学后7个工作日可至您的账户里提现。 </div>
                         </div>
                         </a>
                     <% } %>
@@ -1055,9 +1055,9 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_coupons">
-    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">消费券</span> </div>                        
+    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">返利券</span> </div>                        
     <div class="mypage_content_inner coupons">
-        <h3 class="coupons_help_title">如何快速<span>免费获得</span>消费券</h3>
+        <h3 class="coupons_help_title">如何快速<span>免费获得</span>返利券</h3>
         <div class="coupons_help coupons_help1 clearfix blank">
             <dl class="col1 clearfix">
                 <dt>1</dt>
@@ -1067,15 +1067,15 @@
             <dl class="col2">
                 <dt>2</dt>
                 <dd><h3>新用户注册</h3></dd>   
-                <dd><p>新用户完成注册后，您将免费获得<b class="F_orange">10元</b>消费券；首次预订并成功入学后，您将额外获得<b class="F_orange">20元</b>消费券及<b class="F_orange">10元</b>现金奖励</p></dd>
+                <dd><p>新用户完成注册后，您将免费获得<b class="F_orange">10元</b>返利券；首次预订并成功入学后，您将额外获得<b class="F_orange">20元</b>返利券及<b class="F_orange">10元</b>现金奖励</p></dd>
             </dl>
             <dl class="col3">
                 <dt>3</dt>
-                <dd><h3>激活消费券</h3></dd>   
-                <dd><p>在<a class="F_green" href="#" id="go_activate">消费券页面</a>中，找到待激活消费券，点击激活</p></dd>
+                <dd><h3>激活返利券</h3></dd>   
+                <dd><p>在<a class="F_green" href="#" id="go_activate">返利券页面</a>中，找到待激活返利券，点击激活</p></dd>
             </dl>
         </div>
-        <h3 class="coupons_help_title blank1">如何<span>使用</span>消费券</h3>
+        <h3 class="coupons_help_title blank1">如何<span>使用</span>返利券</h3>
         <div class="coupons_help coupons_help2 clearfix blank">
             <dl class="col1 clearfix">
                 <dt>1</dt>
@@ -1086,7 +1086,7 @@
             <dl class="col2">
                 <dt>2</dt>
                 <dd><h3>填写订单</h3></dd>   
-                <dd><p>预订时，选用消费券</p></dd>
+                <dd><p>预订时，选用返利券</p></dd>
             </dl>
             <dl class="col3">
                 <dt>3</dt>
@@ -1095,8 +1095,8 @@
             </dl>
         </div>
         <ul id="couponNavBtn" class="tab1 clearfix blank2">
-            <li data-id="claimed" class="active">可用消费券</li>
-            <li data-id="unclaimed">待激活消费券</li>
+            <li data-id="claimed" class="active">可用返利券</li>
+            <li data-id="unclaimed">待激活返利券</li>
         </ul>
         <div id="coupons_container">
         </div>
@@ -1356,8 +1356,8 @@
 
 <script type="text/templates" id="tpl_coupon_noMessage">
     <div id="claimedNoData" class="no_data">
-        <div>你还没有消费券哦~~</div>
-        <p>快去<input type="button" value="免费获取">消费券吧</p>
+        <div>你还没有返利券哦~~</div>
+        <p>快去<input type="button" value="免费获取">返利券吧</p>
     </div>
 </script>
 

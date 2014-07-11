@@ -253,15 +253,15 @@ var Utilities = {
     defaultSmsRequestHandler: function ($button, $info) {
         return {
             success: function () {
-                $info.html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试").prop("disabled", true);
-                $button.val("重新发送");
+                $info.html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试");
+                $button.val("重新发送").prop("disabled", true).css("background", "#999");
                 setTimeout(function () {
-                    $("#smsInfo").prop("disabled", false);
+                    $button.prop("disabled", false).css("background", "");
                 }, 120000);
             },
             error: function (response) {
                 $info.html((response && response.responseText) ? response.responseText : "验证码发送失败，请检查网络正常并重试");
-                $button.val("重新发送");
+                $button.val("重新发送").prop("disabled", false);
             }
         };
     },

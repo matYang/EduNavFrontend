@@ -62,7 +62,7 @@ var MyPagePasswordView = BaseFormView.extend({
                 success: that.getSmsSuccess,
                 error: that.getSmsError,
             });
-            $(this).prop("disable", true).val("发送中...");
+            $(this).prop("disable", true).val("发送中...").css("background", "#999");
         });
         $("#cancelPassword").on("click", function (e) {
             e.preventDefault();
@@ -73,12 +73,15 @@ var MyPagePasswordView = BaseFormView.extend({
     },
     getSmsSuccess: function () {
         $("#getAuthCodeNote").html("短信发送成功, 请确认短信。");
-        $("#getAuthCode").prop("disable", false).val("发送验证码").addClass("hidden");
+        $("#getAuthCode").val("发送验证码").addClass("hidden");
+        setTimeout(function () {
+            $button.prop("disabled", false).css("background", "");
+        }, 120000);
         $("#gotAuthCode").removeClass("hidden");
     },
     getSmsError: function (data) {
         $("#getAuthCodeNote").html(data.responseText ? data.responseText : "验证请求失败，请检查网络状态然后重试。").removeClass("hidden");
-        $("#getAuthCode").prop("disable", false).val("发送验证码").removeClass("hidden");
+        $("#getAuthCode").prop("disable", false).val("发送验证码").removeClass("hidden").css("background", "");
         $("#gotAuthCode").addClass("hidden");
     },
     submitAction: function () {

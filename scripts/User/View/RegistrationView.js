@@ -69,7 +69,7 @@ var RegistrationView = BaseFormView.extend({
         $("#loginBox").hide();
         $("#getSms").on("click", function (e) {
             if (Utilities.phoneValid(that.model.phone).valid) {
-                $("#getSms").val("发送中...");
+                $("#getSms").val("发送中...").prop("disabled", true);
                 app.userManager.smsVerification(that.model.phone, Utilities.defaultSmsRequestHandler($("#getSms"), $("#smsInfo") ));
             } else {
                 $("#smsInfo").html("请先输入您的手机号");
