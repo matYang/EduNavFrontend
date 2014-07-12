@@ -107,6 +107,7 @@ var RegistrationView = BaseFormView.extend({
     },
     submitAction: function () {
         this.phoneCache = true;
+        this.model.authCode = this.model.authCode.toUpperCase();
         app.userManager.registerUser(this.model, {
             success: this.successCallback,
             error: function (data){
