@@ -2,7 +2,7 @@
 /* CSS Document */
 
 /*左栏*/
-.courseBrief{float:left; width:250px;}
+.courseBrief{float:left; width:250px; font-size:12px;}
 .courseBrief .row1{ padding-bottom:10px; border-bottom:1px dotted #ccc;}
 .courseBrief .row1 .fleft{ margin-right:10px;}
 .courseBrief .row1 .fright{width:150px;}
