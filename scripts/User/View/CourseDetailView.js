@@ -162,31 +162,6 @@ var CourseDetailView = Backbone.View.extend({
             }
             app.navigate("search/" + that.sr.toQueryString(), true);
         });
-        $("#trialButton").on("click", function (e) {
-            e.preventDefault();
-            var $this = $(this);
-            if ($(e.target).hasClass("close")) {
-                $this.find("img").attr("src", "style/images/up_mianfei.png").css("margin-left", 200);
-                $this.addClass("shrinked");
-                $(e.target).addClass("hidden");
-            } else if (e.target.tagName === "IMG") {
-                if ($this.hasClass("shrinked")) {
-                    $this.find("img").attr("src", "style/images/shiting.png").css("margin-left", 0);
-                    $this.removeClass("shrinked");
-                    $this.find(".close").removeClass("hidden");
-                } else {
-                    app.navigate("booking/c" + that.courseId, true);
-                }
-            }
-        }).on("mouseover", "img", function (e) {
-            if ($(e.delegateTarget).hasClass("shrinked")) {
-                $(e.target).attr("src", "style/images/up_shiting.png");
-            }
-        }).on("mouseout", "img", function (e) {
-            if ($(e.delegateTarget).hasClass("shrinked")) {
-                $(e.target).attr("src", "style/images/up_mianfei.png");
-            }
-        });
     },
 
     close: function () {

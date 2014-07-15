@@ -185,6 +185,31 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
                 $(this).css("width", 51);
             }
         });
+        $("#trialButton").on("click", function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            if ($(e.target).hasClass("close")) {
+                $this.find("img").attr("src", "style/images/up_mianfei.png").css("margin-left", 200);
+                $this.addClass("shrinked");
+                $(e.target).addClass("hidden");
+            } else if (e.target.tagName === "IMG") {
+                if ($this.hasClass("shrinked")) {
+                    $this.find("img").attr("src", "style/images/shiting.png").css("margin-left", 0);
+                    $this.removeClass("shrinked");
+                    $this.find(".close").removeClass("hidden");
+                } else {
+                    app.navigate("booking/c" + app.courseDetailView.courseId, true);
+                }
+            }
+        }).on("mouseover", "img", function (e) {
+            if ($(e.delegateTarget).hasClass("shrinked")) {
+                $(e.target).attr("src", "style/images/up_shiting.png");
+            }
+        }).on("mouseout", "img", function (e) {
+            if ($(e.delegateTarget).hasClass("shrinked")) {
+                $(e.target).attr("src", "style/images/up_mianfei.png");
+            }
+        });
     },
     removeCourse: function (id) {
         var i;
@@ -197,6 +222,7 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
         if (!this.isClosed) {
             CompareWidgetView.prototype.close.call(this);
             $("#compareToggle").off();
+            $("#trialButton").off();
             this.isClosed = true;
         }
 
