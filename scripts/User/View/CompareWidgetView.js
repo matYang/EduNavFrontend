@@ -11,8 +11,6 @@ var CompareWidgetView = Backbone.View.extend({
         this.load();
     },
     load: function () {
-        this.$el.empty().append(this.template);
-        this.$domContainer = $("#compareItems");
         if (this.courseIds && this.courseIds.length) {
             app.generalManager.batchFetchCourses(this.courseIds, {
                 "success": this.render,
@@ -28,6 +26,8 @@ var CompareWidgetView = Backbone.View.extend({
     render: function (courses) {
         //load local storage
         var buf = [], i;
+        this.$el.empty().append(this.template);
+        this.$domContainer = $("#compareItems");
         this.courses = courses || new Courses();
         app.storage.setCoursesToCompare(this.courses.pluck("courseId"));
         if (this.courses instanceof Backbone.Collection) {
@@ -133,19 +133,23 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
     },
     render: function (courses) {
         //load local storage
-        var buf = [], i;
-        this.courses = courses || new Courses();
-        if (this.courses instanceof Backbone.Collection) {
-            this.courses = this.courses.toArray();
+        if (app.courseDetailView && !app.courseDetailView.isClosed) {
+            var buf = [], i;
+            this.$el.empty().append(this.template);
+            this.$domContainer = $("#compareItems");
+            this.courses = courses || new Courses();
+            if (this.courses instanceof Backbone.Collection) {
+                this.courses = this.courses.toArray();
+            }
+            for (i = 0; i < this.courses.length && i < 4; i++) {
+                buf[i] = this.courseTemplate(this.courses[i]._toJSON());
+            }
+            this.$domContainer.off().empty().append(buf.join(""));
+            for (i = 0; i < this.courseIds.length; i++) {
+                $("#detail_compare_" + this.courseIds[i]).attr("class", "remove btn_gray").val("已加入对比");
+            }
+            this.bindEvents();
         }
-        for (i = 0; i < this.courses.length && i < 4; i++) {
-            buf[i] = this.courseTemplate(this.courses[i]._toJSON());
-        }
-        this.$domContainer.off().empty().append(buf.join(""));
-        for (i = 0; i < this.courseIds.length; i++) {
-            $("#detail_compare_" + this.courseIds[i]).attr("class", "remove btn_gray").val("已加入对比");
-        }
-        this.bindEvents();
     },
     bindEvents: function () {
         var that = this;
