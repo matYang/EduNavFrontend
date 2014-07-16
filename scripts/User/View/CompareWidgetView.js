@@ -112,8 +112,10 @@ var CompareWidgetView = Backbone.View.extend({
         if (!this.isClosed) {
             $(window).off("focus");
             $("#compare").off();
-            this.$domContainer.off();
-            this.$domContainer = null;
+            if (this.$domContainer) {
+                this.$domContainer.off();
+                this.$domContainer = null;
+            }
             this.isClosed = true;
             this.$el.empty();
             if (this.map) {
