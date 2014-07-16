@@ -31,6 +31,7 @@
         <link rel="stylesheet" type="text/css" href="style/css/courseDetail.css"/>
         <link rel="stylesheet" type="text/css" href="style/css/compare.css"/>
         <link rel="stylesheet" type="text/css" href="style/css/booking.css"/>
+        <link rel="stylesheet" type="text/css" href="style/css/aboutus.css"/>
     </head>
     <body>
         <div id = 'topBar' class = 'unselectable'></div>
@@ -58,7 +59,7 @@
             <ul class="topBar-navigation">
                 <li id="navigate_home" class="button navigate_home">首页</li>
                 <li id="navigate_search" class="button navigate_search">分类检索</li>
-                <li id="navigate_compare" class="button navigate_compare">学校对比</li>
+                <li id="navigate_compare" class="button navigate_compare">课程对比</li>
             </ul>
             <div class="user_info">
                 <span id="greeting"></span>好，尊敬的<span id="username"><%= name %></span> <a id="logout" href="#">[退出]</a>
@@ -78,7 +79,7 @@
             <ul class="topBar-navigation">
                 <li id="navigate_home" class="button navigate_home">首页</li>
                 <li id = 'navigate_search' class = 'button navigate_search'>分类检索</li>
-                <li id = 'navigate_compare' class = 'button navigate_compare'>学校对比</li>
+                <li id = 'navigate_compare' class = 'button navigate_compare'>课程对比</li>
             </ul>
             <div class="login_reg">
                 <div class="hd">
@@ -171,11 +172,12 @@
                 <span data-id="night_weekend">周末晚上</span>
             </div>
             <div id="filter_classMode" class="filterCriteria">
-                <label>班级人数：</label>
+                <label>班级类型：</label>
                 <span data-id="noreq" class="active">不限</span>
-                <span data-id="0-5">小于6人</span>
-                <span data-id="6-29">6-30人</span>
-                <span data-id="30-">大于30人</span>
+                <span data-id="1-1">VIP 1对1</span>
+                <span data-id="2-5">小班授课（小于6人）</span>
+                <span data-id="6-29">中班授课（6-30人）</span>
+                <span data-id="30-">大班授课（30人+）</span>
             </div>
             <div id="filter_price" class="filterCriteria">
                 <label>课程费用：</label>
@@ -240,8 +242,8 @@
         <div class="col1">
             <p class="title"><a class="F_green courseTitle" id="viewAllTitle_<%= courseId %>" href="#"><%= courseName %></a></p>
             <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
-            <p class="desc"><span>开课日期:</span> <%= startDate %></p>
-            <p class="desc"><span>地<s></s>址:</span> <%= location %></p>
+            <p class="desc"><span>上课日期:</span> <%= startDate %> - <%= finishDate %></p>
+            <p class="desc"><span>上课地址:</span> <%= location %></p>
         </div>
         <div class="col2">
             <p class="classHour">共<b class="F_orange"><%=courseHourNum %></b>课时</p>
@@ -252,7 +254,8 @@
                     <div class="tip">
                         <div class="arrow"></div>
                         <div class="tip_content">
-                            用“返利券”预订此课程，每人每课程返还<%= cashback %>元现金！入学后7个工作日可至您的账户里提现。
+                            用“返利券”预订此课程，可立即返还<%= cashback %>元现金！入学后不进行退学，就可至您的账户里提现。
+                                <span class="link howToGetCoupon" style="color:green">如何获得返利券</span>
                         </div>
                     </div>
                 </a>
@@ -473,7 +476,7 @@
         <div id="bookingDetail">
             <div class="row0 clearfix">
                 <div class="fleft">
-                    <p><label>订单号：<%= reference %></label> <span>(<%= creationTime %>预定)</span></p>
+                    <p><label>订单号：<%= reference %></label> <span>(<%= creationTime %>预订)</span></p>
                     <p><label>状<s></s>态：<b class="F_green" id="bookingStatus"><%= EnumConfig.BookingStatusUserText[status] %></b></label></p>
                 </div>
                 <p class="fright price"><label>总金额：</label><span class="sign">￥</span><%= price %></p>
@@ -519,7 +522,7 @@
                         <% } else { %>
                             <div class="node wait">
                         <% } %>
-                            <p>预定成功</p>
+                            <p>预订成功</p>
                         </div>
                         <% if ( status > 4) { %>
                             <div class="proce ready">
@@ -554,8 +557,8 @@
                 <h3>入学信息</h3>
                 <div class="clearfix">
                     <div class="fleft">
-                        <p><label>开课日期:</label> <%= course.startDate %> - <%= course.finishDate %></p>
-                        <p><label>班级人数:</label> <%= course.classSize %></p>
+                        <p><label>上课日期:</label> <%= course.startDate %> - <%= course.finishDate %></p>
+                        <p><label>班级类型:</label> <%= course.classSize %></p>
                         <p><label>联系方式:</label> <%= phone %></p>
                         <p><label>入学人姓名:</label> <%= name %></p>
                     </div>
@@ -564,7 +567,7 @@
                         <% if (course.startTime2 > 0) {%>
                         <p><label>上课时间2:</label> <%= course.startTime2 %> - <%= course.finishTime2 %></p>
                         <% } %>
-                        <p><label>预定人数:</label>1人</p>
+                        <p><label>预订人数:</label>1人</p>
                         <p><label>邮箱:</label><%= email %></p>
                     </div>
                 </div>
@@ -595,7 +598,7 @@
         </div>
         <div class="row2">
             <div class="section"><label>班级类型：</label> <span><%= course.classSize %>人</span></div>
-            <div class="section"><label>开课日期：</label> <span><%= course.startDate %> - <%= course.finishDate %> <%= course.studyDays%> <%= course.studyDaysNote %>
+            <div class="section"><label>上课日期：</label> <span><%= course.startDate %> - <%= course.finishDate %> <%= course.studyDays%> <%= course.studyDaysNote %>
             </span></div>
             <div class="section"><label>上课时间：</label> <span><%= course.startTime1 %> - <%= course.finishTime1 %>
             <% if (course.startTime2 > 0) { %>
@@ -605,15 +608,13 @@
             <div class="section"><label>上课地址：</label> <span><%= course.location %></span></div>
         </div>
         <div class="row3">
-            若该教学机构在您取消与本机构的课程订单后，给予您更多优惠，您将获得500元反金券。
+            若该教学机构承诺在您取消与爱上课的订单后直接办理入学将给予您比爱上课更多优惠时，及时通知爱上课，您将获得500元奖励
         </div>
         <div class="row4">
-        <!--
             <div class="title">需要帮助?</div>
             <div class="link">查看常见问题</div>
             <div class="link">在线客服</div>
             <div class="link">客服电话</div>
-            -->
         </div>
     </div>
     <form id="bookingDetail" class="newBooking">
@@ -622,7 +623,7 @@
             <h3><%= course.courseName %></h3>
             <div class="fright ">恭喜您获得了最优价格</div>
         </div>
-        <div class="row1" style="min-height:104px">
+        <div class="row1" style="min-height:130px">
             <div class="field">
                 <label>报名人数</label>
                <!-- <select name="enrollNum">
@@ -640,35 +641,45 @@
             </div>
             <div class="field">
                 <label>课程费用</label>
-                <b class="price">￥<%= course.price %></b>/位 <span>（预定免费，入学后学校前台付款）</span>
+                <b class="price">￥<%= course.price %></b>/位 <span>（预订免费，入学后学校前台付款）</span>
             </div>
-            <div class="field">
+            <div class="field" id="cashback_box">
                 <% if (course.cashback) { %>
+                    <input type="checkbox" id="booking_useCashback"/>
                     <div class="fleft cashback"><%= course.cashback %>元</div>
-                    <label><input type="checkbox" id="booking_useCashback"/>使用返利券</label>
+                    <div class="tip" style="right: initial;width:350px;">
+                        <div class="arrow" style="left:22px"></div>
+                        <div class="tip_content"> 用“返利券”预订此课程，可立即返还<%= course.cashback %>元现金！入学后不进行退学，就可至您的账户里提现。<span class="link howToGetCoupon" style="color:green">如何获得返利券</span> </div>
+                    </div>
+                    <label for="booking_useCashback" style="font-size:13px;width:70px">使用返利券</label>
                 <% } %>
             </div>
-            <% if (!app.sessionManager.hasSession()) { %>
-                <div class="fleft login_reg1 clearfix" id="booking_loginnote"><a class="link F_green">登录</a>
+            <div class="field" id="cashback_box_notLoggedIn">
+                <div class="fleft login_reg1 clearfix" id="booking_loginnote"><a id="booking_loginToggler" class="link F_green">登录</a>或<a id="booking_register" class="link F_green">注册</a>
                 <% if (course.cashback) {%>
-                    后可使用优惠券，入学后获得<%= course.cashback %>元现金返还
+                    <div class="fleft cashback"><%= course.cashback %>元
+                        <div class="tip" style="right: initial;width:350px;">
+                        <div class="arrow" style="left:22px"></div>
+                        <div class="tip_content"> 用“返利券”预订此课程，可立即返还<%= course.cashback %>元现金！入学后不进行退学，就可至您的账户里提现。<span class="link howToGetCoupon" style="color:green">如何获得返利券</span> </div>
+                        </div>
+                    </div>后可使用优惠券，入学后获得<%= course.cashback %>元现金返还
                 <% } %>
                 </div>
-                <div id="booking_loginbox" class="loginbox">
-                    <div class="loginbox_inner">
-                        <div>
-                            <label>手机</label> <input class="text" type="text" id="booking_loginUsername"/>
-                            <label>密码</label> <input class="text" type="password" id="booking_loginPassword"/>
-                        </div>
-                        <div class="btns">
-                            <input class="link" type="button" value="登录" id="booking_login" />
-                            <a class="button link" id="booking_forgotPassword">忘记密码?</a>
-                            <a class="button link" id="quickRegister" style="color:#D38613;">还不是会员?马上注册</a>
-                        </div>
-                        <!-- <div class="close">关闭</div> -->
+            </div>
+            <div id="booking_loginbox" class="loginbox">
+                <div class="loginbox_inner">
+                    <div>
+                        <label>手机</label> <input class="text" type="text" id="booking_loginUsername"/>
+                        <label>密码</label> <input class="text" type="password" id="booking_loginPassword"/>
                     </div>
+                    <div class="btns">
+                        <input class="link" type="button" value="登录" id="booking_login" />
+                        <a class="button link" id="booking_forgotPassword">忘记密码?</a>
+                        <a class="button link" id="quickRegister" style="color:#D38613;">还不是会员?马上注册</a>
+                    </div>
+                    <!-- <div class="close">关闭</div> -->
                 </div>
-            <% } %>
+            </div>
         </div>
         <div class="title"><h3>入学信息</h3></div>
         <div id="bookingInfo" class="row2">
@@ -690,11 +701,11 @@
             <div class="field">
                 <label><span class="req">*</span>预约报名日期</label>
                 <input class="text" type="text" id="booking_date"/>
-                <span id="booking_date_info" class="desc">(若此预约日期前未报名入学，您的特惠名额将受让给其他学员)</span>
+                <span id="booking_date_info" class="desc">(请在此日期前报名入学)</span>
             </div>
         </div>
         <div class="row3">
-            <input type="button" class="btn_O_long" value="完成预定" id="initBooking" />
+            <input type="button" class="btn_O_long" value="完成预订" id="initBooking" />
             <span id="bookingDesc" class="desc">(不收预订费)</span>
         </div>
     </form>
@@ -719,7 +730,7 @@
             <p><label>上课地址: </label><%= course.phone %></p>
             <p><label>咨询电话: </label><%= course.location %></p>
             <p><label>开课日期: </label><%= course.startDate %>-<%= course.finishDate %></p>
-            <p><label>班级人数: </label><%= course.classSize %></p>
+            <p><label>班级类型: </label><%= course.classSize %></p>
             <p><label>预约报道: </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
             <p><label>费用总计: </label> ￥<b class="price"><%= price %></b> <span>（到校付款）</span></p>
             <p class="extra">* 到达学校后，请您凭入学人的有效证件办理入学</p>
@@ -748,12 +759,12 @@
                     <a class="cashback"> <em><%= cashback %>元</em>
                     <div class="tip">
                         <div class="arrow"></div>
-                        <div class="tip_content"> 用“返利券”预订此课程，每人每课程返还<%= cashback %>元现金！入学后7个工作日可至您的账户里提现。 </div>
+                        <div class="tip_content"> 用“返利券”预订此课程，可立即返还<%= cashback %>元现金！入学后不进行退学，就可至您的账户里提现。<span class="link howToGetCoupon" style="color:green">如何获得返利券</span> </div>
                     </div>
                     </a> 
                </div>
                <div class="col3">
-                    <input type="button" id="bookNow" value="立即预定" class="btn_O" />
+                    <input type="button" id="bookNow" value="立即预订" class="btn_O" />
                </div>
 
             </div>
@@ -929,7 +940,7 @@
                 <% }); %>
             </tr>
             <tr id="classSize">
-                <th>班级人数</th>
+                <th>班级类型</th>
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>"><%= course.classSize %>人</td>
                 <% }); %>
@@ -1430,7 +1441,7 @@
 <script type="text/templates" id="tpl_credit_noMessage">
     <div class="no_data" id="creditNoData">
         <div>你暂时还没有积分哦~~</div>
-        <p>积分可以通过预定课程获得</p>
+        <p>积分可以通过预订课程获得</p>
     </div>
 </script>
 
@@ -1494,6 +1505,77 @@
 
 <script type="text/templates" id="tpl_mapLabel">
     <div class="map_icon" style="top:-29px; left:-11px;"><span><%= text %></span><em></em></div>
+</script>
+
+<script type="text/templates" id="tpl_aboutUs">
+    <div class="aboutus">
+        <div class="aboutus_banner"><img src="style/images/aboutus_banner.jpg" width="1000" height="200"/></div>
+        <dl class="intro">
+            <dt>公司简介</dt>
+            <dd>
+                <p>爱上课，致力于成为中国领先的教育培训课程在线预订服务提供商，努力为数亿学员打造专注专业、物超所值、智能便捷的课程预订平台。通过网站(www.iShangke.cn)、微信服务号、24小时预订热线（400热线）等平台，为消费者提供面授课程、在线课程、折扣课程、团购课程、特价课程等教学产品的预订服务。</p>
+            </dd>
+        </dl>
+        <dl class="team">
+            <dt>团队背景</dt>
+            <dd>
+                <p>爱上课是一家技术驱动的互联网公司，技术开发人员全部拥有美国硅谷、世界500强、上市互联网公司工作背景。公司未成立时，已得到国内外多家知名风投关注，并在爱上课网发布内测版本阶段，成功获得300万人民币投资。</p>
+            </dd>
+        </dl>
+        <dl class="advantage">
+            <dt>产品特色</dt>
+            <dd>
+                <p><span>专<s></s>注：</span>爱团队只做一件事，让您轻轻松松选到最适合的培训机构与课程</p>
+                <p><span>权<s></s>威：</span>已与国内外上千家教育集团、上市公司签订深度合作协议，只为将最真实的课程信息与最低折扣价格通过最透明的方式推送给您</p>
+                <p><span>低<s></s>价：</span>不定期的与教学机构联手举办各种特价活动，不出学费也能学习知名培训课程</p>
+                <p><span>高品质：</span>严格的教学机构准入与退出审核制度，爱上课平台中只有权威机构，只有精品课程</p>
+            </dd>
+        </dl>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_joinUs">
+    <div class="ruzhu_banner"><img src="style/images/jgrz.png" height="90" width="1000"></div>
+    <div class="ruzhu_part2 blank2">
+        <div class="rz_p2_title"> <img src="style/images/rz_p2_title.png" height="31" width="356"> </div>
+        <dl class="clearfix blank1">
+            <dt class="fleft"> 教育刚需的市场下，不知您在坐等学员报名的心情是焦虑不安？还是无忧无虑？前者与后者的差距可能不只是一点点。 </dt>
+            <dd class="fright"> 爱上课，致力于舒缓机构坐等学员上门报名的焦虑感，通过贴心客户经理与机构、学员充分沟通，结合课程相应特色，进行多渠道高密度推广，让机构无畏市场竞争，专心教学，坐等学员登门。 </dd>
+        </dl>
+    </div>
+    <div class="service clearfix">
+        <dl class="fleft s1">
+            <dt>五星级的盟友</dt>
+            <dd>
+                <p>执子之手，结伴五星盟友，共享教育刚需</p>
+                <p>体验五星平台，享受五星服务，收获五星推广</p>
+            </dd>
+        </dl>
+        <dl class="fright s2">
+            <dt>五星级的平台</dt>
+            <dd>
+                <p>免费：平台使用永久免费，平台更新永久免费</p>
+                <p>开放：无论机构规模，只需法人组织提供高质量教学服务</p>
+                <p>公平：严格保密各机构意向报名学员信息，保护机构权益，提升转化率</p>
+                <p>精致：顶级设计师竭力创作清新页面风格，致力改善学员选课、购课体验</p>
+            </dd>
+        </dl>
+        <dl class="fleft s3 blank1">
+            <dt>五星级的服务</dt>
+            <dd>
+                <p>贴心：客户代表不定期回访交流，探讨转化率提升方案</p>
+                <p>用心：每月发布平台成效报告，清晰获知该月转化成效</p>
+                <p>省心：扩展机构获得学员渠道，减轻机构转化学员成本</p>
+            </dd>
+        </dl>
+        <dl class="fright s4 blank1">
+            <dt>五星级的推广</dt>
+            <dd>
+                <p>密集线下推广：精英地推团队加盟，每年百万营销预算；地毯式营销，助推合作机构品牌传播</p>
+                <p>领先SEO技术：运用硅谷先进SEO技术，增强合作机构在百度，360，搜狗等搜索引擎曝光度</p>
+            </dd>
+        </dl>
+    </div>
 </script>
         </div>
         <!-- load libraries-->
@@ -1577,6 +1659,7 @@
         <script src="scripts/User/View/FrontPageView.js" type="text/javascript"></script>
         <script src="scripts/User/View/CompareWidgetView.js" type="text/javascript"></script>
         <script src="scripts/User/View/InfoModal.js" type="text/javascript"></script>
+        <script src="scripts/User/View/ServiceCenterView.js" type="text/javascript"></script>
         <script src="scripts/User/Main.js" type="text/javascript"></script>
         <script src="scripts/User/baiduLoadScript.js" type="text/javascript"></script>
     </body>

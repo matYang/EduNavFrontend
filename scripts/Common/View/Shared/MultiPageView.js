@@ -27,11 +27,13 @@ var MultiPageView = Backbone.View.extend({
     * @param noMessage: the message displayed in the container when there's no message available
     * @param extPn: external page navigator
     * @param _filters: private member holding registered filters, should never be referenced from external
+    * @param truePagination: make the view fetches data per page. When this is set to true, child view must define fetchAction function.
 
     //TODO: 
     */
     entryTemplate: "",
     entryContainer: "",
+    truePagination: false,
     entryClass: "",
     pageNavigator: "",
     pageNavigatorClass: "",
@@ -55,7 +57,6 @@ var MultiPageView = Backbone.View.extend({
     initialize: function () {
         _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler", "clickPreHandler", "clickNextHandler", "close");
     },
-
     render: function () {
         var buf = [], i, length, height, message;
         if (!this.messages instanceof Backbone.Collection) {
@@ -120,7 +121,11 @@ var MultiPageView = Backbone.View.extend({
     toPage: function (page) {
         this.currentPage = page;
         this.startIndex = this.pageEntryNumber * (page - 1);
-        this.render();
+        if (!truePagination) {
+            this.render();
+        } else {
+            this.fetchAction();
+        }
     },
     bindEntryEvent: function () {
 

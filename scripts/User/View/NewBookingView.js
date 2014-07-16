@@ -119,7 +119,6 @@ var NewBookingView = BaseFormView.extend({
         var that = this;
         app.sessionManager.fetchSession(true, {
             success: function () {
-
             },
             error: function (response) {
                 Info.displayNotice(response);
@@ -133,11 +132,13 @@ var NewBookingView = BaseFormView.extend({
         var that = this;
         app.sessionManager.sessionModel.on("change", function () {
             if (this.get("userId") >= 0) {
+                $("#cashback_box_notLoggedIn").addClass("hidden");
+                $("#cashback_box").removeClass("hidden");
                 $("#booking_loginbox").addClass("hidden");
-                $("#booking_loginnote").addClass("hidden");
             } else {
-                $("#booking_loginbox").removeClass("hidden");
-                $("#booking_loginnote").removeClass("hidden");
+                $("#cashback_box_notLoggedIn").removeClass("hidden");
+                $("#cashback_box").addClass("hidden");
+
             }
             app.topBarView.reRender();
         })
@@ -151,6 +152,8 @@ var NewBookingView = BaseFormView.extend({
             $("#quickRegister").on("click", function () {
                 app.navigate("register/ref=" + location.hash.substr(1, location.hash.length-1), true);
             });
+            $("#cashback_box").addClass("hidden");
+            $("#booking_loginbox").addClass("hidden");
             $("#booking_login").on("click", this.login);
             $("#booking_loginUsername,#booking_loginPassword").on("keypress", function (e) {
                 if (e.which === 13) {
@@ -166,7 +169,10 @@ var NewBookingView = BaseFormView.extend({
                 e.preventDefault();
                 app.navigate("forgetPassword/", true);
             });
+        } else {
+            $("#cashback_box_notLoggedIn").addClass("hidden");
         }
+
         $("#bookingInfo").on("keypress", "input", function (e) {
         	if (e.which === 13) {
         		$("#initBooking").trigger("click");
@@ -188,6 +194,16 @@ var NewBookingView = BaseFormView.extend({
                 that.model.set("scheduledTime", d);
                 $(this).val(Utilities.getDateString(d));
             }
+        });
+        $("#booking_loginToggler").on("click", function (e) {
+            if ($("#booking_loginbox").hasClass("hidden")) {
+                $("#booking_loginbox").removeClass("hidden");
+            } else {
+                $("#booking_loginbox").addClass("hidden");
+            }
+        });
+        $("#booking_register").on("click", function () {
+            app.navigate("register/ref=" + location.hash.substr(1, location.hash.length-1), true);
         });
         BaseFormView.prototype.bindEvents.call(this);
     },

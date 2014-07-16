@@ -215,7 +215,7 @@ var Utilities = {
         if (phone && phone.length === 11 && !isNaN(Utilities.toInt(phone))) {
             return {valid: true};
         }
-        return {valid: false, text: "电话号码格式不正确"};
+        return {valid: false, text: "手机号码格式不正确"};
     },
     emailValid: function (email) {
         if (Utilities.emailRegex.test(email)) {

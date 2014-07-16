@@ -1,0 +1,34 @@
+@charset "utf-8";
+/* CSS Document */
+.aboutus{ font-family:微软雅黑; color:#595757;}
+.aboutus_banner{ margin-top:20px;}
+
+.aboutus .intro{ padding:0 0 30px 70px; margin-top:30px; background:url(../images/aboutus_intro.jpg) no-repeat left top; border-bottom:1px dotted #8bc882;}
+.aboutus .intro dt{ color:#1e993a; font-size:18px; margin-bottom:10px;}
+.aboutus .intro dd{ line-height:28px;}
+.aboutus .team{ padding:0 0 30px 70px; margin-top:20px; background:url(../images/aboutus_team.jpg) no-repeat left top; border-bottom:1px dotted #ddc040;}
+.aboutus .team dt{ color:#f39800; font-size:18px; margin-bottom:10px;}
+.aboutus .team dd{ line-height:28px;}
+.aboutus .advantage{  padding:0 0 30px 70px; margin-top:20px; background:url(../images/aboutus_advantage.jpg) no-repeat left top;}
+.aboutus .advantage dt{ color:#a154a0; font-size:18px; margin-bottom:10px;}
+.aboutus .advantage dd{ line-height:28px;}
+.aboutus .advantage dd span{ color:#a154a0;}
+.aboutus .advantage dd span s{ margin:0 7px 0 7px;}
+
+
+.ruzhu{ font-family:微软雅黑;}
+.ruzhu_banner{ margin-top:50px; height:90px;}
+.ruzhu_part2 {color:#979797; font-size:16px; line-height:30px;}
+.ruzhu_part2 .fleft{width:290px; padding-left:110px; background:url(../images/wh.png) no-repeat left top; padding-bottom:15px;}
+.ruzhu_part2 .fright{width:470px; padding-left:110px; background:url(../images/th.png) no-repeat left top; padding-bottom:15px;}
+.service dl{ width:449px; height:124px; padding:15px 20px; color:#fff;}
+.service dl dt{font-size:22px; margin-bottom:8px;}
+.service dl dd{ font-size:14px;}
+.service dl.s1{ background:url(../images/rz_1.png) no-repeat;}
+.service dl.s2{ background:url(../images/rz_2.png) no-repeat;}
+.service dl.s3{ background:url(../images/rz_3.png) no-repeat;}
+.service dl.s4{ background:url(../images/rz_4.png) no-repeat;}
+
+.service{ margin-top:50px;}
+
+

@@ -71,7 +71,9 @@ var SearchResultView = MultiPageView.extend({
     entryEvent: function (courseId) {
         app.navigate("course/" + courseId, true);
     },
-
+    fetchAction: function () {
+        app.generalManager.findCourse();
+    },
 
     close: function () {
         if (!this.isClosed) {

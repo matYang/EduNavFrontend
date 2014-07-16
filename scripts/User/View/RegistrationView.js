@@ -123,8 +123,8 @@ var RegistrationView = BaseFormView.extend({
         var p1 = val, p2 = $("#registerPasswordConfirmInput").val();
         if ( p2 && p1 !== p2 ) {
             return {valid: false, text:"两次输入密码不匹配"};
-        } else if (val.length < 8 ){
-            return {valid: false, text:"密码长度至少为8位"};
+        } else if (val.length < 6 ){
+            return {valid: false, text:"密码长度至少为6位"};
         } else {
             return {valid:true};
         }
@@ -133,8 +133,8 @@ var RegistrationView = BaseFormView.extend({
         var p1 = $("#registerPasswordInput").val(), p2 = val;
         if ( p1 !== p2 ) {
             return {valid: false, text:"两次输入密码不匹配"};
-        } else if (val.length < 8 ){
-            return {valid: false, text:"密码长度至少为8位"};
+        } else if (val.length < 6 ){
+            return {valid: false, text:"密码长度至少为6位"};
         } else {
             if ($("#registerPasswordInput_wrong").length) {
                 $("#registerPasswordInput_wrong").remove();

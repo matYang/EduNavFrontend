@@ -26,7 +26,6 @@ var FindPasswordView = BaseFormView.extend({
             fieldId: "findPassPassInput",
             type: "text",
             mandatory: true,
-            validatorFunction: Utilities.passValid,
             modelAttr: "newPassword",
             buildValidatorDiv: Utilities.defaultValidDivBuilder
         }),
@@ -35,14 +34,15 @@ var FindPasswordView = BaseFormView.extend({
             fieldId: "findPassConfirmInput",
             type: "text",
             mandatory: true,
-            validatorFunction: Utilities.passValid,
             modelAttr: "confirmNewPassword",
             buildValidatorDiv: Utilities.defaultValidDivBuilder
         })
     ],
     initialize: function () {
-        _.bindAll(this, 'render', 'bindEvents', 'submitAction', 'changeError', 'successCallback', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'submitAction', 'changeError', 'successCallback', 'passValid', 'confirmValid', 'close');
         app.viewRegistration.register(this);
+        this.fields[2].validatorFunction = FindPasswordView.prototype.passValid;
+        this.fields[3].validatorFunction = FindPasswordView.prototype.confirmValid;
         this.isClosed = false;
         this.template1 = _.template(tpl.get("findPassword_1"));
         this.template2 = _.template(tpl.get("findPassword_2"));
@@ -61,6 +61,8 @@ var FindPasswordView = BaseFormView.extend({
             this.fields[1].set("validatorContainer", $("#authContainer"));
             this.fields[2].set("validatorContainer", $("#passContainer"));
             this.fields[3].set("validatorContainer", $("#confirmContainer"));
+            $("#findPassCellInput").val($("#login_username").val());
+
         }
         this.bindEvents(this.state);
     },
@@ -90,6 +92,30 @@ var FindPasswordView = BaseFormView.extend({
     },
     changeError: function (data) {
         Info.displayNotice(data.responseText);
+    },
+    passValid: function (val) {
+        var p1 = val, p2 = $("#findPassConfirmInput").val();
+        if ( p2 && p1 !== p2 ) {
+            return {valid: false, text:"两次输入密码不匹配"};
+        } else if (val.length < 6 ){
+            return {valid: false, text:"密码长度至少为6位"};
+        } else {
+            return {valid:true};
+        }
+    },
+    confirmValid: function (val) {
+        var p1 = $("#findPassPassInput").val(), p2 = val;
+        if ( p1 !== p2 ) {findPassPassInput
+            return {valid: false, text:"两次输入密码不匹配"};
+        } else if (val.length < 6 ){
+            return {valid: false, text:"密码长度至少为6位"};
+        } else {
+            if ($("#findPassPassInput_wrong").length) {
+                $("#findPassPassInput_wrong").remove();
+                $("#passContainer").append($("<div>").attr("id","findPassPassInput_right").attr("class", "success"));
+            }
+            return {valid:true};
+        }
     },
     close: function () {
         if (!this.isClosed) {

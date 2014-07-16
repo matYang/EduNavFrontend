@@ -46,6 +46,7 @@ li a, .page a {
 
 #popMessage {
 	height: 65px;
+	text-align: center;
 }
 #popup {
 	position: fixed;
@@ -139,4 +140,8 @@ li a, .page a {
 
 #booking_loginnote{
 	margin-left: 128px;
+}
+
+#booking_date {
+	margin-right: 8px;
 }

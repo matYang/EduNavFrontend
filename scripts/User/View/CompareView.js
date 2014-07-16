@@ -10,7 +10,7 @@ var CompareView = Backbone.View.extend({
     load: function () {
         this.courseIdList = app.storage.getCoursesToCompare(); // array of items to compare
         if (!this.courseIdList.length) {
-            Info.displayNotice("你还没有选中比较的课程，先去逛逛吧");
+            Info.displayNotice("您还没有添加待比较的课程，先去查看感兴趣的课程吧");
             this.isClosed = true;
             app.navigate("search", {trigger: true, replace: true});
             return;
@@ -31,7 +31,7 @@ var CompareView = Backbone.View.extend({
     render: function (courses) {
         if (!courses.length) {
             //In case of backend fails, no courses will be loaded even if the batchFetchCourse call succeeded
-            Info.displayNotice("你还没有选中比较的课程，先去逛逛吧");
+            Info.displayNotice("您还没有添加待比较的课程，先去查看感兴趣的课程吧");
             this.isClosed = true;
             app.navigate("search", {trigger: true, replace: true});
             return;

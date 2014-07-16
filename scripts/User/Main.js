@@ -28,8 +28,8 @@ var AppRouter = Backbone.Router.extend({
         "lost" : "lost",
         "forgetPassword/*token" : "lost",
         // "howitworks": "howItWorks",
-        // "service": "serviceCenter",
-        // "service/*tab": "serviceCenter",
+        "service": "serviceCenter",
+        "service/:tab": "serviceCenter",
 
         "*default" : "error"
     },
@@ -65,6 +65,7 @@ var AppRouter = Backbone.Router.extend({
     bindGlobalLinks: function() {
         var that = this;
         $("#footer_service_link").on("click", 'a', function (e) {
+            debugger;
             e.preventDefault();
             $("html, body").animate({ scrollTop: 0, complete: function(){ $("#loginBox").show();} }, "slow");
             that.navigate("service/" + e.target.id.split("_")[1], true);
@@ -147,6 +148,9 @@ var AppRouter = Backbone.Router.extend({
     },
     error: function () {
         app.navigate("search", {trigger:true, replace:true});   
+    },
+    serviceCenter: function (tab) {
+        this.serviceCenterView = new ServiceCenterView({tab: tab});
     }
 });
 
