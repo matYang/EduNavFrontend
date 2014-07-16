@@ -133,6 +133,9 @@ var MultiPageView = Backbone.View.extend({
         this.$domContainer.on("click", "." + eventClass, function (e) {
             e.preventDefault();
             var id = Utilities.toInt(Utilities.getId($(this).attr("id")));
+            if (isNaN(id)) {
+                id = Utilities.getId($(this).attr("id"));
+            }
             self.entryEvent(id, e);
         });
         this.entryBound = true;
