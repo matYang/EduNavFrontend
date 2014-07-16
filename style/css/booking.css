@@ -48,7 +48,7 @@
 .newBooking  .row2{ margin:10px 10px 40px;}
 .newBooking  .row2 input.text{width:250px;}
 .newBooking  .row2 .req{color:#ff5500;}
-.newBooking #booking_date{width:150px;}
+.newBooking #booking_date{width:60px;}
 .newBooking .row3{border-top:1px dotted #ccc; text-align:center; padding:20px 0 50px;}
 .newBooking .row3 .desc{ color:#666; margin-left:10px;}
 

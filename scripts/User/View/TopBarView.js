@@ -24,7 +24,7 @@ var TopBarView = Backbone.View.extend({
             this.$el.append(this.loggedInTemplate(this.sessionUser._toJSON()));
             if (hour > 4 && hour < 12) {
                 time = "早上";
-            } else if (hour >= 12 && hour < 6) {
+            } else if (hour >= 12 && hour < 18) {
                 time = "下午";
             } else {
                 time = "晚上";

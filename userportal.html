@@ -63,7 +63,7 @@
             </ul>
             <div class="user_info">
                 <span id="greeting"></span>好，尊敬的<span id="username"><%= name %></span> <a id="logout" href="#">[退出]</a>
-                <a id="topbar-mypage" href="#">上课书包</a>
+                <a id="topbar-mypage" href="#">我的爱上课</a>
             </div>
         </div>
     </div>
@@ -380,15 +380,15 @@
 <script type="text/template" id="tpl_mypage_base">
     <div id="mypage_main" class="clearfix">
         <div id="mypage_sidebar">
-            <div class="mypage_sidebar_title">上课书包</div>
+            <div class="mypage_sidebar_title">我的爱上课</div>
             <div class="mypage_sidebar_section p1" >
                 <div class="mypage_sidebar_sectionContent">
                     <div id="mypage_avatar">
                         <!--<img src="images/user_pic.jpg" width="150" height="150"/>-->
-                        <p>晚上好，尊敬的会员</p>
+                        <p>晚上好，尊敬的<span id="mypage_name"><%= name %></span></p>
                     </div>
                     <div id="mypage_info">
-                        <p class="phone"><span></span><%= phone %></p>
+                        <p class="phone"><span></span><%= phone.substr(0,3) %>****<%= phone.substr(7,4) %></p>
                         <p class="email <% if (email) { %> hidden <% } %>"><span></span><%= email %></p>
                     </div>
                 </div>
@@ -403,7 +403,7 @@
                 <div class="mypage_sidebar_sectionTitle">账户管理</div>
                 <div class="mypage_sidebar_sectionContent">
 
-                <!--    <div class="mypage_sidebar_tab" id="cashAccount">现金账户</div> -->
+                    <div class="mypage_sidebar_tab" id="cashAccount">现金账户</div>
                     <div class="mypage_sidebar_tab" id="couponAccount">返利券</div>
                     <div class="mypage_sidebar_tab" id="creditAccount">积分</div> 
                 </div>
@@ -447,7 +447,7 @@
     <div class="bookingEntry" id="booking_reference_<%= reference %>">
         <div class="bookingEntryTime">
             <div class="date"><%= course.startDate %></div>
-            <div class="dayOfWeek"><!--<%= course.studyDays %> <%= course.studyDaysNote %>--></div>
+            <div class="dayOfWeek"><%= course.studyDays %><!-- <%= course.studyDaysNote %>--></div>
         </div>
         <div class="bookingEntryDetail">
             <h3><a class="F_green bookingTitle" id="bookingTitle_reference_<%= reference %>" href="#">【<%= course.instName %>】<%= course.courseName %></a></h3>
@@ -472,7 +472,7 @@
 <script type="text/template" id="tpl_mypage_bookingDetail">
 
     <div id="mypage_content" class="mypage_min_height">
-        <div class="title">我的爱上课 &gt; 订单管理 &gt; <span class="F_green">课程订单</span> </div>
+        <div class="title">我的爱上课 &gt; 订单管理 &gt; <span class="F_green link">课程订单</span> </div>
         <div id="bookingDetail">
             <div class="row0 clearfix">
                 <div class="fleft">
@@ -551,24 +551,24 @@
                 <h3><%= course.courseName %></h3>
                 <p><label>教育机构：</label><span><%= course.instName %></span></p>
                 <p><label>上课地址：</label><span><%= course.location %></span></p>
+                <p><label>上课日期:</label> <%= course.startDate %> - <%= course.finishDate %></p>
+                <p><label>班级类型:</label> <%= course.classSize %></p>
+                <p><label>上课时间1:</label> <%= course.startTime1 %> - <%= course.finishTime1 %></p>
+                <% if (course.startTime2 > 0) {%>
+                <p><label>上课时间2:</label> <%= course.startTime2 %> - <%= course.finishTime2 %></p>
+                <% } %>
                 <p><label>咨询电话：</label><span><%= course.phone %></span></p>
             </div>
             <div class="row3">
                 <h3>入学信息</h3>
                 <div class="clearfix">
                     <div class="fleft">
-                        <p><label>上课日期:</label> <%= course.startDate %> - <%= course.finishDate %></p>
-                        <p><label>班级类型:</label> <%= course.classSize %></p>
-                        <p><label>联系方式:</label> <%= phone %></p>
                         <p><label>入学人姓名:</label> <%= name %></p>
+                        <p><label>预订人数:</label>1人</p>
+                        <p><label>联系方式:</label> <%= phone %></p>
+                        <p><label>邮箱:</label><%= email %></p>
                     </div>
                     <div class="fleft">
-                        <p><label>上课时间1:</label> <%= course.startTime1 %> - <%= course.finishTime1 %></p>
-                        <% if (course.startTime2 > 0) {%>
-                        <p><label>上课时间2:</label> <%= course.startTime2 %> - <%= course.finishTime2 %></p>
-                        <% } %>
-                        <p><label>预订人数:</label>1人</p>
-                        <p><label>邮箱:</label><%= email %></p>
                     </div>
                 </div>
             </div>
@@ -701,7 +701,7 @@
             <div class="field">
                 <label><span class="req">*</span>预约报名日期</label>
                 <input class="text" type="text" id="booking_date"/>
-                <span id="booking_date_info" class="desc">(请在此日期前报名入学)</span>
+                <span id="booking_date_info" class="desc">(若此预约日期前未前往该教学机构办理交费，您的特惠名额将受让给其他学员)</span>
             </div>
         </div>
         <div class="row3">
@@ -727,11 +727,11 @@
             <p><label>订单号: </label><%= reference %></p>
             <p><label>课程名称: </label><%= course.courseName %></p>
             <p><label>教育机构: </label><%= course.instName %></p>
-            <p><label>上课地址: </label><%= course.phone %></p>
-            <p><label>咨询电话: </label><%= course.location %></p>
+            <p><label>上课地址: </label><%= course.location %></p>
+            <p><label>咨询电话: </label><%= course.phone %></p>
             <p><label>开课日期: </label><%= course.startDate %>-<%= course.finishDate %></p>
             <p><label>班级类型: </label><%= course.classSize %></p>
-            <p><label>预约报道: </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
+            <p><label>预约报到: </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
             <p><label>费用总计: </label> ￥<b class="price"><%= price %></b> <span>（到校付款）</span></p>
             <p class="extra">* 到达学校后，请您凭入学人的有效证件办理入学</p>
         </div>
@@ -1274,7 +1274,7 @@
             <span id="getAuthCodeNote" class="instr hidden">（验证码已发送，2分钟内无法重复发送，请注意查收）</span>
         </div> 
         <div class="btn">
-            <input class="btn_O" id="submit_password" type="button" value="保 存">
+            <input class="btn_O" id="submit_password" type="button" value="提 交">
             <a id="cancelPassword" href="#">取消</a>
         </div> 
     </div>
@@ -1291,8 +1291,8 @@
             </div>   
             <div class="field">
                 <label>手<s></s>机</label>
-                <span><%= phone.substr(0,3) %>*****<%= phone.substr(8,3) %></span>
-                <span class="instr">（修改手机号，请致电人工客服）</span>
+                <span><%= phone.substr(0,3) %>****<%= phone.substr(7,4) %></span>
+                <span class="instr">（修改登录名（手机号），请致电人工客服）</span>
             </div>                        
             <div class="field">
                 <label>邮<s></s>箱</label>
@@ -1311,7 +1311,7 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_credit">
-    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">现金账户</span> </div>
+    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">积分账户</span> </div>
     <div class="total"><img src="style/images/icon_points.jpg">您现在拥有<b id="myCredit" class="F_orange">100</b>点可用积分</div>
     <div class="mypage_content_inner">
         <ul id="creditNavBtn" class="tab1 clearfix">
@@ -1441,7 +1441,7 @@
 <script type="text/templates" id="tpl_credit_noMessage">
     <div class="no_data" id="creditNoData">
         <div>你暂时还没有积分哦~~</div>
-        <p>积分可以通过预订课程获得</p>
+        <p>预订课程后就能获得积分哦</p>
     </div>
 </script>
 

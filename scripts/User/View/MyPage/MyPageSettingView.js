@@ -57,7 +57,7 @@ var MyPageSettingView = BaseFormView.extend({
         app.sessionManager.sessionModel.set("name", user.get("name"));
         app.sessionManager.sessionModel.set("email", user.get("email"));
         $("#updateInfo").attr("value", "更新完毕");
-        $("#mypage_info").find("p[class=name]").html(this.model.get("name"));
+        $("#mypage_name").html(this.model.get("name"));
         $("#username").html(this.model.get("name"));
         $("#mypage_info").find("p[class=email]").html("<span></span>" + this.model.get("email"));
 
