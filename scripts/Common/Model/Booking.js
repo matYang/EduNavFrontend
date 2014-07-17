@@ -180,5 +180,8 @@ var Bookings = Backbone.Collection.extend({
 
     findBookingByReference: function (reference) {
         return this.where({reference: reference})[0];
+    },
+    findBookingByBookingId: function (reference) {
+        return this.where({bookingId: reference})[0];
     }
 });

@@ -11,12 +11,12 @@ var BookingDetailView = Backbone.View.extend({
         } else if (params.reference){
             this.reference = params.reference;
             this.user = app.sessionManager.sessionModel;
-            this.booking = this.user.get("bookingList").findBookingByReference(params.reference);
+            this.booking = this.user.get("bookingList").findBookingByBookingId(params.reference);
             if (this.booking) {
                 this.render(this.booking);
             } else {
                 this.sr = new BookingSearchRepresentation();
-                this.sr.set("reference", this.reference);
+                this.sr.set("bookingId", this.reference);
                 app.userManager.fetchBookings(this.sr, {
                     success: this.render,
                     error: function (data) {
