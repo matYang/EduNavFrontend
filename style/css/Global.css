@@ -39,7 +39,7 @@ input.text{height:28px; line-height:28px\9; border:1px solid #ccc; padding-left:
 /*Sticky Footer*/
 html, body, .main { height: 100%; }
 body > .main { height: auto; min-height: 100%; }
-.content { padding-bottom: 80px; }  /* 必须使用和footer相同的高度 */
+.content { padding-bottom: 40px; }  /* 必须使用和footer相同的高度 footer不为fix 可缩小padding */
 .footer { position: relative; margin-top: -80px; /* footer高度的负值 */ height: 80px; clear: both;}
 
 /*footer*/
