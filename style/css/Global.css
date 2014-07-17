@@ -2,7 +2,7 @@
 /* iShangke.cn */
 /* date:20140608 */
 /* author:djxiaoniud@163.com */
-
+html,body{font-family: 'Microsoft Yahei','SimHei','SimSun'}
 body, dl, dd, h1, h2, h3, h4, h5, h6, p, form { margin: 0; }
 body{ font-size:14px; color:#333;}
 input[type="text"] { padding: 0px; }
