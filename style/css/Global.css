@@ -48,7 +48,8 @@ body > .main { height: auto; min-height: 100%; }
 #footer_service_link{padding-top:20px;}
 #footer_service_link a{ color:#636363; padding:0 15px; border-right:1px solid #cccccc;}
 #footer_service_link a#footer_feedback{ border-right:none;}
-.footer-copyright{color:#636363; margin-top:8px; padding-left:15px;}
+.footer-copyright{color:#888888; margin-top:8px; padding-left:15px;}
+.footer-copyright a{color:#888888;}
 
 /*框架*/
 .w_730{width:730px;}
