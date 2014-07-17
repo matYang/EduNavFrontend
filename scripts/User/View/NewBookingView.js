@@ -171,6 +171,7 @@ var NewBookingView = BaseFormView.extend({
             });
         } else {
             $("#cashback_box_notLoggedIn").addClass("hidden");
+            $("#booking_loginbox").addClass("hidden");
         }
 
         $("#bookingInfo").on("keypress", "input", function (e) {
