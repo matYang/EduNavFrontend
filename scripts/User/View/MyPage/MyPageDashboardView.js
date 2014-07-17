@@ -7,7 +7,7 @@ var MyPageDashboardView = Backbone.View.extend({
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
         this.bookingSr = new BookingSearchRepresentation ();
-        this.bookingSr.set("userId", this.user.get("phone"));
+        this.bookingSr.set("userId", this.user.get("userId"));
         this.$el.empty().append(this.template(this.user._toJSON()));
         $("#bookingSummary").append("<div class='loading'></div>");
         app.userManager.fetchBookings(this.bookingSr, {
