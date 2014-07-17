@@ -949,13 +949,13 @@
             <tr id="openCourseRequirement">
                 <th>开班要求</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>">至少<%= course.openCourseRequirement %>人开班</td>
+                    <td class="courseId_<%= course.courseId %>"><%= course.openCourseRequirement %></td>
                 <% }); %>
             </tr>
             <tr id="scheduledTime">
                 <th>报名日期</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>">至<%= course.scheduledTime %>止，晚于此日期，您将不再享有此优惠价格</td>
+                    <td class="courseId_<%= course.courseId %>">至<%= course.cutoffDate %>截止，晚于此日期，您将不再享有此优惠价格</td>
                 <% }); %>
             </tr>
             <tr id="wholeName">
