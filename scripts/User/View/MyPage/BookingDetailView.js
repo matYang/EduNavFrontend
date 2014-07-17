@@ -9,6 +9,7 @@ var BookingDetailView = Backbone.View.extend({
             this.booking = params.booking;
             this.render(this.booking);
         } else if (params.reference){
+            //todo better to change 'reference' to 'bookingId' if use 'bookingId' instead to get booking detail info
             this.reference = params.reference;
             this.user = app.sessionManager.sessionModel;
             this.booking = this.user.get("bookingList").findBookingByBookingId(params.reference);
