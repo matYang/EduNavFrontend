@@ -121,7 +121,7 @@ var MultiPageView = Backbone.View.extend({
     toPage: function (page) {
         this.currentPage = page;
         this.startIndex = this.pageEntryNumber * (page - 1);
-        if (!truePagination) {
+        if (!this.truePagination) {
             this.render();
         } else {
             this.fetchAction();
