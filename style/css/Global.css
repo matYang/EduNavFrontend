@@ -77,7 +77,7 @@ body > .main { height: auto; min-height: 100%; }
 .tab1 li.active{ height:48px; background: url(../images/tab1_active.png) no-repeat;}
 
 .cashback{display:block; position:relative; width:50px; height:27px; line-height:18px; background:url(../images/return.png) no-repeat; font-size:11px; color:#128d56;} 
-.cashback em{ margin-left:15px; font-style:normal;}
+.cashback em{ margin-left:18px; font-style:normal;font-family: SimSun, serif}
 .cashback .tip{display:none; top:26px; right:-39px;}
 .cashback:hover .tip{display:block;}
 
