@@ -1,4 +1,3 @@
-
 var MyPageCouponView = Backbone.View.extend({
     el:"#mypage_content",
     initialize: function () {
@@ -13,12 +12,15 @@ var MyPageCouponView = Backbone.View.extend({
     },
     render: function () {
         this.$el.append(this.template);
-        var claimedCoupons = new Coupons(), unclaimedCoupons = new Coupons();
+        var claimedCoupons = new Coupons(), unclaimedCoupons = new Coupons(), usedCoupons = new Coupons();
         claimedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.usable}));
         unclaimedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.inactive}));
+        usedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.used}));
         this.unclaimedCouponView = new UnclaimedCouponView(unclaimedCoupons, unclaimedCoupons);
         this.claimedCouponView = new ClaimedCouponView(claimedCoupons, claimedCoupons);
+        this.usedCouponView = new UsedCouponView(usedCoupons, usedCoupons);
         this.unclaimedCouponView.hide();
+        this.usedCouponView.hide();
     },
     bindEvents: function () {
         var that = this;
@@ -38,9 +40,15 @@ var MyPageCouponView = Backbone.View.extend({
         if (this.listName === "claimed") {
             this.claimedCouponView.show();
             this.unclaimedCouponView.hide();
-        } else {
+            this.usedCouponView.hide();
+        } else if (this.listName === "unclaimed") {
             this.claimedCouponView.hide();
             this.unclaimedCouponView.show();
+            this.usedCouponView.hide();
+        } else {
+            this.claimedCouponView.hide();
+            this.unclaimedCouponView.hide();
+            this.usedCouponView.show();
         }
 
     },
@@ -126,7 +134,7 @@ var UnclaimedCouponView = MultiPageView.extend({
 
 var ClaimedCouponView = MultiPageView.extend({
     el: "#coupons_container",
-    table: "#claimedTable",
+     table: "#claimedTable",
     minHeight: 144,
     pageEntryNumber: 4,
     entryHeight: 36,
@@ -174,6 +182,55 @@ var ClaimedCouponView = MultiPageView.extend({
             this.$el.empty();
         }
     }
+});
 
+var UsedCouponView = MultiPageView.extend({
+    el: "#coupons_container",
+    table: "#usedTable",
+    minHeight: 144,
+    pageEntryNumber: 4,
+    entryHeight: 36,
+    extPn:true,
+    entryTemplate: _.template(tpl.get("mypage_usedCouponRow")),
+    template: _.template(tpl.get("mypage_couponUsed")),
+    noMessage: _.template(tpl.get("used_coupon_noMessage")),
+    initialize: function (allCoupons, coupons) {
+        MultiPageView.prototype.initialize.call(this);
+        this.$el.append(this.template);
+        this.messages = coupons;
+        this.allMessages = allCoupons;
+        this.pageNumberClass = "searchResultPageNumber";
+        this.pageNumberId = "couponPageNum";
+        this.pageNavigator = "usedCouponListNavigator";
+        this.pageNavigatorClass = "page blank1 clearfix";
+        this.user = app.sessionManager.sessionModel;
+        this.entryContainer = "usedList";
+        this.$domContainer = $("#usedList");
+        this.isClosed = false;
+        var that = this;
+        this.render();
+        this.bindEvents();
+    },
+    render: function () {
+        MultiPageView.prototype.render.call(this);
+    },
+    bindEvents: function () {
 
+    },
+    show: function () {
+        $("#usedTable").removeClass("hidden");
+        $("#usedNoData").removeClass("hidden");
+        $("#usedCouponListNavigator").removeClass("hidden");
+    },
+    hide: function () {
+        $("#usedTable").addClass("hidden");  
+        $("#usedNoData").addClass("hidden");
+        $("#usedCouponListNavigator").addClass("hidden");
+    },
+    close: function () {
+        if (!this.isClosed) {
+            this.isClosed = true;
+            this.$el.empty();
+        }
+    }
 });

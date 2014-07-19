@@ -1190,6 +1190,7 @@
         <ul id="couponNavBtn" class="tab1 clearfix blank2">
             <li data-id="claimed" class="active">可用返利券</li>
             <li data-id="unclaimed">待激活返利券</li>
+            <li data-id="used">已使用的返利券</li>
         </ul>
         <div id="coupons_container">
         </div>
@@ -1212,6 +1213,14 @@
         <td class="col2"><%= amount %></td>
         <td class="col3"><%= origin %></td>
         <td class="col4"><%= expireTime %><%= expireSoon %></td>
+    </tr>
+</script>
+
+<script type="text/template" id="tpl_mypage_usedCouponRow">
+    <tr id="coupon_<%= couponId %>">
+        <td class="col1"><%= couponId %></td>
+        <td class="col2"><%= transactionId %></td>
+        <td class="col3"><%= amount %></td>
     </tr>
 </script>
 
@@ -1247,6 +1256,22 @@
         </tbody>
     </table>
     <div id="unclaimedCouponListNavigator" class="page blank1 clearfix">
+    </div>
+</script>
+
+<script type="text/template" id="tpl_mypage_couponUsed">
+    <table id="usedTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td class="col1">序号</td>
+                <td width="25%">交易号</td>
+                <td width="25%">金额</td>
+            </tr>
+        </thead>
+        <tbody id="usedList">
+        </tbody>
+    </table>
+    <div id="usedCouponListNavigator" class="page blank1 clearfix">
     </div>
 </script>
 
@@ -1456,6 +1481,12 @@
 <script type="text/templates" id="tpl_unclaimed_coupon_noMessage">
     <div id="unclaimedNoData" class="no_data">
         <div>你没有待激活的返利券哦~~</div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_used_coupon_noMessage">
+    <div id="usedNoData" class="no_data">
+        <div>你还没有使用过任何返利券</div>
     </div>
 </script>
 
