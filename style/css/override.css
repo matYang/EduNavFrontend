@@ -161,16 +161,16 @@ li a, .page a {
 .ui-datepicker{
     color:#128D56;
     border-color: #128D56;}
-    .ui-datepicker-header{
+    .ui-datepicker .ui-datepicker-header{
         color: #128d56;
         border: none;
         border-bottom: 2px solid #128d56;
         border-radius: 0;
         background: none;}
-    .ui-datepicker-calendar .ui-state-default{
+    .ui-datepicker.ui-datepicker-calendar .ui-state-default{
         color: #128d56;
         background: none;}
-    .ui-datepicker-calendar .ui-state-active{
+    .ui-datepicker .ui-datepicker-calendar .ui-state-active{
         color: #ffffff;
         border-color: #128d56;
         background: #128d56;}
