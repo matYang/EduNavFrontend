@@ -73,7 +73,7 @@ var NewBookingView = BaseFormView.extend({
     },
     render: function (course) {
         var date = new Date();
-        if (date.getTime() > course.get("cutoffDate").getTime()) {
+        if (course.get("status") !== EnumConfig.CourseStatus.openEnroll) {
             Info.displayNotice("该课程报名已经结束，看一下其他类似的课程吧。")
             var sr = new CourseSearchRepresentation();
             sr.set("category", course.get("category"));
@@ -187,13 +187,13 @@ var NewBookingView = BaseFormView.extend({
             buttonText: "Calendar",
             minDate: new Date (),
             maxDate: this.model.get("course").get("cutoffDate"),
+            defaultDate: that.model.get("scheduledTime"),
             onSelect: function (text, inst) {
                 var d = new Date ();
                 d.setDate(inst.selectedDay);
                 d.setMonth(inst.selectedMonth);
                 d.setYear(inst.selectedYear);
                 that.model.set("scheduledTime", d);
-                $(this).val(Utilities.getDateString(d));
             }
         });
         $("#booking_loginToggler").on("click", function (e) {
