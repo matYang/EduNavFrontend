@@ -146,6 +146,17 @@ li a, .page a {
 	margin-right: 8px;
 }
 
+/*all element hover state*/
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+    border: 1px solid #128d56;
+    background: #ACD7C4;
+    font-weight: normal;
+    color: #128d56;}
 /*override jquery ui date picker style*/
 .ui-datepicker{
     color:#128D56;
@@ -163,14 +174,3 @@ li a, .page a {
         color: #ffffff;
         border-color: #128d56;
         background: #128d56;}
-/*all element hover state*/
-.ui-state-hover,
-.ui-widget-content .ui-state-hover,
-.ui-widget-header .ui-state-hover,
-.ui-state-focus,
-.ui-widget-content .ui-state-focus,
-.ui-widget-header .ui-state-focus {
-    border: 1px solid #128d56;
-    background: #ACD7C4;
-    font-weight: normal;
-    color: #212121;}
