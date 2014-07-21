@@ -515,14 +515,15 @@ var AdminCourseView = BaseFormView.extend({
         $("input[name=scheduledTime]").datepicker({
                 buttonImageOnly: true,
                 buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                onSelect: function (text, inst) {
-                    var d = new Date ();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    $(this).val(Utilities.getDateString(d));
-                }
+                buttonText: "Calendar"
+//                ,
+//                onSelect: function (text, inst) {
+//                    var d = new Date ();
+//                    d.setDate(inst.selectedDay);
+//                    d.setMonth(inst.selectedMonth);
+//                    d.setYear(inst.selectedYear);
+//                    $(this).val(Utilities.getDateString(d));
+//                }
             });
         $("select[name=category]").on("change", function() {
             var category = $(this).val();
@@ -543,14 +544,15 @@ var AdminCourseView = BaseFormView.extend({
         $("input.date").datepicker({
                 buttonImageOnly: true,
                 buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                onSelect: function (text, inst) {
-                    var d = new Date ();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    $(this).val(Utilities.getDateString(d));
-                }
+                buttonText: "Calendar"
+//                ,
+//                onSelect: function (text, inst) {
+//                    var d = new Date ();
+//                    d.setDate(inst.selectedDay);
+//                    d.setMonth(inst.selectedMonth);
+//                    d.setYear(inst.selectedYear);
+//                    $(this).val(Utilities.getDateString(d));
+//                }
             });
         $("#addTeacher").on("click", function () {
             if (!that.teacherSelectHtml) {
