@@ -38,37 +38,37 @@ var MyPageView = Backbone.View.extend({
             if (!this.reference) {
                 throw "invalid access";
             }
-            $("title").html("上课书包 > 订单详情 | 爱上课");
+            document.title="上课书包 > 订单详情 | 爱上课";
             this.activeChildView = new BookingDetailView({reference: this.reference});
             break;
         case "setting":
             $("#editInfo").addClass("active");
-            $("title").html("个人设置 | 爱上课");
+            document.title="个人设置 | 爱上课";
             this.activeChildView = new MyPageSettingView();
             break;
         case "password":
             $("#editPass").addClass("active");
-            $("title").html("更改密码 | 爱上课");
+            document.title="更改密码 | 爱上课";
             this.activeChildView = new MyPagePasswordView();
             break;
         case "coupon":
             $("#couponAccount").addClass("active");
-            $("title").html("上课书包 > 我的优惠券 | 爱上课");
+            document.title="上课书包 > 我的优惠券 | 爱上课";
             this.activeChildView = new MyPageCouponView();
             break;
         case "credit":
             $("#creditAccount").addClass("active");
-            $("title").html("上课书包 > 我的积分 | 爱上课");
+            document.title="上课书包 > 我的积分 | 爱上课";
             this.activeChildView = new MyPageCreditView();
             break;
         case "dashboard":
             $("#mypage_content").css("border", "none");
-            $("title").html("上课书包 | 爱上课");
+            document.title="上课书包 | 爱上课";
             this.activeChildView = new MyPageDashboardView();
             break;
         case "booking":
             $("#bookingManage").addClass("active");
-            $("title").html("上课书包 > 我的订单 | 爱上课");
+            document.title="上课书包 > 我的订单 | 爱上课";
             this.activeChildView = new MyPageBookingView();
             break;
         default:

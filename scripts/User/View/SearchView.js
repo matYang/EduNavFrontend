@@ -39,7 +39,7 @@ var SearchView = Backbone.View.extend({
             if (this.searchRepresentation.get("category")) {
                 this.srs[this.searchRepresentation.get("category")] = this.searchRepresentation;
             }
-            $("title").html("找课程 | " + this.searchRepresentation.toTitleString());
+            document.title="找课程 | " + this.searchRepresentation.toTitleString();
             this.$el.append(this.template);
             this.compareWidgetView = new CompareWidgetView();
             this.searchResultView = new SearchResultView(new Courses(), new Courses(), this.compareWidgetView);
@@ -297,7 +297,7 @@ var SearchView = Backbone.View.extend({
             }
             that.srs[dataId] = that.searchRepresentation;
             that.courseSearch();
-            $("title").html("找课程 | " + that.searchRepresentation.toTitleString());
+            document.title="找课程 | " + that.searchRepresentation.toTitleString();
         });
         $("#search_subCategory").on("click", ".subCategory", function (e) {
             var $this = $(this);
@@ -321,7 +321,7 @@ var SearchView = Backbone.View.extend({
             $this.siblings("[data-id=" + val + "]").removeClass("hidden");
             $this = null;
             that.courseSearch();
-            $("title").html("找课程 | " + that.searchRepresentation.toTitleString());
+            document.title="找课程 | " + that.searchRepresentation.toTitleString();
         });
         $("#search_subCategory").on("click", ".subSubCategory", function (e) {
             if ($(e.currentTarget).hasClass("active")) {
@@ -336,7 +336,7 @@ var SearchView = Backbone.View.extend({
                 that.searchRepresentation.set("subSubCategory", $(this).data("id"));
             }
             that.courseSearch();
-            $("title").html("找课程 | " + that.searchRepresentation.toTitleString());
+            document.title="找课程 | " + that.searchRepresentation.toTitleString();
         });
 
         $("#search_district").on("click", "span", function (e) {
@@ -360,7 +360,7 @@ var SearchView = Backbone.View.extend({
                 }
             }
             that.courseSearch();
-            $("title").html("找课程 | " + that.searchRepresentation.toTitleString());
+            document.title="找课程 | " + that.searchRepresentation.toTitleString();
         });
     },
     filterResult: function ($filter, dataId) {
