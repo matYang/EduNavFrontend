@@ -11,14 +11,14 @@ var SearchResultView = MultiPageView.extend({
     pageEntryNumber: 10,
     actionClass: "viewDetail",
     autoHeight: true,
-    
+    truePagination: true,
     initialize: function (allMessages, messageList, compareWidget) {
         if (!this.initialized) {
-            _.bindAll(this, "bindEvents", "entryEvent", "close");
+            _.bindAll(this, "bindEvents", "entryEvent", "renderSearchResults", "renderError", "close");
             MultiPageView.prototype.initialize.call(this);
             this.messages = messageList || this.messages;
             this.allMessages = allMessages || this.allMessages;
-            this.compareWidget = compareWidget || this.compareWidget;
+            this.compareWidgetView = compareWidget || this.compareWidgetView;
             this.user = app.sessionManager.sessionModel;
             this.initialized = true;
         }
@@ -71,11 +71,17 @@ var SearchResultView = MultiPageView.extend({
     entryEvent: function (courseId) {
         app.navigate("course/" + courseId, true);
     },
-    fetchAction: function () {
+    fetchAction: function (page) {
+        this.sr.set("page", page);
+        this.currentPage = page;
+        app.navigate("search/" + this.sr.toQueryString(), {trigger: false, replace: true});
+        $("#searchResultDisplayPanel").empty().append('<div class="loading"></div>');
+        $("#courseSearchResultNavigator").empty();
         app.generalManager.findCourse(this.sr, {
             success: this.renderSearchResults,
             error: this.renderError
         });
+        app.storage.setSearchRepresentationCache(this.searchRepresentation, "course");
     },
     renderError: function (data) {
         if (!this.isClosed) {
@@ -86,22 +92,21 @@ var SearchResultView = MultiPageView.extend({
         if (!this.isClosed) {
             //prevent memory leaks
             if (typeof BMap !== "undefined" && !this.compareWidgetView.map) {
-                app.searchView.compareWidgetView.renderMap();
+                this.compareWidgetView.renderMap();
             }
-            if (app.searchView.compareWidgetView.map) {
-                app.searchView.compareWidgetView.map.removeAllMarkers();
+            if (this.compareWidgetView.map) {
+                this.compareWidgetView.map.removeAllMarkers();
             }
-            searchResults = searchResults || new Courses();
-            this.allMessages.reset(this.allMessages.toArray());
-            this.messages.reset(searchResults.toArray());
+            searchResults = data || new Courses();
+            this.allMessages = searchResults;
+            this.messages = searchResults;
             $("#resultNum").html(searchResults.length);
             for (i = 0; i < searchResults.length; i++) {
-                if (app.searchView.compareWidgetView.map) {
-                    app.searchView.compareWidgetView.map.getLatLng(searchResults.at(i).get("location"), searchResults.at(i).get("instName"));
+                if (this.compareWidgetView.map) {
+                    this.compareWidgetView.map.getLatLng(searchResults.at(i).get("location"), searchResults.at(i).get("instName"));
                 }
             }
             this.startIndex = 0;
-            this.currentPage = 1;
             this.render();
         }
     },

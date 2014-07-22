@@ -141,7 +141,7 @@
 <script type="text/template" id="tpl_search">
     <!--筛选框-->
     <div id="searchPanel" class="filter unselectable">
-        <ul id="search_category"  class="tab">
+        <ul id="search_category"  class="tab filterCriteria">
         </ul>
         
         <div id="filterPanel" class="filter_content">
@@ -1506,26 +1506,26 @@
 </script>
 
 <script type="text/templates" id="tpl_subCategoryContainer">
-    <div data-id='<%= dataId %>' class='hidden subCategoryList'>
+    <div data-parentValue='<%= value %>' class='hidden subCategoryList'>
         <label style='margin-right: 0'>类<s></s>别：</label>
-        <span data-id='noreq' class='active subCategory'>不限</span><%= entries %>
+        <span data-value='noreq' class='active subCategory'>不限</span><%= entries %>
     </div>
 </script>
 
 <script type="text/templates" id="tpl_subSubCategoryContainer">
-    <p data-id='<%= dataId %>' class='hidden'><%= entries %></p>
+    <p data-parentValue='<%= value %>' class='hidden'><%= entries %></p>
 </script>
 
 <script type="text/templates" id="tpl_subSubCategory">
-    <span data-id='<%= dataId %>' class='subSubCategory'><%= text %></span>
+    <span data-value='<%= value %>' class='subSubCategory'><%= name %></span>
 </script>
 
 <script type="text/templates" id="tpl_subCategory">
-    <span data-id='<%= dataId %>' class='subCategory'><%= text %></span>
+    <span data-value='<%= value %>' class='subCategory'><%= name %></span>
 </script>
 
 <script type="text/templates" id="tpl_category">
-    <li data-id='<%= dataId %>'><%= text %></li>
+    <li data-value="<%= value %>"><%= name %></li>
 </script>
 
 <script type="text/templates" id="tpl_frontButton">

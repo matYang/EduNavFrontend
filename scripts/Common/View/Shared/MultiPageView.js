@@ -57,6 +57,9 @@ var MultiPageView = Backbone.View.extend({
     initialize: function () {
         _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler", "clickPreHandler", "clickNextHandler", "close");
     },
+    fetchAction: function (page) {
+
+    },
     render: function () {
         var buf = [], i, length, height, message;
         if (!this.messages instanceof Backbone.Collection) {
@@ -124,7 +127,7 @@ var MultiPageView = Backbone.View.extend({
         if (!this.truePagination) {
             this.render();
         } else {
-            this.fetchAction();
+            this.fetchAction(page);
         }
     },
     bindEntryEvent: function () {
@@ -169,7 +172,11 @@ var MultiPageView = Backbone.View.extend({
             this.$domContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
         }
         this.$pn = $("#" + this.pageNavigator);
-        length = this.messages ? this.messages.length : 0;
+        if (this.truePagination) {
+            length = this.messages ? this.messages.total : 0;
+        } else {
+            length = this.messages ? this.messages.length : 0;    
+        }
         pages = Math.ceil(length / this.pageEntryNumber);
         this.pages = pages;
         pages = pages > 10 ? 10 : pages;

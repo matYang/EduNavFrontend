@@ -1,11 +1,9 @@
 var CourseSearchRepresentation = Backbone.Model.extend({
-
     defaults: function () {
         return {
-            'category': undefined,
-            'subCategory': undefined,
-            'subSubCategory': undefined,
-        
+            'categoryValue': undefined,
+            'locationValue': undefined,
+
             //'province': undefined,
             'city': undefined,
             'district': undefined,
@@ -36,8 +34,8 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'finishCreationTime': undefined,
             'startCutoffDate': undefined,
             'finishCutoffDate': undefined,
-            'startUponArrival': undefined
-
+            'startUponArrival': undefined,
+            'page': 0
         };
     },
 
@@ -101,10 +99,8 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         queryObj.courseId = this.get('courseId');
         queryObj.partnerId = this.get('partnerId');
         queryObj.userId = this.get('userId');
-
         queryObj.startCreationTime = typeof this.get('startCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startCreationTime'));
         queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishCreationTime'));
-
         return queryObj;
     },
     toTitleString: function() {
