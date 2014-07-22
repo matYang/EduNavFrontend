@@ -72,9 +72,39 @@ var SearchResultView = MultiPageView.extend({
         app.navigate("course/" + courseId, true);
     },
     fetchAction: function () {
-        app.generalManager.findCourse();
+        app.generalManager.findCourse(this.sr, {
+            success: this.renderSearchResults,
+            error: this.renderError
+        });
     },
-
+    renderError: function (data) {
+        if (!this.isClosed) {
+            $("#searchResultDisplayPanel").empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
+        }
+    },
+    renderSearchResults: function (data) {
+        if (!this.isClosed) {
+            //prevent memory leaks
+            if (typeof BMap !== "undefined" && !this.compareWidgetView.map) {
+                app.searchView.compareWidgetView.renderMap();
+            }
+            if (app.searchView.compareWidgetView.map) {
+                app.searchView.compareWidgetView.map.removeAllMarkers();
+            }
+            searchResults = searchResults || new Courses();
+            this.allMessages.reset(this.allMessages.toArray());
+            this.messages.reset(searchResults.toArray());
+            $("#resultNum").html(searchResults.length);
+            for (i = 0; i < searchResults.length; i++) {
+                if (app.searchView.compareWidgetView.map) {
+                    app.searchView.compareWidgetView.map.getLatLng(searchResults.at(i).get("location"), searchResults.at(i).get("instName"));
+                }
+            }
+            this.startIndex = 0;
+            this.currentPage = 1;
+            this.render();
+        }
+    },
     close: function () {
         if (!this.isClosed) {
             this.$domContainer.off();

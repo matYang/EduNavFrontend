@@ -406,7 +406,6 @@ var SearchView = Backbone.View.extend({
             } else {
                 this.searchRepresentation.set("startDate", undefined);
             }
-            this.courseSearch();
         } else if (criteria === "price") {
             if (dataId === "noreq") {
                 this.filters.price = null;
@@ -426,6 +425,8 @@ var SearchView = Backbone.View.extend({
         } else if (criteria === "classMode") {
             if (dataId === "noreq") {
                 this.filters.classSize = null;
+                this.searchRepresentation.set("startClassSize", undefined);
+                this.searchRepresentation.set("finishClassSize", undefined);
             } else {
                 var sizeRange = dataId.split("-");
                 var minSize = Utilities.toInt(sizeRange[0]), maxSize;
@@ -438,10 +439,14 @@ var SearchView = Backbone.View.extend({
                     "minSize": minSize,
                     "maxSize": maxSize
                 };
+                this.searchRepresentation.set("startClassSize", minSize);
+                this.searchRepresentation.set("finishClassSize", maxSize);
             }
         } else if (criteria === "classTime") {
             if (dataId === "noreq") {
                 this.filters.classTime = null;
+                this.searchRepresentation.set("startClassTime", undefined);
+                this.searchRepresentation.set("finishClassTime", undefined);
             } else {
                 var time = dataId.split("_"), day;
                 if (time.length === 2) {
@@ -454,7 +459,7 @@ var SearchView = Backbone.View.extend({
                 };
             }
         }
-        var messages = this.filter();
+        this.courseSearch();
         this.renderSearchResults(messages, true);
         //this.searchRepresentation.set(criteria, dataId);
         //todo
