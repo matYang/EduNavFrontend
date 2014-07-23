@@ -805,22 +805,22 @@
             <div class="course_content">
                 <dl id="content_basic" class="clearfix">
                     <dt>基本信息</dt>
-                    <dd class="clearfix"><label>开课日期: </label><p><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDaysNote %></p></dd>
-                    <dd class="clearfix"><label>上课时间: </label>
+                    <dd class="clearfix"><label>开课日期</label><p><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDaysNote %></p></dd>
+                    <dd class="clearfix"><label>上课时间</label>
                         <p><%= startTime1 %>-<%= finishTime1 %>
                             <% if (startTime2 > 0) { %>, <%= startTime2 %> - <%= finishTime2 %><% } %>
                         </p>
                     </dd>
-                    <dd class="clearfix"><label>上课课时: </label><p><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</p></dd>
-                    <dd class="clearfix"><label>班级类型: </label><p><%= classSize %>人</p></dd>
-                    <dd class="clearfix"><label>开班要求: </label><p><%= openCourseRequirement%></p></dd>
-                    <dd class="clearfix"><label>报名日期: </label><p>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</p></dd>
-                    <dd class="clearfix"><label>机构全称: </label><p><%= wholeName %></p></dd>
-                    <dd class="clearfix"><label>机构荣誉: </label><p><%= partnerQualification %></p></dd>
-                    <dd class="clearfix"><label>机构概况: </label><p><%= partnerIntro %></p></dd>
+                    <dd class="clearfix"><label>上课课时</label><p><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</p></dd>
+                    <dd class="clearfix"><label>班级类型</label><p><%= classSize %>人</p></dd>
+                    <dd class="clearfix"><label>开班要求</label><p><%= openCourseRequirement%></p></dd>
+                    <dd class="clearfix"><label>报名日期</label><p>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</p></dd>
+                    <dd class="clearfix"><label>机构全称</label><p><%= wholeName %></p></dd>
+                    <dd class="clearfix"><label>机构荣誉</label><p><%= partnerQualification %></p></dd>
+                    <dd class="clearfix"><label>机构概况</label><p><%= partnerIntro %></p></dd>
 
                     <dd class="teacher clearfix">
-                        <label>老师介绍: </label>
+                        <label>老师介绍</label>
                         <div class="clearfix blank" style="margin-left: 90px;">
                             <% if (teacherList) { %>
                                 <% for (var i =0; i < teacherList.length; i++) { %>
@@ -836,35 +836,35 @@
                 </dl>
                 <dl id="content_teaching" class="clearfix">
                     <dt>教学信息</dt>
-                    <% if (courseIntro) { %><dd class="clearfix"><label>课程介绍: </label><p><%= courseIntro %></p></dd><% } %>
-                    <% if (goal) { %><dd class="clearfix"><label>教学目标: </label><p><%= goal %></p></dd><% } %>
-                    <% if (prerequest) { %><dd class="clearfix"><label>先修知识: </label><p><%= prerequest %></p></dd><% } %>
-                    <% if (teachingMethod) { %><dd class="clearfix"><label>上课形式: </label><p><%= teachingMethod %></p></dd><% } %>
-                    <% if (teachingMaterialIntro) { %><dd class="clearfix"><label>教材介绍: </label><p><%= teachingMaterialIntro %></p></dd><% } %>
-                    <% if (teachingMaterialFee) { %><dd class="clearfix"><label>教材费用: </label><p><%= teachingMaterialFee %></p></dd><% } %>
-                    <% if (outline) { %><dd class="course_syllabus"><label>课程提纲: </label><div><%= outline %></div></dd><% } %>
+                    <% if (courseIntro) { %><dd class="clearfix"><label>课程介绍</label><p><%= courseIntro %></p></dd><% } %>
+                    <% if (goal) { %><dd class="clearfix"><label>教学目标</label><p><%= goal %></p></dd><% } %>
+                    <% if (prerequest) { %><dd class="clearfix"><label>先修知识</label><p><%= prerequest %></p></dd><% } %>
+                    <% if (teachingMethod) { %><dd class="clearfix"><label>上课形式</label><p><%= teachingMethod %></p></dd><% } %>
+                    <% if (teachingMaterialIntro) { %><dd class="clearfix"><label>教材介绍</label><p><%= teachingMaterialIntro %></p></dd><% } %>
+                    <% if (teachingMaterialFee) { %><dd class="clearfix"><label>教材费用</label><p><%= teachingMaterialFee %></p></dd><% } %>
+                    <% if (outline) { %><dd class="course_syllabus"><label>课程提纲</label><div><%= outline %></div></dd><% } %>
                 </dl>
                 <dl id="content_etc" class="clearfix">
                     <dt>教学补充</dt>
-                    <% if (downloadMaterials) { %><dd class="clearfix"><label>课件下载: </label><p><%= downloadMaterials %></p></dd><% } %>
-                    <% if (questionBank) { %><dd class="clearfix"><label>题库支持: </label><p><%= questionBank %></p></dd><% } %>
-                    <% if (classTeacher) { %><dd class="clearfix"><label>班主任导学: </label><p><%= classTeacher %></p></dd><% } %>
-                    <% if (teachingAndExercise) { %><dd class="clearfix"><label>讲练结合: </label><p><%= teachingAndExercise %></p></dd><% } %>
-                    <% if (quiz) { %><dd class="clearfix"><label>阶段测评: </label><p><%= quiz %></p></dd><% } %>
-                    <% if (questionSession) { %><dd class="clearfix"><label>课后答疑: </label><p><%= questionSession %></p></dd><% } %>
-                    <% if (assignments) { %><dd class="clearfix"><label>课后作业: </label><p><%= assignments %></p></dd><% } %>
-                    <% if (marking) { %><dd class="clearfix"><label>作业批改: </label><p><%= marking %></p></dd><% } %>
+                    <% if (downloadMaterials) { %><dd class="clearfix"><label>课件下载</label><p><%= downloadMaterials %></p></dd><% } %>
+                    <% if (questionBank) { %><dd class="clearfix"><label>题库支持</label><p><%= questionBank %></p></dd><% } %>
+                    <% if (classTeacher) { %><dd class="clearfix"><label>班主任导学</label><p><%= classTeacher %></p></dd><% } %>
+                    <% if (teachingAndExercise) { %><dd class="clearfix"><label>讲练结合</label><p><%= teachingAndExercise %></p></dd><% } %>
+                    <% if (quiz) { %><dd class="clearfix"><label>阶段测评</label><p><%= quiz %></p></dd><% } %>
+                    <% if (questionSession) { %><dd class="clearfix"><label>课后答疑</label><p><%= questionSession %></p></dd><% } %>
+                    <% if (assignments) { %><dd class="clearfix"><label>课后作业</label><p><%= assignments %></p></dd><% } %>
+                    <% if (marking) { %><dd class="clearfix"><label>作业批改</label><p><%= marking %></p></dd><% } %>
                 </dl>
                 <dl id="content_guarantee" class="clearfix">
                     <dt>教学保障</dt>
-                    <% if (passAgreement) { %><dd class="clearfix"><label>签约保过: </label><p><%= passAgreement %></p></dd><% } %>
-                    <% if (highScoreReward) { %><dd class="clearfix"><label>高分奖励: </label><p><%= highScoreReward %></p></dd><% } %>
+                    <% if (passAgreement) { %><dd class="clearfix"><label>签约保过</label><p><%= passAgreement %></p></dd><% } %>
+                    <% if (highScoreReward) { %><dd class="clearfix"><label>高分奖励</label><p><%= highScoreReward %></p></dd><% } %>
                 </dl>
                 <dl id="content_service" class="clearfix">
                     <dt>特色服务</dt>
-                    <% if (certification) { %><dd class="clearfix"><label>结业证书: </label><p><%= certification %></p></dd><% } %>
-                    <% if (extracurricular) { %><dd class="clearfix"><label>课后互动: </label><p><%= extracurricular %></p></dd><% } %>
-                    <% if (bonusService) { %><dd class="clearfix"><label>赠送服务: </label><p><%= bonusService %></p></dd><% } %>
+                    <% if (certification) { %><dd class="clearfix"><label>结业证书</label><p><%= certification %></p></dd><% } %>
+                    <% if (extracurricular) { %><dd class="clearfix"><label>课后互动 </label><p><%= extracurricular %></p></dd><% } %>
+                    <% if (bonusService) { %><dd class="clearfix"><label>赠送服务</label><p><%= bonusService %></p></dd><% } %>
                 </dl>
             </div>
         </div>
