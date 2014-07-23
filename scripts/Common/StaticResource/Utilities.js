@@ -143,6 +143,9 @@ var Utilities = {
             Info.warn("castFromAPIFormat: date is null");
             return null;
         }
+        if (typeof date === "string") {
+            return date;
+        }
         var d = date, str = [d.getFullYear(), (d.getMonth() + 1).padLeft(), d.getDate().padLeft()].join('-') + ' ' + [d.getHours().padLeft(), d.getMinutes().padLeft(), d.getSeconds().padLeft()].join(':');
         return str;
     },

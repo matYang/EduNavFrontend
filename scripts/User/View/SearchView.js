@@ -89,10 +89,10 @@ var SearchView = Backbone.View.extend({
     showCategory: function (categoryValue) {
         var count, value;
         for (count = 0; count < categoryValue.length; count+=2) {
-            value = categoryValue.substr(count, 2);
+            value = categoryValue.substr(0, count + 2);
             $("[data-value=" + value + "]").addClass("active").siblings().removeClass("active");
             $("[data-value=" + value + "]").children("[data-value=noreq]").addClass("active");
-            $("[data-parentvalue=" + value + "]").removeClass("hidden").siblings().addClass("hidden");
+            $("[data-parentvalue=" + value + "]").removeClass("hidden").siblings("p").addClass("hidden");
         }
     },
     renderError: function (data) {
@@ -192,24 +192,16 @@ var SearchView = Backbone.View.extend({
             
         });
 
-        // this.searchResultView.registerSortEvent($("#price"), "price", "priceDesc", this,
-        //     function () {
-        //         $("#time").html("时间");
-        //         if (this.priceDesc) {
-        //             $("#price").html("价格↓");
-        //         } else {
-        //             $("#price").html("价格↑");
-        //         }
-        //         this.priceDesc = !this.priceDesc;
-        //         this.searchResultView.render();
-        //     });
-        // this.searchResultView.registerSortEvent($("#editorPick"), "popularity", true, this,
-        //     function () {
-        //         $("#time").html("时间");
-        //         $("#price").html("价格");
-        //         $("#editorPick").html("爱上课推荐");
-        //         this.searchResultView.render();
-        //     });
+        this.searchResultView.registerSortEvent($("#editorPick"), "popularity", true, this,
+            function () {
+                $("#time").html("时间");
+                $("#price").html("价格");
+                $("#editorPick").html("爱上课推荐");
+                that.searchRepresentation.set("sortBy", undefined);
+                that.searchRepresentation.set("order", undefined);
+                this.courseSearch();
+            }
+        );
         // this.searchResultView.registerFilterEvent($("input[name=cashback]"), this.cashbackFilter, this,
         //       function () {
         //         this.searchResultView.render();
