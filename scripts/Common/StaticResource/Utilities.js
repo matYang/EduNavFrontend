@@ -279,5 +279,30 @@ var Utilities = {
             }
         }
         return comp;
+    },
+    //value should be a 2/4/6 digit decimal string
+    getNameFromHierachy: function (value, hierachy) {
+        var len = value.length, i, j, k, data = hierachy.data, children1, children2, ret = [];
+        for (i = 0; i < data.length; i++) {
+            if (data[i].value === value.substr(0, 2)) {
+                ret[0] = data[i].name;
+                children1 = data[i].children;
+                for (j = 0; j < children1.length; j++) {
+                    if (children1[j].value === value.substr(0, 4)) {
+                        ret[1] = children1[j].name;
+                        children2 = children1[j].children;
+                        for (k = 0; k < children2.length; k++) {
+                            if (children2[k].value) {
+                                ret[2] = children2[k].name;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        return ret;
     }
 };

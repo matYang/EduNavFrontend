@@ -4,10 +4,6 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'categoryValue': undefined,
             'locationValue': undefined,
 
-            //'province': undefined,
-            'city': undefined,
-            'district': undefined,
-            
             'startDate': undefined,
             'finishDate': undefined,
             
@@ -35,7 +31,7 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'startCutoffDate': undefined,
             'finishCutoffDate': undefined,
             'startUponArrival': undefined,
-            'page': 0
+            'page': 1
         };
     },
 
@@ -76,11 +72,8 @@ var CourseSearchRepresentation = Backbone.Model.extend({
     toJSON: function(){
         var queryObj = {};
 
-        queryObj.category = typeof this.get('category') === 'undefined' ? undefined : encodeURI(this.get('category'));
-        queryObj.subCategory = typeof this.get('subCategory') === 'undefined' ? undefined : encodeURI(this.get('subCategory'));
-        queryObj.subSubCategory = typeof this.get('subSubCategory') === 'undefined' ? undefined : encodeURI(this.get('subSubCategory'));
-        queryObj.city = typeof this.get('city') === 'undefined' ? undefined : encodeURI(this.get('city'));
-        queryObj.district = typeof this.get('district') === 'undefined' ? undefined : encodeURI(this.get('district'));
+        queryObj.categoryValue = this.get('categoryValue');
+        queryObj.locationValue = this.get('locationValue');
         queryObj.startDate = typeof this.get('startDate') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startDate'));
         queryObj.finishDate = typeof this.get('finishDate') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishDate'));
 
@@ -101,16 +94,13 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         queryObj.userId = this.get('userId');
         queryObj.startCreationTime = typeof this.get('startCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startCreationTime'));
         queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishCreationTime'));
+        queryObj.page = this.get('page');
         return queryObj;
     },
     toTitleString: function() {
         var buf = "";
-        buf += (typeof this.get('district') === 'undefined') ? "" :  this.get('district') + " " ;
-        buf += (typeof this.get('category') === 'undefined') ? "" : this.get('category');
-        buf += (typeof this.get('subCategory') === 'undefined') ? "" : (">" + this.get('subCategory'));
-        buf += (typeof this.get('subSubCategory') === 'undefined') ? "" : (">" + this.get('subSubCategory'));
+
         return buf;
     }
 
 });
-

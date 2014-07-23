@@ -145,48 +145,48 @@
         </ul>
         
         <div id="filterPanel" class="filter_content">
-            <div id="search_subCategory" class="filterCriteria">
+            <div id="filter_subCategory" class="filterCriteria">
             </div>
-            <div id="search_district" class="filterCriteria">
+            <div id="filter_district" class="filterCriteria">
                 <label>上课地点：</label>
-                <span data-id="noreq" class="active">不限</span>
+                <span data-value="noreq" class="active">不限</span>
             </div>
             <div id="filter_startTime" class="filterCriteria">
                 <label>开课日期：</label>
-                <span data-id="noreq" class="active">不限</span>
-                <span data-id="thisMonth">当月</span>
-                <span data-id="nextMonth">下月</span>
-                <span data-id="twoMonthsAfter">下下月</span>
+                <span data-value="noreq" class="active">不限</span>
+                <span data-value="thisMonth">当月</span>
+                <span data-value="nextMonth">下月</span>
+                <span data-value="twoMonthsAfter">下下月</span>
             </div>
             <div id="filter_classTime" class="filterCriteria">
                 <label>上课时间：</label>
-                <span data-id="noreq" class="active">不限</span>
-                <span data-id="morning">上午</span>
-                <span data-id="afternoon">下午</span>
-                <span data-id="night">晚上</span>
-                <span data-id="morning_weekday">平日上午</span>
-                <span data-id="afternoon_weekday">平日下午</span>
-                <span data-id="night_weekday">平日晚上</span>
-                <span data-id="morning_weekend">周末上午</span>
-                <span data-id="afternoon_weekend">周末下午</span>
-                <span data-id="night_weekend">周末晚上</span>
+                <span data-value="noreq" class="active">不限</span>
+                <span data-value="morning">上午</span>
+                <span data-value="afternoon">下午</span>
+                <span data-value="night">晚上</span>
+                <span data-value="morning_weekday">平日上午</span>
+                <span data-value="afternoon_weekday">平日下午</span>
+                <span data-value="night_weekday">平日晚上</span>
+                <span data-value="morning_weekend">周末上午</span>
+                <span data-value="afternoon_weekend">周末下午</span>
+                <span data-value="night_weekend">周末晚上</span>
             </div>
             <div id="filter_classMode" class="filterCriteria">
                 <label>班级类型：</label>
-                <span data-id="noreq" class="active">不限</span>
-                <span data-id="1-1">VIP 1对1</span>
-                <span data-id="2-5">小班授课（小于6人）</span>
-                <span data-id="6-29">中班授课（6-30人）</span>
-                <span data-id="30-">大班授课（30人+）</span>
+                <span data-value="noreq" class="active">不限</span>
+                <span data-value="1-1">VIP 1对1</span>
+                <span data-value="2-5">小班授课（小于6人）</span>
+                <span data-value="6-29">中班授课（6-30人）</span>
+                <span data-value="30-">大班授课（30人+）</span>
             </div>
             <div id="filter_price" class="filterCriteria">
                 <label>课程费用：</label>
-                <span data-id="noreq" class="active">不限</span>
-                <span data-id="0-2499">2500元以下</span>
-                <span data-id="2500-4999">2500元~4999元</span>
-                <span data-id="5000-7499">5000元~7499元</span>
-                <span data-id="7500-9999">7500元~9999元</span>
-                <span data-id="10000-">10000元以上</span>
+                <span data-value="noreq" class="active">不限</span>
+                <span data-value="0-2499">2500元以下</span>
+                <span data-value="2500-4999">2500元~4999元</span>
+                <span data-value="5000-7499">5000元~7499元</span>
+                <span data-value="7500-9999">7500元~9999元</span>
+                <span data-value="10000-">10000元以上</span>
             </div>
         </div>
     </div>
@@ -1452,7 +1452,7 @@
 </script>
 
 <script type="text/templates" id="tpl_frontCategoryContainer">
-    <div data-parent="<%= lvl1Cat %>" class="<%= catClass %> lv2category c_item blank1 hidden clearfix">
+    <div data-value="<%= value %>" data-parent="<%= parentValue %>" data-parentname="<%= parentName %>" class="<%= catClass %> lv2category c_item blank1 hidden clearfix">
         <div class="fleft">
             <a href="#"><%= categoryName %></a>
             <div class="top_arrow"></div>
@@ -1502,18 +1502,18 @@
 </script>
 
 <script type="text/templates" id="tpl_req">
-    <a href="#" data-cri="<%= criteria %>" data-req="<%= dataId %>" title="取消"><%= text %></a>
+    <a href="#" data-cri="<%= criteria %>" data-req="<%= dataValue %>" title="取消"><%= text %></a>
 </script>
 
 <script type="text/templates" id="tpl_subCategoryContainer">
-    <div data-parentValue='<%= value %>' class='hidden subCategoryList'>
+    <div data-parentvalue='<%= value %>' class='hidden subCategoryList'>
         <label style='margin-right: 0'>类<s></s>别：</label>
         <span data-value='noreq' class='active subCategory'>不限</span><%= entries %>
     </div>
 </script>
 
 <script type="text/templates" id="tpl_subSubCategoryContainer">
-    <p data-parentValue='<%= value %>' class='hidden'><%= entries %></p>
+    <p data-parentvalue='<%= value %>' class='hidden'><%= entries %></p>
 </script>
 
 <script type="text/templates" id="tpl_subSubCategory">
@@ -1529,11 +1529,11 @@
 </script>
 
 <script type="text/templates" id="tpl_frontButton">
-<li data-id="<%= dataId %>"class="item<%= index %>"><a href="#"><%= dataId %></a></li>
+<li data-value="<%= value %>"class="item<%= index %>"><a href="#"><%= name %></a></li>
 </script>
 
 <script type="text/templates" id="tpl_frontCatButton">
-<li data-lvl1='<%= lv1 %>' data-lvl2='<%= lv2 %>' data-lvl3='<%= lv3 %>'><a><%= lv3 %></a></li>
+<li data-value='<%= value %>'><a><%= name %></a></li>
 </script>
 
 <script type="text/templates" id="tpl_mapLabel">

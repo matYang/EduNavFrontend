@@ -19,6 +19,8 @@ var SearchView = Backbone.View.extend({
         this.priceDesc = true;
         this.isClosed = true;
         this.filters = {};
+        this.titleObjs = [];
+        this.titleObj = {};
         this.render(params);
         //injecting the template
     },
@@ -36,10 +38,11 @@ var SearchView = Backbone.View.extend({
                     this.searchRepresentation = new CourseSearchRepresentation();
                 }
             }
-            if (this.searchRepresentation.get("category")) {
-                this.srs[this.searchRepresentation.get("category")] = this.searchRepresentation;
+            if (this.searchRepresentation.get("categoryValue")) {
+                this.srs[this.searchRepresentation.get("categoryValue")] = this.searchRepresentation;
+
             }
-            $("title").html("找课程 | " + this.searchRepresentation.toTitleString());
+            // $("title").html("找课程 | " + this.searchRepresentation.toTitleString());
             this.$el.append(this.template);
             this.compareWidgetView = new CompareWidgetView();
             this.searchResultView = new SearchResultView(new Courses(), new Courses(), this.compareWidgetView);
@@ -48,6 +51,7 @@ var SearchView = Backbone.View.extend({
             app.generalManager.getLocations(this);
             this.bindEvents();
             this.currentPage = 0;
+            document.title = "找课程";
         }
     },
     renderCategories: function (categories) {
@@ -72,7 +76,7 @@ var SearchView = Backbone.View.extend({
                     }
                 }
                 scbuf.push(tc);
-                $("#search_subCategory").append(
+                $("#filter_subCategory").append(
                     this.subCategoryContainerTemplate({value:data[i].value, entries:scbuf.join("")})
                 );
                 scbuf = [];
@@ -89,7 +93,7 @@ var SearchView = Backbone.View.extend({
             value = categoryValue.substr(count, 2);
             $("[data-value=" + value + "]").addClass("active").siblings().removeClass("active");
             $("[data-value=" + value + "]").children("[data-value=noreq]").addClass("active");
-            $("[data-parentValue=" + value + "]").removeClass("hidden").siblings().addClass("hidden");
+            $("[data-parentvalue=" + value + "]").removeClass("hidden").siblings().addClass("hidden");
         }
     },
     renderError: function (data) {
@@ -101,21 +105,22 @@ var SearchView = Backbone.View.extend({
     renderLocations: function (locations) {
         if (!this.isClosed) {
             var buf = [], i;
+            this.locations = locations;
             // for (var prov in locations) {
             //     var city = locations[prov];
             //     for (var attr in city) {
-            var districts = locations.data[0].children[0], district;
+            var districts = locations.data[0].children[0].children, district;
             for (i = 0; i < districts.length; i++) {
                 buf[i] = this.subCategoryTemplate({value:districts[i].value, name:districts[i].name});
             }
-            $("#search_district").append(buf.join(""));
-            this.searchRepresentation.set("city", "南京");
-            $dist = $("#search_district");
-            if (this.searchRepresentation.get("district")) {
-                $dist.find("span[data-id=noreq]").removeClass("active");
-                $dist.find("span[data-id=" + this.searchRepresentation.get("district") + "]").addClass("active");
+            $("#filter_district").append(buf.join(""));
+            this.titleObj.city = "南京";
+            $dist = $("#filter_district");
+            if (this.searchRepresentation.get("locationValue")) {
+                $dist.find("span[data-value=noreq]").removeClass("active");
+                $dist.find("span[data-value=" + this.searchRepresentation.get("locationValue") + "]").addClass("active");
             } else {
-                $dist.find("span[data-id=noreq]").addClass("active");
+                $dist.find("span[data-value=noreq]").addClass("active");
             }
         }
     },
@@ -148,7 +153,7 @@ var SearchView = Backbone.View.extend({
         $searchReqs.on("click", "a", function (e) {
             e.preventDefault();
             var cri = $(e.target).data("cri");
-            that.filterResult($("#filter_" + cri), "noreq");
+            that.filterResult($("#filter_" + cri), $("#filter_" + cri).find("[data-value=noreq]"));
         });
 
         $("#toTop").on("click", function (e) {
@@ -205,99 +210,37 @@ var SearchView = Backbone.View.extend({
             if ($(this).hasClass("active")) {
                 return;
             }
-            var dataId = $(e.target).data("value");
+            var dataId = $(e.target).data("value"), cv;
             if (that.srs[dataId]) {
                 that.searchRepresentation = that.srs[dataId];
             } else {
                 that.searchRepresentation = new CourseSearchRepresentation();
-                that.searchRepresentation.set("category", dataId);
+                that.searchRepresentation.set("categoryValue", dataId);
             }
             $(this).addClass("active").siblings().removeClass("active");
-            $("#search_subCategory").children("div").addClass("hidden");
-            var $scCont = $("#search_subCategory").children("div[data-parentValue=" + dataId + "]");
+            $("#filter_subCategory").children("div").addClass("hidden");
+            var $scCont = $("#filter_subCategory").children("div[data-parentvalue=" + dataId + "]");
             $scCont.removeClass("hidden");
-            if (that.searchRepresentation.get("subCategory")) {
-                $scCont.find("span[data-value=" + that.searchRepresentation.get("subCategory") + "]").addClass("active");
-                var $sscCont = $scCont.find("p[data-value=" + that.searchRepresentation.get("subCategory") + "]").removeClass("hidden");
-                if (that.searchRepresentation.get("subSubCategory")) {
-                    $sscCont.find("span[data-value=" + that.searchRepresentation.get("subSubCategory") + "]").addClass("active");
+            cv = that.searchRepresentation.get("categoryValue");
+            if (cv.length >= 4) {
+                $scCont.find("span[data-value=" + cv.substr(0,4) + "]").addClass("active");
+                var $sscCont = $scCont.find("p[data-value=" + cv.substr(0,4) + "]").removeClass("hidden");
+                if (cv.length >= 6) {
+                    $sscCont.find("span[data-value=" + cv + "]").addClass("active");
                 }
             } else {
                 $scCont.find("span[data-value=noreq]").addClass("active");
                 $scCont.find("p").addClass("hidden");
             }
-            $("#search_district").find(".active").removeClass("active");
-            if (that.searchRepresentation.get("district")) {
-                $("#search_district").find("span[data-value=" + that.searchRepresentation.get("district") + "]").addClass("active");
+            $("#filter_district").find(".active").removeClass("active");
+            if (that.searchRepresentation.get("locationValue")) {
+                $("#filter_district").find("span[data-value=" + that.searchRepresentation.get("locationValue") + "]").addClass("active");
             } else {
-                $("#search_district").find("span[data-value=noreq]").addClass("active");
+                $("#filter_district").find("span[data-value=noreq]").addClass("active");
             }
             that.srs[dataId] = that.searchRepresentation;
             that.courseSearch();
-            $("title").html("找课程 | " + that.searchRepresentation.toTitleString());
-        });
-        $("#search_subCategory").on("click", ".subCategory", function (e) {
-            var $this = $(this);
-            if ($this.hasClass("active")) {
-                return;
-            }
-            $this.siblings(".subCategory").removeClass("active");
-            $(e.currentTarget).addClass("active");
-            that.searchRepresentation.set("category", $("#search_category").find(".active").data("id"));
-            var val = $this.data("id");
-            if (val === "noreq") {
-                that.searchRepresentation.set("subCategory", undefined);
-                that.searchRepresentation.set("subSubCategory", undefined);
-                $this.siblings("p").find(".active").removeClass("active");
-            } else {
-                that.searchRepresentation.set("subCategory", val);
-                that.searchRepresentation.set("subSubCategory", undefined);
-                $this.siblings("p").find(".active").removeClass("active");
-            }
-            $this.siblings("p").addClass("hidden");
-            $this.siblings("[data-id=" + val + "]").removeClass("hidden");
-            $this = null;
-            that.courseSearch();
-            $("title").html("找课程 | " + that.searchRepresentation.toTitleString());
-        });
-        $("#search_subCategory").on("click", ".subSubCategory", function (e) {
-            if ($(e.currentTarget).hasClass("active")) {
-                return;
-            }
-            $(this).siblings(".subSubCategory").removeClass("active");
-            $(e.currentTarget).addClass("active");
-            var val = $(this).data("id");
-            if (val === "noreq") {
-                that.searchRepresentation.set("subSubCategory", undefined);
-            } else {
-                that.searchRepresentation.set("subSubCategory", $(this).data("id"));
-            }
-            that.courseSearch();
-            $("title").html("找课程 | " + that.searchRepresentation.toTitleString());
-        });
-
-        $("#search_district").on("click", "span", function (e) {
-            if ($(e.currentTarget).hasClass("active")) {
-                return;
-            }
-            $(e.currentTarget).siblings(".active").removeClass("active");
-            $(e.currentTarget).addClass("active");
-            var dataId = $(e.target).data("value");
-            if (dataId === "noreq") {
-                that.searchRepresentation.set("district", undefined);
-                if (that.compareWidgetView.map) {
-                    that.compareWidgetView.map.setCenter(that.searchRepresentation.get("city") + "市");
-                    that.compareWidgetView.map.map.setZoom(9);
-                }
-            } else {
-                that.searchRepresentation.set("district", dataId);
-                if (that.compareWidgetView.map) {
-                    that.compareWidgetView.map.setCenter(that.searchRepresentation.get("city") + "市" + dataId + "区");
-                    that.compareWidgetView.map.map.setZoom(11);
-                }
-            }
-            that.courseSearch();
-            $("title").html("找课程 | " + that.searchRepresentation.toTitleString());
+            // $("title").html("找课程 | " + that.searchRepresentation.toTitleString());
         });
     },
     filterResult: function ($filter, $target) {
@@ -306,11 +249,12 @@ var SearchView = Backbone.View.extend({
         }
         $filter.find(".active").removeClass("active");
         $target.addClass("active");
-        var criteria = $filter.attr("id").split("_")[1];
+        var criteria = $filter.attr("id").split("_")[1], dataValue;
         $("a[data-cri=" + criteria + "]").remove();
-        if (dataId !== "noreq" && $filter.attr("id").indexOf("filter") > -1) {
+        dataValue = $target.data("value");
+        if (dataValue !== "noreq") {
             $("#searchReqs").append(this.reqTemplate(
-                {criteria: criteria, dataId: dataId, text: $("[data-id=" + dataId + "]").html()}
+                {criteria: criteria, dataValue: dataValue, text: $filter.find("[data-value=" + dataValue + "]").html()}
             ));
         }
         if ($("#searchReqs").find("a").length) {
@@ -318,13 +262,39 @@ var SearchView = Backbone.View.extend({
         } else {
             $("#searchReqs").addClass("hidden");
         }
-        if (criteria === "startTime") {
+        if (criteria === "subCategory") {
+            if (dataValue === "noreq") {
+                this.searchRepresentation.set("categoryValue", $target.parent().data("parentvalue"));
+            } else {
+                this.searchRepresentation.set("categoryValue", dataValue);
+            }
+            $target.siblings("p").addClass("hidden");
+            $target.siblings("[data-parentvalue=" + dataValue + "]").removeClass("hidden");
+            $target = null;
+        } else if (criteria === "district") {
+            dataValue = $target.data("value");
+            if (dataValue === "noreq") {
+                this.searchRepresentation.set("locationValue", undefined);
+                if (this.compareWidgetView.map) {
+                    this.compareWidgetView.map.setCenter(this.locations.data[0].name);
+                    this.compareWidgetView.map.map.setZoom(9);
+                }
+            } else {
+                this.searchRepresentation.set("locationValue", $target.data("value"));
+                this.titleObj.district = $target.html();
+                if (this.compareWidgetView.map) {
+
+                    this.compareWidgetView.map.setCenter($target.html());
+                    this.compareWidgetView.map.map.setZoom(11);
+                }
+            }
+        } else if (criteria === "startTime") {
             var date = new Date();
             date.setDate(1);
             var month = date.getMonth();
-            if (dataId === "thisMonth") {
+            if (dataValue === "thisMonth") {
                 this.searchRepresentation.set("startDate", date);
-            } else if (dataId === "nextMonth") {
+            } else if (dataValue === "nextMonth") {
                 if (month === 11) {
                     date.setMonth(0);
                     date.setFullYear(date.getFullYear() + 1);
@@ -332,7 +302,7 @@ var SearchView = Backbone.View.extend({
                     date.setMonth(date.getMonth() + 1);
                 }
                 this.searchRepresentation.set("startDate", date);
-            } else if (dataId === "twoMonthsAfter") {
+            } else if (dataValue === "twoMonthsAfter") {
                 if (month >= 10) {
                     date.setMonth((date.getMonth() + 2) % 12);
                     date.setFullYear(date.getFullYear() + 1);
@@ -344,10 +314,12 @@ var SearchView = Backbone.View.extend({
                 this.searchRepresentation.set("startDate", undefined);
             }
         } else if (criteria === "price") {
-            if (dataId === "noreq") {
+            if (dataValue === "noreq") {
                 this.filters.price = null;
+                this.searchRepresentation.set("startPrice", undefined);
+                this.searchRepresentation.set("finishPrice", undefined);
             } else {
-                var priceRange = dataId.split("-");
+                var priceRange = dataValue.split("-");
                 var minPrice = Utilities.toInt(priceRange[0]), maxPrice;
                 if (priceRange.length === 1) {
                     maxPrice = undefined;
@@ -358,14 +330,16 @@ var SearchView = Backbone.View.extend({
                     "minPrice": minPrice,
                     "maxPrice": maxPrice
                 };
+                this.searchRepresentation.set("startPrice", minPrice);
+                this.searchRepresentation.set("finishPrice", isNaN(maxPrice) ? undefined : maxPrice);
             }
         } else if (criteria === "classMode") {
-            if (dataId === "noreq") {
+            if (dataValue === "noreq") {
                 this.filters.classSize = null;
                 this.searchRepresentation.set("startClassSize", undefined);
                 this.searchRepresentation.set("finishClassSize", undefined);
             } else {
-                var sizeRange = dataId.split("-");
+                var sizeRange = dataValue.split("-");
                 var minSize = Utilities.toInt(sizeRange[0]), maxSize;
                 if (sizeRange.length === 1) {
                     maxSize = undefined;
@@ -377,15 +351,15 @@ var SearchView = Backbone.View.extend({
                     "maxSize": maxSize
                 };
                 this.searchRepresentation.set("startClassSize", minSize);
-                this.searchRepresentation.set("finishClassSize", maxSize);
+                this.searchRepresentation.set("finishClassSize", isNaN(maxSize) ? undefined : maxSize );
             }
         } else if (criteria === "classTime") {
-            if (dataId === "noreq") {
+            if (dataValue === "noreq") {
                 this.filters.classTime = null;
                 this.searchRepresentation.set("startClassTime", undefined);
                 this.searchRepresentation.set("finishClassTime", undefined);
             } else {
-                var time = dataId.split("_"), day;
+                var time = dataValue.split("_"), day;
                 if (time.length === 2) {
                     day = time[1];
                 }
@@ -397,7 +371,6 @@ var SearchView = Backbone.View.extend({
             }
         }
         this.courseSearch();
-        this.renderSearchResults(messages, true);
         //this.searchRepresentation.set(criteria, dataId);
         //todo
     },
@@ -413,8 +386,8 @@ var SearchView = Backbone.View.extend({
             }
             $("#filterPanel").children(".filterCriteria").off();
             $("#search_category").off();
-            $("#search_subCategory").off();
-            $("#search_subCategory").off();
+            $("#filter_subCategory").off();
+            $("#filter_subCategory").off();
             this.searchResultView = null;
             $(document).off("scroll");
             $("#searchReqs").off();
