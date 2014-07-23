@@ -14,7 +14,7 @@ var SearchView = Backbone.View.extend({
         this.allMessages = new Courses();
         //define the template
         this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
-        this.srs = {};
+        this.categoryValue = {};
         this.timeDesc = true;
         this.priceDesc = true;
         this.isClosed = true;
@@ -39,8 +39,7 @@ var SearchView = Backbone.View.extend({
                 }
             }
             if (this.searchRepresentation.get("categoryValue")) {
-                this.srs[this.searchRepresentation.get("categoryValue")] = this.searchRepresentation;
-
+                this.categoryValue[this.searchRepresentation.get("categoryValue").substr(0, 2)] = this.searchRepresentation;
             }
             // $("title").html("找课程 | " + this.searchRepresentation.toTitleString());
             this.$el.append(this.template);
@@ -164,40 +163,57 @@ var SearchView = Backbone.View.extend({
         });
     },
     bindSortEvents: function () {
-        this.searchResultView.registerSortEvent($("#time"), "startDate", "timeDesc", this,
-            function () {
-                $("#price").html("价格");
-                if (this.timeDesc) {
-                    $("#time").html("时间↓");
-                } else {
-                    $("#time").html("时间↑");
-                }
-                this.timeDesc = !this.timeDesc;
+        var that = this;
+        $("#time").on("click", function () {
+            $("#price").html("价格");
+            if (this.timeDesc) {
+                $("#time").html("时间↓");
+            } else {
+                $("#time").html("时间↑");
+            }
+            that.searchRepresentation.set("sortBy", "startDate");
+            that.searchRepresentation.set("order", that.timeDesc ? "DESC" : "ASCE");
+            that.timeDesc = !that.timeDesc;
+            that.courseSearch();
+        });
+        $("#price").on("click", function () {
+            $("#time").html("时间");
+            if (this.priceDesc) {
+                $("#price").html("价格↓");
+            } else {
+                $("#price").html("价格↑");
+            }
+            that.searchRepresentation.set("sortBy", "price");
+            that.searchRepresentation.set("order", that.priceDesc ? "DESC" : "ASCE");
+            this.priceDesc = !this.priceDesc;
+            that.courseSearch();
+        });
+        $("#editorPick").on("click", function () {
+            
+        });
 
-                this.searchResultView.render();
-            });
-        this.searchResultView.registerSortEvent($("#price"), "price", "priceDesc", this,
-            function () {
-                $("#time").html("时间");
-                if (this.priceDesc) {
-                    $("#price").html("价格↓");
-                } else {
-                    $("#price").html("价格↑");
-                }
-                this.priceDesc = !this.priceDesc;
-                this.searchResultView.render();
-            });
-        this.searchResultView.registerSortEvent($("#editorPick"), "popularity", true, this,
-            function () {
-                $("#time").html("时间");
-                $("#price").html("价格");
-                $("#editorPick").html("爱上课推荐");
-                this.searchResultView.render();
-            });
-        this.searchResultView.registerFilterEvent($("input[name=cashback]"), this.cashbackFilter, this,
-              function () {
-                this.searchResultView.render();
-            });
+        // this.searchResultView.registerSortEvent($("#price"), "price", "priceDesc", this,
+        //     function () {
+        //         $("#time").html("时间");
+        //         if (this.priceDesc) {
+        //             $("#price").html("价格↓");
+        //         } else {
+        //             $("#price").html("价格↑");
+        //         }
+        //         this.priceDesc = !this.priceDesc;
+        //         this.searchResultView.render();
+        //     });
+        // this.searchResultView.registerSortEvent($("#editorPick"), "popularity", true, this,
+        //     function () {
+        //         $("#time").html("时间");
+        //         $("#price").html("价格");
+        //         $("#editorPick").html("爱上课推荐");
+        //         this.searchResultView.render();
+        //     });
+        // this.searchResultView.registerFilterEvent($("input[name=cashback]"), this.cashbackFilter, this,
+        //       function () {
+        //         this.searchResultView.render();
+        //     });
 
     },
     cashbackFilter: function (course) {
@@ -211,10 +227,10 @@ var SearchView = Backbone.View.extend({
                 return;
             }
             var dataId = $(e.target).data("value"), cv;
-            if (that.srs[dataId]) {
-                that.searchRepresentation = that.srs[dataId];
+            that.categoryValue[that.searchRepresentation.get("categoryValue").substr(0, 2)] = that.searchRepresentation.get("categoryValue");
+            if (that.categoryValue[dataId]) {
+                that.searchRepresentation.set("categoryValue", that.categoryValue[dataId]);
             } else {
-                that.searchRepresentation = new CourseSearchRepresentation();
                 that.searchRepresentation.set("categoryValue", dataId);
             }
             $(this).addClass("active").siblings().removeClass("active");
@@ -232,13 +248,6 @@ var SearchView = Backbone.View.extend({
                 $scCont.find("span[data-value=noreq]").addClass("active");
                 $scCont.find("p").addClass("hidden");
             }
-            $("#filter_district").find(".active").removeClass("active");
-            if (that.searchRepresentation.get("locationValue")) {
-                $("#filter_district").find("span[data-value=" + that.searchRepresentation.get("locationValue") + "]").addClass("active");
-            } else {
-                $("#filter_district").find("span[data-value=noreq]").addClass("active");
-            }
-            that.srs[dataId] = that.searchRepresentation;
             that.courseSearch();
             // $("title").html("找课程 | " + that.searchRepresentation.toTitleString());
         });

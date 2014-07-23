@@ -72,7 +72,8 @@ var SearchResultView = MultiPageView.extend({
         app.navigate("course/" + courseId, true);
     },
     fetchAction: function (page) {
-        this.sr.set("page", page);
+        this.sr.set("start", (page-1)*this.pageEntryNumber );
+        this.sr.set("count", this.pageEntryNumber );
         this.currentPage = page;
         app.navigate("search/" + this.sr.toQueryString(), {trigger: false, replace: true});
         $("#searchResultDisplayPanel").empty().append('<div class="loading"></div>');
