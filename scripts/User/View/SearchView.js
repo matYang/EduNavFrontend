@@ -126,6 +126,7 @@ var SearchView = Backbone.View.extend({
             finishClassSize = this.searchRepresentation.get("finishClassSize"),
             startDate = this.searchRepresentation.get("startDate"),
             finishDate = this.searchRepresentation.get("finishDate"),
+            cashback = this.searchRepresentation.get("startCashback"),
             value, text;
         if (startPrice !== undefined) {
             value = startPrice + "-";
@@ -162,6 +163,9 @@ var SearchView = Backbone.View.extend({
             $("#filter_startTime").find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
             $("#searchReqs").append(this.reqTemplate({criteria: "startTime", dataValue:value, text:text}));   
         }
+        if (cashback && cashback > 0) {
+            $("input[name=cashback]").prop("checked", true);
+        }
     },
     syncSorter: function () {
         var order = this.searchRepresentation.get("order"), sortBy = this.searchRepresentation.get("sortBy");
@@ -189,7 +193,6 @@ var SearchView = Backbone.View.extend({
                     this.priceDesc = false;
                 }
             }
-
         }
     },
     renderError: function (data) {
@@ -298,21 +301,14 @@ var SearchView = Backbone.View.extend({
                 this.courseSearch();
         });
 
-        this.searchResultView.registerSortEvent($("#editorPick"), "popularity", true, this,
-            function () {
-                $("#time").html("时间");
-                $("#price").html("价格");
-                $("#editorPick").html("爱上课推荐");
-                that.searchRepresentation.set("sortBy", undefined);
-                that.searchRepresentation.set("order", undefined);
-                this.courseSearch();
+        $("input[name=cashback]").on("change", function () {
+            if ($(this).prop("checked")) {
+                that.searchRepresentation.set("startCashback", 1);
+            } else {
+                that.searchRepresentation.set("startCashback", undefined);
             }
-        );
-        // this.searchResultView.registerFilterEvent($("input[name=cashback]"), this.cashbackFilter, this,
-        //       function () {
-        //         this.searchResultView.render();
-        //     });
-
+            that.courseSearch();
+        });
     },
     cashbackFilter: function (course) {
         var cashback = $("input[name=cashback]").prop("checked");
