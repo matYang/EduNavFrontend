@@ -68,6 +68,9 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         for (var property in queryObj) {
             if (queryObj.hasOwnProperty(property) && typeof queryObj[property] !== 'undefined') {
                 this.set(property, decodeURI(queryObj[property]));
+                if (property.indexOf("Date") > 0) {
+                    this.set(property, Utilities.castFromAPIFormat(queryObj[property]));
+                }
             }
         }
     },
