@@ -76,10 +76,18 @@ body > .main { height: auto; min-height: 100%; }
 .tab1 li{float:left; width:150px; text-align:center; color:#fff; margin-right:3px; height:40px; line-height:40px; background:#2f3541; cursor:pointer;} 
 .tab1 li.active{ height:48px; background: url(../images/tab1_active.png) no-repeat;}
 
-.cashback{display:block; position:relative; width:50px; height:27px; line-height:18px; background:url(../images/return.png) no-repeat; font-size:11px; color:#128d56;} 
-.cashback em{ margin-left:18px; font-style:normal;font-family: SimSun, serif}
+.cashback{display:inline-block; position:relative;border-radius: 2px;border: 1px solid #128d56;font-size:12px; color:#128d56;}
+.cashback em{ margin-left:16px; font-style:normal;font-family: SimSun, serif}
 .cashback .tip{display:none; top:26px; right:-39px;}
 .cashback:hover .tip{display:block;}
+.cahsback:before{
+    content: '返';
+    position: absolute;left: 0;top:0;
+    color: white;
+    background: #128D56;
+    padding: 0 2px;
+    width: 12px;
+}
 
 /*tip*/
 .tip{position:absolute; z-index:99; width:313px; border:1px solid #a7a7a7; background:#fff; font-size:12px; line-height:22px;}
