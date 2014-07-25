@@ -250,7 +250,7 @@
             <p class="price"><span class="sign">￥</span><%= price %></p>
             <% if (cashback) { %>
                 <a class="cashback">
-                    <em><%= cashback %>元</em>
+                    <%= cashback %>元
                     <div class="tip">
                         <div class="arrow"></div>
                         <div class="tip_content">
@@ -758,7 +758,7 @@
                 </dl>
                 <div class="col2">
                     <div class="price"><span class="sign">￥</span><%= price %></div>
-                    <a class="cashback"> <em><%= cashback %>元</em>
+                    <a class="cashback"><%= cashback %>元
                     <div class="tip">
                         <div class="arrow"></div>
                         <div class="tip_content"> 用“返利券”预订此课程，可立即返还<%= cashback %>元现金！入学后不进行退学，就可至您的账户里提现。<span class="link howToGetCoupon" style="color:green">如何获得返利券</span> </div>
@@ -905,7 +905,7 @@
                 <% _.each(courses, function(course) { %>
                     <td class="courseId_<%= course.courseId %>">
                     <div class="price">￥<%= course.price %></div>
-                    <a class="cashback"><em><%= course.cashback %>元</em></a>
+                    <a class="cashback"><%= course.cashback %>元</a>
                     </td>
                 <% }); %>
             </tr>
