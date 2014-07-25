@@ -45,7 +45,7 @@
 .search_result .col2{float:left; position:relative; width:128px; height:105px; text-align:center; border-right:1px solid #eee; font-size:14px;}
 .search_result .col2 .price{font-size:24px; color:#ff5500; font-family:微软雅黑; margin-top:5px;}
 .search_result .col2 .price .sign{font-size:14px; color:#333333;}
-.search_result .col2 .cashback{ margin-left:40px; margin-top:5px;} 
+.search_result .col2 .cashback{margin-top:5px;}
 .search_result .col2 .original_cost{ font-size:12px; margin-top:5px;}
 .search_result .col2 .original_cost span{ text-decoration:line-through; font-family:微软雅黑; } 
 
