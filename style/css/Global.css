@@ -80,7 +80,7 @@ body > .main { height: auto; min-height: 100%; }
 .cashback em{ margin-left:16px; font-style:normal;font-family: SimSun, serif}
 .cashback .tip{display:none; top:26px; right:-39px;}
 .cashback:hover .tip{display:block;}
-.cahsback:before{
+.cashback:before{
     content: '返';
     position: absolute;left: 0;top:0;
     color: white;
