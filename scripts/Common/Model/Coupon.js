@@ -2,6 +2,7 @@ var Coupon = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
+            'id': -1,
             'couponId': -1,
 
             'transactionId': -1,
@@ -17,7 +18,7 @@ var Coupon = Backbone.Model.extend({
         };
     },
 
-    idAttribute: 'couponId',
+    idAttribute: 'id',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');
@@ -33,7 +34,8 @@ var Coupon = Backbone.Model.extend({
 
     parse: function (data) {
         if ( typeof data !== 'undefined') {
-            data.couponId = parseInt(data.couponId, 10);
+            data.id = parseInt(data.id, 10);
+            data.couponId = data.id;
 
             data.transactionId = parseInt(data.transactionId, 10);
             data.userId = parseInt(data.userId, 10);

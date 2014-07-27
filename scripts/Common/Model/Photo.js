@@ -1,6 +1,7 @@
 var Photo = Backbone.Model.extend({
     defaults: function () {
         return {
+            'id': -1,
             'classPhotoId': -1,
 
         	'partnerId': -1,	//All images should associate with a partner
@@ -10,7 +11,7 @@ var Photo = Backbone.Model.extend({
             'creationTime': new Date()
         };
     },
-    idAttribute: 'classPhotoId',
+    idAttribute: 'id',
 
     urlRoot: Constants.origin + '/p-api/v1.0/photo/photo',
 
@@ -18,7 +19,8 @@ var Photo = Backbone.Model.extend({
         var json = {};
         if ( typeof data !== 'undefined') {
             
-            json.classPhotoId = parseInt(data.classPhotoId, 10);
+            json.id = parseInt(data.id, 10);
+            json.classPhotoId = json.id;
             json.title = decodeURI(data.title);
             json.partnerId = parseInt(data.partnerId, 10);
 

@@ -240,7 +240,7 @@
     <div class="searchResultEntry clearfix">
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/><span><%= instName%></span></div>
         <div class="col1">
-            <p class="title"><a class="F_green courseTitle" id="viewAllTitle_<%= courseId %>" href="#"><%= courseName %></a></p>
+            <p class="title"><a class="F_green courseTitle" id="viewAllTitle_<%= id %>" href="#"><%= courseName %></a></p>
             <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
             <p class="desc"><span>上课日期:</span> <%= startDate %> - <%= finishDate %></p>
             <p class="desc"><span>上课地址:</span> <%= location %></p>
@@ -262,11 +262,11 @@
             <% } %>  
             </div>
         <div class="col3">
-            <div class="compare" id="compare_<%= courseId %>"><input class="btn_g add" type="button" value="+对比"/></div>
+            <div class="compare" id="compare_<%= id %>"><input class="btn_g add" type="button" value="+对比"/></div>
             
-                <div class="blank" id="trial_<%= courseId %>"><input class="btn_o" value="免费试听" type="button"></div>
+                <div class="blank" id="trial_<%= id %>"><input class="btn_o" value="免费试听" type="button"></div>
 
-            <div class="viewDetail" id="viewAll_<%= courseId %>"><a class="F_green" href="#">查看详情</a></div>
+            <div class="viewDetail" id="viewAll_<%= id %>"><a class="F_green" href="#">查看详情</a></div>
         </div>
     </div>
 </script>
@@ -281,7 +281,7 @@
 </script>
 
 <script type="text/template" id="tpl_compareWidgetEntry" >
-    <div class="compareEntry" id="compareEntry_courseId_<%= courseId %>">
+    <div class="compareEntry" id="compareEntry_courseId_<%= id %>">
         <p class="desc"><span>【<%= instName %>】</span><a href="#"><%= courseName %></a></p>
         <p class="price"><span class="sign">￥</span><%= price %></p>
         <div class="remove"></div>
@@ -753,7 +753,7 @@
         <div class="banner">
             <div class="row1 clearfix">
                 <dl class="col1">
-                    <dt><%= courseName %><span><%= instName %></span> <input id="detail_compare_<%= courseId %>" class="add btn_g" type="button" value=" +对比 "></dt>
+                    <dt><%= courseName %><span><%= instName %></span> <input id="detail_compare_<%= id %>" class="add btn_g" type="button" value=" +对比 "></dt>
                     <dd>适合学员：<%= suitableStudent %></dd>
                 </dl>
                 <div class="col2">
@@ -1609,6 +1609,41 @@
             </dd>
         </dl>
     </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_cash">
+    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">现金账户</span> </div>
+    <div class="total"><img src="images/icon_monney.jpg">总金额：<span>￥</span><b class="F_orange"><%= balance %></b></div>
+    <div class="mypage_content_inner">
+        <div class="clearfix">
+            <img class="fleft" src="images/img1.jpg"><img class="fright" src="images/img2.jpg">
+        </div>
+        <ul class="tab1 clearfix" style="margin-top:20px;">
+            <li id="expendable" class="active">可用金额</li>
+            <li id="record">明细记录</li>
+        </ul>
+        <table class="blank1" cellpadding="0" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <td class="">金额</td>
+                    <td class="" width="33%">来源</td>
+                    <td class="" width="33%">有效期</td>
+                </tr>
+            </thead>
+            <tbody id="mypage_cashEntries">
+            </tbody>
+        </table>
+        <div id="mypageCashNavigator" class="page blank1 clearfix">
+        </div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_cashEntry">
+    <tr>
+        <td class="F_orange">100</td>
+        <td class="">返现</td>
+        <td class="">2014-07-02</td>
+    </tr>
 </script>
         </div>
         <!-- load libraries-->

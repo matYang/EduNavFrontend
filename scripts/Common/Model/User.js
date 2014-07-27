@@ -2,6 +2,7 @@ var User = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
+            'id': -1,
             'userId': -1,
             
             'balance': 0,
@@ -27,7 +28,7 @@ var User = Backbone.Model.extend({
         };
     },
 
-    idAttribute: 'userId',
+    idAttribute: 'id',
 
     urlRoot: Constants.origin + '/api/v1.0/user/user',
 
@@ -48,7 +49,8 @@ var User = Backbone.Model.extend({
             if (data instanceof Array) {
                 data = data[0];
             }
-            data.userId = parseInt(data.userId, 10);
+            data.id = parseInt(data.id, 10);
+            data.userId = data.id;
 
             data.balance = parseInt(data.balance, 10);
             data.coupon = parseInt(data.coupon, 10);

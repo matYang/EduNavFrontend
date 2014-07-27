@@ -2,6 +2,7 @@ var Transaction = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
+            'id': -1,
             'transactionId': -1,
             'userId': -1,
             
@@ -12,7 +13,7 @@ var Transaction = Backbone.Model.extend({
         };
     },
 
-    idAttribute: 'transactionId',
+    idAttribute: 'id',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');
@@ -28,7 +29,8 @@ var Transaction = Backbone.Model.extend({
 
     parse: function (data) {
         if ( typeof data !== 'undefined') {
-            data.transactionId = parseInt(data.transactionId, 10);
+            data.id = parseInt(data.id, 10);
+            data.transactionId = data.id;
             data.userId = parseInt(data.userId, 10);
 
             data.bookingId = parseInt(data.bookingId, 10);
