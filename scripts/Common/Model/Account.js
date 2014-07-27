@@ -1,22 +1,22 @@
-var Credit = Backbone.Model.extend({
+var Account = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
             'id': -1,
-            'creditId': -1,
+            'balance': 0.0,
+            'realName': undefined,
+            'lastModifiedTime': undefined,
+            'createTime': undefined,
+            'enabled': undefined,
+            'deleted': undefined,
+            'accountNumber': undefined,
             
-            'bookingId': -1,
-            'userId': -1,
-            'amount': 0,
-            'creationTime': new Date(),
-            'expireTime': new Date(),
-
-            'status': EnumConfig.CreditStatus.usable
-            
+            'accountHistoryList': [],
+            'withdrawList': []            
         };
     },
 
-    idAttribute: 'id',
+    idAttribute: 'creditId',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');
@@ -32,8 +32,7 @@ var Credit = Backbone.Model.extend({
 
     parse: function (data) {
         if ( typeof data !== 'undefined') {
-            data.id = parseInt(data.id, 10);
-            data.creditId = data.id;
+            data.creditId = parseInt(data.creditId, 10);
 
             data.bookingId = parseInt(data.bookingId, 10);
             data.userId = parseInt(data.userId, 10);

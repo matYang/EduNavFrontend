@@ -2,6 +2,7 @@ var Admin = Backbone.Model.extend({
     defaults: function () {
         return {
             'adminId': -1,
+            'id': -1,
             'password':'',
 
             'name': '',
@@ -15,13 +16,14 @@ var Admin = Backbone.Model.extend({
             'lastLogin': new Date()
         };
     },
-    idAttribute: 'adminId',
+    idAttribute: 'id',
     parse: function (data) {
         if ( typeof data !== 'undefined') {
             if (data instanceof Array) {
                 data = data[0];
             }
-            data.adminId = parseInt(data.adminId, 10);
+            data.id = parseInt(data.id, 10);
+            data.adminId = data.id;
             data.name = decodeURI(data.name);
             data.phone = decodeURI(data.phone);
             data.reference = decodeURI(data.reference);

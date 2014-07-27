@@ -32,7 +32,7 @@
 .newBooking .field span{ color:#666; font-size:12px;}
 .newBooking .field b.price{color:#ff5500;}
 
-.newBooking .field .cashback{width: 50px;height: 27px;line-height: 18px; margin-right:10px; text-indent:17px; background: url(../images/return.png) no-repeat;font-size: 11px;color: #128d56;margin-left:8px;text-align: center;}
+.newBooking .field .cashback{margin-right:10px;margin-left:8px;}
 .newBooking .field #booking_useCashback{margin-left:128px; float:left;}
 .newBooking .field  .login_reg1 {font-size:12px; line-height:18px;}
 

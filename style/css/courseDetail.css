@@ -6,7 +6,7 @@
 .courseDetail .banner{border:1px solid #ccc;}
 
 .courseDetail .banner .row1{ padding:15px; border-bottom:1px dotted #ccc;}
-.courseDetail .banner .row1 dt{font-size:24px; font-family:微软雅黑; color:#128d56; margin-bottom:10px;}
+.courseDetail .banner .row1 dt{font-size:24px; font-family:"Microsoft Yahei"; color:#128d56; margin-bottom:10px;}
 .courseDetail .banner .row1 dt span{ margin-left:20px;}
 
 .courseDetail .banner .row1 .col1{float:left; width:680px;}
@@ -41,7 +41,9 @@
 .courseDetail .courseMain .course_content dl{padding-bottom:30px;}
 .courseDetail .courseMain .course_content dt{color:#128d56; font-weight:bold; padding-left:10px; line-height:34px; background:#d8eae2; margin-bottom:10px;}
 .courseDetail .courseMain .course_content dd{padding-left:10px;}
-.courseDetail .courseMain .course_content label{float:left; width:80px; text-align:right; margin-right:10px;}
+.courseDetail .courseMain .course_content label{float:left; width:100px; text-align:right; margin-right:5px;font-weight: bold;}
+.courseDetail .courseMain .course_content label:before {content: '【';}
+.courseDetail .courseMain .course_content label:after {content: '】';}
 .courseDetail .courseMain .course_content dd p{float:left; width:800px;}
 
  /*教师信息*/
@@ -81,5 +83,5 @@
 .courseDetail  .compare .compareEntry .remove{ position:absolute; right:10px; top:15px; width:20px; height:20px; background:url(../images/close3.png) no-repeat; cursor:pointer;}
 .courseDetail  .compare .compareEntry .remove:hover{ background:url(../images/close3_hover.png) no-repeat;}
 .courseDetail  .compare .btns{ text-align:center; margin:10px auto;}
-.courseDetail  .compare #compare{width:215px; height:32px; border:none; font-size:14px; font-family:微软雅黑; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
+.courseDetail  .compare #compare{width:215px; height:32px; border:none; font-size:14px; font-family:"Microsoft Yahei"; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
 

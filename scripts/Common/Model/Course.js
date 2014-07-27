@@ -1,6 +1,7 @@
 var Course = Backbone.Model.extend({
     defaults: function () {
         return {
+            'id': -1,
             'courseId': -1,
             'partnerId': undefined,
             'price': undefined,
@@ -84,7 +85,7 @@ var Course = Backbone.Model.extend({
             'partnerDistinction': undefined
         };
     },
-    idAttribute: 'courseId',
+    idAttribute: 'id',
     parse: function (data) {
         var i = 0,
             introArr = [],
@@ -93,11 +94,11 @@ var Course = Backbone.Model.extend({
             classImgArr = [],
             json = {};
         if ( typeof data !== 'undefined') {
-            json.courseId = parseInt(data.courseId, 10);
+            json.id = parseInt(data.id, 10);
+            json.courseId = json.id;
             json.courseName = decodeURIComponent(data.courseName);
             
 
-            json.courseId = parseInt(data.courseId, 10);
             json.partnerId = parseInt(data.partnerId , 10);
             json.price = parseInt(data.price , 10);
             json.originalPrice = parseInt(data.price , 10);

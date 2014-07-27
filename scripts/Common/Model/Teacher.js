@@ -2,6 +2,7 @@ var Teacher = Backbone.Model.extend({
 
     defaults: function () {
         return {
+            'id': -1,
             'teacherId': -1,
             'partnerId': -1,
             'name':'',
@@ -10,7 +11,7 @@ var Teacher = Backbone.Model.extend({
             'creationTime': new Date()
         };
     },
-    idAttribute: 'teacherId',
+    idAttribute: 'id',
 
     urlRoot: Constants.origin + '/p-api/v1.0/teacher/teacher',
 
@@ -18,7 +19,8 @@ var Teacher = Backbone.Model.extend({
         var json = {};
         if ( typeof data !== 'undefined') {
             
-            json.teacherId = parseInt(data.teacherId, 10);
+            json.id = parseInt(data.id, 10);
+            json.teacherId = json.id;
             json.partnerId = parseInt(data.partnerId, 10);
             json.name = decodeURI(data.name);
 

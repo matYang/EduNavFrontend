@@ -291,6 +291,7 @@ var SearchView = Backbone.View.extend({
             that.searchRepresentation.set("order", that.priceDesc ? "DESC" : "ASCE");
             that.priceDesc = !that.priceDesc;
             that.courseSearch();
+
         });
         $("#editorPick").on("click", function () {
                 $("#time").html("时间").removeClass("active");
@@ -329,7 +330,7 @@ var SearchView = Backbone.View.extend({
             }
             that.showCategory( that.searchRepresentation.get("categoryValue") );
             that.courseSearch();
-            // $("title").html("找课程 | " + that.searchRepresentation.toTitleString());
+
         });
     },
     filterResult: function ($filter, $target) {
