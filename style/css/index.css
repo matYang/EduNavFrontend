@@ -80,7 +80,7 @@
 .index .attestation td{border-right:1px solid #f4e7ff; border-bottom:1px solid #f4e7ff;}
 
 
-.index .school li{float:left;width:198px; height:102px;}
+.index .school li{float:left; text-align:center; width:198px; height:102px;}
 .index .s_language { border-bottom:1px solid #edd68f; border-right:1px solid #edd68f;}
 .index .s_language li {border-top:1px solid #edd68f; border-left:1px solid #edd68f;}
 .index .s_language li.last{width:202px;}
