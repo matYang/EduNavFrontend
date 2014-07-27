@@ -412,7 +412,7 @@
     };
 
     /* Coupons */
-    //用于激活返利券
+    //用于激活返现券
     UserManager.prototype.claimCoupon =  function (couponId, callback) {
         var self = this;
         if (!this.sessionManager.hasSession()){
