@@ -210,7 +210,7 @@ var NewBookingView = BaseFormView.extend({
     },
     loginCheck: function() {
         if (!app.sessionManager.hasSession()) {
-            Info.displayNotice("您尚未登录，请先登录再进行预定");
+            Info.displayNotice("您尚未登录，请先登录再进行预订");
             return;
         }
     },

@@ -1,6 +1,6 @@
 var longText = "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊";
 testMockObj = {
-    testMode: (C_ENV_VAR === "LOCAL") ? true : false,
+    testMode: (C_ENV_VAR === "LOCAL") ? false : false,
     testAdmin: (new Admin()).set("name", "admin1").set("phone", "2260000000"),
     testUser: new User(),
     testPartners: new Partners(),
