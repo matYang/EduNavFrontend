@@ -62,9 +62,9 @@ var FindPasswordView = BaseFormView.extend({
             this.fields[2].set("validatorContainer", $("#passContainer"));
             this.fields[3].set("validatorContainer", $("#confirmContainer"));
             $("#findPassCellInput").val($("#login_username").val());
-
         }
         this.bindEvents(this.state);
+        $("#findPassCellInput").trigger("blur");
     },
     bindEvents: function (state) {
         var that = this;
@@ -73,7 +73,7 @@ var FindPasswordView = BaseFormView.extend({
                 if (Utilities.phoneValid(that.model.phone).valid) {
                     app.userManager.forgetPassword(that.model.phone, Utilities.defaultSmsRequestHandler($("#getSms"), $("#smsInfo")));
                 } else {
-                    $("#smsInfo").html("请先输入您的手机号");
+                    $("#smsInfo").html("请先输入正确的手机号");
                 }
                 $("#authCode_wrong").remove();
             });
