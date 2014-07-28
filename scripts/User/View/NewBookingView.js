@@ -16,6 +16,8 @@ var NewBookingView = BaseFormView.extend({
                 type: "text",
                 mandatory: true,
                 modelAttr: "name",
+                regex: /[^\u4E00-\u9FA5]+/g,
+                errorText: "请输入正确的中文名",
                 validClass: "success",
                 buildValidatorDiv: Utilities.defaultValidDivBuilder        
             }),
