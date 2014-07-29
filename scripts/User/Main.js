@@ -24,6 +24,7 @@ var AppRouter = Backbone.Router.extend({
         "compare/*anything" : "compare",
         "register": "register",
         "register/ref=*ref": "register",
+        "register/invite=*invite": "inviteRegister",
         "lost/": "lost",
         "lost" : "lost",
         "forgetPassword/*token" : "lost",
@@ -140,7 +141,13 @@ var AppRouter = Backbone.Router.extend({
             return;
         }
         this.registrationView = new RegistrationView ({"ref":ref});
-        
+    },
+    inviteRegister: function (invite) {
+        if (this.sessionManager.hasSession()) {
+            this.navigate("main", true);
+            return;
+        }
+        this.registrationView = new RegistrationView ({"invite":invite});
     },
 
     lost: function () {

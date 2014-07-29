@@ -38,7 +38,7 @@ var MyPageView = Backbone.View.extend({
             if (!this.reference) {
                 throw "invalid access";
             }
-            document.title="上课书包 > 订单详情 | 爱上课";
+            document.title="我的爱上课 > 订单详情 | 爱上课";
             this.activeChildView = new BookingDetailView({reference: this.reference});
             break;
         case "setting":
@@ -53,23 +53,28 @@ var MyPageView = Backbone.View.extend({
             break;
         case "coupon":
             $("#couponAccount").addClass("active");
-            document.title="上课书包 > 我的优惠券 | 爱上课";
+            document.title="我的爱上课 > 我的优惠券 | 爱上课";
             this.activeChildView = new MyPageCouponView();
             break;
         case "credit":
             $("#creditAccount").addClass("active");
-            document.title="上课书包 > 我的积分 | 爱上课";
+            document.title="我的爱上课 > 我的积分 | 爱上课";
             this.activeChildView = new MyPageCreditView();
             break;
         case "dashboard":
             $("#mypage_content").css("border", "none");
-            document.title="上课书包 | 爱上课";
+            document.title="我的爱上课 | 爱上课";
             this.activeChildView = new MyPageDashboardView();
             break;
         case "booking":
             $("#bookingManage").addClass("active");
-            document.title="上课书包 > 我的订单 | 爱上课";
+            document.title="我的爱上课 > 我的订单 | 爱上课";
             this.activeChildView = new MyPageBookingView();
+            break;
+        case "share":
+            $("#myPageShare").addClass("active");
+            document.title="我的爱上课 > 分享优惠 | 爱上课";
+            this.activeChildView = new MyPageShareView();
             break;
         default:
             break;
@@ -115,6 +120,14 @@ var MyPageView = Backbone.View.extend({
                 $("#mypage_sidebar").find(".active").removeClass("active");
                 that.query = "credit";
                 app.navigate("mypage/credit");
+                that.createChildView();
+            }
+        });
+        $("#share").on("click", function () {
+            if (that.query !== "sharing") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "share";
+                app.navigate("mypage/share");
                 that.createChildView();
             }
         });

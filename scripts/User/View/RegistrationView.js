@@ -62,7 +62,12 @@ var RegistrationView = BaseFormView.extend({
             })
         ];
         this.ref = params.ref;
+        this.invite = params.invite;
         this.render();
+        if (this.invite) {
+            this.model.appliedInvitationalCode = this.invite;
+            $("#invitationCodeInput").val(this.invite).prop("disabled", true);
+        }
     },
     render: function () {
         var that = this;
