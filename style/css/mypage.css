@@ -166,10 +166,29 @@
 
 #mypage_content .in_built{ height:144px; line-height:144px; color:#128d56; margin-top:20px; padding-left:160px; font-family:微软雅黑; font-size:16px; background:url(../images/in_built.jpg) no-repeat left center;}
 
-
 /*邀请好友*/
-#mypage_content .invite_friends{ padding-left:50px;}
-#mypage_content .invite_friends textarea{width:500px; height:200px; border:1px solid #ccc;}
+#mypage_content .invitation{}
+#mypage_content .invitation h3{font-size:14px; color:#128d56; margin-bottom:10px;}
+#mypage_content .invitation textarea{float:left; margin-right:10px; width:500px; height:50px; border:1px solid #ccc; padding:10px; line-height:24px; font-size:14px; color:#666;}
+#mypage_content .invitation input.btn_copy{width:90px; height:72px; background:#128d56; color:#fff; border:none; font-size:14px; cursor:pointer;}
+#mypage_content .invitation .invitation_tip{background:#f2f2f2; padding:15px; line-height:24px;}
+#mypage_content .invitation .invitation_tip dt{color:#128d56; font-weight:bold; margin-bottom:5px;}
+#mypage_content .invitation .invitation_icon {margin-right:10px; float:left; width:50px; height:50px; background:url(../images/share_icon.png) no-repeat;text-indent: -999999em; cursor:pointer;}
+#mypage_content .invitation .weibo{ background-position:0 0px;}
+#mypage_content .invitation .renren{ background-position:0 -50px;}
+#mypage_content .invitation .qzone{ background-position:0 -100px;}
+#mypage_content .invitation .douban{ background-position:0 -150px;}
+#mypage_content .invitation .kaixin{ background-position:0 -200px;}
+#mypage_content .invitation .weixin{ background-position:0 -250px;}
+
+#mypage_content .invitation #copy_content_container{height: 71px;}
+
+
+
+
+
+
+
 
 
 

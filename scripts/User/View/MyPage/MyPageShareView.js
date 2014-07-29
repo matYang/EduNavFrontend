@@ -1,19 +1,31 @@
 var MyPageShareView = Backbone.View.extend({
-	el:"#mypage_content",
-	template: _.template(""),
-	initialize: function () {
+    el:"#mypage_content",
+    template: _.template(tpl.get("mypage_share")),
+    initialize: function () {
         app.viewRegistration.register(this);
         this.isClosed = false;
+        jiathis_config.summary = "我请大家免费上培训班啦！接受邀请请点击www.iShanke.cn/register/invite=" + 
+                                    app.sessionManager.sessionModel.get("invitationalCode") +
+                                    "，注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！";
         this.render();
-	},
-	render: function () {
-		this.$el.append(this.template);
-	},
-	close: function () {
-		if (this.isClosed) {
-			this.$el.empty();
-		}
-	}
+    },
+    render: function () {
+        this.$el.append(this.template).append('<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1401513176683351" charset="utf-8"></script>');
+        var userAgent = navigator.userAgent.toLowerCase();
+        var is_ie = (userAgent.indexOf('msie') != -1 && !is_opera) && userAgent.substr(userAgent.indexOf('msie') + 5, 3);
+        if (!window.clipboardData) {
+            $("#clickCopy").remove();
+        } else {
+            $("#clickCopy").on("click", function () {
+                window.clipboardData.setData("Text",$("#copy_content>textarea").val());
+            });
+        }
+    },
+    close: function () {
+        if (this.isClosed) {
+            this.$el.empty();
+        }
+    }
 });
 
  var jiathis_config = {

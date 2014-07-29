@@ -72,7 +72,7 @@ var MyPageView = Backbone.View.extend({
             this.activeChildView = new MyPageBookingView();
             break;
         case "share":
-            $("#myPageShare").addClass("active");
+            $("#share").addClass("active");
             document.title="我的爱上课 > 分享优惠 | 爱上课";
             this.activeChildView = new MyPageShareView();
             break;

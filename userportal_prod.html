@@ -403,9 +403,9 @@
                 <div class="mypage_sidebar_sectionContent">
                     <div class="mypage_sidebar_tab" id="editInfo">个人资料</div>
                     <div class="mypage_sidebar_tab" id="editPass">密码修改</div>
-                <!-- <div class="mypage_sidebar_tab" id="inviteCode">邀请码</div>
+                    <div class="mypage_sidebar_tab" id="share">邀请有礼<span style="margin-left:10px; color:#ff5500; font-size:12px; font-weight:normal;">送现金哦！</span></div>
 
-                  <div class="mypage_sidebar_tab" id="wtf">常用学员信息</div> -->
+                 <!-- <div class="mypage_sidebar_tab" id="wtf">常用学员信息</div> -->
                 </div>
             </div>
         </div>
@@ -545,7 +545,7 @@
                 <p><label>班级类型：</label> <%= course.classSize %></p>
                 <p><label>上课时间：</label> <%= course.startTime1 %> - <%= course.finishTime1 %>
                 <% if (course.startTime2 > 0) {%>
-                ；<%= course.startTime2 %> - <%= course.finishTime2 %></p>
+                ；<%= course.startTime2 %> - <%= course.finishTime2 %>
                 <% } %>
                 </p>
                 <p><label>咨询电话：</label><span><%= course.phone %></span></p>
@@ -853,7 +853,7 @@
                 <dl id="content_service" class="clearfix">
                     <dt>特色服务</dt>
                     <% if (certification) { %><dd class="clearfix"><label>结业证书</label><p><%= certification %></p></dd><% } %>
-                    <% if (extracurricular) { %><dd class="clearfix"><label>课后互动</label><p><%= extracurricular %></p></dd><% } %>
+                    <% if (extracurricular) { %><dd class="clearfix"><label>课后互动 </label><p><%= extracurricular %></p></dd><% } %>
                     <% if (bonusService) { %><dd class="clearfix"><label>赠送服务</label><p><%= bonusService %></p></dd><% } %>
                 </dl>
             </div>
@@ -1597,6 +1597,40 @@
                 <p>密集线下推广：精英地推团队加盟，每年百万营销预算；地毯式营销，助推合作机构品牌传播</p>
                 <p>领先SEO技术：运用硅谷先进SEO技术，增强合作机构在百度，360，搜狗等搜索引擎曝光度</p>
             </dd>
+        </dl>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_share">
+    <div class="title"><a href="#">我的爱上课</a> &gt; <span>个人设置</span> &gt; <a class=" F_green" href="#">邀请有礼</a></div>
+    <div class="mypage_content_inner form_style invitation">
+        <h3>邀请方式</h3>
+        <p class="blank1">方式一：点击复制，将邀请信息通过QQ等方式发送给好友</p>
+        <div class="blank" id="copy_content_container">
+            <textarea id="copy_content">我请大家免费上培训班啦！接受邀请请点击www.iShangke.cn,注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！</textarea><input id="clickCopy" class="btn_copy" type="button" value="复制">
+        </div>
+        <p class="blank1">方式二：点击图标，立即分享到社区个人主页</p>
+        <div class="invitation_share blank clearfix">
+            <a class="jiathis_button_tsina invitation_icon weibo">新浪微博</a>
+            <a class="jiathis_button_renren invitation_icon renren">人人网</a>
+            <a class="jiathis_button_qzone invitation_icon qzone">QQ空间</a>
+            <a class="jiathis_button_douban invitation_icon douban">豆瓣</a>
+            <a class="jiathis_button_kaixin001 invitation_icon kaixin">开心网</a>
+            <a class="jiathis_button_weixin invitation_icon weixin">微信</a>
+        </div>
+        
+        <dl class="invitation_tip" style="margin-top:50px;">
+           <dt>邀请好友可以获得哪些奖励？</dt> 
+           <dd>1. 每邀请一位好友完成注册，双方都能获得<b class="F_orange">20元红包</b>奖励；</dd>
+           <dd>2. 当被邀请好友完成第一次预订，您还能获得<b class="F_orange">10元现金</b>奖励；</dd>
+           <dd>3. 每月28日“爱抵扣”活动日，大多数课程支持红包无上限<b class="F_orange">全额抵扣</b>。</dd>
+        </dl>
+        
+        <dl class="invitation_tip blank2">
+            <dt>邀请规则：</dt>
+            <dd>1. 邀请好友次数无上限；</dd>
+            <dd>2. 红包奖励与现金奖励支持无限制累积；</dd>
+            <dd>3. 红包拥有长达2个月有效期，未使用的红包过期后会自动消失。</dd>
         </dl>
     </div>
 </script>
