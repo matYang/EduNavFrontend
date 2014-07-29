@@ -10,7 +10,7 @@ var MyPageShareView = Backbone.View.extend({
         this.render();
     },
     render: function () {
-        this.$el.append(this.template).append('<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1401513176683351" charset="utf-8"></script>');
+        this.$el.append(this.template({inviteCode: app.sessionManager.sessionModel.get("invitationalCode")})).append('<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1401513176683351" charset="utf-8"></script>');
         var userAgent = navigator.userAgent.toLowerCase();
         var is_ie = (userAgent.indexOf('msie') != -1 && !is_opera) && userAgent.substr(userAgent.indexOf('msie') + 5, 3);
         if (!window.clipboardData) {
