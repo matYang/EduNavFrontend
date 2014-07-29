@@ -9,7 +9,7 @@
 
 .compare .title a{ float:right; margin-right:20px;}
 
-.compare table{ border-top:1px solid #ccc; border-right:1px solid #ccc;}
+.compare table{ border-top:1px solid #ccc; border-right:1px solid #ccc; table-layout:fixed;}
 .compare table .course_name td{ text-align:center;}
 .compare table .course_name td .set{margin:20px auto 10px;}
 .compare table tr:hover{ background:#e9f2ee;}
