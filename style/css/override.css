@@ -146,6 +146,14 @@ li a, .page a {
 	margin-right: 8px;
 }
 
+#copy_content:hover {
+	background-color:#dddddd;
+}
+
+#copy_content {
+	overflow: hidden;
+	resize:none;
+}
 /*all element hover state*/
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
