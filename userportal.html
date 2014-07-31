@@ -45,7 +45,7 @@
         <div id = 'widgets'></div>
         <div class="footer">
             <div class="footer_inner">
-                <div id="footer_service_link" class="footer-upperContent"> <a id="footer_about" href="#">关于我们</a><a id="footer_join" href="#">机构入驻</a><a id="footer_faq" href="#">常见问题</a><a id="footer_career" href="#">诚聘英才</a><a id="footer_term" href="#">隐私条款</a><a id="footer_feedback" href="#">意见反馈</a> </div>
+                <div id="footer_service_link" class="footer-upperContent"> <a href="#service/about">关于我们</a><a href="#service/join">机构入驻</a><a id="footer_faq" href="#">常见问题</a><a id="footer_career" href="#">诚聘英才</a><a id="footer_term" href="#">隐私条款</a><a id="footer_feedback" href="#">意见反馈</a> </div>
                 <div class="footer-copyright"> Copyright &#169; 2014 爱上课 | <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备14025414号</a></div>
             </div>
         </div>
@@ -78,8 +78,8 @@
             </h1>
             <ul class="topBar-navigation">
                 <li id="navigate_home" class="button navigate_home">首页</li>
-                <li id = 'navigate_search' class = 'button navigate_search'>分类检索</li>
-                <li id = 'navigate_compare' class = 'button navigate_compare'>课程对比</li>
+                <li id="navigate_search" class="button navigate_search">分类检索</li>
+                <li id="navigate_compare" class="button navigate_compare">课程对比</li>
             </ul>
             <div class="login_reg">
                 <div class="hd">
@@ -240,7 +240,7 @@
     <div class="searchResultEntry clearfix">
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/><span><%= instName%></span></div>
         <div class="col1">
-            <p class="title"><a class="F_green courseTitle" id="viewAllTitle_<%= id %>" href="#"><%= courseName %></a></p>
+            <p class="title"><a class="F_green courseTitle" href="#course/<%= id %>"><%= courseName %></a></p>
             <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
             <p class="desc"><span>上课日期:</span> <%= startDate %> - <%= finishDate %></p>
             <p class="desc"><span>上课地址:</span> <%= location %></p>
@@ -266,7 +266,7 @@
             
                 <div class="blank" id="trial_<%= id %>"><input class="btn_o" value="免费试听" type="button"></div>
 
-            <div class="viewDetail" id="viewAll_<%= id %>"><a class="F_green" href="#">查看详情</a></div>
+            <div class="viewDetail"><a class="F_green" href="#course/<%= id %>">查看详情</a></div>
         </div>
     </div>
 </script>
@@ -282,7 +282,7 @@
 
 <script type="text/template" id="tpl_compareWidgetEntry" >
     <div class="compareEntry" id="compareEntry_courseId_<%= id %>">
-        <p class="desc"><span>【<%= instName %>】</span><a href="#"><%= courseName %></a></p>
+        <p class="desc"><span>【<%= instName %>】</span><a href="#course/<%= id %>"><%= courseName %></a></p>
         <p class="price"><span class="sign">￥</span><%= price %></p>
         <div class="remove"></div>
     </div>
@@ -881,7 +881,7 @@
             <tr id="courseName" class="course_name">
                 <th width="64px">课程名称</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>" width="195">
+                    <td class="courseId_<%= course.id %>" width="195">
                         <h2 class="F_green courseTitle" style="cursor:pointer;"><%= course.courseName %></h2>
                         <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
                         <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div>
@@ -891,19 +891,19 @@
             <tr id="suitableStudent" >
                 <th width="64px">适合学员</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>" width="195"><%= course.suitableStudent %></td>
+                    <td class="courseId_<%= course.id %>" width="195"><%= course.suitableStudent %></td>
                 <% }); %>
             </tr>
             <tr id="instName">
                 <th>机构名称</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.instName %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.instName %></td>
                 <% }); %>
             </tr>
             <tr id="price">
                 <th>课程价格</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>">
+                    <td class="courseId_<%= course.id %>">
                     <div class="price">￥<%= course.price %></div>
                     <a class="cashback"><%= course.cashback %>元</a>
                     </td>
@@ -912,19 +912,19 @@
             <tr id="logoUrl">
                 <th>品牌展示</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><img src="<%= course.logoUrl %>"/></td>
+                    <td class="courseId_<%= course.id %>"><img src="<%= course.logoUrl %>"/></td>
                 <% }); %>
             </tr>
             <tr id="startDate">
                 <th>开课日期</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.startDate %>-<%= course.finishDate %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.startDate %>-<%= course.finishDate %></td>
                 <% }); %>
             </tr>
             <tr id="startTime1">
                 <th>上课时间</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.startTime1 %>-<%= course.finishTime1 %>
+                    <td class="courseId_<%= course.id %>"><%= course.startTime1 %>-<%= course.finishTime1 %>
                     <% if (course.startTime2 > 0) { %>, <%= course.startTime2 %> - <%= course.finishTime2 %><% } %>
                     <%= course.studyDays %><%= course.studyDaysNote %></td>
                 <% }); %>
@@ -932,49 +932,49 @@
             <tr id="courseHourNum">
                 <th>上课课时</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.courseHourNum %>课时，每课时<%= course.courseHourLength %>小时</td>
+                    <td class="courseId_<%= course.id %>"><%= course.courseHourNum %>课时，每课时<%= course.courseHourLength %>小时</td>
                 <% }); %>
             </tr>
             <tr id="address">
                 <th>学校地址</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.location %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.location %></td>
                 <% }); %>
             </tr>
             <tr id="classSize">
                 <th>班级类型</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.classSize %>人</td>
+                    <td class="courseId_<%= course.id %>"><%= course.classSize %>人</td>
                 <% }); %>
             </tr>
             <tr id="openCourseRequirement">
                 <th>开班要求</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.openCourseRequirement %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.openCourseRequirement %></td>
                 <% }); %>
             </tr>
             <tr id="scheduledTime">
                 <th>报名日期</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>">至<%= course.cutoffDate %>截止，晚于此日期，您将不再享有此优惠价格</td>
+                    <td class="courseId_<%= course.id %>">至<%= course.cutoffDate %>截止，晚于此日期，您将不再享有此优惠价格</td>
                 <% }); %>
             </tr>
             <tr id="wholeName">
                 <th>机构全称</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.wholeName %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.wholeName %></td>
                 <% }); %>
             </tr>
             <tr id="partnerDistinction">
                 <th>机构荣誉</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.partnerDistinction %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.partnerDistinction %></td>
                 <% }); %>
             </tr>
             <tr id="partnerIntro">
                 <th>机构概况</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>">
+                    <td class="courseId_<%= course.id %>">
                     <% if (course.partnerIntro && course.partnerIntro.length>30) { %>
                         <%= course.partnerIntro.substring(0,24) %>...
                         <a class="F_green expand" href="#">[展开]</a></td>
@@ -987,7 +987,7 @@
             <tr id="teacherInfo">
                 <th>老师介绍</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>">
+                    <td class="courseId_<%= course.id %>">
                         <% if (course.teacherList) { %>
                             <% for ( var i; i < course.teacherList.length; i++ ) { %>
                                 <p><b class="F_green"><%= course.teacherList[i].name %></b><%= course.teacherList[i].intro %></p>
@@ -1006,13 +1006,13 @@
             <tr id="courseIntro">
                 <th>课程介绍</th>
                 <% _.each(courses, function(course) { %>
-                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.courseIntro %></td>
+                    <td width="195" class="courseId_<%= course.id %>"><%= course.courseIntro %></td>
                 <% }); %>
             </tr>
             <tr id="goal">
                 <th>教学目标</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>">
+                    <td class="courseId_<%= course.id %>">
                         <%= course.goal %>
                     </td>
                 <% }); %>
@@ -1020,25 +1020,25 @@
             <tr id="prerequest">
                 <th>先修知识</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.prerequest %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.prerequest %></td>
                 <% }); %>
             </tr>
             <tr id="teachingMaterialIntro">
                 <th>教材介绍</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.teachingMaterialIntro %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.teachingMaterialIntro %></td>
                 <% }); %>
             </tr>
             <tr id="teachingMaterialFee">
                 <th>教材费用</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.teachingMaterialFee %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.teachingMaterialFee %></td>
                 <% }); %>
             </tr id="teachingContent">
             <tr>
                 <th>课程提纲</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>">
+                    <td class="courseId_<%= course.id %>">
                         <%= course.outline %>
                     </td>
                 <% }); %>
@@ -1053,49 +1053,49 @@
             <tr id="downloadMaterials">
                 <th>课件下载</th>
                 <% _.each(courses, function(course) { %>
-                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.downloadMaterials %></td>
+                    <td width="195" class="courseId_<%= course.id %>"><%= course.downloadMaterials %></td>
                 <% }); %>
             </tr>
             <tr id="questionBankIntro">
                 <th>题库支持</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.questionBank %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.questionBank %></td>
                 <% }); %>
             </tr>
             <tr>
                 <th>班主任导学</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.classTeacher %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.classTeacher %></td>
                 <% }); %>
             </tr>
             <tr>
                 <th>讲练结合</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.teachingAndExercise %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.teachingAndExercise %></td>
                 <% }); %>
             </tr>
             <tr id="quiz">
                 <th>阶段测评</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.quiz %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.quiz %></td>
                 <% }); %>
             </tr>
             <tr>
                 <th>课后答疑</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.questionSession %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.questionSession %></td>
                 <% }); %>
             </tr>
             <tr id="assignments">
                 <th>课后作业</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.assignments %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.assignments %></td>
                 <% }); %>
             </tr>
             <tr id="marking">
                 <th>作业批改</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.marking %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.marking %></td>
                 <% }); %>
             </tr>
         </table>
@@ -1108,13 +1108,13 @@
             <tr id="passAgreement">
                 <th>签约保过</th>
                 <% _.each(courses, function(course) { %>
-                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.passAgreement %></td>
+                    <td width="195" class="courseId_<%= course.id %>"><%= course.passAgreement %></td>
                 <% }); %>
             </tr>
             <tr id="highScoreReward">
                 <th>高分奖励</th>
                 <% _.each(courses, function(course) { %>
-                    <td class="courseId_<%= course.courseId %>"><%= course.highScoreReward %></td>
+                    <td class="courseId_<%= course.id %>"><%= course.highScoreReward %></td>
                 <% }); %>
             </tr>
         </table>
@@ -1127,19 +1127,19 @@
             <tr id="certification">
                 <th>结业证书</th>
                 <% _.each(courses, function(course) { %>
-                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.certification %></td>
+                    <td width="195" class="courseId_<%= course.id %>"><%= course.certification %></td>
                 <% }); %>
             </tr>
             <tr id="extracurricular">
                 <th>课后互动</th>
                 <% _.each(courses, function(course) { %>
-                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.extracurricular %></td>
+                    <td width="195" class="courseId_<%= course.id %>"><%= course.extracurricular %></td>
                 <% }); %>
             </tr>
             <tr id="service">
                 <th>赠送服务</th>
                 <% _.each(courses, function(course) { %>
-                    <td width="195" class="courseId_<%= course.courseId %>"><%= course.bonusService %></td>
+                    <td width="195" class="courseId_<%= course.id %>"><%= course.bonusService %></td>
                 <% }); %>
             </tr>
         </table>

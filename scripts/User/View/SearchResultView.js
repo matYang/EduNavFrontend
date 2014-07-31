@@ -9,12 +9,12 @@ var SearchResultView = MultiPageView.extend({
     extPn: true,
     entryHeight: 157,
     pageEntryNumber: 10,
-    actionClass: "viewDetail",
+    // actionClass: "viewDetail",
     autoHeight: true,
     truePagination: true,
     initialize: function (allMessages, messageList, compareWidget) {
         if (!this.initialized) {
-            _.bindAll(this, "bindEvents", "entryEvent", "renderSearchResults", "renderError", "close");
+            _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
             MultiPageView.prototype.initialize.call(this);
             this.messages = messageList || this.messages;
             this.allMessages = allMessages || this.allMessages;
@@ -38,7 +38,7 @@ var SearchResultView = MultiPageView.extend({
         this.$domContainer.on("click", ".compare", function (e){
             if ($(e.target).hasClass("add") ) {
                 id = Utilities.getId($(this).attr("id"));
-                if (that.compareWidget.addCourse(that.messages.get(Utilities.toInt(id)))) {
+                if (that.compareWidgetView.addCourse(that.messages.get(Utilities.toInt(id)))) {
                     $(e.target).attr("class", "remove btn_gray").val("已加入对比");
                 } else {
                     Info.displayNotice("您最多只能同时比较四个不同的科目。");
@@ -46,10 +46,10 @@ var SearchResultView = MultiPageView.extend({
             } else {
                 $(e.target).attr("class", "add btn_g").val("+对比");
                 id = Utilities.getId($(this).attr("id"));
-                that.compareWidget.removeCourse(Utilities.toInt(id));
+                that.compareWidgetView.removeCourse(Utilities.toInt(id));
             }
 
-        }).on("click", ".courseTitle,.blank", function (e) {
+        }).on("click", ".blank", function (e) {
             e.preventDefault();
             id = Utilities.getId($(this).attr("id"));
             app.navigate("course/" + id, true);
@@ -68,9 +68,9 @@ var SearchResultView = MultiPageView.extend({
         return course.get("price");
     },
 
-    entryEvent: function (courseId) {
-        app.navigate("course/" + courseId, true);
-    },
+    // entryEvent: function (courseId) {
+    //     app.navigate("course/" + courseId, true);
+    // },
     fetchAction: function (page) {
         this.sr.set("start", (page-1)*this.pageEntryNumber );
         this.sr.set("count", this.pageEntryNumber );

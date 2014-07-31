@@ -48,8 +48,8 @@
     GeneralManager.prototype.release = function() {};
 
     //根据ID拉取单个课程
-    GeneralManager.prototype.fetchCourse = function (courseId, callback) {
-        var cache = app.cache.get("course", courseId);
+    GeneralManager.prototype.fetchCourse = function (id, callback) {
+        var cache = app.cache.get("course", id);
         if (cache) {
             if(callback){
                 callback.success(new Course(cache, {parse: true}));
@@ -58,18 +58,18 @@
         }
         var course = new Course();
         if (testMockObj.testMode) {
-            callback.success(testMockObj.testCourses.get(courseId));
+            callback.success(testMockObj.testCourses.get(id));
             return;
         }
         course.overrideUrl(ApiResource.general_course);
-        course.set('courseId', courseId);
+        course.set('id', id);
         course.fetch({
             dataType:'json',
 
             success:function(model, response){
                 if(callback){
                     callback.success(model);
-                    app.cache.set("course", courseId, course.toJSON()); //course很少会发生变化，所以缓存起来
+                    app.cache.set("course", id, course.toJSON()); //course很少会发生变化，所以缓存起来
                 }
             },
 
@@ -84,22 +84,22 @@
     };
 
     //根据ID列表批量拉取单个课程
-    GeneralManager.prototype.batchFetchCourses = function (courseIds, callback) {
+    GeneralManager.prototype.batchFetchCourses = function (ids, callback) {
         var cache, i, requestList = [], courses = new Courses();
         if (testMockObj.testMode) {
-            for (var i = 0; i < courseIds.length; i++) {
-                courses.add(testMockObj.testCourses.get(courseIds[i]));
+            for (var i = 0; i < ids.length; i++) {
+                courses.add(testMockObj.testCourses.get(ids[i]));
             }
             callback.success(courses);
             return;
         }
         //优先检查缓存里课程是否已经存在，仅重新拉取过期或者不存在的课程
-        for (i = 0; i < courseIds.length; i++) {
-            cache = app.cache.get("course", courseIds[i]);
+        for (i = 0; i < ids.length; i++) {
+            cache = app.cache.get("course", ids[i]);
             if (cache) {
                 courses.add(new Course(cache, {parse: true}));
             } else {
-                requestList.push(courseIds[i]); //根据缓存那内容重新建立拉取列表
+                requestList.push(ids[i]); //根据缓存那内容重新建立拉取列表
             }
         }
         if (requestList.length === 0) {
@@ -114,11 +114,11 @@
         requestCourses.fetch({
             dataType:'json',
             data: idList,
-            success:function(model, response){
+            success:function(response, model){
                 if (callback) {
                     var array = requestCourses.toArray(), i = 0;
                     for (i = 0; i < array.length; i++ ) {
-                        app.cache.set("course", array[i].get("courseId"), array[i].toJSON());
+                        app.cache.set("course", array[i].get("id"), array[i].toJSON());
                     }
                     courses.add(array);
                     // app.storage.setCoursesToCompare(courses.pluck("courseId"));
@@ -164,9 +164,9 @@
             success:function(model, response){
                 if(callback){
                     for (var i = 0; i < searchResults.length; i++) {
-                        app.cache.set("course", searchResults.at(i).get("courseId"), searchResults.at(i).toJSON());
+                        app.cache.set("course", searchResults.at(i).get("id"), searchResults.at(i).toJSON());
                     }
-                    app.cache.set("queryCourse", courseSearchRepresentation.toQueryString(), searchResults.pluck("courseId"));
+                    app.cache.set("queryCourse", courseSearchRepresentation.toQueryString(), searchResults.pluck("id"));
                     callback.success(searchResults);
                 }
             },

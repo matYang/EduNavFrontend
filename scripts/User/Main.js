@@ -60,16 +60,6 @@ var AppRouter = Backbone.Router.extend({
         
         this.curDate = new Date ();
         this.searchResult = new Courses ();
-        this.bindGlobalLinks();
-    },
-    bindGlobalLinks: function() {
-        var that = this;
-        $("#footer_service_link").on("click", 'a', function (e) {
-            debugger;
-            e.preventDefault();
-            $("html, body").animate({ scrollTop: 0, complete: function(){ $("#loginBox").show();} }, "slow");
-            that.navigate("service/" + e.target.id.split("_")[1], true);
-        });
     },
     defaultRoute: function () {
         //if login, procees to main/:id, if not, proceed to front

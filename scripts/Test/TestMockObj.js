@@ -1,6 +1,6 @@
 var longText = "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊";
 testMockObj = {
-    testMode: (C_ENV_VAR === "LOCAL") ? true : false,
+    testMode: (C_ENV_VAR === "LOCAL") ? false : false,
     testAdmin: (new Admin()).set("name", "admin1").set("phone", "2260000000"),
     testUser: new User(),
     testPartners: new Partners(),
@@ -70,101 +70,129 @@ testMockObj = {
     testCredit6: (new Credit()).set("id", 6).set("amount", 1000),
     testCredit7: (new Credit()).set("id", 7).set("amount", 1000),
     testCredit8: (new Credit()).set("id", 8).set("amount", 1000),
-    testCategories: {
-        "start": 0,
-        "count": 10, 
-        "total": 34, 
+    testCategories:{
         "data": [
-        {
-            "id": 0,
-            "value": "00",
-            "name": "语言培训",
-            "children":[
+
             {
-                "id": 2,
-                "value": "0000",
-                "name": "英语",
-                "children":[
+                "id": 0,
+                "value": "00",
+                "name": "语言培训",
+                "children": [
                     {
-                        "id": 5,
-                        "value": "000000",
-                        "name": "雅思",
-                        "children":[]
+                        "id": 1,
+                        "value": "0001",
+                        "name": "小语种",
+                        "children": [
+                            {
+                                "id": 2,
+                                "value": "000101",
+                                "name": "日语",
+                                "children": []
+                            },
+                            {
+                                "id": 3,
+                                "value": "000102",
+                                "name": "韩语",
+                                "children": []
+                            }
+                        ]
                     },
                     {
-                        "id": 6,
-                        "value": "000001",
-                        "name": "托福",
-                        "children":[]
+                        "id": 4,
+                        "value": "0002",
+                        "name": "英语",
+                        "children": [
+                            {
+                                "id": 5,
+                                "value": "000201",
+                                "name": "GMAT",
+                                "children": []
+                            },
+                            {
+                                "id": 6,
+                                "value": "000202",
+                                "name": "GRE",
+                                "children": []
+                            }
+                        ]
                     }
+
                 ]
             },
             {
-                "id": 3,
-                "value": "0001",
-                "name": "日文",
-                "children":[
+                "id": 16,
+                "value": "01",
+                "name": "学历文凭",
+                "children": [
                     {
-                        "id": 7,
-                        "value": "000100",
-                        "name": "JLPE-1",
-                        "children":[]
-                    },
-                    {
-                        "id": 8,
-                        "value": "000101",
-                        "name": "JLPE-2",
-                        "children":[]
-                    },
-                
+                        "id": 17,
+                        "value": "0101",
+                        "name": "考研",
+                        "children": [
+                            {
+                                "id": 7,
+                                "value": "010101",
+                                "name": "数学",
+                                "children": []
+                            },
+                            {
+                                "id": 8,
+                                "value": "010102",
+                                "name": "政治",
+                                "children": []
+                            }
+                        ]
+                    }
+
                 ]
-            }]
-        },
-        {
-            "id": 1,
-            "value": "01",
-            "name": "学历文凭",
-            "children":[
-            {
-                "id": 4,
-                "value": "0100",
-                "name": "高中",
-                "children":[
-                    {
-                        "id": 9,
-                        "value": "010001",
-                        "name": "高考补习",
-                        "children":[]
-                    },
-                    {
-                        "id": 10,
-                        "value": "010002",
-                        "name": "高考冲刺",
-                        "children":[]
-                    },
-                ]
+
             },
             {
-                "id": 11,
-                "value": "0101",
-                "name": "大学",
-                "children":[
-                    {
-                        "id": 9,
-                        "value": "010101",
-                        "name": "大学补习",
-                        "children":[]
-                    },
+                "id": 9,
+                "value": "02",
+                "name": "资格认证",
+                "children": [
                     {
                         "id": 10,
-                        "value": "010102",
-                        "name": "大学毕业论文",
-                        "children":[]
+                        "value": "0201",
+                        "name": "国家公职",
+                        "children": [
+                            {
+                                "id": 11,
+                                "value": "020101",
+                                "name": "企业法律顾问",
+                                "children": []
+                            },
+                            {
+                                "id": 12,
+                                "value": "020102",
+                                "name": "公务员",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": 13,
+                        "value": "0202",
+                        "name": "外贸",
+                        "children": [
+                            {
+                                "id": 14,
+                                "value": "020201",
+                                "name": "单证员",
+                                "children": []
+                            },
+                            {
+                                "id": 15,
+                                "value": "020202",
+                                "name": "报关员",
+                                "children": []
+                            }
+                        ]
                     }
+
                 ]
             }
-            ]
-        }
         ]
     },
     testLocations: {

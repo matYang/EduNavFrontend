@@ -94,6 +94,7 @@ var Course = Backbone.Model.extend({
             classImgArr = [],
             json = {};
         if ( typeof data !== 'undefined') {
+            data.id = data.id || data.courseId;
             json.id = parseInt(data.id, 10);
             json.courseId = json.id;
             json.courseName = decodeURIComponent(data.courseName);
@@ -326,7 +327,7 @@ var Course = Backbone.Model.extend({
         return "<td width='195' class='row_" + this.courseId + "'>";
     },
     isNew: function () {
-        return this.get("courseId") === -1;
+        return this.get("id") === -1;
     },
     _toSimpleJSON: function() {
         var json = {};
@@ -351,7 +352,8 @@ var Courses = Backbone.Collection.extend({
     start: 0,
     count: 0,
     total: 0,
-    parse:function(data) {
+    parse: function (data) {
+        if (!data.data) return data;
         this.start = data.start;
         this.count = data.count;
         this.total = data.total;

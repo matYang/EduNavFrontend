@@ -184,7 +184,16 @@ var Partners = Backbone.Collection.extend({
     model: Partner,
 
     url: Constants.origin + '/p-api/v1.0/partner',
-
+    start: 0,
+    count: 0,
+    total: 0,
+    parse: function (data) {
+        if (!data.data) return data;
+        this.start = data.start;
+        this.count = data.count;
+        this.total = data.total;
+        return data.data;
+    },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
         if ( typeof urlOverride !== 'undefined') {

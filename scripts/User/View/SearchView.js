@@ -56,6 +56,7 @@ var SearchView = Backbone.View.extend({
         }
     },
     renderCategories: function (categories) {
+        debugger;
         if (!this.isClosed) {
             this.categories = categories;
             var data = categories.data, len = data.length, i, j, k, cbuf = [], scbuf = [], tcbuf = [], children1, children2, tc="";
