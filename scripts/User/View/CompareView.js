@@ -148,10 +148,10 @@ var CompareView = Backbone.View.extend({
         });
         $(document).on("scroll", function () {
             if ($(this).scrollTop() >= 145) {
-                if ($("#stickyPlaceholder").length === 0) {
-                    $("#courseName").after("<tr id='stickyPlaceholder' style='height:160px'><td width='64'></td><td width='195'></td><td width='195'></td><td width='195'></td><td width='195'></td></tr>");
-                }
                 $("#courseName").addClass("stickyHeader");
+                if ($("#stickyPlaceholder").length === 0) {
+                    $("#courseName").after("<tr id='stickyPlaceholder' style='height:160px' width='195'></tr>");
+                }
             } else {
                 $("#courseName").removeClass("stickyHeader");
                 $("#stickyPlaceholder").remove();
