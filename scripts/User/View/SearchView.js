@@ -518,7 +518,6 @@ var SearchView = Backbone.View.extend({
             $("#filterPanel").children(".filterCriteria").off();
             $("#search_category").off();
             $("#search_subCategory").off();
-            $("#search_subCategory").off();
             this.searchResultView = null;
             $(document).off("scroll");
             $("#searchReqs").off();

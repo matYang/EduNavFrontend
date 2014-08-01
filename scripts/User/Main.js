@@ -66,7 +66,6 @@ var AppRouter = Backbone.Router.extend({
     bindGlobalLinks: function() {
         var that = this;
         $("#footer_service_link").on("click", 'a', function (e) {
-            debugger;
             e.preventDefault();
             $("html, body").animate({ scrollTop: 0, complete: function(){ $("#loginBox").show();} }, "slow");
             that.navigate("service/" + e.target.id.split("_")[1], true);
