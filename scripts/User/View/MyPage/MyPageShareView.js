@@ -4,9 +4,9 @@ var MyPageShareView = Backbone.View.extend({
     initialize: function () {
         app.viewRegistration.register(this);
         this.isClosed = false;
-        jiathis_config.summary = "我请大家免费上培训班啦！接受邀请请点击www.iShanke.cn/register/invite=" + 
+        jiathis_config.summary = "我请大家免费上培训班啦！接受邀请请点击 www.iShangke.cn/register/invite=" + 
                                     app.sessionManager.sessionModel.get("invitationalCode") +
-                                    "，注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！";
+                                    " ， 注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！";
         this.render();
     },
     render: function () {
@@ -38,7 +38,7 @@ var MyPageShareView = Backbone.View.extend({
     // marginTop:150,
     url:"http://www.ishangke.com",
     title:"邀请培训拿红包 #爱上课#",
-    summary:"我请大家免费上培训班啦！接受邀请请点击www.iShanke.cn，注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！",
+    summary:"我请大家免费上培训班啦！接受邀请请点击www.iShangke.cn，注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！",
     // pic:"自定义分享的图片连接地址",
     data_track_clickback:true,
     shortUrl:true,

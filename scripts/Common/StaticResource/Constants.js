@@ -36,7 +36,7 @@ var Constants = {
         "mypage_password", "mypage_setting", "mypage_share",
         "compareWidget", "compareWidgetEntry", "compareView", "courseDetailCompareWidget", "mapLabel",
         "infoModal", "banner",
-        "aboutUs", "joinUs"
+        "aboutUs", "joinUs", "contactUs", "advise", "help"
     ],
 
     partnerTemplateResource: [

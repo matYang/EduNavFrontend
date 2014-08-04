@@ -2,12 +2,9 @@ var ServiceCenterView = Backbone.View.extend({
     el: "#content",
     aboutUsPage: _.template(tpl.get('aboutUs')),
     joinUsPage: _.template(tpl.get('joinUs')),
-        // this.feedbackPage = _.template(tpl.get('serviceCenter_feedback'));
-        // this.termsPage = _.template(tpl.get('serviceCenter_terms'));
-        // this.termsZhPage = _.template(tpl.get('serviceCenter_terms_zh'));
-        // this.termsEnPage = _.template(tpl.get('serviceCenter_terms_en'));
-        // this.faqPage = _.template(tpl.get('serviceCenter_faq'));
-        // this.careerPage = _.template(tpl.get('serviceCenter_career'));
+    helpPage: _.template(tpl.get('help')),
+    contactUsPage: _.template(tpl.get('contactUs')),
+    advisePage: _.template(tpl.get('advise')),
     initialize: function (params) {
         this.currentTab = params ? params.tab || "about" : "about";
         this.isClosed = false;
@@ -27,6 +24,15 @@ var ServiceCenterView = Backbone.View.extend({
             break;
         case "join":
             this.$el.empty().append(this.joinUsPage);
+            break;
+        case "contactUs":
+            this.$el.empty().append(this.contactUsPage);
+            break;
+        case "advise":
+            this.$el.empty().append(this.advisePage);
+            break;
+        case "help":
+            this.$el.empty().append(this.helpPage);
             break;
         // case "faq":
         //     this.$contentEl.empty().append(this.faqPage);

@@ -12,23 +12,18 @@
 .aboutus .advantage{  padding:0 0 30px 70px; margin-top:20px; background:url(../images/aboutus_advantage.jpg) no-repeat left top;}
 .aboutus .advantage dt{ color:#a154a0; font-size:18px; margin-bottom:10px;}
 .aboutus .advantage dd{ line-height:28px;}
-.aboutus .advantage dd span{ color:#a154a0;}
-.aboutus .advantage dd span s{ margin:0 7px 0 7px;}
 
+.contact_us .tel{ padding:0 0 30px 70px; margin-top:30px; background:url(../images/contact_us.jpg) no-repeat left top; }
+.contact_us .tel dt{ color:#1e993a; font-size:18px; margin-bottom:10px; font-family:微软雅黑;}
+.contact_us .tel dd{ line-height:28px;}
 
-.ruzhu{ font-family:微软雅黑;}
-.ruzhu_banner{ margin-top:50px; height:90px;}
-.ruzhu_part2 {color:#979797; font-size:16px; line-height:30px;}
-.ruzhu_part2 .fleft{width:290px; padding-left:110px; background:url(../images/wh.png) no-repeat left top; padding-bottom:15px;}
-.ruzhu_part2 .fright{width:470px; padding-left:110px; background:url(../images/th.png) no-repeat left top; padding-bottom:15px;}
-.service dl{ width:449px; height:124px; padding:15px 20px; color:#fff;}
-.service dl dt{font-size:22px; margin-bottom:8px;}
-.service dl dd{ font-size:14px;}
-.service dl.s1{ background:url(../images/rz_1.png) no-repeat;}
-.service dl.s2{ background:url(../images/rz_2.png) no-repeat;}
-.service dl.s3{ background:url(../images/rz_3.png) no-repeat;}
-.service dl.s4{ background:url(../images/rz_4.png) no-repeat;}
+.help dl{ padding:0 0 30px 70px; margin-top:30px; background:url(../images/contact_us.jpg) no-repeat left top; }
+.help dl dt{ color:#1e993a; font-size:18px; margin-bottom:10px; font-family:微软雅黑;}
+.help dl dd{ line-height:28px;}
 
-.service{ margin-top:50px;}
-
+.advise dl{ padding:0 0 30px 70px; margin-top:30px; background:url(../images/contact_us.jpg) no-repeat left top; }
+.advise dl dt{ color:#1e993a; font-size:18px; margin-bottom:10px; font-family:微软雅黑;}
+.advise dl dd{ line-height:28px;}
+.advise dl dd input.text{width:500px; height:40px; line-height:40px\9; font-size:14px; color:#666;}
+.advise dl dd textarea{width:490px; height:190px; border:1px solid #ccc; padding:10px; font-size:14px;color:#666;}
 

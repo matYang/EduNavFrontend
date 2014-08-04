@@ -45,7 +45,7 @@
         <div id = 'widgets'></div>
         <div class="footer">
             <div class="footer_inner">
-                <div id="footer_service_link" class="footer-upperContent"> <a id="footer_about" href="#">关于我们</a><a id="footer_join" href="#">机构入驻</a><a id="footer_faq" href="#">常见问题</a><a id="footer_career" href="#">诚聘英才</a><a id="footer_term" href="#">隐私条款</a><a id="footer_feedback" href="#">意见反馈</a> </div>
+                <div id="footer_service_link" class="footer-upperContent"> <a id="footer_about" href="#">关于我们</a><a id="footer_join" href="#">机构入驻</a><a id="footer_help" href="#">常见问题</a><a id="footer_advise" href="#">意见反馈</a> <a id="footer_contactUs" href="#">联系我们</a></div>
                 <div class="footer-copyright"> Copyright &#169; 2014 爱上课 | <a href="http://www.miitbeian.gov.cn/" target="_blank">苏ICP备14025414号</a></div>
             </div>
         </div>
@@ -889,12 +889,12 @@
             <a class="F_green" href="#">[收起]</a>
         </div>
         <table width="100%" cellpadding="0" cellspacing="0" id="basic_content">
-            <tr>
+            <tr id="noAddColumn">
                 <td width="64"></td>
-                <td width="195"></td>
-                <td width="195"></td>
-                <td width="195"></td>
-                <td width="195"></td>
+                <% _.each(courses, function(course) { %>
+                    <td class="courseId_<%= course.courseId %>" width="195">
+                    </td>
+                <% }); %>
             </tr>
             <tr id="courseName" class="course_name">
                 <th width="64">课程名称</th>
@@ -1635,7 +1635,7 @@
         <h3>邀请方式</h3>
         <p class="blank1">方式一：点击复制，将邀请信息通过QQ等方式发送给好友</p>
         <div class="blank" id="copy_content_container">
-            <textarea id="copy_content">我请大家免费上培训班啦！接受邀请请点击www.iShangke.cn/register/invite=<%= inviteCode %>,注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！</textarea><input id="clickCopy" class="btn_copy" type="button" value="复制">
+            <textarea id="copy_content">我请大家免费上培训班啦！接受邀请请点击 www.iShangke.cn/register/invite=<%= inviteCode %>， 注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！</textarea><input id="clickCopy" class="btn_copy" type="button" value="复制">
         </div>
         <p class="blank1">方式二：点击图标，立即分享到社区个人主页</p>
         <div class="invitation_share blank clearfix">
@@ -1659,6 +1659,85 @@
             <dd>1. 邀请好友次数无上限；</dd>
             <dd>2. 红包奖励与现金奖励支持无限制累积；</dd>
             <dd>3. 红包拥有长达2个月有效期，未使用的红包过期后会自动消失。</dd>
+        </dl>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_advise">
+    <div class="advise">
+        <div class="aboutus_banner"><img src="style/images/aboutus_banner.jpg" width="1000" height="200"></div>
+        <dl class="">
+            <dt>意见反馈</dt>
+            <dd>
+                <p>爱上课的成功上线得益于众多投资人与测试用户的坦率真言，爱上课的明天更需要乐于直言提出批评的用户。爱上课承诺，我们将仔细的聆听您的建议，
+并认为它能改变爱上课的命运。</p>
+                <div><input class="text" type="text" value="请填写您的联系方式"></div>
+                <div class="blank">
+                    <textarea style="">请在这里填写您的建议...</textarea>
+                </div>
+                <div class="blank">
+                    <input class="btn_G" type="button" value="提交">
+                </div>
+                <div class="blank1">您也可以发送E-mail至kefu@ishangke.cn，会有专门工作人员与您联系。</div>
+            </dd>
+        </dl>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_contactUs">
+    <div class="contact_us">
+        <div class="aboutus_banner"><img src="style/images/aboutus_banner.jpg" width="1000" height="200"></div>
+        <dl class="tel">
+            <dt>联系方式</dt>
+            <dd>
+                <p>在线爱客服：点击网页右侧客服图标</p>
+                <p>客服热线：<b class="F_orange">400-600-1999</b></p>
+                <p>工作时间：周一至周日9:00-18:00</p>
+                <p>客服E-mail：kefu@iShangke.cn</p>
+            </dd>
+            <dt style="margin-top:30px;">教学机构合作</dt>
+            <dd>
+                <p>联系人：徐先生</p>
+                <p>QQ：2970731934</p>
+                <p>Email:Eric.xu@iShangke.cn</p>
+                <p>公司地址：南京市雨花台区宁双路28号江智大厦</p>
+            </dd>
+            <dt style="margin-top:30px;">互换友链</dt>
+            <dd>
+                <p>QQ：2970731934</p>
+            </dd>
+        </dl>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_help">
+    <div class="help">
+        <div class="aboutus_banner"><img src="style/images/aboutus_banner.jpg" width="1000" height="200"></div>
+        <dl class="">
+            <dt>帮助中心</dt>
+            <dd>
+                <p><strong class="F_green">如何快速免费获得返利券？</strong></p>
+                <div>1、邀请新用户  在邀请码页面中将邀请码或邀请链接扩散给好友及陌生人。</div>
+                <div>2、新用户注册  新用户完成注册后即可获得10元消费券，完成第一次预订可获得20元消费券，完成报到入学成功，可另获得10元现金奖励。</div>
+                <div>3、激活消费券  在消费券页面中，找到待激活消费券，输入验证码。</div>
+                
+                <p style="margin-top:20px;"><strong class="F_green">如何使用返利券？</strong></p>
+                <div>1、找课程  登录或注册后选择带有标识的课程。</div>
+                <div>2、填写订单  预订时，选用消费券。</div>
+                <div>3、激活消费券  开学后7天左右返现至您的爱上课现金账户内。</div>
+                
+                <p style="margin-top:20px;"><strong class="F_green">邀请好友可以获得哪些奖励？</strong></p>
+                <div>1. 每邀请一位好友完成注册，双方都能获得<b class="F_orange">20元红包</b>奖励；</div>
+                <div>2. 当被邀请好友完成第一次预订，您还能获得<b class="F_orange">10元现金</b>奖励；</div>
+                <div>3. 每月28日“爱抵扣”活动日，大多数课程支持红包无上限<b class="F_orange">全额抵扣</b>。</div>
+                
+                <p style="margin-top:20px;"><strong class="F_green">邀请规则</strong></p>
+                <div>1. 邀请好友次数无上限；</div>
+                <div>2. 红包奖励与现金奖励支持无限制累积；</div>
+                <div>3. 红包拥有长达2个月有效期，未使用的红包过期后会自动消失。</div>
+                
+                <p style="margin-top:20px;"><strong>若上述热点问题不能解答您的疑惑请点击网站右侧悬浮客服窗或拨打我们400客服热线</strong></p>
+            </dd>
         </dl>
     </div>
 </script>
