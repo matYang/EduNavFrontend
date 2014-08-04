@@ -129,7 +129,7 @@ var CompareView = Backbone.View.extend({
                 that.$view.find(".courseId_" + courseId).fadeOut(200, function () {
                     if (!removed) {
                         that.$view.find(".courseId_" + courseId).remove();
-                        that.$view.find("tr[id!=stickyPlaceholder]").append("<td class='courseId_-1' width='195'></td>");
+                        that.$view.find("tr:not(#stickyPlaceholder,#noAddColumn)").append("<td class='courseId_-1' width='195'></td>");
                         removed = true;
                     }
                 });
