@@ -878,12 +878,12 @@
             <a class="F_green" href="#">[收起]</a>
         </div>
         <table width="100%" cellpadding="0" cellspacing="0" id="basic_content">
-            <tr>
+            <tr id="noAddColumn">
                 <td width="64"></td>
-                <td width="195"></td>
-                <td width="195"></td>
-                <td width="195"></td>
-                <td width="195"></td>
+                <% _.each(courses, function(course) { %>
+                <td width="195">
+                </td>
+                <% }); %>
             </tr>
             <tr id="courseName" class="course_name">
                 <th width="64px">课程名称</th>
