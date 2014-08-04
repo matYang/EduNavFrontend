@@ -122,7 +122,7 @@ var CompareView = Backbone.View.extend({
             }
             e.preventDefault();
             $e = $(e.target);
-            //删除对比课程 todo 对比课程数量为0时提示
+            //删除对比课程
             if ($e.hasClass("delete")) {
                 courseId = Utilities.getId($(e.currentTarget).attr("class"));
                 var removed = false;
@@ -134,9 +134,15 @@ var CompareView = Backbone.View.extend({
                     }
                 });
                 that.configMoveButton();
-
                 app.storage.removeCourseFromCompare(Utilities.toInt(courseId));
                 that.courseIdList = app.storage.getCoursesToCompare();
+                //对比课程数量为0时提示
+                if (!that.courseIdList.length) {
+                    Info.displayNotice("已经没有待比较的课程了，先去查看感兴趣的课程吧");
+                    that.isClosed = true;
+                    app.navigate("search", {trigger: true, replace: true});
+                    return;
+                }
                 return;
             }
             index = $("#courseName>td").index($(e.currentTarget));
