@@ -131,19 +131,21 @@ var CompareView = Backbone.View.extend({
                         that.$view.find(".courseId_" + courseId).remove();
                         that.$view.find("tr:not(#stickyPlaceholder,#noAddColumn)").append("<td class='courseId_-1' width='195'></td>");
                         removed = true;
+                        //移至animate回调中防止异步造成页面提早跳转产生的错误
+                        that.configMoveButton();
+                        app.storage.removeCourseFromCompare(Utilities.toInt(courseId));
+                        that.courseIdList = app.storage.getCoursesToCompare();
+                        //对比课程数量为0时提示
+                        if (!that.courseIdList.length) {
+                            Info.displayNotice("已经没有待比较的课程了，先去查看感兴趣的课程吧");
+                            that.isClosed = false;
+                            app.navigate("search", {trigger: true, replace: true});
+                            return;
+                        }
+                        return;
                     }
                 });
-                that.configMoveButton();
-                app.storage.removeCourseFromCompare(Utilities.toInt(courseId));
-                that.courseIdList = app.storage.getCoursesToCompare();
-                //对比课程数量为0时提示
-                if (!that.courseIdList.length) {
-                    Info.displayNotice("已经没有待比较的课程了，先去查看感兴趣的课程吧");
-                    that.isClosed = true;
-                    app.navigate("search", {trigger: true, replace: true});
-                    return;
-                }
-                return;
+
             }
             index = $("#courseName>td").index($(e.currentTarget));
             //对比课程前移
