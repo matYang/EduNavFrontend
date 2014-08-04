@@ -47,6 +47,15 @@ var NewBookingView = BaseFormView.extend({
                 type: "text",
                 mandatory: true,
                 buildValidatorDiv: Utilities.defaultValidDivBuilder
+            }),
+            new BaseField({
+                name: "支付方式",
+                fieldId: "booking_type",
+                modelAttr: "bookingType",
+                validClass: "success",
+                type: "select",
+                mandatory: true,
+                buildValidatorDiv: Utilities.defaultValidDivBuilder
             })
         ];
         if (params.courseId) {
@@ -228,6 +237,7 @@ var NewBookingView = BaseFormView.extend({
         });
     },
     bookingSuccess: function (booking) {
+        console.log(booking);
         this.$el.empty().append(this.finishTemplate(booking._toJSON()));
         $("#viewMore").on("click", function() {
             app.navigate("search", true);

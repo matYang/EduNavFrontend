@@ -706,6 +706,15 @@
                 <input class="text" type="text" id="booking_date"/>
                 <span id="booking_date_info" class="desc">(若此预约日期前未前往该教学机构办理交费，您的特惠名额将受让给其他学员)</span>
             </div>
+            <div class="field">
+                <label>支付方式</label>
+                <select class="text" id="booking_type">
+                    <option value="">-请选择-</option>
+                    <%_.each(EnumConfig.BookingTypeText,function(v,k){%>
+                        <option value="<%=k%>"><%=v%></option>
+                    <%}); %>
+                </select>
+            </div>
         </div>
         <div class="row3">
             <input type="button" class="btn_O_long" value="完成预订" id="initBooking" />
@@ -735,7 +744,8 @@
             <p><label>开课日期： </label><%= course.startDate %>-<%= course.finishDate %></p>
             <p><label>班级类型： </label><%= course.classSize %></p>
             <p><label>预约报到： </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
-            <p><label>费用总计： </label> ￥<b class="price"><%= price %></b> <span>（到校付款）</span></p>
+            <p><label>费用总计： </label> ￥<b class="price"><%= price %></b></p>
+            <p><label>支付方式： </label> <%= EnumConfig.BookingTypeText[bookingType] %></p>
             <p class="extra">* 到达学校后，请您凭入学人的有效证件办理入学</p>
         </div>
         <div class="row3 clearfix">

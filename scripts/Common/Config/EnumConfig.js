@@ -91,8 +91,12 @@ var EnumConfig = {
     },
 
     'BookingType': {
-        offline: 0,
-        online: 1
+        offline: 1,
+        online: 0
+    },
+    'BookingTypeText': {
+        0: "线上支付",
+        1: "线下支付"
     },
         
     'ServiceFeeStatus': {
