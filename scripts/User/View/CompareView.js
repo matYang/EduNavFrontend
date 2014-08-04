@@ -224,7 +224,7 @@ var CompareView = Backbone.View.extend({
         for (i = 0; i < $rows.length; i++) {
             console.log($rows[i].id);
             //由于第一行决定了下列的宽度 不能进行换列
-            if($($rows[i]).id === 'noAddColumn')continue;
+            if($rows[i].id === 'noAddColumn')continue;
             $td = $($rows[i]).find("td");
             $($td[index2]).after($($td[index1]).detach());
         }
