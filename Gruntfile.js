@@ -115,6 +115,7 @@ module.exports = function(grunt) {
         files: {
           'build/style/css/style-min.css': [
             'style/css/Global.css',
+            'style/css/common-ui.css',
             'style/css/topBar.css',
             'style/css/override.css',
             'style/css/index.css',
