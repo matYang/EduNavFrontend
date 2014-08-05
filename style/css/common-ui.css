@@ -1,0 +1,133 @@
+/*通用工具类*/
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+
+.padding-sm {
+    padding: 10px 20px;
+}
+
+.padding-md {
+    padding: 20px 30px;
+}
+
+.padding-lg {
+    padding: 30px 40px;
+}
+
+.margin-x {
+    margin: 10px 0;
+}
+
+.margin-y {
+    margin: 0 10px;
+}
+
+/*字体和背景颜色*/
+.ft-green {
+    color: #128d56;
+}
+
+.bg-green {
+    background-color: #128d56;
+}
+
+/*通用图标*/
+.icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    font-style: normal;
+    font-weight: normal;
+    vertical-align: text-bottom;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: url(../images/icon.png) no-repeat;
+}
+
+.icon-info {
+    background-position: 0 -469px;
+}
+
+.icon-warning {
+    background-position: 0 -501px;
+}
+
+/**通用面板 默认样式*/
+.panel {
+    border: 3px solid transparent;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.panel .panel-header, .panel .panel-body, .panel .panel-footer {
+    padding: 15px 20px;
+}
+
+.panel .panel-header, .panel .panel-footer {
+    font-size: 18px;
+}
+
+.panel .panel-body {
+}
+
+/*绿色面板*/
+.panel-green {
+    border-color: #128d56;
+}
+
+.panel-green .panel-header {
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #128d56;
+}
+
+/*灰色面板*/
+.panel-gray {
+    border-color: #efefef;
+}
+
+.panel-gray .panel-header {
+    color: #333333;
+    background-color: #efefef
+}
+
+
+/*通用按钮*/
+
+/*特殊按钮--支付宝*/
+.btn-alipay{
+    display: inline-block;
+    border: 1px solid #cccccc;
+    width:220px;
+    height: 70px;
+    background:#ffffff url('../images/alipay.jpg') no-repeat center;
+    background-size:  200px 130px;
+}
+
+
+
+/*下列为page中的style*/
+.radios-pay{
+    }
+    .radios-pay li input[type=radio]{
+        height: 80px;
+        width: 30px;
+        line-height: 80px;
+    }

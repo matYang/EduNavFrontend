@@ -24,16 +24,22 @@ var Constants = {
     miliSecInDay: 86400000,
 
     templateResources: [
-        "topBar-loggedIn", "topBar-notLoggedIn", 
+        "topBar-loggedIn", "topBar-notLoggedIn",
+
         "registration", "registration_finish", "findPassword_1", "findPassword_2",
+
         "front", "frontCategoryContainer", "search", "searchResultEntry", "courseDetail", "newBooking", "booking_submitted", "search_noMessage",
         "frontButton", "frontCatButton",
         "req", "subCategoryContainer", "subSubCategoryContainer", "subSubCategory", "subCategory", "category",
-        "mypage_base", "mypage_dashboard", "mypage_bookingList", "mypage_bookingDetail", "booking_entry", "booking_noMessage",
+
+        "mypage_base", "mypage_dashboard", "mypage_bookingList", "mypage_bookingDetail", "booking_entry", "booking_noMessage","mypage_bookingPay",
+
         "mypage_coupons", "mypage_unclaimedCouponRow", "mypage_claimedCouponRow", "mypage_couponClaimed", "mypage_couponUnclaimed", "claimed_coupon_noMessage", "unclaimed_coupon_noMessage",
         "mypage_usedCouponRow", "mypage_couponUsed", "used_coupon_noMessage",
+
         "mypage_credit", "mypage_creditTable", "mypage_creditRow", "mypage_creditStore", "credit_noMessage",
         "mypage_password", "mypage_setting", "mypage_share",
+
         "compareWidget", "compareWidgetEntry", "compareView", "courseDetailCompareWidget", "mapLabel",
         "infoModal", "banner",
         "aboutUs", "joinUs", "contactUs", "advise", "help"

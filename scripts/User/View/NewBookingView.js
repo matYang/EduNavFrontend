@@ -245,6 +245,10 @@ var NewBookingView = BaseFormView.extend({
         $("#viewBooking").on("click", function() {
             app.navigate("mypage/booking", true);
         });
+        //进入支付页面
+        $(".js_btnGoToPay").on("click", function() {
+            app.navigate("mypage/booking/"+booking.id+"/pay", true);
+        });
         $("#printBooking").on("click", function () {
             window.print();
         });

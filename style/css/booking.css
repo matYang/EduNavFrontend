@@ -19,38 +19,38 @@
 .courseBrief .row4 .link{ padding-left:20px;}
 
 /*右栏*/
-.newBooking{float:right; width:730px; border:3px solid #128d56; color:#000;}
-.newBooking .header{height:52px; line-height:52px; padding-left:20px; background:#128d56; font-size:18px; font-family:微软雅黑; color:#fff;}
-.newBooking .title{border-bottom:1px solid #cccccc; height:40px; line-height:40px; margin:10px; padding:0 10px;}
-.newBooking .title h3{float:left; font-size:14px; color:#128d56; }
-.newBooking .title .fright{ font-size:12px; padding-left:20px; color:#128d56; background:url(../images/icon.png) no-repeat 0 -491px;}
+.panel {float:right; width:730px; border:3px solid #128d56; color:#000;}
+.panel .header{height:52px; line-height:52px; padding-left:20px; background:#128d56; font-size:18px; font-family:微软雅黑; color:#fff;}
+.panel .title{border-bottom:1px solid #cccccc; height:40px; line-height:40px; margin:10px; padding:0 10px;}
+.panel .title h3{float:left; font-size:14px; color:#128d56; }
+.panel .title .fright{ font-size:12px; padding-left:20px; color:#128d56; background:url(../images/icon.png) no-repeat 0 -491px;}
 
-.newBooking .row1{ margin:10px 10px 20px;}
-.newBooking .field { margin:18px 0; font-size:14px;}
-.newBooking .field label{display:inline-block; width:100px; text-align:right; margin-right:20px;}
-.newBooking .field select{ padding:2px; border:1px solid #ccc; width:112px;}
-.newBooking .field span{ color:#666; font-size:12px;}
-.newBooking .field b.price{color:#ff5500;}
+.panel .row1{ margin:10px 10px 20px;}
+.panel .field { margin:18px 0; font-size:14px;}
+.panel .field label{display:inline-block; width:100px; text-align:right; margin-right:20px;}
+.panel .field select{ padding:2px; border:1px solid #ccc; width:112px;}
+.panel .field span{ color:#666; font-size:12px;}
+.panel .field b.price{color:#ff5500;}
 
-.newBooking .field .cashback{margin-right:10px;margin-left:8px;}
-.newBooking .field #booking_useCashback{margin-left:128px; float:left;}
-.newBooking .field  .login_reg1 {font-size:12px; line-height:18px;}
+.panel .field .cashback{margin-right:10px;margin-left:8px;}
+.panel .field #booking_useCashback{margin-left:128px; float:left;}
+.panel .field  .login_reg1 {font-size:12px; line-height:18px;}
 
-.newBooking .loginbox{ position:relative;border:1px solid #ccc; margin-left:128px; margin-top:40px; }
-.newBooking .loginbox_inner{ padding:15px 20px; font-size:14px;}
-.newBooking .loginbox_inner input.text{border:1px solid #ccc; width:164px; margin-right:15px; padding-left:10px; background:#eaefed; height:28px; line-height:28px\9;}
-.newBooking .loginbox_inner label{color:#128d56;}
-.newBooking .loginbox .btns{ margin-top:10px;}
-.newBooking .loginbox .btns a{font-size:12px; color:#128d56; margin-right:15px; margin-left:15px;}
-.newBooking #booking_login{width:100px; height:30px; margin-left:50px; color:#fff; font-size:14px; border:none; cursor:pointer; background:#128d56;}
-.newBooking .close{ position:absolute; top:10px; right:10px; width:11px; height:11px; background:url(../images/icon.png) no-repeat 0 -530px; text-indent:-9999px; cursor:pointer;}
+.panel .loginbox{ position:relative;border:1px solid #ccc; margin-left:128px; margin-top:40px; }
+.panel .loginbox_inner{ padding:15px 20px; font-size:14px;}
+.panel .loginbox_inner input.text{border:1px solid #ccc; width:164px; margin-right:15px; padding-left:10px; background:#eaefed; height:28px; line-height:28px\9;}
+.panel .loginbox_inner label{color:#128d56;}
+.panel .loginbox .btns{ margin-top:10px;}
+.panel .loginbox .btns a{font-size:12px; color:#128d56; margin-right:15px; margin-left:15px;}
+.panel #booking_login{width:100px; height:30px; margin-left:50px; color:#fff; font-size:14px; border:none; cursor:pointer; background:#128d56;}
+.panel .close{ position:absolute; top:10px; right:10px; width:11px; height:11px; background:url(../images/icon.png) no-repeat 0 -530px; text-indent:-9999px; cursor:pointer;}
 
-.newBooking  .row2{ margin:10px 10px 40px;}
-.newBooking  .row2 input.text{width:250px;}
-.newBooking  .row2 .req{color:#ff5500;}
-.newBooking #booking_date{width:100px;}
-.newBooking .row3{border-top:1px dotted #ccc; text-align:center; padding:20px 0 50px;}
-.newBooking .row3 .desc{ color:#666; margin-left:10px;}
+.panel .row2{ margin:10px 10px 40px;}
+.panel .row2 input.text{width:250px;}
+.panel .row2 .req{color:#ff5500;}
+.panel #booking_date{width:100px;}
+.panel .row3{border-top:1px dotted #ccc; text-align:center; padding:20px 0 50px;}
+.panel .row3 .desc{ color:#666; margin-left:10px;}
 
 /*订单提交成功*/
 #booking_submitted{ position:relative; border:3px solid #128d56; font-size:14px;}
