@@ -22,7 +22,7 @@ var MyPageShareView = Backbone.View.extend({
         }
     },
     close: function () {
-        if (this.isClosed) {
+        if (!this.isClosed) {
             this.$el.empty();
         }
     }

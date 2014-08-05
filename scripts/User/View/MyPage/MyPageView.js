@@ -83,54 +83,7 @@ var MyPageView = Backbone.View.extend({
 
     bindEvents: function () {
         var that = this;
-        $("#bookingManage").on("click", function () {
-            if (that.query !== "booking") {
-                $("#mypage_sidebar").find(".active").removeClass("active");
-                that.query = "booking";
-                app.navigate("mypage/booking");
-                that.createChildView();
-            }
-        });
-        $("#couponAccount").on("click", function () {
-            if (that.query !== "coupon") {
-                $("#mypage_sidebar").find(".active").removeClass("active");
-                that.query = "coupon";
-                app.navigate("mypage/coupon");
-                that.createChildView();
-            }
-        });
-        $("#editPass").on("click", function () {
-            if (that.query !== "password") {
-                $("#mypage_sidebar").find(".active").removeClass("active");
-                that.query = "password";
-                app.navigate("mypage/password");
-                that.createChildView();
-            }
-        });
-        $("#editInfo").on("click", function () {
-            if (that.query !== "setting") {
-                $("#mypage_sidebar").find(".active").removeClass("active");
-                that.query = "setting";
-                app.navigate("mypage/setting");
-                that.createChildView();
-            }
-        });
-        $("#creditAccount").on("click", function () {
-            if (that.query !== "credit") {
-                $("#mypage_sidebar").find(".active").removeClass("active");
-                that.query = "credit";
-                app.navigate("mypage/credit");
-                that.createChildView();
-            }
-        });
-        $("#share").on("click", function () {
-            if (that.query !== "sharing") {
-                $("#mypage_sidebar").find(".active").removeClass("active");
-                that.query = "share";
-                app.navigate("mypage/share");
-                that.createChildView();
-            }
-        });
+        //侧边栏顶部 我的爱上课
         $("#mypage_sidebar").children(".mypage_sidebar_title").on("click", function () {
             if (that.query !== "dashboard") {
                 $("#mypage_sidebar").find(".active").removeClass("active");
@@ -139,6 +92,64 @@ var MyPageView = Backbone.View.extend({
                 that.createChildView();
             }
         });
+
+        //订单管理>课程订单
+        $("#bookingManage").on("click", function () {
+            if (that.query !== "booking") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "booking";
+                app.navigate("mypage/booking");
+                that.createChildView();
+            }
+        });
+
+        //账户管理>返现券
+        $("#couponAccount").on("click", function () {
+            if (that.query !== "coupon") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "coupon";
+                app.navigate("mypage/coupon");
+                that.createChildView();
+            }
+        });
+        //账户管理>积分
+        $("#creditAccount").on("click", function () {
+            if (that.query !== "credit") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "credit";
+                app.navigate("mypage/credit");
+                that.createChildView();
+            }
+        });
+
+        //个人设置>密码修改
+        $("#editPass").on("click", function () {
+            if (that.query !== "password") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "password";
+                app.navigate("mypage/password");
+                that.createChildView();
+            }
+        });
+        //个人设置>个人资料
+        $("#editInfo").on("click", function () {
+            if (that.query !== "setting") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "setting";
+                app.navigate("mypage/setting");
+                that.createChildView();
+            }
+        });
+        //个人设置>邀请有礼
+        $("#share").on("click", function () {
+            if (that.query !== "share") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "share";
+                app.navigate("mypage/share");
+                that.createChildView();
+            }
+        });
+
     },
     close: function () {
         if (!this.isClosed) {
