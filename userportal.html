@@ -990,11 +990,11 @@
 
 <script type="text/template" id="tpl_courseDetail">
     <div id="siteMap" class="sitemap">
-        <span id="lv1cat"><%= category %></span>
+        <span id="lv1cat" data-value="<%= category.value %>"><%= category.name %></span>
         &gt;
-        <span id="lv2cat"><%= subCategory %></span>
+        <span id="lv2cat" data-value="<%= subCategory.value %>"><%= subCategory.name %></span>
         &gt;
-        <span id="lv3cat"><%= subSubCategory %></span>
+        <span id="lv3cat" data-value="<%= subSubCategory.value %>"><%= subSubCategory.name %></span>
     </div>
     <div class="courseDetail blank">
         <div class="banner">

@@ -323,25 +323,23 @@ var Utilities = {
     },
 
     /**
-     * 根据课程的类目值和类目参照表生成一二三级的目录名array
+     * 根据课程的类目值和类目参照表生成一二三级的目录obj的array
      * @param categoryValue
      * @param categoryObj
      * @returns {Array}
      */
     getCategoryArray:function(categoryValue,categoryObj){
-        if(categoryValue!==undefined&&categoryValue.length!==6&&categoryObj!==undefined)return ['','',''];
+        if(categoryValue!==undefined&&categoryValue.length!==6&&categoryObj!==undefined)return null;
         var catArray = [];
         var getCat = function (value, start, cat) {
-            if (start >= value.length)return '';
+            if (start >= value.length)return []
             for (var a in cat.children) {
                 if (cat.children.hasOwnProperty(a)&&cat.children[a].value == value.substr(0, start + 2))
-                    return cat.children[a].name + '--' + getCat(value, start + 2, cat.children[a]);
+                    return [{name:cat.children[a].name,value:cat.children[a].value}].concat(getCat(value, start + 2, cat.children[a]));
             }
-            return '未知--';
+            return [];
         };
-        var result = getCat(categoryValue, 0, {children: categoryObj});
-        result =  result.substr(0, result.length - 2);
-        catArray = result.split('--');
+        catArray = getCat(categoryValue, 0, {children: categoryObj});
         return catArray;
     }
 

@@ -29,9 +29,6 @@ var Course = Backbone.Model.extend({
             'finishTime2': undefined,
 
             'categoryValue':undefined,
-            'category': undefined,
-            'subCategory': undefined,
-            'subSubCategory': undefined,
 
             'address': undefined,
             'registraLocation': undefined,
@@ -111,11 +108,7 @@ var Course = Backbone.Model.extend({
 
             /*header部分信息*/
 
-            json.categoryValue = (data.categoryValue);
-            json.category = (data.category);
-            json.subCategory = (data.subCategory);
-            json.subSubCategory = (data.subSubCategory);//一二三级类目
-
+            json.categoryValue = (data.categoryValue);//类目
 
             json.courseName = (data.courseName);//课程名
             json.suitableStudent = (data.suitableStudent);//适合学员

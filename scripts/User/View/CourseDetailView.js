@@ -153,25 +153,7 @@ var CourseDetailView = Backbone.View.extend({
             var id = e.target.id;
             if (id === "siteMap") {
                 return;            }
-            switch (id) {
-            case "lv3cat":
-                that.sr.set("category", $("#lv1cat").html());
-                that.sr.set("subCategory", $("#lv2cat").html());
-                that.sr.set("subSubCategory", $("#lv3cat").html());
-                break;
-            case "lv2cat":
-                that.sr.set("category", $("#lv1cat").html());
-                that.sr.set("subCategory", $("#lv2cat").html());
-                that.sr.set("subSubCategory", undefined);
-                break;
-            case "lv1cat":
-                that.sr.set("category", $("#lv1cat").html());
-                that.sr.set("subCategory", undefined);
-                that.sr.set("subSubCategory", undefined);
-                break;
-            default:
-                break;
-            }
+            that.sr.set("categoryValue", $(this).data('value'));
             app.navigate("search/" + that.sr.toQueryString(), true);
         });
     },
