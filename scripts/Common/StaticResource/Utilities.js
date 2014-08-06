@@ -320,5 +320,30 @@ var Utilities = {
             }
         }
         return ret;
+    },
+
+    /**
+     * 根据课程的类目值和类目参照表生成一二三级的目录名array
+     * @param categoryValue
+     * @param categoryObj
+     * @returns {Array}
+     */
+    getCategoryArray:function(categoryValue,categoryObj){
+        if(categoryValue!==undefined&&categoryValue.length!==6&&categoryObj!==undefined)return ['','',''];
+        var catArray = [];
+        var getCat = function (value, start, cat) {
+            if (start >= value.length)return '';
+            for (var a in cat.children) {
+                if (cat.children.hasOwnProperty(a)&&cat.children[a].value == value.substr(0, start + 2))
+                    return cat.children[a].name + '--' + getCat(value, start + 2, cat.children[a]);
+            }
+            return '未知--';
+        };
+        var result = getCat(categoryValue, 0, {children: categoryObj});
+        result =  result.substr(0, result.length - 2);
+        catArray = result.split('--');
+        return catArray;
     }
+
+
 };

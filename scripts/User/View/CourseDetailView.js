@@ -8,14 +8,26 @@ var CourseDetailView = Backbone.View.extend({
         this.sr = new CourseSearchRepresentation();
         this.user = app.sessionManager.sessionModel;
         var self = this;
+        app.generalManager.fetchCategories({success:function(data){
+            self.categoryObj = data;
+        }});
         // this.newBooking = new Booking();
         // $("#viewStyle").attr("href", "style/css/courseDetail.css");
         app.generalManager.fetchCourse(courseIdWrapper.courseId, {
             success: function (course) {
-                self.course = course.clone();
-                self.courseId = course.get("id");
-                self.render();
-                self.bindEvents();
+                app.generalManager.fetchCategories({
+                    success:function(catObj){
+                        self.course = course.clone();
+                        self.courseId = course.get("id");
+                        var catArray = Utilities.getCategoryArray(self.course.get("categoryValue"),catObj.data);
+                        self.course.set("category",catArray[0]);
+                        self.course.set("subCategory",catArray[1]);
+                        self.course.set("subSubCategory",catArray[2]);
+                        self.render();
+                        self.bindEvents();
+                    }
+                });
+
             },
             error: function (response) {
                 Info.displayErrorPage("content", response.responseText);

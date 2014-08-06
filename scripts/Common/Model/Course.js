@@ -28,14 +28,13 @@ var Course = Backbone.Model.extend({
             'startTime2': undefined,
             'finishTime2': undefined,
 
+            'categoryValue':undefined,
             'category': undefined,
             'subCategory': undefined,
             'subSubCategory': undefined,
+
             'address': undefined,
             'registraLocation': undefined,
-            'province': undefined,
-            'city': undefined,
-            'district': undefined,
             'reference': undefined,
 
             'courseIntro': undefined,
@@ -100,22 +99,23 @@ var Course = Backbone.Model.extend({
             json.partnerId = parseInt(data.partnerId, 10);
             json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
 
+            /*others*/
             json.popularity = parseInt(data.popularity, 10);//人气值
             json.bookingType = parseInt(data.bookingType, 10);
-
             json.startUponArrival = parseInt(data.startUponArrival, 10);
-
             json.studyDayNote = (data.studyDayNote);//备注信息
             json.qualityAssurance = (data.qualityAssurance);
             json.regPhone = (data.regPhone);
             json.contact = (data.contact);
             json.trail = (data.trail);//试听
 
-
             /*header部分信息*/
+
+            json.categoryValue = (data.categoryValue);
             json.category = (data.category);
             json.subCategory = (data.subCategory);
             json.subSubCategory = (data.subSubCategory);//一二三级类目
+
 
             json.courseName = (data.courseName);//课程名
             json.suitableStudent = (data.suitableStudent);//适合学员
@@ -136,7 +136,7 @@ var Course = Backbone.Model.extend({
             json.finishTime1 = parseInt(data.finishTime1, 10);
             json.startTime2 = parseInt(data.startTime2, 10);
             json.finishTime2 = parseInt(data.finishTime2, 10);//上课时间
-            json.classSize = parseInt(data.classSize, 10);//班级类型
+            json.classSize = data.classSize;//班级类型
             json.openCourseRequirement = (data.openCourseRequirement);//开班要求
             json.cutoffDate = Utilities.castFromAPIFormat(data.cutoffDate);//报名截止日期
             json.wholeName = decodeURIComponent(data.wholeName);//机构全称

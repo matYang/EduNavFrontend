@@ -187,23 +187,29 @@
             callback.success(testMockObj.testCategories);
             return;
         }
-        $.ajax({
-            url:ApiResource.general_category,
-            type:'GET',
-            dataType:'json',
-            success: function(data, textStatus, jqXHR){
-                self.categoryList = data;
-                self.categoryTimeStamp = new Date();
-                if (callback) {
-                    callback.success(self.categoryList);
+
+        if (this.categoryList.length === 0 || shouldReload(this.categoryTimeStamp)){
+            $.ajax({
+                url:ApiResource.general_category,
+                type:'GET',
+                dataType:'json',
+                success: function(data, textStatus, jqXHR){
+                    self.categoryList = data;
+                    self.categoryTimeStamp = new Date();
+                    if (callback) {
+                        callback.success(self.categoryList);
+                    }
+                },
+                error: function(data, textStatus, jqXHR) {
+                    if (callback) {
+                        callback.error(data);
+                    }
                 }
-            },
-            error: function(data, textStatus, jqXHR) {
-                if (callback) {
-                    callback.error(data);
-                }
-            }
-        });
+            });
+        }else{
+            callback.success(this.categoryList);
+        }
+
     };
 
     //拉取地点
