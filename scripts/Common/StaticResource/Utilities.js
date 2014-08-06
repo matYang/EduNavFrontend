@@ -124,33 +124,43 @@ var Utilities = {
         return (str === null || str === undefined || str === "");
     },
 
-
-    castFromAPIFormat: function (dateString) {
-        if (!dateString) {
+    /**
+     * 用于格式化response data的时间戳
+     * @param timestamp string
+     * @returns Date
+     */
+    castFromAPIFormat: function (timestamp) {
+        if (!timestamp) {
             Info.warn("castFromAPIFormat: dateString is null");
             return null;
         }
-        if (dateString instanceof Date) {
-            return dateString;
-        }
-        dateString = decodeURIComponent(dateString);
-        var match = dateString.match(/^(\d+)-(\d+)-(\d+) (\d+)\:(\d+)\:(\d+)$/);
-        if (!match) {
-            match = dateString.match(/^(\d+)-(\d+)-(\d+)\+(\d+)\:(\d+)\:(\d+)$/);
-        }
-        var date = new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
-        return date;
+//        if (timestamp instanceof Date) {
+//            return timestamp;
+//        }
+//        dateString = decodeURIComponent(dateString);
+//        var match = dateString.match(/^(\d+)-(\d+)-(\d+) (\d+)\:(\d+)\:(\d+)$/);
+//        if (!match) {
+//            match = dateString.match(/^(\d+)-(\d+)-(\d+)\+(\d+)\:(\d+)\:(\d+)$/);
+//        }
+//        var date = new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
+        return new Date(timestamp);
     },
+    /**
+     * 用于格式化request data
+     * @param date Date
+     * @returns {*}
+     */
     castToAPIFormat: function (date) {
         if (!date) {
             Info.warn("castFromAPIFormat: date is null");
             return null;
         }
-        if (typeof date === "string") {
-            return date;
-        }
-        var d = date, str = [d.getFullYear(), (d.getMonth() + 1).padLeft(), d.getDate().padLeft()].join('-') + ' ' + [d.getHours().padLeft(), d.getMinutes().padLeft(), d.getSeconds().padLeft()].join(':');
-        return str;
+//        if (typeof date === "string") {
+//            return date;
+//        }
+//        var d = date, str = [d.getFullYear(), (d.getMonth() + 1).padLeft(), d.getDate().padLeft()].join('-') + ' ' + [d.getHours().padLeft(), d.getMinutes().padLeft(), d.getSeconds().padLeft()].join(':');
+
+        return date.getTime();
     },
 
     // //deprecated
