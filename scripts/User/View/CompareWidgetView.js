@@ -104,7 +104,7 @@ var CompareWidgetView = Backbone.View.extend({
             this.map.map.centerAndZoom("南京", 9);
         }
         for (i = 0; i < courses.length; i++) {
-             this.map.getLatLng(courses.at(i).get("location"), courses.at(i).get("instName"));
+             this.map.getLatLng(courses.at(i).get("address"), courses.at(i).get("instName"));
         }
         this.rendered = true;
     },

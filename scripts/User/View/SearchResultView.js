@@ -104,7 +104,7 @@ var SearchResultView = MultiPageView.extend({
             $("#resultNum").html(searchResults.length);
             for (i = 0; i < searchResults.length; i++) {
                 if (this.compareWidgetView.map) {
-                    this.compareWidgetView.map.getLatLng(searchResults.at(i).get("location"), searchResults.at(i).get("instName"));
+                    this.compareWidgetView.map.getLatLng(searchResults.at(i).get("address"), searchResults.at(i).get("instName"));
                 }
             }
             this.startIndex = 0;

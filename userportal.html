@@ -261,7 +261,7 @@
 
             <p class="desc"><span>上课日期:</span> <%= startDate %> - <%= finishDate %></p>
 
-            <p class="desc"><span>上课地址:</span> <%= location %></p>
+            <p class="desc"><span>上课地址:</span> <%= address %></p>
         </div>
         <div class="col2">
             <p class="classHour">共<b class="F_orange"><%=courseHourNum %></b>课时</p>
@@ -481,13 +481,13 @@
     <div class="bookingEntry" id="booking_reference_<%= reference %>">
         <div class="bookingEntryTime">
             <div class="date"><%= course.startDate %></div>
-            <div class="dayOfWeek"><%= course.studyDays %><!-- <%= course.studyDaysNote %>--></div>
+            <div class="dayOfWeek"><%= course.studyDays %><!-- <%= course.studyDayNote %>--></div>
         </div>
         <div class="bookingEntryDetail">
             <h3><a class="F_green bookingTitle" id="bookingTitle_bookingId_<%= bookingId %>" href="#">【<%=
                 course.instName %>】<%= course.courseName %></a></h3>
 
-            <p class="address"><b>地址：</b><%= course.location %></p>
+            <p class="address"><b>地址：</b><%= course.address %></p>
         </div>
         <div class="bookingEntryPrice">
             <span class="sign">￥</span><%= price %>
@@ -590,7 +590,7 @@
 
                                                     <p><label>教育机构：</label><span><%= course.instName %></span></p>
 
-                                                    <p><label>上课地址：</label><span><%= course.location %></span></p>
+                                                    <p><label>上课地址：</label><span><%= course.address %></span></p>
 
                                                     <p><label>上课日期：</label> <%= course.startDate %> - <%=
                                                         course.finishDate %></p>
@@ -805,14 +805,14 @@
         </div>
         <div class="row2">
             <div class="section"><label>班级类型：</label> <span><%= course.classSize %>人</span></div>
-            <div class="section"><label>上课日期：</label> <span><%= course.startDate %> - <%= course.finishDate %> <%= course.studyDays%> <%= course.studyDaysNote %>
+            <div class="section"><label>上课日期：</label> <span><%= course.startDate %> - <%= course.finishDate %> <%= course.studyDays%> <%= course.studyDayNote %>
             </span></div>
             <div class="section"><label>上课时间：</label> <span><%= course.startTime1 %> - <%= course.finishTime1 %>
             <% if (course.startTime2 > 0) { %>
             , <%= course.startTime2 %> - <%= course.finishTime2 %>
             <% } %>
             </span></div>
-            <div class="section"><label>上课地址：</label> <span><%= course.location %></span></div>
+            <div class="section"><label>上课地址：</label> <span><%= course.address %></span></div>
         </div>
         <div class="row3">
             若该教学机构承诺在您取消与爱上课的订单后直接办理入学将给予您比爱上课更多优惠时，及时通知爱上课，您将获得500元奖励
@@ -964,7 +964,7 @@
 
             <p><label>教育机构： </label><%= course.instName %></p>
 
-            <p><label>上课地址： </label><%= course.location %></p>
+            <p><label>上课地址： </label><%= course.address %></p>
 
             <p><label>咨询电话： </label><%= course.phone %></p>
 
@@ -1036,10 +1036,10 @@
                                               width="306" height="218"/></div>
                 </div>
                 <div class="course_map">
-                    <div class="addr">上课地点：<%= location %></div>
+                    <div class="addr">上课地点：<%= address %></div>
                     <div class="map">
-                        <a href="http://api.map.baidu.com/geocoder?address=<%= location %>&output=html" target="_blank">
-                            <img src="http://api.map.baidu.com/staticimage?width=328&height=184&zoom=14&center=<%= location %>&markers=<%= location %>"/>
+                        <a href="http://api.map.baidu.com/geocoder?address=<%= address %>&output=html" target="_blank">
+                            <img src="http://api.map.baidu.com/staticimage?width=328&height=184&zoom=14&center=<%= address %>&markers=<%= address %>"/>
                         </a>
                     </div>
                 </div>
@@ -1058,7 +1058,7 @@
                     <dt>基本信息</dt>
                     <dd class="clearfix"><label>开课日期</label>
 
-                        <p><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDaysNote %></p></dd>
+                        <p><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDayNote %></p></dd>
                     <dd class="clearfix"><label>上课时间</label>
 
                         <p><%= startTime1 %>-<%= finishTime1 %>
@@ -1208,7 +1208,7 @@
                         <p><%= certification %></p></dd>
                     <% } %>
                     <% if (extracurricular) { %>
-                    <dd class="clearfix"><label>课后互动 </label>
+                    <dd class="clearfix"><label>课后互动</label>
 
                         <p><%= extracurricular %></p></dd>
                     <% } %>
@@ -1287,7 +1287,7 @@
         <% _.each(courses, function(course) { %>
         <td class="courseId_<%= course.courseId %>"><%= course.startTime1 %>-<%= course.finishTime1 %>
             <% if (course.startTime2 > 0) { %>, <%= course.startTime2 %> - <%= course.finishTime2 %><% } %>
-            <%= course.studyDays %><%= course.studyDaysNote %>
+            <%= course.studyDays %><%= course.studyDayNote %>
         </td>
         <% }); %>
     </tr>
@@ -1299,9 +1299,9 @@
         <% }); %>
     </tr>
     <tr id="address">
-        <th>学校地址</th>
+        <th>上课地址</th>
         <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>"><%= course.location %></td>
+        <td class="courseId_<%= course.courseId %>"><%= course.address %></td>
         <% }); %>
     </tr>
     <tr id="classSize">

@@ -31,7 +31,7 @@ var Course = Backbone.Model.extend({
             'category': undefined,
             'subCategory': undefined,
             'subSubCategory': undefined,
-            'location': undefined,
+            'address': undefined,
             'registraLocation': undefined,
             'province': undefined,
             'city': undefined,
@@ -46,7 +46,7 @@ var Course = Backbone.Model.extend({
             'prerequest': undefined,
             'highScoreReward': undefined,
             'courseName': undefined,
-            'studyDaysNote': undefined,
+            'studyDayNote': undefined,
             'teachingMaterialIntro': undefined,
             'questionBank': undefined,
             'qualityAssurance': undefined,
@@ -97,74 +97,86 @@ var Course = Backbone.Model.extend({
             data.id = data.id || data.courseId;
             json.id = parseInt(data.id, 10);
             json.courseId = json.id;
-            json.courseName = decodeURIComponent(data.courseName);
-
-
             json.partnerId = parseInt(data.partnerId, 10);
-            json.price = parseInt(data.price, 10);
-            json.originalPrice = parseInt(data.price, 10);
-            json.courseHourNum = parseInt(data.courseHourNum, 10);
-            json.courseHourLength = parseInt(data.courseHourLength, 10);
+            json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
 
-            json.classSize = parseInt(data.classSize, 10);
-            json.cashback = parseInt(data.cashback, 10);
-            json.popularity = parseInt(data.popularity, 10);
+            json.popularity = parseInt(data.popularity, 10);//人气值
             json.bookingType = parseInt(data.bookingType, 10);
 
             json.startUponArrival = parseInt(data.startUponArrival, 10);
-            json.cutoffDate = Utilities.castFromAPIFormat(data.cutoffDate);
-            json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
-            json.startDate = Utilities.castFromAPIFormat(data.startDate);
-            json.finishDate = Utilities.castFromAPIFormat(data.finishDate);
-            json.noRefundDate = Utilities.castFromAPIFormat(data.noRefundDate);
-            json.cashbackDate = Utilities.castFromAPIFormat(data.cashbackDate);
 
+            json.studyDayNote = (data.studyDayNote);//备注信息
+            json.qualityAssurance = (data.qualityAssurance);
+            json.regPhone = (data.regPhone);
+            json.contact = (data.contact);
+            json.trail = (data.trail);//试听
+
+
+            /*header部分信息*/
+            json.category = (data.category);
+            json.subCategory = (data.subCategory);
+            json.subSubCategory = (data.subSubCategory);//一二三级类目
+
+            json.courseName = (data.courseName);//课程名
+            json.suitableStudent = (data.suitableStudent);//适合学员
+            json.cashback = parseInt(data.cashback, 10);//返现
+            json.price = parseInt(data.price, 10);//爱上课价格
+            json.originalPrice = parseInt(data.price, 10);//原价
+
+            json.logoUrl = decodeURIComponent(data.logoUrl);//logo
+            json.address = (data.address);//上课地点
+            json.regAddress = (data.regAddress);//报名地点
+
+            /*基本信息*/
+            json.startDate = Utilities.castFromAPIFormat(data.startDate);
+            json.finishDate = Utilities.castFromAPIFormat(data.finishDate);//开课日期
+            json.courseHourNum = parseInt(data.courseHourNum, 10);//课时总数
+            json.courseHourLength = parseInt(data.courseHourLength, 10);//课时长度
             json.startTime1 = parseInt(data.startTime1, 10);
             json.finishTime1 = parseInt(data.finishTime1, 10);
             json.startTime2 = parseInt(data.startTime2, 10);
-            json.finishTime2 = parseInt(data.finishTime2, 10);
+            json.finishTime2 = parseInt(data.finishTime2, 10);//上课时间
+            json.classSize = parseInt(data.classSize, 10);//班级类型
+            json.openCourseRequirement = (data.openCourseRequirement);//开班要求
+            json.cutoffDate = Utilities.castFromAPIFormat(data.cutoffDate);//报名截止日期
+            json.wholeName = decodeURIComponent(data.wholeName);//机构全称
+            json.partnerDistinction = (data.partnerDistinction);//机构荣誉
+            json.partnerIntro = (data.partnerIntro);//机构概况
+            if (data.teacherList) {
+                for (i = 0; i < data.teacherList.length; i++) {
+                    imgArr[i] = new Teacher(data.teacherList[i], {parse: true});
+                }
+                json.teacherList = imgArr;
+            }//老师介绍
 
-            json.category = decodeURIComponent(data.category);
-            json.subCategory = decodeURIComponent(data.subCategory);
-            json.subSubCategory = decodeURIComponent(data.subSubCategory);
-            json.location = decodeURIComponent(data.location);
-            json.registraLocation = decodeURIComponent(data.registraLocation);
-            json.province = decodeURIComponent(data.province);
-            json.city = decodeURIComponent(data.city);
-            json.district = decodeURIComponent(data.district);
-            json.reference = decodeURIComponent(data.reference);
 
-            json.courseIntro = decodeURIComponent(data.courseIntro);
-            json.quiz = decodeURIComponent(data.quiz);
-            json.certification = decodeURIComponent(data.certification);
-            json.openCourseRequirement = decodeURIComponent(data.openCourseRequirement);
-            json.suitableStudent = decodeURIComponent(data.suitableStudent);
-            json.prerequest = decodeURIComponent(data.prerequest);
-            json.highScoreReward = decodeURIComponent(data.highScoreReward);
-            json.courseName = decodeURIComponent(data.courseName);
-            json.studyDaysNote = decodeURIComponent(data.studyDaysNote);
-            json.partnerIntro = decodeURIComponent(data.partnerIntro);
-            json.teachingMaterialIntro = decodeURIComponent(data.teachingMaterialIntro);
-            json.qualityAssurance = decodeURIComponent(data.qualityAssurance);
-            json.questionBank = decodeURIComponent(data.questionBank);
-            json.passAgreement = decodeURIComponent(data.passAgreement);
-            json.extracurricular = decodeURIComponent(data.extracurricular);
-            json.registraPhone = decodeURIComponent(data.registraPhone);
-            json.contact = decodeURIComponent(data.contact);
-            json.teachingMethod = decodeURIComponent(data.teachingMethod);
+            /*教学信息*/
+            json.courseIntro = data.courseIntro;//课程介绍
+            json.goal = data.goal;//教学目标
+            json.prerequest = data.prerequest;//先修知识
+            json.teachingMethod = data.teachingMethod;//上课形式
+            json.teachingMaterialIntro = data.teachingMaterialIntro;//教材介绍
+            json.teachingMaterialFee = data.teachingMaterialFee;//教材费用
+            json.outline = data.outline;//课程提纲
 
-            json.partnerDistinction = decodeURIComponent(data.partnerDistinction);
-            json.outline = decodeURIComponent(data.outline);
-            json.goal = decodeURIComponent(data.goal);
-            json.classTeacher = decodeURIComponent(data.classTeacher);
-            json.teachingAndExercise = decodeURIComponent(data.teachingAndExercise);
-            json.questionSession = decodeURIComponent(data.questionSession);
-            json.trail = decodeURIComponent(data.trail);
-            json.assignments = decodeURIComponent(data.assignments);
-            json.marking = decodeURIComponent(data.marking);
-            json.bonusService = decodeURIComponent(data.bonusService);
-            json.downloadMaterials = decodeURIComponent(data.downloadMaterials);
-            json.teachingMaterialFee = decodeURIComponent(data.teachingMaterialFee);
+            /*教学补充*/
+            json.downloadMaterials = data.downloadMaterials;//课件下载
+            json.questionBank = data.questionBank;//题库支持
+            json.classTeacher = data.classTeacher;//班主任导学
+            json.teachingAndExercise = data.teachingAndExercise;//讲练结合
+            json.quiz = data.quiz;//阶段测评
+            json.questionSession = data.questionSession;//课后答疑
+            json.assignments = data.assignments;//课后作业
+            json.marking = data.marking;//作业批改
+
+            /*教学保障*/
+            json.passAgreement = (data.passAgreement);//教学保过
+            json.highScoreReward = (data.highScoreReward);//高分奖励
+
+            /*特色服务*/
+            json.certification = data.certification;//结业证书
+            json.extracurricular = data.extracurricular;//课后互动
+            json.bonusService = data.bonusService;//赠送服务
 
             json.status = parseInt(data.status, 10);
             json.partnerQualification = parseInt(data.partnerQualification, 10);
@@ -174,15 +186,9 @@ var Course = Backbone.Model.extend({
                 }
                 json.classPhotoList = classImgArr;
             }
-            if (data.teacherList) {
-                for (i = 0; i < data.teacherList.length; i++) {
-                    imgArr[i] = new Teacher(data.teacherList[i], {parse: true});
-                }
-                json.teacherList = imgArr;
-            }
-            json.logoUrl = decodeURIComponent(data.logoUrl);
-            json.instName = decodeURIComponent(data.instName);
-            json.wholeName = decodeURIComponent(data.wholeName);
+
+
+
         }
         return json;
     },
@@ -206,7 +212,7 @@ var Course = Backbone.Model.extend({
             }
             json.studyDays = studyDays;
         }
-        json.studyDaysNote = json.studyDaysNote ? "(" + json.studyDaysNote + ")" : "";
+        json.studyDayNote = json.studyDayNote ? "(" + json.studyDayNote + ")" : "";
         if (json.teacherList) {
             for (i = 0; i < json.teacherList.length; i++) {
                 if (json.teacherList[i] instanceof Teacher) {
@@ -246,7 +252,7 @@ var Course = Backbone.Model.extend({
         json.category = (json.category);
         json.subCategory = (json.subCategory);
         json.subSubCategory = (json.subSubCategory);
-        json.location = (json.location);
+        json.address = (json.address);
         json.registraLocation = (json.registraLocation);
 
         json.province = (json.province);
@@ -262,7 +268,7 @@ var Course = Backbone.Model.extend({
         json.prerequest = (json.prerequest);
         json.highScoreReward = (json.highScoreReward);
         json.courseName = (json.courseName);
-        json.studyDaysNote = (json.studyDaysNote);
+        json.studyDayNote = (json.studyDayNote);
         json.partnerIntro = (json.partnerIntro);
         json.teachingMaterialIntro = (json.teachingMaterialIntro);
 
@@ -335,7 +341,7 @@ var Course = Backbone.Model.extend({
         json.courseName = this.get("courseName");
         json.suitableStudent = this.get("suitableStudent");
         json.startDate = Utilities.getDateString(this.get('startDate'));
-        json.location = this.get("location");
+        json.address = this.get("address");
         json.logoUrl = this.get("logoUrl");
         json.price = this.get("price");
         json.courseHourNum = this.get("courseHourNum");
