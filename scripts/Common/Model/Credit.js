@@ -2,6 +2,7 @@ var Credit = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
+            'id': -1,
             'creditId': -1,
             
             'bookingId': -1,
@@ -15,7 +16,7 @@ var Credit = Backbone.Model.extend({
         };
     },
 
-    idAttribute: 'creditId',
+    idAttribute: 'id',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');
@@ -31,7 +32,8 @@ var Credit = Backbone.Model.extend({
 
     parse: function (data) {
         if ( typeof data !== 'undefined') {
-            data.creditId = parseInt(data.creditId, 10);
+            data.id = parseInt(data.id, 10);
+            data.creditId = data.id;
 
             data.bookingId = parseInt(data.bookingId, 10);
             data.userId = parseInt(data.userId, 10);
@@ -67,7 +69,16 @@ var Credit = Backbone.Model.extend({
 var Credits = Backbone.Collection.extend({
 
     model: Credit,
-
+    start: 0,
+    count: 0,
+    total: 0,
+    parse: function (data) {
+        if (!data.data) return data;
+        this.start = data.start;
+        this.count = data.count;
+        this.total = data.total;
+        return data.data;
+    },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
         if ( typeof urlOverride !== 'undefined') {

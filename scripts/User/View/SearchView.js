@@ -9,16 +9,18 @@ var SearchView = Backbone.View.extend({
     reqTemplate: _.template(tpl.get("req")),
     template: _.template(tpl.get('search')),
     initialize: function (params) {
-        _.bindAll(this, 'render', 'renderSearchResults', 'courseSearch', 'bindEvents', 'bindSearchEvents', 'renderCategories', 'renderLocations', 'filterResult', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'bindSearchEvents', 'renderCategories', 'renderLocations', 'close');
         // // $("#viewStyle").attr("href", "style/css/search.css");
         this.allMessages = new Courses();
         //define the template
         this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
-        this.srs = {};
+        this.categoryValue = {};
         this.timeDesc = true;
         this.priceDesc = true;
         this.isClosed = true;
         this.filters = {};
+        this.titleObjs = [];
+        this.titleObj = {};
         this.render(params);
         //injecting the template
     },
@@ -36,113 +38,162 @@ var SearchView = Backbone.View.extend({
                     this.searchRepresentation = new CourseSearchRepresentation();
                 }
             }
-            if (this.searchRepresentation.get("category")) {
-                this.srs[this.searchRepresentation.get("category")] = this.searchRepresentation;
+            if (this.searchRepresentation.get("categoryValue")) {
+                this.categoryValue[this.searchRepresentation.get("categoryValue").substr(0, 2)] = this.searchRepresentation;
             }
-            document.title="找课程 | " + this.searchRepresentation.toTitleString();
+            // $("title").html("找课程 | " + this.searchRepresentation.toTitleString());
             this.$el.append(this.template);
             this.compareWidgetView = new CompareWidgetView();
             this.searchResultView = new SearchResultView(new Courses(), new Courses(), this.compareWidgetView);
+            this.searchResultView.sr = this.searchRepresentation;
             app.generalManager.getCategories(this);
             app.generalManager.getLocations(this);
+            this.syncFilters();
+            this.syncSorter();
             this.bindEvents();
             this.currentPage = 0;
-        }
-    },
-
-    renderSearchResults: function (searchResults, byFilter) {
-        if (!this.isClosed) {
-            //prevent memory leaks
-            $("#searchResultDisplayPanel").empty();
-            if (typeof BMap !== "undefined" && !this.compareWidgetView.map) {
-                this.compareWidgetView.renderMap();
-            }
-            if (this.compareWidgetView.map) {
-                this.compareWidgetView.map.removeAllMarkers();
-            }
-            searchResults = searchResults || new Courses();
-            if (!byFilter) {
-                this.allMessages = searchResults;
-            }
-            this.searchResultView.allMessages.reset(this.allMessages.toArray());
-            if (byFilter) {
-                this.searchResultView.messages.reset(searchResults.toArray());
-            } else {
-                searchResults = this.filter();
-                this.searchResultView.messages.reset(searchResults.toArray());
-            }
-            $("#resultNum").html(searchResults.length);
-            for (i = 0; i < searchResults.length; i++) {
-                if (this.compareWidgetView.map) {
-                    this.compareWidgetView.map.getLatLng(searchResults.at(i).get("location"), searchResults.at(i).get("instName"));
-                }
-            }
-            this.searchResultView.startIndex = 0;
-            this.searchResultView.currentPage = 1;
-            this.searchResultView.render();
+            document.title = "找课程";
         }
     },
     renderCategories: function (categories) {
+        debugger;
         if (!this.isClosed) {
             this.categories = categories;
-            var  cbuf = [], scbuf = [], tcbuf = [], tc = "", key, attr, index, index2, bot, type, index3, obj, $subCat, $subsubCat, $dist;
-
-            this.categoryList = [];
-            for (key in categories ) { //level 1
-                if (typeof key === "string") {
-                    if (key !== "index") {
-                        obj = categories[key];
-                        index = categories[key].index;
-                        cbuf[index] = this.categoryTemplate({dataId:key, text:key});
-                        if (index === 0 && !this.searchRepresentation.get("category")) {
-                            this.searchRepresentation.set("category", key);
+            var data = categories.data, len = data.length, i, j, k, cbuf = [], scbuf = [], tcbuf = [], children1, children2, tc="";
+            if (!this.searchRepresentation.get("categoryValue")) {
+                this.searchRepresentation.set("categoryValue", data[0].value);
+            }
+            for ( i = 0; i < len; i++ ) {
+                cbuf[i] = this.categoryTemplate({value:data[i].value, name:data[i].name});
+                children1 = data[i].children || [];
+                for ( j = 0; j < children1.length; j ++) { //level 2 and level 1 index
+                    scbuf[j] = this.subCategoryTemplate({value:children1[j].value, name:children1[j].name});
+                    children2 = children1[j].children;
+                    if (children2) {
+                        for (k = 0; k < children2.length; k++ ) { //level 3 and level 2 index
+                            tcbuf[k] = this.subSubCategoryTemplate({value:children2[k].value, name:children2[k].name});
                         }
-                        for (attr in obj ) { //level 2 and level 1 index
-                            if (attr !== "index") {
-                                index2 = obj[attr].index;
-                                scbuf[index2] = this.subCategoryTemplate({dataId:attr, text:attr});
-                                bot = obj[attr];
-                                if (bot) {
-                                    for (type in bot ) { //level 3 and level 2 index
-                                        if (type !== "index") {
-                                            index3 = bot[type].index;
-                                            tcbuf[index3] = this.subSubCategoryTemplate({dataId:type, text:type});
-                                        }
-                                    }
-                                    tc += this.subSubCategoryContainerTemplate({dataId:attr, entries:tcbuf.join("")});
-                                    tcbuf = [];
-                                }
-                            }
-                        }
-                            
-                        scbuf.push(tc);
-                        $("#search_subCategory").append(
-                            this.subCategoryContainerTemplate({dataId:key, entries:scbuf.join("")})
-                        );
-                        scbuf = [];
+                        tc += this.subSubCategoryContainerTemplate({value:children1[j].value, entries:tcbuf.join("")});
+                        tcbuf = [];
                     }
                 }
+                scbuf.push(tc);
+                $("#filter_subCategory").append(
+                    this.subCategoryContainerTemplate({value:data[i].value, entries:scbuf.join("")})
+                );
+                scbuf = [];
             }
             $("#search_category").append(cbuf.join(""));
-            $("#search_category").find("li[data-id=" + this.searchRepresentation.get("category") + "]").addClass("active");
-            $("#search_subCategory").find("div[data-id=" + this.searchRepresentation.get("category") + "]").removeClass("hidden");
-            $subCat = $("div[data-id=" + this.searchRepresentation.get("category") + "]");
-            if (this.searchRepresentation.get("subCategory")) {
-                $subCat.find("span[data-id=noreq]").removeClass("active");
-                $subCat.find("span[data-id=" + this.searchRepresentation.get("subCategory") + "]").addClass("active");
-                $subsubCat = $subCat.find("p[data-id=" + this.searchRepresentation.get("subCategory") + "]").removeClass("hidden");
-                if (this.searchRepresentation.get("subSubCategory")) {
-                    $subsubCat.find("span[data-id=" + this.searchRepresentation.get("subSubCategory") + "]").addClass("active");
-                } else {
-                    $subsubCat.find("span[data-id=req]").addClass("active");
-                }
-            } else {
-                $subCat.find("span[data-id=noreq]").addClass("active");
-            }
-            $subCat = null;
-            $subsubCat = null;
+            this.showCategory();
             this.bindSearchEvents();
             this.courseSearch();
+        }
+    },
+    showCategory: function () {
+        var text, count, value, categoryValue = this.searchRepresentation.get("categoryValue");
+        $("#search_category").find("li[data-value=" + categoryValue.substr(0, 2) + "]").addClass("active").siblings("li").removeClass("active");
+        if (categoryValue.length === 2) {
+            $("#filter_subCategory").find("[data-value=noreq]").addClass("active").siblings().removeClass("active");
+            $("#filter_subCategory").find("p").addClass("hidden");
+        }
+        for (count = 0; count < categoryValue.length; count+=2) {
+            value = categoryValue.substr(0, count + 2);
+            $("#filter_subCategory").find("[data-parentvalue=" + value + "]").removeClass("hidden").siblings("p,div").addClass("hidden");
+            if (categoryValue.length === 6 && count === 2) {
+                $("#filter_subCategory").find("[data-value=" + value + "]").siblings().removeClass("active");
+                continue;
+            }
+            $("#filter_subCategory").find("[data-value=" + value + "]").addClass("active").siblings().removeClass("active");
+            $("#filter_subCategory").find("[data-value=" + value + "]").children("[data-value=noreq]").addClass("active");
+        }
+        $("#searchReqs").find("[data-cri=subCategory]").remove();
+        if (categoryValue.length > 2) {
+            text = $("#filter_subCategory").find("span[data-value=" + categoryValue + "]").html();
+            $("#searchReqs").append(this.reqTemplate({criteria: "subCategory", dataValue:categoryValue, text:text}));
+        }
+    },
+    syncLocation: function () {
+        var locationValue = this.searchRepresentation.get("locationValue");
+        if (locationValue) {
+            $("#filter_district").find("span[data-value=" + locationValue +"]").addClass("active").siblings().removeClass("active");
+        } else {
+            $("#filter_district").find("span[data-value=noreq]").addClass("active").siblings().removeClass("active");
+        }
+    },
+    syncFilters: function () {
+        var startPrice = this.searchRepresentation.get("startPrice"),
+            finishPrice = this.searchRepresentation.get("finishPrice"),
+            startClassSize = this.searchRepresentation.get("startClassSize"),
+            finishClassSize = this.searchRepresentation.get("finishClassSize"),
+            startDate = this.searchRepresentation.get("startDate"),
+            finishDate = this.searchRepresentation.get("finishDate"),
+            cashback = this.searchRepresentation.get("startCashback"),
+            value, text;
+        if (startPrice !== undefined) {
+            value = startPrice + "-";
+            if (finishPrice !== undefined) {
+                value += finishPrice;
+            }
+            text = $("#filter_price").find("span[data-value=" + value + "]").html();
+            $("#filter_price").find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
+            $("#searchReqs").append(this.reqTemplate({criteria: "price", dataValue:value, text:text}));
+        }
+        if (startClassSize !== undefined) {
+            value = startClassSize + "-";
+            if (finishClassSize !== undefined) {
+                value += finishClassSize;
+            }
+            text = $("#filter_classMode").find("span[data-value=" + value + "]").html();
+            $("#filter_classMode").find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
+            $("#searchReqs").append(this.reqTemplate({criteria: "classMode", dataValue:value, text:text}));   
+        }
+        if (startDate !== undefined) {
+            var date = new Date(), month = startDate.getMonth() - date.getMonth();
+            switch (month) {
+            case 0:
+                value = "thisMonth";
+                break;
+            case 1:
+                value = "nextMonth";
+                break;
+            case 2:
+                value = "twoMonthsAfter";
+                break;
+            }
+            text = $("#filter_startTime").find("span[data-value=" + value + "]").html();
+            $("#filter_startTime").find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
+            $("#searchReqs").append(this.reqTemplate({criteria: "startTime", dataValue:value, text:text}));   
+        }
+        if (cashback && cashback > 0) {
+            $("input[name=cashback]").prop("checked", true);
+        }
+    },
+    syncSorter: function () {
+        var order = this.searchRepresentation.get("order"), sortBy = this.searchRepresentation.get("sortBy");
+        if (!sortBy) {
+            return;
+        } else {
+            if (sortBy === "startDate") {
+                $("#price").html("价格").removeClass("active");
+                $("#editorPick").removeClass("active");
+                if (order === "ASCE") {
+                    this.timeDesc = true;
+                    $("#time").html("时间↑").addClass("active");
+                } else {
+                    $("#time").html("时间↓").addClass("active");
+                    this.timeDesc = false;
+                }
+            } else if (sortBy === "price") {
+                $("#time").html("时间").removeClass("active");
+                $("#editorPick").removeClass("active");
+                if (order === "ASCE") {
+                    $("#price").html("价格↑").addClass("active");
+                    this.priceDesc = true;
+                } else {
+                    $("#price").html("价格↓").addClass("active");
+                    this.priceDesc = false;
+                }
+            }
         }
     },
     renderError: function (data) {
@@ -153,44 +204,38 @@ var SearchView = Backbone.View.extend({
     },
     renderLocations: function (locations) {
         if (!this.isClosed) {
-            var buf = [], key;
+            var buf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
+            this.locations = locations;
             // for (var prov in locations) {
             //     var city = locations[prov];
             //     for (var attr in city) {
-            for (key in locations["江苏"]["南京"]) {
-                if (key !== "index") {
-                    buf[locations["江苏"]["南京"][key].index] = this.subCategoryTemplate({dataId:key, text:key});
-                }
+            var districts = locations.data[0].children[0].children, district;
+            for (i = 0; i < districts.length; i++) {
+                buf[i] = this.subCategoryTemplate({value:districts[i].value, name:districts[i].name});
             }
-            //     }
-            // }
-            $("#search_district").append(buf.join(""));
-            this.searchRepresentation.set("city", "南京");
-            $dist = $("#search_district");
-            if (this.searchRepresentation.get("district")) {
-                $dist.find("span[data-id=noreq]").removeClass("active");
-                $dist.find("span[data-id=" + this.searchRepresentation.get("district") + "]").addClass("active");
+            $("#filter_district").append(buf.join(""));
+            this.titleObj.city = "南京";
+            $dist = $("#filter_district");
+            if (locationValue) {
+                $dist.find("span[data-value=noreq]").removeClass("active");
+                $dist.find("span[data-value=" + this.searchRepresentation.get("locationValue") + "]").addClass("active");
+                text = $("#filter_district").find("span[data-value=" + locationValue + "]").html();
+                $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue:locationValue, text:text}));
             } else {
-                $dist.find("span[data-id=noreq]").addClass("active");
+                $dist.find("span[data-value=noreq]").addClass("active");
             }
         }
     },
     courseSearch: function () {
-        app.navigate("search/" + this.searchRepresentation.toQueryString(), {trigger: false, replace: true});
-        $("#searchResultDisplayPanel").empty().append('<div class="loading"></div>');
-        $("#courseSearchResultNavigator").empty();
-        app.generalManager.findCourse(this.searchRepresentation, {
-            "success": this.renderSearchResults,
-            "error": this.renderError
-        });
-        app.storage.setSearchRepresentationCache(this.searchRepresentation, "course");
+        this.searchResultView.sr = this.searchRepresentation;
+        this.searchResultView.fetchAction(1);
     },
 
     bindEvents: function () {
         var that = this, $searchPanel = $("#searchPanel"), $searchReqs = $("#searchReqs");
         this.bindSortEvents();
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
-            that.filterResult($(e.delegateTarget), $(e.target).data("id"));
+            that.filterResult($(e.delegateTarget), $(e.target));
         });
         this.scrollSensorOn = true;
         $(document).on("scroll", function () {
@@ -210,7 +255,7 @@ var SearchView = Backbone.View.extend({
         $searchReqs.on("click", "a", function (e) {
             e.preventDefault();
             var cri = $(e.target).data("cri");
-            that.filterResult($("#filter_" + cri), "noreq");
+            that.filterResult($("#filter_" + cri), $("#filter_" + cri).find("[data-value=noreq]").removeClass("active"));
         });
 
         $("#toTop").on("click", function (e) {
@@ -221,41 +266,51 @@ var SearchView = Backbone.View.extend({
         });
     },
     bindSortEvents: function () {
-        this.searchResultView.registerSortEvent($("#time"), "startDate", "timeDesc", this,
-            function () {
-                $("#price").html("价格");
-                if (this.timeDesc) {
-                    $("#time").html("时间↓");
-                } else {
-                    $("#time").html("时间↑");
-                }
-                this.timeDesc = !this.timeDesc;
+        var that = this;
+        $("#time").on("click", function () {
+            $("#price").html("价格").removeClass("active");
+            $("#editorPick").removeClass("active");
+            if (that.timeDesc) {
+                $("#time").html("时间↓").addClass("active");
+            } else {
+                $("#time").html("时间↑").addClass("active");
+            }
+            that.searchRepresentation.set("sortBy", "startDate");
+            that.searchRepresentation.set("order", that.timeDesc ? "DESC" : "ASCE");
+            that.timeDesc = !that.timeDesc;
+            that.courseSearch();
+        });
+        $("#price").on("click", function () {
+            $("#time").html("时间").removeClass("active");
+            $("#editorPick").removeClass("active");
+            if (that.priceDesc) {
+                $("#price").html("价格↓").addClass("active");
+            } else {
+                $("#price").html("价格↑").addClass("active");
+            }
+            that.searchRepresentation.set("sortBy", "price");
+            that.searchRepresentation.set("order", that.priceDesc ? "DESC" : "ASCE");
+            that.priceDesc = !that.priceDesc;
+            that.courseSearch();
 
-                this.searchResultView.render();
-            });
-        this.searchResultView.registerSortEvent($("#price"), "price", "priceDesc", this,
-            function () {
-                $("#time").html("时间");
-                if (this.priceDesc) {
-                    $("#price").html("价格↓");
-                } else {
-                    $("#price").html("价格↑");
-                }
-                this.priceDesc = !this.priceDesc;
-                this.searchResultView.render();
-            });
-        this.searchResultView.registerSortEvent($("#editorPick"), "popularity", true, this,
-            function () {
-                $("#time").html("时间");
-                $("#price").html("价格");
-                $("#editorPick").html("爱上课推荐");
-                this.searchResultView.render();
-            });
-        this.searchResultView.registerFilterEvent($("input[name=cashback]"), this.cashbackFilter, this,
-              function () {
-                this.searchResultView.render();
-            });
+        });
+        $("#editorPick").on("click", function () {
+                $("#time").html("时间").removeClass("active");
+                $("#price").html("价格").removeClass("active");
+                $("#editorPick").html("爱上课推荐").addClass("active");
+                that.searchRepresentation.set("sortBy", undefined);
+                that.searchRepresentation.set("order", undefined);
+                this.courseSearch();
+        });
 
+        $("input[name=cashback]").on("change", function () {
+            if ($(this).prop("checked")) {
+                that.searchRepresentation.set("startCashback", 1);
+            } else {
+                that.searchRepresentation.set("startCashback", undefined);
+            }
+            that.courseSearch();
+        });
     },
     cashbackFilter: function (course) {
         var cashback = $("input[name=cashback]").prop("checked");
@@ -267,127 +322,70 @@ var SearchView = Backbone.View.extend({
             if ($(this).hasClass("active")) {
                 return;
             }
-            var dataId = $(e.target).data("id");
-            if (that.srs[dataId]) {
-                that.searchRepresentation = that.srs[dataId];
+            var dataId = $(e.target).data("value"), cv;
+            that.categoryValue[that.searchRepresentation.get("categoryValue").substr(0, 2)] = that.searchRepresentation.get("categoryValue");
+            if (that.categoryValue[dataId]) {
+                that.searchRepresentation.set("categoryValue", that.categoryValue[dataId]);
             } else {
-                that.searchRepresentation = new CourseSearchRepresentation();
-                that.searchRepresentation.set("category", dataId);
+                that.searchRepresentation.set("categoryValue", dataId);
             }
-            $(e.delegateTarget).children(".active").removeClass("active");
-            $(this).addClass("active");
-            $("#search_subCategory").children("div").addClass("hidden");
-            var $scCont = $("#search_subCategory").children("div[data-id=" + dataId + "]");
-            $scCont.removeClass("hidden");
-            if (that.searchRepresentation.get("subCategory")) {
-                $scCont.find("span[data-id=" + that.searchRepresentation.get("subCategory") + "]").addClass("active");
-                var $sscCont = $scCont.find("p[data-id=" + that.searchRepresentation.get("subCategory") + "]").removeClass("hidden");
-                if (that.searchRepresentation.get("subSubCategory")) {
-                    $sscCont.find("span[data-id=" + that.searchRepresentation.get("subSubCategory") + "]").addClass("active");
-                }
-            } else {
-                $scCont.find("span[data-id=noreq]").addClass("active");
-                $scCont.find("p").addClass("hidden");
-            }
-            $("#search_district").find(".active").removeClass("active");
-            if (that.searchRepresentation.get("district")) {
-                $("#search_district").find("span[data-id=" + that.searchRepresentation.get("district") + "]").addClass("active");
-            } else {
-                $("#search_district").find("span[data-id=noreq]").addClass("active");
-            }
-            that.srs[dataId] = that.searchRepresentation;
+            that.showCategory( that.searchRepresentation.get("categoryValue") );
             that.courseSearch();
-            document.title="找课程 | " + that.searchRepresentation.toTitleString();
-        });
-        $("#search_subCategory").on("click", ".subCategory", function (e) {
-            var $this = $(this);
-            if ($this.hasClass("active")) {
-                return;
-            }
-            $this.siblings(".subCategory").removeClass("active");
-            $(e.currentTarget).addClass("active");
-            that.searchRepresentation.set("category", $("#search_category").find(".active").data("id"));
-            var val = $this.data("id");
-            if (val === "noreq") {
-                that.searchRepresentation.set("subCategory", undefined);
-                that.searchRepresentation.set("subSubCategory", undefined);
-                $this.siblings("p").find(".active").removeClass("active");
-            } else {
-                that.searchRepresentation.set("subCategory", val);
-                that.searchRepresentation.set("subSubCategory", undefined);
-                $this.siblings("p").find(".active").removeClass("active");
-            }
-            $this.siblings("p").addClass("hidden");
-            $this.siblings("[data-id=" + val + "]").removeClass("hidden");
-            $this = null;
-            that.courseSearch();
-            document.title="找课程 | " + that.searchRepresentation.toTitleString();
-        });
-        $("#search_subCategory").on("click", ".subSubCategory", function (e) {
-            if ($(e.currentTarget).hasClass("active")) {
-                return;
-            }
-            $(this).siblings(".subSubCategory").removeClass("active");
-            $(e.currentTarget).addClass("active");
-            var val = $(this).data("id");
-            if (val === "noreq") {
-                that.searchRepresentation.set("subSubCategory", undefined);
-            } else {
-                that.searchRepresentation.set("subSubCategory", $(this).data("id"));
-            }
-            that.courseSearch();
-            document.title="找课程 | " + that.searchRepresentation.toTitleString();
-        });
 
-        $("#search_district").on("click", "span", function (e) {
-            if ($(e.currentTarget).hasClass("active")) {
-                return;
-            }
-            $(e.currentTarget).siblings(".active").removeClass("active");
-            $(e.currentTarget).addClass("active");
-            var dataId = $(e.target).data("id");
-            if (dataId === "noreq") {
-                that.searchRepresentation.set("district", undefined);
-                if (that.compareWidgetView.map) {
-                    that.compareWidgetView.map.setCenter(that.searchRepresentation.get("city") + "市");
-                    that.compareWidgetView.map.map.setZoom(9);
-                }
-            } else {
-                that.searchRepresentation.set("district", dataId);
-                if (that.compareWidgetView.map) {
-                    that.compareWidgetView.map.setCenter(that.searchRepresentation.get("city") + "市" + dataId + "区");
-                    that.compareWidgetView.map.map.setZoom(11);
-                }
-            }
-            that.courseSearch();
-            document.title="找课程 | " + that.searchRepresentation.toTitleString();
         });
     },
-    filterResult: function ($filter, dataId) {
-        if ($filter.find("span[data-id=" + dataId + "]").hasClass("active") || $filter.attr("id").indexOf("search") >= 0) {
+    filterResult: function ($filter, $target) {
+        if ($target.hasClass("active")) {
             return;
         }
         $filter.find(".active").removeClass("active");
-        $filter.find("span[data-id=" + dataId + "]").addClass("active");
-        var criteria = $filter.attr("id").split("_")[1];
+        $target.addClass("active");
+        var criteria = $filter.attr("id").split("_")[1], dataValue;
         $("a[data-cri=" + criteria + "]").remove();
-        if (dataId !== "noreq" && $filter.attr("id").indexOf("filter") > -1) {
+        dataValue = $target.data("value");
+        if (dataValue !== "noreq") {
             $("#searchReqs").append(this.reqTemplate(
-                {criteria: criteria, dataId: dataId, text: $("[data-id=" + dataId + "]").html()}
+                {criteria: criteria, dataValue: dataValue, text: $filter.find("[data-value=" + dataValue + "]").html()}
             ));
         }
-        if ($("#searchReqs").find("a").length) {
-            $("#searchReqs").removeClass("hidden");
-        } else {
-            $("#searchReqs").addClass("hidden");
-        }
-        if (criteria === "startTime") {
+        // if ($("#searchReqs").find("a").length) {
+        //     $("#searchReqs").removeClass("hidden");
+        // } else {
+        //     $("#searchReqs").addClass("hidden");
+        // }
+        if (criteria === "subCategory") {
+            if (dataValue === "noreq") {
+                this.searchRepresentation.set("categoryValue", $target.parent().data("parentvalue"));
+            } else {
+                this.searchRepresentation.set("categoryValue", dataValue);
+            }
+            $target.siblings("p").addClass("hidden");
+            $target.siblings("[data-parentvalue=" + dataValue + "]").removeClass("hidden");
+            $target = null;
+        } else if (criteria === "district") {
+            dataValue = $target.data("value");
+            if (dataValue === "noreq") {
+                this.searchRepresentation.set("locationValue", undefined);
+                if (this.compareWidgetView.map) {
+                    this.compareWidgetView.map.setCenter(this.locations.data[0].name);
+                    this.compareWidgetView.map.map.setZoom(9);
+                }
+            } else {
+                this.searchRepresentation.set("locationValue", $target.data("value"));
+                this.titleObj.district = $target.html();
+                if (this.compareWidgetView.map) {
+
+                    this.compareWidgetView.map.setCenter($target.html());
+                    this.compareWidgetView.map.map.setZoom(11);
+                }
+            }
+        } else if (criteria === "startTime") {
             var date = new Date();
             date.setDate(1);
             var month = date.getMonth();
-            if (dataId === "thisMonth") {
+            if (dataValue === "thisMonth") {
                 this.searchRepresentation.set("startDate", date);
-            } else if (dataId === "nextMonth") {
+            } else if (dataValue === "nextMonth") {
                 if (month === 11) {
                     date.setMonth(0);
                     date.setFullYear(date.getFullYear() + 1);
@@ -395,7 +393,7 @@ var SearchView = Backbone.View.extend({
                     date.setMonth(date.getMonth() + 1);
                 }
                 this.searchRepresentation.set("startDate", date);
-            } else if (dataId === "twoMonthsAfter") {
+            } else if (dataValue === "twoMonthsAfter") {
                 if (month >= 10) {
                     date.setMonth((date.getMonth() + 2) % 12);
                     date.setFullYear(date.getFullYear() + 1);
@@ -407,10 +405,12 @@ var SearchView = Backbone.View.extend({
                 this.searchRepresentation.set("startDate", undefined);
             }
         } else if (criteria === "price") {
-            if (dataId === "noreq") {
+            if (dataValue === "noreq") {
                 this.filters.price = null;
+                this.searchRepresentation.set("startPrice", undefined);
+                this.searchRepresentation.set("finishPrice", undefined);
             } else {
-                var priceRange = dataId.split("-");
+                var priceRange = dataValue.split("-");
                 var minPrice = Utilities.toInt(priceRange[0]), maxPrice;
                 if (priceRange.length === 1) {
                     maxPrice = undefined;
@@ -421,14 +421,16 @@ var SearchView = Backbone.View.extend({
                     "minPrice": minPrice,
                     "maxPrice": maxPrice
                 };
+                this.searchRepresentation.set("startPrice", minPrice);
+                this.searchRepresentation.set("finishPrice", isNaN(maxPrice) ? undefined : maxPrice);
             }
         } else if (criteria === "classMode") {
-            if (dataId === "noreq") {
+            if (dataValue === "noreq") {
                 this.filters.classSize = null;
                 this.searchRepresentation.set("startClassSize", undefined);
                 this.searchRepresentation.set("finishClassSize", undefined);
             } else {
-                var sizeRange = dataId.split("-");
+                var sizeRange = dataValue.split("-");
                 var minSize = Utilities.toInt(sizeRange[0]), maxSize;
                 if (sizeRange.length === 1) {
                     maxSize = undefined;
@@ -440,15 +442,15 @@ var SearchView = Backbone.View.extend({
                     "maxSize": maxSize
                 };
                 this.searchRepresentation.set("startClassSize", minSize);
-                this.searchRepresentation.set("finishClassSize", maxSize);
+                this.searchRepresentation.set("finishClassSize", isNaN(maxSize) ? undefined : maxSize );
             }
         } else if (criteria === "classTime") {
-            if (dataId === "noreq") {
+            if (dataValue === "noreq") {
                 this.filters.classTime = null;
                 this.searchRepresentation.set("startClassTime", undefined);
                 this.searchRepresentation.set("finishClassTime", undefined);
             } else {
-                var time = dataId.split("_"), day;
+                var time = dataValue.split("_"), day;
                 if (time.length === 2) {
                     day = time[1];
                 }
@@ -460,50 +462,8 @@ var SearchView = Backbone.View.extend({
             }
         }
         this.courseSearch();
-        this.renderSearchResults(messages, true);
         //this.searchRepresentation.set(criteria, dataId);
         //todo
-    },
-    filterClassSize: function (course) {
-        return (course.get("classSize") >= this.filters.classSize.minSize && (this.filters.classSize.maxSize ? course.get("classSize") <= this.filters.classSize.maxSize : true));
-    },
-    filterClassTime: function (course) {
-        var valid = true, start1 = course.get("startTime1"), start2 = course.get("startTime2");
-        if (this.filters.classTime.time === "morning") {
-            valid = valid && ((start1 < 1200) || (start2 < 1200));
-        } else if (this.filters.classTime.time === "afternoon") {
-            valid = valid && ((start1 >= 1200 && start1 < 1700) || (start2 >= 1200 && start2 < 1700));
-        } else {
-            valid = valid && ((start1 >= 1700) || (start2 >= 1700));
-        }
-        if (valid && this.filters.classTime.day) {
-            var week = course.get("studyDays") || [];
-            if (this.filters.classTime.day === "weekend") {
-                valid = valid && (week.contains([0, 6]));
-            } else if (this.filters.classTime.day === "weekday") {
-                valid = valid && (week.contains([1, 2, 3, 4, 5]));
-            }
-        }
-        return valid;
-    },
-    filterPrice: function (course) {
-        return (course.get("price") >= this.filters.price.minPrice && (this.filters.price.maxPrice ? course.get("price") <= this.filters.price.maxPrice : true));
-    },
-    filter: function () {
-        var messages = this.allMessages ? this.allMessages.clone() : new Courses();
-        if (this.filters.price) {
-            messages.reset(messages.filter(this.filterPrice, this));
-        }
-        if (this.filters.classSize) {
-            messages.reset(messages.filter(this.filterClassSize, this));
-        }
-        if (this.filters.classTime) {
-            messages.reset(messages.filter(this.filterClassTime, this));
-        }
-        return messages;
-    },
-    comparePrice: function (course) {
-        return course.get("price");
     },
     close: function () {
         if (!this.isClosed) {
@@ -518,6 +478,7 @@ var SearchView = Backbone.View.extend({
             $("#filterPanel").children(".filterCriteria").off();
             $("#search_category").off();
             $("#search_subCategory").off();
+            $("#filter_subCategory").off();
             this.searchResultView = null;
             $(document).off("scroll");
             $("#searchReqs").off();

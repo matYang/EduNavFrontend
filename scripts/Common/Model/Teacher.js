@@ -2,6 +2,7 @@ var Teacher = Backbone.Model.extend({
 
     defaults: function () {
         return {
+            'id': -1,
             'teacherId': -1,
             'partnerId': -1,
             'name':'',
@@ -10,7 +11,7 @@ var Teacher = Backbone.Model.extend({
             'creationTime': new Date()
         };
     },
-    idAttribute: 'teacherId',
+    idAttribute: 'id',
 
     urlRoot: Constants.origin + '/p-api/v1.0/teacher/teacher',
 
@@ -18,7 +19,8 @@ var Teacher = Backbone.Model.extend({
         var json = {};
         if ( typeof data !== 'undefined') {
             
-            json.teacherId = parseInt(data.teacherId, 10);
+            json.id = parseInt(data.id, 10);
+            json.teacherId = json.id;
             json.partnerId = parseInt(data.partnerId, 10);
             json.name = decodeURI(data.name);
 
@@ -52,7 +54,16 @@ var Teachers = Backbone.Collection.extend({
     model: Teacher,
 
     url: Constants.origin + '/api/v1.0/teacher',
-
+    start: 0,
+    count: 0,
+    total: 0,
+    parse: function (data) {
+        if (!data.data) return data;
+        this.start = data.start;
+        this.count = data.count;
+        this.total = data.total;
+        return data.data;
+    },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
         if ( typeof urlOverride !== 'undefined') {

@@ -28,46 +28,39 @@ var FrontPageView = Backbone.View.extend({
         app.generalManager.getCategories(this);
     },
     renderCategories: function(categories) {
+        //build the buttons on front page;
+
         if (!this.isClosed) {
-            var obj = {}, categoryList = [], buttonList = [], counter = 1, level2, index1, level3, index2, index3, lvl3CatList = [], lvl3counter = 0, padding = 0;
-            var cat1, cat2, cat3;
-
-            for (cat1 in categories) {
-                if (cat1 === "index") continue;
-
-                obj.lvl1Cat = cat1;
-                level2 = categories[cat1];
-                index1 = level2.index;
-                buttonList[index1] = this.buttonTemplate({dataId: cat1, index: index1+1});
-                obj.catClass = Constants.categoryClassMapper[cat1];
-                for (cat2 in level2) {
-                    if (cat2 === "index") continue;
-                    obj.categoryName = cat2;
-                    level3 = level2[cat2];
-                    index2 = level3.index;
-                    for (cat3 in level3){
-                        if (cat3 !== "index") {
-                            lvl3counter++;
-                            index3 = level3[cat3].index;
-                            lvl3CatList[index3] = this.catButtonTemplate({lv1:cat1, lv2:cat2, lv3:cat3});
-                        }
+            this.categories = categories;
+            var data = categories.data, len = data.length, i, j, k, cbuf = [], scbuf = [], tcbuf = [], children1, children2, tc="", padding, lvl3counter = 0, obj = {};
+            for ( i = 0; i < len; i++ ) {
+                cbuf[i] = this.buttonTemplate({value:data[i].value, name:data[i].name, index:i+1});
+                children1 = data[i].children || [];
+                for ( j = 0; j < children1.length; j ++) { //level 2 and level 1 index
+                    children2 = children1[j].children;
+                    for (k = 0; k < children2.length; k++) { //level 2 and level 1 index
+                        lvl3counter++;
+                        tcbuf[k] = this.catButtonTemplate({value: children2[k].value, name:children2[k].name});
                     }
-                    padding = (Constants.categoryRowMapper[cat1] - lvl3counter % Constants.categoryRowMapper[cat1])% Constants.categoryRowMapper[cat1];
+                    padding = (Constants.categoryRowMapper[data[i].name] - lvl3counter % Constants.categoryRowMapper[data[i].name])% Constants.categoryRowMapper[data[i].name];
                     while (padding) {
-                        lvl3CatList.push("<li><a> --- </a></li>");
+                        tcbuf.push("<li><a> --- </a></li>");
                         padding--;
                     }
-                    obj.catgoryList = lvl3CatList.join("");
-                    categoryList[index2] = this.lvl2Template(obj);
-                    lvl3CatList = [];
+                    obj.catgoryList = tcbuf.join("");
+                    obj.catClass = Constants.categoryClassMapper[data[i].name];
+                    obj.categoryName = children1[j].name;
+                    obj.parentName = data[i].name;
+                    obj.value = children1[j].value;
+                    obj.parentValue = data[i].value;
+                    scbuf[j] = this.lvl2Template(obj);
+                    tcbuf = [];
                     lvl3counter = 0;
                 }
-
-                $("#lv2Categories").append(categoryList.join(""));
-                lvl3CatList = [];
-                categoryList = [];
+                $("#lv2Categories").append(scbuf.join(""));
+                scbuf = [];
             }
-            $("#lv1Button").append(buttonList.join(""));
+            $("#lv1Button").append(cbuf.join(""));
             this.afterRender();
             this.bindEvents();
         }
@@ -75,42 +68,38 @@ var FrontPageView = Backbone.View.extend({
     afterRender: function () {
         //add last class to last rows of each lvl 2 category
         $("#lv2Categories").children("div").each(function (category) {
-            var rowLength = Constants.categoryRowMapper[$(this).data("parent")], list = $(this).find("li");
+            var rowLength = Constants.categoryRowMapper[$(this).data("parentname")], list = $(this).find("li"), rowNum = list.length/rowLength;
             $(this).find("li:gt(-"+(rowLength + 1)+")").addClass("last");
-            var rowNum = list.length/rowLength, stickerClass;
             $(this).addClass("c_h"+rowNum);
         });
         var activeButton = $("#lv1Button").find("a:first").addClass("active");
-        $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("id") + "]").removeClass("hidden");
+        $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("value") + "]").removeClass("hidden");
         $("#content").css("padding-bottom", 0);
     },
     bindEvents: function () {
         var that = this;
         $("#lv1Button").on("mouseover", "li", function (e) {
-            var category = $(this).data("id");
+            var category = $(this).data("value");
             $(e.delegateTarget).find(".active").removeClass("active");
             $(this).find("a").addClass("active");
             $("#lv2Categories").children(".hidden").removeClass("hidden");
             $("#lv2Categories").children("div[data-parent!=" + category + "]").addClass("hidden");
         }).on("click", "li", function (e) {
             e.preventDefault();
-            that.searchRepresentation.set("category", $(this).data("id"));
+            that.searchRepresentation.set("categoryValue", $(this).data("value"));
             app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
         });
         $("#lv2Categories").on("click", ".fleft", function (e) {
             if (e.target.tagName === "A") {
                 e.preventDefault();
-                that.searchRepresentation.set("category", $(this).parent().data("parent"));
-                that.searchRepresentation.set("subCategory", $(e.target).html());
+                that.searchRepresentation.set("categoryValue", $(this).data("value"));
                 app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
             }
         });
         $(".lv2category").on("click", "li", function (e) {
             if (e.target.tagName === "A") {
                 e.preventDefault();
-                that.searchRepresentation.set("category", $(e.currentTarget).data("lvl1"));
-                that.searchRepresentation.set("subCategory", $(e.currentTarget).data("lvl2"));
-                that.searchRepresentation.set("subSubCategory", $(e.currentTarget).data("lvl3"));
+                that.searchRepresentation.set("categoryValue", $(this).data("value"));
                 app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
             }
         });

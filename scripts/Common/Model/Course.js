@@ -1,6 +1,7 @@
 var Course = Backbone.Model.extend({
     defaults: function () {
         return {
+            'id': -1,
             'courseId': -1,
             'partnerId': undefined,
             'price': undefined,
@@ -84,7 +85,7 @@ var Course = Backbone.Model.extend({
             'partnerDistinction': undefined
         };
     },
-    idAttribute: 'courseId',
+    idAttribute: 'id',
     parse: function (data) {
         var i = 0,
             introArr = [],
@@ -93,11 +94,12 @@ var Course = Backbone.Model.extend({
             classImgArr = [],
             json = {};
         if ( typeof data !== 'undefined') {
-            json.courseId = parseInt(data.courseId, 10);
+            data.id = data.id || data.courseId;
+            json.id = parseInt(data.id, 10);
+            json.courseId = json.id;
             json.courseName = decodeURIComponent(data.courseName);
             
 
-            json.courseId = parseInt(data.courseId, 10);
             json.partnerId = parseInt(data.partnerId , 10);
             json.price = parseInt(data.price , 10);
             json.originalPrice = parseInt(data.price , 10);
@@ -325,7 +327,7 @@ var Course = Backbone.Model.extend({
         return "<td width='195' class='row_" + this.courseId + "'>";
     },
     isNew: function () {
-        return this.get("courseId") === -1;
+        return this.get("id") === -1;
     },
     _toSimpleJSON: function() {
         var json = {};
@@ -345,11 +347,18 @@ var Course = Backbone.Model.extend({
 });
 
 var Courses = Backbone.Collection.extend({
-
     model: Course,
-
     url: Constants.origin + '/api/v1.0/course',
-
+    start: 0,
+    count: 0,
+    total: 0,
+    parse: function (data) {
+        if (!data.data) return data;
+        this.start = data.start;
+        this.count = data.count;
+        this.total = data.total;
+        return data.data;
+    },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
         if (typeof urlOverride !== 'undefined') {

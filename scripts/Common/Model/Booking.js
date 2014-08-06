@@ -2,6 +2,7 @@ var Booking = Backbone.Model.extend({
 
     defaults: function () {
         return {
+            'id': -1,
             'bookingId': -1,
             'transactionId': -1,
             'userId': -1,
@@ -44,7 +45,7 @@ var Booking = Backbone.Model.extend({
         };
     },
 
-    idAttribute: 'bookingId',
+    idAttribute: 'id',
 
     urlRoot: Constants.origin + '/api/v1.0/booking/booking',
 
@@ -68,8 +69,8 @@ var Booking = Backbone.Model.extend({
 
     parse: function (data) {
         if ( typeof data !== 'undefined') {
-            data.bookingId = parseInt(data.bookingId, 10);
-            
+            data.id = parseInt(data.id, 10);
+            data.bookingId = data.id;
             data.transactionId = parseInt(data.transactionId, 10);
 
             data.userId = parseInt(data.userId, 10);
@@ -150,7 +151,7 @@ var Booking = Backbone.Model.extend({
         
         this.set("userId", app.sessionManager.sessionModel.id);
         this.set("partnerId", course.get("partnerId"));
-        this.set("courseId", course.get("courseId"));
+        this.set("courseId", course.get("id"));
         this.set("course", course);
         this.set("price", course.get("price"));
         this.set("cashbackAmount", course.get("cashback"));
@@ -162,9 +163,17 @@ var Booking = Backbone.Model.extend({
 var Bookings = Backbone.Collection.extend({
 
     model: Booking,
-
+    start: 0,
+    count: 0,
+    total: 0,
     url: Constants.origin + '/api/v1.0/booking',
-
+    parse: function (data) {
+        if (!data.data) return data;
+        this.start = data.start;
+        this.count = data.count;
+        this.total = data.total;
+        return data.data;
+    },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
         if ( typeof urlOverride !== 'undefined') {

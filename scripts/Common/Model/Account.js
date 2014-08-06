@@ -1,24 +1,22 @@
-var Coupon = Backbone.Model.extend({
+var Account = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
             'id': -1,
-            'couponId': -1,
-
-            'transactionId': -1,
-            'userId': -1,
+            'balance': 0.0,
+            'realName': undefined,
+            'lastModifiedTime': undefined,
+            'createTime': undefined,
+            'enabled': undefined,
+            'deleted': undefined,
+            'accountNumber': undefined,
             
-            'amount': 0,
-            'originalAmount': 0,
-
-            'creationTime': new Date(),
-            'expireTime': new Date(),
-            'status': EnumConfig.CouponStatus.usable,
-            'origin': 0
+            'accountHistoryList': [],
+            'withdrawList': []            
         };
     },
 
-    idAttribute: 'id',
+    idAttribute: 'creditId',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');
@@ -34,14 +32,11 @@ var Coupon = Backbone.Model.extend({
 
     parse: function (data) {
         if ( typeof data !== 'undefined') {
-            data.id = parseInt(data.id, 10);
-            data.couponId = data.id;
+            data.creditId = parseInt(data.creditId, 10);
 
-            data.transactionId = parseInt(data.transactionId, 10);
+            data.bookingId = parseInt(data.bookingId, 10);
             data.userId = parseInt(data.userId, 10);
             data.amount = parseInt(data.amount, 10);
-            data.originalAmount = parseInt(data.originalAmount, 10);
-            data.origin = parseInt(data.origin, 10);
 
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.expireTime = Utilities.castFromAPIFormat(data.expireTime);
@@ -52,11 +47,10 @@ var Coupon = Backbone.Model.extend({
     },
 
     _toJSON: function () {
-        var json = _.clone(this.attributes), date = new Date();
+        var json = _.clone(this.attributes);
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         json.expireTime = Utilities.getDateString(this.get('expireTime'));
-        json.origin = json.origin === 0 ? "注册赠送" : json.origin === 1 ? "邀请获得" : "管理员赠送";
-        json.expireSoon = ((this.get('expireTime').getTime() - date.getTime()) < 604800000 ) ? "<span>即将到期</span>" : "";
+        json.usableTime = Utilities.getDateString(this.get('usableTime'));
         return json;
     },
 
@@ -70,20 +64,11 @@ var Coupon = Backbone.Model.extend({
 
 });
 
-var Coupons = Backbone.Collection.extend({
 
-    model: Coupon,
-    start: 0,
-    count: 0,
-    total: 0,
-    url: Constants.origin + '/api/v1.0/coupon/coupon',
-    parse: function (data) {
-        if (!data.data) return data;
-        this.start = data.start;
-        this.count = data.count;
-        this.total = data.total;
-        return data.data;
-    },
+var Credits = Backbone.Collection.extend({
+
+    model: Credit,
+
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
         if ( typeof urlOverride !== 'undefined') {

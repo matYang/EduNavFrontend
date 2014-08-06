@@ -2,6 +2,7 @@ var Partner = Backbone.Model.extend({
 
     defaults: function () {
         return {
+            'id': -1,
             'partnerId': -1,
             'wholeName':'',
             'licence': '',
@@ -42,7 +43,7 @@ var Partner = Backbone.Model.extend({
             'lastLogin': new Date()
         };
     },
-    idAttribute: 'partnerId',
+    idAttribute: 'id',
 
     urlRoot: Constants.origin + '/p-api/v1.0/partner/partner',
 
@@ -52,7 +53,8 @@ var Partner = Backbone.Model.extend({
             if (data instanceof Array) {
                 data = data[0];
             }
-            json.partnerId = parseInt(data.partnerId, 10);
+            json.id = parseInt(data.id, 10);
+            json.partnerId = json.id;
             json.wholeName = decodeURI(data.wholeName);
 
             json.partnerIntro = decodeURI(data.partnerIntro);
@@ -182,7 +184,16 @@ var Partners = Backbone.Collection.extend({
     model: Partner,
 
     url: Constants.origin + '/p-api/v1.0/partner',
-
+    start: 0,
+    count: 0,
+    total: 0,
+    parse: function (data) {
+        if (!data.data) return data;
+        this.start = data.start;
+        this.count = data.count;
+        this.total = data.total;
+        return data.data;
+    },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
         if ( typeof urlOverride !== 'undefined') {

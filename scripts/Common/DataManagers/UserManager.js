@@ -124,6 +124,7 @@
 
         user.overrideUrl(ApiResource.user_user);
         user.set('userId', this.sessionManager.getId());
+        user.set('id', this.sessionManager.getId());
         user.fetch({
             dataType:'json',
 
@@ -153,6 +154,7 @@
 
         user.overrideUrl(ApiResource.user_info);
         user.set('userId', this.sessionManager.getId());
+        user.set('id', this.sessionManager.getId());
         user.save({},{
             dataType:'json',
 
@@ -356,6 +358,7 @@
         }
         newBooking.overrideUrl(ApiResource.user_booking);
         newBooking.set('bookingId', -1);
+        newBooking.set('id', -1);
         newBooking.set("course", undefined);
         newBooking.set('userId', this.sessionManager.getId());
         newBooking.save({},{

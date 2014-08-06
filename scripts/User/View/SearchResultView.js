@@ -9,16 +9,16 @@ var SearchResultView = MultiPageView.extend({
     extPn: true,
     entryHeight: 157,
     pageEntryNumber: 10,
-    actionClass: "viewDetail",
+    // actionClass: "viewDetail",
     autoHeight: true,
-    
+    truePagination: true,
     initialize: function (allMessages, messageList, compareWidget) {
         if (!this.initialized) {
-            _.bindAll(this, "bindEvents", "entryEvent", "close");
+            _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
             MultiPageView.prototype.initialize.call(this);
             this.messages = messageList || this.messages;
             this.allMessages = allMessages || this.allMessages;
-            this.compareWidget = compareWidget || this.compareWidget;
+            this.compareWidgetView = compareWidget || this.compareWidgetView;
             this.user = app.sessionManager.sessionModel;
             this.initialized = true;
         }
@@ -38,7 +38,7 @@ var SearchResultView = MultiPageView.extend({
         this.$domContainer.on("click", ".compare", function (e){
             if ($(e.target).hasClass("add") ) {
                 id = Utilities.getId($(this).attr("id"));
-                if (that.compareWidget.addCourse(that.messages.get(Utilities.toInt(id)))) {
+                if (that.compareWidgetView.addCourse(that.messages.get(Utilities.toInt(id)))) {
                     $(e.target).attr("class", "remove btn_gray").val("已加入对比");
                 } else {
                     Info.displayNotice("您最多只能同时比较四个不同的科目。");
@@ -46,10 +46,10 @@ var SearchResultView = MultiPageView.extend({
             } else {
                 $(e.target).attr("class", "add btn_g").val("+对比");
                 id = Utilities.getId($(this).attr("id"));
-                that.compareWidget.removeCourse(Utilities.toInt(id));
+                that.compareWidgetView.removeCourse(Utilities.toInt(id));
             }
 
-        }).on("click", ".courseTitle,.blank", function (e) {
+        }).on("click", ".blank", function (e) {
             e.preventDefault();
             id = Utilities.getId($(this).attr("id"));
             app.navigate("course/" + id, true);
@@ -68,14 +68,21 @@ var SearchResultView = MultiPageView.extend({
         return course.get("price");
     },
 
-    entryEvent: function (courseId) {
-        app.navigate("course/" + courseId, true);
-    },
-    fetchAction: function () {
+    // entryEvent: function (courseId) {
+    //     app.navigate("course/" + courseId, true);
+    // },
+    fetchAction: function (page) {
+        this.sr.set("start", (page-1)*this.pageEntryNumber );
+        this.sr.set("count", this.pageEntryNumber );
+        this.currentPage = page;
+        app.navigate("search/" + this.sr.toQueryString(), {trigger: false, replace: true});
+        $("#searchResultDisplayPanel").empty().append('<div class="loading"></div>');
+        $("#courseSearchResultNavigator").empty();
         app.generalManager.findCourse(this.sr, {
             success: this.renderSearchResults,
             error: this.renderError
         });
+        app.storage.setSearchRepresentationCache(this.searchRepresentation, "course");
     },
     renderError: function (data) {
         if (!this.isClosed) {
@@ -86,22 +93,21 @@ var SearchResultView = MultiPageView.extend({
         if (!this.isClosed) {
             //prevent memory leaks
             if (typeof BMap !== "undefined" && !this.compareWidgetView.map) {
-                app.searchView.compareWidgetView.renderMap();
+                this.compareWidgetView.renderMap();
             }
-            if (app.searchView.compareWidgetView.map) {
-                app.searchView.compareWidgetView.map.removeAllMarkers();
+            if (this.compareWidgetView.map) {
+                this.compareWidgetView.map.removeAllMarkers();
             }
-            searchResults = searchResults || new Courses();
-            this.allMessages.reset(this.allMessages.toArray());
-            this.messages.reset(searchResults.toArray());
+            searchResults = data || new Courses();
+            this.allMessages = searchResults;
+            this.messages = searchResults;
             $("#resultNum").html(searchResults.length);
             for (i = 0; i < searchResults.length; i++) {
-                if (app.searchView.compareWidgetView.map) {
-                    app.searchView.compareWidgetView.map.getLatLng(searchResults.at(i).get("location"), searchResults.at(i).get("instName"));
+                if (this.compareWidgetView.map) {
+                    this.compareWidgetView.map.getLatLng(searchResults.at(i).get("location"), searchResults.at(i).get("instName"));
                 }
             }
             this.startIndex = 0;
-            this.currentPage = 1;
             this.render();
         }
     },
