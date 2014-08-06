@@ -12,7 +12,7 @@ var Course = Backbone.Model.extend({
             'classSize': undefined,
             'cashback': undefined,
             'popularity': undefined,
-            
+
             'creationTime': new Date(),
             'startDate': new Date(),
             'finishDate': new Date(),
@@ -36,8 +36,8 @@ var Course = Backbone.Model.extend({
             'province': undefined,
             'city': undefined,
             'district': undefined,
-			'reference': undefined,
-            
+            'reference': undefined,
+
             'courseIntro': undefined,
             'quiz': undefined,
             'certification': undefined,
@@ -66,7 +66,7 @@ var Course = Backbone.Model.extend({
             'bonusService': undefined,
             'downloadMaterials': undefined,
             'teachingMaterialFee': undefined,
-            
+
             'teachingMethod': undefined,
 
             'status': undefined,
@@ -93,42 +93,42 @@ var Course = Backbone.Model.extend({
             imgArr = [],
             classImgArr = [],
             json = {};
-        if ( typeof data !== 'undefined') {
+        if (typeof data !== 'undefined') {
             data.id = data.id || data.courseId;
             json.id = parseInt(data.id, 10);
             json.courseId = json.id;
             json.courseName = decodeURIComponent(data.courseName);
-            
 
-            json.partnerId = parseInt(data.partnerId , 10);
-            json.price = parseInt(data.price , 10);
-            json.originalPrice = parseInt(data.price , 10);
-            json.courseHourNum = parseInt(data.courseHourNum , 10);
-            json.courseHourLength = parseInt(data.courseHourLength , 10);
 
-            json.classSize = parseInt(data.classSize , 10);
-            json.cashback = parseInt(data.cashback , 10);
-            json.popularity = parseInt(data.popularity , 10);
-            json.bookingType = parseInt(data.bookingType , 10);
+            json.partnerId = parseInt(data.partnerId, 10);
+            json.price = parseInt(data.price, 10);
+            json.originalPrice = parseInt(data.price, 10);
+            json.courseHourNum = parseInt(data.courseHourNum, 10);
+            json.courseHourLength = parseInt(data.courseHourLength, 10);
+
+            json.classSize = parseInt(data.classSize, 10);
+            json.cashback = parseInt(data.cashback, 10);
+            json.popularity = parseInt(data.popularity, 10);
+            json.bookingType = parseInt(data.bookingType, 10);
 
             json.startUponArrival = parseInt(data.startUponArrival, 10);
-            json.cutoffDate =  Utilities.castFromAPIFormat(data.cutoffDate);
+            json.cutoffDate = Utilities.castFromAPIFormat(data.cutoffDate);
             json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             json.startDate = Utilities.castFromAPIFormat(data.startDate);
             json.finishDate = Utilities.castFromAPIFormat(data.finishDate);
             json.noRefundDate = Utilities.castFromAPIFormat(data.noRefundDate);
             json.cashbackDate = Utilities.castFromAPIFormat(data.cashbackDate);
 
-            json.startTime1 = parseInt(data.startTime1 , 10);
-            json.finishTime1 = parseInt(data.finishTime1 , 10);
-            json.startTime2 = parseInt(data.startTime2 , 10);
-            json.finishTime2 = parseInt(data.finishTime2 , 10);
+            json.startTime1 = parseInt(data.startTime1, 10);
+            json.finishTime1 = parseInt(data.finishTime1, 10);
+            json.startTime2 = parseInt(data.startTime2, 10);
+            json.finishTime2 = parseInt(data.finishTime2, 10);
 
             json.category = decodeURIComponent(data.category);
             json.subCategory = decodeURIComponent(data.subCategory);
             json.subSubCategory = decodeURIComponent(data.subSubCategory);
             json.location = decodeURIComponent(data.location);
-        	json.registraLocation = decodeURIComponent(data.registraLocation);
+            json.registraLocation = decodeURIComponent(data.registraLocation);
             json.province = decodeURIComponent(data.province);
             json.city = decodeURIComponent(data.city);
             json.district = decodeURIComponent(data.district);
@@ -151,8 +151,8 @@ var Course = Backbone.Model.extend({
             json.extracurricular = decodeURIComponent(data.extracurricular);
             json.registraPhone = decodeURIComponent(data.registraPhone);
             json.contact = decodeURIComponent(data.contact);
-			json.teachingMethod = decodeURIComponent(data.teachingMethod);
-            
+            json.teachingMethod = decodeURIComponent(data.teachingMethod);
+
             json.partnerDistinction = decodeURIComponent(data.partnerDistinction);
             json.outline = decodeURIComponent(data.outline);
             json.goal = decodeURIComponent(data.goal);
@@ -171,7 +171,7 @@ var Course = Backbone.Model.extend({
             if (data.classPhotoList) {
                 for (i = 0; i < data.classPhotoList.length; i++) {
                     classImgArr[i] = new Photo(data.classPhotoList[i], {parse: true});
-                } 
+                }
                 json.classPhotoList = classImgArr;
             }
             if (data.teacherList) {
@@ -198,7 +198,7 @@ var Course = Backbone.Model.extend({
         json.finishTime2 = Math.floor(json.finishTime2 / 100) + ":" + ((json.finishTime2 % 100 < 10) ? "0" + json.finishTime2 % 100 : json.finishTime2 % 100);
         if (json.studyDays) {
             studyDays = "每周";
-            for (i = 0; i < json.studyDays.length; i++ ) {
+            for (i = 0; i < json.studyDays.length; i++) {
                 studyDays = studyDays + Constants.weekDayArray[json.studyDays [i]];
                 if (i < json.studyDays.length - 1) {
                     studyDays += ", ";
@@ -206,7 +206,7 @@ var Course = Backbone.Model.extend({
             }
             json.studyDays = studyDays;
         }
-        json.studyDaysNote =json.studyDaysNote ? "(" + json.studyDaysNote + ")" : "" ;
+        json.studyDaysNote = json.studyDaysNote ? "(" + json.studyDaysNote + ")" : "";
         if (json.teacherList) {
             for (i = 0; i < json.teacherList.length; i++) {
                 if (json.teacherList[i] instanceof Teacher) {
@@ -271,8 +271,8 @@ var Course = Backbone.Model.extend({
         json.passAgreement = (json.passAgreement);
         json.extracurricular = (json.extracurricular);
         json.registraPhone = (json.registraPhone);
-		json.contact = (json.contact);
-		json.teachingMethod = (json.teachingMethod);
+        json.contact = (json.contact);
+        json.teachingMethod = (json.teachingMethod);
 
         json.partnerDistinction = (json.partnerDistinction);
         json.outline = (json.outline);
@@ -296,7 +296,7 @@ var Course = Backbone.Model.extend({
                     classImgArr[i] = json.classPhotoList[i];
 
                 }
-            } 
+            }
             json.classPhotoList = classImgArr;
         }
         if (json.teacherList) {
@@ -309,7 +309,7 @@ var Course = Backbone.Model.extend({
             }
             json.teacherList = imgArr;
         }
-        json.logoUrl = Component(json.logoUrl);
+        json.logoUrl = (json.logoUrl);
         json.instName = (json.instName);
         json.wholeName = (json.wholeName);
         return json;
@@ -329,7 +329,7 @@ var Course = Backbone.Model.extend({
     isNew: function () {
         return this.get("id") === -1;
     },
-    _toSimpleJSON: function() {
+    _toSimpleJSON: function () {
         var json = {};
         json.courseId = this.get("courseId");
         json.courseName = this.get("courseName");
