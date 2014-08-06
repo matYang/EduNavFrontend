@@ -6,8 +6,8 @@
         /*---------------  API level constants   --------------*/
         var api_modules = {
 
-            rootPrefix: Constants.origin + (C_ENV_VAR === 'TEST' ? '/test-api' : '/api'),
-            partnerRootPrefix: Constants.origin + (C_ENV_VAR === 'TEST' ? '/test-p-api' : '/p-api'),
+            rootPrefix: Constants.origin +  '/api',
+            partnerRootPrefix: Constants.origin + '/p-api',
             versionPrefix: '/v2',
 
             moduleResource: {
