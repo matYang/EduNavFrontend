@@ -188,14 +188,14 @@
             case EnumConfig.ModuleIdentifier.user:
                 url = ApiResource.user_logout;
                 break;
-
-            case EnumConfig.ModuleIdentifier.partner:
-                url = ApiResource.partner_logout;
-                break;
-
-            case EnumConfig.ModuleIdentifier.admin:
-                url = AdminApiResource.admin_logout;
-                break;
+//
+//            case EnumConfig.ModuleIdentifier.partner:
+//                url = ApiResource.partner_logout;
+//                break;
+//
+//            case EnumConfig.ModuleIdentifier.admin:
+//                url = AdminApiResource.admin_logout;
+//                break;
 
             default:
                 throw new Error('fetchSession模块识别失败');
@@ -203,7 +203,7 @@
         this.sessionModel.overrideUrl(url);
         $.ajax({
             type: 'PUT',
-            url: url + "/" + this.sessionModel.id,
+            url: url.format(this.sessionModel.id),
             dataType: 'json',
             success: function(data){
                 self.sessionModel.set(self.sessionModel.idAttribute, -1);

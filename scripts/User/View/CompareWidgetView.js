@@ -54,11 +54,13 @@ var CompareWidgetView = Backbone.View.extend({
             e.preventDefault();
             app.navigate("course/" + Utilities.getId($(e.target).parent().parent().attr("id")), true);
         });
+        /*切换窗口时从localstorage中提取对比课程进行同步*/
         $(window).on("focus", function () {
             if (that.isClosed) {
                 return;
             }
             var idList = app.storage.getCoursesToCompare(), i;
+            //如果数据不同则重新渲染
             if (!that.courseIds.compare(idList)) {
                 that.courseIds = idList;
                 that.reload = true;

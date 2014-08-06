@@ -88,7 +88,7 @@
         }
         $.ajax({
             type: "POST",
-            url: ApiResource.user_user,
+            url: ApiResource.user_register,
             dataType: "json",
             async: true,
             data: JSON.stringify(newUser),
@@ -122,7 +122,7 @@
             return;
         }
 
-        user.overrideUrl(ApiResource.user_user);
+        user.overrideUrl(ApiResource.user_register);
         user.set('userId', this.sessionManager.getId());
         user.set('id', this.sessionManager.getId());
         user.fetch({
@@ -187,7 +187,7 @@
 
         $.ajax({
             type: 'GET',
-            url: ApiResource.user_changePassword + '/' + self.sessionManager.getId(),
+            url: ApiResource.user_changePassword.format(self.sessionManager.getId()),
             dataType: 'json',
             contentType: 'application/json',
             success: function(data){
@@ -221,7 +221,7 @@
         opt.authCode = opt.authCode.toUpperCase();
         $.ajax({
             type: 'PUT',
-            url: ApiResource.user_changePassword + '/' + self.sessionManager.getId(),
+            url: ApiResource.user_changePassword.format(self.sessionManager.getId()),
             data: JSON.stringify(opt),
             dataType: 'text',
             contentType: 'application/json',

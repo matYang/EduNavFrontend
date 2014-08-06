@@ -22,12 +22,12 @@
                 'user': {
                     findSession: '/findSession',
                     smsVerification: '/smsVerification',
-                    user: '/user',
-                    changePassword: '/changePassword',
-                    info: "/info",
+                    register: '/registration',
+                    changePassword: '{0}/changePassword',
+                    info: "",
                     changeCell: '/changeCell',
                     login: '/login/phone', //use phone number to login
-                    logout: '/logout', //todo /{id}/logout
+                    logout: '{0}/logout', //todo /{id}/logout
                     forgetPassword: '/forgetPassword'
                 },
 
@@ -60,7 +60,7 @@
                 
                 user_findSession: api_maker(api_modules.rootPrefix, 'user', 'findSession'), //GET added to session manaegr
                 user_smsVerification: api_maker(api_modules.rootPrefix, 'user', 'smsVerification'),
-                user_user: api_maker(api_modules.rootPrefix, 'user', 'user'), //GET and POST added to user manager
+                user_register: api_maker(api_modules.rootPrefix, 'user', 'register'), //GET and POST added to user manager
                 user_changePassword: api_maker(api_modules.rootPrefix, 'user', 'changePassword'),
                 user_info: api_maker(api_modules.rootPrefix, 'user', 'info'),
                 user_changeCell: api_maker(api_modules.rootPrefix, 'user', 'changeCell'),
