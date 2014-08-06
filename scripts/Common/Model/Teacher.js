@@ -39,9 +39,9 @@ var Teacher = Backbone.Model.extend({
     toJSON: function () {
         var json = _.clone(this.attributes);
 
-        json.name = encodeURI(json.name);
-        json.intro = encodeURI(json.intro);
-        json.imgUrl = encodeURIComponent(json.imgUrl);
+        json.name = (json.name);
+        json.intro = (json.intro);
+        json.imgUrl = (json.imgUrl);
 
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         return json;

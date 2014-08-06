@@ -51,7 +51,7 @@ var Transaction = Backbone.Model.extend({
     toJSON: function () {
         var json = _.clone(this.attributes);
 
-        json.creationTime = encodeURI(Utilities.castToAPIFormat(this.get('creationTime')));
+        json.creationTime = (Utilities.castToAPIFormat(this.get('creationTime')));
         return json;
     }
 

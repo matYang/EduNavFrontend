@@ -243,49 +243,49 @@ var Course = Backbone.Model.extend({
         json.noRefundDate = Utilities.castToAPIFormat(this.get('noRefundDate'));
         json.cashbackDate = Utilities.castToAPIFormat(this.get('cashbackDate'));
 
-        json.category = encodeURI(json.category);
-        json.subCategory = encodeURI(json.subCategory);
-        json.subSubCategory = encodeURI(json.subSubCategory);
-        json.location = encodeURI(json.location);
-        json.registraLocation = encodeURI(json.registraLocation);
+        json.category = (json.category);
+        json.subCategory = (json.subCategory);
+        json.subSubCategory = (json.subSubCategory);
+        json.location = (json.location);
+        json.registraLocation = (json.registraLocation);
 
-        json.province = encodeURI(json.province);
-        json.city = encodeURI(json.city);
-        json.district = encodeURI(json.district);
-        json.reference = encodeURI(json.reference);
+        json.province = (json.province);
+        json.city = (json.city);
+        json.district = (json.district);
+        json.reference = (json.reference);
 
-        json.courseIntro = encodeURI(json.courseIntro);
-        json.quiz = encodeURI(json.quiz);
-        json.certification = encodeURI(json.certification);
-        json.openCourseRequirement = encodeURI(json.openCourseRequirement);
-        json.suitableStudent = encodeURI(json.suitableStudent);
-        json.prerequest = encodeURI(json.prerequest);
-        json.highScoreReward = encodeURI(json.highScoreReward);
-        json.courseName = encodeURI(json.courseName);
-        json.studyDaysNote = encodeURI(json.studyDaysNote);
-        json.partnerIntro = encodeURI(json.partnerIntro);
-        json.teachingMaterialIntro = encodeURI(json.teachingMaterialIntro);
+        json.courseIntro = (json.courseIntro);
+        json.quiz = (json.quiz);
+        json.certification = (json.certification);
+        json.openCourseRequirement = (json.openCourseRequirement);
+        json.suitableStudent = (json.suitableStudent);
+        json.prerequest = (json.prerequest);
+        json.highScoreReward = (json.highScoreReward);
+        json.courseName = (json.courseName);
+        json.studyDaysNote = (json.studyDaysNote);
+        json.partnerIntro = (json.partnerIntro);
+        json.teachingMaterialIntro = (json.teachingMaterialIntro);
 
-        json.qualityAssurance = encodeURI(json.qualityAssurance);
-        json.questionBank = encodeURI(json.questionBank);
-        json.passAgreement = encodeURI(json.passAgreement);
-        json.extracurricular = encodeURI(json.extracurricular);
-        json.registraPhone = encodeURI(json.registraPhone);
-		json.contact = encodeURI(json.contact);
-		json.teachingMethod = encodeURI(json.teachingMethod);
+        json.qualityAssurance = (json.qualityAssurance);
+        json.questionBank = (json.questionBank);
+        json.passAgreement = (json.passAgreement);
+        json.extracurricular = (json.extracurricular);
+        json.registraPhone = (json.registraPhone);
+		json.contact = (json.contact);
+		json.teachingMethod = (json.teachingMethod);
 
-        json.partnerDistinction = encodeURI(json.partnerDistinction);
-        json.outline = encodeURI(json.outline);
-        json.goal = encodeURI(json.goal);
-        json.classTeacher = encodeURI(json.classTeacher);
-        json.teachingAndExercise = encodeURI(json.teachingAndExercise);
-        json.questionSession = encodeURI(json.questionSession);
-        json.trail = encodeURI(json.trail);
-        json.assignments = encodeURI(json.assignments);
-        json.marking = encodeURI(json.marking);
-        json.bonusService = encodeURI(json.bonusService);
-        json.downloadMaterials = encodeURI(json.downloadMaterials);
-        json.teachingMaterialFee = encodeURI(json.teachingMaterialFee);
+        json.partnerDistinction = (json.partnerDistinction);
+        json.outline = (json.outline);
+        json.goal = (json.goal);
+        json.classTeacher = (json.classTeacher);
+        json.teachingAndExercise = (json.teachingAndExercise);
+        json.questionSession = (json.questionSession);
+        json.trail = (json.trail);
+        json.assignments = (json.assignments);
+        json.marking = (json.marking);
+        json.bonusService = (json.bonusService);
+        json.downloadMaterials = (json.downloadMaterials);
+        json.teachingMaterialFee = (json.teachingMaterialFee);
 
         json.partnerQualification = parseInt(json.partnerQualification, 10);
         if (json.classPhotoList) {
@@ -309,9 +309,9 @@ var Course = Backbone.Model.extend({
             }
             json.teacherList = imgArr;
         }
-        json.logoUrl = encodeURIComponent(json.logoUrl);
-        json.instName = encodeURI(json.instName);
-        json.wholeName = encodeURI(json.wholeName);
+        json.logoUrl = Component(json.logoUrl);
+        json.instName = (json.instName);
+        json.wholeName = (json.wholeName);
         return json;
     },
     /* generate object with html wrapping as values, these values will append to the compare table one by one */

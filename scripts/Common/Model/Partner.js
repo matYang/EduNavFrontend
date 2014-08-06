@@ -132,13 +132,13 @@ var Partner = Backbone.Model.extend({
     toJSON: function () {
         var json = _.clone(this.attributes);
 
-        json.wholeName = encodeURI(json.wholeName);
-        json.licence = encodeURI(json.licence);
-        json.organizationNum = encodeURI(json.organizationNum);
-        json.reference = encodeURI(json.reference);
-        json.password = encodeURI(json.password);
-        json.instName = encodeURI(json.instName);
-        json.logoUrl = encodeURI(json.logoUrl);
+        json.wholeName = (json.wholeName);
+        json.licence = (json.licence);
+        json.organizationNum = (json.organizationNum);
+        json.reference = (json.reference);
+        json.password = (json.password);
+        json.instName = (json.instName);
+        json.logoUrl = (json.logoUrl);
         if (json.classPhotoList) {
             for (var i = 0; i < json.classPhotoList.length; i++ ) {
                 if (json.classPhotoList[i] instanceof Photo) {
@@ -155,25 +155,25 @@ var Partner = Backbone.Model.extend({
         }
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
-        json.liscenceImgUrl = encodeURI(json.liscenceImgUrl);
-        json.taxRegistrationImgUrl = encodeURI(json.taxRegistrationImgUrl);
-        json.eduQualificationImgUrl = encodeURI(json.eduQualificationImgUrl);
-        json.hqLocation = encodeURI(json.hqLocation);
+        json.liscenceImgUrl = (json.liscenceImgUrl);
+        json.taxRegistrationImgUrl = (json.taxRegistrationImgUrl);
+        json.eduQualificationImgUrl = (json.eduQualificationImgUrl);
+        json.hqLocation = (json.hqLocation);
         if (json.subLocations) {
             for (i = 0; i < json.subLocations.length; i++) {
-                json.subLocations[i] = encodeURI(json.subLocations[i]);
+                json.subLocations[i] = (json.subLocations[i]);
             }
         }
         json.uniformRegistraLocation = (json.uniformRegistraLocation == true);
-        json.hqContact = encodeURI(json.hqContact);
-        json.hqContactPhone = encodeURI(json.hqContactPhone);
-        json.hqContactSecOpt = encodeURI(json.hqContactSecOpt);
-        json.courseContact = encodeURI(json.courseContact);
-        json.courseContactPhone = encodeURI(json.courseContactPhone);
-        json.studentInqueryPhone = encodeURI(json.studentInqueryPhone);
-        json.registraContact = encodeURI(json.registraContact);
-        json.registraContactPhone = encodeURI(json.registraContactPhone);
-        json.registraContactFax = encodeURI(json.registraContactFax);
+        json.hqContact = (json.hqContact);
+        json.hqContactPhone = (json.hqContactPhone);
+        json.hqContactSecOpt = (json.hqContactSecOpt);
+        json.courseContact = (json.courseContact);
+        json.courseContactPhone = (json.courseContactPhone);
+        json.studentInqueryPhone = (json.studentInqueryPhone);
+        json.registraContact = (json.registraContact);
+        json.registraContactPhone = (json.registraContactPhone);
+        json.registraContactFax = (json.registraContactFax);
         return json;
     }
 });

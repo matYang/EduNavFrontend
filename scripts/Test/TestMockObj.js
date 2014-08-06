@@ -1,7 +1,6 @@
 var longText = "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊";
 testMockObj = {
-    testMode: (C_ENV_VAR === "LOCAL") ? false : false,
-    testAdmin: (new Admin()).set("name", "admin1").set("phone", "2260000000"),
+    testMode: (C_ENV_VAR === "LOCAL") ? true : false,
     testUser: new User(),
     testPartners: new Partners(),
     testPartner1: new Partner().set("id", 1),
@@ -287,6 +286,4 @@ testMockObj.testBooking12.set("course", testMockObj.testCourse6);
 testMockObj.testUser.set("bookingList", testMockObj.testBookings);
 testMockObj.testUser.set("couponList", testMockObj.testCoupons);
 testMockObj.testUser.set("creditList", testMockObj.testCredits);
-testMockObj[EnumConfig.ModuleIdentifier.admin] = testMockObj.testAdmin;
-testMockObj[EnumConfig.ModuleIdentifier.partner] = testMockObj.testPartner;
 testMockObj[EnumConfig.ModuleIdentifier.user] = testMockObj.testUser;

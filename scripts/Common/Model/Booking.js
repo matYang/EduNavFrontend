@@ -128,11 +128,11 @@ var Booking = Backbone.Model.extend({
     toJSON: function () {
         var json = _.clone(this.attributes);
         
-        json.reference = decodeURI(json.reference);
-        json.name = encodeURI(json.name);
-        json.phone = encodeURI(json.phone);
-        json.email = encodeURIComponent(json.email);
-        json.note = encodeURI(json.note);
+        json.reference = (json.reference);
+        json.name = (json.name);
+        json.phone = (json.phone);
+        json.email = (json.email);
+        json.note = (json.note);
 
         json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
         

@@ -97,12 +97,12 @@ var User = Backbone.Model.extend({
 
     toJSON: function () {
         var json = _.clone(this.attributes);
-        json.name = encodeURI(json.name);
-        json.phone = encodeURI(json.phone);
-        json.password = json.password;
-        json.email = encodeURI(json.email);
+        json.name = (json.name);
+        json.phone = (json.phone);
+        json.password = (json.password);
+        json.email = (json.email);
 
-        json.appliedInvitationalCode = encodeURI(json.appliedInvitationalCode);
+        json.appliedInvitationalCode = (json.appliedInvitationalCode);
         
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));

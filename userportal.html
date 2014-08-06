@@ -204,7 +204,7 @@
 
     <!--筛选结果-->
 
-    <div id="searchReqs" class="blank1 unselectable hidden">
+    <div id="searchReqs" class="blank1 unselectable">
         <span><span id="resultNum"></span>个课程满足以下条件</span>
     </div>
 
@@ -500,7 +500,7 @@
         <% } else { %>            
             <span class="sign confirmed">
         <% } %>            
-            <%= EnumConfig.BookingStatusUserText[status] %></span>
+            <%= EnumConfig.BookingStatusText[status] %></span>
         </div>
     </div>
 </script>
@@ -515,14 +515,14 @@
                     <p><label>订单号：<%= reference %></label> <span>(<%= creationTime %>预订)</span></p>
 
                     <p><label>状<s></s>态：<b class="F_green" id="bookingStatus"><%=
-                        EnumConfig.BookingStatusUserText[status] %></b></label></p>
+                        EnumConfig.BookingStatusText[status] %></b></label></p>
                 </div>
                 <p class="fright price"><label>总金额：</label><span class="sign">￥</span><%= price %></p>
             </div>
             <div class="row1">
                 <div id="process">
                     <% if ( status === 2 || status === 3 || status === 5 || status === 9 || status === 11 ) { %>
-                    <p><%= EnumConfig.BookingStatusUserText[status] %></p>
+                    <p><%= EnumConfig.BookingStatusText[status] %></p>
                     <% } else { %>
                     <% if ( status >= 0) { %>
                     <div class="node fore ready">
@@ -645,7 +645,7 @@
     <div class="row clearfix">
         <div id="process" class="fright">
             <% if ( status === 2 || status === 3 || status === 5 || status === 9 || status === 11 ) { %>
-            <p><%= EnumConfig.BookingStatusUserText[status] %></p>
+            <p><%= EnumConfig.BookingStatusText[status] %></p>
             <% } else { %>
             <% if ( status >= 0) { %>
             <div class="node fore ready">
@@ -741,7 +741,7 @@
         <div class="row1" style="min-height:130px">
             <div class="field">
                 <label>状<s></s>态</label>
-                <%= EnumConfig.BookingStatusUserText[status] %>
+                <%= EnumConfig.BookingStatusText[status] %>
             </div>
             <div class="field">
                 <label>订单号</label>

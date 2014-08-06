@@ -6,9 +6,7 @@ var getEnvironmentServerOrigin = function () {
     var isOnLocal = C_ENV_VAR === 'LOCAL';
 
     return {
-        'httpOrigin': isOnLocal ? 'http://a.ishangke.cn' : '..',
-        'partnerOrigin': isOnLocal ? 'http://a.ishangke.cn' : '..',
-        'adminOrigin': isOnLocal ? 'http://admin.ishangke.cn:8017' : '..',
+        'httpOrigin': isOnLocal ? 'http://114.215.181.254:8080/UserWeb' : '..',
         'env': isOnLocal
     };
 
@@ -18,7 +16,6 @@ var Constants = {
 
 
     origin: getEnvironmentServerOrigin().httpOrigin,
-    adminOrigin: getEnvironmentServerOrigin().adminOrigin,
     isOnLocal: getEnvironmentServerOrigin().isOnLocal,
 
     miliSecInDay: 86400000,
@@ -44,10 +41,6 @@ var Constants = {
         "infoModal", "banner",
         "aboutUs", "joinUs", "contactUs", "advise", "help"
     ],
-
-    partnerTemplateResource: [
-    ],
-
     gender: {
         "male": 0,
         "female": 1,

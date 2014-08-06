@@ -38,9 +38,9 @@ var Photo = Backbone.Model.extend({
     toJSON: function () {
         var json = _.clone(this.attributes);
 
-        json.title = encodeURI(json.title);
-        json.description = encodeURI(json.description);
-        json.imgUrl = encodeURIComponent(json.imgUrl);
+        json.title = (json.title);
+        json.description = (json.description);
+        json.imgUrl = (json.imgUrl);
 
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         return json;

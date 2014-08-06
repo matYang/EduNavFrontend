@@ -135,7 +135,7 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
     },
     render: function (courses) {
         //load local storage
-        debugger;
+//        debugger;
         
         if (app.courseDetailView && !app.courseDetailView.isClosed) {
             var buf = [], i;

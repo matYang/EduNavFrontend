@@ -28,7 +28,7 @@ var MyPageDashboardView = Backbone.View.extend({
         $("#mypage_content").css("border", "none");
     },
     filterUnconfirmed: function(booking){
-        var state = EnumConfig.BookingStatusUserText[booking.get("status")];
+        var state = EnumConfig.BookingStatusText[booking.get("status")];
         return (state === '预订成功' || state === '等待确认');
     },
     bindEvents: function () {},

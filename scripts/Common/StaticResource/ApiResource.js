@@ -8,14 +8,14 @@
 
             rootPrefix: Constants.origin + (C_ENV_VAR === 'TEST' ? '/test-api' : '/api'),
             partnerRootPrefix: Constants.origin + (C_ENV_VAR === 'TEST' ? '/test-p-api' : '/p-api'),
-            versionPrefix: '/v1.0',
+            versionPrefix: '/v2',
 
             moduleResource: {
                 'partner': '/partner',
                 'user': '/user',
                 'booking': '/booking',
                 'general': '/general',
-                'coupon': '/coupon',
+                'coupon': '/coupon'
             },
 
             moduleSufixResource: {
@@ -35,24 +35,13 @@
                     changePassword: '/changePassword',
                     info: "/info",
                     changeCell: '/changeCell',
-                    login: '/login',
-                    logout: '/logout',
-                    forgetPassword: '/forgetPassword',
-                },
-
-                'partner': {
-                    findSession: '/findSession',
-                    login: '/login',
-                    logout: '/logout',
-                    partner: '/partner',
-                    teacher: '/teacher',
-                    photo: '/photo',
-                    forgetPassword: '/forgetPassword',
-                    changePassword: '/changePassword',
+                    login: '/login/phone', //use phone number to login
+                    logout: '/logout', //todo /{id}/logout
+                    forgetPassword: '/forgetPassword'
                 },
 
                 'booking': {
-                    booking: '/booking',
+                    booking: '/booking'
                 },
                 'course': {
                     course: '/course'
@@ -86,15 +75,7 @@
                 user_logout: api_maker(api_modules.rootPrefix, 'user', 'logout'), //GET added to session manager
                 user_forgetPassword: api_maker(api_modules.rootPrefix, 'user', 'forgetPassword'),
                 user_booking: api_maker(api_modules.rootPrefix, 'booking', 'booking'),
-                user_coupon: api_maker(api_modules.rootPrefix, 'coupon', 'coupon'),
-
-                partner_findSession: api_maker(api_modules.partnerRootPrefix, 'partner', 'findSession'),
-                partner_login: api_maker(api_modules.partnerRootPrefix, 'partner', 'login'), //GET dded to session manager
-                partner_logout: api_maker(api_modules.partnerRootPrefix, 'partner', 'logout'), //GET added to session manager
-                partner_partner: api_maker(api_modules.partnerRootPrefix, 'partner', 'partner'),
-                partner_forgetPassword: api_maker(api_modules.partnerRootPrefix, 'partner', 'forgetPassword'),
-                partner_changePassword: api_maker(api_modules.partnerRootPrefix, 'partner', 'changePassword'),
-                partner_course: api_maker(api_modules.partnerRootPrefix, 'course', 'course'), //GET dded to session manager
+                user_coupon: api_maker(api_modules.rootPrefix, 'coupon', 'coupon')
             };
         };
 

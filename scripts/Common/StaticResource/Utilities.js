@@ -10,6 +10,9 @@ var Utilities = {
         if (!targetDate) {
             Info.log("Utilities::getDateString invalid parameter, null or undefined");
             targetDate = new Date();
+        } else {
+            //v2 时间统一为时间戳格式 new Date(timestamp) or new Date(dateObj)
+            targetDate = new Date(targetDate);
         }
         var tempDate = new Date(), curDate = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate()), today = new Date(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate()), dayDifference = Math.floor((curDate.getTime() - today.getTime()) / Constants.miliSecInDay), time = "";
 
@@ -251,7 +254,7 @@ var Utilities = {
             return '<dd class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' + text + '</span><span class="form_tip_bottom"></span></span></dd>';
         }
         $("#" + this.get("fieldId")).addClass("wrong_color");
-        return '<dd class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' +  this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></dd>';
+        return '<dd class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' + this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></dd>';
     },
     defaultSmsRequestHandler: function ($button, $info) {
         return {
@@ -275,7 +278,7 @@ var Utilities = {
         var json = course._toJSON(), attr, comp = 0;
         for (attr in json) {
             if (json[attr]) {
-                comp+=1;
+                comp += 1;
                 if (attr === "popularity") {
                     comp += Math.round(Math.sqrt(json[attr]));
                 }

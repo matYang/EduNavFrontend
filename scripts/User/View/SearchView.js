@@ -56,20 +56,23 @@ var SearchView = Backbone.View.extend({
         }
     },
     renderCategories: function (categories) {
-        debugger;
+//        debugger;
         if (!this.isClosed) {
             this.categories = categories;
             var data = categories.data, len = data.length, i, j, k, cbuf = [], scbuf = [], tcbuf = [], children1, children2, tc="";
             if (!this.searchRepresentation.get("categoryValue")) {
                 this.searchRepresentation.set("categoryValue", data[0].value);
             }
+            //一级目录
             for ( i = 0; i < len; i++ ) {
                 cbuf[i] = this.categoryTemplate({value:data[i].value, name:data[i].name});
                 children1 = data[i].children || [];
+                //二级目录
                 for ( j = 0; j < children1.length; j ++) { //level 2 and level 1 index
                     scbuf[j] = this.subCategoryTemplate({value:children1[j].value, name:children1[j].name});
                     children2 = children1[j].children;
                     if (children2) {
+                        //三级目录
                         for (k = 0; k < children2.length; k++ ) { //level 3 and level 2 index
                             tcbuf[k] = this.subSubCategoryTemplate({value:children2[k].value, name:children2[k].name});
                         }
@@ -234,7 +237,10 @@ var SearchView = Backbone.View.extend({
     bindEvents: function () {
         var that = this, $searchPanel = $("#searchPanel"), $searchReqs = $("#searchReqs");
         this.bindSortEvents();
+
+        /*具体筛选条件的点击事件*/
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
+            //parent node and child node as params
             that.filterResult($(e.delegateTarget), $(e.target));
         });
         this.scrollSensorOn = true;
@@ -318,6 +324,7 @@ var SearchView = Backbone.View.extend({
     },
     bindSearchEvents: function () {
         var that = this;
+        /*一级目录的点击事件 data-value为两位数字*/
         $("#search_category").on("click", "li", function (e) {
             if ($(this).hasClass("active")) {
                 return;
@@ -340,19 +347,20 @@ var SearchView = Backbone.View.extend({
         }
         $filter.find(".active").removeClass("active");
         $target.addClass("active");
-        var criteria = $filter.attr("id").split("_")[1], dataValue;
+        var criteria = $filter.attr("id").split("_")[1], dataValue; //提取过滤类型 如'filter_classMode' to 'classMode'
         $("a[data-cri=" + criteria + "]").remove();
         dataValue = $target.data("value");
         if (dataValue !== "noreq") {
+            //显示当前结果的过滤条件
             $("#searchReqs").append(this.reqTemplate(
                 {criteria: criteria, dataValue: dataValue, text: $filter.find("[data-value=" + dataValue + "]").html()}
             ));
         }
-        // if ($("#searchReqs").find("a").length) {
-        //     $("#searchReqs").removeClass("hidden");
-        // } else {
-        //     $("#searchReqs").addClass("hidden");
-        // }
+        if ($("#searchReqs").find("a").length) {
+             $("#searchReqs").removeClass("hidden");
+        } else {
+             $("#searchReqs").addClass("hidden");
+        }
         if (criteria === "subCategory") {
             if (dataValue === "noreq") {
                 this.searchRepresentation.set("categoryValue", $target.parent().data("parentvalue"));
