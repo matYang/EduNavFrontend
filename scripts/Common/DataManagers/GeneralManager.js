@@ -61,7 +61,7 @@
             callback.success(testMockObj.testCourses.get(id));
             return;
         }
-        course.overrideUrl(ApiResource.general_course);
+        course.overrideUrl(ApiResource.courses);
         course.set('id', id);
         course.fetch({
             dataType:'json',
@@ -156,7 +156,7 @@
             return;
         }
 
-        searchResults.overrideUrl(ApiResource.general_course);
+        searchResults.overrideUrl(ApiResource.courses);
         searchResults.fetch({
             data: courseSearchRepresentation.toQueryString(),
             dataType:'json',

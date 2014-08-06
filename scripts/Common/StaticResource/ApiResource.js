@@ -10,14 +10,6 @@
             partnerRootPrefix: Constants.origin + '/p-api',
             versionPrefix: '/v2',
 
-            moduleResource: {
-                'partner': '/partner',
-                'user': '/user',
-                'booking': '/booking',
-                'general': '/general',
-                'coupon': '/coupon'
-            },
-
             moduleSufixResource: {
                 'general': {
                     location:"/location",
@@ -26,7 +18,6 @@
                     course:"/course",
                     courseByIdList:"/courseByIdList"
                 },
-
 
                 'user': {
                     findSession: '/findSession',
@@ -44,7 +35,7 @@
                     booking: '/booking'
                 },
                 'course': {
-                    course: '/course'
+                    course: ''
                 },
                 'coupon': {
                     coupon: "/coupon"
@@ -52,8 +43,8 @@
             }
         };
 
-        var api_maker = function (prefix, moduleName, actionName) {
-            return prefix + api_modules.versionPrefix + api_modules.moduleResource[moduleName] + api_modules.moduleSufixResource[moduleName][actionName];
+        var api_maker = function (prefix, resourceName, actionName) {
+            return prefix + api_modules.versionPrefix +'/'+ resourceName + api_modules.moduleSufixResource[resourceName][actionName];
         };
 
         var api_assembler = function () {
@@ -62,8 +53,10 @@
                 general_location: api_maker(api_modules.rootPrefix, "general", "location"),
                 general_category: api_maker(api_modules.rootPrefix, "general", "category"),
                 general_partner: api_maker(api_modules.rootPrefix, "general", "partner"),
-                general_course: api_maker(api_modules.rootPrefix, "general", "course"),
-                general_courseByIdList: api_maker(api_modules.rootPrefix, "general", "courseByIdList"), 
+
+                courses: api_maker(api_modules.rootPrefix, "course", "course"),
+
+                general_courseByIdList: api_maker(api_modules.rootPrefix, "general", "courseByIdList"),
                 
                 user_findSession: api_maker(api_modules.rootPrefix, 'user', 'findSession'), //GET added to session manaegr
                 user_smsVerification: api_maker(api_modules.rootPrefix, 'user', 'smsVerification'),
