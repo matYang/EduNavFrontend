@@ -12,8 +12,10 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             
             'startPrice': undefined,
             'finishPrice': undefined,
-            'startClassSize': undefined,
-            'finishClassSize': undefined,
+//            'startClassSize': undefined,
+//            'finishClassSize': undefined,
+            'classType':undefined,//班级类型 0，1，2，3
+
             'startCashback': undefined,
             'finishCashback': undefined,
             

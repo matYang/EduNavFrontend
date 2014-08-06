@@ -126,8 +126,9 @@ var SearchView = Backbone.View.extend({
     syncFilters: function () {
         var startPrice = this.searchRepresentation.get("startPrice"),
             finishPrice = this.searchRepresentation.get("finishPrice"),
-            startClassSize = this.searchRepresentation.get("startClassSize"),
-            finishClassSize = this.searchRepresentation.get("finishClassSize"),
+//            startClassSize = this.searchRepresentation.get("startClassSize"),
+//            finishClassSize = this.searchRepresentation.get("finishClassSize"),
+            classType = this.searchRepresentation.get("classType"),
             startDate = this.searchRepresentation.get("startDate"),
             finishDate = this.searchRepresentation.get("finishDate"),
             cashback = this.searchRepresentation.get("startCashback"),
@@ -141,11 +142,8 @@ var SearchView = Backbone.View.extend({
             $("#filter_price").find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
             $("#searchReqs").append(this.reqTemplate({criteria: "price", dataValue:value, text:text}));
         }
-        if (startClassSize !== undefined) {
-            value = startClassSize + "-";
-            if (finishClassSize !== undefined) {
-                value += finishClassSize;
-            }
+        if (classType !== undefined) {
+            value = classType;
             text = $("#filter_classMode").find("span[data-value=" + value + "]").html();
             $("#filter_classMode").find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
             $("#searchReqs").append(this.reqTemplate({criteria: "classMode", dataValue:value, text:text}));   
@@ -434,23 +432,11 @@ var SearchView = Backbone.View.extend({
             }
         } else if (criteria === "classMode") {
             if (dataValue === "noreq") {
-                this.filters.classSize = null;
-                this.searchRepresentation.set("startClassSize", undefined);
-                this.searchRepresentation.set("finishClassSize", undefined);
+                this.filters.classType = null;
+                this.searchRepresentation.set("classType", undefined);
             } else {
-                var sizeRange = dataValue.split("-");
-                var minSize = Utilities.toInt(sizeRange[0]), maxSize;
-                if (sizeRange.length === 1) {
-                    maxSize = undefined;
-                } else {
-                    maxSize = Utilities.toInt(sizeRange[1]);
-                }
-                this.filters.classSize = {
-                    "minSize": minSize,
-                    "maxSize": maxSize
-                };
-                this.searchRepresentation.set("startClassSize", minSize);
-                this.searchRepresentation.set("finishClassSize", isNaN(maxSize) ? undefined : maxSize );
+                this.filters.classType = dataValue;
+                this.searchRepresentation.set("classType", dataValue);
             }
         } else if (criteria === "classTime") {
             if (dataValue === "noreq") {
