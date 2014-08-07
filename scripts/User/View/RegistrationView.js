@@ -116,10 +116,7 @@ var RegistrationView = BaseFormView.extend({
         app.userManager.registerUser(this.model, {
             success: this.successCallback,
             error: function (data){
-                if (data && data.message) {
-                    data = data.message;
-                }
-                Info.displayNotice(data);
+                Info.displayNotice(data.responseText.message);
             }
         });
 

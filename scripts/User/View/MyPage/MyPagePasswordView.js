@@ -133,7 +133,7 @@ var MyPagePasswordView = BaseFormView.extend({
         });
     },
     passwordError: function (data) {
-        Info.displayNotice(data.message ? data.message : "密码修改失败，请重试");
+        Info.displayNotice(data.responseText.message ? data.responseText.message : "密码修改失败，请重试");
         this.clearPassword();
     },
     clearPassword: function () {
