@@ -143,7 +143,7 @@ var TopBarView = Backbone.View.extend({
                     }
                 },
                 error: function (response) {
-                    $("#credentialWrong").show().html(response.responseText || "服务器好像睡着了，请稍后再试");
+                    $("#credentialWrong").show().html(response.responseJSON || "服务器好像睡着了，请稍后再试");
                     $('#login_button').val("登 录").prop("disabled", false);
                     self.$passwordInput.val("");
                 }

@@ -30,7 +30,7 @@ var CourseDetailView = Backbone.View.extend({
 
             },
             error: function (response) {
-                Info.displayErrorPage("content", response.responseText);
+                Info.displayErrorPage("content", response.responseJSON);
             }
         });
     },

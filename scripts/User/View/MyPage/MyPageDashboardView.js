@@ -17,7 +17,7 @@ var MyPageDashboardView = Backbone.View.extend({
 
     },
     renderError: function (data) {
-        Info.displayNotice(data.responseText.message ? data.responseText.message : "订单页面加载失败，请稍后重试。");
+        Info.displayNotice(data.responseJSON.message ? data.responseJSON.message : "订单页面加载失败，请稍后重试。");
     },
     render: function (bookingList) {
         bookingList = bookingList || new Bookings();

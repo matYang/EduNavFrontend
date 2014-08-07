@@ -18,7 +18,7 @@ var BookingPayView = Backbone.View.extend({
                 app.userManager.fetchBookings(this.sr, {
                     success: this.render,
                     error: function (data) {
-                        Info.displayNotice(data.responseText.message);
+                        Info.displayNotice(data.responseJSON.message);
                     }
                 });
             }

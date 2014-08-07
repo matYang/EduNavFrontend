@@ -30,7 +30,7 @@ var MyPageView = Backbone.View.extend({
     },
 
     renderError: function (data) {
-        Info.displayErrorPage("content", data.responseText);
+        Info.displayErrorPage("content", data.responseJSON);
     },
     createChildView: function () {
         switch (this.query) {

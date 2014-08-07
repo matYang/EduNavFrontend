@@ -276,13 +276,13 @@ var Utilities = {
                 }, 120000);
             },
             error: function (response) {
-                $info.html((response && response.responseText) ? response.responseText : "验证码发送失败，请检查网络正常并重试");
+                $info.html((response && response.responseJSON) ? response.responseJSON : "验证码发送失败，请检查网络正常并重试");
                 $button.val("重新发送").prop("disabled", false);
             }
         };
     },
     defaultErrorHandler: function (response) {
-        Info.alert(response.responseText || Resources.networkErrorText);
+        Info.alert(response.responseJSON || Resources.networkErrorText);
     },
     calcCompleteness: function (course) {
         var json = course._toJSON(), attr, comp = 0;

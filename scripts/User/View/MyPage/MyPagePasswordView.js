@@ -80,7 +80,7 @@ var MyPagePasswordView = BaseFormView.extend({
         $("#gotAuthCode").removeClass("hidden");
     },
     getSmsError: function (data) {
-        $("#getAuthCodeNote").html(data.responseText ? data.responseText : "验证请求失败，请检查网络状态然后重试。").removeClass("hidden");
+        $("#getAuthCodeNote").html(data.responseJSON ? data.responseJSON : "验证请求失败，请检查网络状态然后重试。").removeClass("hidden");
         $("#getAuthCode").prop("disable", false).val("发送验证码").removeClass("hidden").css("background", "");
         $("#gotAuthCode").addClass("hidden");
     },
@@ -133,7 +133,7 @@ var MyPagePasswordView = BaseFormView.extend({
         });
     },
     passwordError: function (data) {
-        Info.displayNotice(data.responseText.message ? data.responseText.message : "密码修改失败，请重试");
+        Info.displayNotice(data.responseJSON.message ? data.responseJSON.message : "密码修改失败，请重试");
         this.clearPassword();
     },
     clearPassword: function () {

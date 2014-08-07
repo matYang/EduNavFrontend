@@ -130,7 +130,7 @@ var NewBookingView = BaseFormView.extend({
             success: function () {
             },
             error: function (response) {
-                Info.displayNotice(response.responseText.message);
+                Info.displayNotice(response.responseJSON.message);
             }
         });
     },

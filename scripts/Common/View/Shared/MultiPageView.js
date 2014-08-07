@@ -32,10 +32,10 @@ var MultiPageView = Backbone.View.extend({
     //TODO: 
     */
     entryTemplate: "",
-    entryContainer: "",
+    entryContainer: "", //结果列表
     truePagination: false,
     entryClass: "",
-    pageNavigator: "",
+    pageNavigator: "", //分页
     pageNavigatorClass: "",
     pageEntryNumber: 10,
     startIndex: 0,
