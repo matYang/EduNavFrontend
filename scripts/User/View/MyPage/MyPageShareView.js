@@ -5,12 +5,12 @@ var MyPageShareView = Backbone.View.extend({
         app.viewRegistration.register(this);
         this.isClosed = false;
         jiathis_config.summary = "我请大家免费上培训班啦！接受邀请请点击 www.iShangke.cn/register/invite=" + 
-                                    app.sessionManager.sessionModel.get("invitationalCode") +
+                                    app.sessionManager.sessionModel.get("invitationCode") +
                                     " ， 注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！";
         this.render();
     },
     render: function () {
-        this.$el.append(this.template({inviteCode: app.sessionManager.sessionModel.get("invitationalCode")})).append('<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1401513176683351" charset="utf-8"></script>');
+        this.$el.append(this.template({inviteCode: app.sessionManager.sessionModel.get("invitationCode")})).append('<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1401513176683351" charset="utf-8"></script>');
         var userAgent = navigator.userAgent.toLowerCase();
         var is_ie = (userAgent.indexOf('msie') != -1 && !is_opera) && userAgent.substr(userAgent.indexOf('msie') + 5, 3);
         if (!window.clipboardData) {

@@ -15,8 +15,8 @@ var UserSearchRepresentation = Backbone.Model.extend({
             'startCredit': undefined,
             'finishCredit': undefined,
 
-            'invitationalCode': undefined,
-            'appliedInvitationalCode': undefined,
+            'invitationCode': undefined,
+            'appliedInvitationCode': undefined,
             'accountNumber': undefined,
 
             'startCreationTime': undefined,
@@ -68,8 +68,8 @@ var UserSearchRepresentation = Backbone.Model.extend({
         queryObj.startCredit = this.get('startCredit');
         queryObj.finishCredit = this.get('finishCredit');
 
-        queryObj.invitationalCode = typeof this.get('invitationalCode') === 'undefined' ? undefined : encodeURI(this.get('invitationalCode'));
-        queryObj.appliedInvitationalCode = typeof this.get('appliedInvitationalCode') === 'undefined' ? undefined : encodeURI(this.get('appliedInvitationalCode'));
+        queryObj.invitationCode = typeof this.get('invitationCode') === 'undefined' ? undefined : encodeURI(this.get('invitationCode'));
+        queryObj.appliedInvitationCode = typeof this.get('appliedInvitationCode') === 'undefined' ? undefined : encodeURI(this.get('appliedInvitationCode'));
         queryObj.accountNumber = typeof this.get('accountNumber') === 'undefined' ? undefined : encodeURI(this.get('accountNumber'));
 
         return queryObj;

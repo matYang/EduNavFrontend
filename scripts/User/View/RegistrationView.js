@@ -19,7 +19,7 @@ var RegistrationView = BaseFormView.extend({
                 type: "text",
                 mandatory: true,
                 validatorFunction: Utilities.phoneValid,
-                modelAttr: "phone",
+                modelAttr: "accountIdentifier",
                 validatorContainer: $("#cellContainer"),
                 buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
@@ -48,7 +48,7 @@ var RegistrationView = BaseFormView.extend({
                 fieldId: "invitationCodeInput",
                 type: "text",
                 mandatory: false,
-                modelAttr: "appliedInvitationalCode",
+                modelAttr: "appliedInvitationCode",
                 validatorContainer: $("#invitationCodeContainer")
             }),
             new BaseField({
@@ -65,7 +65,7 @@ var RegistrationView = BaseFormView.extend({
         this.invite = params.invite;
         this.render();
         if (this.invite) {
-            this.model.appliedInvitationalCode = this.invite;
+            this.model.appliedInvitationCode = this.invite;
             $("#invitationCodeInput").val(this.invite).prop("disabled", true);
         }
     },
