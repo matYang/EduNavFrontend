@@ -8,7 +8,7 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'finishDate': undefined,
             
             'institutionName': undefined,
-            'status': EnumConfig.CourseStatus.openEnroll,
+            'status': EnumConfig.CourseStatus.onlined,
             
             'startPrice': undefined,
             'finishPrice': undefined,

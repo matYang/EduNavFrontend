@@ -82,7 +82,7 @@ var NewBookingView = BaseFormView.extend({
     },
     render: function (course) {
         var date = new Date();
-        if (course.get("status") !== EnumConfig.CourseStatus.openEnroll) {
+        if (course.get("status") !== EnumConfig.CourseStatus.onlined) {
             Info.displayNotice("该课程报名已经结束，看一下其他类似的课程吧。")
             var sr = new CourseSearchRepresentation();
             sr.set("category", course.get("category"));

@@ -170,9 +170,11 @@ var EnumConfig = {
         routine: 2
     },
 
+    /*课程状态*/
     'CourseStatus': {
-        openEnroll: 0,
-        deactivated: 1,
+        onlined: 2, //已上线
+        offlined: 3,//已下线
+        deactivated: 1,//
         consolidated: 2
     },
 

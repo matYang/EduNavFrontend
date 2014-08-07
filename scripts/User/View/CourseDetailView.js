@@ -141,12 +141,12 @@ var CourseDetailView = Backbone.View.extend({
                 $("#tab_service").addClass("active")
             }
         });
-        if (this.course.get("status") === EnumConfig.CourseStatus.openEnroll) {
+        if (this.course.get("status") === EnumConfig.CourseStatus.onlined) {
             $("#bookNow").on("click", function () {
                 app.navigate("booking/c" + that.courseId, true);
             });
         } else {
-            $("#bookNow").attr("class", "btn_W").val("报名已截止").prop("disabled", true);
+            $("#bookNow").attr("class", "btn_W").val("当前不可预订").prop("disabled", true);
         }
 
         $("#siteMap").on("click", "span", function (e) {
