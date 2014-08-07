@@ -51,7 +51,7 @@ var NewBookingView = BaseFormView.extend({
             new BaseField({
                 name: "支付方式",
                 fieldId: "booking_type",
-                modelAttr: "bookingType",
+                modelAttr: "type",
                 validClass: "success",
                 type: "select",
                 mandatory: true,
@@ -67,6 +67,7 @@ var NewBookingView = BaseFormView.extend({
         } else if (params.course) {
             this.render(params.course);
         } else if (params.reference) {
+            //todo 修改订单信息
             this.reference = params.reference;
             var booking = app.sessionManager.sessionModel.get("bookingList").findBookingByReference(this.reference);
             if (booking) {
@@ -82,14 +83,12 @@ var NewBookingView = BaseFormView.extend({
             this.renderEditView(params.booking);
         }
     },
-    render: function (course) {
+    render: function (course) { //渲染课程信息
         var date = new Date();
         if (course.get("status") !== EnumConfig.CourseStatus.onlined) {
-            Info.displayNotice("该课程报名已经结束，看一下其他类似的课程吧。")
+            Info.displayNotice("该课程报名已经结束，看一下其他类似的课程吧。");
             var sr = new CourseSearchRepresentation();
-            sr.set("category", course.get("category"));
-            sr.set("subCategory", course.get("subCategory"));
-            sr.set("subSubCategory", course.get("subSubCategory"));
+            sr.set("categoryValue", course.get("categoryValue"));
             app.navigate("search/" + sr.toQueryString(), {replace: true, trigger: true});
         }
         this.model = new Booking();

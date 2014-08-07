@@ -31,13 +31,6 @@ var EnumConfig = {
         invitation: 1,
         admin: 2
     },
-
-    'TransactionType': {
-        cashback: 0,
-        deposit: 1,
-        withdraw: 2,
-        invitation: 3
-    },
     /*todo 订单的状态信息*/
     'BookingStatus': {
         awaiting: 0,
@@ -126,42 +119,6 @@ var EnumConfig = {
     'BookingTypeText': {
         0: "线上支付",
         1: "线下支付"
-    },
-        
-    'ServiceFeeStatus': {
-        shouldCharge: 0,
-        hasCharged: 1,
-        refundCharge: 2,
-        noCharge: 3,
-        consolidated: 4,
-        naive: 5
-    },
-
-    'ServiceFeeStatusText': {
-        0: '应收服务费',
-        1: '已收服务费',
-        2: '退换服务费',
-        3: '无服务费',
-        4: '服务费完结',
-        5: '空'
-    },
-
-    'CommissionStatus': {
-        shouldCharge: 0,
-        hasCharged: 1,
-        refundCharge: 2,
-        noCharge: 3,
-        consolidated: 4,
-        naive: 5
-    },
-
-    'CommissionStatusText': {
-        0: '应收佣金',
-        1: '已收佣金',
-        2: '退还佣金',
-        3: '无佣金',
-        4: '佣金完结',
-        5: '空'
     },
 
     'Privilege': {

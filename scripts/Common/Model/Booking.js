@@ -4,50 +4,38 @@ var Booking = Backbone.Model.extend({
         return {
             'id': -1,
             'bookingId': -1,
-            'transactionId': -1,
             'userId': -1,
             'partnerId': -1,
             'courseId': -1,
-            'price': 0,
-            'reference': '',
-            
-            'status': 0,
-            'preStatus': 0,
+            'courseTemplateId': -1,
+
+
+
+            /*需要填写的信息*/
             'name': '',
             'phone':'',
             'email': '',
             'scheduledTime': new Date(),
+
             'note': '',     //各种record
+            'status': 0,//订单状态
+            'type': undefined,//订单类型 线上还是线下
 
-            //---------
+            'price': 0,
             'cashbackAmount': 0,
-            'creationTime': new Date (),
-            'adjustTime': new Date(),
-            'couponRecord': '',
-            'actionRecord': '',
 
+            'creationTime': new Date (),
+            'lastModifyTime': new Date(),
             'noRefundDate': new Date(),
             'cashbackDate': new Date(),
-            'bookingType': 0,
-            'serviceFeeStatus': 0,
-            'commissionStatus': 0,
-                
-            'preServiceFeeStatus': 0,
-            'preCommissionStatus': 0,
-            'bookingStatusAdjustTime': new Date(),
-                
-            'serviceFeeStatusAdjustTime': new Date(),
-            'commissionStatusAdjustTime': new Date(),
-            'serviceFeeActionRecord': '',
-            'commissionActionRecord': '',
 
-            'course': {}
+            'course':{}//主要用于新建订单的页面显示
         };
     },
 
     idAttribute: 'id',
 
-    urlRoot: Constants.origin + '/api/v1.0/booking/booking',
+    urlRoot: Constants.origin + '/api/v2/booking/',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl');
@@ -71,45 +59,27 @@ var Booking = Backbone.Model.extend({
         if ( typeof data !== 'undefined') {
             data.id = parseInt(data.id, 10);
             data.bookingId = data.id;
-            data.transactionId = parseInt(data.transactionId, 10);
-
             data.userId = parseInt(data.userId, 10);
             data.partnerId = parseInt(data.partnerId, 10);
             data.courseId = parseInt(data.courseId, 10);
+            data.courseTemplateId = parseInt(data.courseTemplateId, 10);
 
             data.price = parseInt(data.price, 10);
             data.status = parseInt(data.status, 10);
-            data.preStatus = parseInt(data.preStatus, 10);
-            data.reference = decodeURI(data.reference);
             data.name = decodeURI(data.name);
             data.phone = decodeURI(data.phone);
             data.email = decodeURIComponent(data.email);
-
             data.scheduledTime = Utilities.castFromAPIFormat(data.scheduledTime);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
-            data.adjustTime = Utilities.castFromAPIFormat(data.adjustTime);
+            data.lastModifyTime = Utilities.castFromAPIFormat(data.lastModifyTime);
 
             data.note = decodeURI(data.note);
             data.cashbackAmount = parseInt(data.cashbackAmount, 10);
-            data.couponRecord = decodeURI(data.couponRecord);
-            data.actionRecord = decodeURI(data.actionRecord);
 
             data.noRefundDate = Utilities.castFromAPIFormat(data.noRefundDate);
             data.cashbackDate = Utilities.castFromAPIFormat(data.cashbackDate);
-            data.bookingType = parseInt(data.bookingType, 10);
-            data.serviceFeeStatus = parseInt(data.serviceFeeStatus, 10);
-            data.commissionStatus = parseInt(data.commissionStatus, 10);
-                
-            data.preServiceFeeStatus = parseInt(data.preServiceFeeStatus, 10);
-            data.preCommissionStatus = parseInt(data.preCommissionStatus, 10);
-            data.bookingStatusAdjustTime = Utilities.castFromAPIFormat(data.bookingStatusAdjustTime);
-                
-            data.serviceFeeStatusAdjustTime = Utilities.castFromAPIFormat(data.serviceFeeStatusAdjustTime);
-            data.commissionStatusAdjustTime = Utilities.castFromAPIFormat(data.commissionStatusAdjustTime);
-            data.serviceFeeActionRecord = decodeURI(data.serviceFeeActionRecord);
-            data.commissionActionRecord = decodeURI(data.commissionActionRecord);
-
-            data.course = new Course(data.course, {parse: true});
+            data.type = parseInt(data.type, 10);
+//            data.course = new Course(data.course, {parse: true});
         }
         return data;
     },
@@ -117,7 +87,7 @@ var Booking = Backbone.Model.extend({
         var json = _.clone(this.attributes);
         json.scheduledTime = Utilities.getDateString(this.get('scheduledTime'));
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
-        json.adjustTime = Utilities.getDateString(this.get('adjustTime'));
+        json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));
         json.email = decodeURIComponent(json.email);
         json.name = decodeURI(json.name);
         json.phone = decodeURI(json.phone);
@@ -125,26 +95,13 @@ var Booking = Backbone.Model.extend({
         json.course = json.course._toJSON();
         return json;
     },
-    toJSON: function () {
+    toJSON: function () {//使用backbone进行resource的交互时采用的toJSON方法
         var json = _.clone(this.attributes);
         
-        json.reference = (json.reference);
-        json.name = (json.name);
-        json.phone = (json.phone);
-        json.email = (json.email);
-        json.note = (json.note);
-
         json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
-        
-        //maybe not really needed
         json.noRefundDate = Utilities.castToAPIFormat(this.get('noRefundDate'));
         json.cashbackDate = Utilities.castToAPIFormat(this.get('cashbackDate'));
-
-
-        if (json.course instanceof Course) {
-            json.course = json.course.toJSON();
-        }
-        
+        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         return json;
     },
     initBookingFromCourse: function (course) {
@@ -152,10 +109,11 @@ var Booking = Backbone.Model.extend({
         this.set("userId", app.sessionManager.sessionModel.id);
         this.set("partnerId", course.get("partnerId"));
         this.set("courseId", course.get("id"));
+        this.set("courseTemplateId", course.get("courseTemplateId"));
         this.set("course", course);
         this.set("price", course.get("price"));
         this.set("cashbackAmount", course.get("cashback"));
-        this.set("reference", course.get("reference"));
+//        this.set("reference", course.get("reference"));
         //TODO add cashbackAmount when course is finalized
     }
 });

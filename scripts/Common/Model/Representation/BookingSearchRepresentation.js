@@ -23,24 +23,11 @@ var BookingSearchRepresentation = Backbone.Model.extend({
             'startCreationTime': undefined,
             'finishCreationTime': undefined,
 
-            'startBookingStatusAdjustTime': undefined,
-            'finishBookingStatusAdjustTime': undefined,
-                
-            'startServiceFeeStatusAdjustTime': undefined,
-            'finishServiceFeeStatusAdjustTime': undefined,
-            'startCommissionStatusAdjustTime': undefined,
-            'finishCommissionStatusAdjustTime': undefined,
-
             'startNoRefundDate': undefined,
             'finishNoRefundDate': undefined,
             'startCashbackDate': undefined,
             'finishCashbackDate': undefined,
-            'bookingType': undefined,
-            'serviceFeeStatus': undefined,
-            'commissionStatus': undefined,
-                
-            'preServiceFeeStatus': undefined,
-            'preCommissionStatus': undefined
+            'type': undefined
         };
     },
 
