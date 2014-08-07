@@ -15,7 +15,7 @@
                     location:"/location",
                     category:"/category",
                     partner:"/partner",
-                    course:"/course",
+                    course:"/course"
                 },
 
                 'user': {
@@ -31,7 +31,7 @@
                 },
 
                 'booking': {
-                    booking: '/booking'
+                    booking: ''
                 },
                 'course': {
                     course: ''
