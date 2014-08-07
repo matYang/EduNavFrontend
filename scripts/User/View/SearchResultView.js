@@ -29,14 +29,14 @@ var SearchResultView = MultiPageView.extend({
         this.isClosed = false;
         MultiPageView.prototype.render.call(this);
         var courseIds = app.storage.getCoursesToCompare();
-        for (var i = 0; i < courseIds.length; i++ ) {
+        for (var i = 0; i < courseIds.length; i++) {
             $("#compare_" + courseIds[i]).find("input").attr("class", "remove btn_gray").val("已加入对比").removeClass("add").addClass("remove");
         }
     },
-    bindEvents: function (){
+    bindEvents: function () {
         var that = this, id;
-        this.$domContainer.on("click", ".compare", function (e){
-            if ($(e.target).hasClass("add") ) {
+        this.$domContainer.on("click", ".compare", function (e) {
+            if ($(e.target).hasClass("add")) {
                 id = Utilities.getId($(this).attr("id"));
                 if (that.compareWidgetView.addCourse(that.messages.get(Utilities.toInt(id)))) {
                     $(e.target).attr("class", "remove btn_gray").val("已加入对比");
@@ -54,17 +54,17 @@ var SearchResultView = MultiPageView.extend({
             id = Utilities.getId($(this).attr("id"));
             app.navigate("course/" + id, true);
         });
-        this.registerSortEvent($("#courseSortTime"), this.compareTime, this.timeDesc, this, function(){
+        this.registerSortEvent($("#courseSortTime"), this.compareTime, this.timeDesc, this, function () {
             that.timeDesc = !that.timeDesc;
         });
-        this.registerSortEvent($("#courseSortPrice"), this.comparePrice, this.priceDesc, this, function(){
+        this.registerSortEvent($("#courseSortPrice"), this.comparePrice, this.priceDesc, this, function () {
             that.priceDesc = !that.priceDesc;
         });
     },
-    compareTime: function(course) {
+    compareTime: function (course) {
         return course.get("time");
     },
-    comparePrice: function(course) {
+    comparePrice: function (course) {
         return course.get("price");
     },
 
@@ -72,8 +72,8 @@ var SearchResultView = MultiPageView.extend({
     //     app.navigate("course/" + courseId, true);
     // },
     fetchAction: function (page) {
-        this.sr.set("start", (page-1)*this.pageEntryNumber );
-        this.sr.set("count", this.pageEntryNumber );
+        this.sr.set("start", (page - 1) * this.pageEntryNumber);
+        this.sr.set("count", this.pageEntryNumber);
         this.currentPage = page;
         app.navigate("search/" + this.sr.toQueryString(), {trigger: false, replace: true});
         $("#searchResultDisplayPanel").empty().append('<div class="loading"></div>');
@@ -101,6 +101,7 @@ var SearchResultView = MultiPageView.extend({
             searchResults = data || new Courses();
             this.allMessages = searchResults;
             this.messages = searchResults;
+            var total = this.truePagination ? searchResults.total : searchResults.length;
             $("#resultNum").html(searchResults.length);
             for (i = 0; i < searchResults.length; i++) {
                 if (this.compareWidgetView.map) {

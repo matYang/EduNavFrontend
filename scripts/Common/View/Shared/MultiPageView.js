@@ -1,36 +1,36 @@
 var MultiPageView = Backbone.View.extend({
     /*
-    * @brief
-        This class is designed to display a set of messages in a view separated by page numbers. 
-        Other views can extend this view and configure the setting according to the needs.
-        This base view provide the following features: page navigation, filtering
+     * @brief
+     This class is designed to display a set of messages in a view separated by page numbers.
+     Other views can extend this view and configure the setting according to the needs.
+     This base view provide the following features: page navigation, filtering
 
-    *
-    * @param entryTemplate: the template of each single entry
-    * @param entryContainer: id of the tag for displaying message
-    * @param entryClass: the class name for all entry in this view (style, event)
-    * @param actionClass: If this attribute is set, instead of entryClass, doms with this class will be bind to the entryEvent action when they are clicked
-    * @param pageNavigator: the div holding all page numbers
-    * @param pageNavigatorClass: the class name for the page navigator (style)
-    * @param pageEntryNumber: the number of entry displayed in each page
-    * @param startIndex: the starting index at first render
-    * @param currentPage: the index number of currentPage
-    * @param pageNumberClass: the class for each page number (style)
-    * @param pageNumberId: the base id for the page numbers in the form of pageId_, number will be appended to the end for event use
-    * @param entryEvent: the click event bind to each message entry.
-    * @param allMessage: all messages fetched from backend.
-    * @param messages: the filtered messages to be displayed in the view
-    *                   (including the ones in the pages not displaying, NOTE: it must be a different instance from allMessage in order for the collection event to work properly)
-    * @param entryHeight: the height of each entry, including margins and paddings, used for calculating container height
-    * @param entryRowNum: the number of entries displaying in the same row
-    * @param minHeight: the minimum height of the message container
-    * @param noMessage: the message displayed in the container when there's no message available
-    * @param extPn: external page navigator
-    * @param _filters: private member holding registered filters, should never be referenced from external
-    * @param truePagination: make the view fetches data per page. When this is set to true, child view must define fetchAction function.
+     *
+     * @param entryTemplate: the template of each single entry
+     * @param entryContainer: id of the tag for displaying message
+     * @param entryClass: the class name for all entry in this view (style, event)
+     * @param actionClass: If this attribute is set, instead of entryClass, doms with this class will be bind to the entryEvent action when they are clicked
+     * @param pageNavigator: the div holding all page numbers
+     * @param pageNavigatorClass: the class name for the page navigator (style)
+     * @param pageEntryNumber: the number of entry displayed in each page
+     * @param startIndex: the starting index at first render
+     * @param currentPage: the index number of currentPage
+     * @param pageNumberClass: the class for each page number (style)
+     * @param pageNumberId: the base id for the page numbers in the form of pageId_, number will be appended to the end for event use
+     * @param entryEvent: the click event bind to each message entry.
+     * @param allMessage: all messages fetched from backend.
+     * @param messages: the filtered messages to be displayed in the view
+     *                   (including the ones in the pages not displaying, NOTE: it must be a different instance from allMessage in order for the collection event to work properly)
+     * @param entryHeight: the height of each entry, including margins and paddings, used for calculating container height
+     * @param entryRowNum: the number of entries displaying in the same row
+     * @param minHeight: the minimum height of the message container
+     * @param noMessage: the message displayed in the container when there's no message available
+     * @param extPn: external page navigator
+     * @param _filters: private member holding registered filters, should never be referenced from external
+     * @param truePagination: make the view fetches data per page. When this is set to true, child view must define fetchAction function.
 
-    //TODO: 
-    */
+     //TODO:
+     */
     entryTemplate: "",
     entryContainer: "", //结果列表
     truePagination: false,
@@ -83,7 +83,7 @@ var MultiPageView = Backbone.View.extend({
                 // if (message._toSimpleJSON) {
                 //     buf[i] = this.entryTemplate(message._toSimpleJSON());
                 // } else {
-                    buf[i] = this.entryTemplate(message._toJSON());
+                buf[i] = this.entryTemplate(message._toJSON());
                 //}
             }
             this.$domContainer.append(buf.join(""));
@@ -111,7 +111,8 @@ var MultiPageView = Backbone.View.extend({
             height = (height > this.minHeight) ? height : this.minHeight;
             this.$domContainer.css("height", height + "px");
         }
-        if (this.messages.length > this.pageEntryNumber) {
+        var total = this.truePagination ? this.messages.total : this.messages.length;
+        if (total > this.pageEntryNumber) {
             this.setPageNavigator();
         } else {
             $("#" + this.pageNavigator).empty();
@@ -176,7 +177,7 @@ var MultiPageView = Backbone.View.extend({
         if (this.truePagination) {
             length = this.messages ? this.messages.total : 0;
         } else {
-            length = this.messages ? this.messages.length : 0;    
+            length = this.messages ? this.messages.length : 0;
         }
         pages = Math.ceil(length / this.pageEntryNumber);
         this.pages = pages;
@@ -192,9 +193,9 @@ var MultiPageView = Backbone.View.extend({
         buf.push("<a class='next'></a>");
         html = buf.join("");
         this.$pn.off()
-                .empty()
-                .append(html)
-                .addClass(this.pageNavigatorClass);
+            .empty()
+            .append(html)
+            .addClass(this.pageNavigatorClass);
         this.$pre = this.$pn.children(".pre");
         this.$next = this.$pn.children(".next");
         this.$pn.children("#" + this.pageNumberId + "_" + this.currentPage).addClass("active");
@@ -221,9 +222,9 @@ var MultiPageView = Backbone.View.extend({
         this.toPage(this.currentPage - 1);
     },
     /*
-    active class should be the class indicating the selected tab/filter across the entire site.
-    Therefore it is hardcoded here.
-    */
+     active class should be the class indicating the selected tab/filter across the entire site.
+     Therefore it is hardcoded here.
+     */
     registerFilterEvent: function ($selector, filter, inst, callback) {
         var that = this;
         if ($selector.prop("tagName") === "SELECT") {
