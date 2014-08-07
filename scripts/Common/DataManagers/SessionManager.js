@@ -134,6 +134,7 @@
                 password: password,
                 remember: remember
             },
+            headers: { 'Content-Type': 'application/json' },
             dataType: 'json',
             success: function (model, response) {
                 Info.log(model);

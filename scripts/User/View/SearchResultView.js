@@ -72,11 +72,12 @@ var SearchResultView = MultiPageView.extend({
     //     app.navigate("course/" + courseId, true);
     // },
     fetchAction: function (page) {
-        if (page === undefined && this.sr.get("start") === undefined) {
-            // 未传入参数
-            // 且localStorage中不存在缓存（否则使用缓存的数据--不需要进行set）的分页信息
+
+        if (page === undefined) {// 未传入参数
+            // localStorage中不存在缓存（否则使用缓存的数据--不需要进行set）的分页信息
             // 则设置默认的start为0
-            this.sr.set("start", 0);
+            if(this.sr.get("start") === undefined)
+                this.sr.set("start", 0);
         } else {
             this.sr.set("start", (page - 1) * this.pageEntryNumber);
         }
