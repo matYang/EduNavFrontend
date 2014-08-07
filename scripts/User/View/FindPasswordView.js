@@ -91,7 +91,7 @@ var FindPasswordView = BaseFormView.extend({
         app.navigate("mypage", true);
     },
     changeError: function (data) {
-        Info.displayNotice(data.responseText);
+        Info.displayNotice(data.message);
     },
     passValid: function (val) {
         var p1 = val, p2 = $("#findPassConfirmInput").val();

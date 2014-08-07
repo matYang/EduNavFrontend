@@ -15,7 +15,7 @@ var MyPageBookingView = Backbone.View.extend({
         });
     },
     renderError: function (data) {
-        Info.displayNotice(data ? data.responseText : "订单页面加载失败，请稍后重试。");
+        Info.displayNotice(data ? data.message : "订单页面加载失败，请稍后重试。");
     },
     render: function (bookingList) {
         this.$el.empty().append(this.template);
