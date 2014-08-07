@@ -1,7 +1,7 @@
 var NewBookingView = BaseFormView.extend({
-    el:"#content",
+    el: "#content",
     form: false,
-    submitButtonId:"initBooking",
+    submitButtonId: "initBooking",
     initialize: function (params) {
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "bookingSuccess", "login", "loginCheck", "loginSuccess", "loginError", "close");
@@ -17,7 +17,7 @@ var NewBookingView = BaseFormView.extend({
                 mandatory: true,
                 modelAttr: "name",
                 validClass: "success",
-                buildValidatorDiv: Utilities.defaultValidDivBuilder        
+                buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
             new BaseField({
                 name: "手机号码",
@@ -61,7 +61,8 @@ var NewBookingView = BaseFormView.extend({
         if (params.courseId) {
             app.generalManager.fetchCourse(params.courseId, {
                 success: this.render,
-                error: function(){}
+                error: function () {
+                }
             });
         } else if (params.course) {
             this.render(params.course);
@@ -73,7 +74,8 @@ var NewBookingView = BaseFormView.extend({
             } else {
                 app.userManager.fetchUser({
                     success: this.render,
-                    error: function () {}
+                    error: function () {
+                    }
                 });
             }
         } else if (params.booking) {
@@ -113,18 +115,20 @@ var NewBookingView = BaseFormView.extend({
 
         }
     },
-    login: function() {
-        var username = $("#booking_loginUsername").val(), pwd = $("#booking_loginPassword").val();
+    login: function () {
+        var username = $("#booking_loginUsername").val(),
+            pwd = $("#booking_loginPassword").val(),
+            remember = $("#booking_loginRemember").val() ? 1 : 0;
         if (username && pwd) {
-            app.sessionManager.login(username, pwd, {
+            app.sessionManager.login(username, pwd, remember, {
                 success: this.loginSuccess,
                 error: this.loginError
             });
-        } else {
-
+        } else if (username) {
+            $("#booking_loginPassword").focus();
         }
     },
-    loginSuccess: function(){
+    loginSuccess: function () {
         var that = this;
         app.sessionManager.fetchSession(true, {
             success: function () {
@@ -134,7 +138,7 @@ var NewBookingView = BaseFormView.extend({
             }
         });
     },
-    loginError: function(){
+    loginError: function () {
         $("#booking_loginPassword").val("");
     },
     bindEvents: function () {
@@ -159,19 +163,14 @@ var NewBookingView = BaseFormView.extend({
                 $("#booking_loginbox").show();
             });
             $("#quickRegister").on("click", function () {
-                app.navigate("register/ref=" + location.hash.substr(1, location.hash.length-1), true);
+                app.navigate("register/ref=" + location.hash.substr(1, location.hash.length - 1), true);
             });
             $("#cashback_box").addClass("hidden");
             $("#booking_loginbox").addClass("hidden");
             $("#booking_login").on("click", this.login);
             $("#booking_loginUsername,#booking_loginPassword").on("keypress", function (e) {
                 if (e.which === 13) {
-                    var username = $("#booking_loginUsername").val(), pwd = $("#booking_loginPassword").val();
-                    if (username && pwd) {
-                        that.login();
-                    } else if (username) {
-                        $("#booking_loginPassword").focus();
-                    }
+                    that.login();
                 }
             });
             $("#booking_forgotPassword").on("click", function (e) {
@@ -184,21 +183,21 @@ var NewBookingView = BaseFormView.extend({
         }
 
         $("#bookingInfo").on("keypress", "input", function (e) {
-        	if (e.which === 13) {
-        		$("#initBooking").trigger("click");
-        	}
+            if (e.which === 13) {
+                $("#initBooking").trigger("click");
+            }
         });
-        $("#booking_date").on("keypress", function(e){
+        $("#booking_date").on("keypress", function (e) {
             e.preventDefault();
         }).datepicker({
             buttonImageOnly: true,
             buttonImage: "calendar.gif",
             buttonText: "Calendar",
-            minDate: new Date (),
+            minDate: new Date(),
             maxDate: this.model.get("course").get("cutoffDate"),
             defaultDate: that.model.get("scheduledTime"),
             onSelect: function (text, inst) {
-                var d = new Date ();
+                var d = new Date();
                 d.setDate(inst.selectedDay);
                 d.setMonth(inst.selectedMonth);
                 d.setYear(inst.selectedYear);
@@ -213,41 +212,41 @@ var NewBookingView = BaseFormView.extend({
             }
         });
         $("#booking_register").on("click", function () {
-            app.navigate("register/ref=" + location.hash.substr(1, location.hash.length-1), true);
+            app.navigate("register/ref=" + location.hash.substr(1, location.hash.length - 1), true);
         });
         BaseFormView.prototype.bindEvents.call(this);
     },
-    loginCheck: function() {
+    loginCheck: function () {
         if (!app.sessionManager.hasSession()) {
             Info.displayNotice("您尚未登录，请先登录再进行预订");
             return;
         }
     },
-    submitAction:function () {
+    submitAction: function () {
         var that = this;
-        $("#"+ this.submitButtonId).val("预订中...");
+        $("#" + this.submitButtonId).val("预订中...");
         this.model.set("userId", app.sessionManager.sessionModel.get("userId"));
         this.model.set("cashback", $("#booking_useCashback").prop("checked") ? this.model.get("cashbackAmount") : 0);
         this.model.set("course", undefined);
         app.userManager.initBooking(this.model, {
             success: this.bookingSuccess,
-            error: function(){
-                $("#"+ that.submitButtonId).val("预订失败, 请重试");
+            error: function () {
+                $("#" + that.submitButtonId).val("预订失败, 请重试");
             }
         });
     },
     bookingSuccess: function (booking) {
         console.log(booking);
         this.$el.empty().append(this.finishTemplate(booking._toJSON()));
-        $("#viewMore").on("click", function() {
+        $("#viewMore").on("click", function () {
             app.navigate("search", true);
         });
-        $("#viewBooking").on("click", function() {
+        $("#viewBooking").on("click", function () {
             app.navigate("mypage/booking", true);
         });
         //进入支付页面
-        $(".js_btnGoToPay").on("click", function() {
-            app.navigate("mypage/booking/"+booking.id+"/pay", true);
+        $(".js_btnGoToPay").on("click", function () {
+            app.navigate("mypage/booking/" + booking.id + "/pay", true);
         });
         $("#printBooking").on("click", function () {
             window.print();
@@ -264,15 +263,15 @@ var NewBookingView = BaseFormView.extend({
     buildValidatorDiv: function (valid, type, text) {
         //This function overloads baseField's default buildValidatorDiv. It should only be invoked by BaseField's testValue function, thus this refers the BaseForm model in this case,
         //This function is not bound to the view.
-        $("#"+this.get("fieldId")+"_info").remove();
+        $("#" + this.get("fieldId") + "_info").remove();
         if (valid) {
-            return '<span class="success" id="'+this.get("fieldId")+'_right"></span>';
+            return '<span class="success" id="' + this.get("fieldId") + '_right"></span>';
         } else if (type === "empty") {
-            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong" ><span class="form_tip"><span class="form_tip_top">' + this.get("name")+"不能为空" + '</span><span class="form_tip_bottom"></span></span></span>';
+            return '<span class="wrong" id="' + this.get("fieldId") + '_wrong" ><span class="form_tip"><span class="form_tip_top">' + this.get("name") + "不能为空" + '</span><span class="form_tip_bottom"></span></span></span>';
         } else if (text) {
-            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' + text + '</span><span class="form_tip_bottom"></span></span></span>';
+            return '<span class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' + text + '</span><span class="form_tip_bottom"></span></span></span>';
         } else {
-            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' +  this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></span>';
+            return '<span class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' + this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></span>';
         }
-    }, 
+    },
 });
