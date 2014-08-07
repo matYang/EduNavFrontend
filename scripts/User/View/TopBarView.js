@@ -48,9 +48,10 @@ var TopBarView = Backbone.View.extend({
         var username, password;
         /*  navigation events  */
         //main nav
-        
+
         this.$passwordInput = $("#login_password");
         this.$usernameInput = $("#login_username");
+        this.$rememberInput = $("#login_remember");
         $('#navigate_search').on('click', function () {
             if (location.hash.indexOf("search") !== 1) {
                 app.navigate("search", true);
@@ -72,7 +73,7 @@ var TopBarView = Backbone.View.extend({
         if (!app.sessionManager.hasSession()) {
             $('#signup_button').on('click', function (e) {
                 e.preventDefault();
-                app.navigate("/register/ref=" + location.hash.substr(1, location.hash.length-1), {trigger: true, replace: true});
+                app.navigate("/register/ref=" + location.hash.substr(1, location.hash.length - 1), {trigger: true, replace: true});
                 app.infoModal.hide();
             });
             $('#login_toggle').on('click', function (e) {
@@ -80,10 +81,10 @@ var TopBarView = Backbone.View.extend({
                 $("#topbar_loginbox").toggle();
                 self.$usernameInput.trigger("focus");
             });
-            this.$usernameInput.on("click", function (e){
+            this.$usernameInput.on("click", function (e) {
                 $("#credentialWrong").hide();
             });
-            this.$passwordInput.on("focus", function (e){
+            this.$passwordInput.on("focus", function (e) {
                 $("#credentialWrong").hide();
             });
             this.$passwordInput.add(this.$usernameInput).on("keydown", function (e) {
@@ -121,10 +122,13 @@ var TopBarView = Backbone.View.extend({
         }
     },
     login: function () {
-        var username = this.$usernameInput.val(), password = this.$passwordInput.val(), self = this;
+        var username = this.$usernameInput.val(),
+            password = this.$passwordInput.val(),
+            remember = this.$rememberInput.val() ? 1 : 0,
+            self = this;
         if (username !== "" && password !== "") {
             $('#login_button').val("登录中...").prop("disabled", true);
-            app.sessionManager.login(username, password, {
+            app.sessionManager.login(username, password,remember, {
                 success: function (response) {
                     Info.log("server login response: ");
                     Info.log(response);

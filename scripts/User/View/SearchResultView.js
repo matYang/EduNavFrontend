@@ -109,7 +109,7 @@ var SearchResultView = MultiPageView.extend({
             this.allMessages = searchResults;
             this.messages = searchResults;
             var total = this.truePagination ? searchResults.total : searchResults.length;
-            $("#resultNum").html(searchResults.length);
+            $("#resultNum").html(total);
             for (i = 0; i < searchResults.length; i++) {
                 if (this.compareWidgetView.map) {
                     this.compareWidgetView.map.getLatLng(searchResults.at(i).get("address"), searchResults.at(i).get("instName"));

@@ -16,7 +16,6 @@
                     category:"/category",
                     partner:"/partner",
                     course:"/course",
-                    courseByIdList:"/courseByIdList"
                 },
 
                 'user': {
@@ -56,7 +55,8 @@
 
                 courses: api_maker(api_modules.rootPrefix, "course", "course"),
 
-                general_courseByIdList: api_maker(api_modules.rootPrefix, "general", "courseByIdList"),
+                //can also use 'courses' with '?ids=1,2,3'
+//                general_courseByIdList: api_maker(api_modules.rootPrefix, "general", "courseByIdList"),
                 
                 user_findSession: api_maker(api_modules.rootPrefix, 'user', 'findSession'), //GET added to session manaegr
                 user_smsVerification: api_maker(api_modules.rootPrefix, 'user', 'smsVerification'),

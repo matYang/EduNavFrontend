@@ -2,10 +2,10 @@
 //该模块用来处理用户登录，登出，以及检查登录状态
 
 (function () {
-    
-    this.SessionManager = function(identifier){
+
+    this.SessionManager = function (identifier) {
         this.identifier = identifier;
-        switch (this.identifier){
+        switch (this.identifier) {
             case EnumConfig.ModuleIdentifier.user:
                 this.sessionModel = new User();
                 break;
@@ -25,25 +25,25 @@
     };
 
     //记录其他的数据管理服务
-    SessionManager.prototype.registerManager = function(manager) {
+    SessionManager.prototype.registerManager = function (manager) {
         this.sessionRegistraTable.push(manager);
     };
 
-    SessionManager.prototype.releaseManager = function() {
-        for (var managerIndex = 0; managerIndex < this.sessionRegistraTable.length; managerIndex++){
+    SessionManager.prototype.releaseManager = function () {
+        for (var managerIndex = 0; managerIndex < this.sessionRegistraTable.length; managerIndex++) {
             this.sessionRegistraTable[managerIndex].release();
         }
     };
 
     //检查当前用户是否有会话(是否在已登录状态)
-    SessionManager.prototype.hasSession = function(){
+    SessionManager.prototype.hasSession = function () {
         if (testMockObj.testMode) return true;
         return this.sessionModel.id > 0;
     };
 
     //avoid using this
     //获取当前会话的用户对象
-    SessionManager.prototype.getSessionModel = function(){
+    SessionManager.prototype.getSessionModel = function () {
         if (testMockObj.testMode) {
             return testMockObj.sessionModel[this.identifier];
         }
@@ -51,20 +51,20 @@
     };
 
     //获取当前用户的id
-    SessionManager.prototype.getId = function() {
+    SessionManager.prototype.getId = function () {
         return  this.sessionModel.id;
     };
 
-    
+
     //using the find session API to determine if the uer has logged in or not
     //尝试获取会话
     //若是用户与服务器能正常连接，ajax请求应该会返回一个成功的结果。
     //若是用户有一个有效的cookie, 服务器会将当前用户的对象的id填充，以此告知当前用户在已登录状态
     //若是用户没有cookie, 服务器同样会告知前端拉取会话才成功，但用户的id仍然会是-1, 以此表示用户是未登录状态。
     //该方法需要在每次login, logout的回调方法里使用，因为login logout不会改变前端用户对象的id。
-    SessionManager.prototype.fetchSession = function(asyncFlag, callback){
+    SessionManager.prototype.fetchSession = function (asyncFlag, callback) {
         var self = this;
-        switch (this.identifier){
+        switch (this.identifier) {
             case EnumConfig.ModuleIdentifier.user:
                 this.sessionModel.overrideUrl(ApiResource.user_findSession);
                 this.sessionModel.set('userId', -1);
@@ -82,32 +82,32 @@
 
             default:
                 throw new Error('fetchSession模块识别失败');
-        }        
+        }
         if (testMockObj.testMode) {
             this.sessionModel = testMockObj[this.identifier];
-            if(callback){
+            if (callback) {
                 callback.success();
             }
             return;
         }
-        
+
         //make sure the session model is new
         this.sessionModel.fetch({
-            async:asyncFlag,
-            dataType:'json',
+            async: asyncFlag,
+            dataType: 'json',
 
-            success:function(model, response){
+            success: function (model, response) {
                 self.releaseManager();
-                if(callback){
+                if (callback) {
                     callback.success();
                 }
             },
 
-            error: function(model, response){
+            error: function (model, response) {
                 Info.warn('Session redirect failed');
                 Info.warn(response);
 
-                if(callback){
+                if (callback) {
                     callback.error(response);
                 }
             }
@@ -115,76 +115,54 @@
     };
 
     //登陆
-    SessionManager.prototype.login = function(key, password, callback){
+    SessionManager.prototype.login = function (key, password, remember, callback) {
         var self = this;
 
-        if (this.hasSession()){
+        if (this.hasSession()) {
             Info.alert('已经登录，请刷新页面');
             app.navigate('/main', {trigger: true});
         }
-        if (!(key && password)){
+        if (!(key && password)) {
             Info.alert('');
             return;
         }
-
-        switch (this.identifier){
-            case EnumConfig.ModuleIdentifier.user:
-                this.sessionModel.overrideUrl(ApiResource.user_login);
-                this.sessionModel.set('phone', key);
-                this.sessionModel.set('password', password);
-                this.sessionModel.set('userId', -1);
-                break;
-
-            case EnumConfig.ModuleIdentifier.partner:
-                this.sessionModel.overrideUrl(ApiResource.partner_login);
-                this.sessionModel.set('phone', key);
-                this.sessionModel.set('password', password);
-                this.sessionModel.set('partnerId', -1);
-                break;
-
-            case EnumConfig.ModuleIdentifier.admin:
-                this.sessionModel.overrideUrl(AdminApiResource.admin_login);
-                this.sessionModel.set('reference', key);
-                this.sessionModel.set('password', password);
-                this.sessionModel.set('adminId', -1);
-                break;
-
-            default:
-                throw new Error('fetchSession模块识别失败');
-        }
-        
-        this.sessionModel.save({},{
-            dataType:'json',
-
-            success:function(model, response){
+        $.ajax({
+            url: ApiResource.user_login,
+            type: 'POST',
+            data: {
+                accountIdentifier: key,
+                password: password,
+                remember: remember
+            },
+            dataType: 'json',
+            success: function (model, response) {
                 Info.log(model);
-                if(callback){
+                if (callback) {
                     callback.success();
                 }
             },
 
-            error: function(model, response){
+            error: function (model, response) {
                 Info.warn('login failed');
                 Info.warn(response);
-                if(callback){
+                if (callback) {
                     callback.error(response);
                 }
             }
         });
-
     };
 
     //登出
-    SessionManager.prototype.logout = function(callback){
+    SessionManager.prototype.logout = function (callback) {
         var self = this, url;
 
-        if (!this.hasSession()){
+        if (!this.hasSession()) {
             Info.alert('尚未登录');
-            if(callback){
+            if (callback) {
                 callback.success();
             }
         }
-        switch (this.identifier){
+        switch (this.identifier) {
             case EnumConfig.ModuleIdentifier.user:
                 url = ApiResource.user_logout;
                 break;
@@ -205,16 +183,16 @@
             type: 'PUT',
             url: url.format(this.sessionModel.id),
             dataType: 'json',
-            success: function(data){
+            success: function (data) {
                 self.sessionModel.set(self.sessionModel.idAttribute, -1);
-                if(callback){
+                if (callback) {
                     callback.success();
                 }
             },
-            error: function (data, textStatus, jqXHR){
+            error: function (data, textStatus, jqXHR) {
                 Info.warn('SessionManager::Logout:: action failed');
                 Info.warn(data);
-                if(callback){
+                if (callback) {
                     callback.error(data);
                 }
             }
