@@ -122,7 +122,7 @@
             return;
         }
 
-        user.overrideUrl(ApiResource.user_register);
+        user.overrideUrl(ApiResource.user_info);
         user.set('userId', this.sessionManager.getId());
         user.set('id', this.sessionManager.getId());
         user.fetch({
