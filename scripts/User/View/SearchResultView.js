@@ -8,7 +8,7 @@ var SearchResultView = MultiPageView.extend({
     entryTemplate: _.template(tpl.get("searchResultEntry")),
     extPn: true,
     entryHeight: 157,
-    pageEntryNumber: 10,
+    pageEntryNumber: 10, //
     // actionClass: "viewDetail",
     autoHeight: true,
     truePagination: true,
