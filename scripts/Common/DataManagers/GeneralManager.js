@@ -111,7 +111,7 @@
         }
         var requestCourses = new Courses();
         requestCourses.overrideUrl(ApiResource.courses);
-        var idList = "ids" + requestList.join(",");
+        var idList = "ids=" + requestList.join(",");
         requestCourses.fetch({
             dataType: 'json',
             data: idList,
