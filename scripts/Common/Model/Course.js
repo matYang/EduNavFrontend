@@ -133,6 +133,7 @@ var Course = Backbone.Model.extend({
             json.openCourseRequirement = (data.openCourseRequirement);//开班要求
             json.cutoffDate = Utilities.castFromAPIFormat(data.cutoffDate);//报名截止日期
             json.wholeName = decodeURIComponent(data.wholeName);//机构全称
+            json.instName = decodeURIComponent(data.instName);//机构全称
             json.partnerDistinction = (data.partnerDistinction);//机构荣誉
             json.partnerIntro = (data.partnerIntro);//机构概况
             if (data.teacherList) {

@@ -129,11 +129,11 @@
         $.ajax({
             url: ApiResource.user_login,
             type: 'POST',
-            data: {
+            data: JSON.stringify({
                 accountIdentifier: key,
                 password: password,
                 remember: remember
-            },
+            }),
             headers: { 'Content-Type': 'application/json' },
             dataType: 'json',
             success: function (model, response) {
