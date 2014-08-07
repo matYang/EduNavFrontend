@@ -10,26 +10,25 @@ var Booking = Backbone.Model.extend({
             'courseTemplateId': -1,
 
 
-
             /*需要填写的信息*/
             'name': '',
-            'phone':'',
+            'phone': '',
             'email': '',
             'scheduledTime': new Date(),
 
             'note': '',     //各种record
-            'status': 0,//订单状态
+            'status': undefined,//订单状态
             'type': undefined,//订单类型 线上还是线下
 
             'price': 0,
             'cashbackAmount': 0,
 
-            'creationTime': new Date (),
+            'creationTime': new Date(),
             'lastModifyTime': new Date(),
             'noRefundDate': new Date(),
             'cashbackDate': new Date(),
 
-            'course':{}//主要用于新建订单的页面显示
+            'course': {}//主要用于新建订单的页面显示
         };
     },
 
@@ -56,7 +55,7 @@ var Booking = Backbone.Model.extend({
     },
 
     parse: function (data) {
-        if ( typeof data !== 'undefined') {
+        if (typeof data !== 'undefined') {
             data.id = parseInt(data.id, 10);
             data.bookingId = data.id;
             data.userId = parseInt(data.userId, 10);
@@ -97,16 +96,16 @@ var Booking = Backbone.Model.extend({
     },
     toJSON: function () {//使用backbone进行resource的交互时采用的toJSON方法
         var json = _.clone(this.attributes);
-        
+        json.type = parseInt(this.get('type'), 10);
         json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
         json.noRefundDate = Utilities.castToAPIFormat(this.get('noRefundDate'));
         json.cashbackDate = Utilities.castToAPIFormat(this.get('cashbackDate'));
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
-        json.lastModifyTime = Utilities.castToAPIFormat(this.get('lastModifyTime'));
+        json.creationTime = undefined;
+        json.lastModifyTime = undefined;
         return json;
     },
     initBookingFromCourse: function (course) {
-        
+
         this.set("userId", app.sessionManager.sessionModel.id);
         this.set("partnerId", course.get("partnerId"));
         this.set("courseId", course.get("id"));
@@ -135,13 +134,13 @@ var Bookings = Backbone.Collection.extend({
     },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
-        if ( typeof urlOverride !== 'undefined') {
+        if (typeof urlOverride !== 'undefined') {
             this.url = urlOverride;
         }
     },
 
     overrideUrl: function (urlOverride) {
-        if ( typeof urlOverride !== 'undefined') {
+        if (typeof urlOverride !== 'undefined') {
             this.url = urlOverride;
         }
     },

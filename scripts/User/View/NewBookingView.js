@@ -225,7 +225,7 @@ var NewBookingView = BaseFormView.extend({
         var that = this;
         $("#" + this.submitButtonId).val("预订中...");
         this.model.set("userId", app.sessionManager.sessionModel.get("userId"));
-        this.model.set("cashback", $("#booking_useCashback").prop("checked") ? this.model.get("cashbackAmount") : 0);
+//        this.model.set("cashback", $("#booking_useCashback").prop("checked") ? this.model.get("cashbackAmount") : 0);
         this.model.set("course", undefined);
         app.userManager.initBooking(this.model, {
             success: this.bookingSuccess,
