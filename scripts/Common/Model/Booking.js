@@ -91,7 +91,8 @@ var Booking = Backbone.Model.extend({
         json.name = decodeURI(json.name);
         json.phone = decodeURI(json.phone);
         json.note = decodeURI(json.note);
-        json.course = json.course._toJSON();
+        //todo 需要让后台加入course
+//        json.course = json.course._toJSON();
         return json;
     },
     toJSON: function () {//使用backbone进行resource的交互时采用的toJSON方法
