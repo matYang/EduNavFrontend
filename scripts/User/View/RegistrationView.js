@@ -73,9 +73,9 @@ var RegistrationView = BaseFormView.extend({
         var that = this;
         $("#loginBox").hide();
         $("#getSms").on("click", function (e) {
-            if (Utilities.phoneValid(that.model.phone).valid) {
+            if (Utilities.phoneValid(that.model.accountIdentifier).valid) {
                 $("#getSms").val("发送中...").prop("disabled", true);
-                app.userManager.smsVerification(that.model.phone, Utilities.defaultSmsRequestHandler($("#getSms"), $("#smsInfo") ));
+                app.userManager.smsVerification(that.model.accountIdentifier, Utilities.defaultSmsRequestHandler($("#getSms"), $("#smsInfo") ));
             } else {
                 $("#smsInfo").html("请先输入您的手机号");
             }
