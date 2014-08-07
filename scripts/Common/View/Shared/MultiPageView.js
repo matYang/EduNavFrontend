@@ -128,6 +128,7 @@ var MultiPageView = Backbone.View.extend({
             this.render();
         } else {
             this.fetchAction(page);
+            this.setPageNavigator();
         }
     },
     bindEntryEvent: function () {
