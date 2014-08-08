@@ -4,8 +4,7 @@ $('input, textarea').placeholder();
 $.ajaxSetup({
     headers: {
         'Content-Type': 'application/json'
-    },
-    dataType: 'json'
+    }
 });
 
 
