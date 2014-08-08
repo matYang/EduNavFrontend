@@ -32,7 +32,7 @@ var BookingPayView = Backbone.View.extend({
             //todo 打开对话框 btn支付成功 btn支付遇到问题
 
             //todo 打开新标签页 location
-            var url = '/api/booking/alipay?id=' + that.booking.id;
+            var url = '/api/v2/order/bookingId=' + that.booking.id;
             var s = window.open(url);
             console.dir(s.focus);
             s.focus();
