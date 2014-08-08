@@ -4,11 +4,8 @@ var User = Backbone.Model.extend({
         return {
             'id': -1,
             'userId': -1,
-            
-            'balance': 0,
-            'coupon': 0,
-            'credit': 0,
 
+            'avatarUrl': '',
             'name': '',
             'phone': '',
             'password': '',
@@ -16,14 +13,14 @@ var User = Backbone.Model.extend({
             'status': 0,
             'invitationCode': '',
             'appliedInvitationCode': '',
-            'accountNumber':'',
 
-            'creationTime': new Date (),
-            'lastLogin': new Date ()
+            'creationTime': new Date(),
+            'lastLogin': new Date(),
+            'lastModifyTime': new Date(),
 
-//            'bookingList': new Bookings(),
-//            'couponList': new Coupons(),
-//            'creditList': new Credits()
+            'account': new Account(),//积分账户
+            'credit': new Credit(),//现金账户
+            'couponTotal': 0 //优惠券
         };
     },
 
@@ -43,7 +40,7 @@ var User = Backbone.Model.extend({
     },
 
     parse: function (data) {
-        if ( typeof data !== 'undefined') {
+        if (typeof data !== 'undefined') {
             if (data instanceof Array) {
                 data = data[0];
             }
@@ -51,31 +48,19 @@ var User = Backbone.Model.extend({
             data.id = parseInt(data.id, 10);
             data.userId = data.id;
 
-            data.balance = parseInt(data.balance, 10);
-            data.coupon = parseInt(data.coupon, 10);
-            data.credit = parseInt(data.credit, 10);
-
-            data.balance = isNaN(data.balance) ? 0 : data.balance;
-            data.coupon = isNaN(data.coupon) ? 0 : data.coupon;
-            data.credit = isNaN(data.credit) ? 0 : data.credit;
-
-
             data.status = parseInt(data.status, 10);
 
-            data.creationTime = Utilities.castFromAPIFormat(decodeURIComponent(data.creationTime));
-            data.lastLogin = Utilities.castFromAPIFormat(decodeURIComponent(data.lastLogin));
+            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            data.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
+            data.lastModifyTime = Utilities.castFromAPIFormat(data.lastModifyTime);
 
-//            data.bookingList = new Bookings(data.bookingList, {parse: true});
-//            data.couponList = new Coupons(data.couponList, {parse: true});
-//            data.creditList = new Credits(data.creditList, {parse: true});
-//            var i;
-//            for ( i = 0; i < data.couponList.length; i++){
-//                var coupon = data.couponList.at(i);
-//                var now = new Date();
-//                if (coupon.get("expireTime").getTime() <= now.getTime()) {
-//                    coupon.set("status", EnumConfig.CouponStatus.expired);
-//                }
-//            }
+
+            data.couponTotal = parseInt(data.couponTotal, 10);
+            data.couponTotal = isNaN(data.couponTotal) ? 0 : data.couponTotal;
+            data.account = new Account(data.account,{parse:true});
+            data.credit = new Credit(data.credit,{parse:true});
+
+
         }
         return data;
     },
@@ -89,13 +74,6 @@ var User = Backbone.Model.extend({
 
     toJSON: function () {
         var json = _.clone(this.attributes);
-        json.name = (json.name);
-        json.phone = (json.phone);
-        json.password = (json.password);
-        json.email = (json.email);
-
-        json.appliedInvitationCode = (json.appliedInvitationCode);
-        
         json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
         json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
         return json;
@@ -120,7 +98,7 @@ var Users = Backbone.Collection.extend({
     },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
-        if ( typeof urlOverride !== 'undefined') {
+        if (typeof urlOverride !== 'undefined') {
             this.url = urlOverride;
         }
     }

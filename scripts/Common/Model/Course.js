@@ -90,6 +90,7 @@ var Course = Backbone.Model.extend({
         },
         idAttribute: 'id',
         parse: function (data) {
+            data = Utilities.parseCleanNull(data);
             var i = 0,
                 introArr = [],
                 nameArr = [],
@@ -98,31 +99,31 @@ var Course = Backbone.Model.extend({
                 json = {};
             if (typeof data !== 'undefined') {
                 data.id = data.id || data.courseId;
-                json.id = parseInt(data.id, 10);
-                json.courseId = json.id;
-                json.partnerId = parseInt(data.partnerId, 10);
-                json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+                data.id = parseInt(data.id, 10);
+                data.courseId = json.id;
+                data.partnerId = parseInt(data.partnerId, 10);
+                data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
 
                 /*others*/
-                json.popularity = parseInt(data.popularity, 10);//人气值
-                json.bookingType = parseInt(data.bookingType, 10);
-                json.startUponArrival = parseInt(data.startUponArrival, 10);
+                data.popularity = parseInt(data.popularity, 10);//人气值
+                data.bookingType = parseInt(data.bookingType, 10);
+                data.startUponArrival = parseInt(data.startUponArrival, 10);
 
 
-                json.cashback = parseInt(data.cashback, 10);//返现
-                json.price = parseInt(data.price, 10);//爱上课价格
-                json.originalPrice = parseInt(data.price, 10);//原价
+                data.cashback = parseInt(data.cashback, 10);//返现
+                data.price = parseInt(data.price, 10);//爱上课价格
+                data.originalPrice = parseInt(data.price, 10);//原价
 
 
                 /*基本信息*/
-                json.startDate = Utilities.castFromAPIFormat(data.startDate);
-                json.finishDate = Utilities.castFromAPIFormat(data.finishDate);//开课日期
-                json.courseHourNum = parseInt(data.courseHourNum, 10);//课时总数
-                json.courseHourLength = parseInt(data.courseHourLength, 10);//课时长度
-                json.startTime1 = parseInt(data.startTime1, 10);
-                json.finishTime1 = parseInt(data.finishTime1, 10);
-                json.startTime2 = parseInt(data.startTime2, 10);
-                json.finishTime2 = parseInt(data.finishTime2, 10);//上课时间
+                data.startDate = Utilities.castFromAPIFormat(data.startDate);
+                data.finishDate = Utilities.castFromAPIFormat(data.finishDate);//开课日期
+                data.courseHourNum = parseInt(data.courseHourNum, 10);//课时总数
+                data.courseHourLength = parseInt(data.courseHourLength, 10);//课时长度
+                data.startTime1 = parseInt(data.startTime1, 10);
+                data.finishTime1 = parseInt(data.finishTime1, 10);
+                data.startTime2 = parseInt(data.startTime2, 10);
+                data.finishTime2 = parseInt(data.finishTime2, 10);//上课时间
 
                 if (data.teacherList) {
                     for (i = 0; i < data.teacherList.length; i++) {
@@ -131,18 +132,18 @@ var Course = Backbone.Model.extend({
                     json.teacherList = imgArr;
                 }//老师介绍
 
-                json.status = parseInt(data.status, 10);
-                json.partnerQualification = parseInt(data.partnerQualification, 10);
+                data.status = parseInt(data.status, 10);
+                data.partnerQualification = parseInt(data.partnerQualification, 10);
                 if (data.classPhotoList) {
                     for (i = 0; i < data.classPhotoList.length; i++) {
                         classImgArr[i] = new Photo(data.classPhotoList[i], {parse: true});
                     }
-                    json.classPhotoList = classImgArr;
+                    data.classPhotoList = classImgArr;
                 }
 
 
             }
-            return json;
+            return data;
         },
         _toJSON: function () {
             var json = _.clone(this.attributes), studyDays, i;
