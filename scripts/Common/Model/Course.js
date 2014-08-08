@@ -110,8 +110,10 @@ var Course = Backbone.Model.extend({
 
 
                 data.cashback = parseInt(data.cashback, 10);//返现
-                data.price = parseInt(data.price, 10);//爱上课价格
-                data.originalPrice = parseInt(data.price, 10);//原价
+                data.price = parseFloat(data.price, 10);//爱上课价格
+                data.originalPrice = parseFloat(data.price, 10);//原价
+                data.price = isNaN(data.price) ? 0 : data.price;
+                data.originalPrice = isNaN(data.originalPrice) ? 0 : data.originalPrice;
 
 
                 /*基本信息*/
@@ -151,6 +153,8 @@ var Course = Backbone.Model.extend({
         },
         _toJSON: function () {
             var json = _.clone(this.attributes), studyDays, i;
+            json.price = json.price.toFixed(2);
+            json.originalPrice = json.originalPrice.toFixed(2);
             json.startDate = Utilities.getDateString(this.get('startDate'));
             json.finishDate = Utilities.getDateString(this.get('finishDate'));
             json.creationTime = Utilities.getDateString(this.get('creationTime'));
