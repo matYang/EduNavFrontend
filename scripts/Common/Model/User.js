@@ -20,11 +20,11 @@ var User = Backbone.Model.extend({
             'accountNumber':'',
 
             'creationTime': new Date (),
-            'lastLogin': new Date (),
+            'lastLogin': new Date ()
 
-            'bookingList': new Bookings(),
-            'couponList': new Coupons(),
-            'creditList': new Credits()
+//            'bookingList': new Bookings(),
+//            'couponList': new Coupons(),
+//            'creditList': new Credits()
         };
     },
 
@@ -72,17 +72,17 @@ var User = Backbone.Model.extend({
             data.creationTime = Utilities.castFromAPIFormat(decodeURIComponent(data.creationTime));
             data.lastLogin = Utilities.castFromAPIFormat(decodeURIComponent(data.lastLogin));
 
-            data.bookingList = new Bookings(data.bookingList, {parse: true});
-            data.couponList = new Coupons(data.couponList, {parse: true});
-            data.creditList = new Credits(data.creditList, {parse: true});
-            var i;
-            for ( i = 0; i < data.couponList.length; i++){
-                var coupon = data.couponList.at(i);
-                var now = new Date();
-                if (coupon.get("expireTime").getTime() <= now.getTime()) {
-                    coupon.set("status", EnumConfig.CouponStatus.expired);
-                }
-            }
+//            data.bookingList = new Bookings(data.bookingList, {parse: true});
+//            data.couponList = new Coupons(data.couponList, {parse: true});
+//            data.creditList = new Credits(data.creditList, {parse: true});
+//            var i;
+//            for ( i = 0; i < data.couponList.length; i++){
+//                var coupon = data.couponList.at(i);
+//                var now = new Date();
+//                if (coupon.get("expireTime").getTime() <= now.getTime()) {
+//                    coupon.set("status", EnumConfig.CouponStatus.expired);
+//                }
+//            }
         }
         return data;
     },
