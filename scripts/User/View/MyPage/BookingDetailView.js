@@ -5,8 +5,8 @@ var BookingDetailView = Backbone.View.extend({
         this.template = _.template(tpl.get("mypage_bookingDetail"));
         _.bindAll(this, 'render', 'bindEvents', 'close');
         app.viewRegistration.register(this);
-        if (params.booking) {
-            this.booking = params.booking;
+        if (params.bookingId) {
+            this.booking = params.bookingId;
             this.render(this.booking);
         } else if (params.reference) {
             //todo better to change 'reference' to 'bookingId' if use 'bookingId' instead to get booking detail info
