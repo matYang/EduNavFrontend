@@ -484,11 +484,11 @@
 
 <script type="text/template" id="tpl_mypage_dashboard">
     <div id="walletSummary">
-        <div class="summaryItem1"><span class="F_orange"><%= balance %></span>元现金</div>
+        <div class="summaryItem1"><span class="F_orange"><%= account.balance %></span>元现金</div>
         <div class="line"></div>
-        <div class="summaryItem2"><span class="F_orange"><%= coupon %></span>元返现券</div>
+        <div class="summaryItem2"><span class="F_orange"><%= couponTotal %></span>元返现券</div>
         <div class="line"></div>
-        <div class="summaryItem3"><span class="F_orange"><%= credit %></span>积分</div>
+        <div class="summaryItem3"><span class="F_orange"><%= credit.credit %></span>积分</div>
     </div>
     <div class="title blank1" style="border:1px solid #ccc;"><b>未入学订单</b></div>
     <div id="bookingSummary" style="border:1px solid #ccc; border-top:none;">
