@@ -115,6 +115,11 @@ var Course = Backbone.Model.extend({
 
 
                 /*基本信息*/
+                data.cutoffDate = Utilities.castFromAPIFormat(this.get('cutoffDate'));
+                data.creationTime = Utilities.castFromAPIFormat(this.get('creationTime'));
+                data.noRefundDate = Utilities.castFromAPIFormat(this.get('noRefundDate'));
+                data.cashbackDate = Utilities.castFromAPIFormat(this.get('cashbackDate'));
+
                 data.startDate = Utilities.castFromAPIFormat(data.startDate);
                 data.finishDate = Utilities.castFromAPIFormat(data.finishDate);//开课日期
                 data.courseHourNum = parseInt(data.courseHourNum, 10);//课时总数
