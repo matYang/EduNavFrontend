@@ -1,5 +1,14 @@
 //IE 8 fallBack for placeholders
 $('input, textarea').placeholder();
+//配置ajax
+$.ajaxSetup({
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    dataType: 'json'
+});
+
 
 var AppRouter = Backbone.Router.extend({
 

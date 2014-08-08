@@ -93,7 +93,7 @@ var BookingSearchRepresentation = Backbone.Model.extend({
         queryObj.finishNoRefundDate = typeof this.get('finishNoRefundDate') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishNoRefundDate'));
         queryObj.startCashbackDate = typeof this.get('startCashbackDate') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startCashbackDate'));
         queryObj.finishCashbackDate = typeof this.get('finishCashbackDate') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishCashbackDate'));
-        queryObj.bookingType = this.get('bookingType');
+        queryObj.type = this.get('type');
         queryObj.serviceFeeStatus = this.get('serviceFeeStatus');
         queryObj.commissionStatus = this.get('commissionStatus');
             

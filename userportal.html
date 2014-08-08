@@ -72,7 +72,12 @@
                 <li id="navigate_compare" class="button navigate_compare">课程对比</li>
             </ul>
             <div class="user_info">
-                <span id="greeting"></span>好，尊敬的<span id="username"><%= name %></span> <a id="logout" href="#">[退出]</a>
+                <span id="greeting"></span>好，尊敬的
+                <span id="username">
+                    <% if(name)%><%= name %>
+                    <% else%><%= invitationCode %>
+                 </span>
+                <a id="logout" href="#">[退出]</a>
                 <a id="topbar-mypage" href="#">我的爱上课</a>
             </div>
         </div>
@@ -423,7 +428,12 @@
                 <div class="mypage_sidebar_sectionContent">
                     <div id="mypage_avatar">
                         <!--<img src="images/user_pic.jpg" width="150" height="150"/>-->
-                        <p>晚上好，尊敬的<span id="mypage_name"><%= name %></span></p>
+                        <p>晚上好，尊敬的
+                            <span id="mypage_name">
+                            <% if(name)%><%= name %>
+                            <% else%><%= invitationCode %>
+                            </span>
+                        </p>
                     </div>
                     <div id="mypage_info">
                         <p class="phone"><span></span><%= phone.substr(0,3) %>****<%= phone.substr(7,4) %></p>
@@ -983,7 +993,7 @@
 
             <p><label>费用总计： </label> ￥<b class="price"><%= price %></b></p>
 
-            <p><label>支付方式： </label> <%= EnumConfig.BookingTypeText[bookingType] %></p>
+            <p><label>支付方式： </label> <%= EnumConfig.BookingTypeText[type] %></p>
 
             <p class="extra">* 到达学校后，请您凭入学人的有效证件办理入学</p>
         </div>
@@ -996,244 +1006,244 @@
 
 
 <script type="text/template" id="tpl_courseDetail">
-    <div id="siteMap" class="sitemap">
-        <span id="lv1cat" data-value="<%= category.value %>"><%= category.name %></span>
-        &gt;
-        <span id="lv2cat" data-value="<%= subCategory.value %>"><%= subCategory.name %></span>
-        &gt;
-        <span id="lv3cat" data-value="<%= subSubCategory.value %>"><%= subSubCategory.name %></span>
-    </div>
-    <div class="courseDetail blank">
-        <div class="banner">
-            <div class="row1 clearfix">
-                <dl class="col1">
-                    <dt>
-                        <%= courseName %>
-                        <span><%= instName %></span>
-                        <input id="detail_compare_<%= id %>" class="add btn_g" type="button"
-                               value=" +对比 ">
-                    </dt>
-                    <dd>适合学员：<%= suitableStudent %></dd>
-                </dl>
-                <div class="col2">
-                    <div class="price"><span class="sign">￥</span><%= price %></div>
-                    <a class="cashback"><%= cashback %>元
-                        <div class="tip">
-                            <div class="arrow"></div>
-                            <div class="tip_content"> 用“返现券”预订此课程，可立即返还<%= cashback %>元现金！入学后不进行退学，就可至您的账户里提现。<span
-                                    class="link howToGetCoupon" style="color:green">如何获得返现券</span></div>
-                        </div>
-                    </a>
+<div id="siteMap" class="sitemap">
+    <span id="lv1cat" data-value="<%= category.value %>"><%= category.name %></span>
+    &gt;
+    <span id="lv2cat" data-value="<%= subCategory.value %>"><%= subCategory.name %></span>
+    &gt;
+    <span id="lv3cat" data-value="<%= subSubCategory.value %>"><%= subSubCategory.name %></span>
+</div>
+<div class="courseDetail blank">
+<div class="banner">
+    <div class="row1 clearfix">
+        <dl class="col1">
+            <dt>
+                <%= courseName %>
+                <span><%= instName %></span>
+                <input id="detail_compare_<%= id %>" class="add btn_g" type="button"
+                       value=" +对比 ">
+            </dt>
+            <dd>适合学员：<%= suitableStudent %></dd>
+        </dl>
+        <div class="col2">
+            <div class="price"><span class="sign">￥</span><%= price %></div>
+            <a class="cashback"><%= cashback %>元
+                <div class="tip">
+                    <div class="arrow"></div>
+                    <div class="tip_content"> 用“返现券”预订此课程，可立即返还<%= cashback %>元现金！入学后不进行退学，就可至您的账户里提现。<span
+                            class="link howToGetCoupon" style="color:green">如何获得返现券</span></div>
                 </div>
-                <div class="col3">
-                    <input type="button" id="bookNow" value="立即预订" class="btn_O"/>
-                </div>
-
-            </div>
-            <div class="row2 clearfix">
-                <div class="gallary clearfix">
-                    <div class="small_pic">
-                        <div class="top">
-                            <div class="pic1"><img src="<%= logoUrl %>" width="100%" height="100%"/></div>
-                            <div class="pic2"><img src="<%= classPhotoList[0] ? classPhotoList[0].imgUrl : null %>"
-                                                   width="100%"/></div>
-                        </div>
-                        <div class="bottom">
-                            <div class="pic3"><img src="<%= classPhotoList[1] ? classPhotoList[1].imgUrl : null %>"
-                                                   width="100%"/></div>
-                            <div class="pic4"><img src="<%= classPhotoList[2] ? classPhotoList[2].imgUrl : null %>"
-                                                   width="100%" height="100%"/></div>
-                        </div>
-                    </div>
-                    <div class="big_pic"><img src="<%= classPhotoList[3] ? classPhotoList[3].imgUrl : null %>"
-                                              width="306" height="218"/></div>
-                </div>
-                <div class="course_map">
-                    <div class="addr">上课地点：<%= address %></div>
-                    <div class="map">
-                        <a href="http://api.map.baidu.com/geocoder?address=<%= address %>&output=html" target="_blank">
-                            <img src="http://api.map.baidu.com/staticimage?width=328&height=184&zoom=14&center=<%= address %>&markers=<%= address %>"/>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            </a>
         </div>
-        <div class="courseMain blank2">
-            <ul id="courseNavigateTab" class="tabButton tab">
-                <li id="tab_basic" class="active">基本信息</li>
-                <li id="tab_teaching">教学信息</li>
-                <li id="tab_etc">教学补充</li>
-                <li id="tab_guarantee">教学保障</li>
-                <li id="tab_service">特色服务</li>
-            </ul>
-            <div class="course_content">
-                <dl id="content_basic" class="clearfix">
-                    <dt>基本信息</dt>
-                    <dd class="clearfix"><label>开课日期</label>
+        <div class="col3">
+            <input type="button" id="bookNow" value="立即预订" class="btn_O"/>
+        </div>
 
-                        <p><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDayNote %></p></dd>
-                    <dd class="clearfix"><label>上课时间</label>
-
-                        <p><%= startTime1 %>-<%= finishTime1 %>
-                            <% if (startTime2 > 0) { %>, <%= startTime2 %> - <%= finishTime2 %><% } %>
-                        </p>
-                    </dd>
-                    <dd class="clearfix"><label>上课课时</label>
-
-                        <p><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</p></dd>
-                    <dd class="clearfix"><label>班级类型</label>
-
-                        <p><%= classSize %>人</p></dd>
-                    <dd class="clearfix"><label>开班要求</label>
-
-                        <p><%= openCourseRequirement%></p></dd>
-                    <dd class="clearfix"><label>报名日期</label>
-
-                        <p>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</p></dd>
-                    <dd class="clearfix"><label>机构全称</label>
-
-                        <p><%= wholeName %></p></dd>
-                    <dd class="clearfix"><label>机构荣誉</label>
-
-                        <p><%= partnerQualification %></p></dd>
-                    <dd class="clearfix"><label>机构概况</label>
-
-                        <p><%= partnerIntro %></p></dd>
-
-                    <dd class="teacher clearfix">
-                        <label>老师介绍</label>
-
-                        <div class="clearfix blank" style="margin-left: 90px;">
-                            <% if (teacherList) { %>
-                            <% for (var i =0; i < teacherList.length; i++) { %>
-                            <div class="teacherInfo">
-                                <div style="width:120px;height:120px;overflow:hidden;float:right"><img
-                                        class="teacherPhoto" src="<%= teacherList[i].imgUrl %>" style="height:100%"/>
-                                </div>
-                                <div class="name"><%= teacherList[i].name %></div>
-                                <div class=""><%= teacherList[i].intro %></div>
-                            </div>
-                            <% } %>
-                            <% } %>
-                        </div>
-                    </dd>
-                </dl>
-                <dl id="content_teaching" class="clearfix">
-                    <dt>教学信息</dt>
-                    <% if (courseIntro) { %>
-                    <dd class="clearfix"><label>课程介绍</label>
-
-                        <p><%= courseIntro %></p></dd>
-                    <% } %>
-                    <% if (goal) { %>
-                    <dd class="clearfix"><label>教学目标</label>
-
-                        <p><%= goal %></p></dd>
-                    <% } %>
-                    <% if (prerequest) { %>
-                    <dd class="clearfix"><label>先修知识</label>
-
-                        <p><%= prerequest %></p></dd>
-                    <% } %>
-                    <% if (teachingMethod) { %>
-                    <dd class="clearfix"><label>上课形式</label>
-
-                        <p><%= teachingMethod %></p></dd>
-                    <% } %>
-                    <% if (teachingMaterialIntro) { %>
-                    <dd class="clearfix"><label>教材介绍</label>
-
-                        <p><%= teachingMaterialIntro %></p></dd>
-                    <% } %>
-                    <% if (teachingMaterialFee) { %>
-                    <dd class="clearfix"><label>教材费用</label>
-
-                        <p><%= teachingMaterialFee %></p></dd>
-                    <% } %>
-                    <% if (outline) { %>
-                    <dd class="course_syllabus"><label>课程提纲</label>
-
-                        <div><%= outline %></div>
-                    </dd>
-                    <% } %>
-                </dl>
-                <dl id="content_etc" class="clearfix">
-                    <dt>教学补充</dt>
-                    <% if (downloadMaterials) { %>
-                    <dd class="clearfix"><label>课件下载</label>
-
-                        <p><%= downloadMaterials %></p></dd>
-                    <% } %>
-                    <% if (questionBank) { %>
-                    <dd class="clearfix"><label>题库支持</label>
-
-                        <p><%= questionBank %></p></dd>
-                    <% } %>
-                    <% if (classTeacher) { %>
-                    <dd class="clearfix"><label>班主任导学</label>
-
-                        <p><%= classTeacher %></p></dd>
-                    <% } %>
-                    <% if (teachingAndExercise) { %>
-                    <dd class="clearfix"><label>讲练结合</label>
-
-                        <p><%= teachingAndExercise %></p></dd>
-                    <% } %>
-                    <% if (quiz) { %>
-                    <dd class="clearfix"><label>阶段测评</label>
-
-                        <p><%= quiz %></p></dd>
-                    <% } %>
-                    <% if (questionSession) { %>
-                    <dd class="clearfix"><label>课后答疑</label>
-
-                        <p><%= questionSession %></p></dd>
-                    <% } %>
-                    <% if (assignments) { %>
-                    <dd class="clearfix"><label>课后作业</label>
-
-                        <p><%= assignments %></p></dd>
-                    <% } %>
-                    <% if (marking) { %>
-                    <dd class="clearfix"><label>作业批改</label>
-
-                        <p><%= marking %></p></dd>
-                    <% } %>
-                </dl>
-                <dl id="content_guarantee" class="clearfix">
-                    <dt>教学保障</dt>
-                    <% if (passAgreement) { %>
-                    <dd class="clearfix"><label>签约保过</label>
-
-                        <p><%= passAgreement %></p></dd>
-                    <% } %>
-                    <% if (highScoreReward) { %>
-                    <dd class="clearfix"><label>高分奖励</label>
-
-                        <p><%= highScoreReward %></p></dd>
-                    <% } %>
-                </dl>
-                <dl id="content_service" class="clearfix">
-                    <dt>特色服务</dt>
-                    <% if (certification) { %>
-                    <dd class="clearfix"><label>结业证书</label>
-
-                        <p><%= certification %></p></dd>
-                    <% } %>
-                    <% if (extracurricular) { %>
-                    <dd class="clearfix"><label>课后互动</label>
-
-                        <p><%= extracurricular %></p></dd>
-                    <% } %>
-                    <% if (bonusService) { %>
-                    <dd class="clearfix"><label>赠送服务</label>
-
-                        <p><%= bonusService %></p></dd>
-                    <% } %>
-                </dl>
+    </div>
+    <div class="row2 clearfix">
+        <div class="gallary clearfix">
+            <div class="small_pic">
+                <div class="top">
+                    <div class="pic1"><img src="<%= logoUrl %>" width="100%" height="100%"/></div>
+                    <div class="pic2"><img src="<%= classPhotoList[0] ? classPhotoList[0].imgUrl : null %>"
+                                           width="100%"/></div>
+                </div>
+                <div class="bottom">
+                    <div class="pic3"><img src="<%= classPhotoList[1] ? classPhotoList[1].imgUrl : null %>"
+                                           width="100%"/></div>
+                    <div class="pic4"><img src="<%= classPhotoList[2] ? classPhotoList[2].imgUrl : null %>"
+                                           width="100%" height="100%"/></div>
+                </div>
+            </div>
+            <div class="big_pic"><img src="<%= classPhotoList[3] ? classPhotoList[3].imgUrl : null %>"
+                                      width="306" height="218"/></div>
+        </div>
+        <div class="course_map">
+            <div class="addr">上课地点：<%= address %></div>
+            <div class="map">
+                <a href="http://api.map.baidu.com/geocoder?address=<%= address %>&output=html" target="_blank">
+                    <img src="http://api.map.baidu.com/staticimage?width=328&height=184&zoom=14&center=<%= address %>&markers=<%= address %>"/>
+                </a>
             </div>
         </div>
     </div>
+</div>
+<div class="courseMain blank2">
+    <ul id="courseNavigateTab" class="tabButton tab">
+        <li id="tab_basic" class="active">基本信息</li>
+        <li id="tab_teaching">教学信息</li>
+        <li id="tab_etc">教学补充</li>
+        <li id="tab_guarantee">教学保障</li>
+        <li id="tab_service">特色服务</li>
+    </ul>
+    <div class="course_content">
+        <dl id="content_basic" class="clearfix">
+            <dt>基本信息</dt>
+            <dd class="clearfix"><label>开课日期</label>
+
+                <p><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDayNote %></p></dd>
+            <dd class="clearfix"><label>上课时间</label>
+
+                <p><%= startTime1 %>-<%= finishTime1 %>
+                    <% if (startTime2 > 0) { %>, <%= startTime2 %> - <%= finishTime2 %><% } %>
+                </p>
+            </dd>
+            <dd class="clearfix"><label>上课课时</label>
+
+                <p><%= courseHourNum %>课时, 每课时<%= courseHourLength %>小时</p></dd>
+            <dd class="clearfix"><label>班级类型</label>
+
+                <p><%= classSize %>人</p></dd>
+            <dd class="clearfix"><label>开班要求</label>
+
+                <p><%= openCourseRequirement%></p></dd>
+            <dd class="clearfix"><label>报名日期</label>
+
+                <p>至6月5日为止; 晚于此日期, 您将不再享有此特惠价格</p></dd>
+            <dd class="clearfix"><label>机构全称</label>
+
+                <p><%= wholeName %></p></dd>
+            <dd class="clearfix"><label>机构荣誉</label>
+
+                <p><%= partnerQualification %></p></dd>
+            <dd class="clearfix"><label>机构概况</label>
+
+                <p><%= partnerIntro %></p></dd>
+
+            <dd class="teacher clearfix">
+                <label>老师介绍</label>
+
+                <div class="clearfix blank" style="margin-left: 90px;">
+                    <% if (teacherList) { %>
+                    <% for (var i =0; i < teacherList.length; i++) { %>
+                    <div class="teacherInfo">
+                        <div style="width:120px;height:120px;overflow:hidden;float:right"><img
+                                class="teacherPhoto" src="<%= teacherList[i].imgUrl %>" style="height:100%"/>
+                        </div>
+                        <div class="name"><%= teacherList[i].name %></div>
+                        <div class=""><%= teacherList[i].intro %></div>
+                    </div>
+                    <% } %>
+                    <% } %>
+                </div>
+            </dd>
+        </dl>
+        <dl id="content_teaching" class="clearfix">
+            <dt>教学信息</dt>
+            <% if (courseIntro) { %>
+            <dd class="clearfix"><label>课程介绍</label>
+
+                <p><%= courseIntro %></p></dd>
+            <% } %>
+            <% if (goal) { %>
+            <dd class="clearfix"><label>教学目标</label>
+
+                <p><%= goal %></p></dd>
+            <% } %>
+            <% if (prerequest) { %>
+            <dd class="clearfix"><label>先修知识</label>
+
+                <p><%= prerequest %></p></dd>
+            <% } %>
+            <% if (teachingMethod) { %>
+            <dd class="clearfix"><label>上课形式</label>
+
+                <p><%= teachingMethod %></p></dd>
+            <% } %>
+            <% if (teachingMaterialIntro) { %>
+            <dd class="clearfix"><label>教材介绍</label>
+
+                <p><%= teachingMaterialIntro %></p></dd>
+            <% } %>
+            <% if (teachingMaterialFee) { %>
+            <dd class="clearfix"><label>教材费用</label>
+
+                <p><%= teachingMaterialFee %></p></dd>
+            <% } %>
+            <% if (outline) { %>
+            <dd class="course_syllabus"><label>课程提纲</label>
+
+                <div><%= outline %></div>
+            </dd>
+            <% } %>
+        </dl>
+        <dl id="content_etc" class="clearfix">
+            <dt>教学补充</dt>
+            <% if (downloadMaterials) { %>
+            <dd class="clearfix"><label>课件下载</label>
+
+                <p><%= downloadMaterials %></p></dd>
+            <% } %>
+            <% if (questionBank) { %>
+            <dd class="clearfix"><label>题库支持</label>
+
+                <p><%= questionBank %></p></dd>
+            <% } %>
+            <% if (classTeacher) { %>
+            <dd class="clearfix"><label>班主任导学</label>
+
+                <p><%= classTeacher %></p></dd>
+            <% } %>
+            <% if (teachingAndExercise) { %>
+            <dd class="clearfix"><label>讲练结合</label>
+
+                <p><%= teachingAndExercise %></p></dd>
+            <% } %>
+            <% if (quiz) { %>
+            <dd class="clearfix"><label>阶段测评</label>
+
+                <p><%= quiz %></p></dd>
+            <% } %>
+            <% if (questionSession) { %>
+            <dd class="clearfix"><label>课后答疑</label>
+
+                <p><%= questionSession %></p></dd>
+            <% } %>
+            <% if (assignments) { %>
+            <dd class="clearfix"><label>课后作业</label>
+
+                <p><%= assignments %></p></dd>
+            <% } %>
+            <% if (marking) { %>
+            <dd class="clearfix"><label>作业批改</label>
+
+                <p><%= marking %></p></dd>
+            <% } %>
+        </dl>
+        <dl id="content_guarantee" class="clearfix">
+            <dt>教学保障</dt>
+            <% if (passAgreement) { %>
+            <dd class="clearfix"><label>签约保过</label>
+
+                <p><%= passAgreement %></p></dd>
+            <% } %>
+            <% if (highScoreReward) { %>
+            <dd class="clearfix"><label>高分奖励</label>
+
+                <p><%= highScoreReward %></p></dd>
+            <% } %>
+        </dl>
+        <dl id="content_service" class="clearfix">
+            <dt>特色服务</dt>
+            <% if (certification) { %>
+            <dd class="clearfix"><label>结业证书</label>
+
+                <p><%= certification %></p></dd>
+            <% } %>
+            <% if (extracurricular) { %>
+            <dd class="clearfix"><label>课后互动</label>
+
+                <p><%= extracurricular %></p></dd>
+            <% } %>
+            <% if (bonusService) { %>
+            <dd class="clearfix"><label>赠送服务</label>
+
+                <p><%= bonusService %></p></dd>
+            <% } %>
+        </dl>
+    </div>
+</div>
+</div>
 </script>
 
 <script type="text/template" id="tpl_compareView">
