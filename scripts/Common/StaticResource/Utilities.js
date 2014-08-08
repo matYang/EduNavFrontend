@@ -227,6 +227,13 @@ var Utilities = {
         return {valid: true};
     },
 
+    //验证用户名 中英文 不可为纯数字 todo 非法字符
+    usernameValid: function (username) {
+        if (username && isNaN(Utilities.toInt(username))) {
+            return {valid: true};
+        }
+        return {valid: false, text: "用户名格式不正确"};
+    },
     phoneValid: function (phone) {
         if (phone && phone.length === 11 && !isNaN(Utilities.toInt(phone))) {
             return {valid: true};
