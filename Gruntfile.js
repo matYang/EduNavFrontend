@@ -24,6 +24,7 @@ module.exports = function(grunt) {
               "scripts/Common/Model/Representation/*",
               "scripts/Common/Model/Transaction.js",
               "scripts/Common/Model/Credit.js",
+              "scripts/Common/Model/Account.js",
               "scripts/Common/Model/Coupon.js",
               "scripts/Common/Model/Booking.js",
               "scripts/Common/Model/User.js",
