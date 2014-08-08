@@ -134,8 +134,8 @@
                 password: password,
                 remember: remember
             }),
-            headers: { 'Content-Type': 'application/json' },
             dataType: 'json',
+            contentType: 'application/json',
             success: function (model, response) {
                 Info.log(model);
                 if (callback) {
@@ -184,6 +184,7 @@
             type: 'PUT',
             url: url.format(this.sessionModel.id),
             dataType: 'json',
+            contentType: 'application/json',
             success: function (data) {
                 self.sessionModel.set(self.sessionModel.idAttribute, -1);
                 if (callback) {
