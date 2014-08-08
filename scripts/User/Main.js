@@ -130,7 +130,7 @@ var AppRouter = Backbone.Router.extend({
             this.navigate("front", {trigger: true, replace: true});
             return;
         }
-        this.myPageView = new BookingPayView({id: id});
+        this.myPageView = new BookingPayView({bookingId: id});
     },
     mypage: function (query) {
         if (!this.sessionManager.hasSession()) {

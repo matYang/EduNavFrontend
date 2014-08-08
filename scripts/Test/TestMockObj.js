@@ -283,7 +283,8 @@ testMockObj.testBooking9.set("course", testMockObj.testCourse3);
 testMockObj.testBooking10.set("course", testMockObj.testCourse4);
 testMockObj.testBooking11.set("course", testMockObj.testCourse5);
 testMockObj.testBooking12.set("course", testMockObj.testCourse6);
-testMockObj.testUser.set("bookingList", testMockObj.testBookings);
+testMockObj.testBookings.add([,testMockObj.testBooking1,testMockObj.testBooking2,testMockObj.testBooking4,testMockObj.testBooking5]);
+
 testMockObj.testUser.set("couponList", testMockObj.testCoupons);
 testMockObj.testUser.set("creditList", testMockObj.testCredits);
 testMockObj[EnumConfig.ModuleIdentifier.user] = testMockObj.testUser;

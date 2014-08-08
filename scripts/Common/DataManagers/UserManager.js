@@ -345,6 +345,39 @@
         });
     };
 
+    //用于根据订单id查询单个订单
+    UserManager.prototype.fetchBooking = function(id, callback) {
+
+        var booking = new Booking();
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testBookings.get(id));
+            return;
+        }
+        if (!this.sessionManager.hasSession()){
+            Info.warn('UserManager::bookingDetail:: session does not exist, exit');
+            return;
+        }
+
+        booking.overrideUrl(ApiResource.user_booking);
+        booking.set('id', id);
+        booking.fetch({},{
+            dataType:'json',
+
+            success:function(model, response){
+                if(callback){
+                    callback.success(model);
+                }
+            },
+            error: function(model, response){
+                Info.warn('fetch booking failed');
+                Info.warn(response);
+                if (callback) {
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
     //发起订单
     UserManager.prototype.initBooking = function(newBooking, callback){
         var self = this;

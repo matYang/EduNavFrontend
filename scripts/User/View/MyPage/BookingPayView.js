@@ -6,22 +6,15 @@ var BookingPayView = Backbone.View.extend({
 //        this.pay_info = _.template(tpl.get("mypage_bookingPay"));
         _.bindAll(this, 'render', 'bindEvents', 'close');
         app.viewRegistration.register(this);
-        if (params.id) {
-            this.reference = params.reference;
+        if (params.bookingId) {
+            this.bookingId = params.bookingId;
             this.user = app.sessionManager.sessionModel;
-            this.booking = this.user.get("bookingList").findBookingByBookingId(params.id);
-            if (this.booking) {
-                this.render(this.booking);
-            } else {
-                this.sr = new BookingSearchRepresentation();
-                this.sr.set("bookingId", this.reference);
-                app.userManager.fetchBookings(this.sr, {
-                    success: this.render,
-                    error: function (data) {
-                        Info.displayNotice(data.responseJSON.message);
-                    }
-                });
-            }
+            app.userManager.fetchBooking(this.bookingId, {
+                success: this.render,
+                error: function (data) {
+                    Info.displayNotice(data.responseJSON.message);
+                }
+            });
         }
     },
     render: function (booking) {
@@ -39,7 +32,7 @@ var BookingPayView = Backbone.View.extend({
             //todo 打开对话框 btn支付成功 btn支付遇到问题
 
             //todo 打开新标签页 location
-            var url = '/api/booking/alipay?id='+that.booking.id;
+            var url = '/api/booking/alipay?id=' + that.booking.id;
             var s = window.open(url);
             console.dir(s.focus);
             s.focus();

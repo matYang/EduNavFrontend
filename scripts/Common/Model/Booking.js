@@ -28,7 +28,7 @@ var Booking = Backbone.Model.extend({
             'noRefundDate': new Date(),
             'cashbackDate': new Date(),
 
-            'course': undefined//主要用于新建订单的页面显示
+            'course': new Course()
         };
     },
 
