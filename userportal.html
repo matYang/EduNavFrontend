@@ -74,8 +74,11 @@
             <div class="user_info">
                 <span id="greeting"></span>好，尊敬的
                 <span id="username">
-                    <% if(name)%><%= name %>
-                    <% else%><%= invitationCode %>
+                    <% if(name){%>
+                        <%= name %>
+                    <% }else{ %>
+                        <%= invitationCode %>
+                    <%} %>
                  </span>
                 <a id="logout" href="#">[退出]</a>
                 <a id="topbar-mypage" href="#">我的爱上课</a>
@@ -430,8 +433,11 @@
                         <!--<img src="images/user_pic.jpg" width="150" height="150"/>-->
                         <p>晚上好，尊敬的
                             <span id="mypage_name">
-                            <% if(name)%><%= name %>
-                            <% else%><%= invitationCode %>
+                            <% if(name){%>
+                                <%= name %>
+                            <% }else{ %>
+                                <%= invitationCode %>
+                            <%} %>
                             </span>
                         </p>
                     </div>
