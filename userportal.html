@@ -1703,16 +1703,21 @@
     <div class="title"><span>我的爱上课</span> &gt; <span>个人设置</span> &gt; <span class=" F_green">个人资料</span></div>
     <div class="mypage_content_inner">
         <div class="my_info form_style">
+
             <div class="field">
-                <label>姓<s></s>名</label>
-                <input class="text" type="text" id="inputName" value="<%= name %>">
-                <span class="action" id="inputName_info"><span class="form_tip"><span
-                        class="form_tip_top">请填写实际入学人姓名</span><span class="form_tip_bottom"></span></span></span>
+                <label>用 户 名</label>
+                <span><%= invitationCode %></span>
             </div>
             <div class="field">
                 <label>手<s></s>机</label>
                 <span><%= phone.substr(0,3) %>****<%= phone.substr(7,4) %></span>
                 <span class="instr">（修改登录名（手机号），请致电人工客服）</span>
+            </div>
+            <div class="field">
+                <label>姓<s></s>名</label>
+                <input class="text" type="text" id="inputName" value="<%= name %>">
+                <span class="action" id="inputName_info"><span class="form_tip"><span
+                        class="form_tip_top">请填写实际入学人姓名</span><span class="form_tip_bottom"></span></span></span>
             </div>
             <div class="field">
                 <label>邮<s></s>箱</label>
