@@ -360,7 +360,7 @@
 
         booking.overrideUrl(ApiResource.user_booking);
         booking.set('id', id);
-        booking.fetch({},{
+        booking.fetch({
             dataType:'json',
 
             success:function(model, response){
