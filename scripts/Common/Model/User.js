@@ -13,7 +13,6 @@ var User = Backbone.Model.extend({
             'phone': '',
             'password': '',
             'email': '',
-            
             'status': 0,
             'invitationCode': '',
             'appliedInvitationCode': '',
@@ -34,7 +33,6 @@ var User = Backbone.Model.extend({
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');
-
         if (typeof urlRootOverride !== 'undefined') {
             this.urlRoot = urlRootOverride;
         }
@@ -49,6 +47,7 @@ var User = Backbone.Model.extend({
             if (data instanceof Array) {
                 data = data[0];
             }
+            data = Utilities.parseCleanNull(data);
             data.id = parseInt(data.id, 10);
             data.userId = data.id;
 

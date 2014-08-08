@@ -216,6 +216,15 @@ var Utilities = {
         }
         return params;
     },
+
+    parseCleanNull: function (json) {
+        _.each(json, function (v, k) {
+            if (v === null)
+                delete json[k];
+        });
+        return json;
+    },
+
     passValid: function (val) {
         var p1 = $("#password").val(), p2 = $("#passwordConfirm").val();
         if (p1 !== p2) {
@@ -335,14 +344,16 @@ var Utilities = {
      * @param categoryObj
      * @returns {Array}
      */
-    getCategoryArray:function(categoryValue,categoryObj){
-        if(categoryValue!==undefined&&categoryValue.length!==6&&categoryObj!==undefined)return null;
+    getCategoryArray: function (categoryValue, categoryObj) {
+        if (categoryValue !== undefined && categoryValue.length !== 6 && categoryObj !== undefined)return null;
         var catArray = [];
         var getCat = function (value, start, cat) {
             if (start >= value.length)return []
             for (var a in cat.children) {
-                if (cat.children.hasOwnProperty(a)&&cat.children[a].value == value.substr(0, start + 2))
-                    return [{name:cat.children[a].name,value:cat.children[a].value}].concat(getCat(value, start + 2, cat.children[a]));
+                if (cat.children.hasOwnProperty(a) && cat.children[a].value == value.substr(0, start + 2))
+                    return [
+                        {name: cat.children[a].name, value: cat.children[a].value}
+                    ].concat(getCat(value, start + 2, cat.children[a]));
             }
             return [];
         };
