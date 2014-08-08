@@ -92,6 +92,11 @@ var TopBarView = Backbone.View.extend({
                     self.login();
                 }
             });
+            //是否记住我
+            this.$rememberInput.on('click', function () {
+                $(this).toggleClass('checked');
+                console.log($(this).hasClass('checked'))
+            });
             $("#forget_password").on("click", function (e) {
                 e.preventDefault();
                 app.navigate("lost", true);
@@ -124,7 +129,7 @@ var TopBarView = Backbone.View.extend({
     login: function () {
         var username = this.$usernameInput.val(),
             password = this.$passwordInput.val(),
-            remember = this.$rememberInput.val() ? 1 : 0,
+            remember = this.$rememberInput.hasClass('checked') ? 1 : 0,
             self = this;
         if (username !== "" && password !== "") {
             $('#login_button').val("登录中...").prop("disabled", true);

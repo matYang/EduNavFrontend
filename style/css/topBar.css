@@ -21,8 +21,13 @@
 .login_reg .hd{ font-size:18px; line-height:60px; }
 .login_reg .bd { position:absolute; top:69px; left:-141px; width:262px; background:#f8f8f8; border:1px  solid #ccc; -index:99; }
 .login_reg .bd ul { padding:20px; }
-.checkbox { height:25px; line-height:25px; padding-left:30px; background:url(../images/checkbox.png) no-repeat 0 0; cursor:pointer; }
-.checked { background-position:0 -25px; }
+.checkbox {
+    height:20px;
+    line-height:20px;
+    padding-left:30px;
+    background:url(../images/checkbox.png) no-repeat 0 0;
+    cursor:pointer;}
+    .checkbox.checked { background-position:0 -20px; }
 .login_reg .bd ul li { margin-bottom:10px; }
 .login_reg .wrong { text-align:left; line-height:26px; padding-left:20px; background:url(../images/icon_wrong.png) no-repeat 0 -22px; font-size:12px; }
 .login_reg .bd ul li input.text { width:210px; height:38px; line-height:38px\9; border:1px solid #cccccc; padding-left:10px; color:#333; }
