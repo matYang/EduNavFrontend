@@ -59,14 +59,8 @@ var User = Backbone.Model.extend({
             data.coupon = isNaN(data.coupon) ? 0 : data.coupon;
             data.credit = isNaN(data.credit) ? 0 : data.credit;
 
-            data.name = decodeURI(data.name);
-            data.phone = decodeURI(data.phone);
-            data.email = decodeURIComponent(data.email);
 
             data.status = parseInt(data.status, 10);
-            data.invitationCode = decodeURI(data.invitationCode);
-            data.appliedInvitationCode = decodeURI(data.appliedInvitationCode);
-            data.accountNumber = decodeURI(data.accountNumber);
 
             data.creationTime = Utilities.castFromAPIFormat(decodeURIComponent(data.creationTime));
             data.lastLogin = Utilities.castFromAPIFormat(decodeURIComponent(data.lastLogin));

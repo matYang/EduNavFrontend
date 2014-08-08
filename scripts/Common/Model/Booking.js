@@ -65,15 +65,10 @@ var Booking = Backbone.Model.extend({
 
             data.price = parseInt(data.price, 10);
             data.status = parseInt(data.status, 10);
-            data.name = decodeURI(data.name);
-            data.phone = decodeURI(data.phone);
-            data.email = decodeURIComponent(data.email);
+            data.cashbackAmount = parseInt(data.cashbackAmount, 10);
             data.scheduledTime = Utilities.castFromAPIFormat(data.scheduledTime);
             data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
             data.lastModifyTime = Utilities.castFromAPIFormat(data.lastModifyTime);
-
-            data.note = decodeURI(data.note);
-            data.cashbackAmount = parseInt(data.cashbackAmount, 10);
 
             data.noRefundDate = Utilities.castFromAPIFormat(data.noRefundDate);
             data.cashbackDate = Utilities.castFromAPIFormat(data.cashbackDate);

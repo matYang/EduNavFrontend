@@ -504,7 +504,7 @@
     <div class="bookingEntry" id="booking_reference_<%= reference %>">
         <div class="bookingEntryTime">
             <div class="date"><%= course.startDate %></div>
-            <div class="dayOfWeek"><%= course.studyDays %><!-- <%= course.studyDayNote %>--></div>
+            <div class="dayOfWeek"><%= course.studyDays %><!-- <%= course.studyDaysNote %>--></div>
         </div>
         <div class="bookingEntryDetail">
             <h3><a class="F_green bookingTitle" id="bookingTitle_bookingId_<%= bookingId %>" href="#">【<%=
@@ -828,7 +828,7 @@
         </div>
         <div class="row2">
             <div class="section"><label>班级类型：</label> <span><%= course.classSize %>人</span></div>
-            <div class="section"><label>上课日期：</label> <span><%= course.startDate %> - <%= course.finishDate %> <%= course.studyDays%> <%= course.studyDayNote %>
+            <div class="section"><label>上课日期：</label> <span><%= course.startDate %> - <%= course.finishDate %> <%= course.studyDays%> <%= course.studyDaysNote %>
             </span></div>
             <div class="section"><label>上课时间：</label> <span><%= course.startTime1 %> - <%= course.finishTime1 %>
             <% if (course.startTime2 > 0) { %>
@@ -1087,7 +1087,7 @@
             <dt>基本信息</dt>
             <dd class="clearfix"><label>开课日期</label>
 
-                <p><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDayNote %></p></dd>
+                <p><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDaysNote %></p></dd>
             <dd class="clearfix"><label>上课时间</label>
 
                 <p><%= startTime1 %>-<%= finishTime1 %>
@@ -1316,7 +1316,7 @@
         <% _.each(courses, function(course) { %>
         <td class="courseId_<%= course.courseId %>"><%= course.startTime1 %>-<%= course.finishTime1 %>
             <% if (course.startTime2 > 0) { %>, <%= course.startTime2 %> - <%= course.finishTime2 %><% } %>
-            <%= course.studyDays %><%= course.studyDayNote %>
+            <%= course.studyDays %><%= course.studyDaysNote %>
         </td>
         <% }); %>
     </tr>
