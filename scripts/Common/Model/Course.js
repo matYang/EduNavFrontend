@@ -95,12 +95,11 @@ var Course = Backbone.Model.extend({
                 introArr = [],
                 nameArr = [],
                 imgArr = [],
-                classImgArr = [],
-                json = {};
+                classImgArr = [];
             if (typeof data !== 'undefined') {
                 data.id = data.id || data.courseId;
                 data.id = parseInt(data.id, 10);
-                data.courseId = json.id;
+                data.courseId = data.id;
                 data.partnerId = parseInt(data.partnerId, 10);
                 data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
 
@@ -129,7 +128,7 @@ var Course = Backbone.Model.extend({
                     for (i = 0; i < data.teacherList.length; i++) {
                         imgArr[i] = new Teacher(data.teacherList[i], {parse: true});
                     }
-                    json.teacherList = imgArr;
+                    data.teacherList = imgArr;
                 }//老师介绍
 
                 data.status = parseInt(data.status, 10);
