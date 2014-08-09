@@ -230,7 +230,7 @@ var SearchView = Backbone.View.extend({
     courseSearch: function () {
         this.searchResultView.sr = this.searchRepresentation;
         //todo 加载结果数据 param is pageIndex(using page 1)
-        this.searchResultView.fetchAction();
+        this.searchResultView.fetchAction(1);//每次搜索查询的时候重设为第一页
     },
 
     bindEvents: function () {
