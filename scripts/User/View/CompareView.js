@@ -19,7 +19,7 @@ var CompareView = Backbone.View.extend({
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.courses = [];
-        if (this.courses.length === 0) {
+        if (this.courseIdList.length === 0) {
             this.render(new Courses());
         } else {
             app.generalManager.batchFetchCourses(this.courseIdList, {
