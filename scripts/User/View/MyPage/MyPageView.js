@@ -19,12 +19,11 @@ var MyPageView = Backbone.View.extend({
 
     render: function (user) {
         if (!this.isClosed) {
-            var that = this;
-            that.user = user;
-            that.$el.append(this.template(this.user._toJSON()));
+            this.user = user;
+            this.$el.append(this.template(this.user._toJSON()));
             $("#mypage_content").css("border", "1px solid #ccc");
-            that.createChildView();
-            that.bindEvents();
+            this.createChildView();
+            this.bindEvents();
         }
     },
 
