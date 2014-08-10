@@ -70,6 +70,8 @@ var User = Backbone.Model.extend({
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         json.lastLogin = Utilities.getDateString(this.get('lastLogin'));
         json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));
+        json.account = json.account._toJSON();
+        json.credit = json.credit._toJSON();
         return json;
     },
 
