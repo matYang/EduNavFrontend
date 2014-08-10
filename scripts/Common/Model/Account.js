@@ -3,16 +3,16 @@ var Account = Backbone.Model.extend({
     defaults: function () {
         return {
             'id': -1,
-            'balance': 0.0,
+            'balance': undefined,
             'realName': undefined,
             'lastModifiedTime': undefined,
             'createTime': undefined,
             'enabled': undefined,
             'deleted': undefined,
-            'accountNumber': undefined,
+            'accountNumber': undefined
             
-            'accountHistoryList': [],
-            'withdrawList': []            
+//            'accountHistoryList': [],
+//            'withdrawList': []
         };
     },
 
@@ -33,32 +33,27 @@ var Account = Backbone.Model.extend({
     parse: function (data) {
         if ( typeof data !== 'undefined') {
             data.creditId = parseInt(data.creditId, 10);
+            data.enabled = parseInt(data.enabled, 10);
+            data.deleted = parseInt(data.deleted, 10);
 
-            data.bookingId = parseInt(data.bookingId, 10);
-            data.userId = parseInt(data.userId, 10);
-            data.amount = parseInt(data.amount, 10);
+            data.balance = parseFloat(data.balance);
+            data.balance = isNaN(data.balance)?0:data.balance;
 
-            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
-            data.expireTime = Utilities.castFromAPIFormat(data.expireTime);
-
-            data.status = parseInt(data.status, 10);
+            data.createTime = Utilities.castFromAPIFormat(data.createTime);
         }
         return data;
     },
 
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
-        json.expireTime = Utilities.getDateString(this.get('expireTime'));
-        json.usableTime = Utilities.getDateString(this.get('usableTime'));
+        json.createTime = Utilities.getDateString(this.get('createTime'));
         return json;
     },
 
     toJSON: function () {
         var json = _.clone(this.attributes);
-
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
-        json.expireTime = Utilities.castToAPIFormat(this.get('expireTime'));
+        delete json.createTime;
+        delete json.lastModifiedTime;
         return json;
     }
 

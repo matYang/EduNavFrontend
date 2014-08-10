@@ -14,12 +14,12 @@ var User = Backbone.Model.extend({
             'invitationCode': '',
             'appliedInvitationCode': '',
 
-            'creationTime': new Date(),
-            'lastLogin': new Date(),
-            'lastModifyTime': new Date(),
+            'creationTime': undefined,
+            'lastLogin': undefined,
+            'lastModifyTime': undefined,
 
-            'account': new Account(),//积分账户
-            'credit': new Credit(),//现金账户
+            'account': new Account(),//现金账户
+            'credit': new Credit(),//积分
             'couponTotal': 0 //优惠券
         };
     },
@@ -69,6 +69,7 @@ var User = Backbone.Model.extend({
         var json = _.clone(this.attributes);
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         json.lastLogin = Utilities.getDateString(this.get('lastLogin'));
+        json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));
         return json;
     },
 

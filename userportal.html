@@ -116,9 +116,9 @@
                             <input id="login_password" type="password" class="text" placeholder="请输入密码">
                         </li>
                         <li class="clearfix">
-                             <div class="checkbox checked" id="login_remember">
-                                 记住我
-                             </div>
+                            <div class="checkbox checked" id="login_remember">
+                                记住我
+                            </div>
                             <a id="forget_password" class="forget_password" href="#">忘记密码？</a>
                         </li>
                         <li><input id="login_button" class="btn_topnav_login" type="button" value="登 录"></li>
@@ -182,15 +182,15 @@
             <div id="filter_classTime" class="filterCriteria">
                 <label>上课时间：</label>
                 <span data-value="noreq" class="active">不限</span>
-                <span data-value="morning">上午</span>
-                <span data-value="afternoon">下午</span>
-                <span data-value="night">晚上</span>
-                <span data-value="morning_weekday">平日上午</span>
-                <span data-value="afternoon_weekday">平日下午</span>
-                <span data-value="night_weekday">平日晚上</span>
-                <span data-value="morning_weekend">周末上午</span>
-                <span data-value="afternoon_weekend">周末下午</span>
-                <span data-value="night_weekend">周末晚上</span>
+                <span data-value="-0">上午</span>
+                <span data-value="-1">下午</span>
+                <span data-value="-2">晚上</span>
+                <span data-value="0-0">平日上午</span>
+                <span data-value="0-1">平日下午</span>
+                <span data-value="0_2">平日晚上</span>
+                <span data-value="1-0">周末上午</span>
+                <span data-value="1-1">周末下午</span>
+                <span data-value="1-2">周末晚上</span>
             </div>
             <div id="filter_classMode" class="filterCriteria">
                 <label>班级类型：</label>
@@ -883,8 +883,11 @@
                 <div class="fleft cashback"><%= course.cashback %>元
                     <div class="tip" style="left:0;width:350px;">
                         <div class="arrow" style="left:22px"></div>
-                        <div class="tip_content"> 用“返现券”预订此课程，可立即返还<%= course.cashback %>元现金！入学后不进行退学，就可至您的账户里提现。
-                            <span class="link howToGetCoupon" style="color:green">如何获得返现券</span></div>
+                        <div class="tip_content">
+                            用“返现券”预订此课程，可立即返还<%= course.cashback %>元现金！
+                            入学后不进行退学，就可至您的账户里提现。
+                            <span class="link howToGetCoupon" style="color:green">如何获得返现券</span>
+                        </div>
                     </div>
                 </div>
                 <label for="booking_useCashback" style="font-size:13px;width:70px">使用返现券</label>
@@ -973,7 +976,7 @@
             </div>
             <div class="detail">
                 我们会在30分钟内通知您预订结果&nbsp;&nbsp;&nbsp;
-                <% if(type==EnumConfig.BookingType.online){ %>
+                <% if(type==EnumConfig.PayType.online){ %>
                 <button class="btn_O js_btnGoToPay">去支付</button>
                 <% } %>
                 &nbsp;&nbsp;

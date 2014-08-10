@@ -21,8 +21,7 @@ var MyPageView = Backbone.View.extend({
         if (!this.isClosed) {
             var that = this;
             this.user = user;
-            var userJson = this.user._toJSON();
-            this.$el.append(this.template(userJson));
+            this.$el.append(this.template(this.user._toJSON()));
             $("#mypage_content").css("border", "1px solid #ccc");
             this.createChildView();
             this.bindEvents();
@@ -64,7 +63,7 @@ var MyPageView = Backbone.View.extend({
         case "dashboard":
             $("#mypage_content").css("border", "none");
             document.title="我的爱上课 | 爱上课";
-            this.activeChildView = new MyPageDashboardView();
+            this.activeChildView = new MyPageDashboardView({user:this.user});
             break;
         case "booking":
             $("#bookingManage").addClass("active");

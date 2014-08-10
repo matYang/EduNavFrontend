@@ -4,24 +4,29 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'categoryValue': undefined,
             'locationValue': undefined,
 
-            'startDate': undefined,
-            'finishDate': undefined,
-            
             'institutionName': undefined,
             'status': EnumConfig.CourseStatus.onlined,
-            
+
+            //开课和结课日期
+            'startDate': undefined,
+            'finishDate': undefined,
+            //上课的时间段
+            'schoolTimeWeek': undefined,//平时 周末
+            'schoolTimeDay': undefined,//上午 下午 晚上
+            //开课日期(start end)
+            'startDateStart': undefined,
+            'startDateEnd': undefined,
+            //课程费用(start end)
             'priceStart': undefined,
             'priceEnd': undefined,
-//            'startClassSize': undefined,
-//            'finishClassSize': undefined,
-            'classType':undefined,//班级类型 0，1，2，3
+            'classType': undefined,//班级类型 0，1，2，3
 
             'startCashback': undefined,
             'finishCashback': undefined,
-            
+
             'courseReference': undefined,
             'partnerReference': undefined,
-            
+
             'courseId': undefined,
             'partnerId': undefined,
             'userId': undefined,
@@ -33,6 +38,7 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'startCutoffDate': undefined,
             'finishCutoffDate': undefined,
             'startUponArrival': undefined,
+
             'start': undefined,
             'count': undefined,
             'order': undefined,
@@ -77,7 +83,7 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         }
     },
 
-    toJSON: function(){
+    toJSON: function () {
         var queryObj = _.clone(this.attributes);
         queryObj.startDate = typeof this.get('startDate') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startDate'));
         queryObj.finishDate = typeof this.get('finishDate') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishDate'));
@@ -89,7 +95,7 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishCreationTime'));
         return queryObj;
     },
-    toTitleString: function() {
+    toTitleString: function () {
         var buf = "";
 
         return buf;

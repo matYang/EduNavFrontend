@@ -13,11 +13,11 @@ var EnumConfig = {
         admin: 2
     },
 
-    'CreditStatus': {
-        usable: 0,
-        expired: 1,
-        used: 2
-    },
+//    'CreditStatus': {
+//        usable: 0,
+//        expired: 1,
+//        used: 2
+//    },
 
     'CouponStatus': {
         usable: 0,
@@ -112,7 +112,7 @@ var EnumConfig = {
 //        13: '成功入学'
     },
 
-    'BookingType': {
+    "PayType": {
         offline: 1,
         online: 0
     },

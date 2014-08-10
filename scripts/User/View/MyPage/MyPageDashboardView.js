@@ -1,10 +1,11 @@
 var MyPageDashboardView = Backbone.View.extend({
     el:"#mypage_content",
-    initialize: function () {
+    initialize: function (params) {
         _.bindAll(this, "render", "bindEvents", "renderError", "close");
         app.viewRegistration.register(this);
         this.template = _.template(tpl.get("mypage_dashboard"));
-        this.user = app.sessionManager.sessionModel;
+//        this.user = app.sessionManager.sessionModel;//session中存的信息不全
+        this.user = params.user;//从MyPageView中将获取的user信息渲染到页面中
         this.isClosed = false;
         this.bookingSr = new BookingSearchRepresentation ();
         this.bookingSr.set("userId", this.user.get("userId"));

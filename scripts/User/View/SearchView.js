@@ -18,7 +18,6 @@ var SearchView = Backbone.View.extend({
         this.timeDesc = true;
         this.priceDesc = true;
         this.isClosed = true;
-        this.filters = {};
         this.titleObjs = [];
         this.titleObj = {};
         this.render(params);
@@ -30,7 +29,7 @@ var SearchView = Backbone.View.extend({
             app.viewRegistration.register(this);
             if (params) {
                 try {
-                    this.searchRepresentation = new CourseSearchRepresentation(); 
+                    this.searchRepresentation = new CourseSearchRepresentation();
                     this.searchRepresentation.castFromQuery(params.searchKey);
                     app.storage.setSearchRepresentationCache(this.searchRepresentation, true);
                 } catch (e) {
@@ -59,30 +58,35 @@ var SearchView = Backbone.View.extend({
 //        debugger;
         if (!this.isClosed) {
             this.categories = categories;
-            var data = categories.data, len = data.length, i, j, k, cbuf = [], scbuf = [], tcbuf = [], children1, children2, tc="";
+            var data = categories.data,
+                len = data.length,
+                i, j, k,
+                cbuf = [], scbuf = [], tcbuf = [],
+                children1, children2,
+                tc = "";
             if (!this.searchRepresentation.get("categoryValue")) {
                 this.searchRepresentation.set("categoryValue", data[0].value);
             }
             //一级目录
-            for ( i = 0; i < len; i++ ) {
-                cbuf[i] = this.categoryTemplate({value:data[i].value, name:data[i].name});
+            for (i = 0; i < len; i++) {
+                cbuf[i] = this.categoryTemplate({value: data[i].value, name: data[i].name});
                 children1 = data[i].children || [];
                 //二级目录
-                for ( j = 0; j < children1.length; j ++) { //level 2 and level 1 index
-                    scbuf[j] = this.subCategoryTemplate({value:children1[j].value, name:children1[j].name});
+                for (j = 0; j < children1.length; j++) { //level 2 and level 1 index
+                    scbuf[j] = this.subCategoryTemplate({value: children1[j].value, name: children1[j].name});
                     children2 = children1[j].children;
                     if (children2) {
                         //三级目录
-                        for (k = 0; k < children2.length; k++ ) { //level 3 and level 2 index
-                            tcbuf[k] = this.subSubCategoryTemplate({value:children2[k].value, name:children2[k].name});
+                        for (k = 0; k < children2.length; k++) { //level 3 and level 2 index
+                            tcbuf[k] = this.subSubCategoryTemplate({value: children2[k].value, name: children2[k].name});
                         }
-                        tc += this.subSubCategoryContainerTemplate({value:children1[j].value, entries:tcbuf.join("")});
+                        tc += this.subSubCategoryContainerTemplate({value: children1[j].value, entries: tcbuf.join("")});
                         tcbuf = [];
                     }
                 }
                 scbuf.push(tc);
                 $("#filter_subCategory").append(
-                    this.subCategoryContainerTemplate({value:data[i].value, entries:scbuf.join("")})
+                    this.subCategoryContainerTemplate({value: data[i].value, entries: scbuf.join("")})
                 );
                 scbuf = [];
             }
@@ -99,7 +103,7 @@ var SearchView = Backbone.View.extend({
             $("#filter_subCategory").find("[data-value=noreq]").addClass("active").siblings().removeClass("active");
             $("#filter_subCategory").find("p").addClass("hidden");
         }
-        for (count = 0; count < categoryValue.length; count+=2) {
+        for (count = 0; count < categoryValue.length; count += 2) {
             value = categoryValue.substr(0, count + 2);
             $("#filter_subCategory").find("[data-parentvalue=" + value + "]").removeClass("hidden").siblings("p,div").addClass("hidden");
             if (categoryValue.length === 6 && count === 2) {
@@ -112,17 +116,19 @@ var SearchView = Backbone.View.extend({
         $("#searchReqs").find("[data-cri=subCategory]").remove();
         if (categoryValue.length > 2) {
             text = $("#filter_subCategory").find("span[data-value=" + categoryValue + "]").html();
-            $("#searchReqs").append(this.reqTemplate({criteria: "subCategory", dataValue:categoryValue, text:text}));
+            $("#searchReqs").append(this.reqTemplate({criteria: "subCategory", dataValue: categoryValue, text: text}));
         }
     },
+    //过滤 上课地点
     syncLocation: function () {
         var locationValue = this.searchRepresentation.get("locationValue");
         if (locationValue) {
-            $("#filter_district").find("span[data-value=" + locationValue +"]").addClass("active").siblings().removeClass("active");
+            $("#filter_district").find("span[data-value=" + locationValue + "]").addClass("active").siblings().removeClass("active");
         } else {
             $("#filter_district").find("span[data-value=noreq]").addClass("active").siblings().removeClass("active");
         }
     },
+    //过滤 开课日期 上课时间（开始和结束） 班级类型 课程费用（开始和结束） 是否返现
     syncFilters: function () {
         var startPrice = this.searchRepresentation.get("priceStart"),
             priceEnd = this.searchRepresentation.get("priceEnd"),
@@ -140,30 +146,30 @@ var SearchView = Backbone.View.extend({
             }
             text = $("#filter_price").find("span[data-value=" + value + "]").html();
             $("#filter_price").find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
-            $("#searchReqs").append(this.reqTemplate({criteria: "price", dataValue:value, text:text}));
+            $("#searchReqs").append(this.reqTemplate({criteria: "price", dataValue: value, text: text}));
         }
         if (classType !== undefined) {
             value = classType;
             text = $("#filter_classMode").find("span[data-value=" + value + "]").html();
             $("#filter_classMode").find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
-            $("#searchReqs").append(this.reqTemplate({criteria: "classMode", dataValue:value, text:text}));   
+            $("#searchReqs").append(this.reqTemplate({criteria: "classMode", dataValue: value, text: text}));
         }
         if (startDate !== undefined) {
             var date = new Date(), month = startDate.getMonth() - date.getMonth();
             switch (month) {
-            case 0:
-                value = "thisMonth";
-                break;
-            case 1:
-                value = "nextMonth";
-                break;
-            case 2:
-                value = "twoMonthsAfter";
-                break;
+                case 0:
+                    value = "thisMonth";
+                    break;
+                case 1:
+                    value = "nextMonth";
+                    break;
+                case 2:
+                    value = "twoMonthsAfter";
+                    break;
             }
             text = $("#filter_startTime").find("span[data-value=" + value + "]").html();
             $("#filter_startTime").find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
-            $("#searchReqs").append(this.reqTemplate({criteria: "startTime", dataValue:value, text:text}));   
+            $("#searchReqs").append(this.reqTemplate({criteria: "startTime", dataValue: value, text: text}));
         }
         if (cashback && cashback > 0) {
             $("input[name=cashback]").prop("checked", true);
@@ -212,7 +218,7 @@ var SearchView = Backbone.View.extend({
             //     for (var attr in city) {
             var districts = locations.data[0].children[0].children, district;
             for (i = 0; i < districts.length; i++) {
-                buf[i] = this.subCategoryTemplate({value:districts[i].value, name:districts[i].name});
+                buf[i] = this.subCategoryTemplate({value: districts[i].value, name: districts[i].name});
             }
             $("#filter_district").append(buf.join(""));
             this.titleObj.city = "南京";
@@ -221,7 +227,7 @@ var SearchView = Backbone.View.extend({
                 $dist.find("span[data-value=noreq]").removeClass("active");
                 $dist.find("span[data-value=" + this.searchRepresentation.get("locationValue") + "]").addClass("active");
                 text = $("#filter_district").find("span[data-value=" + locationValue + "]").html();
-                $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue:locationValue, text:text}));
+                $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
             } else {
                 $dist.find("span[data-value=noreq]").addClass("active");
             }
@@ -247,7 +253,7 @@ var SearchView = Backbone.View.extend({
             var scroll = $(this).scrollTop(), srh = $searchReqs.hasClass("hidden") ? 0 : 46;
 
             if ($("#searchResultContent").height() > $("#searchWidgets").height()) {
-                if (scroll > $searchPanel.height() +  srh + 100) {
+                if (scroll > $searchPanel.height() + srh + 100) {
                     $("#searchWidgets").addClass("stickyHeader");
                 } else {
                     $("#searchWidgets").removeClass("stickyHeader");
@@ -300,12 +306,12 @@ var SearchView = Backbone.View.extend({
 
         });
         $("#editorPick").on("click", function () {
-                $("#time").html("时间").removeClass("active");
-                $("#price").html("价格").removeClass("active");
-                $("#editorPick").html("爱上课推荐").addClass("active");
-                that.searchRepresentation.set("sortBy", undefined);
-                that.searchRepresentation.set("order", undefined);
-                this.courseSearch();
+            $("#time").html("时间").removeClass("active");
+            $("#price").html("价格").removeClass("active");
+            $("#editorPick").html("爱上课推荐").addClass("active");
+            that.searchRepresentation.set("sortBy", undefined);
+            that.searchRepresentation.set("order", undefined);
+            this.courseSearch();
         });
 
         $("input[name=cashback]").on("change", function () {
@@ -335,11 +341,12 @@ var SearchView = Backbone.View.extend({
             } else {
                 that.searchRepresentation.set("categoryValue", dataId);
             }
-            that.showCategory( that.searchRepresentation.get("categoryValue") );
+            that.showCategory(that.searchRepresentation.get("categoryValue"));
             that.courseSearch();
 
         });
     },
+    /*处理筛选事件(上课时间 课程费用等)*/
     filterResult: function ($filter, $target) {
         if ($target.hasClass("active")) {
             return;
@@ -355,10 +362,12 @@ var SearchView = Backbone.View.extend({
                 {criteria: criteria, dataValue: dataValue, text: $filter.find("[data-value=" + dataValue + "]").html()}
             ));
         }
-        if ($("#searchReqs").find("a").length) {
-             $("#searchReqs").removeClass("hidden");
+
+        var $searchReqs = $("#searchReqs");
+        if ($searchReqs.find("a").length) {
+            $searchReqs.removeClass("hidden");
         } else {
-             $("#searchReqs").addClass("hidden");
+            $searchReqs.addClass("hidden");
         }
         if (criteria === "subCategory") {
             if (dataValue === "noreq") {
@@ -386,34 +395,65 @@ var SearchView = Backbone.View.extend({
                     this.compareWidgetView.map.map.setZoom(11);
                 }
             }
-        } else if (criteria === "startTime") {
-            var date = new Date();
+        }
+        //上课时间 start end
+        else if (criteria === "startTime") {
+            var date = new Date(), date2;
             date.setDate(1);
             var month = date.getMonth();
+            //设置当月的时间
             if (dataValue === "thisMonth") {
-                this.searchRepresentation.set("startDate", date);
-            } else if (dataValue === "nextMonth") {
+                date2 = date;
+                if (month === 11) {
+                    date2.setMonth(0);
+                    date2.setFullYear(date.getFullYear() + 1);
+                } else {
+                    date2.setMonth(date.getMonth() + 1);
+                }
+            }
+            //设置下个月的时间
+            else if (dataValue === "nextMonth") {
                 if (month === 11) {
                     date.setMonth(0);
                     date.setFullYear(date.getFullYear() + 1);
+                    date2 = date;
+                    date2.setMonth(date2.getMonth() + 1);
                 } else {
                     date.setMonth(date.getMonth() + 1);
+                    date2 = date;
+                    if (month === 10) {
+                        date2.setMonth(0);
+                        date2.setFullYear(date2.getFullYear() + 1);
+                    } else {
+                        date2.setMonth(date2.getMonth() + 1);
+                    }
+
                 }
-                this.searchRepresentation.set("startDate", date);
             } else if (dataValue === "twoMonthsAfter") {
                 if (month >= 10) {
                     date.setMonth((date.getMonth() + 2) % 12);
                     date.setFullYear(date.getFullYear() + 1);
+                    date2 = date;
+                    date2.setMonth(date2.getMonth() + 1);
                 } else {
                     date.setMonth(date.getMonth() + 2);
+                    date2 = date;
+                    if (month === 10) {
+                        date2.setMonth(0);
+                        date2.setFullYear(date2.getFullYear() + 1);
+                    } else {
+                        date2.setMonth(date2.getMonth() + 1);
+                    }
                 }
-                this.searchRepresentation.set("startDate", date);
             } else {
-                this.searchRepresentation.set("startDate", undefined);
+                date = undefined;
+                date2 = undefined;
             }
-        } else if (criteria === "price") {
+            this.searchRepresentation.set("startDateStart", date);
+            this.searchRepresentation.set("startDateEnd", date2);
+        }
+        else if (criteria === "price") {
             if (dataValue === "noreq") {
-                this.filters.price = null;
                 this.searchRepresentation.set("priceStart", undefined);
                 this.searchRepresentation.set("priceEnd", undefined);
             } else {
@@ -424,37 +464,28 @@ var SearchView = Backbone.View.extend({
                 } else {
                     maxPrice = Utilities.toInt(priceRange[1]);
                 }
-                this.filters.price = {
-                    "minPrice": minPrice,
-                    "maxPrice": maxPrice
-                };
                 this.searchRepresentation.set("priceStart", minPrice);
                 this.searchRepresentation.set("priceEnd", isNaN(maxPrice) ? undefined : maxPrice);
             }
         } else if (criteria === "classMode") {
             if (dataValue === "noreq") {
-                this.filters.classType = null;
                 this.searchRepresentation.set("classType", undefined);
             } else {
-                this.filters.classType = dataValue;
                 this.searchRepresentation.set("classType", dataValue);
             }
-        } else if (criteria === "classTime") {
+        }
+        //上课时间 平时或者周末的上午 下午 晚上
+        else if (criteria === "schoolTime") {
+            var week, day;
             if (dataValue === "noreq") {
-                this.filters.classTime = null;
-                this.searchRepresentation.set("startClassTime", undefined);
-                this.searchRepresentation.set("finishClassTime", undefined);
+                week = day = undefined;
             } else {
-                var time = dataValue.split("_"), day;
-                if (time.length === 2) {
-                    day = time[1];
-                }
-                time = time[0];
-                this.filters.classTime = {
-                    "day" : day,
-                    "time": time
-                };
+                var rs = dataValue.split("-");
+                week = rs[0] === '' ? undefined : rs[0];
+                day = rs[1] === '' ? undefined : rs[1];
             }
+            this.searchRepresentation.set("schoolTimeWeek", undefined);
+            this.searchRepresentation.set("schoolTimeDay", undefined);
         }
         this.courseSearch();
         //this.searchRepresentation.set(criteria, dataId);
