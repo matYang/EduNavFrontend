@@ -55,7 +55,7 @@ var User = Backbone.Model.extend({
             data.lastModifyTime = Utilities.castFromAPIFormat(data.lastModifyTime);
 
 
-            data.couponTotal = parseInt(data.couponTotal, 10);
+            data.couponTotal = parseFloat(data.couponTotal);
             data.couponTotal = isNaN(data.couponTotal) ? 0 : data.couponTotal;
             data.account = new Account(data.account,{parse:true});
             data.credit = new Credit(data.credit,{parse:true});
@@ -67,6 +67,7 @@ var User = Backbone.Model.extend({
 
     _toJSON: function () {
         var json = _.clone(this.attributes);
+        json.couponTotal = json.couponTotal.toFixed(0);
         json.creationTime = Utilities.getDateString(this.get('creationTime'));
         json.lastLogin = Utilities.getDateString(this.get('lastLogin'));
         json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));

@@ -46,6 +46,7 @@ var Account = Backbone.Model.extend({
 
     _toJSON: function () {
         var json = _.clone(this.attributes);
+        json.balance = json.balance.toFixed(2);
         json.createTime = Utilities.getDateString(this.get('createTime'));
         return json;
     },
