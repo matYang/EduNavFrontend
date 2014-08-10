@@ -13,8 +13,8 @@ var BookingSearchRepresentation = Backbone.Model.extend({
             'preStatus':undefined,
             'reference': undefined,
 
-            'startPrice': undefined,
-            'finishPrice': undefined,
+            'priceStart': undefined,
+            'priceEnd': undefined,
 
             'startScheduledTime': undefined,
             'finishScheduledTime': undefined,
@@ -60,8 +60,8 @@ var BookingSearchRepresentation = Backbone.Model.extend({
         var queryObj = {};
 
         queryObj.bookingId = this.get('bookingId');
-        queryObj.startPrice = this.get('startPrice');
-        queryObj.finishPrice = this.get('finishPrice');
+        queryObj.priceStart = this.get('priceStart');
+        queryObj.priceEnd = this.get('priceEnd');
         queryObj.userId = this.get('userId');
         queryObj.partnerId = this.get('partnerId');
         queryObj.courseId = this.get('courseId');

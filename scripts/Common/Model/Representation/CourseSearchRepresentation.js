@@ -10,8 +10,8 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'institutionName': undefined,
             'status': EnumConfig.CourseStatus.onlined,
             
-            'startPrice': undefined,
-            'finishPrice': undefined,
+            'priceStart': undefined,
+            'priceEnd': undefined,
 //            'startClassSize': undefined,
 //            'finishClassSize': undefined,
             'classType':undefined,//班级类型 0，1，2，3

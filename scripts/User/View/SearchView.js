@@ -124,8 +124,8 @@ var SearchView = Backbone.View.extend({
         }
     },
     syncFilters: function () {
-        var startPrice = this.searchRepresentation.get("startPrice"),
-            finishPrice = this.searchRepresentation.get("finishPrice"),
+        var startPrice = this.searchRepresentation.get("priceStart"),
+            priceEnd = this.searchRepresentation.get("priceEnd"),
 //            startClassSize = this.searchRepresentation.get("startClassSize"),
 //            finishClassSize = this.searchRepresentation.get("finishClassSize"),
             classType = this.searchRepresentation.get("classType"),
@@ -135,8 +135,8 @@ var SearchView = Backbone.View.extend({
             value, text;
         if (startPrice !== undefined) {
             value = startPrice + "-";
-            if (finishPrice !== undefined) {
-                value += finishPrice;
+            if (priceEnd !== undefined) {
+                value += priceEnd;
             }
             text = $("#filter_price").find("span[data-value=" + value + "]").html();
             $("#filter_price").find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
@@ -414,8 +414,8 @@ var SearchView = Backbone.View.extend({
         } else if (criteria === "price") {
             if (dataValue === "noreq") {
                 this.filters.price = null;
-                this.searchRepresentation.set("startPrice", undefined);
-                this.searchRepresentation.set("finishPrice", undefined);
+                this.searchRepresentation.set("priceStart", undefined);
+                this.searchRepresentation.set("priceEnd", undefined);
             } else {
                 var priceRange = dataValue.split("-");
                 var minPrice = Utilities.toInt(priceRange[0]), maxPrice;
@@ -428,8 +428,8 @@ var SearchView = Backbone.View.extend({
                     "minPrice": minPrice,
                     "maxPrice": maxPrice
                 };
-                this.searchRepresentation.set("startPrice", minPrice);
-                this.searchRepresentation.set("finishPrice", isNaN(maxPrice) ? undefined : maxPrice);
+                this.searchRepresentation.set("priceStart", minPrice);
+                this.searchRepresentation.set("priceEnd", isNaN(maxPrice) ? undefined : maxPrice);
             }
         } else if (criteria === "classMode") {
             if (dataValue === "noreq") {
