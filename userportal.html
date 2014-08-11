@@ -533,11 +533,11 @@
 <script type="text/template" id="tpl_mypage_bookingDetail">
 
     <div id="mypage_content" class="mypage_min_height">
-        <div class="title">我的爱上课 &gt; 订单管理 &gt; <span class="F_green link">课程订单</span></div>
+        <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green link">课程订单</span></div>
         <div id="bookingDetail">
             <div class="row0 clearfix">
                 <div class="fleft">
-                    <p><label>订单号：<%= reference %></label> <span>(<%= creationTime %>预订)</span></p>
+                    <p><label>订单号：<%= id %></label> <span>(<%= creationTime %>预订)</span></p>
 
                     <p><label>状<s></s>态：<b class="F_green" id="bookingStatus"><%=
                         EnumConfig.BookingStatusText[status] %></b></label></p>
@@ -1545,7 +1545,9 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_coupons">
-    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">返现券</span></div>
+    <div class="title"><a class="js_toDashboard">
+
+    </a> &gt; <span class="F_green">返现券</span></div>
     <div class="mypage_content_inner coupons">
         <h3 class="coupons_help_title">如何快速<span>免费获得</span>返现券</h3>
 
@@ -1676,7 +1678,7 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_password">
-    <div class="title"><span>我的爱上课</span> > <span>个人设置</span> > <span class=" F_green">修改密码</span></div>
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> > <span>个人设置</span> > <span class=" F_green">修改密码</span></div>
     <div class="mypage_content_inner form_style password">
         <div class="field">
             <label>原密码</label>
@@ -1711,7 +1713,7 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_setting">
-    <div class="title"><span>我的爱上课</span> &gt; <span>个人设置</span> &gt; <span class=" F_green">个人资料</span></div>
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class=" F_green">个人资料</span></div>
     <div class="mypage_content_inner">
         <div class="my_info form_style">
 
@@ -1747,7 +1749,7 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_credit">
-    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">积分账户</span></div>
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">积分账户</span></div>
     <div class="total"><img src="style/images/icon_points.jpg">您现在拥有<b id="myCredit" class="F_orange">100</b>点可用积分</div>
     <div class="mypage_content_inner">
         <ul id="creditNavBtn" class="tab1 clearfix">
@@ -2042,7 +2044,7 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_cash">
-    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">现金账户</span></div>
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">现金账户</span></div>
     <div class="total"><img src="images/icon_monney.jpg">总金额：<span>￥</span><b class="F_orange"><%= balance %></b></div>
     <div class="mypage_content_inner">
         <div class="clearfix">
@@ -2075,9 +2077,8 @@
         <td class="">2014-07-02</td>
     </tr>
 </script>
-
-<script type="text/templates" id="tpl_mypage_share">
-    <div class="title"><a href="#">我的爱上课</a> &gt; <span>帐户管理</span> &gt; <a class=" F_green" href="#">邀请有礼</a></div>
+ype="text/templates" id="tpl_mypage_share">
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <a class=" F_green" href="#">邀请有礼</a></div>
     <div class="mypage_content_inner form_style invitation">
         <h3>邀请方式</h3>
 

@@ -18,6 +18,7 @@ var BookingPayView = Backbone.View.extend({
         }
     },
     render: function (booking) {
+        document.title = "爱上课 | 订单支付";
         if (booking instanceof Bookings) {
             booking = booking.at(0);
         }

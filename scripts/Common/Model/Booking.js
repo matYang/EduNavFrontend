@@ -16,14 +16,15 @@ var Booking = Backbone.Model.extend({
             'email': '',
             'scheduledTime': new Date(),
 
-            'note': '',     //各种record
+
             'status': undefined,//订单状态
             'type': undefined,//订单类型 线上还是线下
+            'note': '',     //各种record
 
-            'price': 0,
-            'cashbackAmount': 0,
+            'price': 0,//价格
+            'cashbackAmount': 0,//返利总额
 
-            'creationTime': new Date(),
+            'createTime': new Date(),
             'lastModifyTime': new Date(),
             'noRefundDate': new Date(),
             'cashbackDate': new Date(),
@@ -67,7 +68,7 @@ var Booking = Backbone.Model.extend({
             data.status = parseInt(data.status, 10);
             data.cashbackAmount = parseInt(data.cashbackAmount, 10);
             data.scheduledTime = Utilities.castFromAPIFormat(data.scheduledTime);
-            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            data.createTime = Utilities.castFromAPIFormat(data.createTime);
             data.lastModifyTime = Utilities.castFromAPIFormat(data.lastModifyTime);
 
             data.noRefundDate = Utilities.castFromAPIFormat(data.noRefundDate);
@@ -75,12 +76,12 @@ var Booking = Backbone.Model.extend({
             data.type = parseInt(data.type, 10);
             data.course = new Course(data.course, {parse: true});
         }
-        return data;
+        return data;v
     },
     _toJSON: function () {
         var json = _.clone(this.attributes);
         json.scheduledTime = Utilities.getDateString(this.get('scheduledTime'));
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.createTime = Utilities.getDateString(this.get('createTime'));
         json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));
         json.email = decodeURIComponent(json.email);
         json.name = decodeURI(json.name);
@@ -95,12 +96,14 @@ var Booking = Backbone.Model.extend({
     toJSON: function () {//使用backbone进行resource的交互时采用的toJSON方法
         var json = _.clone(this.attributes);
         json.type = parseInt(this.get('type'), 10);
-        json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
-        json.noRefundDate = Utilities.castToAPIFormat(this.get('noRefundDate'));
-        json.cashbackDate = Utilities.castToAPIFormat(this.get('cashbackDate'));
-        json.bookingId = undefined;
-        json.creationTime = undefined;
-        json.lastModifyTime = undefined;
+
+        //去除请求发送中不可更改的值
+        delete json.type;
+        delete json.createTime;
+        delete json.lastModifyTime;
+        delete json.noRefundDate;
+        delete json.cashbackDate;
+        
         return json;
     },
     initBookingFromCourse: function (course) {

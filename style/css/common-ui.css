@@ -1,3 +1,8 @@
+/*基本样式*/
+a {
+    text-decoration: none;
+}
+
 /*通用工具类*/
 .text-center {
     text-align: center;
@@ -14,7 +19,6 @@
 .pull-right {
     float: right;
 }
-
 
 .padding-sm {
     padding: 10px 20px;
@@ -108,26 +112,26 @@
     background-color: #efefef
 }
 
-
 /*通用按钮*/
 
+/***************我是分割线*****************/
+/***************一下为非通用样式 之后需要独立出来*****************/
 /*特殊按钮--支付宝*/
-.btn-alipay{
+.btn-alipay {
     display: inline-block;
     border: 1px solid #cccccc;
-    width:220px;
+    width: 220px;
     height: 70px;
-    background:#ffffff url('../images/alipay.jpg') no-repeat center;
-    background-size:  200px 130px;
+    background: #ffffff url('../images/alipay.jpg') no-repeat center;
+    background-size: 200px 130px;
 }
 
-
-
 /*下列为page中的style*/
-.radios-pay{
-    }
-    .radios-pay li input[type=radio]{
-        height: 80px;
-        width: 30px;
-        line-height: 80px;
-    }
+.radios-pay {
+}
+
+.radios-pay li input[type=radio] {
+    height: 80px;
+    width: 30px;
+    line-height: 80px;
+}

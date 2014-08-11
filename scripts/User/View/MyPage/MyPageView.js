@@ -81,15 +81,19 @@ var MyPageView = Backbone.View.extend({
 
     bindEvents: function () {
         var that = this;
-        //侧边栏顶部 我的爱上课
-        $("#mypage_sidebar").children(".mypage_sidebar_title").on("click", function () {
+        //侧边栏顶部 我的爱上课 以及 导航链接 我的爱上课
+        var event_mypage = function(){
             if (that.query !== "dashboard") {
                 $("#mypage_sidebar").find(".active").removeClass("active");
                 that.query = "dashboard";
                 app.navigate("mypage/dashboard");
                 that.createChildView();
             }
-        });
+        };
+        $("#mypage_sidebar").children(".mypage_sidebar_title").on("click",event_mypage);
+        $(".js_toDashboard").live("click",event_mypage);
+
+
 
         //订单管理>课程订单
         $("#bookingManage").on("click", function () {
