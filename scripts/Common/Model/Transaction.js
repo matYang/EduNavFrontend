@@ -9,7 +9,7 @@ var Transaction = Backbone.Model.extend({
             'bookingId': -1,
             'transactionAmount': 0,
             'transactionType': EnumConfig.TransactionType.withdraw,
-            'creationTime': new Date()
+            'createTime': new Date()
         };
     },
 
@@ -37,21 +37,21 @@ var Transaction = Backbone.Model.extend({
             data.transactionType = parseInt(data.transactionType, 10);
 
             data.transactionAmount = parseInt(data.transactionAmount, 10);
-            data.creationTime = Utilities.castFromAPIFormat(decodeURI(data.creationTime));
+            data.createTime = Utilities.castFromAPIFormat(decodeURI(data.createTime));
         }
         return data;
     },
 
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.createTime = Utilities.getDateString(this.get('createTime'));
         return json;
     },
 
     toJSON: function () {
         var json = _.clone(this.attributes);
 
-        json.creationTime = (Utilities.castToAPIFormat(this.get('creationTime')));
+        json.createTime = (Utilities.castToAPIFormat(this.get('createTime')));
         return json;
     }
 

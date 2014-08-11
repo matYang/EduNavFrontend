@@ -8,7 +8,7 @@ var Teacher = Backbone.Model.extend({
             'name':'',
             'intro': '',
             'imgUrl': '',
-            'creationTime': new Date()
+            'createTime': new Date()
         };
     },
     idAttribute: 'id',
@@ -27,13 +27,13 @@ var Teacher = Backbone.Model.extend({
             json.intro = decodeURI(data.intro);
             json.imgUrl = decodeURIComponent(data.imgUrl);
 
-            json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            json.createTime = Utilities.castFromAPIFormat(data.createTime);
         }
         return json;
     },
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.createTime = Utilities.getDateString(this.get('createTime'));
         return json;
     },
     toJSON: function () {
@@ -43,7 +43,7 @@ var Teacher = Backbone.Model.extend({
         json.intro = (json.intro);
         json.imgUrl = (json.imgUrl);
 
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+        json.createTime = Utilities.castToAPIFormat(this.get('createTime'));
         return json;
     }
 });

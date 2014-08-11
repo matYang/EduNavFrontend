@@ -1754,8 +1754,8 @@
     <div class="total"><img src="style/images/icon_points.jpg">您现在拥有<b id="myCredit" class="F_orange">100</b>点可用积分</div>
     <div class="mypage_content_inner">
         <ul id="creditNavBtn" class="tab1 clearfix">
-            <li data-id="table" class="active">积分明细</li>
-            <li data-id="store">积分兑换</li>
+            <li data-id="table" class="active">积分支出明细</li>
+            <li data-id="store">积分获取明细</li>
         </ul>
         <div id="credit_pageContent">
 
@@ -1767,11 +1767,10 @@
     <table id="creditTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
         <thead>
         <tr>
-            <td class="">序号</td>
+            <td class="" width="20%">序号</td>
             <td class="" width="20%">获得日期</td>
-            <td class="" width="20%">订单号</td>
-            <td class="" width="20%">积分</td>
-            <td class="" width="20%">有效期</td>
+            <td class="" width="30%">积分</td>
+            <td class="" width="30%">--</td>
         </tr>
         </thead>
         <tbody id="creditEntryContainer">
@@ -1786,6 +1785,7 @@
         <td><%= creditId %></td>
         <td class=""><%= createTime %></td>
         <td class=""><%= credit %></td>
+        <td class="">--</td>
     </tr>
 </script>
 
@@ -1794,6 +1794,47 @@
         积分商城施工中哦~~
     </div>
 </script>
+
+<!--start 现金账户-->
+<script type="text/templates" id="tpl_mypage_cash">
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">现金账户</span></div>
+    <div class="total padding-sm">
+        <img src="style/images/icon_monney.jpg">总金额：￥
+        <b class="F_orange"><%= account.balance %></b>
+    </div>
+    <div class="mypage_content_inner">
+        <div class="clearfix">
+            <img class="fleft" src="style/images/img1.jpg"><img class="fright" src="style/images/img2.jpg">
+        </div>
+        <ul class="tab1 clearfix" style="margin-top:20px;">
+            <li id="expendable" class="active">支出明细</li>
+            <li id="record">收入明细</li>
+        </ul>
+        <table class="blank1" cellpadding="0" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <td class="">金额</td>
+                <td class="" width="33%">来源</td>
+                <td class="" width="33%">有效期</td>
+            </tr>
+            </thead>
+            <tbody id="mypage_cashEntries">
+            </tbody>
+        </table>
+        <div id="mypageCashNavigator" class="page blank1 clearfix">
+        </div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_cashEntry">
+    <tr>
+        <td class="F_orange">100</td>
+        <td class="">返现</td>
+        <td class="">2014-07-02</td>
+    </tr>
+</script>
+<!--end 现金账户-->
+
 
 <script type="text/template" id="tpl_findPassword_1">
     <div class="sign_up">
@@ -2042,37 +2083,6 @@
     </div>
 </script>
 
-<script type="text/templates" id="tpl_mypage_cash">
-    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">现金账户</span></div>
-    <div class="total"><img src="images/icon_monney.jpg">总金额：<span>￥</span><b class="F_orange"><%= balance %></b></div>
-    <div class="mypage_content_inner">
-        <ul class="tab1 clearfix" style="margin-top:20px;">
-            <li id="expendable" class="active">可用金额</li>
-            <li id="record">明细记录</li>
-        </ul>
-        <table class="blank1" cellpadding="0" cellspacing="0" width="100%">
-            <thead>
-            <tr>
-                <td class="">金额</td>
-                <td class="" width="33%">来源</td>
-                <td class="" width="33%">有效期</td>
-            </tr>
-            </thead>
-            <tbody id="mypage_cashEntries">
-            </tbody>
-        </table>
-        <div id="mypageCashNavigator" class="page blank1 clearfix">
-        </div>
-    </div>
-</script>
-
-<script type="text/templates" id="tpl_mypage_cashEntry">
-    <tr>
-        <td class="F_orange">100</td>
-        <td class="">返现</td>
-        <td class="">2014-07-02</td>
-    </tr>
-</script>
 <script type="text/templates" id="tpl_mypage_share">
     <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <a class=" F_green" href="#">邀请有礼</a></div>
     <div class="mypage_content_inner form_style invitation">

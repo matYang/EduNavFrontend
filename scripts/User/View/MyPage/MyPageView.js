@@ -42,27 +42,27 @@ var MyPageView = Backbone.View.extend({
             case "setting":
                 $("#editInfo").addClass("active");
                 document.title = "个人设置 | 爱上课";
-                this.activeChildView = new MyPageSettingView();
+                this.activeChildView = new MyPageSettingView({user: this.user});
                 break;
             case "password":
                 $("#editPass").addClass("active");
                 document.title = "更改密码 | 爱上课";
-                this.activeChildView = new MyPagePasswordView();
+                this.activeChildView = new MyPagePasswordView({user: this.user});
                 break;
             case "cash":
                 $("#cashAccount").addClass("active");
                 document.title = "我的爱上课 > 我的现金账户 | 爱上课";
-                this.activeChildView = new MyPageCashView();
+                this.activeChildView = new MyPageCashView({user: this.user});
                 break;
             case "coupon":
                 $("#couponAccount").addClass("active");
                 document.title = "我的爱上课 > 我的优惠券 | 爱上课";
-                this.activeChildView = new MyPageCouponView();
+                this.activeChildView = new MyPageCouponView({user: this.user});
                 break;
             case "credit":
                 $("#creditAccount").addClass("active");
                 document.title = "我的爱上课 > 我的积分 | 爱上课";
-                this.activeChildView = new MyPageCreditView();
+                this.activeChildView = new MyPageCreditView({user: this.user});
                 break;
             case "dashboard":
                 $("#mypage_content").css("border", "none");
@@ -72,12 +72,12 @@ var MyPageView = Backbone.View.extend({
             case "booking":
                 $("#bookingManage").addClass("active");
                 document.title = "我的爱上课 > 我的订单 | 爱上课";
-                this.activeChildView = new MyPageBookingView();
+                this.activeChildView = new MyPageBookingView({user: this.user});
                 break;
             case "share":
                 $("#share").addClass("active");
                 document.title = "我的爱上课 > 分享优惠 | 爱上课";
-                this.activeChildView = new MyPageShareView();
+                this.activeChildView = new MyPageShareView({user: this.user});
                 break;
             default:
                 break;

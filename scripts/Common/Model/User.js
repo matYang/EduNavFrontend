@@ -14,7 +14,7 @@ var User = Backbone.Model.extend({
             'invitationCode': '',
             'appliedInvitationCode': '',
 
-            'creationTime': undefined,
+            'createTime': undefined,
             'lastLogin': undefined,
             'lastModifyTime': undefined,
 
@@ -50,7 +50,7 @@ var User = Backbone.Model.extend({
 
             data.status = parseInt(data.status, 10);
 
-            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            data.createTime = Utilities.castFromAPIFormat(data.createTime);
             data.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
             data.lastModifyTime = Utilities.castFromAPIFormat(data.lastModifyTime);
 
@@ -68,7 +68,7 @@ var User = Backbone.Model.extend({
     _toJSON: function () {
         var json = _.clone(this.attributes);
         json.couponTotal = json.couponTotal.toFixed(0);
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.createTime = Utilities.getDateString(this.get('createTime'));
         json.lastLogin = Utilities.getDateString(this.get('lastLogin'));
         json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));
         json.account = json.account._toJSON();
@@ -78,7 +78,7 @@ var User = Backbone.Model.extend({
 
     toJSON: function () {
         var json = _.clone(this.attributes);
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+        json.createTime = Utilities.castToAPIFormat(this.get('createTime'));
         json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
         json.lastModifyTime = Utilities.castFromAPIFormat(json.lastModifyTime);
         return json;

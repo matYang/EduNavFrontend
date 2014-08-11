@@ -33,8 +33,8 @@ var CourseSearchRepresentation = Backbone.Model.extend({
 
             'useCache': 1,
 
-            'startCreationTime': undefined,
-            'finishCreationTime': undefined,
+            'startcreateTime': undefined,
+            'finishcreateTime': undefined,
             'startCutoffDate': undefined,
             'finishCutoffDate': undefined,
             'startUponArrival': undefined,
@@ -91,8 +91,8 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         queryObj.institutionName = typeof this.get('institutionName') === 'undefined' ? undefined : encodeURI(this.get('institutionName'));
         queryObj.courseReference = typeof this.get('courseReference') === 'undefined' ? undefined : encodeURI(this.get('courseReference'));
         queryObj.partnerReference = typeof this.get('partnerReference') === 'undefined' ? undefined : encodeURI(this.get('partnerReference'));
-        queryObj.startCreationTime = typeof this.get('startCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startCreationTime'));
-        queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishCreationTime'));
+        queryObj.startcreateTime = typeof this.get('startcreateTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startcreateTime'));
+        queryObj.finishcreateTime = typeof this.get('finishcreateTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishcreateTime'));
         return queryObj;
     },
     toTitleString: function () {

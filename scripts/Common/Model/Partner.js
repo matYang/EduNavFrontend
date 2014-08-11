@@ -39,7 +39,7 @@ var Partner = Backbone.Model.extend({
             'classPhotoList': [],
             'teacherList': [],
             
-            'creationTime': new Date(),
+            'createTime': new Date(),
             'lastLogin': new Date()
         };
     },
@@ -104,7 +104,7 @@ var Partner = Backbone.Model.extend({
                 json.teacherList = teachers;
             }
 
-            json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            json.createTime = Utilities.castFromAPIFormat(data.createTime);
             json.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
             
         }
@@ -112,7 +112,7 @@ var Partner = Backbone.Model.extend({
     },
     _toJSON: function () {
         var json = _.clone(this.attributes), i;
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.createTime = Utilities.getDateString(this.get('createTime'));
         if (json.classPhotoList) {
             for (var i = 0; i < json.classPhotoList.length; i++ ) {
                 if (json.classPhotoList[i] instanceof Photo) {
@@ -153,7 +153,7 @@ var Partner = Backbone.Model.extend({
                 }
             }
         }
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+        json.createTime = Utilities.castToAPIFormat(this.get('createTime'));
         json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
         json.liscenceImgUrl = (json.liscenceImgUrl);
         json.taxRegistrationImgUrl = (json.taxRegistrationImgUrl);

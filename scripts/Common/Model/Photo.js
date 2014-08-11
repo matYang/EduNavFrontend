@@ -8,7 +8,7 @@ var Photo = Backbone.Model.extend({
             'imgUrl': '',
             'title':'',
             'description': '',
-            'creationTime': new Date()
+            'createTime': new Date()
         };
     },
     idAttribute: 'id',
@@ -26,13 +26,13 @@ var Photo = Backbone.Model.extend({
 
             json.description = decodeURI(data.description);
             json.imgUrl = decodeURIComponent(data.imgUrl);
-            json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            json.createTime = Utilities.castFromAPIFormat(data.createTime);
         }
         return json;
     },
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.createTime = Utilities.getDateString(this.get('createTime'));
         return json;
     },
     toJSON: function () {
@@ -42,7 +42,7 @@ var Photo = Backbone.Model.extend({
         json.description = (json.description);
         json.imgUrl = (json.imgUrl);
 
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+        json.createTime = Utilities.castToAPIFormat(this.get('createTime'));
         return json;
     }
 });

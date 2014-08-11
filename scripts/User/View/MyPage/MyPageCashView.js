@@ -1,17 +1,17 @@
 var MyPageCashView = Backbone.View.extend({
     el:"#mypage_content",
-    initialize: function () {
+    initialize: function (params) {
         _.bindAll(this, "render", "bindEvents", "close");
-        this.template = _.template(tpl.get("mypage_cashAccount"));
+        this.template = _.template(tpl.get("mypage_cash"));
         app.viewRegistration.register(this);
-        this.user = app.sessionManager.sessionModel;
+        this.user = params.user;
         this.isClosed = false;
         this.listName = "claimed";
         this.render();
         this.bindEvents();
     },
     render: function () {
-        this.$el.append(this.template);
+        this.$el.append(this.template(this.user._toJSON()));
 //        var claimedCoupons = new Coupons(), unclaimedCoupons = new Coupons(), usedCoupons = new Coupons();
 //        claimedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.usable}));
 //        unclaimedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.inactive}));
@@ -53,7 +53,7 @@ var MyPageCashView = Backbone.View.extend({
 
     },
     close: function () {
-//        if (!this.isClosed) {
+        if (!this.isClosed) {
 //            if (this.unclaimedCouponView) {
 //                this.unclaimedCouponView.close();
 //            }
@@ -62,9 +62,9 @@ var MyPageCashView = Backbone.View.extend({
 //            }
 //            this.unclaimedCouponView = null;
 //            this.claimedCouponView = null;
-//            this.$el.empty();
-//            this.isClosed = true;
-//        }
+            this.$el.empty();
+            this.isClosed = true;
+        }
     }
 });
 //

@@ -20,8 +20,8 @@ var BookingSearchRepresentation = Backbone.Model.extend({
             'finishScheduledTime': undefined,
             'startAdjustTime': undefined,
             'finishAdjustTime': undefined,
-            'startCreationTime': undefined,
-            'finishCreationTime': undefined,
+            'startcreateTime': undefined,
+            'finishcreateTime': undefined,
 
             'startNoRefundDate': undefined,
             'finishNoRefundDate': undefined,
@@ -77,8 +77,8 @@ var BookingSearchRepresentation = Backbone.Model.extend({
         queryObj.finishScheduledTime = typeof this.get('finishScheduledTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishScheduledTime'));
         queryObj.startAdjustTime = typeof this.get('startAdjustTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startAdjustTime'));
         queryObj.finishAdjustTime = typeof this.get('finishAdjustTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishAdjustTime'));
-        queryObj.startCreationTime = typeof this.get('startCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startCreationTime'));
-        queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishCreationTime'));
+        queryObj.startcreateTime = typeof this.get('startcreateTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startcreateTime'));
+        queryObj.finishcreateTime = typeof this.get('finishcreateTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishcreateTime'));
 
 
         queryObj.startBookingStatusAdjustTime = typeof this.get('startBookingStatusAdjustTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startBookingStatusAdjustTime'));

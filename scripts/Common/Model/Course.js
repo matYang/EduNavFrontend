@@ -4,7 +4,7 @@ var Course = Backbone.Model.extend({
                 'id': -1,
                 'courseId': -1,
                 'partnerId': undefined,
-                'creationTime': new Date(),
+                'createTime': new Date(),
 
                 /*others*/
                 'reference': undefined,//课程识别号 不用了
@@ -101,7 +101,7 @@ var Course = Backbone.Model.extend({
                 data.id = parseInt(data.id, 10);
                 data.courseId = data.id;
                 data.partnerId = parseInt(data.partnerId, 10);
-                data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+                data.createTime = Utilities.castFromAPIFormat(data.createTime);
 
                 /*others*/
                 data.popularity = parseInt(data.popularity, 10);//人气值
@@ -118,7 +118,7 @@ var Course = Backbone.Model.extend({
 
                 /*基本信息*/
                 data.cutoffDate = Utilities.castFromAPIFormat(this.get('cutoffDate'));
-                data.creationTime = Utilities.castFromAPIFormat(this.get('creationTime'));
+                data.createTime = Utilities.castFromAPIFormat(this.get('createTime'));
                 data.noRefundDate = Utilities.castFromAPIFormat(this.get('noRefundDate'));
                 data.cashbackDate = Utilities.castFromAPIFormat(this.get('cashbackDate'));
 
@@ -157,7 +157,7 @@ var Course = Backbone.Model.extend({
             if (typeof json.originalPrice === 'number')json.originalPrice = json.originalPrice.toFixed(2);
             json.startDate = Utilities.getDateString(this.get('startDate'));
             json.finishDate = Utilities.getDateString(this.get('finishDate'));
-            json.creationTime = Utilities.getDateString(this.get('creationTime'));
+            json.createTime = Utilities.getDateString(this.get('createTime'));
             json.cutoffDate = Utilities.getDateString(this.get('cutoffDate'));
             json.startTime1 = Math.floor(json.startTime1 / 100) + ":" + ((json.startTime1 % 100 < 10) ? "0" + json.startTime1 % 100 : json.startTime1 % 100);
             json.startTime2 = Math.floor(json.startTime2 / 100) + ":" + ((json.startTime2 % 100 < 10) ? "0" + json.startTime2 % 100 : json.startTime2 % 100);
@@ -206,7 +206,7 @@ var Course = Backbone.Model.extend({
             json.startDate = Utilities.castToAPIFormat(this.get('startDate'));
             json.finishDate = Utilities.castToAPIFormat(this.get('finishDate'));
             json.cutoffDate = Utilities.castToAPIFormat(this.get('cutoffDate'));
-            json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+            json.createTime = Utilities.castToAPIFormat(this.get('createTime'));
             json.noRefundDate = Utilities.castToAPIFormat(this.get('noRefundDate'));
             json.cashbackDate = Utilities.castToAPIFormat(this.get('cashbackDate'));
 
