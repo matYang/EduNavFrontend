@@ -19,6 +19,7 @@ var CourseDetailView = Backbone.View.extend({
                     success:function(catObj){
                         self.course = course.clone();
                         self.courseId = course.get("id");
+                        //将categoryValue转换成一二三级的键值对
                         var catArray = Utilities.getCategoryArray(self.course.get("categoryValue"),catObj.data);
                         self.course.set("category",catArray[0]);
                         self.course.set("subCategory",catArray[1]);
