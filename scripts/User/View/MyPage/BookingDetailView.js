@@ -9,14 +9,16 @@ var BookingDetailView = Backbone.View.extend({
             this.booking = params.booking;
             this.render(this.booking);
         } else if (params.bookingId) {
-            //todo better to change 'reference' to 'bookingId' if use 'bookingId' instead to get booking detail info
-            this.boookingId = params.reference;
+            //根据参数中的bookingId拉取课程进行初始化
+            this.bookingId = params.bookingId;
             this.user = app.sessionManager.sessionModel;
 
             app.userManager.fetchBooking(this.bookingId, {
                 success: this.render,
                 error: function (data) {
-                    Info.displayNotice(data.responseJSON.message);
+                    if (data.responseJSON.message !== undefined) {
+                        Info.displayNotice(data.responseJSON.message);
+                    }
                 }
             });
         }
@@ -44,9 +46,15 @@ var BookingDetailView = Backbone.View.extend({
             booking.set("status", EnumConfig.BookingStatus.cancelled);
             $("#cancelBooking").val("取消中...");
             app.userManager.changeBookingState(booking, {
-                success: function () {
+                success: function (booking) {
+                    var status;
                     $("#process").html("<p>订单已取消</p>");
-                    $("#bookingStatus").html(EnumConfig.BookingStatusText[2]);
+                    if (booking.status !== undefined) {
+                        status = parseInt(booking.status, 10);
+                    } else {
+                        status = 12
+                    }
+                    $("#bookingStatus").html(EnumConfig.BookingStatusText[status]);
                     $("#cancelBooking").remove();
                     $("#editBooking").remove();
                 },
