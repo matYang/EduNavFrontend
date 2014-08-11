@@ -105,7 +105,7 @@ var SearchResultView = MultiPageView.extend({
             if (this.compareWidgetView.map) {
                 this.compareWidgetView.map.removeAllMarkers();
             }
-            searchResults = data || new Courses();
+            var searchResults = data || new Courses();
             this.allMessages = searchResults;
             this.messages = searchResults;
             var total = this.truePagination ? searchResults.total : searchResults.length;

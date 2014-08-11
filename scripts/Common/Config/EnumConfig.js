@@ -19,13 +19,19 @@ var EnumConfig = {
 //        used: 2
 //    },
 
+    //现金券状态取值
     'CouponStatus': {
         usable: 0,
         expired: 1,
         used: 2,
         inactive: 3
     },
-
+    //现金券的状态显示
+    'CouponStatusText': {
+        0:'',
+        1:'',
+        2:''
+    },
     'CouponOrigin': {
         registration: 0,
         invitation: 1,
@@ -134,6 +140,7 @@ var EnumConfig = {
         deactivated: 1,//
         consolidated: 2
     },
+
 
     'PartnerQualification': {
         verified: 0,

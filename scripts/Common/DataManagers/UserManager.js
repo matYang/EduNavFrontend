@@ -345,6 +345,41 @@
         });
     };
 
+
+    //查找返现券
+    UserManager.prototype.fetchCoupons = function(couponSearchRepresentation, callback) {
+        var self = this;
+
+        if (!this.sessionManager.hasSession()){
+            Info.warn('UserManager::fetchCoupons:: session does not exist, exit');
+            return;
+        }
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testCoupons);
+            return;
+        }
+        var coupons = new Coupons();
+        coupons.overrideUrl(ApiResource.user_coupon);
+        coupons.fetch({
+            data: couponSearchRepresentation.toQueryString(),
+            dataType:'json',
+
+            success:function(model, response){
+                if(callback){
+                    callback.success(coupons);
+                }
+            },
+
+            error: function(model, response){
+                Info.warn('UserManager::fetchCoupons:: fetch failed with response:');
+                Info.warn(response);
+                if(callback){
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
     //用于根据订单id查询单个订单
     UserManager.prototype.fetchBooking = function(id, callback) {
 

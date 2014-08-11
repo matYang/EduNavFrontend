@@ -1,5 +1,5 @@
 var MyPageCouponView = Backbone.View.extend({
-    el:"#mypage_content",
+    el: "#mypage_content",
     initialize: function () {
         _.bindAll(this, "render", "bindEvents", "close");
         this.template = _.template(tpl.get("mypage_coupons"));
@@ -7,15 +7,22 @@ var MyPageCouponView = Backbone.View.extend({
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
         this.listName = "claimed";
-        this.render();
-        this.bindEvents();
+
+        this.sr = new CouponSearchRepresentation();
+        var self = this;
+        app.userManager.fetchCoupons(this.sr, {
+            success: self.render
+            //todo need error callback
+        });
     },
-    render: function () {
+    render: function (coupons) {
+        console.log(coupons);
         this.$el.append(this.template);
         var claimedCoupons = new Coupons(), unclaimedCoupons = new Coupons(), usedCoupons = new Coupons();
-        claimedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.usable}));
-        unclaimedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.inactive}));
-        usedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.used}));
+//        claimedCoupcoupons.nList").where({status: EnumConfig.CouponStatus.usae}));
+//        unclaimedCoupcoupons..nList").where({status: EnumConfig.CouponStatus.inacte}));
+//        usedCoupcoupons.onList").where({status: EnumConfig.CouponStatus.used}));
+        this.bindEvents();
         this.unclaimedCouponView = new UnclaimedCouponView(unclaimedCoupons, unclaimedCoupons);
         this.claimedCouponView = new ClaimedCouponView(claimedCoupons, claimedCoupons);
         this.usedCouponView = new UsedCouponView(usedCoupons, usedCoupons);
@@ -24,14 +31,11 @@ var MyPageCouponView = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+        //tab按钮点击事件
         $("#couponNavBtn").on("click", "li", function (e) {
             $(e.delegateTarget).find(".active").removeClass("active");
             $(e.target).addClass("active");
             that.switchView($(e.target).data("id"));
-        });
-        $("#go_activate").on("click", function (e) {
-            e.preventDefault();
-            that.switchView("unclaimed");
         });
     },
     switchView: function (name) {
@@ -74,7 +78,7 @@ var UnclaimedCouponView = MultiPageView.extend({
     minHeight: 144,
     pageEntryNumber: 4,
     entryHeight: 36,
-    extPn:true,
+    extPn: true,
     initialize: function (allCoupons, coupons) {
         MultiPageView.prototype.initialize.call(this);
         this.template = _.template(tpl.get("mypage_couponUnclaimed"));
@@ -100,13 +104,13 @@ var UnclaimedCouponView = MultiPageView.extend({
         MultiPageView.prototype.render.call(this);
     },
     entryEvent: function (id) {
-    $("#coupon_act_"+id).val("激活中");
+        $("#coup o n_act_" + id).val("激活中");
         app.userManager.claimCoupon(id, {
             "success": function () {
-                $("#coupon_act_"+id).parent().html("<span>已激活</span>");
+                $("#coup o n_act_" + id).parent().html("<span>已激活</span>");
             },
             "error": function () {
-                $("#coupon_act_"+id).val("重试");
+                $("#coup o n_act_" + id).val("重试");
             }
         });
     },
@@ -134,11 +138,11 @@ var UnclaimedCouponView = MultiPageView.extend({
 
 var ClaimedCouponView = MultiPageView.extend({
     el: "#coupons_container",
-     table: "#claimedTable",
+    table: "#claimedTable",
     minHeight: 144,
     pageEntryNumber: 4,
     entryHeight: 36,
-    extPn:true,
+    extPn: true,
     initialize: function (allCoupons, coupons) {
         MultiPageView.prototype.initialize.call(this);
         this.template = _.template(tpl.get("mypage_couponClaimed"));
@@ -153,7 +157,7 @@ var ClaimedCouponView = MultiPageView.extend({
         this.user = app.sessionManager.sessionModel;
         this.entryContainer = "claimedList";
         this.$domContainer = $("#claimedList");
-        this.noMessage = _.template(tpl.get("claimed_coupon_noMessage"));;
+        this.noMessage = _.template(tpl.get("claimed_coupon_noMessage"));
         this.isClosed = false;
         var that = this;
         this.render();
@@ -171,7 +175,7 @@ var ClaimedCouponView = MultiPageView.extend({
         $("#claimedCouponListNavigator").removeClass("hidden");
     },
     hide: function () {
-        $("#claimedTable").addClass("hidden");  
+        $("#claimedTable").addClass("hden");
         $("#claimedNoData").addClass("hidden");
         $("#claimedCouponListNavigator").addClass("hidden");
 
@@ -190,7 +194,7 @@ var UsedCouponView = MultiPageView.extend({
     minHeight: 144,
     pageEntryNumber: 4,
     entryHeight: 36,
-    extPn:true,
+    extPn: true,
     entryTemplate: _.template(tpl.get("mypage_usedCouponRow")),
     template: _.template(tpl.get("mypage_couponUsed")),
     noMessage: _.template(tpl.get("used_coupon_noMessage")),
@@ -223,7 +227,7 @@ var UsedCouponView = MultiPageView.extend({
         $("#usedCouponListNavigator").removeClass("hidden");
     },
     hide: function () {
-        $("#usedTable").addClass("hidden");  
+        $("#usedTable").addClass("hden");
         $("#usedNoData").addClass("hidden");
         $("#usedCouponListNavigator").addClass("hidden");
     },

@@ -1,4 +1,4 @@
-var UserSearchRepresentation = Backbone.Model.extend({
+var CouponSearchRepresentation = Backbone.Model.extend({
 
     defaults: function () {
         return {
@@ -6,16 +6,19 @@ var UserSearchRepresentation = Backbone.Model.extend({
             'bookingId': undefined,
 
             'userId': undefined,
-            'startAmount': undefined,
-            'finishAmount': undefined,
-            'startOriginalAmount': undefined,
-            'finishOriginalAmount': undefined,
-            'expireTime': undefined,
+//            'startAmount': undefined,
+//            'finishAmount': undefined,
+//            'startOriginalAmount': undefined,
+//            'finishOriginalAmount': undefined,
+//            'expireTime': undefined,
             'status': undefined,
-            'origin': undefined,
+//            'origin': undefined,
+//
+//            'startCreationTime': undefined,
+//            'finishCreationTime': undefined
 
-            'startcreateTime': undefined,
-            'finishcreateTime': undefined
+            'start': 0,
+            'count': 100
         };
     },
 
@@ -44,23 +47,23 @@ var UserSearchRepresentation = Backbone.Model.extend({
         }
     },
 
-    toJSON: function(){
+    toJSON: function () {
         var queryObj = {};
 
         queryObj.couponId = this.get('couponId');
         queryObj.bookingId = this.get('bookingId');
 
         queryObj.userId = this.get('userId');
-        queryObj.startAmount = this.get('startAmount');
-        queryObj.finishAmount = this.get('finishAmount');
-        queryObj.startOriginalAmount = this.get('startOriginalAmount');
-        queryObj.finishOriginalAmount = this.get('finishOriginalAmount');
-        queryObj.startcreateTime = typeof this.get('startcreateTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startcreateTime'));
-        queryObj.finishcreateTime = typeof this.get('finishcreateTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishcreateTime'));
-        queryObj.expireTime = typeof this.get('expireTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('expireTime'));
+//        queryObj.startAmount = this.get('startAmount');
+//        queryObj.finishAmount = this.get('finishAmount');
+//        queryObj.startOriginalAmount = this.get('startOriginalAmount');
+//        queryObj.finishOriginalAmount = this.get('finishOriginalAmount');
+//        queryObj.startCreationTime = typeof this.get('startCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startCreationTime'));
+//        queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishCreationTime'));
+//        queryObj.expireTime = typeof this.get('expireTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('expireTime'));
         queryObj.status = this.get('status');
-        queryObj.origin = this.get('origin');
-        
+//        queryObj.origin = this.get('origin');
+
 
         return queryObj;
     }

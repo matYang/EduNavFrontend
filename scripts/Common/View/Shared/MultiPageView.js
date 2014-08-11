@@ -5,46 +5,31 @@ var MultiPageView = Backbone.View.extend({
      Other views can extend this view and configure the setting according to the needs.
      This base view provide the following features: page navigation, filtering
 
-     *
-     * @param entryTemplate: the template of each single entry
-     * @param entryContainer: id of the tag for displaying message
-     * @param entryClass: the class name for all entry in this view (style, event)
      * @param actionClass: If this attribute is set, instead of entryClass, doms with this class will be bind to the entryEvent action when they are clicked
-     * @param pageNavigator: the div holding all page numbers
-     * @param pageNavigatorClass: the class name for the page navigator (style)
-     * @param pageEntryNumber: the number of entry displayed in each page
-     * @param startIndex: the starting index at first render
-     * @param currentPage: the index number of currentPage
-     * @param pageNumberClass: the class for each page number (style)
      * @param pageNumberId: the base id for the page numbers in the form of pageId_, number will be appended to the end for event use
-     * @param entryEvent: the click event bind to each message entry.
-     * @param allMessage: all messages fetched from backend.
      * @param messages: the filtered messages to be displayed in the view
      *                   (including the ones in the pages not displaying, NOTE: it must be a different instance from allMessage in order for the collection event to work properly)
      * @param entryHeight: the height of each entry, including margins and paddings, used for calculating container height
      * @param entryRowNum: the number of entries displaying in the same row
-     * @param minHeight: the minimum height of the message container
-     * @param noMessage: the message displayed in the container when there's no message available
      * @param extPn: external page navigator
      * @param _filters: private member holding registered filters, should never be referenced from external
-     * @param truePagination: make the view fetches data per page. When this is set to true, child view must define fetchAction function.
 
      //TODO:
      */
-    entryTemplate: "",
+    entryTemplate: "", //单条记录的模板
     entryContainer: "", //结果列表
-    truePagination: false,
-    entryClass: "",
-    pageNavigator: "", //分页
-    pageNavigatorClass: "",
-    pageEntryNumber: 10,
-    startIndex: 0,
-    currentPage: 1,
-    pageNumberClass: "",
+    truePagination: true, //为true时必须指定fetchAction函数用于与后台交互获取分页数据
+    entryClass: "", //每条记录的样式
+    pageNavigator: "", //分页数据的container
+    pageNavigatorClass: "",//container的样式
+    pageEntryNumber: 10,//每页显示的记录数
+    startIndex: 0,//开始记录数
+    currentPage: 1,//当前页数
+    pageNumberClass: "",//分页数字的样式
     pageNumberId: "",
-    entryEvent: "",
-    allMessages: [],
-    messages: null,
+    entryEvent: "",//绑定在每条记录上的事件
+    allMessages: [],//获取的所有数据
+    messages: null,//页面上面显示的经过过滤的信息(在假分页状态下)
     entryHeight: -1,
     entryRowNum: 1,
     minHeight: 0,
@@ -55,7 +40,8 @@ var MultiPageView = Backbone.View.extend({
     $domContainer: null,
     singlePage: null,
     initialize: function () {
-        _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler", "clickPreHandler", "clickNextHandler", "close");
+        _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler",
+            "clickPreHandler", "clickNextHandler", "close");
     },
     fetchAction: function (page) {
 
@@ -122,6 +108,7 @@ var MultiPageView = Backbone.View.extend({
         }
         // this.messages.on("change", this.render);
     },
+
     toPage: function (page) {
         this.currentPage = page;
         this.startIndex = this.pageEntryNumber * (page - 1);

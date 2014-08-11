@@ -37,7 +37,7 @@
                     course: ''
                 },
                 'coupon': {
-                    coupon: "/coupon"
+                    coupon: ""
                 }
             }
         };
