@@ -91,7 +91,7 @@ var MyPageView = Backbone.View.extend({
             }
         };
         $("#mypage_sidebar").children(".mypage_sidebar_title").on("click",event_mypage);
-        $(".js_toDashboard").on("click",event_mypage);
+        $("#mypage_content").on("click",".js_toDashboard",event_mypage);
 
 
 
