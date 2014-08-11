@@ -3,7 +3,7 @@ var Account = Backbone.Model.extend({
     defaults: function () {
         return {
             'id': -1,
-            'balance': undefined,
+            'balance': 0,
             'realName': undefined,
             'lastModifiedTime': undefined,
             'createTime': undefined,

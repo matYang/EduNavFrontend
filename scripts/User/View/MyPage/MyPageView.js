@@ -1,7 +1,7 @@
 var MyPageView = Backbone.View.extend({
     el: "#content",
     initialize: function (params) {
-        _.bindAll(this, 'render', 'renderError', 'createChildView','bindEvents', 'close');
+        _.bindAll(this, 'render', 'renderError', 'createChildView', 'bindEvents', 'close');
         app.viewRegistration.register(this);
         // $("#viewStyle").attr("href", "style/css/mypage.css");
         this.isClosed = false;
@@ -32,57 +32,62 @@ var MyPageView = Backbone.View.extend({
     },
     createChildView: function () {
         switch (this.query) {
-        case "bookingDetail":
-            if (!this.reference) {
-                throw "invalid access";
-            }
-            document.title="我的爱上课 > 订单详情 | 爱上课";
-            this.activeChildView = new BookingDetailView({bookingId: this.reference});
-            break;
-        case "setting":
-            $("#editInfo").addClass("active");
-            document.title="个人设置 | 爱上课";
-            this.activeChildView = new MyPageSettingView();
-            break;
-        case "password":
-            $("#editPass").addClass("active");
-            document.title="更改密码 | 爱上课";
-            this.activeChildView = new MyPagePasswordView();
-            break;
-        case "coupon":
-            $("#couponAccount").addClass("active");
-            document.title="我的爱上课 > 我的优惠券 | 爱上课";
-            this.activeChildView = new MyPageCouponView();
-            break;
-        case "credit":
-            $("#creditAccount").addClass("active");
-            document.title="我的爱上课 > 我的积分 | 爱上课";
-            this.activeChildView = new MyPageCreditView();
-            break;
-        case "dashboard":
-            $("#mypage_content").css("border", "none");
-            document.title="我的爱上课 | 爱上课";
-            this.activeChildView = new MyPageDashboardView({user:this.user});
-            break;
-        case "booking":
-            $("#bookingManage").addClass("active");
-            document.title="我的爱上课 > 我的订单 | 爱上课";
-            this.activeChildView = new MyPageBookingView();
-            break;
-        case "share":
-            $("#share").addClass("active");
-            document.title="我的爱上课 > 分享优惠 | 爱上课";
-            this.activeChildView = new MyPageShareView();
-            break;
-        default:
-            break;
+            case "bookingDetail":
+                if (!this.reference) {
+                    throw "invalid access";
+                }
+                document.title = "我的爱上课 > 订单详情 | 爱上课";
+                this.activeChildView = new BookingDetailView({bookingId: this.reference});
+                break;
+            case "setting":
+                $("#editInfo").addClass("active");
+                document.title = "个人设置 | 爱上课";
+                this.activeChildView = new MyPageSettingView();
+                break;
+            case "password":
+                $("#editPass").addClass("active");
+                document.title = "更改密码 | 爱上课";
+                this.activeChildView = new MyPagePasswordView();
+                break;
+            case "cash":
+                $("#cashAccount").addClass("active");
+                document.title = "我的爱上课 > 我的现金账户 | 爱上课";
+                this.activeChildView = new MyPageCashView();
+                break;
+            case "coupon":
+                $("#couponAccount").addClass("active");
+                document.title = "我的爱上课 > 我的优惠券 | 爱上课";
+                this.activeChildView = new MyPageCouponView();
+                break;
+            case "credit":
+                $("#creditAccount").addClass("active");
+                document.title = "我的爱上课 > 我的积分 | 爱上课";
+                this.activeChildView = new MyPageCreditView();
+                break;
+            case "dashboard":
+                $("#mypage_content").css("border", "none");
+                document.title = "我的爱上课 | 爱上课";
+                this.activeChildView = new MyPageDashboardView({user: this.user});
+                break;
+            case "booking":
+                $("#bookingManage").addClass("active");
+                document.title = "我的爱上课 > 我的订单 | 爱上课";
+                this.activeChildView = new MyPageBookingView();
+                break;
+            case "share":
+                $("#share").addClass("active");
+                document.title = "我的爱上课 > 分享优惠 | 爱上课";
+                this.activeChildView = new MyPageShareView();
+                break;
+            default:
+                break;
         }
     },
 
     bindEvents: function () {
         var that = this;
         //侧边栏顶部 我的爱上课 以及 导航链接 我的爱上课
-        var event_mypage = function(){
+        var event_mypage = function () {
             if (that.query !== "dashboard") {
                 $("#mypage_sidebar").find(".active").removeClass("active");
                 that.query = "dashboard";
@@ -90,9 +95,8 @@ var MyPageView = Backbone.View.extend({
                 that.createChildView();
             }
         };
-        $("#mypage_sidebar").children(".mypage_sidebar_title").on("click",event_mypage);
-        $("#mypage_content").on("click",".js_toDashboard",event_mypage);
-
+        $("#mypage_sidebar").children(".mypage_sidebar_title").on("click", event_mypage);
+        $("#mypage_content").on("click", ".js_toDashboard", event_mypage);
 
 
         //订单管理>课程订单
@@ -101,6 +105,15 @@ var MyPageView = Backbone.View.extend({
                 $("#mypage_sidebar").find(".active").removeClass("active");
                 that.query = "booking";
                 app.navigate("mypage/booking");
+                that.createChildView();
+            }
+        });
+        //账户管理>现金账户
+        $("#cashAccount").on("click", function () {
+            if (that.query !== "cash") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "cash";
+                app.navigate("mypage/cash");
                 that.createChildView();
             }
         });

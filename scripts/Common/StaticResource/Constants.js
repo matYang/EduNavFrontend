@@ -35,6 +35,8 @@ var Constants = {
         "mypage_usedCouponRow", "mypage_couponUsed", "used_coupon_noMessage",
 
         "mypage_credit", "mypage_creditTable", "mypage_creditRow", "mypage_creditStore", "credit_noMessage",
+        "mypage_cash",
+
         "mypage_password", "mypage_setting", "mypage_share",
 
         "compareWidget", "compareWidgetEntry", "compareView", "courseDetailCompareWidget", "mapLabel",

@@ -45,33 +45,6 @@ module.exports = function(grunt) {
               ],
         dest: 'build/AdminMain.js'
       },
-      // partner: {
-      //   src: ["scripts/Lib/LoadFirst/*.js",
-      //         "scripts/Lib/*.js",
-      //         "scripts/Common/Config/*.js",
-      //         "scripts/Common/StaticResource/*.js",
-
-      //         "scripts/Common/Model/Representation/*",
-      //         "scripts/Common/Model/Transaction.js",
-      //         "scripts/Common/Model/Credit.js",
-      //         "scripts/Common/Model/Coupon.js",
-      //         "scripts/Common/Model/Booking.js",
-      //         "scripts/Common/Model/User.js",
-      //         "scripts/Common/Model/Partner.js",
-      //         "scripts/Common/Model/Course.js",
-              
-      //         "scripts/Common/Service/*.js",
-              
-      //         "scripts/Test/TestMockObj.js",
-      //         "scripts/Common/DataManagers/GeneralManager.js",
-      //         "scripts/Common/DataManagers/SessionManager.js",
-      //         "scripts/Common/DataManagers/PartnerManager.js",
-      //         "scripts/Common/View/Shared/*.js",
-      //         "scripts/Common/View/*.js",
-      //         "scripts/Partner/Main.js"
-      //         ],
-      //   dest: 'build/PartnerMain.js'
-      // },
       main: {
         src: [
               "scripts/Common/Config/*.js",
