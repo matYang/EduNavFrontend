@@ -285,14 +285,26 @@ var Utilities = {
     defaultSmsRequestHandler: function ($button, $info) {
         return {
             success: function () {
-                $info.html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试");
-                $button.val("重新发送").prop("disabled", true).css("background", "#999");
+//                $info.html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试");\
+                $info.html("验证码已经发送至您的手机");
+
+                var count_down = function(k){
+                    if(k>=0){
+                        setTimeout(function(){
+                            $button.val(k+'秒后可重新发送');
+                            count_down(k-1);
+                        },1000)
+                    }
+                };
+                count_down(120);
+                $button.prop("disabled", true).css("background", "#999");
                 setTimeout(function () {
                     $button.prop("disabled", false).css("background", "");
                 }, 120000);
             },
             error: function (response) {
-                $info.html((response && response.responseJSON) ? response.responseJSON : "验证码发送失败，请检查网络正常并重试");
+                $info.html("发送失败，请检查网络正常并重试");
+//                $info.html((response && response.responseJSON) ? response.responseJSON : "发送失败，请检查网络正常并重试");
                 $button.val("重新发送").prop("disabled", false);
             }
         };

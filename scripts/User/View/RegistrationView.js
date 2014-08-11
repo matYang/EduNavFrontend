@@ -4,7 +4,7 @@ var RegistrationView = BaseFormView.extend({
     form: false,
     submitButtonId: "complete",
     model: {},
-    initialize: function(params){
+    initialize: function (params) {
         _.bindAll(this, 'render', 'bindEvents', 'successCallback', 'submitAction', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
@@ -84,8 +84,9 @@ var RegistrationView = BaseFormView.extend({
         $("#loginBox").hide();
         $("#getSms").on("click", function (e) {
             if (Utilities.phoneValid(that.model.phone).valid) {
-                $("#getSms").val("发送中...").prop("disabled", true);
-                app.userManager.smsVerification(that.model.phone, Utilities.defaultSmsRequestHandler($("#getSms"), $("#smsInfo") ));
+                var $btnGetSms = $(this);
+                $btnGetSms.val("发送中...").prop("disabled", true);
+                app.userManager.smsVerification(that.model.phone, Utilities.defaultSmsRequestHandler($btnGetSms, $("#smsInfo")));
             } else {
                 $("#smsInfo").html("请先输入您的手机号");
             }
@@ -98,22 +99,22 @@ var RegistrationView = BaseFormView.extend({
         });
         BaseFormView.prototype.bindEvents.call(this);
     },
-    successCallback: function(data){
+    successCallback: function (data) {
         this.state = "finish";
         var that = this, counter = 5;
         app.sessionManager.fetchSession(true, {
-            success:function () {
+            success: function () {
                 app.topBarView.reRender();
             },
             error: function (data) {
-                
+
             }
         });
         var toPage = this.ref || "mypage";
         app.sessionManager.sessionModel = new User(data, {parse: true});
         this.$el.empty().append(this.finishTemplate);
         var timeout = setInterval(function () {
-            $("#countdown").html(--counter); 
+            $("#countdown").html(--counter);
             if (counter === 0) {
                 clearInterval(timeout);
                 app.navigate(toPage, true);
@@ -125,38 +126,39 @@ var RegistrationView = BaseFormView.extend({
         this.model.authCode = this.model.authCode.toUpperCase();
         app.userManager.registerUser(this.model, {
             success: this.successCallback,
-            error: function (data){
+            error: function (data) {
                 Info.displayNotice(data.responseJSON.message);
             }
         });
 
     },
     passValid: function (val) {
-        var p1 = val, p2 = $("#registerPasswordConfirmInput").val();
-        if ( p2 && p1 !== p2 ) {
-            return {valid: false, text:"两次输入密码不匹配"};
-        } else if (val.length < 6 ){
-            return {valid: false, text:"密码长度至少为6位"};
+        var p1 = val,
+            p2 = $("#registerPasswordConfirmInput").val();
+        if (p2 && p1 !== p2) {
+            return {valid: false, text: "两次输入密码不匹配"};
+        } else if (val.length < 6) {
+            return {valid: false, text: "密码长度至少为6位"};
         } else {
-            return {valid:true};
+            return {valid: true};
         }
     },
     confirmValid: function (val) {
         var p1 = $("#registerPasswordInput").val(), p2 = val;
-        if ( p1 !== p2 ) {
-            return {valid: false, text:"两次输入密码不匹配"};
-        } else if (val.length < 6 ){
-            return {valid: false, text:"密码长度至少为6位"};
+        if (p1 !== p2) {
+            return {valid: false, text: "两次输入密码不匹配"};
+        } else if (val.length < 6) {
+            return {valid: false, text: "密码长度至少为6位"};
         } else {
             if ($("#registerPasswordInput_wrong").length) {
                 $("#registerPasswordInput_wrong").remove();
-                $("#passContainer").append($("<div>").attr("id","registerPasswordInput_right").attr("class", "success"));
+                $("#passContainer").append($("<div>").attr("id", "registerPasswordInput_right").attr("class", "success"));
             }
-            return {valid:true};
+            return {valid: true};
         }
     },
     close: function () {
-        if (!this.isClosed){
+        if (!this.isClosed) {
             BaseFormView.prototype.close.call(this);
             this.$el.empty();
             this.isClosed = true;
