@@ -289,11 +289,13 @@ var Utilities = {
                 $info.html("验证码已经发送至您的手机");
 
                 var count_down = function(k){
-                    if(k>=0){
+                    if(k>0){
                         setTimeout(function(){
-                            $button.val(k+'秒后可重新发送');
+                            $button.val('重新发送('+k+'秒)');
                             count_down(k-1);
                         },1000)
+                    }else{
+                        $button.val('重新发送');
                     }
                 };
                 count_down(120);
