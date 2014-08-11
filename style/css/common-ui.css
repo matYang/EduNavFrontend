@@ -1,6 +1,11 @@
 /*基本样式*/
-a {
+a, a:visited {
     text-decoration: none;
+    color: #333333;
+}
+
+a:hover, a:active, {
+    color: #128d56;
 }
 
 /*通用工具类*/
