@@ -76,7 +76,7 @@ var Booking = Backbone.Model.extend({
             data.type = parseInt(data.type, 10);
             data.course = new Course(data.course, {parse: true});
         }
-        return data;v
+        return data;
     },
     _toJSON: function () {
         var json = _.clone(this.attributes);
@@ -97,13 +97,12 @@ var Booking = Backbone.Model.extend({
         var json = _.clone(this.attributes);
         json.type = parseInt(this.get('type'), 10);
 
-        //去除请求发送中不可更改的值
-        delete json.type;
-        delete json.createTime;
-        delete json.lastModifyTime;
-        delete json.noRefundDate;
-        delete json.cashbackDate;
-        
+        json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
+        json.noRefundDate = undefined;
+        json.cashbackDate undefined;
+        json.bookingId = undefined;
+        json.createTime = undefined;
+        json.lastModifyTime = undefined;
         return json;
     },
     initBookingFromCourse: function (course) {
