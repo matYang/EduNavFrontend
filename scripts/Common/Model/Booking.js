@@ -88,7 +88,7 @@ var Booking = Backbone.Model.extend({
         json.phone = decodeURI(json.phone);
         json.note = decodeURI(json.note);
         //todo 需要让后台加入course
-        if(json.course){
+        if (json.course) {
             json.course = json.course._toJSON();
         }
         return json;
@@ -99,7 +99,7 @@ var Booking = Backbone.Model.extend({
 
         json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
         json.noRefundDate = undefined;
-        json.cashbackDate undefined;
+        json.cashbackDate = undefined;
         json.bookingId = undefined;
         json.createTime = undefined;
         json.lastModifyTime = undefined;
