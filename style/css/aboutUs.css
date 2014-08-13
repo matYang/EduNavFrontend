@@ -27,3 +27,19 @@
 .advise dl dd input.text{width:500px; height:40px; line-height:40px\9; font-size:14px; color:#666;}
 .advise dl dd textarea{width:490px; height:190px; border:1px solid #ccc; padding:10px; font-size:14px;color:#666;}
 
+/*机构入驻*/
+.ruzhu{ font-family:微软雅黑;}
+.ruzhu_banner{ margin-top:50px; height:90px;}
+.ruzhu_part2 {color:#979797; font-size:16px; line-height:30px;}
+.ruzhu_part2 .fleft{width:290px; padding-left:110px; background:url(../images/wh.png) no-repeat left top; padding-bottom:15px;}
+.ruzhu_part2 .fright{width:470px; padding-left:110px; background:url(../images/th.png) no-repeat left top; padding-bottom:15px;}
+.service dl{ width:449px; height:124px; padding:15px 20px; color:#fff;}
+.service dl dt{font-size:22px; margin-bottom:8px;}
+.service dl dd{ font-size:14px;}
+.service dl.s1{ background:url(../images/rz_1.png) no-repeat;}
+.service dl.s2{ background:url(../images/rz_2.png) no-repeat;}
+.service dl.s3{ background:url(../images/rz_3.png) no-repeat;}
+.service dl.s4{ background:url(../images/rz_4.png) no-repeat;}
+
+.service{ margin-top:50px;}
+
