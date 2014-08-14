@@ -123,14 +123,13 @@ var AppRouter = Backbone.Router.extend({
             this.myPageView = new MyPageView({query: "bookingDetail", reference: id});
         }
     },
-    //todo
     myBookingPay: function (id) {
         //BookingPayView
         if (!this.sessionManager.hasSession()) {
             this.navigate("front", {trigger: true, replace: true});
             return;
         }
-        this.myPageView = new BookingPayView({bookingId: id});
+        this.myPagePayView = new BookingPayView({bookingId: id});
     },
     mypage: function (query) {
         if (!this.sessionManager.hasSession()) {

@@ -11,7 +11,8 @@ module.exports = function(grunt) {
           "scripts/Lib/datepicker-zh.js",
           "scripts/Lib/jquery.placeholder.min.js",
           "scripts/Lib/jquery.smooth-scroll.min.js",
-          "scripts/Lib/json2.js"
+          "scripts/Lib/json2.js",
+          "scripts/Lib/backbone.notifier.js",
         ],
         dest: 'build/Common.js'
      },
@@ -89,6 +90,7 @@ module.exports = function(grunt) {
         files: {
           'build/style/css/style-min.css': [
             'style/css/Global.css',
+            'style/css/notifier-base.css',
             'style/css/common-ui.css',
             'style/css/topBar.css',
             'style/css/override.css',

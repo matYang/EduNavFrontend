@@ -271,18 +271,18 @@ testMockObj.testPartner5.set("classPhotoList", testMockObj.testPhotos);
 
 testMockObj.testPartners.add([testMockObj.testPartner1, testMockObj.testPartner2, testMockObj.testPartner3, testMockObj.testPartner4, testMockObj.testPartner5]);
 
-testMockObj.testBooking1.set("course", testMockObj.testCourse1);
-testMockObj.testBooking2.set("course", testMockObj.testCourse2);
-testMockObj.testBooking3.set("course", testMockObj.testCourse3);
-testMockObj.testBooking4.set("course", testMockObj.testCourse4);
-testMockObj.testBooking5.set("course", testMockObj.testCourse5);
-testMockObj.testBooking6.set("course", testMockObj.testCourse6);
-testMockObj.testBooking7.set("course", testMockObj.testCourse1);
-testMockObj.testBooking8.set("course", testMockObj.testCourse2);
-testMockObj.testBooking9.set("course", testMockObj.testCourse3);
-testMockObj.testBooking10.set("course", testMockObj.testCourse4);
-testMockObj.testBooking11.set("course", testMockObj.testCourse5);
-testMockObj.testBooking12.set("course", testMockObj.testCourse6);
+testMockObj.testBooking1.set("course", testMockObj.testCourse1).set('reference','isk-2323-s232');
+testMockObj.testBooking2.set("course", testMockObj.testCourse2).set('reference','isk-2323-s232');
+testMockObj.testBooking3.set("course", testMockObj.testCourse3).set('reference','isk-2323-s232');
+testMockObj.testBooking4.set("course", testMockObj.testCourse4).set('reference','isk-2323-s232');
+testMockObj.testBooking5.set("course", testMockObj.testCourse5).set('reference','isk-2323-s232');
+testMockObj.testBooking6.set("course", testMockObj.testCourse6).set('reference','isk-2323-s232');
+testMockObj.testBooking7.set("course", testMockObj.testCourse1).set('reference','isk-2323-s232');
+testMockObj.testBooking8.set("course", testMockObj.testCourse2).set('reference','isk-2323-s232');
+testMockObj.testBooking9.set("course", testMockObj.testCourse3).set('reference','isk-2323-s232');
+testMockObj.testBooking10.set("course", testMockObj.testCourse4).set('reference','isk-2323-s232');
+testMockObj.testBooking11.set("course", testMockObj.testCourse5).set('reference','isk-2323-s232');
+testMockObj.testBooking12.set("course", testMockObj.testCourse6).set('reference','isk-2323-s232');
 testMockObj.testBookings.add([,testMockObj.testBooking1,testMockObj.testBooking2,testMockObj.testBooking4,testMockObj.testBooking5]);
 
 testMockObj.testUser.set("couponList", testMockObj.testCoupons);

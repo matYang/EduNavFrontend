@@ -184,7 +184,7 @@ var SearchView = Backbone.View.extend({
         if (columnKey === "startDate") {
             $("#price").html("价格").removeClass("active");
             $("#editorPick").removeClass("active");
-            if (order === "ASCE") {
+            if (order === "asc") {
                 this.timeDesc = true;
                 $("#time").html("时间↑").addClass("active");
             } else {
@@ -194,7 +194,7 @@ var SearchView = Backbone.View.extend({
         } else if (columnKey === "price") {
             $("#time").html("时间").removeClass("active");
             $("#editorPick").removeClass("active");
-            if (order === "ASCE") {
+            if (order === "asc") {
                 $("#price").html("价格↑").addClass("active");
                 this.priceDesc = true;
             } else {
@@ -287,7 +287,7 @@ var SearchView = Backbone.View.extend({
                 $(this).html("时间↑").addClass("active");
             }
             that.searchRepresentation.set("columnKey", "startDate");
-            that.searchRepresentation.set("order", that.timeDesc ? "DESC" : "ASCE");
+            that.searchRepresentation.set("order", that.timeDesc ? "desc" : "asc");
             that.timeDesc = !that.timeDesc;
             that.courseSearch();
         });
@@ -300,7 +300,7 @@ var SearchView = Backbone.View.extend({
                 $(this).html("价格↑").addClass("active");
             }
             that.searchRepresentation.set("columnKey", "price");
-            that.searchRepresentation.set("order", that.priceDesc ? "DESC" : "ASCE");
+            that.searchRepresentation.set("order", that.priceDesc ? "desc" : "asc");
             that.priceDesc = !that.priceDesc;
             that.courseSearch();
 

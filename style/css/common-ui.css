@@ -45,13 +45,12 @@ a:hover, a:active, {
     margin: 0 10px;
 }
 
-/*字体和背景颜色*/
-.ft-green {
+/*字体 背景 边框颜色*/
+.text-primary{
     color: #128d56;
 }
-
-.bg-green {
-    background-color: #128d56;
+.border-primary{
+    border: 1px solid #128d56;
 }
 
 /*通用图标 已在支付页面使用*/
@@ -118,6 +117,64 @@ a:hover, a:active, {
 }
 
 /*通用按钮*/
+.btn {
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/*默认样式 淡灰色边框 白灰底 绿字*/
+.btn-default {
+    border-color: #f2f2f2;
+    color: #128d56;
+    background-color: #D7D7D7;
+    background-image: -moz-linear-gradient(top, #FEFEFE 0%, #F8F8F8 27%, #F1F1F1 100%);
+    /* FF3.6+ */
+
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FEFEFE), color-stop(27%, #F8F8F8), color-stop(100%, #F1F1F1));
+    /* Chrome,Safari4+ */
+
+    background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #F8F8F8 27%, #F1F1F1 100%);
+    /* Chrome10+,Safari5.1+ */
+
+    background-image: -o-linear-gradient(top, #FEFEFE 0%, #F8F8F8 27%, #F1F1F1 100%);
+    /* Opera 11.10+ */
+
+    background-image: -ms-linear-gradient(top, #FEFEFE 0%, #F8F8F8 27%, #F1F1F1 100%);
+    /* IE10+ */
+
+    background-image: linear-gradient(to bottom, #FEFEFE 0%, #F8F8F8 27%, #F1F1F1 100%);
+    /* W3C */
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#FEFEFE, EndColorStr=#F1F1F1);
+}
+
+.btn-primary {
+    border-color: #13AD67;
+    color: #fff;
+    background-color: #139D5F;
+    background-image: -moz-linear-gradient(top, #13AD67 0%, #139D5F 27%, #139158 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #13AD67), color-stop(27%, #139D5F), color-stop(100%, #139158));
+    background-image: -webkit-linear-gradient(top, #13AD67 0%, #139D5F 27%, #139158 100%);
+    background-image: -o-linear-gradient(top, #13AD67 0%, #139D5F 27%, #139158 100%);
+    background-image: -ms-linear-gradient(top, #13AD67 0%, #139D5F 27%, #139158 100%);
+    background-image: linear-gradient(to bottom, #13AD67 0%, #139D5F 27%, #139158 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#13AD67, EndColorStr=##139158);
+}
+
+/*.btn-warning {*/
+    /*border-color: #f2f2f2;*/
+    /*color: #128d56;*/
+    /*background-color: #FCFCFC;*/
+    /*background-image: -moz-linear-gradient(top, rgba(100, 100, 100, 0.29) 0%, rgba(100, 100, 100, 0.08) 27%, rgba(100, 100, 100, 0.01) 100%);*/
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(100, 100, 100, 0.29)), color-stop(27%, rgba(100, 100, 100, 0.08)), color-stop(100%, rgba(100, 100, 100, 0.01)));*/
+    /*background-image: -webkit-linear-gradient(top, rgba(100, 100, 100, 0.29) 0%, rgba(100, 100, 100, 0.08) 27%, rgba(100, 100, 100, 0.01) 100%);*/
+    /*background-image: -o-linear-gradient(top, rgba(100, 100, 100, 0.29) 0%, rgba(100, 100, 100, 0.08) 27%, rgba(100, 100, 100, 0.01) 100%);*/
+    /*background-image: -ms-linear-gradient(top, rgba(100, 100, 100, 0.29) 0%, rgba(100, 100, 100, 0.08) 27%, rgba(100, 100, 100, 0.01) 100%);*/
+    /*background-image: linear-gradient(to bottom, rgba(100, 100, 100, 0.29) 0%, rgba(100, 100, 100, 0.08) 27%, rgba(100, 100, 100, 0.01) 100%);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#b8b8b8, EndColorStr=#ffffff);*/
+/*}*/
 
 /***************我是分割线*****************/
 /***************一下为非通用样式 之后需要独立出来*****************/

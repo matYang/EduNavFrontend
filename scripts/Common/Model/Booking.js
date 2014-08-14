@@ -8,7 +8,7 @@ var Booking = Backbone.Model.extend({
             'partnerId': -1,
             'courseId': -1,
             'courseTemplateId': -1,
-
+            'reference':undefined,
 
             /*需要填写的信息*/
             'name': '',
@@ -83,11 +83,8 @@ var Booking = Backbone.Model.extend({
         json.scheduledTime = Utilities.getDateString(this.get('scheduledTime'));
         json.createTime = Utilities.getDateString(this.get('createTime'));
         json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));
-        json.email = decodeURIComponent(json.email);
-        json.name = decodeURI(json.name);
-        json.phone = decodeURI(json.phone);
-        json.note = decodeURI(json.note);
-        //todo 需要让后台加入course
+
+        json.price = json.price.toFixed(2);
         if (json.course) {
             json.course = json.course._toJSON();
         }
@@ -103,6 +100,7 @@ var Booking = Backbone.Model.extend({
         json.bookingId = undefined;
         json.createTime = undefined;
         json.lastModifyTime = undefined;
+        json.reference = undefined;
         return json;
     },
     initBookingFromCourse: function (course) {
