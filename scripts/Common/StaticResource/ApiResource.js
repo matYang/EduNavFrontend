@@ -31,7 +31,8 @@
                 },
 
                 'booking': {
-                    booking: ''
+                    booking: '',
+                    operate:'/{0}/{1}'
                 },
                 'course': {
                     course: ''
@@ -68,6 +69,7 @@
                 user_logout: api_maker(api_modules.rootPrefix, 'user', 'logout'), //GET added to session manager
                 user_forgetPassword: api_maker(api_modules.rootPrefix, 'user', 'forgetPassword'),
                 user_booking: api_maker(api_modules.rootPrefix, 'booking', 'booking'),
+                user_booking_operate: api_maker(api_modules.rootPrefix, 'booking', 'operate'),
                 user_coupon: api_maker(api_modules.rootPrefix, 'coupon', 'coupon')
             };
         };

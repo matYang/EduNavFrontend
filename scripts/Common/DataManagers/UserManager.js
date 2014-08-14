@@ -448,25 +448,20 @@
 
     };
 
-    //用于取消订单
-    UserManager.prototype.changeBookingState = function(booking, callback) {
+    //用于对订单进行操作
+    UserManager.prototype.changeBookingState = function(bookingId,operate, callback) {
         var self = this;
-
-        if (!(booking instanceof Backbone.Model) || booking.id < 0){
-            Info.warn('UserManager::changeBookingState:: invalid parameter');
-            return;
-        }
         if (!this.sessionManager.hasSession()){
             Info.warn('UserManager::changeBookingState:: session does not exist, exit');
             return;
         }
 
-       
-        booking.overrideUrl(ApiResource.user_booking);
-        booking.set('userId', this.sessionManager.getId());
-        booking.save({},{
-            dataType:'json',
-
+        $.ajax({
+            type: 'PUT',
+            url: ApiResource.user_booking_operate.format(bookingId,operate) ,
+            dataType: 'json',
+            data:JSON.stringify({id:bookingId}),
+            contentType: 'application/json',
             success:function(model, response){
                 if(callback){
                     callback.success(booking);

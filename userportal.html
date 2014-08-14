@@ -663,11 +663,12 @@
             </div>
         </div>
         <!--bookingDetail end-->
-        <div class="btns">
+        <div class="btns text-center">
             <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
-            <% if (actionList && _.findWhere(actionList,{name:"offlineCancel"})) { %>
-            <input type="button" class="btn_W" value="取消订单" id="cancelBooking">
-            <% } %>
+
+            <%_.each(actionList,function(action){%>
+            <input type="button" class="btn_W js_btn_operate" value="<%=EnumConfig.BookingActionText(action.name)=>" data-value="<%=action.name=>">
+            <%})%>
         </div>
         <!--btns end-->
         <div id="printBooking" class="print"><a href="#">订单打印</a></div>

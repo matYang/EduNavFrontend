@@ -35,7 +35,7 @@ var BookingDetailView = Backbone.View.extend({
         var that = this;
 
         /*去支付*/
-        $("#bookingDetail").on('click','.js_btnGoToPay',function(){
+        $("#bookingDetail").on('click', '.js_btnGoToPay', function () {
             app.navigate("mypage/booking/" + that.booking.id + "/pay", true);
         });
         $("#printBooking").on("click", function (e) {
@@ -46,25 +46,29 @@ var BookingDetailView = Backbone.View.extend({
          $("#editBooking").on("click", function () {
          app.navigate("booking/b"+that.booking.get("reference"), true);
          });*/
-        $("#cancelBooking").on("click", function () {
-            var booking = that.booking.clone();
-            booking.set("status", EnumConfig.BookingStatus.cancelled);
-            $("#cancelBooking").val("取消中...");
-            app.userManager.changeBookingState(booking, {
+        $(".btns").on("click", ".js_btn_operate", function (e) {
+            $target = $(e.target);
+            var bookingId = that.booking.id;
+            var operate = '';
+            $("#cancelBooking").val("更改中...");
+            app.userManager.changeBookingState(bookingId, operate, {
                 success: function (booking) {
                     var status;
-                    $("#process").html("<p>订单已取消</p>");
-                    if (booking.status !== undefined) {
-                        status = parseInt(booking.status, 10);
-                    } else {
-                        status = 12
+                    if(operate === 'offlineCancel'){
+                        $("#process").html("<p>订单已取消</p>");
+                    }else if(operate === 'offlineDelayed'){
+                        $("#process").html("<p>已推迟</p>");
+                    }else{
+                        $("#process").html("<p>操作成功</p>");
                     }
-                    $("#bookingStatus").html(EnumConfig.BookingStatusText[status]);
-                    $("#cancelBooking").remove();
-                    $("#editBooking").remove();
+
+                    $("#bookingStatus").html(EnumConfig.BookingStatusText[booking.status]);
+                    //TODO 这里进行了推迟操作以后是否可以继续取消订单 操作部分的刷新后续需要单独提取出来模板进行render
+                    //这里暂时先将所有的操作按钮移除
+                    $(".js_btn_operate").remove();
                 },
                 error: function (data) {
-                    $("#cancelBooking").val("取消失败，请重试");
+                    $target.val("操作失败，请重试");
                     if (data) {
                         Info.displayNotice(data.responseJSON.message);
                     }
