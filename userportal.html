@@ -519,9 +519,9 @@
             <span class="sign">￥</span><%= price %>
         </div>
         <div class="bookingEntryState">
-            <% if (status === EnumConfig.BookingStatus.awaiting) { %>
+            <% if (status === 3 || status === 16) { %>
             <span class="sign pending">
-        <% } else if ( status === 2 || status === 3 || status === 5 || status === 9 || status === 11) { %>
+        <% } else if ( status === 2 || status === 12) { %>
             <span class="sign cancelled">
         <% } else { %>            
             <span class="sign confirmed">
