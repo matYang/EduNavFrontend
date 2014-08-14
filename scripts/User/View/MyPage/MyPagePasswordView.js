@@ -35,14 +35,6 @@ var MyPagePasswordView = BaseFormView.extend({
                 validatorFunction: this.confirmPasswordValid,
                 modelAttr: "confirmNewPassword",
                 buildValidatorDiv: Utilities.defaultValidDivBuilder
-            }),
-            new BaseField({
-                name:"手机验证码",
-                fieldId: "smsAuthCode",
-                fieldType: "text",
-                mandatory: true,
-                modelAttr: "authCode",
-                buildValidatorDiv: this.smsValidator
             })
         ];
         this.sessionUser = app.userManager.sessionModel;

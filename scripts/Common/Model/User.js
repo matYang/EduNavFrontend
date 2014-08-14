@@ -78,9 +78,11 @@ var User = Backbone.Model.extend({
 
     toJSON: function () {
         var json = _.clone(this.attributes);
-        json.createTime = Utilities.castToAPIFormat(this.get('createTime'));
-        json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
-        json.lastModifyTime = Utilities.castFromAPIFormat(json.lastModifyTime);
+        var user = {};
+        user.id = json.id;
+        user.avatarUrl = json.avatarUrl;
+        user.name = json.name;
+        user.email = json.email;
         return json;
     }
 
