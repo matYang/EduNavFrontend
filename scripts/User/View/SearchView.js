@@ -99,7 +99,8 @@ var SearchView = Backbone.View.extend({
     showCategory: function () {
         var text, count, value, categoryValue = this.searchRepresentation.get("categoryValue");
         $("#search_category").find("li[data-value=" + categoryValue.substr(0, 2) + "]").addClass("active").siblings("li").removeClass("active");
-        $filter_sub = $("#filter_subCategory");
+        var $filter_sub = $("#filter_subCategory");
+        var $searchReqs = $("#searchReqs");
         if (categoryValue.length === 2) {
             $filter_sub.find("[data-value=noreq]").addClass("active").siblings().removeClass("active");
             $filter_sub.find("p").addClass("hidden");
@@ -108,16 +109,16 @@ var SearchView = Backbone.View.extend({
             value = categoryValue.substr(0, count + 2);
             $filter_sub.find("[data-parentvalue=" + value + "]").removeClass("hidden").siblings("p,div").addClass("hidden");
             if (categoryValue.length === 6 && count === 2) {
-                $("#filter_subCategory").find("[data-value=" + value + "]").siblings().removeClass("active");
+                $filter_sub.find("[data-value=" + value + "]").siblings().removeClass("active");
                 continue;
             }
             $filter_sub.find("[data-value=" + value + "]").addClass("active").siblings().removeClass("active");
             $filter_sub.find("[data-value=" + value + "]").children("[data-value=noreq]").addClass("active");
         }
-        $("#searchReqs").find("[data-cri=subCategory]").remove();
+        $searchReqs.find("[data-cri=subCategory]").remove();
         if (categoryValue.length > 2) {
-            text = $("#filter_subCategory").find("span[data-value=" + categoryValue + "]").html();
-            $("#searchReqs").append(this.reqTemplate({criteria: "subCategory", dataValue: categoryValue, text: text}));
+            text = $filter_sub.find("span[data-value=" + categoryValue + "]").html();
+            $searchReqs.append(this.reqTemplate({criteria: "subCategory", dataValue: categoryValue, text: text}));
         }
     },
     //过滤 上课地点
@@ -133,11 +134,9 @@ var SearchView = Backbone.View.extend({
     syncFilters: function () {
         var startPrice = this.searchRepresentation.get("priceStart"),
             priceEnd = this.searchRepresentation.get("priceEnd"),
-//            startClassSize = this.searchRepresentation.get("startClassSize"),
-//            finishClassSize = this.searchRepresentation.get("finishClassSize"),
             classType = this.searchRepresentation.get("classType"),
-            startDate = this.searchRepresentation.get("startDate"),
-            finishDate = this.searchRepresentation.get("finishDate"),
+            startDateStart = this.searchRepresentation.get("startDateStart"),
+            startDateEnd = this.searchRepresentation.get("startDateEnd"),
             cashback = this.searchRepresentation.get("startCashback"),
             value, text;
         var $searchReqs = $("#searchReqs");
@@ -146,20 +145,20 @@ var SearchView = Backbone.View.extend({
             if (priceEnd !== undefined) {
                 value += priceEnd;
             }
-            $filter_price = $("#filter_price");
+            var $filter_price = $("#filter_price");
             text = $filter_price.find("span[data-value=" + value + "]").html();
             $filter_price.find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
             $searchReqs.append(this.reqTemplate({criteria: "price", dataValue: value, text: text}));
         }
         if (classType !== undefined) {
             value = classType;
-            $filter_classMode = $("#filter_classMode");
+            var $filter_classMode = $("#filter_classMode");
             text = $filter_classMode.find("span[data-value=" + value + "]").html();
             $filter_classMode.find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
             $searchReqs.append(this.reqTemplate({criteria: "classMode", dataValue: value, text: text}));
         }
-        if (startDate !== undefined) {
-            var date = new Date(), month = startDate.getMonth() - date.getMonth();
+        if (startDateEnd !== undefined) {
+            var date = new Date(), month = startDateEnd.getMonth() - date.getMonth();
             switch (month) {
                 case 0:
                     value = "thisMonth";
@@ -171,7 +170,7 @@ var SearchView = Backbone.View.extend({
                     value = "twoMonthsAfter";
                     break;
             }
-            $filter_startTime = $("#filter_startTime");
+            var $filter_startTime = $("#filter_startTime");
             text = $filter_startTime.find("span[data-value=" + value + "]").html();
             $filter_startTime.find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
             $searchReqs.append(this.reqTemplate({criteria: "startTime", dataValue: value, text: text}));
@@ -398,29 +397,30 @@ var SearchView = Backbone.View.extend({
         }
         //上课时间 start end
         else if (criteria === "startTime") {
-            var date = new Date(), date2;
-            date.setDate(1);
-            var month = date.getMonth();
+            var now = new Date();
+            var date1 = new Date(Date.parse([now.getFullYear(),now.getMonth(),now.getDate()].join('-')));
+            var date2;
+            var month = date1.getMonth();
             //设置当月的时间
             if (dataValue === "thisMonth") {
-                date2 = date;
+                date2 = new Date(date1);
                 if (month === 11) {
                     date2.setMonth(0);
-                    date2.setFullYear(date.getFullYear() + 1);
+                    date2.setFullYear(date1.getFullYear() + 1);
                 } else {
-                    date2.setMonth(date.getMonth() + 1);
+                    date2.setMonth(date1.getMonth() + 1);
                 }
             }
             //设置下个月的时间
             else if (dataValue === "nextMonth") {
                 if (month === 11) {
-                    date.setMonth(0);
-                    date.setFullYear(date.getFullYear() + 1);
-                    date2 = date;
+                    date1.setMonth(0);
+                    date1.setFullYear(date1.getFullYear() + 1);
+                    date2 = new Date(date1);
                     date2.setMonth(date2.getMonth() + 1);
                 } else {
-                    date.setMonth(date.getMonth() + 1);
-                    date2 = date;
+                    date1.setMonth(date1.getMonth() + 1);
+                    date2 = new Date(date1);
                     if (month === 10) {
                         date2.setMonth(0);
                         date2.setFullYear(date2.getFullYear() + 1);
@@ -431,13 +431,13 @@ var SearchView = Backbone.View.extend({
                 }
             } else if (dataValue === "twoMonthsAfter") {
                 if (month >= 10) {
-                    date.setMonth((date.getMonth() + 2) % 12);
-                    date.setFullYear(date.getFullYear() + 1);
-                    date2 = date;
+                    date1.setMonth((date1.getMonth() + 2) % 12);
+                    date1.setFullYear(date1.getFullYear() + 1);
+                    date2 = new Date(date1);
                     date2.setMonth(date2.getMonth() + 1);
                 } else {
-                    date.setMonth(date.getMonth() + 2);
-                    date2 = date;
+                    date1.setMonth(date1.getMonth() + 2);
+                    date2 = new Date(date1);
                     if (month === 10) {
                         date2.setMonth(0);
                         date2.setFullYear(date2.getFullYear() + 1);
@@ -446,10 +446,10 @@ var SearchView = Backbone.View.extend({
                     }
                 }
             } else {
-                date = undefined;
+                date1 = undefined;
                 date2 = undefined;
             }
-            this.searchRepresentation.set("startDateStart", date);
+            this.searchRepresentation.set("startDateStart", date1);
             this.searchRepresentation.set("startDateEnd", date2);
         }
         else if (criteria === "price") {
