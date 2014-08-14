@@ -21,8 +21,8 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'priceEnd': undefined,
             'classType': undefined,//班级类型 0，1，2，3
 
-            'startCashback': undefined,
-            'finishCashback': undefined,
+            'cashbackStart': undefined,
+            'cashbackEnd': undefined,
 
             'courseReference': undefined,
             'partnerReference': undefined,
@@ -85,14 +85,12 @@ var CourseSearchRepresentation = Backbone.Model.extend({
 
     toJSON: function () {
         var queryObj = _.clone(this.attributes);
-        queryObj.startDate = typeof this.get('startDate') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startDate'));
-        queryObj.finishDate = typeof this.get('finishDate') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishDate'));
-
-        queryObj.institutionName = typeof this.get('institutionName') === 'undefined' ? undefined : encodeURI(this.get('institutionName'));
-        queryObj.courseReference = typeof this.get('courseReference') === 'undefined' ? undefined : encodeURI(this.get('courseReference'));
-        queryObj.partnerReference = typeof this.get('partnerReference') === 'undefined' ? undefined : encodeURI(this.get('partnerReference'));
-        queryObj.startcreateTime = typeof this.get('startcreateTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startcreateTime'));
-        queryObj.finishcreateTime = typeof this.get('finishcreateTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishcreateTime'));
+        queryObj.startDateStart = typeof this.get('startDateStart') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startDateStart'));
+        queryObj.startDateEnd = typeof this.get('startDateEnd') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startDateEnd'));
+//        queryObj.courseReference = typeof this.get('courseReference') === 'undefined' ? undefined : encodeURI(this.get('courseReference'));
+//        queryObj.partnerReference = typeof this.get('partnerReference') === 'undefined' ? undefined : encodeURI(this.get('partnerReference'));
+        queryObj.createTimeStart = typeof this.get('createTimeStart') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('createTimeStart'));
+        queryObj.createTimeEnd = typeof this.get('createTimeEnd') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('createTimeEnd'));
         return queryObj;
     },
     toTitleString: function () {
