@@ -22,6 +22,9 @@ var BookingPayView = Backbone.View.extend({
         if (booking instanceof Bookings) {
             booking = booking.at(0);
         }
+        if(booking.get('status') !== 11 ){//如果订单不为待支付状态 则进入个人中心页面
+            app.navigate("mypage", true);
+        }
         this.booking = booking;
         this.$el.append(this.template(this.booking._toJSON()));
         this.bindEvents();
