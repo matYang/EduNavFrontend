@@ -40,8 +40,9 @@ var CourseSearchRepresentation = Backbone.Model.extend({
 
             'start': undefined,
             'count': undefined,
+
             'order': undefined,
-            'sortBy': undefined
+            'columnKey': undefined
         };
     },
 
@@ -86,8 +87,6 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         var queryObj = _.clone(this.attributes);
         queryObj.startDateStart = typeof this.get('startDateStart') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startDateStart'));
         queryObj.startDateEnd = typeof this.get('startDateEnd') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startDateEnd'));
-//        queryObj.courseReference = typeof this.get('courseReference') === 'undefined' ? undefined : encodeURI(this.get('courseReference'));
-//        queryObj.partnerReference = typeof this.get('partnerReference') === 'undefined' ? undefined : encodeURI(this.get('partnerReference'));
         queryObj.createTimeStart = typeof this.get('createTimeStart') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('createTimeStart'));
         queryObj.createTimeEnd = typeof this.get('createTimeEnd') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('createTimeEnd'));
         return queryObj;

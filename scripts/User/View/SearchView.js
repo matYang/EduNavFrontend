@@ -180,8 +180,8 @@ var SearchView = Backbone.View.extend({
         }
     },
     syncSorter: function () {
-        var order = this.searchRepresentation.get("order"), sortBy = this.searchRepresentation.get("sortBy");
-        if (sortBy === "startDate") {
+        var order = this.searchRepresentation.get("order"), columnKey = this.searchRepresentation.get("columnKey");
+        if (columnKey === "startDate") {
             $("#price").html("价格").removeClass("active");
             $("#editorPick").removeClass("active");
             if (order === "ASCE") {
@@ -191,7 +191,7 @@ var SearchView = Backbone.View.extend({
                 $("#time").html("时间↓").addClass("active");
                 this.timeDesc = false;
             }
-        } else if (sortBy === "price") {
+        } else if (columnKey === "price") {
             $("#time").html("时间").removeClass("active");
             $("#editorPick").removeClass("active");
             if (order === "ASCE") {
@@ -286,7 +286,7 @@ var SearchView = Backbone.View.extend({
             } else {
                 $(this).html("时间↑").addClass("active");
             }
-            that.searchRepresentation.set("sortBy", "startDate");
+            that.searchRepresentation.set("columnKey", "startDate");
             that.searchRepresentation.set("order", that.timeDesc ? "DESC" : "ASCE");
             that.timeDesc = !that.timeDesc;
             that.courseSearch();
@@ -299,7 +299,7 @@ var SearchView = Backbone.View.extend({
             } else {
                 $(this).html("价格↑").addClass("active");
             }
-            that.searchRepresentation.set("sortBy", "price");
+            that.searchRepresentation.set("columnKey", "price");
             that.searchRepresentation.set("order", that.priceDesc ? "DESC" : "ASCE");
             that.priceDesc = !that.priceDesc;
             that.courseSearch();
@@ -309,7 +309,7 @@ var SearchView = Backbone.View.extend({
             $("#time").html("时间").removeClass("active");
             $("#price").html("价格").removeClass("active");
             $(this).html("爱上课推荐").addClass("active");
-            that.searchRepresentation.set("sortBy", undefined);
+            that.searchRepresentation.set("columnKey", undefined);
             that.searchRepresentation.set("order", undefined);
             this.courseSearch();
         });
