@@ -37,6 +37,11 @@ var EnumConfig = {
         invitation: 1,
         admin: 2
     },
+    /*用户对订单可执行的操作*/
+    'BookingActionText':{
+        offlineCancel:'取消订单',
+        offlineDelayed:'推迟报道'
+    },
     /*todo 订单的状态信息*/
     'BookingStatus': {
         awaiting: 0,

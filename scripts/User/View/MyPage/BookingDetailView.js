@@ -33,6 +33,11 @@ var BookingDetailView = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+
+        /*去支付*/
+        $("#bookingDetail").on('click','.js_btnGoToPay',function(){
+            app.navigate("mypage/booking/" + that.booking.id + "/pay", true);
+        });
         $("#printBooking").on("click", function (e) {
             e.preventDefault();
             window.print();

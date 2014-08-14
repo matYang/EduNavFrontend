@@ -522,16 +522,23 @@
 <script type="text/template" id="tpl_mypage_bookingDetail">
 
     <div id="mypage_content" class="mypage_min_height">
-        <div class="title">我的爱上课 &gt; 订单管理 &gt; <span class="F_green link">课程订单</span></div>
+        <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green link">课程订单</span></div>
         <div id="bookingDetail">
             <div class="row0 clearfix">
                 <div class="fleft">
-                    <p><label>订单号：<%= reference %></label> <span>(<%= creationTime %>预订)</span></p>
+                    <p><label>订单号：<%= id %></label> <span>(<%= createTime %>预订)</span></p>
 
-                    <p><label>状<s></s>态：<b class="F_green" id="bookingStatus"><%=
-                        EnumConfig.BookingStatusText[status] %></b></label></p>
+                    <p><label>状<s></s>态：<b class="F_green" id="bookingStatus">
+                        <%= EnumConfig.BookingStatusText[status] %></b></label>
+                    </p>
                 </div>
-                <p class="fright price"><label>总金额：</label><span class="sign">￥</span><%= price %></p>
+                <p class="fright price">
+                    <label>总金额：</label><span class="sign">￥</span><%= price %>
+                    &nbsp;
+                    <% if(type===EnumConfig.PayType.online&&status===11){ %>
+                    <button class="btn_O js_btnGoToPay">去支付</button>
+                    <% } %>
+                </p>
             </div>
             <div class="row1">
                 <div id="process">
@@ -599,60 +606,71 @@
                                                                        <p><span>2014-6-12</span> <span>12:02</span> <span>您的订单已经提交</span></p>
                                                                    </div>-->
                                                 </div>
-                                                <div class="row2">
-                                                    <h3><%= course.courseName %></h3>
-
-                                                    <p><label>教育机构：</label><span><%= course.instName %></span></p>
-
-                                                    <p><label>上课地址：</label><span><%= course.address %></span></p>
-
-                                                    <p><label>上课日期：</label> <%= course.startDate %> - <%=
-                                                        course.finishDate %></p>
-
-                                                    <p><label>班级类型：</label> <%= course.classSize %></p>
-
-                                                    <p><label>上课时间：</label> <%= course.startTime1 %> - <%=
-                                                        course.finishTime1 %>
-                                                        <% if (course.startTime2 > 0) {%>
-                                                        ；<%= course.startTime2 %> - <%= course.finishTime2 %>
-                                                        <% } %>
-                                                    </p>
-
-                                                    <p><label>咨询电话：</label><span><%= course.phone %></span></p>
-                                                </div>
-                                                <div class="row3">
-                                                    <h3>学员信息</h3>
-
-                                                    <div class="clearfix">
-                                                        <div class="fleft">
-                                                            <p><label>学员真实姓名：</label> <%= name %></p>
-
-                                                            <p><label>预订人数：</label>1人</p>
-
-                                                            <p><label>联系方式：</label> <%= phone %></p>
-
-                                                            <p><label>邮箱：</label><%= email %></p>
-                                                        </div>
-                                                        <div class="fleft">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row4">
-                                                    <h3>支付信息</h3>
-
-                                                    <p><label>支付方式：</label> 学校前台支付</p>
-                                                </div>
                                             </div>
-                                            <!--bookingDetail end-->
-                                            <div class="btns">
-                                                <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
-                                                <% if ( status !== 2 && status < 6 ) { %>
-                                                <input type="button" class="btn_W" value="取消订单" id="cancelBooking">
-                                                <% } %>
-                                            </div>
-                                            <!--btns end-->
-                                            <div id="printBooking" class="print"><a href="#">订单打印</a></div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row2">
+                <h3><%= course.courseName %></h3>
+
+                <p><label>教育机构：</label><span><%= course.instName %></span></p>
+
+                <p><label>上课地址：</label><span><%= course.address %></span></p>
+
+                <p><label>上课日期：</label> <%= course.startDate %> - <%=
+                    course.finishDate %></p>
+
+                <p><label>班级类型：</label> <%= course.classSize %></p>
+
+                <p><label>上课时间：</label> <%= course.startTime1 %> - <%=
+                    course.finishTime1 %>
+                    <% if (course.startTime2 > 0) {%>
+                    ；<%= course.startTime2 %> - <%= course.finishTime2 %>
+                    <% } %>
+                </p>
+
+                <p><label>咨询电话：</label><span><%= course.phone %></span></p>
+            </div>
+            <div class="row3">
+                <h3>学员信息</h3>
+
+                <div class="clearfix">
+                    <div class="fleft">
+                        <p><label>学员真实姓名：</label> <%= name %></p>
+
+                        <p><label>预订人数：</label>1人</p>
+
+                        <p><label>联系方式：</label> <%= phone %></p>
+
+                        <p><label>邮箱：</label><%= email %></p>
+                    </div>
+                    <div class="fleft">
+                    </div>
+                </div>
+            </div>
+            <div class="row4">
+                <h3>支付信息</h3>
+
+                <p><label>支付方式：</label> <%= EnumConfig.BookingTypeText[type]%></>
+            </div>
+        </div>
+        <!--bookingDetail end-->
+        <div class="btns">
+            <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
+            <% if (_.findWhere(actionList,{name:"offlineCancel"})) { %>
+            <input type="button" class="btn_W" value="取消订单" id="cancelBooking">
+            <% } %>
+        </div>
+        <!--btns end-->
+        <div id="printBooking" class="print"><a href="#">订单打印</a></div>
+    </div>
+
+
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingPay">
@@ -759,7 +777,7 @@
             </div>
             <div class="field">
                 <label>订单号</label>
-                <%= reference %> <span>(<%= creationTime %>预订)</span>
+                <%= reference %> <span>(<%= createTime %>预订)</span>
             </div>
             <div class="field">
                 <label>总金额</label>
@@ -1027,6 +1045,7 @@
         </dl>
         <div class="col2">
             <div class="price"><span class="sign">￥</span><%= price %></div>
+            <% if (cashback) { %>
             <a class="cashback"><%= cashback %>元
                 <div class="tip">
                     <div class="arrow"></div>
@@ -1034,6 +1053,7 @@
                             class="link howToGetCoupon" style="color:green">如何获得返现券</span></div>
                 </div>
             </a>
+            <% } %>
         </div>
         <div class="col3">
             <input type="button" id="bookNow" value="立即预订" class="btn_O"/>
@@ -1534,7 +1554,9 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_coupons">
-    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">返现券</span></div>
+    <div class="title">
+        <a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">返现券</span>
+    </div>
     <div class="mypage_content_inner coupons">
         <h3 class="coupons_help_title">如何快速<span>免费获得</span>返现券</h3>
 
@@ -1542,7 +1564,7 @@
             <dl class="col1 clearfix">
                 <dt>1</dt>
                 <dd><h3>邀请新用户</h3></dd>
-                <dd><p>在<a class="F_green" href="#">邀请码页面</a>中将邀请码或邀请链接扩散给好友及陌生人</p></dd>
+                <dd><p>在<a class="F_green">邀请码页面</a>中将邀请码或邀请链接扩散给好友及陌生人</p></dd>
             </dl>
             <dl class="col2">
                 <dt>2</dt>
@@ -1553,7 +1575,7 @@
             <dl class="col3">
                 <dt>3</dt>
                 <dd><h3>激活返现券</h3></dd>
-                <dd><p>在<a class="F_green" href="#" id="go_activate">返现券页面</a>中，找到待激活返现券，点击激活</p></dd>
+                <dd><p>在<a class="F_green" id="go_activate">返现券页面</a>中，找到待激活返现券，点击激活</p></dd>
             </dl>
         </div>
         <h3 class="coupons_help_title blank1">如何<span>使用</span>返现券</h3>
@@ -1588,7 +1610,7 @@
 
 <script type="text/template" id="tpl_mypage_unclaimedCouponRow">
     <tr id="coupon_<%= couponId %>">
-        <td class="col1"><%= creationTime %></td>
+        <td class="col1"><%= createTime %></td>
         <td class="col2"><%= amount %></td>
         <td class="col3"><%= origin %></td>
         <td class="col4"><%= expireTime %></td>
@@ -1665,7 +1687,8 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_password">
-    <div class="title"><span>我的爱上课</span> > <span>个人设置</span> > <span class=" F_green">修改密码</span></div>
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> > <span>个人设置</span> > <span class=" F_green">修改密码</span>
+    </div>
     <div class="mypage_content_inner form_style password">
         <div class="field">
             <label>原密码</label>
@@ -1700,7 +1723,7 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_setting">
-    <div class="title"><span>我的爱上课</span> &gt; <span>个人设置</span> &gt; <span class=" F_green">个人资料</span></div>
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class=" F_green">个人资料</span></div>
     <div class="mypage_content_inner">
         <div class="my_info form_style">
 
@@ -1736,12 +1759,12 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_credit">
-    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">积分账户</span></div>
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">积分账户</span></div>
     <div class="total"><img src="style/images/icon_points.jpg">您现在拥有<b id="myCredit" class="F_orange">100</b>点可用积分</div>
     <div class="mypage_content_inner">
         <ul id="creditNavBtn" class="tab1 clearfix">
-            <li data-id="table" class="active">积分明细</li>
-            <li data-id="store">积分兑换</li>
+            <li data-id="table" class="active">积分支出明细</li>
+            <li data-id="store">积分获取明细</li>
         </ul>
         <div id="credit_pageContent">
 
@@ -1753,11 +1776,10 @@
     <table id="creditTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
         <thead>
         <tr>
-            <td class="">序号</td>
+            <td class="" width="20%">序号</td>
             <td class="" width="20%">获得日期</td>
-            <td class="" width="20%">订单号</td>
-            <td class="" width="20%">积分</td>
-            <td class="" width="20%">有效期</td>
+            <td class="" width="30%">积分</td>
+            <td class="" width="30%">--</td>
         </tr>
         </thead>
         <tbody id="creditEntryContainer">
@@ -1770,10 +1792,9 @@
 <script type="text/templates" id="tpl_mypage_creditRow">
     <tr class="creditEntry">
         <td><%= creditId %></td>
-        <td class=""><%= creationTime %></td>
-        <td class=""><%= bookingId %></td>
-        <td class=""><%= amount %></td>
-        <td class=""><%= expireTime %></td>
+        <td class=""><%= createTime %></td>
+        <td class=""><%= credit %></td>
+        <td class="">--</td>
     </tr>
 </script>
 
@@ -1782,6 +1803,47 @@
         积分商城施工中哦~~
     </div>
 </script>
+
+<!--start 现金账户-->
+<script type="text/templates" id="tpl_mypage_cash">
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">现金账户</span></div>
+    <div class="total padding-sm">
+        <img src="style/images/icon_monney.jpg">总金额：￥
+        <b class="F_orange"><%= account.balance %></b>
+    </div>
+    <div class="mypage_content_inner">
+        <div class="clearfix">
+            <img class="fleft" src="style/images/img1.jpg"><img class="fright" src="style/images/img2.jpg">
+        </div>
+        <ul class="tab1 clearfix" style="margin-top:20px;">
+            <li id="expendable" class="active">支出明细</li>
+            <li id="record">收入明细</li>
+        </ul>
+        <table class="blank1" cellpadding="0" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <td class="">金额</td>
+                <td class="" width="33%">来源</td>
+                <td class="" width="33%">有效期</td>
+            </tr>
+            </thead>
+            <tbody id="mypage_cashEntries">
+            </tbody>
+        </table>
+        <div id="mypageCashNavigator" class="page blank1 clearfix">
+        </div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_cashEntry">
+    <tr>
+        <td class="F_orange">100</td>
+        <td class="">返现</td>
+        <td class="">2014-07-02</td>
+    </tr>
+</script>
+<!--end 现金账户-->
+
 
 <script type="text/template" id="tpl_findPassword_1">
     <div class="sign_up">
@@ -1871,26 +1933,26 @@
 
 <script type="text/templates" id="tpl_credit_noMessage">
     <div class="no_data" id="creditNoData">
-        <div>你暂时还没有积分哦~~</div>
+        <div>您暂时还没有积分~~</div>
         <p>预订课程后就能获得积分哦</p>
     </div>
 </script>
 
 <script type="text/templates" id="tpl_claimed_coupon_noMessage">
     <div id="claimedNoData" class="no_data">
-        <div>你还没有可用的返现券哦~~</div>
+        <div>您还没有可用的返现券哦~~</div>
     </div>
 </script>
 
 <script type="text/templates" id="tpl_unclaimed_coupon_noMessage">
     <div id="unclaimedNoData" class="no_data">
-        <div>你没有待激活的返现券哦~~</div>
+        <div>您没有待激活的返现券哦~~</div>
     </div>
 </script>
 
 <script type="text/templates" id="tpl_used_coupon_noMessage">
     <div id="usedNoData" class="no_data">
-        <div>你还没有使用过任何返现券</div>
+        <div>您还没有使用过任何返现券</div>
     </div>
 </script>
 
@@ -2030,32 +2092,7 @@
     </div>
 </script>
 
-<script type="text/templates" id="tpl_mypage_cash">
-    <div class="title">我的爱上课 &gt; 账户管理 &gt; <span class="F_green">现金账户</span></div>
-    <div class="total"><img src="images/icon_monney.jpg">总金额：<span>￥</span><b class="F_orange"><%= balance %></b></div>
-    <div class="mypage_content_inner">
-        <div class="clearfix">
-            <img class="fleft" src="images/img1.jpg"><img class="fright" src="images/img2.jpg">
-        </div>
-        <ul class="tab1 clearfix" style="margin-top:20px;">
-            <li id="expendable" class="active">可用金额</li>
-            <li id="record">明细记录</li>
-        </ul>
-        <table class="blank1" cellpadding="0" cellspacing="0" width="100%">
-            <thead>
-            <tr>
-                <td class="">金额</td>
-                <td class="" width="33%">来源</td>
-                <td class="" width="33%">有效期</td>
-            </tr>
-            </thead>
-            <tbody id="mypage_cashEntries">
-            </tbody>
-        </table>
-        <div id="mypageCashNavigator" class="page blank1 clearfix">
-        </div>
-    </div>
-</script>
+
 
 <script type="text/templates" id="tpl_mypage_cashEntry">
     <tr>
@@ -2066,7 +2103,7 @@
 </script>
 
 <script type="text/templates" id="tpl_mypage_share">
-    <div class="title"><a href="#">我的爱上课</a> &gt; <span>帐户管理</span> &gt; <a class=" F_green" href="#">邀请有礼</a></div>
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <a class=" F_green" href="#">邀请有礼</a></div>
     <div class="mypage_content_inner form_style invitation">
         <h3>邀请方式</h3>
 

@@ -153,7 +153,7 @@ var NewBookingView = BaseFormView.extend({
 
             }
             app.topBarView.reRender();
-        })
+        });
         $("#gotoCourse").on("click", function () {
             app.navigate("course/" + that.model.get("courseId"), true);
         });
@@ -204,10 +204,11 @@ var NewBookingView = BaseFormView.extend({
             }
         });
         $("#booking_loginToggler").on("click", function (e) {
-            if ($("#booking_loginbox").hasClass("hidden")) {
-                $("#booking_loginbox").removeClass("hidden");
+            var $bookingLogin = $("#booking_loginbox");
+            if ($bookingLogin.hasClass("hidden")) {
+                $bookingLogin.removeClass("hidden");
             } else {
-                $("#booking_loginbox").addClass("hidden");
+                $bookingLogin.addClass("hidden");
             }
         });
         $("#booking_register").on("click", function () {
@@ -218,7 +219,6 @@ var NewBookingView = BaseFormView.extend({
     loginCheck: function () {
         if (!app.sessionManager.hasSession()) {
             Info.displayNotice("您尚未登录，请先登录再进行预订");
-            return;
         }
     },
     submitAction: function () {
