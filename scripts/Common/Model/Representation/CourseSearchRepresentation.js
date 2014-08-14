@@ -32,7 +32,6 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'userId': undefined,
 
             'useCache': 1,
-
             'startcreateTime': undefined,
             'finishcreateTime': undefined,
             'startCutoffDate': undefined,

@@ -137,7 +137,7 @@ var SearchView = Backbone.View.extend({
             classType = this.searchRepresentation.get("classType"),
             startDateStart = this.searchRepresentation.get("startDateStart"),
             startDateEnd = this.searchRepresentation.get("startDateEnd"),
-            cashback = this.searchRepresentation.get("startCashback"),
+            cashback = this.searchRepresentation.get("cashbackStart"),
             value, text;
         var $searchReqs = $("#searchReqs");
         if (startPrice !== undefined) {
@@ -316,9 +316,9 @@ var SearchView = Backbone.View.extend({
 
         $("input[name=cashback]").on("change", function () {
             if ($(this).prop("checked")) {
-                that.searchRepresentation.set("startCashback", 1);
+                that.searchRepresentation.set("cashbackStart", 1);
             } else {
-                that.searchRepresentation.set("startCashback", undefined);
+                that.searchRepresentation.set("cashbackStart", undefined);
             }
             that.courseSearch();
         });
