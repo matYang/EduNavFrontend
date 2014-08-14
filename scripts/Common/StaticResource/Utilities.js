@@ -365,7 +365,7 @@ var Utilities = {
             if (start >= value.length)return []
             for (var a in cat.children) {
                 if (cat.children.hasOwnProperty(a) && cat.children[a].value == value.substr(0, start + 2))
-                    return [
+                    return [//每次返回一个包含一个键值对对象的数组进行递归拼接
                         {name: cat.children[a].name, value: cat.children[a].value}
                     ].concat(getCat(value, start + 2, cat.children[a]));
             }

@@ -40,9 +40,9 @@ var CourseDetailView = Backbone.View.extend({
         $(document).scrollTop(0);
         $("body").addClass("courseDetail");
         this.$el.append(this.template(this.course._toJSON()));
-        document.title="爱上课 | " + this.course.get("category") +
-                        " | " + this.course.get("subCategory") + 
-                        " | " + this.course.get("subSubCategory") + 
+        document.title="爱上课 | " + this.course.get("category").name +
+                        " | " + this.course.get("subCategory").name +
+                        " | " + this.course.get("subSubCategory").name +
                         "培训 | " + this.course.get("courseName");
         var $teachers = $(".teacherInfo"), i, maxHeight = -1, $teacher;
         for (i = 0; i < $teachers.length; i++) {
