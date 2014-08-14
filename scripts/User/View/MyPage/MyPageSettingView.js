@@ -29,7 +29,7 @@ var MyPageSettingView = BaseFormView.extend({
             ];
         }
         this.template = _.template(tpl.get('mypage_setting'));
-        this.model = app.sessionManager.sessionModel.clone();
+        this.model = new User(app.sessionManager.sessionModel,{parse:true});
         app.viewRegistration.register(this);
         this.render();
         this.bindEvents();
