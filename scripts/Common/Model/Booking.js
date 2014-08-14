@@ -29,7 +29,8 @@ var Booking = Backbone.Model.extend({
             'noRefundDate': new Date(),
             'cashbackDate': new Date(),
 
-            'course': new Course()
+            'course': new Course(),
+            'actionList':[]
         };
     },
 
@@ -101,6 +102,7 @@ var Booking = Backbone.Model.extend({
         json.createTime = undefined;
         json.lastModifyTime = undefined;
         json.reference = undefined;
+        json.actionList = undefined;
         return json;
     },
     initBookingFromCourse: function (course) {

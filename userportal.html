@@ -618,15 +618,6 @@
                                                                        <p><span>2014-6-12</span> <span>12:02</span> <span>您的订单已经提交</span></p>
                                                                    </div>-->
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row2">
                 <h3><%= course.courseName %></h3>
 
@@ -674,7 +665,7 @@
         <!--bookingDetail end-->
         <div class="btns">
             <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
-            <% if (_.findWhere(actionList,{name:"offlineCancel"})) { %>
+            <% if (actionList && _.findWhere(actionList,{name:"offlineCancel"})) { %>
             <input type="button" class="btn_W" value="取消订单" id="cancelBooking">
             <% } %>
         </div>

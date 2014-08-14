@@ -95,7 +95,7 @@
 #mypage_content .row4 .fleft{ margin-right:50px;}
 #mypage_content .row4 p label{color:#666;}
 #mypage_content .print { padding-right:20px; font-size:12px; text-align:right; margin-top:10px;}
-#mypage_content .btns{ margin:0 0 40px; text-align:center;}
+#mypage_content .btns{ padding: 20px 0; text-align:center;}
 #mypage_content .btns input{ margin-right:30px;}
 
 
