@@ -1038,6 +1038,7 @@
         </dl>
         <div class="col2">
             <div class="price"><span class="sign">￥</span><%= price %></div>
+            <% if (cashback) { %>
             <a class="cashback"><%= cashback %>元
                 <div class="tip">
                     <div class="arrow"></div>
@@ -1045,6 +1046,7 @@
                             class="link howToGetCoupon" style="color:green">如何获得返现券</span></div>
                 </div>
             </a>
+            <% } %>
         </div>
         <div class="col3">
             <input type="button" id="bookNow" value="立即预订" class="btn_O"/>
