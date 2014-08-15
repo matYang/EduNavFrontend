@@ -44,7 +44,8 @@
 .courseDetail .courseMain .course_content label{float:left; width:100px; text-align:right; margin-right:5px;font-weight: bold;}
 .courseDetail .courseMain .course_content label:before {content: '【';}
 .courseDetail .courseMain .course_content label:after {content: '】';}
-.courseDetail .courseMain .course_content dd p{float:left; width:800px;}
+/*子选择器的兼容性*/
+.courseDetail .courseMain .course_content dd>div{float:left; width:800px;}
 
  /*教师信息*/
 .courseDetail .courseMain .teacherInfo{float:left; width:360px; border:1px solid #d1d1d1; margin-right:20px;}
