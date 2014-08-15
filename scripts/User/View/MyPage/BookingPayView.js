@@ -22,7 +22,8 @@ var BookingPayView = Backbone.View.extend({
         if (booking instanceof Bookings) {
             booking = booking.at(0);
         }
-        if(booking.get('status') !== 11 ){//如果订单不为待支付状态 则进入个人中心页面
+        //如果订单不可支付或者不为待支付状态 则进入个人中心页面
+        if(booking.type!==EnumConfig.PayType.online ||booking.get('status') !== 11 ){
             app.navigate("mypage", true);
         }
         this.booking = booking;
@@ -33,8 +34,7 @@ var BookingPayView = Backbone.View.extend({
         var that = this;
         //确认，去支付按钮
         $("#goToAlipay").on("click", function () {
-            //todo 打开对话框 btn支付成功 btn支付遇到问题
-            console.log(this.notifier);
+            //打开对话框 btn支付成功 btn支付遇到问题
             that.payResultModel = that.notifier.notify({
                 fadeInMs: 0,
                 fadeOutMs: 0,

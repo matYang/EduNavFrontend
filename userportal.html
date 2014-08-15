@@ -964,10 +964,17 @@
             <div class="field">
                 <label>支付方式</label>
                 <select class="text" id="booking_type">
-                    <option value="">-请选择-</option>
-                    <%_.each(EnumConfig.BookingTypeText,function(v,k){%>
-                    <option value="<%=k%>"><%=v%></option>
-                    <%})%>
+                    <%if(course.bookingType===0)%>
+                        <option value="<%=course.bookingType%>">仅支持<%=EnumConfig.BookingTypeText[course.bookingType]%></option>
+                    <%}else if(course.bookingType===1)%>
+                        <option value="<%=course.bookingType%>">仅支持<%=EnumConfig.BookingTypeText[course.bookingType]%></option>
+                    <%}else if(course.bookingType ===2) %>
+                        <option value="">-请选择-</option>
+                        <%_.each(EnumConfig.BookingTypeText,function(v,k){%>
+                        <option value="<%=k%>"><%=v%></option>
+                        <%})%>
+                    <%}%>
+
                 </select>
             </div>
         </div>
