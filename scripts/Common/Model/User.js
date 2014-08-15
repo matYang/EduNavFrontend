@@ -77,13 +77,14 @@ var User = Backbone.Model.extend({
     },
 
     toJSON: function () {
+        //user向服务器发送请求时 只需要以下几个参数
         var json = _.clone(this.attributes);
         var user = {};
         user.id = json.id;
         user.avatarUrl = json.avatarUrl;
         user.name = json.name;
         user.email = json.email;
-        return json;
+        return user;
     }
 
 });
