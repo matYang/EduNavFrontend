@@ -85,22 +85,22 @@
     };
 
     //根据ID列表批量拉取单个课程
-    GeneralManager.prototype.batchFetchCourses = function (ids, callback) {
+    GeneralManager.prototype.batchFetchCourses = function (idSet, callback) {
         var cache, i, requestList = [], courses = new Courses();
         if (testMockObj.testMode) {
-            for (var i = 0; i < ids.length; i++) {
-                courses.add(testMockObj.testCourses.get(ids[i]));
+            for (var i = 0; i < idSet.length; i++) {
+                courses.add(testMockObj.testCourses.get(idSet[i]));
             }
             callback.success(courses);
             return;
         }
         //优先检查缓存里课程是否已经存在，仅重新拉取过期或者不存在的课程
-        for (i = 0; i < ids.length; i++) {
-            cache = app.cache.get("course", ids[i]);
+        for (i = 0; i < idSet.length; i++) {
+            cache = app.cache.get("course", idSet[i]);
             if (cache) {
                 courses.add(new Course(cache, {parse: true}));
             } else {
-                requestList.push(ids[i]); //根据缓存那内容重新建立拉取列表
+                requestList.push(idSet[i]); //根据缓存那内容重新建立拉取列表
             }
         }
         if (requestList.length === 0) {
@@ -111,10 +111,9 @@
         }
         var requestCourses = new Courses();
         requestCourses.overrideUrl(ApiResource.courses);
-        var idList = "ids=" + requestList.join(",");
         requestCourses.fetch({
             dataType: 'json',
-            data: idList,
+            data: $.param(idSet, true),//traditional is true
             success: function (response, model) {
                 if (callback) {
                     var array = requestCourses.toArray(), i = 0;

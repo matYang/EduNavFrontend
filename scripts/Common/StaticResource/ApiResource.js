@@ -56,7 +56,6 @@
 
                 courses: api_maker(api_modules.rootPrefix, "course", "course"),
 
-                //can also use 'courses' with '?ids=1,2,3'
 //                general_courseByIdList: api_maker(api_modules.rootPrefix, "general", "courseByIdList"),
                 
                 user_findSession: api_maker(api_modules.rootPrefix, 'user', 'findSession'), //GET added to session manaegr

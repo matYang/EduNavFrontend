@@ -393,7 +393,7 @@ var SearchView = Backbone.View.extend({
         //上课时间 start end
         else if (criteria === "startTime") {
             var now = new Date();
-            var date1 = new Date(Date.parse([now.getFullYear(), now.getMonth(), now.getDate()].join('-')));
+            var date1 = new Date(Date.parse([now.getFullYear(), now.getMonth()+1].join('-')));
             var date2;
             var month = date1.getMonth();
             //设置当月的时间
