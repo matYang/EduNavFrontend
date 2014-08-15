@@ -78,6 +78,7 @@ var FrontPageView = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+        //一级目录hover
         $("#lv1Button").on("mouseover", "li", function (e) {
             var category = $(this).data("value");
             $(e.delegateTarget).find(".active").removeClass("active");
@@ -85,6 +86,7 @@ var FrontPageView = Backbone.View.extend({
             $("#lv2Categories").children(".hidden").removeClass("hidden");
             $("#lv2Categories").children("div[data-parent!=" + category + "]").addClass("hidden");
         }).on("click", "li", function (e) {
+            //一级目录click
             e.preventDefault();
             that.searchRepresentation.set("categoryValue", $(this).data("value"));
             app.navigate("search/" + that.searchRepresentation.toQueryString(), true);

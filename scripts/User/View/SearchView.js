@@ -10,43 +10,41 @@ var SearchView = Backbone.View.extend({
     template: _.template(tpl.get('search')),
     initialize: function (params) {
         _.bindAll(this, 'render', 'bindEvents', 'bindCatSearchEvents', 'renderCategories', 'renderLocations', 'close');
-        // // $("#viewStyle").attr("href", "style/css/search.css");
         this.allMessages = new Courses();
         //define the template
-        this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
-        this.categoryValue = {};
+
         this.timeDesc = true;
         this.priceDesc = true;
         this.isClosed = true;
         this.titleObjs = [];
         this.titleObj = {};
-        this.render(params);
+
+        this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
+        //url路径中带有查询参数时 重置this.searchRepresentation
+        if (params) {
+            try {
+                this.searchRepresentation = new CourseSearchRepresentation();
+                this.searchRepresentation.castFromQuery(params.searchKey);
+                app.storage.setSearchRepresentationCache(this.searchRepresentation, true);
+            } catch (e) {
+                app.navigate("search", {replace: true, trigger: false});
+                this.searchRepresentation = new CourseSearchRepresentation();
+            }
+        }
+        this.render();
         //injecting the template
     },
-    render: function (params) {
+    render: function () {
         if (this.isClosed) {
             this.isClosed = false;
             app.viewRegistration.register(this);
-            if (params) {
-                try {
-                    this.searchRepresentation = new CourseSearchRepresentation();
-                    this.searchRepresentation.castFromQuery(params.searchKey);
-                    app.storage.setSearchRepresentationCache(this.searchRepresentation, true);
-                } catch (e) {
-                    app.navigate("search", {replace: true, trigger: false});
-                    this.searchRepresentation = new CourseSearchRepresentation();
-                }
-            }
-            if (this.searchRepresentation.get("categoryValue")) {
-                this.categoryValue[this.searchRepresentation.get("categoryValue").substr(0, 2)] = this.searchRepresentation;
-            }
             // $("title").html("找课程 | " + this.searchRepresentation.toTitleString());//that will be too long
             this.$el.append(this.template);
             this.compareWidgetView = new CompareWidgetView();
             this.searchResultView = new SearchResultView(new Courses(), new Courses(), this.compareWidgetView);
             this.searchResultView.sr = this.searchRepresentation;
-            app.generalManager.getCategories(this);
-            app.generalManager.getLocations(this);
+            app.generalManager.getCategories(this);//传递this参数,会在获取目录之后调用this.renderCategories()
+            app.generalManager.getLocations(this);//同上 调用this.renderLocations
             //初始化时同步url中的参数进行过滤
             this.syncFilters();
             this.syncSorter();
@@ -55,9 +53,9 @@ var SearchView = Backbone.View.extend({
             document.title = "找课程";
         }
     },
+    /*加载课程类别*/
     renderCategories: function (categories) {
         if (!this.isClosed) {
-            this.categories = categories;
             var data = categories.data,
                 len = data.length,
                 i, j, k,
@@ -96,6 +94,7 @@ var SearchView = Backbone.View.extend({
             this.courseSearch();
         }
     },
+    /*渲染选中的课程类别*/
     showCategory: function () {
         var text, count, value, categoryValue = this.searchRepresentation.get("categoryValue");
         $("#search_category").find("li[data-value=" + categoryValue.substr(0, 2) + "]").addClass("active").siblings("li").removeClass("active");
@@ -335,12 +334,8 @@ var SearchView = Backbone.View.extend({
                 return;
             }
             var dataId = $(e.target).data("value"), cv;
-            that.categoryValue[that.searchRepresentation.get("categoryValue").substr(0, 2)] = that.searchRepresentation.get("categoryValue");
-            if (that.categoryValue[dataId]) {
-                that.searchRepresentation.set("categoryValue", that.categoryValue[dataId]);
-            } else {
-                that.searchRepresentation.set("categoryValue", dataId);
-            }
+
+            that.searchRepresentation.set("categoryValue", dataId);
             that.showCategory(that.searchRepresentation.get("categoryValue"));
             that.courseSearch();
 
@@ -398,7 +393,7 @@ var SearchView = Backbone.View.extend({
         //上课时间 start end
         else if (criteria === "startTime") {
             var now = new Date();
-            var date1 = new Date(Date.parse([now.getFullYear(),now.getMonth(),now.getDate()].join('-')));
+            var date1 = new Date(Date.parse([now.getFullYear(), now.getMonth(), now.getDate()].join('-')));
             var date2;
             var month = date1.getMonth();
             //设置当月的时间
