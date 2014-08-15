@@ -1069,18 +1069,30 @@
             <div class="small_pic">
                 <div class="top">
                     <div class="pic1"><img src="<%= logoUrl %>" width="100%" height="100%"/></div>
-                    <div class="pic2"><img src="<%= classPhotoList[0] ? classPhotoList[0].imgUrl : null %>"
-                                           width="100%"/></div>
+                    <div class="pic2">
+                        <%if(classPhotoList){%>
+                        <img src="<%= classPhotoList[0] ? classPhotoList[0].imgUrl : '//:0' %>" width="100%"/>
+                        <%}%>
+                    </div>
                 </div>
                 <div class="bottom">
-                    <div class="pic3"><img src="<%= classPhotoList[1] ? classPhotoList[1].imgUrl : null %>"
-                                           width="100%"/></div>
-                    <div class="pic4"><img src="<%= classPhotoList[2] ? classPhotoList[2].imgUrl : null %>"
-                                           width="100%" height="100%"/></div>
+                    <div class="pic3">
+                        <%if(classPhotoList){%>
+                        <img src="<%= classPhotoList[1] ? classPhotoList[1].imgUrl : '//:0' %>" width="100%"/>
+                        <%}%>
+                    </div>
+                    <div class="pic4">
+                        <%if(classPhotoList){%>
+                        <img src="<%= classPhotoList[2] ? classPhotoList[2].imgUrl : '//:0' %>" width="100%" height="100%"/>
+                        <%}%>
+                    </div>
                 </div>
             </div>
-            <div class="big_pic"><img src="<%= classPhotoList[3] ? classPhotoList[3].imgUrl : null %>"
-                                      width="306" height="218"/></div>
+            <div class="big_pic">
+                <%if(classPhotoList){%>
+                <img src="<%= classPhotoList[3] ? classPhotoList[3].imgUrl : '//:0' %>" width="306" height="218"/>
+                <%}%>
+            </div>
         </div>
         <div class="course_map">
             <div class="addr">上课地点：<%= address %></div>
@@ -1159,22 +1171,18 @@
                 <div><%= partnerIntro %></div>
             </dd>
             <% } %>
-            <% if (teacherList===[]) { %>
+            <% if (teacherList) { %>
             <dd class="teacher clearfix">
                 <label>老师介绍</label>
 
-                <div class="clearfix blank" style="margin-left: 90px;">
-
+                <div class="clearfix blank">
                     <% for (var i =0; i < teacherList.length; i++) { %>
                     <div class="teacherInfo">
-                        <div style="width:120px;height:120px;overflow:hidden;float:right"><img
-                                class="teacherPhoto" src="<%= teacherList[i].imgUrl %>" style="height:100%"/>
-                        </div>
+                        <img class="teacherPhoto" src="<%= teacherList[i].imgUrl %>"/>
                         <div class="name"><%= teacherList[i].name %></div>
                         <div class=""><%= teacherList[i].intro %></div>
                     </div>
                     <% } %>
-
                 </div>
             </dd>
             <% } %>
@@ -1220,7 +1228,7 @@
             </dd>
             <% } %>
             <% if (outline) { %>
-            <dd class="course_syllabus">
+            <dd class="clearfix">
                 <label>课程提纲</label>
 
                 <div><%= outline %></div>
@@ -1243,7 +1251,7 @@
             <% } %>
             <% if (classTeacher) { %>
             <dd class="clearfix">
-                <label> 质量保障</label>
+                <label>质量保证</label>
 
                 <div><%= classTeacher %></div>
             </dd>
@@ -1529,7 +1537,7 @@
         <% }); %>
     </tr>
     <tr>
-        <th>班主任导学</th>
+        <th>质量保证</th>
         <% _.each(courses, function(course) { %>
         <td class="courseId_<%= course.courseId %>"><%= course.classTeacher %></td>
         <% }); %>

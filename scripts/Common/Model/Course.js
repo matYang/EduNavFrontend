@@ -34,8 +34,7 @@ var Course = Backbone.Model.extend({
                 'address': undefined,//上课地点
                 'regAddress': undefined,//报名地点
 
-                'classPhotoList': [],
-                'classPhotoIdList': [],
+                'classPhotoList': null,
 
                 /*基本信息*/
                 'startDate': undefined,
@@ -54,8 +53,7 @@ var Course = Backbone.Model.extend({
                 'wholeName': undefined,
                 'partnerDistinction': undefined,//机构荣誉
                 'partnerIntro': undefined,//机构概况
-                'teacherList': [],
-                'teacherIdList': [],//老师介绍
+                'teacherList': null,//老师介绍
 
 
                 /*教学信息*/
@@ -71,7 +69,7 @@ var Course = Backbone.Model.extend({
                 /*教学补充*/
                 'downloadMaterials': undefined,//课件下载
                 'questionBank': undefined,//题库支持
-                'classTeacher': undefined,//班主任导学
+                'classTeacher': undefined,//班主任导学 修改为质量保证
                 'teachingAndExercise': undefined,//讲练结合
                 'quiz': undefined,//阶段测评
                 'questionSession': undefined,//课后答疑

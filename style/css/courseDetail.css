@@ -21,16 +21,23 @@
 .courseDetail .banner .row2 {padding:15px;}
  
  /*相册*/
-.courseDetail .banner .row2 .gallary{float:left; width:626px;}
-.courseDetail .banner .row2 .small_pic{float:left;}
-.courseDetail .banner .row2 .big_pic{float:right; overflow:hidden; height:217px; width:300px;}
-.courseDetail .banner .row2 .small_pic .top{ overflow:hidden;}
-.courseDetail .banner .row2 .small_pic .bottom{overflow:hidden;}
-.courseDetail .banner .row2 .small_pic .top .pic1,
-.courseDetail .banner .row2 .small_pic .top .pic2,
-.courseDetail .banner .row2 .small_pic .bottom .pic3,
-.courseDetail .banner .row2 .small_pic .bottom .pic4{float:left; margin-right:10px;}
- 
+.courseDetail .banner .gallary{float:left; width:626px;}
+.courseDetail .banner .small_pic{float:left;}
+.courseDetail .banner .small_pic .top{ overflow:hidden;}
+.courseDetail .banner .small_pic .bottom{overflow:hidden;}
+.courseDetail .pic1,
+.courseDetail .pic2,
+.courseDetail .pic3,
+.courseDetail .pic4 {
+    float:left;
+    margin-right:10px;
+    height: 106px;
+    overflow: hidden;
+}
+.courseDetail .pic1{ width: 116px; }
+.courseDetail .pic2{ width: 190px; }
+.courseDetail .pic3,.courseDetail .pic4{ width: 153px;}
+.courseDetail .banner .big_pic{float:right; overflow:hidden; height:217px; width:300px;}
  /*地图*/
 .courseDetail .banner .row2 .course_map{float:right; width:328px; border:1px solid #ccc;}
 .courseDetail .banner .row2 .course_map .addr{ line-height:30px; color:#128d56; padding-left:10px; border-bottom:1px solid #ccc;}
@@ -51,18 +58,22 @@
 .courseDetail .courseMain .teacherInfo{float:left; width:360px; border:1px solid #d1d1d1; margin-right:20px;}
 .courseDetail .courseMain .teacherInfo div{margin:5px 10px;}
 .courseDetail .courseMain .teacherInfo div.name{color:#128d56;}
+.courseDetail .courseMain .teacherInfo img{
+    margin: 5px 10px;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    float: right;
+}
 .courseDetail .courseMain .teacherInfo p{ margin:5px 10px 0; font-size:12px; line-height:20px;}
 .courseDetail .courseMain .teacherInfo .teacherPhoto{float:right;}
- 
- /*教学信息--教学大纲*/
-.courseDetail .courseMain #content_teaching dd.course_syllabus div{ padding-left:80px;}
 
 .courseDetail .stickyHeader {
 	position: fixed;
-	top: 0px;
+	top: 0;
 	width: 978px;
 	padding-top: 3px;
-	margin-top: 0px;
+	margin-top: 0;
 }
 
 

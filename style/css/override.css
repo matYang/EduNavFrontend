@@ -126,18 +126,6 @@ li a, .page a {
 	margin-top: 5px;
 }
 
-.courseDetail div.pic1, div.pic2, div.pic3, div.pic4 {
-	height: 106px;
-	overflow: hidden;
-}
-
-.courseDetail div.pic2, div.pic3 {
-	max-width: 190px;
-}
-.courseDetail div.pic1, div.pic4 {
-	max-width: 116px;
-}
-
 #booking_loginnote{
 	margin-left: 128px;
 }
