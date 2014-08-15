@@ -4,15 +4,15 @@ var Course = Backbone.Model.extend({
                 'id': -1,
                 'courseId': -1,
                 'partnerId': undefined,
-                'createTime': new Date(),
+                'createTime': undefined,
 
                 /*others*/
                 'reference': undefined,//课程识别号 不用了
-                'noRefundDate': new Date(),
-                'cashbackDate': new Date(),
+                'noRefundDate': undefined,
+                'cashbackDate': undefined,
                 'popularity': undefined,//人气值
                 'bookingType': undefined,
-                'startUponArrival': undefined,
+//                'startUponArrival': undefined,//todo 暂时没有用到
                 'studyDaysNote': undefined,//备注信息
                 'qualityAssurance': undefined,
                 "contact": undefined,//课程联系方式
@@ -38,8 +38,8 @@ var Course = Backbone.Model.extend({
                 'classPhotoIdList': [],
 
                 /*基本信息*/
-                'startDate': new Date(),
-                'finishDate': new Date(),//开课日期
+                'startDate': undefined,
+                'finishDate': undefined,//开课日期
                 'courseHourNum': undefined,//课时总数
                 'courseHourLength': undefined,//课时长度
                 'studyDays': undefined,//todo
@@ -90,10 +90,7 @@ var Course = Backbone.Model.extend({
         },
         idAttribute: 'id',
         parse: function (data) {
-            data = Utilities.parseCleanNull(data);
             var i = 0,
-                introArr = [],
-                nameArr = [],
                 imgArr = [],
                 classImgArr = [];
             if (typeof data !== 'undefined') {
@@ -104,17 +101,13 @@ var Course = Backbone.Model.extend({
                 data.createTime = Utilities.castFromAPIFormat(data.createTime);
 
                 /*others*/
-                data.popularity = parseInt(data.popularity, 10);//人气值
-                data.bookingType = parseInt(data.bookingType, 10);
-                data.startUponArrival = parseInt(data.startUponArrival, 10);
+                data.bookingType = Utilities.parseNum(data.bookingType);//返现
+                data.popularity = Utilities.parseNum(data.popularity);//人气值
+                data.startUponArrival = Utilities.parseNum(data.startUponArrival);//暂时没有用到
 
-
-                data.cashback = parseInt(data.cashback, 10);//返现
-                data.price = parseFloat(data.price);//爱上课价格
-                data.originalPrice = parseFloat(data.price, 10);//原价
-                data.price = isNaN(data.price) ? 0 : data.price;
-                data.originalPrice = isNaN(data.originalPrice) ? 0 : data.originalPrice;
-
+                data.cashback = Utilities.parseNum(data.cashback);//返现
+                data.price = Utilities.parseNum(data.price);//爱上课价格
+                data.originalPrice = Utilities.parseNum(data.originalPrice);//原价
 
                 /*基本信息*/
                 data.cutoffDate = Utilities.castFromAPIFormat(this.get('cutoffDate'));

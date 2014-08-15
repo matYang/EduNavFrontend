@@ -57,6 +57,7 @@ var CourseDetailView = Backbone.View.extend({
         this.guaranteePos = $("#content_guarantee").position().top;
         this.servicePos = $("#content_service").position().top;
         this.compareWidget = new CourseDetailCompareWidgetView();
+        //如果栏目下的数据为空 则移除该栏目的显示
         if ($("#content_basic>dd").length === 0) {
             $("#content_basic").remove();
             $("#tab_basic").remove();

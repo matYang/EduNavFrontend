@@ -217,12 +217,11 @@ var Utilities = {
         return params;
     },
 
-    parseCleanNull: function (json) {
-        _.each(json, function (v, k) {
-            if (v === null)
-                delete json[k];
-        });
-        return json;
+    parseNum: function (val) {
+        val = parseFloat(val);
+        if(isNaN(val))
+            return null;
+        return val
     },
 
     passValid: function (val) {
@@ -288,13 +287,13 @@ var Utilities = {
 //                $info.html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试");\
                 $info.html("验证码已经发送至您的手机");
 
-                var count_down = function(k){
-                    if(k>0){
-                        setTimeout(function(){
-                            $button.val('重新发送('+k+'秒)');
-                            count_down(k-1);
-                        },1000)
-                    }else{
+                var count_down = function (k) {
+                    if (k > 0) {
+                        setTimeout(function () {
+                            $button.val('重新发送(' + k + '秒)');
+                            count_down(k - 1);
+                        }, 1000)
+                    } else {
                         $button.val('重新发送');
                     }
                 };
