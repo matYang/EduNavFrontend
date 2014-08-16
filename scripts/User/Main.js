@@ -66,6 +66,7 @@ var AppRouter = Backbone.Router.extend({
             },
             error: function () {
                 Info.log("session fetch failed, user not logged in");
+                //todo here should clear cookie
             }
         });
 
