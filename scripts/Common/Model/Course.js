@@ -12,7 +12,7 @@ var Course = Backbone.Model.extend({
                 'cashbackDate': undefined,
                 'popularity': undefined,//人气值
                 'bookingType': undefined,
-//                'startUponArrival': undefined,//todo 暂时没有用到
+                'startUponArrival': undefined,//转换成了是否有具体的开课日期
                 'studyDaysNote': undefined,//备注信息
                 'qualityAssurance': undefined,
                 "contact": undefined,//课程联系方式
@@ -137,8 +137,6 @@ var Course = Backbone.Model.extend({
                     }
                     data.classPhotoList = classImgArr;
                 }
-
-
             }
             return data;
         },
@@ -150,10 +148,10 @@ var Course = Backbone.Model.extend({
             json.finishDate = Utilities.getDateString(this.get('finishDate'));
             json.createTime = Utilities.getDateString(this.get('createTime'));
             json.cutoffDate = Utilities.getDateString(this.get('cutoffDate'));
-            json.startTime1 = Math.floor(json.startTime1 / 100) + ":" + ((json.startTime1 % 100 < 10) ? "0" + json.startTime1 % 100 : json.startTime1 % 100);
-            json.startTime2 = Math.floor(json.startTime2 / 100) + ":" + ((json.startTime2 % 100 < 10) ? "0" + json.startTime2 % 100 : json.startTime2 % 100);
-            json.finishTime1 = Math.floor(json.finishTime1 / 100) + ":" + ((json.finishTime1 % 100 < 10) ? "0" + json.finishTime1 % 100 : json.finishTime1 % 100);
-            json.finishTime2 = Math.floor(json.finishTime2 / 100) + ":" + ((json.finishTime2 % 100 < 10) ? "0" + json.finishTime2 % 100 : json.finishTime2 % 100);
+            json.startTime1 = json.startTime1 == null ? null : Math.floor(json.startTime1 / 100) + ":" + ((json.startTime1 % 100 < 10) ? "0" + json.startTime1 % 100 : json.startTime1 % 100);
+            json.startTime2 = json.startTime2 == null ? null : Math.floor(json.startTime2 / 100) + ":" + ((json.startTime2 % 100 < 10) ? "0" + json.startTime2 % 100 : json.startTime2 % 100);
+            json.finishTime1 = json.finishTime1 == null ? null : Math.floor(json.finishTime1 / 100) + ":" + ((json.finishTime1 % 100 < 10) ? "0" + json.finishTime1 % 100 : json.finishTime1 % 100);
+            json.finishTime2 = json.finishTime2 == null ? null : Math.floor(json.finishTime2 / 100) + ":" + ((json.finishTime2 % 100 < 10) ? "0" + json.finishTime2 % 100 : json.finishTime2 % 100);
             if (json.studyDays) {
                 studyDays = "每周";
                 for (i = 0; i < json.studyDays.length; i++) {

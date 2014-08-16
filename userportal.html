@@ -846,15 +846,39 @@
             </div>
         </div>
         <div class="row2">
-            <div class="section"><label>班级类型：</label> <span><%= course.classSize %>人</span></div>
-            <div class="section"><label>上课日期：</label> <span><%= course.startDate %> - <%= course.finishDate %> <%= course.studyDays%> <%= course.studyDaysNote %>
+            <%if(course.classSize){%>
+            <div class="section">
+                <label>班级类型：</label>
+                <div><%= course.classSize %></div>
+            </div>
+            <%}%>
+            <div class="section">
+                <label>上课日期：</label>
+
+                <div>
+                    <%if(course.startUponArrival===0){%>
+                    <%= course.regPhone %>
+                    <%}else{%>
+                    <p><span class="badge bg-error">始</span> <%= course.startDate %></p>
+                    <p><span class="badge bg-primary">终</span> <%= course.finishDate %></p>
+                    <%}%>
+                </div>
             </span></div>
-            <div class="section"><label>上课时间：</label> <span><%= course.startTime1 %> - <%= course.finishTime1 %>
-            <% if (course.startTime2 > 0) { %>
-            , <%= course.startTime2 %> - <%= course.finishTime2 %>
-            <% } %>
-            </span></div>
-            <div class="section"><label>上课地址：</label> <span><%= course.address %></span></div>
+            <%if(course.startTime1){%>
+            <div class="section">
+                <label>上课时间：</label>
+                <div>
+                <%= course.startTime1 %> - <%= course.finishTime1 %>
+                <% if (course.startTime2 > 0) { %>
+                    , <%= course.startTime2 %> - <%= course.finishTime2 %>
+                <% } %>
+                </div>
+            </div>
+            <%}%>
+            <div class="section">
+                <label>上课地址：</label>
+                <div><%= course.address %></div>
+            </div>
         </div>
         <div class="row3">
             若该教学机构承诺在您取消与爱上课的订单后直接办理入学将给予您比爱上课更多优惠时，及时通知爱上课，您将获得500元奖励

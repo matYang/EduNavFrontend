@@ -175,6 +175,35 @@ a:hover, a:active, {
     /*background-image: linear-gradient(to bottom, rgba(100, 100, 100, 0.29) 0%, rgba(100, 100, 100, 0.08) 27%, rgba(100, 100, 100, 0.01) 100%);*/
     /*filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#b8b8b8, EndColorStr=#ffffff);*/
 /*}*/
+.badge{
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px;
+    font-size: 12px;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 2px;
+}
+
+.bg-primary{
+    background-color: #13AD67;
+}
+.bg-warning{
+    background-color: #FBAE05;
+}
+.bg-error{
+    background-color: #FF5500;
+}
+
+
+
+
+
+
+
 
 /***************我是分割线*****************/
 /***************一下为非通用样式 之后需要独立出来*****************/
