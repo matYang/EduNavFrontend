@@ -117,10 +117,10 @@ var Course = Backbone.Model.extend({
                 data.finishDate = Utilities.castFromAPIFormat(data.finishDate);//开课日期
                 data.courseHourNum = Utilities.parseNum(data.courseHourNum, 10);//课时总数
                 data.courseHourLength = Utilities.parseNum(data.courseHourLength, 10);//课时长度
-                data.startTime1 = parseInt(data.startTime1, 10);
-                data.finishTime1 = parseInt(data.finishTime1, 10);
-                data.startTime2 = parseInt(data.startTime2, 10);
-                data.finishTime2 = parseInt(data.finishTime2, 10);//上课时间
+                data.startTime1 = Utilities.parseNum(data.startTime1, 10);
+                data.finishTime1 = Utilities.parseNum(data.finishTime1, 10);
+                data.startTime2 = Utilities.parseNum(data.startTime2, 10);
+                data.finishTime2 = Utilities.parseNum(data.finishTime2, 10);//上课时间
 
                 if (data.teacherList) {
                     for (i = 0; i < data.teacherList.length; i++) {
