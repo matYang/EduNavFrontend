@@ -276,7 +276,14 @@
         </div>
         <div class="col2">
 
-            <p class="price"><span class="sign">￥</span><%= price %></p>
+            <p class="price">
+                <%if(price===null){%>
+                价格面议
+                <%}else{%>
+                <span class="sign">￥</span><%= price %>
+                <%}%>
+            </p>
+
             <% if (cashback) { %>
             <a class="cashback">
                 <%= cashback %>元
@@ -1054,7 +1061,13 @@
             <dd>适合学员：<%= suitableStudent %></dd>
         </dl>
         <div class="col2">
-            <div class="price"><span class="sign">￥</span><%= price %></div>
+            <div class="price">
+                <%if(price===null){%>
+                价格面议
+                <%}else{%>
+                <span class="sign">￥</span><%= price %>
+                <%}%>
+            </div>
             <% if (cashback) { %>
             <a class="cashback"><%= cashback %>元
                 <div class="tip">
