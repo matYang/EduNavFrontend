@@ -1136,19 +1136,28 @@
             <dt>基本信息</dt>
             <dd class="clearfix">
                 <label>开课日期</label>
-                <div><%= startDate %>-<%= finishDate %>；<%= studyDays %> <%= studyDaysNote %></div>
+
+                <div>
+                    <%if(startUponArrival===0){%>
+                    <%= regPhone %>
+                    <%}else{%>
+                    <%= startDate %>-<%= finishDate %>；<%= studyDays %>
+                    <%}%>
+                </div>
             </dd>
+            <% if (startTime1) { %>
             <dd class="clearfix">
                 <label>上课时间</label>
                 <div><%= startTime1 %>-<%= finishTime1 %>
-                    <% if (startTime2 > 0) { %>, <%= startTime2 %> - <%= finishTime2 %><% } %>
+                    <% if (startTime2) { %>, <%= startTime2 %> - <%= finishTime2 %><% } %>
                 </div>
             </dd>
-            <% if (courseHourNum===null) { %>
+            <%}%>
+            <% if (courseHourNum) { %>
             <dd class="clearfix">
                 <label>上课课时</label>
                 <div><%= courseHourNum %>课时
-                    <% if (courseHourLength===null) { %>
+                    <% if (courseHourLength) { %>
                     , 每课时<%= courseHourLength %>小时
                     <% } %>
                 </div>

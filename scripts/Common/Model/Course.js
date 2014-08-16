@@ -101,7 +101,7 @@ var Course = Backbone.Model.extend({
                 /*others*/
                 data.bookingType = Utilities.parseNum(data.bookingType);//返现
                 data.popularity = Utilities.parseNum(data.popularity);//人气值
-                data.startUponArrival = Utilities.parseNum(data.startUponArrival);//暂时没有用到
+                data.startUponArrival = Utilities.parseNum(data.startUponArrival);//这个用来判断是否有开课日期
 
                 data.cashback = Utilities.parseNum(data.cashback);//返现
                 data.price = Utilities.parseNum(data.price);//爱上课价格
