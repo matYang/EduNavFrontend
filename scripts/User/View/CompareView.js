@@ -230,7 +230,6 @@ var CompareView = Backbone.View.extend({
         this.courseIdList[index2] = temp;
         $rows = this.$view.find("tr");
         for (i = 0; i < $rows.length; i++) {
-            console.log($rows[i].id);
             //由于第一行决定了下列的宽度 不能进行换列
             if($rows[i].id === 'noAddColumn')continue;
             $td = $($rows[i]).find("td");

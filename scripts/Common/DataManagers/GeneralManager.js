@@ -113,7 +113,7 @@
         requestCourses.overrideUrl(ApiResource.courses);
         requestCourses.fetch({
             dataType: 'json',
-            data: $.param(idSet, true),//traditional is true
+            data: $.param({'idSet':idSet}, true),//traditional is true
             success: function (response, model) {
                 if (callback) {
                     var array = requestCourses.toArray(), i = 0;
