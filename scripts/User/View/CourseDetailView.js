@@ -54,7 +54,6 @@ var CourseDetailView = Backbone.View.extend({
         this.basicPos = $("#content_basic").position().top;
         this.teachingPos = $("#content_teaching").position().top;
         this.etcPos = $("#content_etc").position().top;
-        this.guaranteePos = $("#content_guarantee").position().top;
         this.servicePos = $("#content_service").position().top;
         this.compareWidget = new CourseDetailCompareWidgetView();
         //如果栏目下的数据为空 则移除该栏目的显示
@@ -70,10 +69,7 @@ var CourseDetailView = Backbone.View.extend({
             $("#content_etc").remove();
             $("#tab_etc").remove();
         }
-        if ($("#content_guarantee>dd").length === 0) {
-            $("#content_guarantee").remove();
-            $("#tab_guarantee").remove();
-        }
+
         if ($("#content_service>dd").length === 0) {
             $("#content_service").remove();
             $("#tab_service").remove();
@@ -135,10 +131,8 @@ var CourseDetailView = Backbone.View.extend({
                 $("#tab_basic").addClass("active")
             } else if (position >= that.teachingPos + that.offSetHeight && position < that.etcPos + that.offSetHeight) {
                 $("#tab_teaching").addClass("active")
-            } else if (position >= that.etcPos + that.offSetHeight && position < that.guaranteePos + that.offSetHeight) {
+            } else if (position >= that.etcPos + that.offSetHeight && position < that.servicePos + that.offSetHeight) {
                 $("#tab_etc").addClass("active")
-            } else if (position >= that.guaranteePos + that.offSetHeight && position < that.servicePos + that.offSetHeight) {
-                $("#tab_guarantee").addClass("active")
             } else {
                 $("#tab_service").addClass("active")
             }
