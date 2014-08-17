@@ -48,6 +48,7 @@ var NewBookingView = BaseFormView.extend({
                 mandatory: true,
                 buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
+            //TODO 变成radio方式了
             new BaseField({
                 name: "支付方式",
                 fieldId: "booking_type",

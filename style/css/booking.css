@@ -72,6 +72,20 @@
 #booking_submitted .row3 .bonus{float:left; padding-left:23px; background:url(../images/icon.png) no-repeat 0 -675px;}
 #booking_submitted .row3 .viewMore{float:right; color:#128d56; cursor:pointer;}
 
+/*step*/
+.step ol{overflow: hidden; zoom: 1;}
+.step li {float: left; width:160px; text-align: center;}
+.step .step_name { padding: 3px 0; color: #595757; font-size:14px; margin-bottom:5px;}
+.step .step_node{background: url(../images/step.png) no-repeat 50% -95px;}
+.step .step_done .step_name,.step .step_active .step_name{color:#f1a526;}
+.step .step_done .step_node{background-position: 50% 1px;}
+.step .step_active .step_node {background-position: 50% -191px;}
+.step .step_first .step_done .step_node {background-position: 50% -159px;}
+.step .step_first .step_done .step_active {background-position: 50% -159px;}
+.step .step_first .step_active .step_node {background-position: 50% -31px;}
+.step .step_node {height: 32px;}
+.step .step_last .step_node {background-position: 50% -127px;}
+
 
 
 
