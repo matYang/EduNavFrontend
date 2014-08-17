@@ -32,25 +32,28 @@ var FrontPageView = Backbone.View.extend({
 
         if (!this.isClosed) {
             this.categories = categories;
+            //cbuf 一级目录列表
+            //scbuf 二级目录列表
+            //tcbuf 三级目录列表
             var data = categories.data, len = data.length, i, j, k, cbuf = [], scbuf = [], tcbuf = [], children1, children2, tc="", padding, lvl3counter = 0, obj = {};
             for ( i = 0; i < len; i++ ) {
                 cbuf[i] = this.buttonTemplate({value:data[i].value, name:data[i].name, index:i+1});
                 children1 = data[i].children || [];
-                for ( j = 0; j < children1.length; j ++) { //level 2 and level 1 index
+                for ( j = 0; j < children1.length; j ++) { //循环二级目录
                     children2 = children1[j].children;
-                    for (k = 0; k < children2.length; k++) { //level 2 and level 1 index
+                    for (k = 0; k < children2.length; k++) { //循环三级目录
                         lvl3counter++;
                         tcbuf[k] = this.catButtonTemplate({value: children2[k].value, name:children2[k].name});
                     }
-                    padding = (Constants.categoryRowMapper[data[i].name] - lvl3counter % Constants.categoryRowMapper[data[i].name])% Constants.categoryRowMapper[data[i].name];
+                    padding = (Constants.categoryRowMapper[i] - lvl3counter % Constants.categoryRowMapper[i])% Constants.categoryRowMapper[i];
                     while (padding) {
                         tcbuf.push("<li><a> --- </a></li>");
                         padding--;
                     }
                     obj.catgoryList = tcbuf.join("");
-                    obj.catClass = Constants.categoryClassMapper[data[i].name];
+                    obj.catClass = 'cat'+(i+1);//使用cat作为class 取一级循环中的序号 见index.css
                     obj.categoryName = children1[j].name;
-                    obj.parentName = data[i].name;
+                    obj.parentName = i;
                     obj.value = children1[j].value;
                     obj.parentValue = data[i].value;
                     scbuf[j] = this.lvl2Template(obj);
@@ -61,17 +64,19 @@ var FrontPageView = Backbone.View.extend({
                 scbuf = [];
             }
             $("#lv1Button").append(cbuf.join(""));
+
             this.afterRender();
             this.bindEvents();
         }
     },
     afterRender: function () {
-        //add last class to last rows of each lvl 2 category
+        //二级目录 非第一行加入class "last" 控制边框显示 以及控制二级目录button的高度
         $("#lv2Categories").children("div").each(function (category) {
             var rowLength = Constants.categoryRowMapper[$(this).data("parentname")], list = $(this).find("li"), rowNum = list.length/rowLength;
             $(this).find("li:gt(-"+(rowLength + 1)+")").addClass("last");
             $(this).addClass("c_h"+rowNum);
         });
+        //初始化激活的标签
         var activeButton = $("#lv1Button").find("a:first").addClass("active");
         $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("value") + "]").removeClass("hidden");
         $("#content").css("padding-bottom", 0);

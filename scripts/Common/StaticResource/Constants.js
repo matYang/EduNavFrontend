@@ -63,18 +63,7 @@ var Constants = {
         "live.com":"mail.live.com",
         "live.cn":"mail.live.com"
     },
-    categoryClassMapper: {
-        "语言培训":"language",
-        "学历文凭":"master",
-        "财会·金融":"f_and_e",
-        "资格认证":"attestation"
-    },
-    categoryRowMapper: {
-        "语言培训":10,
-        "学历文凭":10,
-        "财会·金融":5,
-        "资格认证":5
-    },
+    categoryRowMapper: [10,10,5,5],
     voidFunction: function(){
         
     }

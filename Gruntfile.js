@@ -13,39 +13,10 @@ module.exports = function(grunt) {
           "scripts/Lib/jquery.smooth-scroll.min.js",
           "scripts/Lib/json2.js",
           "scripts/Lib/backbone.notifier.js",
+          "scripts/Lib/bjqs.js"
         ],
         dest: 'build/Common.js'
      },
-     admin: {
-        src: [
-              "scripts/Common/Config/*.js",
-              "scripts/Common/StaticResource/*.js",
-              "scripts/Admin/Resource/*.js",
-
-              "scripts/Common/Model/Representation/*",
-              "scripts/Common/Model/Transaction.js",
-              "scripts/Common/Model/Credit.js",
-              "scripts/Common/Model/Account.js",
-              "scripts/Common/Model/Coupon.js",
-              "scripts/Common/Model/Booking.js",
-              "scripts/Common/Model/User.js",
-              "scripts/Common/Model/Partner.js",
-              "scripts/Common/Model/Admin.js",
-              "scripts/Common/Model/Course.js",
-              
-              "scripts/Common/Service/*.js",
-              
-              "scripts/Test/TestMockObj.js",
-              "scripts/Common/DataManagers/GeneralManager.js",
-              "scripts/Common/DataManagers/SessionManager.js",
-              "scripts/Common/DataManagers/AdminManager.js",
-              "scripts/Admin/Manager/*.js",
-              "scripts/Common/View/Shared/*.js",
-              "scripts/Admin/View/*.js",
-              "scripts/Admin/Main.js"
-              ],
-        dest: 'build/AdminMain.js'
-      },
       main: {
         src: [
               "scripts/Common/Config/*.js",
