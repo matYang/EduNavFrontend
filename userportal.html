@@ -950,13 +950,11 @@
         <div class="field">
             <label>课程费用</label>
 
-            <div class="price">
-                <%if(price===null){%>
-                <b class="price"><%= course.price %></b>
-                <%}else{%>
-                <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
-                <%}%>
-            </div>
+            <%if(price===null){%>
+            <b class="price">价格面议</b>
+            <%}else{%>
+            <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
+            <%}%>
         </div>
         <div class="field" id="cashback_box">
             <% if (course.cashback) { %>
