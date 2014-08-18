@@ -1116,7 +1116,14 @@
 
             <!--<p><label>咨询电话： </label>= course.phone </p>-->
 
-            <p><label>开课日期： </label><%= course.startDate %>-<%= course.finishDate %></p>
+            <p>
+                <label>开课日期： </label>
+                <%if(startUponArrival===0){%>
+                <%= regPhone %>
+                <%}else{%>
+                <%= startDate %>-<%= finishDate %>；<%= studyDays %>
+                <%}%>
+            </p>
 
             <p><label>班级类型： </label><%= course.classSize %></p>
 
