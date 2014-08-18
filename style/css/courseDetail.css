@@ -106,7 +106,7 @@
 #content_etc .item:hover,
 #content_service .item:hover{ background:#2e333f;}
 #content_etc .item:hover .item_inner,
-#content_service .item:hover div.item_inner{text-align: center;}
+#content_service .item:hover div.item_inner{display: block; text-align: center;}
 
 #content_etc .download{ background-position:0 0;}
 #content_etc .tk{ background-position:0 -120px;}
