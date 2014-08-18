@@ -219,10 +219,12 @@ var NewBookingView = BaseFormView.extend({
     loginCheck: function () {
         if (!app.sessionManager.hasSession()) {
             Info.displayNotice("您尚未登录，请先登录再进行预订");
+            return
         }
     },
     submitAction: function () {
         var that = this;
+        that.loginCheck();
         $("#" + this.submitButtonId).val("预订中...");
         this.model.set('bookingType',$('input[name="bookingType"]'));
         this.model.set("userId", app.sessionManager.sessionModel.get("userId"));
