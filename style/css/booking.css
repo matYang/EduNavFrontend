@@ -87,5 +87,21 @@
 .step .step_last .step_node {background-position: 50% -127px;}
 
 
+/*在线支付*/
+.ensure{float:left;}
+.ensure h3{font-size:18px; color:#128d56; font-weight:normal; margin-bottom:5px; padding:0 0 10px 32px; background: url(../images/icon.png) no-repeat 0 -367px;}
+.ensure p{ line-height:30px;}
+.payment{float:right; width:730px; border:3px solid #128d56; color:#000;}
+.payment .header{height:52px; line-height:52px; padding-left:20px; background:#128d56; font-size:18px; color:#fff;}
+.payment .title{border-bottom:1px solid #cccccc; height:50px; line-height:50px; margin:20px;}
+.payment .title h3{float:left; font-size:14px; color:#128d56; }
+.payment .title .fright{ font-size:12px; padding-left:20px; color:#128d56; background:url(../images/icon.png) no-repeat 0 -491px;}
+.payment .row1{ padding-left:30px; margin:20px; line-height:40px;}
+.payment .row2{ padding-left:30px; margin:20px;}
+.payment .row2 .payment_way{}
+.payment .btn{ border-top:1px dotted #ccc; padding-top:20px; margin:30px 20px 100px 20px; text-align:center;}
+.acn{color:#ff0000; margin-right:20px; padding-left:90px; background:url(../images/acn.png) no-repeat left center;}
+
+
 
 
