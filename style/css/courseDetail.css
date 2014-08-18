@@ -136,15 +136,6 @@
 /* Basic jQuery Slider style */
 ul.bjqs{position:relative; list-style:none;padding:0;margin:0;overflow:hidden; display:none;}
 li.bjqs-slide{position:absolute; display:none;}
-ul.bjqs-controls{list-style:none;margin:0;padding:0;z-index:9999;}
-ul.bjqs-controls.v-centered li a{position:absolute;}
-ul.bjqs-controls.v-centered li.bjqs-next a{right:0;}
-ul.bjqs-controls.v-centered li.bjqs-prev a{left:0;}
-ol.bjqs-markers{list-style: none; padding: 0; margin: 0; width:100%;}
-ol.bjqs-markers.h-centered{text-align: center;}
-ol.bjqs-markers li{display:inline;}
-ol.bjqs-markers li a{display:inline-block;}
-p.bjqs-caption{display:block;width:96%;margin:0;padding:2%;position:absolute;bottom:0;}
 
 /* slider my styles */
 #banner-slide{}
@@ -152,12 +143,42 @@ ul.bjqs-controls.v-centered li a{
     width: 20px;
     height: 40px;
     display:block;
-    padding:10px;
     color:#d3d3d3;
     text-decoration: none;
     background: url(../images/pre_next.png) no-repeat;
 }
-ul.bjqs-controls.v-centered li.bjqs-prev a{background-position: 0 0;}
+/*left and right controls*/
+ul.bjqs-controls{list-style:none;margin:0;padding:0;z-index:9999;}
+ul.bjqs-controls.v-centered li a{position:absolute;}
+ul.bjqs-controls.v-centered li.bjqs-prev a{background-position: 0 0;left:10px;}
 ul.bjqs-controls.v-centered li.bjqs-prev a:hover{ background-position:0 -40px;}
-ul.bjqs-controls.v-centered li.bjqs-next a{background-position: -42px 0;}
+ul.bjqs-controls.v-centered li.bjqs-next a{background-position: -42px 0;right:10px;}
 ul.bjqs-controls.v-centered li.bjqs-next a:hover{ background-position:-42px -40px;}
+/*page buttons*/
+ol.bjqs-markers{list-style: none; padding: 0; margin: 0; width:100%;}
+ol.bjqs-markers.h-centered{text-align: center;position: absolute;bottom: 0;}
+ol.bjqs-markers li{display:inline;}
+ol.bjqs-markers li a{
+    text-indent: -9999px;
+    display:inline-block;
+    width: 12px;
+    height: 8px;
+    background:#333333;
+    opacity: 0.9;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#77000000',endColorstr='#77000000');
+    margin:0 3px;
+    -webkit-transition: all 0.65s;
+    -moz-transition: all 0.65s;
+    -ms-transition: all 0.65s;
+    -o-transition: all 0.65s;
+    transition: all 0.65s;
+    border-radius: 2px;
+}
+ol.bjqs-markers li.active-marker a,
+ol.bjqs-markers li a:hover{
+    background: #128d56;
+}
+ol.bjqs-markers li.active-marker a{
+     width: 24px;
+}
+p.bjqs-caption{display:block;width:96%;margin:0;padding:2%;position:absolute;bottom:0;}

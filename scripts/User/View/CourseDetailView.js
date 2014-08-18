@@ -88,9 +88,9 @@ var CourseDetailView = Backbone.View.extend({
             // control and marker configuration
             showcontrols : true, // show next and prev controls
             centercontrols : true, // center controls verically
-            nexttext : '>', // Text for 'next' button (can use HTML)
-            prevtext : '<', // Text for 'previous' button (can use HTML)
-            showmarkers : false, // Show individual slide markers
+            nexttext : '', // Text for 'next' button (can use HTML)
+            prevtext : '', // Text for 'previous' button (can use HTML)
+            showmarkers : true, // Show individual slide markers
             centermarkers : true, // Center markers horizontally
 
             // interaction values
