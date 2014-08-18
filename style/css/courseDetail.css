@@ -110,7 +110,7 @@
 
 /*教学特色等的图片*/
 #content_etc .item,
-#content_service .item{float:left; margin-right:10px; margin-bottom:10px; width:120px; height:120px; background:#128d56 url(../images/c_detail_icons.png) no-repeat;}
+#content_service .item{overflow: hidden;float:left; margin-right:10px; margin-bottom:10px; width:120px; height:120px; background:#128d56 url(../images/c_detail_icons.png) no-repeat;}
 #content_etc .item div,
 #content_service .item .item_inner{display:none; padding:10px; line-height:30px; color:#fff;}
 #content_etc .item:hover,
