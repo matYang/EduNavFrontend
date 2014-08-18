@@ -55,7 +55,7 @@
 
 .courseDetail .course_content table{
     width: 100%;
-    lline-height: 24px;
+    line-height: 24px;
 }
 .courseDetail .course_content table td{
     padding: 5px;
@@ -150,16 +150,14 @@ p.bjqs-caption{display:block;width:96%;margin:0;padding:2%;position:absolute;bot
 #banner-slide{}
 ul.bjqs-controls.v-centered li a{
     width: 20px;
-    height: 20px;
+    height: 40px;
     display:block;
     padding:10px;
-    background:transparent;
     color:#d3d3d3;
     text-decoration: none;
+    background: url(../images/pre_next.png) no-repeat;
 }
-
-ul.bjqs-controls.v-centered li a:hover{
-    background:#cccccc;
-    color:#000;
-    opacity: 0.9;
-}
+ul.bjqs-controls.v-centered li.bjqs-prev a{background-position: 0 0;}
+ul.bjqs-controls.v-centered li.bjqs-prev a:hover{ background-position:0 -40px;}
+ul.bjqs-controls.v-centered li.bjqs-next a{background-position: -42px 0;}
+ul.bjqs-controls.v-centered li.bjqs-next a:hover{ background-position:-42px -40px;}
