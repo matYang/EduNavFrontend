@@ -39,7 +39,7 @@
 .panel .field #booking_useCashback{margin-left:128px; float:left;}
 .panel .field  .login_reg1 {font-size:12px; line-height:18px;}
 
-.panel .loginbox{ position:relative;border:1px solid #ccc; margin-left:128px; margin-top:40px; }
+.panel .loginbox{ position:relative;border:1px solid #ccc; margin-left:128px;}
 .panel .loginbox_inner{ padding:15px 20px; font-size:14px;}
 .panel .loginbox_inner input.text{border:1px solid #ccc; width:164px; margin-right:15px; padding-left:10px; background:#eaefed; height:28px; line-height:28px\9;}
 .panel .loginbox_inner label{color:#128d56;}
