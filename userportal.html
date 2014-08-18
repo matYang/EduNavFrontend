@@ -944,11 +944,12 @@
             1 人
         </div>
         <!--<div class="field">-->
-            <!--<label>有效日期</label>-->
-            <!--= course.cutoffDate  <span>（= course.cutoffDate 前须到教学机构进行报名，否则优惠价格将自动失效）</span>-->
+        <!--<label>有效日期</label>-->
+        <!--= course.cutoffDate  <span>（= course.cutoffDate 前须到教学机构进行报名，否则优惠价格将自动失效）</span>-->
         <!--</div>-->
         <div class="field">
             <label>课程费用</label>
+
             <div class="price">
                 <%if(price===null){%>
                 <b class="price"><%= course.price %></b>
@@ -1038,7 +1039,7 @@
             <%if(course.bookingType===0||course.bookingType===2){%>
             <p>
                 <label></label>
-                <input name="bookingType" value="<%=course.bookingType%>" type="radio" >前台付现
+                <input name="bookingType" value="<%=course.bookingType%>" type="radio">前台付现
                 <span style="color:#ff5500;">(试听满意后直接在机构进行付款)</span>
             </p>
             <%}%>
@@ -1192,7 +1193,6 @@
     <li id="tab_basic" class="active">基本信息</li>
     <li id="tab_teaching">教学信息</li>
     <li id="tab_etc">教学补充</li>
-    <li id="tab_guarantee">教学保障</li>
     <li id="tab_service">特色服务</li>
 </ul>
 <div class="course_content">
@@ -1349,90 +1349,76 @@
 </dl>
 <dl id="content_etc" class="clearfix">
     <dt>教学补充</dt>
-    <% if (downloadMaterials) { %>
-    <dd class="clearfix">
-        <label>课件下载</label>
-
-        <div><%= downloadMaterials %></div>
+    <dd class="clearfix blank1">
+        <% if (downloadMaterials) { %>
+        <div class="item download">
+            <div class="item_inner"><%= downloadMaterials %></div>
+        </div>
+        <% } %>
+        <% if (questionBank) { %>
+        <div class="item tk"><!--题库支持-->
+            <div class="item_inner"><%= questionBank %></div>
+        </div>
+        <% } %>
+        <% if (classTeacher) { %>
+        <div class="item zlbz"><!--质量保证 or 班主任导学-->
+            <div class="item_inner"><%= classTeacher %></div>
+        </div>
+        <% } %>
+        <% if (teachingAndExercise) { %>
+        <div class="item jljh"><!--讲练结合-->
+            <div class="item_inner"><%= teachingAndExercise %></div>
+        </div>
+        <% } %>
+        <% if (quiz) { %>
+        <div class="item jdcp"><!--阶段测评-->
+            <div class="item_inner"><%= quiz %></div>
+        </div>
+        <% } %>
+        <% if (questionSession) { %>
+        <div class="item khdy"><!--课后答疑-->
+            <div class="item_inner"><%= questionSession %></div>
+        </div>
+        <% } %>
+        <% if (assignments) { %>
+        <div class="item khzy"><!--课后作业-->
+            <div class="item_inner"><%= assignments %></div>
+        </div>
+        <% } %>
+        <% if (marking) { %>
+        <div class="item zypg"><!--作业批改-->
+            <div class="item_inner"><%= marking %></div>
+        </div>
+        <% } %>
     </dd>
-    <% } %>
-    <% if (questionBank) { %>
-    <dd class="clearfix"><label>题库支持</label>
 
-        <div><%= questionBank %></div>
-    </dd>
-    <% } %>
-    <% if (classTeacher) { %>
-    <dd class="clearfix">
-        <label>班主任导学</label>
-
-        <div><%= classTeacher %></div>
-    </dd>
-    <% } %>
-    <% if (teachingAndExercise) { %>
-    <dd class="clearfix">
-        <label>讲练结合</label>
-
-        <div><%= teachingAndExercise %></div>
-    </dd>
-    <% } %>
-    <% if (quiz) { %>
-    <dd class="clearfix">
-        <label>阶段测评</label>
-
-        <div><%= quiz %></div>
-    </dd>
-    <% } %>
-    <% if (questionSession) { %>
-    <dd class="clearfix">
-        <label>课后答疑</label>
-
-        <div><%= questionSession %></div>
-    </dd>
-    <% } %>
-    <% if (assignments) { %>
-    <dd class="clearfix">
-        <label>课后作业</label>
-
-        <div><%= assignments %></div>
-    </dd>
-    <% } %>
-    <% if (marking) { %>
-    <dd class="clearfix">
-        <label>作业批改</label>
-
-        <div><%= marking %></div>
-    </dd>
-    <% } %>
 </dl>
 <dl id="content_service" class="clearfix">
     <dt>特色服务</dt>
-    <% if (passAgreement) { %>
-    <dd class="clearfix">
-        <label>签约保过</label>
 
-        <div><%= passAgreement %></div>
+
+    <dd class="clearfix blank1">
+        <% if (passAgreement) { %>
+        <div class="item qybg"><!--签约保过-->
+            <div class="item_inner"><%= passAgreement %></div>
+        </div>
+        <% } %>
+        <% if (certification) { %>
+        <div class="item jyzs"><!--结业证书-->
+            <div class="item_inner"><%= certification %></div>
+        </div>
+        <% } %>
+        <% if (extracurricular) { %>
+        <div class="item khhd"><!--课后互动-->
+            <div class="item_inner"><%= extracurricular %></div>
+        </div>
+        <% } %>
+        <% if (bonusService) { %>
+        <div class="item zsfw"><!--赠送服务-->
+            <div class="item_inner"><%= bonusService %></div>
+        </div>
+        <% } %>
     </dd>
-    <% } %>
-    <% if (certification) { %>
-    <dd class="clearfix">
-        <label>结业证书</label>
-
-        <div><%= certification %></div>
-    </dd>
-    <% } %>
-    <% if (extracurricular) { %>
-    <dd class="clearfix">
-        <label>课后互动</label>
-
-        <div><%= extracurricular %></div>
-    </dd>
-    <% } %>
-    <% if (bonusService) { %>
-    <dd class="clearfix"><label>赠送服务</label>
-
-        <p><%= bonusService %></p></dd>
-    <% } %>
 </dl>
 </div>
 </div>

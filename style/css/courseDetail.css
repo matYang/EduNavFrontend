@@ -97,6 +97,32 @@
 .courseDetail  .compare .btns{ text-align:center; margin:10px auto;}
 .courseDetail  .compare #compare{width:215px; height:32px; border:none; font-size:14px; font-family:"Microsoft Yahei"; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
 
+
+/*教学特色等的图片*/
+#content_etc .item,
+#content_service .item{display:table;float:left; margin-right:10px; margin-bottom:10px; width:120px; height:120px; background:#128d56 url(../images/c_detail_icons.png) no-repeat;}
+#content_etc .item div,
+#content_service .item div{display:none; padding:10px; line-height:30px; color:#fff;}
+#content_etc .item:hover,
+#content_service .item:hover{ background:#2e333f;}
+#content_etc .item:hover div.item_inner,
+#content_service .item:hover div.item_inner{display:table-cell;vertical-align: middle;text-align: center;}
+
+#content_etc .download{ background-position:0 0px;}
+#content_etc .tk{ background-position:0 -120px;}
+#content_etc .zlbz{ background-position:0 -240px;}
+#content_etc .jljh{ background-position:0 -360px;}
+#content_etc .jdcp{ background-position:0 -480px;}
+#content_etc .khdy{ background-position:0 -600px;}
+#content_etc .khzy{ background-position:0 -720px;}
+#content_etc .zypg{ background-position:0 -840px;}
+#content_etc .zypg div{ line-height:24px!important;}
+
+#content_service .qybg{ background-position:0 -960px;}
+#content_service .jyzs{ background-position:0 -1080px;}
+#content_service .khhd{ background-position:0 -1200px;}
+#content_service .zsfw{ background-position:0 -1320px;}
+
 /* Basic jQuery Slider style */
 ul.bjqs{position:relative; list-style:none;padding:0;margin:0;overflow:hidden; display:none;}
 li.bjqs-slide{position:absolute; display:none;}
@@ -110,7 +136,7 @@ ol.bjqs-markers li{display:inline;}
 ol.bjqs-markers li a{display:inline-block;}
 p.bjqs-caption{display:block;width:96%;margin:0;padding:2%;position:absolute;bottom:0;}
 
-/* my styles */
+/* slider my styles */
 #banner-slide{}
 ul.bjqs-controls.v-centered li a{
     width: 20px;
