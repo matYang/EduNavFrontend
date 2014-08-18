@@ -161,7 +161,7 @@ ol.bjqs-markers li{display:inline;}
 ol.bjqs-markers li a{
     text-indent: -9999px;
     display:inline-block;
-    width: 12px;
+    width: 15px;
     height: 8px;
     background:#333333;
     opacity: 0.9;
@@ -179,6 +179,6 @@ ol.bjqs-markers li a:hover{
     background: #128d56;
 }
 ol.bjqs-markers li.active-marker a{
-     width: 24px;
+     width: 30px;
 }
 p.bjqs-caption{display:block;width:96%;margin:0;padding:2%;position:absolute;bottom:0;}
