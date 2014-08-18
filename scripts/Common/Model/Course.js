@@ -69,7 +69,7 @@ var Course = Backbone.Model.extend({
                 /*教学补充*/
                 'downloadMaterials': undefined,//课件下载
                 'questionBank': undefined,//题库支持
-                'classTeacher': undefined,//班主任导学 修改为质量保证
+                'classTeacher': undefined,//班主任导学 修改为推荐就业
                 'teachingAndExercise': undefined,//讲练结合
                 'quiz': undefined,//阶段测评
                 'questionSession': undefined,//课后答疑
