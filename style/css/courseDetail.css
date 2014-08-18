@@ -51,6 +51,16 @@
 .courseDetail .courseMain .course_content label{float:left; width:100px; text-align:right; margin-right:5px;font-weight: bold;}
 .courseDetail .courseMain .course_content label:before {content: '【';}
 .courseDetail .courseMain .course_content label:after {content: '】';}
+/*富文本编辑器生成的表格*/
+
+.courseDetail .course_content table{
+    width: 100%;
+    lline-height: 24px;
+}
+.courseDetail .course_content table td{
+    padding: 5px;
+}
+
 /*子选择器的兼容性*/
 .courseDetail .courseMain .course_content dd>div{float:left; width:800px;}
 
