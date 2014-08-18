@@ -47,17 +47,16 @@ var NewBookingView = BaseFormView.extend({
                 type: "text",
                 mandatory: true,
                 buildValidatorDiv: Utilities.defaultValidDivBuilder
-            }),
-            //TODO 变成radio方式了
-            new BaseField({
-                name: "支付方式",
-                fieldId: "booking_type",
-                modelAttr: "type",
-                validClass: "success",
-                type: "select",
-                mandatory: true,
-                buildValidatorDiv: Utilities.defaultValidDivBuilder
             })
+//            new BaseField({
+//                name: "支付方式",
+//                fieldId: "booking_type",
+//                modelAttr: "type",
+//                validClass: "success",
+//                type: "select",
+//                mandatory: true,
+//                buildValidatorDiv: Utilities.defaultValidDivBuilder
+//            })
         ];
         if (params.courseId) {
             app.generalManager.fetchCourse(params.courseId, {
@@ -225,6 +224,7 @@ var NewBookingView = BaseFormView.extend({
     submitAction: function () {
         var that = this;
         $("#" + this.submitButtonId).val("预订中...");
+        this.model.set('bookingType',$('input[name="bookingType"]'));
         this.model.set("userId", app.sessionManager.sessionModel.get("userId"));
 //        this.model.set("cashback", $("#booking_useCashback").prop("checked") ? this.model.get("cashbackAmount") : 0);
         this.model.set("course", undefined);

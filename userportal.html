@@ -1045,27 +1045,10 @@
             <p class="blank1">
                 <label></label>
                 <input name="bookingType" value="<%=course.bookingType%>" type="radio">在线支付
-                <span style="color:#ff5500;">(爱会员惊享95折！！用返券抵;&nbsp;爱•承诺：试听不满意，无条件退全款！)</span>
+                <span style="color:#ff5500;">(爱会员惊享95折！用返券抵;&nbsp;爱•承诺：试听不满意，无条件退全款！)</span>
             </p>
             <%}%>
         </div>
-
-
-        <label>支付方式</label>
-        <select class="text" id="booking_type">
-            <%if(course.bookingType===0){%>
-            <option value="<%=course.bookingType%>">仅支持<%=EnumConfig.BookingTypeText[course.bookingType]%></option>
-            <%}else if(course.bookingType===1){%>
-            <option value="<%=course.bookingType%>">仅支持<%=EnumConfig.BookingTypeText[course.bookingType]%></option>
-            <%}else if(course.bookingType ===2){%>
-            <option value="">-请选择-</option>
-            <%_.each(EnumConfig.BookingTypeText,function(v,k){%>
-            <option value="<%=k%>"><%=v%></option>
-            <%})%>
-            <%}%>
-        </select>
-
-
     </div>
     <div class="row3">
         <input type="button" class="btn_O_long" value="完成预订" id="initBooking"/>
