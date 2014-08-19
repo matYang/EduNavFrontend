@@ -23,7 +23,7 @@ var BookingPayView = Backbone.View.extend({
             booking = booking.at(0);
         }
         //如果订单不可支付或者不为待支付状态 则进入个人中心页面
-        if(booking.type!==EnumConfig.PayType.online ||booking.get('status') !== 11 ){
+        if (booking.type !== EnumConfig.PayType.online || booking.get('status') !== 11) {
             app.navigate("mypage", true);
         }
         this.booking = booking;
@@ -39,8 +39,8 @@ var BookingPayView = Backbone.View.extend({
                 fadeInMs: 0,
                 fadeOutMs: 0,
                 message: "<h1 class='title text-primary'>请您在新开的页面完成付款</h1>" +
-                         "<p>完成付款前请不要关闭此窗口</p>" +
-                         "<p>完成付款后请根据您的付款情况点击以下按钮</p>",
+                    "<p>完成付款前请不要关闭此窗口</p>" +
+                    "<p>完成付款后请根据您的付款情况点击以下按钮</p>",
                 buttons: [
                     {'data-role': 'failed', text: '支付遇到问题', class: 'btn btn-default'},
                     {'data-role': 'success', text: '支付成功', 'class': 'btn btn-primary'}
@@ -67,7 +67,10 @@ var BookingPayView = Backbone.View.extend({
         if (!this.isClosed) {
             this.$el.empty();
             this.isClosed = true;
-            this.payResultModel.destroy();
+            if (this.payResultModel) {
+                this.payResultModel.destroy();
+            }
+
         }
 
     }
