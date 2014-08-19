@@ -588,11 +588,11 @@
                     </span>
                     &nbsp;&nbsp;
                     <%if(type===EnumConfig.PayType.online&&course.commission){%>
-                    <s>原价：¥<% course.price %></s>
+                    <s>原价：¥<%=course.price%></s>
                     <%}%>
                     &nbsp;&nbsp;
                     <%if(type===EnumConfig.PayType.offline&&course.cashback){%>
-                    <a class="label cashback">1122元
+                    <a class="label cashback"><%=course.cashback%>元
                         <div class="tip">
                             <div class="arrow"></div>
                             <div class="tip_content">
