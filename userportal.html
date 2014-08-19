@@ -1155,10 +1155,10 @@
 
             <p>
                 <label>开课日期： </label>
-                <%if(startUponArrival===0){%>
-                <%= regPhone %>
+                <%if(course.startUponArrival===0){%>
+                <%= course.regPhone %>
                 <%}else{%>
-                <%= startDate %>-<%= finishDate %>；<%= studyDays %>
+                <%= course.startDate %>-<%= course.finishDate %>
                 <%}%>
             </p>
 
