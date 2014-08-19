@@ -559,163 +559,149 @@
                 </p>
             </div>
             <div class="row1">
+
                 <div id="process">
-                    <% if ( status === 2 || status === 3 || status === 5 || status === 9 || status === 11 ) { %>
-                    <p><%= EnumConfig.BookingStatusText[status] %></p>
-                    <% } else { %>
-                    <% if ( status >= 0) { %>
                     <div class="node fore ready">
-                        <% } else { %>
-                        <div class="node fore wait">
+                        <p>提交订单</p>
+                    </div>
+                    <div class="proce doing">
+                        <p>&nbsp;</p>
+                    </div>
+                    <div class="node wait">
+                        <p>支付学费</p>
+                    </div>
+                    <div class="proce wait">
+                        <p>&nbsp;</p>
+                    </div>
+                    <div class="node wait">
+                        <p>学校确认</p>
+                    </div>
+                    <div class="proce wait">
+                        <p>&nbsp;</p>
+                    </div>
+                    <div class="node wait clearfix">
+                        <p class="fleft" style="width:50px;">入学</p>
+
+                        <div class="fleft" style="width:100px; text-align:center; margin-left:25px;">返现可使用</div>
+                    </div>
+                    <div class="proce wait">
+                        <p>&nbsp;</p>
+                    </div>
+                    <div class="node wait">
+                        <p style="margin-left:-5px;">结业</p>
+                    </div>
+                </div>
+
+
+                <div class="explain">
+                    <p class="active"><span>2014-6-13</span> <span>11:02</span> <span> 学校确认您已经完成课程学习，期待下次为您服务</span></p>
+
+                    <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>已通知学校询问您的入学状态，并确认是否可获得返现</span>
+                    </p>
+
+                    <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的订单信息已经通知学校；将有资深课程顾问与您联系</span>
+                    </p>
+
+                    <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的学费已经支付成功</span></p>
+
+                    <p><span>2014-6-12</span> <span>12:02</span> <span>您提交了订单，请您在2014-08-10 20:31前完成支付，过时系统将自动取消；</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row2">
+                <h3><%= course.courseName %></h3>
+
+                <div class="clearfix">
+                    <div class="fleft">
+                        <p>
+                            <label>教育机构：</label>
+                            <span><%= course.instName %></span></p>
+
+                        <p>
+                            <label>上课日期:</label>
+                            5月13日 - 6月13日</p>
+
+                        <p>
+                            <label>班级类型:</label>
+                            <%= course.classSize %>
+                        </p>
+                    </div>
+                    <div class="fleft">
+                        <p>
+                            <label>咨询电话：</label>
+                            <span>400-025-0884</span></p>
+
+                        <p>
+                            <label>上课时间:</label>
+                            <%= course.startTime1 %> - <%= course.finishTime1 %>
+                            <% if (course.startTime2 > 0) {%>
+                            ；<%= course.startTime2 %> - <%= course.finishTime2 %>
                             <% } %>
-                            <p>提交订单</p>
-                        </div>
-                        <% if ( status > 0) { %>
-                        <div class="proce ready">
-                            <% } else { %>
-                            <div class="proce doing">
-                                <% } %>
-                                <p>&nbsp;</p>
-                            </div>
-                            <% if ( status >= 1) { %>
-                            <div class="node ready">
-                                <p>预约成功</p>
-                                <% } else { %>
-                                <div class="node wait">
-                                    <p>机构确认</p>
-                                    <% } %>
-                                </div>
-                                <% if ( status > 1) { %>
-                                <div class="proce ready">
-                                    <% } else if (status === 1) { %>
-                                    <div class="proce doing">
-                                        <% } else { %>
-                                        <div class="proce wait">
-                                            <% } %>
-                                            <p>&nbsp;</p>
-                                        </div>
-                                        <% if ( status >= 4) { %>
-                                        <div class="node ready">
-                                            <% } else { %>
-                                            <div class="node wait">
-                                                <% } %>
-                                                <p>预订成功</p>
-                                            </div>
-                                            <% if ( status > 4) { %>
-                                            <div class="proce ready">
-                                                <% } else if (status === 4) { %>
-                                                <div class="proce doing">
-                                                    <% } else { %>
-                                                    <div class="proce wait">
-                                                        <% } %>
-                                                        <p>&nbsp;</p>
-                                                    </div>
-                                                    <% if ( status >= 12) { %>
-                                                    <div class="node ready">
-                                                        <% } else { %>
-                                                        <div class="node wait">
-                                                            <% } %>
-                                                            <p>成功入学</p>
-                                                        </div>
-                                                        <% } %>
-                                                    </div>
+                        </p>
 
+                        <p>
+                            <label>报名日期:</label>
+                            <span class="F_orange">2014年5月12日</span></p>
+                    </div>
+                </div>
+                <p>
+                    <label>上课地址：</label>
+                    <span><%= course.address %></span></p>
+            </div>
+            <div class="row2">
+                <%if(course.startUponArrival===0){%>
+                <%= course.regPhone %>
+                <%}else{%>
+                <%= course.startDate %> - <%= course.finishDate %>
+                <%}%>
+            </div>
+            <div class="row3">
+                <h3>学员信息</h3>
 
+                <div class="clearfix">
+                    <div class="fleft">
+                        <p>
+                            <label>学员姓名:</label>
+                            <%= name %>
+                        </p>
 
-                                                    <div class="explain">
-                                                        <p class="active"><span>2014-6-13</span> <span>11:02</span> <span> 学校确认您已经完成课程学习，期待下次为您服务</span></p>
-                                                        <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>已通知学校询问您的入学状态，并确认是否可获得返现</span></p>
-                                                        <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的订单信息已经通知学校；将有资深课程顾问与您联系</span></p>
-                                                        <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的学费已经支付成功</span></p>
-                                                        <p><span>2014-6-12</span> <span>12:02</span> <span>您提交了订单，请您在2014-08-10 20:31前完成支付，过时系统将自动取消；</span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="row2">
-                                                    <h3><%= course.courseName %></h3>
-                                                    <div class="clearfix">
-                                                        <div class="fleft">
-                                                            <p>
-                                                                <label>教育机构：</label>
-                                                                <span><%= course.instName %></span></p>
-                                                            <p>
-                                                                <label>上课日期:</label>
-                                                                5月13日 - 6月13日</p>
-                                                            <p>
-                                                                <label>班级类型:</label>
-                                                                <%= course.classSize %>
-                                                            </p>
-                                                        </div>
-                                                        <div class="fleft">
-                                                            <p>
-                                                                <label>咨询电话：</label>
-                                                                <span>400-025-0884</span></p>
-                                                            <p>
-                                                                <label>上课时间:</label>
-                                                                <%= course.startTime1 %> - <%= course.finishTime1 %>
-                                                                <% if (course.startTime2 > 0) {%>
-                                                                ；<%= course.startTime2 %> - <%= course.finishTime2 %>
-                                                                <% } %>
-                                                            </p>
-                                                            <p>
-                                                                <label>报名日期:</label>
-                                                                <span class="F_orange">2014年5月12日</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <p>
-                                                        <label>上课地址：</label>
-                                                        <span><%= course.address %></span></p>
-                                                </div>
-                                                <div class="row2">
-                                                    <%if(course.startUponArrival===0){%>
-                                                        <%= course.regPhone %>
-                                                    <%}else{%>
-                                                        <%= course.startDate %> - <%= course.finishDate %>
-                                                    <%}%>
-                                                </div>
-                                                <div class="row3">
-                                                    <h3>学员信息</h3>
-                                                    <div class="clearfix">
-                                                        <div class="fleft">
-                                                            <p>
-                                                                <label>学员姓名:</label>
-                                                                <%= name %>
-                                                            </p>
-                                                            <p>
-                                                                <label>邮箱:</label>
-                                                                <%= email %>
-                                                            </p>
-                                                        </div>
-                                                        <div class="fleft">
-                                                            <p>
-                                                                <label>联系方式:</label>
-                                                                <%= phone %>
-                                                            </p>
-                                                        </div>
-                                                        <p class="clear F_orange">恭喜您！已使用XX元返现券，入学后不进行中途退学，即可获得等额现金返还。</p>
-                                                    </div>
-                                                </div>
+                        <p>
+                            <label>邮箱:</label>
+                            <%= email %>
+                        </p>
+                    </div>
+                    <div class="fleft">
+                        <p>
+                            <label>联系方式:</label>
+                            <%= phone %>
+                        </p>
+                    </div>
+                    <p class="clear F_orange">恭喜您！已使用XX元返现券，入学后不进行中途退学，即可获得等额现金返还。</p>
+                </div>
+            </div>
 
-                                                <div class="row4">
-                                                    <h3>支付信息</h3>
-                                                    <p>
-                                                        <label>支付方式:</label>
-                                                        <%= EnumConfig.BookingTypeText[type]%>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div id="printBooking" class="print"><a href="#">订单打印</a></div>
-                                            <!--bookingDetail end-->
-                                            <div class="btns text-center">
-                                                <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
+            <div class="row4">
+                <h3>支付信息</h3>
 
-                                                <%_.each(actionList,function(action){%>
-                                                <input type="button" class="btn_W js_btn_operate"
-                                                       value="<%=EnumConfig.BookingActionText(action.name)%>"
-                                                       data-value="<%=action.name%>">
-                                                <%})%>
-                                            </div>
-                                            <!--btns end-->
-                                        </div>
+                <p>
+                    <label>支付方式:</label>
+                    <%= EnumConfig.BookingTypeText[type]%>
+                </p>
+            </div>
+        </div>
+        <div id="printBooking" class="print"><a href="#">订单打印</a></div>
+        <!--bookingDetail end-->
+        <div class="btns text-center">
+            <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
+
+            <%_.each(actionList,function(action){%>
+            <input type="button" class="btn_W js_btn_operate"
+                   value="<%=EnumConfig.BookingActionText(action.name)%>"
+                   data-value="<%=action.name%>">
+            <%})%>
+        </div>
+        <!--btns end-->
+    </div>
 
 
 </script>
@@ -1024,7 +1010,8 @@
             <%if(course.bookingType===0){%>
             <p>
                 <label></label>
-                <input id="type1" name="bookingType" value="<%=EnumConfig.PayType.offline%>" type="radio" checked="true">
+                <input id="type1" name="bookingType" value="<%=EnumConfig.PayType.offline%>" type="radio"
+                       checked="true">
                 <label class="radio" for="type1">前台付现</label>
                 <span style="color:#ff5500;">(试听满意后直接在机构进行付款)</span>
             </p>
@@ -1040,10 +1027,12 @@
             <%if(course.bookingType===2){%>
             <p>
                 <label></label>
-                <input id="type1" name="bookingType" value="<%=EnumConfig.PayType.offline%>" type="radio" checked="true">
+                <input id="type1" name="bookingType" value="<%=EnumConfig.PayType.offline%>" type="radio"
+                       checked="true">
                 <label class="radio" for="type1">前台付现</label>
                 <span style="color:#ff5500;">(试听满意后直接在机构进行付款)</span>
             </p>
+
             <p class="blank1">
                 <label></label>
                 <input id="type2" name="bookingType" value="<%=EnumConfig.PayType.online%>" type="radio">
@@ -1133,7 +1122,6 @@
             <p><label>预约报到： </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
 
             <p><label>费用总计： </label> ￥<b class="price"><%= price %></b></p>
-
 
 
             <p class="extra">* 到达学校后，请您凭入学人的有效证件办理入学</p>
