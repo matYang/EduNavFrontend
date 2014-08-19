@@ -56,7 +56,7 @@
 #mypage_content .confirmed{ padding-left:25px; background:url(../images/icon.png) no-repeat 0 -225px;}
 #mypage_content .cancelled{ padding-left:25px; background:url(../images/icon.png) no-repeat 0 -263px;}
 
-#mypage_content /*订单详情页*/
+/*订单详情页*/
 #mypage_content .row0{border-bottom:1px dotted #ccc; padding:10px 25px; line-height:35px;}
 #mypage_content .row0 label{ font-weight:bold;}
 #mypage_content .row0 label s{ margin:0 8px;}
@@ -64,11 +64,11 @@
 #mypage_content .row0 .price{font-family: 微软雅黑; font-size: 18px; color: #ff5500; padding-top: 32px;}
 #mypage_content .row0 .price label,.row0 .price .sign{color:#333;}
 
-#mypage_content .row1{ padding:10px 25px 30px; border-bottom:1px dotted #ccc;}
-#process{width:533px; padding:35px  40px; margin-left:18px;margin-right: 20px}
-#process .node,#process .proce{float:left;position:relative;height:13px;background-image:url(../images/bg_state.jpg);background-repeat:no-repeat;}
-#process .node{width:13px;}
-#process .proce{width:150px;border:solid #fff;border-width:0 5px;}
+#mypage_content .row1{ padding:20px; border-bottom:1px dotted #ccc;}
+#mypage_content #process{ padding:25px 0 40px; margin-left:18px;}
+#mypage_content #process .node,#process .proce{float:left;position:relative;height:13px;background-image:url(../images/bg_state.jpg);background-repeat:no-repeat;}
+#mypage_content #process .node{width:13px;}
+#mypage_content #process .proce{width:130px;border:solid #fff;border-width:0 5px;}
 #process .node.wait{background-position:-150px -40px;}
 #process .node.ready{background-position:-150px 0px;}
 #process .node.singular{background-position:-150px -60px;}
