@@ -998,23 +998,24 @@
                 <%}%>
             <%}%>
         </div>
-        <div class="field" id="cashback_box">
-            <% if (course.cashback) { %>
-            <input type="checkbox" id="booking_useCashback"/>
+        <!--not needed currently-->
+        <!--<div class="field" id="cashback_box">-->
+            <!--< if (course.cashback) { >-->
+            <!--<input type="checkbox" id="booking_useCashback"/>-->
 
-            <div class="fleft cashback"><%= course.cashback %>元
-                <div class="tip" style="left:0;width:350px;">
-                    <div class="arrow" style="left:22px"></div>
-                    <div class="tip_content">
-                        用“返现券”预订此课程，可立即返还<%= course.cashback %>元现金！
-                        入学后不进行退学，就可至您的账户里提现。
-                        <span class="link howToGetCoupon" style="color:green">如何获得返现券</span>
-                    </div>
-                </div>
-            </div>
-            <label for="booking_useCashback" style="font-size:13px;width:70px">使用返现券</label>
-            <% } %>
-        </div>
+            <!--<div class="fleft cashback"><= course.cashback >元-->
+                <!--<div class="tip" style="left:0;width:350px;">-->
+                    <!--<div class="arrow" style="left:22px"></div>-->
+                    <!--<div class="tip_content">-->
+                        <!--用“返现券”预订此课程，可立即返还<= course.cashback >元现金！-->
+                        <!--入学后不进行退学，就可至您的账户里提现。-->
+                        <!--<span class="link howToGetCoupon" style="color:green">如何获得返现券</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<label for="booking_useCashback" style="font-size:13px;width:70px">使用返现券</label>-->
+            <!--< } >-->
+        <!--</div>-->
         <div class="field clearfix" id="cashback_box_notLoggedIn">
             <div class="fleft login_reg1 clearfix" id="booking_loginnote"><a id="booking_loginToggler"
                                                                              class="link F_green">登录</a>或<a
