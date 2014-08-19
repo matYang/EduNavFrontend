@@ -1072,14 +1072,14 @@
             <%if(course.bookingType===0||course.bookingType===2){%>
             <p>
                 <label></label>
-                <input name="bookingType" value="<%=course.bookingType%>" type="radio" checked>前台付现
+                <input name="bookingType" value="<%=EnumConfig.PayType.offline%>" type="radio" checked>前台付现
                 <span style="color:#ff5500;">(试听满意后直接在机构进行付款)</span>
             </p>
             <%}%>
             <%if(course.bookingType===1||course.bookingType===2){%>
             <p class="blank1">
                 <label></label>
-                <input name="bookingType" value="<%=course.bookingType%>" type="radio">在线支付
+                <input name="bookingType" value="<%=EnumConfig.PayType.online%%>" type="radio">在线支付
                 <span style="color:#ff5500;">(爱会员惊享95折！用返券抵;&nbsp;爱•承诺：试听不满意，无条件退全款！)</span>
             </p>
             <%}%>
