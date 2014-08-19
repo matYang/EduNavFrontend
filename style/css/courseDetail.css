@@ -172,7 +172,7 @@ ol.bjqs-markers li a{
     -ms-transition: all 0.65s;
     -o-transition: all 0.65s;
     transition: all 0.65s;
-    border-radius: 2px;
+    border-radius: 1px;
 }
 ol.bjqs-markers li.active-marker a,
 ol.bjqs-markers li a:hover{
