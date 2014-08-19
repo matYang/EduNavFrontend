@@ -25,6 +25,7 @@ var BookingPayView = Backbone.View.extend({
         //如果订单不可支付或者不为待支付状态 则进入个人中心页面
         if (booking.get('type') !== EnumConfig.PayType.online || booking.get('status') !== 11) {
             app.navigate("mypage", true);
+            return
         }
         this.booking = booking;
         this.$el.append(this.template(this.booking._toJSON()));
