@@ -1191,34 +1191,44 @@
 
             <p><label>预约报到： </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
 
-            <p>
+            <div>
                 <label>费用总计： </label>
                 <%if(!course.price){%>
                 <b class="price">机构定制</b>
                 <%}else{%>
-                <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
-                <%if(course.cashback){%>
-                <a class="label cashback"><%= course.cashback %>元
-                    <div class="tip">
-                        <div class="arrow"></div>
-                        <div class="tip_content">
-                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥
+                    <% if(type==EnumConfig.PayType.online && course.commission){ %>
+                    <%= course.price - course.commission%>
+                    <%} else {%>
+                    <%= course.price %>
+                    <%} %>
+                </b>
+                <% if(type==EnumConfig.PayType.online){ %>
+                    <%if(course.commission){%>
+                    <a class="label saved"><%= course.commission %>元
+                        <div class="tip">
+                            <div class="arrow"></div>
+                            <div class="tip_content">
+                                选择线上支付，支付时即可立减<%= course.commission %>元！
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <%}%>
-                <%if(course.commission){%>
-                <a class="label save"><%= course.commission %>元
-                    <div class="tip">
-                        <div class="arrow"></div>
-                        <div class="tip_content">
-                            选择线上支付，支付时即可立减<%= course.commission %>元！
+                    </a>
+                    <%}%>
+                <%} else if(type==EnumConfig.PayType.offline) {%>
+                    <%if(course.cashback){%>
+                    <a class="label cashback"><%= course.cashback %>元
+                        <div class="tip">
+                            <div class="arrow"></div>
+                            <div class="tip_content">
+                                前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                    <%}%>
+                <%} %>
+                    
                 <%}%>
-                <%}%>
-            </p>
+            </div>
 
 
             <p class="extra">* 到达学校后，请您凭入学人的有效证件办理入学</p>
