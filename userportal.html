@@ -756,7 +756,7 @@
 
         <%_.each(actionList,function(action){%>
         <input type="button" class="btn_W js_btn_operate"
-               value="<%=EnumConfig.BookingActionText(action.name)%>"
+               value="<%=EnumConfig.BookingActionText[action.name]%>"
                data-value="<%=action.name%>">
         <%})%>
     </div>
