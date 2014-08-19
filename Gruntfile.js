@@ -50,8 +50,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'build/common.min.js':['<%= concat.common.dest %>'],
-          'build/main.min.js':['<%= concat.main.dest %>'],
-          'build/adminMain.min.js':['<%= concat.admin.dest %>'],
+          'build/main.min.js':['<%= concat.main.dest %>']
           //'build/partnerMain.min.js':['<%= concat.partner.dest %>'],
         }
       }
