@@ -1021,7 +1021,7 @@
     <div class="title"><h3>支付方式</h3></div>
     <div class="row2">
         <div class="field">
-            <%if(course.bookingType===0||course.bookingType===2){%>
+            <%if(course.bookingType===0){%>
             <p>
                 <label></label>
                 <input id="type1" name="bookingType" value="<%=EnumConfig.PayType.offline%>" type="radio" checked="true">
@@ -1029,7 +1029,21 @@
                 <span style="color:#ff5500;">(试听满意后直接在机构进行付款)</span>
             </p>
             <%}%>
-            <%if(course.bookingType===1||course.bookingType===2){%>
+            <%if(course.bookingType===1){%>
+            <p>
+                <label></label>
+                <input id="type2" name="bookingType" value="<%=EnumConfig.PayType.online%>" type="radio" checked="true">
+                <label class="radio" for="type2">在线支付</label>
+                <span style="color:#ff5500;">(爱会员惊享95折！用返券抵;&nbsp;爱•承诺：试听不满意，无条件退全款！)</span>
+            </p>
+            <%}%>
+            <%if(course.bookingType===2){%>
+            <p>
+                <label></label>
+                <input id="type1" name="bookingType" value="<%=EnumConfig.PayType.offline%>" type="radio" checked="true">
+                <label class="radio" for="type1">前台付现</label>
+                <span style="color:#ff5500;">(试听满意后直接在机构进行付款)</span>
+            </p>
             <p class="blank1">
                 <label></label>
                 <input id="type2" name="bookingType" value="<%=EnumConfig.PayType.online%>" type="radio">
