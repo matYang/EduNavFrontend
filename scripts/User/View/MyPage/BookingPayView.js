@@ -59,7 +59,6 @@ var BookingPayView = Backbone.View.extend({
             //打开新标签页进行支付 location
             var url = '/api/v2/order/' + that.booking.id;
             var s = window.open(url);
-            console.dir(s.focus);
             s.focus();
         });
     },

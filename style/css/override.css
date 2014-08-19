@@ -65,14 +65,6 @@ li a, .page a {
 	margin-top:20px;
 }
 
-#mypage_content #printBooking {
-	width: 49px;
-	float: right;
-	position: relative !important;
-	margin-top: -20px;
-	top:0px;
-}
-
 .unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
