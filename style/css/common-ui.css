@@ -210,11 +210,10 @@ a:hover, a:active, {
 /*特殊按钮--支付宝*/
 .btn-alipay {
     display: inline-block;
-    border: 1px solid #cccccc;
-    width: 220px;
-    height: 70px;
+    padding: 0;
+    width: 200px;
+    height: 60px;
     background: #ffffff url('../images/alipay.png') no-repeat center;
-    background-size: 200px 130px;
 }
 
 /*下列为page中的style*/
@@ -222,7 +221,5 @@ a:hover, a:active, {
 }
 
 .radios-pay li input[type=radio] {
-    height: 80px;
-    width: 30px;
-    line-height: 80px;
+    display: none;
 }

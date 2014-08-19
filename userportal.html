@@ -721,80 +721,33 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingPay">
-    <div class="row clearfix">
-        <div id="process" class="fright">
-            <% if ( status === 2 || status === 3 || status === 5 || status === 9 || status === 11 ) { %>
-            <p><%= EnumConfig.BookingStatusText[status] %></p>
-            <% } else { %>
-            <% if ( status >= 0) { %>
-            <div class="node fore ready">
-                <% } else { %>
-                <div class="node fore wait">
-                    <% } %>
-                    <p>提交订单</p>
+    <div class="step clearfix" style="margin-bottom:15px; margin-right:-50px;">
+        <ol class="fright">
+            <li class="step_first">
+                <div class="step_done">
+                    <div class="step_name">填写订单</div>
+                    <div class="step_node"></div>
                 </div>
-                <% if ( status > 0) { %>
-                <div class="proce ready">
-                    <% } else { %>
-                    <div class="proce doing">
-                        <% } %>
-                        <p>&nbsp;</p>
-                    </div>
-                    <% if ( status >= 1) { %>
-                    <div class="node ready">
-                        <p>预约成功</p>
-                        <% } else { %>
-                        <div class="node wait">
-                            <p>机构确认</p>
-                            <% } %>
-                        </div>
-                        <% if ( status > 1) { %>
-                        <div class="proce ready">
-                            <% } else if (status === 1) { %>
-                            <div class="proce doing">
-                                <% } else { %>
-                                <div class="proce wait">
-                                    <% } %>
-                                    <p>&nbsp;</p>
-                                </div>
-                                <% if ( status >= 4) { %>
-                                <div class="node ready">
-                                    <% } else { %>
-                                    <div class="node wait">
-                                        <% } %>
-                                        <p>预订成功</p>
-                                    </div>
-                                    <% if ( status > 4) { %>
-                                    <div class="proce ready">
-                                        <% } else if (status === 4) { %>
-                                        <div class="proce doing">
-                                            <% } else { %>
-                                            <div class="proce wait">
-                                                <% } %>
-                                                <p>&nbsp;</p>
-                                            </div>
-                                            <% if ( status >= 12) { %>
-                                            <div class="node ready">
-                                                <% } else { %>
-                                                <div class="node wait">
-                                                    <% } %>
-                                                    <p>成功入学</p>
-                                                </div>
-                                                <% } %>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </li>
+            <li>
+                <div class="step_done">
+                    <div class="step_name">提交订单</div>
+                    <div class="step_node"></div>
                 </div>
-                <!--               <div class="explain">
-                                   <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的订单正在和新东方教育确认</span></p>
-                                   <p><span>2014-6-12</span> <span>12:02</span> <span>您的订单已经提交</span></p>
-                               </div>-->
-            </div>
-        </div>
+            </li>
+            <li>
+                <div class="step_active">
+                    <div class="step_name">支付订单</div>
+                    <div class="step_node"></div>
+                </div>
+            </li>
+            <li class="step_last">
+                <div class="">
+                    <div class="step_name">完成预定</div>
+                    <div class="step_node"></div>
+                </div>
+            </li>
+        </ol>
     </div>
     <div class="courseBrief">
         <div class="row4">
@@ -854,15 +807,14 @@
             </h3>
         </div>
         <div class="padding-sm">
-            <ul class="radios-pay">
+            <ul class="radios-pay padding-sm">
                 <li class="active">
-                    <input id="alipay" type="radio" checked disabled/>
+                    <input name="payType" id="alipay" type="radio" checked="true"/>
                     <label for="alipay"><a class="btn btn-alipay"></a></label>
                 </li>
             </ul>
-            <p class="text-primary margin-x">您已经选择“支付宝”支付</p>
 
-            <p>确认后将跳转到支付页面，请在30分钟内完成支付。若30分钟内未付款成功，将取消本次订单。</p>
+            <p class="">确认后将跳转到支付页面，请在30分钟内完成支付。若30分钟内未付款成功，将取消本次订单。</p>
         </div>
         <div class="text-center">
             <div class="blank2"></div>
