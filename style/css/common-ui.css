@@ -1,57 +1,41 @@
+/* 2014-8-16
+ * Jet
+**/
+
 /*基本样式*/
 a, a:visited {
     text-decoration: none;
     color: #333333;
 }
 
-a:hover, a:active, {
+a:hover, a:active{
     color: #128d56;
 }
 
 /*通用工具类*/
-.text-center {
-    text-align: center;
-}
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.pull-left { float: left; }
+.pull-right { float: right; }
 
-.text-right {
-    text-align: right;
-}
+.padding-sm { padding: 10px 20px; }
+.padding-md { padding: 20px 30px; }
+.padding-lg { padding: 30px 40px; }
 
-.pull-left {
-    float: left;
-}
-
-.pull-right {
-    float: right;
-}
-
-.padding-sm {
-    padding: 10px 20px;
-}
-
-.padding-md {
-    padding: 20px 30px;
-}
-
-.padding-lg {
-    padding: 30px 40px;
-}
-
-.margin-x {
-    margin: 10px 0;
-}
-
-.margin-y {
-    margin: 0 10px;
-}
+.margin-x { margin: 10px 0; }
+.margin-y { margin: 0 10px; }
 
 /*字体 背景 边框颜色*/
-.text-primary{
-    color: #128d56;
-}
-.border-primary{
-    border: 1px solid #128d56;
-}
+.border-primary{ border: 1px solid #128d56; }
+
+.bg-primary{ background-color: #128d56; }
+.bg-warning{ background-color: #FBAE05; }
+.bg-error{ background-color: #FF5500; }
+
+.text-primary{color: #128d56; }
+.text-warning{color: #FBAE05; }
+.text-error{color: #FF5500; }
+
 
 /*通用图标 已在支付页面使用*/
 .icon {
@@ -188,17 +172,96 @@ a:hover, a:active, {
     border-radius: 2px;
 }
 
-.bg-primary{
-    background-color: #13AD67;
+/*以下部分需要后续删除 统一使用.label*/
+/*need remove start*/
+.cashback{
+    display:inline-block;
+    position:relative;
+    border: 1px solid #128d56;border-radius: 2px;
+    font-family: SimSun, serif;
+    font-size:12px;
+    line-height: 18px;
+    color:#128d56;
+    padding-left: 19px;padding-right: 3px;
 }
-.bg-warning{
-    background-color: #FBAE05;
+.cashback:before{
+    content: '返';
+    position: absolute;left: 0;top:0;
+    color: white;
+    background: #128D56;
+    padding: 0 2px;
+    width: 12px;
 }
-.bg-error{
-    background-color: #FF5500;
+.cashback .tip{display:none; top:26px; right:-39px;}
+.cashback:hover .tip{display:block;}
+
+/*need remove end*/
+
+/*tip 提示框 原有样式*/
+.tip{
+    position:absolute;
+    z-index:99;
+    width:313px;
+    border:1px solid #a7a7a7; background:#fff;
+    font-size:12px; line-height:22px;}
+.tip .arrow{
+    position:absolute;
+    top:-8px; left:243px;
+    width:15px; height:8px;
+    background:url(../images/arrow.png) no-repeat;
 }
+.tip_content{ padding:8px;}
 
 
+
+/*返 立减 common label*/
+.label{
+    display:inline-block;
+    position:relative;
+    border: 1px solid;border-radius: 2px;
+    font-size:12px;
+    font-family: SimSun, serif;
+    line-height: 18px;
+    padding-right: 2px;
+    padding-left: 0;/*该行为了去除.cashback遗留样式的多余padding*/
+}
+.label:before{
+    display: inline-block;
+    position: relative;
+    margin-right: 2px;padding: 0 2px;
+    color: white;
+}
+.label .tip{display:none; top:26px; right:-39px;border-color: inherit;}
+.label:hover .tip{display:block;}
+.label .tip_content{ padding:8px;text-align: center;}
+
+
+/*label的独立style*/
+/*返*/
+.label.cashback{
+    border-color: #128d56;
+    color:#128d56;
+}
+.label.cashback:before{
+    content:'返';
+    width: 1em;
+    background: #128d56;
+}
+
+/*立减*/
+.label.save,.label.saved{
+    border-color: #ff5500;
+    color:#ff5500;
+}
+.label.save:before,.label.saved:before{
+    content:'立减';
+    width: 2em;
+    background: #ff5500;
+}
+/*已减*/
+.label.saved:before{
+    content:'已减';
+}
 
 
 
@@ -206,7 +269,7 @@ a:hover, a:active, {
 
 
 /***************我是分割线*****************/
-/***************一下为非通用样式 之后需要独立出来*****************/
+/***************非通用样式 之后需要独立出来*****************/
 /*特殊按钮--支付宝*/
 .btn-alipay {
     display: inline-block;
@@ -216,10 +279,9 @@ a:hover, a:active, {
     background: #ffffff url('../images/alipay.png') no-repeat center;
 }
 
-/*下列为page中的style*/
+/*下列为page中radio的style*/
 .radios-pay {
 }
-
 .radios-pay li input[type=radio] {
     display: none;
 }

@@ -277,25 +277,42 @@
         <div class="col2">
 
             <p class="price">
-                <%if(price===null){%>
+                <%if(!price){%>
                 <small>价格面议</small>
                 <%}else{%>
                 <span class="sign">￥</span><%= price %>
                 <%}%>
             </p>
-
-            <% if (cashback) { %>
-            <a class="cashback">
-                <%= cashback %>元
+            <%if(cashback){%>
+            <a class="label cashback"><%=cashback %>元
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">
-                        用“返现券”预订此课程，可立即返还<%= cashback %>元现金！入学后不进行退学，就可至您的账户里提现。
-                        <span class="link howToGetCoupon" style="color:green">如何获得返现券</span>
+                        前台付现，入学成功可立即返还<%=cashback %>元至现金账户！
                     </div>
                 </div>
             </a>
-            <% } %>
+            <%}%>
+            <%if(commission){%>
+            <a class="label save"><%= commission %>元
+                <div class="tip">
+                    <div class="arrow"></div>
+                    <div class="tip_content">
+                        选择线上支付，支付时即可立减<%=commission %>元！
+                    </div>
+                </div>
+            </a>
+            <%}%>
+            <!--<a class="cashback">-->
+                 <!--cashback 元-->
+                <!--<div class="tip">-->
+                    <!--<div class="arrow"></div>-->
+                    <!--<div class="tip_content">-->
+                        <!--用“返现券”预订此课程，可立即返还 cashback 元现金！入学后不进行退学，就可至您的账户里提现。-->
+                        <!--<span class="link howToGetCoupon" style="color:green">如何获得返现券</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</a>-->
         </div>
         <div class="col3">
             <div class="compare" id="compare_<%= id %>"><input class="btn_g add" type="button" value="+对比"/></div>
@@ -320,7 +337,13 @@
     <div class="compareEntry" id="compareEntry_courseId_<%= id %>">
         <p class="desc"><span>【<%= instName %>】</span><a href="#course/<%= id %>"><%= courseName %></a></p>
 
-        <p class="price"><span class="sign">￥</span><%= price %></p>
+        <p class="price">
+            <%if(!price){%>
+            <small>价格面议</small>
+            <%}else{%>
+            <span class="sign">￥</span><%= price %>
+            <%}%>
+        </p>
 
         <div class="remove"></div>
     </div>
@@ -522,7 +545,11 @@
             <p class="address"><b>地址：</b><%= course.address %></p>
         </div>
         <div class="bookingEntryPrice">
+            <%if(!price){%>
+            <small>价格面议</small>
+            <%}else{%>
             <span class="sign">￥</span><%= price %>
+            <%}%>
         </div>
         <div class="bookingEntryState">
             <% if (status === 3 || status === 16) { %>
@@ -539,171 +566,201 @@
 
 <script type="text/template" id="tpl_mypage_bookingDetail">
 
-    <div id="mypage_content" class="mypage_min_height">
-        <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green link">课程订单</span></div>
-        <div id="bookingDetail">
-            <div class="row0 clearfix">
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green link">课程订单</span></div>
+    <div id="bookingDetail">
+        <div class="row0 clearfix">
+            <div class="fleft">
+                <p><label>订单号：<%= id %></label> <span>(<%= createTime %>预订)</span></p>
+
+                <p><label>状<s></s>态：<b class="F_green" id="bookingStatus">
+                    <%= EnumConfig.BookingStatusText[status] %></b></label>
+                </p>
+
+                <div>
+                    <label>爱特价：</label>
+                    <%if(!price){ %>
+                    <span class="sign" style="font-size:14px;">¥</span>
+                    <span style="font-size:24px; color:#ff5500;vertical-align:-2px">机构定制
+                    </span>
+                    <%}else{%>
+                    <span class="sign" style="font-size:14px;">¥</span>
+                    <span style="font-size:24px; color:#ff5500;vertical-align:-2px"><%= price %>
+                    </span>
+                    &nbsp;&nbsp;
+                    <%if(type===EnumConfig.PayType.online&&course.commission){%>
+                    <s>原价：¥<% course.price %></s>
+                    <%}%>
+                    &nbsp;&nbsp;
+                    <%if(type===EnumConfig.PayType.offline&&course.cashback){%>
+                    <a class="label cashback">1122元
+                        <div class="tip">
+                            <div class="arrow"></div>
+                            <div class="tip_content">
+                                入学成功可立即返还<%=course.cashback%>元至现金账户！
+                            </div>
+                        </div>
+                    </a>
+                    <%}%>
+                    <%if(type===EnumConfig.PayType.online&&course.commission)%>
+                    <a class="label saved"><%=course.commission%>元</a>
+                    <%}%>
+                </div>
+            </div>
+            <div class="fright btn" style="text-align:center">
+                <% if(type===EnumConfig.PayType.online&&status===11){ %>
+                <button class="btn_O js_btnGoToPay">去支付</button>
+                <% } %>
+            </div>
+        </div>
+        <div class="row1">
+
+            <div id="process">
+                <div class="node fore ready">
+                    <p>提交订单</p>
+                </div>
+                <div class="proce doing">
+                    <p>&nbsp;</p>
+                </div>
+                <div class="node wait">
+                    <p>支付学费</p>
+                </div>
+                <div class="proce wait">
+                    <p>&nbsp;</p>
+                </div>
+                <div class="node wait">
+                    <p>学校确认</p>
+                </div>
+                <div class="proce wait">
+                    <p>&nbsp;</p>
+                </div>
+                <div class="node wait clearfix">
+                    <p class="fleft" style="width:50px;">入学</p>
+
+                    <p class="fleft" style="width:100px; text-align:center; margin-left:25px;">返现可使用</p>
+                </div>
+                <div class="proce wait">
+                    <p>&nbsp;</p>
+                </div>
+                <div class="node wait">
+                    <p style="margin-left:-5px;">结业</p>
+                </div>
+            </div>
+
+
+            <div class="explain">
+                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span> 学校确认您已经完成课程学习，期待下次为您服务</span></p>
+
+                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>已通知学校询问您的入学状态，并确认是否可获得返现</span>
+                </p>
+
+                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的订单信息已经通知学校；将有资深课程顾问与您联系</span>
+                </p>
+
+                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的学费已经支付成功</span></p>
+
+                <p><span>2014-6-12</span> <span>12:02</span> <span>您提交了订单，请您在2014-08-10 20:31前完成支付，过时系统将自动取消；</span>
+                </p>
+            </div>
+        </div>
+        <div class="row2">
+            <h3><%= course.courseName %></h3>
+
+            <div class="clearfix">
                 <div class="fleft">
-                    <p><label>订单号：<%= id %></label> <span>(<%= createTime %>预订)</span></p>
-
-                    <p><label>状<s></s>态：<b class="F_green" id="bookingStatus">
-                        <%= EnumConfig.BookingStatusText[status] %></b></label>
+                    <p>
+                        <label>教育机构：</label>
+                        <span><%= course.instName %></span>
+                    </p>
+                    <%if(course.classSize){ %>
+                    <p>
+                        <label>班级类型:</label>
+                        <%= course.classSize %>
+                    </p>
+                    <%}%>
+                    <p>
+                        <label>咨询电话：</label>
+                        <span>400-025-0884</span>
                     </p>
                 </div>
-                <p class="fright price">
-                    <label>总金额：</label><span class="sign">￥</span><%= price %>
-                    &nbsp;
-                    <% if(type===EnumConfig.PayType.online&&status===11){ %>
-                    <button class="btn_O js_btnGoToPay">去支付</button>
+                <div class="fleft">
+
+                    <p>
+                        <label>上课日期:</label>
+                        <%if(course.startUponArrival===0){%>
+                        <span><%= course.regPhone %></span>
+                        <%}else{%>
+                        <span class="badge bg-error">始</span> <%= course.startDate %>
+                    </p>
+
+                    <p>
+                        <label></label>
+                        <span class="badge bg-primary">终</span>
+                        <%= course.finishDate %>
+                        <%}%>
+                    </p>
+                    <% if (course.startTime1) {%>
+                    <p>
+                        <label>上课时间:</label>
+                        <%= course.startTime1 %> - <%= course.finishTime1 %>
+                        <% if (course.startTime2 > 0) {%>
+                        ；<%= course.startTime2 %> - <%= course.finishTime2 %>
+                        <% } %>
+                    </p>
                     <% } %>
-                </p>
-            </div>
-            <div class="row1">
 
-                <div id="process">
-                    <div class="node fore ready">
-                        <p>提交订单</p>
-                    </div>
-                    <div class="proce doing">
-                        <p>&nbsp;</p>
-                    </div>
-                    <div class="node wait">
-                        <p>支付学费</p>
-                    </div>
-                    <div class="proce wait">
-                        <p>&nbsp;</p>
-                    </div>
-                    <div class="node wait">
-                        <p>学校确认</p>
-                    </div>
-                    <div class="proce wait">
-                        <p>&nbsp;</p>
-                    </div>
-                    <div class="node wait clearfix">
-                        <p class="fleft" style="width:50px;">入学</p>
-
-                        <p class="fleft" style="width:100px; text-align:center; margin-left:25px;">返现可使用</p>
-                    </div>
-                    <div class="proce wait">
-                        <p>&nbsp;</p>
-                    </div>
-                    <div class="node wait">
-                        <p style="margin-left:-5px;">结业</p>
-                    </div>
                 </div>
+            </div>
+            <p>
+                <label>上课地址：</label>
+                <span><%= course.address %></span></p>
+        </div>
+        <div class="row3">
+            <h3>学员信息</h3>
 
-
-                <div class="explain">
-                    <p class="active"><span>2014-6-13</span> <span>11:02</span> <span> 学校确认您已经完成课程学习，期待下次为您服务</span></p>
-
-                    <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>已通知学校询问您的入学状态，并确认是否可获得返现</span>
+            <div class="clearfix">
+                <div class="fleft">
+                    <p>
+                        <label>学员姓名:</label>
+                        <%= name %>
                     </p>
 
-                    <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的订单信息已经通知学校；将有资深课程顾问与您联系</span>
+                    <p>
+                        <label>报名日期:</label>
+                        <span class="F_orange"><%= scheduledTime %></span>
                     </p>
 
-                    <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的学费已经支付成功</span></p>
-
-                    <p><span>2014-6-12</span> <span>12:02</span> <span>您提交了订单，请您在2014-08-10 20:31前完成支付，过时系统将自动取消；</span>
+                </div>
+                <div class="fleft">
+                    <p>
+                        <label>联系方式:</label>
+                        <%= phone %>
                     </p>
                 </div>
-            </div>
-            <div class="row2">
-                <h3><%= course.courseName %></h3>
-
-                <div class="clearfix">
-                    <div class="fleft">
-                        <p>
-                            <label>教育机构：</label>
-                            <span><%= course.instName %></span></p>
-
-                        <p>
-                            <label>上课日期:</label>
-                            5月13日 - 6月13日</p>
-
-                        <p>
-                            <label>班级类型:</label>
-                            <%= course.classSize %>
-                        </p>
-                    </div>
-                    <div class="fleft">
-                        <p>
-                            <label>咨询电话：</label>
-                            <span>400-025-0884</span></p>
-
-                        <p>
-                            <label>上课时间:</label>
-                            <%= course.startTime1 %> - <%= course.finishTime1 %>
-                            <% if (course.startTime2 > 0) {%>
-                            ；<%= course.startTime2 %> - <%= course.finishTime2 %>
-                            <% } %>
-                        </p>
-
-                        <p>
-                            <label>报名日期:</label>
-                            <span class="F_orange">2014年5月12日</span></p>
-                    </div>
-                </div>
-                <p>
-                    <label>上课地址：</label>
-                    <span><%= course.address %></span></p>
-            </div>
-            <div class="row2">
-                <%if(course.startUponArrival===0){%>
-                <%= course.regPhone %>
-                <%}else{%>
-                <%= course.startDate %> - <%= course.finishDate %>
-                <%}%>
-            </div>
-            <div class="row3">
-                <h3>学员信息</h3>
-
-                <div class="clearfix">
-                    <div class="fleft">
-                        <p>
-                            <label>学员姓名:</label>
-                            <%= name %>
-                        </p>
-
-                        <p>
-                            <label>邮箱:</label>
-                            <%= email %>
-                        </p>
-                    </div>
-                    <div class="fleft">
-                        <p>
-                            <label>联系方式:</label>
-                            <%= phone %>
-                        </p>
-                    </div>
-                    <p class="clear F_orange">恭喜您！已使用XX元返现券，入学后不进行中途退学，即可获得等额现金返还。</p>
-                </div>
-            </div>
-
-            <div class="row4">
-                <h3>支付信息</h3>
-
-                <p>
-                    <label>支付方式:</label>
-                    <%= EnumConfig.BookingTypeText[type]%>
-                </p>
+                <!--<p class="clear F_orange">恭喜您！已使用XX元返现券，入学后不进行中途退学，即可获得等额现金返还。</p>-->
             </div>
         </div>
-        <div id="printBooking" class="print"><a href="#">订单打印</a></div>
-        <!--bookingDetail end-->
-        <div class="btns text-center">
-            <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
 
-            <%_.each(actionList,function(action){%>
-            <input type="button" class="btn_W js_btn_operate"
-                   value="<%=EnumConfig.BookingActionText(action.name)%>"
-                   data-value="<%=action.name%>">
-            <%})%>
+        <div class="row4">
+            <h3>支付信息</h3>
+
+            <p>
+                <label>支付方式:</label>
+                <%= EnumConfig.BookingTypeText[type]%>
+            </p>
         </div>
-        <!--btns end-->
     </div>
+    <div id="printBooking" class="print"><a href="#">订单打印</a></div>
+    <!--bookingDetail end-->
+    <div class="btns text-center">
+        <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
 
-
+        <%_.each(actionList,function(action){%>
+        <input type="button" class="btn_W js_btn_operate"
+               value="<%=EnumConfig.BookingActionText(action.name)%>"
+               data-value="<%=action.name%>">
+        <%})%>
+    </div>
+    <!--btns end-->
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingPay">
@@ -768,23 +825,26 @@
             <div class="field">
                 <label>总金额</label>
                 <b class="price">￥<%= price %></b>
+                <%if(course.commission){%>
+                <a class="label saved"><%= course.commission %>元 </a>
+                <%}%>
             </div>
-            <div class="field" id="cashback_box">
-                <% if (course.cashback) { %>
-                <input type="checkbox" id="booking_useCashback"/>
+            <!--currently not used-->
+            <!--<div class="field" id="cashback_box">-->
+                <!--< if (course.cashback) { >-->
+                <!--<input type="checkbox" id="booking_useCashback"/>-->
 
-                <div class="fleft cashback"><%= course.cashback %>元
-                    <div class="tip" style="left:0;width:350px;">
-                        <div class="arrow" style="left:22px"></div>
-                        <div class="tip_content"> 用“返现券”预订此课程，可立即返还<%=
-                            course.cashback %>元现金！入学后不进行退学，就可至您的账户里提现。<span
-                                    class="link howToGetCoupon" style="color:green">如何获得返现券</span>
-                        </div>
-                    </div>
-                </div>
-                <label for="booking_useCashback" style="font-size:13px;width:70px">使用返现券</label>
-                <% } %>
-            </div>
+                <!--<div class="fleft cashback"><= course.cashback >元-->
+                    <!--<div class="tip" style="left:0;width:350px;">-->
+                        <!--<div class="arrow" style="left:22px"></div>-->
+                        <!--<div class="tip_content"> 用“返现券”预订此课程，可立即返还<=course.cashback >元现金！入学后不进行退学，就可至您的账户里提现。<span-->
+                                    <!--class="link howToGetCoupon" style="color:green">如何获得返现券</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<label for="booking_useCashback" style="font-size:13px;width:70px">使用返现券</label>-->
+                <!--< } >-->
+            <!--</div>-->
         </div>
         <div class="title">
             <h3>
@@ -905,17 +965,6 @@
         <div class="fright ">恭喜您获得了最优价格</div>
     </div>
     <div class="row1">
-        <div class="field">
-            <label>报名人数</label>
-            <!-- <select name="enrollNum">
-                 <option value="1">1</option>
-                 <option value="2">2</option>
-                 <option value="3">3</option>
-                 <option value="4">4</option>
-                 <option value="5">5</option>
-             </select> -->
-            1 人
-        </div>
         <!--<div class="field">-->
         <!--<label>有效日期</label>-->
         <!--= course.cutoffDate  <span>（= course.cutoffDate 前须到教学机构进行报名，否则优惠价格将自动失效）</span>-->
@@ -923,10 +972,30 @@
         <div class="field">
             <label>课程费用</label>
 
-            <%if(price===null){%>
-            <b class="price">价格面议</b>
+            <%if(!course.price){%>
+                <b class="price">机构定制</b>
             <%}else{%>
-            <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
+                <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
+                <%if(course.cashback){%>
+                <a class="label cashback"><%= course.cashback %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                        </div>
+                    </div>
+                </a>
+                <%}%>
+                <%if(course.commission){%>
+                <a class="label save"><%= course.commission %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            选择线上支付，支付时即可立减<%= course.commission %>元！
+                        </div>
+                    </div>
+                </a>
+                <%}%>
             <%}%>
         </div>
         <div class="field" id="cashback_box">
@@ -1121,7 +1190,34 @@
 
             <p><label>预约报到： </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
 
-            <p><label>费用总计： </label> ￥<b class="price"><%= price %></b></p>
+            <p>
+                <label>费用总计： </label>
+                <%if(!course.price){%>
+                <b class="price">机构定制</b>
+                <%}else{%>
+                <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
+                <%if(course.cashback){%>
+                <a class="label cashback"><%= course.cashback %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                        </div>
+                    </div>
+                </a>
+                <%}%>
+                <%if(course.commission){%>
+                <a class="label save"><%= course.commission %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            选择线上支付，支付时即可立减<%= course.commission %>元！
+                        </div>
+                    </div>
+                </a>
+                <%}%>
+                <%}%>
+            </p>
 
 
             <p class="extra">* 到达学校后，请您凭入学人的有效证件办理入学</p>
@@ -1156,21 +1252,39 @@
         </dl>
         <div class="col2">
             <div class="price">
-                <%if(price===null){%>
-                <small>价格面议</small>
+                <%if(!price){%>
+                <small>机构定制</small>
                 <%}else{%>
                 <span class="sign">￥</span><%= price %>
                 <%}%>
             </div>
-            <% if (cashback) { %>
-            <a class="cashback"><%= cashback %>元
+            <!--<a class="cashback">cashback元-->
+                <!--<div class="tip">-->
+                    <!--<div class="arrow"></div>-->
+                    <!--<div class="tip_content"> 用“返现券”预订此课程，可立即返还cashback元现金！入学后不进行退学，就可至您的账户里提现。<span-->
+                            <!--class="link howToGetCoupon" style="color:green">如何获得返现券</span></div>-->
+                <!--</div>-->
+            <!--</a>-->
+            <%if(cashback){%>
+            <a class="label cashback"><%=cashback %>元
                 <div class="tip">
                     <div class="arrow"></div>
-                    <div class="tip_content"> 用“返现券”预订此课程，可立即返还<%= cashback %>元现金！入学后不进行退学，就可至您的账户里提现。<span
-                            class="link howToGetCoupon" style="color:green">如何获得返现券</span></div>
+                    <div class="tip_content">
+                        前台付现，入学成功可立即返还<%=cashback %>元至现金账户！
+                    </div>
                 </div>
             </a>
-            <% } %>
+            <%}%>
+            <%if(commission){%>
+            <a class="label save"><%= commission %>元
+                <div class="tip">
+                    <div class="arrow"></div>
+                    <div class="tip_content">
+                        选择线上支付，支付时即可立减<%=commission %>元！
+                    </div>
+                </div>
+            </a>
+            <%}%>
         </div>
         <div class="col3">
             <input type="button" id="bookNow" value="立即预订" class="btn_O"/>
@@ -1451,7 +1565,7 @@
     <tr id="courseName" class="course_name">
         <th width="64px">课程名称</th>
         <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>" width="195">
+        <td class="courseId_<%= course.id %>" width="195">
             <h2 class="F_green courseTitle" style="cursor:pointer;"><%= course.courseName %></h2>
 
             <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
@@ -1476,8 +1590,15 @@
         <th>课程价格</th>
         <% _.each(courses, function(course) { %>
         <td class="courseId_<%= course.courseId %>">
+            <%if(!course.price){%>
+            <div class="price">机构定制</div>
+            <%}else{%>
             <div class="price">￥<%= course.price %></div>
-            <a class="cashback"><%= course.cashback %>元</a>
+                <%if(course.cashback){%> <a class="label cashback"><%=course.cashback %>元</a> <%}%>
+                <%if(course.commission){%> <a class="label save"><%= course.commission %>元</a> <%}%>
+            <%}%>
+
+
         </td>
         <% }); %>
     </tr>

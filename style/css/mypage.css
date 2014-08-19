@@ -33,7 +33,7 @@
 /*个人中心首页*/
 #mypage_content #walletSummary{ width:780px; height:109px; line-height:109px; background:url(../images/walletSummary.png) no-repeat;}
 #mypage_content #walletSummary .line{float:left; width:1px; height:109px; background:url(../images/line.png) no-repeat center;}
-#mypage_content .summaryItem1,.summaryItem2,.summaryItem3{float:left; width:230px; text-align:center; padding-left:29px; font-size:18px; font-family:微软雅黑; }
+#mypage_content .summaryItem1,.summaryItem2,.summaryItem3{float:left; width:230px; text-align:center; padding-left:29px; font-size:18px; }
 #mypage_content .summaryItem1{ background: url(../images/summaryItem1.png) no-repeat 56px center;}
 #mypage_content .summaryItem2{ background: url(../images/summaryItem2.png) no-repeat 29px center;}
 #mypage_content .summaryItem3{ background: url(../images/summaryItem3.png) no-repeat 64px center;}
@@ -49,9 +49,9 @@
 #mypage_content .bookingEntryDetail h3{ font-weight:bold; margin-top:22px; margin-bottom:20px; font-size:14px;}
 #mypage_content .address{ margin-left:5px;}
 
-#mypage_content .bookingEntryPrice{float:left; width:118px; height:105px; line-height:105px; font-family:微软雅黑; font-size:18px; color:#ff5500; border-right:1px solid #ccc; text-align:center;}
+#mypage_content .bookingEntryPrice{float:left; width:118px; height:105px; line-height:105px; font-size:18px; color:#ff5500; border-right:1px solid #ccc; text-align:center;}
 #mypage_content .bookingEntryPrice .sign{color:#333;}
-#mypage_content .bookingEntryState{ float:left; width:138px; height:105px; line-height:105px; text-align:center; font-family:微软雅黑; font-size:18px; color:#128d56;}
+#mypage_content .bookingEntryState{ float:left; width:138px; height:105px; line-height:105px; text-align:center; font-size:18px; color:#128d56;}
 #mypage_content .pending{ padding-left:25px; background:url(../images/icon.png) no-repeat 0 -189px;}
 #mypage_content .confirmed{ padding-left:25px; background:url(../images/icon.png) no-repeat 0 -225px;}
 #mypage_content .cancelled{ padding-left:25px; background:url(../images/icon.png) no-repeat 0 -263px;}
@@ -61,7 +61,7 @@
 #mypage_content .row0 label{ font-weight:bold;}
 #mypage_content .row0 label s{ margin:0 8px;}
 #mypage_content .row0 span{ color:#666;}
-#mypage_content .row0 .price{font-family: 微软雅黑; font-size: 18px; color: #ff5500; padding-top: 32px;}
+#mypage_content .row0 .price{font-size: 18px; color: #ff5500; padding-top: 32px;}
 #mypage_content .row0 .price label,.row0 .price .sign{color:#333;}
 
 #mypage_content .row1{ padding:20px; border-bottom:1px dotted #ccc;}
@@ -70,7 +70,7 @@
 #mypage_content #process .node{width:13px;}
 #mypage_content #process .proce{width:130px;border:solid #fff;border-width:0 5px;}
 #process .node.wait{background-position:-150px -40px;}
-#process .node.ready{background-position:-150px 0px;}
+#process .node.ready{background-position:-150px 0;}
 #process .node.singular{background-position:-150px -60px;}
 #process .proce.wait{background-position:0 -40px;}
 #process .proce.doing{background-position:0 -20px;color:#360;}
@@ -81,10 +81,11 @@
 #mypage_content .explain span{ margin-right:10px; font-size:12px; color:#666; line-height:26px;}
 #mypage_content .explain .active span{ color:#128d56;}
 
-#mypage_content .row2{ padding:20px;  border-bottom:1px dotted #ccc; line-height:36px;}
-#mypage_content .row2 h3{font-size:24px; font-family:微软雅黑; color:#128d56; font-weight:normal; margin-bottom:10px;}
+#mypage_content .row2{ padding:20px;  border-bottom:1px dotted #ccc; line-height:32px;}
+#mypage_content .row2 h3{font-size:24px; color:#128d56; font-weight:normal; margin-bottom:10px;}
 #mypage_content .row2 .fleft{width:250px; margin-right:20px;}
-#mypage_content .row2 p label{color:#666;}
+#mypage_content .row2 p label{color:#666;width: 70px;
+    display: inline-block;}
 
 #mypage_content .row3{padding:20px; border-bottom:1px dotted #ccc; line-height:36px;}
 #mypage_content .row3 h3{ color:#333;}
@@ -108,7 +109,7 @@
 
 /*暂无数据*/
 #mypage_content .no_data{ margin-top:100px; margin-left:140px; padding-left:60px; background:url(../images/no_data.png) no-repeat left center;}
-#mypage_content .no_data div{ padding:12px 0 12px; font-size:24px; font-family:微软雅黑; color:#128d56;}
+#mypage_content .no_data div{ padding:12px 0 12px; font-size:24px; color:#128d56;}
 
 #mypage_content #bookingSummary .no_data{ width:333px; margin-left:auto; margin-right:auto;}
 
@@ -135,10 +136,10 @@
 #mypage_content .password .field input.text{width:250px;}
 #mypage_content .password .btn{ margin-top:30px;  margin-left:86px;}
 #mypage_content .password .btn .btn_O{ margin-right:30px;}
-#mypage_content .password span.instr{ margin-left:0px;}
+#mypage_content .password span.instr{ margin-left:0;}
 
 /*消费券*/
-#mypage_content .coupons_help_title{padding-left:30px; font-weight:normal; height:35px; line-height:35px; font-size:18px; font-family:微软雅黑; color:#128d56; background:url(../images/icon_wen.png) no-repeat left center;}
+#mypage_content .coupons_help_title{padding-left:30px; font-weight:normal; height:35px; line-height:35px; font-size:18px; color:#128d56; background:url(../images/icon_wen.png) no-repeat left center;}
 #mypage_content .coupons_help_title span{color:#ff5500;}
 
 #mypage_content .coupons_help1 {height:105px; font-size:12px; background:url(../images/coupons_help1.gif) no-repeat;}
@@ -171,7 +172,7 @@
 #mypage_content .total b{font-size:18px; font-family:Arial, Helvetica, sans-serif;}
 #mypage_content .total span{font-size:16px; font-family:Arial, Helvetica, sans-serif; font-weight:bold;}
 
-#mypage_content .in_built{ height:144px; line-height:144px; color:#128d56; margin-top:20px; padding-left:160px; font-family:微软雅黑; font-size:16px; background:url(../images/in_built.jpg) no-repeat left center;}
+#mypage_content .in_built{ height:144px; line-height:144px; color:#128d56; margin-top:20px; padding-left:160px; font-size:16px; background:url(../images/in_built.jpg) no-repeat left center;}
 
 /*邀请好友*/
 #mypage_content .invitation{}
@@ -181,7 +182,7 @@
 #mypage_content .invitation .invitation_tip{background:#f2f2f2; padding:15px; line-height:24px;}
 #mypage_content .invitation .invitation_tip dt{color:#128d56; font-weight:bold; margin-bottom:5px;}
 #mypage_content .invitation .invitation_icon {margin-right:10px; float:left; width:50px; height:50px; background:url(../images/share_icon.png) no-repeat;text-indent: -999999em; cursor:pointer;}
-#mypage_content .invitation .weibo{ background-position:0 0px;}
+#mypage_content .invitation .weibo{ background-position:0 0;}
 #mypage_content .invitation .renren{ background-position:0 -50px;}
 #mypage_content .invitation .qzone{ background-position:0 -100px;}
 #mypage_content .invitation .douban{ background-position:0 -150px;}

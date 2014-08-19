@@ -31,7 +31,7 @@ ul,li{ list-style: none; }
 .F_16 { font-size: 16px; }
 .F_18 { font-size: 18px; }
 a, a:visited { color: #333; text-decoration: none;}
-a:hover { color: #333; text-decoration: underline;}
+a:hover { color: #333; text-decoration: none;cursor: pointer;}
 a.F_green, a.F_green:visited { color: #128d56;}
 .hidden {display: none;}
 
@@ -85,33 +85,8 @@ body > .main { height: auto; min-height: 100%; }
 .tab1 li{float:left; width:150px; text-align:center; color:#fff; margin-right:3px; height:40px; line-height:40px; background:#2f3541; cursor:pointer;} 
 .tab1 li.active{ height:48px; background: url(../images/tab1_active.png) no-repeat;}
 
-.cashback{
-    display:inline-block;
-    position:relative;
-    border: 1px solid #128d56;border-radius: 2px;
-    font-family: SimSun, serif;
-    font-size:12px;
-    line-height: 18px;
-    color:#128d56;
-    padding-left: 19px;padding-right: 3px;
-    }
-.cashback .tip{display:none; top:26px; right:-39px;}
-.cashback:hover .tip{display:block;}
-.cashback:before{
-    content: '返';
-    position: absolute;left: 0;top:0;
-    color: white;
-    background: #128D56;
-    padding: 0 2px;
-    width: 12px;
-}
 
-/*tip*/
-.tip{position:absolute; z-index:99; width:313px; border:1px solid #a7a7a7; background:#fff; font-size:12px; line-height:22px;}
-.tip .arrow{ position:absolute; top:-8px; left:243px; width:15px; height:8px; background:url(../images/arrow.png) no-repeat;}
-.tip_content{ padding:8px;}
-
-.price{ font-family:微软雅黑; color:#ff5500;}
+.price{ color:#ff5500;}
 .price .sign{ color:#333;}
 
 /*表单错误提示*/

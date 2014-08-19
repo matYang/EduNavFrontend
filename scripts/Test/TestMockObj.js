@@ -22,7 +22,7 @@ testMockObj = {
     testPhoto5: new Photo().set("id", 5).set("imgUrl", "/testUrl5"),
     testPhoto6: new Photo().set("id", 6).set("imgUrl", "/testUrl6"),
     testCourses: new Courses(),
-    testCourse1: (new Course()).set("categoryValue","000101").set("partnerIntro", longText).set("id", 1).set("courseName", "雅思英语").set("price", 10800).set("instName", "南京新东方").set("address", "南京市玄武区").set("cashback", 0).set("status",  EnumConfig.CourseStatus.onlined).set("bookingType",  2),
+    testCourse1: (new Course()).set("categoryValue","000101").set("partnerIntro", longText).set("id", 1).set("courseName", "雅思英语").set("price", 10800).set("instName", "南京新东方").set("address", "南京市玄武区").set("cashback", 10).set("commission", 20).set("status",  EnumConfig.CourseStatus.onlined).set("bookingType",  2),
     testCourse2: (new Course()).set("categoryValue","000101").set("partnerIntro", longText).set("id", 2).set("courseName", "SAT").set("price", 10800).set("instName", "School A").set("address", "南京市白下区").set("cashback", 50).set("status",  EnumConfig.CourseStatus.onlined),
     testCourse3: (new Course()).set("categoryValue","000101").set("partnerIntro", longText).set("id", 3).set("courseName", "托福").set("price", 9800).set("instName", "School B").set("address", "南京市秦淮区").set("cashback", 12).set("status",  EnumConfig.CourseStatus.onlined),
     testCourse4: (new Course()).set("categoryValue","000101").set("id", 4).set("courseName", "GRE").set("price",12900).set("instName", "School C").set("address", "南京市建邺区").set("status",  EnumConfig.CourseStatus.onlined),

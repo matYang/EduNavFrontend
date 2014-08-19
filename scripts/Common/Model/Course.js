@@ -26,7 +26,8 @@ var Course = Backbone.Model.extend({
 
                 'courseName': undefined,//课程名
                 'suitableStudent': undefined,//适合学员
-                'cashback': undefined,//返现
+                'cashback': undefined,//线下返现
+                'commission': undefined,//线上立减
                 'price': undefined,//爱上课价格
                 'originalPrice': undefined,//原价
 
@@ -74,11 +75,12 @@ var Course = Backbone.Model.extend({
                 'quiz': undefined,//阶段测评
                 'questionSession': undefined,//课后答疑
                 'assignments': undefined,//课后作业
-                'marking': undefined,//作业批改
+
+                'marking': undefined,//作业批改 改用为优惠信息
 
                 /*教学保障*/
                 'passAgreement': undefined,//教学保过
-                'highScoreReward': undefined,//高分奖励
+                'highScoreReward': undefined,//高分奖励 改用为教学特色
 
                 /*特色服务*/
                 'certification': undefined,//结业证书
@@ -92,18 +94,18 @@ var Course = Backbone.Model.extend({
                 imgArr = [],
                 classImgArr = [];
             if (typeof data !== 'undefined') {
-                data.id = data.id || data.courseId;
                 data.id = parseInt(data.id, 10);
                 data.courseId = data.id;
                 data.partnerId = parseInt(data.partnerId, 10);
                 data.createTime = Utilities.castFromAPIFormat(data.createTime);
 
                 /*others*/
-                data.bookingType = Utilities.parseNum(data.bookingType);//返现
+                data.bookingType = Utilities.parseNum(data.bookingType);//线上或者线下支付
                 data.popularity = Utilities.parseNum(data.popularity);//人气值
                 data.startUponArrival = Utilities.parseNum(data.startUponArrival);//这个用来判断是否有开课日期
 
                 data.cashback = Utilities.parseNum(data.cashback);//返现
+                data.commission = Utilities.parseNum(data.commission);//线上支付折扣
                 data.price = Utilities.parseNum(data.price);//爱上课价格
                 data.originalPrice = Utilities.parseNum(data.originalPrice);//原价
 
