@@ -1,5 +1,5 @@
 /* 2014-8-16
- * Jet
+ * By Jet
 **/
 
 /*基本样式*/
@@ -22,8 +22,8 @@ a:hover, a:active{
 .padding-md { padding: 20px 30px; }
 .padding-lg { padding: 30px 40px; }
 
-.margin-x { margin: 10px 0; }
-.margin-y { margin: 0 10px; }
+.margin-x { margin: 0  5px; }
+.margin-y { margin: 5px 0; }
 
 /*字体 背景 边框颜色*/
 .border-primary{ border: 1px solid #128d56; }
@@ -36,27 +36,6 @@ a:hover, a:active{
 .text-warning{color: #FBAE05; }
 .text-error{color: #FF5500; }
 
-
-/*通用图标 已在支付页面使用*/
-.icon {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    font-style: normal;
-    font-weight: normal;
-    vertical-align: text-bottom;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background: url(../images/icon.png) no-repeat;
-}
-
-.icon-info {
-    background-position: 0 -469px;
-}
-
-.icon-warning {
-    background-position: 0 -501px;
-}
 
 /**通用面板 默认样式*/
 .panel {
@@ -265,8 +244,34 @@ a:hover, a:active{
 
 
 
+/*图片的大小控制*/
+.img-logo{
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+}
+.img-logo img{
+    width:70px;
+    height:70px;
+}
 
+/*通用图标 已在支付页面使用*/
+/*覆盖样式在icon之前加class*/
+.icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    background: url(../images/icon.png) no-repeat;
+}
 
+.icon-info {
+    background-position: 0 -469px;
+}
+
+.icon-warning {
+    background-position: 0 -501px;
+}
 
 /***************我是分割线*****************/
 /***************非通用样式 之后需要独立出来*****************/

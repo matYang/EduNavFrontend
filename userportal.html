@@ -523,45 +523,80 @@
         <div class="summaryItem3"><span class="F_orange"><%= credit.credit %></span>积分</div>
     </div>
     <div class="title blank1" style="border:1px solid #ccc;"><b>未入学订单</b></div>
-    <div id="bookingSummary" style="border:1px solid #ccc; border-top:none;">
-    </div>
+    <table style="border:1px solid #ccc; border-top:none;" width="100%" cellpadding="0" cellspacing="0">
+        <tbody id="bookingSummary"></tbody>
+    </table>
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingList">
-    <div id="bookingSummary">
-    </div><!--bookingSummary end-->
+    <div class="title">
+        <a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">订单管理</span>
+    </div>
+    <div class="title" style="background:none">
+        为保证您的账号安全，6个月以前的订单请联系客服400-025-0884
+    </div>
+    <table class="table-clean" border="0" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td>开课日期</td>
+            <td>课程信息</td>
+            <td>支付方式</td>
+            <td>订单状态</td>
+        </tr>
+        </thead>
+        <tbody id="bookingSummary"></tbody>
+    </table><!--bookingSummary end-->
 </script>
 
 <script type="text/template" id="tpl_booking_entry">
-    <div class="bookingEntry" id="booking_reference_<%= reference %>">
-        <div class="bookingEntryTime">
-            <div class="date"><%= course.startDate %></div>
-            <div class="dayOfWeek"><%= course.studyDays %><!-- <%= course.studyDaysNote %>--></div>
-        </div>
-        <div class="bookingEntryDetail">
-            <h3><a class="F_green bookingTitle" id="bookingTitle_bookingId_<%= bookingId %>" href="#">【<%=
-                course.instName %>】<%= course.courseName %></a></h3>
+    <tr class="bookingEntry" id="booking_reference_<%= reference %>">
+        <td class="date">
+            <!--<div class="date">2014年6月</div>-->
+            <!--<div class="day">12</div>-->
+            <!--<div class="dayOfWeek">星期日</div>-->
+            <%= course.startDate %>
+        </td>
+        <td class="detail">
+            <img class="img-logo" src="<%=course.logo%>">
+            <h3><a class="F_green bookingTitle"  id="bookingTitle_bookingId_<%= bookingId %>" href="#"><%= course.courseName %></a></h3>
+            <p>
+                <span class="price">
+                   <%if(!price){%>
+                     定制
+                   <%}else{%>
+                    <s class="sign">￥</s><%= price %>
+                   <%}%>
+                </span>
+            </p>
+            <p title="<%= course.address %>">上课地址：<%= course.address %></p>
+        </td>
+        <td class="payType">
+            <div><%= EnumConfig.BookingTypeText[type]%></div>
+        </td>
+        <td class="status">
 
-            <p class="address"><b>地址：</b><%= course.address %></p>
-        </div>
-        <div class="bookingEntryPrice">
-            <%if(!price){%>
-            <small>价格面议</small>
-            <%}else{%>
-            <span class="sign">￥</span><%= price %>
+            <p style="line-height: 27px;font-size: 16px">
+            <% if (status === 11) { %>
+                <i class="icon-status pending"></i>
+            <% } else if ( status === 2 || status === 12) { %>
+                <i class="icon-status canceled"></i>
+            <% } else if( status === 13){ %>
+                <i class="icon-status confirmed"></i>
+            <% } else{ %>
+                <i class="icon-status info"></i>
+            <% } %>
+            <%if(type==EnumConfig.PayType.online&&status===11){%>
+                <input type="button" class="btn_o" value="去支付">
             <%}%>
-        </div>
-        <div class="bookingEntryState">
-            <% if (status === 3 || status === 16) { %>
-            <span class="sign pending">
-        <% } else if ( status === 2 || status === 12) { %>
-            <span class="sign cancelled">
-        <% } else { %>            
-            <span class="sign confirmed">
-        <% } %>            
-            <%= EnumConfig.BookingStatusText[status] %></span>
-        </div>
-    </div>
+            <%= EnumConfig.BookingStatusText[status] %>
+                <%_.each(actionList,function(action){%>
+                <input type="button" class="btn_W js_btn_operate"
+                       value="<%=EnumConfig.BookingActionText[action.name]%>"
+                       data-value="<%=action.name%>">
+                <%})%>
+            </p>
+        </td>
+    </tr>
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingDetail">
