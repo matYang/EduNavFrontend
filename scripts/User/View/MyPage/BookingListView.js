@@ -1,5 +1,5 @@
 var BookingListView = MultiPageView.extend({
-    entryContainer: "bookingSummary",
+    entryContainer: "bookingSummary tbody",
     entryClass: "bookingEntry",
     actionClass: "bookingTitle",
     pageNavigator: "bookingNavigator",
@@ -11,7 +11,7 @@ var BookingListView = MultiPageView.extend({
     entryHeight: 106,
     noMessage: _.template(tpl.get("booking_noMessage")),
     $domContainer: null,
-    el: "#bookingSummary tbody",
+    el: "#bookingSummary",
     initialize: function (allMessages, messages) {
         MultiPageView.prototype.initialize.call(this);
         this.allMessages = allMessages;

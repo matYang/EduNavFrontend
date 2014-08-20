@@ -50,7 +50,7 @@ var BookingDetailView = Backbone.View.extend({
             var $target = $(e.target);
             var bookingId = that.booking.id;
             var operate = $target.data('action');
-            $("#cancelBooking").val("更改中...");
+            $target.val("更改中...");
             app.userManager.changeBookingState(bookingId, operate, {
                 success: function (booking) {
                     var status;
@@ -62,7 +62,7 @@ var BookingDetailView = Backbone.View.extend({
                         $("#process").html("<p>操作成功</p>");
                     }
 
-                    $("#bookingStatus").html(EnumConfig.BookingStatusText[booking.status]);
+                    $target.html(EnumConfig.BookingStatusText[booking.status]);
                     //TODO 这里进行了推迟操作以后是否可以继续取消订单 操作部分的刷新后续需要单独提取出来模板进行render
                     //这里暂时先将所有的操作按钮移除
                     $(".js_btn_operate").remove();
