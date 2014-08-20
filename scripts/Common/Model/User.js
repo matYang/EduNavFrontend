@@ -65,7 +65,7 @@ var User = Backbone.Model.extend({
 
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        if(typeof json.couponTotal)json.couponTotal = json.couponTotal.toFixed(0);
+//        if(typeof json.couponTotal)json.couponTotal = json.couponTotal.toFixed(0);
         json.createTime = Utilities.getDateString(this.get('createTime'));
         json.lastLogin = Utilities.getDateString(this.get('lastLogin'));
         json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));

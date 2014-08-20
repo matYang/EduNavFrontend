@@ -41,7 +41,7 @@ var Credit = Backbone.Model.extend({
 
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.credit = json.credit.toFixed(0);
+//        json.credit = json.credit.toFixed(0);
         json.createTime = Utilities.getDateString(this.get('createTime'));
         return json;
     },

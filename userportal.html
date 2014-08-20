@@ -273,7 +273,7 @@
             <p class="desc"><span>上课日期:</span>
                 <%if(startUponArrival){%>
                 <%= startDate %> - <%= finishDate %>
-                <%}else}{%>
+                <%}else{%>
                     <%= regPhone%>
                 <%}%>
             </p>
@@ -570,7 +570,7 @@
                    <%if(!price){%>
                      定制
                    <%}else{%>
-                    <s class="sign">￥</s><%= price %>
+                    <span class="sign">￥<%= price %>
                    <%}%>
                 </span>
             </p>

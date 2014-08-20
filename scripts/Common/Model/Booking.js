@@ -85,7 +85,7 @@ var Booking = Backbone.Model.extend({
         json.createTime = Utilities.getDateString(this.get('createTime'));
         json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));
 
-        json.price = json.price.toFixed(2);
+//        json.price = json.price.toFixed(2);
         if (json.course) {
             json.course = json.course._toJSON();
         }
