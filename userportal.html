@@ -1116,7 +1116,7 @@
     <div class="title"><h3>支付方式</h3></div>
     <div class="row2">
         <div class="field">
-            <%if(course.bookingType===0){%>
+            <%if(course.bookingType===EnumConfig.PayType.offline){%>
             <p>
                 <label></label>
                 <input id="type1" name="bookingType" value="<%=EnumConfig.PayType.offline%>" type="radio"
@@ -1125,7 +1125,7 @@
                 <span style="color:#ff5500;">(试听满意后直接在机构进行付款)</span>
             </p>
             <%}%>
-            <%if(course.bookingType===1){%>
+            <%if(course.bookingType===EnumConfig.PayType.online){%>
             <p>
                 <label></label>
                 <input id="type2" name="bookingType" value="<%=EnumConfig.PayType.online%>" type="radio" checked="true">
