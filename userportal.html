@@ -270,7 +270,13 @@
 
             <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
 
-            <p class="desc"><span>上课日期:</span> <%= startDate %> - <%= finishDate %></p>
+            <p class="desc"><span>上课日期:</span>
+                <%if(startUponArrival){%>
+                <%= startDate %> - <%= finishDate %>
+                <%}else}{%>
+                    <%= regPhone%>
+                <%}%>
+            </p>
 
             <p class="desc"><span>上课地址:</span> <%= address %></p>
         </div>
@@ -278,7 +284,7 @@
 
             <p class="price">
                 <%if(!price){%>
-                <small>价格面议</small>
+                <small>机构定制</small>
                 <%}else{%>
                 <span class="sign">￥</span><%= price %>
                 <%}%>
@@ -339,7 +345,7 @@
 
         <p class="price">
             <%if(!price){%>
-            <small>价格面议</small>
+            <small>机构定制</small>
             <%}else{%>
             <span class="sign">￥</span><%= price %>
             <%}%>
@@ -721,7 +727,7 @@
 
                     <p>
                         <label>上课日期:</label>
-                        <%if(course.startUponArrival===0){%>
+                        <%if(!course.startUponArrival){%>
                         <span><%= course.regPhone %></span>
                         <%}else{%>
                         <span class="badge bg-error">始</span> <%= course.startDate %>
@@ -953,7 +959,7 @@
             <label>上课日期：</label>
 
             <div>
-                <%if(course.startUponArrival===0){%>
+                <%if(!course.startUponArrival){%>
                 <%= course.regPhone %>
                 <%}else{%>
                 <p><span class="badge bg-error">始</span> <%= course.startDate %></p>
