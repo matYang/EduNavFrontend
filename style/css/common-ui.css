@@ -23,7 +23,8 @@ a:hover, a:active{
 .padding-lg { padding: 30px 40px; }
 
 .margin-x { margin: 0  5px; }
-.margin-y { margin: 5px 0; }
+.margin-y { margin: 10px 0; }
+.margin-y-sm { margin: 5px 0; }
 
 /*字体 背景 边框颜色*/
 .border-primary{ border: 1px solid #128d56; }
