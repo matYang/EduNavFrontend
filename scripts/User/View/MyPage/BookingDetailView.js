@@ -47,9 +47,9 @@ var BookingDetailView = Backbone.View.extend({
          app.navigate("booking/b"+that.booking.get("reference"), true);
          });*/
         $(".btns").on("click", ".js_btn_operate", function (e) {
-            $target = $(e.target);
+            var $target = $(e.target);
             var bookingId = that.booking.id;
-            var operate = '';
+            var operate = $target.data('action');
             $("#cancelBooking").val("更改中...");
             app.userManager.changeBookingState(bookingId, operate, {
                 success: function (booking) {

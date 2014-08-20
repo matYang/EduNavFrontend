@@ -594,15 +594,16 @@
 
             <%= EnumConfig.BookingStatusText[status] %>
                 <%_.each(actionList,function(action){%>
-                <input type="button" class="btn_W js_btn_operate"
+                <input type="button" class="margin-x btn_g js_btn_operate%>"
                        value="<%=EnumConfig.BookingActionText[action.name]%>"
-                       data-value="<%=action.name%>">
+                       data-id="id"
+                       data-action="<%=action.name%>">
                 <%})%>
             </p>
 
             <%if(type==EnumConfig.PayType.online&&status===11){%>
 
-                <p><button class="btn_o js_toPay" data-id="<%=id%>">去支付</button></p>
+                <p class="margin-y"><button class="btn_o js_toPay" data-id="<%=id%>">去支付</button></p>
             <%}%>
 
         </td>
@@ -802,7 +803,7 @@
         <%_.each(actionList,function(action){%>
         <input type="button" class="btn_W js_btn_operate"
                value="<%=EnumConfig.BookingActionText[action.name]%>"
-               data-value="<%=action.name%>">
+               data-action="<%=action.name%>">
         <%})%>
     </div>
     <!--btns end-->
