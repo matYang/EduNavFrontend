@@ -99,6 +99,7 @@ tr.bookingEntry:last-child{border-bottom:none;}
     display: inline-block;
     vertical-align: text-bottom;
     background:url(../images/icon.png) no-repeat;
+    margin-bottom: -1.5px;
 }
 .icon-status.pending{background-position: 0 -191px;}
 .icon-status.confirmed{background-position:  0 -227px;}
