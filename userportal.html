@@ -570,7 +570,7 @@
                    <%if(!price){%>
                      定制
                    <%}else{%>
-                    <span class="sign">￥<%= price %>
+                    <span class="sign">￥</span><%= price %>
                    <%}%>
                 </span>
             </p>
@@ -581,7 +581,7 @@
         </td>
         <td class="status">
 
-            <p style="line-height: 27px;font-size: 16px">
+            <p style="font-size: 14px;color:#333333">
             <% if (status === 11) { %>
                 <i class="icon-status pending"></i>
             <% } else if ( status === 2 || status === 12) { %>
@@ -594,7 +594,7 @@
 
             <%= EnumConfig.BookingStatusText[status] %>
                 <%_.each(actionList,function(action){%>
-                <input type="button" class="margin-x btn_g js_btn_operate%>"
+                <input type="button" class="margin-x btn_g js_btn_operate%>" style="border: none"
                        value="<%=EnumConfig.BookingActionText[action.name]%>"
                        data-id="id"
                        data-action="<%=action.name%>">
