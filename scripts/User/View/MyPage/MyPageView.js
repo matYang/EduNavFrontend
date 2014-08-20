@@ -96,9 +96,8 @@ var MyPageView = Backbone.View.extend({
             }
         };
         $("#mypage_sidebar").children(".mypage_sidebar_title").on("click", event_mypage);
-        $("#mypage_content")
-            .on("click", ".js_toDashboard", event_mypage)
-            .on("click", ".js_toPay", function (e) {
+        $("#mypage_content").on("click", ".js_toDashboard", event_mypage);
+        $("#mypage_content").on("click", ".js_toPay", function (e) {
                 var id = $(e.target).data('id');
                 app.navigate("mypage/booking/" + id + "/pay", true);
             });
