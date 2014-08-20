@@ -591,9 +591,7 @@
             <% } else{ %>
                 <i class="icon-status info"></i>
             <% } %>
-            <%if(type==EnumConfig.PayType.online&&status===11){%>
-                <input type="button" class="btn_o" value="去支付">
-            <%}%>
+
             <%= EnumConfig.BookingStatusText[status] %>
                 <%_.each(actionList,function(action){%>
                 <input type="button" class="btn_W js_btn_operate"
@@ -601,6 +599,11 @@
                        data-value="<%=action.name%>">
                 <%})%>
             </p>
+
+            <%if(type==EnumConfig.PayType.online&&status===11){%>
+                <p><a class="btn_o" class="js_toPay" data-id="<%=id%>">去支付</a></p>
+            <%}%>
+
         </td>
     </tr>
 </script>
