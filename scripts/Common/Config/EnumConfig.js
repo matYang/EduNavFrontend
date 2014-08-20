@@ -39,26 +39,11 @@ var EnumConfig = {
     },
     /*用户对订单可执行的操作*/
     'BookingActionText':{
+        onlineCancel:'取消订单',
         offlineCancel:'取消订单',
-        offlineDelayed:'推迟报道'
+        offlineUserDelay:'推迟报道'
     },
-    /*todo 订单的状态信息*/
-    'BookingStatus': {
-        awaiting: 0,
-        confirmed: 1,
-        cancelled: 2,
-        failed: 3,
-        delivered: 4,
-        noShow: 5,
-        late: 6,
-        registered: 7,
-        paid: 8,
-        noPay: 9,
-        started: 10,
-        refunded: 11,
-        succeeded: 12,
-        consolidated: 13
-    },
+
     /*订单状态 from 'BookingStatusUserText' to now*/
     "BookingStatusText": {
         //线下支付的状态
@@ -88,22 +73,6 @@ var EnumConfig = {
         21: '支付成功',
         22: '终止交费',
         23: '已获返利'
-
-
-//        0: '等待确认',
-//        1: '预订成功',
-//        2: '已经取消',
-//        3: '拒绝订单',
-//        4: '预订成功',
-//        5: '爽约',
-//        6: '预订成功',
-//        7: '预订成功',
-//        8: '预订成功',
-//        9: '已经取消',
-//        10: '预订成功',
-//        11: '已经取消',
-//        12: '成功入学',
-//        13: '成功入学'
     },
 
     "PayType": {
