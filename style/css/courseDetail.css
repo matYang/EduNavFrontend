@@ -40,7 +40,12 @@
 .courseDetail .banner .big_pic{float:right; overflow:hidden; height:217px; width:300px;}
  /*地图*/
 .courseDetail .banner .row2 .course_map{float:right; width:328px; border:1px solid #ccc;}
-.courseDetail .banner .row2 .course_map .addr{ line-height:30px; color:#128d56; padding-left:10px; border-bottom:1px solid #ccc;}
+.courseDetail .banner .row2 .course_map .addr{ line-height:30px; color:#128d56; padding-left:10px; border-bottom:1px solid #ccc;
+    width: 320px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .courseDetail .banner .row2 .course_map .map{width:328px; height:185px;}
  /*公用*/
 .courseDetail .courseMain{ position:relative; border:1px solid #ccc;}
