@@ -73,6 +73,9 @@ tr.bookingEntry:last-child{border-bottom:none;}
     overflow: hidden;
     position: relative;
 }
+
+thead tr.bookingEntry{height:55px;}
+thead tr.bookingEntry td.detail{text-align: center}
 /*每一个td*/
 .bookingEntry td.date{ width:80px; }
 .bookingEntry td.detail{width:360px; text-align: left; }
