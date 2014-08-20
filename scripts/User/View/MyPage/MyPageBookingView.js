@@ -8,6 +8,7 @@ var MyPageBookingView = Backbone.View.extend({
         this.isClosed = false;
         this.bookingSr = new BookingSearchRepresentation ();
         this.bookingSr.set("userId", this.user.get("userId"));
+        this.render();
     },
 
     render: function () {
