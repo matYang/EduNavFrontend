@@ -5,7 +5,7 @@ var MyPagePasswordView = BaseFormView.extend({
     model: {},
     initialize: function () {
 
-        _.bindAll(this, 'render', 'close', 'passwordSuccess', 'getSmsSuccess', 'getSmsError', 'passwordError', 'bindEvents', 'clearPassword', 'oldPasswordValid', 'newPasswordValid', 'confirmPasswordValid');
+        _.bindAll(this, 'render', 'close', 'passwordSuccess',  'passwordError', 'bindEvents', 'clearPassword', 'oldPasswordValid', 'newPasswordValid', 'confirmPasswordValid');
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.fields = [
