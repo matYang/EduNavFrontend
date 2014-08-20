@@ -30,8 +30,10 @@ var MyPageBookingView = Backbone.View.extend({
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
-            this.bookingListView.close();
-            this.bookingListView = null;
+            if(this.bookingListView){
+                this.bookingListView.close();
+                this.bookingListView = null;
+            }
             this.isClosed = true;
         }
     }
