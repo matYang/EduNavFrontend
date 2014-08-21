@@ -146,6 +146,14 @@ var Course = Backbone.Model.extend({
             var json = _.clone(this.attributes), studyDays, i;
 //            if (typeof json.price === 'number')json.price = json.price.toFixed(2);
 //            if (typeof json.originalPrice === 'number')json.originalPrice = json.originalPrice.toFixed(2);
+            console.log(this.get('startDate'))
+            if (json.startDate) {
+                var dateObj = json.startDate;
+                console.log(dateObj)
+                json.startDateDate = dateObj.getFullYear() + '年' + (dateObj.getMonth() + 1) + '月';
+                json.startDateDay = dateObj.getDate();
+                json.startDateWeek = EnumConfig.WeekText[dateObj.getDay() - 1];
+            }
             json.startDate = Utilities.getDateString(this.get('startDate'));
             json.finishDate = Utilities.getDateString(this.get('finishDate'));
             json.createTime = Utilities.getDateString(this.get('createTime'));
@@ -154,6 +162,8 @@ var Course = Backbone.Model.extend({
             json.startTime2 = json.startTime2 == null ? null : Math.floor(json.startTime2 / 100) + ":" + ((json.startTime2 % 100 < 10) ? "0" + json.startTime2 % 100 : json.startTime2 % 100);
             json.finishTime1 = json.finishTime1 == null ? null : Math.floor(json.finishTime1 / 100) + ":" + ((json.finishTime1 % 100 < 10) ? "0" + json.finishTime1 % 100 : json.finishTime1 % 100);
             json.finishTime2 = json.finishTime2 == null ? null : Math.floor(json.finishTime2 / 100) + ":" + ((json.finishTime2 % 100 < 10) ? "0" + json.finishTime2 % 100 : json.finishTime2 % 100);
+
+
             if (json.studyDays) {
                 studyDays = "每周";
                 for (i = 0; i < json.studyDays.length; i++) {

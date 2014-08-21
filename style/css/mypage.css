@@ -76,39 +76,34 @@ tr.bookingEntry:last-child{border-bottom:none;}
 
 thead tr.bookingEntry{height:55px;}
 thead tr.bookingEntry td.detail{text-align: center}
-/*每一个td*/
-.bookingEntry td.date{ width:80px; }
+/*all 4 tds*/
+.bookingEntry td.date{ width:80px;}
 .bookingEntry td.detail{width:360px; text-align: left; }
-.bookingEntry td.payType{width:120px; font-size:18px;font-size: 12px;
-    color: #666;}
-.bookingEntry td.status{width:138px; color:#128d56;}
-
-.bookingEntry td.detail .img-logo{
-    position: absolute;
-    left:10px;
-    top:10px;
-}
-.bookingEntry td.detail h3,.bookingEntry td.detail p{
-    padding: 3px 0;
-    padding-left: 80px;
-}
-.bookingEntry td.detail .price{
-    color:#ff0000;
-    font-size: 1.4em;
-}
+.bookingEntry td.payType{width:120px; font-size:18px; color: #666;}
+.bookingEntry td.status{width:138px;}
+.bookingEntry td.status .status{font-size: 14px;color:#333333}
+.bookingEntry td.status .status span{display: inline-block;vertical-align: text-bottom;height: 22px;line-height: 22px;}/*状态的文字*/
+.bookingEntry td.status .operate{color:#128d56}/*取消订单等操作文字*/
+.bookingEntry td.status .operate:hover{color:#114d56}
+/*td date*/
+.bookingEntry td.date .day{font-size: 2em;font-weight: bold;margin: 5px 0;}
+/*td detail*/
+.bookingEntry td.detail .img-logo{ position: absolute; left:10px; top:17px; }
+.bookingEntry td.detail h3,.bookingEntry td.detail p{ padding:3px 80px 0; }
+.bookingEntry td.detail .price{ color:#ff0000; font-size: 1.4em; }
 .bookingEntry td.detail h3{ font-weight:bold; font-size:14px;}
 
+/*td status 状态的图标*/
 .icon-status {
     height:22px;width:22px;
     display: inline-block;
     vertical-align: text-bottom;
     background:url(../images/icon.png) no-repeat;
-    margin-bottom: -1.5px;
 }
-.icon-status.pending{background-position: 0 -191px;}
-.icon-status.confirmed{background-position:  0 -227px;}
-.icon-status.info{background-position: 0 -265px;}
-.icon-status.canceled{background-position: 0 -760px;}
+.icon-status.pending{background-position: 0 -190px;}
+.icon-status.confirmed{background-position:  0 -226px;}
+.icon-status.info{background-position: 0 -264px;}
+.icon-status.canceled{background-position: 0 -759px;}
 /*rewritten end */
 
 

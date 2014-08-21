@@ -557,10 +557,13 @@
 <script type="text/template" id="tpl_booking_entry">
     <tr class="bookingEntry" id="booking_reference_<%= reference %>">
         <td class="date">
-            <!--<div class="date">2014年6月</div>-->
-            <!--<div class="day">12</div>-->
-            <!--<div class="dayOfWeek">星期日</div>-->
-            <%= course.startDate %>
+            <%if(!course.startUponArrival){%>
+            <%= course.regPhone %>
+            <%}else{%>
+            <div class="date"><%=course.startDateDate%></div>
+            <div class="day"><%=course.startDateDay%></div>
+            <div class="dayOfWeek"><%=course.startDateWeek%></div>
+            <%}%>
         </td>
         <td class="detail">
             <img class="img-logo" src="<%=course.logoUrl%>">
@@ -581,7 +584,7 @@
         </td>
         <td class="status">
 
-            <p style="font-size: 14px;color:#333333">
+            <p class="status">
             <% if (status === 11) { %>
                 <i class="icon-status pending"></i>
             <% } else if ( status === 2 || status === 12) { %>
@@ -591,21 +594,21 @@
             <% } else{ %>
                 <i class="icon-status info"></i>
             <% } %>
-
-            <%= EnumConfig.BookingStatusText[status] %>
-                <%_.each(actionList,function(action){%>
-                <input type="button" class="margin-x btn_g js_btn_operate%>" style="border: none"
-                       value="<%=EnumConfig.BookingActionText[action.name]%>"
-                       data-id="id"
-                       data-action="<%=action.name%>">
-                <%})%>
+            <span><%= EnumConfig.BookingStatusText[status] %></span>
             </p>
 
             <%if(type==EnumConfig.PayType.online&&status===11){%>
-
-                <p class="margin-y"><button class="btn_o js_toPay" data-id="<%=id%>">去支付</button></p>
+            <p class="margin-top"><button class="btn_o js_toPay" data-id="<%=id%>">去支付</button></p>
             <%}%>
 
+            <p class="margin-top">
+            <%_.each(actionList,function(action){%>
+
+                <a type="button" class="operate margin-x js_btn_operate%>"
+                       data-id="id"
+                       data-action="<%=action.name%>"><%=EnumConfig.BookingActionText[action.name]%></a>
+            <%})%>
+            </p>
         </td>
     </tr>
 </script>

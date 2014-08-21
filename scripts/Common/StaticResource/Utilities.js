@@ -8,7 +8,7 @@ var Utilities = {
     //converts an date object to a human-friendly data string, eg: 明天，下周二，5月3号
     getDateString: function (targetDate, relativeFlag) {
         if (!targetDate) {
-            Info.log("Utilities::getDateString invalid parameter, null or undefined");
+//            Info.log("Utilities::getDateString invalid parameter, null or undefined");
             targetDate = new Date();
         } else {
             //v2 时间统一为时间戳格式 new Date(timestamp) or new Date(dateObj)
@@ -131,7 +131,7 @@ var Utilities = {
      */
     castFromAPIFormat: function (timestamp) {
         if (!timestamp) {
-            Info.warn("castFromAPIFormat: dateString is null");
+//            Info.warn("castFromAPIFormat: dateString is null");
             return null;
         }
 //        if (timestamp instanceof Date) {

@@ -24,7 +24,10 @@ a:hover, a:active{
 
 .margin-x { margin: 0  5px; }
 .margin-y { margin: 10px 0; }
+.margin-top { margin-top: 8px; }
 .margin-y-sm { margin: 5px 0; }
+
+.inline-block{ display: inline-block; }
 
 /*字体 背景 边框颜色*/
 .border-primary{ border: 1px solid #128d56; }
