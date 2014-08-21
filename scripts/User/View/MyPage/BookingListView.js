@@ -45,10 +45,11 @@ var BookingListView = MultiPageView3.extend({
             this.bookingSr.set("start", (pageIndex - 1) * this.pageEntryNumber);
         }
         this.bookingSr.set("count", this.pageEntryNumber);
-        this.currentPage = pageIndex;
+        //这儿start和pageIndex转来转去的是要体现数学很好..
+        this.currentPage = this.bookingSr.get('start')/this.pageEntryNumber +1;
         $("#bookingSummary tbody").empty().append("<tr><td class='loading' colspan='4'></td></tr>");
         $("#courseSearchResultNavigator").empty();
-        app.generalManager.findCourse(this.bookingSr, {
+        app.userManager.fetchBookings(this.bookingSr, {
             success: this.render,
             error: this.renderError
         });
