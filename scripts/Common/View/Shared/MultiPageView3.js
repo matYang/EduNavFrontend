@@ -56,9 +56,11 @@ var MultiPageView3 = Backbone.View.extend({
             length = this.messages.length - this.startIndex;
             length = (length < this.pageEntryNumber) ? length : this.pageEntryNumber;
 
-            var items = this.messages._toJSON();
+            this.messages.each(function(message){
+                buf.push(this.entryTemplate(message._toJSON()));
+            });
             for(i in items){
-                buf.push(this.entryTemplate(items[i]));
+
             }
             this.$messageContainer.append(buf.join(""));
             buf = null;
