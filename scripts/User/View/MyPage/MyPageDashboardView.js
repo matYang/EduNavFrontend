@@ -7,31 +7,20 @@ var MyPageDashboardView = Backbone.View.extend({
 //        this.user = app.sessionManager.sessionModel;//session中存的信息不全
         this.user = params.user;//从MyPageView中将获取的user信息渲染到页面中
         this.isClosed = false;
+
         this.bookingSr = new BookingSearchRepresentation ();
+        //todo 这里以后加入筛选条件的缓存,每次进入该页面时首先获取之前缓存的筛选条件
         this.bookingSr.set("userId", this.user.get("userId"));
-        this.$el.empty().append(this.template(this.user._toJSON()));
-        this.$bookings = $("#bookingSummary tbody");
-        this.$bookings.append("<tr><td class='loading' colspan='4'></td></tr>");
-        app.userManager.fetchBookings(this.bookingSr, {
-            success: this.render,
-            error: this.renderError
-        })
+        this.bookingSr.set('statuses', [11]);//todo 这里添加未入学订单的筛选条件
+        this.render();
+
 
     },
-    renderError: function (data) {
-        Info.displayNotice(data.responseJSON.message ? data.responseJSON.message : "订单页面加载失败，请稍后重试。");
-    },
     render: function (bookingList) {
-        bookingList = bookingList || new Bookings();
-        var bookings = (new Bookings()).add(bookingList.filter(this.filterUnconfirmed));
-        app.sessionManager.sessionModel.set("dashBookingList", bookingList);
-        this.$bookings.empty();
-        this.bookingListView = new BookingListView(bookings, bookings, "dashboard");
+        this.$el.empty().append(this.template(this.user._toJSON()));
+
+        this.bookingListView = new BookingListView(this.bookingSr);
         $("#mypage_content").css("border", "none");
-    },
-    filterUnconfirmed: function(booking){
-        var state = EnumConfig.BookingStatusText[booking.get("status")];
-        return (state === '预订成功' || state === '等待确认');
     },
     bindEvents: function () {},
     close: function () {

@@ -16,6 +16,9 @@ var BookingSearchRepresentation = Backbone.Model.extend({
             'priceStart': undefined,
             'priceEnd': undefined,
 
+            'order': 'desc',
+            'columnKey': 'lastModifyTime',
+
             'scheduledTimeStart': undefined,
             'scheduledTimeEnd': undefined,
 

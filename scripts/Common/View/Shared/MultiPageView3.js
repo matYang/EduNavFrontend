@@ -1,13 +1,13 @@
 var MultiPageView3 = Backbone.View.extend({
     /*
      * @brief
-     This class is designed to display a set of messages in a view separated by page numbers.
+     This class is designed to display a set of itemList in a view separated by page numbers.
      Other views can extend this view and configure the setting according to the needs.
      This base view provide the following features: page navigation, filtering
 
      * @param actionClass: If this attribute is set, instead of entryClass, doms with this class will be bind to the entryEvent action when they are clicked
      * @param pageNumberId: the base id for the page numbers in the form of pageId_, number will be appended to the end for event use
-     * @param messages: the filtered messages to be displayed in the view
+     * @param itemList: the filtered itemList to be displayed in the view
      *                   (including the ones in the pages not displaying, NOTE: it must be a different instance from allMessage in order for the collection event to work properly)
      * @param entryHeight: the height of each entry, including margins and paddings, used for calculating container height
      * @param entryRowNum: the number of entries displaying in the same row
@@ -28,8 +28,7 @@ var MultiPageView3 = Backbone.View.extend({
     pageNumberClass: "",//分页数字的样式
     pageNumberId: "",
     entryEvent: "",//绑定在每条记录上的事件
-    allMessages: [],//获取的所有数据
-    messages: null,//页面上面显示的经过过滤的信息(在假分页状态下)
+    itemList: null,//页面上面显示的经过过滤的信息(在假分页状态下)
     entryHeight: -1,
     entryRowNum: 1,
     minHeight: 0,
@@ -44,30 +43,24 @@ var MultiPageView3 = Backbone.View.extend({
     fetchAction: function (page) {
     },
     render: function () {
+        //获取完数据后需要进行数据的展示
         var buf = [], i, length, height, message;
-        if (!this.messages instanceof Backbone.Collection) {
-            this.messages = this.allMessages;
-        }
         this.$domContainer = $("#" + this.entryContainer);
         this.$domContainer.empty();
-        if (this.messages.length > 0) {
+        if (this.itemList.length > 0) {
             if (this.table) {
                 $(this.table).show();
                 $(this.table).find(".noMessage").remove();
             }
-            length = this.messages.length - this.startIndex;
+            length = this.itemList.length - this.startIndex;
             length = (length < this.pageEntryNumber) ? length : this.pageEntryNumber;
             for (i = 0; i < length; i++) {
-                if (this.messages instanceof Backbone.Collection) {
-                    message = this.messages.at(i + this.startIndex);
+                if (this.itemList instanceof Backbone.Collection) {
+                    message = this.itemList.at(i + this.startIndex);
                 } else {
-                    message = this.messages[i + this.startIndex];
+                    message = this.itemList[i + this.startIndex];
                 }
-                // if (message._toSimpleJSON) {
-                //     buf[i] = this.entryTemplate(message._toSimpleJSON());
-                // } else {
                 buf[i] = this.entryTemplate(message._toJSON());
-                //}
             }
             this.$domContainer.append(buf.join(""));
             buf = null;
@@ -94,7 +87,7 @@ var MultiPageView3 = Backbone.View.extend({
             height = (height > this.minHeight) ? height : this.minHeight;
             this.$domContainer.css("height", height + "px");
         }
-        var total = this.truePagination ? this.messages.total : this.messages.length;
+        var total = this.itemList.total;
         if (total > this.pageEntryNumber) {
             this.setPageNavigator();
         } else {
@@ -103,7 +96,7 @@ var MultiPageView3 = Backbone.View.extend({
         if (this.afterRender) {
             this.afterRender();
         }
-        // this.messages.on("change", this.render);
+        // this.itemList.on("change", this.render);
     },
 
     toPage: function (page) {
@@ -159,9 +152,9 @@ var MultiPageView3 = Backbone.View.extend({
         }
         this.$pn = $("#" + this.pageNavigator);
         if (this.truePagination) {
-            length = this.messages ? this.messages.total : 0;
+            length = this.itemList ? this.itemList.total : 0;
         } else {
-            length = this.messages ? this.messages.length : 0;
+            length = this.itemList ? this.itemList.length : 0;
         }
         pages = Math.ceil(length / this.pageEntryNumber);
         this.pages = pages;
