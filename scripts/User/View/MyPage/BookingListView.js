@@ -12,16 +12,53 @@ var BookingListView = MultiPageView.extend({
     noMessage: _.template(tpl.get("booking_noMessage")),
     $domContainer: null,
     el: "#bookingSummary",
+    table:'#bookingSummary',
     initialize: function (allMessages, messages) {
         MultiPageView.prototype.initialize.call(this);
         this.allMessages = allMessages;
         this.messages = messages;
+        this.truePagination = false;
         this.entryTemplate = _.template(tpl.get("booking_entry"));
         app.viewRegistration.register(this);
         this.isClosed = false;
-        this.render();
+        app.userManager.fetchBookings(this.bookingSr, {
+            success: this.render,
+            error: this.renderError
+        });
     },
-    render: function () {
+    render: function (data) {
+        app.sessionManager.sessionModel.set("bookingList", data);
+        var searchResults = data || new Courses();
+        this.allMessages = searchResults;
+        this.messages = searchResults;
+        MultiPageView.prototype.render.call(this);
+    },
+    renderError: function (data) {
+        if (!this.isClosed) {
+            Info.displayNotice(data.responseJSON.message ? data.responseJSON.message : "订单页面加载失败，请稍后重试。");
+        }
+    },
+    fetchAction: function (page) {
+        if (page === undefined) {// 未传入参数
+
+            if(this.sr.get("start") === undefined)// localStorage中不存在缓存
+                this.sr.set("start", 0);// 则设置默认的start为0
+        } else {
+            this.sr.set("start", (page - 1) * this.pageEntryNumber);
+        }
+        this.sr.set("count", this.pageEntryNumber);
+        this.currentPage = page;
+        $("#bookingSummary tbody").empty().append("<tr class='loading'></tr>");
+        $("#courseSearchResultNavigator").empty();
+        app.generalManager.findCourse(this.sr, {
+            success: this.render,
+            error: this.renderError
+        });
+    },
+    entryEvent: function (id) {
+        app.navigate("mypage/booking/" + id, true);
+    },
+    bindEvent:function(){
         $("#bookingSummary").on("click", ".js_btn_operate", function (e) {
             var $target = $(e.target);
             var bookingId = $target.data('id');
@@ -50,10 +87,6 @@ var BookingListView = MultiPageView.extend({
                 }
             });
         });
-        MultiPageView.prototype.render.call(this);
-    },
-    entryEvent: function (id) {
-        app.navigate("mypage/booking/" + id, true);
     },
     close: function () {
         if (!this.isClosed) {

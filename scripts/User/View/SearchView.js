@@ -91,6 +91,7 @@ var SearchView = Backbone.View.extend({
             $("#search_category").append(cbuf.join(""));
             this.showCategory();
             this.bindCatSearchEvents();
+            //加载完类别后进行课程的查询
             this.courseSearch();
         }
     },

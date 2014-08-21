@@ -24,7 +24,7 @@ var MyPageDashboardView = Backbone.View.extend({
     render: function (bookingList) {
         bookingList = bookingList || new Bookings();
         var bookings = (new Bookings()).add(bookingList.filter(this.filterUnconfirmed));
-        app.sessionManager.sessionModel.set("bookingList", bookingList);
+        app.sessionManager.sessionModel.set("dashBookingList", bookingList);
         this.$bookings.empty();
         this.bookingListView = new BookingListView(bookings, bookings, "dashboard");
         $("#mypage_content").css("border", "none");

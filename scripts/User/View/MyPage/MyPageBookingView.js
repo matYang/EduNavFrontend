@@ -14,19 +14,8 @@ var MyPageBookingView = Backbone.View.extend({
     render: function () {
         this.$el.empty().append(this.template);
 
-        $("#bookingSummary tbody").append("<tr class='loading'></tr>");
-        app.userManager.fetchBookings(this.bookingSr, {
-            success: this.renderBookings,
-            error: this.renderError
-        });
 
-    },
-    renderBookings:function(bookingList){
-        app.sessionManager.sessionModel.set("bookingList", bookingList);
-        this.bookingListView = new BookingListView(bookingList, bookingList, "booking");
-    },
-    renderError: function (data) {
-        Info.displayNotice(data.responseJSON.message ? data.responseJSON.message : "订单页面加载失败，请稍后重试。");
+        this.bookingListView = new BookingListView(new Bookings(), new Bookings(), "booking");
     },
     close: function () {
         if (!this.isClosed) {
