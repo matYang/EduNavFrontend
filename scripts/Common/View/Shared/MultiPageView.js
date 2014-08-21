@@ -44,7 +44,6 @@ var MultiPageView = Backbone.View.extend({
             "clickPreHandler", "clickNextHandler", "close");
     },
     fetchAction: function (page) {
-
     },
     render: function () {
         var buf = [], i, length, height, message;
