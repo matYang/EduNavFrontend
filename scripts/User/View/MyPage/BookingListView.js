@@ -41,16 +41,16 @@ var BookingListView = MultiPageView.extend({
     fetchAction: function (page) {
         if (page === undefined) {// 未传入参数
 
-            if(this.sr.get("start") === undefined)// localStorage中不存在缓存
-                this.sr.set("start", 0);// 则设置默认的start为0
+            if(this.bookingSr.get("start") === undefined)// localStorage中不存在缓存
+                this.bookingSr.set("start", 0);// 则设置默认的start为0
         } else {
-            this.sr.set("start", (page - 1) * this.pageEntryNumber);
+            this.bookingSr.set("start", (page - 1) * this.pageEntryNumber);
         }
         this.sr.set("count", this.pageEntryNumber);
         this.currentPage = page;
-        $("#bookingSummary tbody").empty().append("<tr class='loading'></tr>");
+        $("#bookingSummary tbody").empty().append("<tr><td class='loading' colspan='4'></td></tr>");
         $("#courseSearchResultNavigator").empty();
-        app.generalManager.findCourse(this.sr, {
+        app.generalManager.findCourse(this.bookingSr, {
             success: this.render,
             error: this.renderError
         });
