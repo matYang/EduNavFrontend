@@ -17,7 +17,7 @@ var BookingListView = MultiPageView.extend({
         MultiPageView.prototype.initialize.call(this);
         this.allMessages = allMessages;
         this.messages = messages;
-//        this.truePagination = false;
+        this.truePagination = false;
         this.entryTemplate = _.template(tpl.get("booking_entry"));
         app.viewRegistration.register(this);
         this.isClosed = false;
@@ -35,6 +35,7 @@ var BookingListView = MultiPageView.extend({
             Info.displayNotice(data.responseJSON.message ? data.responseJSON.message : "订单页面加载失败，请稍后重试。");
         }
     },
+    //以下为真分页时才会调用
     fetchAction: function (page) {
         if (page === undefined) {// 未传入参数
 
