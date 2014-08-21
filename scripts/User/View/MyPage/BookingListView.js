@@ -44,8 +44,7 @@ var BookingListView = MultiPageView3.extend({
         });
     },
     render: function (data) {
-        var searchResults = data || new Courses();
-        this.allMessages = searchResults;
+        var searchResults = data || new Bookings();
         this.messages = searchResults;
         //这里进行数据的显示
         MultiPageView3.prototype.render.call(this);
