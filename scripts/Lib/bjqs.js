@@ -155,8 +155,8 @@
 
             // TODO: need to accomodate random start for slide transition setting
             if(settings.animtype === 'slide' && !settings.randomstart){
-                state.currentindex = 1;
-                state.currentslide = 2;
+                state.currentindex = 0;
+                state.currentslide = 1;
             }
 
             // slide components are hidden by default, show them now

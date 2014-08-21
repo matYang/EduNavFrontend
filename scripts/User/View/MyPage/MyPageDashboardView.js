@@ -1,7 +1,7 @@
 var MyPageDashboardView = Backbone.View.extend({
     el:"#mypage_content",
     initialize: function (params) {
-        _.bindAll(this, "render", "bindEvents", "renderError", "close");
+        _.bindAll(this, "render", "bindEvents", "close");
         app.viewRegistration.register(this);
         this.template = _.template(tpl.get("mypage_dashboard"));
 //        this.user = app.sessionManager.sessionModel;//session中存的信息不全
