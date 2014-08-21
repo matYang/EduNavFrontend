@@ -17,14 +17,11 @@ var BookingListView = MultiPageView.extend({
         MultiPageView.prototype.initialize.call(this);
         this.allMessages = allMessages;
         this.messages = messages;
-        this.truePagination = false;
+//        this.truePagination = false;
         this.entryTemplate = _.template(tpl.get("booking_entry"));
         app.viewRegistration.register(this);
         this.isClosed = false;
-        app.userManager.fetchBookings(this.bookingSr, {
-            success: this.render,
-            error: this.renderError
-        });
+        this.render();
     },
     render: function (data) {
         app.sessionManager.sessionModel.set("bookingList", data);

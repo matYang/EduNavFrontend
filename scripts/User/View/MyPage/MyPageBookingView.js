@@ -6,7 +6,8 @@ var MyPageBookingView = Backbone.View.extend({
         app.viewRegistration.register(this);
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
-
+        this.bookingSr = new BookingSearchRepresentation ();
+        this.bookingSr.set("userId", this.user.get("userId"));
         this.render();
     },
 
@@ -15,8 +16,6 @@ var MyPageBookingView = Backbone.View.extend({
 
 
         this.bookingListView = new BookingListView(new Bookings(), new Bookings(), "booking");
-        this.bookingListView.bookingSr = new BookingSearchRepresentation ();
-        this.bookingListView.bookingSr.set("userId", this.user.get("userId"));
     },
     close: function () {
         if (!this.isClosed) {
