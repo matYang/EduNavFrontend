@@ -11,7 +11,7 @@ var MyPageDashboardView = Backbone.View.extend({
         this.bookingSr.set("userId", this.user.get("userId"));
         this.$el.empty().append(this.template(this.user._toJSON()));
         this.$bookings = $("#bookingSummary tbody");
-        this.$bookings.append("<tr class='loading'></tr>");
+        this.$bookings.append("<tr><td class='loading' colspan='4'></td></tr>");
         app.userManager.fetchBookings(this.bookingSr, {
             success: this.render,
             error: this.renderError

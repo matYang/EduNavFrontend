@@ -326,7 +326,7 @@
         var bookings = new Bookings();
         bookings.overrideUrl(ApiResource.user_booking);
         bookings.fetch({
-            data: bookingSearchRepresentation.toQueryString(),
+            data: $.param(bookingSearchRepresentation.toJSON(),true),
             dataType:'json',
 
             success:function(model, response){

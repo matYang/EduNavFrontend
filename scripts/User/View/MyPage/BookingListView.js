@@ -1,4 +1,4 @@
-var BookingListView = MultiPageView.extend({
+var BookingListView = MultiPageView3.extend({
     entryContainer: "bookingSummary tbody",
     entryClass: "bookingEntry",
     actionClass: "bookingTitle",
@@ -13,39 +13,39 @@ var BookingListView = MultiPageView.extend({
     $domContainer: null,
     el: "#bookingSummary",
     table:'#bookingSummary',
-    initialize: function (allMessages, messages) {
-        MultiPageView.prototype.initialize.call(this);
-        this.allMessages = allMessages;
-        this.messages = messages;
-        this.truePagination = false;
+    bookingSr:null,
+    initialize: function (bookingSr) {
+        //初始化过滤条件
+        this.bookingSr = bookingSr;
+        MultiPageView3.prototype.initialize.call(this);
         this.entryTemplate = _.template(tpl.get("booking_entry"));
         app.viewRegistration.register(this);
         this.isClosed = false;
-        this.render();
+        this.fetchAction();
     },
     render: function (data) {
-        app.sessionManager.sessionModel.set("bookingList", data);
         var searchResults = data || new Courses();
         this.allMessages = searchResults;
         this.messages = searchResults;
-        MultiPageView.prototype.render.call(this);
+        MultiPageView3.prototype.render.call(this);
     },
     renderError: function (data) {
         if (!this.isClosed) {
             Info.displayNotice(data.responseJSON.message ? data.responseJSON.message : "订单页面加载失败，请稍后重试。");
         }
     },
-    //以下为真分页时才会调用
-    fetchAction: function (page) {
-        if (page === undefined) {// 未传入参数
+    //以下在toPage(点击分页按钮)中调用 doRefresh()
+    fetchAction: function (pageIndex) {
+        //重新获取数据时需要设置分页信息
+        if (pageIndex === undefined) {// 未传入参数
 
             if(this.bookingSr.get("start") === undefined)// localStorage中不存在缓存
                 this.bookingSr.set("start", 0);// 则设置默认的start为0
         } else {
-            this.bookingSr.set("start", (page - 1) * this.pageEntryNumber);
+            this.bookingSr.set("start", (pageIndex - 1) * this.pageEntryNumber);
         }
         this.sr.set("count", this.pageEntryNumber);
-        this.currentPage = page;
+        this.currentPage = pageIndex;
         $("#bookingSummary tbody").empty().append("<tr><td class='loading' colspan='4'></td></tr>");
         $("#courseSearchResultNavigator").empty();
         app.generalManager.findCourse(this.bookingSr, {
