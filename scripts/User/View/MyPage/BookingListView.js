@@ -2,7 +2,6 @@ var BookingListView = MultiPageView3.extend({
     entryContainer: "bookingSummary tbody",
     actionClass: "bookingTitle",
     pageNavigator: "bookingNavigator",
-    pageNavigatorClass: "page blank1 clearfix",
     pageEntryNumber: 8,
     pageNumberClass: "bookingPage",
     pageNumberId: "bookingPage",

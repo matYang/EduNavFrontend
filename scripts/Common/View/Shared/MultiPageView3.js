@@ -11,7 +11,6 @@ var MultiPageView3 = Backbone.View.extend({
      *                   (including the ones in the pages not displaying, NOTE: it must be a different instance from allMessage in order for the collection event to work properly)
      * @param entryHeight: the height of each entry, including margins and paddings, used for calculating container height
      * @param entryRowNum: the number of entries displaying in the same row
-     * @param extPn: external page navigator
      * @param _filters: private member holding registered filters, should never be referenced from external
 
      //TODO:
@@ -20,8 +19,7 @@ var MultiPageView3 = Backbone.View.extend({
     entryContainer: "", //结果列表
     truePagination: true, //为true时必须指定fetchAction函数用于与后台交互获取分页数据
     entryClass: "", //每条记录的样式
-    pageNavigator: "", //分页数据的container
-    pageNavigatorClass: "",//container的样式
+    pageNavigator: "pagination", //分页数据的container
     pageEntryNumber: 10,//每页显示的记录数
     startIndex: 0,//开始记录数
     currentPage: 1,//当前页数
@@ -37,11 +35,20 @@ var MultiPageView3 = Backbone.View.extend({
     $messageContainer: null,
     singlePage: null,
     isTable: false,
+    $tableContainer: false,
     initialize: function () {
         _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler",
             "clickPreHandler", "clickNextHandler", "close");
-        if($("#" + this.entryContainer)[0].tagName ==='TBODY'){
+        var $entryContainer = $("#" + this.entryContainer);
+        if($entryContainer[0].tagName ==='TBODY'){
             this.isTable = true;
+            this.$tableContainer = $entryContainer.parent();
+        }
+
+        if(this.isTable){
+            this.$tableContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
+        }else{
+            this.$messageContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
         }
     },
     fetchAction: function (page) {
@@ -126,25 +133,13 @@ var MultiPageView3 = Backbone.View.extend({
             this.$pn.children("." + this.pageNumberClass).off();
             this.$pn.children(".pre").off();
             this.$pn.children(".next").off();
-            if (this.extPn) {
-                this.$pn.empty();
-            } else {
-                this.$pn.remove();
-                this.$pn = null;
-            }
             this.$pre = null;
             this.$next = null;
+        }
+        
 
-        }
-        if (!this.extPn) {
-            this.$messageContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
-        }
         this.$pn = $("#" + this.pageNavigator);
-        if (this.truePagination) {
-            length = this.messages ? this.messages.total : 0;
-        } else {
-            length = this.messages ? this.messages.length : 0;
-        }
+        length = this.messages.total;
         pages = Math.ceil(length / this.pageEntryNumber);
         this.pages = pages;
         pages = pages > 10 ? 10 : pages;
@@ -160,8 +155,7 @@ var MultiPageView3 = Backbone.View.extend({
         html = buf.join("");
         this.$pn.off()
             .empty()
-            .append(html)
-            .addClass(this.pageNavigatorClass);
+            .append(html);
         this.$pre = this.$pn.children(".pre");
         this.$next = this.$pn.children(".next");
         this.$pn.children("#" + this.pageNumberId + "_" + this.currentPage).addClass("active");
