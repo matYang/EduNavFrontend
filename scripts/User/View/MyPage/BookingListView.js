@@ -13,7 +13,7 @@ var BookingListView = MultiPageView3.extend({
     $domContainer: null,
     el: "#bookingSummary",
     table:'#bookingSummary',
-    bookingSr:null,
+    bookingSr:new BookingSearchRepresentation(),
     initialize: function (bookingSr) {
         //初始化过滤条件
         this.bookingSr = bookingSr;
@@ -44,7 +44,7 @@ var BookingListView = MultiPageView3.extend({
         } else {
             this.bookingSr.set("start", (pageIndex - 1) * this.pageEntryNumber);
         }
-        this.sr.set("count", this.pageEntryNumber);
+        this.bookingSr.set("count", this.pageEntryNumber);
         this.currentPage = pageIndex;
         $("#bookingSummary tbody").empty().append("<tr><td class='loading' colspan='4'></td></tr>");
         $("#courseSearchResultNavigator").empty();
