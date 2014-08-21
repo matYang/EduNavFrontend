@@ -34,58 +34,52 @@ var MultiPageView3 = Backbone.View.extend({
     minHeight: 0,
     noMessage: _.template("暂无消息"),
     eventBound: false,
-    $domContainer: null,
+    $messageContainer: null,
     singlePage: null,
+    isTable: false,
     initialize: function () {
         _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler",
             "clickPreHandler", "clickNextHandler", "close");
+        if($(this.entryContainer)[0].tagName ==='TBODY'){
+            this.isTable = true;
+        }
     },
     fetchAction: function (page) {
     },
     render: function () {
         //获取完数据后需要进行数据的展示
         var buf = [], i, length, height, message;
-        this.$domContainer = $("#" + this.entryContainer);
-        this.$domContainer.empty();
+        this.$messageContainer = $("#" + this.entryContainer);
+        this.$messageContainer.empty();
         if (this.messages.length > 0) {
-            if (this.table) {
-                $(this.table).show();
-                $(this.table).find(".noMessage").remove();
-            }
+            //这里设置显示的数据
             length = this.messages.length - this.startIndex;
             length = (length < this.pageEntryNumber) ? length : this.pageEntryNumber;
-            for (i = 0; i < length; i++) {
-                if (this.messages instanceof Backbone.Collection) {
-                    message = this.messages.at(i + this.startIndex);
-                } else {
-                    message = this.messages[i + this.startIndex];
-                }
-                buf[i] = this.entryTemplate(message._toJSON());
+
+            var items = this.messages._toJSON();
+            for(i in items){
+                buf.push(this.entryTemplate(items[i]));
             }
-            this.$domContainer.append(buf.join(""));
+            this.$messageContainer.append(buf.join(""));
             buf = null;
-            var $divs = this.$domContainer.children("div");
-            if ($divs.length) {
-                $divs.addClass(this.entryClass);
-            }
             if (this.entryEvent && !this.eventBound) {
+                //绑定进入详情页的事件
                 this.bindEntryEvent();
                 this.eventBound = true;
             }
         } else {
             if (!this.table) {
-                this.$domContainer.append("<div class = 'noMessage'>" + this.noMessage() + "</div>");
+                this.$messageContainer.append("<div class = 'noMessage'>" + this.noMessage() + "</div>");
             } else {
-                $(this.table).hide();
-                $(this.table).after("<div class = 'noMessage'>" + this.noMessage() + "</div>");
+                this.$messageContainer.append("<tr><td colspan='4'><div class = 'noMessage'>" + this.noMessage() + "</div></td></tr>");
             }
         }
         if (this.autoHeight) {
-            this.$domContainer.css("height", "auto");
+            this.$messageContainer.css("height", "auto");
         } else if (this.entryHeight) {
             height = Math.ceil(length / this.entryRowNum) * this.entryHeight;
             height = (height > this.minHeight) ? height : this.minHeight;
-            this.$domContainer.css("height", height + "px");
+            this.$messageContainer.css("height", height + "px");
         }
         var total = this.messages.total;
         if (total > this.pageEntryNumber) {
@@ -99,20 +93,15 @@ var MultiPageView3 = Backbone.View.extend({
         // this.messages.on("change", this.render);
     },
 
-    toPage: function (page) {
-        this.currentPage = page;
-        this.startIndex = this.pageEntryNumber * (page - 1);
-        if (!this.truePagination) {
-            this.render();
-        } else {
-            this.fetchAction(page);
-            this.setPageNavigator();
-        }
+    toPage: function (pageIndex) {
+        this.currentPage = pageIndex;
+        this.startIndex = this.pageEntryNumber * (pageIndex - 1);
+        this.fetchAction(pageIndex);//抓取完会进行render
     },
     bindEntryEvent: function () {
 
         var self = this, eventClass = this.actionClass || this.entryClass;
-        this.$domContainer.on("click", "." + eventClass, function (e) {
+        this.$messageContainer.on("click", "." + eventClass, function (e) {
             e.preventDefault();
             var id = Utilities.toInt(Utilities.getId($(this).attr("id")));
             if (isNaN(id)) {
@@ -148,7 +137,7 @@ var MultiPageView3 = Backbone.View.extend({
 
         }
         if (!this.extPn) {
-            this.$domContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
+            this.$messageContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
         }
         this.$pn = $("#" + this.pageNavigator);
         if (this.truePagination) {
@@ -209,9 +198,9 @@ var MultiPageView3 = Backbone.View.extend({
             }
             this.unregisterFilterEvent();
             this.unregisterSortEvent();
-            this.$domContainer.off();
-            this.$domContainer.empty();
-            this.$domContainer = null;
+            this.$messageContainer.off();
+            this.$messageContainer.empty();
+            this.$messageContainer = null;
             this.eventBound = false;
             this.isClosed = true;
         }

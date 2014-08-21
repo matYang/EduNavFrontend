@@ -1,6 +1,5 @@
 var BookingListView = MultiPageView3.extend({
     entryContainer: "bookingSummary tbody",
-    entryClass: "bookingEntry",
     actionClass: "bookingTitle",
     pageNavigator: "bookingNavigator",
     pageNavigatorClass: "page blank1 clearfix",
@@ -12,7 +11,6 @@ var BookingListView = MultiPageView3.extend({
     noMessage: _.template(tpl.get("booking_noMessage")),
     $domContainer: null,
     el: "#bookingSummary",
-    table:'#bookingSummary',
     bookingSr:new BookingSearchRepresentation(),
     initialize: function (bookingSr) {
         //初始化过滤条件
