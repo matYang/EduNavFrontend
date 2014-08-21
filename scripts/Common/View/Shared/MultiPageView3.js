@@ -40,7 +40,7 @@ var MultiPageView3 = Backbone.View.extend({
     initialize: function () {
         _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler",
             "clickPreHandler", "clickNextHandler", "close");
-        if($(this.entryContainer)[0].tagName ==='TBODY'){
+        if($("#" + this.entryContainer)[0].tagName ==='TBODY'){
             this.isTable = true;
         }
     },
