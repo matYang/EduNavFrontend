@@ -1,7 +1,7 @@
 var MyPageBookingView = Backbone.View.extend({
     el: "#mypage_content",
     initialize: function () {
-        _.bindAll(this, "render", "renderError", "close");
+        _.bindAll(this, "render", "close");
         this.template = _.template(tpl.get("mypage_bookingList"));
         app.viewRegistration.register(this);
         this.user = app.sessionManager.sessionModel;
