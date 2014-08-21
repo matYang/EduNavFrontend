@@ -49,6 +49,7 @@ var MultiPageView3 = Backbone.View.extend({
     render: function () {
         //获取完数据后需要进行数据的展示
         var buf = [], i, length, height, message;
+        var that = this;
         this.$messageContainer = $("#" + this.entryContainer);
         this.$messageContainer.empty();
         if (this.messages.length > 0) {
@@ -57,11 +58,8 @@ var MultiPageView3 = Backbone.View.extend({
             length = (length < this.pageEntryNumber) ? length : this.pageEntryNumber;
 
             this.messages.each(function(message){
-                buf.push(this.entryTemplate(message._toJSON()));
+                buf.push(that.entryTemplate(message._toJSON()));
             });
-            for(i in items){
-
-            }
             this.$messageContainer.append(buf.join(""));
             buf = null;
             if (this.entryEvent && !this.eventBound) {
