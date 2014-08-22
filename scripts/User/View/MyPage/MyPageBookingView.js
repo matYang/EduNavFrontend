@@ -16,6 +16,7 @@ var MyPageBookingView = Backbone.View.extend({
 
     render: function () {
         this.$el.empty().append(this.template);
+        $("#mypage_content").css("border", "none");
         //加载view时只需要传入过滤的条件即可
         this.bookingListView = new BookingListView(this.bookingSr);
     },

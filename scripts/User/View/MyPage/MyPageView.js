@@ -21,7 +21,17 @@ var MyPageView = Backbone.View.extend({
         if (!this.isClosed) {
             this.user = user;
             this.$el.append(this.template(this.user._toJSON()));
-            $("#mypage_content").css("border", "1px solid #ccc");
+
+            var time, date = new Date();
+            var hour = date.getHours();
+            if (hour > 4 && hour < 12) {
+                time = "早上";
+            } else if (hour >= 12 && hour < 18) {
+                time = "下午";
+            } else {
+                time = "晚上";
+            }
+            $('#mypage_greeting').html(time);
             this.createChildView();
             this.bindEvents();
         }

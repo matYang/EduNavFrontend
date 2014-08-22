@@ -13,6 +13,7 @@ var Course = Backbone.Model.extend({
                 'popularity': undefined,//人气值
                 'bookingType': undefined,
                 'startUponArrival': undefined,//转换成了是否有具体的开课日期
+                'regPhone': undefined,//转换成了没有开课日期的备注
                 'studyDaysNote': undefined,//备注信息
                 'qualityAssurance': undefined,
                 "contact": undefined,//课程联系方式

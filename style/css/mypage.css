@@ -33,11 +33,12 @@ table td.col5 input{width:60px; height:24px; background:#128d56; border:none; co
 #mypage_sidebar .mypage_sidebar_sectionContent .active{ color:#128d56; font-weight:bold;}
 
 /**********右栏**********/
-#mypage_content{float:right; width:778px;border:1px solid #ccc;}
+#mypage_content{float:right; width:778px;}
 #mypage_content.mypage_min_height{min-height: 789px;}
 #mypage_content.mypage_min_height1{min-height:664px;}
-#mypage_content .title{ padding-left:20px; height:50px; line-height:50px; border-bottom:1px solid #ccc; background:#ebebeb;}
-#mypage_content .mypage_content_inner{ padding:20px;}
+#mypage_content .title{ padding-left:20px; height: 40px; line-height: 40px; border:1px solid #ccc;}
+
+#mypage_content .mypage_content_inner{ padding:20px;border:1px solid #ccc;}
 
 
 /*个人中心首页*/
@@ -56,7 +57,7 @@ table td.col5 input{width:60px; height:24px; background:#128d56; border:none; co
 
 /*订单列表的单条数据 rewritten by Jet MD后面还有冲突的 TM后面有空了再改*/
 #mypage_content table.table-clean thead tr td{
-    padding: 5px 0;
+    padding: 0;
     font-size: 14px;
     font-weight: bold;/*尼玛顺便就在这加点head的样式了 你妹的好好样式不加 非要加背景色*/
     background: none;
@@ -79,19 +80,29 @@ thead tr.bookingEntry td.detail{text-align: center}
 /*all 4 tds*/
 .bookingEntry td.date{ width:80px;}
 .bookingEntry td.detail{width:360px; text-align: left; }
-.bookingEntry td.payType{width:120px; font-size:18px; color: #666;}
+.bookingEntry td.payType{width:120px; font-size:12px; color: #666;}
 .bookingEntry td.status{width:138px;}
 .bookingEntry td.status .status{font-size: 14px;color:#333333}
 .bookingEntry td.status .status span{display: inline-block;vertical-align: text-bottom;height: 22px;line-height: 22px;}/*状态的文字*/
 .bookingEntry td.status .operate{color:#128d56}/*取消订单等操作文字*/
 .bookingEntry td.status .operate:hover{color:#114d56}
 /*td date*/
-.bookingEntry td.date .day{font-size: 2em;font-weight: bold;margin: 5px 0;}
+.bookingEntry td.date .day{font: 24px Tahoma,Helvetica,sans-serif;font-weight: bold;}
 /*td detail*/
 .bookingEntry td.detail .img-logo{ position: absolute; left:10px; top:17px; }
-.bookingEntry td.detail h3,.bookingEntry td.detail p{ padding:3px 80px 0; }
-.bookingEntry td.detail .price{ color:#ff0000; font-size: 1.4em; }
-.bookingEntry td.detail h3{ font-weight:bold; font-size:14px;}
+.bookingEntry td.detail h3,.bookingEntry td.detail p{
+    padding:0 5px;
+    margin: 3px 0 3px 75px;
+    width: 283px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.bookingEntry td.detail .price{ font-size: 17px;
+    font-family: SimSun, serif;
+    font-weight: bold;}
+.bookingEntry td.detail .address{color: #888; border-bottom: 1px dotted #ccc;}
+.bookingEntry td.detail h3{ font-weight:normal; font-size:14px;}
 
 /*td status 状态的图标*/
 .icon-status {
@@ -237,16 +248,3 @@ thead tr.bookingEntry td.detail{text-align: center}
 #mypage_content .invitation .weixin{ background-position:0 -250px;}
 
 #mypage_content .invitation #copy_content_container{height: 110px;}
-
-
-
-
-
-
-
-
-
-
-
-
-

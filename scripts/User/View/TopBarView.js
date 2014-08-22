@@ -18,7 +18,7 @@ var TopBarView = Backbone.View.extend({
 
     render: function () {
         var time, date = new Date();
-        var hour = date.getHours() + 1;
+        var hour = date.getHours();
         this.$pdropdown = $('#profileDropdown>dd');
         if (app.sessionManager.hasSession()) {
             this.$el.append(this.loggedInTemplate(this.sessionUser._toJSON()));

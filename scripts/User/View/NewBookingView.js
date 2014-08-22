@@ -193,7 +193,7 @@ var NewBookingView = BaseFormView.extend({
             buttonImage: "calendar.gif",
             buttonText: "Calendar",
             minDate: new Date(),
-            maxDate: this.model.get("course").get("cutoffDate"),
+//            maxDate: this.model.get("course").get("cutoffDate"),
             defaultDate: that.model.get("scheduledTime"),
             onSelect: function (text, inst) {
                 var d = new Date();
@@ -279,5 +279,5 @@ var NewBookingView = BaseFormView.extend({
         } else {
             return '<span class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' + this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></span>';
         }
-    },
+    }
 });
