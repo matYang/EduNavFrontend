@@ -1534,28 +1534,25 @@
 <dl id="content_3" class="clearfix">
     <dt>名师团队</dt>
 
-    <!--TODO 真实的教师列表-->
+    <!--<dd class="clearfix">-->
+        <!--<div class="teacher">-->
+            <!--<img src="style/images/tpic.png"/>-->
+            <!--<h3>李长茂</h3>-->
+            <!--<div>北京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。 </div>-->
+            <!--<span class="more">详细查看</span>-->
+        <!--</div>-->
+    <!--</dd>-->
+
     <% if (teacherList&&teacherList!==[]) { %>
-    <dd class="teacher clearfix">
+    <dd class="clearfix">
         <% for (var i =0; i < teacherList.length; i++) { %>
-        <table class="blank" cellpadding="0" cellspacing="0">
-            <tbody><tr>
-                <td class="teacher_img"><img src="<%= teacherList[i].imgUrl %>" width="100" height="100"></td>
-                <td class="teacher_intr" valign="top">
-                    <h3><%= teacherList[i].name %></h3>
-                    <div><%= teacherList[i].intro %></div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="teacher">
+            <img src="<%= teacherList[i].imgUrl %>"/>
+            <h3><%= teacherList[i].name %></h3>
+            <div><%= teacherList[i].intro %></div>
+            <span class="more">详细查看</span>
+        </div>
         <% } %>
-
-            <!--<div class="teacherInfo">-->
-                <!--<img class="teacherPhoto" />-->
-
-                <!--<div class="name"></div>-->
-                <!--<div class=""></div>-->
-            <!--</div>-->
     </dd>
     <% } %>
 

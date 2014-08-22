@@ -158,12 +158,46 @@
 #content_2 .zsfw{ background-position:0 -1320px;}
 
 /*名师团队*/
-#content_3 table{float:left; border:1px solid #d1d1d1; margin-right:10px;}
-#content_3 .teacher_img{width:100px; border-right:1px solid #ccc;}
-#content_3 .teacher_img img{ display:block}
-#content_3 .teacher_intr{width:180px; padding:0 10px;word-break:break-all;word-wrap:break-word;}
-#content_3 .teacher_intr h3{color:#128d56; margin-top: 5px;}
-#content_3 .teacher_intr div{ line-height:22px; color:#666;}
+#content_3 .teacher{
+    float:left; border:1px solid #d1d1d1; margin-right:10px;
+    width: 305px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+}
+#content_3 .teacher img{
+    position: absolute;
+    left: 0;top: 0;
+    width:100px;height: 100px;
+    border-right:1px solid #ccc;}
+#content_3 .teacher h3,
+#content_3 .teacher div{
+    margin-left: 100px;
+    width:190px; padding:0 10px;word-break:break-all;word-wrap:break-word;
+}
+#content_3 .teacher h3{color:#128d56; margin-top: 4px;}
+#content_3 .teacher div{color:#666; line-height:22px; }
+#content_3 .teacher .more{
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    line-height: 20px;
+    background: #ccc;
+    padding: 0 5px;
+    font-size: 13px;
+    color: white;
+    cursor: pointer;
+}
+#content_3 .teacher .more:hover{
+    color:#128d56;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
 
 /*同类型课程*/
 #content_5 table{ border-top:1px dotted #ccc; border-right:1px dotted #ccc;}
