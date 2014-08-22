@@ -32,22 +32,22 @@
 .search_result #searchResultSorter .fright input{ vertical-align:-2px;}
 
 .search_result .no_data{ margin-top:100px; margin-left:140px; padding-left:60px; background:url(../images/no_data.png) no-repeat left center;}
-.search_result .no_data div{ padding:12px 0 12px; font-size:24px; font-family:微软雅黑; color:#128d56;}
-.search_result .searchResultEntry{ margin-top:10px; border:1px solid #dddddd; min-height:105px; padding:20px 0 20px 15px; font-size:12px;}
+.search_result .no_data div{ padding:12px 0 12px; font-size:24px;color:#128d56;}
+.search_result .searchResultEntry{ margin-top:10px; border:1px solid #dddddd; min-height:105px; padding:15px 0 15px 15px; font-size:12px;}
 .search_result .pic{position:relative; float:left; width:100px; height:100px; border:1px solid #ccc; margin-right:10px;}
 .search_result .pic span{ display:block; position:absolute; top:78px; left:0; width:100%; text-align:center; color:#fff; height:22px; line-height:22px; background-color:rgba(0,0,0,.5); filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#77000000',endColorstr='#77000000');}
 
 .search_result .col1{float:left; width:325px; padding-right:5px; line-height:24px; border-right:1px solid #cccccc;}
 .search_result .col1 .title{font-size:14px; font-weight:bold; margin-bottom:7px;}
-.search_result .col1 .desc{}
+.search_result .col1 .desc{width: 325px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
 .search_result .col1 .desc s{margin:0 12px;}
 
 .search_result .col2{float:left; position:relative; width:128px; height:105px; text-align:center; border-right:1px solid #eee; font-size:14px;}
-.search_result .col2 .price{font-size:24px; color:#ff5500; font-family:微软雅黑; margin-top:5px;}
+.search_result .col2 .price{font-size:24px; color:#ff5500;}
 .search_result .col2 .price .sign{font-size:14px; color:#333333;}
 .search_result .col2 .cashback{margin-top:5px;}
-.search_result .col2 .original_cost{ font-size:12px; margin-top:5px;}
-.search_result .col2 .original_cost span{ text-decoration:line-through; font-family:微软雅黑; } 
+.search_result .col2 .original_cost{ font-size:12px;margin-top: 2px;}
+.search_result .col2 .original_cost span{ text-decoration:line-through; }
 
 .search_result .col3{float:left; width:140px; height:105px; text-align:center;}
 .search_result .col3  input.btn_g,
@@ -68,7 +68,7 @@
 #CompareWidgetContainer .compareEntry .remove{ position:absolute; right:10px; top:15px; width:20px; height:20px; background:url(../images/close3.png) no-repeat; cursor:pointer;}
 #CompareWidgetContainer .compareEntry .remove:hover{ background:url(../images/close3_hover.png) no-repeat;}
 #CompareWidgetContainer .btns{ text-align:center; margin:10px auto;}
-#CompareWidgetContainer #compare{width:215px; height:32px; border:none; font-size:14px; font-family:微软雅黑; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
+#CompareWidgetContainer #compare{width:215px; height:32px; border:none; font-size:14px; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
 
 #mainMap{ position:relative; border:1px solid #ccc; width:248px; height:338px; z-index:9999;}
 #mainMap .map_icon{ position:absolute; cursor:pointer; z-index:999999}

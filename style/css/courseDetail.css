@@ -7,7 +7,7 @@
 
 .courseDetail .banner .row1{ padding:15px; border-bottom:1px dotted #ccc;}
 .courseDetail .banner .row1 dt{font-size:24px; font-family:"Microsoft Yahei"; color:#128d56; margin-bottom:10px;}
-.courseDetail .banner .row1 dt span{ margin-left:20px;}
+.courseDetail .banner .row1 dt span{ margin-left:10px; font-size: 14px;}
 
 .courseDetail .banner .row1 .col1{float:left; width:660px;}
 .courseDetail .banner .row1 .col2{float:left; width:135px; margin-top:5px;}

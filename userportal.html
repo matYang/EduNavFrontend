@@ -268,7 +268,14 @@
                     <%= courseName %></a>
             </p>
 
-            <p class="desc"><span>适合学员:</span> <%= suitableStudent %></p>
+            <p class="desc">
+                <span>优惠信息:</span>
+                <%if(marking){%>
+                <%= marking %>
+                <%}else{%>
+                -- --
+                <%}%>
+            </p>
 
             <p class="desc"><span>上课日期:</span>
                 <%if(startUponArrival){%>
@@ -281,7 +288,11 @@
             <p class="desc"><span>上课地址:</span> <%= address %></p>
         </div>
         <div class="col2">
-
+            <p class="original_cost">&nbsp;
+                <%if(originalPrice){%>
+                原价：<span>￥<%=originalPrice%></span>
+                <%}%>
+            </p>
             <p class="price">
                 <%if(!price){%>
                 <small>机构定制</small>
@@ -290,6 +301,7 @@
                 <%}%>
             </p>
             <%if(cashback){%>
+            <div>
             <a class="label cashback"><%=cashback %>元
                 <div class="tip">
                     <div class="arrow"></div>
@@ -298,8 +310,10 @@
                     </div>
                 </div>
             </a>
+            </div>
             <%}%>
             <%if(commission){%>
+            <div class="margin-y-sm">
             <a class="label save"><%= commission %>元
                 <div class="tip">
                     <div class="arrow"></div>
@@ -308,6 +322,7 @@
                     </div>
                 </div>
             </a>
+            </div>
             <%}%>
             <!--<a class="cashback">-->
                  <!--cashback 元-->
@@ -480,9 +495,10 @@
                         </p>
                     </div>
                     <div id="mypage_info">
-                        <p class="phone"><span></span><%= phone %></p>
-
-                        <p class="email <% if (email) { %> hidden <% } %>"><span></span><%= email %></p>
+                        <p class="phone"><span>&nbsp;</span><%= phone %></p>
+                        <% if (email) { %>
+                        <p class="email "><span>&nbsp;</span><%= email %></p>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -1304,11 +1320,17 @@
         <dl class="col1">
             <dt>
                 <%= courseName %>
-                <span><%= instName %></span>
+                <span>【<%= instName %>】</span>
                 <input id="detail_compare_<%= id %>" class="add btn_g" type="button"
                        value=" +对比 ">
             </dt>
-            <dd>适合学员：<%= suitableStudent %></dd>
+            <dd>特惠信息：
+                <%if(marking){%>
+                <%= marking %>
+                <%}else{%>
+                -- --
+                <%}%>
+            </dd>
         </dl>
         <div class="col2">
             <div class="price">
@@ -1454,7 +1476,7 @@
         <div><%= partnerIntro %></div>
     </dd>
     <% } %>
-    <% if (teacherList!==[]) { %>
+    <% if (teacherList&&teacherList!==[]) { %>
     <dd class="teacher clearfix">
         <label>老师介绍</label>
 
