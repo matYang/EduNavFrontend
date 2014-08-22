@@ -22,10 +22,6 @@ var Teacher = Backbone.Model.extend({
             json.id = parseInt(data.id, 10);
             json.teacherId = json.id;
             json.partnerId = parseInt(data.partnerId, 10);
-            json.name = decodeURI(data.name);
-
-            json.intro = decodeURI(data.intro);
-            json.imgUrl = decodeURIComponent(data.imgUrl);
 
             json.createTime = Utilities.castFromAPIFormat(data.createTime);
         }

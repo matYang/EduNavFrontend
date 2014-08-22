@@ -1570,18 +1570,25 @@
     <!--TODO 真实的教师列表-->
     <% if (teacherList&&teacherList!==[]) { %>
     <dd class="teacher clearfix">
-        <label>老师介绍</label>
+        <% for (var i =0; i < teacherList.length; i++) { %>
+        <table class="blank" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                <td class="teacher_img"><img src="<%= teacherList[i].imgUrl %>" width="100" height="100"></td>
+                <td class="teacher_intr" valign="top">
+                    <h3><%= teacherList[i].name %></h3>
+                    <div><%= teacherList[i].intro %></div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <% } %>
 
-        <div class="clearfix blank">
-            <% for (var i =0; i < teacherList.length; i++) { %>
-            <div class="teacherInfo">
-                <img class="teacherPhoto" src="<%= teacherList[i].imgUrl %>"/>
+            <!--<div class="teacherInfo">-->
+                <!--<img class="teacherPhoto" />-->
 
-                <div class="name"><%= teacherList[i].name %></div>
-                <div class=""><%= teacherList[i].intro %></div>
-            </div>
-            <% } %>
-        </div>
+                <!--<div class="name"></div>-->
+                <!--<div class=""></div>-->
+            <!--</div>-->
     </dd>
     <% } %>
 
