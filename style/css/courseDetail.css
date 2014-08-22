@@ -92,6 +92,7 @@
 	width: 978px;
 	padding-top: 3px;
 	margin-top: 0;
+    z-index: 10;
 }
 
 
@@ -182,7 +183,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    z-index: 10;
+    z-index: 8;
     line-height: 20px;
     background: #ccc;
     padding: 0 5px;
