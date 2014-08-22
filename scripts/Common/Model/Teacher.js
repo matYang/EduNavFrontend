@@ -16,16 +16,15 @@ var Teacher = Backbone.Model.extend({
     urlRoot: Constants.origin + '/p-api/v1.0/teacher/teacher',
 
     parse: function (data) {
-        var json = {};
         if ( typeof data !== 'undefined') {
-            
-            json.id = parseInt(data.id, 10);
-            json.teacherId = json.id;
-            json.partnerId = parseInt(data.partnerId, 10);
 
-            json.createTime = Utilities.castFromAPIFormat(data.createTime);
+            data.id = parseInt(data.id, 10);
+            data.teacherId = data.id;
+            data.partnerId = parseInt(data.partnerId, 10);
+
+            data.createTime = Utilities.castFromAPIFormat(data.createTime);
         }
-        return json;
+        return data;
     },
     _toJSON: function () {
         var json = _.clone(this.attributes);
