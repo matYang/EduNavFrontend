@@ -1337,35 +1337,31 @@
                 <%if(!price){%>
                 <small>机构定制</small>
                 <%}else{%>
+                    <%if(originalPrice){%>
+                    <s style="font-size:14px; color:#333;">原价：￥21100</s>
+                    <%}%>
                 <span class="sign">￥</span><%= price %>
                 <%}%>
             </div>
-            <!--<a class="cashback">cashback元-->
-                <!--<div class="tip">-->
-                    <!--<div class="arrow"></div>-->
-                    <!--<div class="tip_content"> 用“返现券”预订此课程，可立即返还cashback元现金！入学后不进行退学，就可至您的账户里提现。<span-->
-                            <!--class="link howToGetCoupon" style="color:green">如何获得返现券</span></div>-->
-                <!--</div>-->
-            <!--</a>-->
             <%if(cashback){%>
-            <a class="label cashback"><%=cashback %>元
+            <div class="label cashback"><%=cashback %>元
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">
                         前台付现，入学成功可立即返还<%=cashback %>元至现金账户！
                     </div>
                 </div>
-            </a>
+            </div>
             <%}%>
             <%if(commission){%>
-            <a class="label save"><%= commission %>元
+            <div class="label save"><%= commission %>元
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">
                         选择线上支付，支付时即可立减<%=commission %>元！
                     </div>
                 </div>
-            </a>
+            </div>
             <%}%>
         </div>
         <div class="col3">
@@ -1395,17 +1391,17 @@
 </div>
 <div class="courseMain blank2">
 <ul id="courseNavigateTab" class="tabButton tab">
-    <li id="tab_basic" class="active">基本信息</li>
-    <li id="tab_teaching">教学信息</li>
-    <li id="tab_etc">教学补充</li>
-    <li id="tab_service">特色服务</li>
+    <li id="tab_1" class="active">课程详情</li>
+    <li id="tab_2">特色服务</li>
+    <li id="tab_3">名师团队</li>
+    <li id="tab_4">学校概况</li>
+    <li id="tab_5">同类型课程</li>
 </ul>
 <div class="course_content">
-<dl id="content_basic" class="clearfix">
-    <dt>基本信息</dt>
+<dl id="content_1" class="clearfix">
+    <dt>课程详情</dt>
     <dd class="clearfix">
-        <label>开课日期</label>
-
+        <label>上课日期</label>
         <div>
             <%if(startUponArrival===0){%>
             <%= regPhone %>
@@ -1441,95 +1437,6 @@
         <div><%= classSize %></div>
     </dd>
     <% } %>
-    <% if (openCourseRequirement) { %>
-    <dd class="clearfix">
-        <label>开班要求</label>
-
-        <div><%= openCourseRequirement%></div>
-    </dd>
-    <% } %>
-    <% if (startDate) { %>
-    <dd class="clearfix">
-        <label>报名日期</label>
-
-        <div>至<%= startDate%>为止; 晚于此日期, 您将不再享有此特惠价格</div>
-    </dd>
-    <% } %>
-    <% if (wholeName) { %>
-    <dd class="clearfix">
-        <label>机构全称</label>
-
-        <div><%= wholeName %></div>
-    </dd>
-    <% } %>
-    <% if (partnerDistinction) { %>
-    <dd class="clearfix">
-        <label>机构荣誉</label>
-
-        <div><%= partnerDistinction %></div>
-    </dd>
-    <% } %>
-    <% if (partnerIntro) { %>
-    <dd class="clearfix">
-        <label>机构概况</label>
-
-        <div><%= partnerIntro %></div>
-    </dd>
-    <% } %>
-    <% if (teacherList&&teacherList!==[]) { %>
-    <dd class="teacher clearfix">
-        <label>老师介绍</label>
-
-        <div class="clearfix blank">
-            <% for (var i =0; i < teacherList.length; i++) { %>
-            <div class="teacherInfo">
-                <img class="teacherPhoto" src="<%= teacherList[i].imgUrl %>"/>
-
-                <div class="name"><%= teacherList[i].name %></div>
-                <div class=""><%= teacherList[i].intro %></div>
-            </div>
-            <% } %>
-        </div>
-    </dd>
-    <% } %>
-</dl>
-<dl id="content_teaching" class="clearfix">
-    <dt>教学信息</dt>
-    <% if (courseIntro) { %>
-    <dd class="clearfix">
-        <label>课程介绍</label>
-
-        <div><%= courseIntro %></div>
-    </dd>
-    <% } %>
-    <% if (goal) { %>
-    <dd class="clearfix">
-        <label>教学目标</label>
-
-        <div><%= goal %></div>
-    </dd>
-    <% } %>
-    <% if (highScoreReward) { %>
-    <dd class="clearfix">
-        <label>教学特色</label>
-
-        <div><%= highScoreReward %></div>
-    </dd>
-    <% } %>
-    <% if (prerequest) { %>
-    <dd class="clearfix">
-        <label>先修知识</label>
-
-        <div><%= prerequest %></div>
-    </dd>
-    <% } %>
-    <% if (teachingMethod) { %>
-    <dd class="clearfix">
-        <label>上课形式</label>
-
-        <div><%= teachingMethod %></div>
-    </dd>
-    <% } %>
     <% if (teachingMaterialIntro) { %>
     <dd class="clearfix">
         <label>教材介绍</label>
@@ -1544,68 +1451,47 @@
         <div><%= teachingMaterialFee %></div>
     </dd>
     <% } %>
+    <% if (suitableStudent) { %>
+    <dd class="clearfix">
+        <label>适合学员</label>
+
+        <div class="rich"><%= suitableStudent %></div>
+    </dd>
+    <% } %>
+    <% if (courseIntro) { %>
+    <dd class="clearfix">
+        <label>课程介绍</label>
+
+        <div class="rich"><%= courseIntro %></div>
+    </dd>
+    <% } %>
     <% if (outline) { %>
     <dd class="clearfix">
         <label>课程提纲</label>
 
-        <div><%= outline %></div>
+        <div class="rich"><%= outline %></div>
+    </dd>
+    <% } %>
+
+    <% if (goal) { %>
+    <dd class="clearfix">
+        <label>教学目标</label>
+
+        <div class="rich"><%= goal %></div>
     </dd>
     <% } %>
 </dl>
-<dl id="content_etc" class="clearfix">
-    <dt>教学补充</dt>
-    <dd class="clearfix blank1">
-        <% if (downloadMaterials) { %>
-        <div class="item download">
-            <div class="item_inner"><%= downloadMaterials %></div>
-        </div>
-        <% } %>
-        <% if (questionBank) { %>
-        <div class="item tk"><!--题库支持-->
-            <div class="item_inner"><%= questionBank %></div>
-        </div>
-        <% } %>
-        <% if (classTeacher) { %>
-        <div class="item zlbz"><!--推荐就业 or 班主任导学-->
-            <div class="item_inner"><%= classTeacher %></div>
-        </div>
-        <% } %>
-        <% if (teachingAndExercise) { %>
-        <div class="item jljh"><!--讲练结合-->
-            <div class="item_inner"><%= teachingAndExercise %></div>
-        </div>
-        <% } %>
-        <% if (quiz) { %>
-        <div class="item jdcp"><!--阶段测评-->
-            <div class="item_inner"><%= quiz %></div>
-        </div>
-        <% } %>
-        <% if (questionSession) { %>
-        <div class="item khdy"><!--课后答疑-->
-            <div class="item_inner"><%= questionSession %></div>
-        </div>
-        <% } %>
-        <% if (assignments) { %>
-        <div class="item khzy"><!--课后作业-->
-            <div class="item_inner"><%= assignments %></div>
-        </div>
-        <% } %>
-        <% if (marking) { %>
-        <div class="item zypg"><!--作业批改-->
-            <div class="item_inner"><%= marking %></div>
-        </div>
-        <% } %>
-    </dd>
-
-</dl>
-<dl id="content_service" class="clearfix">
+<dl id="content_2" class="clearfix">
     <dt>特色服务</dt>
-
-
     <dd class="clearfix blank1">
         <% if (passAgreement) { %>
         <div class="item qybg"><!--签约保过-->
             <div class="item_inner"><%= passAgreement %></div>
+        </div>
+        <% } %>
+        <% if (classTeacher) { %>
+        <div class="item tjjy"><!--推荐就业 or 班主任导学-->
+            <div class="item_inner"><%= classTeacher %></div>
         </div>
         <% } %>
         <% if (certification) { %>
@@ -1623,6 +1509,149 @@
             <div class="item_inner"><%= bonusService %></div>
         </div>
         <% } %>
+        <% if (quiz) { %>
+        <div class="item jdcp"><!--阶段测评-->
+            <div class="item_inner"><%= quiz %></div>
+        </div>
+        <% } %>
+        <% if (teachingAndExercise) { %>
+        <div class="item jljh"><!--讲练结合-->
+            <div class="item_inner"><%= teachingAndExercise %></div>
+        </div>
+        <% } %>
+        <% if (questionBank) { %>
+        <div class="item tk"><!--题库支持-->
+            <div class="item_inner"><%= questionBank %></div>
+        </div>
+        <% } %>
+        <% if (downloadMaterials) { %>
+        <div class="item download"><!--课件下载-->
+            <div class="item_inner"><%= downloadMaterials %></div>
+        </div>
+        <% } %>
+    </dd>
+</dl>
+<dl id="content_3" class="clearfix">
+    <dt>名师团队</dt>
+
+    <dd class="clearfix">
+        <table class="blank" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                <td class="teacher_img"><img src="style/images/tpic.png" width="100" height="100"></td>
+                <td class="teacher_intr" valign="top">
+                    <h3>李长茂</h3>
+                    <div>北京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。 </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="blank" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                <td class="teacher_img"><img src="style/images/tpic.png" width="100" height="100"></td>
+                <td class="teacher_intr" valign="top">
+                    <h3>李长茂</h3>
+                    <div>北京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。 </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="blank" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                <td class="teacher_img"><img src="style/images/tpic.png" width="100" height="100"></td>
+                <td class="teacher_intr" valign="top">
+                    <h3>李长茂</h3>
+                    <div>北京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。 </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </dd>
+
+    <!--TODO 真实的教师列表-->
+    <% if (teacherList&&teacherList!==[]) { %>
+    <dd class="teacher clearfix">
+        <label>老师介绍</label>
+
+        <div class="clearfix blank">
+            <% for (var i =0; i < teacherList.length; i++) { %>
+            <div class="teacherInfo">
+                <img class="teacherPhoto" src="<%= teacherList[i].imgUrl %>"/>
+
+                <div class="name"><%= teacherList[i].name %></div>
+                <div class=""><%= teacherList[i].intro %></div>
+            </div>
+            <% } %>
+        </div>
+    </dd>
+    <% } %>
+
+</dl>
+<dl id="content_4" class="clearfix">
+    <dt>学校概况</dt>
+    <% if (wholeName) { %>
+    <dd class="clearfix">
+        <label>机构全称</label>
+
+        <div><%= wholeName %></div>
+    </dd>
+    <% } %>
+    <% if (partnerDistinction) { %>
+    <dd class="clearfix">
+        <label>机构荣誉</label>
+
+        <div><%= partnerDistinction %></div>
+    </dd>
+    <% } %>
+    <% if (partnerIntro) { %>
+    <dd class="clearfix">
+        <label>机构介绍</label>
+
+        <div class="rich"><%= partnerIntro %></div>
+    </dd>
+    <% } %>
+    <% if (highScoreReward) { %>
+    <dd class="clearfix">
+        <label>教学特色</label>
+        <div class="rich"><%= highScoreReward %></div>
+    </dd>
+    <% } %>
+
+</dl>
+
+<dl id="content_5" class="clearfix">
+    <dt>同类型课程</dt>
+    <dd class="F_green blank1" style="font-size:14px;">课程名称：初二提高英语暑假班</dd>
+    <dd class="clearfix blank">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <td width="20%">开课日期</td>
+                <td class="addr">上课地点</td>
+                <td width="20%">价格</td>
+                <td width="20%">--</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>9月21日</td>
+                <td class="addr">南京市雨花台区宁双路28号江智大厦</td>
+                <td><span class="F_orange">￥969</span></td>
+                <td><input type="button" class="btn_g" value="查看详情"></td>
+            </tr>
+            <tr>
+                <td>10月21日</td>
+                <td class="addr">南京市雨花台区宁双路28号江智大厦</td>
+                <td><span class="F_orange">￥969</span></td>
+                <td><input type="button" class="btn_g" value="查看详情"></td>
+            </tr>
+            <tr>
+                <td>11月21日</td>
+                <td class="addr">南京市雨花台区宁双路28号江智大厦</td>
+                <td><span class="F_orange">￥969</span></td>
+                <td><input type="button" class="btn_g" value="查看详情"></td>
+            </tr>
+            </tbody>
+        </table>
     </dd>
 </dl>
 </div>

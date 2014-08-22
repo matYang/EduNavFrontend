@@ -190,7 +190,7 @@ a:hover, a:active{
     position:absolute;
     z-index:99;
     width:313px;
-    border:1px solid #a7a7a7; background:#fff;
+    border:1px solid #a7a7a7; background:#fff;color: #666;
     font-size:12px; line-height:22px;}
 .tip .arrow{
     position:absolute;
@@ -238,13 +238,13 @@ a:hover, a:active{
 
 /*立减*/
 .label.save,.label.saved{
-    border-color: #f7a501;
-    color:#f7a501;
+    border-color: #ff5500;
+    color:#ff5500;
 }
 .label.save:before,.label.saved:before{
     content:'立减';
     width: 2em;
-    background: #f7a501;
+    background: #ff5500;
 }
 /*已减*/
 .label.saved:before{

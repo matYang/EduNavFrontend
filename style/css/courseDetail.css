@@ -9,14 +9,18 @@
 .courseDetail .banner .row1 dt{font-size:24px; font-family:"Microsoft Yahei"; color:#128d56; margin-bottom:10px;}
 .courseDetail .banner .row1 dt span{ margin-left:10px; font-size: 14px;}
 
-.courseDetail .banner .row1 .col1{float:left; width:660px;}
-.courseDetail .banner .row1 .col2{float:left; width:135px; margin-top:5px;}
-.courseDetail .banner .row1 .col3{float:right; margin-top:5px;}
-
-.courseDetail .banner .price{ font-size:26px;}
+/*课程名 机构名*/
+.courseDetail .banner .row1 .col1{
+    float:left; width:590px;overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;}
+/*价格等的信息*/
+.courseDetail .banner .row1 .col2{float:left; width:205px; margin-top:5px;text-align: center;}
+.courseDetail .banner .row1 .col2 .label{margin: 2px 4px;}
+.courseDetail .banner .price{ font-size:26px;margin-bottom: 5px;}
 .courseDetail .banner .price .sign{ color:#333;}
-.courseDetail .banner .cashback{ margin-left:18px; text-align: center;}
-.courseDetail .banner .cashback em{ margin-left:18px;}
+/*预定按钮*/
+.courseDetail .banner .row1 .col3{float:right; margin-top:5px;}
 
 .courseDetail .banner .row2 {padding:15px;}
  
@@ -51,20 +55,19 @@
 .courseDetail .courseMain{ position:relative; border:1px solid #ccc;}
 .courseDetail .courseMain .course_content{padding:15px;}
 .courseDetail .courseMain .course_content dl{padding-bottom:30px;}
-.courseDetail .courseMain .course_content dt{color:#128d56; font-weight:bold; padding-left:10px; line-height:34px; background:#d8eae2; margin-bottom:10px;}
+.courseDetail .courseMain .course_content dt{
+    border-bottom: 1px dotted #7f7f7f;
+    line-height: 34px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    color: #128d56;
+    font-size: 18px;
+}
 .courseDetail .courseMain .course_content dd{padding-left:10px;}
-.courseDetail .courseMain .course_content label{float:left; width:100px; text-align:right; margin-right:5px;font-weight: bold;}
-.courseDetail .courseMain .course_content label:before {content: '【';}
-.courseDetail .courseMain .course_content label:after {content: '】';}
-/*富文本编辑器生成的表格*/
-
-.courseDetail .course_content table{
-    width: 100%;
-    line-height: 24px;
-}
-.courseDetail .course_content table td{
-    padding: 5px;
-}
+.courseDetail .courseMain .course_content label{float: left;
+    text-align: right;
+    margin-right: 15px;}
 
 /*子选择器的兼容性*/
 .courseDetail .courseMain .course_content dd>div{float:left; width:800px;}
@@ -113,32 +116,57 @@
 .courseDetail  .compare #compare{width:215px; height:32px; border:none; font-size:14px; font-family:"Microsoft Yahei"; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
 
 
+/*富文本编辑器生成的表格*/
+.course_content .rich table{
+    width: 100%;
+    line-height: 24px;
+}
+.course_content .rich table td{
+    padding: 5px;
+}
+
 /*教学特色等的图片*/
-#content_etc .item,
-#content_service .item{overflow: hidden;float:left; margin-right:10px; margin-bottom:10px; width:120px; height:120px; background:#128d56 url(../images/c_detail_icons.png) no-repeat;}
-#content_etc .item div,
-#content_service .item .item_inner{display:none; padding:10px; line-height:30px; color:#fff;}
-#content_etc .item:hover,
-#content_service .item:hover{ background:#2e333f;}
-#content_etc .item:hover .item_inner,
-#content_service .item:hover div.item_inner{display: block; text-align: center;}
+#content_2 .item{
+    float:left;
+    margin-right:15px; margin-top:10px; margin-bottom:5px;
+    width:120px; height:120px;
+    background:#128d56 url(../images/c_detail_icons.png) no-repeat;}
+#content_2 .item .item_inner{
+    width:120px; height:120px;
+    display:none; padding:10px; line-height:30px; color:#fff;
+    overflow: hidden;
+}
+#content_2 .item:hover{ background:#2e333f;}
+#content_2 .item:hover .item_inner{display:block;}
 
-#content_etc .download{ background-position:0 0;}
-#content_etc .tk{ background-position:0 -120px;}
-#content_etc .zlbz{ background-position:0 -240px;}
-#content_etc .jljh{ background-position:0 -360px;}
-#content_etc .jdcp{ background-position:0 -480px;}
-#content_etc .khdy{ background-position:0 -600px;}
-#content_etc .khzy{ background-position:0 -720px;}
-#content_etc .zypg{ background-position:0 -840px;}
-#content_etc .zypg div{ line-height:24px!important;}
+#content_2 .download{ background-position:0 0;}
+#content_2 .tk{ background-position:0 -120px;}
+#content_2 .tjjy{ background-position:0 -240px;}
+#content_2 .jljh{ background-position:0 -360px;}
+#content_2 .jdcp{ background-position:0 -480px;}
+#content_2 .khdy{ background-position:0 -600px;}
+#content_2 .khzy{ background-position:0 -720px;}
+#content_2 .zypg{ background-position:0 -840px;}
+#content_2 .zypg div{ line-height:24px!important;}
+#content_2 .qybg{ background-position:0 -960px;}
+#content_2 .jyzs{ background-position:0 -1080px;}
+#content_2 .khhd{ background-position:0 -1200px;}
+#content_2 .zsfw{ background-position:0 -1320px;}
 
-#content_service .qybg{ background-position:0 -960px;}
-#content_service .jyzs{ background-position:0 -1080px;}
-#content_service .khhd{ background-position:0 -1200px;}
-#content_service .zsfw{ background-position:0 -1320px;}
+/*名师团队*/
+#content_3 table{float:left; border:1px solid #d1d1d1; margin-right:10px;}
+#content_3 .teacher_img{width:100px; border-right:1px solid #ccc;}
+#content_3 .teacher_img img{ display:block}
+#content_3 .teacher_intr{width:180px; padding:0 10px;word-break:break-all;word-wrap:break-word;}
+#content_3 .teacher_intr h3{color:#128d56; margin-top: 5px;}
+#content_3 .teacher_intr div{ line-height:22px; color:#666;}
 
-/* Basic jQuery Slider style */
+/*同类型课程*/
+#content_5 table{ border-top:1px dotted #ccc; border-right:1px dotted #ccc;}
+#content_5 table td{ text-align:center; padding:5px 0; border-left:1px dotted #ccc; border-bottom:1px dotted #ccc;}
+#content_5 table thead td{ background:#efefef; border-bottom:1px dotted #ccc;}
+
+/*Banner 图片滚动*/
 ul.bjqs{position:relative; list-style:none;padding:0;margin:0;overflow:hidden; display:none;}
 li.bjqs-slide{position:absolute; display:none;}
 

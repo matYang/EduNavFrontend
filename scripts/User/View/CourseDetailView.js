@@ -8,7 +8,7 @@ var CourseDetailView = Backbone.View.extend({
         this.sr = new CourseSearchRepresentation();
         this.user = app.sessionManager.sessionModel;
         var self = this;
-        app.generalManager.fetchCategories({success:function(data){
+        app.generalManager.fetchCategories({success: function (data) {
             self.categoryObj = data;
         }});
         // this.newBooking = new Booking();
@@ -16,14 +16,14 @@ var CourseDetailView = Backbone.View.extend({
         app.generalManager.fetchCourse(courseIdWrapper.courseId, {
             success: function (course) {
                 app.generalManager.fetchCategories({
-                    success:function(catObj){
+                    success: function (catObj) {
                         self.course = course.clone();
                         self.courseId = course.get("id");
                         //将categoryValue转换成一二三级的键值对
-                        var catArray = Utilities.getCategoryArray(self.course.get("categoryValue"),catObj.data);
-                        self.course.set("category",catArray[0]);
-                        self.course.set("subCategory",catArray[1]);
-                        self.course.set("subSubCategory",catArray[2]);
+                        var catArray = Utilities.getCategoryArray(self.course.get("categoryValue"), catObj.data);
+                        self.course.set("category", catArray[0]);
+                        self.course.set("subCategory", catArray[1]);
+                        self.course.set("subSubCategory", catArray[2]);
                         self.render();
                         self.bindEvents();
                     }
@@ -40,66 +40,37 @@ var CourseDetailView = Backbone.View.extend({
         $(document).scrollTop(0);
         $("body").addClass("courseDetail");
         this.$el.append(this.template(this.course._toJSON()));
-        document.title="爱上课 | " + this.course.get("category").name +
-                        " | " + this.course.get("subCategory").name +
-                        " | " + this.course.get("subSubCategory").name +
-                        "培训 | " + this.course.get("courseName");
+        document.title = "爱上课 | " + this.course.get("category").name +
+            " | " + this.course.get("subCategory").name +
+            " | " + this.course.get("subSubCategory").name +
+            "培训 | " + this.course.get("courseName");
+
+
         var $teachers = $(".teacherInfo"), i, maxHeight = -1, $teacher;
         for (i = 0; i < $teachers.length; i++) {
             $teacher = $($teachers[i]);
             maxHeight = maxHeight > $teacher.height() ? maxHeight : $teacher.height();
         }
-        this.offSetHeight = 430;
+        this.offSetHeight = 460;
         $teachers.css("height", maxHeight);
-        this.basicPos = $("#content_basic").position().top;
-        this.teachingPos = $("#content_teaching").position().top;
-        this.etcPos = $("#content_etc").position().top;
-        this.servicePos = $("#content_service").position().top;
-        this.compareWidget = new CourseDetailCompareWidgetView();
-        //如果栏目下的数据为空 则移除该栏目的显示
-        if ($("#content_basic>dd").length === 0) {
-            $("#content_basic").remove();
-            $("#tab_basic").remove();
-        }
-        if ($("#content_teaching>dd").length === 0) {
-            $("#content_teaching").remove();
-            $("#tab_teaching").remove();
-        }
-        if ($("#content_etc>dd").length === 0) {
-            $("#content_etc").remove();
-            $("#tab_etc").remove();
-        }
 
-        if ($("#content_service>dd").length === 0) {
-            $("#content_service").remove();
-            $("#tab_service").remove();
-        }
+        this.content1_top = $("#content_1").position().top;
+        this.content2_top = $("#content_2").position().top;
+        this.content3_top = $("#content_3").position().top;
+        this.content4_top = $("#content_4").position().top;
+        this.content5_top = $("#content_5").position().top;
+
+        this.compareWidget = new CourseDetailCompareWidgetView();
+
         //slider
         $('#banner-slide').bjqs({
-            height        : 215,
-            width         : 625,
-
-            // animation values
-            animtype : 'slide', // accepts 'fade' or 'slide'
-            animduration : 650, // how fast the animation are
-            animspeed : 4000, // the delay between each slide
-//            automatic : true, // automatic
-
-            // control and marker configuration
-//            showcontrols : true, // show next and prev controls
-//            centercontrols : true, // center controls verically
-//            nexttext : '', // Text for 'next' button (can use HTML)
-//            prevtext : '', // Text for 'previous' button (can use HTML)
-//            showmarkers : true, // Show individual slide markers
-//            centermarkers : true, // Center markers horizontally
-
-            // interaction values
-//            keyboardnav : true, // enable keyboard navigation
-            hoverpause : true, // pause the slider on hover
-//
-//            usecaptions : false, // show captions for images using the image title tag
-//            randomstart : false, // start slider at random slide
-            responsive : true // enable responsive capabilities (beta)
+            height: 215,
+            width: 625,
+            animtype: 'slide', // accepts 'fade' or 'slide'
+            animduration: 650, // how fast the animation are
+            animspeed: 4000, // the delay between each slide
+            hoverpause: true, // pause the slider on hover
+            responsive: true
         });
     },
     bindEvents: function () {
@@ -126,18 +97,18 @@ var CourseDetailView = Backbone.View.extend({
             $.smoothScroll({
                 scrollTarget: id,
                 offset: -40,
-                speed:650
+                speed: 650
             });
         });
         $(document).on("scroll", function () {
             var $btn = $("#trialButton"), position = $(this).scrollTop();
             if (position >= 210) {
-                if (!$btn.hasClass("shown")){
+                if (!$btn.hasClass("shown")) {
                     $btn.animate({marginRight: "0px"}, 500);
                     $btn.addClass("shown");
                 }
             } else {
-                if ($btn.hasClass("shown")){
+                if ($btn.hasClass("shown")) {
                     $btn.animate({marginRight: "-280px"}, 500);
                     $btn.removeClass("shown");
                 }
@@ -153,15 +124,21 @@ var CourseDetailView = Backbone.View.extend({
                 }
                 $("#courseNavigateTab").removeClass("stickyHeader");
             }
+            /*当前激活的标签页*/
             $("#courseNavigateTab").find(".active").removeClass("active");
-            if (position < that.teachingPos + that.offSetHeight) {
-                $("#tab_basic").addClass("active")
-            } else if (position >= that.teachingPos + that.offSetHeight && position < that.etcPos + that.offSetHeight) {
-                $("#tab_teaching").addClass("active")
-            } else if (position >= that.etcPos + that.offSetHeight && position < that.servicePos + that.offSetHeight) {
-                $("#tab_etc").addClass("active")
+            if (position < that.content2_top + that.offSetHeight) {
+                $("#tab_1").addClass("active")
+            } else if (position >= that.content2_top + that.offSetHeight
+                && position < that.content3_top + that.offSetHeight) {
+                $("#tab_2").addClass("active")
+            } else if (position >= that.content3_top + that.offSetHeight
+                && position < that.content4_top + that.offSetHeight) {
+                $("#tab_3").addClass("active")
+            } else if (position >= that.content4_top + that.offSetHeight
+                && position < that.content5_top + that.offSetHeight) {
+                $("#tab_4").addClass("active")
             } else {
-                $("#tab_service").addClass("active")
+                $("#tab_5").addClass("active")
             }
         });
         if (this.course.get("status") === EnumConfig.CourseStatus.onlined) {
@@ -175,7 +152,8 @@ var CourseDetailView = Backbone.View.extend({
         $("#siteMap").on("click", "span", function (e) {
             var id = e.target.id;
             if (id === "siteMap") {
-                return;            }
+                return;
+            }
             that.sr.set("categoryValue", $(this).data('value'));
             app.navigate("search/" + that.sr.toQueryString(), true);
         });
