@@ -32,6 +32,8 @@ var SearchResultView = MultiPageView.extend({
         for (var i = 0; i < courseIds.length; i++) {
             $("#compare_" + courseIds[i]).find("input").attr("class", "remove btn_gray").val("已加入对比").removeClass("add").addClass("remove");
         }
+        //todo 这里是为了声明页面加载完毕
+        $('body').attr('pageRenderReady','')
     },
     bindEvents: function () {
         var that = this, id;

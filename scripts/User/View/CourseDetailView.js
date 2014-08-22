@@ -73,6 +73,9 @@ var CourseDetailView = Backbone.View.extend({
             hoverpause: true, // pause the slider on hover
             responsive: true
         });
+
+        //todo 这里是为了声明页面加载完毕
+        $('body').attr('pageRenderReady','')
     },
     bindEvents: function () {
         var that = this;

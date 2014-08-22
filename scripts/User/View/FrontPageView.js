@@ -80,6 +80,9 @@ var FrontPageView = Backbone.View.extend({
         var activeButton = $("#lv1Button").find("a:first").addClass("active");
         $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("value") + "]").removeClass("hidden");
         $("#content").css("padding-bottom", 0);
+        //todo 这里是为了声明页面加载完毕
+        $('body').attr('pageRenderReady','')
+
     },
     bindEvents: function () {
         var that = this;
