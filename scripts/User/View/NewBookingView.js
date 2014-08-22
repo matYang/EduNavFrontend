@@ -227,7 +227,7 @@ var NewBookingView = BaseFormView.extend({
         that.loginCheck();
         $("#" + this.submitButtonId).val("预订中...");
         this.model.set('type',$('input[name="bookingType"]:checked').val());
-        //如果选择线上支付价格需要减去线上支付折扣 course.commission
+        //如果选择在线支付价格需要减去在线支付折扣 course.commission
         if(this.model.get('type') == EnumConfig.PayType.online&&this.model.get('course').get('commission')){
             this.model.set('price',this.model.get('price')-this.model.get('course').get('commission'));
         }

@@ -106,7 +106,7 @@ var Course = Backbone.Model.extend({
                 data.startUponArrival = Utilities.parseNum(data.startUponArrival);//这个用来判断是否有开课日期
 
                 data.cashback = Utilities.parseNum(data.cashback);//返现
-                data.commission = Utilities.parseNum(data.commission);//线上支付折扣
+                data.commission = Utilities.parseNum(data.commission);//在线支付折扣
                 data.price = Utilities.parseNum(data.price);//爱上课价格
                 data.originalPrice = Utilities.parseNum(data.originalPrice);//原价
 
