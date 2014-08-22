@@ -147,7 +147,6 @@ var Course = Backbone.Model.extend({
             var json = _.clone(this.attributes), studyDays, i;
 //            if (typeof json.price === 'number')json.price = json.price.toFixed(2);
 //            if (typeof json.originalPrice === 'number')json.originalPrice = json.originalPrice.toFixed(2);
-            console.log(this.get('startDate'))
             if (json.startDate) {
                 var dateObj = json.startDate;
                 console.log(dateObj)
