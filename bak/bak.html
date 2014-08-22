@@ -1,0 +1,20 @@
+<tr id="teacherInfo">
+    <th>老师介绍</th>
+    <% _.each(courses, function(course) { %>
+    <td class="courseId_<%= course.courseId %>">
+        <% if (course.teacherList) { %>
+        <% for ( var i; i < course.teacherList.length; i++ ) { %>
+        <p><b class="F_green"><%= course.teacherList[i].name %></b><%= course.teacherList[i].intro %></p>
+        <% } %>
+        <% } %>
+    </td>
+    <% }); %>
+</tr>
+
+
+<tr id="scheduledTime">
+    <th>报名日期</th>
+    <% _.each(courses, function(course) { %>
+    <td class="courseId_<%= course.courseId %>">至<%= course.cutoffDate %>截止，晚于此日期，您将不再享有此优惠价格</td>
+    <% }); %>
+</tr>

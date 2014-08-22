@@ -3,7 +3,7 @@
 
 .compare{font-size:12px;}
 .compare .title{height:42px; line-height:42px; border-top:2px  solid #128d56; border-left:1px solid #ccc; border-right:1px solid #ccc;}
-.compare .title span{float:left; font-size:16px; font-weight:bold; font-family:微软雅黑; color:#128d56; padding-left:24px; margin-left:26px; cursor:pointer;}
+.compare .title span{float:left; font-size:16px; font-weight:bold; color:#128d56; padding-left:24px; margin-left:26px; cursor:pointer;}
 .compare .title span.up{ background:url(../images/up.png) no-repeat left center;}
 .compare .title span.down{ background:url(../images/down.png) no-repeat left center;}
 
@@ -33,12 +33,18 @@
 
 .compare .stickyHeader {
 	position: fixed;
-	top: 0px;
+	top: 0;
 	background-color:#eeeeee;
-	margin-top: 0px;
+	margin-top: 0;
 	width:999px;
 	z-index: 999;
 }
 
 .compare .stickyHeader tr {width:64px; }
 .compare .stickyHeader td {width:195px;}
+
+
+#noAddColumn,#noAddColumn td{
+    height: 0;
+    line-height: 0;
+}
