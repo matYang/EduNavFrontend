@@ -36,6 +36,8 @@ var MultiPageView3 = Backbone.View.extend({
     singlePage: null,
     isTable: false,
     $tableContainer: false,
+    scroll:true,//设置换页后是否自动滚动到容器上方
+    scrollTarget:null,//滚动到的元素位置
     initialize: function () {
         _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler",
             "clickPreHandler", "clickNextHandler", "close");
@@ -101,6 +103,17 @@ var MultiPageView3 = Backbone.View.extend({
     },
 
     toPage: function (pageIndex) {
+        if(this.scroll){
+            var $target = $(this.scrollTarget);
+            if($target.length !==0 ){
+                $.smoothScroll({scrollElement:$target})
+            }else if(this.$tableContainer){
+                $.smoothScroll({scrollElement:this.$tableContainer})
+            }else{
+                $.smoothScroll({scrollTarget:"#" + this.entryContainer})
+            }
+
+        }
         this.currentPage = pageIndex;
         this.startIndex = this.pageEntryNumber * (pageIndex - 1);
         this.fetchAction(pageIndex);//抓取完会进行render

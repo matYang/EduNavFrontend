@@ -272,7 +272,7 @@ var SearchView = Backbone.View.extend({
         $("#toTop").on("click", function (e) {
             e.preventDefault();
             $.smoothScroll({
-                scrollTarget: "topBar"
+                scrollTarget: "#topBar"
             });
         });
     },
