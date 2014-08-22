@@ -132,8 +132,12 @@
     width:120px; height:120px;
     background:#128d56 url(../images/c_detail_icons.png) no-repeat;}
 #content_2 .item .item_inner{
-    width:120px; height:120px;
-    display:none; padding:10px; line-height:30px; color:#fff;
+    width: 100px;
+    height: 100px;
+    display: none;
+    padding: 10px;
+    line-height: 22px;
+    color: #fff;
     overflow: hidden;
 }
 #content_2 .item:hover{ background:#2e333f;}
