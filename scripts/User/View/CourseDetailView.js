@@ -45,7 +45,8 @@ var CourseDetailView = Backbone.View.extend({
             " | " + this.course.get("subSubCategory").name +
             "培训 | " + this.course.get("courseName");
 
-
+        /*移除所有table的宽度*/
+        $('.course_content .rich table').css('width','100%');
         var $teachers = $(".teacherInfo"), i, maxHeight = -1, $teacher;
         for (i = 0; i < $teachers.length; i++) {
             $teacher = $($teachers[i]);

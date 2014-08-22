@@ -118,12 +118,15 @@
 
 
 /*富文本编辑器生成的表格*/
+.course_content .rich{
+    margin-bottom: 10px;
+}
 .course_content .rich table{
     width: 100%;
     line-height: 24px;
 }
 .course_content .rich table td{
-    padding: 5px;
+    /*padding: 5px;*/
 }
 
 /*教学特色等的图片*/
