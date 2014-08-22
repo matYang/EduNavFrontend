@@ -180,18 +180,18 @@
                 <span data-value="nextMonth">下月</span>
                 <span data-value="twoMonthsAfter">下下月</span>
             </div>
-            <div id="filter_classTime" class="filterCriteria">
+            <div id="filter_schoolTime" class="filterCriteria">
                 <label>上课时间：</label>
                 <span data-value="noreq" class="active">不限</span>
-                <span data-value="-0">上午</span>
-                <span data-value="-1">下午</span>
-                <span data-value="-2">晚上</span>
-                <span data-value="0-0">平日上午</span>
-                <span data-value="0-1">平日下午</span>
-                <span data-value="0_2">平日晚上</span>
-                <span data-value="1-0">周末上午</span>
-                <span data-value="1-1">周末下午</span>
-                <span data-value="1-2">周末晚上</span>
+                <span data-value="_1">上午</span>
+                <span data-value="_2">下午</span>
+                <span data-value="_4">晚上</span>
+                <span data-value="1_1">平日上午</span>
+                <span data-value="1_2">平日下午</span>
+                <span data-value="1_4">平日晚上</span>
+                <span data-value="2_1">周末上午</span>
+                <span data-value="2_2">周末下午</span>
+                <span data-value="2_4">周末晚上</span>
             </div>
             <div id="filter_classMode" class="filterCriteria">
                 <label>班级类型：</label>
@@ -232,9 +232,9 @@
                     <li id="price">价格</li>
                 </ul>
                 <div class="fright">
-                    当前促销：<label><input type="checkbox" name="cashback"/>返现</label>
-                    <!-- <input type="checkbox" name="flashdeal" /><label>限时抢</label> -->
-
+                    当前促销：
+                    <label for="check_cashback"> <input id="check_cashback" type="checkbox" name="cashback"/>线下返现</label>
+                    <label for="check_commission"><input id="check_commission" type="checkbox" name="commission"/>在线立减</label>
                 </div>
             </div>
             <!--searchResultSorter end-->

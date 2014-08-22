@@ -143,6 +143,11 @@ var Utilities = {
 //            match = dateString.match(/^(\d+)-(\d+)-(\d+)\+(\d+)\:(\d+)\:(\d+)$/);
 //        }
 //        var date = new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
+        /*必须先转换为number 否则13位以上string会出现invalid date*/
+        timestamp = parseInt(timestamp,10);
+        if(isNaN(timestamp)){
+            return null;
+        }
         return new Date(timestamp);
     },
     /**

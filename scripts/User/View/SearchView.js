@@ -48,6 +48,12 @@ var SearchView = Backbone.View.extend({
             //初始化时同步url中的参数进行过滤
             this.syncFilters();
             this.syncSorter();
+            var $searchReqs = $("#searchReqs");
+            if ($searchReqs.find("a").length) {
+                $searchReqs.removeClass("hidden");
+            } else {
+                $searchReqs.addClass("hidden");
+            }
             this.bindEvents();
             this.currentPage = 0;
             document.title = "找课程";
@@ -138,6 +144,10 @@ var SearchView = Backbone.View.extend({
             startDateStart = this.searchRepresentation.get("startDateStart"),
             startDateEnd = this.searchRepresentation.get("startDateEnd"),
             cashback = this.searchRepresentation.get("cashbackStart"),
+            commission = this.searchRepresentation.get("commission"),
+
+            schoolTimeWeek = this.searchRepresentation.get("schoolTimeWeek"),
+            schoolTimeDay = this.searchRepresentation.get("schoolTimeDay"),
             value, text;
         var $searchReqs = $("#searchReqs");
         if (startPrice !== undefined) {
@@ -157,8 +167,8 @@ var SearchView = Backbone.View.extend({
             $filter_classMode.find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
             $searchReqs.append(this.reqTemplate({criteria: "classMode", dataValue: value, text: text}));
         }
-        if (startDateEnd !== undefined) {
-            var date = new Date(), month = startDateEnd.getMonth() - date.getMonth();
+        if (startDateStart !== undefined) {
+            var date = new Date(), month = startDateStart.getMonth() - date.getMonth();
             switch (month) {
                 case 0:
                     value = "thisMonth";
@@ -175,8 +185,21 @@ var SearchView = Backbone.View.extend({
             $filter_startTime.find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
             $searchReqs.append(this.reqTemplate({criteria: "startTime", dataValue: value, text: text}));
         }
+        if (schoolTimeWeek || schoolTimeDay) {
+            schoolTimeWeek = schoolTimeWeek || '';
+            schoolTimeDay = schoolTimeDay || '';
+            value = schoolTimeWeek + "_" + schoolTimeDay;
+            var selector = "span[data-value=" + value + "]";
+            var $filter_schoolTime = $("#filter_schoolTime");
+            text = $filter_schoolTime.find(selector).html();
+            $filter_schoolTime.find(selector).addClass("active").siblings("span").removeClass("active");
+            $searchReqs.append(this.reqTemplate({criteria: "schoolTime", dataValue: value, text: text}));
+        }
         if (cashback && cashback > 0) {
             $("input[name=cashback]").prop("checked", true);
+        }
+        if (commission && commission > 0) {
+            $("input[name=commission]").prop("checked", true);
         }
     },
     syncSorter: function () {
@@ -262,7 +285,7 @@ var SearchView = Backbone.View.extend({
                 $searchWidgets.removeClass("stickyHeader");
             }
         });
-
+        /*已选择的查询条件中的删除事件*/
         $searchReqs.on("click", "a", function (e) {
             e.preventDefault();
             var cri = $(e.target).data("cri");
@@ -322,10 +345,14 @@ var SearchView = Backbone.View.extend({
             }
             that.courseSearch();
         });
-    },
-    cashbackFilter: function (course) {
-        var cashback = $("input[name=cashback]").prop("checked");
-        return (course.get("cashback") > 0) || !cashback;
+        $("input[name=commission]").on("change", function () {
+            if ($(this).prop("checked")) {
+                that.searchRepresentation.set("commission", 1);
+            } else {
+                that.searchRepresentation.set("commission", undefined);
+            }
+            that.courseSearch();
+        });
     },
     bindCatSearchEvents: function () {
         var that = this;
@@ -394,7 +421,7 @@ var SearchView = Backbone.View.extend({
         //上课时间 start end
         else if (criteria === "startTime") {
             var now = new Date();
-            var date1 = new Date(Date.parse([now.getFullYear(), now.getMonth()+1].join('-')));
+            var date1 = new Date(Date.parse([now.getFullYear(), now.getMonth() + 1].join('-')));
             var date2;
             var month = date1.getMonth();
             //设置当月的时间
@@ -476,12 +503,12 @@ var SearchView = Backbone.View.extend({
             if (dataValue === "noreq") {
                 week = day = undefined;
             } else {
-                var rs = dataValue.split("-");
+                var rs = dataValue.split("_");
                 week = rs[0] === '' ? undefined : rs[0];
                 day = rs[1] === '' ? undefined : rs[1];
             }
-            this.searchRepresentation.set("schoolTimeWeek", undefined);
-            this.searchRepresentation.set("schoolTimeDay", undefined);
+            this.searchRepresentation.set("schoolTimeWeek", week);
+            this.searchRepresentation.set("schoolTimeDay", day);
         }
         this.courseSearch();
         //this.searchRepresentation.set(criteria, dataId);
