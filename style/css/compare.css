@@ -13,8 +13,9 @@
 .compare table .course_name td{ text-align:center;}
 .compare table .course_name td .set{margin:20px auto 10px;}
 .compare table tr:hover{ background:#e9f2ee;}
-.compare table th,.compare table td{ border-left:1px solid #ccc; border-bottom:1px solid #ccc; padding:15px;}
-.compare table th{ vertical-align:top; background:#ecfff7;  font-weight:normal; color:#000;}
+.compare table th,
+.compare table td{ border-left:1px solid #ccc; border-bottom:1px solid #ccc; padding: 10px 15px;}
+.compare table th{ vertical-align:middle; background:#ecfff7;  font-weight:normal; color:#000;}
 .compare table td{color:#666; line-height:22px;}
 
 .compare table td h2{font-size:14px;}
