@@ -44,6 +44,8 @@ var MyPageSettingView = BaseFormView.extend({
 
     submitAction: function () {
         var that = this, date = new Date ();
+        this.model.set('gender',$('input[name="sex"]:checked').val());
+//        this.model.set('identify',$('input[name="identify"]:checked').val());
         app.userManager.changeInfo(this.model, {
             "success": that.saveSuccess,
             "error": that.saveError
