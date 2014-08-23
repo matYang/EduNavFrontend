@@ -44,7 +44,9 @@ table td.col5 input{width:60px; height:24px; background:#128d56; border:none; co
 /*个人中心首页*/
 #mypage_content #walletSummary{ width:780px; height:109px; line-height:109px; background:url(../images/walletSummary.png) no-repeat;}
 #mypage_content #walletSummary .line{float:left; width:1px; height:109px; background:url(../images/line.png) no-repeat center;}
-#mypage_content .summaryItem1,.summaryItem2,.summaryItem3{float:left; width:230px; text-align:center; padding-left:29px; font-size:18px; }
+#mypage_content .summaryItem1,
+.summaryItem2,
+.summaryItem3{float:left; width:220px; text-align:center; padding-left:39px; font-size:18px; }
 #mypage_content .summaryItem1{ background: url(../images/summaryItem1.png) no-repeat 56px center;}
 #mypage_content .summaryItem2{ background: url(../images/summaryItem2.png) no-repeat 29px center;}
 #mypage_content .summaryItem3{ background: url(../images/summaryItem3.png) no-repeat 64px center;}
