@@ -10,6 +10,7 @@ var User = Backbone.Model.extend({
             'phone': '',
             'password': '',
             'email': '',
+            'gender': undefined,
             'status': 0,
             'invitationCode': '',
             'appliedInvitationCode': '',
@@ -48,6 +49,7 @@ var User = Backbone.Model.extend({
             data.userId = data.id;
 
             data.status = Utilities.parseNum(data.status, 10);
+            data.gender = Utilities.parseNum(data.gender, 10);
 
             data.createTime = Utilities.castFromAPIFormat(data.createTime);
             data.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
