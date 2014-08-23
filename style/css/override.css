@@ -102,10 +102,6 @@ li a, .page a {
 	width: 200px;
 }
 
-#compareView #logoUrl img {
-	max-width: 195px
-}
-
 .compare_button {
 	cursor: pointer;
 }

@@ -63,6 +63,10 @@ var CompareView = Backbone.View.extend({
     afterRender: function () {
         $(".courseId_-1").html("");
         this.configMoveButton();
+        this.handleEmptyText();
+    },
+    handleEmptyText: function(){
+        this.$view.find("td:empty[class^='courseId_']").filter("[class!='courseId_-1']").text('-- --');
     },
     configMoveButton: function () {
         this.$view.find(".pre-disabled").removeClass("pre-disabled");
@@ -142,7 +146,6 @@ var CompareView = Backbone.View.extend({
                             app.navigate("search", {trigger: true, replace: true});
                             return;
                         }
-                        return;
                     }
                 });
 
