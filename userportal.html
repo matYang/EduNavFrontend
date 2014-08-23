@@ -295,7 +295,7 @@
             </p>
             <p class="price">
                 <%if(!price){%>
-                <small>机构定制</small>
+                <span class="sign">￥</span><small>机构定制</small>
                 <%}else{%>
                 <span class="sign">￥</span><%= price %>
                 <%}%>
@@ -360,7 +360,7 @@
 
         <p class="price">
             <%if(!price){%>
-            <small>机构定制</small>
+            <span class="sign">￥</span><small>机构定制</small>
             <%}else{%>
             <span class="sign">￥</span><%= price %>
             <%}%>
@@ -1335,7 +1335,7 @@
         <div class="col2">
             <div class="price">
                 <%if(!price){%>
-                <small>机构定制</small>
+                <span class="sign">￥</span><small>机构定制</small>
                 <%}else{%>
                     <%if(originalPrice){%>
                     <s style="font-size:14px; color:#333;">原价：￥21100</s>
