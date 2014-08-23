@@ -201,7 +201,7 @@ thead tr.bookingEntry td.detail{text-align: center}
 #mypage_content .my_info .btn .btn_W{ margin-left:20px;}
 
 /*sex label*/
-#mypage_content .my_info .sex{margin-left: 5px;}
+#mypage_content .my_info .sex{margin-left: 0;}
 
 /*修改密码*/
 #mypage_content .password label{width:60px; text-align:right;}
