@@ -109,16 +109,19 @@ var CompareView = Backbone.View.extend({
                     $(e.delegateTarget).css("border-bottom", "");
                 }
             });
-        $("#courseName").on("click", "td", function (e) {
+        /*课程名称中的事件*/
+        $("#courseName").on("click", ".td", function (e) {
             var $e, index, index2, courseId;
+            var styleClass = $(e.currentTarget).attr("class");
+            courseId = Utilities.getId(styleClass.split(' ')[0]);
             //查看课程详情
             if (e.target.tagName === "H2") {
-                app.navigate("course/" + Utilities.getId($(e.currentTarget).attr("class")), true);
+                app.navigate("course/" + courseId, true);
                 return;
             }
             //立即预订
             if (e.target.tagName === "INPUT") {
-                app.navigate("booking/c" + Utilities.getId($(e.currentTarget).attr("class")), true);
+                app.navigate("booking/c" + courseId, true);
                 return;
             }
             if (e.target.tagName !== "A") {
@@ -128,12 +131,11 @@ var CompareView = Backbone.View.extend({
             $e = $(e.target);
             //删除对比课程
             if ($e.hasClass("delete")) {
-                courseId = Utilities.getId($(e.currentTarget).attr("class"));
                 var removed = false;
                 that.$view.find(".courseId_" + courseId).fadeOut(200, function () {
                     if (!removed) {
                         that.$view.find(".courseId_" + courseId).remove();
-                        that.$view.find("tr:not(#stickyPlaceholder,#noAddColumn)").append("<td class='courseId_-1' width='195'></td>");
+                        that.$view.find("tr:not(#stickyPlaceholder)").append("<div class='courseId_-1 td' style='width: 195px'>");
                         removed = true;
                         //移至animate回调中防止异步造成页面提早跳转产生的错误
                         that.configMoveButton();
@@ -144,13 +146,12 @@ var CompareView = Backbone.View.extend({
                             Info.displayNotice("已经没有待比较的课程了，先去查看感兴趣的课程吧");
                             that.isClosed = false;
                             app.navigate("search", {trigger: true, replace: true});
-                            return;
                         }
                     }
                 });
 
             }
-            index = $("#courseName>td").index($(e.currentTarget));
+            index = $("#courseName .td").index($(e.currentTarget));
             //对比课程前移
             if ($e.hasClass("pre")) {
                 if ($e.hasClass("pre-disabled")) {
@@ -168,10 +169,10 @@ var CompareView = Backbone.View.extend({
             that.swapRow(index, index2);
         });
         $(window).on("scroll", function () {
-            if ($(this).scrollTop() >= 145) {
+            if ($(this).scrollTop() >= 140) {
                 $("#courseName").addClass("stickyHeader");
                 if ($("#stickyPlaceholder").length === 0) {
-                    $("#courseName").after("<tr id='stickyPlaceholder' style='height:160px' width='195'></tr>");
+                    $("#courseName").after("<div id='stickyPlaceholder' style='height:171px'></div>");
                 }
             } else {
                 $("#courseName").removeClass("stickyHeader");
@@ -192,6 +193,7 @@ var CompareView = Backbone.View.extend({
                 that.load();
             }
         });
+        /*机构信息中的展开和收起*/
         $("#partnerIntro").on("click", "a", function (e) {
             e.preventDefault();
             var cc, $pi = $(e.delegateTarget), text, course;
@@ -232,9 +234,11 @@ var CompareView = Backbone.View.extend({
         this.courseIdList[index1] = this.courseIdList[index2];
         this.courseIdList[index2] = temp;
         $rows = this.$view.find("tr");
+
+        $td = $('#courseName').find(".td");
+        $($td[index2]).after($($td[index1]).detach());
+
         for (i = 0; i < $rows.length; i++) {
-            //由于第一行决定了下列的宽度 不能进行换列
-            if($rows[i].id === 'noAddColumn')continue;
             $td = $($rows[i]).find("td");
             $($td[index2]).after($($td[index1]).detach());
         }
