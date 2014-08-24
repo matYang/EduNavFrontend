@@ -54,7 +54,7 @@ var BookingDetailView = Backbone.View.extend({
             app.userManager.changeBookingState(bookingId, operate, {
                 success: function (booking) {
                     var status;
-                    if(operate === 'offlineCancel'){
+                    if(operate === 'offlineCancel'||operate === 'onlineCancel'){
                         $("#process").html("<p>订单已取消</p>");
                     }else if(operate === 'offlineDelayed'){
                         $("#process").html("<p>已推迟</p>");

@@ -462,16 +462,16 @@
             dataType: 'json',
             data:JSON.stringify({id:bookingId}),
             contentType: 'application/json',
-            success:function(model, response){
+            success:function(data, response){
                 if(callback){
-                    callback.success(booking);
+                    callback.success(data);
                 }
             },
-            error: function(model, response){
+            error: function(data){
                 Info.warn('UserManager::changeBookingState:: save failed with response:');
                 Info.warn(response);
                 if(callback){
-                    callback.error(response);
+                    callback.error(data);
                 }
             }
         });
