@@ -1918,16 +1918,16 @@
             </dl>
         </div>
         <ul id="couponNavBtn" class="tab1 clearfix blank2">
-            <li data-id="claimed" class="active">可用返现券</li>
-            <li data-id="unclaimed">待激活返现券</li>
-            <li data-id="used">已使用的返现券</li>
+            <li data-id="usable" class="active">可用返现券</li>
+            <li data-id="expired">已过期</li>
+            <li data-id="used">已使用</li><!--inactive-->
         </ul>
         <div id="coupons_container">
         </div>
     </div>
 </script>
 
-<script type="text/template" id="tpl_mypage_unclaimedCouponRow">
+<script type="text/template" id="tpl_mypage_expiredCouponRow">
     <tr id="coupon_<%= couponId %>">
         <td class="col1"><%= createTime %></td>
         <td class="col2"><%= amount %></td>
@@ -1971,8 +1971,8 @@
     </div>
 </script>
 
-<script type="text/template" id="tpl_mypage_couponUnclaimed">
-    <table id="unclaimedTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
+<script type="text/template" id="tpl_mypage_couponExpired">
+    <table id="expiredTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
         <thead>
         <tr>
             <td class="col1">发放日期</td>
@@ -1982,10 +1982,10 @@
             <td class="col5" width="20%">激活</td>
         </tr>
         </thead>
-        <tbody id="unclaimedList">
+        <tbody id="expiredList">
         </tbody>
     </table>
-    <div id="unclaimedCouponListNavigator" class="page blank1 clearfix">
+    <div id="expiredCouponListNavigator" class="page blank1 clearfix">
     </div>
 </script>
 
@@ -2274,9 +2274,9 @@
     </div>
 </script>
 
-<script type="text/templates" id="tpl_unclaimed_coupon_noMessage">
-    <div id="unclaimedNoData" class="no_data">
-        <div>您没有待激活的返现券哦~~</div>
+<script type="text/templates" id="tpl_expired_coupon_noMessage">
+    <div id="expiredNoData" class="no_data">
+        <div>您没有已过期的返现券哦~~</div>
     </div>
 </script>
 
