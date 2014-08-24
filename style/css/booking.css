@@ -49,7 +49,7 @@
 .panel #booking_login{width:100px; height:30px; margin-left:50px; color:#fff; font-size:14px; border:none; cursor:pointer; background:#128d56;}
 .panel .close{ position:absolute; top:10px; right:10px; width:11px; height:11px; background:url(../images/icon.png) no-repeat 0 -530px; text-indent:-9999px; cursor:pointer;}
 
-.panel .row2{ margin:10px 10px 40px;}
+.panel .row2{ margin:10px 10px 20px;}
 .panel .row2 input.text{width:250px;}
 .panel .row2 .req{color:#ff5500;}
 .panel #booking_date{width:100px;}
@@ -103,6 +103,35 @@
 .payment .btn{ border-top:1px dotted #ccc; padding-top:20px; margin:30px 20px 100px 20px; text-align:center;}
 .acn{color:#ff0000; margin-right:20px; padding-left:90px; background:url(../images/acn.png) no-repeat left center;}
 
+.bank_list li{float:left; border:1px solid #ccc; width:180px; padding:10px; margin-right:10px; margin-bottom:10px; cursor:pointer; text-indent:}
+.bank_list li input{float:left; margin-top: 8px;}
+.bank_list li a{float:left; width: 125px; height: 28px; overflow: hidden; background-image:url(../images/bank.png); text-indent:-9999px;}
+.bank_list li.active{ padding:9px; border:2px solid #ff5500; background:url(../images/p1.png) no-repeat right bottom;}
 
+.bank_list #bob a{background-position:0 -28px}/*中国银行*/
+.bank_list #icbc a{background-position:0 -140px}/*工商银行*/
+.bank_list #cmb a{background-position:0 -784px}/*招商银行*/
+.bank_list #ccb a{background-position:0 -336px}/*建设银行*/
+.bank_list #abc a{background-position:0 -532px}/*农业银行*/
+.bank_list #spdb a{background-position:0 -588px}/*浦发银行*/
+.bank_list #cib a{background-position:0 -756px}/*兴业银行*/
+.bank_list #gdb a{background-position:0 -196px}/*广发银行*/
+.bank_list #fdb a{background-position:0 -196px}/*富滇银行*/
+.bank_list #citic a{background-position:0 -896px}/*中信银行*/
+.bank_list #hzb a{background-position:0 -252px}/*杭州银行*/
+.bank_list #shb a{background-position:0 -672px}/*上海银行*/
+.bank_list #nbcb a{background-position:0 -504px}/*宁波银行*/
+.bank_list #pab a{background-position:0 -560px}/*平安银行*/
+.bank_list #post a{background-position:0 -868px}/*邮政银行*/
+.bank_list #bcom a{background-position:0 -392px}/*交通银行*/
+.bank_list #ceb a{background-position:0 -168px}/*光大银行*/
+.bank_list #boc a{background-position:0 -840px}/*北京银行*/
+.bank_list #srcb a{background-position:0 -644px}/*上海农商银行*/
+.bank_list #wzcb a{background-position:0 -728px}/*温州银行*/
+.bank_list #cmbc a{background-position:0 -448px}/*民生银行*/
+.bank_list #brcb a{background-position:0 -1128px}/*北京农商银行*/
+.bank_list #srcb a{background-position:0 -1158px}/*北京农商银行*/
+.bank_list #alipay a{background-position:0 -1097px}/*支付宝*/
+.bank_list .more{float:left;border:1px dotted #128d56; width:200px; height:46px; line-height:46px;  margin-right:10px; margin-bottom:10px; cursor:pointer; text-align:center; }
 
 

@@ -284,18 +284,3 @@ a:hover, a:active{
 
 /***************我是分割线*****************/
 /***************非通用样式 之后需要独立出来*****************/
-/*特殊按钮--支付宝*/
-.btn-alipay {
-    display: inline-block;
-    padding: 0;
-    width: 200px;
-    height: 60px;
-    background: #ffffff url('../images/alipay.png') no-repeat center;
-}
-
-/*下列为page中radio的style*/
-.radios-pay {
-}
-.radios-pay li input[type=radio] {
-    display: none;
-}

@@ -910,17 +910,48 @@
                 <small><i class="icon icon-warning"></i>订单一经支付成功，不可变更取消</small>
             </h3>
         </div>
-        <div class="padding-sm">
-            <ul class="radios-pay padding-sm">
-                <li class="active">
-                    <input name="payType" id="alipay" type="radio" checked="true"/>
-                    <label for="alipay"><a class="btn btn-alipay"></a></label>
+        <ul class="tab1 clearfix blank2 padding-x">
+            <li class="active">银行卡</li>
+            <li>支付平台</li>
+        </ul>
+        <div class="row2 clearfix padding-x">
+            <ul class="bank_list active">
+                <li id="boc" class="active"><input name="payType" checked="" type="radio"><a href="#">中国银行</a></li>
+                <li id="icbc"><input name="payType" type="radio"><a href="#">工商银行</a></li>
+                <li id="cmb"><input name="payType" type="radio"><a href="#">招商银行</a></li>
+                <li id="ccb"><input name="payType" type="radio"><a href="#">建设银行</a></li>
+                <li id="abc"><input name="payType" type="radio"><a href="#">农业银行</a></li>
+                <li id="spdb"><input name="payType" type="radio"><a href="#">浦发银行</a></li>
+                <li id="cib"><input name="payType" type="radio"><a href="#">兴业银行</a></li>
+                <li id="gdb"><input name="payType" type="radio"><a href="#">广发银行</a></li>
+                <li id="fdb"><input name="payType" type="radio"><a href="#">富滇银行</a></li>
+                <li id="citic"><input name="payType" type="radio"><a href="#">中信银行</a></li>
+                <li id="hzb"><input name="payType" type="radio"><a href="#">杭州银行</a></li>
+                <li id="shb"><input name="payType" type="radio"><a href="#">上海银行</a></li>
+                <li id="nbcb"><input name="payType" type="radio"><a href="#">宁波银行</a></li>
+                <li id="pab"><input name="payType" type="radio"><a href="#">平安银行</a></li>
+                <li id="post"><input name="payType" type="radio"><a href="#">邮政银行</a></li>
+                <li id="bcom"><input name="payType" type="radio"><a href="#">交通银行</a></li>
+                <li id="ceb"><input name="payType" type="radio"><a href="#">光大银行</a></li>
+                <li id="bob"><input name="payType" type="radio"><a href="#">北京银行</a></li>
+                <li id="srcb"><input name="payType" type="radio"><a href="#">上海农商银行</a></li>
+                <li id="wzcb"><input name="payType" type="radio"><a href="#">温州银行</a></li>
+                <li id="cmbc"><input name="payType" type="radio"><a href="#">民生银行</a></li>
+                <li id="brcb"><input name="payType" type="radio"><a href="#">北京农商银行</a></li>
+                <li id="srcb"><input name="payType" type="radio"><a href="#">上海农商银行</a></li>
+                <div class="more"><a class="F_green" href="#">查看更多</a></div>
+            </ul>
+            <ul class="bank_list" style=" display:none;">
+                <li id="alipay" class="active">
+                    <!--<label for="alipay"></label>-->
+                    <input id="alipay" name="payType" type="radio"><a href="#">支付宝</a>
                 </li>
             </ul>
 
-            <p class="">确认后将跳转到支付页面，请在30分钟内完成支付。若30分钟内未付款成功，将取消本次订单。</p>
         </div>
+        <div class="padding-sm">确认后将跳转到支付页面，请在30分钟内完成支付。若30分钟内未付款成功，将取消本次订单。</div>
         <div class="text-center">
+
             <div class="blank2"></div>
             <input type="button" class="btn_O_long" value="确认，去支付" id="goToAlipay"/>
 
