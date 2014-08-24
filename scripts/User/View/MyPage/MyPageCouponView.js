@@ -6,28 +6,23 @@ var MyPageCouponView = Backbone.View.extend({
         app.viewRegistration.register(this);
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
-        this.listName = "claimed";
+        this.listName = "usable";
 
-        this.sr = new CouponSearchRepresentation();
+        this.usableSr = new CouponSearchRepresentation();
+        this.gotSr = new CouponSearchRepresentation();
         var self = this;
+        //todo first fetch then render
         app.userManager.fetchCoupons(this.sr, {
             success: self.render
             //todo need error callback
         });
     },
     render: function (coupons) {
-        console.log(coupons);
         this.$el.append(this.template);
-        var claimedCoupons = new Coupons(), expiredCoupons = new Coupons(), usedCoupons = new Coupons();
-//        claimedCoupcoupons.nList").where({status: EnumConfig.CouponStatus.usae}));
-//        expiredCoupcoupons..nList").where({status: EnumConfig.CouponStatus.inacte}));
-//        usedCoupcoupons.onList").where({status: EnumConfig.CouponStatus.used}));
         this.bindEvents();
-        this.expiredCouponView = new ExpiredCouponView(expiredCoupons, expiredCoupons);
-        this.claimedCouponView = new ClaimedCouponView(claimedCoupons, claimedCoupons);
-        this.usedCouponView = new UsedCouponView(usedCoupons, usedCoupons);
-        this.expiredCouponView.hide();
-        this.usedCouponView.hide();
+        this.usableCouponView = new UsableCouponView();
+        this.gotCouponView = new GotCouponView();
+        this.gotCouponView.hide();
     },
     bindEvents: function () {
         var that = this;
@@ -41,143 +36,73 @@ var MyPageCouponView = Backbone.View.extend({
     switchView: function (name) {
         if (this.listName === name) return;
         this.listName = name;
-        if (this.listName === "claimed") {
-            this.claimedCouponView.show();
-            this.expiredCouponView.hide();
-            this.usedCouponView.hide();
-        } else if (this.listName === "expired") {
-            this.claimedCouponView.hide();
-            this.expiredCouponView.show();
-            this.usedCouponView.hide();
-        } else {
-            this.claimedCouponView.hide();
-            this.expiredCouponView.hide();
-            this.usedCouponView.show();
+        if (this.listName === "usable") {
+            this.usableCouponView.show();
+            this.gotCouponView.hide();
+        } else if (this.listName === "got") {
+            this.usableCouponView.hide();
+            this.gotCouponView.hide();
         }
 
     },
     close: function () {
         if (!this.isClosed) {
-            if (this.expiredCouponView) {
-                this.expiredCouponView.close();
+            if (this.gotCouponView) {
+                this.gotCouponView.close();
             }
-            if (this.claimedCouponView) {
-                this.claimedCouponView.close();
+            if (this.usableCouponView) {
+                this.usableCouponView.close();
             }
-            this.expiredCouponView = null;
-            this.claimedCouponView = null;
+            this.usableCouponView = null;
             this.$el.empty();
             this.isClosed = true;
         }
     }
 });
 
-var ExpiredCouponView = MultiPageView.extend({
+
+var UsableCouponView = MultiPageView3.extend({
+    entryContainer:'usableList',
     el: "#coupons_container",
-    table: "#expiredTable",
+    table: "#usableTable",
     minHeight: 144,
     pageEntryNumber: 4,
     entryHeight: 36,
-    extPn: true,
+    entryTemplate: _.template(tpl.get("mypage_usableCouponRow")),
+    template: _.template(tpl.get("mypage_couponUsable")),
+    noMessage: _.template(tpl.get("usable_coupon_noMessage")),
     initialize: function (allCoupons, coupons) {
-        MultiPageView.prototype.initialize.call(this);
-        this.template = _.template(tpl.get("mypage_couponExpired"));
         this.$el.append(this.template);
+        MultiPageView3.prototype.initialize.call(this);
+
         this.messages = coupons;
         this.allMessages = allCoupons;
-        this.entryTemplate = _.template(tpl.get("mypage_expiredCouponRow"));
         this.pageNumberClass = "searchResultPageNumber";
         this.pageNumberId = "couponPageNum";
-        this.pageNavigator = "expiredCouponListNavigator";
+        this.pageNavigator = "usableCouponListNavigator";
         this.pageNavigatorClass = "page blank1 clearfix";
         this.user = app.sessionManager.sessionModel;
-        this.actionClass = "claim";
-        this.entryContainer = "expiredList";
-        this.$domContainer = $("#expiredList");
-        this.noMessage = _.template(tpl.get("expired_coupon_noMessage"));
+        this.$domContainer = $("#usableList");
         this.isClosed = false;
         var that = this;
         this.render();
         this.bindEvents();
     },
     render: function () {
-        MultiPageView.prototype.render.call(this);
-    },
-    entryEvent: function (id) {
-        $("#coup o n_act_" + id).val("激活中");
-        app.userManager.claimCoupon(id, {
-            "success": function () {
-                $("#coup o n_act_" + id).parent().html("<span>已激活</span>");
-            },
-            "error": function () {
-                $("#coup o n_act_" + id).val("重试");
-            }
-        });
+        MultiPageView3.prototype.render.call(this);
     },
     bindEvents: function () {
 
     },
     show: function () {
-        $("#expiredTable").removeClass("hidden");
-        $("#expiredNoData").removeClass("hidden");
-        $("#expiredCouponListNavigator").removeClass("hidden");
-
+        $("#usableTable").removeClass("hidden");
+        $("#usableNoData").removeClass("hidden");
+        $("#usableCouponListNavigator").removeClass("hidden");
     },
     hide: function () {
-        $("#expiredTable").addClass("hidden");
-        $("#expiredNoData").addClass("hidden");
-        $("#expiredCouponListNavigator").addClass("hidden");
-    },
-    close: function () {
-        if (!this.isClosed) {
-            this.isClosed = true;
-            this.$el.empty();
-        }
-    }
-});
-
-var ClaimedCouponView = MultiPageView.extend({
-    el: "#coupons_container",
-    table: "#claimedTable",
-    minHeight: 144,
-    pageEntryNumber: 4,
-    entryHeight: 36,
-    extPn: true,
-    initialize: function (allCoupons, coupons) {
-        MultiPageView.prototype.initialize.call(this);
-        this.template = _.template(tpl.get("mypage_couponClaimed"));
-        this.$el.append(this.template);
-        this.messages = coupons;
-        this.allMessages = allCoupons;
-        this.entryTemplate = _.template(tpl.get("mypage_claimedCouponRow"));
-        this.pageNumberClass = "searchResultPageNumber";
-        this.pageNumberId = "couponPageNum";
-        this.pageNavigator = "claimedCouponListNavigator";
-        this.pageNavigatorClass = "page blank1 clearfix";
-        this.user = app.sessionManager.sessionModel;
-        this.entryContainer = "claimedList";
-        this.$domContainer = $("#claimedList");
-        this.noMessage = _.template(tpl.get("claimed_coupon_noMessage"));
-        this.isClosed = false;
-        var that = this;
-        this.render();
-        this.bindEvents();
-    },
-    render: function () {
-        MultiPageView.prototype.render.call(this);
-    },
-    bindEvents: function () {
-
-    },
-    show: function () {
-        $("#claimedTable").removeClass("hidden");
-        $("#claimedNoData").removeClass("hidden");
-        $("#claimedCouponListNavigator").removeClass("hidden");
-    },
-    hide: function () {
-        $("#claimedTable").addClass("hden");
-        $("#claimedNoData").addClass("hidden");
-        $("#claimedCouponListNavigator").addClass("hidden");
+        $("#usableTable").addClass("hidden");
+        $("#usableNoData").addClass("hidden");
+        $("#usableCouponListNavigator").addClass("hidden");
 
     },
     close: function () {
@@ -188,48 +113,47 @@ var ClaimedCouponView = MultiPageView.extend({
     }
 });
 
-var UsedCouponView = MultiPageView.extend({
+var GotCouponView = MultiPageView3.extend({
+    entryContainer:'gotList',
     el: "#coupons_container",
-    table: "#usedTable",
+    table: "#gotTable",
     minHeight: 144,
     pageEntryNumber: 4,
     entryHeight: 36,
-    extPn: true,
-    entryTemplate: _.template(tpl.get("mypage_usedCouponRow")),
-    template: _.template(tpl.get("mypage_couponUsed")),
-    noMessage: _.template(tpl.get("used_coupon_noMessage")),
+    entryTemplate: _.template(tpl.get("mypage_gotCouponRow")),
+    template: _.template(tpl.get("mypage_couponGot")),
+    noMessage: _.template(tpl.get("got_coupon_noMessage")),
     initialize: function (allCoupons, coupons) {
-        MultiPageView.prototype.initialize.call(this);
         this.$el.append(this.template);
+        MultiPageView3.prototype.initialize.call(this);
         this.messages = coupons;
         this.allMessages = allCoupons;
         this.pageNumberClass = "searchResultPageNumber";
         this.pageNumberId = "couponPageNum";
-        this.pageNavigator = "usedCouponListNavigator";
+        this.pageNavigator = "gotCouponListNavigator";
         this.pageNavigatorClass = "page blank1 clearfix";
         this.user = app.sessionManager.sessionModel;
-        this.entryContainer = "usedList";
-        this.$domContainer = $("#usedList");
+        this.$domContainer = $("#gotList");
         this.isClosed = false;
         var that = this;
         this.render();
         this.bindEvents();
     },
     render: function () {
-        MultiPageView.prototype.render.call(this);
+        MultiPageView3.prototype.render.call(this);
     },
     bindEvents: function () {
 
     },
     show: function () {
-        $("#usedTable").removeClass("hidden");
-        $("#usedNoData").removeClass("hidden");
-        $("#usedCouponListNavigator").removeClass("hidden");
+        $("#gotTable").removeClass("hidden");
+        $("#gotNoData").removeClass("hidden");
+        $("#gotCouponListNavigator").removeClass("hidden");
     },
     hide: function () {
-        $("#usedTable").addClass("hden");
-        $("#usedNoData").addClass("hidden");
-        $("#usedCouponListNavigator").addClass("hidden");
+        $("#gotTable").addClass("hden");
+        $("#gotNoData").addClass("hidden");
+        $("#gotCouponListNavigator").addClass("hidden");
     },
     close: function () {
         if (!this.isClosed) {

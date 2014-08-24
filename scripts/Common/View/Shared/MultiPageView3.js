@@ -36,20 +36,20 @@ var MultiPageView3 = Backbone.View.extend({
     singlePage: null,
     isTable: false,
     $tableContainer: false,
-    scroll:true,//设置换页后是否自动滚动到容器上方
-    scrollTarget:null,//滚动到的元素位置
+    scroll: true,//设置换页后是否自动滚动到容器上方
+    scrollTarget: null,//滚动到的元素位置
     initialize: function () {
         _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler",
             "clickPreHandler", "clickNextHandler", "close");
         var $entryContainer = $("#" + this.entryContainer);
-        if($entryContainer[0].tagName ==='TBODY'){
+        if ($entryContainer[0].tagName === 'TBODY') {
             this.isTable = true;
             this.$tableContainer = $entryContainer.parent();
         }
 
-        if(this.isTable){
+        if (this.isTable) {
             this.$tableContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
-        }else{
+        } else {
             this.$messageContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
         }
     },
@@ -61,12 +61,12 @@ var MultiPageView3 = Backbone.View.extend({
         var that = this;
         this.$messageContainer = $("#" + this.entryContainer);
         this.$messageContainer.empty();
-        if (this.messages.length > 0) {
+        if (this.messages && this.messages.length > 0) {
             //这里设置显示的数据
             length = this.messages.length - this.startIndex;
             length = (length < this.pageEntryNumber) ? length : this.pageEntryNumber;
 
-            this.messages.each(function(message){
+            this.messages.each(function (message) {
                 buf.push(that.entryTemplate(message._toJSON()));
             });
             this.$messageContainer.append(buf.join(""));
@@ -103,14 +103,14 @@ var MultiPageView3 = Backbone.View.extend({
     },
 
     toPage: function (pageIndex) {
-        if(this.scroll){
+        if (this.scroll) {
             var $target = $(this.scrollTarget);
-            if($target.length !==0 ){
-                $.smoothScroll({scrollTarget:$target})
-            }else if(this.$tableContainer){
-                $.smoothScroll({scrollTarget:this.$tableContainer})
-            }else{
-                $.smoothScroll({scrollTarget:"#" + this.entryContainer})
+            if ($target.length !== 0) {
+                $.smoothScroll({scrollTarget: $target})
+            } else if (this.$tableContainer) {
+                $.smoothScroll({scrollTarget: this.$tableContainer})
+            } else {
+                $.smoothScroll({scrollTarget: "#" + this.entryContainer})
             }
 
         }
@@ -149,7 +149,7 @@ var MultiPageView3 = Backbone.View.extend({
             this.$pre = null;
             this.$next = null;
         }
-        
+
 
         this.$pn = $("#" + this.pageNavigator);
         length = this.messages.total;

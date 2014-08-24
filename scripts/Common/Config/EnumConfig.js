@@ -13,29 +13,24 @@ var EnumConfig = {
         admin: 2
     },
 
-//    'CreditStatus': {
-//        usable: 0,
-//        expired: 1,
-//        used: 2
-//    },
+    'CreditStatus': {
+        usable: 0,
+        expired: 1,
+        used: 2
+    },
 
     //现金券状态取值
     'CouponStatus': {
-        usable: 0,
-        expired: 1,
-        used: 2,
-        inactive: 3
+        usable: 0,//可使用的
+        expired: 1,//已过期的
+        used: 2,//已使用的
+        inactive: 3//
     },
     //现金券的状态显示
     'CouponStatusText': {
-        0:'',
-        1:'',
-        2:''
-    },
-    'CouponOrigin': {
-        registration: 0,
-        invitation: 1,
-        admin: 2
+        0:'可使用',
+        1:'已过期',
+        2:'已使用'
     },
     /*用户对订单可执行的操作*/
     'BookingActionText':{
@@ -92,10 +87,7 @@ var EnumConfig = {
 
     /*课程状态*/
     'CourseStatus': {
-        onlined: 2, //已上线
-        offlined: 3,//已下线
-        deactivated: 1,//
-        consolidated: 2
+        onlined: 2 //已上线
     },
 
     'PartnerQualification': {

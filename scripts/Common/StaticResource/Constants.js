@@ -22,26 +22,45 @@ var Constants = {
 
     templateResources: [
         "topBar-loggedIn", "topBar-notLoggedIn",
-
+        /*注册模块*/
         "registration", "registration_finish", "findPassword_1", "findPassword_2",
 
-        "front", "frontCategoryContainer", "search", "searchResultEntry", "courseDetail", "newBooking", "booking_submitted", "search_noMessage",
-        "frontButton", "frontCatButton",
-        "req", "subCategoryContainer", "subSubCategoryContainer", "subSubCategory", "subCategory", "category",
+        /*对比页*/
+        "compareView",
 
-        "mypage_base", "mypage_dashboard", "mypage_bookingList", "mypage_bookingDetail", "booking_entry", "booking_noMessage","mypage_bookingPay",
+        /*课程搜索模块*/
+        "front", "frontCategoryContainer","frontButton", "frontCatButton",
+        "search", "searchResultEntry",  "search_noMessage",
+        "mapLabel","compareWidget", "courseDetailCompareWidget",  "compareWidgetEntry",
+        //已筛选的条件 一二三级类目
+        "req","subCategoryContainer", "subSubCategoryContainer", "subSubCategory", "subCategory", "category",
 
-        "mypage_coupons", "mypage_expiredCouponRow", "mypage_claimedCouponRow", "mypage_couponClaimed", "mypage_couponExpired", "claimed_coupon_noMessage", "expired_coupon_noMessage",
-        "mypage_usedCouponRow", "mypage_couponUsed", "used_coupon_noMessage",
+        /*课程详情和新建订单*/
+        "courseDetail", "newBooking", "booking_submitted",
 
-        "mypage_credit", "mypage_creditTable", "mypage_creditRow", "mypage_creditStore", "credit_noMessage",
+        /*个人中心模块*/
+        "mypage_base", "mypage_dashboard",
+        "mypage_bookingList","booking_entry", "booking_noMessage",
+        "mypage_bookingDetail","mypage_bookingPay",
+
+        //我的优惠券
+        "mypage_coupons",
+        "mypage_usableCouponRow", "mypage_couponUsable", "usable_coupon_noMessage",
+        "mypage_gotCouponRow", "mypage_couponGot", "got_coupon_noMessage",
+        //我的现金账户
         "mypage_cash",
-
+        //我的积分
+        "mypage_credit", "mypage_creditTable", "mypage_creditRow", "mypage_creditStore", "credit_noMessage",
+        //个人资料
         "mypage_password", "mypage_setting", "mypage_share",
 
-        "compareWidget", "compareWidgetEntry", "compareView", "courseDetailCompareWidget", "mapLabel",
-        "infoModal", "banner",
-        "aboutUs", "joinUs", "contactUs", "advise", "help"
+
+        //底部栏
+        "aboutUs", "joinUs", "contactUs", "advise", "help",
+
+        //其它
+        "infoModal", "banner"
+
     ],
     gender: {
         "male": 0,
@@ -53,18 +72,18 @@ var Constants = {
 
     /*---------------  Personal view constants   --------------*/
     emailLink: {
-        "qq.com":"mail.qq.com",
-        "sina.com":"mail.sina.com",
-        "163.com":"mail.163.com",
-        "126.com":"mail.126.com",
-        "sohu.com":"mail.sohu.com",
-        "yahoo.com.cn":"mail.yahoo.com.cn",
-        "yahoo.com":"mail.yahoo.com",
-        "live.com":"mail.live.com",
-        "live.cn":"mail.live.com"
+        "qq.com": "mail.qq.com",
+        "sina.com": "mail.sina.com",
+        "163.com": "mail.163.com",
+        "126.com": "mail.126.com",
+        "sohu.com": "mail.sohu.com",
+        "yahoo.com.cn": "mail.yahoo.com.cn",
+        "yahoo.com": "mail.yahoo.com",
+        "live.com": "mail.live.com",
+        "live.cn": "mail.live.com"
     },
-    categoryRowMapper: [10,10,5,5],
-    voidFunction: function(){
-        
+    categoryRowMapper: [10, 10, 5, 5],
+    voidFunction: function () {
+
     }
 };

@@ -1919,91 +1919,72 @@
         </div>
         <ul id="couponNavBtn" class="tab1 clearfix blank2">
             <li data-id="usable" class="active">可用返现券</li>
-            <li data-id="expired">已过期</li>
-            <li data-id="used">已使用</li><!--inactive-->
+            <li data-id="got">发放明细</li>
         </ul>
         <div id="coupons_container">
         </div>
     </div>
 </script>
 
-<script type="text/template" id="tpl_mypage_expiredCouponRow">
-    <tr id="coupon_<%= couponId %>">
-        <td class="col1"><%= createTime %></td>
-        <td class="col2"><%= amount %></td>
-        <td class="col3"><%= origin %></td>
-        <td class="col4"><%= expireTime %></td>
-        <td class="col5"><input id="coupon_act_<%= couponId %>" class="claim" type="button" value="激活"></td>
-    </tr>
-</script>
-
-<script type="text/template" id="tpl_mypage_claimedCouponRow">
-    <tr id="coupon_<%= couponId %>">
-        <td class="col1"><%= couponId %></td>
-        <td class="col2"><%= amount %></td>
-        <td class="col3"><%= origin %></td>
-        <td class="col4"><%= expireTime %><%= expireSoon %></td>
-    </tr>
-</script>
-
-<script type="text/template" id="tpl_mypage_usedCouponRow">
-    <tr id="coupon_<%= couponId %>">
-        <td class="col1"><%= couponId %></td>
-        <td class="col2"><%= transactionId %></td>
-        <td class="col3"><%= amount %></td>
-    </tr>
-</script>
-
-<script type="text/template" id="tpl_mypage_couponClaimed">
-    <table id="claimedTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
+<script type="text/template" id="tpl_mypage_couponUsable">
+    <table id="usableTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
         <thead>
         <tr>
             <td class="col1">序号</td>
             <td width="25%">券额</td>
+            <td width="25%">有效期</td>
+        </tr>
+        </thead>
+        <tbody id="usableList">
+        </tbody>
+    </table>
+    <div id="usableCouponListNavigator" class="page blank1 clearfix">
+    </div>
+</script>
+<script type="text/template" id="tpl_mypage_usableCouponRow">
+    <tr id="coupon_<%= id %>">
+        <td class="col1"><%= id %></td>
+        <td class="col2"><%= balance %></td>
+        <td class="col3"><%= expireTime %><%= expireSoon %></td>
+    </tr>
+</script>
+<script type="text/templates" id="tpl_usable_coupon_noMessage">
+    <div id="usableNoData" class="no_data">
+        <div>您还没有可用的返现券哦~~</div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_mypage_couponGot">
+    <table id="gotTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td class="col1">发放日期</td>
+            <td width="25%">金额</td>
             <td width="25%">发放原因</td>
             <td width="25%">有效期</td>
         </tr>
         </thead>
-        <tbody id="claimedList">
+        <tbody id="gotList">
         </tbody>
     </table>
-    <div id="claimedCouponListNavigator" class="page blank1 clearfix">
+    <div id="gotCouponListNavigator" class="page blank1 clearfix">
+    </div>
+</script>
+<script type="text/template" id="tpl_mypage_gotCouponRow">
+    <tr id="coupon_<%= id %>">
+        <td class="col1"><%= createTime %></td>
+        <td class="col2"><%= total %></td>
+        <td class="col3"><%= origin %></td>
+        <td class="col4"><%= expireTime %></td>
+    </tr>
+</script>
+<script type="text/templates" id="tpl_got_coupon_noMessage">
+    <div id="gotNoData" class="no_data">
+        <div>您还没有获得过返现券</div>
     </div>
 </script>
 
-<script type="text/template" id="tpl_mypage_couponExpired">
-    <table id="expiredTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
-        <thead>
-        <tr>
-            <td class="col1">发放日期</td>
-            <td class="col2" width="20%">券额</td>
-            <td class="col3" width="20%">发放原因</td>
-            <td class="col4" width="20%">有效期</td>
-            <td class="col5" width="20%">激活</td>
-        </tr>
-        </thead>
-        <tbody id="expiredList">
-        </tbody>
-    </table>
-    <div id="expiredCouponListNavigator" class="page blank1 clearfix">
-    </div>
-</script>
 
-<script type="text/template" id="tpl_mypage_couponUsed">
-    <table id="usedTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
-        <thead>
-        <tr>
-            <td class="col1">序号</td>
-            <td width="25%">交易号</td>
-            <td width="25%">金额</td>
-        </tr>
-        </thead>
-        <tbody id="usedList">
-        </tbody>
-    </table>
-    <div id="usedCouponListNavigator" class="page blank1 clearfix">
-    </div>
-</script>
 
 <script type="text/templates" id="tpl_mypage_password">
     <div class="title"><a class="js_toDashboard">我的爱上课</a> > <span class=" F_green">修改密码</span>
@@ -2265,24 +2246,6 @@
     <div class="no_data" id="creditNoData">
         <div>您暂时还没有积分~~</div>
         <p>预订课程后就能获得积分哦</p>
-    </div>
-</script>
-
-<script type="text/templates" id="tpl_claimed_coupon_noMessage">
-    <div id="claimedNoData" class="no_data">
-        <div>您还没有可用的返现券哦~~</div>
-    </div>
-</script>
-
-<script type="text/templates" id="tpl_expired_coupon_noMessage">
-    <div id="expiredNoData" class="no_data">
-        <div>您没有已过期的返现券哦~~</div>
-    </div>
-</script>
-
-<script type="text/templates" id="tpl_used_coupon_noMessage">
-    <div id="usedNoData" class="no_data">
-        <div>您还没有使用过任何返现券</div>
     </div>
 </script>
 

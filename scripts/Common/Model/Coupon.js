@@ -3,23 +3,22 @@ var Coupon = Backbone.Model.extend({
     defaults: function () {
         return {
             'id': -1,
-            'couponId': -1,
             'userID': -1,
 
-            'code': '',//优惠券编号
+            'balance': undefined,//当前总额
+            'total': undefined,//todo 当前总额 which one??
 
-            'total': 0,//暂时没什么用
-            'balance': 0,//当前总额
+            'origin': undefined, //enum type 获得来源
 
-            'origin': 0, //enum type
+            'remark': undefined, //备注信息
+            'status': undefined, //优惠券的状态
 
-            'createTime': new Date(),
-            'lastModifyTime': new Date(),
-            'expireTime': new Date(),
-            'remark': '',
-            'status': 0
-//            'status': EnumConfig.CouponStatus.usable,
-//            'origin': 0
+            'enabled':undefined,
+
+            'createTime': undefined,//创建时间
+            'expireTime': undefined,//失效时间
+            'lastModifyTime': undefined//最后修改时间
+
         };
     },
 
@@ -40,23 +39,22 @@ var Coupon = Backbone.Model.extend({
     parse: function (data) {
         if (typeof data !== 'undefined') {
             data.id = parseInt(data.id, 10);
-            data.couponId = data.id;
-
             data.userId = parseInt(data.userId, 10);
 
             data.total = parseFloat(data.total);
             data.balance = parseFloat(data.balance);
             data.origin = parseInt(data.origin, 10);
 
-            data.total = isNaN(data.tota) ? 0 : data.total;
-            data.balance = isNaN(data.tota) ? 0 : data.balance;
-            data.origin = isNaN(data.tota) ? 0 : data.origin;
+            data.total = isNaN(data.total) ? 0 : data.total;
+            data.balance = isNaN(data.balance) ? 0 : data.balance;
+            data.origin = isNaN(data.origin) ? 0 : data.origin;
 
             data.createTime = Utilities.castFromAPIFormat(data.createTime);
             data.lastModifyTime = Utilities.castFromAPIFormat(data.lastModifyTime);
             data.expireTime = Utilities.castFromAPIFormat(data.expireTime);
 
             data.status = parseInt(data.status, 10);
+            data.enabled = parseInt(data.enabled, 10);
         }
         return data;
     },
@@ -66,7 +64,8 @@ var Coupon = Backbone.Model.extend({
         json.createTime = Utilities.getDateString(this.get('createTime'));
         json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));
         json.expireTime = Utilities.getDateString(this.get('expireTime'));
-        json.expireSoon = ((this.get('expireTime').getTime() - date.getTime()) < 604800000 ) ? "<span>即将到期</span>" : "";
+
+        json.expireSoon = ((this.get('expireTime').getTime() - date.getTime()) < 604800000 ) ? "<span>即将到期</span>" : "";// 7 days
         return json;
     },
 
