@@ -31,7 +31,7 @@ var Constants = {
 
         "mypage_base", "mypage_dashboard", "mypage_bookingList", "mypage_bookingDetail", "booking_entry", "booking_noMessage","mypage_bookingPay",
 
-        "mypage_coupons", "mypage_unclaimedCouponRow", "mypage_claimedCouponRow", "mypage_couponClaimed", "mypage_couponExpired", "claimed_coupon_noMessage", "expired_coupon_noMessage",
+        "mypage_coupons", "mypage_expiredCouponRow", "mypage_claimedCouponRow", "mypage_couponClaimed", "mypage_couponExpired", "claimed_coupon_noMessage", "expired_coupon_noMessage",
         "mypage_usedCouponRow", "mypage_couponUsed", "used_coupon_noMessage",
 
         "mypage_credit", "mypage_creditTable", "mypage_creditRow", "mypage_creditStore", "credit_noMessage",
