@@ -10,6 +10,7 @@ var BookingSearchRepresentation = Backbone.Model.extend({
             'phone': undefined,
             'email': undefined,
             'status': undefined,
+            'statusSet': [],
             'preStatus':undefined,
             'reference': undefined,
 
@@ -37,13 +38,12 @@ var BookingSearchRepresentation = Backbone.Model.extend({
         for (var key in queryObj) {
             if (queryObj.hasOwnProperty(key) && typeof queryObj[key] !== 'undefined') {
                 if($.isArray(queryObj[key])){
-                    for(var index in queryObj[key]){
-                        queryArr.push(key + '=' + queryObj[key][index]);
-                    }
+                    _.each(queryObj[key],function(val){
+                        queryArr.push(key + '=' + val);
+                    });
                 }else{
                     queryArr.push(key + '=' + queryObj[key]);
                 }
-
             }
         }
 
