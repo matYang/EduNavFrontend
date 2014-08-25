@@ -36,7 +36,9 @@ var Constants = {
         "req","subCategoryContainer", "subSubCategoryContainer", "subSubCategory", "subCategory", "category",
 
         /*课程详情和新建订单*/
-        "courseDetail", "newBooking", "booking_submitted",
+        "courseDetail",
+        "relatedCourseRow","relatedCourseNoRow","relatedCourseErrorRow",//相关课程
+        "newBooking", "booking_submitted",
 
         /*个人中心模块*/
         "mypage_base", "mypage_dashboard",

@@ -149,7 +149,6 @@ var Course = Backbone.Model.extend({
 //            if (typeof json.originalPrice === 'number')json.originalPrice = json.originalPrice.toFixed(2);
             if (json.startDate) {
                 var dateObj = json.startDate;
-                console.log(dateObj)
                 json.startDateDate = dateObj.getFullYear() + '年' + (dateObj.getMonth() + 1) + '月';
                 json.startDateDay = dateObj.getDate();
                 json.startDateWeek = EnumConfig.WeekText[dateObj.getDay() - 1];
@@ -252,17 +251,22 @@ var Course = Backbone.Model.extend({
         },
         _toSimpleJSON: function () {
             var json = {};
-            json.courseId = this.get("courseId");
+            json.id = this.get("id");
             json.courseName = this.get("courseName");
-            json.suitableStudent = this.get("suitableStudent");
+            json.regPhone = this.get("regPhone");
+
+            json.startUponArrival = this.get("startUponArrival");
             json.startDate = Utilities.getDateString(this.get('startDate'));
-            json.address = this.get("address");
-            json.logoUrl = this.get("logoUrl");
+            json.finishDate = Utilities.getDateString(this.get('finishDate'));
+
             json.price = this.get("price");
-            json.courseHourNum = this.get("courseHourNum");
             json.cashback = this.get("cashback");
+            json.commission = this.get("commission");
+
+            json.address = this.get("address");
+
+            json.logoUrl = this.get("logoUrl");
             json.instName = this.get("instName");
-            json.trail = this.get("trail");
             return json;
         }
     })

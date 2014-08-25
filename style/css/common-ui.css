@@ -90,9 +90,14 @@ a:hover, a:active{
 
 /*通用按钮*/
 .btn {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 0;
     padding: 10px 20px;
-    border: 1px solid transparent;
+    border:1px solid transparent;
     border-radius: 2px;
+    white-space: nowrap;
     cursor: pointer;
 }
 
@@ -122,7 +127,7 @@ a:hover, a:active{
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#FEFEFE, EndColorStr=#F1F1F1);
 }
 
-.btn-primary {
+.btn-primary,.btn-primary:hover {
     border-color: #13AD67;
     color: #fff;
     background-color: #139D5F;

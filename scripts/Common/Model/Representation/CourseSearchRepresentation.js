@@ -1,6 +1,9 @@
 var CourseSearchRepresentation = Backbone.Model.extend({
     defaults: function () {
         return {
+
+            'templateId':undefined,//相关课程搜索
+
             'categoryValue': undefined,
             'locationValue': undefined,
 

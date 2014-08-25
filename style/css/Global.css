@@ -36,7 +36,7 @@ a.F_green, a.F_green:visited { color: #128d56;}
 .hidden {display: none;}
 
 input.text,select.text{height:28px; line-height:28px\9; border:1px solid #ccc; padding-left:10px;}
-.btn_g{height:30px; padding:0 10px; background:#128d56; color:#fff; border:none; cursor:pointer;}
+.btn_g{display:inline-block;height:30px; padding:0 10px; background:#128d56; color:#fff; border:none; cursor:pointer;}
 .btn_gray{height:30px; padding:0 10px; background:#acacac; color:#fff; border:none; cursor:pointer;}
 .btn_o{height:30px; padding:0 10px; background:#f7a501; color:#fff; border:none; cursor:pointer;}
 
