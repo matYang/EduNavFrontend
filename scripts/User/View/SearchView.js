@@ -328,13 +328,14 @@ var SearchView = Backbone.View.extend({
             that.courseSearch();
 
         });
+        //点击爱上课推荐进行数据的重新获取
         $("#editorPick").on("click", function () {
             $("#time").html("时间").removeClass("active");
             $("#price").html("价格").removeClass("active");
             $(this).html("爱上课推荐").addClass("active");
             that.searchRepresentation.set("columnKey", undefined);
             that.searchRepresentation.set("order", undefined);
-            this.courseSearch();
+            that.courseSearch();
         });
 
         $("input[name=cashback]").on("change", function () {
