@@ -186,23 +186,44 @@ var NewBookingView = BaseFormView.extend({
                 $("#initBooking").trigger("click");
             }
         });
-        $("#booking_date").on("keypress", function (e) {
-            e.preventDefault();
-        }).datepicker({
-            buttonImageOnly: true,
-            buttonImage: "calendar.gif",
-            buttonText: "Calendar",
-            minDate: new Date(),
+        if(this.model.get("course").get("startUponArrival")){
+            $("#booking_date").on("keypress", function (e) {
+                e.preventDefault();
+            }).datepicker({
+                buttonImageOnly: true,
+                buttonImage: "calendar.gif",
+                buttonText: "Calendar",
+                minDate: new Date(),
+            maxDate: this.model.get("course").get("startDate"),
+                defaultDate: that.model.get("scheduledTime"),
+                onSelect: function (text, inst) {
+                    var d = new Date();
+                    d.setDate(inst.selectedDay);
+                    d.setMonth(inst.selectedMonth);
+                    d.setYear(inst.selectedYear);
+                    that.model.set("scheduledTime", d);
+                }
+            });
+        }else{
+            $("#booking_date").on("keypress", function (e) {
+                e.preventDefault();
+            }).datepicker({
+                buttonImageOnly: true,
+                buttonImage: "calendar.gif",
+                buttonText: "Calendar",
+                minDate: new Date(),
 //            maxDate: this.model.get("course").get("cutoffDate"),
-            defaultDate: that.model.get("scheduledTime"),
-            onSelect: function (text, inst) {
-                var d = new Date();
-                d.setDate(inst.selectedDay);
-                d.setMonth(inst.selectedMonth);
-                d.setYear(inst.selectedYear);
-                that.model.set("scheduledTime", d);
-            }
-        });
+                defaultDate: that.model.get("scheduledTime"),
+                onSelect: function (text, inst) {
+                    var d = new Date();
+                    d.setDate(inst.selectedDay);
+                    d.setMonth(inst.selectedMonth);
+                    d.setYear(inst.selectedYear);
+                    that.model.set("scheduledTime", d);
+                }
+            });
+        }
+
         $("#booking_loginToggler").on("click", function (e) {
             var $bookingLogin = $("#booking_loginbox");
             if ($bookingLogin.hasClass("hidden")) {
