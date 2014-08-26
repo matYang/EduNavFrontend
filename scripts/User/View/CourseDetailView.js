@@ -19,7 +19,7 @@ var CourseDetailView = Backbone.View.extend({
                     success: function (catObj) {
                         self.course = course.clone();
                         self.courseId = course.get("id");
-                        self.templateId = course.get("templateId");
+                        self.courseTemplateId = course.get("courseTemplateId");
                         //将categoryValue转换成一二三级的键值对
                         var catArray = Utilities.getCategoryArray(self.course.get("categoryValue"), catObj.data);
                         self.course.set("category", catArray[0]);
@@ -43,7 +43,7 @@ var CourseDetailView = Backbone.View.extend({
         $(document).scrollTop(0);
         $("body").addClass("courseDetail");
         this.$el.append(this.template(this.course._toJSON()));
-        this.relatedCourseListView = new RelatedCourseListView(this.templateId,this.courseId);
+        this.relatedCourseListView = new RelatedCourseListView(this.courseTemplateId,this.courseId);
         document.title = "爱上课 | " + this.course.get("category").name +
             " | " + this.course.get("subCategory").name +
             " | " + this.course.get("subSubCategory").name +

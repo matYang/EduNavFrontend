@@ -3,11 +3,11 @@ var RelatedCourseListView = Backbone.View.extend({
     entryTemplate: _.template(tpl.get('relatedCourseRow')),
     noItemTemplate: _.template(tpl.get('relatedCourseNoRow')),
     errorItemTemplate: _.template(tpl.get('relatedCourseErrorRow')),
-    initialize: function (templateId,courseId) {
+    initialize: function (courseTemplateId,courseId) {
         _.bindAll(this, 'render', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
-        this.templateId = templateId;
+        this.courseTemplateId = courseTemplateId;
         this.courseId = courseId;
         this.sr = new CourseSearchRepresentation();
         this.sr.set('templateId', templateId);
