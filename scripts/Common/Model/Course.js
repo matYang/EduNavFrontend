@@ -15,7 +15,7 @@ var Course = Backbone.Model.extend({
                 'startUponArrival': undefined,//转换成了是否有具体的开课日期
                 'regPhone': undefined,//转换成了没有开课日期的备注
                 'studyDaysNote': undefined,//备注信息
-                'qualityAssurance': undefined,
+                'qualityAssurance': undefined, //质量保证 修改为 课时信息
                 "contact": undefined,//课程联系方式
                 "trail": undefined,//试听
                 'status': undefined,//课程状态

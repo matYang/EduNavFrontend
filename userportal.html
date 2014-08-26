@@ -1444,13 +1444,16 @@
     <%}%>
     <% if (courseHourNum) { %>
     <dd class="clearfix">
-        <label>上课课时</label>
-
+        <label>课时信息</label>
+        <%if(courseHourNum){%>
         <div><%= courseHourNum %>课时
             <% if (courseHourLength) { %>
             , 每课时<%= courseHourLength %>小时
             <% } %>
         </div>
+        <%}else{%>
+            <%=qualityAssurance%>
+        <%}%>
     </dd>
     <% } %>
     <% if (classSize) { %>
@@ -1732,10 +1735,16 @@
     </tr>
 
     <tr id="courseHourNum">
-        <th>上课课时</th>
+        <th>课时信息</th>
         <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.id %>"><%if(course.courseHourNum===0){%>
-            <%= course.courseHourNum %>课时，每课时<%= course.courseHourLength %>小时
+
+        <td class="courseId_<%= course.id %>"><%if(courseHourNum){%>
+            <%= courseHourNum %>课时
+            <% if (courseHourLength) { %>
+            , 每课时<%= courseHourLength %>小时
+            <% } %>
+            <%}else{%>
+            <%=qualityAssurance%>
             <%}%></td>
         <% }); %>
     </tr>
