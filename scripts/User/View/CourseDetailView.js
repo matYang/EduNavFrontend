@@ -43,7 +43,8 @@ var CourseDetailView = Backbone.View.extend({
         $(document).scrollTop(0);
         $("body").addClass("courseDetail");
         this.$el.append(this.template(this.course._toJSON()));
-        this.relatedCourseListView = new RelatedCourseListView(this.courseTemplateId,this.courseId);
+        //新建相关课程视图
+        this.relatedCourseListView = new RelatedCourseListView({course:this.course});
         document.title = "爱上课 | " + this.course.get("category").name +
             " | " + this.course.get("subCategory").name +
             " | " + this.course.get("subSubCategory").name +
