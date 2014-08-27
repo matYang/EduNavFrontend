@@ -1737,13 +1737,13 @@
         <th>课时信息</th>
         <% _.each(courses, function(course) { %>
 
-        <td class="courseId_<%= course.id %>"><%if(courseHourNum){%>
-            <%= courseHourNum %>课时
-            <% if (courseHourLength) { %>
-            , 每课时<%= courseHourLength %>小时
+        <td class="courseId_<%= course.id %>"><%if(course.courseHourNum){%>
+            <%= course.courseHourNum %>课时
+            <% if (course.courseHourLength) { %>
+            , 每课时<%= course.courseHourLength %>小时
             <% } %>
             <%}else{%>
-            <%=qualityAssurance%>
+            <%=course.qualityAssurance%>
             <%}%></td>
         <% }); %>
     </tr>
