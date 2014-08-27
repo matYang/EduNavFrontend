@@ -39,7 +39,7 @@ var BookingDetailView = Backbone.View.extend({
         this.bindEvents();
         var self = this;
         if (show === 1) {
-            this.renderFlow(booking.get('status'),booking.get('type'));//生成处理流程图
+            this.renderFlow(booking.get('status'), booking.get('type'));//生成处理流程图
             app.userManager.fetchBookingHistories(this.bookingId, {
                 success: function (bookingHistories) {
                     $(self.historyContainer).html(self.historyTemplate({histories: bookingHistories.toJSON()}));
@@ -53,7 +53,7 @@ var BookingDetailView = Backbone.View.extend({
         }
 
     },
-    renderFlow: function (bookingStatus,bookingType) {
+    renderFlow: function (bookingStatus, bookingType) {
         var statusMap = {
                 0: 'wait',
                 1: 'doing',//ony node 2,4,6,8 has 'doing' status
@@ -77,19 +77,20 @@ var BookingDetailView = Backbone.View.extend({
         for (var index = 0; index < statusCompare.length; index++) {
             if (bookingStatus in statusCompare[index]) {
                 currentNodeIndex = index;
+                break;
             }
         }
-        statusList[currentNodeIndex] = currentNodeIndex % 2 === 0 ? 1 : 2;
+        statusList[currentNodeIndex] = (currentNodeIndex + 1) % 2 === 0 ? 1 : 2;//index is from 0
         //step 2 set the pre nodes to 'ready'
         for (var i = 0; i < currentNodeIndex; i++) {
             statusList[i] = 2;
         }
         //step 3 map the array
-        statusList = statusList.map(function(val){
-           return statusMap[val];
+        statusList = statusList.map(function (val) {
+            return statusMap[val];
         });
         //step 4 render the template
-        $(this.processContainer).html(this.processTemplate({statuses:statusList,bookingType:bookingType}))
+        $(this.processContainer).html(this.processTemplate({statuses: statusList, bookingType: bookingType}))
 
     },
     bindEvents: function () {
