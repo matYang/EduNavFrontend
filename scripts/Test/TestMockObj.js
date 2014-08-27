@@ -47,6 +47,14 @@ testMockObj = {
     testBooking10: (new Booking()).set("id", 10).set("reference", "10010").set("status", 9).set("name", "John").set("phone", 13915063907).set("email", "test@gmail.com").set("price",998),
     testBooking11: (new Booking()).set("id", 11).set("reference", "10011").set("status", 10).set("name", "John").set("phone", 13915063907).set("email", "test@gmail.com").set("price",4651),
     testBooking12: (new Booking()).set("id", 12).set("reference", "10012").set("status", 11).set("name", "John").set("phone", 13915063907).set("email", "test@gmail.com").set("price",9781),
+
+    testBookingHistories:new BookingHistories(),
+    testBookingHistory1:(new BookingHistory().set('id',1)),
+    testBookingHistory2:(new BookingHistory().set('id',2)),
+    testBookingHistory3:(new BookingHistory().set('id',3)),
+
+
+
     testCoupons: new Coupons(),
     testCoupon1: (new Coupon()).set("id", 1).set("amount", 30),
     testCoupon2: (new Coupon()).set("id", 2).set("amount", 20),
@@ -283,7 +291,13 @@ testMockObj.testBooking9.set("course", testMockObj.testCourse3).set('reference',
 testMockObj.testBooking10.set("course", testMockObj.testCourse4).set('reference','isk-2323-s232');
 testMockObj.testBooking11.set("course", testMockObj.testCourse5).set('reference','isk-2323-s232');
 testMockObj.testBooking12.set("course", testMockObj.testCourse6).set('reference','isk-2323-s232');
-testMockObj.testBookings.add([,testMockObj.testBooking1,testMockObj.testBooking2,testMockObj.testBooking4,testMockObj.testBooking5]);
+testMockObj.testBookings.add([testMockObj.testBooking1,testMockObj.testBooking2,testMockObj.testBooking4,testMockObj.testBooking5]);
+
+testMockObj.testBookingHistory1.set('remark','qq').set('createTime',new Date()).set('optName',0);
+testMockObj.testBookingHistory2.set('remark','qq').set('createTime',new Date()).set('optName',0);
+testMockObj.testBookingHistory3.set('remark','qq').set('createTime',new Date()).set('optName',0);
+testMockObj.testBookingHistories.add([testMockObj.testBookingHistory1,testMockObj.testBookingHistory2,testMockObj.testBookingHistory3]);
+
 
 testMockObj.testUser.set("couponList", testMockObj.testCoupons);
 testMockObj.testUser.set("creditList", testMockObj.testCredits);

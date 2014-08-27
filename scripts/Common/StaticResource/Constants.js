@@ -42,8 +42,11 @@ var Constants = {
 
         /*个人中心模块*/
         "mypage_base", "mypage_dashboard",
+
+        //我的订单
         "mypage_bookingList","booking_entry", "booking_noMessage",
         "mypage_bookingDetail","mypage_bookingPay",
+        "mypage_bookingDetailHistory",
 
         //我的优惠券
         "mypage_coupons",

@@ -707,20 +707,7 @@
                 </div>
             </div>
 
-
-            <div class="explain">
-                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span> 学校确认您已经完成课程学习，期待下次为您服务</span></p>
-
-                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>已通知学校询问您的入学状态，并确认是否可获得返现</span>
-                </p>
-
-                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的订单信息已经通知学校；将有资深课程顾问与您联系</span>
-                </p>
-
-                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的学费已经支付成功</span></p>
-
-                <p><span>2014-6-12</span> <span>12:02</span> <span>您提交了订单，请您在2014-08-10 20:31前完成支付，过时系统将自动取消；</span>
-                </p>
+            <div id="bookingHistories" class="explain">
             </div>
         </div>
         <div class="row2">
@@ -822,6 +809,16 @@
         <%})%>
     </div>
     <!--btns end-->
+</script>
+
+<script type="text/template" id="tpl_mypage_bookingDetailHistory">
+    <%_.each(histories,function(history){%>
+        <p class="active">
+            <span><%= history.createTime.getFullYear()%>-<%=history.createTime.getMonth()+1%>-<%=history.createTime.getDate() %></span>
+            <span><%= history.createTime.getHours()%>:<%= history.createTime.getMinutes()%></span>
+            <span><%= EnumConfig.BookingHistoryText[history.optName]%></span>
+        </p>
+    <%})%>
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingPay">
@@ -2604,6 +2601,7 @@
 <script src="scripts/Common/Model/Coupon.js" type="text/javascript"></script>
 <script src="scripts/Common/Model/Credit.js" type="text/javascript"></script>
 <script src="scripts/Common/Model/Booking.js" type="text/javascript"></script>
+<script src="scripts/Common/Model/BookingHistory.js" type="text/javascript"></script>
 <script src="scripts/Common/Model/Account.js" type="text/javascript"></script>
 <!--<script src="scripts/Common/Model/Admin.js" type="text/javascript"></script>-->
 <script src="scripts/Common/Model/Teacher.js" type="text/javascript"></script>

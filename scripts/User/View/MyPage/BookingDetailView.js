@@ -1,8 +1,10 @@
 var BookingDetailView = Backbone.View.extend({
     el: "#mypage_content",
+    template: _.template(tpl.get("mypage_bookingDetail")),
+    historyContainer:'#bookingHistories',
+    historyTemplate: _.template(tpl.get("mypage_bookingDetailHistory")),
     initialize: function (params) {
         this.isClosed = false;
-        this.template = _.template(tpl.get("mypage_bookingDetail"));
         _.bindAll(this, 'render', 'bindEvents', 'close');
         app.viewRegistration.register(this);
         if (params.booking) {//如果参数为booking对象则直接render
@@ -21,15 +23,25 @@ var BookingDetailView = Backbone.View.extend({
                     }
                 }
             });
+
         }
     },
     render: function (booking) {
-        if (booking instanceof Bookings) {
-            booking = booking.at(0);
-        }
         this.booking = booking;
         this.$el.append(this.template(this.booking._toJSON()));
         this.bindEvents();
+        var self = this;
+        //todo 这里需要判断booking的状态
+        app.userManager.fetchBookingHistories(this.bookingId, {
+            success: function(bookingHistories){
+                $(self.historyContainer).html(self.historyTemplate({histories:bookingHistories.toJSON()}));
+            },
+            error: function (data) {
+                if (data.responseJSON && data.responseJSON.message !== undefined) {
+                    Info.displayNotice(data.responseJSON.message);
+                }
+            }
+        });
     },
     bindEvents: function () {
         var that = this;
@@ -54,11 +66,11 @@ var BookingDetailView = Backbone.View.extend({
             app.userManager.changeBookingState(bookingId, operate, {
                 success: function (booking) {
                     var status;
-                    if(operate === 'offlineCancel'||operate === 'onlineCancel'){
+                    if (operate === 'offlineCancel' || operate === 'onlineCancel') {
                         $("#process").html("<p>订单已取消</p>");
-                    }else if(operate === 'offlineDelayed'){
+                    } else if (operate === 'offlineDelayed') {
                         $("#process").html("<p>已推迟</p>");
-                    }else{
+                    } else {
                         $("#process").html("<p>操作成功</p>");
                     }
 
