@@ -45,7 +45,7 @@
 <div id='infoLayer'></div>
 <div id='overlay' class="mask1" class="hidden"></div>
 <div id="popup" class="hidden pop"
-     style=" top:200px; left: 50%; width:500px; height:150px; margin-left: -250px; z-index:200;"></div>
+     style=" top:200px; left: 50%; width:500px; min-height:100px; margin-left: -250px; z-index:200;"></div>
 <div id='widgets'></div>
 <div class="footer">
     <div class="footer_inner">
@@ -2250,10 +2250,10 @@
 </script>
 
 <script type="text/templates" id="tpl_infoModal">
-    <div class="pop_content">
-        <div id="popMessage">
+    <div class="pop_content text-center">
+        <div id="popMessage" class="padding-md">
         </div>
-        <div class="btn" style="text-align:center; padding-top:15px;">
+        <div class="btn">
             <input id="gotIt" class="btn_O" type="button" value="确认">
         </div>
     </div>

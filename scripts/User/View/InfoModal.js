@@ -1,15 +1,6 @@
 var InfoModal = Backbone.View.extend({
     el: "#popup",
-    template: function (settings) {
-        var stringBuild = ['<div class="pop_content">',
-            '<div id="popMessage">',
-            '</div>',
-            '<div class="btn" style="text-align:center; padding-top:15px;">',
-            '<input id="gotIt" class="btn_O" type="button" value="确认">',
-            '</div>',
-            '</div>'];
-        return stringBuild.join('');
-    },
+    template: _.template(tpl.get('infoModal')),
     initialize: function () {
         _.bindAll(this, "render", "setMessage", "show", "bindEvents", "hide", "close");
         this.isClosed = false;

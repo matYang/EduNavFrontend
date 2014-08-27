@@ -124,7 +124,7 @@ input.wrong_color{  border:1px solid #ff9a9a; background:#feffe3 left top repeat
 .pop{position:absolute; border:5px solid #ccc; background:#fff;}
 .pop .close{ position:absolute; top:10px; right:10px; width:20px; height:20px; background:url(../images/close.png) no-repeat; cursor:pointer;}
 .pop .pop_title{ height:35px; line-height:35px; padding-left:20px; background:#128d56; border-bottom:1px solid #ccc; font-weight:bold; color:#fff;}
-.pop_content{ padding:20px;}
+.pop_content{ padding:10px;}
 
 
 .loading{

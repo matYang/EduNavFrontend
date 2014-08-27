@@ -18,9 +18,9 @@ a:hover, a:active{
 .pull-left { float: left; }
 .pull-right { float: right; }
 
-.padding-sm { padding: 10px 20px; }
-.padding-md { padding: 20px 30px; }
-.padding-lg { padding: 30px 40px; }
+.padding-sm { padding: 10px 15px; }
+.padding-md { padding: 15px 20px; }
+.padding-lg { padding: 20px 30px; }
 .padding-x{padding-left: 10px;padding-right: 10px}
 .padding-bottom{padding-bottom: 5px}
 
