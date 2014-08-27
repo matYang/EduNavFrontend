@@ -11,7 +11,7 @@ var MyPageDashboardView = Backbone.View.extend({
         this.bookingSr = new BookingSearchRepresentation ();
         //todo 这里以后加入筛选条件的缓存,每次进入该页面时首先获取之前缓存的筛选条件
         this.bookingSr.set("userId", this.user.get("userId"));
-        this.bookingSr.set('statusSet', [11,12]);//todo 这里添加未入学订单的筛选条件
+        this.bookingSr.set('statusSet', [0,3,4,5,6,7,8,11,13,16,17,22]);//todo 这里添加未入学订单的筛选条件
         this.render();
     },
     render: function () {
