@@ -146,8 +146,8 @@ var SearchView = Backbone.View.extend({
             cashback = this.searchRepresentation.get("cashbackStart"),
             commission = this.searchRepresentation.get("commission"),
 
-            schoolTimeWeek = this.searchRepresentation.get("schoolTimeWeek"),
-            schoolTimeDay = this.searchRepresentation.get("schoolTimeDay"),
+            schooltimeWeek = this.searchRepresentation.get("schooltimeWeek"),
+            schooltimeDay = this.searchRepresentation.get("schooltimeDay"),
             value, text;
         var $searchReqs = $("#searchReqs");
         if (startPrice !== undefined) {
@@ -185,10 +185,10 @@ var SearchView = Backbone.View.extend({
             $filter_startTime.find("span[data-value=" + value + "]").addClass("active").siblings("span").removeClass("active");
             $searchReqs.append(this.reqTemplate({criteria: "startTime", dataValue: value, text: text}));
         }
-        if (schoolTimeWeek || schoolTimeDay) {
-            schoolTimeWeek = schoolTimeWeek || '';
-            schoolTimeDay = schoolTimeDay || '';
-            value = schoolTimeWeek + "_" + schoolTimeDay;
+        if (schooltimeWeek || schooltimeDay) {
+            schooltimeWeek = schooltimeWeek || '';
+            schooltimeDay = schooltimeDay || '';
+            value = schooltimeWeek + "_" + schooltimeDay;
             var selector = "span[data-value=" + value + "]";
             var $filter_schoolTime = $("#filter_schoolTime");
             text = $filter_schoolTime.find(selector).html();
@@ -508,8 +508,8 @@ var SearchView = Backbone.View.extend({
                 week = rs[0] === '' ? undefined : rs[0];
                 day = rs[1] === '' ? undefined : rs[1];
             }
-            this.searchRepresentation.set("schoolTimeWeek", week);
-            this.searchRepresentation.set("schoolTimeDay", day);
+            this.searchRepresentation.set("schooltimeWeek", week);
+            this.searchRepresentation.set("schooltimeDay", day);
         }
         this.courseSearch();
         //this.searchRepresentation.set(criteria, dataId);
