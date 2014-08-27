@@ -1,7 +1,9 @@
 var BookingDetailView = Backbone.View.extend({
     el: "#mypage_content",
     template: _.template(tpl.get("mypage_bookingDetail")),
-    historyContainer:'#bookingHistories',
+    processContainer: '#process',
+    processTemplate: _.template(tpl.get("mypage_bookingDetailFlow")),
+    historyContainer: '#bookingHistories',
     historyTemplate: _.template(tpl.get("mypage_bookingDetailHistory")),
     initialize: function (params) {
         this.isClosed = false;
@@ -28,18 +30,19 @@ var BookingDetailView = Backbone.View.extend({
     },
     render: function (booking) {
         this.booking = booking;
-        var noShowList = [1,2,5,9,23,12,14,15,20,21],show = 1;
-        if(booking.get('status') in noShowList){
+        //处于以下状态时页面不显示状态图和流程说明
+        var noShowList = [1, 2, 5, 9, 23, 12, 14, 15, 20, 21], show = 1;
+        if (booking.get('status') in noShowList) {
             show = 0;
         }
-        this.$el.append(this.template(_.extend(this.booking._toJSON(),{show:show})));
+        this.$el.append(this.template(_.extend(this.booking._toJSON(), {show: show})));
         this.bindEvents();
         var self = this;
-        //todo 这里需要判断booking的状态
-        if(show===1){
+        if (show === 1) {
+            this.renderFlow(booking.get('status'),booking.get('type'));//生成处理流程图
             app.userManager.fetchBookingHistories(this.bookingId, {
-                success: function(bookingHistories){
-                    $(self.historyContainer).html(self.historyTemplate({histories:bookingHistories.toJSON()}));
+                success: function (bookingHistories) {
+                    $(self.historyContainer).html(self.historyTemplate({histories: bookingHistories.toJSON()}));
                 },
                 error: function (data) {
                     if (data.responseJSON && data.responseJSON.message !== undefined) {
@@ -48,6 +51,45 @@ var BookingDetailView = Backbone.View.extend({
                 }
             });
         }
+
+    },
+    renderFlow: function (bookingStatus,bookingType) {
+        var statusMap = {
+                0: 'wait',
+                1: 'doing',//ony node 2,4,6,8 has 'doing' status
+                2: 'ready'
+            },
+            statusList = [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            statusCompare = [
+                [0],
+                [11],
+                [3],
+                [4, 6, 13],
+                [7, 16],
+                [],
+                [8],
+                [10, 17],
+                [24, 18]
+            ];
+
+        var currentNodeIndex = 0;
+        //step 1 find the current node set it to 'doing' or 'ready'
+        for (var index = 0; index < statusCompare.length; index++) {
+            if (bookingStatus in statusCompare[index]) {
+                currentNodeIndex = index;
+            }
+        }
+        statusList[currentNodeIndex] = currentNodeIndex % 2 === 0 ? 1 : 2;
+        //step 2 set the pre nodes to 'ready'
+        for (var i = 0; i < currentNodeIndex; i++) {
+            statusList[i] = 2;
+        }
+        //step 3 map the array
+        statusList.map(function(val){
+           return statusMap[val];
+        });
+        //step 4 render the template
+        $(this.processContainer).html(this.processTemplate({statuses:statusList,bookingType:bookingType}))
 
     },
     bindEvents: function () {

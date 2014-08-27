@@ -46,7 +46,7 @@ var Constants = {
         //我的订单
         "mypage_bookingList","booking_entry", "booking_noMessage",
         "mypage_bookingDetail","mypage_bookingPay",
-        "mypage_bookingDetailHistory",
+        "mypage_bookingDetailHistory","mypage_bookingDetailFlow",
 
         //我的优惠券
         "mypage_coupons",
