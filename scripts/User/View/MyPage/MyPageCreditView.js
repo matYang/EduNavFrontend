@@ -1,3 +1,4 @@
+/*我的积分账户*/
 var MyPageCreditView = Backbone.View.extend({
         el:"#mypage_content",
     initialize: function () {

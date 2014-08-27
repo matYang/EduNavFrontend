@@ -910,41 +910,40 @@
                 <small><i class="icon icon-warning"></i>订单一经支付成功，不可变更取消</small>
             </h3>
         </div>
-        <ul class="tab1 clearfix blank2 padding-x">
-            <li class="active">银行卡</li>
-            <li>支付平台</li>
+        <ul id="payTypeNav" class="tab1 clearfix blank2 padding-x">
+            <li class="active" data-href="#pane_bank">银行卡</li>
+            <li data-href="#pane_platform">支付平台</li>
         </ul>
-        <div class="row2 clearfix padding-x">
-            <ul class="bank_list active">
-                <li id="boc" class="active"><input name="payType" checked="" type="radio"><a href="#">中国银行</a></li>
-                <li id="icbc"><input name="payType" type="radio"><a href="#">工商银行</a></li>
-                <li id="cmb"><input name="payType" type="radio"><a href="#">招商银行</a></li>
-                <li id="ccb"><input name="payType" type="radio"><a href="#">建设银行</a></li>
-                <li id="abc"><input name="payType" type="radio"><a href="#">农业银行</a></li>
-                <li id="spdb"><input name="payType" type="radio"><a href="#">浦发银行</a></li>
-                <li id="cib"><input name="payType" type="radio"><a href="#">兴业银行</a></li>
-                <li id="gdb"><input name="payType" type="radio"><a href="#">广发银行</a></li>
-                <li id="fdb"><input name="payType" type="radio"><a href="#">富滇银行</a></li>
-                <li id="citic"><input name="payType" type="radio"><a href="#">中信银行</a></li>
-                <li id="hzb"><input name="payType" type="radio"><a href="#">杭州银行</a></li>
-                <li id="shb"><input name="payType" type="radio"><a href="#">上海银行</a></li>
-                <li id="nbcb"><input name="payType" type="radio"><a href="#">宁波银行</a></li>
-                <li id="pab"><input name="payType" type="radio"><a href="#">平安银行</a></li>
-                <li id="post"><input name="payType" type="radio"><a href="#">邮政银行</a></li>
-                <li id="bcom"><input name="payType" type="radio"><a href="#">交通银行</a></li>
-                <li id="ceb"><input name="payType" type="radio"><a href="#">光大银行</a></li>
-                <li id="bob"><input name="payType" type="radio"><a href="#">北京银行</a></li>
-                <li id="srcb"><input name="payType" type="radio"><a href="#">上海农商银行</a></li>
-                <li id="wzcb"><input name="payType" type="radio"><a href="#">温州银行</a></li>
-                <li id="cmbc"><input name="payType" type="radio"><a href="#">民生银行</a></li>
-                <li id="brcb"><input name="payType" type="radio"><a href="#">北京农商银行</a></li>
-                <li id="srcb"><input name="payType" type="radio"><a href="#">上海农商银行</a></li>
-                <div class="more"><a class="F_green" href="#">查看更多</a></div>
+        <div id="pane_payType" class="row2 clearfix padding-x">
+            <ul id="pane_bank" class="bank_list active">
+                <li id="boc" class="active"><input value="BOC-DEBIT" name="payType" checked="" type="radio"><a>中国银行</a></li>
+                <li id="icbc"><input value="ICBC-DEBIT" name="payType" type="radio"><a>工商银行</a></li>
+                <li id="cmb"><input value="CMB-DEBIT" name="payType" type="radio"><a>招商银行</a></li>
+                <li id="ccb"><input value="CCB-DEBIT" name="payType" type="radio"><a>建设银行</a></li>
+                <li id="abc"><input value="ABC" name="payType" type="radio"><a>农业银行</a></li>
+                <li id="spdb"><input value="SPDB-DEBIT" name="payType" type="radio"><a>浦发银行</a></li>
+                <li id="cib"><input value="CIB" name="payType" type="radio"><a>兴业银行</a></li>
+                <li id="gdb"><input value="GDB-DEBIT" name="payType" type="radio"><a>广发银行</a></li>
+                <li id="fdb"><input value="FDB" name="payType" type="radio"><a>富滇银行</a></li>
+                <li id="citic"><input value="CITIC" name="payType" type="radio"><a>中信银行</a></li>
+                <li id="hzb"><input value="HZCBB2C" name="payType" type="radio"><a>杭州银行</a></li>
+                <li id="shb"><input value="SHBANK" name="payType" type="radio"><a>上海银行</a></li>
+                <li id="nbcb"><input value="NBBANK" name="payType" type="radio"><a>宁波银行</a></li>
+                <li id="pab"><input value="SPABANK" name="payType" type="radio"><a>平安银行</a></li>
+                <li id="post"><input value="PSBC-DEBIT" name="payType" type="radio"><a>邮政银行</a></li>
+                <li id="bcom"><input value="COMM" name="payType" type="radio"><a>交通银行</a></li>
+                <li id="ceb"><input value="CEB-DEBIT" name="payType" type="radio"><a>光大银行</a></li>
+                <li id="bob"><input value="BJBANK" name="payType" type="radio"><a>北京银行</a></li>
+                <li id="wzcb"><input value="WZCBB2C-DEBIT" name="payType" type="radio"><a>温州银行</a></li>
+                <li id="cmbc"><input value="CMBC" name="payType" type="radio"><a>民生银行</a></li>
+                <li id="brcb"><input value="BJRCB" name="payType" type="radio"><a>北京农商银行</a></li>
+                <li id="srcb"><input value="SHRCB" name="payType" type="radio"><a>上海农商银行</a></li>
+                <!--<div class="more"><a class="F_green" href="#">查看更多</a></div>-->
             </ul>
-            <ul class="bank_list" style=" display:none;">
+            <ul id="pane_platform" class="bank_list" style=" display:none;">
                 <li id="alipay" class="active">
                     <!--<label for="alipay"></label>-->
-                    <input id="alipay" name="payType" type="radio"><a href="#">支付宝</a>
+                    <input id="alipay" name="payType" type="radio" value="alipay"><a>支付宝</a>
                 </li>
             </ul>
 

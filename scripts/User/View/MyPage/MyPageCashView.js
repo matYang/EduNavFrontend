@@ -1,3 +1,4 @@
+/*我的现金账户*/
 var MyPageCashView = Backbone.View.extend({
     el:"#mypage_content",
     initialize: function (params) {
