@@ -14,8 +14,8 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'startDate': undefined,
             'finishDate': undefined,
             //上课的时间段
-            'schoolTimeWeek': undefined,//平时 周末
-            'schoolTimeDay': undefined,//上午 下午 晚上
+            'schooltimeWeek': undefined,//平时 周末
+            'schooltimeDay': undefined,//上午 下午 晚上
             //开课日期(start end)
             'startDateStart': undefined,
             'startDateEnd': undefined,
