@@ -3,7 +3,8 @@ var RelatedCourseListView = Backbone.View.extend({
     entryTemplate: _.template(tpl.get('relatedCourseRow')),
     noItemTemplate: _.template(tpl.get('relatedCourseNoRow')),
     errorItemTemplate: _.template(tpl.get('relatedCourseErrorRow')),
-    initialize: function (course) {
+    initialize: function (options) {
+        var course = options.course;
         _.bindAll(this, 'render', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
@@ -24,8 +25,8 @@ var RelatedCourseListView = Backbone.View.extend({
     render: function (courses) {
         if (courses && courses.length > 0) {
             var buf=[],course;
-            var len = 5;
-            for (var i = 0; i < len; i++) {//只显示前5个课程
+            var len = 5;//只显示前5个课程
+            for (var i = 0; i < len; i++) {
                 if (courses instanceof Backbone.Collection) {
                     course = courses.at(i);
                 } else {

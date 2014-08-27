@@ -57,18 +57,10 @@ var CourseDetailView = Backbone.View.extend({
             $teacher = $($teachers[i]);
             maxHeight = maxHeight > $teacher.height() ? maxHeight : $teacher.height();
         }
-        this.offSetHeight = 460;
+        this.offSetHeight = 0;
         $teachers.css("height", maxHeight);
 
-        this.content1_top = $("#content_1").position().top;
-        this.content2_top = $("#content_2").position().top;
-        this.content3_top = $("#content_3").position().top;
-        this.content4_top = $("#content_4").position().top;
-        this.content5_top = $("#content_5").position().top;
-
-        this.compareWidget = new CourseDetailCompareWidgetView();
-
-        //slider
+        //img slider
         $('#banner-slide').bjqs({
             height: 215,
             width: 625,
@@ -80,6 +72,36 @@ var CourseDetailView = Backbone.View.extend({
             randomstart:true
         });
 
+        this.compareWidget = new CourseDetailCompareWidgetView();
+
+        var $content2 = $("#content_2");
+        var $content3 = $("#content_3");
+        this.content1_top = $("#content_1").offset().top;//课程详情
+        this.content2_top = $content2.offset().top;//特色服务
+        this.content3_top = $content3.offset().top;//名师团队
+        this.content4_top = $("#content_4").offset().top;//学校概况
+        this.content5_top = $("#content_5").offset().top;//同类型课程
+
+        //如果栏目下的数据为空 则移除该栏目的显示
+        //名师团队
+        if ($content3.children('dd').length === 0) {
+            var height3 = $content3.outerHeight();
+            $content3.remove();
+            $("#tab_3").remove();
+            this.content5_top -= height3;
+            this.content4_top -= height3;
+            this.content3_top = this.content4_top;
+        }
+        //特色服务
+        if ($content2.children('dd').find('.item').length === 0) {
+            var height2 = $content2.outerHeight();
+            $content2.remove();
+            $("#tab_2").remove();
+            this.content5_top -= height2;
+            this.content4_top -= height2;
+            this.content3_top -= height2;
+            this.content2_top = this.content3_top
+        }
         //todo 这里是为了声明页面加载完毕
         $('body').attr('pageRenderReady','')
     },
@@ -123,7 +145,7 @@ var CourseDetailView = Backbone.View.extend({
                     $btn.removeClass("shown");
                 }
             }
-            if (position >= 492) {
+            if (position >= 500) {
                 if ($("#navTabPlaceholder").length === 0) {
                     $("#courseNavigateTab").after("<ul id='navTabPlaceholder' class='tabButton tab'></ul>");
                 }
@@ -136,16 +158,14 @@ var CourseDetailView = Backbone.View.extend({
             }
             /*当前激活的标签页*/
             $("#courseNavigateTab").find(".active").removeClass("active");
-            if (position < that.content2_top + that.offSetHeight) {
+            var stickHeight = 43;
+            if (position < that.content2_top-stickHeight) {
                 $("#tab_1").addClass("active")
-            } else if (position >= that.content2_top + that.offSetHeight
-                && position < that.content3_top + that.offSetHeight) {
+            } else if (position >= that.content2_top-stickHeight&& position < that.content3_top-stickHeight) {
                 $("#tab_2").addClass("active")
-            } else if (position >= that.content3_top + that.offSetHeight
-                && position < that.content4_top + that.offSetHeight) {
+            } else if (position >= that.content3_top-stickHeight && position < that.content4_top-stickHeight) {
                 $("#tab_3").addClass("active")
-            } else if (position >= that.content4_top + that.offSetHeight
-                && position < that.content5_top + that.offSetHeight) {
+            } else if (position >= that.content4_top-stickHeight && position < that.content5_top-stickHeight) {
                 $("#tab_4").addClass("active")
             } else {
                 $("#tab_5").addClass("active")

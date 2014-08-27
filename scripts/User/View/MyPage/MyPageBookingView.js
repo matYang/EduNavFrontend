@@ -10,7 +10,7 @@ var MyPageBookingView = Backbone.View.extend({
         this.bookingSr = new BookingSearchRepresentation ();
         //todo 这里以后加入筛选条件的缓存,每次进入该页面时首先获取之前缓存的筛选条件
         this.bookingSr.set("userId", this.user.get("userId"));
-        this.bookingSr.set('statusSet', [1,2,3,8,9,11,12,13]);//这里可添加状态的筛选条件
+//        this.bookingSr.set('statusSet', [1,2,3,8,9,11,12,13]);//这里可添加状态的筛选条件
         this.render();
     },
 
