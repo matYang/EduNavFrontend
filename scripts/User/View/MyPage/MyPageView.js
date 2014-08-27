@@ -75,7 +75,6 @@ var MyPageView = Backbone.View.extend({
                 this.activeChildView = new MyPageCreditView({user: this.user});
                 break;
             case "dashboard":
-                $("#mypage_content").css("border", "none");
                 document.title = "我的爱上课 | 爱上课";
                 this.activeChildView = new MyPageDashboardView({user: this.user});
                 break;

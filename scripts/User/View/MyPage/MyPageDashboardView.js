@@ -18,13 +18,11 @@ var MyPageDashboardView = Backbone.View.extend({
         this.$el.empty().append(this.template(this.user._toJSON()));
 
         this.bookingListView = new BookingListView(this.bookingSr);
-        $("#mypage_content").css("border", "none");
     },
     bindEvents: function () {},
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
-            $("#mypage_content").css("border", "1px solid #ccc");
             if (this.bookingListView) {
                 this.bookingListView.close();
             }

@@ -77,7 +77,7 @@ tr.bookingEntry:last-child{border-bottom:none;}
     position: relative;
 }
 
-thead tr.bookingEntry{height:55px;}
+thead tr.bookingEntry{height:45px;}
 thead tr.bookingEntry td.detail{text-align: center}
 /*all 4 tds*/
 .bookingEntry td.date{ width:80px;}
