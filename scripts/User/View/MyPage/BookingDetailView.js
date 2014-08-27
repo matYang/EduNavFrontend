@@ -28,20 +28,27 @@ var BookingDetailView = Backbone.View.extend({
     },
     render: function (booking) {
         this.booking = booking;
-        this.$el.append(this.template(this.booking._toJSON()));
+        var noShowList = [1,2,5,9,23,12,14,15,20,21],show = 1;
+        if(booking.get('status') in noShowList){
+            show = 0;
+        }
+        this.$el.append(this.template(_.extend(this.booking._toJSON(),{show:show})));
         this.bindEvents();
         var self = this;
         //todo 这里需要判断booking的状态
-        app.userManager.fetchBookingHistories(this.bookingId, {
-            success: function(bookingHistories){
-                $(self.historyContainer).html(self.historyTemplate({histories:bookingHistories.toJSON()}));
-            },
-            error: function (data) {
-                if (data.responseJSON && data.responseJSON.message !== undefined) {
-                    Info.displayNotice(data.responseJSON.message);
+        if(show===1){
+            app.userManager.fetchBookingHistories(this.bookingId, {
+                success: function(bookingHistories){
+                    $(self.historyContainer).html(self.historyTemplate({histories:bookingHistories.toJSON()}));
+                },
+                error: function (data) {
+                    if (data.responseJSON && data.responseJSON.message !== undefined) {
+                        Info.displayNotice(data.responseJSON.message);
+                    }
                 }
-            }
-        });
+            });
+        }
+
     },
     bindEvents: function () {
         var that = this;

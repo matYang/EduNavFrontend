@@ -673,27 +673,34 @@
                 <% } %>
             </div>
         </div>
+        <%if(show){%>
         <div class="row1">
 
             <div id="process">
                 <div class="node fore ready">
                     <p>提交订单</p>
                 </div>
+
                 <div class="proce doing">
                     <p>&nbsp;</p>
                 </div>
+
                 <div class="node wait">
                     <p>支付学费</p>
                 </div>
+
                 <div class="proce wait">
                     <p>&nbsp;</p>
                 </div>
+
                 <div class="node wait">
                     <p>学校确认</p>
                 </div>
+
                 <div class="proce wait">
                     <p>&nbsp;</p>
                 </div>
+
                 <div class="node wait clearfix">
                     <p class="fleft" style="width:50px;">入学</p>
 
@@ -710,6 +717,7 @@
             <div id="bookingHistories" class="explain">
             </div>
         </div>
+        <%}%>
         <div class="row2">
             <h3><%= course.courseName %></h3>
 
