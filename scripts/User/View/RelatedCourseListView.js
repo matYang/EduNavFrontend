@@ -7,8 +7,8 @@ var RelatedCourseListView = Backbone.View.extend({
         _.bindAll(this, 'render', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
-        this.courseTemplateId = course.courseTemplateId;
-        this.courseId = course.id;
+        this.courseTemplateId = course.get('courseTemplateId');
+        this.courseId = course.get('id');
         this.sr = new CourseSearchRepresentation();
         this.sr.set('courseTemplateId', this.courseTemplateId);
         var self = this;
