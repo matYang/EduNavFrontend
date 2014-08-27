@@ -785,16 +785,16 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingDetailFlow">
-    <div class="node fore <%=statused[0]%>">
+    <div class="node fore <%=statuses[0]%>">
         <p>提交订单</p>
     </div><!--1 [0]-->
 
-    <div class="proce <%=statused[1]%>">
+    <div class="proce <%=statuses[1]%>">
         <p>&nbsp;</p>
     </div><!--2 [11]-->
 
 
-    <div class="node <%=statused[2]%>">
+    <div class="node <%=statuses[2]%>">
         <%if(bookingType==EnumConfig.PayType.online){%>
         <p>支付学费</p>
         <%}else{%>
@@ -802,11 +802,11 @@
         <%}%>
     </div><!--3 [3]-->
 
-    <div class="proce <%=statused[3]%>">
+    <div class="proce <%=statuses[3]%>">
         <p>&nbsp;</p>
     </div><!--4 [4,6]-->
 
-    <div class="node <%=statused[4]%>">
+    <div class="node <%=statuses[4]%>">
         <%if(bookingType==EnumConfig.PayType.online){%>
         <p>学校确认</p>
         <%}else{%>
@@ -814,19 +814,19 @@
         <%}%>
     </div><!--5 [7,16]-->
 
-    <div class="proce <%=statused[5]%>">
+    <div class="proce <%=statuses[5]%>">
         <p>&nbsp;</p>
     </div><!--6 null-->
 
-    <div class="node <%=statused[6]%> clearfix">
+    <div class="node <%=statuses[6]%> clearfix">
         <p class="fleft" style="width:50px;">入学</p>
         <!--7 [8]-->
         <p class="fleft" style="width:100px; text-align:center; margin-left:25px;">返现可使用</p>
     </div>
-    <div class="proce <%=statused[7]%>">
+    <div class="proce <%=statuses[7]%>">
         <p>&nbsp;</p>
     </div><!--8 [10,17]-->
-    <div class="node <%=statused[8]%>">
+    <div class="node <%=statuses[8]%>">
         <p style="margin-left:-5px;">结业</p>
     </div><!--9 [24,18]-->
 </script>
