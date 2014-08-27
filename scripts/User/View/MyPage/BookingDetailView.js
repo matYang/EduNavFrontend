@@ -75,7 +75,7 @@ var BookingDetailView = Backbone.View.extend({
         var currentNodeIndex = 0;
         //step 1 find the current node set it to 'doing' or 'ready'
         for (var index = 0; index < statusCompare.length; index++) {
-            if (bookingStatus in statusCompare[index]) {
+            if (statusCompare[index].indexOf(bookingStatus)!==-1) {
                 currentNodeIndex = index;
                 break;
             }
