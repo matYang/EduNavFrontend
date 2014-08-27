@@ -85,7 +85,7 @@ var BookingDetailView = Backbone.View.extend({
             statusList[i] = 2;
         }
         //step 3 map the array
-        statusList.map(function(val){
+        statusList = statusList.map(function(val){
            return statusMap[val];
         });
         //step 4 render the template
