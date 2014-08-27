@@ -813,11 +813,13 @@
 
 <script type="text/template" id="tpl_mypage_bookingDetailHistory">
     <%_.each(histories,function(history){%>
+        <%if(history.optName in EnumConfig.BookingHistoryText){%>
         <p class="active">
             <span><%= history.createTime.getFullYear()%>-<%=history.createTime.getMonth()+1%>-<%=history.createTime.getDate() %></span>
             <span><%= history.createTime.getHours()%>:<%= history.createTime.getMinutes()%></span>
             <span><%= EnumConfig.BookingHistoryText[history.optName]%></span>
         </p>
+        <%}%>
     <%})%>
 </script>
 
