@@ -76,7 +76,8 @@ var CourseDetailView = Backbone.View.extend({
             animduration: 650, // how fast the animation are
             animspeed: 4000, // the delay between each slide
             hoverpause: true, // pause the slider on hover
-            responsive: true
+            responsive: true,
+            randomstart:true
         });
 
         //todo 这里是为了声明页面加载完毕
