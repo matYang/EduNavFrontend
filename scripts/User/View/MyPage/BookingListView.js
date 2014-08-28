@@ -19,6 +19,8 @@ var BookingListView = MultiPageView3.extend({
         this.entryTemplate = _.template(tpl.get("booking_entry"));
         app.viewRegistration.register(this);
         this.isClosed = false;
+
+        this.bindEvents();
         this.fetchAction();
     },
     //以下在toPage(点击分页按钮)中调用 doRefresh()
@@ -55,7 +57,7 @@ var BookingListView = MultiPageView3.extend({
     entryEvent: function (id) {
         app.navigate("mypage/booking/" + id, true);
     },
-    bindEvent:function(){
+    bindEvents:function(){
         $("#bookingSummary").on("click", ".js_btn_operate", function (e) {
             var $target = $(e.target);
             var bookingId = $target.data('id');
@@ -74,7 +76,6 @@ var BookingListView = MultiPageView3.extend({
 
                     $("#bookingStatus").html(EnumConfig.BookingStatusText[booking.status]);
                     //TODO 这里进行了推迟操作以后是否可以继续取消订单 操作部分的刷新后续需要单独提取出来模板进行render
-
                     $target.unbind('click');
                 },
                 error: function (data) {
