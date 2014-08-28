@@ -57,6 +57,11 @@
 .panel .row3 .desc{ color:#666; margin-left:10px;}
 /*new booking*/
 .newBooking .field b.price{color:#ff5500;border-bottom: 1px dotted #f60;}
+.newBooking .row4{border-top:1px dotted #ccc; padding:20px 50px 40px; font-size:18px; color:#666;}
+.newBooking .row4 .price{ color:#ff5500; font-size:22px;}
+.newBooking .row4 .desc{ color:#666; margin-left:10px; font-size:14px;}
+.newBooking .row5{border-top:1px dotted #ccc; text-align:center; padding:20px 0 40px;}
+.newBooking .row5 .desc{ color:#666; margin-left:10px;}
 /*订单提交成功*/
 #booking_submitted{ position:relative; border:3px solid #128d56; font-size:14px;}
 #booking_submitted .row1{ border-bottom:1px solid #cccccc; padding:20px 50px;}

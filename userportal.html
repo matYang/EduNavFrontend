@@ -1006,9 +1006,9 @@
 </div>
 <div class="courseBrief">
     <div class="row1 clearfix">
-        <div class="fleft"><img src="<%= course.logoUrl %>" width="90"/></div>
+        <div class="fleft"><img class="gotoCourse" src="<%= course.logoUrl %>" width="90"/></div>
         <div class="fright">
-            <div class="title link" id="gotoCourse"><%= course.courseName %></div>
+            <div class="title link gotoCourse"><%= course.courseName %></div>
             <div class="desc "><strong>适合学员：</strong> <%= course.suitableStudent %></div>
         </div>
     </div>
@@ -1079,7 +1079,7 @@
             <%if(!course.price){%>
                 <b class="price">机构定制</b>
             <%}else{%>
-                <b class="price" style="margin-right: 8px" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
+                <b class="price" style="margin-right: 8px  title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
                 <%if(course.cashback){%>
                 <a class="label cashback"><%= course.cashback %>元
                     <div class="tip">
@@ -1254,11 +1254,35 @@
             <%}%>
         </div>
     </div>
-    <div class="row3">
+    <div id="summaryPrice">
+    </div>
+
+    <div class="row5">
         <input type="button" class="btn_O_long" value="完成预订" id="initBooking"/>
         <span id="bookingDesc" class="desc">(不收预订费)</span>
     </div>
 </form>
+</script>
+
+<script type="text/template" id="tpl_newBooking_price">
+<div class="row4">
+    您需要支付的费用为：
+    <%if(payType ==EnumConfig.PayType.offline){%>
+        <span class="price">¥<%= price %></span>
+        <%if(cashback){%>
+        <span class="desc">
+        （入学后可获得 <%= cashback %> 元现金）
+        </span>
+        <%}%>
+    <%}else if(payType ==EnumConfig.PayType.online){%>
+        <span class="price">¥<%= price-commission %></span>
+        <%if(commission){%>
+        <span class="desc">
+        （已减 <%= commission %> 元）
+        </span>
+        <%}%>
+    <%}%>
+</div>
 </script>
 
 <script type="text/template" id="tpl_booking_submitted">
@@ -1336,7 +1360,7 @@
             <div>
                 <label>费用总计： </label>
                 <%if(!course.price){%>
-                <b class="price">机构定制</b>
+                <b class="price">定制</b>
                 <%}else{%>
                 <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥
                     <% if(type==EnumConfig.PayType.online && course.commission){ %>
@@ -1411,7 +1435,7 @@
         <div class="col2">
             <div class="price">
                 <%if(!price){%>
-                <span class="sign">￥</span><small>机构定制</small>
+                <span class="sign">￥</span><small>定制</small>
                 <%}else{%>
                     <%if(originalPrice){%>
                     <s style="font-size:14px; color:#333;">原价：￥<%= originalPrice %></s>
@@ -1695,7 +1719,7 @@
         <td>
             <span class="F_orange">
             <%if(!price){%>
-            机构定制
+            定制
             <%}else{%>
             ￥<%= price %>
             <%}%></span>
@@ -1755,7 +1779,7 @@
         <% _.each(courses, function(course) { %>
         <td width="195" class="courseId_<%= course.id %>">
             <%if(!course.price){%>
-            <div class="price">机构定制</div>
+            <div class="price">定制</div>
             <%}else{%>
             <div class="price">￥<%= course.price %></div>
                 <%if(course.cashback){%> <a class="label cashback"><%=course.cashback %>元</a> <%}%>

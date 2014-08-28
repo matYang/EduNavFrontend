@@ -1,5 +1,9 @@
 var NewBookingView = BaseFormView.extend({
     el: "#content",
+    template: _.template(tpl.get("newBooking")),
+    finishTemplate: _.template(tpl.get("booking_submitted")),
+    priceContainer: '#summaryPrice',
+    priceTemplate: _.template(tpl.get('newBooking_price')),
     form: false,
     submitButtonId: "initBooking",
     initialize: function (params) {
@@ -7,8 +11,7 @@ var NewBookingView = BaseFormView.extend({
         _.bindAll(this, "render", "bindEvents", "bookingSuccess", "login", "loginCheck", "loginSuccess", "loginError", "close");
         app.viewRegistration.register(this);
         // $("#viewStyle").attr("href", "style/css/booking.css");
-        this.template = _.template(tpl.get("newBooking"));
-        this.finishTemplate = _.template(tpl.get("booking_submitted"));
+
         this.fields = [
             new BaseField({
                 name: "姓名",
@@ -56,21 +59,6 @@ var NewBookingView = BaseFormView.extend({
             });
         } else if (params.course) {
             this.render(params.course);
-        } else if (params.reference) {
-            //todo 修改订单信息
-            this.reference = params.reference;
-            var booking = app.sessionManager.sessionModel.get("bookingList").findBookingByReference(this.reference);
-            if (booking) {
-                this.renderEditView(booking);
-            } else {
-                app.userManager.fetchUser({
-                    success: this.render,
-                    error: function () {
-                    }
-                });
-            }
-        } else if (params.booking) {
-            this.renderEditView(params.booking);
         }
     },
     render: function (course) { //渲染课程信息
@@ -84,26 +72,11 @@ var NewBookingView = BaseFormView.extend({
         this.model = new Booking();
         this.model.set("course", course);
         this.$el.append(this.template(this.model._toJSON()));
+        this.renderPrice(EnumConfig.PayType.offline);
         this.model.initBookingFromCourse(course);
         this.bindEvents();
     },
-    renderEditView: function (booking) {
-        if (booking instanceof User) {
-            this.user = booking;
-            booking = booking.get("bookingList").findBookingByReference(this.reference);
-        }
-        if (booking) {
-            this.model = booking;
-            this.$el.append(this.template(this.model._toJSON()));
-            // $("#booking_applicantName").val(this.model.get("name"));
-            // $("#booking_cellphone").val(this.model.get("phone"));
-            // $("#booking_email").val(this.model.get("email"));
-            // $("#booking_date").val(Utilities.getDateString(this.model.get("scheduledTime")));
-            this.bindEvents();
-        } else {
 
-        }
-    },
     login: function () {
         var username = $("#booking_loginUsername").val(),
             pwd = $("#booking_loginPassword").val(),
@@ -144,9 +117,11 @@ var NewBookingView = BaseFormView.extend({
             }
             app.topBarView.reRender();
         });
-        $("#gotoCourse").on("click", function () {
+        //返回到课程详情
+        $(".gotoCourse").on("click", function () {
             app.navigate("course/" + that.model.get("courseId"), true);
         });
+        //判断是否已经登录
         if (!app.sessionManager.hasSession()) {
             $("#quickLogin").on("click", function () {
                 $("#booking_loginbox").show();
@@ -171,12 +146,14 @@ var NewBookingView = BaseFormView.extend({
             $("#booking_loginbox").addClass("hidden");
         }
 
+
         $("#bookingInfo").on("keypress", "input", function (e) {
             if (e.which === 13) {
                 $("#initBooking").trigger("click");
             }
         });
-        if(this.model.get("course").get("startUponArrival")){
+        //有具体开课日期则限制预约报名日期的max为开课日期
+        if (this.model.get("course").get("startUponArrival")) {
             $("#booking_date").on("keypress", function (e) {
                 e.preventDefault();
             }).datepicker({
@@ -184,7 +161,7 @@ var NewBookingView = BaseFormView.extend({
                 buttonImage: "calendar.gif",
                 buttonText: "Calendar",
                 minDate: new Date(),
-            maxDate: this.model.get("course").get("startDate"),
+                maxDate: this.model.get("course").get("startDate"),
                 defaultDate: that.model.get("scheduledTime"),
                 onSelect: function (text, inst) {
                     var d = new Date();
@@ -194,7 +171,7 @@ var NewBookingView = BaseFormView.extend({
                     that.model.set("scheduledTime", d);
                 }
             });
-        }else{
+        } else {
             $("#booking_date").on("keypress", function (e) {
                 e.preventDefault();
             }).datepicker({
@@ -202,7 +179,6 @@ var NewBookingView = BaseFormView.extend({
                 buttonImage: "calendar.gif",
                 buttonText: "Calendar",
                 minDate: new Date(),
-//            maxDate: this.model.get("course").get("cutoffDate"),
                 defaultDate: that.model.get("scheduledTime"),
                 onSelect: function (text, inst) {
                     var d = new Date();
@@ -213,7 +189,7 @@ var NewBookingView = BaseFormView.extend({
                 }
             });
         }
-
+        //登录框的展开和收起
         $("#booking_loginToggler").on("click", function (e) {
             var $bookingLogin = $("#booking_loginbox");
             if ($bookingLogin.hasClass("hidden")) {
@@ -222,25 +198,40 @@ var NewBookingView = BaseFormView.extend({
                 $bookingLogin.addClass("hidden");
             }
         });
+        //支付方式选择事件
+        $('input[name=bookingType]').change(function () {
+            that.renderPrice($(this).val());
+        });
+
+        //注册事件
         $("#booking_register").on("click", function () {
             app.navigate("register/ref=" + location.hash.substr(1, location.hash.length - 1), true);
         });
         BaseFormView.prototype.bindEvents.call(this);
     },
+    renderPrice: function (payType) {
+        //todo 在线付款直接显示价格减去commisson的价格 右边显示已减多少钱
+        //todo 线下支付直接显示原价 右侧显示cashback的数量
+        $(this.priceContainer).html(this.priceTemplate({
+            payType:payType,
+            price:this.model.get('course').get('price'),
+            commission:this.model.get('course').get('commission'),
+            cashback:this.model.get('course').get('cashback')
+        }));
+    },
     loginCheck: function () {
         if (!app.sessionManager.hasSession()) {
             Info.displayNotice("您尚未登录，请先登录再进行预订");
-            return
         }
     },
     submitAction: function () {
         var that = this;
         that.loginCheck();
         $("#" + this.submitButtonId).val("预订中...");
-        this.model.set('type',$('input[name="bookingType"]:checked').val());
+        this.model.set('type', $('input[name="bookingType"]:checked').val());
         //如果选择在线支付价格需要减去在线支付折扣 course.commission
-        if(this.model.get('type') == EnumConfig.PayType.online&&this.model.get('course').get('commission')){
-            this.model.set('price',this.model.get('price')-this.model.get('course').get('commission'));
+        if (this.model.get('type') == EnumConfig.PayType.online && this.model.get('course').get('commission')) {
+            this.model.set('price', this.model.get('price') - this.model.get('course').get('commission'));
         }
         this.model.set("userId", app.sessionManager.sessionModel.get("userId"));
 //        this.model.set("cashback", $("#booking_useCashback").prop("checked") ? this.model.get("cashbackAmount") : 0);
@@ -253,7 +244,6 @@ var NewBookingView = BaseFormView.extend({
         });
     },
     bookingSuccess: function (booking) {
-        console.log(booking);
         this.$el.empty().append(this.finishTemplate(booking._toJSON()));
         $("#viewMore").on("click", function () {
             app.navigate("search", true);

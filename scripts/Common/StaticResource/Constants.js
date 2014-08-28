@@ -29,24 +29,25 @@ var Constants = {
         "compareView",
 
         /*课程搜索模块*/
-        "front", "frontCategoryContainer","frontButton", "frontCatButton",
-        "search", "searchResultEntry",  "search_noMessage",
-        "mapLabel","compareWidget", "courseDetailCompareWidget",  "compareWidgetEntry",
+        "front", "frontCategoryContainer", "frontButton", "frontCatButton",
+        "search", "searchResultEntry", "search_noMessage",
+        "mapLabel", "compareWidget", "courseDetailCompareWidget", "compareWidgetEntry",
         //已筛选的条件 一二三级类目
-        "req","subCategoryContainer", "subSubCategoryContainer", "subSubCategory", "subCategory", "category",
+        "req", "subCategoryContainer", "subSubCategoryContainer", "subSubCategory", "subCategory", "category",
 
-        /*课程详情和新建订单*/
+        /*课程详情*/
         "courseDetail",
-        "relatedCourseRow","relatedCourseNoRow","relatedCourseErrorRow",//相关课程
-        "newBooking", "booking_submitted",
+        "relatedCourseRow", "relatedCourseNoRow", "relatedCourseErrorRow",//相关课程
+        /*新建订单*/
+        "newBooking", "newBooking_price", "booking_submitted",
 
         /*个人中心模块*/
         "mypage_base", "mypage_dashboard",
 
         //我的订单
-        "mypage_bookingList","booking_entry", "booking_noMessage",
-        "mypage_bookingDetail","mypage_bookingPay",
-        "mypage_bookingDetailHistory","mypage_bookingDetailFlow",
+        "mypage_bookingList", "booking_entry", "booking_noMessage",
+        "mypage_bookingDetail", "mypage_bookingPay",
+        "mypage_bookingDetailHistory", "mypage_bookingDetailFlow",
 
         //我的优惠券
         "mypage_coupons",
