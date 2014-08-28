@@ -28,7 +28,7 @@ var CreditHistory = Backbone.Model.extend({
     parse: function (data) {
         if (typeof data !== 'undefined') {
             data.id = Utilities.parseNum(data.id);
-            data.charge = Utilities.parseNum(data.credit);
+            data.charge = Utilities.parseNum(data.charge);
             data.operation = Utilities.parseNum(data.operation);
             data.createTime = Utilities.castFromAPIFormat(data.createTime);
         }

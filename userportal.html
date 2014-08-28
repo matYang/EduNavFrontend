@@ -2196,8 +2196,16 @@
 
 <script type="text/templates" id="tpl_mypage_creditRow">
     <tr class="creditEntry">
-        <td class="text-error"><%= charge %></td>
-        <td class=""><%= operation %></td>
+        <%if(operation==0){%>
+        <td class="text-primary">
+            +<%= charge %>
+        </td>
+        <%}else{%>
+        <td class="text-error">
+            -<%= charge %>
+        </td>
+        <%}%>
+        <td class=""><%= EnumConfig.CreditOperation[operation] %></td>
         <td class=""><%= createTime %></td>
         <td class="">--</td>
     </tr>
