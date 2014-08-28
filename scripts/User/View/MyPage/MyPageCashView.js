@@ -13,62 +13,32 @@ var MyPageCashView = Backbone.View.extend({
     },
     render: function () {
         this.$el.append(this.template(this.user._toJSON()));
-//        var claimedCoupons = new Coupons(), unclaimedCoupons = new Coupons(), usedCoupons = new Coupons();
-//        claimedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.usable}));
-//        unclaimedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.inactive}));
-//        usedCoupons.add(this.user.get("couponList").where({status: EnumConfig.CouponStatus.used}));
-//        this.unclaimedCouponView = new UnclaimedCouponView(unclaimedCoupons, unclaimedCoupons);
-//        this.claimedCouponView = new ClaimedCouponView(claimedCoupons, claimedCoupons);
-//        this.usedCouponView = new UsedCouponView(usedCoupons, usedCoupons);
-//        this.unclaimedCouponView.hide();
-//        this.usedCouponView.hide();
     },
     bindEvents: function () {
-//        var that = this;
-//        $("#couponNavBtn").on("click", "li", function (e) {
-//            $(e.delegateTarget).find(".active").removeClass("active");
-//            $(e.target).addClass("active");
-//            that.switchView($(e.target).data("id"));
-//        });
-//        $("#go_activate").on("click", function (e) {
-//            e.preventDefault();
-//            that.switchView("unclaimed");
-//        });
+        var that = this;
+        $("#cashNavBtn").on("click", "li", function (e) {
+            $(e.delegateTarget).find(".active").removeClass("active");
+            $(e.target).addClass("active");
+            that.switchView($(e.target).data("id"));
+        });
     },
     switchView: function (name) {
-//        if (this.listName === name) return;
-//        this.listName = name;
-//        if (this.listName === "claimed") {
-//            this.claimedCouponView.show();
-//            this.unclaimedCouponView.hide();
-//            this.usedCouponView.hide();
-//        } else if (this.listName === "unclaimed") {
-//            this.claimedCouponView.hide();
-//            this.unclaimedCouponView.show();
-//            this.usedCouponView.hide();
-//        } else {
-//            this.claimedCouponView.hide();
-//            this.unclaimedCouponView.hide();
-//            this.usedCouponView.show();
-//        }
+        if (this.listName === name) return;
+        this.listName = name;
 
     },
     close: function () {
         if (!this.isClosed) {
-//            if (this.unclaimedCouponView) {
-//                this.unclaimedCouponView.close();
-//            }
-//            if (this.claimedCouponView) {
-//                this.claimedCouponView.close();
-//            }
-//            this.unclaimedCouponView = null;
-//            this.claimedCouponView = null;
+            if (this.childView) {
+                this.childView.close();
+            }
+            this.childView = null;
             this.$el.empty();
             this.isClosed = true;
         }
     }
 });
-//
+////
 //var UnclaimedCouponView = MultiPageView.extend({
 //    el: "#coupons_container",
 //    table: "#unclaimedTable",
@@ -99,17 +69,6 @@ var MyPageCashView = Backbone.View.extend({
 //    },
 //    render: function () {
 //        MultiPageView.prototype.render.call(this);
-//    },
-//    entryEvent: function (id) {
-//    $("#coupon_act_"+id).val("激活中");
-//        app.userManager.claimCoupon(id, {
-//            "success": function () {
-//                $("#coupon_act_"+id).parent().html("<span>已激活</span>");
-//            },
-//            "error": function () {
-//                $("#coupon_act_"+id).val("重试");
-//            }
-//        });
 //    },
 //    bindEvents: function () {
 //
