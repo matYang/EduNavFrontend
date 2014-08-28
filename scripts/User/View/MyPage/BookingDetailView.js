@@ -56,7 +56,7 @@ var BookingDetailView = Backbone.View.extend({
     renderFlow: function (bookingStatus, bookingType) {
         var statusMap = {
                 0: 'wait',
-                1: 'doing',//ony node 2,4,6,8 has 'doing' status
+                1: 'doing',//only node 2,4,6,8 has 'doing' status
                 2: 'ready'
             },
             statusList = [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -73,7 +73,7 @@ var BookingDetailView = Backbone.View.extend({
             ];
 
         var currentNodeIndex = 0;
-        //step 1 find the current node set it to 'doing' or 'ready'
+        //Step 1 find the current node set it to 'doing' or 'ready'
         for (var index = 0; index < statusCompare.length; index++) {
             if (statusCompare[index].indexOf(bookingStatus)!==-1) {
                 currentNodeIndex = index;
@@ -81,15 +81,17 @@ var BookingDetailView = Backbone.View.extend({
             }
         }
         statusList[currentNodeIndex] = (currentNodeIndex + 1) % 2 === 0 ? 1 : 2;//index is from 0
-        //step 2 set the pre nodes to 'ready'
+        //Step 2 set the pre nodes to 'ready'
+        // also can set in step 1 but then if no status matches(for exception issue) it will be all 'ready'
+        // here it will just be all 'wait'
         for (var i = 0; i < currentNodeIndex; i++) {
             statusList[i] = 2;
         }
-        //step 3 map the array
+        //Step 3 map the array
         statusList = statusList.map(function (val) {
             return statusMap[val];
         });
-        //step 4 render the template
+        //Step 4 render the template
         $(this.processContainer).html(this.processTemplate({statuses: statusList, bookingType: bookingType}))
 
     },
