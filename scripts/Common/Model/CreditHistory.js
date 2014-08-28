@@ -1,13 +1,12 @@
-var Credit = Backbone.Model.extend({
+var CreditHistory = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
             'id': -1,
-            'creditId': -1,
 
-            'credit': 0,
-            'createTime': new Date()
-//            'status': EnumConfig.CreditStatus.usable
+            'charge': undefined,
+            'createTime': new Date(),
+            'operation':undefined
 
         };
     },
@@ -28,12 +27,9 @@ var Credit = Backbone.Model.extend({
 
     parse: function (data) {
         if (typeof data !== 'undefined') {
-            data.id = parseInt(data.id, 10);
-            data.creditId = data.id;
-
-            data.credit = parseFloat(data.credit);
-            data.credit = isNaN(data.credit) ? 0 : data.credit;
-
+            data.id = Utilities.parseNum(data.id);
+            data.charge = Utilities.parseNum(data.credit);
+            data.operation = Utilities.parseNum(data.operation);
             data.createTime = Utilities.castFromAPIFormat(data.createTime);
         }
         return data;
@@ -53,4 +49,26 @@ var Credit = Backbone.Model.extend({
         return json;
     }
 
+});
+
+
+var CreditHistories = Backbone.Collection.extend({
+
+    model: CreditHistory,
+    start: 0,
+    count: 0,
+    total: 0,
+    parse: function (data) {
+        if (!data.data) return data;
+        this.start = data.start;
+        this.count = data.count;
+        this.total = data.total;
+        return data.data;
+    },
+    initialize: function (urlOverride) {
+        _.bindAll(this, 'overrideUrl');
+        if (typeof urlOverride !== 'undefined') {
+            this.url = urlOverride;
+        }
+    }
 });

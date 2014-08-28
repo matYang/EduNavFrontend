@@ -414,6 +414,40 @@
         });
     };
 
+    //查找积分历史
+    UserManager.prototype.fetchCreditHistories = function (creditHistorySearchRepresentation, callback) {
+        var self = this;
+
+        if (!this.sessionManager.hasSession()) {
+            Info.warn('UserManager::fetchCoupons:: session does not exist, exit');
+            return;
+        }
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testCreditHistories);
+            return;
+        }
+        var creditHistories = new CreditHistories();
+        creditHistories.overrideUrl(ApiResource.user_credit_history);
+        creditHistories.fetch({
+            data: creditHistorySearchRepresentation.toQueryString(),
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    callback.success(creditHistories);
+                }
+            },
+
+            error: function (model, response) {
+                Info.warn('UserManager::fetchCreditHistories:: fetch failed with response:');
+                Info.warn(response);
+                if (callback) {
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
     //用于根据订单id查询单个订单
     UserManager.prototype.fetchBooking = function (id, callback) {
 

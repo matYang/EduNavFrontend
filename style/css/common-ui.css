@@ -12,39 +12,6 @@ a:hover, a:active{
     color: #128d56;
 }
 
-/*通用工具类*/
-.text-center { text-align: center; }
-.text-right { text-align: right; }
-.pull-left { float: left; }
-.pull-right { float: right; }
-
-.padding-sm { padding: 10px 15px; }
-.padding-md { padding: 15px 20px; }
-.padding-lg { padding: 20px 30px; }
-.padding-x{padding-left: 10px;padding-right: 10px}
-.padding-bottom{padding-bottom: 5px}
-
-.margin-x { margin: 0  5px; }
-.margin-y { margin: 10px 0; }
-.margin-y-sm { margin: 5px 0; }
-
-.margin-top { margin-top: 8px; }
-.margin-bottom { margin-bottom: 8px; }
-
-
-.inline-block{ display: inline-block; }
-
-/*字体 背景 边框颜色*/
-.border-primary{ border: 1px solid #128d56; }
-
-.bg-primary{ background-color: #128d56; }
-.bg-warning{ background-color: #f7a501; }
-.bg-error{ background-color: #FF5500; }
-
-.text-primary{color: #128d56; }
-.text-warning{color: #f7a501; }
-.text-error{color: #FF5500; }
-
 
 /**通用面板 默认样式*/
 .panel {
@@ -155,7 +122,7 @@ a:hover, a:active{
 .badge{
     display: inline-block;
     min-width: 10px;
-    padding: 3px 4px;
+    padding: 3px;
     font-size: 12px;
     line-height: 1;
     color: #fff;
@@ -287,6 +254,41 @@ a:hover, a:active{
 .icon-warning {
     background-position: 0 -501px;
 }
+
+
+/*通用工具类*/
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.pull-left { float: left; }
+.pull-right { float: right; }
+
+.padding-sm { padding: 10px 15px; }
+.padding-md { padding: 15px 20px; }
+.padding-lg { padding: 20px 30px; }
+.padding-x{padding-left: 10px;padding-right: 10px}
+.padding-bottom{padding-bottom: 5px}
+
+.margin-x { margin: 0  5px; }
+.margin-y { margin: 10px 0; }
+.margin-y-sm { margin: 5px 0; }
+
+.margin-top { margin-top: 8px; }
+.margin-bottom { margin-bottom: 12px; }
+
+
+.inline-block{ display: inline-block; }
+
+/*字体 背景 边框颜色*/
+.border-primary{ border: 1px solid #128d56; }
+
+.bg-primary{ background-color: #128d56; }
+.bg-warning{ background-color: #f7a501; }
+.bg-error{ background-color: #FF5500; }
+
+.text-primary{color: #128d56; }
+.text-warning{color: #f7a501; }
+.text-error{color: #FF5500; }
+
 
 /***************我是分割线*****************/
 /***************非通用样式 之后需要独立出来*****************/

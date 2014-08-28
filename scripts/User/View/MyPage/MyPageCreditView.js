@@ -8,15 +8,13 @@ var MyPageCreditView = Backbone.View.extend({
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
         this.render();
-        this.bindEvents();
     },
     render: function () {
         this.$el.append(this.template);
-        var credits = this.user.get("creditList");
-        this.creditTable = new CreditTableView(credits, credits);
-        this.creditStore = new CreditStoreView();
-        this.creditStore.hide();
-        $("#myCredit").html(this.user.get("credit"));
+        this.listName = "table";
+        this.childView = new CreditTableView();
+        this.bindEvents();
+        $("#myCredit").html(this.user.get("credit").get("credit"));
     },
     bindEvents: function () {
         var that = this;
@@ -27,25 +25,22 @@ var MyPageCreditView = Backbone.View.extend({
         });
     },
     switchView: function (name) {
-        if (this.viewName === name) return;
-        this.viewName = name;
-        if (this.viewName === "table") {
-            this.creditTable.show();
-            this.creditStore.hide();
-        } else {
-            this.creditTable.hide();
-            this.creditStore.show();
+        if (this.listName === name) return;
+        this.listName = name;
+        if (this.listName === "table") {
+            this.childView.close();
+            this.childView = new CreditTableView();
+        } else if (this.listName === "store") {
+            this.childView.close();
+            this.childView = new CreditStoreView();
         }
-
     },
     close: function () {
         if (!this.isClosed) {
-            if (this.creditTable) {
-                this.creditTable.close();
+            if (this.childView) {
+                this.childView.close();
             }
-            if (this.creditStore) {
-                this.creditStore.close();   
-            }
+            this.childView = null;
             this.$el.empty();
             this.isClosed = true;
         }
@@ -77,29 +72,34 @@ var CreditTableView = MultiPageView.extend({
         this.$domContainer = $("#creditEntryContainer");
         this.noMessage =  _.template(tpl.get("credit_noMessage"));
         this.isClosed = false;
-        var that = this;
-        this.render();
-        this.bindEvents();
-    },
-    render: function () {
-        MultiPageView.prototype.render.call(this);
-    },
-    entryEvent: function (id) {
 
+        this.sr = new CreditHistorySearchRepresentation();
+        this.fetchAction();
     },
-    bindEvents: function () {
+    //以下在toPage(点击分页按钮)中调用 doRefresh()
+    fetchAction: function (pageIndex) {
+        var self = this;
+        //根据过滤条件(包括分页信息)重新获取数据
+        if (pageIndex === undefined) {
+            self.sr.set("start", 0);
+        } else {
+            self.sr.set("start", (pageIndex - 1) * this.pageEntryNumber);
+        }
+        this.sr.set("count", this.pageEntryNumber);
+        this.currentPage = this.sr.get('start')/this.pageEntryNumber +1;
+        $('#'+this.entryContainer).empty().append("<tr><td colspan='4'><div class='loading'></div></td></tr>");
 
+        app.userManager.fetchCreditHistories(this.sr, {
+            success: self.render,
+            error: this.renderError
+        });
     },
-    show: function () {
-        $(this.table).removeClass("hidden");
-        $("#unclaimedNoData").removeClass("hidden");
-        $("#creditPageNav").removeClass("hidden");
-
+    render: function (data) {
+        this.messages = data || new Bookings();
+        MultiPageView3.prototype.render.call(this);
     },
-    hide: function () {
-        $(this.table).addClass("hidden");
-        $("#unclaimedNoData").addClass("hidden");
-        $("#creditPageNav").addClass("hidden");
+    renderError:function(){
+        //todo error handler
     },
     close: function () {
         if (!this.isClosed) {

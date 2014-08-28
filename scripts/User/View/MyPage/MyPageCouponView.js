@@ -1,3 +1,4 @@
+/*我的优惠券*/
 var MyPageCouponView = Backbone.View.extend({
     el: "#mypage_content",
     initialize: function () {
@@ -13,10 +14,10 @@ var MyPageCouponView = Backbone.View.extend({
         this.listName = "usable";
         this.childView = new UsableCouponView();
         this.bindEvents();
+
     },
     bindEvents: function () {
         var that = this;
-        //tab按钮点击事件
         $("#couponNavBtn").on("click", "li", function (e) {
             $(e.delegateTarget).find(".active").removeClass("active");
             $(e.target).addClass("active");
@@ -33,7 +34,6 @@ var MyPageCouponView = Backbone.View.extend({
             this.childView.close();
             this.childView = new GotCouponView();
         }
-
     },
     close: function () {
         if (!this.isClosed) {

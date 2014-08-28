@@ -18,8 +18,9 @@ var CouponSearchRepresentation = Backbone.Model.extend({
 //            'startCreationTime': undefined,
 //            'finishCreationTime': undefined
 
-            'start': 0,
-            'count': 100
+            'start': undefined,
+            'count': undefined
+
         };
     },
 

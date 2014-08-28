@@ -56,7 +56,7 @@
 .panel .row3{border-top:1px dotted #ccc; text-align:center; padding:20px 0 50px;}
 .panel .row3 .desc{ color:#666; margin-left:10px;}
 /*new booking*/
-.newBooking .field b.price{color:#ff5500;border-bottom: 1px dotted #f60;}
+.newBooking .field b.price{color:#ff5500;border-bottom: 1px dotted #f60;margin-right: 18px;}
 .newBooking .row4{border-top:1px dotted #ccc; padding:20px 50px 40px; font-size:18px; color:#666;}
 .newBooking .row4 .price{ color:#ff5500; font-size:22px;}
 .newBooking .row4 .desc{ color:#666; margin-left:10px; font-size:14px;}
@@ -116,13 +116,14 @@
 
 .bank_list #bob a{background-position:0 -28px}/*中国银行*/
 .bank_list #icbc a{background-position:0 -140px}/*工商银行*/
+
 .bank_list #cmb a{background-position:0 -784px}/*招商银行*/
 .bank_list #ccb a{background-position:0 -336px}/*建设银行*/
 .bank_list #abc a{background-position:0 -532px}/*农业银行*/
 .bank_list #spdb a{background-position:0 -588px}/*浦发银行*/
 .bank_list #cib a{background-position:0 -756px}/*兴业银行*/
 .bank_list #gdb a{background-position:0 -196px}/*广发银行*/
-.bank_list #fdb a{background-position:0 -196px}/*富滇银行*/
+.bank_list #fdb a{background-position:0 -112px}/*富滇银行*/
 .bank_list #citic a{background-position:0 -896px}/*中信银行*/
 .bank_list #hzb a{background-position:0 -252px}/*杭州银行*/
 .bank_list #shb a{background-position:0 -672px}/*上海银行*/

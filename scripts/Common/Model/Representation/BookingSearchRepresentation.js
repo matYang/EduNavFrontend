@@ -23,7 +23,10 @@ var BookingSearchRepresentation = Backbone.Model.extend({
             'scheduledTimeStart': undefined,
             'scheduledTimeEnd': undefined,
 
-            'type': undefined
+            'type': undefined,
+            'start': undefined,
+            'count': undefined
+
         };
     },
 

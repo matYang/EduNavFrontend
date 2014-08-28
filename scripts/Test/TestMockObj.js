@@ -53,6 +53,11 @@ testMockObj = {
     testBookingHistory2:(new BookingHistory().set('id',2)),
     testBookingHistory3:(new BookingHistory().set('id',3)),
 
+    testCreditHistories:new CreditHistories(),
+    testCreditHistory1:(new CreditHistory().set('id',1)),
+    testCreditHistory2:(new CreditHistory().set('id',2)),
+    testCreditHistory3:(new CreditHistory().set('id',3)),
+
 
 
     testCoupons: new Coupons(),
@@ -293,5 +298,12 @@ testMockObj.testBookingHistory1.set('remark','qq').set('createTime',new Date()).
 testMockObj.testBookingHistory2.set('remark','qq').set('createTime',new Date()).set('optName',0);
 testMockObj.testBookingHistory3.set('remark','qq').set('createTime',new Date()).set('optName',0);
 testMockObj.testBookingHistories.add([testMockObj.testBookingHistory1,testMockObj.testBookingHistory2,testMockObj.testBookingHistory3]);
+
+testMockObj.testCreditHistory1.set('charge',200).set('createTime',new Date()).set('operation',0);
+testMockObj.testCreditHistory2.set('charge',300).set('createTime',new Date()).set('operation',0);
+testMockObj.testCreditHistory3.set('charge',400).set('createTime',new Date()).set('operation',0);
+testMockObj.testCreditHistories.add([testMockObj.testCreditHistory1,testMockObj.testCreditHistory2,testMockObj.testCreditHistory3]);
+
+
 
 testMockObj[EnumConfig.ModuleIdentifier.user] = testMockObj.testUser;
