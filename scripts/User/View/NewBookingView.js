@@ -30,16 +30,6 @@ var NewBookingView = BaseFormView.extend({
                 buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
             new BaseField({
-                name: "E-mail",
-                fieldId: "booking_email",
-                type: "text",
-                mandatory: false,
-                modelAttr: "email",
-                validClass: "success",
-                validatorFunction: Utilities.emailValid,
-                buildValidatorDiv: Utilities.defaultValidDivBuilder
-            }),
-            new BaseField({
                 name: "预约报名日期",
                 fieldId: "booking_date",
                 modelAttr: "scheduledTime",

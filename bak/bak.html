@@ -29,3 +29,23 @@
 <!--</div>-->
 <!--</div>-->
 <!--</a>-->
+
+
+<div class="field">
+    <label>E-mail </label>
+    <input class="text" type="text" id="booking_email"/>
+                <span id="booking_email_info" class="action"><span class="form_tip"><span
+                        class="form_tip_top">(可选)</span><span class="form_tip_bottom"></span></span></span>
+</div>
+<script>
+    new BaseField({
+        name: "E-mail",
+        fieldId: "booking_email",
+        type: "text",
+        mandatory: false,
+        modelAttr: "email",
+        validClass: "success",
+        validatorFunction: Utilities.emailValid,
+        buildValidatorDiv: Utilities.defaultValidDivBuilder
+    })
+</script>
