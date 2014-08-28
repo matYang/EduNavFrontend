@@ -114,7 +114,6 @@ var Booking = Backbone.Model.extend({
         this.set("course", course);
         this.set("price", course.get("price"));
         this.set("cashbackAmount", course.get("cashback"));
-//        this.set("reference", course.get("reference"));
         //TODO add cashbackAmount when course is finalized
     }
 });
