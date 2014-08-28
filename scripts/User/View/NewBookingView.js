@@ -235,8 +235,10 @@ var NewBookingView = BaseFormView.extend({
         }
         this.model.set("userId", app.sessionManager.sessionModel.get("userId"));
 //        this.model.set("cashback", $("#booking_useCashback").prop("checked") ? this.model.get("cashbackAmount") : 0);
-        //默认使用返现券
-        this.model.set("cashback", this.model.get("cashbackAmount"));
+        //todo 非登录用户设为0
+        if(false){
+            this.model.set("cashbackAmount", 0);
+        }
         this.model.set("course", undefined);
         app.userManager.initBooking(this.model, {
             success: this.bookingSuccess,
