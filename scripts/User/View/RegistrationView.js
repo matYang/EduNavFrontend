@@ -23,16 +23,16 @@ var RegistrationView = BaseFormView.extend({
                 validatorContainer: $("#cellContainer"),
                 buildValidatorDiv: Utilities.defaultValidDivBuilder
             }),
-            new BaseField({
-                name: "用户名",
-                fieldId: "registerUsernameInput",
-                type: "text",
-                mandatory: true,
-                validatorFunction: Utilities.usernameValid,
-                modelAttr: "invitationCode",
-                validatorContainer: $("#usernameContainer"),
-                buildValidatorDiv: Utilities.defaultValidDivBuilder
-            }),
+//            new BaseField({
+//                name: "用户名",
+//                fieldId: "registerUsernameInput",
+//                type: "text",
+//                mandatory: true,
+//                validatorFunction: Utilities.usernameValid,
+//                modelAttr: "invitationCode",
+//                validatorContainer: $("#usernameContainer"),
+//                buildValidatorDiv: Utilities.defaultValidDivBuilder
+//            }),
             new BaseField({
                 name: "密码",
                 fieldId: "registerPasswordInput",
