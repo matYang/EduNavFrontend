@@ -2082,7 +2082,7 @@
     <tr id="coupon_<%= id %>">
         <td class="col1"><%= createTime %></td>
         <td class="col2"><strong class="price"><%= total %></strong></td>
-        <td class="col3"><%= origin %></td>
+        <td class="col3"><%= EnumConfig.CouponOrigin[origin] %></td>
         <td class="col4"><%= expireTime %></td>
     </tr>
 </script>
