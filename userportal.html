@@ -265,7 +265,7 @@
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/><span><%= instName%></span></div>
         <div class="col1">
             <p class="title">
-                <a class="F_green courseTitle" id="viewAllTitle_<%= courseId %>" href="#course/<%= id %>">
+                <a class="F_green courseTitle" id="viewAllTitle_<%= id %>" href="#course/<%= id %>">
                     <%= courseName %></a>
             </p>
 
@@ -577,7 +577,7 @@
         </td>
         <td class="detail">
             <img class="img-logo" src="<%=course.logoUrl%>">
-            <h3><a class="F_green bookingTitle"  id="bookingTitle_bookingId_<%= bookingId %>" href="#"><%= course.courseName %></a></h3>
+            <h3><a class="F_green bookingTitle"  id="bookingTitle_bookingId_<%= id %>" href="#"><%= course.courseName %></a></h3>
             <p>
                 <span class="price">
                    <%if(!price){%>
@@ -769,19 +769,19 @@
                 <%= EnumConfig.BookingTypeText[type]%>
             </p>
         </div>
-    </div>
-    <div id="printBooking" class="print"><a href="#">订单打印</a></div>
-    <!--bookingDetail end-->
-    <div class="btns text-center">
-        <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
+        <div id="printBooking" class="print"><a href="#">订单打印</a></div>
+        <!--bookingDetail end-->
+        <div class="btns text-center">
+            <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
 
-        <%_.each(actionList,function(action){%>
-        <input type="button" class="btn_W js_btn_operate"
-               value="<%=EnumConfig.BookingActionText[action.name]%>"
-               data-action="<%=action.name%>">
-        <%})%>
+            <%_.each(actionList,function(action){%>
+            <input type="button" class="btn_W js_btn_operate"
+                   value="<%=EnumConfig.BookingActionText[action.name]%>"
+                   data-action="<%=action.name%>">
+            <%})%>
+        </div>
+        <!--btns end-->
     </div>
-    <!--btns end-->
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingDetailFlow">
@@ -830,7 +830,7 @@
 <script type="text/template" id="tpl_mypage_bookingDetailHistory">
     <%_.each(histories,function(history){%>
         <%if(history.optName in EnumConfig.BookingHistoryText){%>
-        <p class="active">
+        <p>
             <span><%= history.createTime.getFullYear()%>-<%=history.createTime.getMonth()+1%>-<%=history.createTime.getDate() %></span>
             <span><%= history.createTime.getHours()%>:<%= history.createTime.getMinutes()%></span>
             <span><%= EnumConfig.BookingHistoryText[history.optName]%></span>
@@ -1635,8 +1635,6 @@
             </tr>
             </thead>
             <tbody id="relatedCourseList">
-
-
             </tbody>
         </table>
     </dd>

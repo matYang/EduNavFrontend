@@ -42,7 +42,9 @@ var BookingDetailView = Backbone.View.extend({
             this.renderFlow(booking.get('status'), booking.get('type'));//生成处理流程图
             app.userManager.fetchBookingHistories(this.bookingId, {
                 success: function (bookingHistories) {
-                    $(self.historyContainer).html(self.historyTemplate({histories: bookingHistories.toJSON()}));
+                    var $historyContainer = $(self.historyContainer);
+                    $historyContainer.html(self.historyTemplate({histories: bookingHistories.toJSON()}));
+                    $historyContainer.children('p').last().addClass('active');
                 },
                 error: function (data) {
                     if (data.responseJSON && data.responseJSON.message !== undefined) {
