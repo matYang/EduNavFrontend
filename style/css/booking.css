@@ -55,7 +55,8 @@
 .panel #booking_date{width:100px;}
 .panel .row3{border-top:1px dotted #ccc; text-align:center; padding:20px 0 50px;}
 .panel .row3 .desc{ color:#666; margin-left:10px;}
-
+/*new booking*/
+.newBooking .field b.price{color:#ff5500;border-bottom: 1px dotted #f60;}
 /*订单提交成功*/
 #booking_submitted{ position:relative; border:3px solid #128d56; font-size:14px;}
 #booking_submitted .row1{ border-bottom:1px solid #cccccc; padding:20px 50px;}
