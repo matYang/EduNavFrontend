@@ -2038,9 +2038,9 @@
     <table id="usableTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
         <thead>
         <tr>
-            <td class="col1">序号</td>
-            <td width="25%">券额</td>
-            <td width="25%">有效期</td>
+            <td width="20%" class="col1">序号</td>
+            <td width="40%">优惠券券额</td>
+            <td width="40%">有效期</td>
         </tr>
         </thead>
         <tbody id="usableList">
@@ -2052,8 +2052,8 @@
 <script type="text/template" id="tpl_mypage_usableCouponRow">
     <tr id="coupon_<%= id %>">
         <td class="col1"><%= id %></td>
-        <td class="col2"><%= balance %></td>
-        <td class="col3"><%= expireTime %><%= expireSoon %></td>
+        <td class="col2"><strong class="price"><%= balance %></strong></td>
+        <td class="col3"><%= expireTime %> <span class="badge"><%= expireSoon %></span></td>
     </tr>
 </script>
 <script type="text/templates" id="tpl_usable_coupon_noMessage">
@@ -2081,7 +2081,7 @@
 <script type="text/template" id="tpl_mypage_gotCouponRow">
     <tr id="coupon_<%= id %>">
         <td class="col1"><%= createTime %></td>
-        <td class="col2"><%= total %></td>
+        <td class="col2"><strong class="price"><%= total %></strong></td>
         <td class="col3"><%= origin %></td>
         <td class="col4"><%= expireTime %></td>
     </tr>

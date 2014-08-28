@@ -35,15 +35,13 @@ var BookingListView = MultiPageView3.extend({
         //这儿start和pageIndex转来转去的是要体现数学很好..
         this.currentPage = this.bookingSr.get('start')/this.pageEntryNumber +1;
         $("#bookingSummary tbody").empty().append("<tr><td colspan='4'><div class='loading'></div></td></tr>");
-        $("#courseSearchResultNavigator").empty();
         app.userManager.fetchBookings(this.bookingSr, {
             success: this.render,
             error: this.renderError
         });
     },
     render: function (data) {
-        var searchResults = data || new Bookings();
-        this.messages = searchResults;
+        this.messages= data || new Bookings();
         //这里进行数据的显示
         MultiPageView3.prototype.render.call(this);
     },
