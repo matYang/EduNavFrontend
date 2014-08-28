@@ -23,21 +23,22 @@ var BookingListView = MultiPageView3.extend({
     },
     //以下在toPage(点击分页按钮)中调用 doRefresh()
     fetchAction: function (pageIndex) {
+        var self = this;
         //根据过滤条件(包括分页信息)重新获取数据
         if (pageIndex === undefined) {// 未传入参数
 
-            if(this.bookingSr.get("start") === undefined)// localStorage中不存在缓存
-                this.bookingSr.set("start", 0);// 则设置默认的start为0
+            if(self.bookingSr.get("start") === undefined)// localStorage中不存在缓存
+                self.bookingSr.set("start", 0);// 则设置默认的start为0
         } else {
-            this.bookingSr.set("start", (pageIndex - 1) * this.pageEntryNumber);
+            self.bookingSr.set("start", (pageIndex - 1) * self.pageEntryNumber);
         }
-        this.bookingSr.set("count", this.pageEntryNumber);
+        self.bookingSr.set("count", self.pageEntryNumber);
         //这儿start和pageIndex转来转去的是要体现数学很好..
-        this.currentPage = this.bookingSr.get('start')/this.pageEntryNumber +1;
+        self.currentPage = self.bookingSr.get('start')/self.pageEntryNumber +1;
         $("#bookingSummary tbody").empty().append("<tr><td colspan='4'><div class='loading'></div></td></tr>");
-        app.userManager.fetchBookings(this.bookingSr, {
-            success: this.render,
-            error: this.renderError
+        app.userManager.fetchBookings(self.bookingSr, {
+            success: self.render,
+            error: self.renderError
         });
     },
     render: function (data) {
@@ -73,6 +74,7 @@ var BookingListView = MultiPageView3.extend({
 
                     $("#bookingStatus").html(EnumConfig.BookingStatusText[booking.status]);
                     //TODO 这里进行了推迟操作以后是否可以继续取消订单 操作部分的刷新后续需要单独提取出来模板进行render
+
                     $target.unbind('click');
                 },
                 error: function (data) {
