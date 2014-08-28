@@ -32,7 +32,7 @@ var BookingDetailView = Backbone.View.extend({
         this.booking = booking;
         //处于以下状态时页面不显示状态图和流程说明
         var noShowList = [1, 2, 5, 9, 23, 12, 14, 15, 20, 21], show = 1;
-        if (booking.get('status') in noShowList) {
+        if (noShowList.indexOf(booking.get('status'))!==-1) {
             show = 0;
         }
         this.$el.append(this.template(_.extend(this.booking._toJSON(), {show: show})));
