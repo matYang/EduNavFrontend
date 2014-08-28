@@ -1079,7 +1079,7 @@
             <%if(!course.price){%>
                 <b class="price">机构定制</b>
             <%}else{%>
-                <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
+                <b class="price" style="margin-right: 8px" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
                 <%if(course.cashback){%>
                 <a class="label cashback"><%= course.cashback %>元
                     <div class="tip">
@@ -1156,7 +1156,7 @@
             </div>
         </div>
     </div>
-    <div class="title"><h3>入学信息</h3></div>
+    <div class="title"><h3>学员信息</h3></div>
     <div id="bookingInfo" class="row2">
         <div class="field">
             <label><span class="req">*</span>学员姓名</label>
@@ -1180,37 +1180,77 @@
     <div class="row2">
         <div class="field">
             <%if(course.bookingType===EnumConfig.PayType.offline){%>
-            <p>
+            <div>
                 <label></label>
                 <input id="type1" name="bookingType" value="<%=EnumConfig.PayType.offline%>" type="radio"
                        checked="true">
                 <label class="radio" for="type1">前台付现</label>
+                <%if(course.cashback){%>
+                <a class="label cashback"><%= course.cashback %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                        </div>
+                    </div>
+                </a>
+                <%}%>
                 <span style="color:#ff5500;">(试听满意后直接在机构进行付款)</span>
-            </p>
+            </div>
             <%}%>
             <%if(course.bookingType===EnumConfig.PayType.online){%>
             <p>
                 <label></label>
                 <input id="type2" name="bookingType" value="<%=EnumConfig.PayType.online%>" type="radio" checked="true">
                 <label class="radio" for="type2">在线支付</label>
+                <%if(course.commission){%>
+                <a class="label save"><%= course.commission %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            选择在线支付，支付时即可立减<%= course.commission %>元！
+                        </div>
+                    </div>
+                </a>
+                <%}%>
                 <span style="color:#ff5500;">(爱会员惊享95折！用返券抵;&nbsp;爱•承诺：试听不满意，无条件退全款！)</span>
             </p>
             <%}%>
             <%if(course.bookingType===2){%>
-            <p>
+            <div>
                 <label></label>
                 <input id="type1" name="bookingType" value="<%=EnumConfig.PayType.offline%>" type="radio"
                        checked="true">
                 <label class="radio" for="type1">前台付现</label>
+                <%if(course.cashback){%>
+                <a class="label cashback"><%= course.cashback %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                        </div>
+                    </div>
+                </a>
+                <%}%>
                 <span style="color:#ff5500;">(试听满意后直接在机构进行付款)</span>
-            </p>
+            </div>
 
-            <p class="blank1">
+            <div class="blank1">
                 <label></label>
                 <input id="type2" name="bookingType" value="<%=EnumConfig.PayType.online%>" type="radio">
                 <label class="radio" for="type2">在线支付</label>
+                <%if(course.commission){%>
+                <a class="label save"><%= course.commission %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            选择在线支付，支付时即可立减<%= course.commission %>元！
+                        </div>
+                    </div>
+                </a>
+                <%}%>
                 <span style="color:#ff5500;">(爱会员惊享95折！用返券抵;&nbsp;爱•承诺：试听不满意，无条件退全款！)</span>
-            </p>
+            </div>
             <%}%>
         </div>
     </div>

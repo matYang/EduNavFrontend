@@ -36,7 +36,7 @@
 .panel .field b.price{color:#ff5500;}
 .panel .field label.radio{width:68px;text-align:left;margin-right:5px;}/*radio的label标签*/
 
-.panel .field .cashback{margin-right:10px;margin-left:8px;}
+.panel .field .label{margin-left:5px;margin-right: 5px}
 .panel .field #booking_useCashback{margin-left:128px; float:left;}
 .panel .field  .login_reg1 {font-size:12px; line-height:18px;}
 
