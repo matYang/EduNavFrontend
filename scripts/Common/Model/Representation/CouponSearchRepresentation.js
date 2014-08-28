@@ -11,6 +11,7 @@ var CouponSearchRepresentation = Backbone.Model.extend({
 //            'startOriginalAmount': undefined,
 //            'finishOriginalAmount': undefined,
 //            'expireTime': undefined,
+            'balanceStart':undefined,
             'status': undefined,
 //            'origin': undefined,
 //
