@@ -56,18 +56,15 @@ testMockObj = {
 
 
     testCoupons: new Coupons(),
-    testCoupon1: (new Coupon()).set("id", 1).set("amount", 30),
-    testCoupon2: (new Coupon()).set("id", 2).set("amount", 20),
-    testCoupon3: (new Coupon()).set("id", 3).set("amount", 25),
-    testCoupon4: (new Coupon()).set("id", 4).set("amount", 10),
-    testCoupon5: (new Coupon()).set("id", 5).set("amount", 20).set("status", EnumConfig.CouponStatus.inactive),
-    testCoupon6: (new Coupon()).set("id", 6).set("amount", 40).set("status", EnumConfig.CouponStatus.inactive),
-    testCoupon7: (new Coupon()).set("id", 7).set("amount", 15).set("status", EnumConfig.CouponStatus.inactive),
-    testCoupon8: (new Coupon()).set("id", 8).set("amount", 15).set("status", EnumConfig.CouponStatus.inactive),
-    testCoupon9: (new Coupon()).set("id", 9).set("amount", 20).set("status", EnumConfig.CouponStatus.usable),
-    testCoupon10: (new Coupon()).set("id", 10).set("amount", 40).set("status", EnumConfig.CouponStatus.usable),
-    testCoupon11: (new Coupon()).set("id", 11).set("amount", 15).set("status", EnumConfig.CouponStatus.inactive),
-    testCoupon12: (new Coupon()).set("id", 12).set("amount", 15).set("status", EnumConfig.CouponStatus.inactive),
+    testCoupon1: (new Coupon()).set("id", 1).set("balance", 30).set("total", 30),
+    testCoupon2: (new Coupon()).set("id", 2).set("balance", 20).set("total", 30),
+    testCoupon3: (new Coupon()).set("id", 3).set("balance", 25).set("total", 30),
+    testCoupon4: (new Coupon()).set("id", 4).set("balance", 10).set("total", 30),
+    testCoupon5: (new Coupon()).set("id", 5).set("balance", 20).set("status", EnumConfig.CouponStatus.inactive),
+    testCoupon6: (new Coupon()).set("id", 6).set("balance", 40).set("status", EnumConfig.CouponStatus.inactive),
+    testCoupon7: (new Coupon()).set("id", 7).set("balance", 15).set("status", EnumConfig.CouponStatus.inactive),
+    testCoupon8: (new Coupon()).set("id", 8).set("balance", 15).set("status", EnumConfig.CouponStatus.inactive),
+    testCoupon9: (new Coupon()).set("id", 9).set("balance", 20).set("status", EnumConfig.CouponStatus.usable),
     testCredits: new Credits(),
     testCredit1: (new Credit()).set("id", 1).set("amount", 1000),
     testCredit2: (new Credit()).set("id", 2).set("amount", 1000),
@@ -249,10 +246,9 @@ testMockObj.testCourses.total = 39;
 testMockObj.testBookings.add([testMockObj.testBooking1,testMockObj.testBooking2,testMockObj.testBooking3,testMockObj.testBooking4,testMockObj.testBooking5,testMockObj.testBooking6, testMockObj.testBooking7,testMockObj.testBooking8,testMockObj.testBooking9, testMockObj.testBooking10,testMockObj.testBooking11,testMockObj.testBooking12]);
 testMockObj.testCoupons.add([testMockObj.testCoupon1,testMockObj.testCoupon2,testMockObj.testCoupon3,testMockObj.testCoupon4,
                             testMockObj.testCoupon5,testMockObj.testCoupon6,testMockObj.testCoupon7,testMockObj.testCoupon8,
-                            testMockObj.testCoupon9,testMockObj.testCoupon10,testMockObj.testCoupon11,testMockObj.testCoupon12]);
+                            testMockObj.testCoupon9]);
 testMockObj.testCredits.add([testMockObj.testCredit1,testMockObj.testCredit2,testMockObj.testCredit3,testMockObj.testCredit4,
-                            testMockObj.testCredit5,testMockObj.testCredit6,testMockObj.testCredit7,testMockObj.testCredit8,
-                            testMockObj.testCredit9,testMockObj.testCredit10,testMockObj.testCredit11,testMockObj.testCredit12]);
+                            testMockObj.testCredit5,testMockObj.testCredit6,testMockObj.testCredit7,testMockObj.testCredit8]);
 testMockObj.testTeachers.add([testMockObj.testTeacher1, testMockObj.testTeacher2, testMockObj.testTeacher3, testMockObj.testTeacher4, testMockObj.testTeacher5]);
 testMockObj.testPhotos.add([testMockObj.testPhoto1, testMockObj.testPhoto2, testMockObj.testPhoto3, testMockObj.testPhoto4, testMockObj.testPhoto5]);
 testMockObj.testPartner1.set("teacherIdList", [1, 2, 3, 4, 5]);
@@ -298,7 +294,4 @@ testMockObj.testBookingHistory2.set('remark','qq').set('createTime',new Date()).
 testMockObj.testBookingHistory3.set('remark','qq').set('createTime',new Date()).set('optName',0);
 testMockObj.testBookingHistories.add([testMockObj.testBookingHistory1,testMockObj.testBookingHistory2,testMockObj.testBookingHistory3]);
 
-
-testMockObj.testUser.set("couponList", testMockObj.testCoupons);
-testMockObj.testUser.set("creditList", testMockObj.testCredits);
 testMockObj[EnumConfig.ModuleIdentifier.user] = testMockObj.testUser;
