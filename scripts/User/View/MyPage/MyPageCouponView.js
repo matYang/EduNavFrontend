@@ -70,7 +70,7 @@ var UsableCouponView = MultiPageView3.extend({
         this.isClosed = false;
 
         this.sr = new CouponSearchRepresentation();
-        this.sr.set('status',0);
+        this.sr.set('status',EnumConfig.CouponStatus.usable);
         this.sr.set('balanceStart',0.01);
         this.fetchAction();
     },
@@ -128,7 +128,6 @@ var GotCouponView = MultiPageView3.extend({
         this.$domContainer = $("#gotList");
         this.isClosed = false;
         this.sr = new CouponSearchRepresentation();
-        this.sr.set('status',0);
         this.fetchAction();
     },
     //以下在toPage(点击分页按钮)中调用 doRefresh()
