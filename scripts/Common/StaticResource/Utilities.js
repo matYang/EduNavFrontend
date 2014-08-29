@@ -157,7 +157,7 @@ var Utilities = {
      */
     castToAPIFormat: function (date) {
         if (!date) {
-            Info.warn("castFromAPIFormat: date is null");
+//            Info.warn("castFromAPIFormat: date is null");
             return null;
         }
 //        if (typeof date === "string") {
