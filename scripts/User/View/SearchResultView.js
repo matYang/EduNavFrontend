@@ -22,12 +22,12 @@ var SearchResultView = MultiPageView.extend({
             this.user = app.sessionManager.sessionModel;
             this.initialized = true;
         }
-        this.render();
+        this.fetchAction();
         this.bindEvents();
     },
     render: function () {
         this.isClosed = false;
-        MultiPageView.prototype.render.call(this);
+//        MultiPageView.prototype.render.call(this);
         var courseIds = app.storage.getCoursesToCompare();
         for (var i = 0; i < courseIds.length; i++) {
             $("#compare_" + courseIds[i]).find("input").attr("class", "remove btn_gray").val("已加入对比").removeClass("add").addClass("remove");
