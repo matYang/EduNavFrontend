@@ -11,7 +11,6 @@ var SearchResultView = MultiPageView.extend({
     pageEntryNumber: 10, //
     // actionClass: "viewDetail",
     autoHeight: true,
-    truePagination: true,
     initialize: function (searchRepresentation, compareWidget) {
         if (!this.initialized) {
             _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");

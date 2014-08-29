@@ -134,13 +134,11 @@ var MultiPageView3 = Backbone.View.extend({
     setPageNavigator: function () {
         var buf = ['<a class="pre"></a>'],
             divBuf = ["<a id='", this.pageNumberId, "_", 0, "' class='", this.pageNumberClass, "'> ", 0, "</a>"],
-            pages,
-            length,
             i,
             html;
-        if (this.singlePage) {
-            return;
-        }
+        var countTotal = this.messages.total;//记录总数
+        var pageTotal = Math.ceil(countTotal / this.pageEntryNumber);//分页总数
+        var currentPageIndex = this.currentPage;
 
         if (this.$pn && this.$pn.length) {
             this.$pn.children("." + this.pageNumberClass).off();
@@ -152,18 +150,59 @@ var MultiPageView3 = Backbone.View.extend({
 
 
         this.$pn = $("#" + this.pageNavigator);
-        length = this.messages.total;
-        pages = Math.ceil(length / this.pageEntryNumber);
-        this.pages = pages;
-        pages = pages > 10 ? 10 : pages;
-        for (i = 1; i <= pages; i++) {
-            divBuf[3] = i;
-            divBuf[7] = i;
+
+
+        /*page core start*/
+        var pageViewList = [];
+        var makePage = function (number, text) {
+            return {
+                number: number,
+                text: text
+            }
+        };//用于生成pageViewList
+        //default start and end in current page group
+        var startPage = 1, endPage = pageTotal;
+
+        //step 1根据currentPage判断是处于哪一个分页组 即获取startPage和endPage
+        var pageGroupSize = Math.ceil(pageTotal / this.maxSize);//分页组组数
+        var currentPageGroupIndex = Math.ceil(currentPageIndex / this.maxSize);//当前页处于的分页组
+
+        //step 2(optional)如果存在多个分页组 则重新计算startPage和endPage
+        if (pageGroupSize > 1) {
+            //*** Visible pages are paginated with maxSize
+            startPage = (currentPageGroupIndex - 1 ) * this.maxSize + 1;
+
+            // Adjust last page if limit is exceeded
+            endPage = Math.min(startPage + this.maxSize - 1, pageTotal);
+        }
+
+        //step 3 根据startPage和endPage生成分页数组
+        for (var number = startPage; number <= endPage; number++) {
+            var page = makePage(number, number);//first is pageIndex ,second is text
+            pageViewList.push(page);
+        }
+
+        //step 4(optional)如果存在多个分页组 则设置切换分页组的链接
+        if (pageGroupSize > 1) {
+            //添加切换分页组的链接
+            if (startPage > 1) {//非第一个分页组
+                pageViewList.unshift(makePage(startPage - 1, '...'));
+            }
+            if (endPage < pageTotal) {//非最后一个分页组
+                pageViewList.push(makePage(endPage + 1, '...'));
+            }
+        }
+
+        //step 3渲染这个分页组分页组 根据divBuf生成buf
+        _.each(pageViewList,function(page){
+            divBuf[3] = page.number;
+            divBuf[7] = page.text;
             buf.push(divBuf.join(""));
-        }
-        if (this.pages > 10) {
-            buf.push("<span>...</span>");
-        }
+        });
+        /*page core end*/
+
+
+
         buf.push("<a class='next'></a>");
         html = buf.join("");
         this.$pn.off()
