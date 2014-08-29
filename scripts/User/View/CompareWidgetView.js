@@ -33,9 +33,7 @@ var CompareWidgetView = Backbone.View.extend({
         if (this.courses instanceof Backbone.Collection) {
             this.courses = this.courses.toArray();
         }
-        if (typeof BMap !== "undefined" && !this.map && app.searchView) {
-            this.renderMap();
-        }
+
         for (i = 0; i < this.courses.length && i < 4; i++) {
             buf[i] = this.courseTemplate(this.courses[i]._toJSON());
         }
@@ -90,8 +88,11 @@ var CompareWidgetView = Backbone.View.extend({
         this.courseIds = app.storage.getCoursesToCompare();
     },
     renderMap: function () {
+        if (typeof BMap !== "undefined" && !this.map && app.searchView) {
+            this.renderMap();
+        }
         var i = 0, courses = [];
-        if (app.searchView && app.searchView.searchResultView) {
+        if (app.searchView && app.searchView.searchResultView&&app.searchView.searchResultView.messages) {
             courses = app.searchView.searchResultView.messages;
         }
         this.map = new MainMapView();
