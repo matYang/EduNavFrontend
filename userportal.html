@@ -1630,7 +1630,9 @@
         <div class="teacher">
             <img src="<%= teacherList[i].imgUrl %>"/>
             <h3><%= teacherList[i].name %></h3>
-            <div><%= teacherList[i].intro %></div>
+            <div>
+            <%if(teacherList[i].intro&&teacherList[i].intro.length >0){%><%= teacherList[i].intro %><%}%>
+            </div>
             <span class="more">详细查看</span>
         </div>
         <% } %>

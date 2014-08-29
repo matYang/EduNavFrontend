@@ -103,11 +103,13 @@ var CourseDetailView = Backbone.View.extend({
             this.content3_top -= height2;
             this.content2_top = this.content3_top
         }
-        //todo 这里是为了声明页面加载完毕
+        //这里是为了声明页面加载完毕
         $('body').attr('pageRenderReady','')
     },
     bindEvents: function () {
         var that = this;
+        //详细查看教师
+        $().on();
         $("#detail_compare_" + this.course.id).on("click", function () {
             if ($(this).hasClass("add")) {
                 if (that.compareWidget.addCourse(that.course)) {

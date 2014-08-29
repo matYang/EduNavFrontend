@@ -9,7 +9,8 @@ testMockObj = {
     testPartner4: new Partner().set("id", 4),
     testPartner5: new Partner().set("id", 5),
     testTeachers: new Teachers(),
-    testTeacher1: new Teacher().set("id", 1).set("name", "Teacher A").set("imgUrl", "/testUrl1"),
+    testTeacher1: new Teacher().set("id", 1).set("name", "Teacher A").set("imgUrl", "/testUrl1")
+        .set('intro','这是SD卡很疯狂和水电费三角裤好地方水电费水电费较深的回复三等奖回复水电费金黄色的'),
     testTeacher2: new Teacher().set("id", 2).set("name", "Teacher B").set("imgUrl", "/testUrl1"),
     testTeacher3: new Teacher().set("id", 3).set("name", "Teacher C").set("imgUrl", "/testUrl1"),
     testPhotos: new Photos(),
