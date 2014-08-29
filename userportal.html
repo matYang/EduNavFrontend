@@ -1631,7 +1631,7 @@
             <h3><%= teacherList[i].name %></h3>
             <img src="<%= teacherList[i].imgUrl %>"/>
             <div>
-            <%if(teacherList[i].intro&&teacherList[i].intro.length >35){%><%= teacherList[i].intro.substr(0,32)%> ...<%}else{%>
+            <%if(teacherList[i].intro&&teacherList[i].intro.length >=35){%><%= teacherList[i].intro.substr(0,35)%> ...<%}else{%>
                 <%= teacherList[i].intro%><%}%>
             </div>
             <span class="more" data-id="<%=i%>">详细查看</span>
