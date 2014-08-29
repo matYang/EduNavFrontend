@@ -12,12 +12,11 @@ var SearchResultView = MultiPageView.extend({
     // actionClass: "viewDetail",
     autoHeight: true,
     truePagination: true,
-    initialize: function (allMessages, messageList, compareWidget) {
+    initialize: function (searchRepresentation, compareWidget) {
         if (!this.initialized) {
             _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
             MultiPageView.prototype.initialize.call(this);
-            this.messages = messageList || this.messages;
-            this.allMessages = allMessages || this.allMessages;
+            this.sr = searchRepresentation;
             this.compareWidgetView = compareWidget || this.compareWidgetView;
             this.user = app.sessionManager.sessionModel;
             this.initialized = true;

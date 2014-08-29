@@ -41,8 +41,7 @@ var SearchView = Backbone.View.extend({
             // $("title").html("找课程 | " + this.searchRepresentation.toTitleString());//that will be too long
             this.$el.append(this.template);
             this.compareWidgetView = new CompareWidgetView();
-            this.searchResultView = new SearchResultView(new Courses(), new Courses(), this.compareWidgetView);
-            this.searchResultView.sr = this.searchRepresentation;
+            this.searchResultView = new SearchResultView(this.searchRepresentation, this.compareWidgetView);
             app.generalManager.getCategories(this);//传递this参数,会在获取目录之后调用this.renderCategories()
             app.generalManager.getLocations(this);//同上 调用this.renderLocations
             //初始化时同步url中的参数进行过滤
