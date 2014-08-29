@@ -9,7 +9,7 @@ var SearchResultView = MultiPageView.extend({
     extPn: true,
     entryHeight: 157,
     pageEntryNumber: 10, //
-    // actionClass: "viewDetail",
+    actionClass: "viewDetail",
     autoHeight: true,
     initialize: function (searchRepresentation, compareWidget) {
         if (!this.initialized) {
@@ -56,12 +56,12 @@ var SearchResultView = MultiPageView.extend({
             id = Utilities.getId($(this).attr("id"));
             app.navigate("course/" + id, true);
         });
-        this.registerSortEvent($("#courseSortTime"), this.compareTime, this.timeDesc, this, function () {
-            that.timeDesc = !that.timeDesc;
-        });
-        this.registerSortEvent($("#courseSortPrice"), this.comparePrice, this.priceDesc, this, function () {
-            that.priceDesc = !that.priceDesc;
-        });
+//        this.registerSortEvent($("#courseSortTime"), this.compareTime, this.timeDesc, this, function () {
+//            that.timeDesc = !that.timeDesc;
+//        });
+//        this.registerSortEvent($("#courseSortPrice"), this.comparePrice, this.priceDesc, this, function () {
+//            that.priceDesc = !that.priceDesc;
+//        });
     },
     compareTime: function (course) {
         return course.get("time");
