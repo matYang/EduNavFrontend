@@ -211,15 +211,14 @@
     UserManager.prototype.changePassword = function (opt, callback) {
         var self = this;
 
-        if (!(opt.oldPassword && opt.newPassword && opt.confirmNewPassword && opt.authCode)) {
-            Info.warn('UserManager::changePassword:: invalid parameter');
+        if (!(opt.oldPassword && opt.newPassword && opt.confirmNewPassword)) {
+            Info.warn('UserManager::changePassword:: something not typed in');
             return;
         }
         if (!this.sessionManager.hasSession()) {
             Info.warn('UserManager::changePassword:: session does not exist, exit');
             return;
         }
-        opt.authCode = opt.authCode.toUpperCase();
         $.ajax({
             type: 'PUT',
             url: ApiResource.user_changePassword.format(self.sessionManager.getId()),

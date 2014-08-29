@@ -63,20 +63,7 @@ var MyPagePasswordView = BaseFormView.extend({
         $("#reset_password").on('click', this.clearPassword);
         BaseFormView.prototype.bindEvents.call(this);
     },
-    //我的页面中修改密码无需进行短信验证
-//    getSmsSuccess: function () {
-//        $("#getAuthCodeNote").html("短信发送成功, 请确认短信。");
-//        $("#getAuthCode").val("发送验证码").addClass("hidden");
-//        setTimeout(function () {
-//            $button.prop("disabled", false).css("background", "");
-//        }, 120000);
-//        $("#gotAuthCode").removeClass("hidden");
-//    },
-//    getSmsError: function (data) {
-//        $("#getAuthCodeNote").html(data.responseJSON ? data.responseJSON : "验证请求失败，请检查网络状态然后重试。").removeClass("hidden");
-//        $("#getAuthCode").prop("disable", false).val("发送验证码").removeClass("hidden").css("background", "");
-//        $("#gotAuthCode").addClass("hidden");
-//    },
+
     submitAction: function () {
         app.userManager.changePassword(this.model, {
             "success": this.passwordSuccess,
@@ -118,10 +105,6 @@ var MyPagePasswordView = BaseFormView.extend({
     },
     passwordSuccess: function () {
         Info.displayNotice("密码修改成功");
-        //todo temp是导航到哪里去了?
-        app.navigate('/temp', {
-            replace: true
-        });
         app.navigate("mypage/setting", {
             trigger: true
         });

@@ -55,4 +55,18 @@
         validatorFunction: Utilities.emailValid,
         buildValidatorDiv: Utilities.defaultValidDivBuilder
     })
+    //我的页面中修改密码无需进行短信验证
+    //    getSmsSuccess: function () {
+    //        $("#getAuthCodeNote").html("短信发送成功, 请确认短信。");
+    //        $("#getAuthCode").val("发送验证码").addClass("hidden");
+    //        setTimeout(function () {
+    //            $button.prop("disabled", false).css("background", "");
+    //        }, 120000);
+    //        $("#gotAuthCode").removeClass("hidden");
+    //    },
+    //    getSmsError: function (data) {
+    //        $("#getAuthCodeNote").html(data.responseJSON ? data.responseJSON : "验证请求失败，请检查网络状态然后重试。").removeClass("hidden");
+    //        $("#getAuthCode").prop("disable", false).val("发送验证码").removeClass("hidden").css("background", "");
+    //        $("#gotAuthCode").addClass("hidden");
+    //    },
 </script>
