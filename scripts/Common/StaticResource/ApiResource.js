@@ -22,7 +22,7 @@
                     findSession: '/findSession',
                     smsVerification: '/smsVerification',
                     register: '/registration',
-                    changePassword: '{0}/changePassword',
+                    changePassword: '/{0}/changePassword',
                     info: "",
                     changeCell: '/changeCell',
                     login: '/login/phone', //use phone number to login
