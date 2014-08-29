@@ -113,6 +113,11 @@ var Course = Backbone.Model.extend({
                 if(data.originalPrice == data.price){
                     data.originalPrice = null;
                 }
+                if(typeof data.price =='number' &&data.originalPrice=='number'){
+                    if(data.price>data.originalPrice){
+                        Info.warn('Price is large than original price!!CourseId>>'+data.id);
+                    }
+                }
 
                 /*基本信息*/
                 data.cutoffDate = Utilities.castFromAPIFormat(this.get('cutoffDate'));
