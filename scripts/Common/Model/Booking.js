@@ -97,12 +97,13 @@ var Booking = Backbone.Model.extend({
 
         json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
         json.noRefundDate = undefined;
-        json.cashbackDate = undefined;
+        json.actionList = undefined;
         json.bookingId = undefined;
+        json.cashbackDate = undefined;
+        json.course = undefined;
         json.createTime = undefined;
         json.lastModifyTime = undefined;
         json.reference = undefined;
-        json.actionList = undefined;
         return json;
     },
     initBookingFromCourse: function (course) {

@@ -26,7 +26,7 @@
                     info: "",
                     changeCell: '/changeCell',
                     login: '/login/phone', //use phone number to login
-                    logout: '/{0}/logout', //todo /{id}/logout
+                    logout: '/{0}/logout',
                     forgetPassword: '/forgetPassword'
                 },
 
