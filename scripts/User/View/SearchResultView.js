@@ -17,6 +17,8 @@ var SearchResultView = MultiPageView.extend({
             _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
             MultiPageView.prototype.initialize.call(this);
             this.sr = searchRepresentation;
+            this.$domContainer = $("#" + this.entryContainer);
+            this.$domContainer.empty();
             this.compareWidgetView = compareWidget || this.compareWidgetView;
             this.user = app.sessionManager.sessionModel;
             this.initialized = true;
