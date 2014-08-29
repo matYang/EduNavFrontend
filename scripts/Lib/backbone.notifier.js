@@ -66,7 +66,7 @@
                     '<div class="' + settings.wrapperCls + '">',
                     '<div class="' + settings.innerCls + '">',
                     (settings.title ? '<div class="' + settings.baseCls + '-title">' + settings.title + '</div>' : ''),
-                    (settings.closeBtn ? '<button class="' + settings.baseCls + '-close" data-handler="destroy"><span>x</span></button>' : '')
+                    (settings.closeBtn ? '<button class="' + settings.baseCls + '-close" data-handler="destroy"><span>&times;</span></button>' : '')
                 ];
                 if (settings.dialog) {
                     strBuilder.push(

@@ -73,7 +73,7 @@ var BookingPayView = Backbone.View.extend({
                 modal: true,
                 position: 'center',
                 ms: null,
-                destroy: false
+                width:'500'
             })
                 .on('click:success', function () {
                     app.navigate("mypage/booking/" + that.bookingId, true);

@@ -92,7 +92,7 @@
     /*background: white;*/
 
     text-align: center;
-    font-size: 11px;
+    font-size: 20px;
     line-height: 11px;
     font-family: Arial, Helvetica, "sans-serif";
     color: rgba(102, 102, 102, 0.39);
@@ -100,7 +100,7 @@
 }
 
 .notifier-close:hover {
-    background: rgba(109, 109, 109, 0.2) !important;
+    background: rgba(109, 109, 109, 0.2);
     color: white;
     text-shadow: -1px -1px 0 rgba(68, 68, 68, 0.2);
 }

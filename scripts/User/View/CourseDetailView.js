@@ -5,6 +5,7 @@ var CourseDetailView = Backbone.View.extend({
         _.bindAll(this, 'render', 'bindEvents', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
+        this.notifier = new Backbone.Notifier();
         this.sr = new CourseSearchRepresentation();
         this.user = app.sessionManager.sessionModel;
         var self = this;
@@ -109,7 +110,27 @@ var CourseDetailView = Backbone.View.extend({
     bindEvents: function () {
         var that = this;
         //详细查看教师
-        $().on();
+        $('.teacher').on('click','.more',function(e){
+            var teacherIndex = $(this).data('id');
+            var teacher = that.course.get('teacherList').at(teacherIndex);
+            var message = '<h3>' +teacher.get('name')+
+                '</h3><img src="' +teacher.get('imgUrl')+
+                '" alt="' +teacher.get('name')+
+                '"/><div>' +teacher.get('intro')+
+                '</div>';
+            that.viewTeacherModal = that.notifier.notify({
+                fadeInMs: 0,
+                fadeOutMs: 0,
+                ms: null,
+                message: message,
+                destroy: true,
+                modal: false,
+                closeBtn: true,
+                position: 'center',
+                cls: 'viewTeacherModal',
+                width:'600'
+            })
+        });
         $("#detail_compare_" + this.course.id).on("click", function () {
             if ($(this).hasClass("add")) {
                 if (that.compareWidget.addCourse(that.course)) {
@@ -199,6 +220,9 @@ var CourseDetailView = Backbone.View.extend({
             }
             if (this.compareWidget) {
                 this.compareWidget.close();
+            }
+            if(this.viewTeacherModal){
+                this.viewTeacherModal.destroy();
             }
             $(document).off("scroll");
             $("#courseNavigateTab").off();
