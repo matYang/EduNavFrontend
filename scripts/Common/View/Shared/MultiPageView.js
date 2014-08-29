@@ -93,7 +93,7 @@ var MultiPageView = Backbone.View.extend({
             height = (height > this.minHeight) ? height : this.minHeight;
             this.$domContainer.css("height", height + "px");
         }
-        var total = this.truePagination ? this.messages.total : this.messages.length;
+        var total = this.messages.total;
         if (total > this.pageEntryNumber) {
             this.setPageNavigator();
         } else {
