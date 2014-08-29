@@ -86,7 +86,7 @@ var SearchResultView = MultiPageView.extend({
         this.sr.set("count", this.pageEntryNumber);
         this.currentPage = page;
         app.navigate("search/" + this.sr.toQueryString(), {trigger: false, replace: true});
-        $("#"+entryContainer).empty().append('<div class="loading"></div>');
+        $("#"+this.entryContainer).empty().append('<div class="loading"></div>');
         $("#courseSearchResultNavigator").empty();
         app.generalManager.findCourse(this.sr, {
             success: this.renderSearchResults,
