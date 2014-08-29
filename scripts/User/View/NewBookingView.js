@@ -8,7 +8,7 @@ var NewBookingView = BaseFormView.extend({
     submitButtonId: "initBooking",
     initialize: function (params) {
         this.isClosed = false;
-        _.bindAll(this, "render", "bindEvents", "bookingSuccess", "login", "loginCheck", "loginSuccess", "loginError", "close");
+        _.bindAll(this, "render", "bindEvents", "bookingSuccess", "login", "loginSuccess", "loginError", "close");
         app.viewRegistration.register(this);
         // $("#viewStyle").attr("href", "style/css/booking.css");
 
@@ -105,14 +105,19 @@ var NewBookingView = BaseFormView.extend({
     },
     bindEvents: function () {
         var that = this;
+        //监听用户session更改事件
         app.sessionManager.sessionModel.on("change", function () {
             if (this.get("userId") >= 0) {
+                //已登录
                 $("#cashback_box_notLoggedIn").addClass("hidden");
                 $("#cashback_box").removeClass("hidden");
                 $("#booking_loginbox").addClass("hidden");
+                $('input[name=bookingType]').removeAttr('disabled');
             } else {
+                //未登录
                 $("#cashback_box_notLoggedIn").removeClass("hidden");
                 $("#cashback_box").addClass("hidden");
+                $('input[name=bookingType]').attr('disabled','disabled');
 
             }
             app.topBarView.reRender();
@@ -123,6 +128,8 @@ var NewBookingView = BaseFormView.extend({
         });
         //判断是否已经登录
         if (!app.sessionManager.hasSession()) {
+            //未登录下不可选择支付类型
+            $('input[name=bookingType]').attr('disabled','disabled');
             $("#quickLogin").on("click", function () {
                 $("#booking_loginbox").show();
             });
@@ -190,13 +197,9 @@ var NewBookingView = BaseFormView.extend({
             });
         }
         //登录框的展开和收起
-        $("#booking_loginToggler").on("click", function (e) {
+        $(".js_loginToggle").on("click", function (e) {
             var $bookingLogin = $("#booking_loginbox");
-            if ($bookingLogin.hasClass("hidden")) {
-                $bookingLogin.removeClass("hidden");
-            } else {
-                $bookingLogin.addClass("hidden");
-            }
+            $bookingLogin.toggleClass("hidden");
         });
         //支付方式选择事件
         $('input[name=bookingType]').change(function () {
@@ -219,14 +222,22 @@ var NewBookingView = BaseFormView.extend({
             cashback:this.model.get('course').get('cashback')
         }));
     },
-    loginCheck: function () {
-        if (!app.sessionManager.hasSession()) {
-            Info.displayNotice("您尚未登录，请先登录再进行预订");
-        }
-    },
+//    loginCheck: function () {
+//        if (!app.sessionManager.hasSession()) {
+//            Info.displayNotice("您尚未登录，请先登录再进行预订");
+//        }
+//    },
     submitAction: function () {
-        var that = this;
-        that.loginCheck();
+        var self = this;
+        //非登录用户返现值设为0
+        if (!app.sessionManager.hasSession()) {
+            this.model.set("cashbackAmount", 0);
+            //这里再次强制设置支付类型 防止网页上的更改
+            this.model.set('type',EnumConfig.PayType.offline);
+        }else{
+            //登录用户可选择是否选择使用优惠券 这里注释下行 设为默认已使用
+            //this.model.set("cashback", $("#booking_useCashback").prop("checked") ? this.model.get("cashbackAmount") : 0);
+        }
         $("#" + this.submitButtonId).val("预订中...");
         this.model.set('type', $('input[name="bookingType"]:checked').val());
         //如果选择在线支付价格需要减去在线支付折扣 course.commission
@@ -234,21 +245,22 @@ var NewBookingView = BaseFormView.extend({
             this.model.set('price', this.model.get('price') - this.model.get('course').get('commission'));
         }
         this.model.set("userId", app.sessionManager.sessionModel.get("userId"));
-//        this.model.set("cashback", $("#booking_useCashback").prop("checked") ? this.model.get("cashbackAmount") : 0);
-        //todo 非登录用户设为0
-        if(false){
-            this.model.set("cashbackAmount", 0);
-        }
+
+
         this.model.set("course", undefined);
         app.userManager.initBooking(this.model, {
-            success: this.bookingSuccess,
+            success: self.bookingSuccess,
             error: function () {
-                $("#" + that.submitButtonId).val("预订失败, 请重试");
+                $("#" + self.submitButtonId).val("预订失败, 请重试");
             }
         });
     },
     bookingSuccess: function (booking) {
-        this.$el.empty().append(this.finishTemplate(booking._toJSON()));
+        var login = false;
+        if (app.sessionManager.hasSession()) {
+            login = true;
+        }
+        this.$el.empty().append(this.finishTemplate(_.extend(booking._toJSON(),{login:login})));
         $("#viewMore").on("click", function () {
             app.navigate("search", true);
         });

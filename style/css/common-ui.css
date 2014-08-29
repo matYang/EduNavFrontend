@@ -289,6 +289,10 @@ a:hover, a:active{
 .text-warning{color: #f7a501; }
 .text-error{color: #FF5500; }
 
+.dotted-line{
+    font-size: 1.2em;
+    border-bottom: 1px dotted #aaaaaa;
+}
 
 /***************我是分割线*****************/
 /***************非通用样式 之后需要独立出来*****************/

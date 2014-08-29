@@ -1125,12 +1125,12 @@
         </div>
         <div class="field clearfix" id="cashback_box_notLoggedIn">
             <div class="fleft login_reg1 clearfix" id="booking_loginnote">
-                <a class="js_loginToggle" class="link F_green">登录</a>
-                或<a id="booking_register" class="link F_green">注册</a>
+                <a class="js_loginToggle link F_green dotted-line">登录</a>
+                或 <a id="booking_register" class="link F_green dotted-line">注册</a>
                 后可享受"返"或"立减"优惠
             </div>
         </div>
-        <div id="booking_loginbox" class="loginbox">
+         <div id="booking_loginbox" class="loginbox">
             <div class="loginbox_inner">
                 <div>
                     <label>手机</label> <input class="text" type="text" id="booking_loginUsername"/>
@@ -1319,7 +1319,6 @@
                 <% } %>
                 &nbsp;&nbsp;
                 <input type="button" id="viewBooking" value="查看订单"/>
-
             </div>
             <div id="printBooking">打印订单</div>
         </div>
@@ -2077,7 +2076,7 @@
         <td class="col1"><%= createTime %></td>
         <td class="col2"><strong class="price"><%= total %></strong></td>
         <td class="col3"><%= EnumConfig.CouponOrigin[origin] %></td>
-        <td class="col4"><%= expireTime %></td>
+        <td class="col4"><%= expiryTime %></td>
     </tr>
 </script>
 <script type="text/templates" id="tpl_got_coupon_noMessage">
