@@ -3,7 +3,6 @@ var Teacher = Backbone.Model.extend({
     defaults: function () {
         return {
             'id': -1,
-            'teacherId': -1,
             'partnerId': -1,
             'name':'',
             'intro': '',
@@ -13,15 +12,10 @@ var Teacher = Backbone.Model.extend({
     },
     idAttribute: 'id',
 
-    urlRoot: Constants.origin + '/p-api/v1.0/teacher/teacher',
-
     parse: function (data) {
         if ( typeof data !== 'undefined') {
-
             data.id = parseInt(data.id, 10);
-            data.teacherId = data.id;
             data.partnerId = parseInt(data.partnerId, 10);
-
             data.createTime = Utilities.castFromAPIFormat(data.createTime);
         }
         return data;
@@ -33,22 +27,14 @@ var Teacher = Backbone.Model.extend({
     },
     toJSON: function () {
         var json = _.clone(this.attributes);
-
-        json.name = (json.name);
-        json.intro = (json.intro);
-        json.imgUrl = (json.imgUrl);
-
         json.createTime = Utilities.castToAPIFormat(this.get('createTime'));
         return json;
     }
 });
 
-
 var Teachers = Backbone.Collection.extend({
 
     model: Teacher,
-
-    url: Constants.origin + '/api/v1.0/teacher',
     start: 0,
     count: 0,
     total: 0,
