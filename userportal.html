@@ -1798,8 +1798,8 @@
         <th>上课时间</th>
         <% _.each(courses, function(course) { %>
         <td class="courseId_<%= course.id %>"><%if(course.startTime1){%>
-            <%= startTime1 %>-<%= finishTime1 %>
-            <% if (startTime2) { %>, <%= startTime2 %> - <%= finishTime2 %><% } %>
+            <%= course.startTime1 %>-<%= course.finishTime1 %>
+            <% if (course.startTime2) { %>, <%= course.startTime2 %> - <%= course.finishTime2 %><% } %>
             <%}%></td>
         <% }); %>
     </tr>
