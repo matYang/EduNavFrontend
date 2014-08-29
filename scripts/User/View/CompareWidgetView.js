@@ -88,8 +88,8 @@ var CompareWidgetView = Backbone.View.extend({
         this.courseIds = app.storage.getCoursesToCompare();
     },
     renderMap: function () {
-        if (typeof BMap !== "undefined" && !this.map && app.searchView) {
-            this.renderMap();
+        if (typeof BMap == "undefined" || this.map || !app.searchView) {
+            return
         }
         var i = 0, courses = [];
         if (app.searchView && app.searchView.searchResultView&&app.searchView.searchResultView.messages) {
