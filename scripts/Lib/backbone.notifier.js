@@ -14,7 +14,7 @@
                 'message': '',			// message content
                 'closeBtn': false,
                 'title': undefined,		// notification title, if defined causes the notification to be 'dialog' (unless dialog is 'false')
-                'hideOnClick': true,	// whether to hide the notifications on mouse click
+                'hideOnClick': false,	// whether to hide the notifications on mouse click
                 'type': null,       	// default notification style (null / 'warning' / 'error' / 'info' / 'success')
                 'cls': null,      		// additional css class
                 'ms': 10000,			// milliseconds before hiding
