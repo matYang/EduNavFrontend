@@ -1125,7 +1125,7 @@
         </div>
         <div class="field clearfix" id="cashback_box_notLoggedIn">
             <div class="fleft login_reg1 clearfix" id="booking_loginnote">
-                <a id="booking_loginToggler" class="link F_green">登录</a>
+                <a class="js_loginToggle" class="link F_green">登录</a>
                 或<a id="booking_register" class="link F_green">注册</a>
                 后可享受"返"或"立减"优惠
             </div>
@@ -1141,7 +1141,7 @@
                     <a class="button link" id="booking_forgotPassword">忘记密码?</a>
                     <a class="button link" id="quickRegister" style="color:#D38613;">还不是会员?马上注册</a>
                 </div>
-                <!-- <div class="close">关闭</div> -->
+                 <div class="close js_loginToggle">关闭</div>
             </div>
         </div>
     </div>
@@ -1255,6 +1255,7 @@
 
 <script type="text/template" id="tpl_newBooking_price">
 <div class="row4">
+    <%if(price){%>
     您需要支付的费用为：
     <%if(payType ==EnumConfig.PayType.offline){%>
         <span class="price">¥<%= price %></span>
@@ -1270,6 +1271,9 @@
         （已减 <%= commission %> 元）
         </span>
         <%}%>
+    <%}%>
+    <%}else{%>
+    本课程费用为定制,请联系机构确认
     <%}%>
 </div>
 </script>
@@ -2043,7 +2047,7 @@
     <tr id="coupon_<%= id %>">
         <td class="col1"><%= id %></td>
         <td class="col2"><strong class="price"><%= balance %></strong></td>
-        <td class="col3"><%= expireTime %> <span class="badge"><%= expireSoon %></span></td>
+        <td class="col3"><%= expiryTime %> <span class="badge"><%= expireSoon %></span></td>
     </tr>
 </script>
 <script type="text/templates" id="tpl_usable_coupon_noMessage">

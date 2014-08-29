@@ -16,7 +16,7 @@ var Coupon = Backbone.Model.extend({
             'enabled':undefined,
 
             'createTime': undefined,//创建时间
-            'expireTime': undefined,//失效时间
+            'expiryTime': undefined,//失效时间
             'lastModifyTime': undefined//最后修改时间
 
         };
@@ -43,15 +43,14 @@ var Coupon = Backbone.Model.extend({
 
             data.total = parseFloat(data.total);
             data.balance = parseFloat(data.balance);
-            data.origin = parseInt(data.origin, 10);
+            data.origin = Utilities.parseNum(data.origin);
 
             data.total = isNaN(data.total) ? 0 : data.total;
             data.balance = isNaN(data.balance) ? 0 : data.balance;
-            data.origin = isNaN(data.origin) ? 0 : data.origin;
 
             data.createTime = Utilities.castFromAPIFormat(data.createTime);
             data.lastModifyTime = Utilities.castFromAPIFormat(data.lastModifyTime);
-            data.expireTime = Utilities.castFromAPIFormat(data.expireTime);
+            data.expiryTime = Utilities.castFromAPIFormat(data.expiryTime);
 
             data.status = parseInt(data.status, 10);
             data.enabled = parseInt(data.enabled, 10);
@@ -63,16 +62,16 @@ var Coupon = Backbone.Model.extend({
         var json = _.clone(this.attributes), date = new Date();
         json.createTime = Utilities.getDateString(this.get('createTime'));
         json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));
-        json.expireTime = Utilities.getDateString(this.get('expireTime'));
+        json.expiryTime = Utilities.getDateString(this.get('expiryTime'));
 
-        json.expireSoon = (((this.get('expireTime')||new Date()).getTime() - date.getTime()) < 604800000 ) ? "<span>即将到期</span>" : "";// 7 days
+        json.expireSoon = (((this.get('expiryTime')||new Date()).getTime() - date.getTime()) < 604800000 ) ? "<span>即将到期</span>" : "";// 7 days
         return json;
     },
 
     toJSON: function () {
         var json = _.clone(this.attributes);
         delete json.createTime;
-        delete json.expireTime;
+        delete json.expiryTime;
         delete json.lastModifyTime;
         return json;
     }

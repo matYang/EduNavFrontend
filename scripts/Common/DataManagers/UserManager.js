@@ -493,8 +493,8 @@
             return;
         }
         newBooking.overrideUrl(ApiResource.user_booking);
-        newBooking.set('bookingId', -1);
-        newBooking.set('id', -1);
+        newBooking.set('bookingId', undefined);
+        newBooking.set('id', undefined);
         newBooking.set("course", undefined);
         newBooking.set('userId', this.sessionManager.getId());
         newBooking.save({}, {
