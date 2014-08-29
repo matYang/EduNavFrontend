@@ -12,17 +12,18 @@ var SearchResultView = MultiPageView.extend({
     // actionClass: "viewDetail",
     autoHeight: true,
     truePagination: true,
-    initialize: function (allMessages, messageList, compareWidget) {
+    initialize: function (searchRepresentation, compareWidget) {
         if (!this.initialized) {
             _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
             MultiPageView.prototype.initialize.call(this);
-            this.messages = messageList || this.messages;
-            this.allMessages = allMessages || this.allMessages;
+            this.sr = searchRepresentation;
+            this.$domContainer = $("#" + this.entryContainer);
+            this.$domContainer.empty();
             this.compareWidgetView = compareWidget || this.compareWidgetView;
             this.user = app.sessionManager.sessionModel;
             this.initialized = true;
         }
-        this.render();
+        this.fetchAction();
         this.bindEvents();
     },
     render: function () {
@@ -85,7 +86,7 @@ var SearchResultView = MultiPageView.extend({
         this.sr.set("count", this.pageEntryNumber);
         this.currentPage = page;
         app.navigate("search/" + this.sr.toQueryString(), {trigger: false, replace: true});
-        $("#searchResultDisplayPanel").empty().append('<div class="loading"></div>');
+        $("#"+this.entryContainer).empty().append('<div class="loading"></div>');
         $("#courseSearchResultNavigator").empty();
         app.generalManager.findCourse(this.sr, {
             success: this.renderSearchResults,
@@ -95,7 +96,7 @@ var SearchResultView = MultiPageView.extend({
     },
     renderError: function (data) {
         if (!this.isClosed) {
-            $("#searchResultDisplayPanel").empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
+            $("#"+this.entryContainer).empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
         }
     },
     renderSearchResults: function (data) {
