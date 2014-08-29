@@ -1948,15 +1948,11 @@
     <tr id="partnerIntro">
         <th>机构介绍</th>
         <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.id %>">
-            <% if (course.partnerIntro && course.partnerIntro.length>30) { %>
+        <td class="courseId_<%= course.id %>"><% if (course.partnerIntro && course.partnerIntro.length>30) { %>
             <%= course.partnerIntro.substring(0,24) %>...
-            <a class="F_green expand" href="#">[展开]</a></td>
-
-        <% } else {%>
-        <%= course.partnerIntro %>
-        <% } %>
-        <% }); %>
+            <a class="F_green expand" href="#">[展开]</a>
+        <% } else {%> <%= course.partnerIntro %> <% } %>
+        <% }); %></td>
     </tr>
     <tr id="highScoreReward">
         <th>教学特色</th>
