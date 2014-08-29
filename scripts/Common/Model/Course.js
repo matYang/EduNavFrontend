@@ -110,6 +110,10 @@ var Course = Backbone.Model.extend({
                 data.price = Utilities.parseNum(data.price);//爱上课价格
                 data.originalPrice = Utilities.parseNum(data.originalPrice);//原价
 
+                if(data.originalPrice == data.price){
+                    data.originalPrice = null;
+                }
+
                 /*基本信息*/
                 data.cutoffDate = Utilities.castFromAPIFormat(this.get('cutoffDate'));
                 data.createTime = Utilities.castFromAPIFormat(this.get('createTime'));
