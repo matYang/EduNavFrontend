@@ -8,8 +8,7 @@ var SearchResultView = MultiPageView.extend({
     entryTemplate: _.template(tpl.get("searchResultEntry")),
     extPn: true,
     entryHeight: 157,
-    pageEntryNumber: 10, //
-    actionClass: "viewDetail",
+    pageEntryNumber: 10,
     autoHeight: true,
     initialize: function (searchRepresentation, compareWidget) {
         if (!this.initialized) {
@@ -24,6 +23,7 @@ var SearchResultView = MultiPageView.extend({
         }
         this.fetchAction();
         this.bindEvents();
+        this.bindEntryEvents();
     },
     render: function () {
         this.isClosed = false;
@@ -56,23 +56,16 @@ var SearchResultView = MultiPageView.extend({
             id = Utilities.getId($(this).attr("id"));
             app.navigate("course/" + id, true);
         });
-//        this.registerSortEvent($("#courseSortTime"), this.compareTime, this.timeDesc, this, function () {
-//            that.timeDesc = !that.timeDesc;
-//        });
-//        this.registerSortEvent($("#courseSortPrice"), this.comparePrice, this.priceDesc, this, function () {
-//            that.priceDesc = !that.priceDesc;
-//        });
-    },
-    compareTime: function (course) {
-        return course.get("time");
-    },
-    comparePrice: function (course) {
-        return course.get("price");
     },
 
-    // entryEvent: function (courseId) {
-    //     app.navigate("course/" + courseId, true);
-    // },
+    bindEntryEvents: function () {
+        $('#searchResultDisplayPanel').on('click','.viewDetail',function(){
+            var courseId = $(this).data('id');
+            if(courseId=='')return;
+            _hmt.push(['_trackEvent', 'course', 'click', courseId]);
+            app.navigate("course/" + courseId, true);
+        });
+    },
     fetchAction: function (page) {
 
         if (page === undefined) {// 未传入参数

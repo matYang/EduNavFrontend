@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="style/css/compare.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/booking.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/aboutUs.css"/>
+    <script>var _hmt = _hmt || [];</script>
 </head>
 <body>
 <div id='topBar' class='unselectable'></div>
@@ -265,7 +266,7 @@
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/><span><%= instName%></span></div>
         <div class="col1">
             <p class="title">
-                <a class="F_green courseTitle" id="viewAllTitle_<%= id %>" href="#course/<%= id %>">
+                <a class="F_green courseTitle viewDetail" data-id="<%= id %>">
                     <%= courseName %></a>
             </p>
 
@@ -333,7 +334,7 @@
 
             <div class="blank" id="trial_<%= id %>"><input class="btn_o" value="免费试听" type="button"></div>
 
-            <div class="viewDetail"><a class="F_green" href="#course/<%= id %>">查看详情</a></div>
+            <div class="viewDetail" data-id="<%= id %>"><a class="F_green">查看详情</a></div>
         </div>
     </div>
 </script>
