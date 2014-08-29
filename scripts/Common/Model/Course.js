@@ -175,23 +175,18 @@ var Course = Backbone.Model.extend({
             }
             json.studyDaysNote = json.studyDaysNote ? "(" + json.studyDaysNote + ")" : "";
             if (json.teacherList) {
-                for (i = 0; i < json.teacherList.length; i++) {
-                    if (json.teacherList[i] instanceof Teacher) {
-                        json.teacherList[i] = json.teacherList[i]._toJSON();
-                    } else {
-                        json.teacherList[i] = json.teacherList[i];
-
-                    }
-                }
+                var teacherList = [];
+                json.teacherList.forEach(function(teacher){
+                    teacherList.push((teacher._toJSON()));
+                });
+                json.teacherList = teacherList;
             }
             if (json.classPhotoList) {
-                for (i = 0; i < json.classPhotoList.length; i++) {
-                    if (json.classPhotoList[i] instanceof Photo) {
-                        json.classPhotoList[i] = json.classPhotoList[i]._toJSON();
-                    } else {
-                        json.classPhotoList[i] = json.classPhotoList[i];
-                    }
-                }
+                var classPhotoList = [];
+                json.classPhotoList.forEach(function(photo){
+                    classPhotoList.push((photo._toJSON()));
+                });
+                json.classPhotoList = classPhotoList;
             }
             return json;
         },

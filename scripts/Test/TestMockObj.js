@@ -9,18 +9,13 @@ testMockObj = {
     testPartner4: new Partner().set("id", 4),
     testPartner5: new Partner().set("id", 5),
     testTeachers: new Teachers(),
-    testTeacher1: new Teacher().set("id", 1).set("name", "Teacher A"),
-    testTeacher2: new Teacher().set("id", 2).set("name", "Teacher B"),
-    testTeacher3: new Teacher().set("id", 3).set("name", "Teacher C"),
-    testTeacher4: new Teacher().set("id", 4).set("name", "Teacher D"),
-    testTeacher5: new Teacher().set("id", 5).set("name", "Teacher E"),
+    testTeacher1: new Teacher().set("id", 1).set("name", "Teacher A").set("imgUrl", "/testUrl1"),
+    testTeacher2: new Teacher().set("id", 2).set("name", "Teacher B").set("imgUrl", "/testUrl1"),
+    testTeacher3: new Teacher().set("id", 3).set("name", "Teacher C").set("imgUrl", "/testUrl1"),
     testPhotos: new Photos(),
     testPhoto1: (new Photo()).set("id", 1).set("imgUrl", "/testUrl1"),
     testPhoto2: new Photo().set("id", 2).set("imgUrl", "/testUrl2"),
     testPhoto3: new Photo().set("id", 3).set("imgUrl", "/testUrl3"),
-    testPhoto4: new Photo().set("id", 4).set("imgUrl", "/testUrl4"),
-    testPhoto5: new Photo().set("id", 5).set("imgUrl", "/testUrl5"),
-    testPhoto6: new Photo().set("id", 6).set("imgUrl", "/testUrl6"),
     testCourses: new Courses(),
     testCourse1: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 1)
         .set("marking", '近期门店有优惠活动').set("courseName", "雅思英语").set("price", 10800)
@@ -75,13 +70,11 @@ testMockObj = {
     testCoupon1: (new Coupon()).set("id", 1).set("balance", 30).set("total", 30),
     testCoupon2: (new Coupon()).set("id", 2).set("balance", 20).set("total", 30),
     testCoupon3: (new Coupon()).set("id", 3).set("balance", 25).set("total", 30),
-    testCoupon4: (new Coupon()).set("id", 4).set("balance", 10).set("total", 30),
 
     testCredits: new Credits(),
     testCredit1: (new Credit()).set("id", 1).set("amount", 1000),
     testCredit2: (new Credit()).set("id", 2).set("amount", 1000),
     testCredit3: (new Credit()).set("id", 3).set("amount", 1000),
-    testCredit4: (new Credit()).set("id", 4).set("amount", 1000),
     testCategories: {
         "data": [
 
@@ -251,10 +244,10 @@ testMockObj = {
 testMockObj.testCourses.add([testMockObj.testCourse1, testMockObj.testCourse2, testMockObj.testCourse3, testMockObj.testCourse4]);
 testMockObj.testCourses.total = 39;
 testMockObj.testBookings.add([testMockObj.testBooking1, testMockObj.testBooking2, testMockObj.testBooking3, testMockObj.testBooking4]);
-testMockObj.testCoupons.add([testMockObj.testCoupon1, testMockObj.testCoupon2, testMockObj.testCoupon3, testMockObj.testCoupon4]);
-testMockObj.testCredits.add([testMockObj.testCredit1, testMockObj.testCredit2, testMockObj.testCredit3, testMockObj.testCredit4]);
-testMockObj.testTeachers.add([testMockObj.testTeacher1, testMockObj.testTeacher2, testMockObj.testTeacher3, testMockObj.testTeacher4]);
-testMockObj.testPhotos.add([testMockObj.testPhoto1, testMockObj.testPhoto2, testMockObj.testPhoto3, testMockObj.testPhoto4]);
+testMockObj.testCoupons.add([testMockObj.testCoupon1, testMockObj.testCoupon2, testMockObj.testCoupon3]);
+testMockObj.testCredits.add([testMockObj.testCredit1, testMockObj.testCredit2, testMockObj.testCredit3]);
+testMockObj.testTeachers.add([testMockObj.testTeacher1, testMockObj.testTeacher2, testMockObj.testTeacher3]);
+testMockObj.testPhotos.add([testMockObj.testPhoto1, testMockObj.testPhoto2, testMockObj.testPhoto3]);
 
 testMockObj.testCourse1.set("teacherList", testMockObj.testTeachers);
 testMockObj.testCourse2.set("teacherList", testMockObj.testTeachers);
