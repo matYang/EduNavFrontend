@@ -11,7 +11,6 @@ var User = Backbone.Model.extend({
             'password': '',
             'email': '',
             'gender': undefined,
-            'status': 0,
             'invitationCode': '',
             'appliedInvitationCode': '',
 
@@ -48,7 +47,6 @@ var User = Backbone.Model.extend({
             data.id = Utilities.parseNum(data.id, 10);
             data.userId = data.id;
 
-            data.status = Utilities.parseNum(data.status, 10);
             data.gender = Utilities.parseNum(data.gender, 10);
 
             data.createTime = Utilities.castFromAPIFormat(data.createTime);
@@ -84,6 +82,7 @@ var User = Backbone.Model.extend({
         user.avatarUrl = json.avatarUrl;
         user.name = json.name;
         user.email = json.email;
+        user.gender = json.gender;
         return user;
     }
 
