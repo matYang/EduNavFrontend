@@ -96,7 +96,7 @@ var SearchResultView = MultiPageView.extend({
     },
     renderError: function (data) {
         if (!this.isClosed) {
-            $("#searchResultDisplayPanel").empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
+            $("#"+this.entryContainer).empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
         }
     },
     renderSearchResults: function (data) {
