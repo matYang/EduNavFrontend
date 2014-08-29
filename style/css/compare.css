@@ -51,6 +51,8 @@
 #courseName .td .set a.pre-disabled{ background-position:0 0;}
 #courseName .td .set a.next-disabled{ background-position:-65px 0;}
 
+#courseIntro p{text-align: left;text-indent: 1em;}
+
 /*.compare table td .cashback{float:left; padding-left:4px;}*/
 
 #courseName.stickyHeader {
