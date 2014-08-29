@@ -28,7 +28,7 @@ var SearchResultView = MultiPageView.extend({
     },
     render: function () {
         this.isClosed = false;
-//        MultiPageView.prototype.render.call(this);
+        MultiPageView.prototype.render.call(this);
         var courseIds = app.storage.getCoursesToCompare();
         for (var i = 0; i < courseIds.length; i++) {
             $("#compare_" + courseIds[i]).find("input").attr("class", "remove btn_gray").val("已加入对比").removeClass("add").addClass("remove");
@@ -86,7 +86,7 @@ var SearchResultView = MultiPageView.extend({
         this.sr.set("count", this.pageEntryNumber);
         this.currentPage = page;
         app.navigate("search/" + this.sr.toQueryString(), {trigger: false, replace: true});
-        $("#searchResultDisplayPanel").empty().append('<div class="loading"></div>');
+        $("#"+entryContainer).empty().append('<div class="loading"></div>');
         $("#courseSearchResultNavigator").empty();
         app.generalManager.findCourse(this.sr, {
             success: this.renderSearchResults,
