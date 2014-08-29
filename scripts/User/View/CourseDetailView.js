@@ -112,7 +112,7 @@ var CourseDetailView = Backbone.View.extend({
         //详细查看教师
         $('.teacher').on('click','.more',function(e){
             var teacherIndex = $(this).data('id');
-            var teacher = that.course.get('teacherList').at(teacherIndex);
+            var teacher = that.course.get('teacherList')[teacherIndex];
             var message = '<h3>' +teacher.get('name')+
                 '</h3><img src="' +teacher.get('imgUrl')+
                 '" alt="' +teacher.get('name')+
