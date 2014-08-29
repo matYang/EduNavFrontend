@@ -23,6 +23,8 @@ var RelatedCourseListView = Backbone.View.extend({
     },
     //渲染相关课程列表
     render: function (courses) {
+        var self = this;
+        courses = _.reject(courses, function(course){ return course.id == self.courseId; });
         if (courses && courses.length > 0) {
             var buf=[],course;
             var len = 5;//只显示前5个课程
@@ -33,9 +35,9 @@ var RelatedCourseListView = Backbone.View.extend({
                     course = courses[i];
                 }
                 var data = course._toSimpleJSON();
-                if(data.id == this.courseId){
-                    len++;continue;
-                }
+//                if(data.id == this.courseId){
+//                    len++;continue;
+//                }
                 buf[i] = this.entryTemplate(data);
             }
             this.$el.html(buf.join(""));
