@@ -10,11 +10,12 @@ var TopBarView = Backbone.View.extend({
         this.notLoggedInTemplate = _.template(tpl.get('topBar-notLoggedIn'));
 
         this.render();
+        this.bindEvents();
         // this.listenTo(this.sessionUser, 'change:userId', this.render);
     },
 
     render: function () {
-        this.bindEvents();
+
         var time, date = new Date();
         var hour = date.getHours();
         this.$pdropdown = $('#profileDropdown>dd');
