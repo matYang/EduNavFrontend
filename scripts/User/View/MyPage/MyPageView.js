@@ -41,8 +41,8 @@ var MyPageView = Backbone.View.extend({
         Info.displayErrorPage("content", data.responseJSON);
     },
     createChildView: function () {
-        $(document).scrollTop(0);
-//        $.smoothScroll();//scroll to top
+//        $(document).scrollTop(0);
+//        $.smoothScroll();//smooth scroll to top
         switch (this.query) {
             case "bookingDetail":
                 if (!this.reference) {
