@@ -72,7 +72,8 @@ var TopBarView = Backbone.View.extend({
             $(document.body).on('click','.js_loginDropToggle', function (e) {
                 e.preventDefault();
                 $("#topbar_loginbox").toggle();
-//                self.$usernameInput.trigger("focus");
+                self.$usernameInput.trigger("focus");
+                e.stopPropagation();
             });
             this.$usernameInput.on("click", function (e) {
                 $("#credentialWrong").hide();
@@ -99,7 +100,7 @@ var TopBarView = Backbone.View.extend({
             $('#login_button').on('click', function () {
                 self.login();
             });
-            $(document).on("click", function (e) {
+            $(document.body).on("click", function (e) {
                 var container = $("#topbar_loginbox");
                 if (!container.is(e.target) // if the target of the click isn't the container...
                     && container.has(e.target).length === 0 && e.target.id !== "login_toggle") // ... nor a descendant of the container
