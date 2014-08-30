@@ -10,7 +10,7 @@ var FindPasswordView = BaseFormView.extend({
             type: "text",
             mandatory: true,
             validatorFunction: Utilities.phoneValid,
-            modelAttr: "phone",
+            modelAttr: "accountIdentifier",
             buildValidatorDiv: Utilities.defaultValidDivBuilder
         }),
         new BaseField({
