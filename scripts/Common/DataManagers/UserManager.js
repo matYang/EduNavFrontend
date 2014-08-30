@@ -287,7 +287,8 @@
             Info.warn('UserManager::recoverPassword:: session already exists, exit');
             return;
         }
-        opt.authCode = opt.authCode.toUpperCase();
+        //remove confirm password
+        opt.confirmNewPassword = undefined;
         $.ajax({
             type: 'POST',
             url: ApiResource.user_forgetPassword,
