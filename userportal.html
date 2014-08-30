@@ -75,12 +75,14 @@
             </ul>
 
             <div class="user_info">
-                <span id="greeting"></span>好，尊敬的
+                <span id="greeting"></span>好，亲爱的
                 <span id="username">
                     <% if(name){%>
                         <%= name %>
-                    <% }else{ %>
+                    <% }else if(invitationCode){ %>
                         <%= invitationCode %>
+                    <% }else{ %>
+                        <%= phone %>
                     <%} %>
                  </span>
                 <a id="logout" href="#">[退出]</a>
@@ -478,12 +480,14 @@
                 <div class="mypage_sidebar_sectionContent">
                     <div id="mypage_avatar">
                         <img src="style/images/user_pic.jpg" width="150" height="150"/>
-                        <p><span id="mypage_greeting"></span>好，尊敬的
+                        <p><span id="mypage_greeting"></span>好，亲爱的
                             <span id="mypage_name">
                             <% if(name){%>
                                 <%= name %>
-                            <% }else{ %>
+                            <% }else if(invitationCode){ %>
                                 <%= invitationCode %>
+                            <% }else{ %>
+                                <%= phone %>
                             <%} %>
                             </span>
                         </p>
