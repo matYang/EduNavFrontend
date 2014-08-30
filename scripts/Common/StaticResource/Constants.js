@@ -66,6 +66,8 @@ var Constants = {
 
         //个人资料
         "mypage_password", "mypage_setting", "mypage_share",
+        //设置用户名的弹出框
+        "mypage_usernameModal",
 
 
         //底部栏

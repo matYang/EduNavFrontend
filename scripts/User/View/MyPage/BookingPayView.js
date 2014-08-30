@@ -90,6 +90,7 @@ var BookingPayView = Backbone.View.extend({
     },
     close: function () {
         if (!this.isClosed) {
+            this.notifier = null;
             this.$el.empty();
             this.isClosed = true;
             if (this.payResultModel) {

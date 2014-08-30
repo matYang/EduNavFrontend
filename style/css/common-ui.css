@@ -67,6 +67,9 @@ a:hover, a:active{
     white-space: nowrap;
     cursor: pointer;
 }
+.btn.btn-block{
+    display: block;
+}
 
 /*默认样式 淡灰色边框 白灰底 绿字*/
 .btn-default {

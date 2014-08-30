@@ -224,6 +224,7 @@ var CourseDetailView = Backbone.View.extend({
             if(this.viewTeacherModal){
                 this.viewTeacherModal.destroy();
             }
+            this.notifier = null;
             $(document).off("scroll");
             $("#courseNavigateTab").off();
             $("body").removeClass("courseDetail");

@@ -39,13 +39,18 @@ var MyPageSettingView = BaseFormView.extend({
         this.$el.append(this.template(this.model._toJSON()));
     },
     bindEvents: function () {
+        var self = this;
         BaseFormView.prototype.bindEvents.call(this);
+        $('.js_setUsernameModal').on('click',function(){
+           //打开设置用户名的modal
+            self.usernameModal = new UsernameModal({name:'setting'});
+        });
     },
 
     submitAction: function () {
         var that = this, date = new Date ();
         this.model.set('gender',$('input[name="sex"]:checked').val());
-//        this.model.set('identify',$('input[name="identify"]:checked').val());
+//        this.model.set('identify',$('input[name="identify"]:checked').val());//todo 已工作或者还是学生
         app.userManager.changeInfo(this.model, {
             "success": that.saveSuccess,
             "error": that.saveError
