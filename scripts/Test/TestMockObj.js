@@ -66,16 +66,16 @@ testMockObj = {
     testCreditHistory2: (new CreditHistory().set('id', 2)),
     testCreditHistory3: (new CreditHistory().set('id', 3)),
 
+    testAccountHistories: new AccountHistories(),
+    testAccountHistory1: (new AccountHistory().set('id', 1)),
+    testAccountHistory2: (new AccountHistory().set('id', 2)),
+    testAccountHistory3: (new AccountHistory().set('id', 3)),
 
     testCoupons: new Coupons(),
     testCoupon1: (new Coupon()).set("id", 1).set("balance", 30).set("total", 30),
     testCoupon2: (new Coupon()).set("id", 2).set("balance", 20).set("total", 30),
     testCoupon3: (new Coupon()).set("id", 3).set("balance", 25).set("total", 30),
 
-    testCredits: new Credits(),
-    testCredit1: (new Credit()).set("id", 1).set("amount", 1000),
-    testCredit2: (new Credit()).set("id", 2).set("amount", 1000),
-    testCredit3: (new Credit()).set("id", 3).set("amount", 1000),
     testCategories: {
         "data": [
 
@@ -246,7 +246,6 @@ testMockObj.testCourses.add([testMockObj.testCourse1, testMockObj.testCourse2, t
 testMockObj.testCourses.total = 39;
 testMockObj.testBookings.add([testMockObj.testBooking1, testMockObj.testBooking2, testMockObj.testBooking3, testMockObj.testBooking4]);
 testMockObj.testCoupons.add([testMockObj.testCoupon1, testMockObj.testCoupon2, testMockObj.testCoupon3]);
-testMockObj.testCredits.add([testMockObj.testCredit1, testMockObj.testCredit2, testMockObj.testCredit3]);
 testMockObj.testTeachers.add([testMockObj.testTeacher1, testMockObj.testTeacher2, testMockObj.testTeacher3]);
 testMockObj.testPhotos.add([testMockObj.testPhoto1, testMockObj.testPhoto2, testMockObj.testPhoto3]);
 
@@ -274,5 +273,11 @@ testMockObj.testCreditHistory1.set('charge', 200).set('createTime', new Date()).
 testMockObj.testCreditHistory2.set('charge', 300).set('createTime', new Date()).set('operation', 0);
 testMockObj.testCreditHistory3.set('charge', 400).set('createTime', new Date()).set('operation', 0);
 testMockObj.testCreditHistories.add([testMockObj.testCreditHistory1, testMockObj.testCreditHistory2, testMockObj.testCreditHistory3]);
+
+testMockObj.testAccountHistory1.set('charge', 700).set('createTime', new Date()).set('operation', 1);
+testMockObj.testAccountHistory2.set('charge', 300).set('createTime', new Date()).set('operation', 0);
+testMockObj.testAccountHistory3.set('charge', 400).set('createTime', new Date()).set('operation', 0);
+testMockObj.testAccountHistories.add([testMockObj.testAccountHistory1, testMockObj.testAccountHistory2, testMockObj.testAccountHistory3]);
+
 
 testMockObj[EnumConfig.ModuleIdentifier.user] = testMockObj.testUser;

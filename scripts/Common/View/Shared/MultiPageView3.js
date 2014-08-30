@@ -16,7 +16,7 @@ var MultiPageView3 = Backbone.View.extend({
      //TODO:
      */
     entryTemplate: "", //单条记录的模板
-    entryContainer: "", //结果列表
+    entryContainer: "", //结果列表 tbody
     truePagination: true, //为true时必须指定fetchAction函数用于与后台交互获取分页数据
     entryClass: "", //每条记录的样式
     pageNavigator: "pagination", //分页数据的container
@@ -24,7 +24,7 @@ var MultiPageView3 = Backbone.View.extend({
     startIndex: 0,//开始记录数
     currentPage: 1,//当前页数
     pageNumberClass: "",//分页数字的样式
-    pageNumberId: "",
+    pageNumberId: "page",//每个分页按钮的id前缀 结果为id='page_1'...
     entryEvent: "",//绑定在每条记录上的事件
     messages: null,//页面上面显示的经过过滤的信息(在假分页状态下)
     entryHeight: -1,
@@ -35,7 +35,7 @@ var MultiPageView3 = Backbone.View.extend({
     $messageContainer: null,
     singlePage: null,
     isTable: false,
-    $tableContainer: false,
+    $tableContainer: null,
     scroll: true,//设置换页后是否自动滚动到容器上方
     scrollTarget: null,//滚动到的元素位置
     initialize: function () {
@@ -77,10 +77,15 @@ var MultiPageView3 = Backbone.View.extend({
                 this.eventBound = true;
             }
         } else {
-            if (!this.table) {
+            if (!this.isTable) {
                 this.$messageContainer.append("<div class = 'noMessage'>" + this.noMessage() + "</div>");
             } else {
-                this.$messageContainer.append("<tr><td colspan='4'><div class = 'noMessage'>" + this.noMessage() + "</div></td></tr>");
+                var td_length = this.$tableContainer.find('.thead tr td').length();
+                if (!td_length) {
+                    td_length = 4;
+                }
+                this.$messageContainer.append("<tr><td colspan='" + td_length +
+                    "'><div class = 'noMessage'>" + this.noMessage() + "</div></td></tr>");
             }
         }
         if (this.autoHeight) {
@@ -192,13 +197,12 @@ var MultiPageView3 = Backbone.View.extend({
         }
 
         //step 3渲染这个分页组分页组 根据divBuf生成buf
-        _.each(pageViewList,function(page){
+        _.each(pageViewList, function (page) {
             divBuf[3] = page.number;
             divBuf[7] = page.text;
             buf.push(divBuf.join(""));
         });
         /*page core end*/
-
 
 
         buf.push("<a class='next'></a>");

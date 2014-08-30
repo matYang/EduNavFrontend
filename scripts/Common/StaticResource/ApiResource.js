@@ -43,6 +43,9 @@
                 },
                 'credit': {
                     history: '/history'
+                },
+                'account': {
+                    history: '/history'
                 }
             }
         };
@@ -75,7 +78,8 @@
                 user_booking_history: api_maker(api_modules.rootPrefix, 'booking', 'history'),
                 user_booking_operate: api_maker(api_modules.rootPrefix, 'booking', 'operate'),
                 user_coupon: api_maker(api_modules.rootPrefix, 'coupon', 'coupon'),
-                user_credit_history: api_maker(api_modules.rootPrefix, 'credit', 'history')
+                user_credit_history: api_maker(api_modules.rootPrefix, 'credit', 'history'),
+                user_account_history: api_maker(api_modules.rootPrefix, 'account', 'history')
             };
         };
 

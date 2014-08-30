@@ -1,40 +1,39 @@
-/*我的优惠券*/
-var MyPageCouponView = Backbone.View.extend({
-    el: "#mypage_content",
-    initialize: function () {
+/*我的现金账户*/
+var MyPageCashView = Backbone.View.extend({
+    el:"#mypage_content",
+    initialize: function (params) {
         _.bindAll(this, "render", "bindEvents", "close");
-        this.template = _.template(tpl.get("mypage_coupons"));
+        this.template = _.template(tpl.get("mypage_cash"));
         app.viewRegistration.register(this);
-        this.user = app.sessionManager.sessionModel;
+        this.user = params.user;
         this.isClosed = false;
         this.render();
     },
     render: function () {
-        this.$el.append(this.template);
-        this.listName = "usable";
-        this.childView = new UsableCouponView();
+        this.$el.append(this.template(this.user._toJSON()));
+        this.listName = "in";
+        this.childView = new InCashView();
         this.bindEvents();
-
     },
     bindEvents: function () {
         var that = this;
-        $("#couponNavBtn").on("click", "li", function (e) {
+        $("#accountNavBtn").on("click", "li", function (e) {
             $(e.delegateTarget).find(".active").removeClass("active");
-            $(e.target).addClass("active");
-            that.switchView($(e.target).data("id"));
+            $(this).addClass("active");
+            that.switchView($(this).data("id"));
         });
-        //todo #js_go_couponUsable
     },
     switchView: function (name) {
         if (this.listName === name) return;
         this.listName = name;
-        if (this.listName === "usable") {
+        if (this.listName === "in") {
             this.childView.close();
-            this.childView = new UsableCouponView();
-        } else if (this.listName === "got") {
+            this.childView = new InCashView();
+        } else if (this.listName === "out") {
             this.childView.close();
-            this.childView = new GotCouponView();
+            this.childView = new OutCashView();
         }
+
     },
     close: function () {
         if (!this.isClosed) {
@@ -47,31 +46,25 @@ var MyPageCouponView = Backbone.View.extend({
         }
     }
 });
-
-
-var UsableCouponView = MultiPageView3.extend({
-    entryContainer:'usableList',
-    el: "#coupons_container",
-    table: "#usableTable",
+var InCashView = MultiPageView3.extend({
+    entryContainer:'accountInList',
+    el: "#accountContainer",
     minHeight: 144,
     pageEntryNumber: 2,
     entryHeight: 36,
-    entryTemplate: _.template(tpl.get("mypage_usableCouponRow")),
-    template: _.template(tpl.get("mypage_couponUsable")),
-    noMessage: _.template(tpl.get("usable_coupon_noMessage")),
+    entryTemplate: _.template(tpl.get("mypage_accountInRow")),
+    template: _.template(tpl.get("mypage_accountIn")),
+    noMessage: _.template(tpl.get("accountInNoMessage")),
+    pageNavigator:'accountInListPagination',
+    pageNavigatorClass:'page blank1 clearfix',
     initialize: function () {
         this.$el.append(this.template);
         MultiPageView3.prototype.initialize.call(this);
-        this.pageNumberClass = "searchResultPageNumber";
-        this.pageNumberId = "couponPageNum";
-        this.pageNavigator = "usableCouponListNavigator";
-        this.pageNavigatorClass = "page blank1 clearfix";
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
 
-        this.sr = new CouponSearchRepresentation();
-        this.sr.set('status',EnumConfig.CouponStatus.usable);
-        this.sr.set('balanceStart',0.01);
+        this.sr = new AccountHistorySearchRepresentation();
+        this.sr.set('operation',1);
         this.fetchAction();
     },
     //以下在toPage(点击分页按钮)中调用 doRefresh()
@@ -85,19 +78,19 @@ var UsableCouponView = MultiPageView3.extend({
         }
         this.sr.set("count", this.pageEntryNumber);
         this.currentPage = this.sr.get('start')/this.pageEntryNumber +1;
-        $('#'+this.entryContainer).empty().append("<tr><td colspan='4'><div class='loading'></div></td></tr>");
+        $('#'+this.entryContainer).empty().append("<tr><td colspan='3'><div class='loading'></div></td></tr>");
 
-        app.userManager.fetchCoupons(this.sr, {
+        app.userManager.fetchAccountHistories(this.sr, {
             success: self.render,
             error: this.renderError
         });
     },
     render: function (data) {
-        this.messages = data || new Bookings();
+        this.messages = data || new AccountHistories();
         MultiPageView3.prototype.render.call(this);
     },
     renderError:function(){
-      //todo error handler
+        //todo error handler
     },
     close: function () {
         if (!this.isClosed) {
@@ -106,27 +99,25 @@ var UsableCouponView = MultiPageView3.extend({
         }
     }
 });
-
-var GotCouponView = MultiPageView3.extend({
-    entryContainer:'gotList',
-    el: "#coupons_container",
-    table: "#gotTable",
+var OutCashView = MultiPageView3.extend({
+    entryContainer:'accountOutList',
+    el: "#accountContainer",
     minHeight: 144,
     pageEntryNumber: 2,
     entryHeight: 36,
-    entryTemplate: _.template(tpl.get("mypage_gotCouponRow")),
-    template: _.template(tpl.get("mypage_couponGot")),
-    noMessage: _.template(tpl.get("got_coupon_noMessage")),
+    entryTemplate: _.template(tpl.get("mypage_accountOutRow")),
+    template: _.template(tpl.get("mypage_accountOut")),
+    noMessage: _.template(tpl.get("accountOutNoMessage")),
+    pageNavigator:'accountOutListPagination',
+    pageNavigatorClass:'page blank1 clearfix',
     initialize: function () {
         this.$el.append(this.template);
         MultiPageView3.prototype.initialize.call(this);
-        this.pageNumberClass = "searchResultPageNumber";
-        this.pageNumberId = "couponPageNum";
-        this.pageNavigator = "gotCouponListNavigator";
-        this.pageNavigatorClass = "page blank1 clearfix";
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
-        this.sr = new CouponSearchRepresentation();
+
+        this.sr = new AccountHistorySearchRepresentation();
+        this.sr.set('operation',0);
         this.fetchAction();
     },
     //以下在toPage(点击分页按钮)中调用 doRefresh()
@@ -140,15 +131,15 @@ var GotCouponView = MultiPageView3.extend({
         }
         this.sr.set("count", this.pageEntryNumber);
         this.currentPage = this.sr.get('start')/this.pageEntryNumber +1;
-        $('#'+this.entryContainer).empty().append("<tr><td colspan='4'><div class='loading'></div></td></tr>");
+        $('#'+this.entryContainer).empty().append("<tr><td colspan='3'><div class='loading'></div></td></tr>");
 
-        app.userManager.fetchCoupons(this.sr, {
+        app.userManager.fetchAccountHistories(this.sr, {
             success: self.render,
             error: this.renderError
         });
     },
     render: function (data) {
-        this.messages = data || new Bookings();
+        this.messages = data || new AccountHistories();
         MultiPageView3.prototype.render.call(this);
     },
     renderError:function(){

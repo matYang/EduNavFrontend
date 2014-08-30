@@ -53,10 +53,17 @@ var Constants = {
         "mypage_coupons",
         "mypage_usableCouponRow", "mypage_couponUsable", "usable_coupon_noMessage",
         "mypage_gotCouponRow", "mypage_couponGot", "got_coupon_noMessage",
+
         //我的现金账户
         "mypage_cash",
+        "mypage_accountIn", "mypage_accountInRow", "accountInNoMessage",
+        "mypage_accountOut", "mypage_accountOutRow", "accountOutNoMessage",
+
         //我的积分
-        "mypage_credit", "mypage_creditTable", "mypage_creditRow", "mypage_creditStore", "credit_noMessage",
+        "mypage_credit",
+        "mypage_creditTable", "mypage_creditRow", "credit_noMessage",
+        "mypage_creditStore",
+
         //个人资料
         "mypage_password", "mypage_setting", "mypage_share",
 

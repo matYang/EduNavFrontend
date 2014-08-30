@@ -119,6 +119,11 @@ var EnumConfig = {
     //credit的操作信息
     'CreditOperation':{
         0:'预定课程发放'//预定成功获取
+    },
+    //现金账户account的操作信息
+    'AccountOperationText':{
+        0:'提现支出',
+        1:'返现收入'
     }
 
 };

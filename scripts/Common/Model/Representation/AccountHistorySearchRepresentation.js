@@ -1,14 +1,13 @@
-var CreditHistorySearchRepresentation = Backbone.Model.extend({
+var AccountHistorySearchRepresentation = Backbone.Model.extend({
 
     defaults: function () {
         return {
             'id':undefined,
             'userId': undefined,
-            'status': undefined,
+            'operation': undefined,
 
             'start': undefined,
             'count': undefined
-
         };
     },
 

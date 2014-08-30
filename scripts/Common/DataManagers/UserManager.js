@@ -452,6 +452,40 @@
         });
     };
 
+    //查找现金账户历史
+    UserManager.prototype.fetchAccountHistories = function (accountHistorySearchRepresentation, callback) {
+        var self = this;
+
+        if (!this.sessionManager.hasSession()) {
+            Info.warn('UserManager::fetchAccount:: session does not exist, exit');
+            return;
+        }
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testAccountHistories);
+            return;
+        }
+        var accountHistories = new AccountHistories();
+        accountHistories.overrideUrl(ApiResource.user_account_history);
+        accountHistories.fetch({
+            data: accountHistorySearchRepresentation.toQueryString(),
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    callback.success(accountHistories);
+                }
+            },
+
+            error: function (model, response) {
+                Info.warn('UserManager::fetchAccountHistories:: fetch failed with response:');
+                Info.warn(response);
+                if (callback) {
+                    callback.error(response);
+                }
+            }
+        });
+    };
+
     //用于根据订单id查询单个订单
     UserManager.prototype.fetchBooking = function (id, callback) {
 
