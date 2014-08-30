@@ -108,6 +108,7 @@ var MultiPageView3 = Backbone.View.extend({
     },
 
     toPage: function (pageIndex) {
+        if(pageIndex===this.currentPage)return;
         if (this.scroll) {
             var $target = $(this.scrollTarget);
             if ($target.length !== 0) {
