@@ -219,6 +219,8 @@
             Info.warn('UserManager::changePassword:: session does not exist, exit');
             return;
         }
+        //remove confirm password
+        opt.confirmNewPassword = undefined;
         $.ajax({
             type: 'PUT',
             url: ApiResource.user_changePassword.format(self.sessionManager.getId()),
@@ -287,6 +289,7 @@
             Info.warn('UserManager::recoverPassword:: session already exists, exit');
             return;
         }
+        opt.authCode = opt.authCode.toUpperCase();
         //remove confirm password
         opt.confirmNewPassword = undefined;
         $.ajax({
