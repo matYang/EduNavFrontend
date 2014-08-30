@@ -80,7 +80,7 @@ var MultiPageView3 = Backbone.View.extend({
             if (!this.isTable) {
                 this.$messageContainer.append("<div class = 'noMessage'>" + this.noMessage() + "</div>");
             } else {
-                var td_length = this.$tableContainer.find('.thead tr td').length();
+                var td_length = this.$tableContainer.find('.thead tr td').length;
                 if (!td_length) {
                     td_length = 4;
                 }
