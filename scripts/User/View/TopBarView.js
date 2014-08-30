@@ -73,7 +73,7 @@ var TopBarView = Backbone.View.extend({
                 e.preventDefault();
                 $("#topbar_loginbox").toggle();
                 self.$usernameInput.trigger("focus");
-                e.stopPropagation();
+                e.stopPropagation();//stop to document body event handler
             });
             this.$usernameInput.on("click", function (e) {
                 $("#credentialWrong").hide();
