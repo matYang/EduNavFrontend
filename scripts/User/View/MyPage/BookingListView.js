@@ -10,7 +10,7 @@ var BookingListView = MultiPageView3.extend({
     noMessage: _.template(tpl.get("booking_noMessage")),
     $domContainer: null,
     el: "#bookingSummary",
-    scrollTarget:'#scrollTarget',
+    scrollTarget:'.scrollTarget',
     bookingSr:new BookingSearchRepresentation(),
     initialize: function (bookingSr) {
         //初始化过滤条件
