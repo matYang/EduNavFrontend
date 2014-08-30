@@ -117,19 +117,19 @@ var NewBookingView = BaseFormView.extend({
                 //未登录
                 $("#cashback_box_notLoggedIn").removeClass("hidden");
                 $("#cashback_box").addClass("hidden");
-                $('input[name=bookingType]').attr('disabled','disabled');
+                $('input[name=bookingType]').attr('disabled', 'disabled');
 
             }
             app.topBarView.render();
         });
         //返回到课程详情
-        $(".gotoCourse").on("click", function () {
+        $('#content').on('click','.js_gotoCourse', function () {
             app.navigate("course/" + that.model.get("courseId"), true);
         });
         //判断是否已经登录
         if (!app.sessionManager.hasSession()) {
             //未登录下不可选择支付类型
-            $('input[name=bookingType]').attr('disabled','disabled');
+            $('input[name=bookingType]').attr('disabled', 'disabled');
             $("#quickLogin").on("click", function () {
                 $("#booking_loginbox").show();
             });
@@ -197,7 +197,7 @@ var NewBookingView = BaseFormView.extend({
             });
         }
         //登录框的展开和收起
-        $(".js_loginToggle").on("click", function (e) {
+        $(".js_loginBoxToggle").on("click", function (e) {
             var $bookingLogin = $("#booking_loginbox");
             $bookingLogin.toggleClass("hidden");
         });
@@ -216,10 +216,10 @@ var NewBookingView = BaseFormView.extend({
         //todo 在线付款直接显示价格减去commisson的价格 右边显示已减多少钱
         //todo 线下支付直接显示原价 右侧显示cashback的数量
         $(this.priceContainer).html(this.priceTemplate({
-            payType:payType,
-            price:this.model.get('course').get('price'),
-            commission:this.model.get('course').get('commission'),
-            cashback:this.model.get('course').get('cashback')
+            payType: payType,
+            price: this.model.get('course').get('price'),
+            commission: this.model.get('course').get('commission'),
+            cashback: this.model.get('course').get('cashback')
         }));
     },
 //    loginCheck: function () {
@@ -233,8 +233,8 @@ var NewBookingView = BaseFormView.extend({
         if (!app.sessionManager.hasSession()) {
             this.model.set("cashbackAmount", 0);
             //这里再次强制设置支付类型 防止网页上的更改
-            this.model.set('type',EnumConfig.PayType.offline);
-        }else{
+            this.model.set('type', EnumConfig.PayType.offline);
+        } else {
             //登录用户可选择是否选择使用优惠券 这里注释下行 设为默认已使用
             //this.model.set("cashback", $("#booking_useCashback").prop("checked") ? this.model.get("cashbackAmount") : 0);
         }
@@ -260,12 +260,16 @@ var NewBookingView = BaseFormView.extend({
         if (app.sessionManager.hasSession()) {
             login = true;
         }
-        this.$el.empty().append(this.finishTemplate(_.extend(booking._toJSON(),{login:login})));
+        this.$el.empty().append(this.finishTemplate(_.extend(booking._toJSON(), {login: login})));
         $("#viewMore").on("click", function () {
             app.navigate("search", true);
         });
         $("#viewBooking").on("click", function () {
-            app.navigate("mypage/booking", true);
+            if (!app.sessionManager.hasSession()) {
+                $("#topbar_loginbox").show();
+            }else{
+                app.navigate("mypage/booking", true);
+            }
         });
         //进入支付页面
         $(".js_btnGoToPay").on("click", function () {
@@ -279,6 +283,7 @@ var NewBookingView = BaseFormView.extend({
         if (!this.isClosed) {
             $("#booking_date").datepicker("destroy");
             $("#ui-datepicker-div").remove();	//The destroy method does not work in IE, therefore manually remove it.
+            this.$el.off();
             this.$el.empty();
             this.isClosed = true;
         }

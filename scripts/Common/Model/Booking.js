@@ -24,6 +24,8 @@ var Booking = Backbone.Model.extend({
             'price': 0,//价格
             'cashbackAmount': 0,//返利总额
 
+            'enabled':undefined,
+
             'createTime': new Date(),
             'lastModifyTime': new Date(),
             'noRefundDate': new Date(),
@@ -65,6 +67,8 @@ var Booking = Backbone.Model.extend({
             data.courseId = parseInt(data.courseId, 10);
             data.courseTemplateId = parseInt(data.courseTemplateId, 10);
 
+            data.enabled = Utilities.parseNum(data.enabled);
+            
             data.price = Utilities.parseNum(data.price);
             data.status = parseInt(data.status, 10);
             data.cashbackAmount = Utilities.parseNum(data.cashbackAmount);
@@ -104,6 +108,7 @@ var Booking = Backbone.Model.extend({
         json.createTime = undefined;
         json.lastModifyTime = undefined;
         json.reference = undefined;
+        json.enabled = undefined;
         return json;
     },
     initBookingFromCourse: function (course) {

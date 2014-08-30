@@ -106,7 +106,7 @@
             </ul>
             <div class="login_reg">
                 <div class="hd">
-                    <a id="login_toggle" class="login" href="#">登录</a>
+                    <a class="js_loginDropToggle login" href="#">登录</a>
                     <span></span>
                     <a id="signup_button" class="reg" href="#">注册</a>
                 </div>
@@ -274,7 +274,10 @@
 
             <p class="desc"><span>上课日期:</span>
                 <%if(startUponArrival){%>
-                <%= startDate %> - <%= finishDate %>
+                <%= startDate %>
+                <%if(finishDate){%>
+                - <%= finishDate %>
+                <%}%>
                 <%}else{%>
                     <%= regPhone%>
                 <%}%>
@@ -716,13 +719,14 @@
                         <%}else{%>
                         <span class="badge bg-error">始</span> <%= course.startDate %>
                     </p>
-
+                    <%if(course.finishDate){%>
                     <p>
                         <label></label>
                         <span class="badge bg-primary">终</span>
                         <%= course.finishDate %>
                         <%}%>
                     </p>
+                    <%}%>
                     <% if (course.startTime1) {%>
                     <p>
                         <label>上课时间:</label>
@@ -1010,9 +1014,9 @@
 </div>
 <div class="courseBrief">
     <div class="row1 clearfix">
-        <div class="fleft"><img class="gotoCourse" src="<%= course.logoUrl %>" width="90"/></div>
+        <div class="fleft"><img class="js_gotoCourse" src="<%= course.logoUrl %>" width="90"/></div>
         <div class="fright">
-            <div class="title link gotoCourse"><%= course.courseName %></div>
+            <div class="title link js_gotoCourse"><%= course.courseName %></div>
             <div class="desc "><strong>适合学员：</strong> <%= course.suitableStudent %></div>
         </div>
     </div>
@@ -1032,8 +1036,9 @@
                 <%= course.regPhone %>
                 <%}else{%>
                 <p><span class="badge bg-error">始</span> <%= course.startDate %></p>
-
+                <%if(course.finishDate){%>
                 <p><span class="badge bg-primary">终</span> <%= course.finishDate %></p>
+                <%}%>
                 <%}%>
             </div>
             </span></div>
@@ -1068,7 +1073,7 @@
 <form id="bookingDetail" class="panel newBooking">
     <div class="header">填写订单信息</div>
     <div class="title">
-        <h3><%= course.courseName %></h3>
+        <h3 class="js_gotoCourse"><%= course.courseName %></h3>
 
         <div class="fright ">恭喜您获得了最优价格</div>
     </div>
@@ -1130,7 +1135,7 @@
         </div>
         <div class="field clearfix" id="cashback_box_notLoggedIn">
             <div class="fleft login_reg1 clearfix" id="booking_loginnote">
-                <a class="js_loginToggle link F_green dotted-line">登录</a>
+                <a class="js_loginBoxToggle link F_green dotted-line">登录</a>
                 或 <a id="booking_register" class="link F_green dotted-line">注册</a>
                 后可享受"返"或"立减"优惠
             </div>
@@ -1146,7 +1151,7 @@
                     <a class="button link" id="booking_forgotPassword">忘记密码?</a>
                     <a class="button link" id="quickRegister" style="color:#D38613;">还不是会员?马上注册</a>
                 </div>
-                 <div class="close js_loginToggle">关闭</div>
+                 <div class="close js_loginBoxToggle">关闭</div>
             </div>
         </div>
     </div>
@@ -1249,8 +1254,8 @@
         </div>
     </div>
     <div id="summaryPrice">
-    </div>
 
+    </div>
     <div class="row5">
         <input type="button" class="btn_O_long" value="完成预订" id="initBooking"/>
         <span id="bookingDesc" class="desc">(不收预订费)</span>
@@ -1266,7 +1271,7 @@
         <span class="price">¥<%= price %></span>
         <%if(cashback){%>
         <span class="desc">
-        （入学后可获得 <%= cashback %> 元现金）
+        （入学后可获得 <%= cashback %> 元返现）
         </span>
         <%}%>
     <%}else if(payType ==EnumConfig.PayType.online){%>
@@ -1322,8 +1327,10 @@
                 <% if(type==EnumConfig.PayType.online){ %>
                 <button class="btn_O js_btnGoToPay">去支付</button>
                 <% } %>
+                <%if(login){%>
                 &nbsp;&nbsp;
                 <input type="button" id="viewBooking" value="查看订单"/>
+                <%}%>
             </div>
             <div id="printBooking">打印订单</div>
         </div>
@@ -1346,7 +1353,10 @@
                 <%if(course.startUponArrival===0){%>
                 <%= course.regPhone %>
                 <%}else{%>
-                <%= course.startDate %>-<%= course.finishDate %>
+                <%= course.startDate %>
+                    <%if(course.finishDate){%>
+                    - <%= course.finishDate %>
+                    <%}%>
                 <%}%>
             </p>
 
@@ -1356,34 +1366,25 @@
 
             <div>
                 <label>费用总计： </label>
-                <%if(!course.price){%>
+                <%if(!price){%>
                 <b class="price">定制</b>
                 <%}else{%>
                 <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥
-                    <% if(type==EnumConfig.PayType.online && course.commission){ %>
-                    <%= course.price - course.commission%>
-                    <%} else {%>
-                    <%= course.price %>
-                    <%} %>
+                    <%= price %>
                 </b>
                 <% if(type==EnumConfig.PayType.online){ %>
                     <%if(course.commission){%>
-                    <a class="label saved"><%= course.commission %>元
-                        <div class="tip">
-                            <div class="arrow"></div>
-                            <div class="tip_content">
-                                选择在线支付，支付时即可立减<%= course.commission %>元！
-                            </div>
-                        </div>
-                    </a>
-                    <%}%>
+                    <a class="label saved"><%= course.commission %>元</a>
+                <%}%>
                 <%} else if(type==EnumConfig.PayType.offline) {%>
                     <%if(course.cashback){%>
-                    <a class="label cashback"><%= course.cashback %>元
+                    <a class="label cashback"><%= cashbackAmount %>元
                         <div class="tip">
                             <div class="arrow"></div>
                             <div class="tip_content">
-                                前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                                本课程最多可返现<%= course.cashback %>元，
+                                已使用<%= cashbackAmount %>元返现券<%if(cashbackAmount<course.cashback){%>（您的可用返现券额不足）<%}%>，
+                                入学成功即返还<%= cashbackAmount %>元至现金账户！
                             </div>
                         </div>
                     </a>
@@ -1396,7 +1397,16 @@
             <p class="extra">* 到达学校后，请您凭入学人的有效证件办理入学</p>
         </div>
         <div class="row3 clearfix">
-            <p class="bonus">积分奖励，成功入学后，您将获得<%= price %>积分，结账后7个工作日内计入您的上课书包</p>
+            <p class="bonus">
+                <%if(enabled===1){%>
+                为方便您管理订单，已帮您的手机号注册为爱上课会员，获得800元优惠券（可自动抵扣带有“返”的课程费用），密码已发至您的手机，
+                <a class="js_loginDropToggle">马上登陆</a>
+                <%}else{%>
+                积分奖励，
+                <%if(!login&&enabled===0)%>已将该订单记录到手机号为<%=phone%>的会员账户上,<%}%>
+                成功入学后，您将获得<%= price %>积分，结账后7个工作日内计入您的上课书包
+                <%}%>
+            </p>
             <span id="viewMore" class="viewMore">查看其他课程>></span>
         </div>
     </div>
@@ -1503,7 +1513,10 @@
             <%if(startUponArrival===0){%>
             <%= regPhone %>
             <%}else{%>
-            <%= startDate %>-<%= finishDate %>；<%= studyDays %>
+            <%= startDate %>
+            <%if(finishDate){%>
+            - <%= finishDate %>
+            <%}%>
             <%}%>
         </div>
     </dd>
@@ -1706,7 +1719,10 @@
             <%if(startUponArrival===0){%>
             <%= regPhone %>
             <%}else{%>
-            <%= startDate %>-<%= finishDate %>
+            <%= startDate %>
+            <%if(finishDate){%>
+             -<%= finishDate %>
+            <%}%>
             <%}%>
         </td>
         <td class="addr"><%= address %></td>
@@ -1798,7 +1814,10 @@
         <td class="courseId_<%= course.id %>"><%if(course.startUponArrival===0){%>
             <%= course.regPhone %>
             <%}else{%>
-            <%= course.startDate %>-<%= course.finishDate %>
+            <%= course.startDate %>
+            <%if(course.finishDate){%>
+            - <%= course.finishDate %>
+            <%}%>
             <%}%></td>
         <% }); %>
     </tr>
