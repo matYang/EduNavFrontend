@@ -69,7 +69,7 @@ var TopBarView = Backbone.View.extend({
                 app.navigate("register/ref=" + location.hash.substr(1, location.hash.length - 1), {trigger: true, replace: true});
                 app.infoModal.hide();
             });
-            $(document.body).on('click','.js_loginDropToggle', function (e) {
+            $('body').on('click','.js_loginDropToggle', function (e) {
                 e.preventDefault();
                 $("#topbar_loginbox").toggle();
                 self.$usernameInput.trigger("focus");
