@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-.aboutus{ font-family:微软雅黑; color:#595757;}
+.aboutus{ color:#595757;}
 .aboutus_banner{ margin-top:20px;}
 
 .aboutus .intro{ padding:0 0 30px 70px; margin-top:30px; background:url(../images/aboutus_intro.jpg) no-repeat left top; border-bottom:1px dotted #8bc882;}
@@ -14,7 +14,7 @@
 .aboutus .advantage dd{ line-height:28px;}
 
 .contact_us .tel{ padding:0 0 30px 70px; margin-top:30px; background:url(../images/contact_us.jpg) no-repeat left top; }
-.contact_us .tel dt{ color:#1e993a; font-size:18px; margin-bottom:10px; font-family:微软雅黑;}
+.contact_us .tel dt{ color:#1e993a; font-size:18px; margin-bottom:10px;}
 .contact_us .tel dd{ line-height:28px;}
 
 .help dl{ padding:0 0 30px 70px; margin-top:30px; background:url(../images/contact_us.jpg) no-repeat left top; }
