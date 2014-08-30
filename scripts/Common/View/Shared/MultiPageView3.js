@@ -107,10 +107,8 @@ var MultiPageView3 = Backbone.View.extend({
             var $target = $(this.scrollTarget);
             if ($target.length !== 0) {
                 $.smoothScroll({scrollTarget: $target})
-            } else if (this.$tableContainer) {
-                $.smoothScroll({scrollTarget: this.$tableContainer})
             } else {
-                $.smoothScroll({scrollTarget: "#" + this.entryContainer})
+                $.smoothScroll()
             }
 
         }
