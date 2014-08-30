@@ -78,9 +78,18 @@ var NewBookingView = BaseFormView.extend({
     },
 
     login: function () {
+        $('#bookingLoginError').html();
         var username = $("#booking_loginUsername").val(),
             pwd = $("#booking_loginPassword").val(),
             remember = $("#booking_loginRemember").val() ? 1 : 0;
+        if(!username){
+            $('#bookingLoginError').html('请输入用户名');
+            return;
+        }
+        if(!pwd){
+            $('#bookingLoginError').html('请输入密码');
+            return;
+        }
         if (username && pwd) {
             app.sessionManager.login(username, pwd, remember, {
                 success: this.loginSuccess,
@@ -100,8 +109,9 @@ var NewBookingView = BaseFormView.extend({
             }
         });
     },
-    loginError: function () {
+    loginError: function (data) {
         $("#booking_loginPassword").val("");
+        $('#bookingLoginError').html(data.message||'登录失败');
     },
     bindEvents: function () {
         var that = this;

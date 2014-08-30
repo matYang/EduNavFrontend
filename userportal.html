@@ -1148,6 +1148,7 @@
                     <label>手机</label> <input class="text" type="text" id="booking_loginUsername"/>
                     <label>密码</label> <input class="text" type="password" id="booking_loginPassword"/>
                 </div>
+                <p id="bookingLoginError" class="text-warning margin-y">密码错误</p>
                 <div class="btns">
                     <input class="link" type="button" value="登录" id="booking_login"/>
                     <a class="button link" id="booking_forgotPassword">忘记密码?</a>
@@ -1402,7 +1403,7 @@
             <p class="bonus">
                 <%if(enabled===1){%>
                 为方便您管理订单，已帮您的手机号注册为爱上课会员，获得800元优惠券（可自动抵扣带有“返”的课程费用），密码已发至您的手机，
-                <a class="js_loginDropToggle">马上登陆</a>
+                <a class="js_loginDropToggle">马上登录</a>
                 <%}else{%>
                 积分奖励，
                 <%if(!login&&enabled===0)%>已将该订单记录到手机号为<%=phone%>的会员账户上,<%}%>

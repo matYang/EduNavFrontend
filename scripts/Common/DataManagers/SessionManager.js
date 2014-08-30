@@ -82,7 +82,7 @@
         });
     };
 
-    //登陆
+    //登录
     SessionManager.prototype.login = function (key, password, remember, callback) {
         var self = this;
 

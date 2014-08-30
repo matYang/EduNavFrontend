@@ -109,7 +109,7 @@
         });
     };
 
-    //用户登陆后，获取当前用户(用于更新前端的用户对象，使其与后台数据同步)
+    //用户登录后，获取当前用户(用于更新前端的用户对象，使其与后台数据同步)
     UserManager.prototype.fetchUser = function (callback) {
         var self = this;
         var user = new User();
