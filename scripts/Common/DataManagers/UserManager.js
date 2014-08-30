@@ -236,7 +236,7 @@
                 Info.warn('UserManager::changePassword:: action failed');
                 Info.warn();
                 if (callback) {
-                    callback.error(data);
+                    callback.error($.parseJSON(data.reponseText));
                 }
             }
         });
