@@ -209,6 +209,7 @@
     //用于修改密码
     //desired opt format:  { 'oldPassword': oldPassword, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword, 'authCode': authCode}
     UserManager.prototype.changePassword = function (opt, callback) {
+        opt = _.clone(opt);
         var self = this;
 
         if (!(opt.oldPassword && opt.newPassword && opt.confirmNewPassword)) {
@@ -236,7 +237,7 @@
                 Info.warn('UserManager::changePassword:: action failed');
                 Info.warn();
                 if (callback) {
-                    callback.error($.parseJSON(data.reponseText));
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
