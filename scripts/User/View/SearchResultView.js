@@ -103,7 +103,7 @@ var SearchResultView = MultiPageView.extend({
             var searchResults = data || new Courses();
             this.allMessages = searchResults;
             this.messages = searchResults;
-            var total = this.truePagination ? searchResults.total : searchResults.length;
+            var total = searchResults.total;
             $("#resultNum").html(total);
             for (i = 0; i < searchResults.length; i++) {
                 if (this.compareWidgetView.map) {

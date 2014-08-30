@@ -10,7 +10,6 @@ var TopBarView = Backbone.View.extend({
         this.notLoggedInTemplate = _.template(tpl.get('topBar-notLoggedIn'));
 
         this.render();
-        this.bindEvents();
         // this.listenTo(this.sessionUser, 'change:userId', this.render);
     },
 
@@ -30,10 +29,11 @@ var TopBarView = Backbone.View.extend({
             }
             $("#greeting").html(time);
         } else {
-            this.$el.append(this.notLoggedInTemplate);
+            this.$el.html(this.notLoggedInTemplate);
             $("#topbar_loginbox").hide();
             $("#credentialWrong").hide();
         }
+        this.bindEvents();
     },
 
     bindEvents: function () {
