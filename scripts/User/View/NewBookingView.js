@@ -120,7 +120,7 @@ var NewBookingView = BaseFormView.extend({
                 $('input[name=bookingType]').attr('disabled','disabled');
 
             }
-            app.topBarView.reRender();
+            app.topBarView.render();
         });
         //返回到课程详情
         $(".gotoCourse").on("click", function () {

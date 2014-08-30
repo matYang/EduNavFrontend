@@ -3,22 +3,8 @@
 
 (function () {
 
-    this.SessionManager = function (identifier) {
-        this.identifier = identifier;
-        switch (this.identifier) {
-            case EnumConfig.ModuleIdentifier.user:
-                this.sessionModel = new User();
-                break;
-            case EnumConfig.ModuleIdentifier.partner:
-                this.sessionModel = new Partner();
-                break;
-
-            case EnumConfig.ModuleIdentifier.admin:
-                this.sessionModel = new Admin();
-                break;
-            default:
-                throw new Error('SessionManage模块识别失败');
-        }
+    this.SessionManager = function () {
+        this.sessionModel = new User();
         //this is used to reset all manager data upon logouts
         this.sessionRegistraTable = [];
         this.sessionCookie = document.cookie;
@@ -45,7 +31,7 @@
     //获取当前会话的用户对象
     SessionManager.prototype.getSessionModel = function () {
         if (testMockObj.testMode) {
-            return testMockObj.sessionModel[this.identifier];
+            return testMockObj.testUser;
         }
         return this.sessionModel;
     };
@@ -64,27 +50,10 @@
     //该方法需要在每次login, logout的回调方法里使用，因为login logout不会改变前端用户对象的id。
     SessionManager.prototype.fetchSession = function (asyncFlag, callback) {
         var self = this;
-        switch (this.identifier) {
-            case EnumConfig.ModuleIdentifier.user:
-                this.sessionModel.overrideUrl(ApiResource.user_findSession);
-                this.sessionModel.set('userId', -1);
-                break;
-
-            case EnumConfig.ModuleIdentifier.partner:
-                this.sessionModel.overrideUrl(ApiResource.partner_findSession);
-                this.sessionModel.set('partnerId', -1);
-                break;
-
-            case EnumConfig.ModuleIdentifier.admin:
-                this.sessionModel.overrideUrl(AdminApiResource.admin_findSession);
-                this.sessionModel.set('adminId', -1);
-                break;
-
-            default:
-                throw new Error('fetchSession模块识别失败');
-        }
+        this.sessionModel.overrideUrl(ApiResource.user_findSession);
+        this.sessionModel.set('userId', -1);
         if (testMockObj.testMode) {
-            this.sessionModel = testMockObj[this.identifier];
+            this.sessionModel = testMockObj.testUser;
             if (callback) {
                 callback.success();
             }
@@ -103,12 +72,11 @@
                 }
             },
 
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('Session redirect failed');
-                Info.warn(response);
 
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -143,11 +111,10 @@
                 }
             },
 
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('login failed');
-                Info.warn(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -163,22 +130,7 @@
                 callback.success();
             }
         }
-        switch (this.identifier) {
-            case EnumConfig.ModuleIdentifier.user:
-                url = ApiResource.user_logout;
-                break;
-//
-//            case EnumConfig.ModuleIdentifier.partner:
-//                url = ApiResource.partner_logout;
-//                break;
-//
-//            case EnumConfig.ModuleIdentifier.admin:
-//                url = AdminApiResource.admin_logout;
-//                break;
-
-            default:
-                throw new Error('fetchSession模块识别失败');
-        }
+        url = ApiResource.user_logout;
         this.sessionModel.overrideUrl(url);
         $.ajax({
             type: 'PUT',
@@ -186,16 +138,17 @@
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-                self.sessionModel.set(self.sessionModel.idAttribute, -1);
+                self.sessionModel = new User();
+//              Jet says:just fucking code, how do you clean other attributes?
+//                self.sessionModel.set(self.sessionModel.idAttribute, -1);
                 if (callback) {
                     callback.success();
                 }
             },
-            error: function (data, textStatus, jqXHR) {
+            error: function (data, textStatus, jqXHR) {//textStatus will be a string of 'error'
                 Info.warn('SessionManager::Logout:: action failed');
-                Info.warn(data);
                 if (callback) {
-                    callback.error(data);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });

@@ -278,6 +278,3 @@ testMockObj.testAccountHistory1.set('charge', 700).set('createTime', new Date())
 testMockObj.testAccountHistory2.set('charge', 300).set('createTime', new Date()).set('operation', 0);
 testMockObj.testAccountHistory3.set('charge', 400).set('createTime', new Date()).set('operation', 0);
 testMockObj.testAccountHistories.add([testMockObj.testAccountHistory1, testMockObj.testAccountHistory2, testMockObj.testAccountHistory3]);
-
-
-testMockObj[EnumConfig.ModuleIdentifier.user] = testMockObj.testUser;

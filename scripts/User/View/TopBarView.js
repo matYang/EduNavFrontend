@@ -2,26 +2,24 @@ var TopBarView = Backbone.View.extend({
 
     el: '#topBar',
     initialize: function () {
-        _.bindAll(this, 'render', 'reRender', 'bindEvents', 'close', 'login', 'logout');
+        _.bindAll(this, 'render', 'bindEvents', 'close', 'login', 'logout');
         app.viewRegistration.register(this);
         this.isClosed = false;
 
         this.loggedInTemplate = _.template(tpl.get('topBar-loggedIn'));
         this.notLoggedInTemplate = _.template(tpl.get('topBar-notLoggedIn'));
 
-        this.sessionUser = app.sessionManager.sessionModel;
-
         this.render();
-        this.bindEvents();
-        // this.listenTo(this.sessionUser, 'change:userId', this.reRender);
+        // this.listenTo(this.sessionUser, 'change:userId', this.render);
     },
 
     render: function () {
+        this.bindEvents();
         var time, date = new Date();
         var hour = date.getHours();
         this.$pdropdown = $('#profileDropdown>dd');
         if (app.sessionManager.hasSession()) {
-            this.$el.append(this.loggedInTemplate(this.sessionUser._toJSON()));
+            this.$el.html(this.loggedInTemplate(app.sessionManager.getSessionModel()._toJSON()));
             if (hour > 4 && hour < 12) {
                 time = "早上";
             } else if (hour >= 12 && hour < 18) {
@@ -35,12 +33,6 @@ var TopBarView = Backbone.View.extend({
             $("#topbar_loginbox").hide();
             $("#credentialWrong").hide();
         }
-    },
-
-    reRender: function () {
-        this.$el.empty();
-        this.render();
-        this.bindEvents();
     },
 
     bindEvents: function () {
@@ -136,12 +128,11 @@ var TopBarView = Backbone.View.extend({
             app.sessionManager.login(username, password,remember, {
                 success: function (response) {
                     Info.log("server login response: ");
-                    Info.log(response);
                     //fetching session, with async flag to true
                     app.sessionManager.fetchSession(true, {
                         success: function () {
                             app.userManager.sessionUser = app.sessionManager.sessionModel;
-                            self.reRender();
+                            self.render();
                         },
                         error: function () {
                             Info.displayNotice("登录失败，请稍后再试");
@@ -175,7 +166,7 @@ var TopBarView = Backbone.View.extend({
                         if (location.hash.indexOf("mypage") > -1) {
                             app.navigate("front", true);
                         }
-                        that.reRender();
+                        that.render();
                     },
                     error: function () {
                         Info.warn("Session fetch failed");

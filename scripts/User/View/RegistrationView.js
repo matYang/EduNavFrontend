@@ -8,7 +8,6 @@ var RegistrationView = BaseFormView.extend({
         _.bindAll(this, 'render', 'bindEvents', 'successCallback', 'submitAction', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
-        // $("#viewStyle").attr("href", "style/css/reg.css");
         this.template = _.template(tpl.get('registration'));
         this.finishTemplate = _.template(tpl.get('registration_finish'));
         this.$el.append(this.template);
@@ -104,7 +103,7 @@ var RegistrationView = BaseFormView.extend({
         var that = this, counter = 5;
         app.sessionManager.fetchSession(true, {
             success: function () {
-                app.topBarView.reRender();
+                app.topBarView.render();
             },
             error: function (data) {
 

@@ -7,12 +7,6 @@ var EnumConfig = {
         deleted: 2
     },
 
-    'ModuleIdentifier':{
-        user: 0,
-        partner: 1,
-        admin: 2
-    },
-
     'CreditStatus': {
         usable: 0,
         expired: 1,
