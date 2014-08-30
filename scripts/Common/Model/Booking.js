@@ -21,8 +21,9 @@ var Booking = Backbone.Model.extend({
             'type': undefined,//订单类型 线上还是线下
             'note': '',     //各种record
 
-            'price': 0,//价格
-            'cashbackAmount': 0,//返利总额
+            'price': undefined,//价格
+            'cashbackAmount': undefined,//返利总额
+            'realCashbackAmount': undefined,//实际返利总额
 
             'enabled':undefined,
 
@@ -72,6 +73,7 @@ var Booking = Backbone.Model.extend({
             data.price = Utilities.parseNum(data.price);
             data.status = parseInt(data.status, 10);
             data.cashbackAmount = Utilities.parseNum(data.cashbackAmount);
+            data.realCashbackAmount = Utilities.parseNum(data.realCashbackAmount);
             data.scheduledTime = Utilities.castFromAPIFormat(data.scheduledTime);
             data.createTime = Utilities.castFromAPIFormat(data.createTime);
             data.lastModifyTime = Utilities.castFromAPIFormat(data.lastModifyTime);
@@ -149,12 +151,5 @@ var Bookings = Backbone.Collection.extend({
         if (typeof urlOverride !== 'undefined') {
             this.url = urlOverride;
         }
-    },
-
-    findBookingByReference: function (reference) {
-        return this.where({reference: reference})[0];
-    },
-    findBookingByBookingId: function (reference) {
-        return this.where({bookingId: reference})[0];
     }
 });

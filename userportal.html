@@ -659,12 +659,14 @@
                     <s>原价：¥<%=course.price%></s>
                     <%}%>
                     &nbsp;&nbsp;
-                    <%if(type===EnumConfig.PayType.offline&&course.cashback){%>
-                    <a class="label cashback"><%=course.cashback%>元
+                    <%if(type===EnumConfig.PayType.offline&&course.cashbackAmount){%>
+                    <a class="label cashback"><%= realCashbackAmount %>元
                         <div class="tip">
                             <div class="arrow"></div>
                             <div class="tip_content">
-                                入学成功可立即返还<%=course.cashback%>元至现金账户！
+                                本课程最多可返现<%= course.cashback %>元，
+                                已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount<cashbackAmount){%>（您的可用返现券额不足）<%}%>，
+                                入学成功即返还<%= realCashbackAmount %>元至现金账户！
                             </div>
                         </div>
                     </a>
@@ -1377,20 +1379,20 @@
                     <a class="label saved"><%= course.commission %>元</a>
                 <%}%>
                 <%} else if(type==EnumConfig.PayType.offline) {%>
-                    <%if(course.cashback){%>
-                    <a class="label cashback"><%= cashbackAmount %>元
+                    <%if(cashbackAmount){%>
+                    <a class="label cashback"><%= realCashbackAmount %>元
                         <div class="tip">
                             <div class="arrow"></div>
                             <div class="tip_content">
                                 本课程最多可返现<%= course.cashback %>元，
-                                已使用<%= cashbackAmount %>元返现券<%if(cashbackAmount<course.cashback){%>（您的可用返现券额不足）<%}%>，
-                                入学成功即返还<%= cashbackAmount %>元至现金账户！
+                                已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount<cashbackAmount){%>（您的可用返现券额不足）<%}%>，
+                                入学成功即返还<%= realCashbackAmount %>元至现金账户！
                             </div>
                         </div>
                     </a>
                     <%}%>
                 <%} %>
-                    
+
                 <%}%>
             </div>
 
