@@ -155,7 +155,7 @@ var BannerView = Backbone.View.extend({
             height: 320,
             width: 1440,
             randomstart: true,     // start from a random slide
-            animtype: 'slide', // accepts 'fade' or 'slide'
+            animtype: 'fade', // accepts 'fade' or 'slide'
             animduration: 650, // how fast the animation are
             animspeed: 4000, // the delay between each slide
             hoverpause: true // pause the slider on hover
