@@ -14,7 +14,7 @@ var FrontPageView = Backbone.View.extend({
     },
 
     render: function () {
-        document.title="爱上课 | 为您选择最合适，最优惠的课程";
+        document.title = "爱上课 | 为您选择最合适，最优惠的课程";
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
@@ -27,7 +27,7 @@ var FrontPageView = Backbone.View.extend({
         this.$el.append(this.template);
         app.generalManager.getCategories(this);
     },
-    renderCategories: function(categories) {
+    renderCategories: function (categories) {
         //build the buttons on front page;
 
         if (!this.isClosed) {
@@ -35,23 +35,23 @@ var FrontPageView = Backbone.View.extend({
             //cbuf 一级目录列表
             //scbuf 二级目录列表
             //tcbuf 三级目录列表
-            var data = categories.data, len = data.length, i, j, k, cbuf = [], scbuf = [], tcbuf = [], children1, children2, tc="", padding, lvl3counter = 0, obj = {};
-            for ( i = 0; i < len; i++ ) {
-                cbuf[i] = this.buttonTemplate({value:data[i].value, name:data[i].name, index:i+1});
+            var data = categories.data, len = data.length, i, j, k, cbuf = [], scbuf = [], tcbuf = [], children1, children2, tc = "", padding, lvl3counter = 0, obj = {};
+            for (i = 0; i < len; i++) {
+                cbuf[i] = this.buttonTemplate({value: data[i].value, name: data[i].name, index: i + 1});
                 children1 = data[i].children || [];
-                for ( j = 0; j < children1.length; j ++) { //循环二级目录
+                for (j = 0; j < children1.length; j++) { //循环二级目录
                     children2 = children1[j].children;
                     for (k = 0; k < children2.length; k++) { //循环三级目录
                         lvl3counter++;
-                        tcbuf[k] = this.catButtonTemplate({value: children2[k].value, name:children2[k].name});
+                        tcbuf[k] = this.catButtonTemplate({value: children2[k].value, name: children2[k].name});
                     }
-                    padding = (Constants.categoryRowMapper[i] - lvl3counter % Constants.categoryRowMapper[i])% Constants.categoryRowMapper[i];
+                    padding = (Constants.categoryRowMapper[i] - lvl3counter % Constants.categoryRowMapper[i]) % Constants.categoryRowMapper[i];
                     while (padding) {
                         tcbuf.push("<li><a> --- </a></li>");
                         padding--;
                     }
                     obj.catgoryList = tcbuf.join("");
-                    obj.catClass = 'cat'+(i+1);//使用cat作为class 取一级循环中的序号 见index.css
+                    obj.catClass = 'cat' + (i + 1);//使用cat作为class 取一级循环中的序号 见index.css
                     obj.categoryName = children1[j].name;
                     obj.parentName = i;
                     obj.value = children1[j].value;
@@ -72,16 +72,16 @@ var FrontPageView = Backbone.View.extend({
     afterRender: function () {
         //二级目录 非第一行加入class "last" 控制边框显示 以及控制二级目录button的高度
         $("#lv2Categories").children("div").each(function (category) {
-            var rowLength = Constants.categoryRowMapper[$(this).data("parentname")], list = $(this).find("li"), rowNum = list.length/rowLength;
-            $(this).find("li:gt(-"+(rowLength + 1)+")").addClass("last");
-            $(this).addClass("c_h"+rowNum);
+            var rowLength = Constants.categoryRowMapper[$(this).data("parentname")], list = $(this).find("li"), rowNum = list.length / rowLength;
+            $(this).find("li:gt(-" + (rowLength + 1) + ")").addClass("last");
+            $(this).addClass("c_h" + rowNum);
         });
         //初始化激活的标签
         var activeButton = $("#lv1Button").find("a:first").addClass("active");
         $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("value") + "]").removeClass("hidden");
         $("#content").css("padding-bottom", 0);
         //todo 这里是为了声明页面加载完毕
-        $('body').attr('pageRenderReady','')
+        $('body').attr('pageRenderReady', '')
 
     },
     bindEvents: function () {
@@ -118,7 +118,7 @@ var FrontPageView = Backbone.View.extend({
         if (!this.isClosed) {
             $("#lv1Button").off();
             $(".lv2category").off();
-             $("#lv2Categories").off();
+            $("#lv2Categories").off();
             $("body").removeClass("index");
             this.$el.empty();
             this.isClosed = true;
@@ -137,8 +137,6 @@ var BannerView = Backbone.View.extend({
         this.template = _.template(tpl.get('banner'));
         this.isClosed = false;
         this.render();
-        //app.sessionManager.fetchSession();
-
     },
 
     render: function () {
@@ -150,6 +148,17 @@ var BannerView = Backbone.View.extend({
     },
 
     bindEvents: function () {
+        //img slider
+        $('#visual_container').bjqs({
+            showcontrols: false,
+            showmarkers: false,
+            height: 320,
+            width: 1440,
+            animtype: 'slide', // accepts 'fade' or 'slide'
+            animduration: 650, // how fast the animation are
+            animspeed: 4000, // the delay between each slide
+            hoverpause: true // pause the slider on hover
+        });
     },
 
     close: function () {

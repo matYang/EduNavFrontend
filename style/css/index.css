@@ -16,8 +16,8 @@
 
 
 /* #visual_container .slidee li {position:absolute;top:0;left:0}   */
-.index #visual_container .slidee li {display:none;}
-.index #visual_container .slidee li:first-child { display:block;}
+/*.index #visual_container .bjqs li {display:none;}*/
+/*.index #visual_container .bjqs li:first-child { display:block;}*/
 
 .index .content{ margin-top:-74px; position:relative;}
 .index .content .category{ margin-bottom:100px;}

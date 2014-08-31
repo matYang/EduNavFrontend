@@ -62,7 +62,7 @@ var CourseDetailView = Backbone.View.extend({
         $teachers.css("height", maxHeight);
 
         //img slider
-        $('#banner-slide').bjqs({
+        $('#courseSlide').bjqs({
 
             height: 215,
             width: 625,
