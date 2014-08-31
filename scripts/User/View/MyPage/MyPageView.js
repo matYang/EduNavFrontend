@@ -24,7 +24,7 @@ var MyPageView = Backbone.View.extend({
 
     render: function (user) {
         if (!this.isClosed) {
-            this.user = user;
+//            this.user = user;
             this.$el.append(this.template(this.user._toJSON()));
 
             var time, date = new Date();
