@@ -1399,8 +1399,7 @@
         <div class="row3 clearfix">
             <p class="bonus">
                 <%if(enabled===1){%>
-                为方便您管理订单，已帮您的手机号注册为爱上课会员，获得800元优惠券（可自动抵扣带有“返”的课程费用），密码已发至您的手机，
-                <a class="js_loginDropToggle">马上登录</a>
+                为方便您管理订单，已帮您的手机号注册为爱上课会员，获得800元优惠券（可抵扣带有“返”的课程费用），密码已发至您的手机
                 <%}else{%>
                 积分奖励，
                 <%if(!login&&enabled===0){%>已将该订单记录到手机号为<%=phone%>的会员账户上,<%}%>
@@ -2380,7 +2379,7 @@
                 </div>
             </div>
             <!--account end-->
-        </div>
+        </Ndiv>
     </div>
 </script>
 
@@ -2393,6 +2392,7 @@
             <div class="get_password">
                 <div class="get_password_s">恭喜，您的密码已经重置成功！</div>
             </div>
+            <p style="text-align:center;position:relative;top: -80px;font-size:18px;"><a class="link" href="#/">返回</a></p>
             <!--get_password end-->
         </div>
     </div>

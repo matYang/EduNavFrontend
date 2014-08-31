@@ -3,6 +3,8 @@ var FindPasswordView = BaseFormView.extend({
     model: {},
     submitButtonId: "nextButton",
     form: false,
+    template1 :_.template(tpl.get("findPassword_1")),
+    template2 :_.template(tpl.get("findPassword_2")),
     fields: [
         new BaseField({
             name: "手机",
@@ -44,9 +46,6 @@ var FindPasswordView = BaseFormView.extend({
         this.fields[2].validatorFunction = FindPasswordView.prototype.passValid;
         this.fields[3].validatorFunction = FindPasswordView.prototype.confirmValid;
         this.isClosed = false;
-        this.template1 = _.template(tpl.get("findPassword_1"));
-        this.template2 = _.template(tpl.get("findPassword_2"));
-        // this.template3 = _.template(tpl.get("findPassword_3"));
         // $("#viewStyle").attr("href", "style/css/reg.css");
         this.render(1);
     },
@@ -87,8 +86,9 @@ var FindPasswordView = BaseFormView.extend({
         });
     },
     successCallback: function () {
-        $("#confirmChange").val("修改成功");
-        app.navigate("mypage", true);
+//        $("#confirmChange").val("修改成功");
+//        app.navigate("mypage", true);
+        this.render(2);
     },
     changeError: function (data) {
         Info.displayNotice(data.message);
@@ -105,7 +105,7 @@ var FindPasswordView = BaseFormView.extend({
     },
     confirmValid: function (val) {
         var p1 = $("#findPassPassInput").val(), p2 = val;
-        if ( p1 !== p2 ) {findPassPassInput
+        if ( p1 !== p2 ) {
             return {valid: false, text:"两次输入密码不匹配"};
         } else if (val.length < 6 ){
             return {valid: false, text:"密码长度至少为6位"};
