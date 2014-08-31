@@ -33,7 +33,7 @@
 <div id='infoLayer'></div>
 <div id='overlay' class="mask1" class="hidden"></div>
 <div id="popup" class="hidden pop"
-     style=" top:200px; left: 50%; width:500px; height:150px; margin-left: -250px; z-index:200;"></div>
+     style=" top:200px; left: 50%; width:500px; min-height:100px; margin-left: -250px; z-index:200;"></div>
 <div id='widgets'></div>
 <div class="footer">
     <div class="footer_inner">
@@ -51,7 +51,7 @@
 <div id="allTemplates">
 <script type="text/template" id="tpl_topBar-loggedIn">
     <div class="topBar">
-        <div class="link topBar-inner clearfix">
+        <div class="topBar-inner clearfix">
             <h1 id="logo" class="topBar-logo">
                 <a></a>
             </h1>
@@ -60,13 +60,16 @@
                 <li id="navigate_search" class="button navigate_search">分类检索</li>
                 <li id="navigate_compare" class="button navigate_compare">课程对比</li>
             </ul>
+
             <div class="user_info">
-                <span id="greeting"></span>好，尊敬的
-                <span id="username">
+                <span id="greeting"></span>好，亲爱的
+                <span id="username" class="link">
                     <% if(name){%>
                         <%= name %>
-                    <% }else{ %>
+                    <% }else if(invitationCode){ %>
                         <%= invitationCode %>
+                    <% }else{ %>
+                        <%= phone %>
                     <%} %>
                  </span>
                 <a id="logout" href="#">[退出]</a>
@@ -90,7 +93,7 @@
             </ul>
             <div class="login_reg">
                 <div class="hd">
-                    <a id="login_toggle" class="login" href="#">登录</a>
+                    <a class="js_loginDropToggle login" href="#">登录</a>
                     <span></span>
                     <a id="signup_button" class="reg" href="#">注册</a>
                 </div>
@@ -99,7 +102,7 @@
                         <li>
                             <input id="login_username" type="text" class="text" placeholder="请输入手机号">
 
-                            <p id="credentialWrong" class="wrong">输入有误，请重新输入</p>
+                            <p id="credentialWrong" class="wrong" style="width:auto;height: auto;">输入有误，请重新输入</p>
                         </li>
                         <li>
                             <input id="login_password" type="password" class="text" placeholder="请输入密码">
@@ -120,8 +123,9 @@
 
 <script type="text/template" id="tpl_banner">
     <div id="visual_container">
-        <ul class="slidee">
+        <ul class="bjqs">
             <li style="display: block;"><img src="style/images/banner.jpg" alt="" height="320"></li>
+            <li style="display: none;"><img src="style/images/banner2.jpg" alt="" height="320"></li>
         </ul>
     </div>
 </script>
@@ -171,14 +175,11 @@
             <div id="filter_schoolTime" class="filterCriteria">
                 <label>上课时间：</label>
                 <span data-value="noreq" class="active">不限</span>
-                <span data-value="_1">上午</span>
-                <span data-value="_2">下午</span>
+                <span data-value="_3">白天</span>
                 <span data-value="_4">晚上</span>
-                <span data-value="1_1">平日上午</span>
-                <span data-value="1_2">平日下午</span>
+                <span data-value="1_3">平日白天</span>
                 <span data-value="1_4">平日晚上</span>
-                <span data-value="2_1">周末上午</span>
-                <span data-value="2_2">周末下午</span>
+                <span data-value="2_3">周末白天</span>
                 <span data-value="2_4">周末晚上</span>
             </div>
             <div id="filter_classMode" class="filterCriteria">
@@ -252,9 +253,22 @@
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/><span><%= instName%></span></div>
         <div class="col1">
             <p class="title">
-                <a class="F_green courseTitle" id="viewAllTitle_<%= courseId %>" href="#course/<%= id %>">
+                <a class="F_green courseTitle viewDetail" id="course<%= id %>" onclick="_hmt.push(['_trackEvent', 'course', 'click', 'id'])" data-id="<%= id %>">
                     <%= courseName %></a>
             </p>
+
+            <p class="desc"><span>上课日期:</span>
+                <%if(startUponArrival){%>
+                <%= startDate %>
+                <%if(finishDate){%>
+                - <%= finishDate %>
+                <%}%>
+                <%}else{%>
+                <%= regPhone%>
+                <%}%>
+            </p>
+
+            <p class="desc"><span>上课地址:</span> <%= address %></p>
 
             <p class="desc">
                 <span>优惠信息:</span>
@@ -265,15 +279,6 @@
                 <%}%>
             </p>
 
-            <p class="desc"><span>上课日期:</span>
-                <%if(startUponArrival){%>
-                <%= startDate %> - <%= finishDate %>
-                <%}else{%>
-                    <%= regPhone%>
-                <%}%>
-            </p>
-
-            <p class="desc"><span>上课地址:</span> <%= address %></p>
         </div>
         <div class="col2">
             <p class="original_cost">&nbsp;
@@ -290,45 +295,36 @@
             </p>
             <%if(cashback){%>
             <div>
-            <a class="label cashback"><%=cashback %>元
-                <div class="tip">
-                    <div class="arrow"></div>
-                    <div class="tip_content">
-                        前台付现，入学成功可立即返还<%=cashback %>元至现金账户！
+                <a class="label cashback"><%=cashback %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            前台付现，入学成功可立即返还<%=cashback %>元至现金账户！
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
             </div>
             <%}%>
             <%if(commission){%>
             <div class="margin-y-sm">
-            <a class="label save"><%= commission %>元
-                <div class="tip">
-                    <div class="arrow"></div>
-                    <div class="tip_content">
-                        选择在线支付，支付时即可立减<%=commission %>元！
+                <a class="label save"><%= commission %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            选择在线支付，支付时即可立减<%=commission %>元！
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
             </div>
             <%}%>
-            <!--<a class="cashback">-->
-                 <!--cashback 元-->
-                <!--<div class="tip">-->
-                    <!--<div class="arrow"></div>-->
-                    <!--<div class="tip_content">-->
-                        <!--用“返现券”预订此课程，可立即返还 cashback 元现金！入学后不进行退学，就可至您的账户里提现。-->
-                        <!--<span class="link howToGetCoupon" style="color:green">如何获得返现券</span>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</a>-->
+
         </div>
         <div class="col3">
             <div class="compare" id="compare_<%= id %>"><input class="btn_g add" type="button" value="+对比"/></div>
 
             <div class="blank" id="trial_<%= id %>"><input class="btn_o" value="免费试听" type="button"></div>
 
-            <div class="viewDetail"><a class="F_green" href="#course/<%= id %>">查看详情</a></div>
+            <div class="viewDetail" data-id="<%= id %>"><a class="F_green">查看详情</a></div>
         </div>
     </div>
 </script>
@@ -361,7 +357,7 @@
 <script type="text/template" id="tpl_courseDetailCompareWidget">
     <div id="trialButton" class="shiting" style="margin-right:-350px;">
         <div class="shiting_inner">
-            <div class="btn"><a href="#"><img class="trialFloatingButton" src="style/images/shiting.png"></a></div>
+            <div class="btn"><a href="#"><img class="trialFloatingButton" src="style/images/shiting.gif"></a></div>
             <!-- <p>只剩下<b class="F_orange">12</b>个名额了哦，快来预约吧！</p> -->
             <a class="close" href="#">关闭</a>
         </div>
@@ -397,13 +393,13 @@
                                placeholder="请输入手机号(请不要输入特殊符号或者字母)">
                     </dd>
                 </dl>
-                <dl class="clearfix" id="usernameContainer">
-                    <dt><span>*</span>用户名：</dt>
-                    <dd>
-                        <input id="registerUsernameInput" type="text" class="text" value=""
-                               placeholder="请输入用户名(不可都为数字，支持中文)">
-                    </dd>
-                </dl>
+                <!--<dl class="clearfix" id="usernameContainer">-->
+                <!--<dt><span>*</span>用户名：</dt>-->
+                <!--<dd>-->
+                <!--<input id="registerUsernameInput" type="text" class="text" value=""-->
+                <!--placeholder="请输入用户名(不可都为数字，支持中文)">-->
+                <!--</dd>-->
+                <!--</dl>-->
                 <dl class="clearfix" id="passContainer">
                     <dt><span>*</span>密码：</dt>
                     <dd>
@@ -472,12 +468,14 @@
                 <div class="mypage_sidebar_sectionContent">
                     <div id="mypage_avatar">
                         <img src="style/images/user_pic.jpg" width="150" height="150"/>
-                        <p><span id="mypage_greeting"></span>好，尊敬的
+                        <p><span id="mypage_greeting"></span>好，亲爱的
                             <span id="mypage_name">
                             <% if(name){%>
                                 <%= name %>
-                            <% }else{ %>
+                            <% }else if(invitationCode){ %>
                                 <%= invitationCode %>
+                            <% }else{ %>
+                                <%= phone %>
                             <%} %>
                             </span>
                         </p>
@@ -521,7 +519,6 @@
         <div id="mypage_content" class="mypage_min_height" style="border:none;">
         </div>
     </div>
-
 </script>
 
 <script type="text/template" id="tpl_mypage_dashboard">
@@ -532,7 +529,7 @@
         <div class="line"></div>
         <div class="summaryItem3"><span class="F_orange"><%= credit.credit %></span>积分</div>
     </div>
-    <div id="scrollTarget" class="title blank1" style="border:1px solid #ccc;"><b>未入学订单</b></div>
+    <div class="title blank1 scrollTarget" style="border:1px solid #ccc;"><b>未入学订单</b></div>
     <table id="bookingSummary" style="border:1px solid #ccc; border-top:none;" width="100%" cellpadding="0" cellspacing="0">
         <tbody ></tbody>
     </table>
@@ -543,7 +540,7 @@
         <a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">订单管理</span>
     </div>
     <div class="blank1"></div>
-    <div class="title" style="border-bottom: none">
+    <div class="title scrollTarget" style="border-bottom: none">
         为保证您的账号安全，6个月以前的订单请联系客服400-025-0884
     </div>
     <table id="bookingSummary" class="table-clean" border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -572,7 +569,7 @@
         </td>
         <td class="detail">
             <img class="img-logo" src="<%=course.logoUrl%>">
-            <h3><a class="F_green bookingTitle"  id="bookingTitle_bookingId_<%= bookingId %>" href="#"><%= course.courseName %></a></h3>
+            <h3><a class="F_green bookingTitle"  id="bookingTitle_bookingId_<%= id %>" href="#"><%= course.courseName %></a></h3>
             <p>
                 <span class="price">
                    <%if(!price){%>
@@ -591,16 +588,16 @@
         <td class="status">
 
             <p class="status">
-            <% if (status === 11) { %>
+                <% if (status === 11) { %>
                 <i class="icon-status pending"></i>
-            <% } else if ( status === 2 || status === 12) { %>
+                <% } else if ( status === 2 || status === 12) { %>
                 <i class="icon-status canceled"></i>
-            <% } else if( status === 13){ %>
+                <% } else if( status === 13){ %>
                 <i class="icon-status confirmed"></i>
-            <% } else{ %>
+                <% } else{ %>
                 <i class="icon-status info"></i>
-            <% } %>
-            <span><%= EnumConfig.BookingStatusText[status] %></span>
+                <% } %>
+                <span><%= EnumConfig.BookingStatusText[status] %></span>
             </p>
 
             <%if(type==EnumConfig.PayType.online&&status===11){%>
@@ -608,12 +605,12 @@
             <%}%>
 
             <p class="margin-top">
-            <%_.each(actionList,function(action){%>
+                <%_.each(actionList,function(action){%>
 
-                <a type="button" class="operate margin-x js_btn_operate%>"
-                       data-id="id"
-                       data-action="<%=action.name%>"><%=EnumConfig.BookingActionText[action.name]%></a>
-            <%})%>
+                <a type="button" class="operate margin-x js_btn_operate"
+                   data-id="<%=id%>"
+                   data-action="<%=action.name%>"><%=EnumConfig.BookingActionText[action.name]%></a>
+                <%})%>
             </p>
         </td>
     </tr>
@@ -621,8 +618,9 @@
 
 <script type="text/template" id="tpl_mypage_bookingDetail">
 
-    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green link">课程订单</span></div>
-    <div id="bookingDetail">
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green link">订单详情</span></div>
+    <div class="blank1"></div>
+    <div id="bookingDetail" class="mypage_content_inner">
         <div class="row0 clearfix">
             <div class="fleft">
                 <p><label>订单号：<%= reference %></label> <span>(<%= createTime %>预订)</span></p>
@@ -646,12 +644,14 @@
                     <s>原价：¥<%=course.price%></s>
                     <%}%>
                     &nbsp;&nbsp;
-                    <%if(type===EnumConfig.PayType.offline&&course.cashback){%>
-                    <a class="label cashback"><%=course.cashback%>元
+                    <%if(type===EnumConfig.PayType.offline&&course.cashbackAmount){%>
+                    <a class="label cashbacked"><%= realCashbackAmount %>元
                         <div class="tip">
                             <div class="arrow"></div>
                             <div class="tip_content">
-                                入学成功可立即返还<%=course.cashback%>元至现金账户！
+                                本课程最多可返现<%= course.cashback %>元，
+                                已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount<cashbackAmount){%>（您的可用返现券额不足）<%}%>，
+                                入学成功即返还<%= realCashbackAmount %>元至现金账户！
                             </div>
                         </div>
                     </a>
@@ -667,56 +667,16 @@
                 <% } %>
             </div>
         </div>
+        <%if(show){%>
         <div class="row1">
 
             <div id="process">
-                <div class="node fore ready">
-                    <p>提交订单</p>
-                </div>
-                <div class="proce doing">
-                    <p>&nbsp;</p>
-                </div>
-                <div class="node wait">
-                    <p>支付学费</p>
-                </div>
-                <div class="proce wait">
-                    <p>&nbsp;</p>
-                </div>
-                <div class="node wait">
-                    <p>学校确认</p>
-                </div>
-                <div class="proce wait">
-                    <p>&nbsp;</p>
-                </div>
-                <div class="node wait clearfix">
-                    <p class="fleft" style="width:50px;">入学</p>
-
-                    <p class="fleft" style="width:100px; text-align:center; margin-left:25px;">返现可使用</p>
-                </div>
-                <div class="proce wait">
-                    <p>&nbsp;</p>
-                </div>
-                <div class="node wait">
-                    <p style="margin-left:-5px;">结业</p>
-                </div>
             </div>
 
-
-            <div class="explain">
-                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span> 学校确认您已经完成课程学习，期待下次为您服务</span></p>
-
-                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>已通知学校询问您的入学状态，并确认是否可获得返现</span>
-                </p>
-
-                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的订单信息已经通知学校；将有资深课程顾问与您联系</span>
-                </p>
-
-                <p class="active"><span>2014-6-13</span> <span>11:02</span> <span>您的学费已经支付成功</span></p>
-
-                <p><span>2014-6-12</span> <span>12:02</span> <span>您提交了订单，请您在2014-08-10 20:31前完成支付，过时系统将自动取消；</span>
-                </p>
+            <div id="bookingHistories" class="explain">
             </div>
         </div>
+        <%}%>
         <div class="row2">
             <h3><%= course.courseName %></h3>
 
@@ -746,13 +706,14 @@
                         <%}else{%>
                         <span class="badge bg-error">始</span> <%= course.startDate %>
                     </p>
-
+                    <%if(course.finishDate){%>
                     <p>
                         <label></label>
                         <span class="badge bg-primary">终</span>
                         <%= course.finishDate %>
                         <%}%>
                     </p>
+                    <%}%>
                     <% if (course.startTime1) {%>
                     <p>
                         <label>上课时间:</label>
@@ -803,19 +764,74 @@
                 <%= EnumConfig.BookingTypeText[type]%>
             </p>
         </div>
-    </div>
-    <div id="printBooking" class="print"><a href="#">订单打印</a></div>
-    <!--bookingDetail end-->
-    <div class="btns text-center">
-        <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
+        <div id="printBooking" class="print"><a href="#">订单打印</a></div>
+        <!--bookingDetail end-->
+        <div class="btns text-center">
+            <!-- <input type="button" class="btn_G" value="修改订单" id="editBooking"> -->
 
-        <%_.each(actionList,function(action){%>
-        <input type="button" class="btn_W js_btn_operate"
-               value="<%=EnumConfig.BookingActionText[action.name]%>"
-               data-action="<%=action.name%>">
-        <%})%>
+            <%_.each(actionList,function(action){%>
+            <input type="button" class="btn_W js_btn_operate"
+                   value="<%=EnumConfig.BookingActionText[action.name]%>"
+                   data-action="<%=action.name%>">
+            <%})%>
+        </div>
+        <!--btns end-->
     </div>
-    <!--btns end-->
+</script>
+
+<script type="text/template" id="tpl_mypage_bookingDetailFlow">
+    <div class="node fore <%=statuses[0]%>">
+        <p>提交订单</p>
+    </div>
+
+    <div class="proce <%=statuses[1]%>">
+        <p>&nbsp;</p>
+    </div>
+    <div class="node <%=statuses[2]%>">
+        <%if(bookingType==EnumConfig.PayType.online){%>
+        <p>支付学费</p>
+        <%}else{%>
+        <p>学校确认</p>
+        <%}%>
+    </div>
+    <div class="proce <%=statuses[3]%>">
+        <p>&nbsp;</p>
+    </div>
+    <div class="node <%=statuses[4]%>">
+        <%if(bookingType==EnumConfig.PayType.online){%>
+        <p>学校确认</p>
+        <%}else{%>
+        <p>支付学费</p>
+        <%}%>
+    </div>
+    <div class="proce <%=statuses[5]%>">
+        <p>&nbsp;</p>
+    </div>
+
+    <div class="node <%=statuses[6]%> clearfix">
+        <p class="fleft" style="width:50px;">入学</p>
+        <%if(bookingType==EnumConfig.PayType.offline){%>
+        <p class="fleft" style="width:100px; text-align:center; margin-left:25px;">返现可使用</p>
+        <%}%>
+    </div>
+    <div class="proce <%=statuses[7]%>">
+        <p>&nbsp;</p>
+    </div>
+    <div class="node <%=statuses[8]%>">
+        <p style="margin-left:-5px;">结业</p>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_mypage_bookingDetailHistory">
+    <%_.each(histories,function(history){%>
+    <%if(history.optName in EnumConfig.BookingHistoryText){%>
+    <p>
+        <span><%= history.createTime.getFullYear()%>-<%=history.createTime.getMonth()+1%>-<%=history.createTime.getDate() %></span>
+        <span><%= history.createTime.getHours()%>:<%= history.createTime.getMinutes()%></span>
+        <span><%= EnumConfig.BookingHistoryText[history.optName]%></span>
+    </p>
+    <%}%>
+    <%})%>
 </script>
 
 <script type="text/template" id="tpl_mypage_bookingPay">
@@ -849,11 +865,11 @@
     </div>
     <div class="courseBrief">
         <div class="row4">
-            <h2 class="link text-primary">爱上课预订保障</h2>
-
-            <p class="link">到机构无课程退还全款</p>
-
-            <p class="link">预订价高于机构门店价，3倍差额赔付</p>
+            <div class="ensure">
+                <h3>爱上课预订保障</h3>
+                <p>到机构无课程退还全款</p>
+                <p>预订价高于机构门店价，3倍差额赔付</p>
+            </div>
         </div>
     </div>
 
@@ -884,19 +900,19 @@
             </div>
             <!--currently not used-->
             <!--<div class="field" id="cashback_box">-->
-                <!--< if (course.cashback) { >-->
-                <!--<input type="checkbox" id="booking_useCashback"/>-->
+            <!--< if (course.cashback) { >-->
+            <!--<input type="checkbox" id="booking_useCashback"/>-->
 
-                <!--<div class="fleft cashback"><= course.cashback >元-->
-                    <!--<div class="tip" style="left:0;width:350px;">-->
-                        <!--<div class="arrow" style="left:22px"></div>-->
-                        <!--<div class="tip_content"> 用“返现券”预订此课程，可立即返还<=course.cashback >元现金！入学后不进行退学，就可至您的账户里提现。<span-->
-                                    <!--class="link howToGetCoupon" style="color:green">如何获得返现券</span>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<label for="booking_useCashback" style="font-size:13px;width:70px">使用返现券</label>-->
-                <!--< } >-->
+            <!--<div class="fleft cashback"><= course.cashback >元-->
+            <!--<div class="tip" style="left:0;width:350px;">-->
+            <!--<div class="arrow" style="left:22px"></div>-->
+            <!--<div class="tip_content"> 用“返现券”预订此课程，可立即返还<=course.cashback >元现金！入学后不进行退学，就可至您的账户里提现。<span-->
+            <!--class="link howToGetCoupon" style="color:green">如何获得返现券</span>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<label for="booking_useCashback" style="font-size:13px;width:70px">使用返现券</label>-->
+            <!--< } >-->
             <!--</div>-->
         </div>
         <div class="title">
@@ -905,17 +921,47 @@
                 <small><i class="icon icon-warning"></i>订单一经支付成功，不可变更取消</small>
             </h3>
         </div>
-        <div class="padding-sm">
-            <ul class="radios-pay padding-sm">
-                <li class="active">
-                    <input name="payType" id="alipay" type="radio" checked="true"/>
-                    <label for="alipay"><a class="btn btn-alipay"></a></label>
+        <ul id="payTypeNav" class="tab1 clearfix blank2 padding-x">
+            <li class="active" data-href="#pane_bank">银行卡</li>
+            <li data-href="#pane_platform">支付平台</li>
+        </ul>
+        <div id="pane_payType" class="row2 clearfix padding-x">
+            <ul id="pane_bank" class="bank_list active">
+                <li id="boc" class="active"><input value="BOC-DEBIT" name="payType" checked="" type="radio"><a>中国银行</a></li>
+                <li id="icbc"><input value="ICBC-DEBIT" name="payType" type="radio"><a>工商银行</a></li>
+                <li id="cmb"><input value="CMB-DEBIT" name="payType" type="radio"><a>招商银行</a></li>
+                <li id="ccb"><input value="CCB-DEBIT" name="payType" type="radio"><a>建设银行</a></li>
+                <li id="abc"><input value="ABC" name="payType" type="radio"><a>农业银行</a></li>
+                <li id="spdb"><input value="SPDB-DEBIT" name="payType" type="radio"><a>浦发银行</a></li>
+                <li id="cib"><input value="CIB" name="payType" type="radio"><a>兴业银行</a></li>
+                <li id="gdb"><input value="GDB-DEBIT" name="payType" type="radio"><a>广发银行</a></li>
+                <li id="fdb"><input value="FDB" name="payType" type="radio"><a>富滇银行</a></li>
+                <li id="citic"><input value="CITIC" name="payType" type="radio"><a>中信银行</a></li>
+                <li id="hzb"><input value="HZCBB2C" name="payType" type="radio"><a>杭州银行</a></li>
+                <li id="shb"><input value="SHBANK" name="payType" type="radio"><a>上海银行</a></li>
+                <li id="nbcb"><input value="NBBANK" name="payType" type="radio"><a>宁波银行</a></li>
+                <li id="pab"><input value="SPABANK" name="payType" type="radio"><a>平安银行</a></li>
+                <li id="post"><input value="PSBC-DEBIT" name="payType" type="radio"><a>邮政银行</a></li>
+                <li id="bcom"><input value="COMM" name="payType" type="radio"><a>交通银行</a></li>
+                <li id="ceb"><input value="CEB-DEBIT" name="payType" type="radio"><a>光大银行</a></li>
+                <li id="bob"><input value="BJBANK" name="payType" type="radio"><a>北京银行</a></li>
+                <li id="wzcb"><input value="WZCBB2C-DEBIT" name="payType" type="radio"><a>温州银行</a></li>
+                <li id="cmbc"><input value="CMBC" name="payType" type="radio"><a>民生银行</a></li>
+                <li id="brcb"><input value="BJRCB" name="payType" type="radio"><a>北京农商银行</a></li>
+                <li id="srcb"><input value="SHRCB" name="payType" type="radio"><a>上海农商银行</a></li>
+                <!--<div class="more"><a class="F_green" href="#">查看更多</a></div>-->
+            </ul>
+            <ul id="pane_platform" class="bank_list" style=" display:none;">
+                <li id="alipay" class="active">
+                    <!--<label for="alipay"></label>-->
+                    <input id="alipay" name="payType" type="radio" value="alipay"><a>支付宝</a>
                 </li>
             </ul>
 
-            <p class="">确认后将跳转到支付页面，请在30分钟内完成支付。若30分钟内未付款成功，将取消本次订单。</p>
         </div>
+        <div class="padding-sm">确认后将跳转到支付页面，请在30分钟内完成支付。若30分钟内未付款成功，将取消本次订单。</div>
         <div class="text-center">
+
             <div class="blank2"></div>
             <input type="button" class="btn_O_long" value="确认，去支付" id="goToAlipay"/>
 
@@ -941,7 +987,7 @@
         </li>
         <li>
             <div class="">
-                <div class="step_name">支付订单</div>
+                <div class="step_name">支付订单<small>（若为线上支付）</small></div>
                 <div class="step_node"></div>
             </div>
         </li>
@@ -955,9 +1001,9 @@
 </div>
 <div class="courseBrief">
     <div class="row1 clearfix">
-        <div class="fleft"><img src="<%= course.logoUrl %>" width="90"/></div>
+        <div class="fleft"><img class="js_gotoCourse" src="<%= course.logoUrl %>" width="90"/></div>
         <div class="fright">
-            <div class="title link" id="gotoCourse"><%= course.courseName %></div>
+            <div class="title link js_gotoCourse"><%= course.courseName %></div>
             <div class="desc "><strong>适合学员：</strong> <%= course.suitableStudent %></div>
         </div>
     </div>
@@ -977,8 +1023,9 @@
                 <%= course.regPhone %>
                 <%}else{%>
                 <p><span class="badge bg-error">始</span> <%= course.startDate %></p>
-
+                <%if(course.finishDate){%>
                 <p><span class="badge bg-primary">终</span> <%= course.finishDate %></p>
+                <%}%>
                 <%}%>
             </div>
             </span></div>
@@ -1010,10 +1057,10 @@
         <div class="link">客服电话</div>
     </div>
 </div>
-<form id="bookingDetail" class="panel">
+<form id="bookingDetail" class="panel newBooking">
     <div class="header">填写订单信息</div>
     <div class="title">
-        <h3><%= course.courseName %></h3>
+        <h3 class="js_gotoCourse"><%= course.courseName %></h3>
 
         <div class="fright ">恭喜您获得了最优价格</div>
     </div>
@@ -1026,64 +1073,41 @@
             <label>课程费用</label>
 
             <%if(!course.price){%>
-                <b class="price">机构定制</b>
+            <b class="price">定制</b>
             <%}else{%>
-                <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
-                <%if(course.cashback){%>
-                <a class="label cashback"><%= course.cashback %>元
-                    <div class="tip">
-                        <div class="arrow"></div>
-                        <div class="tip_content">
-                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
-                        </div>
-                    </div>
-                </a>
-                <%}%>
-                <%if(course.commission){%>
-                <a class="label save"><%= course.commission %>元
-                    <div class="tip">
-                        <div class="arrow"></div>
-                        <div class="tip_content">
-                            选择在线支付，支付时即可立减<%= course.commission %>元！
-                        </div>
-                    </div>
-                </a>
-                <%}%>
-            <%}%>
-        </div>
-        <!--not needed currently-->
-        <!--<div class="field" id="cashback_box">-->
-            <!--< if (course.cashback) { >-->
-            <!--<input type="checkbox" id="booking_useCashback"/>-->
-
-            <!--<div class="fleft cashback"><= course.cashback >元-->
-                <!--<div class="tip" style="left:0;width:350px;">-->
-                    <!--<div class="arrow" style="left:22px"></div>-->
-                    <!--<div class="tip_content">-->
-                        <!--用“返现券”预订此课程，可立即返还<= course.cashback >元现金！-->
-                        <!--入学后不进行退学，就可至您的账户里提现。-->
-                        <!--<span class="link howToGetCoupon" style="color:green">如何获得返现券</span>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<label for="booking_useCashback" style="font-size:13px;width:70px">使用返现券</label>-->
-            <!--< } >-->
-        <!--</div>-->
-        <div class="field clearfix" id="cashback_box_notLoggedIn">
-            <div class="fleft login_reg1 clearfix" id="booking_loginnote"><a id="booking_loginToggler"
-                                                                             class="link F_green">登录</a>或<a
-                    id="booking_register" class="link F_green">注册</a>
-                <% if (course.cashback) {%>
-                <div class="fleft cashback"><%= course.cashback %>元
-                    <div class="tip" style="left:0;width:350px;">
-                        <div class="arrow" style="left:22px"></div>
-                        <div class="tip_content"> 用“返现券”预订此课程，可立即返还<%= course.cashback
-                            %>元现金！入学后不进行退学，就可至您的账户里提现。<span class="link howToGetCoupon"
-                                                            style="color:green">如何获得返现券</span></div>
+            <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
+            <%if(course.cashback){%>
+            <a class="label cashback"><%= course.cashback %>元
+                <div class="tip">
+                    <div class="arrow"></div>
+                    <div class="tip_content">
+                        前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
                     </div>
                 </div>
-                后可使用优惠券，入学后获得<%= course.cashback %>元现金返还
-                <% } %>
+            </a>
+            <%}%>
+            <%if(course.commission){%>
+            <a class="label save"><%= course.commission %>元
+                <div class="tip">
+                    <div class="arrow"></div>
+                    <div class="tip_content">
+                        选择在线支付，支付时即可立减<%= course.commission %>元！
+                    </div>
+                </div>
+            </a>
+            <%}%>
+            <%}%>
+        </div>
+
+        <div class="field">
+            <label>试听费用</label>
+            <b style=" font-weight:normal; color:#ff5500;">免费</b>
+        </div>
+        <div class="field clearfix" id="cashback_box_notLoggedIn">
+            <div class="fleft login_reg1 clearfix" id="booking_loginnote">
+                <a class="js_loginBoxToggle link F_green dotted-line">登录</a>
+                或 <a id="booking_register" class="link F_green dotted-line">注册</a>
+                后可享受"返"或"立减"优惠
             </div>
         </div>
         <div id="booking_loginbox" class="loginbox">
@@ -1092,16 +1116,17 @@
                     <label>手机</label> <input class="text" type="text" id="booking_loginUsername"/>
                     <label>密码</label> <input class="text" type="password" id="booking_loginPassword"/>
                 </div>
+                <p id="bookingLoginError" class="text-warning margin-y">密码错误</p>
                 <div class="btns">
                     <input class="link" type="button" value="登录" id="booking_login"/>
                     <a class="button link" id="booking_forgotPassword">忘记密码?</a>
                     <a class="button link" id="quickRegister" style="color:#D38613;">还不是会员?马上注册</a>
                 </div>
-                <!-- <div class="close">关闭</div> -->
+                <div class="close js_loginBoxToggle">关闭</div>
             </div>
         </div>
     </div>
-    <div class="title"><h3>入学信息</h3></div>
+    <div class="title"><h3>学员信息</h3></div>
     <div id="bookingInfo" class="row2">
         <div class="field">
             <label><span class="req">*</span>学员姓名</label>
@@ -1116,12 +1141,6 @@
                         class="form_tip_bottom"></span></span></span>
         </div>
         <div class="field">
-            <label>E-mail </label>
-            <input class="text" type="text" id="booking_email"/>
-                <span id="booking_email_info" class="action"><span class="form_tip"><span
-                        class="form_tip_top">(可选)</span><span class="form_tip_bottom"></span></span></span>
-        </div>
-        <div class="field">
             <label><span class="req">*</span>预约报名日期</label>
             <input class="text" type="text" id="booking_date"/>
             <span id="booking_date_info" class="desc">(若此预约日期前未前往该教学机构办理交费，您的特惠名额将受让给其他学员)</span>
@@ -1131,45 +1150,113 @@
     <div class="row2">
         <div class="field">
             <%if(course.bookingType===EnumConfig.PayType.offline){%>
-            <p>
+            <div>
                 <label></label>
                 <input id="type1" name="bookingType" value="<%=EnumConfig.PayType.offline%>" type="radio"
                        checked="true">
                 <label class="radio" for="type1">前台付现</label>
+                <%if(course.cashback){%>
+                <a class="label cashback"><%= course.cashback %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                        </div>
+                    </div>
+                </a>
+                <%}%>
                 <span style="color:#ff5500;">(试听满意后直接在机构进行付款)</span>
-            </p>
+            </div>
             <%}%>
             <%if(course.bookingType===EnumConfig.PayType.online){%>
             <p>
                 <label></label>
                 <input id="type2" name="bookingType" value="<%=EnumConfig.PayType.online%>" type="radio" checked="true">
                 <label class="radio" for="type2">在线支付</label>
+                <%if(course.commission){%>
+                <a class="label save"><%= course.commission %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            选择在线支付，支付时即可立减<%= course.commission %>元！
+                        </div>
+                    </div>
+                </a>
+                <%}%>
                 <span style="color:#ff5500;">(爱会员惊享95折！用返券抵;&nbsp;爱•承诺：试听不满意，无条件退全款！)</span>
             </p>
             <%}%>
             <%if(course.bookingType===2){%>
-            <p>
+            <div>
                 <label></label>
                 <input id="type1" name="bookingType" value="<%=EnumConfig.PayType.offline%>" type="radio"
                        checked="true">
                 <label class="radio" for="type1">前台付现</label>
+                <%if(course.cashback){%>
+                <a class="label cashback"><%= course.cashback %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                        </div>
+                    </div>
+                </a>
+                <%}%>
                 <span style="color:#ff5500;">(试听满意后直接在机构进行付款)</span>
-            </p>
+            </div>
 
-            <p class="blank1">
+            <div class="blank1">
                 <label></label>
                 <input id="type2" name="bookingType" value="<%=EnumConfig.PayType.online%>" type="radio">
                 <label class="radio" for="type2">在线支付</label>
+                <%if(course.commission){%>
+                <a class="label save"><%= course.commission %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            选择在线支付，支付时即可立减<%= course.commission %>元！
+                        </div>
+                    </div>
+                </a>
+                <%}%>
                 <span style="color:#ff5500;">(爱会员惊享95折！用返券抵;&nbsp;爱•承诺：试听不满意，无条件退全款！)</span>
-            </p>
+            </div>
             <%}%>
         </div>
     </div>
-    <div class="row3">
+    <div id="summaryPrice">
+
+    </div>
+    <div class="row5">
         <input type="button" class="btn_O_long" value="完成预订" id="initBooking"/>
         <span id="bookingDesc" class="desc">(不收预订费)</span>
     </div>
 </form>
+</script>
+
+<script type="text/template" id="tpl_newBooking_price">
+    <div class="row4">
+        <%if(price){%>
+        您需要支付的费用为：
+        <%if(payType ==EnumConfig.PayType.offline){%>
+        <span class="price">¥<%= price %></span>
+        <%if(cashback){%>
+        <span class="desc">
+        （入学后可获得 <%= cashback %> 元返现）
+        </span>
+        <%}%>
+        <%}else if(payType ==EnumConfig.PayType.online){%>
+        <span class="price">¥<%= price-commission %></span>
+        <%if(commission){%>
+        <span class="desc">
+        （已减 <%= commission %> 元）
+        </span>
+        <%}%>
+        <%}%>
+        <%}else{%>
+        本课程费用为定制,请联系机构确认
+        <%}%>
+    </div>
 </script>
 
 <script type="text/template" id="tpl_booking_submitted">
@@ -1187,12 +1274,14 @@
                     <div class="step_node"></div>
                 </div>
             </li>
+            <% if(type==EnumConfig.PayType.online){ %>
             <li>
                 <div class="">
                     <div class="step_name">支付订单</div>
                     <div class="step_node"></div>
                 </div>
             </li>
+            <%}%>
             <li class="step_last">
                 <div class="">
                     <div class="step_name">完成预定</div>
@@ -1213,7 +1302,6 @@
                 <% } %>
                 &nbsp;&nbsp;
                 <input type="button" id="viewBooking" value="查看订单"/>
-
             </div>
             <div id="printBooking">打印订单</div>
         </div>
@@ -1236,7 +1324,10 @@
                 <%if(course.startUponArrival===0){%>
                 <%= course.regPhone %>
                 <%}else{%>
-                <%= course.startDate %>-<%= course.finishDate %>
+                <%= course.startDate %>
+                <%if(course.finishDate){%>
+                - <%= course.finishDate %>
+                <%}%>
                 <%}%>
             </p>
 
@@ -1246,38 +1337,29 @@
 
             <div>
                 <label>费用总计： </label>
-                <%if(!course.price){%>
-                <b class="price">机构定制</b>
+                <%if(!price){%>
+                <b class="price">定制</b>
                 <%}else{%>
                 <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥
-                    <% if(type==EnumConfig.PayType.online && course.commission){ %>
-                    <%= course.price - course.commission%>
-                    <%} else {%>
-                    <%= course.price %>
-                    <%} %>
+                    <%= price %>
                 </b>
                 <% if(type==EnumConfig.PayType.online){ %>
-                    <%if(course.commission){%>
-                    <a class="label saved"><%= course.commission %>元
-                        <div class="tip">
-                            <div class="arrow"></div>
-                            <div class="tip_content">
-                                选择在线支付，支付时即可立减<%= course.commission %>元！
-                            </div>
-                        </div>
-                    </a>
-                    <%}%>
+                <%if(course.commission){%>
+                <a class="label saved"><%= course.commission %>元</a>
+                <%}%>
                 <%} else if(type==EnumConfig.PayType.offline) {%>
-                    <%if(course.cashback){%>
-                    <a class="label cashback"><%= course.cashback %>元
-                        <div class="tip">
-                            <div class="arrow"></div>
-                            <div class="tip_content">
-                                前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
-                            </div>
+                <%if(cashbackAmount){%>
+                <a class="label cashbacked"><%= realCashbackAmount %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            本课程最多可返现<%= course.cashback %>元，
+                            已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount<cashbackAmount){%>（您的可用返现券额不足）<%}%>，
+                            入学成功即返还<%= realCashbackAmount %>元至现金账户！
                         </div>
-                    </a>
-                    <%}%>
+                    </div>
+                </a>
+                <%}%>
                 <%} %>
 
                 <%}%>
@@ -1286,7 +1368,13 @@
             <p class="extra">* 到达学校后，请您凭入学人的有效证件办理入学</p>
         </div>
         <div class="row3 clearfix">
-            <p class="bonus">积分奖励，成功入学后，您将获得<%= price %>积分，结账后7个工作日内计入您的上课书包</p>
+            <p class="bonus">
+                <%if(enabled===1){%>
+                为方便您管理订单，已帮您的手机号注册为爱上课会员，获得800元返现券（登录后可抵扣带有“返”的课程费用），密码已发至您的手机
+                <%}else{%>
+                积分奖励 <%if(!login&&enabled===0){%>已将该订单记录到手机号为<%=phone%>的会员账户上，<%}%>成功入学您即可获得<%= price||'500' %>积分，结账后7个工作日内计入您的上课书包
+                <%}%>
+            </p>
             <span id="viewMore" class="viewMore">查看其他课程>></span>
         </div>
     </div>
@@ -1322,11 +1410,11 @@
         <div class="col2">
             <div class="price">
                 <%if(!price){%>
-                <span class="sign">￥</span><small>机构定制</small>
+                <span class="sign">￥</span><small>定制</small>
                 <%}else{%>
-                    <%if(originalPrice){%>
-                    <s style="font-size:14px; color:#333;">原价：￥21100</s>
-                    <%}%>
+                <%if(originalPrice){%>
+                <s style="font-size:14px; color:#333;">原价：￥<%= originalPrice %></s>
+                <%}%>
                 <span class="sign">￥</span><%= price %>
                 <%}%>
             </div>
@@ -1357,7 +1445,7 @@
 
     </div>
     <div class="row2 clearfix">
-        <div id="banner-slide" class="gallary clearfix">
+        <div id="courseSlide" class="gallary clearfix">
             <div>
                 <ul class="bjqs">
                     <% _.each(classPhotoList,function(photo){%>
@@ -1369,8 +1457,8 @@
         <div class="course_map">
             <div class="addr" title="<%= address %>">上课地点：<%= address %></div>
             <div class="map">
-                <a href="http://api.map.baidu.com/geocoder?address=<%= address %>&output=html" target="_blank">
-                    <img src="http://api.map.baidu.com/staticimage?width=328&height=184&zoom=14&center=<%= address %>&markers=<%= address %>"/>
+                <a href="http://api.map.baidu.com/geocoder?address=<%= address.split('（')[0].split('(')[0] %>&output=html" target="_blank">
+                    <img src="http://api.map.baidu.com/staticimage?width=328&height=184&zoom=14&center=<%= address.split('（')[0].split('(')[0] %>&markers=<%= address.split('（')[0].split('(')[0] %>"/>
                 </a>
             </div>
         </div>
@@ -1393,7 +1481,10 @@
             <%if(startUponArrival===0){%>
             <%= regPhone %>
             <%}else{%>
-            <%= startDate %>-<%= finishDate %>；<%= studyDays %>
+            <%= startDate %>
+            <%if(finishDate){%>
+            - <%= finishDate %>
+            <%}%>
             <%}%>
         </div>
     </dd>
@@ -1408,13 +1499,10 @@
     <%}%>
     <% if (courseHourNum) { %>
     <dd class="clearfix">
-        <label>上课课时</label>
-
-        <div><%= courseHourNum %>课时
-            <% if (courseHourLength) { %>
-            , 每课时<%= courseHourLength %>小时
-            <% } %>
-        </div>
+        <label>课时信息</label>
+        <%if(qualityAssurance){%>
+        <%=qualityAssurance%>
+        <%}%>
     </dd>
     <% } %>
     <% if (classSize) { %>
@@ -1470,7 +1558,7 @@
 </dl>
 <dl id="content_2" class="clearfix">
     <dt>特色服务</dt>
-    <dd class="clearfix blank1">
+    <dd class="clearfix">
         <% if (passAgreement) { %>
         <div class="item qybg"><!--签约保过-->
             <div class="item_inner"><%= passAgreement %></div>
@@ -1521,23 +1609,17 @@
 <dl id="content_3" class="clearfix">
     <dt>名师团队</dt>
 
-    <!--<dd class="clearfix">-->
-        <!--<div class="teacher">-->
-            <!--<img src="style/images/tpic.png"/>-->
-            <!--<h3>李长茂</h3>-->
-            <!--<div>北京新东方国内考试部项目主管；原沈阳新东方国内考试部助理总监；新东方优秀教师。 </div>-->
-            <!--<span class="more">详细查看</span>-->
-        <!--</div>-->
-    <!--</dd>-->
-
     <% if (teacherList&&teacherList!==[]) { %>
     <dd class="clearfix">
         <% for (var i =0; i < teacherList.length; i++) { %>
         <div class="teacher">
-            <img src="<%= teacherList[i].imgUrl %>"/>
             <h3><%= teacherList[i].name %></h3>
-            <div><%= teacherList[i].intro %></div>
-            <span class="more">详细查看</span>
+            <img src="<%= teacherList[i].imgUrl %>"/>
+            <div>
+                <%if(teacherList[i].intro&&teacherList[i].intro.length >=35){%><%= teacherList[i].intro.substring(0,35)%> ...<%}else{%>
+                <%= teacherList[i].intro%><%}%>
+            </div>
+            <span class="more" data-id="<%=i%>">详细查看</span>
         </div>
         <% } %>
     </dd>
@@ -1578,31 +1660,19 @@
 
 <dl id="content_5" class="clearfix">
     <dt>同类型课程</dt>
-    <dd class="F_green blank1" style="font-size:14px;">课程名称：初二提高英语暑假班</dd>
+    <dd class="F_green blank1" style="font-size:14px;">课程名称：<%= courseName %></dd>
     <dd class="clearfix blank">
         <table width="100%" cellpadding="0" cellspacing="0">
             <thead>
             <tr>
-                <td width="20%">开课日期</td>
+                <td width="22%">上课日期</td>
+                <td width="20%">上课时间</td>
                 <td class="addr">上课地点</td>
-                <td width="20%">价格</td>
-                <td width="20%">--</td>
+                <td width="12%">价格</td>
+                <td width="12%">--</td>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td colspan="4">
-                    <div class="noMessage margin-y">
-                       <div><i class="icon icon-warning"></i>很抱歉，暂没有同类型课程~~</div>
-                    </div>
-                </td>
-            </tr>
-            <!--<tr>-->
-                <!--<td>11月21日</td>-->
-                <!--<td class="addr">南京市雨花台区宁双路28号江智大厦</td>-->
-                <!--<td><span class="F_orange">￥969</span></td>-->
-                <!--<td><input type="button" class="btn_g" value="查看详情"></td>-->
-            <!--</tr>-->
+            <tbody id="relatedCourseList">
             </tbody>
         </table>
     </dd>
@@ -1612,181 +1682,252 @@
 </div>
 </script>
 
+<script type="text/template" id="tpl_relatedCourseRow">
+    <tr>
+        <td>
+            <%if(startUponArrival===0){%>
+            <%= regPhone %>
+            <%}else{%>
+            <%= startDate %>
+            <%if(finishDate){%>
+            -<%= finishDate %>
+            <%}%>
+            <%}%>
+        </td>
+        <td>
+            <%if(startTime1){%>
+            <%=startTime1%>-<%=finishTime1%>
+            <%if(startTime2){%>, <%=startTime2%> - <%=finishTime2%><%}%>
+            <%}else{%>
+            -- --
+            <%}%>
+        </td>
+        <td class="addr"><%=address%></td>
+        <td>
+            <span class="F_orange">
+            <%if(!price){%>
+            定制
+            <%}else{%>
+            ￥<%= price %>
+            <%}%></span>
+        </td>
+        <td>
+            <%if(current){%>
+            <a class="inline-block">
+                <button type="button" class="btn_gray">当前课程</button>
+            </a>
+            <%}else{%>
+            <a class="inline-block" href="#course/<%= id %>">
+                <button type="button" class="btn_g" >查看详情</button>
+            </a>
+            <%}%>
+
+        </td>
+    </tr>
+</script>
+<script type="text/template" id="tpl_relatedCourseNoRow">
+    <tr>
+        <td colspan="4">
+            <div class="noMessage margin-y">
+                <div><i class="icon icon-warning"></i>很抱歉，暂没有同类型课程~~</div>
+            </div>
+        </td>
+    </tr>
+</script>
+<script type="text/template" id="tpl_relatedCourseErrorRow">
+    <tr>
+        <td colspan="4">
+            <div class="noMessage margin-y">
+                <div><i class="icon icon-warning"></i>很抱歉，暂时无法查询到同类型课程~~</div>
+            </div>
+        </td>
+    </tr>
+</script>
+
+
 <script type="text/template" id="tpl_compareView">
 <div id="compareView" class="compare">
 <div class="title clearfix" id="basic_collapse">
     <span class="up">课程详情</span>
     <a class="F_green" href="#">[收起]</a>
 </div>
-<table width="100%" cellpadding="0" cellspacing="0" id="basic_content">
-    <tr id="noAddColumn">
-        <td width="64"></td>
+
+<div id="basic_content">
+    <div id="courseName" class="course_name clearfix">
+        <div class="th" style="width: 64px">课程名称</div>
         <% _.each(courses, function(course) { %>
-        <td width="195">
-        </td>
-        <% }); %>
-    </tr>
-    <tr id="courseName" class="course_name">
-        <th width="64px">课程名称</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.id %>" width="195">
+        <div class="courseId_<%= course.id %> td" style="width: 195px">
             <h2 class="F_green courseTitle" style="cursor:pointer;"><%= course.courseName %></h2>
 
-            <div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>
+            <div class="btn"><input class="btn_O" type="button" value="立即预订"/></div>
             <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next"
                                                                                                href="#">向后</a></div>
-        </td>
+        </div>
         <% }); %>
-    </tr>
+    </div>
 
-    <tr id="price">
-        <th>课程价格</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>">
-            <%if(!course.price){%>
-            <div class="price">机构定制</div>
-            <%}else{%>
-            <div class="price">￥<%= course.price %></div>
+    <table width="100%" cellpadding="0" cellspacing="0" >
+
+        <tr id="price">
+            <th width="64">课程价格</th>
+            <% _.each(courses, function(course) { %>
+            <td width="195" class="courseId_<%= course.id %>">
+                <%if(!course.price){%>
+                <div class="price">定制</div>
+                <%}else{%>
+                <div class="price">￥<%= course.price %></div>
                 <%if(course.cashback){%> <a class="label cashback"><%=course.cashback %>元</a> <%}%>
                 <%if(course.commission){%> <a class="label save"><%= course.commission %>元</a> <%}%>
-            <%}%>
+                <%}%>
+            </td>
+            <% }); %>
+        </tr>
 
-        </td>
-        <% }); %>
-    </tr>
+        <tr id="originalPrice">
+            <th>课程原价</th>
+            <% _.each(courses, function(course) { %>
+            <td class="courseId_<%= course.id %>"><%if(course.originalPrice){%>
+                <div>￥<%= course.originalPrice %></div>
+                <%}%></td>
+            <% }); %>
+        </tr>
 
-    <tr id="startDate">
-        <th>上课日期</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>">
-            <%if(course.startUponArrival===0){%>
-            <%= course.regPhone %>
-            <%}else{%>
-            <%= course.startDate %>-<%= course.finishDate %>
-            <%}%>
-        </td>
-        <% }); %>
-    </tr>
+        <tr id="startDate">
+            <th>上课日期</th>
+            <% _.each(courses, function(course) { %>
+            <td class="courseId_<%= course.id %>"><%if(course.startUponArrival===0){%>
+                <%= course.regPhone %>
+                <%}else{%>
+                <%= course.startDate %>
+                <%if(course.finishDate){%>
+                - <%= course.finishDate %>
+                <%}%>
+                <%}%></td>
+            <% }); %>
+        </tr>
+        <tr id="startTime">
+            <th>上课时间</th>
+            <% _.each(courses, function(course) { %>
+            <td class="courseId_<%= course.id %>"><%if(course.startTime1){%>
+                <%= course.startTime1 %>-<%= course.finishTime1 %>
+                <% if (course.startTime2) { %>, <%= course.startTime2 %> - <%= course.finishTime2 %><% } %>
+                <%}%></td>
+            <% }); %>
+        </tr>
 
-    <tr id="courseHourNum">
-        <th>上课课时</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>">
-            <%if(course.courseHourNum===0){%>
-            <%= course.courseHourNum %>课时，每课时<%= course.courseHourLength %>小时
-            <%}%>
-        </td>
-        <% }); %>
-    </tr>
-    <tr id="address">
-        <th>上课地址</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>"><%= course.address %></td>
-        <% }); %>
-    </tr>
-    <tr id="classSize">
-        <th>班级类型</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>"><%= course.classSize %></td>
-        <% }); %>
-    </tr>
+        <tr id="courseHourNum">
+            <th>课时信息</th>
+            <% _.each(courses, function(course) { %>
+            <td class="courseId_<%= course.id %>"><%if(course.qualityAssurance){%>
+                <%=course.qualityAssurance%>
+                <%}%></td>
+            <% }); %>
+        </tr>
+        <tr id="address">
+            <th>上课地址</th>
+            <% _.each(courses, function(course) { %>
+            <td class="courseId_<%= course.id %>"><%= course.address %></td>
+            <% }); %>
+        </tr>
+        <tr id="classSize">
+            <th>班级类型</th>
+            <% _.each(courses, function(course) { %>
+            <td class="courseId_<%= course.id %>"><%= course.classSize %></td>
+            <% }); %>
+        </tr>
 
-    <tr id="teachingMaterialIntro">
-        <th>教材介绍</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>"><%= course.teachingMaterialIntro %></td>
-        <% }); %>
-    </tr>
-    <tr id="teachingMaterialFee">
-        <th>教材费用</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>"><%= course.teachingMaterialFee %></td>
-        <% }); %>
-    </tr>
+        <tr id="teachingMaterialIntro">
+            <th>教材介绍</th>
+            <% _.each(courses, function(course) { %>
+            <td class="courseId_<%= course.id %>"><%= course.teachingMaterialIntro %></td>
+            <% }); %>
+        </tr>
+        <tr id="teachingMaterialFee">
+            <th>教材费用</th>
+            <% _.each(courses, function(course) { %>
+            <td class="courseId_<%= course.id %>"><%= course.teachingMaterialFee %></td>
+            <% }); %>
+        </tr>
 
-    <tr id="suitableStudent">
-        <th width="64px">适合学员</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>" width="195"><%= course.suitableStudent %></td>
-        <% }); %>
-    </tr>
+        <tr id="suitableStudent">
+            <th >适合学员</th>
+            <% _.each(courses, function(course) { %>
+            <td class="courseId_<%= course.id %>" width="195"><%= course.suitableStudent %></td>
+            <% }); %>
+        </tr>
 
-    <tr id="courseIntro">
-        <th>课程介绍</th>
-        <% _.each(courses, function(course) { %>
-        <td width="195" class="courseId_<%= course.courseId %>"><%= course.courseIntro %></td>
-        <% }); %>
-    </tr>
-    <tr id="goal">
-        <th>教学目标</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>">
-            <%= course.goal %>
-        </td>
-        <% }); %>
-    </tr>
+        <tr id="courseIntro">
+            <th>课程介绍</th>
+            <% _.each(courses, function(course) { %>
+            <td class="courseId_<%= course.id %>"><%= course.courseIntro %></td>
+            <% }); %>
+        </tr>
+        <tr id="goal">
+            <th>教学目标</th>
+            <% _.each(courses, function(course) { %>
+            <td class="courseId_<%= course.id %>"><%= course.goal %></td>
+            <% }); %>
+        </tr>
 
-</table>
-
-
-
+    </table>
+</div>
 <div class="title clearfix" style="border-top:none;" id="special_collapse">
     <span class="up">特色服务</span>
     <a class="F_green" href="#">[收起]</a>
 </div>
 <table width="100%" cellpadding="0" cellspacing="0" id="special_content">
-    <tr id="downloadMaterials">
-        <th>课件下载</th>
+    <tr id="passAgreement">
+        <th>签约保过</th>
         <% _.each(courses, function(course) { %>
-        <td width="195" class="courseId_<%= course.courseId %>"><%= course.downloadMaterials %></td>
-        <% }); %>
-    </tr>
-    <tr id="questionBankIntro">
-        <th>题库支持</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>"><%= course.questionBank %></td>
+        <td width="195" class="courseId_<%= course.id %>"><%= course.passAgreement %></td>
         <% }); %>
     </tr>
     <tr>
         <th>推荐就业</th>
         <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>"><%= course.classTeacher %></td>
-        <% }); %>
-    </tr>
-    <tr>
-        <th>讲练结合</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>"><%= course.teachingAndExercise %></td>
-        <% }); %>
-    </tr>
-    <tr id="quiz">
-        <th>阶段测评</th>
-        <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>"><%= course.quiz %></td>
-        <% }); %>
-    </tr>
-    <tr id="passAgreement">
-        <th>签约保过</th>
-        <% _.each(courses, function(course) { %>
-        <td width="195" class="courseId_<%= course.courseId %>"><%= course.passAgreement %></td>
+        <td class="courseId_<%= course.id %>"><%= course.classTeacher %></td>
         <% }); %>
     </tr>
     <tr id="certification">
         <th>结业证书</th>
         <% _.each(courses, function(course) { %>
-        <td width="195" class="courseId_<%= course.courseId %>"><%= course.certification %></td>
+        <td class="courseId_<%= course.id %>"><%= course.certification %></td>
         <% }); %>
     </tr>
     <tr id="extracurricular">
         <th>课后互动</th>
         <% _.each(courses, function(course) { %>
-        <td width="195" class="courseId_<%= course.courseId %>"><%= course.extracurricular %></td>
+        <td class="courseId_<%= course.id %>"><%= course.extracurricular %></td>
         <% }); %>
     </tr>
     <tr id="service">
         <th>赠送服务</th>
         <% _.each(courses, function(course) { %>
-        <td width="195" class="courseId_<%= course.courseId %>"><%= course.bonusService %></td>
+        <td class="courseId_<%= course.id %>"><%= course.bonusService %></td>
+        <% }); %>
+    </tr>
+    <tr id="quiz">
+        <th>阶段测评</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%= course.quiz %></td>
+        <% }); %>
+    </tr>
+    <tr>
+        <th>讲练结合</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%= course.teachingAndExercise %></td>
+        <% }); %>
+    </tr>
+    <tr id="questionBankIntro">
+        <th>题库支持</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%= course.questionBank %></td>
+        <% }); %>
+    </tr>
+    <tr id="downloadMaterials">
+        <th width="64">课件下载</th>
+        <% _.each(courses, function(course) { %>
+        <td width="195" class="courseId_<%= course.id %>"><%= course.downloadMaterials %></td>
         <% }); %>
     </tr>
 </table>
@@ -1798,46 +1939,126 @@
 <table width="100%" cellpadding="0" cellspacing="0" id="teaching_content">
 
     <tr id="logoUrl">
-        <th>品牌展示</th>
+        <th width="64">品牌展示</th>
         <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>" width="195"><img src="<%= course.logoUrl %>"/></td>
+        <td class="courseId_<%= course.id %>" width="195"><img src="<%= course.logoUrl %>"/></td>
         <% }); %>
     </tr>
-    <tr id="wholeName">
+    <tr id="wholeNa5me">
         <th>机构全称</th>
         <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>"><%= course.wholeName %></td>
+        <td class="courseId_<%= course.id %>"><%= course.wholeName %></td>
         <% }); %>
     </tr>
     <tr id="partnerDistinction">
         <th>机构荣誉</th>
         <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>"><%= course.partnerDistinction %></td>
+        <td class="courseId_<%= course.id %>"><%= course.partnerDistinction %></td>
         <% }); %>
     </tr>
     <tr id="partnerIntro">
         <th>机构介绍</th>
         <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>">
-            <% if (course.partnerIntro && course.partnerIntro.length>30) { %>
+        <td class="courseId_<%= course.id %>"><% if (course.partnerIntro && course.partnerIntro.length>30) { %>
             <%= course.partnerIntro.substring(0,24) %>...
-            <a class="F_green expand" href="#">[展开]</a></td>
-
-        <% } else {%>
-        <%= course.partnerIntro %>
-        <% } %>
-        <% }); %>
+            <a class="F_green expand" href="#">[展开]</a>
+            <% } else {%> <%= course.partnerIntro %> <% } %>
+            <% }); %></td>
     </tr>
     <tr id="highScoreReward">
         <th>教学特色</th>
         <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.courseId %>"><%= course.highScoreReward %></td>
+        <td class="courseId_<%= course.id %>"><%= course.highScoreReward %></td>
         <% }); %>
     </tr>
 </table>
 
 </div>
 </script>
+
+
+<!--start 现金账户-->
+<script type="text/templates" id="tpl_mypage_cash">
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">现金账户</span></div>
+    <div class="blank1"></div>
+
+    <div class="mypage_content_inner scrollTarget">
+        <div class="total padding-x margin-bottom">
+            <img src="style/images/icon_monney.jpg">总金额：￥
+            <b class="F_orange"><%= account.balance %></b>
+        </div>
+        <div class="clearfix">
+            <img class="fleft" src="style/images/img1.jpg"><img class="fright" src="style/images/img2.jpg">
+        </div>
+        <ul id="accountNavBtn" class="tab1 clearfix" style="margin-top:20px;">
+            <li data-id="in" class="active">收入明细</li>
+            <li data-id="out">支出明细</li>
+        </ul>
+        <div id="accountContainer">
+        </div>
+        <div id="mypageAccountNavigator" class="page blank1 clearfix">
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_mypage_accountIn">
+    <table class="blank1" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td class="">金额</td>
+            <td class="" width="33%">操作</td>
+            <td class="" width="33%">日期</td>
+        </tr>
+        </thead>
+        <tbody id="accountInList">
+        </tbody>
+    </table>
+    <div id="accountInListPagination" class="page blank1 clearfix">
+    </div>
+</script>
+<script type="text/template" id="tpl_mypage_accountOut">
+    <table class="blank1" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td class="">金额</td>
+            <td class="" width="33%">操作</td>
+            <td class="" width="33%">日期</td>
+        </tr>
+        </thead>
+        <tbody id="accountOutList">
+        </tbody>
+    </table>
+    <div id="accountOutListPagination" class="page blank1 clearfix">
+    </div>
+</script>
+
+<script type="text/template" id="tpl_mypage_accountInRow">
+    <tr id="coupon_<%= id %>">
+        <td class="text-primary"><%= charge %></td>
+        <td class=""><%= EnumConfig.AccountOperationText[operation] %></td>
+        <td class=""><%= createTime %></td>
+    </tr>
+</script>
+<script type="text/template" id="tpl_mypage_accountOutRow">
+    <tr id="coupon_<%= id %>">
+        <td class="text-error"><%= charge %></td>
+        <td class=""><%= EnumConfig.AccountOperationText[operation] %></td>
+        <td class=""><%= createTime %></td>
+    </tr>
+</script>
+
+<script type="text/templates" id="tpl_accountInNoMessage">
+    <div class="no_data">
+        <div>您的账户暂无现金收入</div>
+    </div>
+</script>
+<script type="text/templates" id="tpl_accountOutNoMessage">
+    <div class="no_data">
+        <div>您的账户暂无现金支出</div>
+    </div>
+</script>
+
+<!--end 现金账户-->
 
 <script type="text/templates" id="tpl_mypage_coupons">
     <div class="title">
@@ -1861,8 +2082,8 @@
             </dl>
             <dl class="col3">
                 <dt>3</dt>
-                <dd><h3>激活返现券</h3></dd>
-                <dd><p>在<a class="F_green" id="go_activate">返现券页面</a>中，找到待激活返现券，点击激活</p></dd>
+                <dd><h3>查看返现券</h3></dd>
+                <dd><p>在<a class="F_green" id="js_go_couponUsable">返现券页面</a>中，可查看可用返现券余额</p></dd>
             </dl>
         </div>
         <h3 class="coupons_help_title blank1">如何<span>使用</span>返现券</h3>
@@ -1871,13 +2092,13 @@
             <dl class="col1 clearfix">
                 <dt>1</dt>
                 <dd><h3>找课程</h3></dd>
-                <dd><p>登录或注册后选择<img src="style/images/return.gif">带有标识的课程</p></dd>
+                <dd><p>登录或注册后选择带有标识<img src="style/images/return.gif">的课程</p></dd>
 
             </dl>
             <dl class="col2">
                 <dt>2</dt>
                 <dd><h3>填写订单</h3></dd>
-                <dd><p>预订时，勾选使用返现券进行下单</p></dd>
+                <dd><p>预订时，默认已使用返现券进行下单</p></dd>
             </dl>
             <dl class="col3">
                 <dt>3</dt>
@@ -1886,90 +2107,69 @@
             </dl>
         </div>
         <ul id="couponNavBtn" class="tab1 clearfix blank2">
-            <li data-id="claimed" class="active">可用返现券</li>
-            <li data-id="unclaimed">待激活返现券</li>
-            <li data-id="used">已使用的返现券</li>
+            <li data-id="usable" class="active">可用返现券</li>
+            <li data-id="got">发放明细</li>
         </ul>
         <div id="coupons_container">
         </div>
     </div>
 </script>
 
-<script type="text/template" id="tpl_mypage_unclaimedCouponRow">
-    <tr id="coupon_<%= couponId %>">
-        <td class="col1"><%= createTime %></td>
-        <td class="col2"><%= amount %></td>
-        <td class="col3"><%= origin %></td>
-        <td class="col4"><%= expireTime %></td>
-        <td class="col5"><input id="coupon_act_<%= couponId %>" class="claim" type="button" value="激活"></td>
-    </tr>
-</script>
-
-<script type="text/template" id="tpl_mypage_claimedCouponRow">
-    <tr id="coupon_<%= couponId %>">
-        <td class="col1"><%= couponId %></td>
-        <td class="col2"><%= amount %></td>
-        <td class="col3"><%= origin %></td>
-        <td class="col4"><%= expireTime %><%= expireSoon %></td>
-    </tr>
-</script>
-
-<script type="text/template" id="tpl_mypage_usedCouponRow">
-    <tr id="coupon_<%= couponId %>">
-        <td class="col1"><%= couponId %></td>
-        <td class="col2"><%= transactionId %></td>
-        <td class="col3"><%= amount %></td>
-    </tr>
-</script>
-
-<script type="text/template" id="tpl_mypage_couponClaimed">
-    <table id="claimedTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
+<script type="text/template" id="tpl_mypage_couponUsable">
+    <table id="usableTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
         <thead>
         <tr>
-            <td class="col1">序号</td>
-            <td width="25%">券额</td>
+            <td width="20%" class="col1">序号</td>
+            <td width="40%">优惠券券额</td>
+            <td width="40%">有效期</td>
+        </tr>
+        </thead>
+        <tbody id="usableList">
+        </tbody>
+    </table>
+    <div id="usableCouponListNavigator" class="page blank1 clearfix">
+    </div>
+</script>
+<script type="text/template" id="tpl_mypage_usableCouponRow">
+    <tr id="coupon_<%= id %>">
+        <td class="col1"><%= id %></td>
+        <td class="col2"><strong class="price"><%= balance %></strong></td>
+        <td class="col3"><%= expiryTime %> <span class="badge"><%= expireSoon %></span></td>
+    </tr>
+</script>
+<script type="text/templates" id="tpl_usable_coupon_noMessage">
+    <div id="usableNoData" class="no_data">
+        <div>您还没有可用的返现券哦~~</div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_mypage_couponGot">
+    <table id="gotTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td class="col1">发放日期</td>
+            <td width="25%">金额</td>
             <td width="25%">发放原因</td>
             <td width="25%">有效期</td>
         </tr>
         </thead>
-        <tbody id="claimedList">
+        <tbody id="gotList">
         </tbody>
     </table>
-    <div id="claimedCouponListNavigator" class="page blank1 clearfix">
+    <div id="gotCouponListNavigator" class="page blank1 clearfix">
     </div>
 </script>
-
-<script type="text/template" id="tpl_mypage_couponUnclaimed">
-    <table id="unclaimedTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
-        <thead>
-        <tr>
-            <td class="col1">发放日期</td>
-            <td class="col2" width="20%">券额</td>
-            <td class="col3" width="20%">发放原因</td>
-            <td class="col4" width="20%">有效期</td>
-            <td class="col5" width="20%">激活</td>
-        </tr>
-        </thead>
-        <tbody id="unclaimedList">
-        </tbody>
-    </table>
-    <div id="unclaimedCouponListNavigator" class="page blank1 clearfix">
-    </div>
+<script type="text/template" id="tpl_mypage_gotCouponRow">
+    <tr id="coupon_<%= id %>">
+        <td class="col1"><%= createTime %></td>
+        <td class="col2"><strong class="price"><%= total %></strong></td>
+        <td class="col3"><%= EnumConfig.CouponOrigin[origin] %></td>
+        <td class="col4"><%= expiryTime %></td>
+    </tr>
 </script>
-
-<script type="text/template" id="tpl_mypage_couponUsed">
-    <table id="usedTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
-        <thead>
-        <tr>
-            <td class="col1">序号</td>
-            <td width="25%">交易号</td>
-            <td width="25%">金额</td>
-        </tr>
-        </thead>
-        <tbody id="usedList">
-        </tbody>
-    </table>
-    <div id="usedCouponListNavigator" class="page blank1 clearfix">
+<script type="text/templates" id="tpl_got_coupon_noMessage">
+    <div id="gotNoData" class="no_data">
+        <div>您还没有获得过返现券</div>
     </div>
 </script>
 
@@ -2011,11 +2211,11 @@
 
             <div class="field">
                 <label>用 户 名</label>
-                <span><%= invitationCode %></span>
+                <span class="invitationCode"><%if(invitationCode){%><%= invitationCode %><%}else{%><a class="js_setUsernameModal">点击设置用户名</a><%}%></span>
             </div>
             <div class="field">
                 <label>手<s></s>机</label>
-                <span><%= phone.substr(0,3) %>****<%= phone.substr(7,4) %></span>
+                <span><%= phone %></span>
                 <span class="instr">（修改登录名（手机号），请致电人工客服）</span>
             </div>
             <div class="field">
@@ -2025,17 +2225,42 @@
                         class="form_tip_top">请填写实际学员姓名</span><span class="form_tip_bottom"></span></span></span>
             </div>
             <div class="field">
+                <label>性<s></s>别</label>
+                <input id="sex_1" type="radio" name="sex" class="" value="1" <%if(gender==1){%>checked<%}%>>
+                <label class="sex" for="sex_1">男</label>
+                <input id="sex_0" type="radio" name="sex" class="" value="0" <%if(gender==0){%>checked<%}%>>
+                <label class="sex" for="sex_0">女</label>
+            </div>
+            <div class="field">
                 <label>邮<s></s>箱</label>
                 <input class="text" type="text" id="inputEmail">
-
             </div>
             <div class="btn">
                 <input class="btn_O" type="button" id="updateInfo" value="立即更新">
             </div>
-            <div style=" margin-top:50px; margin-left:103px;">
+            <div style=" margin-top:20px; margin-left:103px;">
                 完善及更新基本信息将便于您选择适合的课程
             </div>
 
+        </div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_usernameModal">
+    <div class="field">
+        <label>用户名</label>
+        <input class="text" type="text" id="inputInviteCode">
+        <span class="action" id="inputInviteCode_info">
+            <span class="form_tip">
+                <span class="form_tip_top">想好了以后就改不了了哦~</span>
+                <span class="form_tip_bottom"></span>
+            </span>
+        </span>
+        <div class="btn btn-block margin-y">
+            <input class="btn_O" type="button" id="updateInviteCode" value="就这个了">
+        </div>
+        <div>
+            拥有用户名才可以凭此邀请好友，邀请成功可获取丰富的奖励~
         </div>
     </div>
 </script>
@@ -2044,10 +2269,10 @@
     <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">积分账户</span></div>
     <div class="blank1"></div>
     <div class="mypage_content_inner">
-        <div class="total margin-bottom"><img src="style/images/icon_points.jpg">您现在拥有<b id="myCredit" class="F_orange">100</b>点可用积分</div>
+        <div class="total margin-bottom"><img src="style/images/icon_points.jpg">您现在拥有 <b id="myCredit" class="F_orange">0</b> 点可用积分</div>
         <ul id="creditNavBtn" class="tab1 clearfix">
-            <li data-id="table" class="active">积分支出明细</li>
-            <li data-id="store">积分获取明细</li>
+            <li data-id="table" class="active">积分明细</li>
+            <li data-id="store">积分商城</li>
         </ul>
         <div id="credit_pageContent">
 
@@ -2059,10 +2284,10 @@
     <table id="creditTable" class="blank1" width="100%" cellpadding="0" cellspacing="0">
         <thead>
         <tr>
-            <td class="" width="20%">序号</td>
-            <td class="" width="20%">获得日期</td>
-            <td class="" width="30%">积分</td>
-            <td class="" width="30%">--</td>
+            <td class="" width="20%">积分数额</td>
+            <td class="" width="30%">变更信息</td>
+            <td class="" width="30%">日期</td>
+            <td class="" width="20%">--</td>
         </tr>
         </thead>
         <tbody id="creditEntryContainer">
@@ -2074,9 +2299,17 @@
 
 <script type="text/templates" id="tpl_mypage_creditRow">
     <tr class="creditEntry">
-        <td><%= creditId %></td>
+        <%if(operation==0){%>
+        <td class="text-primary">
+            +<%= charge %>
+        </td>
+        <%}else{%>
+        <td class="text-error">
+            -<%= charge %>
+        </td>
+        <%}%>
+        <td class=""><%= EnumConfig.CreditOperation[operation] %></td>
         <td class=""><%= createTime %></td>
-        <td class=""><%= credit %></td>
         <td class="">--</td>
     </tr>
 </script>
@@ -2087,47 +2320,6 @@
     </div>
 </script>
 
-<!--start 现金账户-->
-<script type="text/templates" id="tpl_mypage_cash">
-    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">现金账户</span></div>
-    <div class="blank1"></div>
-
-    <div class="mypage_content_inner">
-        <div class="total padding-x margin-bottom">
-            <img src="style/images/icon_monney.jpg">总金额：￥
-            <b class="F_orange"><%= account.balance %></b>
-        </div>
-        <div class="clearfix">
-            <img class="fleft" src="style/images/img1.jpg"><img class="fright" src="style/images/img2.jpg">
-        </div>
-        <ul class="tab1 clearfix" style="margin-top:20px;">
-            <li id="expendable" class="active">支出明细</li>
-            <li id="record">收入明细</li>
-        </ul>
-        <table class="blank1" cellpadding="0" cellspacing="0" width="100%">
-            <thead>
-            <tr>
-                <td class="">金额</td>
-                <td class="" width="33%">来源</td>
-                <td class="" width="33%">有效期</td>
-            </tr>
-            </thead>
-            <tbody id="mypage_cashEntries">
-            </tbody>
-        </table>
-        <div id="mypageCashNavigator" class="page blank1 clearfix">
-        </div>
-    </div>
-</script>
-
-<script type="text/templates" id="tpl_mypage_cashEntry">
-    <tr>
-        <td class="F_orange">100</td>
-        <td class="">返现</td>
-        <td class="">2014-07-02</td>
-    </tr>
-</script>
-<!--end 现金账户-->
 
 
 <script type="text/template" id="tpl_findPassword_1">
@@ -2135,6 +2327,10 @@
         <div class="sign_up_inner">
             <div class="sign_up_title">
                 <h2 class="fleft">忘记密码</h2>
+                <div class="fright">
+                    <span class="active"><b>1</b>设置新密码</span>
+                    <span class=""><b>2</b>成功</span>
+                </div>
             </div>
             <div class="get_password">
                 <dl class="clearfix" id="cellContainer">
@@ -2172,8 +2368,8 @@
                 </div>
             </div>
             <!--account end-->
+            </Ndiv>
         </div>
-    </div>
 </script>
 
 <script type="text/templates" id="tpl_findPassword_2">
@@ -2181,20 +2377,25 @@
         <div class="sign_up_inner">
             <div class="sign_up_title">
                 <h2 class="fleft">忘记密码</h2>
+                <div class="fright">
+                    <span class="active"><b>1</b>设置新密码</span>
+                    <span class="active"><b>2</b>成功</span>
+                </div>
             </div>
             <div class="get_password">
                 <div class="get_password_s">恭喜，您的密码已经重置成功！</div>
             </div>
+            <p style="text-align:center;position:relative;top: -80px;font-size:18px;"><a class="link" href="#/">返回</a></p>
             <!--get_password end-->
         </div>
     </div>
 </script>
 
 <script type="text/templates" id="tpl_infoModal">
-    <div class="pop_content">
-        <div id="popMessage">
+    <div class="pop_content text-center">
+        <div id="popMessage" class="padding-md">
         </div>
-        <div class="btn" style="text-align:center; padding-top:15px;">
+        <div class="btn">
             <input id="gotIt" class="btn_O" type="button" value="确认">
         </div>
     </div>
@@ -2219,32 +2420,13 @@
 <script type="text/templates" id="tpl_credit_noMessage">
     <div class="no_data" id="creditNoData">
         <div>您暂时还没有积分~~</div>
-        <p>预订课程后就能获得积分哦</p>
-    </div>
-</script>
-
-<script type="text/templates" id="tpl_claimed_coupon_noMessage">
-    <div id="claimedNoData" class="no_data">
-        <div>您还没有可用的返现券哦~~</div>
-    </div>
-</script>
-
-<script type="text/templates" id="tpl_unclaimed_coupon_noMessage">
-    <div id="unclaimedNoData" class="no_data">
-        <div>您没有待激活的返现券哦~~</div>
-    </div>
-</script>
-
-<script type="text/templates" id="tpl_used_coupon_noMessage">
-    <div id="usedNoData" class="no_data">
-        <div>您还没有使用过任何返现券</div>
+        <p style="line-height: 14px;font-size: 14px;">预订课程后就能获得积分哦</p>
     </div>
 </script>
 
 <script type="text/templates" id="tpl_search_noMessage">
     <div class="no_data">
         <div>很抱歉，没有找到符合您条件的课程~~</div>
-        <!-- <p>您可以尝试更换关键词搜索，或调整关键字，如"四六级"改为""。</p> -->
     </div>
 </script>
 
@@ -2300,7 +2482,7 @@
             <dt>公司简介</dt>
             <dd>
                 <p>
-                    爱上课，致力于成为中国领先的教育培训课程在线预订服务提供商，努力为数亿学员打造专注专业、物超所值、智能便捷的课程预订平台。通过网站(www.iShangke.cn)、微信服务号、24小时预订热线（400热线）等平台，为消费者提供面授课程、在线课程、折扣课程、团购课程、特价课程等教学产品的预订服务。</p>
+                    爱上课（南京爱上课信息技术有限公司），致力于成为中国领先的教育培训课程在线预订服务提供商，努力为数亿学员打造专注专业、物超所值、智能便捷的课程预订平台。通过网站(www.iShangke.cn)、微信服务号、24小时预订热线（400热线）等平台，为消费者提供面授课程、在线课程、折扣课程、团购课程、特价课程等教学产品的预订服务。</p>
             </dd>
         </dl>
         <dl class="team">
@@ -2346,7 +2528,7 @@
         </dl>
         <dl class="fright s2">
             <dt>五星级的平台</dt>
-            <dd>
+            <dd>sh
                 <p>免费：平台使用永久免费，平台更新永久免费</p>
 
                 <p>开放：无论机构规模，只需法人组织提供高质量教学服务</p>
@@ -2375,15 +2557,6 @@
             </dd>
         </dl>
     </div>
-</script>
-
-
-<script type="text/templates" id="tpl_mypage_cashEntry">
-    <tr>
-        <td class="F_orange">100</td>
-        <td class="">返现</td>
-        <td class="">2014-07-02</td>
-    </tr>
 </script>
 
 <script type="text/templates" id="tpl_mypage_share">
@@ -2453,7 +2626,7 @@
         <dl class="tel">
             <dt>联系方式</dt>
             <dd>
-                <p>在线爱客服：点击网页右侧客服图标</p>
+                <p>在线客服：点击网页右侧客服图标</p>
 
                 <p>客服热线：<b class="F_orange">400-025-0084</b></p>
 
@@ -2463,15 +2636,13 @@
             </dd>
             <dt style="margin-top:30px;">教学机构合作</dt>
             <dd>
-                <p>联系人：徐先生</p>
+                <p>联系人：徐老师</p>
 
                 <p>QQ：2970731934</p>
 
                 <p>Email:Eric.xu@iShangke.cn</p>
-
-                <p>公司地址：南京市雨花台区宁双路28号江智大厦</p>
             </dd>
-            <dt style="margin-top:30px;">互换友链</dt>
+            <dt style="margin-top:30px;">友链互换</dt>
             <dd>
                 <p>QQ：2970731934</p>
             </dd>
@@ -2494,8 +2665,8 @@
 
                 <p style="margin-top:20px;"><strong class="F_green">如何使用返利券？</strong></p>
 
-                <div>1、找课程 登录或注册后选择带有标识的课程。</div>
-                <div>2、填写订单 预订时，选用消费券。</div>
+                <div>1、找课程 登录或注册后选择带有标识<img src="style/images/return.gif">的课程。</div>
+                <div>2、填写订单 预订时，默认已使用消费券。</div>
                 <div>3、激活消费券 开学后7天左右返现至您的爱上课现金账户内。</div>
 
                 <p style="margin-top:20px;"><strong class="F_green">邀请好友可以获得哪些奖励？</strong></p>
@@ -2519,6 +2690,11 @@
 <!-- load libraries-->
 <script src="build/common.min.js?version=0.99build101fix1" type="text/javascript"></script>
 <script src="build/main.min.js?version=0.99build102" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8" src="http://gate.looyu.com/52669/117925.js"></script>
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb61bd14e985ffc2a8da655f14f2c96b0' type='text/javascript'%3E%3C/script%3E"));
+</script>
 </body>
 </html>
 
