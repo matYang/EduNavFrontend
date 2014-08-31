@@ -40,10 +40,10 @@ input.text,select.text{height:28px; line-height:28px\9; border:1px solid #ccc; p
 .btn_gray{height:30px; padding:0 10px; background:#acacac; color:#fff; border:none; cursor:pointer;}
 .btn_o{height:30px; padding:0 10px; background:#f7a501; color:#fff; border:none; cursor:pointer;}
 
-.btn_O_long{width:200px; height:50px; background:url(../images/btn_O_long.png) no-repeat; font-size:18px; font-family:'微软雅黑'; color:#fff; border:none; cursor:pointer;}
-.btn_G{width:150px; height:40px; background:url(../images/btn_G_long.png) no-repeat; font-size:14px; font-family:'微软雅黑'; color:#fff; border:none; cursor:pointer;}
-.btn_W{width:150px; height:40px; background:url(../images/btn_W_long.png) no-repeat; font-size:14px; font-family:'微软雅黑'; color:#128d56; border:none; cursor:pointer;}
-.btn_O{width:150px; height:40px; background:url(../images/btn_O_long.png) no-repeat; font-size:14px; font-family:'微软雅黑'; color:#fff; border:none; cursor:pointer;}
+.btn_O_long{width:200px; height:50px; background:url(../images/btn_O_long.png) no-repeat; font-size:18px; color:#fff; border:none; cursor:pointer;}
+.btn_G{width:150px; height:40px; background:url(../images/btn_G_long.png) no-repeat; font-size:14px; color:#fff; border:none; cursor:pointer;}
+.btn_W{width:150px; height:40px; background:url(../images/btn_W_long.png) no-repeat; font-size:14px; color:#128d56; border:none; cursor:pointer;}
+.btn_O{width:150px; height:40px; background:url(../images/btn_O_long.png) no-repeat; font-size:14px; color:#fff; border:none; cursor:pointer;}
 
 /*Sticky Footer*/
 html, body, .main { height: 100%; }

@@ -22,15 +22,15 @@ a:hover, a:active{
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
-
+/*all padding*/
 .panel .panel-header, .panel .panel-body, .panel .panel-footer {
     padding: 15px 20px;
 }
-
+/*header and footer font-size*/
 .panel .panel-header, .panel .panel-footer {
     font-size: 18px;
 }
-
+/*style of panel body*/
 .panel .panel-body {
 }
 
@@ -71,7 +71,7 @@ a:hover, a:active{
     display: block;
 }
 
-/*默认样式 淡灰色边框 白灰底 绿字*/
+/*默认样式 淡灰色border 白灰background-color 绿color*/
 .btn-default {
     border-color: #f2f2f2;
     color: #128d56;
@@ -109,7 +109,6 @@ a:hover, a:active{
     background-image: linear-gradient(to bottom, #13AD67 0%, #139D5F 27%, #139158 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#13AD67, EndColorStr=##139158);
 }
-
 /*.btn-warning {*/
     /*border-color: #f2f2f2;*/
     /*color: #128d56;*/
@@ -178,7 +177,7 @@ a:hover, a:active{
 
 
 
-/*返 立减 common label*/
+/*返 立减 common label 带后续的标签*/
 .label{
     display:inline-block;
     position:relative;
