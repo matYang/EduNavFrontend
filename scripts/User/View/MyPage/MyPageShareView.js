@@ -16,6 +16,7 @@ var MyPageShareView = Backbone.View.extend({
             app.sessionManager.sessionModel.get("invitationCode") +
             " ， 注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！";
         this.$el.append(this.template({inviteCode: app.sessionManager.sessionModel.get("invitationCode")}));
+        /*bind events start*/
         $('.invitation_share a').on('click',function(e){
             e.preventDefault();
             if (!app.sessionManager.sessionModel.get("invitationCode")) {
@@ -24,6 +25,12 @@ var MyPageShareView = Backbone.View.extend({
                 e.stopImmediatePropagation();
             }
         });
+        $("#copy_content").focus(function(){
+            if (!app.sessionManager.sessionModel.get("invitationCode")) {
+                self.openModal();
+            }
+        });
+        /*bind events end*/
         this.$el.append('<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1407735888243953" charset="utf-8"></script>');
         var userAgent = navigator.userAgent.toLowerCase();
         var is_ie = (userAgent.indexOf('msie') != -1 && !is_opera) && userAgent.substr(userAgent.indexOf('msie') + 5, 3);
@@ -31,7 +38,7 @@ var MyPageShareView = Backbone.View.extend({
             $("#clickCopy").remove();
         } else {
             $("#clickCopy").on("click", function () {
-                window.clipboardData.setData("Text", $("#copy_content>textarea").val());
+                window.clipboardData.setData("Text", $("#copy_content").val());
             });
         }
     },
