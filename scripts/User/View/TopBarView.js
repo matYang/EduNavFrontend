@@ -38,7 +38,6 @@ var TopBarView = Backbone.View.extend({
 
     bindEvents: function () {
         var self = this;
-        var username, password;
         /*  navigation events  */
         //main nav
 
@@ -156,6 +155,7 @@ var TopBarView = Backbone.View.extend({
         app.sessionManager.logout({
             success: function () {
                 //重置sessionUser并且render topBar
+                $(document.body).off('click', '.js_loginDropToggle');
                 app.userManager.sessionUser = app.sessionManager.sessionModel;
                 if (location.hash.indexOf("mypage") > -1) {
                     app.navigate("front", true);
