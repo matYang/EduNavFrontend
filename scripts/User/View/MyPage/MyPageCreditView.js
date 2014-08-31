@@ -50,27 +50,20 @@ var MyPageCreditView = Backbone.View.extend({
 
 
 var CreditTableView = MultiPageView.extend({
+    entryContainer:'creditEntryContainer',
     el: "#credit_pageContent",
     table: "#creditTable",
     minHeight: 144,
     pageEntryNumber: 16,
     entryHeight: 36,
-    extPn:true,
+    noMessage: _.template(tpl.get("credit_noMessage")),
+    entryTemplate: _.template(tpl.get("mypage_creditRow")),
+    template: _.template(tpl.get("mypage_creditTable")),
+    pageNavigator:'creditPageNav',
+    pageNavigatorClass:'page blank1 clearfix',
     initialize: function (allCoupons, coupons) {
-        MultiPageView.prototype.initialize.call(this);
-        this.template = _.template(tpl.get("mypage_creditTable"));
         this.$el.append(this.template);
-        this.messages = coupons;
-        this.allMessages = allCoupons;
-        this.entryTemplate = _.template(tpl.get("mypage_creditRow"));
-        this.pageNumberClass = "searchResultPageNumber";
-        this.pageNumberId = "creditPageNum";
-        this.pageNavigator = "creditPageNav";
-        this.pageNavigatorClass = "page blank1 clearfix";
-        this.user = app.sessionManager.sessionModel;
-        this.entryContainer = "creditEntryContainer";
-        this.$domContainer = $("#creditEntryContainer");
-        this.noMessage =  _.template(tpl.get("credit_noMessage"));
+        MultiPageView.prototype.initialize.call(this);
         this.isClosed = false;
 
         this.sr = new CreditHistorySearchRepresentation();
