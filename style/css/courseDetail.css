@@ -206,7 +206,7 @@
 }
 /*名师团队单个教师的弹出层*/
 .viewTeacherModal .notifier-close,.viewTeacherModal .notifier-close:hover{
-    z-index: 2;
+    z-index: 104;
     text-indent: -9999px;
     width: 20px;
     height: 20px;

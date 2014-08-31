@@ -124,7 +124,7 @@ var CourseDetailView = Backbone.View.extend({
                 ms: null,
                 message: message,
                 destroy: true,
-                modal: false,
+                modal: true,
                 closeBtn: true,
                 position: 'center',
                 cls: 'viewTeacherModal',
