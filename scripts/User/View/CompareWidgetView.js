@@ -88,6 +88,7 @@ var CompareWidgetView = Backbone.View.extend({
         this.courseIds = app.storage.getCoursesToCompare();
     },
     renderMap: function () {
+        var self = this;
         if (typeof BMap == "undefined" || this.map || !app.searchView) {
             return
         }
@@ -107,9 +108,15 @@ var CompareWidgetView = Backbone.View.extend({
         } else {
             this.map.map.centerAndZoom("南京", 9);
         }
+        //过滤相同的地址后再发送请求 减少请求次数
+        var courseLocationMap = {};
         for (i = 0; i < courses.length; i++) {
-             this.map.getLatLng(courses.at(i).get("address"), courses.at(i).get("instName"));
+            courseLocationMap[courses.at(i).get("instName")] = courses.at(i).get("address");
         }
+
+        _.each(courseLocationMap,function(address,instName){
+            self.map.getLatLng(address, instName);
+        });
         this.rendered = true;
     },
     close: function () {
