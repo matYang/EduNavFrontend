@@ -32,20 +32,22 @@ var BaiduMapView = Backbone.View.extend({
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.map = new BMap.Map(this.el.id, {enableMapClick: false});  //this should never expire
-        var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL}    
+        var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL};
         this.map.addControl(new BMap.NavigationControl(opts));
         // this.setCenter(this.location);
     },
+    //获取地址的经纬度
     getLatLng: function (locationString, instName) {
         var poi = app.cache.get("poi", locationString);
         this.markerName[locationString] = instName;
         if (poi) {
-            this.poi(poi, {address: locationString});
+            this.setPosition(poi, {address: locationString});
             return;
         }
-        this.geocoder.getPoint(locationString, this.poi);
+        this.geocoder.getPoint(locationString, this.setPosition);
     },
-    poi: function (poi, locationObj) {   //っぽい
+    //生成地理位置的图标
+    setPosition: function (poi, locationObj) {
         var label;
         if (poi) {
             if (this.markers.length === 0) {
