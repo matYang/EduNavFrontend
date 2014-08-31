@@ -31,8 +31,9 @@ var MyPageShareView = Backbone.View.extend({
             }
         });
         /*bind events end*/
+        //load jiathis js for social share
         this.$el.append('<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1407735888243953" charset="utf-8"></script>');
-        var userAgent = navigator.userAgent.toLowerCase();
+        var userAgent = window.navigator.userAgent.toLowerCase();
         var is_ie = (userAgent.indexOf('msie') != -1 && !is_opera) && userAgent.substr(userAgent.indexOf('msie') + 5, 3);
         if (!window.clipboardData) {
             $("#clickCopy").remove();
