@@ -223,8 +223,8 @@ var NewBookingView = BaseFormView.extend({
         BaseFormView.prototype.bindEvents.call(this);
     },
     renderPrice: function (payType) {
-        //todo 在线付款直接显示价格减去commisson的价格 右边显示已减多少钱
-        //todo 线下支付直接显示原价 右侧显示cashback的数量
+        //在线付款直接显示价格减去commisson的价格 右边显示已减多少钱
+        //线下支付直接显示原价 右侧显示cashback的数量
         $(this.priceContainer).html(this.priceTemplate({
             payType: payType,
             price: this.model.get('course').get('price'),
@@ -241,7 +241,8 @@ var NewBookingView = BaseFormView.extend({
         var self = this;
         //非登录用户返现值设为0
         if (!app.sessionManager.hasSession()) {
-            this.model.set("cashbackAmount", 0);
+            //未登录的可以使用返现券啦
+//            this.model.set("cashbackAmount", 0);
             //这里再次强制设置支付类型 防止网页上的更改
             this.model.set('type', EnumConfig.PayType.offline);
         } else {
@@ -259,11 +260,32 @@ var NewBookingView = BaseFormView.extend({
 
         this.model.set("course", undefined);
         app.userManager.initBooking(this.model, {
-            success: self.bookingSuccess,
+            success: self.autoLogin,
             error: function () {
                 $("#" + self.submitButtonId).val("预订失败, 请重试");
             }
         });
+    },
+    autoLogin:function(booking){
+        var self = this;
+        if(!app.sessionManager.hasSession()&&booking.get('enabled')==1){
+            var pwd = booking.get('note');
+            //TODO 这里进行自动登录
+            app.sessionManager.login(self.model.get('phone'), pwd, 1, {
+                success: function (response) {
+                    //重置sessionUser并且render topBar
+                    app.userManager.sessionUser = app.sessionManager.sessionModel;
+                    app.topBarView.render();
+                    self.bookingSuccess(booking);
+                },
+                error: function (data) {
+                    self.bookingSuccess(booking);
+                }
+            });
+
+        }else{
+            self.bookingSuccess(booking);
+        }
     },
     bookingSuccess: function (booking) {
         var login = false;

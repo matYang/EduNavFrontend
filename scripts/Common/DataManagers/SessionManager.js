@@ -15,11 +15,6 @@
         this.sessionRegistraTable.push(manager);
     };
 
-    SessionManager.prototype.releaseManager = function () {
-        for (var managerIndex = 0; managerIndex < this.sessionRegistraTable.length; managerIndex++) {
-            this.sessionRegistraTable[managerIndex].release();
-        }
-    };
 
     //检查当前用户是否有会话(是否在已登录状态)
     SessionManager.prototype.hasSession = function () {
@@ -43,15 +38,9 @@
 
 
     //using the find session API to determine if the uer has logged in or not
-    //尝试获取会话
-    //若是用户与服务器能正常连接，ajax请求应该会返回一个成功的结果。
-    //若是用户有一个有效的cookie, 服务器会将当前用户的对象的id填充，以此告知当前用户在已登录状态
-    //若是用户没有cookie, 服务器同样会告知前端拉取会话才成功，但用户的id仍然会是-1, 以此表示用户是未登录状态。
-    //该方法需要在每次login, logout的回调方法里使用，因为login logout不会改变前端用户对象的id。
     SessionManager.prototype.fetchSession = function (asyncFlag, callback) {
         var self = this;
         this.sessionModel.overrideUrl(ApiResource.user_findSession);
-        this.sessionModel.set('userId', -1);
         if (testMockObj.testMode) {
             this.sessionModel = testMockObj.testUser;
             if (callback) {
@@ -59,14 +48,13 @@
             }
             return;
         }
-
-        //make sure the session model is new
         this.sessionModel.fetch({
             async: asyncFlag,
             dataType: 'json',
 
             success: function (model, response) {
-                self.releaseManager();
+                //success自动parse成sessionModel 并且同步userManager中的sessionUser
+                app.userManager.sessionUser = app.sessionManager.sessionModel;
                 if (callback) {
                     callback.success();
                 }
@@ -97,15 +85,15 @@
         $.ajax({
             url: ApiResource.user_login,
             type: 'POST',
-            data: JSON.stringify({
+            data: $.param({
                 accountIdentifier: key,
                 password: password,
                 remember: remember
             }),
             dataType: 'json',
             contentType: 'application/json',
-            success: function (model, response) {
-                Info.log(model);
+            success: function (data) {
+                app.userManager.sessionUser = app.sessionManager.sessionModel = new User(data,{parse:true});
                 if (callback) {
                     callback.success();
                 }
@@ -138,9 +126,7 @@
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-                self.sessionModel = new User();
-//              Jet says:just fucking code, how do you clean other attributes?
-//                self.sessionModel.set(self.sessionModel.idAttribute, -1);
+                app.userManager.sessionUser = self.sessionModel = new User();
                 if (callback) {
                     callback.success();
                 }
@@ -152,24 +138,6 @@
                 }
             }
         });
-        // this.sessionModel.save({
-        //     dataType:'json',
-        //     data: JSON.stringify({}),
-        //     // contentType:"application/json",
-        //     success:function(model, response){
-        //         if(callback){
-        //             callback.success();
-        //         }
-        //     },
-
-        //     error: function(model, response){
-        //         Info.warn('logout failed');
-        //         Info.warn(response);
-        //         if(callback){
-        //             callback.error(response);
-        //         }
-        //     }
-        // });
     };
 
 

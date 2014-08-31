@@ -69,7 +69,7 @@ var TopBarView = Backbone.View.extend({
                 app.navigate("register/ref=" + location.hash.substr(1, location.hash.length - 1), {trigger: true, replace: true});
                 app.infoModal.hide();
             });
-            $(document.body).on('click','.js_loginDropToggle', function (e) {
+            $(document.body).on('click', '.js_loginDropToggle', function (e) {
                 e.preventDefault();
                 $("#topbar_loginbox").toggle();
                 self.$usernameInput.trigger("focus");
@@ -121,27 +121,21 @@ var TopBarView = Backbone.View.extend({
         }
     },
     login: function () {
+        //取值
         var username = this.$usernameInput.val(),
             password = this.$passwordInput.val(),
             remember = this.$rememberInput.hasClass('checked') ? 1 : 0,
             self = this;
         if (username !== "" && password !== "") {
             $('#login_button').val("登录中...").prop("disabled", true);
-            app.sessionManager.login(username, password,remember, {
-                success: function (response) {
-                    Info.log("server login response: ");
-                    //fetching session, with async flag to true
-                    app.sessionManager.fetchSession(true, {
-                        success: function () {
-                            app.userManager.sessionUser = app.sessionManager.sessionModel;
-                            self.render();
-                        },
-                        error: function () {
-                            Info.displayNotice("登录失败，请稍后再试");
-                        }
-                    });
+            //这里继续登录操作 登录成功后直接进行session的获取(为同步请求)
+            //TODO JET:这一步操作和免注册预定的自动登录的代码可合并 应放至sessionManager中统一处理 包括logout 这里进行callback
+            app.sessionManager.login(username, password, remember, {
+                success: function () {
                     if (location.hash.indexOf("register") > -1) {
                         app.navigate("front", true);
+                    }else{
+                        self.render();
                     }
                 },
                 error: function (data) {
@@ -158,23 +152,11 @@ var TopBarView = Backbone.View.extend({
     logout: function () {
         var that = this;
         app.sessionManager.logout({
-            success: function (response) {
-                Info.log("server logout response: ");
-                Info.log(response);
-
-                app.sessionManager.fetchSession(true, {
-                    success: function () {
-                        app.userManager.sessionUser = app.sessionManager.sessionModel;
-                        if (location.hash.indexOf("mypage") > -1) {
-                            app.navigate("front", true);
-                        }
-                        that.render();
-                    },
-                    error: function () {
-                        Info.warn("Session fetch failed");
-                        app.userManager.sessionUser = app.sessionManager.sessionModel;
-                    }
-                });
+            success: function () {
+                if (location.hash.indexOf("mypage") > -1) {
+                    app.navigate("front", true);
+                }
+                that.render();
             },
 
             error: function (status) {
@@ -185,8 +167,7 @@ var TopBarView = Backbone.View.extend({
 
     close: function () {
         if (!this.isClosed) {
-            this.stopListening();
-            this.$el.empty();
+            this.$el.off();
             this.isClosed = true;
         }
     }

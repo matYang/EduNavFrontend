@@ -44,10 +44,6 @@
         this.locationTimeStamp = new Date();
     };
 
-    //reset the manager state upon logout
-    GeneralManager.prototype.release = function () {
-    };
-
     //根据ID拉取单个课程
     GeneralManager.prototype.fetchCourse = function (id, callback) {
         var cache = app.cache.get("course", id);

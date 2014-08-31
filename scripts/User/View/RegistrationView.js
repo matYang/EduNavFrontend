@@ -101,16 +101,9 @@ var RegistrationView = BaseFormView.extend({
     successCallback: function (data) {
         this.state = "finish";
         var that = this, counter = 5;
-        app.sessionManager.fetchSession(true, {
-            success: function () {
-                app.topBarView.render();
-            },
-            error: function (data) {
+        app.topBarView.render();
 
-            }
-        });
         var toPage = this.ref || "mypage";
-        app.sessionManager.sessionModel = new User(data, {parse: true});
         this.$el.empty().append(this.finishTemplate);
         var timeout = setInterval(function () {
             $("#countdown").html(--counter);
@@ -121,7 +114,6 @@ var RegistrationView = BaseFormView.extend({
         }, 1000);
     },
     submitAction: function () {
-        this.phoneCache = true;
         this.model.authCode = this.model.authCode.toUpperCase();
         app.userManager.registerUser(this.model, {
             success: this.successCallback,

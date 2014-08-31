@@ -73,7 +73,7 @@
 #booking_submitted .row2{ padding-left:88px; line-height:42px; margin-top:20px; border-bottom:1px dotted #ccc;}
 #booking_submitted .row2 .price{color:#ff5500; font-size:18px;}
 #booking_submitted .row2 span{color:#666;}
-#booking_submitted .row2 .extra{color:#ff5500; margin-top:30px;}
+#booking_submitted .row2 .extra{color:#ff5500; margin-top:10px;}
 
 #booking_submitted .row3{ padding:10px 20px 20px 88px; line-height:42px;}
 #booking_submitted .row3 .bonus{float:left; padding-left:23px; background:url(../images/icon.png) no-repeat 0 -675px;}
@@ -109,7 +109,7 @@
 .payment .btn{ border-top:1px dotted #ccc; padding-top:20px; margin:30px 20px 100px 20px; text-align:center;}
 .acn{color:#ff0000; margin-right:20px; padding-left:90px; background:url(../images/acn.png) no-repeat left center;}
 
-.bank_list li{float:left; border:1px solid #ccc; width:180px; padding:10px; margin-right:10px; margin-bottom:10px; cursor:pointer; text-indent:}
+.bank_list li{float:left; border:1px solid #ccc; width:180px; padding:10px; margin-right:10px; margin-bottom:10px; cursor:pointer;}
 .bank_list li input{float:left; margin-top: 8px;}
 .bank_list li a{float:left; width: 125px; height: 28px; overflow: hidden; background-image:url(../images/bank.png); text-indent:-9999px;}
 .bank_list li.active{ padding:9px; border:2px solid #ff5500; background:url(../images/p1.png) no-repeat right bottom;}

@@ -8,11 +8,6 @@
         this.sessionManager.registerManager(this);
     };
 
-
-    //reset the manager state upon logout
-    UserManager.prototype.release = function () {
-    };
-
     //短信验证
     //该方法用于发送注册时的验证短信
     UserManager.prototype.smsVerification = function (phone, callback) {
@@ -93,6 +88,7 @@
             data: JSON.stringify(newUser),
             contentType: 'application/json',
             success: function (data, response) {
+                app.userManager.sessionUser = app.sessionManager.sessionModel = new User(data, {parse: true});
                 if (callback) {
                     callback.success(data);
                 }
