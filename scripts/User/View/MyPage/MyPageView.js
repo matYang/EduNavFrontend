@@ -13,13 +13,12 @@ var MyPageView = Backbone.View.extend({
         }
 
         //这里重新拉取一次用户信息 也可直接使用sessionManager中的model
-        app.userManager.fetchUser({
-            "success": this.render,
-            "error": this.renderError
-        });
-        //todo 从sessionManager中获取的model没有_toJSON方法..
-//        this.user = app.sessionManager.getSessionModel();
-//        this.render();
+//        app.userManager.fetchUser({
+//            "success": this.render,
+//            "error": this.renderError
+//        });
+        this.user = app.sessionManager.getSessionModel();
+        this.render();
 
     },
 

@@ -55,7 +55,6 @@
             success: function (model, response) {
                 //success自动parse成sessionModel
 //                app.sessionManager.sessionModel;
-                self.sessionModel = new User(model,{parse:true});
                 if (callback) {
                     callback.success();
                 }
