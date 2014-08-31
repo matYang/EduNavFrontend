@@ -12,6 +12,12 @@ var MyPageView = Backbone.View.extend({
             this.reference = params.reference;
         }
 
+        //这里重新拉取一次用户信息 也可直接使用sessionManager中的model
+//        app.userManager.fetchUser({
+//            "success": this.render,
+//            "error": this.renderError
+//        });
+
         this.user = app.sessionManager.getSessionModel();
         this.render();
 
