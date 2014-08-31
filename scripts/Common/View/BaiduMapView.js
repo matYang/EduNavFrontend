@@ -147,7 +147,7 @@ var MainMapView = BaiduMapView.extend({
     cssClass: "mainPage-map",
     initialize: function () {
         this.location = "南京";
-        _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'poi', 'close');
+        _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'setPosition', 'close');
         BaiduMapView.prototype.initialize.call(this);
 
     },
