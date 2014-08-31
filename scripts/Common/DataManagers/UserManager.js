@@ -151,7 +151,6 @@
         }
 
         user.overrideUrl(ApiResource.user_info);
-        user.set('userId', this.sessionManager.getId());
         user.set('id', this.sessionManager.getId());
         user.save({}, {
             dataType: 'json',

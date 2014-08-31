@@ -19,12 +19,12 @@ var UsernameModal = BaseFormView.extend({
                     fieldId: "inputInviteCode",
                     fieldType: "text",
                     mandatory: true,
-                    modelAttr: "inviteCode",
+                    modelAttr: "invitationCode",
                     buildValidatorDiv: this.buildValidatorDiv
                 })
             ];
         }
-        this.model =  app.sessionManager.sessionModel;
+        this.model =  new User();
         //fromPageName will be 'setting' or 'share'
         this.notifier = new Backbone.Notifier();
         this.render();
@@ -58,7 +58,7 @@ var UsernameModal = BaseFormView.extend({
     },
 
     saveSuccess: function (user) {
-        app.sessionManager.sessionModel.set("inviteCode", user.get("inviteCode"));
+        app.sessionManager.sessionModel.set("invitationCode", user.get("invitationCode"));
         //成功后需要更新被modal遮罩的view的页面 在我的资料页面或者邀请有礼页面
         app.navigate("mypage/"+this.childViewName, {
             trigger: true
