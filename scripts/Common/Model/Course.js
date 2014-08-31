@@ -50,7 +50,7 @@ var Course = Backbone.Model.extend({
                 'finishTime2': undefined,//上课时间
                 'classSize': undefined,//班级类型
                 'openCourseRequirement': undefined,//开班要求
-                'cutoffDate': new Date(),//报名截止日期
+                'cutoffDate': undefined,//报名截止日期
                 'instName': undefined,
                 'wholeName': undefined,
                 'partnerDistinction': undefined,//机构荣誉

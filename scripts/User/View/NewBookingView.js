@@ -8,7 +8,7 @@ var NewBookingView = BaseFormView.extend({
     submitButtonId: "initBooking",
     initialize: function (params) {
         this.isClosed = false;
-        _.bindAll(this, "render", "bindEvents", "bookingSuccess", "login", "loginSuccess", "loginError", "close");
+        _.bindAll(this, "render", "bindEvents", "bookingSuccess", "login", "loginError", "close");
         app.viewRegistration.register(this);
         // $("#viewStyle").attr("href", "style/css/booking.css");
 

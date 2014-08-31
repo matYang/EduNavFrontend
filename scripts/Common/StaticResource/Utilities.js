@@ -9,7 +9,7 @@ var Utilities = {
     getDateString: function (targetDate, relativeFlag) {
         if (!targetDate) {
 //            Info.log("Utilities::getDateString invalid parameter, null or undefined");
-            targetDate = new Date();
+            return null;
         } else {
             //v2 时间统一为时间戳格式 new Date(timestamp) or new Date(dateObj)
             targetDate = new Date(targetDate);
