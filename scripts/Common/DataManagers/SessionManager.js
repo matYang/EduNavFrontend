@@ -85,7 +85,7 @@
         $.ajax({
             url: ApiResource.user_login,
             type: 'POST',
-            data: $.param({
+            data: JSON.stringify({
                 accountIdentifier: key,
                 password: password,
                 remember: remember
