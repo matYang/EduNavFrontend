@@ -70,7 +70,7 @@ var FindPasswordView = BaseFormView.extend({
         var that = this;
         if (state !== 2) {
             $("#getSms").on("click", function () {
-                if (Utilities.phoneValid(that.model.phone).valid) {
+                if (Utilities.phoneValid(that.model.accountIdentifier).valid) {
                     app.userManager.forgetPassword(that.model.accountIdentifier, Utilities.defaultSmsRequestHandler($("#getSms"), $("#smsInfo")));
                 } else {
                     $("#smsInfo").html("请先输入正确的手机号");
