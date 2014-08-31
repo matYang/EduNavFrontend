@@ -16,22 +16,30 @@ var MyPageShareView = Backbone.View.extend({
             app.sessionManager.sessionModel.get("invitationCode") +
             " ， 注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！";
         this.$el.append(this.template({inviteCode: app.sessionManager.sessionModel.get("invitationCode")}));
+        /*bind events start*/
         $('.invitation_share a').on('click',function(e){
             e.preventDefault();
             if (!app.sessionManager.sessionModel.get("invitationCode")) {
                 self.openModal();
-                //todo 需要断掉后面的事件:分享到其它社区里
-                e.stopPropagation();
+                //阻止事件追加:分享到其它社区里
+                e.stopImmediatePropagation();
             }
         });
-        this.$el.append('<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1401513176683351" charset="utf-8"></script>');
-        var userAgent = navigator.userAgent.toLowerCase();
+        $("#copy_content").focus(function(){
+            if (!app.sessionManager.sessionModel.get("invitationCode")) {
+                self.openModal();
+            }
+        });
+        /*bind events end*/
+        //load jiathis js for social share
+        this.$el.append('<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1407735888243953" charset="utf-8"></script>');
+        var userAgent = window.navigator.userAgent.toLowerCase();
         var is_ie = (userAgent.indexOf('msie') != -1 && !is_opera) && userAgent.substr(userAgent.indexOf('msie') + 5, 3);
         if (!window.clipboardData) {
             $("#clickCopy").remove();
         } else {
             $("#clickCopy").on("click", function () {
-                window.clipboardData.setData("Text", $("#copy_content>textarea").val());
+                window.clipboardData.setData("Text", $("#copy_content").val());
             });
         }
     },
@@ -44,7 +52,6 @@ var MyPageShareView = Backbone.View.extend({
         }
     }
 });
-
 var jiathis_config = {
     boldNum: 0,
     siteNum: 7,

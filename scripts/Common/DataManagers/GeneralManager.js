@@ -74,11 +74,10 @@
                 }
             },
 
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('fetch course failed');
-                Info.warn(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON((data.responseText)));
                 }
             }
         });
@@ -126,11 +125,10 @@
                 }
             },
 
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('fetch course failed');
-                Info.warn(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -170,11 +168,10 @@
                     callback.success(searchResults);
                 }
             },
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('CourseManager::fetchSearchResult:: fetch failed with response:');
-                Info.log(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -202,7 +199,7 @@
                 },
                 error: function (data, textStatus, jqXHR) {
                     if (callback) {
-                        callback.error(data);
+                        callback.error($.parseJSON(data.responseText));
                     }
                 }
             });
@@ -232,7 +229,7 @@
             },
             error: function (data, textStatus, jqXHR) {
                 if (callback) {
-                    callback.error(data);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });

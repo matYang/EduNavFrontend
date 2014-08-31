@@ -95,6 +95,7 @@ var CompareWidgetView = Backbone.View.extend({
         if (app.searchView && app.searchView.searchResultView&&app.searchView.searchResultView.messages) {
             courses = app.searchView.searchResultView.messages;
         }
+        //新建百度地图view
         this.map = new MainMapView();
         if (app.searchView && app.searchView.searchRepresentation) {
             if (app.searchView.searchRepresentation.get("district")) {

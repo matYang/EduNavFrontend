@@ -91,7 +91,7 @@ body > .main { height: auto; min-height: 100%; }
 
 /*表单错误提示*/
 .action,.success,.wrong {display:inline-block; position:relative; line-height:2;  vertical-align:top; padding-right:5px; font-size:12px; color:#000; padding-left:40px}
-.action,.wrong{width:247px; height:20px; padding-top:3px; background:url(../images/form_tip.gif) no-repeat 0 0;}
+.action,.wrong{width:247px; padding-top:3px; background:url(../images/form_tip.gif) no-repeat 0 0;}
 .action a,.wrong a{ position:relative; _top:2px; margin:0 2px; }
 
 .wrong, .success{margin-left:3px;}

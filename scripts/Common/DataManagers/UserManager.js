@@ -38,9 +38,8 @@
             },
             error: function (data, textStatus, jqXHR) {
                 Info.warn('UserManager::smsVerification:: action failed');
-                Info.warn(data);
                 if (callback) {
-                    callback.error(data);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -71,9 +70,8 @@
             },
             error: function (data, textStatus, jqXHR) {
                 Info.warn('UserManager::verifySMSAuthCode:: action failed');
-                Info.warn(data);
                 if (callback) {
-                    callback.error(data);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -101,9 +99,9 @@
             },
             error: function (data, response) {
                 Info.warn('UserManager::register failed');
-                Info.warn(response);
                 if (callback) {
-                    callback.error(data);
+                    //todo parseJSON may throw exception
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -134,11 +132,10 @@
                     callback.success(user);
                 }
             },
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn("UserManager::fetchUser:: fetch failed with response:");
-                Info.warn(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -164,11 +161,10 @@
                     callback.success(user);
                 }
             },
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('UserManager::changeContactInfo failed');
-                Info.warn(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -198,9 +194,8 @@
             },
             error: function (data, textStatus, jqXHR) {
                 Info.warn('UserManager::changePasswordVerification:: action failed');
-                Info.warn(data);
                 if (callback) {
-                    callback.error(data);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -270,9 +265,8 @@
             },
             error: function (data, textStatus, jqXHR) {
                 Info.warn('UserManager::forgetPassword:: action failed');
-                Info.warn(data);
                 if (callback) {
-                    callback.error(data);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -304,9 +298,8 @@
             },
             error: function (data, textStatus, jqXHR) {
                 Info.warn('UserManager::recoverPassword:: action failed');
-                Info.warn(data);
                 if (callback) {
-                    callback.error(data);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -340,11 +333,10 @@
                 }
             },
 
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('UserManager::fetchBookings:: fetch failed with response:');
-                Info.warn(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -375,11 +367,11 @@
                 }
             },
 
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('UserManager::fetchBookingHistories:: fetch failed with response:');
                 Info.warn(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -408,11 +400,10 @@
                 }
             },
 
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('UserManager::fetchCoupons:: fetch failed with response:');
-                Info.warn(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -442,11 +433,10 @@
                 }
             },
 
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('UserManager::fetchCreditHistories:: fetch failed with response:');
-                Info.warn(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -476,11 +466,10 @@
                 }
             },
 
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('UserManager::fetchAccountHistories:: fetch failed with response:');
-                Info.warn(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -509,11 +498,10 @@
                     callback.success(model);
                 }
             },
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('fetch booking failed');
-                Info.warn(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -540,14 +528,13 @@
 
             success: function (model, response) {
                 if (callback) {
-                    callback.success(newBooking);
+                    callback.success(model);//from 'newbooking' to 'model'
                 }
             },
-            error: function (model, response) {
+            error: function (data) {
                 Info.warn('UserManager::initBooking:: save failed with response:');
-                Info.log(response);
                 if (callback) {
-                    callback.error(response);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -575,9 +562,8 @@
             },
             error: function (data) {
                 Info.warn('UserManager::changeBookingState:: save failed with response:');
-                Info.warn(response);
                 if (callback) {
-                    callback.error(data);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });
@@ -603,9 +589,8 @@
             },
             error: function (data, textStatus, jqXHR) {
                 Info.warn('UserManager::claimCoupon:: action failed');
-                Info.warn(data);
                 if (callback) {
-                    callback.error(data);
+                    callback.error($.parseJSON(data.responseText));
                 }
             }
         });

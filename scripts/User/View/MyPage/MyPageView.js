@@ -38,7 +38,7 @@ var MyPageView = Backbone.View.extend({
     },
 
     renderError: function (data) {
-        Info.displayErrorPage("content", data.responseJSON);
+        Info.displayErrorPage("content", data.message);
     },
     createChildView: function () {
 //        $(document).scrollTop(0);

@@ -64,7 +64,7 @@
 <div id="allTemplates">
 <script type="text/template" id="tpl_topBar-loggedIn">
     <div class="topBar">
-        <div class="link topBar-inner clearfix">
+        <div class="topBar-inner clearfix">
             <h1 id="logo" class="topBar-logo">
                 <a></a>
             </h1>
@@ -76,7 +76,7 @@
 
             <div class="user_info">
                 <span id="greeting"></span>好，亲爱的
-                <span id="username">
+                <span id="username" class="link">
                     <% if(name){%>
                         <%= name %>
                     <% }else if(invitationCode){ %>
@@ -115,7 +115,7 @@
                         <li>
                             <input id="login_username" type="text" class="text" placeholder="请输入手机号">
 
-                            <p id="credentialWrong" class="wrong">输入有误，请重新输入</p>
+                            <p id="credentialWrong" class="wrong" style="width:auto;height: auto;">输入有误，请重新输入</p>
                         </li>
                         <li>
                             <input id="login_password" type="password" class="text" placeholder="请输入密码">
@@ -2535,7 +2535,7 @@
         </dl>
         <dl class="fright s2">
             <dt>五星级的平台</dt>
-            <dd>
+            <dd>sh
                 <p>免费：平台使用永久免费，平台更新永久免费</p>
 
                 <p>开放：无论机构规模，只需法人组织提供高质量教学服务</p>
@@ -2564,15 +2564,6 @@
             </dd>
         </dl>
     </div>
-</script>
-
-
-<script type="text/templates" id="tpl_mypage_cashEntry">
-    <tr>
-        <td class="F_orange">100</td>
-        <td class="">返现</td>
-        <td class="">2014-07-02</td>
-    </tr>
 </script>
 
 <script type="text/templates" id="tpl_mypage_share">

@@ -308,15 +308,14 @@ var Utilities = {
                     $button.prop("disabled", false).css("background", "");
                 }, 120000);
             },
-            error: function (response) {
-                $info.html("发送失败，请检查网络正常并重试");
-//                $info.html((response && response.responseJSON) ? response.responseJSON : "发送失败，请检查网络正常并重试");
+            error: function (data) {
+                $info.html(data.message||"发送失败，请检查网络正常并重试");
                 $button.val("重新发送").prop("disabled", false);
             }
         };
     },
-    defaultErrorHandler: function (response) {
-        Info.alert(response.responseJSON || Resources.networkErrorText);
+    defaultErrorHandler: function (data) {
+        Info.alert(data.message || Resources.networkErrorText);
     },
     calcCompleteness: function (course) {
         var json = course._toJSON(), attr, comp = 0;
