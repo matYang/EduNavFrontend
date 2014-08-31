@@ -64,7 +64,7 @@
 <div id="allTemplates">
 <script type="text/template" id="tpl_topBar-loggedIn">
     <div class="topBar">
-        <div class="link topBar-inner clearfix">
+        <div class="topBar-inner clearfix">
             <h1 id="logo" class="topBar-logo">
                 <a></a>
             </h1>
@@ -76,7 +76,7 @@
 
             <div class="user_info">
                 <span id="greeting"></span>好，亲爱的
-                <span id="username">
+                <span id="username" class="link">
                     <% if(name){%>
                         <%= name %>
                     <% }else if(invitationCode){ %>
