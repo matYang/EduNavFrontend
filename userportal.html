@@ -138,6 +138,7 @@
     <div id="visual_container">
         <ul class="slidee">
             <li style="display: block;"><img src="style/images/banner.jpg" alt="" height="320"></li>
+            <li style="display: none;"><img src="style/images/banner2.jpg" alt="" height="320"></li>
         </ul>
     </div>
 </script>
@@ -657,7 +658,7 @@
                     <%}%>
                     &nbsp;&nbsp;
                     <%if(type===EnumConfig.PayType.offline&&course.cashbackAmount){%>
-                    <a class="label cashback"><%= realCashbackAmount %>元
+                    <a class="label cashbacked"><%= realCashbackAmount %>元
                         <div class="tip">
                             <div class="arrow"></div>
                             <div class="tip_content">
@@ -1361,7 +1362,7 @@
                 <%}%>
                 <%} else if(type==EnumConfig.PayType.offline) {%>
                     <%if(cashbackAmount){%>
-                    <a class="label cashback"><%= realCashbackAmount %>元
+                    <a class="label cashbacked"><%= realCashbackAmount %>元
                         <div class="tip">
                             <div class="arrow"></div>
                             <div class="tip_content">
@@ -1457,7 +1458,7 @@
 
     </div>
     <div class="row2 clearfix">
-        <div id="banner-slide" class="gallary clearfix">
+        <div id="courseSlide" class="gallary clearfix">
             <div>
                 <ul class="bjqs">
                     <% _.each(classPhotoList,function(photo){%>
