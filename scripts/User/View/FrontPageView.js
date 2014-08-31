@@ -10,6 +10,9 @@ var FrontPageView = Backbone.View.extend({
         this.user = app.sessionManager.sessionModel;
 
         this.render();
+        $('#doyoo_panel').ready(function(){
+           $(this).hide();
+        });
         //app.sessionManager.fetchSession();
     },
 
