@@ -999,7 +999,7 @@
         </li>
         <li>
             <div class="">
-                <div class="step_name">支付订单</div>
+                <div class="step_name">支付订单<small>（若为线上支付）</small></div>
                 <div class="step_node"></div>
             </div>
         </li>
@@ -1696,11 +1696,11 @@
         <table width="100%" cellpadding="0" cellspacing="0">
             <thead>
             <tr>
-                <td width="20%">上课日期</td>
+                <td width="22%">上课日期</td>
                 <td width="20%">上课时间</td>
                 <td class="addr">上课地点</td>
-                <td width="15%">价格</td>
-                <td width="15%">--</td>
+                <td width="12%">价格</td>
+                <td width="12%">--</td>
             </tr>
             </thead>
             <tbody id="relatedCourseList">
@@ -1725,11 +1725,15 @@
             <%}%>
             <%}%>
         </td>
-        <td class="addr"><%= address %></td>
-        <td><%if(course.startTime1){%>
-            <%= course.startTime1 %>-<%= course.finishTime1 %>
-            <% if (course.startTime2) { %>, <%= course.startTime2 %> - <%= course.finishTime2 %><% } %>
-            <%}else{%>-- --<%}></td>
+        <td>
+            <%if(startTime1){%>
+                <%=startTime1%>-<%=finishTime1%>
+                <%if(startTime2){%>, <%=startTime2%> - <%=finishTime2%><%}%>
+            <%}else{%>
+            -- --
+            <%}%>
+        </td>
+        <td class="addr"><%=address%></td>
         <td>
             <span class="F_orange">
             <%if(!price){%>
@@ -1741,7 +1745,7 @@
         <td>
             <%if(current){%>
             <a class="inline-block">
-                <button type="button" class="btn_grey">当前课程</button>
+                <button type="button" class="btn_gray">当前课程</button>
             </a>
             <%}else{%>
             <a class="inline-block" href="#course/<%= id %>">
