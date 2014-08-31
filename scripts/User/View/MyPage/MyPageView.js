@@ -13,6 +13,7 @@ var MyPageView = Backbone.View.extend({
         }
 
         this.user = app.sessionManager.getSessionModel();
+        this.render();
 
     },
 
