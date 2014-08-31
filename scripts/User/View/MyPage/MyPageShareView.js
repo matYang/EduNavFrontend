@@ -20,11 +20,11 @@ var MyPageShareView = Backbone.View.extend({
             e.preventDefault();
             if (!app.sessionManager.sessionModel.get("invitationCode")) {
                 self.openModal();
-                //todo 需要断掉后面的事件:分享到其它社区里
-                e.stopPropagation();
+                //阻止事件追加:分享到其它社区里
+                e.stopImmediatePropagation();
             }
         });
-        this.$el.append('<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1401513176683351" charset="utf-8"></script>');
+        this.$el.append('<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1407735888243953" charset="utf-8"></script>');
         var userAgent = navigator.userAgent.toLowerCase();
         var is_ie = (userAgent.indexOf('msie') != -1 && !is_opera) && userAgent.substr(userAgent.indexOf('msie') + 5, 3);
         if (!window.clipboardData) {
@@ -44,7 +44,6 @@ var MyPageShareView = Backbone.View.extend({
         }
     }
 });
-
 var jiathis_config = {
     boldNum: 0,
     siteNum: 7,
