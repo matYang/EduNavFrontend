@@ -210,6 +210,16 @@ a:hover, a:active{
     width: 1em;
     background: #128d56;
 }
+/*将返*/
+.label.cashbacked{
+    border-color: #128d56;
+    color:#128d56;
+}
+.label.cashbacked:before{
+    content:'将返';
+    width: 2em;
+    background: #128d56;
+}
 
 /*立减*/
 .label.save,.label.saved{
