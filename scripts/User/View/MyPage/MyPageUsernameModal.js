@@ -51,7 +51,9 @@ var UsernameModal = BaseFormView.extend({
     submitAction: function () {
         var that = this;
         app.userManager.changeInfo(this.model, {
-            "success": that.saveSuccess,
+            "success": function(user){
+                that.saveSuccess.call(this,user);
+            },
             "error": that.saveError
         });
         $("#updateInviteCode").attr("value", "保存中...").attr('disabled',true);
@@ -60,6 +62,7 @@ var UsernameModal = BaseFormView.extend({
     saveSuccess: function (user) {
         app.sessionManager.sessionModel.set("invitationCode", user.get("invitationCode"));
         //成功后需要更新被modal遮罩的view的页面 在我的资料页面或者邀请有礼页面
+        this.close();
         app.navigate("mypage/"+this.childViewName, {
             trigger: true
         });
