@@ -12,7 +12,7 @@ var BookingPayView = Backbone.View.extend({
             app.userManager.fetchBooking(this.bookingId, {
                 success: this.render,
                 error: function (data) {
-                    Info.displayNotice(data.responseJSON.message);
+                    Info.displayNotice(data.message||'订单信息获取失败');
                 }
             });
         }

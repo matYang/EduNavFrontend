@@ -65,7 +65,7 @@ var UsernameModal = BaseFormView.extend({
         });
     },
     saveError: function (data) {
-        Info.displayNotice(data.responseJSON.message  ? data.responseJSON.message  : "服务器连接失败，请稍后再试。");
+        Info.displayNotice(data.message ||"服务器连接失败，请稍后再试。");
         $("#updateInviteCode").attr("value", "更新失败(重试)");
     },
     buildValidatorDiv: function (valid, type, text) {

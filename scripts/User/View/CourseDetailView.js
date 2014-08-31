@@ -32,9 +32,9 @@ var CourseDetailView = Backbone.View.extend({
                 });
 
             },
-            error: function (response) {
+            error: function (data) {
                 //todo should handle the error message display
-//                Info.displayErrorPage("content", response.responseJSON);
+                Info.displayErrorPage("content", data.message);
             }
         });
     },

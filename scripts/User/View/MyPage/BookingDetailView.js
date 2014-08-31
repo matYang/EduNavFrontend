@@ -20,9 +20,7 @@ var BookingDetailView = Backbone.View.extend({
             app.userManager.fetchBooking(this.bookingId, {
                 success: this.render,
                 error: function (data) {
-                    if (data.responseJSON.message !== undefined) {
-                        Info.displayNotice(data.responseJSON.message);
-                    }
+                    Info.displayNotice(data.message || '服务器好像睡着了');
                 }
             });
 
@@ -32,7 +30,7 @@ var BookingDetailView = Backbone.View.extend({
         this.booking = booking;
         //处于以下状态时页面不显示状态图和流程说明
         var noShowList = [1, 2, 5, 9, 23, 12, 14, 15, 20, 21], show = 1;
-        if (noShowList.indexOf(booking.get('status'))!==-1) {
+        if (noShowList.indexOf(booking.get('status')) !== -1) {
             show = 0;
         }
         this.$el.append(this.template(_.extend(this.booking._toJSON(), {show: show})));
@@ -47,9 +45,7 @@ var BookingDetailView = Backbone.View.extend({
                     $historyContainer.children('p').last().addClass('active');
                 },
                 error: function (data) {
-                    if (data.responseJSON && data.responseJSON.message !== undefined) {
-                        Info.displayNotice(data.responseJSON.message);
-                    }
+                    Info.displayNotice(data.message || '服务器好像睡着了');
                 }
             });
         }
@@ -77,7 +73,7 @@ var BookingDetailView = Backbone.View.extend({
         var currentNodeIndex = 0;
         //Step 1 find the current node set it to 'doing' or 'ready'
         for (var index = 0; index < statusCompare.length; index++) {
-            if (statusCompare[index].indexOf(bookingStatus)!==-1) {
+            if (statusCompare[index].indexOf(bookingStatus) !== -1) {
                 currentNodeIndex = index;
                 break;
             }
@@ -119,7 +115,7 @@ var BookingDetailView = Backbone.View.extend({
             var operate = $target.data('action');
             $target.val("更改中...");
             app.userManager.changeBookingState(bookingId, operate, {
-                success:that.render,
+                success: that.render,
 //                success: function (booking) {
 //                    var status;
 //                    if (operate === 'offlineCancel' || operate === 'onlineCancel') {
@@ -137,9 +133,7 @@ var BookingDetailView = Backbone.View.extend({
 //                },
                 error: function (data) {
                     $target.val("操作失败，请重试");
-                    if (data) {
-                        Info.displayNotice(data.responseJSON.message);
-                    }
+                    Info.displayNotice(data.message || '服务器好像睡着了');
                 }
             });
         });

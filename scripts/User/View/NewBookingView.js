@@ -105,7 +105,7 @@ var NewBookingView = BaseFormView.extend({
             success: function () {
             },
             error: function (response) {
-                Info.displayNotice(response.responseJSON.message);
+                Info.displayNotice(response.message);
             }
         });
     },

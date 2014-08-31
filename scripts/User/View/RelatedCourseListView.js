@@ -17,7 +17,6 @@ var RelatedCourseListView = Backbone.View.extend({
             success: self.render,
             error: function (response) {
                 this.$el.html(self.errorItemTemplate);
-//                Info.displayErrorPage("content", response.responseJSON);
             }
         });
     },
