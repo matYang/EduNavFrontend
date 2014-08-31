@@ -11,7 +11,7 @@ var User = Backbone.Model.extend({
             'password': '',
             'email': '',
             'gender': undefined,
-            'invitationCode': '',
+            'invitationCode': undefined,
             'appliedInvitationCode': '',
 
             'createTime': undefined,
@@ -83,6 +83,7 @@ var User = Backbone.Model.extend({
         user.name = json.name;
         user.email = json.email;
         user.gender = json.gender;
+        user.invitationCode = json.invitationCode;
         return user;
     }
 
