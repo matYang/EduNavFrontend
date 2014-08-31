@@ -38,6 +38,7 @@ var BaiduMapView = Backbone.View.extend({
     },
     //获取地址的经纬度
     getLatLng: function (locationString, instName) {
+        locationString = this.formatAddr(locationString);//去除小括号 转小写
         //缓存已获取经纬度的地理位置 避免向百度继续发送请求分析地址的经纬度 以提高速度
         var point = app.cache.get("poi", locationString);
         this.markerName[locationString] = instName;
@@ -51,6 +52,7 @@ var BaiduMapView = Backbone.View.extend({
     },
     //生成地理位置的图标
     setPosition: function (point, locationObj) {
+        locationString = this.formatAddr(locationString);//去除小括号 转小写
         //todo 如果locationObj是由百度地图返回 里面的标点和英文的大小写可能会发生变化
         //todo 那么从map中取地理位置对应的机构名时会发生错误
         var label;
@@ -67,6 +69,7 @@ var BaiduMapView = Backbone.View.extend({
         }
     },
     setCenter: function (locationString) {
+        locationString = this.formatAddr(locationString);//去除小括号 转小写
         var that = this;
         this.geocoder.getPoint(
             locationString,
@@ -80,6 +83,7 @@ var BaiduMapView = Backbone.View.extend({
         );
     },
     addMarker: function (marker, locationString) {
+        locationString = this.formatAddr(locationString);//去除小括号 转小写
         var add = true, i;
         marker.locationString = locationString;
         for (i = 0; i < this.markers.length; i++) {
@@ -97,6 +101,7 @@ var BaiduMapView = Backbone.View.extend({
         this.markerCount[locationString]++;
     },
     removeMarker: function (locationString) {
+        locationString = this.formatAddr(locationString);//去除小括号 转小写
         var i;
         for (i = 0; i < this.markers.length; i++) {
             if (this.markers[i].locationString === locationString) {
@@ -127,6 +132,11 @@ var BaiduMapView = Backbone.View.extend({
         }
         this.markerCount = [];
         this.markers = [];
+    },
+    formatAddr:function(addr){//小写是一个临时的解决方案
+        addr = addr.split('（')[0];
+        addr = addr.toLowerCase();
+        return addr;
     },
     close: function () {
         if (this.map) {
