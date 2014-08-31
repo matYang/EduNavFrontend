@@ -49,7 +49,7 @@ var MyPageCreditView = Backbone.View.extend({
 });
 
 
-var CreditTableView = MultiPageView.extend({
+var CreditTableView = MultiPageView3.extend({
     entryContainer:'creditEntryContainer',
     el: "#credit_pageContent",
     table: "#creditTable",
@@ -63,7 +63,7 @@ var CreditTableView = MultiPageView.extend({
     pageNavigatorClass:'page blank1 clearfix',
     initialize: function (allCoupons, coupons) {
         this.$el.append(this.template);
-        MultiPageView.prototype.initialize.call(this);
+        MultiPageView3.prototype.initialize.call(this);
         this.isClosed = false;
 
         this.sr = new CreditHistorySearchRepresentation();
