@@ -272,10 +272,10 @@
     };
 
     //用于重新设定密码
-    //desired opt format:  { 'phone': phone, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword, 'authCode': authCode}
+    //desired opt format:  { 'accountIdentifier': accountIdentifier, 'newPassword': newPassword, 'confirmNewPassword': confirmNewPassword, 'authCode': authCode}
     UserManager.prototype.recoverPassword = function (opt, callback) {
         var self = this;
-        if (!(opt.phone && opt.newPassword && opt.confirmNewPassword && opt.authCode)) {
+        if (!(opt.accountIdentifier && opt.newPassword && opt.confirmNewPassword && opt.authCode)) {
             Info.warn('UserManager::recoverPassword:: invalid parameter');
             return;
         }
