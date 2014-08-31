@@ -302,9 +302,10 @@ var NewBookingView = BaseFormView.extend({
         $("#viewMore").on("click", function () {
             app.navigate("search", true);
         });
-        $("#viewBooking").on("click", function () {
+        $("#viewBooking").on("click", function (e) {
             if (!app.sessionManager.hasSession()) {
                 $("#topbar_loginbox").show();
+                e.stopPropagation();
             }else{
                 app.navigate("mypage/booking", true);
             }
