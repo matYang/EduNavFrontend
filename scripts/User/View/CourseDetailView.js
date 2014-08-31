@@ -68,7 +68,7 @@ var CourseDetailView = Backbone.View.extend({
             width: 625,
             animtype: 'slide', // accepts 'fade' or 'slide'
             animduration: 650, // how fast the animation are
-            animspeed: 3600, // the delay between each slide
+            animspeed: 4000, // the delay between each slide
             hoverpause: true, // pause the slider on hover
             responsive: true,
             randomstart:true
