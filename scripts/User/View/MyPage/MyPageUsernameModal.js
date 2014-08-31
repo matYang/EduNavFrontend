@@ -52,7 +52,7 @@ var UsernameModal = BaseFormView.extend({
         var that = this;
         app.userManager.changeInfo(this.model, {
             "success": function(user){
-                that.saveSuccess.call(this,user);
+                that.saveSuccess.call(that,user);
             },
             "error": that.saveError
         });
