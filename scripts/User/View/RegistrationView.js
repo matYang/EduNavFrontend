@@ -101,6 +101,8 @@ var RegistrationView = BaseFormView.extend({
     successCallback: function (data) {
         this.state = "finish";
         var that = this, counter = 5;
+        //重置sessionUser并且render topBar
+        app.userManager.sessionUser = app.sessionManager.sessionModel;
         app.topBarView.render();
 
         var toPage = this.ref || "mypage";

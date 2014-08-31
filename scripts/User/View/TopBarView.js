@@ -132,6 +132,8 @@ var TopBarView = Backbone.View.extend({
             //TODO JET:这一步操作和免注册预定的自动登录的代码可合并 应放至sessionManager中统一处理 包括logout 这里进行callback
             app.sessionManager.login(username, password, remember, {
                 success: function () {
+                    //重置sessionUser并且render topBar
+                    app.userManager.sessionUser = app.sessionManager.sessionModel;
                     if (location.hash.indexOf("register") > -1) {
                         app.navigate("front", true);
                     }else{
@@ -153,6 +155,8 @@ var TopBarView = Backbone.View.extend({
         var that = this;
         app.sessionManager.logout({
             success: function () {
+                //重置sessionUser并且render topBar
+                app.userManager.sessionUser = app.sessionManager.sessionModel;
                 if (location.hash.indexOf("mypage") > -1) {
                     app.navigate("front", true);
                 }

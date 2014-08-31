@@ -30,9 +30,7 @@
         return timeDiff >= expireTime;
     };
 
-    this.GeneralManager = function (sessionManager) {
-        this.sessionManager = sessionManager;
-        this.sessionManager.registerManager(this);
+    this.GeneralManager = function () {
 
         this.categoryList = [];
         this.locationList = [];

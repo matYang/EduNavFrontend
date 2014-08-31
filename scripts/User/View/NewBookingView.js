@@ -92,22 +92,15 @@ var NewBookingView = BaseFormView.extend({
         }
         if (username && pwd) {
             app.sessionManager.login(username, pwd, remember, {
-                success: this.loginSuccess,
+                success: function(){
+                    app.userManager.sessionUser = app.sessionManager.sessionModel;
+                    app.topBarView.render();
+                },
                 error: this.loginError
             });
         } else if (username) {
             $("#booking_loginPassword").focus();
         }
-    },
-    loginSuccess: function () {
-        var that = this;
-        app.sessionManager.fetchSession(true, {
-            success: function () {
-            },
-            error: function (response) {
-                Info.displayNotice(response.message);
-            }
-        });
     },
     loginError: function (data) {
         $("#booking_loginPassword").val("");

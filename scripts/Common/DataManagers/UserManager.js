@@ -88,7 +88,7 @@
             data: JSON.stringify(newUser),
             contentType: 'application/json',
             success: function (data, response) {
-                app.userManager.sessionUser = app.sessionManager.sessionModel = new User(data, {parse: true});
+                self.sessionModel = new User(data, {parse: true});
                 if (callback) {
                     callback.success(data);
                 }

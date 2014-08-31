@@ -53,8 +53,8 @@
             dataType: 'json',
 
             success: function (model, response) {
-                //success自动parse成sessionModel 并且同步userManager中的sessionUser
-                app.userManager.sessionUser = app.sessionManager.sessionModel;
+                //success自动parse成sessionModel
+//                app.sessionManager.sessionModel;
                 if (callback) {
                     callback.success();
                 }
@@ -93,7 +93,7 @@
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-                app.userManager.sessionUser = app.sessionManager.sessionModel = new User(data,{parse:true});
+                self.sessionModel = new User(data,{parse:true});
                 if (callback) {
                     callback.success();
                 }
@@ -126,7 +126,7 @@
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-                app.userManager.sessionUser = self.sessionModel = new User();
+                self.sessionModel = new User();
                 if (callback) {
                     callback.success();
                 }

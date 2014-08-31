@@ -57,7 +57,7 @@ var AppRouter = Backbone.Router.extend({
         this.cache = new CacheService();
         //initializing all the data managers
         this.sessionManager = new SessionManager();
-        this.generalManager = new GeneralManager(this.sessionManager);
+        this.generalManager = new GeneralManager();
         this.userManager = new UserManager(this.sessionManager);
         this.infoModal = new InfoModal();
         this.sessionManager.fetchSession(false, {

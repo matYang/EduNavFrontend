@@ -5,15 +5,14 @@ var MyPageView = Backbone.View.extend({
         app.viewRegistration.register(this);
         // $("#viewStyle").attr("href", "style/css/mypage.css");
         this.isClosed = false;
+
         this.query = params.query || "dashboard";
         this.template = _.template(tpl.get('mypage_base'));
         if (params.reference) {
             this.reference = params.reference;
         }
-        app.userManager.fetchUser({
-            "success": this.render,
-            "error": this.renderError
-        });
+
+        this.user = app.sessionManager.getSessionModel();
 
     },
 
