@@ -6,7 +6,7 @@ var User = Backbone.Model.extend({
             'userId': -1,
 
             'avatarUrl': '',
-            'name': '',
+            'name': '',//真实姓名
             'phone': '',
             'password': '',
             'email': '',

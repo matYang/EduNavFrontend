@@ -72,6 +72,7 @@ var NewBookingView = BaseFormView.extend({
         this.model = new Booking();
         this.model.set("course", course);
         this.$el.append(this.template(this.model._toJSON()));
+
         this.renderPrice(EnumConfig.PayType.offline);
         this.model.initBookingFromCourse(course);
         this.bindEvents();
@@ -105,6 +106,16 @@ var NewBookingView = BaseFormView.extend({
     loginError: function (data) {
         $("#booking_loginPassword").val("");
         $('#bookingLoginError').html(data.message||'登录失败');
+    },
+    //自动填充用户名等
+    autoName:function(){
+      if(app.sessionManager.hasSession()){
+          //todo 应自动填充手机号
+          var name =app.sessionManager.sessionModel.get('username');
+          if(name){
+              $('#booking_applicantName').val(name).trigger('change');
+          }
+      }
     },
     bindEvents: function () {
         var that = this;
@@ -253,7 +264,9 @@ var NewBookingView = BaseFormView.extend({
 
         this.model.set("course", undefined);
         app.userManager.initBooking(this.model, {
-            success: self.autoLogin,
+            success: function(booking){
+                self.autoLogin.call(self,booking);
+            },
             error: function () {
                 $("#" + self.submitButtonId).val("预订失败, 请重试");
             }
