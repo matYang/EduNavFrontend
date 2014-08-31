@@ -1469,8 +1469,8 @@
         <div class="course_map">
             <div class="addr" title="<%= address %>">上课地点：<%= address %></div>
             <div class="map">
-                <a href="http://api.map.baidu.com/geocoder?address=<%= address.split('（')[0] %>&output=html" target="_blank">
-                    <img src="http://api.map.baidu.com/staticimage?width=328&height=184&zoom=14&center=<%= address.split('（')[0] %>&markers=<%= address.split('（')[0] %>"/>
+                <a href="http://api.map.baidu.com/geocoder?address=<%= address.split('（')[0].split('(')[0] %>&output=html" target="_blank">
+                    <img src="http://api.map.baidu.com/staticimage?width=328&height=184&zoom=14&center=<%= address.split('（')[0].split('(')[0] %>&markers=<%= address.split('（')[0].split('(')[0] %>"/>
                 </a>
             </div>
         </div>
