@@ -15,7 +15,7 @@ var MyPageShareView = Backbone.View.extend({
         jiathis_config.summary = "我请大家免费上培训班啦！接受邀请请点击 www.iShangke.cn/register/invite=" +
             app.sessionManager.sessionModel.get("invitationCode") +
             " ， 注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！";
-        this.$el.append(this.template({inviteCode: app.sessionManager.sessionModel.get("invitationCode")}));
+        this.$el.html(this.template({inviteCode: app.sessionManager.sessionModel.get("invitationCode")}));
         /*bind events start*/
         $('.invitation_share a').on('click',function(e){
             e.preventDefault();
@@ -32,7 +32,9 @@ var MyPageShareView = Backbone.View.extend({
         });
         /*bind events end*/
         //load jiathis js for social share
-        this.$el.append('<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1407735888243953" charset="utf-8"></script>');
+        if($('#jiathis_script').length === 0){
+            this.$el.append('<script id="jiathis_script" type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1407735888243953" charset="utf-8"></script>');
+        }
         var userAgent = window.navigator.userAgent.toLowerCase();
         var is_ie = (userAgent.indexOf('msie') != -1 && !is_opera) && userAgent.substr(userAgent.indexOf('msie') + 5, 3);
         if (!window.clipboardData) {
