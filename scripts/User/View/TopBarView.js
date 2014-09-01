@@ -128,7 +128,7 @@ var TopBarView = Backbone.View.extend({
         if (username !== "" && password !== "") {
             $('#login_button').val("登录中...").prop("disabled", true);
             //这里继续登录操作 登录成功后直接进行session的获取(为同步请求)
-            //TODO JET:这一步操作和免注册预定的自动登录的代码可合并 应放至sessionManager中统一处理 包括logout 这里进行callback
+            //TODO JET:这一步操作和免注册预订的自动登录的代码可合并 应放至sessionManager中统一处理 包括logout 这里进行callback
             app.sessionManager.login(username, password, remember, {
                 success: function () {
                     //重置sessionUser并且render topBar

@@ -113,7 +113,7 @@ var EnumConfig = {
     },
     //credit的操作信息
     'CreditOperation':{
-        0:'预定课程发放'//预定成功获取
+        0:'预订课程发放'//预订成功获取
     },
     //现金账户account的操作信息
     'AccountOperationText':{
