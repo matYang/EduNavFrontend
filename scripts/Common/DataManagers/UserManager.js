@@ -88,12 +88,11 @@
             data: JSON.stringify(newUser),
             contentType: 'application/json',
             success: function (data, response) {
-                self.sessionModel = new User(data, {parse: true});
                 if (callback) {
                     callback.success(data);
                 }
             },
-            error: function (data, response) {
+            error: function (data) {
                 Info.warn('UserManager::register failed');
                 if (callback) {
                     //todo parseJSON may throw exception
