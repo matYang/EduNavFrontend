@@ -6,7 +6,7 @@
 
 #logo{float:left; width:155px; height:75px; background:url(../images/logo.png) no-repeat; text-indent:-9999px;}
 .topBar-navigation{float:left; height:60px; margin-left:20px; line-height:60px; color:#fff; font-size:18px;}
-.topBar-navigation li{float:left; padding:0 30px; margin-left:1px; cursor:pointer;}
+.topBar-navigation li{float:left; padding:0 25px; margin-left:1px; cursor:pointer;}
 .topBar-navigation li:hover{ background:#404652;}
 .topBar-navigation li.active{ background:#404652;}
 
