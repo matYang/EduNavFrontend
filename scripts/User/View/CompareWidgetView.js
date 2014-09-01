@@ -206,11 +206,13 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
                 $(e.target).addClass("hidden");
             } else if (e.target.tagName === "IMG") {
                 if ($this.hasClass("shrinked")) {
-                    $this.find("img").attr("src", "style/images/shiting.png").css("margin-left", 0);
+                    $this.find("img").attr("src", "style/images/shiting.gif").css("margin-left", 0);
                     $this.removeClass("shrinked");
                     $this.find(".close").removeClass("hidden");
                 } else {
-                    app.navigate("booking/c" + app.courseDetailView.courseId, true);
+                    //打开客服系统
+                    doyoo.util.openChat('g=82548');
+//                    app.navigate("booking/c" + app.courseDetailView.courseId, true);
                 }
             }
         }).on("mouseover", "img", function (e) {
