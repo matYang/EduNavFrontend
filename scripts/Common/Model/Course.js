@@ -265,6 +265,11 @@ var Course = Backbone.Model.extend({
 
             json.createTime = Utilities.getDateString(this.get('createTime'));
             json.cutoffDate = Utilities.getDateString(this.get('cutoffDate'));
+
+            json.startTime1 = this.get("startTime1");
+            json.startTime2 = this.get("startTime2");
+            json.finishTime1 = this.get("finishTime1");
+            json.finishTime2 = this.get("finishTime2");
             json.startTime1 = json.startTime1 == null ? null : Math.floor(json.startTime1 / 100) + ":" + ((json.startTime1 % 100 < 10) ? "0" + json.startTime1 % 100 : json.startTime1 % 100);
             json.startTime2 = json.startTime2 == null ? null : Math.floor(json.startTime2 / 100) + ":" + ((json.startTime2 % 100 < 10) ? "0" + json.startTime2 % 100 : json.startTime2 % 100);
             json.finishTime1 = json.finishTime1 == null ? null : Math.floor(json.finishTime1 / 100) + ":" + ((json.finishTime1 % 100 < 10) ? "0" + json.finishTime1 % 100 : json.finishTime1 % 100);
