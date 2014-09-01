@@ -50,6 +50,7 @@ var MyPageSettingView = BaseFormView.extend({
     submitAction: function () {
         var that = this, date = new Date ();
         this.model.set('gender',$('input[name="sex"]:checked').val());
+        this.model.set('invitationCode',undefined);
 //        this.model.set('identify',$('input[name="identify"]:checked').val());//todo 已工作或者还是学生
         app.userManager.changeInfo(this.model, {
             "success": that.saveSuccess,
