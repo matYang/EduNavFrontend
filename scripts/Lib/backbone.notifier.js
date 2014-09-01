@@ -27,7 +27,7 @@
                 'fadeOutMs': 500,		// duration (milliseconds) of notification's fade-out effect
                 'position': 'top',		// default notifications position ('top' / 'center' / 'bottom')
                 'screenOpacity': .65,	// opacity of dark screen background that goes behind for modals (between 0 to 1)
-                'zIndex': 10000,		// minimal z-index for notifications
+                'zIndex': 100,		// minimal z-index for notifications
                 'width': undefined,		// notification's width
                 'modules': undefined	// modules to register immediately
             },
