@@ -68,10 +68,10 @@
                 }
             },
 
-            error: function (data) {
+            error: function (model, response) {
                 Info.warn('fetch course failed');
                 if (callback) {
-                    callback.error($.parseJSON((data.responseText)));
+                    callback.error($.parseJSON((response.responseText)));
                 }
             }
         });
@@ -119,10 +119,10 @@
                 }
             },
 
-            error: function (data) {
+            error: function (model, response) {
                 Info.warn('fetch course failed');
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });
@@ -162,10 +162,10 @@
                     callback.success(searchResults);
                 }
             },
-            error: function (data) {
+            error: function (model, response) {
                 Info.warn('CourseManager::fetchSearchResult:: fetch failed with response:');
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });

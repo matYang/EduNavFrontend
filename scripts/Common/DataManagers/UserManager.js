@@ -128,10 +128,10 @@
                     callback.success(user);
                 }
             },
-            error: function (data) {
+            error: function (model, response) {
                 Info.warn("UserManager::fetchUser:: fetch failed with response:");
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });
@@ -156,10 +156,10 @@
                     callback.success(user);
                 }
             },
-            error: function (data,response,status) {
+            error: function (model, response) {
                 Info.warn('UserManager::changeContactInfo failed');
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });
@@ -328,10 +328,10 @@
                 }
             },
 
-            error: function (data) {
+            error: function (model, response) {
                 Info.warn('UserManager::fetchBookings:: fetch failed with response:');
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });
@@ -364,9 +364,9 @@
 
             error: function (data) {
                 Info.warn('UserManager::fetchBookingHistories:: fetch failed with response:');
-                Info.warn(response);
+                Info.warn(model, response);
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });
@@ -395,10 +395,10 @@
                 }
             },
 
-            error: function (data) {
+            error: function (model, response) {
                 Info.warn('UserManager::fetchCoupons:: fetch failed with response:');
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });
@@ -428,10 +428,10 @@
                 }
             },
 
-            error: function (data) {
+            error: function (model, response) {
                 Info.warn('UserManager::fetchCreditHistories:: fetch failed with response:');
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(model.responseText));
                 }
             }
         });
@@ -461,10 +461,10 @@
                 }
             },
 
-            error: function (data) {
+            error: function (model, response) {
                 Info.warn('UserManager::fetchAccountHistories:: fetch failed with response:');
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });
@@ -493,10 +493,10 @@
                     callback.success(model);
                 }
             },
-            error: function (data) {
+            error: function (model, response) {
                 Info.warn('fetch booking failed');
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });
@@ -523,13 +523,13 @@
 
             success: function (model, response) {
                 if (callback) {
-                    callback.success(model);//from 'newbooking' to 'model'
+                    callback.success(newBooking);
                 }
             },
-            error: function (data) {
+            error: function (model, response) {
                 Info.warn('UserManager::initBooking:: save failed with response:');
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(model.responseText));
                 }
             }
         });

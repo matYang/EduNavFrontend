@@ -56,15 +56,15 @@
                 //success自动parse成sessionModel
 //                app.sessionManager.sessionModel;
                 if (callback) {
-                    callback.success();
+                    callback.success(model);
                 }
             },
 
-            error: function (data) {
+            error: function (model, response) {
                 Info.warn('Session redirect failed');
 
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });
