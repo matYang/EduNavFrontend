@@ -102,7 +102,7 @@ var RegistrationView = BaseFormView.extend({
         this.state = "finish";
         var that = this, counter = 5;
         //重置sessionUser并且render topBar
-        app.userManager.sessionUser = app.sessionManager.sessionModel;
+        app.userManager.sessionUser = app.sessionManager.sessionModel = new User(data, {parse: true});
         app.topBarView.render();
 
         var toPage = this.ref || "mypage";
