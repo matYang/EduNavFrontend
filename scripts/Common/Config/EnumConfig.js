@@ -7,132 +7,71 @@ var EnumConfig = {
         deleted: 2
     },
 
-    'ModuleIdentifier':{
-        user: 0,
-        partner: 1,
-        admin: 2
-    },
-
     'CreditStatus': {
         usable: 0,
         expired: 1,
         used: 2
     },
 
+    //现金券状态取值
     'CouponStatus': {
-        usable: 0,
-        expired: 1,
-        used: 2,
-        inactive: 3
+        usable: 0,//可使用的
+        expired: 1,//已过期的
+        used: 2,//已使用的
+        inactive: 3//
+    },
+    //现金券的状态显示
+    'CouponStatusText': {
+        0:'可使用',
+        1:'已过期',
+        2:'已使用'
+    },
+    /*用户对订单可执行的操作*/
+    'BookingActionText':{
+        onlineCancel:'取消订单',
+        offlineCancel:'取消订单',
+        offlineUserDelay:'推迟报道'
     },
 
-    'CouponOrigin': {
-        registration: 0,
-        invitation: 1,
-        admin: 2
-    },
-
-    'TransactionType': {
-        cashback: 0,
-        deposit: 1,
-        withdraw: 2,
-        invitation: 3
-    },
-
-    'BookingStatus': {
-        awaiting: 0,
-        confirmed: 1,
-        cancelled: 2,
-        failed: 3,
-        delivered: 4,
-        noShow: 5,
-        late: 6,
-        registered: 7,
-        paid: 8,
-        noPay: 9,
-        started: 10,
-        refunded: 11,
-        succeeded: 12,
-        consolidated: 13
-    },
-
-    'BookingStatusText': {
-        0: '等待确认',
-        1: '预订成功',
-        2: '订单取消',
-        3: '失败',
-        4: '已送达机构',
+    /*订单状态 from 'BookingStatusUserText' to now*/
+    "BookingStatusText": {
+        //线下支付的状态
+        0: '预订成功',
+        1: '拒绝',
+        2: '已取消',
+        3: '机构已确认',
+        4: '推迟报道',
         5: '爽约',
-        6: '延迟报道',
-        7: '完成报到',
-        8: '完成交费',
-        9: '中止交费',
-        10: '已开学',
-        11: '退学退费',
-        12: '入学成功',
-        13: '返利完结'
+        6: '完成报道',
+        7: '已交学费',
+        8: '已开学',
+        9: '已退学',
+        10: '入学成功',
+
+        //在线支付的状态
+        11: '待支付',
+        12: '已取消',
+        13: '支付成功',
+        14: '应退费',
+        15: '已退款',
+        16: '机构已确认',
+        17: '已开学',
+        18: '入学成功',
+        19: '已获返利',
+        20: '支付过期',
+        21: '支付失败',
+        22: '支付成功',
+        23: '终止交费',
+        24: '已获返利'
     },
 
-    'BookingStatusUserText': {
-        0: '等待确认',
-        1: '预订成功',
-        2: '已经取消',
-        3: '拒绝订单',
-        4: '预订成功',
-        5: '爽约',
-        6: '预订成功',
-        7: '预订成功',
-        8: '预订成功',
-        9: '已经取消',
-        10: '预订成功',
-        11: '已经取消',
-        12: '成功入学',
-        13: '成功入学'
-    },
-
-    'BookingType': {
+    "PayType": {
         offline: 1,
         online: 0
     },
     'BookingTypeText': {
-        0: "线上支付",
+        0: "在线支付",
         1: "线下支付"
-    },
-        
-    'ServiceFeeStatus': {
-        shouldCharge: 0,
-        hasCharged: 1,
-        refundCharge: 2,
-        noCharge: 3,
-        consolidated: 4,
-        naive: 5
-    },
-
-    'ServiceFeeStatusText': {
-        0: '应收服务费',
-        1: '已收服务费',
-        2: '退换服务费',
-        3: '无服务费',
-        4: '服务费完结',
-        5: '空'
-    },
-
-    'CommissionStatus': {
-        shouldCharge: 0,
-        hasCharged: 1,
-        refundCharge: 2,
-        noCharge: 3,
-        consolidated: 4,
-        naive: 5
-    },
-
-    'CommissionStatusText': {
-        0: '应收佣金',
-        1: '已收佣金',
-        2: '退还佣金',
-        3: '无佣金',
-        4: '佣金完结',
-        5: '空'
     },
 
     'Privilege': {
@@ -141,15 +80,45 @@ var EnumConfig = {
         routine: 2
     },
 
+    /*课程状态*/
     'CourseStatus': {
-        openEnroll: 0,
-        deactivated: 1,
-        consolidated: 2
+        onlined: 2 //已上线
     },
 
     'PartnerQualification': {
         verified: 0,
         unverified: 1
+    },
+
+    'WeekText':['星期一','星期二','星期三','星期四','星期五','星期六','星期日'],
+
+    'BookingHistoryText':{
+        0:'您提交了订单，请您在30分钟内完成支付，过时系统将自动取消',
+        2:'您提交了订单，请等待系统审核',
+        5:'您的订单已被学校确认，将有资深课程顾问与您联系',
+        9:'已通知学校询问您的入学状态',
+        10:'入学成功，期待您学有所成',
+        11:'您的订单已被学校确认，将有资深课程顾问与您联系',
+
+        16:'您的学费已经支付成功；请关注开课日期，以免错过课程',
+        19:'已通知学校询问您的入学状态，并确认是否可以获得返现',
+        20:'学校已确认您已完成课程学习；您的返现可以使用',
+        23:'您已成功获得了返利'
+    },
+    //coupon的发放原因
+    'CouponOrigin':{
+        0:'注册赠送',//注册赠送
+        1:'邀请奖励',//邀请赠送
+        2:'爱上课赠送'//管理员赠送
+    },
+    //credit的操作信息
+    'CreditOperation':{
+        0:'预订课程发放'//预订成功获取
+    },
+    //现金账户account的操作信息
+    'AccountOperationText':{
+        0:'提现支出',
+        1:'返现收入'
     }
 
 };

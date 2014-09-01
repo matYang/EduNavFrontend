@@ -14,7 +14,7 @@ var FrontPageView = Backbone.View.extend({
     },
 
     render: function () {
-        document.title="爱上课 | 为您选择最合适，最优惠的课程";
+        document.title = "爱上课 | 为您选择最合适，最优惠的课程";
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
@@ -27,90 +27,89 @@ var FrontPageView = Backbone.View.extend({
         this.$el.append(this.template);
         app.generalManager.getCategories(this);
     },
-    renderCategories: function(categories) {
+    renderCategories: function (categories) {
+        //build the buttons on front page;
+
         if (!this.isClosed) {
-            var obj = {}, categoryList = [], buttonList = [], counter = 1, level2, index1, level3, index2, index3, lvl3CatList = [], lvl3counter = 0, padding = 0;
-            var cat1, cat2, cat3;
-
-            for (cat1 in categories) {
-                if (cat1 === "index") continue;
-
-                obj.lvl1Cat = cat1;
-                level2 = categories[cat1];
-                index1 = level2.index;
-                buttonList[index1] = this.buttonTemplate({dataId: cat1, index: index1+1});
-                obj.catClass = Constants.categoryClassMapper[cat1];
-                for (cat2 in level2) {
-                    if (cat2 === "index") continue;
-                    obj.categoryName = cat2;
-                    level3 = level2[cat2];
-                    index2 = level3.index;
-                    for (cat3 in level3){
-                        if (cat3 !== "index") {
-                            lvl3counter++;
-                            index3 = level3[cat3].index;
-                            lvl3CatList[index3] = this.catButtonTemplate({lv1:cat1, lv2:cat2, lv3:cat3});
-                        }
+            this.categories = categories;
+            //cbuf 一级目录列表
+            //scbuf 二级目录列表
+            //tcbuf 三级目录列表
+            var data = categories.data, len = data.length, i, j, k, cbuf = [], scbuf = [], tcbuf = [], children1, children2, tc = "", padding, lvl3counter = 0, obj = {};
+            for (i = 0; i < len; i++) {
+                cbuf[i] = this.buttonTemplate({value: data[i].value, name: data[i].name, index: i + 1});
+                children1 = data[i].children || [];
+                for (j = 0; j < children1.length; j++) { //循环二级目录
+                    children2 = children1[j].children;
+                    for (k = 0; k < children2.length; k++) { //循环三级目录
+                        lvl3counter++;
+                        tcbuf[k] = this.catButtonTemplate({value: children2[k].value, name: children2[k].name});
                     }
-                    padding = (Constants.categoryRowMapper[cat1] - lvl3counter % Constants.categoryRowMapper[cat1])% Constants.categoryRowMapper[cat1];
+                    padding = (Constants.categoryRowMapper[i] - lvl3counter % Constants.categoryRowMapper[i]) % Constants.categoryRowMapper[i];
                     while (padding) {
-                        lvl3CatList.push("<li><a> --- </a></li>");
+                        tcbuf.push("<li><a> --- </a></li>");
                         padding--;
                     }
-                    obj.catgoryList = lvl3CatList.join("");
-                    categoryList[index2] = this.lvl2Template(obj);
-                    lvl3CatList = [];
+                    obj.catgoryList = tcbuf.join("");
+                    obj.catClass = 'cat' + (i + 1);//使用cat作为class 取一级循环中的序号 见index.css
+                    obj.categoryName = children1[j].name;
+                    obj.parentName = i;
+                    obj.value = children1[j].value;
+                    obj.parentValue = data[i].value;
+                    scbuf[j] = this.lvl2Template(obj);
+                    tcbuf = [];
                     lvl3counter = 0;
                 }
-
-                $("#lv2Categories").append(categoryList.join(""));
-                lvl3CatList = [];
-                categoryList = [];
+                $("#lv2Categories").append(scbuf.join(""));
+                scbuf = [];
             }
-            $("#lv1Button").append(buttonList.join(""));
+            $("#lv1Button").append(cbuf.join(""));
+
             this.afterRender();
             this.bindEvents();
         }
     },
     afterRender: function () {
-        //add last class to last rows of each lvl 2 category
+        //二级目录 非第一行加入class "last" 控制边框显示 以及控制二级目录button的高度
         $("#lv2Categories").children("div").each(function (category) {
-            var rowLength = Constants.categoryRowMapper[$(this).data("parent")], list = $(this).find("li");
-            $(this).find("li:gt(-"+(rowLength + 1)+")").addClass("last");
-            var rowNum = list.length/rowLength, stickerClass;
-            $(this).addClass("c_h"+rowNum);
+            var rowLength = Constants.categoryRowMapper[$(this).data("parentname")], list = $(this).find("li"), rowNum = list.length / rowLength;
+            $(this).find("li:gt(-" + (rowLength + 1) + ")").addClass("last");
+            $(this).addClass("c_h" + rowNum);
         });
+        //初始化激活的标签
         var activeButton = $("#lv1Button").find("a:first").addClass("active");
-        $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("id") + "]").removeClass("hidden");
+        $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("value") + "]").removeClass("hidden");
         $("#content").css("padding-bottom", 0);
+        //todo 这里是为了声明页面加载完毕
+        $('body').attr('pageRenderReady', '')
+
     },
     bindEvents: function () {
         var that = this;
+        //一级目录hover
         $("#lv1Button").on("mouseover", "li", function (e) {
-            var category = $(this).data("id");
+            var category = $(this).data("value");
             $(e.delegateTarget).find(".active").removeClass("active");
             $(this).find("a").addClass("active");
             $("#lv2Categories").children(".hidden").removeClass("hidden");
             $("#lv2Categories").children("div[data-parent!=" + category + "]").addClass("hidden");
         }).on("click", "li", function (e) {
+            //一级目录click
             e.preventDefault();
-            that.searchRepresentation.set("category", $(this).data("id"));
+            that.searchRepresentation.set("categoryValue", $(this).data("value"));
             app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
         });
         $("#lv2Categories").on("click", ".fleft", function (e) {
             if (e.target.tagName === "A") {
                 e.preventDefault();
-                that.searchRepresentation.set("category", $(this).parent().data("parent"));
-                that.searchRepresentation.set("subCategory", $(e.target).html());
+                that.searchRepresentation.set("categoryValue", $(this).data("value"));
                 app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
             }
         });
         $(".lv2category").on("click", "li", function (e) {
             if (e.target.tagName === "A") {
                 e.preventDefault();
-                that.searchRepresentation.set("category", $(e.currentTarget).data("lvl1"));
-                that.searchRepresentation.set("subCategory", $(e.currentTarget).data("lvl2"));
-                that.searchRepresentation.set("subSubCategory", $(e.currentTarget).data("lvl3"));
+                that.searchRepresentation.set("categoryValue", $(this).data("value"));
                 app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
             }
         });
@@ -119,7 +118,7 @@ var FrontPageView = Backbone.View.extend({
         if (!this.isClosed) {
             $("#lv1Button").off();
             $(".lv2category").off();
-             $("#lv2Categories").off();
+            $("#lv2Categories").off();
             $("body").removeClass("index");
             this.$el.empty();
             this.isClosed = true;
@@ -138,8 +137,6 @@ var BannerView = Backbone.View.extend({
         this.template = _.template(tpl.get('banner'));
         this.isClosed = false;
         this.render();
-        //app.sessionManager.fetchSession();
-
     },
 
     render: function () {
@@ -151,6 +148,18 @@ var BannerView = Backbone.View.extend({
     },
 
     bindEvents: function () {
+        //img slider
+        $('#visual_container').bjqs({
+            showcontrols: false,
+            showmarkers: false,
+            height: 320,
+            width: 1440,
+            randomstart: true,     // start from a random slide
+            animtype: 'fade', // accepts 'fade' or 'slide'
+            animduration: 1000, // how fast the animation are
+            animspeed: 4500, // the delay between each slide
+            hoverpause: false // pause the slider on hover
+        });
     },
 
     close: function () {

@@ -2,38 +2,34 @@ var User = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
+            'id': -1,
             'userId': -1,
-            
-            'balance': 0,
-            'coupon': 0,
-            'credit': 0,
 
-            'name': '',
+            'avatarUrl': '',
+            'name': '',//真实姓名
             'phone': '',
             'password': '',
             'email': '',
-            
-            'status': 0,
-            'invitationalCode': '',
-            'appliedInvitationalCode': '',
-            'accountNumber':'',
+            'gender': undefined,
+            'invitationCode': undefined,
+            'appliedInvitationCode': '',
 
-            'creationTime': new Date (),
-            'lastLogin': new Date (),
+            'createTime': undefined,
+            'lastLogin': undefined,
+            'lastModifyTime': undefined,
 
-            'bookingList': new Bookings(),
-            'couponList': new Coupons(),
-            'creditList': new Credits()
+            'account': new Account(),//现金账户
+            'credit': new Credit(),//积分
+            'couponTotal': 0 //优惠券
         };
     },
 
-    idAttribute: 'userId',
+    idAttribute: 'id',
 
     urlRoot: Constants.origin + '/api/v1.0/user/user',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');
-
         if (typeof urlRootOverride !== 'undefined') {
             this.urlRoot = urlRootOverride;
         }
@@ -44,67 +40,51 @@ var User = Backbone.Model.extend({
     },
 
     parse: function (data) {
-        if ( typeof data !== 'undefined') {
+        if (typeof data !== 'undefined') {
             if (data instanceof Array) {
                 data = data[0];
             }
-            data.userId = parseInt(data.userId, 10);
+            data.id = Utilities.parseNum(data.id, 10);
+            data.userId = data.id;
 
-            data.balance = parseInt(data.balance, 10);
-            data.coupon = parseInt(data.coupon, 10);
-            data.credit = parseInt(data.credit, 10);
+            data.gender = Utilities.parseNum(data.gender, 10);
 
-            data.balance = isNaN(data.balance) ? 0 : data.balance;
-            data.coupon = isNaN(data.coupon) ? 0 : data.coupon;
-            data.credit = isNaN(data.credit) ? 0 : data.credit;
+            data.createTime = Utilities.castFromAPIFormat(data.createTime);
+            data.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
+            data.lastModifyTime = Utilities.castFromAPIFormat(data.lastModifyTime);
 
-            data.name = decodeURI(data.name);
-            data.phone = decodeURI(data.phone);
-            data.email = decodeURIComponent(data.email);
 
-            data.status = parseInt(data.status, 10);
-            data.invitationalCode = decodeURI(data.invitationalCode);
-            data.appliedInvitationalCode = decodeURI(data.appliedInvitationalCode);
-            data.accountNumber = decodeURI(data.accountNumber);
+            data.couponTotal = Utilities.parseNum(data.couponTotal);
+            data.account = new Account(data.account,{parse:true});
+            data.credit = new Credit(data.credit,{parse:true});
 
-            data.creationTime = Utilities.castFromAPIFormat(decodeURIComponent(data.creationTime));
-            data.lastLogin = Utilities.castFromAPIFormat(decodeURIComponent(data.lastLogin));
 
-            data.transactionList = new Transactions(data.transactionList, {parse: true});
-            data.bookingList = new Bookings(data.bookingList, {parse: true});
-            data.couponList = new Coupons(data.couponList, {parse: true});
-            data.creditList = new Credits(data.creditList, {parse: true});
-            var i;
-            for ( i = 0; i < data.couponList.length; i++){
-                var coupon = data.couponList.at(i);
-                var now = new Date();
-                if (coupon.get("expireTime").getTime() <= now.getTime()) {
-                    coupon.set("status", EnumConfig.CouponStatus.expired);
-                }
-            }
         }
         return data;
     },
 
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+//        if(typeof json.couponTotal)json.couponTotal = json.couponTotal.toFixed(0);
+        json.createTime = Utilities.getDateString(this.get('createTime'));
         json.lastLogin = Utilities.getDateString(this.get('lastLogin'));
+        json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));
+        json.account = json.account._toJSON();
+        json.credit = json.credit._toJSON();
         return json;
     },
 
     toJSON: function () {
+        //user向服务器发送请求时 只需要以下几个参数
         var json = _.clone(this.attributes);
-        json.name = encodeURI(json.name);
-        json.phone = encodeURI(json.phone);
-        json.password = json.password;
-        json.email = encodeURI(json.email);
-
-        json.appliedInvitationalCode = encodeURI(json.appliedInvitationalCode);
-        
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
-        json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
-        return json;
+        var user = {};
+        user.id = json.id;
+        user.avatarUrl = json.avatarUrl;
+        user.name = json.name;
+        user.email = json.email;
+        user.gender = json.gender;
+        user.invitationCode = json.invitationCode;
+        return user;
     }
 
 });
@@ -114,10 +94,19 @@ var Users = Backbone.Collection.extend({
     model: User,
 
     url: Constants.origin + '/api/v1.0/users/user',
-
+    start: 0,
+    count: 0,
+    total: 0,
+    parse: function (data) {
+        if (!data.data) return data;
+        this.start = data.start;
+        this.count = data.count;
+        this.total = data.total;
+        return data.data;
+    },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
-        if ( typeof urlOverride !== 'undefined') {
+        if (typeof urlOverride !== 'undefined') {
             this.url = urlOverride;
         }
     }

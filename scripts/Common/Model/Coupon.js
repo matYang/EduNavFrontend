@@ -2,22 +2,27 @@ var Coupon = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
-            'couponId': -1,
+            'id': -1,
+            'userID': -1,
 
-            'transactionId': -1,
-            'userId': -1,
-            
-            'amount': 0,
-            'originalAmount': 0,
+            'balance': undefined,//当前总额
+            'total': undefined,//todo 当前总额 which one??
 
-            'creationTime': new Date(),
-            'expireTime': new Date(),
-            'status': EnumConfig.CouponStatus.usable,
-            'origin': 0
+            'origin': undefined, //enum type 获得来源
+
+            'remark': undefined, //备注信息
+            'status': undefined, //优惠券的状态
+
+            'enabled':undefined,
+
+            'createTime': undefined,//创建时间
+            'expiryTime': undefined,//失效时间
+            'lastModifyTime': undefined//最后修改时间
+
         };
     },
 
-    idAttribute: 'couponId',
+    idAttribute: 'id',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');
@@ -32,37 +37,45 @@ var Coupon = Backbone.Model.extend({
     },
 
     parse: function (data) {
-        if ( typeof data !== 'undefined') {
-            data.couponId = parseInt(data.couponId, 10);
-
-            data.transactionId = parseInt(data.transactionId, 10);
+        if (typeof data !== 'undefined') {
+            data.id = parseInt(data.id, 10);
             data.userId = parseInt(data.userId, 10);
-            data.amount = parseInt(data.amount, 10);
-            data.originalAmount = parseInt(data.originalAmount, 10);
-            data.origin = parseInt(data.origin, 10);
 
-            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
-            data.expireTime = Utilities.castFromAPIFormat(data.expireTime);
+            data.total = parseFloat(data.total);
+            data.balance = parseFloat(data.balance);
+            data.origin = Utilities.parseNum(data.origin);
+
+            data.total = isNaN(data.total) ? 0 : data.total;
+            data.balance = isNaN(data.balance) ? 0 : data.balance;
+
+            data.createTime = Utilities.castFromAPIFormat(data.createTime);
+            data.lastModifyTime = Utilities.castFromAPIFormat(data.lastModifyTime);
+            data.expiryTime = Utilities.castFromAPIFormat(data.expiryTime);
 
             data.status = parseInt(data.status, 10);
+            data.enabled = parseInt(data.enabled, 10);
         }
         return data;
     },
 
     _toJSON: function () {
         var json = _.clone(this.attributes), date = new Date();
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
-        json.expireTime = Utilities.getDateString(this.get('expireTime'));
-        json.origin = json.origin === 0 ? "注册赠送" : json.origin === 1 ? "邀请获得" : "管理员赠送";
-        json.expireSoon = ((this.get('expireTime').getTime() - date.getTime()) < 604800000 ) ? "<span>即将到期</span>" : "";
+        json.createTime = Utilities.getDateString(this.get('createTime'));
+        json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));
+        json.expiryTime = Utilities.getDateString(this.get('expiryTime'));
+        if(json.expiryTime){
+            json.expireSoon = (((this.get('expiryTime')).getTime() - date.getTime()) < 604800000 ) ? "<span>即将到期</span>" : "";// 7 days
+        }else{
+            json.expireSoon = null;
+        }
         return json;
     },
 
     toJSON: function () {
         var json = _.clone(this.attributes);
-
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
-        json.expireTime = Utilities.castToAPIFormat(this.get('expireTime'));
+        delete json.createTime;
+        delete json.expiryTime;
+        delete json.lastModifyTime;
         return json;
     }
 
@@ -71,12 +84,19 @@ var Coupon = Backbone.Model.extend({
 var Coupons = Backbone.Collection.extend({
 
     model: Coupon,
-
-    url: Constants.origin + '/api/v1.0/coupon/coupon',
-
+    start: 0,
+    count: 0,
+    total: 0,
+    parse: function (data) {
+        if (!data.data) return data;
+        this.start = data.start;
+        this.count = data.count;
+        this.total = data.total;
+        return data.data;
+    },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
-        if ( typeof urlOverride !== 'undefined') {
+        if (typeof urlOverride !== 'undefined') {
             this.url = urlOverride;
         }
     }

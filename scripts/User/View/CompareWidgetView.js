@@ -33,9 +33,7 @@ var CompareWidgetView = Backbone.View.extend({
         if (this.courses instanceof Backbone.Collection) {
             this.courses = this.courses.toArray();
         }
-        if (typeof BMap !== "undefined" && !this.map && app.searchView) {
-            this.renderMap();
-        }
+
         for (i = 0; i < this.courses.length && i < 4; i++) {
             buf[i] = this.courseTemplate(this.courses[i]._toJSON());
         }
@@ -54,11 +52,13 @@ var CompareWidgetView = Backbone.View.extend({
             e.preventDefault();
             app.navigate("course/" + Utilities.getId($(e.target).parent().parent().attr("id")), true);
         });
+        /*切换窗口时从localstorage中提取对比课程进行同步*/
         $(window).on("focus", function () {
             if (that.isClosed) {
                 return;
             }
             var idList = app.storage.getCoursesToCompare(), i;
+            //如果数据不同则重新渲染
             if (!that.courseIds.compare(idList)) {
                 that.courseIds = idList;
                 that.reload = true;
@@ -88,10 +88,15 @@ var CompareWidgetView = Backbone.View.extend({
         this.courseIds = app.storage.getCoursesToCompare();
     },
     renderMap: function () {
+        var self = this;
+        if (typeof BMap == "undefined" || this.map || !app.searchView) {
+            return
+        }
         var i = 0, courses = [];
-        if (app.searchView && app.searchView.searchResultView) {
+        if (app.searchView && app.searchView.searchResultView&&app.searchView.searchResultView.messages) {
             courses = app.searchView.searchResultView.messages;
         }
+        //新建百度地图view
         this.map = new MainMapView();
         if (app.searchView && app.searchView.searchRepresentation) {
             if (app.searchView.searchRepresentation.get("district")) {
@@ -103,9 +108,15 @@ var CompareWidgetView = Backbone.View.extend({
         } else {
             this.map.map.centerAndZoom("南京", 9);
         }
+        //过滤相同的地址后再发送请求 减少请求次数
+        var courseLocationMap = {};
         for (i = 0; i < courses.length; i++) {
-             this.map.getLatLng(courses.at(i).get("location"), courses.at(i).get("instName"));
+            courseLocationMap[courses.at(i).get("instName")] = courses.at(i).get("address");
         }
+
+        _.each(courseLocationMap,function(address,instName){
+            self.map.getLatLng(address, instName);
+        });
         this.rendered = true;
     },
     close: function () {
@@ -128,14 +139,17 @@ var CompareWidgetView = Backbone.View.extend({
 });
 
 var CourseDetailCompareWidgetView = CompareWidgetView.extend({
-   el: "#widgets",
+   el: ".right_bar .comparison",
    template: _.template(tpl.get("courseDetailCompareWidget")),
     initialize: function () {
         CompareWidgetView.prototype.initialize.call(this);
     },
     render: function (courses) {
         //load local storage
-        if (app.courseDetailView && !app.courseDetailView.isClosed) {
+
+        //todo app.courseDetailView will correctly exists when route changes dont know why currently
+//        if (app.courseDetailView && !app.courseDetailView.isClosed) {
+        if (this.$el.length > 0) {
             var buf = [], i;
             this.$el.empty().append(this.template);
             this.$domContainer = $("#compareItems");
@@ -179,12 +193,8 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
             var $content = $("#compareWidgetContent");
             if ($content.hasClass("hidden")) {
                 $content.removeClass("hidden");
-                that.$el.find(".compare").css("width", 250);
-                $(this).css("width", 50);
             } else {
                 $content.addClass("hidden");
-                that.$el.find(".compare").css("width", 0);
-                $(this).css("width", 51);
             }
         });
         $("#trialButton").on("click", function (e) {
@@ -196,11 +206,13 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
                 $(e.target).addClass("hidden");
             } else if (e.target.tagName === "IMG") {
                 if ($this.hasClass("shrinked")) {
-                    $this.find("img").attr("src", "style/images/shiting.png").css("margin-left", 0);
+                    $this.find("img").attr("src", "style/images/shiting.gif").css("margin-left", 0);
                     $this.removeClass("shrinked");
                     $this.find(".close").removeClass("hidden");
                 } else {
-                    app.navigate("booking/c" + app.courseDetailView.courseId, true);
+                    //打开客服系统
+                    doyoo.util.openChat('g=82548');
+//                    app.navigate("booking/c" + app.courseDetailView.courseId, true);
                 }
             }
         }).on("mouseover", "img", function (e) {
@@ -225,6 +237,7 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
             CompareWidgetView.prototype.close.call(this);
             $("#compareToggle").off();
             $("#trialButton").off();
+            this.$el.off();
             this.isClosed = true;
         }
 

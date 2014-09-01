@@ -1,6 +1,16 @@
 @charset "utf-8";
 /* CSS Document */
 
+/*TODO md这段真是尼玛恶心 还尼玛有id啊 已怒删!*/
+table{border-top:1px solid #ccc; border-right:1px solid #ccc;border-collapse: collapse}
+table td{ border-bottom:1px solid #ccc; border-left:1px solid #ccc; height:35px; line-height:35px; text-align:center; font-size:12px;}
+table thead td{background:#e6e6e7;}
+table tbody td.col2{ color:#ff5500;}
+table td.col4{padding-left:20px;}
+table td.col4 span{padding:2px; background:#ff5500; color:#fff; margin-left:5px;}
+table td.col5 span{ padding-left:25px; background:url(../images/icon.png) no-repeat left -306px; color:#128d56;}
+table td.col5 input{width:60px; height:24px; background:#128d56; border:none; color:#fff; font-size:12px; margin-top:3px; cursor:pointer;}
+/*TODO 尼玛有空了把上面这段删掉*/
 /**********左栏**********/
 #mypage_sidebar{float:left; width:198px; border:1px solid #cccccc;}
 #mypage_sidebar .mypage_sidebar_title{ height:50px; line-height:50px; font-weight:bold; color:#fff; padding-left:35px; background:#128d56 url(../images/icon.png) no-repeat 15px 16px;}
@@ -23,85 +33,153 @@
 #mypage_sidebar .mypage_sidebar_sectionContent .active{ color:#128d56; font-weight:bold;}
 
 /**********右栏**********/
-#mypage_content{float:right; width:778px;border:1px solid #ccc;}
+#mypage_content{float:right; width:778px;}
 #mypage_content.mypage_min_height{min-height: 789px;}
 #mypage_content.mypage_min_height1{min-height:664px;}
-#mypage_content .title{ padding-left:20px; height:50px; line-height:50px; border-bottom:1px solid #ccc; background:#ebebeb;}
-#mypage_content .mypage_content_inner{ padding:20px;}
+#mypage_content .title{ padding-left:20px; height: 40px; line-height: 40px; border:1px solid #ccc;}
+
+#mypage_content .mypage_content_inner{ padding:20px;border:1px solid #ccc;}
 
 
 /*个人中心首页*/
 #mypage_content #walletSummary{ width:780px; height:109px; line-height:109px; background:url(../images/walletSummary.png) no-repeat;}
 #mypage_content #walletSummary .line{float:left; width:1px; height:109px; background:url(../images/line.png) no-repeat center;}
-#mypage_content .summaryItem1,.summaryItem2,.summaryItem3{float:left; width:230px; text-align:center; padding-left:29px; font-size:18px; font-family:微软雅黑; }
+#mypage_content .summaryItem1,
+.summaryItem2,
+.summaryItem3{float:left; width:220px; text-align:center; padding-left:39px; font-size:18px; }
 #mypage_content .summaryItem1{ background: url(../images/summaryItem1.png) no-repeat 56px center;}
 #mypage_content .summaryItem2{ background: url(../images/summaryItem2.png) no-repeat 29px center;}
 #mypage_content .summaryItem3{ background: url(../images/summaryItem3.png) no-repeat 64px center;}
 
 
 
-#mypage_content .bookingEntry{height:105px; border-bottom:1px solid #cccccc;}
-#mypage_content #bookingSummary .last{border-bottom:none;}
-#mypage_content .bookingEntryTime{float:left; width:134px; text-align:center; line-height:22px; height:105px; background:#e4f3ec; border-right:1px solid #bcd6ca;}
-#mypage_content .bookingEntryTime .date{ margin-top:20px; padding-left:18px; margin-bottom:15px; background:url(../images/icon_date.png) no-repeat 3px;}
 
-#mypage_content .bookingEntryDetail{float:left; width:367px; padding-left:15px; height:105px; border-right:1px solid #ccc;}
-#mypage_content .bookingEntryDetail h3{ font-weight:bold; margin-top:22px; margin-bottom:20px; font-size:14px;}
-#mypage_content .address{ margin-left:5px;}
 
-#mypage_content .bookingEntryPrice{float:left; width:118px; height:105px; line-height:105px; font-family:微软雅黑; font-size:18px; color:#ff5500; border-right:1px solid #ccc; text-align:center;}
-#mypage_content .bookingEntryPrice .sign{color:#333;}
-#mypage_content .bookingEntryState{ float:left; width:138px; height:105px; line-height:105px; text-align:center; font-family:微软雅黑; font-size:18px; color:#128d56;}
-#mypage_content .pending{ padding-left:25px; background:url(../images/icon.png) no-repeat 0 -189px;}
-#mypage_content .confirmed{ padding-left:25px; background:url(../images/icon.png) no-repeat 0 -225px;}
-#mypage_content .cancelled{ padding-left:25px; background:url(../images/icon.png) no-repeat 0 -263px;}
 
-#mypage_content /*订单详情页*/
+
+/*订单列表的单条数据 rewritten by Jet MD后面还有冲突的 TM后面有空了再改*/
+#mypage_content table.table-clean thead tr td{
+    padding: 0;
+    font-size: 14px;
+    font-weight: bold;/*尼玛顺便就在这加点head的样式了 你妹的好好样式不加 非要加背景色*/
+    background: none;
+}/*md这是为了把后面的样式覆盖掉 尼玛优先级够高了吧 加尼玛的背景色啊*/
+tr.bookingEntry{height:105px; border-bottom:1px solid #cccccc;}
+tr.bookingEntry:hover{ background:#e8f2ed;}
+tr.bookingEntry:last-child{border-bottom:none;}
+
+.bookingEntry td{
+    line-height: 20px;/*尼玛又要覆盖上面的样式*/
+    text-align: center;
+    border-left: 1px solid #ddd;/*尼玛border一会左一会儿右的!*/
+    padding: 5px 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+thead tr.bookingEntry{height:45px;}
+thead tr.bookingEntry td.detail{text-align: center}
+/*all 4 tds*/
+.bookingEntry td.date{ width:80px;}
+.bookingEntry td.detail{width:360px; text-align: left; }
+.bookingEntry td.payType{width:120px; font-size:12px; color: #666;}
+.bookingEntry td.status{width:138px;}
+.bookingEntry td.status .status{font-size: 14px;color:#333333}
+.bookingEntry td.status .status span{display: inline-block;vertical-align: text-bottom;height: 22px;line-height: 22px;}/*状态的文字*/
+.bookingEntry td.status .operate{color:#128d56}/*取消订单等操作文字*/
+.bookingEntry td.status .operate:hover{color:#114d56}
+/*td date*/
+.bookingEntry td.date .day{font: 24px Tahoma,Helvetica,sans-serif;font-weight: bold;}
+/*td detail*/
+.bookingEntry td.detail .img-logo{ position: absolute; left:10px; top:17px; }
+.bookingEntry td.detail h3,.bookingEntry td.detail p{
+    padding:0 5px;
+    margin: 3px 0 3px 75px;
+    width: 283px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.bookingEntry td.detail .price{ font-size: 17px;
+    font-family: SimSun, serif;
+    font-weight: bold;}
+.bookingEntry td.detail .address{color: #888; border-bottom: 1px dotted #ccc;}
+.bookingEntry td.detail h3{ font-weight:normal; font-size:14px;}
+
+/*td status 状态的图标*/
+.icon-status {
+    height:22px;width:22px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    background:url(../images/icon.png) no-repeat;
+}
+.icon-status.pending{background-position: 0 -190px;}
+.icon-status.confirmed{background-position:  0 -226px;}
+.icon-status.info{background-position: 0 -264px;}
+.icon-status.canceled{background-position: 0 -759px;}
+/*rewritten end */
+
+
+
+
+
+
+
+/*订单详情页*/
 #mypage_content .row0{border-bottom:1px dotted #ccc; padding:10px 25px; line-height:35px;}
 #mypage_content .row0 label{ font-weight:bold;}
 #mypage_content .row0 label s{ margin:0 8px;}
 #mypage_content .row0 span{ color:#666;}
-#mypage_content .row0 .price{font-family: 微软雅黑; font-size: 18px; color: #ff5500; padding-top: 32px;}
+#mypage_content .row0 .price{font-size: 18px; color: #ff5500; padding-top: 32px;}
 #mypage_content .row0 .price label,.row0 .price .sign{color:#333;}
 
-#mypage_content .row1{ padding:10px 25px 30px; border-bottom:1px dotted #ccc;}
-#process{width:533px; padding:35px  40px; margin-left:18px;margin-right: 20px}
-#process .node,#process .proce{float:left;position:relative;height:13px;background-image:url(../images/bg_state.jpg);background-repeat:no-repeat;}
-#process .node{width:13px;}
-#process .proce{width:150px;border:solid #fff;border-width:0 5px;}
+#mypage_content .row1{ padding:20px; border-bottom:1px dotted #ccc;}
+#mypage_content #process{ padding:25px 0 40px; margin-left:18px;}
+#mypage_content #process .node,#process .proce{float:left;position:relative;height:13px;background-image:url(../images/bg_state.jpg);background-repeat:no-repeat;}
+#mypage_content #process .node{width:13px;}
+#mypage_content #process .proce{width:130px;border:solid #fff;border-width:0 5px;}
 #process .node.wait{background-position:-150px -40px;}
-#process .node.ready{background-position:-150px 0px;}
+#process .node.ready{background-position:-150px 0;}
 #process .node.singular{background-position:-150px -60px;}
 #process .proce.wait{background-position:0 -40px;}
 #process .proce.doing{background-position:0 -20px;color:#360;}
 #process .proce.ready{background-position:0 0;}
 #process .node p{width:100px; margin-top:-20px; font-size:12px; margin-left:-17px;}
-#process .ready p{color:#128d56;}
-#process .explain { padding-left:20px;}
-#process .explain span{ margin-right:10px; font-size:12px; color:#666; line-height:26px;}
-#process .explain .active span{ color:#128d56;}
+#mypage_content .ready p{color:#128d56;}
+#mypage_content .explain { padding-left:20px;}
+#mypage_content .explain span{ margin-right:10px; font-size:12px; color:#666; line-height:26px;}
+#mypage_content .explain .active span{ color:#128d56;}
 
-#mypage_content .row2{ padding:10px 25px 30px;  border-bottom:1px dotted #ccc; line-height:30px;}
-#mypage_content .row2 h3{font-size:24px; font-family:微软雅黑; color:#128d56; font-weight:normal; margin:10px 0 20px;}
-#mypage_content .row2 p label{color:#666;}
+#mypage_content .row2{ padding:20px;  border-bottom:1px dotted #ccc; line-height:32px;}
+#mypage_content .row2 h3{font-size:24px; color:#128d56; font-weight:normal; margin-bottom:10px;}
+#mypage_content .row2 .fleft{width:250px; margin-right:20px;}
+#mypage_content .row2 p label{color:#666;width: 70px;
+    display: inline-block;}
 
-#mypage_content .row3{padding:10px 25px 30px;  border-bottom:1px dotted #ccc; line-height:30px;}
-#mypage_content .row3 h3{margin:0 0 10px; color:#333; font-size:14px;}
-#mypage_content .row3 .fleft{ margin-right:50px;}
+#mypage_content .row3{padding:20px; border-bottom:1px dotted #ccc; line-height:36px;}
+#mypage_content .row3 h3{ color:#333;}
+#mypage_content .row3 .fleft{width:250px; margin-right:20px;}
 #mypage_content .row3 p label{color:#666;}
 
-#mypage_content .row4{padding:10px 25px 30px;  border-bottom:1px dotted #ccc; line-height:30px;}
-#mypage_content .row4 h3{ margin:0 0 10px; color:#333; font-size:14px;}
+#mypage_content .row4{padding:20px;  border-bottom:1px dotted #ccc; line-height:36px;}
+#mypage_content .row4 h3{color:#333;}
 #mypage_content .row4 .fleft{ margin-right:50px;}
 #mypage_content .row4 p label{color:#666;}
 #mypage_content .print { padding-right:20px; font-size:12px; text-align:right; margin-top:10px;}
-#mypage_content .btns{ margin:0 0 40px; text-align:center;}
+#mypage_content #printBooking {
+    width: 49px;
+    float: right;
+    position: relative !important;
+    top:0;
+}
+#mypage_content .btns{ margin:10px 0 20px; text-align:center;min-height: 30px;}
 #mypage_content .btns input{ margin-right:30px;}
 
 
 /*暂无数据*/
-#mypage_content .no_data{ margin-top:100px; margin-left:140px; padding-left:60px; background:url(../images/no_data.png) no-repeat left center;}
-#mypage_content .no_data div{ padding:12px 0 12px; font-size:24px; font-family:微软雅黑; color:#128d56;}
+#mypage_content .no_data{ text-align: left;
+    width: 400px;margin:40px auto 40px; padding-left:60px; background:url(../images/no_data.png) no-repeat left center;}
+#mypage_content .no_data div{ padding:12px 0 12px; font-size:24px; color:#128d56;}
 
 #mypage_content #bookingSummary .no_data{ width:333px; margin-left:auto; margin-right:auto;}
 
@@ -123,15 +201,18 @@
 #mypage_content .my_info .btn{ margin-left:105px; margin-top:30px;}
 #mypage_content .my_info .btn .btn_W{ margin-left:20px;}
 
+/*sex label*/
+#mypage_content .my_info .sex{margin-left: 0;}
+
 /*修改密码*/
 #mypage_content .password label{width:60px; text-align:right;}
 #mypage_content .password .field input.text{width:250px;}
 #mypage_content .password .btn{ margin-top:30px;  margin-left:86px;}
 #mypage_content .password .btn .btn_O{ margin-right:30px;}
-#mypage_content .password span.instr{ margin-left:0px;}
+#mypage_content .password span.instr{ margin-left:0;}
 
 /*消费券*/
-#mypage_content .coupons_help_title{padding-left:30px; font-weight:normal; height:35px; line-height:35px; font-size:18px; font-family:微软雅黑; color:#128d56; background:url(../images/icon_wen.png) no-repeat left center;}
+#mypage_content .coupons_help_title{padding-left:30px; font-weight:normal; height:35px; line-height:35px; font-size:18px; color:#128d56; background:url(../images/icon_wen.png) no-repeat left center;}
 #mypage_content .coupons_help_title span{color:#ff5500;}
 
 #mypage_content .coupons_help1 {height:105px; font-size:12px; background:url(../images/coupons_help1.gif) no-repeat;}
@@ -146,15 +227,6 @@
 #mypage_content .coupons_help dl.col2{width:290px;}
 #mypage_content .coupons_help dl.col2 dd{width:230px; }
 
-#mypage_content table{border-top:1px solid #ccc; border-right:1px solid #ccc;}
-#mypage_content table td{ border-bottom:1px solid #ccc; border-left:1px solid #ccc; height:35px; line-height:35px; text-align:center; font-size:12px;}
-#mypage_content table thead td{background:#e6e6e7;}
-#mypage_content table tbody td.col2{ color:#ff5500;}
-#mypage_content table td.col4{padding-left:20px;}
-#mypage_content table td.col4 span{padding:2px; background:#ff5500; color:#fff; margin-left:5px;}
-#mypage_content table td.col5 span{ padding-left:25px; background:url(../images/icon.png) no-repeat left -306px; color:#128d56;}
-#mypage_content table td.col5 input{width:60px; height:24px; background:#128d56; border:none; color:#fff; font-size:12px; margin-top:3px; cursor:pointer;}
-
 #mypage_content .coupons .no_data{ margin:30px 0 0 20px;}
 #mypage_content .coupons .no_data input{width:80px; height:30px; background:#128d56; color:#fff; font-size:14px; cursor:pointer; border:none; margin:0 5px;}
 
@@ -164,17 +236,17 @@
 #mypage_content .total b{font-size:18px; font-family:Arial, Helvetica, sans-serif;}
 #mypage_content .total span{font-size:16px; font-family:Arial, Helvetica, sans-serif; font-weight:bold;}
 
-#mypage_content .in_built{ height:144px; line-height:144px; color:#128d56; margin-top:20px; padding-left:160px; font-family:微软雅黑; font-size:16px; background:url(../images/in_built.jpg) no-repeat left center;}
+#mypage_content .in_built{ height:144px; line-height:144px; color:#128d56; margin-top:20px; padding-left:160px; font-size:16px; background:url(../images/in_built.jpg) no-repeat left center;}
 
 /*邀请好友*/
 #mypage_content .invitation{}
 #mypage_content .invitation h3{font-size:14px; color:#128d56; margin-bottom:10px;}
-#mypage_content .invitation textarea{float:left; margin-right:10px; width:500px; height:80px; border:1px solid #ccc; padding:10px; line-height:24px; font-size:14px; color:#666;}
+#mypage_content .invitation textarea{float:left; margin-right:10px; width:500px; height:80px; border:1px solid #ccc; padding:10px; line-height:24px; font-size:14px; color:#666;white-space: nowrap;}
 #mypage_content .invitation input.btn_copy{width:90px; height:72px; background:#128d56; color:#fff; border:none; font-size:14px; cursor:pointer;}
 #mypage_content .invitation .invitation_tip{background:#f2f2f2; padding:15px; line-height:24px;}
 #mypage_content .invitation .invitation_tip dt{color:#128d56; font-weight:bold; margin-bottom:5px;}
 #mypage_content .invitation .invitation_icon {margin-right:10px; float:left; width:50px; height:50px; background:url(../images/share_icon.png) no-repeat;text-indent: -999999em; cursor:pointer;}
-#mypage_content .invitation .weibo{ background-position:0 0px;}
+#mypage_content .invitation .weibo{ background-position:0 0;}
 #mypage_content .invitation .renren{ background-position:0 -50px;}
 #mypage_content .invitation .qzone{ background-position:0 -100px;}
 #mypage_content .invitation .douban{ background-position:0 -150px;}
@@ -182,16 +254,3 @@
 #mypage_content .invitation .weixin{ background-position:0 -250px;}
 
 #mypage_content .invitation #copy_content_container{height: 110px;}
-
-
-
-
-
-
-
-
-
-
-
-
-

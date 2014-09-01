@@ -5,68 +5,133 @@ var CourseDetailView = Backbone.View.extend({
         _.bindAll(this, 'render', 'bindEvents', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
+        this.notifier = new Backbone.Notifier();
         this.sr = new CourseSearchRepresentation();
         this.user = app.sessionManager.sessionModel;
         var self = this;
+        app.generalManager.fetchCategories({success: function (data) {
+            self.categoryObj = data;
+        }});
         // this.newBooking = new Booking();
         // $("#viewStyle").attr("href", "style/css/courseDetail.css");
         app.generalManager.fetchCourse(courseIdWrapper.courseId, {
             success: function (course) {
-                self.course = course.clone();
-                self.courseId = course.get("courseId");
-                self.render();
-                self.bindEvents();
+                app.generalManager.fetchCategories({
+                    success: function (catObj) {
+                        self.course = course.clone();
+                        self.courseId = course.get("id");
+                        self.courseTemplateId = course.get("courseTemplateId");
+                        //将categoryValue转换成一二三级的键值对
+                        var catArray = Utilities.getCategoryArray(self.course.get("categoryValue"), catObj.data);
+                        self.course.set("category", catArray[0]);
+                        self.course.set("subCategory", catArray[1]);
+                        self.course.set("subSubCategory", catArray[2]);
+                        self.render();
+                        self.bindEvents();
+                    }
+                });
+
             },
-            error: function (response) {
-                Info.displayErrorPage("content", response.responseText);
+            error: function (data) {
+                //todo should handle the error message display
+                Info.displayErrorPage("content", data.message);
             }
         });
     },
 
     render: function () {
+
         $(document).scrollTop(0);
         $("body").addClass("courseDetail");
         this.$el.append(this.template(this.course._toJSON()));
-        document.title="爱上课 | " + this.course.get("category") +
-                        " | " + this.course.get("subCategory") + 
-                        " | " + this.course.get("subSubCategory") + 
-                        "培训 | " + this.course.get("courseName");
+        //新建相关课程视图
+        this.relatedCourseListView = new RelatedCourseListView({course:this.course});
+        document.title = "爱上课 | " + this.course.get("category").name +
+            " | " + this.course.get("subCategory").name +
+            " | " + this.course.get("subSubCategory").name +
+            "培训 | " + this.course.get("courseName");
+
+        /*移除所有table的宽度*/
+        $('.course_content .rich table').css('width','100%');
         var $teachers = $(".teacherInfo"), i, maxHeight = -1, $teacher;
         for (i = 0; i < $teachers.length; i++) {
             $teacher = $($teachers[i]);
             maxHeight = maxHeight > $teacher.height() ? maxHeight : $teacher.height();
         }
-        this.offSetHeight = 430;
+        this.offSetHeight = 0;
         $teachers.css("height", maxHeight);
-        this.basicPos = $("#content_basic").position().top;
-        this.teachingPos = $("#content_teaching").position().top;
-        this.etcPos = $("#content_etc").position().top;
-        this.guaranteePos = $("#content_guarantee").position().top;
-        this.servicePos = $("#content_service").position().top;
+
+        //img slider
+        $('#courseSlide').bjqs({
+
+            height: 215,
+            width: 625,
+            animtype: 'slide', // accepts 'fade' or 'slide'
+            animduration: 650, // how fast the animation are
+            animspeed: 4000, // the delay between each slide
+            hoverpause: true, // pause the slider on hover
+            responsive: true,
+            randomstart:true
+        });
+
         this.compareWidget = new CourseDetailCompareWidgetView();
-        if ($("#content_basic>dd").length === 0) {
-            $("#content_basic").remove();
-            $("#tab_basic").remove();
+
+        var $content2 = $("#content_2");
+        var $content3 = $("#content_3");
+        this.content1_top = $("#content_1").offset().top;//课程详情
+        this.content2_top = $content2.offset().top;//特色服务
+        this.content3_top = $content3.offset().top;//名师团队
+        this.content4_top = $("#content_4").offset().top;//学校概况
+        this.content5_top = $("#content_5").offset().top;//同类型课程
+
+        //如果栏目下的数据为空 则移除该栏目的显示
+        //名师团队
+        if ($content3.children('dd').length === 0) {
+            var height3 = $content3.outerHeight();
+            $content3.remove();
+            $("#tab_3").remove();
+            this.content5_top -= height3;
+            this.content4_top -= height3;
+            this.content3_top = this.content4_top;
         }
-        if ($("#content_teaching>dd").length === 0) {
-            $("#content_teaching").remove();
-            $("#tab_teaching").remove();
+        //特色服务
+        if ($content2.children('dd').find('.item').length === 0) {
+            var height2 = $content2.outerHeight();
+            $content2.remove();
+            $("#tab_2").remove();
+            this.content5_top -= height2;
+            this.content4_top -= height2;
+            this.content3_top -= height2;
+            this.content2_top = this.content3_top
         }
-        if ($("#content_etc>dd").length === 0) {
-            $("#content_etc").remove();
-            $("#tab_etc").remove();
-        }
-        if ($("#content_guarantee>dd").length === 0) {
-            $("#content_guarantee").remove();
-            $("#tab_guarantee").remove();
-        }
-        if ($("#content_service>dd").length === 0) {
-            $("#content_service").remove();
-            $("#tab_service").remove();
-        }
+        //这里是为了声明页面加载完毕
+        $('body').attr('pageRenderReady','')
     },
     bindEvents: function () {
         var that = this;
+        //详细查看教师
+        $('.teacher').on('click','.more',function(e){
+            var teacherIndex = $(this).data('id');
+            var teacher = that.course.get('teacherList')[teacherIndex];
+            var message = '<h3>' +teacher.get('name')+
+                '</h3><img src="' +teacher.get('imgUrl')+
+                '" alt="' +teacher.get('name')+
+                '"/><div>' +teacher.get('intro')+
+                '</div>';
+            that.viewTeacherModal = that.notifier.notify({
+                fadeInMs: 0,
+                fadeOutMs: 0,
+                ms: null,
+                message: message,
+                destroy: true,
+                modal: true,
+                'hideOnClick': false,
+                closeBtn: true,
+                position: 'center',
+                cls: 'viewTeacherModal',
+                width:'600'
+            })
+        });
         $("#detail_compare_" + this.course.id).on("click", function () {
             if ($(this).hasClass("add")) {
                 if (that.compareWidget.addCourse(that.course)) {
@@ -75,8 +140,6 @@ var CourseDetailView = Backbone.View.extend({
                     Info.displayNotice("您最多只能同时比较四个不同的科目。");
                 }
                 $("#compareWidgetContent").removeClass("hidden");
-                $("#widgets").find(".compare").css("width", 250);
-                $("#compareToggle").css("width", 50);
             } else {
                 that.compareWidget.removeCourse(that.course.id);
                 $(this).attr("class", "add btn_g").val("+对比");
@@ -89,23 +152,23 @@ var CourseDetailView = Backbone.View.extend({
             $.smoothScroll({
                 scrollTarget: id,
                 offset: -40,
-                speed:650
+                speed: 650
             });
         });
         $(document).on("scroll", function () {
             var $btn = $("#trialButton"), position = $(this).scrollTop();
             if (position >= 210) {
-                if (!$btn.hasClass("shown")){
+                if (!$btn.hasClass("shown")) {
                     $btn.animate({marginRight: "0px"}, 500);
                     $btn.addClass("shown");
                 }
             } else {
-                if ($btn.hasClass("shown")){
+                if ($btn.hasClass("shown")) {
                     $btn.animate({marginRight: "-280px"}, 500);
                     $btn.removeClass("shown");
                 }
             }
-            if (position >= 492) {
+            if (position >= 500) {
                 if ($("#navTabPlaceholder").length === 0) {
                     $("#courseNavigateTab").after("<ul id='navTabPlaceholder' class='tabButton tab'></ul>");
                 }
@@ -116,50 +179,35 @@ var CourseDetailView = Backbone.View.extend({
                 }
                 $("#courseNavigateTab").removeClass("stickyHeader");
             }
+            /*当前激活的标签页*/
             $("#courseNavigateTab").find(".active").removeClass("active");
-            if (position < that.teachingPos + that.offSetHeight) {
-                $("#tab_basic").addClass("active")
-            } else if (position >= that.teachingPos + that.offSetHeight && position < that.etcPos + that.offSetHeight) {
-                $("#tab_teaching").addClass("active")
-            } else if (position >= that.etcPos + that.offSetHeight && position < that.guaranteePos + that.offSetHeight) {
-                $("#tab_etc").addClass("active")
-            } else if (position >= that.guaranteePos + that.offSetHeight && position < that.servicePos + that.offSetHeight) {
-                $("#tab_guarantee").addClass("active")
+            var stickHeight = 43;
+            if (position < that.content2_top-stickHeight) {
+                $("#tab_1").addClass("active")
+            } else if (position >= that.content2_top-stickHeight&& position < that.content3_top-stickHeight) {
+                $("#tab_2").addClass("active")
+            } else if (position >= that.content3_top-stickHeight && position < that.content4_top-stickHeight) {
+                $("#tab_3").addClass("active")
+            } else if (position >= that.content4_top-stickHeight && position < that.content5_top-stickHeight) {
+                $("#tab_4").addClass("active")
             } else {
-                $("#tab_service").addClass("active")
+                $("#tab_5").addClass("active")
             }
         });
-        if (this.course.get("status") === EnumConfig.CourseStatus.openEnroll) {
+        if (this.course.get("status") === EnumConfig.CourseStatus.onlined) {
             $("#bookNow").on("click", function () {
                 app.navigate("booking/c" + that.courseId, true);
             });
         } else {
-            $("#bookNow").attr("class", "btn_W").val("报名已截止").prop("disabled", true);
+            $("#bookNow").attr("class", "btn_W").val("当前不可预订").prop("disabled", true);
         }
 
         $("#siteMap").on("click", "span", function (e) {
             var id = e.target.id;
             if (id === "siteMap") {
-                return;            }
-            switch (id) {
-            case "lv3cat":
-                that.sr.set("category", $("#lv1cat").html());
-                that.sr.set("subCategory", $("#lv2cat").html());
-                that.sr.set("subSubCategory", $("#lv3cat").html());
-                break;
-            case "lv2cat":
-                that.sr.set("category", $("#lv1cat").html());
-                that.sr.set("subCategory", $("#lv2cat").html());
-                that.sr.set("subSubCategory", undefined);
-                break;
-            case "lv1cat":
-                that.sr.set("category", $("#lv1cat").html());
-                that.sr.set("subCategory", undefined);
-                that.sr.set("subSubCategory", undefined);
-                break;
-            default:
-                break;
+                return;
             }
+            that.sr.set("categoryValue", $(this).data('value'));
             app.navigate("search/" + that.sr.toQueryString(), true);
         });
     },
@@ -172,6 +220,10 @@ var CourseDetailView = Backbone.View.extend({
             if (this.compareWidget) {
                 this.compareWidget.close();
             }
+            if(this.viewTeacherModal){
+                this.viewTeacherModal.destroy();
+            }
+            this.notifier = null;
             $(document).off("scroll");
             $("#courseNavigateTab").off();
             $("body").removeClass("courseDetail");

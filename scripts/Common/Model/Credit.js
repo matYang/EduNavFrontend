@@ -2,20 +2,17 @@ var Credit = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
+            'id': -1,
             'creditId': -1,
-            
-            'bookingId': -1,
-            'userId': -1,
-            'amount': 0,
-            'creationTime': new Date(),
-            'expireTime': new Date(),
 
-            'status': EnumConfig.CreditStatus.usable
-            
+            'credit': 0,
+            'createTime': new Date()
+//            'status': EnumConfig.CreditStatus.usable
+
         };
     },
 
-    idAttribute: 'creditId',
+    idAttribute: 'id',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');
@@ -30,48 +27,30 @@ var Credit = Backbone.Model.extend({
     },
 
     parse: function (data) {
-        if ( typeof data !== 'undefined') {
-            data.creditId = parseInt(data.creditId, 10);
+        if (typeof data !== 'undefined') {
+            data.id = parseInt(data.id, 10);
+            data.creditId = data.id;
 
-            data.bookingId = parseInt(data.bookingId, 10);
-            data.userId = parseInt(data.userId, 10);
-            data.amount = parseInt(data.amount, 10);
+            data.credit = parseFloat(data.credit);
+            data.credit = isNaN(data.credit) ? 0 : data.credit;
 
-            data.creationTime = Utilities.castFromAPIFormat(data.creationTime);
-            data.expireTime = Utilities.castFromAPIFormat(data.expireTime);
-
-            data.status = parseInt(data.status, 10);
+            data.createTime = Utilities.castFromAPIFormat(data.createTime);
         }
         return data;
     },
 
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
-        json.expireTime = Utilities.getDateString(this.get('expireTime'));
-        json.usableTime = Utilities.getDateString(this.get('usableTime'));
+//        json.credit = json.credit.toFixed(0);
+        json.createTime = Utilities.getDateString(this.get('createTime'));
         return json;
     },
 
     toJSON: function () {
         var json = _.clone(this.attributes);
 
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
-        json.expireTime = Utilities.castToAPIFormat(this.get('expireTime'));
+        json.createTime = Utilities.castToAPIFormat(this.get('createTime'));
         return json;
     }
 
-});
-
-
-var Credits = Backbone.Collection.extend({
-
-    model: Credit,
-
-    initialize: function (urlOverride) {
-        _.bindAll(this, 'overrideUrl');
-        if ( typeof urlOverride !== 'undefined') {
-            this.url = urlOverride;
-        }
-    }
 });

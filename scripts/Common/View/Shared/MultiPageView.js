@@ -1,61 +1,46 @@
 var MultiPageView = Backbone.View.extend({
     /*
-    * @brief
-        This class is designed to display a set of messages in a view separated by page numbers. 
-        Other views can extend this view and configure the setting according to the needs.
-        This base view provide the following features: page navigation, filtering
+     * @brief
+     This class is designed to display a set of messages in a view separated by page numbers.
+     Other views can extend this view and configure the setting according to the needs.
+     This base view provide the following features: page navigation, filtering
 
-    *
-    * @param entryTemplate: the template of each single entry
-    * @param entryContainer: id of the tag for displaying message
-    * @param entryClass: the class name for all entry in this view (style, event)
-    * @param actionClass: If this attribute is set, instead of entryClass, doms with this class will be bind to the entryEvent action when they are clicked
-    * @param pageNavigator: the div holding all page numbers
-    * @param pageNavigatorClass: the class name for the page navigator (style)
-    * @param pageEntryNumber: the number of entry displayed in each page
-    * @param startIndex: the starting index at first render
-    * @param currentPage: the index number of currentPage
-    * @param pageNumberClass: the class for each page number (style)
-    * @param pageNumberId: the base id for the page numbers in the form of pageId_, number will be appended to the end for event use
-    * @param entryEvent: the click event bind to each message entry.
-    * @param allMessage: all messages fetched from backend.
-    * @param messages: the filtered messages to be displayed in the view
-    *                   (including the ones in the pages not displaying, NOTE: it must be a different instance from allMessage in order for the collection event to work properly)
-    * @param entryHeight: the height of each entry, including margins and paddings, used for calculating container height
-    * @param entryRowNum: the number of entries displaying in the same row
-    * @param minHeight: the minimum height of the message container
-    * @param noMessage: the message displayed in the container when there's no message available
-    * @param extPn: external page navigator
-    * @param _filters: private member holding registered filters, should never be referenced from external
-    * @param truePagination: make the view fetches data per page. When this is set to true, child view must define fetchAction function.
+     * @param actionClass: If this attribute is set, instead of entryClass, doms with this class will be bind to the entryEvent action when they are clicked
+     * @param pageNumberId: the base id for the page numbers in the form of pageId_, number will be appended to the end for event use
+     * @param messages: the filtered messages to be displayed in the view
+     *                   (including the ones in the pages not displaying, NOTE: it must be a different instance from allMessage in order for the collection event to work properly)
+     * @param entryHeight: the height of each entry, including margins and paddings, used for calculating container height
+     * @param entryRowNum: the number of entries displaying in the same row
+     * @param extPn: external page navigator
+     * @param _filters: private member holding registered filters, should never be referenced from external
 
-    //TODO: 
-    */
-    entryTemplate: "",
-    entryContainer: "",
-    truePagination: false,
-    entryClass: "",
-    pageNavigator: "",
-    pageNavigatorClass: "",
-    pageEntryNumber: 10,
-    startIndex: 0,
-    currentPage: 1,
-    pageNumberClass: "",
+     //TODO:
+     */
+    maxSize: 8, //分页组的最大容量
+    entryTemplate: "", //单条记录的模板
+    entryContainer: "", //结果列表
+    entryClass: "", //每条记录的样式
+    pageNavigator: "", //分页数据的container
+    pageNavigatorClass: "",//container的样式
+    pageEntryNumber: 10,//每页显示的记录数
+    startIndex: 0,//开始记录数
+    currentPage: 1,//当前页数
+    pageNumberClass: "",//分页数字的样式
     pageNumberId: "",
-    entryEvent: "",
-    allMessages: [],
-    messages: null,
+    entryEvent: "",//绑定在每条记录上的事件
+    allMessages: [],//获取的所有数据
+    messages: null,//页面上面显示的经过过滤的信息(在假分页状态下)
     entryHeight: -1,
     entryRowNum: 1,
     minHeight: 0,
     noMessage: _.template("暂无消息"),
-    _filters: [],
-    _sorter: [],
     eventBound: false,
     $domContainer: null,
-    singlePage: null,
     initialize: function () {
-        _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler", "clickPreHandler", "clickNextHandler", "close");
+        _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler",
+            "clickPreHandler", "clickNextHandler", "close");
+    },
+    fetchAction: function (page) {
     },
     render: function () {
         var buf = [], i, length, height, message;
@@ -80,7 +65,7 @@ var MultiPageView = Backbone.View.extend({
                 // if (message._toSimpleJSON) {
                 //     buf[i] = this.entryTemplate(message._toSimpleJSON());
                 // } else {
-                    buf[i] = this.entryTemplate(message._toJSON());
+                buf[i] = this.entryTemplate(message._toJSON());
                 //}
             }
             this.$domContainer.append(buf.join(""));
@@ -108,7 +93,8 @@ var MultiPageView = Backbone.View.extend({
             height = (height > this.minHeight) ? height : this.minHeight;
             this.$domContainer.css("height", height + "px");
         }
-        if (this.messages.length > this.pageEntryNumber) {
+        var total = this.messages.total;
+        if (total > this.pageEntryNumber) {
             this.setPageNavigator();
         } else {
             $("#" + this.pageNavigator).empty();
@@ -118,14 +104,12 @@ var MultiPageView = Backbone.View.extend({
         }
         // this.messages.on("change", this.render);
     },
+
     toPage: function (page) {
+        if(page===this.currentPage)return;
         this.currentPage = page;
         this.startIndex = this.pageEntryNumber * (page - 1);
-        if (!this.truePagination) {
-            this.render();
-        } else {
-            this.fetchAction();
-        }
+        this.fetchAction(page);
     },
     bindEntryEvent: function () {
 
@@ -143,13 +127,11 @@ var MultiPageView = Backbone.View.extend({
     setPageNavigator: function () {
         var buf = ['<a class="pre"></a>'],
             divBuf = ["<a id='", this.pageNumberId, "_", 0, "' class='", this.pageNumberClass, "'> ", 0, "</a>"],
-            pages,
-            length,
             i,
             html;
-        if (this.singlePage) {
-            return;
-        }
+        var countTotal = this.messages.total;//记录总数
+        var pageTotal = Math.ceil(countTotal / this.pageEntryNumber);//分页总数
+        var currentPageIndex = this.currentPage;
 
         if (this.$pn && this.$pn.length) {
             this.$pn.children("." + this.pageNumberClass).off();
@@ -163,42 +145,86 @@ var MultiPageView = Backbone.View.extend({
             }
             this.$pre = null;
             this.$next = null;
-
         }
+        //TODO can auto detect table or div
         if (!this.extPn) {
             this.$domContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
         }
         this.$pn = $("#" + this.pageNavigator);
-        length = this.messages ? this.messages.length : 0;
-        pages = Math.ceil(length / this.pageEntryNumber);
-        this.pages = pages;
-        pages = pages > 10 ? 10 : pages;
-        for (i = 1; i <= pages; i++) {
-            divBuf[3] = i;
-            divBuf[7] = i;
+
+        /*page core start*/
+        var pageViewList = [];
+        var makePage = function (number, text) {
+            return {
+                number: number,
+                text: text
+            }
+        };//用于生成pageViewList
+        //default start and end in current page group
+        var startPage = 1, endPage = pageTotal;
+
+        //step 1根据currentPage判断是处于哪一个分页组 即获取startPage和endPage
+        var pageGroupSize = Math.ceil(pageTotal / this.maxSize);//分页组组数
+        var currentPageGroupIndex = Math.ceil(currentPageIndex / this.maxSize);//当前页处于的分页组
+
+        //step 2(optional)如果存在多个分页组 则重新计算startPage和endPage
+        if (pageGroupSize > 1) {
+            //*** Visible pages are paginated with maxSize
+            startPage = (currentPageGroupIndex - 1 ) * this.maxSize + 1;
+
+            // Adjust last page if limit is exceeded
+            endPage = Math.min(startPage + this.maxSize - 1, pageTotal);
+        }
+
+        //step 3 根据startPage和endPage生成分页数组
+        for (var number = startPage; number <= endPage; number++) {
+            var page = makePage(number, number);//first is pageIndex ,second is text
+            pageViewList.push(page);
+        }
+
+        //step 4(optional)如果存在多个分页组 则设置切换分页组的链接
+        if (pageGroupSize > 1) {
+            //添加切换分页组的链接
+            if (startPage > 1) {//非第一个分页组
+                pageViewList.unshift(makePage(startPage - 1, '...'));
+            }
+            if (endPage < pageTotal) {//非最后一个分页组
+                pageViewList.push(makePage(endPage + 1, '...'));
+            }
+        }
+
+        //step 3渲染这个分页组分页组 根据divBuf生成buf
+        _.each(pageViewList,function(page){
+            divBuf[3] = page.number;
+            divBuf[7] = page.text;
             buf.push(divBuf.join(""));
-        }
-        if (this.pages > 10) {
-            buf.push("<span>...</span>");
-        }
+        });
+        /*page core end*/
+
         buf.push("<a class='next'></a>");
         html = buf.join("");
         this.$pn.off()
-                .empty()
-                .append(html)
-                .addClass(this.pageNavigatorClass);
+            .empty()
+            .append(html)
+            .addClass(this.pageNavigatorClass);
         this.$pre = this.$pn.children(".pre");
         this.$next = this.$pn.children(".next");
-        this.$pn.children("#" + this.pageNumberId + "_" + this.currentPage).addClass("active");
+        this.$pn.children("#" + this.pageNumberId + "_" + currentPageIndex).addClass("active");
         this.$pn.on("click", "." + this.pageNumberClass, this.clickPageHandler);
+
+
         if (this.currentPage === 1) {
+            //首页
             this.$pre.addClass("pre-disabled");
         } else {
+            //首页除外
             this.$pre.on("click", this.clickPreHandler);
         }
-        if (this.currentPage === pages) {
+        if (this.currentPage === pageTotal) {
+            //末页
             this.$next.addClass("next-disabled");
         } else {
+            //末页除外
             this.$next.on("click", this.clickNextHandler);
         }
     },
@@ -212,116 +238,12 @@ var MultiPageView = Backbone.View.extend({
     clickPreHandler: function () {
         this.toPage(this.currentPage - 1);
     },
-    /*
-    active class should be the class indicating the selected tab/filter across the entire site.
-    Therefore it is hardcoded here.
-    */
-    registerFilterEvent: function ($selector, filter, inst, callback) {
-        var that = this;
-        if ($selector.prop("tagName") === "SELECT") {
-            $selector.on("change", function () {
-                that.currentPage = 1;
-                that.startIndex = 0;
-                if (that.allMessages) {
-                    if (filter) {
-                        that.messages.reset(that.allMessages.filter(filter, inst));
-                    } else {
-                        that.messages.reset(that.allMessages.toArray());
-                    }
-                }
-                inst.render();
-                if (callback) {
-                    callback.call(inst);
-                }
-            });
-        } else if ($selector.attr("type") === "checkbox") {
-            $selector.on("change", function () {
-                that.currentPage = 1;
-                if (that.allMessages) {
-                    if (filter) {
-                        that.messages.reset(that.allMessages.filter(filter, inst, true));
-                    } else {
-                        that.messages.reset(that.allMessages.toArray());
-                    }
-                }
-                inst.render();
-                if (callback) {
-                    callback.call(inst);
-                }
-            });
-        } else {
-            $selector.on("click", function () {
-                that.currentPage = 1;
-                $selector.siblings().removeClass("active");
-                $selector.addClass("active");
-                if (that.allMessages) {
-                    if (filter) {
-                        that.messages.reset(that.allMessages.filter(filter, inst));
-                    } else {
-                        that.messages.reset(that.allMessages.toArray());
-                    }
-                }
-                inst.render();
-                if (callback) {
-                    callback.call(inst);
-                }
-            });
-        }
-        this._filters.push($selector);
-    },
-    unregisterFilterEvent: function () {
-        var i;
-        for (i = 0; i < this._filters.length; i++) {
-            this._filters[i].off();
-        }
-        this._filters = [];
-    },
-    registerSortEvent: function ($selector, sorter, desc, inst, callback) {
-        var that = this;
-        $selector.on("click", function () {
-            $selector.siblings().removeClass("active");
-            $selector.addClass("active");
-            var descFlag, list;
-            if (typeof desc === "string" && inst) {
-                descFlag = inst[desc];
-            } else {
-                descFlag = desc;
-            }
-            if (that.messages) {
-                if (typeof sorter === "string") {
-                    list = that.messages.sortBy(sorter);
-                } else if (typeof sorter === "function") {
-                    that.allMessages.Comparator = sorter;
-                    list = that.messages.sortBy(sorter);
-                } else {
-                    list = that.messages.toArray();
-                }
-            }
-            if (descFlag) {
-                list = list.reverse();
-            }
-            that.messages.reset(list);
-            inst.render();
-            if (callback) {
-                callback.call(inst);
-            }
-        });
-        this._sorter.push($selector);
-    },
-    unregisterSortEvent: function () {
-        var i;
-        for (i = 0; i < this._sorter.length; i++) {
-            this._sorter[i].off();
-        }
-        this._sorter = [];
-    },
+
     close: function () {
         if (!this.isClosed) {
             if (this.$pn) {
                 this.$pn.children("." + this.pageNumberClass).off();
             }
-            this.unregisterFilterEvent();
-            this.unregisterSortEvent();
             this.$domContainer.off();
             this.$domContainer.empty();
             this.$domContainer = null;

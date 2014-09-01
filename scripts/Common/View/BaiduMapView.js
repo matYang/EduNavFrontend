@@ -28,37 +28,47 @@ var BaiduMapView = Backbone.View.extend({
     // },
     mapInitialize: function () {
         // var opts;
-        var poi = new BMap.Point(121.442823, 31.194107);
+        var point = new BMap.Point(121.442823, 31.194107);
         this.isClosed = false;
         app.viewRegistration.register(this);
         this.map = new BMap.Map(this.el.id, {enableMapClick: false});  //this should never expire
-        var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL}    
+        var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL};
         this.map.addControl(new BMap.NavigationControl(opts));
         // this.setCenter(this.location);
     },
+    //获取地址的经纬度
     getLatLng: function (locationString, instName) {
-        var poi = app.cache.get("poi", locationString);
+        locationString = this.formatAddr(locationString);//去除小括号 转小写
+        //缓存已获取经纬度的地理位置 避免向百度继续发送请求分析地址的经纬度 以提高速度
+        var point = app.cache.get("poi", locationString);
         this.markerName[locationString] = instName;
-        if (poi) {
-            this.poi(poi, {address: locationString});
-            return;
+        if (point) {
+            //如果本地已缓存经纬度 直接在地图上设置地理位置
+            this.setPosition(point, {address: locationString});
+        }else{
+            //否则向百度发起请求 来设置地理位置
+            this.geocoder.getPoint(locationString, this.setPosition);
         }
-        this.geocoder.getPoint(locationString, this.poi);
     },
-    poi: function (poi, locationObj) {   //っぽい
+    //生成地理位置的图标
+    setPosition: function (point, locationObj) {
+        //todo 如果locationObj是由百度地图返回 里面的标点和英文的大小写可能会发生变化
+        //todo 那么从map中取地理位置对应的机构名时会发生错误
         var label;
-        if (poi) {
+        if (point) {
             if (this.markers.length === 0) {
                 //this.map.panTo(poi);
             }
-            label = new BMap.Label(this.labelTemplate({text: this.markerName[locationObj.address]}), {position:poi});
+            label = new BMap.Label(this.labelTemplate({text: this.markerName[locationObj.address]}), {position:point});
             this.addMarker(label, locationObj.address);
-            app.cache.set("poi", locationObj.address, poi);
+            //每次设置完地理位置进行该地理位置(已有经纬度)的缓存
+            app.cache.set("poi", locationObj.address, point);
         } else {
             Info.warn('Geocode was not successful');
         }
     },
     setCenter: function (locationString) {
+        locationString = this.formatAddr(locationString);//去除小括号 转小写
         var that = this;
         this.geocoder.getPoint(
             locationString,
@@ -72,6 +82,7 @@ var BaiduMapView = Backbone.View.extend({
         );
     },
     addMarker: function (marker, locationString) {
+        locationString = this.formatAddr(locationString);//去除小括号 转小写
         var add = true, i;
         marker.locationString = locationString;
         for (i = 0; i < this.markers.length; i++) {
@@ -89,6 +100,7 @@ var BaiduMapView = Backbone.View.extend({
         this.markerCount[locationString]++;
     },
     removeMarker: function (locationString) {
+        locationString = this.formatAddr(locationString);//去除小括号 转小写
         var i;
         for (i = 0; i < this.markers.length; i++) {
             if (this.markers[i].locationString === locationString) {
@@ -120,6 +132,11 @@ var BaiduMapView = Backbone.View.extend({
         this.markerCount = [];
         this.markers = [];
     },
+    formatAddr:function(addr){//小写是一个临时的解决方案
+        addr = addr.split('（')[0];
+        addr = addr.toLowerCase();
+        return addr;
+    },
     close: function () {
         if (this.map) {
             this.map.removeEventListener('click');
@@ -139,7 +156,7 @@ var MainMapView = BaiduMapView.extend({
     cssClass: "mainPage-map",
     initialize: function () {
         this.location = "南京";
-        _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'poi', 'close');
+        _.bindAll(this, 'render', 'mapInitialize', 'getLatLng', 'addMarker', 'removeMarker', 'removeAllMarkers', 'setPosition', 'close');
         BaiduMapView.prototype.initialize.call(this);
 
     },

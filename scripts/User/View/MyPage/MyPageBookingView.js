@@ -1,32 +1,30 @@
 var MyPageBookingView = Backbone.View.extend({
     el: "#mypage_content",
     initialize: function () {
-        _.bindAll(this, "render", "renderError", "close");
+        _.bindAll(this, "render", "close");
         this.template = _.template(tpl.get("mypage_bookingList"));
         app.viewRegistration.register(this);
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
+
         this.bookingSr = new BookingSearchRepresentation ();
+        //todo 这里以后加入筛选条件的缓存,每次进入该页面时首先获取之前缓存的筛选条件
         this.bookingSr.set("userId", this.user.get("userId"));
-        this.$el.append("<div class='loading'></div>");
-        app.userManager.fetchBookings(this.bookingSr, {
-            success: this.render,
-            error: this.renderError
-        });
+//        this.bookingSr.set('statusSet', [1,2,3,8,9,11,12,13]);//这里可添加状态的筛选条件
+        this.render();
     },
-    renderError: function (data) {
-        Info.displayNotice(data ? data.responseText : "订单页面加载失败，请稍后重试。");
-    },
-    render: function (bookingList) {
+
+    render: function () {
         this.$el.empty().append(this.template);
-        app.sessionManager.sessionModel.set("bookingList", bookingList);
-        this.bookingListView = new BookingListView(bookingList, bookingList, "booking");
+        //加载view时只需要传入过滤的条件即可
+        this.bookingListView = new BookingListView(this.bookingSr);
     },
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
-            this.bookingListView.close();
-            this.bookingListView = null;
+            if(this.bookingListView){
+                this.bookingListView.close();
+            }
             this.isClosed = true;
         }
     }

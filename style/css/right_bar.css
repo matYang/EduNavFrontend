@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* CSS Document */
+.right_bar{ position:fixed; bottom:130px; right:10px;z-index: 50}
+.right_bar dl{width:60px;position:relative;}
+/*文字图标*/
+.right_bar dl dt{
+    width:60px; height:60px;
+    text-indent:-9999px;
+    margin-bottom:5px;
+    background:url(../images/right_bar.png) no-repeat;
+    background-color: #128d56;
+    cursor:pointer;}
+.right_bar dl dt:hover{background-color: #aaaaaa;}
+/*文字图标的隐藏层*/
+.right_bar dl dd{
+    opacity: 0.2;
+    position:absolute;z-index: -1;
+    top:0; right:-280px;
+    width:250px;
+    background:#fff;
+    border:1px solid #128d56;
+    -webkit-transition: all 0.6s;
+    -moz-transition: all 0.6s;
+    -ms-transition: all 0.6s;
+    -o-transition: all 0.6s;
+    transition: all 0.6s;
+}
+/*hover时显示*/
+.right_bar dl:hover dd{
+    right: 60px;
+    opacity: 1;
+}
+/*在线客服*/
+.right_bar .customer_service dt{ background-position:50% 6px;}
+/*免费试听*/
+.right_bar .listening_test dt{ background-position:50% -57px;}
+/*课程对比*/
+.right_bar .comparison dt{ background-position:50% -122px;}
+/*二维码*/
+.right_bar .qr_code dt{ background-position:50% -185px;}
+/*返回顶部*/
+.right_bar .back_to_top dt{ background-color:#2e333f; background-position:50% -251px;}
+
+.cs_online li{ margin:0 10px; padding-left:88px; line-height:78px; border-bottom:1px dotted #ccc; font-size:18px; color:#666666; background:url(../images/cs_online.png) no-repeat; cursor:pointer;}
+.cs_online li.list1{ background-position:20px 24px; font-size:22px; color:#128d56; height:81px;}
+.cs_online li.list2{ background-position:20px -57px;}
+.cs_online li.list3{ background-position:20px -138px;}
+.cs_online li.list4{ background-position:20px -216px; border-bottom:none;}
+
+/*仅出现在课程详情的免费试听弹出*/
+.courseDetail  .shiting{ position:fixed; top:66px; right:6px; width:290px; height:140px;  z-index:9999;}
+.courseDetail  .shiting_inner{ padding:10px; padding-top:20px; text-align:center;}
+.courseDetail  .shiting .btn{ margin-top:10px;}
+.courseDetail  .shiting p{ margin-top:10px;}
+.courseDetail  .shiting  .close { position:absolute; top:5px; right:5px; width:27px; height:27px; background:url(../images/shiting_close.png) no-repeat; text-indent:-9999px;}
+
+/*对比框*/
+.compare{line-height:14px;}
+/*隐藏的对比内容*/
+#compareWidgetContent{
+    position:absolute;
+    right: 60px;top: 0;
+    width: 250px;
+    border:1px solid #cccccc; border-top:2px solid #128d56; background:#fff; line-height:14px;
+}
+.comparison .compareEntry{ position:relative; padding:15px 35px 10px 10px; border-bottom:1px dotted #ccc; font-size:12px;}
+.comparison .compareEntry:hover{background:#e2ece7;}
+.comparison .compareEntry .desc a,.compareEntry .desc a:visited{ color:#128d56;}
+.comparison .compareEntry .price{ padding-left:5px; margin-top:10px; color:#ff5500;}
+.comparison .compareEntry .price .sign{color:#333333;}
+.comparison .compareEntry .remove{ position:absolute; right:10px; top:15px; width:20px; height:20px; background:url(../images/close3.png) no-repeat; cursor:pointer;}
+.comparison .compareEntry .remove:hover{ background:url(../images/close3_hover.png) no-repeat;}
+.comparison .btns{ text-align:center; margin:10px auto;}
+.comparison #compare{width:215px; height:32px; border:none; font-size:14px; color:#fff; cursor:pointer; background:#128d56;}

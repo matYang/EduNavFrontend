@@ -11,66 +11,12 @@ module.exports = function(grunt) {
           "scripts/Lib/datepicker-zh.js",
           "scripts/Lib/jquery.placeholder.min.js",
           "scripts/Lib/jquery.smooth-scroll.min.js",
-          "scripts/Lib/json2.js"
+          "scripts/Lib/json2.js",
+          "scripts/Lib/backbone.notifier.js",
+          "scripts/Lib/bjqs.js"
         ],
         dest: 'build/Common.js'
      },
-     admin: {
-        src: [
-              "scripts/Common/Config/*.js",
-              "scripts/Common/StaticResource/*.js",
-              "scripts/Admin/Resource/*.js",
-
-              "scripts/Common/Model/Representation/*",
-              "scripts/Common/Model/Transaction.js",
-              "scripts/Common/Model/Credit.js",
-              "scripts/Common/Model/Coupon.js",
-              "scripts/Common/Model/Booking.js",
-              "scripts/Common/Model/User.js",
-              "scripts/Common/Model/Partner.js",
-              "scripts/Common/Model/Admin.js",
-              "scripts/Common/Model/Course.js",
-              
-              "scripts/Common/Service/*.js",
-              
-              "scripts/Test/TestMockObj.js",
-              "scripts/Common/DataManagers/GeneralManager.js",
-              "scripts/Common/DataManagers/SessionManager.js",
-              "scripts/Common/DataManagers/AdminManager.js",
-              "scripts/Admin/Manager/*.js",
-              "scripts/Common/View/Shared/*.js",
-              "scripts/Admin/View/*.js",
-              "scripts/Admin/Main.js"
-              ],
-        dest: 'build/AdminMain.js'
-      },
-      // partner: {
-      //   src: ["scripts/Lib/LoadFirst/*.js",
-      //         "scripts/Lib/*.js",
-      //         "scripts/Common/Config/*.js",
-      //         "scripts/Common/StaticResource/*.js",
-
-      //         "scripts/Common/Model/Representation/*",
-      //         "scripts/Common/Model/Transaction.js",
-      //         "scripts/Common/Model/Credit.js",
-      //         "scripts/Common/Model/Coupon.js",
-      //         "scripts/Common/Model/Booking.js",
-      //         "scripts/Common/Model/User.js",
-      //         "scripts/Common/Model/Partner.js",
-      //         "scripts/Common/Model/Course.js",
-              
-      //         "scripts/Common/Service/*.js",
-              
-      //         "scripts/Test/TestMockObj.js",
-      //         "scripts/Common/DataManagers/GeneralManager.js",
-      //         "scripts/Common/DataManagers/SessionManager.js",
-      //         "scripts/Common/DataManagers/PartnerManager.js",
-      //         "scripts/Common/View/Shared/*.js",
-      //         "scripts/Common/View/*.js",
-      //         "scripts/Partner/Main.js"
-      //         ],
-      //   dest: 'build/PartnerMain.js'
-      // },
       main: {
         src: [
               "scripts/Common/Config/*.js",
@@ -104,8 +50,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'build/common.min.js':['<%= concat.common.dest %>'],
-          'build/main.min.js':['<%= concat.main.dest %>'],
-          'build/adminMain.min.js':['<%= concat.admin.dest %>'],
+          'build/main.min.js':['<%= concat.main.dest %>']
           //'build/partnerMain.min.js':['<%= concat.partner.dest %>'],
         }
       }
@@ -115,8 +60,10 @@ module.exports = function(grunt) {
         files: {
           'build/style/css/style-min.css': [
             'style/css/Global.css',
+            'style/css/notifier-base.css',
             'style/css/common-ui.css',
             'style/css/topBar.css',
+            'style/css/right_bar.css',
             'style/css/override.css',
             'style/css/index.css',
             'style/css/reg.css',

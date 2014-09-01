@@ -18,9 +18,12 @@
 .courseBrief .row4 .title{ padding-left:20px; background:url(../images/icon.png) no-repeat 0 -469px; font-size:14px;}
 .courseBrief .row4 .link{ padding-left:20px;}
 
+.courseBrief .section label{vertical-align: top; display: inline-block;}
+.courseBrief .section div{ display: inline-block;}
+
 /*右栏*/
 .panel {float:right; width:730px; border:3px solid #128d56; color:#000;}
-.panel .header{height:52px; line-height:52px; padding-left:20px; background:#128d56; font-size:18px; font-family:微软雅黑; color:#fff;}
+.panel .header{height:52px; line-height:52px; padding-left:20px; background:#128d56; font-size:18px; color:#fff;}
 .panel .title{border-bottom:1px solid #cccccc; height:40px; line-height:40px; margin:10px; padding:0 10px;}
 .panel .title h3{float:left; font-size:14px; color:#128d56; }
 .panel .title .fright{ font-size:12px; padding-left:20px; color:#128d56; background:url(../images/icon.png) no-repeat 0 -491px;}
@@ -31,12 +34,13 @@
 .panel .field select{ padding:2px; border:1px solid #ccc; width:112px;}
 .panel .field span{ color:#666; font-size:12px;}
 .panel .field b.price{color:#ff5500;}
+.panel .field label.radio{width:68px;text-align:left;margin-right:5px;}/*radio的label标签*/
 
-.panel .field .cashback{margin-right:10px;margin-left:8px;}
+.panel .field .label{margin-left:5px;margin-right: 5px}
 .panel .field #booking_useCashback{margin-left:128px; float:left;}
 .panel .field  .login_reg1 {font-size:12px; line-height:18px;}
 
-.panel .loginbox{ position:relative;border:1px solid #ccc; margin-left:128px; margin-top:40px; }
+.panel .loginbox{ position:relative;border:1px solid #ccc; margin-left:128px;}
 .panel .loginbox_inner{ padding:15px 20px; font-size:14px;}
 .panel .loginbox_inner input.text{border:1px solid #ccc; width:164px; margin-right:15px; padding-left:10px; background:#eaefed; height:28px; line-height:28px\9;}
 .panel .loginbox_inner label{color:#128d56;}
@@ -45,30 +49,96 @@
 .panel #booking_login{width:100px; height:30px; margin-left:50px; color:#fff; font-size:14px; border:none; cursor:pointer; background:#128d56;}
 .panel .close{ position:absolute; top:10px; right:10px; width:11px; height:11px; background:url(../images/icon.png) no-repeat 0 -530px; text-indent:-9999px; cursor:pointer;}
 
-.panel .row2{ margin:10px 10px 40px;}
+.panel .row2{ margin:10px 10px 20px;}
 .panel .row2 input.text{width:250px;}
 .panel .row2 .req{color:#ff5500;}
 .panel #booking_date{width:100px;}
 .panel .row3{border-top:1px dotted #ccc; text-align:center; padding:20px 0 50px;}
 .panel .row3 .desc{ color:#666; margin-left:10px;}
-
+/*new booking*/
+.newBooking .field b.price{color:#ff5500;border-bottom: 1px dotted #f60;margin-right: 18px;}
+.newBooking .row4{border-top:1px dotted #ccc; padding:20px 50px 40px; font-size:18px; color:#666;}
+.newBooking .row4 .price{ color:#ff5500; font-size:22px;}
+.newBooking .row4 .desc{ color:#666; margin-left:10px; font-size:14px;}
+.newBooking .row5{border-top:1px dotted #ccc; text-align:center; padding:20px 0 40px;}
+.newBooking .row5 .desc{ color:#666; margin-left:10px;}
 /*订单提交成功*/
 #booking_submitted{ position:relative; border:3px solid #128d56; font-size:14px;}
 #booking_submitted .row1{ border-bottom:1px solid #cccccc; padding:20px 50px;}
-#booking_submitted .row1 .title{ font-size:24px; color:#128d56; font-family:微软雅黑; padding-left:40px; background:url(../images/icon.png) no-repeat 0 -580px;}
+#booking_submitted .row1 .title{ font-size:24px; color:#128d56;padding-left:40px; background:url(../images/icon.png) no-repeat 0 -580px;}
 #booking_submitted .row1 .detail{margin-top:10px; margin-left:40px;}
 #viewBooking{width:100px; height:30px; line-height:30px\9; background:#128d56; color:#fff; cursor:pointer; border:none;}
 #printBooking{ position:absolute; top:20px; right:20px; padding:5px 0 5px 23px; background:url(../images/icon.png) no-repeat 0 -639px; cursor:pointer;}
 
 #booking_submitted .row2{ padding-left:88px; line-height:42px; margin-top:20px; border-bottom:1px dotted #ccc;}
-#booking_submitted .row2 .price{color:#ff5500; font-family:微软雅黑; font-size:18px;}
+#booking_submitted .row2 .price{color:#ff5500; font-size:18px;}
 #booking_submitted .row2 span{color:#666;}
-#booking_submitted .row2 .extra{color:#ff5500; margin-top:30px;}
+#booking_submitted .row2 .extra{color:#ff5500; margin-top:10px;}
 
 #booking_submitted .row3{ padding:10px 20px 20px 88px; line-height:42px;}
 #booking_submitted .row3 .bonus{float:left; padding-left:23px; background:url(../images/icon.png) no-repeat 0 -675px;}
 #booking_submitted .row3 .viewMore{float:right; color:#128d56; cursor:pointer;}
 
+/*step*/
+.step ol{overflow: hidden; zoom: 1;}
+.step li {float: left; width:160px; text-align: center;}
+.step .step_name { padding: 3px 0; color: #595757; font-size:14px; margin-bottom:5px;}
+.step .step_node{background: url(../images/step.png) no-repeat 50% -95px;}
+.step .step_done .step_name,.step .step_active .step_name{color:#f1a526;}
+.step .step_done .step_node{background-position: 50% 1px;}
+.step .step_active .step_node {background-position: 50% -191px;}
+.step .step_first .step_done .step_node {background-position: 50% -159px;}
+.step .step_first .step_done .step_active {background-position: 50% -159px;}
+.step .step_first .step_active .step_node {background-position: 50% -31px;}
+.step .step_node {height: 32px;}
+.step .step_last .step_node {background-position: 50% -127px;}
 
+
+/*在线支付*/
+.ensure{float:left;}
+.ensure h3{font-size:18px; color:#128d56; font-weight:normal; margin-bottom:5px; padding:0 0 10px 32px; background: url(../images/icon.png) no-repeat 0 -367px;}
+.ensure p{ line-height:30px;}
+.payment{float:right; width:730px; border:3px solid #128d56; color:#000;}
+.payment .header{height:52px; line-height:52px; padding-left:20px; background:#128d56; font-size:18px; color:#fff;}
+.payment .title{border-bottom:1px solid #cccccc; height:50px; line-height:50px; margin:20px;}
+.payment .title h3{float:left; font-size:14px; color:#128d56; }
+.payment .title .fright{ font-size:12px; padding-left:20px; color:#128d56; background:url(../images/icon.png) no-repeat 0 -491px;}
+.payment .row1{ padding-left:30px; margin:20px; line-height:40px;}
+.payment .row2{ padding-left:30px; margin:20px;}
+.payment .row2 .payment_way{}
+.payment .btn{ border-top:1px dotted #ccc; padding-top:20px; margin:30px 20px 100px 20px; text-align:center;}
+.acn{color:#ff0000; margin-right:20px; padding-left:90px; background:url(../images/acn.png) no-repeat left center;}
+
+.bank_list li{float:left; border:1px solid #ccc; width:180px; padding:10px; margin-right:10px; margin-bottom:10px; cursor:pointer;}
+.bank_list li input{float:left; margin-top: 8px;}
+.bank_list li a{float:left; width: 125px; height: 28px; overflow: hidden; background-image:url(../images/bank.png); text-indent:-9999px;}
+.bank_list li.active{ padding:9px; border:2px solid #ff5500; background:url(../images/p1.png) no-repeat right bottom;}
+
+.bank_list #bob a{background-position:0 -28px}/*中国银行*/
+.bank_list #icbc a{background-position:0 -140px}/*工商银行*/
+
+.bank_list #cmb a{background-position:0 -784px}/*招商银行*/
+.bank_list #ccb a{background-position:0 -336px}/*建设银行*/
+.bank_list #abc a{background-position:0 -532px}/*农业银行*/
+.bank_list #spdb a{background-position:0 -588px}/*浦发银行*/
+.bank_list #cib a{background-position:0 -756px}/*兴业银行*/
+.bank_list #gdb a{background-position:0 -196px}/*广发银行*/
+.bank_list #fdb a{background-position:0 -112px}/*富滇银行*/
+.bank_list #citic a{background-position:0 -896px}/*中信银行*/
+.bank_list #hzb a{background-position:0 -252px}/*杭州银行*/
+.bank_list #shb a{background-position:0 -672px}/*上海银行*/
+.bank_list #nbcb a{background-position:0 -504px}/*宁波银行*/
+.bank_list #pab a{background-position:0 -560px}/*平安银行*/
+.bank_list #post a{background-position:0 -868px}/*邮政银行*/
+.bank_list #bcom a{background-position:0 -392px}/*交通银行*/
+.bank_list #ceb a{background-position:0 -168px}/*光大银行*/
+.bank_list #boc a{background-position:0 -840px}/*北京银行*/
+.bank_list #srcb a{background-position:0 -644px}/*上海农商银行*/
+.bank_list #wzcb a{background-position:0 -728px}/*温州银行*/
+.bank_list #cmbc a{background-position:0 -448px}/*民生银行*/
+.bank_list #brcb a{background-position:0 -1128px}/*北京农商银行*/
+.bank_list #srcb a{background-position:0 -1158px}/*北京农商银行*/
+.bank_list #alipay a{background-position:0 -1097px}/*支付宝*/
+.bank_list .more{float:left;border:1px dotted #128d56; width:200px; height:46px; line-height:46px;  margin-right:10px; margin-bottom:10px; cursor:pointer; text-align:center; }
 
 

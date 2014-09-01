@@ -29,21 +29,29 @@ var MyPageSettingView = BaseFormView.extend({
             ];
         }
         this.template = _.template(tpl.get('mypage_setting'));
-        this.model = app.sessionManager.sessionModel.clone();
+        this.model =  app.sessionManager.sessionModel;
         app.viewRegistration.register(this);
         this.render();
         this.bindEvents();
     },
 
     render: function () {
-        this.$el.append(this.template(this.model._toJSON()));
+        this.$el.html(this.template(this.model._toJSON()));
     },
     bindEvents: function () {
+        var self = this;
         BaseFormView.prototype.bindEvents.call(this);
+        $('.js_setUsernameModal').on('click',function(){
+           //打开设置用户名的modal
+            self.usernameModal = new UsernameModal({view:self});
+        });
     },
 
     submitAction: function () {
         var that = this, date = new Date ();
+        this.model.set('gender',$('input[name="sex"]:checked').val());
+        this.model.set('invitationCode',undefined);
+//        this.model.set('identify',$('input[name="identify"]:checked').val());//todo 已工作或者还是学生
         app.userManager.changeInfo(this.model, {
             "success": that.saveSuccess,
             "error": that.saveError
@@ -66,7 +74,7 @@ var MyPageSettingView = BaseFormView.extend({
         });
     },
     saveError: function (data) {
-        Info.displayNotice(data.responseText  ? data.responseText  : "服务器连接失败，请稍后再试。");
+        Info.displayNotice(data.message|| "服务器连接失败，请稍后再试。");
         $("#updateInfo").attr("value", "更新失败(重试)");
     },
 
@@ -95,4 +103,3 @@ var MyPageSettingView = BaseFormView.extend({
         }
     }
 });
-

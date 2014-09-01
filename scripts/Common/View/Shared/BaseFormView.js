@@ -89,7 +89,6 @@ var BaseFormView = Backbone.View.extend({
     formReady: function (formElem, action, callback) {
 
         var iframe = document.createElement('iframe'), that = this;
-        action = action;
 
         // we create an iframe and use the callback as its name (why not).
         iframe.setAttribute('name', callback);

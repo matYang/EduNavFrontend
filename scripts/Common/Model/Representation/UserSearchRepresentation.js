@@ -15,12 +15,12 @@ var UserSearchRepresentation = Backbone.Model.extend({
             'startCredit': undefined,
             'finishCredit': undefined,
 
-            'invitationalCode': undefined,
-            'appliedInvitationalCode': undefined,
+            'invitationCode': undefined,
+            'appliedInvitationCode': undefined,
             'accountNumber': undefined,
 
-            'startCreationTime': undefined,
-            'finishCreationTime': undefined
+            'startcreateTime': undefined,
+            'finishcreateTime': undefined
 
         };
     },
@@ -58,8 +58,8 @@ var UserSearchRepresentation = Backbone.Model.extend({
         queryObj.phone = typeof this.get('phone') === 'undefined' ? undefined : encodeURI(this.get('phone'));
         queryObj.email = typeof this.get('email') === 'undefined' ? undefined : encodeURI(this.get('email'));
         queryObj.status = this.get('status');
-        queryObj.startCreationTime = typeof this.get('startCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startCreationTime'));
-        queryObj.finishCreationTime = typeof this.get('finishCreationTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishCreationTime'));
+        queryObj.startcreateTime = typeof this.get('startcreateTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startcreateTime'));
+        queryObj.finishcreateTime = typeof this.get('finishcreateTime') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('finishcreateTime'));
 
         queryObj.startBalance = this.get('startBalance');
         queryObj.finishBalance = this.get('finishBalance');
@@ -68,8 +68,8 @@ var UserSearchRepresentation = Backbone.Model.extend({
         queryObj.startCredit = this.get('startCredit');
         queryObj.finishCredit = this.get('finishCredit');
 
-        queryObj.invitationalCode = typeof this.get('invitationalCode') === 'undefined' ? undefined : encodeURI(this.get('invitationalCode'));
-        queryObj.appliedInvitationalCode = typeof this.get('appliedInvitationalCode') === 'undefined' ? undefined : encodeURI(this.get('appliedInvitationalCode'));
+        queryObj.invitationCode = typeof this.get('invitationCode') === 'undefined' ? undefined : encodeURI(this.get('invitationCode'));
+        queryObj.appliedInvitationCode = typeof this.get('appliedInvitationCode') === 'undefined' ? undefined : encodeURI(this.get('appliedInvitationCode'));
         queryObj.accountNumber = typeof this.get('accountNumber') === 'undefined' ? undefined : encodeURI(this.get('accountNumber'));
 
         return queryObj;

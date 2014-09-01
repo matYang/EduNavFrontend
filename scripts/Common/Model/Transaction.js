@@ -2,17 +2,18 @@ var Transaction = Backbone.Model.extend({
     //TODO fill in Constants with enum int mapping
     defaults: function () {
         return {
+            'id': -1,
             'transactionId': -1,
             'userId': -1,
             
             'bookingId': -1,
             'transactionAmount': 0,
             'transactionType': EnumConfig.TransactionType.withdraw,
-            'creationTime': new Date()
+            'createTime': new Date()
         };
     },
 
-    idAttribute: 'transactionId',
+    idAttribute: 'id',
 
     initialize: function (urlRootOverride) {
         _.bindAll(this, 'overrideUrl', 'isNew', 'parse', '_toJSON', 'toJSON');
@@ -28,28 +29,29 @@ var Transaction = Backbone.Model.extend({
 
     parse: function (data) {
         if ( typeof data !== 'undefined') {
-            data.transactionId = parseInt(data.transactionId, 10);
+            data.id = parseInt(data.id, 10);
+            data.transactionId = data.id;
             data.userId = parseInt(data.userId, 10);
 
             data.bookingId = parseInt(data.bookingId, 10);
             data.transactionType = parseInt(data.transactionType, 10);
 
             data.transactionAmount = parseInt(data.transactionAmount, 10);
-            data.creationTime = Utilities.castFromAPIFormat(decodeURI(data.creationTime));
+            data.createTime = Utilities.castFromAPIFormat(decodeURI(data.createTime));
         }
         return data;
     },
 
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.createTime = Utilities.getDateString(this.get('createTime'));
         return json;
     },
 
     toJSON: function () {
         var json = _.clone(this.attributes);
 
-        json.creationTime = encodeURI(Utilities.castToAPIFormat(this.get('creationTime')));
+        json.createTime = (Utilities.castToAPIFormat(this.get('createTime')));
         return json;
     }
 
@@ -59,7 +61,16 @@ var Transaction = Backbone.Model.extend({
 var Transactions = Backbone.Collection.extend({
 
     model: Transaction,
-
+    start: 0,
+    count: 0,
+    total: 0,
+    parse: function (data) {
+        if (!data.data) return data;
+        this.start = data.start;
+        this.count = data.count;
+        this.total = data.total;
+        return data.data;
+    },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
         if ( typeof urlOverride !== 'undefined') {

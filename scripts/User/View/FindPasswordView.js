@@ -3,6 +3,8 @@ var FindPasswordView = BaseFormView.extend({
     model: {},
     submitButtonId: "nextButton",
     form: false,
+    template1 :_.template(tpl.get("findPassword_1")),
+    template2 :_.template(tpl.get("findPassword_2")),
     fields: [
         new BaseField({
             name: "手机",
@@ -10,7 +12,7 @@ var FindPasswordView = BaseFormView.extend({
             type: "text",
             mandatory: true,
             validatorFunction: Utilities.phoneValid,
-            modelAttr: "phone",
+            modelAttr: "accountIdentifier",
             buildValidatorDiv: Utilities.defaultValidDivBuilder
         }),
         new BaseField({
@@ -44,9 +46,6 @@ var FindPasswordView = BaseFormView.extend({
         this.fields[2].validatorFunction = FindPasswordView.prototype.passValid;
         this.fields[3].validatorFunction = FindPasswordView.prototype.confirmValid;
         this.isClosed = false;
-        this.template1 = _.template(tpl.get("findPassword_1"));
-        this.template2 = _.template(tpl.get("findPassword_2"));
-        // this.template3 = _.template(tpl.get("findPassword_3"));
         // $("#viewStyle").attr("href", "style/css/reg.css");
         this.render(1);
     },
@@ -70,8 +69,8 @@ var FindPasswordView = BaseFormView.extend({
         var that = this;
         if (state !== 2) {
             $("#getSms").on("click", function () {
-                if (Utilities.phoneValid(that.model.phone).valid) {
-                    app.userManager.forgetPassword(that.model.phone, Utilities.defaultSmsRequestHandler($("#getSms"), $("#smsInfo")));
+                if (Utilities.phoneValid(that.model.accountIdentifier).valid) {
+                    app.userManager.forgetPassword(that.model.accountIdentifier, Utilities.defaultSmsRequestHandler($("#getSms"), $("#smsInfo")));
                 } else {
                     $("#smsInfo").html("请先输入正确的手机号");
                 }
@@ -87,11 +86,12 @@ var FindPasswordView = BaseFormView.extend({
         });
     },
     successCallback: function () {
-        $("#confirmChange").val("修改成功");
-        app.navigate("mypage", true);
+//        $("#confirmChange").val("修改成功");
+//        app.navigate("mypage", true);
+        this.render(2);
     },
     changeError: function (data) {
-        Info.displayNotice(data.responseText);
+        Info.displayNotice(data.message);
     },
     passValid: function (val) {
         var p1 = val, p2 = $("#findPassConfirmInput").val();
@@ -105,7 +105,7 @@ var FindPasswordView = BaseFormView.extend({
     },
     confirmValid: function (val) {
         var p1 = $("#findPassPassInput").val(), p2 = val;
-        if ( p1 !== p2 ) {findPassPassInput
+        if ( p1 !== p2 ) {
             return {valid: false, text:"两次输入密码不匹配"};
         } else if (val.length < 6 ){
             return {valid: false, text:"密码长度至少为6位"};

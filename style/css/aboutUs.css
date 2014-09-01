@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-.aboutus{ font-family:微软雅黑; color:#595757;}
+.aboutus{ color:#595757;}
 .aboutus_banner{ margin-top:20px;}
 
 .aboutus .intro{ padding:0 0 30px 70px; margin-top:30px; background:url(../images/aboutus_intro.jpg) no-repeat left top; border-bottom:1px dotted #8bc882;}
@@ -14,21 +14,19 @@
 .aboutus .advantage dd{ line-height:28px;}
 
 .contact_us .tel{ padding:0 0 30px 70px; margin-top:30px; background:url(../images/contact_us.jpg) no-repeat left top; }
-.contact_us .tel dt{ color:#1e993a; font-size:18px; margin-bottom:10px; font-family:微软雅黑;}
+.contact_us .tel dt{ color:#1e993a; font-size:18px; margin-bottom:10px;}
 .contact_us .tel dd{ line-height:28px;}
 
 .help dl{ padding:0 0 30px 70px; margin-top:30px; background:url(../images/contact_us.jpg) no-repeat left top; }
-.help dl dt{ color:#1e993a; font-size:18px; margin-bottom:10px; font-family:微软雅黑;}
+.help dl dt{ color:#1e993a; font-size:18px; margin-bottom:10px;}
 .help dl dd{ line-height:28px;}
 
 .advise dl{ padding:0 0 30px 70px; margin-top:30px; background:url(../images/contact_us.jpg) no-repeat left top; }
-.advise dl dt{ color:#1e993a; font-size:18px; margin-bottom:10px; font-family:微软雅黑;}
+.advise dl dt{ color:#1e993a; font-size:18px; margin-bottom:10px;}
 .advise dl dd{ line-height:28px;}
 .advise dl dd input.text{width:500px; height:40px; line-height:40px\9; font-size:14px; color:#666;}
 .advise dl dd textarea{width:490px; height:190px; border:1px solid #ccc; padding:10px; font-size:14px;color:#666;}
 
-/*机构入驻*/
-.ruzhu{ font-family:微软雅黑;}
 .ruzhu_banner{ margin-top:50px; height:90px;}
 .ruzhu_part2 {color:#979797; font-size:16px; line-height:30px;}
 .ruzhu_part2 .fleft{width:290px; padding-left:110px; background:url(../images/wh.png) no-repeat left top; padding-bottom:15px;}

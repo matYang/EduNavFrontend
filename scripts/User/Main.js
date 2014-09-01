@@ -1,5 +1,13 @@
 //IE 8 fallBack for placeholders
 $('input, textarea').placeholder();
+//配置ajax
+$.ajaxSetup({
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    dataType: 'json'
+});
+
 
 var AppRouter = Backbone.Router.extend({
 
@@ -48,8 +56,8 @@ var AppRouter = Backbone.Router.extend({
         this.eventClearService = new EventClearService();
         this.cache = new CacheService();
         //initializing all the data managers
-        this.sessionManager = new SessionManager(EnumConfig.ModuleIdentifier.user);
-        this.generalManager = new GeneralManager(this.sessionManager);
+        this.sessionManager = new SessionManager();
+        this.generalManager = new GeneralManager();
         this.userManager = new UserManager(this.sessionManager);
         this.infoModal = new InfoModal();
         this.sessionManager.fetchSession(false, {
@@ -58,6 +66,7 @@ var AppRouter = Backbone.Router.extend({
             },
             error: function () {
                 Info.log("session fetch failed, user not logged in");
+                //todo here should clear cookie
             }
         });
 
@@ -115,14 +124,13 @@ var AppRouter = Backbone.Router.extend({
             this.myPageView = new MyPageView({query: "bookingDetail", reference: id});
         }
     },
-    //todo
     myBookingPay: function (id) {
         //BookingPayView
         if (!this.sessionManager.hasSession()) {
             this.navigate("front", {trigger: true, replace: true});
             return;
         }
-        this.myPageView = new BookingPayView({id: id});
+        this.myPagePayView = new BookingPayView({bookingId: id});
     },
     mypage: function (query) {
         if (!this.sessionManager.hasSession()) {
@@ -181,12 +189,11 @@ var AppRouter = Backbone.Router.extend({
 (function () {
     app = new AppRouter();
     app.topBarView = new TopBarView();
+    app.sideBarView = new SiderBarView();
     Backbone.history.start();
     $(window).unload(function () {
         localStorage.cache = JSON.stringify(app.cache.cache);
     });
     // $("body").append("<script type='text/javascript' src='http://tb.53kf.com/kf.php?arg=10074249&style=1'> </script>");
     // console.log("Wow, Congratulations!");
-
-    // console.log("はい、榛名は大丈夫です!");
 })();

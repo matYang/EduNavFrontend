@@ -8,8 +8,11 @@ var Utilities = {
     //converts an date object to a human-friendly data string, eg: 明天，下周二，5月3号
     getDateString: function (targetDate, relativeFlag) {
         if (!targetDate) {
-            Info.log("Utilities::getDateString invalid parameter, null or undefined");
-            targetDate = new Date();
+//            Info.log("Utilities::getDateString invalid parameter, null or undefined");
+            return null;
+        } else {
+            //v2 时间统一为时间戳格式 new Date(timestamp) or new Date(dateObj)
+            targetDate = new Date(targetDate);
         }
         var tempDate = new Date(), curDate = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate()), today = new Date(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate()), dayDifference = Math.floor((curDate.getTime() - today.getTime()) / Constants.miliSecInDay), time = "";
 
@@ -121,30 +124,48 @@ var Utilities = {
         return (str === null || str === undefined || str === "");
     },
 
-
-    castFromAPIFormat: function (dateString) {
-        if (!dateString) {
-            Info.warn("castFromAPIFormat: dateString is null");
+    /**
+     * 用于格式化response data的时间戳
+     * @param timestamp string
+     * @returns Date
+     */
+    castFromAPIFormat: function (timestamp) {
+        if (!timestamp) {
+//            Info.warn("castFromAPIFormat: dateString is null");
             return null;
         }
-        if (dateString instanceof Date) {
-            return dateString;
+//        if (timestamp instanceof Date) {
+//            return timestamp;
+//        }
+//        dateString = decodeURIComponent(dateString);
+//        var match = dateString.match(/^(\d+)-(\d+)-(\d+) (\d+)\:(\d+)\:(\d+)$/);
+//        if (!match) {
+//            match = dateString.match(/^(\d+)-(\d+)-(\d+)\+(\d+)\:(\d+)\:(\d+)$/);
+//        }
+//        var date = new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
+        /*必须先转换为number 否则13位以上string会出现invalid date*/
+        timestamp = parseInt(timestamp,10);
+        if(isNaN(timestamp)){
+            return null;
         }
-        dateString = decodeURIComponent(dateString);
-        var match = dateString.match(/^(\d+)-(\d+)-(\d+) (\d+)\:(\d+)\:(\d+)$/);
-        if (!match) {
-            match = dateString.match(/^(\d+)-(\d+)-(\d+)\+(\d+)\:(\d+)\:(\d+)$/);
-        }
-        var date = new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
-        return date;
+        return new Date(timestamp);
     },
+    /**
+     * 用于格式化request data
+     * @param date Date
+     * @returns {*}
+     */
     castToAPIFormat: function (date) {
         if (!date) {
-            Info.warn("castFromAPIFormat: date is null");
+//            Info.warn("castFromAPIFormat: date is null");
             return null;
         }
-        var d = date, str = [d.getFullYear(), (d.getMonth() + 1).padLeft(), d.getDate().padLeft()].join('-') + ' ' + [d.getHours().padLeft(), d.getMinutes().padLeft(), d.getSeconds().padLeft()].join(':');
-        return str;
+//        if (typeof date === "string") {
+//            return date;
+//        }
+//        var d = date, str = [d.getFullYear(), (d.getMonth() + 1).padLeft(), d.getDate().padLeft()].join('-') + ' ' + [d.getHours().padLeft(), d.getMinutes().padLeft(), d.getSeconds().padLeft()].join(':');
+
+        return date.getTime();
     },
 
     // //deprecated
@@ -200,6 +221,14 @@ var Utilities = {
         }
         return params;
     },
+
+    parseNum: function (val) {
+        val = parseFloat(val);
+        if(isNaN(val))
+            return null;
+        return val
+    },
+
     passValid: function (val) {
         var p1 = $("#password").val(), p2 = $("#passwordConfirm").val();
         if (p1 !== p2) {
@@ -211,6 +240,13 @@ var Utilities = {
         return {valid: true};
     },
 
+    //验证用户名 中英文 不可为纯数字 todo 非法字符
+    usernameValid: function (username) {
+        if (username && isNaN(Utilities.toInt(username))) {
+            return {valid: true};
+        }
+        return {valid: false, text: "用户名格式不正确"};
+    },
     phoneValid: function (phone) {
         if (phone && phone.length === 11 && !isNaN(Utilities.toInt(phone))) {
             return {valid: true};
@@ -248,36 +284,99 @@ var Utilities = {
             return '<dd class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' + text + '</span><span class="form_tip_bottom"></span></span></dd>';
         }
         $("#" + this.get("fieldId")).addClass("wrong_color");
-        return '<dd class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' +  this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></dd>';
+        return '<dd class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' + this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></dd>';
     },
     defaultSmsRequestHandler: function ($button, $info) {
         return {
             success: function () {
-                $info.html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试");
-                $button.val("重新发送").prop("disabled", true).css("background", "#999");
+//                $info.html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试");\
+                $info.html("验证码已经发送至您的手机");
+
+                var count_down = function (k) {
+                    if (k > 0) {
+                        setTimeout(function () {
+                            $button.val('重新发送(' + k + '秒)');
+                            count_down(k - 1);
+                        }, 1000)
+                    } else {
+                        $button.val('重新发送');
+                    }
+                };
+                count_down(120);
+                $button.prop("disabled", true).css("background", "#999");
                 setTimeout(function () {
                     $button.prop("disabled", false).css("background", "");
                 }, 120000);
             },
-            error: function (response) {
-                $info.html((response && response.responseText) ? response.responseText : "验证码发送失败，请检查网络正常并重试");
+            error: function (data) {
+                $info.html(data.message||"发送失败，请检查网络正常并重试");
                 $button.val("重新发送").prop("disabled", false);
             }
         };
     },
-    defaultErrorHandler: function (response) {
-        Info.alert(response.responseText || Resources.networkErrorText);
+    defaultErrorHandler: function (data) {
+        Info.alert(data.message || Resources.networkErrorText);
     },
     calcCompleteness: function (course) {
         var json = course._toJSON(), attr, comp = 0;
         for (attr in json) {
             if (json[attr]) {
-                comp+=1;
+                comp += 1;
                 if (attr === "popularity") {
                     comp += Math.round(Math.sqrt(json[attr]));
                 }
             }
         }
         return comp;
+    },
+    //value should be a 2/4/6 digit decimal string
+    getNameFromHierachy: function (value, hierachy) {
+        var len = value.length, i, j, k, data = hierachy.data, children1, children2, ret = [];
+        for (i = 0; i < data.length; i++) {
+            if (data[i].value === value.substr(0, 2)) {
+                ret[0] = data[i].name;
+                children1 = data[i].children;
+                for (j = 0; j < children1.length; j++) {
+                    if (children1[j].value === value.substr(0, 4)) {
+                        ret[1] = children1[j].name;
+                        children2 = children1[j].children;
+                        for (k = 0; k < children2.length; k++) {
+                            if (children2[k].value) {
+                                ret[2] = children2[k].name;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        return ret;
+    },
+
+    /**
+     * 根据课程的类目值和类目参照表生成一二三级的目录obj的array
+     * @param categoryValue
+     * @param categoryObj
+     * @returns {Array}
+     */
+    getCategoryArray: function (categoryValue, categoryObj) {
+        if (categoryValue !== undefined && categoryValue.length !== 6 && categoryObj !== undefined)return null;
+        var catArray = [];
+        var getCat = function (value, start, cat) {
+            if (start >= value.length)return []
+            for (var a in cat.children) {
+                if (cat.children.hasOwnProperty(a) && cat.children[a].value == value.substr(0, start + 2))
+                    return [//每次返回一个包含一个键值对对象的数组进行递归拼接
+                        {name: cat.children[a].name, value: cat.children[a].value}
+                    ].concat(getCat(value, start + 2, cat.children[a]));
+            }
+            return [];
+        };
+        catArray = getCat(categoryValue, 0, {children: categoryObj});
+        return catArray;
     }
+
+
 };

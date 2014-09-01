@@ -2,6 +2,7 @@ var Partner = Backbone.Model.extend({
 
     defaults: function () {
         return {
+            'id': -1,
             'partnerId': -1,
             'wholeName':'',
             'licence': '',
@@ -38,11 +39,11 @@ var Partner = Backbone.Model.extend({
             'classPhotoList': [],
             'teacherList': [],
             
-            'creationTime': new Date(),
+            'createTime': new Date(),
             'lastLogin': new Date()
         };
     },
-    idAttribute: 'partnerId',
+    idAttribute: 'id',
 
     urlRoot: Constants.origin + '/p-api/v1.0/partner/partner',
 
@@ -52,7 +53,8 @@ var Partner = Backbone.Model.extend({
             if (data instanceof Array) {
                 data = data[0];
             }
-            json.partnerId = parseInt(data.partnerId, 10);
+            json.id = parseInt(data.id, 10);
+            json.partnerId = json.id;
             json.wholeName = decodeURI(data.wholeName);
 
             json.partnerIntro = decodeURI(data.partnerIntro);
@@ -102,7 +104,7 @@ var Partner = Backbone.Model.extend({
                 json.teacherList = teachers;
             }
 
-            json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            json.createTime = Utilities.castFromAPIFormat(data.createTime);
             json.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
             
         }
@@ -110,7 +112,7 @@ var Partner = Backbone.Model.extend({
     },
     _toJSON: function () {
         var json = _.clone(this.attributes), i;
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.createTime = Utilities.getDateString(this.get('createTime'));
         if (json.classPhotoList) {
             for (var i = 0; i < json.classPhotoList.length; i++ ) {
                 if (json.classPhotoList[i] instanceof Photo) {
@@ -130,13 +132,13 @@ var Partner = Backbone.Model.extend({
     toJSON: function () {
         var json = _.clone(this.attributes);
 
-        json.wholeName = encodeURI(json.wholeName);
-        json.licence = encodeURI(json.licence);
-        json.organizationNum = encodeURI(json.organizationNum);
-        json.reference = encodeURI(json.reference);
-        json.password = encodeURI(json.password);
-        json.instName = encodeURI(json.instName);
-        json.logoUrl = encodeURI(json.logoUrl);
+        json.wholeName = (json.wholeName);
+        json.licence = (json.licence);
+        json.organizationNum = (json.organizationNum);
+        json.reference = (json.reference);
+        json.password = (json.password);
+        json.instName = (json.instName);
+        json.logoUrl = (json.logoUrl);
         if (json.classPhotoList) {
             for (var i = 0; i < json.classPhotoList.length; i++ ) {
                 if (json.classPhotoList[i] instanceof Photo) {
@@ -151,27 +153,27 @@ var Partner = Backbone.Model.extend({
                 }
             }
         }
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+        json.createTime = Utilities.castToAPIFormat(this.get('createTime'));
         json.lastLogin = Utilities.castToAPIFormat(this.get('lastLogin'));
-        json.liscenceImgUrl = encodeURI(json.liscenceImgUrl);
-        json.taxRegistrationImgUrl = encodeURI(json.taxRegistrationImgUrl);
-        json.eduQualificationImgUrl = encodeURI(json.eduQualificationImgUrl);
-        json.hqLocation = encodeURI(json.hqLocation);
+        json.liscenceImgUrl = (json.liscenceImgUrl);
+        json.taxRegistrationImgUrl = (json.taxRegistrationImgUrl);
+        json.eduQualificationImgUrl = (json.eduQualificationImgUrl);
+        json.hqLocation = (json.hqLocation);
         if (json.subLocations) {
             for (i = 0; i < json.subLocations.length; i++) {
-                json.subLocations[i] = encodeURI(json.subLocations[i]);
+                json.subLocations[i] = (json.subLocations[i]);
             }
         }
         json.uniformRegistraLocation = (json.uniformRegistraLocation == true);
-        json.hqContact = encodeURI(json.hqContact);
-        json.hqContactPhone = encodeURI(json.hqContactPhone);
-        json.hqContactSecOpt = encodeURI(json.hqContactSecOpt);
-        json.courseContact = encodeURI(json.courseContact);
-        json.courseContactPhone = encodeURI(json.courseContactPhone);
-        json.studentInqueryPhone = encodeURI(json.studentInqueryPhone);
-        json.registraContact = encodeURI(json.registraContact);
-        json.registraContactPhone = encodeURI(json.registraContactPhone);
-        json.registraContactFax = encodeURI(json.registraContactFax);
+        json.hqContact = (json.hqContact);
+        json.hqContactPhone = (json.hqContactPhone);
+        json.hqContactSecOpt = (json.hqContactSecOpt);
+        json.courseContact = (json.courseContact);
+        json.courseContactPhone = (json.courseContactPhone);
+        json.studentInqueryPhone = (json.studentInqueryPhone);
+        json.registraContact = (json.registraContact);
+        json.registraContactPhone = (json.registraContactPhone);
+        json.registraContactFax = (json.registraContactFax);
         return json;
     }
 });
@@ -182,7 +184,16 @@ var Partners = Backbone.Collection.extend({
     model: Partner,
 
     url: Constants.origin + '/p-api/v1.0/partner',
-
+    start: 0,
+    count: 0,
+    total: 0,
+    parse: function (data) {
+        if (!data.data) return data;
+        this.start = data.start;
+        this.count = data.count;
+        this.total = data.total;
+        return data.data;
+    },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
         if ( typeof urlOverride !== 'undefined') {

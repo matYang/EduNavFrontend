@@ -2,57 +2,49 @@ var Teacher = Backbone.Model.extend({
 
     defaults: function () {
         return {
-            'teacherId': -1,
+            'id': -1,
             'partnerId': -1,
             'name':'',
             'intro': '',
             'imgUrl': '',
-            'creationTime': new Date()
+            'createTime': new Date()
         };
     },
-    idAttribute: 'teacherId',
-
-    urlRoot: Constants.origin + '/p-api/v1.0/teacher/teacher',
+    idAttribute: 'id',
 
     parse: function (data) {
-        var json = {};
         if ( typeof data !== 'undefined') {
-            
-            json.teacherId = parseInt(data.teacherId, 10);
-            json.partnerId = parseInt(data.partnerId, 10);
-            json.name = decodeURI(data.name);
-
-            json.intro = decodeURI(data.intro);
-            json.imgUrl = decodeURIComponent(data.imgUrl);
-
-            json.creationTime = Utilities.castFromAPIFormat(data.creationTime);
+            data.id = parseInt(data.id, 10);
+            data.partnerId = parseInt(data.partnerId, 10);
+            data.createTime = Utilities.castFromAPIFormat(data.createTime);
         }
-        return json;
+        return data;
     },
     _toJSON: function () {
         var json = _.clone(this.attributes);
-        json.creationTime = Utilities.getDateString(this.get('creationTime'));
+        json.createTime = Utilities.getDateString(this.get('createTime'));
         return json;
     },
     toJSON: function () {
         var json = _.clone(this.attributes);
-
-        json.name = encodeURI(json.name);
-        json.intro = encodeURI(json.intro);
-        json.imgUrl = encodeURIComponent(json.imgUrl);
-
-        json.creationTime = Utilities.castToAPIFormat(this.get('creationTime'));
+        json.createTime = Utilities.castToAPIFormat(this.get('createTime'));
         return json;
     }
 });
 
-
 var Teachers = Backbone.Collection.extend({
 
     model: Teacher,
-
-    url: Constants.origin + '/api/v1.0/teacher',
-
+    start: 0,
+    count: 0,
+    total: 0,
+    parse: function (data) {
+        if (!data.data) return data;
+        this.start = data.start;
+        this.count = data.count;
+        this.total = data.total;
+        return data.data;
+    },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
         if ( typeof urlOverride !== 'undefined') {

@@ -1,69 +1,15 @@
-/*通用工具类*/
-.text-center {
-    text-align: center;
+/* 2014-8-16
+ * By Jet
+**/
+
+/*基本样式*/
+a, a:visited {
+    text-decoration: none;
+    color: #333333;
 }
 
-.text-right {
-    text-align: right;
-}
-
-.pull-left {
-    float: left;
-}
-
-.pull-right {
-    float: right;
-}
-
-
-.padding-sm {
-    padding: 10px 20px;
-}
-
-.padding-md {
-    padding: 20px 30px;
-}
-
-.padding-lg {
-    padding: 30px 40px;
-}
-
-.margin-x {
-    margin: 10px 0;
-}
-
-.margin-y {
-    margin: 0 10px;
-}
-
-/*字体和背景颜色*/
-.ft-green {
+a:hover, a:active{
     color: #128d56;
-}
-
-.bg-green {
-    background-color: #128d56;
-}
-
-/*通用图标*/
-.icon {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    font-style: normal;
-    font-weight: normal;
-    vertical-align: text-bottom;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background: url(../images/icon.png) no-repeat;
-}
-
-.icon-info {
-    background-position: 0 -469px;
-}
-
-.icon-warning {
-    background-position: 0 -501px;
 }
 
 /**通用面板 默认样式*/
@@ -75,15 +21,15 @@
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
-
+/*panel components all padding*/
 .panel .panel-header, .panel .panel-body, .panel .panel-footer {
     padding: 15px 20px;
 }
-
+/*header and footer font-size*/
 .panel .panel-header, .panel .panel-footer {
     font-size: 18px;
 }
-
+/*style of panel body*/
 .panel .panel-body {
 }
 
@@ -108,26 +54,247 @@
     background-color: #efefef
 }
 
-
 /*通用按钮*/
-
-/*特殊按钮--支付宝*/
-.btn-alipay{
+.btn {
     display: inline-block;
-    border: 1px solid #cccccc;
-    width:220px;
-    height: 70px;
-    background:#ffffff url('../images/alipay.jpg') no-repeat center;
-    background-size:  200px 130px;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 0;
+    padding: 10px 20px;
+    border:1px solid transparent;
+    border-radius: 2px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.btn.btn-block{
+    display: block;
 }
 
+/*默认样式 淡灰色border 白灰background-color 绿color*/
+.btn-default {
+    border-color: #f2f2f2;
+    color: #128d56;
+    background-color: #D7D7D7;
+    background-image: -moz-linear-gradient(top, #FEFEFE 0%, #F8F8F8 27%, #F1F1F1 100%);
+    /* FF3.6+ */
+
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FEFEFE), color-stop(27%, #F8F8F8), color-stop(100%, #F1F1F1));
+    /* Chrome,Safari4+ */
+
+    background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #F8F8F8 27%, #F1F1F1 100%);
+    /* Chrome10+,Safari5.1+ */
+
+    background-image: -o-linear-gradient(top, #FEFEFE 0%, #F8F8F8 27%, #F1F1F1 100%);
+    /* Opera 11.10+ */
+
+    background-image: -ms-linear-gradient(top, #FEFEFE 0%, #F8F8F8 27%, #F1F1F1 100%);
+    /* IE10+ */
+
+    background-image: linear-gradient(to bottom, #FEFEFE 0%, #F8F8F8 27%, #F1F1F1 100%);
+    /* W3C */
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#FEFEFE, EndColorStr=#F1F1F1);
+}
+
+.btn-primary,.btn-primary:hover {
+    border-color: #13AD67;
+    color: #fff;
+    background-color: #139D5F;
+    background-image: -moz-linear-gradient(top, #13AD67 0%, #139D5F 27%, #139158 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #13AD67), color-stop(27%, #139D5F), color-stop(100%, #139158));
+    background-image: -webkit-linear-gradient(top, #13AD67 0%, #139D5F 27%, #139158 100%);
+    background-image: -o-linear-gradient(top, #13AD67 0%, #139D5F 27%, #139158 100%);
+    background-image: -ms-linear-gradient(top, #13AD67 0%, #139D5F 27%, #139158 100%);
+    background-image: linear-gradient(to bottom, #13AD67 0%, #139D5F 27%, #139158 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#13AD67, EndColorStr=##139158);
+}
+/*.btn-warning {*/
+    /*border-color: #f2f2f2;*/
+    /*color: #128d56;*/
+    /*background-color: #FCFCFC;*/
+    /*background-image: -moz-linear-gradient(top, rgba(100, 100, 100, 0.29) 0%, rgba(100, 100, 100, 0.08) 27%, rgba(100, 100, 100, 0.01) 100%);*/
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(100, 100, 100, 0.29)), color-stop(27%, rgba(100, 100, 100, 0.08)), color-stop(100%, rgba(100, 100, 100, 0.01)));*/
+    /*background-image: -webkit-linear-gradient(top, rgba(100, 100, 100, 0.29) 0%, rgba(100, 100, 100, 0.08) 27%, rgba(100, 100, 100, 0.01) 100%);*/
+    /*background-image: -o-linear-gradient(top, rgba(100, 100, 100, 0.29) 0%, rgba(100, 100, 100, 0.08) 27%, rgba(100, 100, 100, 0.01) 100%);*/
+    /*background-image: -ms-linear-gradient(top, rgba(100, 100, 100, 0.29) 0%, rgba(100, 100, 100, 0.08) 27%, rgba(100, 100, 100, 0.01) 100%);*/
+    /*background-image: linear-gradient(to bottom, rgba(100, 100, 100, 0.29) 0%, rgba(100, 100, 100, 0.08) 27%, rgba(100, 100, 100, 0.01) 100%);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#b8b8b8, EndColorStr=#ffffff);*/
+/*}*/
+.badge{
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px;
+    font-size: 12px;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 2px;
+    background-color: #FF5500;
+}
+
+/*以下部分需要后续删除 统一使用.label*/
+/*need remove start*/
+.cashback{
+    display:inline-block;
+    position:relative;
+    border: 1px solid #128d56;border-radius: 2px;
+    font-family: SimSun, serif;
+    font-size:12px;
+    line-height: 18px;
+    color:#128d56;
+    padding-left: 19px;padding-right: 3px;
+}
+.cashback:before{
+    content: '返';
+    position: absolute;left: 0;top:0;
+    color: white;
+    background: #128D56;
+    padding: 0 2px;
+    width: 12px;
+}
+.cashback .tip{display:none; top:26px; right:-39px;}
+.cashback:hover .tip{display:block;}
+
+/*need remove end*/
+
+/*tip 提示框 原有样式*/
+.tip{
+    position:absolute;
+    z-index:99;
+    width:313px;
+    border:1px solid #a7a7a7; background:#fff;color: #666;
+    font-size:12px; line-height:22px;}
+.tip .arrow{
+    position:absolute;
+    top:-8px; left:243px;
+    width:15px; height:8px;
+    background:url(../images/arrow.png) no-repeat;
+}
+.tip_content{ padding:8px;}
+
+/*返 立减 common label 带后续的隐藏标签说明框*/
+.label{
+    display:inline-block;
+    position:relative;
+    border: 1px solid;border-radius: 2px;
+    font-size:12px;
+    font-family: SimSun, serif;
+    line-height: 18px;
+    padding-right: 2px;
+    padding-left: 0;/*该行为了去除.cashback遗留样式的多余padding*/
+}
+.label:before{
+    display: inline-block;
+    position: relative;
+    margin-right: 2px;padding: 0 2px;
+    color: white;
+}
+.label .tip{display:none; top:26px; right:-39px;/*border-color: inherit;*/}
+.label:hover .tip{display:block;}
+.label .tip_content{ padding:8px;text-align: center;}
 
 
-/*下列为page中的style*/
-.radios-pay{
-    }
-    .radios-pay li input[type=radio]{
-        height: 80px;
-        width: 30px;
-        line-height: 80px;
-    }
+/*label的独立style*/
+/*返*/
+.label.cashback{
+    border-color: #128d56;
+    color:#128d56;
+}
+.label.cashback:before{
+    content:'返';
+    width: 1em;
+    background: #128d56;
+}
+/*将返*/
+.label.cashbacked{
+    border-color: #128d56;
+    color:#128d56;
+}
+.label.cashbacked:before{
+    content:'将返';
+    width: 2em;
+    background: #128d56;
+}
+
+/*立减*/
+.label.save,.label.saved{
+    border-color: #ff5500;
+    color:#ff5500;
+}
+.label.save:before,.label.saved:before{
+    content:'立减';
+    width: 2em;
+    background: #ff5500;
+}
+/*已减*/
+.label.saved:before{
+    content:'已减';
+}
+
+/*通用工具类*/
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.pull-left { float: left; }
+.pull-right { float: right; }
+
+.padding-sm { padding: 10px 15px; }
+.padding-md { padding: 15px 20px; }
+.padding-lg { padding: 20px 30px; }
+.padding-x{padding-left: 10px;padding-right: 10px}
+.padding-bottom{padding-bottom: 5px}
+
+.margin-x { margin: 0  5px; }
+.margin-y { margin: 10px 0 20px; }
+.margin-y-sm { margin: 5px 0; }
+
+.margin-top { margin-top: 8px; }
+.margin-bottom { margin-bottom: 12px; }
+
+
+.inline-block{ display: inline-block; }
+
+/*字体 背景 边框颜色*/
+.border-primary{ border: 1px solid #128d56; }
+
+.bg-primary{ background-color: #128d56; }
+.bg-warning{ background-color: #f7a501; }
+.bg-error{ background-color: #FF5500; }
+
+.text-primary{color: #128d56; }
+.text-warning{color: #f7a501; }
+.text-error{color: #FF5500; }
+
+/*带有下点点的字体因其重要性字体会调大*/
+.dotted-line{
+    font-size: 1.2em;
+    border-bottom: 1px dotted #aaaaaa;
+}
+/*通用图标 已在支付页面使用 这里仅为icon.png文件提供icon的统一管理 其它图片只能自己加了*/
+/*覆盖样式在icon之前加class*/
+.icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    background: url(../images/icon.png) no-repeat;
+}
+
+.icon-info {
+    background-position: 0 -469px;
+}
+
+.icon-warning {
+    background-position: 0 -501px;
+}
+
+/*图片和图标的样式控制*/
+.img{
+    vertical-align: text-bottom;
+}
+.img.tel1{ }
+.img.tel2{ }
+/***************我是分割线*****************/
+/***************非基本但通用样式 之后需要独立出来*****************/
+
