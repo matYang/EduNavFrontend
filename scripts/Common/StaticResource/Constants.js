@@ -31,7 +31,9 @@ var Constants = {
         /*课程搜索模块*/
         "front", "frontCategoryContainer", "frontButton", "frontCatButton",
         "search", "searchResultEntry", "search_noMessage",
-        "mapLabel", "compareWidget", "courseDetailCompareWidget", "compareWidgetEntry",
+        "mapLabel",
+        "compareWidget", "courseDetailCompareWidget",
+        "compareWidgetEntry",
         //已筛选的条件 一二三级类目
         "req", "subCategoryContainer", "subSubCategoryContainer", "subSubCategory", "subCategory", "category",
 
@@ -69,12 +71,13 @@ var Constants = {
         //设置用户名的弹出框
         "mypage_usernameModal",
 
-
         //底部栏
         "aboutUs", "joinUs", "contactUs", "advise", "help",
 
         //其它
-        "infoModal", "banner"
+        "infoModal",
+        "sideBarView",//侧边工具栏
+        "banner"//首页的大屏滚动banner
 
     ],
     gender: {

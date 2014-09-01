@@ -71,9 +71,9 @@
 #CompareWidgetContainer #compare{width:215px; height:32px; border:none; font-size:14px; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
 
 /*百度地图自定义图标*/
-#mainMap{ position:relative; border:1px solid #ccc; width:248px; height:338px; z-index:9999;}
-#mainMap .map_icon{ position:absolute; cursor:pointer; z-index:999999}
-#mainMap .map_icon:hover{z-index:1000000}
+#mainMap{ position:relative; border:1px solid #ccc; width:248px; height:338px; z-index:50;}
+#mainMap .map_icon{ position:absolute; cursor:pointer; z-index:52}
+#mainMap .map_icon:hover{z-index:54}
 #mainMap .map_icon span{display:inline-block; height:30px; padding-left:28px; height:30px; line-height:24px; background:url(../images/map_icon.png) no-repeat 0 -31px;font-size:12px; color:#ea5514;}
 #mainMap .map_icon em{ display:inline-block; position:relative; top:6px; width:10px; height:20px; background:url(../images/map_icon.png) no-repeat -191px -33px;}
 #mainMap .map_icon:hover span{display:inline-block; height:30px; padding-left:28px; height:30px; line-height:24px; background:url(../images/map_icon.png) no-repeat 0 0;font-size:12px;color:#15ae67;}

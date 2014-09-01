@@ -189,12 +189,11 @@ var AppRouter = Backbone.Router.extend({
 (function () {
     app = new AppRouter();
     app.topBarView = new TopBarView();
+    app.sideBarView = new SiderBarView();
     Backbone.history.start();
     $(window).unload(function () {
         localStorage.cache = JSON.stringify(app.cache.cache);
     });
     // $("body").append("<script type='text/javascript' src='http://tb.53kf.com/kf.php?arg=10074249&style=1'> </script>");
     // console.log("Wow, Congratulations!");
-
-    // console.log("はい、榛名は大丈夫です!");
 })();
