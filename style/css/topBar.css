@@ -1,21 +1,36 @@
 @charset "utf-8";
 /* CSS Document */
 
-.topBar{ font-family: '微软雅黑', '黑体', '宋体'; height:75px; background:url(../images/top_bar_bg.png) repeat-x;}
+.topBar{ height:75px; background:url(../images/top_bar_bg.png) repeat-x;}
 .topBar .topBar-inner{width:1000px; margin:0 auto;background:url(../images/top_bar_bg.png) repeat-x;}
 
 #logo{float:left; width:155px; height:75px; background:url(../images/logo.png) no-repeat; text-indent:-9999px;}
 .topBar-navigation{float:left; height:60px; margin-left:20px; line-height:60px; color:#fff; font-size:18px;}
-.topBar-navigation li{float:left; padding:0 25px; margin-left:1px; cursor:pointer;}
+.topBar-navigation li{float:left; padding:0 20px; margin-left:1px; cursor:pointer;}
 .topBar-navigation li:hover{ background:#404652;}
 .topBar-navigation li.active{ background:#404652;}
 .topBar-navigation li a{ color: white}
+/*tel应没有hover变化*/
+#navigate_tel:hover{background:none;}
 
-.login_reg a,.login_reg a:visited{color:#fff; margin:0 10px;}
 .login_reg span{display:inline-block; width:1px; height:14px; background:#fff; color:#fff}
-
 .user_info{float:right; font-size:14px; line-height:60px; color:#fff;}
-.user_info a,.user_info a:visited{color:#fff; margin:0 10px;}
+
+.user_info a,.user_info a:visited,.login_reg a,.login_reg a:visited{
+    color:#cccccc; margin:0 8px;
+}
+.login_reg a,.user_info a{
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+.login_reg a:hover,.user_info a:hover{
+    color: #ffffff;
+}
+
+
 
 .login_reg{float:right; position:relative;}
 .login_reg .hd{ font-size:18px; line-height:60px; }

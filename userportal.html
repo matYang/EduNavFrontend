@@ -73,7 +73,10 @@
                 <li id="navigate_home" class="button navigate_home">首页</li>
                 <li id="navigate_search" class="button navigate_search">分类检索</li>
                 <li id="navigate_compare" class="button navigate_compare">课程对比</li>
-                <li><img src="./style/images/tel2.png" style="margin-top: 21px;"/><a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank">400-025-0084</a></li>
+                <li id="navigate_tel" style="padding: 0 5px">
+                    <img src="./style/images/tel2.png" class="img">
+                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><small>400-025-0084</small></a>
+                </li>
             </ul>
 
             <div class="user_info">
@@ -142,6 +145,7 @@
         <ul class="bjqs">
             <li style="display: block;"><img src="style/images/banner.jpg" alt="" height="320"></li>
             <li style="display: none;"><img src="style/images/banner2.jpg" alt="" height="320"></li>
+            <li style="display: none;"><img src="style/images/banner3.jpg" alt="" height="320"></li>
         </ul>
     </div>
 </script>
@@ -1471,6 +1475,10 @@
     <li id="tab_3">名师团队</li>
     <li id="tab_4">学校概况</li>
     <li id="tab_5">同类型课程</li>
+    <div class="pull-right padding-x" style="height: 39px;line-height: 39px">
+            <img src="./style/images/tel.png" class="img">
+            <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&amp;f=117996&amp;n=iskkf001" target="_blank"><strong class="text-primary">400-025-0084</strong></a>
+    </div>
 </ul>
 <div class="course_content">
 <dl id="content_1" class="clearfix">
@@ -2033,14 +2041,14 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_accountInRow">
-    <tr id="coupon_<%= id %>">
+    <tr id="account_<%= id %>">
         <td class="text-primary"><%= charge %></td>
         <td class=""><%= EnumConfig.AccountOperationText[operation] %></td>
         <td class=""><%= createTime %></td>
     </tr>
 </script>
 <script type="text/template" id="tpl_mypage_accountOutRow">
-    <tr id="coupon_<%= id %>">
+    <tr id="account_<%= id %>">
         <td class="text-error"><%= charge %></td>
         <td class=""><%= EnumConfig.AccountOperationText[operation] %></td>
         <td class=""><%= createTime %></td>
@@ -2134,7 +2142,7 @@
     <tr id="coupon_<%= id %>">
         <td class="col1"><%= id %></td>
         <td class="col2"><strong class="price"><%= balance %></strong></td>
-        <td class="col3"><%= expiryTime %> <span class="badge"><%= expireSoon %></span></td>
+        <td class="col3"><%= expiryTime %> <%if(expireSoon){%> <span class="badge"><%= expireSoon %></span><%}%></td>
     </tr>
 </script>
 <script type="text/templates" id="tpl_usable_coupon_noMessage">
@@ -2704,18 +2712,12 @@
         <dl class="listening_test" onclick="doyoo.util.openChat('g=82548');return false;">
             <dt>免费试听</dt>
         </dl>
-        <dl class="comparison">
-            <!--TODO 这部分从coursedetail中copy 渲染时传入该course 需要控制该view进行相应的渲染-->
-        </dl>
+        <dl class="comparison"></dl>
         <dl class="qr_code">
             <dt>二维码</dt>
-            <dd>
-                <img src="./style/images/erweima.jpg">
-            </dd>
+            <dd><img src="./style/images/erweima.jpg"></dd>
         </dl>
-        <dl class="back_to_top">
-            <dt>返回顶部</dt>
-        </dl>
+        <dl class="back_to_top"> <dt>返回顶部</dt> </dl>
     </div>
 </script>
 </div>

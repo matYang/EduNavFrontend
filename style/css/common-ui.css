@@ -12,7 +12,6 @@ a:hover, a:active{
     color: #128d56;
 }
 
-
 /**通用面板 默认样式*/
 .panel {
     border: 3px solid transparent;
@@ -22,7 +21,7 @@ a:hover, a:active{
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
-/*all padding*/
+/*panel components all padding*/
 .panel .panel-header, .panel .panel-body, .panel .panel-footer {
     padding: 15px 20px;
 }
@@ -175,9 +174,7 @@ a:hover, a:active{
 }
 .tip_content{ padding:8px;}
 
-
-
-/*返 立减 common label 带后续的标签*/
+/*返 立减 common label 带后续的隐藏标签说明框*/
 .label{
     display:inline-block;
     position:relative;
@@ -236,38 +233,6 @@ a:hover, a:active{
     content:'已减';
 }
 
-
-
-/*图片的大小控制*/
-.img-logo{
-    width: 70px;
-    height: 70px;
-    display: inline-block;
-}
-.img-logo img{
-    width:70px;
-    height:70px;
-}
-
-/*通用图标 已在支付页面使用*/
-/*覆盖样式在icon之前加class*/
-.icon {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: text-bottom;
-    background: url(../images/icon.png) no-repeat;
-}
-
-.icon-info {
-    background-position: 0 -469px;
-}
-
-.icon-warning {
-    background-position: 0 -501px;
-}
-
-
 /*通用工具类*/
 .text-center { text-align: center; }
 .text-right { text-align: right; }
@@ -301,10 +266,35 @@ a:hover, a:active{
 .text-warning{color: #f7a501; }
 .text-error{color: #FF5500; }
 
+/*带有下点点的字体因其重要性字体会调大*/
 .dotted-line{
     font-size: 1.2em;
     border-bottom: 1px dotted #aaaaaa;
 }
+/*通用图标 已在支付页面使用 这里仅为icon.png文件提供icon的统一管理 其它图片只能自己加了*/
+/*覆盖样式在icon之前加class*/
+.icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    background: url(../images/icon.png) no-repeat;
+}
 
+.icon-info {
+    background-position: 0 -469px;
+}
+
+.icon-warning {
+    background-position: 0 -501px;
+}
+
+/*图片和图标的样式控制*/
+.img{
+    vertical-align: text-bottom;
+}
+.img.tel1{ }
+.img.tel2{ }
 /***************我是分割线*****************/
-/***************非通用样式 之后需要独立出来*****************/
+/***************非基本但通用样式 之后需要独立出来*****************/
+

@@ -1,0 +1,10 @@
+
+/*返回顶部*/
+.to_top{position: fixed;z-index: 1001;margin-left:502px;left: 50%;bottom: 0;padding-bottom: 10px;}
+.to_top .to_top_inner{width: 50px;height: 50px;background: #ccc;margin-top: 5px;}
+.to_top .to_top_inner a{display:block; font-size:12px; background-color: #e3e3e3;background-image: none;width: 30px;text-align: center;padding: 5px 10px;color: #999;line-height: 14px;}
+.to_top .to_top_inner a:hover{ text-decoration:none;}
+.to_top .to_top_inner a s{float: left;width: 21px;height: 23px;margin-left: 5px; padding-bottom: 2px;background-image: url(../images/backtotop.png); background-repeat: no-repeat;}
+
+.to_top .to_top_inner a:hover{background-color: #aaa;color: #fff;}
+.to_top .to_top_inner a:hover s{ background-position:-20px 0;}
