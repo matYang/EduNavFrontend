@@ -70,7 +70,7 @@ var UsernameModal = BaseFormView.extend({
     },
     saveError: function (data) {
         Info.displayNotice(data.message ||"服务器连接失败，请稍后再试。");
-        $("#updateInviteCode").attr("value", "更新失败(重试)");
+        $("#updateInviteCode").attr("value", "更新失败(重试)").attr('disabled',false);;
     },
     buildValidatorDiv: function (valid, type, text) {
         //This function overloads baseField's default buildValidatorDiv. It should only be invoked by BaseField's testValue function, thus this refers the BaseForm model in this case,
