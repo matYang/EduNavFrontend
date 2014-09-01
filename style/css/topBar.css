@@ -9,7 +9,7 @@
 .topBar-navigation li{float:left; padding:0 25px; margin-left:1px; cursor:pointer;}
 .topBar-navigation li:hover{ background:#404652;}
 .topBar-navigation li.active{ background:#404652;}
-
+.topBar-navigation li a{ color: white}
 
 .login_reg a,.login_reg a:visited{color:#fff; margin:0 10px;}
 .login_reg span{display:inline-block; width:1px; height:14px; background:#fff; color:#fff}
