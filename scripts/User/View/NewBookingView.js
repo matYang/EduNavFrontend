@@ -76,6 +76,7 @@ var NewBookingView = BaseFormView.extend({
         this.renderPrice(EnumConfig.PayType.offline);
         this.model.initBookingFromCourse(course);
         this.bindEvents();
+        this.autoName();
     },
 
     login: function () {
@@ -121,6 +122,7 @@ var NewBookingView = BaseFormView.extend({
         var that = this;
         //监听用户session更改事件
         app.sessionManager.sessionModel.on("change", function () {
+            that.autoName();
             if (this.get("userId") >= 0) {
                 //已登录
                 $("#cashback_box_notLoggedIn").addClass("hidden");
