@@ -43,7 +43,7 @@ var MyPageSettingView = BaseFormView.extend({
         BaseFormView.prototype.bindEvents.call(this);
         $('.js_setUsernameModal').on('click',function(){
            //打开设置用户名的modal
-            self.usernameModal = new UsernameModal({name:'setting'});
+            self.usernameModal = new UsernameModal({view:self});
         });
     },
 

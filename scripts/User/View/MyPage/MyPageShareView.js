@@ -44,7 +44,7 @@ var MyPageShareView = Backbone.View.extend({
         }
     },
     openModal: function () {
-        this.usernameModal = new UsernameModal({name: 'setting'});
+        this.usernameModal = new UsernameModal({view:this});
     },
     close: function () {
         if (!this.isClosed) {

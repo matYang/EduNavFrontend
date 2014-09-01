@@ -10,7 +10,7 @@ var UsernameModal = BaseFormView.extend({
     initialize:function(opt){
         app.viewRegistration.register(this);
         this.isClosed = false;
-        this.childViewName = opt.name;
+        this.parentView = opt.view;
 
         if (!this.fields || !this.fields.length) {
             this.fields = [
@@ -63,9 +63,10 @@ var UsernameModal = BaseFormView.extend({
         app.sessionManager.sessionModel.set("invitationCode", user.get("invitationCode"));
         //成功后需要更新被modal遮罩的view的页面 在我的资料页面或者邀请有礼页面
         this.close();
-        app.navigate("mypage/"+this.childViewName, {
-            trigger: true
-        });
+        this.parentView.render();
+//        app.navigate("mypage/"+this.childViewName, {
+//            trigger: true
+//        });
     },
     saveError: function (data) {
         Info.displayNotice(data.message ||"服务器连接失败，请稍后再试。");
