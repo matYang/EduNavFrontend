@@ -36,7 +36,7 @@ var MyPageSettingView = BaseFormView.extend({
     },
 
     render: function () {
-        this.$el.append(this.template(this.model._toJSON()));
+        this.$el.html(this.template(this.model._toJSON()));
     },
     bindEvents: function () {
         var self = this;

@@ -156,7 +156,7 @@
                     callback.success(user);
                 }
             },
-            error: function (data) {
+            error: function (data,response,status) {
                 Info.warn('UserManager::changeContactInfo failed');
                 if (callback) {
                     callback.error($.parseJSON(data.responseText));

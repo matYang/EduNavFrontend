@@ -51,10 +51,10 @@ var UsernameModal = BaseFormView.extend({
     submitAction: function () {
         var that = this;
         app.userManager.changeInfo(this.model, {
-            "success": function(user){
+            success: function(user){
                 that.saveSuccess.call(that,user);
             },
-            "error": that.saveError
+            error: that.saveError
         });
         $("#updateInviteCode").attr("value", "保存中...").attr('disabled',true);
     },
