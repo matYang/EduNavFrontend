@@ -143,6 +143,10 @@ var NewBookingView = BaseFormView.extend({
         $('#content').on('click', '.js_gotoCourse', function () {
             app.navigate("course/" + that.model.get("courseId"), true);
         });
+        $('#js_needHelp').on('click',function(){
+            app.navigate('service/help',true);
+            $.smoothScroll()
+        });
         //判断是否已经登录 来绑定相应的事件
         if (!app.sessionManager.hasSession()) {
             $("#quickLogin").on("click", function () {
