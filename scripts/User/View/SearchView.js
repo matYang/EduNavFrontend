@@ -290,13 +290,6 @@ var SearchView = Backbone.View.extend({
             var cri = $(e.target).data("cri");
             that.filterResult($("#filter_" + cri), $("#filter_" + cri).find("[data-value=noreq]").removeClass("active"));
         });
-
-        $("#toTop").on("click", function (e) {
-            e.preventDefault();
-            $.smoothScroll({
-                scrollTarget: "#topBar"
-            });
-        });
     },
     bindSortEvents: function () {
         var that = this;

@@ -72,7 +72,7 @@ testMockObj = {
     testAccountHistory3: (new AccountHistory().set('id', 3)),
 
     testCoupons: new Coupons(),
-    testCoupon1: (new Coupon()).set("id", 1).set("balance", 30).set("total", 30),
+    testCoupon1: (new Coupon()).set("id", 1).set("balance", 30).set("total", 30).set("expiryTime", new Date()),
     testCoupon2: (new Coupon()).set("id", 2).set("balance", 20).set("total", 30),
     testCoupon3: (new Coupon()).set("id", 3).set("balance", 25).set("total", 30),
 

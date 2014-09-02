@@ -63,8 +63,11 @@ var Coupon = Backbone.Model.extend({
         json.createTime = Utilities.getDateString(this.get('createTime'));
         json.lastModifyTime = Utilities.getDateString(this.get('lastModifyTime'));
         json.expiryTime = Utilities.getDateString(this.get('expiryTime'));
-
-        json.expireSoon = (((this.get('expiryTime')||new Date()).getTime() - date.getTime()) < 604800000 ) ? "<span>即将到期</span>" : "";// 7 days
+        if(json.expiryTime){
+            json.expireSoon = (((this.get('expiryTime')).getTime() - date.getTime()) < 604800000 ) ? "<span>即将到期</span>" : "";// 7 days
+        }else{
+            json.expireSoon = null;
+        }
         return json;
     },
 

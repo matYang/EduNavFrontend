@@ -63,6 +63,7 @@ module.exports = function(grunt) {
             'style/css/notifier-base.css',
             'style/css/common-ui.css',
             'style/css/topBar.css',
+            'style/css/right_bar.css',
             'style/css/override.css',
             'style/css/index.css',
             'style/css/reg.css',

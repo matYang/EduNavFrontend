@@ -140,8 +140,6 @@ var CourseDetailView = Backbone.View.extend({
                     Info.displayNotice("您最多只能同时比较四个不同的科目。");
                 }
                 $("#compareWidgetContent").removeClass("hidden");
-                $("#widgets").find(".compare").css("width", 250);
-                $("#compareToggle").css("width", 50);
             } else {
                 that.compareWidget.removeCourse(that.course.id);
                 $(this).attr("class", "add btn_g").val("+对比");

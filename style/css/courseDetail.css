@@ -95,28 +95,6 @@
     z-index: 10;
 }
 
-
-.courseDetail  .shiting{ position:fixed; top:66px; right:6px; width:290px; height:140px;  z-index:9999;}
-.courseDetail  .shiting_inner{ padding:10px; padding-top:20px; text-align:center;}
-.courseDetail  .shiting .btn{ margin-top:10px;}
-.courseDetail  .shiting p{ margin-top:10px;}
-.courseDetail  .shiting  .close { position:absolute; top:5px; right:5px; width:27px; height:27px; background:url(../images/shiting_close.png) no-repeat; text-indent:-9999px;}
-
-/*对比框*/
-.courseDetail  .compare{ position: fixed; top:250px; right:50px; width:250px; border:1px solid #cccccc; border-top:2px solid #128d56; background:#fff; line-height:14px;}
-.courseDetail  .compare_button{ position:absolute; top:-2px; right:-50px; width:50px; height:40px;  padding-top:10px; background:#128d56; text-align:center; color:#fff; line-height:16px;}
-.courseDetail  .compare .compare_items{}
-.courseDetail  .compare .compareEntry{ position:relative; padding:15px 35px 10px 10px; border-bottom:1px dotted #ccc; font-size:12px;}
-.courseDetail  .compare .compareEntry:hover{background:#e2ece7;}
-.courseDetail  .compare .compareEntry .desc a,.compareEntry .desc a:visited{ color:#128d56;}
-.courseDetail  .compare .compareEntry .price{ padding-left:5px; margin-top:10px; color:#ff5500;}
-.courseDetail  .compare .compareEntry .price .sign{color:#333333;}
-.courseDetail  .compare .compareEntry .remove{ position:absolute; right:10px; top:15px; width:20px; height:20px; background:url(../images/close3.png) no-repeat; cursor:pointer;}
-.courseDetail  .compare .compareEntry .remove:hover{ background:url(../images/close3_hover.png) no-repeat;}
-.courseDetail  .compare .btns{ text-align:center; margin:10px auto;}
-.courseDetail  .compare #compare{width:215px; height:32px; border:none; font-size:14px; font-family:"Microsoft Yahei"; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
-
-
 /*富文本编辑器生成的表格*/
 .course_content .rich{
     margin-bottom: 10px;

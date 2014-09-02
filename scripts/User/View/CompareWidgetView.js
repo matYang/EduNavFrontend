@@ -139,16 +139,17 @@ var CompareWidgetView = Backbone.View.extend({
 });
 
 var CourseDetailCompareWidgetView = CompareWidgetView.extend({
-   el: "#widgets",
+   el: ".right_bar .comparison",
    template: _.template(tpl.get("courseDetailCompareWidget")),
     initialize: function () {
         CompareWidgetView.prototype.initialize.call(this);
     },
     render: function (courses) {
         //load local storage
-//        debugger;
-        
-        if (app.courseDetailView && !app.courseDetailView.isClosed) {
+
+        //todo app.courseDetailView will correctly exists when route changes dont know why currently
+//        if (app.courseDetailView && !app.courseDetailView.isClosed) {
+        if (this.$el.length > 0) {
             var buf = [], i;
             this.$el.empty().append(this.template);
             this.$domContainer = $("#compareItems");
@@ -192,12 +193,8 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
             var $content = $("#compareWidgetContent");
             if ($content.hasClass("hidden")) {
                 $content.removeClass("hidden");
-                that.$el.find(".compare").css("width", 250);
-                $(this).css("width", 50);
             } else {
                 $content.addClass("hidden");
-                that.$el.find(".compare").css("width", 0);
-                $(this).css("width", 51);
             }
         });
         $("#trialButton").on("click", function (e) {
@@ -209,11 +206,13 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
                 $(e.target).addClass("hidden");
             } else if (e.target.tagName === "IMG") {
                 if ($this.hasClass("shrinked")) {
-                    $this.find("img").attr("src", "style/images/shiting.png").css("margin-left", 0);
+                    $this.find("img").attr("src", "style/images/shiting.gif").css("margin-left", 0);
                     $this.removeClass("shrinked");
                     $this.find(".close").removeClass("hidden");
                 } else {
-                    app.navigate("booking/c" + app.courseDetailView.courseId, true);
+                    //打开客服系统
+                    doyoo.util.openChat('g=82548');
+//                    app.navigate("booking/c" + app.courseDetailView.courseId, true);
                 }
             }
         }).on("mouseover", "img", function (e) {
@@ -238,6 +237,7 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
             CompareWidgetView.prototype.close.call(this);
             $("#compareToggle").off();
             $("#trialButton").off();
+            this.$el.off();
             this.isClosed = true;
         }
 

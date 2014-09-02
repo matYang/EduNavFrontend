@@ -15,7 +15,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="style/images/ico.ico"/>
     <link href="style/lib/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <link href="build/style/css/style-min.css" rel="stylesheet" type="text/css"/>
+    <link href="build/style/css/style-min.css?version=2.0build001" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript">
         if (!window.console) {
@@ -34,7 +34,7 @@
 <div id='overlay' class="mask1" class="hidden"></div>
 <div id="popup" class="hidden pop"
      style=" top:200px; left: 50%; width:500px; min-height:100px; margin-left: -250px; z-index:200;"></div>
-<div id='widgets'></div>
+
 <div class="footer">
     <div class="footer_inner">
         <div id="footer_service_link" class="footer-upperContent">
@@ -59,7 +59,10 @@
                 <li id="navigate_home" class="button navigate_home">首页</li>
                 <li id="navigate_search" class="button navigate_search">分类检索</li>
                 <li id="navigate_compare" class="button navigate_compare">课程对比</li>
-                <li><img src="./style/images/tel2.png" style="margin-top: 21px;"/><a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank">400-025-0084</a></li>
+                <li id="navigate_tel" style="padding: 0 5px">
+                    <img src="./style/images/tel2.png" class="img">
+                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><small>400-025-0084</small></a>
+                </li>
             </ul>
 
             <div class="user_info">
@@ -91,7 +94,10 @@
                 <li id="navigate_home" class="button navigate_home">首页</li>
                 <li id="navigate_search" class="button navigate_search">分类检索</li>
                 <li id="navigate_compare" class="button navigate_compare">课程对比</li>
-                <li><img src="./style/images/tel2.png" style="margin-top: 21px;"/><a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank">400-025-0084</a></li>
+                <li id="navigate_tel" style="padding: 0 5px">
+                    <img src="./style/images/tel2.png" class="img">
+                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><small>400-025-0084</small></a>
+                </li>
             </ul>
             <div class="login_reg">
                 <div class="hd">
@@ -128,6 +134,7 @@
         <ul class="bjqs">
             <li style="display: block;"><img src="style/images/banner.jpg" alt="" height="320"></li>
             <li style="display: none;"><img src="style/images/banner2.jpg" alt="" height="320"></li>
+            <li style="display: none;"><img src="style/images/banner3.jpg" alt="" height="320"></li>
         </ul>
     </div>
 </script>
@@ -244,10 +251,6 @@
             </div>
         </div>
     </div><!--search_result end-->
-    <!-- 回到页顶 -->
-    <div id="toTop" class="to_top">
-        <div class="to_top_inner"><a href="#none" class="backtop" target="_self"><s></s>顶部</a><s></s></div>
-    </div>
 </script>
 
 <script type="text/template" id="tpl_searchResultEntry">
@@ -359,32 +362,26 @@
 <script type="text/template" id="tpl_courseDetailCompareWidget">
     <div id="trialButton" class="shiting" style="margin-right:-350px;">
         <div class="shiting_inner">
-            <div class="btn"><a href="#"><img class="trialFloatingButton" src="style/images/shiting.gif"></a></div>
-            <!-- <p>只剩下<b class="F_orange">12</b>个名额了哦，快来预约吧！</p> -->
+            <div class="btn">
+                <a href="#"><img class="trialFloatingButton" src="style/images/shiting.gif"></a>
+            </div>
             <a class="close" href="#">关闭</a>
         </div>
     </div>
-    <div class="compare" style="width:0;">
-        <div id="compareToggle" class="compare_button">
-            课程<br>对比
-        </div>
-        <div id="compareWidgetContent" class="hidden">
-            <div id="compareItems" class="compare_items">
-            </div>
-            <div class="btns">
-                <input type="button" value="开始对比" id="compare">
-            </div>
+    <dt id="compareToggle" class="compare_button">课程对比</dt>
+    <div id="compareWidgetContent" class="hidden">
+        <div id="compareItems" class="compare_items"></div>
+        <div class="btns">
+            <input type="button" value="开始对比" id="compare">
         </div>
     </div>
 </script>
-
 
 <script type="text/template" id="tpl_registration">
     <div class="sign_up">
         <div class="sign_up_inner">
             <div class="sign_up_title">
                 <h2 class="fleft">用户注册</h2>
-
                 <div class="fright"><span class="active"><b>1</b>填写信息</span> <span class=""><b>2</b>完成验证</span></div>
             </div>
             <div class="account">
@@ -395,13 +392,6 @@
                                placeholder="请输入手机号(请不要输入特殊符号或者字母)">
                     </dd>
                 </dl>
-                <!--<dl class="clearfix" id="usernameContainer">-->
-                <!--<dt><span>*</span>用户名：</dt>-->
-                <!--<dd>-->
-                <!--<input id="registerUsernameInput" type="text" class="text" value=""-->
-                <!--placeholder="请输入用户名(不可都为数字，支持中文)">-->
-                <!--</dd>-->
-                <!--</dl>-->
                 <dl class="clearfix" id="passContainer">
                     <dt><span>*</span>密码：</dt>
                     <dd>
@@ -1384,6 +1374,7 @@
 
 
 <script type="text/template" id="tpl_courseDetail">
+<div id='widgets'></div>
 <div id="siteMap" class="sitemap">
     <span id="lv1cat" data-value="<%= category.value %>"><%= category.name %></span>
     &gt;
@@ -1473,6 +1464,10 @@
     <li id="tab_3">名师团队</li>
     <li id="tab_4">学校概况</li>
     <li id="tab_5">同类型课程</li>
+    <div class="pull-right padding-x" style="height: 39px;line-height: 39px">
+        <img src="./style/images/tel.png" class="img">
+        <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&amp;f=117996&amp;n=iskkf001" target="_blank"><strong class="text-primary">400-025-0084</strong></a>
+    </div>
 </ul>
 <div class="course_content">
 <dl id="content_1" class="clearfix">
@@ -2035,14 +2030,14 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_accountInRow">
-    <tr id="coupon_<%= id %>">
+    <tr id="account_<%= id %>">
         <td class="text-primary"><%= charge %></td>
         <td class=""><%= EnumConfig.AccountOperationText[operation] %></td>
         <td class=""><%= createTime %></td>
     </tr>
 </script>
 <script type="text/template" id="tpl_mypage_accountOutRow">
-    <tr id="coupon_<%= id %>">
+    <tr id="account_<%= id %>">
         <td class="text-error"><%= charge %></td>
         <td class=""><%= EnumConfig.AccountOperationText[operation] %></td>
         <td class=""><%= createTime %></td>
@@ -2136,7 +2131,7 @@
     <tr id="coupon_<%= id %>">
         <td class="col1"><%= id %></td>
         <td class="col2"><strong class="price"><%= balance %></strong></td>
-        <td class="col3"><%= expiryTime %> <span class="badge"><%= expireSoon %></span></td>
+        <td class="col3"><%= expiryTime %> <%if(expireSoon){%> <span class="badge"><%= expireSoon %></span><%}%></td>
     </tr>
 </script>
 <script type="text/templates" id="tpl_usable_coupon_noMessage">
@@ -2258,7 +2253,7 @@
                 <span class="form_tip_bottom"></span>
             </span>
         </span>
-        <div class="btn btn-block margin-y">
+        <div class="margin-y">
             <input class="btn_O" type="button" id="updateInviteCode" value="就这个了">
         </div>
         <div>
@@ -2690,11 +2685,35 @@
         </dl>
     </div>
 </script>
+<script type="text/templates" id="tpl_sideBarView">
+    <div class="right_bar">
+        <dl class="customer_service">
+            <dt>在线客服</dt>
+            <dd>
+                <ul class="cs_online" onclick="doyoo.util.openChat('g=82548');return false;">
+                    <li class="list1">在线客服</li>
+                    <li class="list2">VIP选课顾问</li>
+                    <li class="list3">申请免费试听</li>
+                    <li class="list4">索要折扣信息</li>
+                </ul>
+            </dd>
+        </dl>
+        <dl class="listening_test" onclick="doyoo.util.openChat('g=82548');return false;">
+            <dt>免费试听</dt>
+        </dl>
+        <dl class="comparison"></dl>
+        <dl class="qr_code">
+            <dt>二维码</dt>
+            <dd><img src="./style/images/erweima.jpg"></dd>
+        </dl>
+        <dl class="back_to_top"> <dt>返回顶部</dt> </dl>
+    </div>
+</script>
 </div>
 <!-- load libraries-->
-<script src="build/common.min.js?version=0.99build101fix1" type="text/javascript"></script>
-<script src="build/main.min.js?version=0.99build102" type="text/javascript"></script>
-<!--<script type="text/javascript" charset="utf-8" src="http://gate.looyu.com/52669/117925.js"></script>-->
+<script src="build/common.min.js?version=2.0build001" type="text/javascript"></script>
+<script src="build/main.min.js?version=2.0build001" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8" src="http://gate.looyu.com/52669/117998.js"></script>
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6787b3b458b613e218f0231eb9e1ebe5' type='text/javascript'%3E%3C/script%3E"));
