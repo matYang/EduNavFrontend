@@ -89,7 +89,6 @@ var Course = Backbone.Model.extend({
                 'bonusService': undefined//赠送服务
             };
         },
-        idAttribute: 'id',
         parse: function (data) {
             var i = 0,
                 imgArr = [],
