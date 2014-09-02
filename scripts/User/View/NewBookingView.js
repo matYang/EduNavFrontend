@@ -314,6 +314,9 @@ var NewBookingView = BaseFormView.extend({
         var login = false;
         if (app.sessionManager.hasSession()) {
             login = true;
+        }else{
+            //没有登录自动填充手机号 这里没写在事件绑定中是为了防止对象引用
+            $('#login_username').val(booking.get('phone'));
         }
         this.$el.empty().append(this.finishTemplate(_.extend(booking._toJSON(), {login: login})));
         $("#viewMore").on("click", function () {
@@ -322,6 +325,9 @@ var NewBookingView = BaseFormView.extend({
         $("#viewBooking").on("click", function (e) {
             if (!app.sessionManager.hasSession()) {
                 $("#topbar_loginbox").show();
+                //focus到密码框 帮助用户输入
+                $('#login_password').focus();
+                //由于body上加了点击除loginBox外的元素会关闭loginBox的事件 应停止事件冒泡
                 e.stopPropagation();
             } else {
                 app.navigate("mypage/booking", true);
