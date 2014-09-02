@@ -10,7 +10,7 @@
     background:url(../images/right_bar.png) no-repeat;
     background-color: #128d56;
     cursor:pointer;}
-.right_bar dl dt:hover{background-color: #aaaaaa;}
+.right_bar dl dt:hover{background-color: #bbbbbb;}
 /*文字图标的隐藏层*/
 .right_bar dl dd{
     opacity: 0.2;
@@ -41,7 +41,12 @@
 /*返回顶部*/
 .right_bar .back_to_top dt{ background-color:#2e333f; background-position:50% -251px;}
 
-.cs_online li{ margin:0 10px; padding-left:88px; line-height:78px; border-bottom:1px dotted #ccc; font-size:18px; color:#666666; background:url(../images/cs_online.png) no-repeat; cursor:pointer;}
+/*在线客服的隐藏层内容样式*/
+.cs_online li{
+    padding-left:88px;
+    line-height:78px; border-bottom:1px dotted #ccc; font-size:18px; color:#666666;
+    background:url(../images/cs_online.png) no-repeat; cursor:pointer;}
+.cs_online li:hover{background-color:#eeeeee }
 .cs_online li.list1{ background-position:20px 24px; font-size:22px; color:#128d56; height:81px;}
 .cs_online li.list2{ background-position:20px -57px;}
 .cs_online li.list3{ background-position:20px -138px;}
