@@ -54,11 +54,12 @@ var UsableCouponView = MultiPageView3.extend({
     el: "#coupons_container",
     table: "#usableTable",
     minHeight: 144,
-    pageEntryNumber: 2,
+    pageEntryNumber: 8,
     entryHeight: 36,
     entryTemplate: _.template(tpl.get("mypage_usableCouponRow")),
     template: _.template(tpl.get("mypage_couponUsable")),
     noMessage: _.template(tpl.get("usable_coupon_noMessage")),
+    scrollTarget:'#couponNavBtn',
     initialize: function () {
         this.$el.append(this.template);
         MultiPageView3.prototype.initialize.call(this);
@@ -117,6 +118,7 @@ var GotCouponView = MultiPageView3.extend({
     entryTemplate: _.template(tpl.get("mypage_gotCouponRow")),
     template: _.template(tpl.get("mypage_couponGot")),
     noMessage: _.template(tpl.get("got_coupon_noMessage")),
+    scrollTarget:'#couponNavBtn',
     initialize: function () {
         this.$el.append(this.template);
         MultiPageView3.prototype.initialize.call(this);

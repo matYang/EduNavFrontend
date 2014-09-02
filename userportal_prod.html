@@ -15,7 +15,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="style/images/ico.ico"/>
     <link href="style/lib/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <link href="build/style/css/style-min.css?version=2.0build002" rel="stylesheet" type="text/css"/>
+    <link href="build/style/css/style-min.css?version=2.0build003" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript">
         if (!window.console) {
@@ -72,9 +72,7 @@
                         <%= name %>
                     <% }else if(invitationCode){ %>
                         <%= invitationCode %>
-                    <% }else{ %>
-                        <%= phone %>
-                    <%} %>
+                    <% }else{ %> 会员<%} %>
                  </span>
                 <a id="logout" href="#">[退出]</a>
                 <a id="topbar-mypage" href="#">我的爱上课</a>
@@ -269,7 +267,7 @@
                 - <%= finishDate %>
                 <%}%>
                 <%}else{%>
-                <%= regPhone%>
+                    <%= regPhone%>
                 <%}%>
             </p>
 
@@ -300,26 +298,26 @@
             </p>
             <%if(cashback){%>
             <div>
-                <a class="label cashback"><%=cashback %>元
-                    <div class="tip">
-                        <div class="arrow"></div>
-                        <div class="tip_content">
-                            前台付现，入学成功可立即返还<%=cashback %>元至现金账户！
-                        </div>
+            <a class="label cashback"><%=cashback %>元
+                <div class="tip">
+                    <div class="arrow"></div>
+                    <div class="tip_content">
+                        前台付现，入学成功可立即返还<%=cashback %>元至现金账户！
                     </div>
-                </a>
+                </div>
+            </a>
             </div>
             <%}%>
             <%if(commission){%>
             <div class="margin-y-sm">
-                <a class="label save"><%= commission %>元
-                    <div class="tip">
-                        <div class="arrow"></div>
-                        <div class="tip_content">
-                            选择在线支付，支付时即可立减<%=commission %>元！
-                        </div>
+            <a class="label save"><%= commission %>元
+                <div class="tip">
+                    <div class="arrow"></div>
+                    <div class="tip_content">
+                        选择在线支付，支付时即可立减<%=commission %>元！
                     </div>
-                </a>
+                </div>
+            </a>
             </div>
             <%}%>
 
@@ -466,9 +464,7 @@
                                 <%= name %>
                             <% }else if(invitationCode){ %>
                                 <%= invitationCode %>
-                            <% }else{ %>
-                                <%= phone %>
-                            <%} %>
+                            <% }else{ %> 会员<%} %>
                             </span>
                         </p>
                     </div>
@@ -580,16 +576,16 @@
         <td class="status">
 
             <p class="status">
-                <% if (status === 11) { %>
+            <% if (status === 11) { %>
                 <i class="icon-status pending"></i>
-                <% } else if ( status === 2 || status === 12) { %>
+            <% } else if ( status === 2 || status === 12) { %>
                 <i class="icon-status canceled"></i>
-                <% } else if( status === 13){ %>
+            <% } else if( status === 13){ %>
                 <i class="icon-status confirmed"></i>
-                <% } else{ %>
+            <% } else{ %>
                 <i class="icon-status info"></i>
-                <% } %>
-                <span><%= EnumConfig.BookingStatusText[status] %></span>
+            <% } %>
+            <span><%= EnumConfig.BookingStatusText[status] %></span>
             </p>
 
             <%if(type==EnumConfig.PayType.online&&status===11){%>
@@ -597,12 +593,12 @@
             <%}%>
 
             <p class="margin-top">
-                <%_.each(actionList,function(action){%>
+            <%_.each(actionList,function(action){%>
 
                 <a type="button" class="operate margin-x js_btn_operate"
-                   data-id="<%=id%>"
-                   data-action="<%=action.name%>"><%=EnumConfig.BookingActionText[action.name]%></a>
-                <%})%>
+                       data-id="<%=id%>"
+                       data-action="<%=action.name%>"><%=EnumConfig.BookingActionText[action.name]%></a>
+            <%})%>
             </p>
         </td>
     </tr>
@@ -816,13 +812,13 @@
 
 <script type="text/template" id="tpl_mypage_bookingDetailHistory">
     <%_.each(histories,function(history){%>
-    <%if(history.optName in EnumConfig.BookingHistoryText){%>
-    <p>
-        <span><%= history.createTime.getFullYear()%>-<%=history.createTime.getMonth()+1%>-<%=history.createTime.getDate() %></span>
-        <span><%= history.createTime.getHours()%>:<%= history.createTime.getMinutes()%></span>
-        <span><%= EnumConfig.BookingHistoryText[history.optName]%></span>
-    </p>
-    <%}%>
+        <%if(history.optName in EnumConfig.BookingHistoryText){%>
+        <p>
+            <span><%= history.createTime.getFullYear()%>-<%=history.createTime.getMonth()+1%>-<%=history.createTime.getDate() %></span>
+            <span><%= history.createTime.getHours()%>:<%= history.createTime.getMinutes()%></span>
+            <span><%= EnumConfig.BookingHistoryText[history.optName]%></span>
+        </p>
+        <%}%>
     <%})%>
 </script>
 
@@ -892,19 +888,19 @@
             </div>
             <!--currently not used-->
             <!--<div class="field" id="cashback_box">-->
-            <!--< if (course.cashback) { >-->
-            <!--<input type="checkbox" id="booking_useCashback"/>-->
+                <!--< if (course.cashback) { >-->
+                <!--<input type="checkbox" id="booking_useCashback"/>-->
 
-            <!--<div class="fleft cashback"><= course.cashback >元-->
-            <!--<div class="tip" style="left:0;width:350px;">-->
-            <!--<div class="arrow" style="left:22px"></div>-->
-            <!--<div class="tip_content"> 用“返现券”预订此课程，可立即返还<=course.cashback >元现金！入学后不进行退学，就可至您的账户里提现。<span-->
-            <!--class="link howToGetCoupon" style="color:green">如何获得返现券</span>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<label for="booking_useCashback" style="font-size:13px;width:70px">使用返现券</label>-->
-            <!--< } >-->
+                <!--<div class="fleft cashback"><= course.cashback >元-->
+                    <!--<div class="tip" style="left:0;width:350px;">-->
+                        <!--<div class="arrow" style="left:22px"></div>-->
+                        <!--<div class="tip_content"> 用“返现券”预订此课程，可立即返还<=course.cashback >元现金！入学后不进行退学，就可至您的账户里提现。<span-->
+                                    <!--class="link howToGetCoupon" style="color:green">如何获得返现券</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<label for="booking_useCashback" style="font-size:13px;width:70px">使用返现券</label>-->
+                <!--< } >-->
             <!--</div>-->
         </div>
         <div class="title">
@@ -1065,29 +1061,29 @@
             <label>课程费用</label>
 
             <%if(!course.price){%>
-            <b class="price">定制</b>
+                <b class="price">定制</b>
             <%}else{%>
-            <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
-            <%if(course.cashback){%>
-            <a class="label cashback"><%= course.cashback %>元
-                <div class="tip">
-                    <div class="arrow"></div>
-                    <div class="tip_content">
-                        前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                <b class="price" title="爱•会员独享该课程全网最低折扣价，试听免费哦~">￥<%= course.price %></b>
+                <%if(course.cashback){%>
+                <a class="label cashback"><%= course.cashback %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                        </div>
                     </div>
-                </div>
-            </a>
-            <%}%>
-            <%if(course.commission){%>
-            <a class="label save"><%= course.commission %>元
-                <div class="tip">
-                    <div class="arrow"></div>
-                    <div class="tip_content">
-                        选择在线支付，支付时即可立减<%= course.commission %>元！
+                </a>
+                <%}%>
+                <%if(course.commission){%>
+                <a class="label save"><%= course.commission %>元
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            选择在线支付，支付时即可立减<%= course.commission %>元！
+                        </div>
                     </div>
-                </div>
-            </a>
-            <%}%>
+                </a>
+                <%}%>
             <%}%>
         </div>
 
@@ -1102,7 +1098,7 @@
                 后可享受 <span class="badge bg-primary">返</span> 或 <span class="badge bg-error">立减</span> 优惠
             </div>
         </div>
-        <div id="booking_loginbox" class="loginbox">
+         <div id="booking_loginbox" class="loginbox">
             <div class="loginbox_inner">
                 <div>
                     <label>手机</label> <input class="text" type="text" id="booking_loginUsername"/>
@@ -1114,7 +1110,7 @@
                     <a class="button link" id="booking_forgotPassword">忘记密码?</a>
                     <a class="button link" id="quickRegister" style="color:#D38613;">还不是会员?马上注册</a>
                 </div>
-                <div class="close js_loginBoxToggle">关闭</div>
+                 <div class="close js_loginBoxToggle">关闭</div>
             </div>
         </div>
     </div>
@@ -1227,28 +1223,28 @@
 </script>
 
 <script type="text/template" id="tpl_newBooking_price">
-    <div class="row4">
-        <%if(price){%>
-        您需要支付的费用为：
-        <%if(payType ==EnumConfig.PayType.offline){%>
+<div class="row4">
+    <%if(price){%>
+    您需要支付的费用为：
+    <%if(payType ==EnumConfig.PayType.offline){%>
         <span class="price">¥<%= price %></span>
         <%if(cashback){%>
         <span class="desc">
         （入学后可获得 <%= cashback %> 元返现）
         </span>
         <%}%>
-        <%}else if(payType ==EnumConfig.PayType.online){%>
+    <%}else if(payType ==EnumConfig.PayType.online){%>
         <span class="price">¥<%= price-commission %></span>
         <%if(commission){%>
         <span class="desc">
         （已减 <%= commission %> 元）
         </span>
         <%}%>
-        <%}%>
-        <%}else{%>
-        本课程费用为定制,请联系机构确认
-        <%}%>
-    </div>
+    <%}%>
+    <%}else{%>
+    本课程费用为定制,请联系机构确认
+    <%}%>
+</div>
 </script>
 
 <script type="text/template" id="tpl_booking_submitted">
@@ -1317,9 +1313,9 @@
                 <%= course.regPhone %>
                 <%}else{%>
                 <%= course.startDate %>
-                <%if(course.finishDate){%>
-                - <%= course.finishDate %>
-                <%}%>
+                    <%if(course.finishDate){%>
+                    - <%= course.finishDate %>
+                    <%}%>
                 <%}%>
             </p>
 
@@ -1336,22 +1332,22 @@
                     <%= price %>
                 </b>
                 <% if(type==EnumConfig.PayType.online){ %>
-                <%if(course.commission){%>
-                <a class="label saved"><%= course.commission %>元</a>
+                    <%if(course.commission){%>
+                    <a class="label saved"><%= course.commission %>元</a>
                 <%}%>
                 <%} else if(type==EnumConfig.PayType.offline) {%>
-                <%if(cashbackAmount){%>
-                <a class="label cashbacked"><%= realCashbackAmount %>元
-                    <div class="tip">
-                        <div class="arrow"></div>
-                        <div class="tip_content">
-                            本课程最多可返现<%= course.cashback %>元，
-                            已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount<cashbackAmount){%>（您的可用返现券额不足）<%}%>，
-                            入学成功即返还<%= realCashbackAmount %>元至现金账户！
+                    <%if(cashbackAmount){%>
+                    <a class="label cashbacked"><%= realCashbackAmount %>元
+                        <div class="tip">
+                            <div class="arrow"></div>
+                            <div class="tip_content">
+                                本课程最多可返现<%= course.cashback %>元，
+                                已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount<cashbackAmount){%>（您的可用返现券额不足）<%}%>，
+                                入学成功即返还<%= realCashbackAmount %>元至现金账户！
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <%}%>
+                    </a>
+                    <%}%>
                 <%} %>
 
                 <%}%>
@@ -1405,9 +1401,9 @@
                 <%if(!price){%>
                 <span class="sign">￥</span><small>定制</small>
                 <%}else{%>
-                <%if(originalPrice){%>
-                <s style="font-size:14px; color:#333;">原价：￥<%= originalPrice %></s>
-                <%}%>
+                    <%if(originalPrice){%>
+                    <s style="font-size:14px; color:#333;">原价：￥<%= originalPrice %></s>
+                    <%}%>
                 <span class="sign">￥</span><%= price %>
                 <%}%>
             </div>
@@ -1465,8 +1461,8 @@
     <li id="tab_4">学校概况</li>
     <li id="tab_5">同类型课程</li>
     <div class="pull-right padding-x" style="height: 39px;line-height: 39px">
-        <img src="./style/images/tel.png" class="img">
-        <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&amp;f=117996&amp;n=iskkf001" target="_blank"><strong class="text-primary">400-025-0084</strong></a>
+            <img src="./style/images/tel.png" class="img">
+            <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&amp;f=117996&amp;n=iskkf001" target="_blank"><strong class="text-primary">400-025-0084</strong></a>
     </div>
 </ul>
 <div class="course_content">
@@ -1498,7 +1494,7 @@
     <dd class="clearfix">
         <label>课时信息</label>
         <%if(qualityAssurance){%>
-        <%=qualityAssurance%>
+            <%=qualityAssurance%>
         <%}%>
     </dd>
     <% } %>
@@ -1613,7 +1609,7 @@
             <h3><%= teacherList[i].name %></h3>
             <img src="<%= teacherList[i].imgUrl %>"/>
             <div>
-                <%if(teacherList[i].intro&&teacherList[i].intro.length >=35){%><%= teacherList[i].intro.substring(0,35)%> ...<%}else{%>
+            <%if(teacherList[i].intro&&teacherList[i].intro.length >=35){%><%= teacherList[i].intro.substring(0,35)%> ...<%}else{%>
                 <%= teacherList[i].intro%><%}%>
             </div>
             <span class="more" data-id="<%=i%>">详细查看</span>
@@ -1687,14 +1683,14 @@
             <%}else{%>
             <%= startDate %>
             <%if(finishDate){%>
-            -<%= finishDate %>
+             -<%= finishDate %>
             <%}%>
             <%}%>
         </td>
         <td>
             <%if(startTime1){%>
-            <%=startTime1%>-<%=finishTime1%>
-            <%if(startTime2){%>, <%=startTime2%> - <%=finishTime2%><%}%>
+                <%=startTime1%>-<%=finishTime1%>
+                <%if(startTime2){%>, <%=startTime2%> - <%=finishTime2%><%}%>
             <%}else{%>
             -- --
             <%}%>
@@ -1750,123 +1746,123 @@
 </div>
 
 <div id="basic_content">
-    <div id="courseName" class="course_name clearfix">
-        <div class="th" style="width: 64px">课程名称</div>
-        <% _.each(courses, function(course) { %>
-        <div class="courseId_<%= course.id %> td" style="width: 195px">
-            <h2 class="F_green courseTitle" style="cursor:pointer;"><%= course.courseName %></h2>
+<div id="courseName" class="course_name clearfix">
+    <div class="th" style="width: 64px">课程名称</div>
+    <% _.each(courses, function(course) { %>
+    <div class="courseId_<%= course.id %> td" style="width: 195px">
+        <h2 class="F_green courseTitle" style="cursor:pointer;"><%= course.courseName %></h2>
 
-            <div class="btn"><input class="btn_O" type="button" value="立即预订"/></div>
-            <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next"
-                                                                                               href="#">向后</a></div>
-        </div>
-        <% }); %>
+        <div class="btn"><input class="btn_O" type="button" value="立即预订"/></div>
+        <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next"
+                                                                                           href="#">向后</a></div>
     </div>
+    <% }); %>
+</div>
 
-    <table width="100%" cellpadding="0" cellspacing="0" >
+<table width="100%" cellpadding="0" cellspacing="0" >
 
-        <tr id="price">
-            <th width="64">课程价格</th>
-            <% _.each(courses, function(course) { %>
-            <td width="195" class="courseId_<%= course.id %>">
-                <%if(!course.price){%>
-                <div class="price">定制</div>
-                <%}else{%>
-                <div class="price">￥<%= course.price %></div>
+    <tr id="price">
+        <th width="64">课程价格</th>
+        <% _.each(courses, function(course) { %>
+        <td width="195" class="courseId_<%= course.id %>">
+            <%if(!course.price){%>
+            <div class="price">定制</div>
+            <%}else{%>
+            <div class="price">￥<%= course.price %></div>
                 <%if(course.cashback){%> <a class="label cashback"><%=course.cashback %>元</a> <%}%>
                 <%if(course.commission){%> <a class="label save"><%= course.commission %>元</a> <%}%>
-                <%}%>
-            </td>
-            <% }); %>
-        </tr>
+            <%}%>
+        </td>
+        <% }); %>
+    </tr>
 
-        <tr id="originalPrice">
-            <th>课程原价</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>"><%if(course.originalPrice){%>
-                <div>￥<%= course.originalPrice %></div>
-                <%}%></td>
-            <% }); %>
-        </tr>
+    <tr id="originalPrice">
+        <th>课程原价</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%if(course.originalPrice){%>
+            <div>￥<%= course.originalPrice %></div>
+            <%}%></td>
+        <% }); %>
+    </tr>
 
-        <tr id="startDate">
-            <th>上课日期</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>"><%if(course.startUponArrival===0){%>
-                <%= course.regPhone %>
-                <%}else{%>
-                <%= course.startDate %>
-                <%if(course.finishDate){%>
-                - <%= course.finishDate %>
-                <%}%>
-                <%}%></td>
-            <% }); %>
-        </tr>
-        <tr id="startTime">
-            <th>上课时间</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>"><%if(course.startTime1){%>
-                <%= course.startTime1 %>-<%= course.finishTime1 %>
-                <% if (course.startTime2) { %>, <%= course.startTime2 %> - <%= course.finishTime2 %><% } %>
-                <%}%></td>
-            <% }); %>
-        </tr>
+    <tr id="startDate">
+        <th>上课日期</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%if(course.startUponArrival===0){%>
+            <%= course.regPhone %>
+            <%}else{%>
+            <%= course.startDate %>
+            <%if(course.finishDate){%>
+            - <%= course.finishDate %>
+            <%}%>
+            <%}%></td>
+        <% }); %>
+    </tr>
+    <tr id="startTime">
+        <th>上课时间</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%if(course.startTime1){%>
+            <%= course.startTime1 %>-<%= course.finishTime1 %>
+            <% if (course.startTime2) { %>, <%= course.startTime2 %> - <%= course.finishTime2 %><% } %>
+            <%}%></td>
+        <% }); %>
+    </tr>
 
-        <tr id="courseHourNum">
-            <th>课时信息</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>"><%if(course.qualityAssurance){%>
-                <%=course.qualityAssurance%>
-                <%}%></td>
-            <% }); %>
-        </tr>
-        <tr id="address">
-            <th>上课地址</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>"><%= course.address %></td>
-            <% }); %>
-        </tr>
-        <tr id="classSize">
-            <th>班级类型</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>"><%= course.classSize %></td>
-            <% }); %>
-        </tr>
+    <tr id="courseHourNum">
+        <th>课时信息</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%if(course.qualityAssurance){%>
+            <%=course.qualityAssurance%>
+            <%}%></td>
+        <% }); %>
+    </tr>
+    <tr id="address">
+        <th>上课地址</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%= course.address %></td>
+        <% }); %>
+    </tr>
+    <tr id="classSize">
+        <th>班级类型</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%= course.classSize %></td>
+        <% }); %>
+    </tr>
 
-        <tr id="teachingMaterialIntro">
-            <th>教材介绍</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>"><%= course.teachingMaterialIntro %></td>
-            <% }); %>
-        </tr>
-        <tr id="teachingMaterialFee">
-            <th>教材费用</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>"><%= course.teachingMaterialFee %></td>
-            <% }); %>
-        </tr>
+    <tr id="teachingMaterialIntro">
+        <th>教材介绍</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%= course.teachingMaterialIntro %></td>
+        <% }); %>
+    </tr>
+    <tr id="teachingMaterialFee">
+        <th>教材费用</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%= course.teachingMaterialFee %></td>
+        <% }); %>
+    </tr>
 
-        <tr id="suitableStudent">
-            <th >适合学员</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>" width="195"><%= course.suitableStudent %></td>
-            <% }); %>
-        </tr>
+    <tr id="suitableStudent">
+        <th >适合学员</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>" width="195"><%= course.suitableStudent %></td>
+        <% }); %>
+    </tr>
 
-        <tr id="courseIntro">
-            <th>课程介绍</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>"><%= course.courseIntro %></td>
-            <% }); %>
-        </tr>
-        <tr id="goal">
-            <th>教学目标</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>"><%= course.goal %></td>
-            <% }); %>
-        </tr>
+    <tr id="courseIntro">
+        <th>课程介绍</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%= course.courseIntro %></td>
+        <% }); %>
+    </tr>
+    <tr id="goal">
+        <th>教学目标</th>
+        <% _.each(courses, function(course) { %>
+        <td class="courseId_<%= course.id %>"><%= course.goal %></td>
+        <% }); %>
+    </tr>
 
-    </table>
+</table>
 </div>
 <div class="title clearfix" style="border-top:none;" id="special_collapse">
     <span class="up">特色服务</span>
@@ -1959,8 +1955,8 @@
         <td class="courseId_<%= course.id %>"><% if (course.partnerIntro && course.partnerIntro.length>30) { %>
             <%= course.partnerIntro.substring(0,24) %>...
             <a class="F_green expand" href="#">[展开]</a>
-            <% } else {%> <%= course.partnerIntro %> <% } %>
-            <% }); %></td>
+        <% } else {%> <%= course.partnerIntro %> <% } %>
+        <% }); %></td>
     </tr>
     <tr id="highScoreReward">
         <th>教学特色</th>
@@ -2365,8 +2361,8 @@
                 </div>
             </div>
             <!--account end-->
-            </Ndiv>
         </div>
+    </div>
 </script>
 
 <script type="text/templates" id="tpl_findPassword_2">
@@ -2711,8 +2707,8 @@
 </script>
 </div>
 <!-- load libraries-->
-<script src="build/common.min.js?version=2.0build002" type="text/javascript"></script>
-<script src="build/main.min.js?version=2.0build002" type="text/javascript"></script>
+<script src="build/common.min.js?version=2.0build003" type="text/javascript"></script>
+<script src="build/main.min.js?version=2.0build003" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8" src="http://gate.looyu.com/52669/117998.js"></script>
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");

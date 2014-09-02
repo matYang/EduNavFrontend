@@ -54,7 +54,7 @@ var CreditTableView = MultiPageView3.extend({
     el: "#credit_pageContent",
     table: "#creditTable",
     minHeight: 144,
-    pageEntryNumber: 16,
+    pageEntryNumber: 8,
     entryHeight: 36,
     noMessage: _.template(tpl.get("credit_noMessage")),
     entryTemplate: _.template(tpl.get("mypage_creditRow")),
