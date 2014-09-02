@@ -293,6 +293,7 @@ var NewBookingView = BaseFormView.extend({
         var self = this;
         if (!app.sessionManager.hasSession() && booking.get('enabled') == 1) {
             var pwd = booking.get('note');
+            booking.unset('note');
             //TODO 这里进行自动登录
             app.sessionManager.login(self.model.get('phone'), pwd, 1, {
                 success: function (response) {
