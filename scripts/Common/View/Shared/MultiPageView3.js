@@ -220,7 +220,7 @@ var MultiPageView3 = Backbone.View.extend({
         } else {
             this.$pre.on("click", this.clickPreHandler);
         }
-        if (this.currentPage === pages) {
+        if (this.currentPage === pageTotal) {
             this.$next.addClass("next-disabled");
         } else {
             this.$next.on("click", this.clickNextHandler);
