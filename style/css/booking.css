@@ -32,7 +32,7 @@
 .panel .field { margin:18px 0; font-size:14px;}
 .panel .field label{display:inline-block; width:100px; text-align:right; margin-right:20px;}
 .panel .field select{ padding:2px; border:1px solid #ccc; width:112px;}
-.panel .field span{ color:#666; font-size:12px;}
+.panel .field span{ font-size:12px;}/* remove color:#666*/
 .panel .field b.price{color:#ff5500;}
 .panel .field label.radio{width:68px;text-align:left;margin-right:5px;}/*radio的label标签*/
 

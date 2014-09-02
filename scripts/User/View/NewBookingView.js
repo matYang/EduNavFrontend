@@ -75,26 +75,28 @@ var NewBookingView = BaseFormView.extend({
 
         this.renderPrice(EnumConfig.PayType.offline);
         this.model.initBookingFromCourse(course);
+        //render dom后根据判断是否登录来进行dom'的更改
         this.bindEvents();
         this.autoName();
     },
 
     login: function () {
-        $('#bookingLoginError').html();
+        var $loginError = $('#bookingLoginError');
+        $loginError.html();
         var username = $("#booking_loginUsername").val(),
             pwd = $("#booking_loginPassword").val(),
             remember = $("#booking_loginRemember").val() ? 1 : 0;
-        if(!username){
-            $('#bookingLoginError').html('请输入用户名');
+        if (!username) {
+            $loginError.html('请输入用户名');
             return;
         }
-        if(!pwd){
-            $('#bookingLoginError').html('请输入密码');
+        if (!pwd) {
+            $loginError.html('请输入密码');
             return;
         }
         if (username && pwd) {
             app.sessionManager.login(username, pwd, remember, {
-                success: function(){
+                success: function () {
                     app.userManager.sessionUser = app.sessionManager.sessionModel;
                     app.topBarView.render();
                 },
@@ -106,17 +108,17 @@ var NewBookingView = BaseFormView.extend({
     },
     loginError: function (data) {
         $("#booking_loginPassword").val("");
-        $('#bookingLoginError').html(data.message||'登录失败');
+        $('#bookingLoginError').html(data.message || '登录失败');
     },
     //自动填充用户名等
-    autoName:function(){
-      if(app.sessionManager.hasSession()){
-          //todo 应自动填充手机号
-          var name =app.sessionManager.sessionModel.get('username');
-          if(name){
-              $('#booking_applicantName').val(name).trigger('change');
-          }
-      }
+    autoName: function () {
+        if (app.sessionManager.hasSession()) {
+            //自动填充手机号和用户名 如果存在的话
+            var name = app.sessionManager.sessionModel.get('username');
+            var phone = app.sessionManager.sessionModel.get('phone');
+            if (name) $('#booking_applicantName').val(name).trigger('change');
+            if (phone) $('#booking_cellphone').val(phone).trigger('change');
+        }
     },
     bindEvents: function () {
         var that = this;
@@ -134,18 +136,15 @@ var NewBookingView = BaseFormView.extend({
                 $("#cashback_box_notLoggedIn").removeClass("hidden");
                 $("#cashback_box").addClass("hidden");
                 $('input[name=bookingType]').attr('disabled', 'disabled');
-
             }
             app.topBarView.render();
         });
         //返回到课程详情
-        $('#content').on('click','.js_gotoCourse', function () {
+        $('#content').on('click', '.js_gotoCourse', function () {
             app.navigate("course/" + that.model.get("courseId"), true);
         });
-        //判断是否已经登录
+        //判断是否已经登录 来绑定相应的事件
         if (!app.sessionManager.hasSession()) {
-            //未登录下不可选择支付类型
-            $('input[name=bookingType]').attr('disabled', 'disabled');
             $("#quickLogin").on("click", function () {
                 $("#booking_loginbox").show();
             });
@@ -168,8 +167,7 @@ var NewBookingView = BaseFormView.extend({
             $("#cashback_box_notLoggedIn").addClass("hidden");
             $("#booking_loginbox").addClass("hidden");
         }
-
-
+        //表单中触发回车
         $("#bookingInfo").on("keypress", "input", function (e) {
             if (e.which === 13) {
                 $("#initBooking").trigger("click");
@@ -217,17 +215,34 @@ var NewBookingView = BaseFormView.extend({
             var $bookingLogin = $("#booking_loginbox");
             $bookingLogin.toggleClass("hidden");
         });
-        //支付方式选择事件
-        $('input[name=bookingType]').change(function () {
-            that.renderPrice($(this).val());
-        });
 
-        //注册事件
+        //"注册"的点击事件
         $("#booking_register").on("click", function () {
             app.navigate("register/ref=" + location.hash.substr(1, location.hash.length - 1), true);
         });
+
+        //支付方式选择事件
+        $('input[name=bookingType]').change(function (e) {
+            //只有登录后才能选择在线支付
+            var payType = parseInt($(this).val(), 10);
+            if (payType==EnumConfig.PayType.online && !app.sessionManager.hasSession()) {
+                $('input[name=bookingType][value='+EnumConfig.PayType.offline+']').prop('checked',true);
+                Info.displayNotice('登录后才能享受线上支付优惠哦~');
+                $("#booking_loginbox").show();
+                $.smoothScroll({scrollTarget:'#bookingDetail'});
+                //todo focus应移至提示信息的回调中
+                $('#booking_loginUsername').focus();
+                return;
+            }
+            that.renderPrice(payType);
+        });
+
         BaseFormView.prototype.bindEvents.call(this);
     },
+    /**
+     * 根据支付类型的改变render相应的所需支付费用的摘要
+     * @param payType 支付类型(0 or 1)
+     */
     renderPrice: function (payType) {
         //在线付款直接显示价格减去commisson的价格 右边显示已减多少钱
         //线下支付直接显示原价 右侧显示cashback的数量
@@ -266,17 +281,17 @@ var NewBookingView = BaseFormView.extend({
 
         this.model.set("course", undefined);
         app.userManager.initBooking(this.model, {
-            success: function(booking){
-                self.autoLogin.call(self,booking);
+            success: function (booking) {
+                self.autoLogin.call(self, booking);
             },
             error: function () {
                 $("#" + self.submitButtonId).val("预订失败, 请重试");
             }
         });
     },
-    autoLogin:function(booking){
+    autoLogin: function (booking) {
         var self = this;
-        if(!app.sessionManager.hasSession()&&booking.get('enabled')==1){
+        if (!app.sessionManager.hasSession() && booking.get('enabled') == 1) {
             var pwd = booking.get('note');
             //TODO 这里进行自动登录
             app.sessionManager.login(self.model.get('phone'), pwd, 1, {
@@ -291,7 +306,7 @@ var NewBookingView = BaseFormView.extend({
                 }
             });
 
-        }else{
+        } else {
             self.bookingSuccess(booking);
         }
     },
@@ -308,7 +323,7 @@ var NewBookingView = BaseFormView.extend({
             if (!app.sessionManager.hasSession()) {
                 $("#topbar_loginbox").show();
                 e.stopPropagation();
-            }else{
+            } else {
                 app.navigate("mypage/booking", true);
             }
         });
