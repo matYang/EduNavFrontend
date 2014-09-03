@@ -144,7 +144,7 @@ var SearchView = Backbone.View.extend({
             startDateEnd = this.searchRepresentation.get("startDateEnd"),
             cashback = this.searchRepresentation.get("cashbackStart"),
             commission = this.searchRepresentation.get("commission"),
-            originalPrice = this.searchRepresentation.get("originalPrice"),
+            originalPriceStart = this.searchRepresentation.get("originalPriceStart"),
 
             schooltimeWeek = this.searchRepresentation.get("schooltimeWeek"),
             schooltimeDay = this.searchRepresentation.get("schooltimeDay"),
@@ -201,8 +201,8 @@ var SearchView = Backbone.View.extend({
         if (commission && commission > 0) {
             $("input[name=commission]").prop("checked", true);
         }
-        if (originalPrice && originalPrice > 0) {
-            $("input[name=originalPrice]").prop("checked", true);
+        if (originalPriceStart && originalPriceStart > 0) {
+            $("input[name=originalPriceStart]").prop("checked", true);
         }
     },
     syncSorter: function () {
@@ -350,11 +350,11 @@ var SearchView = Backbone.View.extend({
             }
             that.courseSearch();
         });
-        $("input[name=originalPrice]").on("change", function () {
+        $("input[name=originalPriceStart]").on("change", function () {
             if ($(this).prop("checked")) {
-                that.searchRepresentation.set("originalPrice", 1);
+                that.searchRepresentation.set("originalPriceStart", 1);
             } else {
-                that.searchRepresentation.set("originalPrice", undefined);
+                that.searchRepresentation.set("originalPriceStart", undefined);
             }
             that.courseSearch();
         });
