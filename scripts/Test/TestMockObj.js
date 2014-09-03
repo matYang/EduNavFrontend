@@ -26,7 +26,7 @@ testMockObj = {
     testCourse2: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 2)
         .set("courseName", "SAT").set("price", 10800).set("instName", "School A").set("address", "南京市白下区")
         .set("cashback", 50).set("status", EnumConfig.CourseStatus.onlined).set('startUponArrival', 1)
-        .set('startDate', new Date()),
+        .set('startDate', new Date(1400000000000)),
     testCourse3: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 3)
         .set("courseName", "托福").set("price", 9800).set("instName", "School B").set("address", "南京市秦淮区")
         .set("cashback", 12).set("status", EnumConfig.CourseStatus.onlined).set('startUponArrival', 0)

@@ -30,6 +30,20 @@ var RelatedCourseListView = Backbone.View.extend({
         if (courses && courses.length > 0) {
             var buf = [], course;
             var len = Math.min(20, courses.length);//最多显示前xx个课程
+
+            //需要将当期课程提至最上面,然后按照开课时间排序
+            if (courses instanceof Backbone.Collection) {
+                courses = courses.sortBy(function(obj){
+                    if(obj.get('id') == self.courseId)return 0;
+                    return obj.get('startUponArrival')?obj.get('startDate').getTime():9999999999999;
+                })
+            } else {
+                course = _.sortBy(courses,function(obj){
+                    if(obj['id'] == self.courseId)return 0;
+                    return obj['startUponArrival']?obj['startDate'].getTime():9999999999999;
+                });
+            }
+
             for (var i = 0; i < len; i++) {
                 if (courses instanceof Backbone.Collection) {
                     course = courses.at(i);

@@ -55,7 +55,7 @@ var SearchView = Backbone.View.extend({
             }
             this.bindEvents();
             this.currentPage = 0;
-            document.title = "找课程";
+            document.title = "";
         }
     },
     /*加载课程类别*/
