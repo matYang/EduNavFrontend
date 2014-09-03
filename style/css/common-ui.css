@@ -120,6 +120,7 @@ a:hover, a:active{
     /*background-image: linear-gradient(to bottom, rgba(100, 100, 100, 0.29) 0%, rgba(100, 100, 100, 0.08) 27%, rgba(100, 100, 100, 0.01) 100%);*/
     /*filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#b8b8b8, EndColorStr=#ffffff);*/
 /*}*/
+/*badge 与label相对应 只是没有后面的说明*/
 .badge{
     display: inline-block;
     min-width: 10px;
@@ -213,7 +214,7 @@ a:hover, a:active{
     color:#128d56;
 }
 .label.cashbacked:before{
-    content:'将返';
+    content:'可返';
     width: 2em;
     background: #128d56;
 }
@@ -232,6 +233,17 @@ a:hover, a:active{
 .label.saved:before{
     content:'已减';
 }
+
+/*page change to ul li later*/
+.page {display:block;text-align: right; }/*翻页*/
+.page a, .page span {display: inline-block;}
+.page .pre {background: url(../images/page.png) no-repeat 0 -24px; text-indent: -32768px; width: 25px; height: 25px; }
+.page .pre-disabled {background: url(../images/page.png) no-repeat 0 0; text-indent: -32768px; }
+.page .next {background: url(../images/page.png) no-repeat -24px -24px; text-indent: -32768px; width: 25px; height: 25px; }
+.page .next-disabled {background: url(../images/page.png) no-repeat -24px 0; text-indent: -32768px; }
+.page .pre:after,.page .next:after{content:' ';display: inline-block;}
+.page a, .page span {width: 25px; height: 25px; line-height: 25px; text-align: center; margin: 0 10px;}
+.page a.active {color: #128d56; font-weight:bold;}
 
 /*通用工具类*/
 .text-center { text-align: center; }
@@ -289,6 +301,7 @@ a:hover, a:active{
     background-position: 0 -501px;
 }
 
+
 /*图片和图标的样式控制*/
 .img{
     vertical-align: text-bottom;
@@ -297,4 +310,15 @@ a:hover, a:active{
 .img.tel2{ }
 /***************我是分割线*****************/
 /***************非基本但通用样式 之后需要独立出来*****************/
+/*图片的大小控制*/
+/*机构图片控制 我的订单中*/
+.img-logo{
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+}
+.img-logo img{
+    width:70px;
+    height:70px;
+}
 

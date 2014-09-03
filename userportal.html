@@ -86,9 +86,7 @@
                         <%= name %>
                     <% }else if(invitationCode){ %>
                         <%= invitationCode %>
-                    <% }else{ %>
-                        <%= phone %>
-                    <%} %>
+                    <% }else{ %> 会员<%} %>
                  </span>
                 <a id="logout" href="#">[退出]</a>
                 <a id="topbar-mypage" href="#">我的爱上课</a>
@@ -480,9 +478,7 @@
                                 <%= name %>
                             <% }else if(invitationCode){ %>
                                 <%= invitationCode %>
-                            <% }else{ %>
-                                <%= phone %>
-                            <%} %>
+                            <% }else{ %> 会员<%} %>
                             </span>
                         </p>
                     </div>
@@ -1058,7 +1054,7 @@
     </div>
     <div class="row4">
         <div class="title">需要帮助?</div>
-        <!--<div class="link">查看常见问题</div>-->
+        <div id="js_needHelp" class="link"><a>查看常见问题</a></div>
         <div class="link"><a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank">在线客服</a></div>
         <div class="link"><a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank">400-025-0884</a></div>
     </div>
@@ -1113,7 +1109,7 @@
             <div class="fleft login_reg1 clearfix" id="booking_loginnote">
                 <a class="js_loginBoxToggle link F_green dotted-line">登录</a>
                 或 <a id="booking_register" class="link F_green dotted-line">注册</a>
-                后可享受"返"或"立减"优惠
+                后可享受 <span class="badge bg-primary">返</span> 或 <span class="badge bg-error">立减</span> 优惠
             </div>
         </div>
          <div id="booking_loginbox" class="loginbox">
@@ -1122,7 +1118,7 @@
                     <label>手机</label> <input class="text" type="text" id="booking_loginUsername"/>
                     <label>密码</label> <input class="text" type="password" id="booking_loginPassword"/>
                 </div>
-                <p id="bookingLoginError" class="text-warning margin-y">密码错误</p>
+                <p id="bookingLoginError" class="text-warning margin-y"></p>
                 <div class="btns">
                     <input class="link" type="button" value="登录" id="booking_login"/>
                     <a class="button link" id="booking_forgotPassword">忘记密码?</a>
@@ -1189,7 +1185,7 @@
                     </div>
                 </a>
                 <%}%>
-                <span style="color:#ff5500;">(爱会员惊享95折！用返券抵;&nbsp;爱•承诺：试听不满意，无条件退全款！)</span>
+                <span style="color:#ff5500;">(爱•承诺：试听不满意，无条件退全款！)</span>
             </p>
             <%}%>
             <%if(course.bookingType===2){%>
@@ -1225,7 +1221,7 @@
                     </div>
                 </a>
                 <%}%>
-                <span style="color:#ff5500;">(爱会员惊享95折！用返券抵;&nbsp;爱•承诺：试听不满意，无条件退全款！)</span>
+                <span style="color:#ff5500;">(爱•承诺：试听不满意，无条件退全款！)</span>
             </div>
             <%}%>
         </div>
@@ -2379,7 +2375,7 @@
                 </div>
             </div>
             <!--account end-->
-        </Ndiv>
+        </div>
     </div>
 </script>
 
@@ -2539,7 +2535,7 @@
         </dl>
         <dl class="fright s2">
             <dt>五星级的平台</dt>
-            <dd>sh
+            <dd>
                 <p>免费：平台使用永久免费，平台更新永久免费</p>
 
                 <p>开放：无论机构规模，只需法人组织提供高质量教学服务</p>

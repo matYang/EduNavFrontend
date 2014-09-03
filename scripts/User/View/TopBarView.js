@@ -161,6 +161,8 @@ var TopBarView = Backbone.View.extend({
                     app.navigate("front", true);
                 }
                 that.render();
+                //todo 如果是处于创建订单页面(里面有登录通道) 也需要进行重新render 要注意dom上事件的重复绑定
+
             },
 
             error: function (status) {

@@ -10,7 +10,7 @@ var RegistrationView = BaseFormView.extend({
         this.isClosed = false;
         this.template = _.template(tpl.get('registration'));
         this.finishTemplate = _.template(tpl.get('registration_finish'));
-        this.$el.append(this.template);
+        this.$el.append(this.template());
         this.fields = [
             new BaseField({
                 name: "手机",
@@ -72,6 +72,7 @@ var RegistrationView = BaseFormView.extend({
         ];
         this.ref = params.ref;
         this.invite = params.invite;
+        this.model = {};//初始化清空
         this.render();
         if (this.invite) {
             this.model.appliedInvitationCode = this.invite;

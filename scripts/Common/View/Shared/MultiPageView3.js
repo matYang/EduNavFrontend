@@ -110,6 +110,7 @@ var MultiPageView3 = Backbone.View.extend({
     toPage: function (pageIndex) {
         if(pageIndex===this.currentPage)return;
         if (this.scroll) {
+            //如果设置了target 没有则到顶部
             var $target = $(this.scrollTarget);
             if ($target.length !== 0) {
                 $.smoothScroll({scrollTarget: $target})
@@ -220,7 +221,7 @@ var MultiPageView3 = Backbone.View.extend({
         } else {
             this.$pre.on("click", this.clickPreHandler);
         }
-        if (this.currentPage === pages) {
+        if (this.currentPage === pageTotal) {
             this.$next.addClass("next-disabled");
         } else {
             this.$next.on("click", this.clickNextHandler);

@@ -18,7 +18,7 @@
 
     //检查当前用户是否有会话(是否在已登录状态)
     SessionManager.prototype.hasSession = function () {
-        if (testMockObj.testMode) return true;
+//        if (testMockObj.testMode) return true;
         return this.sessionModel.id > 0;
     };
 
@@ -73,7 +73,13 @@
     //登录
     SessionManager.prototype.login = function (key, password, remember, callback) {
         var self = this;
-
+        if (testMockObj.testMode) {
+            this.sessionModel = testMockObj.testUser;
+            if (callback) {
+                callback.success();
+            }
+            return;
+        }
         if (this.hasSession()) {
             Info.alert('已经登录，请刷新页面');
             app.navigate('/main', {trigger: true});
@@ -111,7 +117,13 @@
     //登出
     SessionManager.prototype.logout = function (callback) {
         var self = this, url;
-
+        if (testMockObj.testMode) {
+            this.sessionModel = new User();
+            if (callback) {
+                callback.success();
+            }
+            return;
+        }
         if (!this.hasSession()) {
             Info.alert('尚未登录');
             if (callback) {

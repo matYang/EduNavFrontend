@@ -137,6 +137,7 @@ li a, .page a {
     font-weight: normal;
     color: #128d56;}
 /*override jquery ui date picker style*/
+.ui-datepicker td span, .ui-datepicker td a{ padding: 0; text-align: center; }
 .ui-datepicker{
     color:#128D56;
     border-color: #128D56;}
