@@ -11,6 +11,7 @@ var SearchResultView = MultiPageView.extend({
     pageEntryNumber: 10,
     autoHeight: true,
     initialize: function (searchRepresentation, compareWidget) {
+        var page;
         if (!this.initialized) {
             _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
             MultiPageView.prototype.initialize.call(this);
@@ -20,8 +21,12 @@ var SearchResultView = MultiPageView.extend({
             this.compareWidgetView = compareWidget || this.compareWidgetView;
             this.user = app.sessionManager.sessionModel;
             this.initialized = true;
+            var start = this.sr.get('start');
+            var count = this.sr.get('count');
+            page = parseInt(Math.ceil(start / count));
+            if (isNaN(page))page = undefined;
         }
-        this.fetchAction();
+        this.fetchAction(page);
         this.bindEvents();
         this.bindEntryEvents();
     },
@@ -33,7 +38,7 @@ var SearchResultView = MultiPageView.extend({
             $("#compare_" + courseIds[i]).find("input").attr("class", "remove btn_gray").val("已加入对比").removeClass("add").addClass("remove");
         }
         //todo 这里是为了声明页面加载完毕
-        $('body').attr('pageRenderReady','')
+        $('body').attr('pageRenderReady', '')
     },
     bindEvents: function () {
         var that = this, id;
@@ -59,9 +64,9 @@ var SearchResultView = MultiPageView.extend({
     },
 
     bindEntryEvents: function () {
-        $('#searchResultDisplayPanel').on('click','.viewDetail',function(){
+        $('#searchResultDisplayPanel').on('click', '.viewDetail', function () {
             var courseId = $(this).data('id');
-            if(courseId=='')return;
+            if (courseId == '')return;
             _hmt.push(['_trackEvent', 'course', 'click', courseId]);
             app.navigate("course/" + courseId, true);
         });
@@ -70,7 +75,7 @@ var SearchResultView = MultiPageView.extend({
 
         if (page === undefined) {// 未传入参数
 
-            if(this.sr.get("start") === undefined)// localStorage中不存在缓存
+            if (this.sr.get("start") === undefined)// localStorage中不存在缓存
                 this.sr.set("start", 0);// 则设置默认的start为0
         } else {
             this.sr.set("start", (page - 1) * this.pageEntryNumber);
@@ -78,7 +83,7 @@ var SearchResultView = MultiPageView.extend({
         this.sr.set("count", this.pageEntryNumber);
         this.currentPage = page;
         app.navigate("search/" + this.sr.toQueryString(), {trigger: false, replace: true});
-        $("#"+this.entryContainer).empty().append('<div class="loading"></div>');
+        $("#" + this.entryContainer).empty().append('<div class="loading"></div>');
         $("#courseSearchResultNavigator").empty();
         app.generalManager.findCourse(this.sr, {
             success: this.renderSearchResults,
@@ -88,7 +93,7 @@ var SearchResultView = MultiPageView.extend({
     },
     renderError: function (data) {
         if (!this.isClosed) {
-            $("#"+this.entryContainer).empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
+            $("#" + this.entryContainer).empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
         }
     },
     renderSearchResults: function (data) {
