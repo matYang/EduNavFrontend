@@ -25,6 +25,7 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'classType': undefined,//班级类型 0，1，2，3
 
             'commission': undefined,
+            'originalPrice': undefined,
             'cashbackStart': undefined,
             'cashbackEnd': undefined,
 
