@@ -231,7 +231,7 @@ var NewBookingView = BaseFormView.extend({
             var payType = parseInt($(this).val(), 10);
             if (payType==EnumConfig.PayType.online && !app.sessionManager.hasSession()) {
                 $('input[name=bookingType][value='+EnumConfig.PayType.offline+']').prop('checked',true);
-                Info.displayNotice('登录后才能享受线上支付优惠哦~');
+                Info.displayNotice('登录后才能享受在线支付优惠哦~');
                 $("#booking_loginbox").show();
                 $.smoothScroll({scrollTarget:'#bookingDetail'});
                 //todo focus应移至提示信息的回调中
