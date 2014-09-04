@@ -40,10 +40,14 @@ var SearchView = Backbone.View.extend({
             app.viewRegistration.register(this);
             // $("title").html("找课程 | " + this.searchRepresentation.toTitleString());//that will be too long
             this.$el.append(this.template);
-            this.compareWidgetView = new CompareWidgetView();
-            this.searchResultView = new SearchResultView(this.searchRepresentation, this.compareWidgetView);
+            //异步加载目录和地址
             app.generalManager.getCategories(this);//传递this参数,会在获取目录之后调用this.renderCategories()
             app.generalManager.getLocations(this);//同上 调用this.renderLocations
+
+            //加载course之前首先加载widget baiduMap course数据获取后会生成地图
+            this.compareWidgetView = new CompareWidgetView();
+            //新建view时会调用一次fetchAction 则会进行一次数据渲染
+            this.searchResultView = new SearchResultView(this.searchRepresentation, this.compareWidgetView);
             //初始化时同步url中的参数进行过滤
             this.syncFilters();
             this.syncSorter();
@@ -54,8 +58,7 @@ var SearchView = Backbone.View.extend({
                 $searchReqs.addClass("hidden");
             }
             this.bindEvents();
-            this.currentPage = 0;
-            document.title = "找课程";
+            document.title = "找课程?就上爱上课";
         }
     },
     /*加载课程类别*/
@@ -96,8 +99,6 @@ var SearchView = Backbone.View.extend({
             $("#search_category").append(cbuf.join(""));
             this.showCategory();
             this.bindCatSearchEvents();
-            //加载完类别后进行课程的查询
-            this.courseSearch();
         }
     },
     /*渲染选中的课程类别*/
@@ -144,6 +145,7 @@ var SearchView = Backbone.View.extend({
             startDateEnd = this.searchRepresentation.get("startDateEnd"),
             cashback = this.searchRepresentation.get("cashbackStart"),
             commission = this.searchRepresentation.get("commission"),
+            originalPriceStart = this.searchRepresentation.get("originalPriceStart"),
 
             schooltimeWeek = this.searchRepresentation.get("schooltimeWeek"),
             schooltimeDay = this.searchRepresentation.get("schooltimeDay"),
@@ -199,6 +201,9 @@ var SearchView = Backbone.View.extend({
         }
         if (commission && commission > 0) {
             $("input[name=commission]").prop("checked", true);
+        }
+        if (originalPriceStart && originalPriceStart > 0) {
+            $("input[name=originalPriceStart]").prop("checked", true);
         }
     },
     syncSorter: function () {
@@ -343,6 +348,14 @@ var SearchView = Backbone.View.extend({
                 that.searchRepresentation.set("commission", 1);
             } else {
                 that.searchRepresentation.set("commission", undefined);
+            }
+            that.courseSearch();
+        });
+        $("input[name=originalPriceStart]").on("change", function () {
+            if ($(this).prop("checked")) {
+                that.searchRepresentation.set("originalPriceStart", 1);
+            } else {
+                that.searchRepresentation.set("originalPriceStart", undefined);
             }
             that.courseSearch();
         });

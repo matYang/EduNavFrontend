@@ -274,9 +274,9 @@ a:hover, a:active{
 .bg-warning{ background-color: #f7a501; }
 .bg-error{ background-color: #FF5500; }
 
-.text-primary{color: #128d56; }
-.text-warning{color: #f7a501; }
-.text-error{color: #FF5500; }
+.text-primary,a.text-primary{color: #128d56; }
+.text-warning,a.text-warning{color: #f7a501; }
+.text-error,a.text-error{color: #FF5500; }
 
 /*带有下点点的字体因其重要性字体会调大*/
 .dotted-line{
