@@ -62,7 +62,7 @@ var jiathis_config = {
     // imageUrl:"http://v2.jiathis.com/code/images/r5.gif",
     // imageWidth:26,
     // marginTop:150,
-    url: "http://www.ishangke.com",
+    url: "http://www.ishangke.cn",
     title: "邀请培训拿红包 #爱上课#",
     summary: "我请大家免费上培训班啦！接受邀请请点击www.iShangke.cn，注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！",
     // pic:"自定义分享的图片连接地址",
