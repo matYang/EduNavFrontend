@@ -44,9 +44,10 @@ var SearchView = Backbone.View.extend({
             app.generalManager.getCategories(this);//传递this参数,会在获取目录之后调用this.renderCategories()
             app.generalManager.getLocations(this);//同上 调用this.renderLocations
 
+            //加载course之前首先加载widget baiduMap course数据获取后会生成地图
+            this.compareWidgetView = new CompareWidgetView();
             //新建view时会调用一次fetchAction 则会进行一次数据渲染
             this.searchResultView = new SearchResultView(this.searchRepresentation, this.compareWidgetView);
-            this.compareWidgetView = new CompareWidgetView();
             //初始化时同步url中的参数进行过滤
             this.syncFilters();
             this.syncSorter();
