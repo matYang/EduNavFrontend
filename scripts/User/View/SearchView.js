@@ -40,10 +40,13 @@ var SearchView = Backbone.View.extend({
             app.viewRegistration.register(this);
             // $("title").html("找课程 | " + this.searchRepresentation.toTitleString());//that will be too long
             this.$el.append(this.template);
-            this.compareWidgetView = new CompareWidgetView();
-            this.searchResultView = new SearchResultView(this.searchRepresentation, this.compareWidgetView);
+            //异步加载目录和地址
             app.generalManager.getCategories(this);//传递this参数,会在获取目录之后调用this.renderCategories()
             app.generalManager.getLocations(this);//同上 调用this.renderLocations
+
+            //新建view时会调用一次fetchAction 则会进行一次数据渲染
+            this.searchResultView = new SearchResultView(this.searchRepresentation, this.compareWidgetView);
+            this.compareWidgetView = new CompareWidgetView();
             //初始化时同步url中的参数进行过滤
             this.syncFilters();
             this.syncSorter();
@@ -54,8 +57,7 @@ var SearchView = Backbone.View.extend({
                 $searchReqs.addClass("hidden");
             }
             this.bindEvents();
-            this.currentPage = 0;
-            document.title = "";
+            document.title = "找课程?就上爱上课";
         }
     },
     /*加载课程类别*/
@@ -96,8 +98,6 @@ var SearchView = Backbone.View.extend({
             $("#search_category").append(cbuf.join(""));
             this.showCategory();
             this.bindCatSearchEvents();
-            //加载完类别后进行课程的查询
-            this.courseSearch();
         }
     },
     /*渲染选中的课程类别*/

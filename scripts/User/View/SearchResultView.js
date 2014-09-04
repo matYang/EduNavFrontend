@@ -23,7 +23,7 @@ var SearchResultView = MultiPageView.extend({
             this.initialized = true;
             var start = this.sr.get('start');
             var count = this.sr.get('count');
-            page = parseInt(Math.ceil(start / count));
+            page = parseInt(start / count +1);
             if (isNaN(page))page = undefined;
         }
         this.fetchAction(page);
@@ -89,7 +89,7 @@ var SearchResultView = MultiPageView.extend({
             success: this.renderSearchResults,
             error: this.renderError
         });
-        app.storage.setSearchRepresentationCache(this.searchRepresentation, "course");
+        app.storage.setSearchRepresentationCache(this.sr, "course");
     },
     renderError: function (data) {
         if (!this.isClosed) {
