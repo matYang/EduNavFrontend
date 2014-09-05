@@ -1805,8 +1805,8 @@
         <th>上课时间</th>
         <% _.each(courses, function(course) { %>
         <td class="courseId_<%= course.id %>">
-            <p><%if(schooltimeWeek){%>
-            <%=schooltimeWeek%> - <%=schooltimeDay%>
+            <p><%if(course.schooltimeWeek){%>
+            <%=course.schooltimeWeek%> - <%=course.schooltimeDay%>
             <%}%></p>
             <p><%if(course.startTime1){%>
             <%= course.startTime1 %>-<%= course.finishTime1 %>
