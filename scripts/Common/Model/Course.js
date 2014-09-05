@@ -284,6 +284,8 @@ var Course = Backbone.Model.extend({
             json.finishTime1 = json.finishTime1 == null ? null : Math.floor(json.finishTime1 / 100) + ":" + ((json.finishTime1 % 100 < 10) ? "0" + json.finishTime1 % 100 : json.finishTime1 % 100);
             json.finishTime2 = json.finishTime2 == null ? null : Math.floor(json.finishTime2 / 100) + ":" + ((json.finishTime2 % 100 < 10) ? "0" + json.finishTime2 % 100 : json.finishTime2 % 100);
 
+            json.schooltimeWeek = this.get("schooltimeWeek");
+            json.schooltimeDay = this.get("schooltimeDay");
             json.schooltimeWeek = Utilities.toSchoolTimeText(json.schooltimeWeek, EnumConfig.schooltimeWeek);//周末什么的
             json.schooltimeDay = Utilities.toSchoolTimeText(json.schooltimeDay, EnumConfig.schooltimeDay);//白天什么的
 
