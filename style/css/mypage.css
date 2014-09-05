@@ -5,7 +5,7 @@
 table{border-top:1px solid #ccc; border-right:1px solid #ccc;border-collapse: collapse}
 table td{
     border-bottom:1px solid #ccc; border-left:1px solid #ccc;
-    height:35px; line-height:28px; text-align:center; font-size:12px;}
+    height:35px; line-height:22px; text-align:center; font-size:12px;}
 table thead td{background:#e6e6e7;}
 table tbody td.col2{ color:#ff5500;}
 table td.col4{padding-left:20px;}
