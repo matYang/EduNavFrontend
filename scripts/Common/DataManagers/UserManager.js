@@ -551,7 +551,7 @@
             contentType: 'application/json',
             success: function (data, response) {
                 if (callback) {
-                    callback.success(data);
+                    callback.success(new Booking(data,{parse:true}));
                 }
             },
             error: function (data) {

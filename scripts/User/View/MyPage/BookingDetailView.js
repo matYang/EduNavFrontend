@@ -33,7 +33,8 @@ var BookingDetailView = Backbone.View.extend({
         if (noShowList.indexOf(booking.get('status')) !== -1) {
             show = 0;
         }
-        this.$el.append(this.template(_.extend(this.booking._toJSON(), {show: show})));
+        //render bookings
+        this.$el.html(this.template(_.extend(this.booking._toJSON(), {show: show})));
         this.bindEvents();
         var self = this;
         if (show === 1) {
@@ -85,7 +86,7 @@ var BookingDetailView = Backbone.View.extend({
         for (var i = 0; i < currentNodeIndex; i++) {
             statusList[i] = 2;
         }
-        //Step 3 map the array
+        //Step 3 map the number array to css style class array
         statusList = statusList.map(function (val) {
             return statusMap[val];
         });
