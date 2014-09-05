@@ -1691,7 +1691,7 @@
         </td>
         <td>
             <%if(schooltimeWeek){%>
-                <%=schooltimeWeek%> - <%=schooltimeDay%>&nbsp;
+                <%=schooltimeWeek%>&nbsp;(<%=schooltimeDay%>)&nbsp;
             <%}%>
             <%if(startTime1){%>
                 <%=startTime1%>-<%=finishTime1%>
@@ -1796,7 +1796,7 @@
             <%}else{%>
             <%= course.startDate %>
             <%if(course.finishDate){%>
-            - <%= course.finishDate %>
+            &nbsp;(<%= course.finishDate %>)
             <%}%>
             <%}%></td>
         <% }); %>
