@@ -401,6 +401,6 @@ var Utilities = {
         var text = _.map(list, function (val) {
             return textEnum[val];
         });
-        return text.join('，');
+        return text.join('+');
     }
 };

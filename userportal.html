@@ -1705,7 +1705,7 @@
         </td>
         <td>
             <%if(schooltimeWeek){%>
-                <%=schooltimeWeek%>，<%=schooltimeDay%>&nbsp;&nbsp;
+                <%=schooltimeWeek%> - <%=schooltimeDay%>&nbsp;
             <%}%>
             <%if(startTime1){%>
                 <%=startTime1%>-<%=finishTime1%>
@@ -1818,10 +1818,15 @@
     <tr id="startTime">
         <th>上课时间</th>
         <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.id %>"><%if(course.startTime1){%>
+        <td class="courseId_<%= course.id %>">
+            <p><%if(schooltimeWeek){%>
+            <%=schooltimeWeek%> - <%=schooltimeDay%>
+            <%}%></p>
+            <p><%if(course.startTime1){%>
             <%= course.startTime1 %>-<%= course.finishTime1 %>
             <% if (course.startTime2) { %>, <%= course.startTime2 %> - <%= course.finishTime2 %><% } %>
-            <%}%></td>
+            <%}%></p>
+        </td>
         <% }); %>
     </tr>
 

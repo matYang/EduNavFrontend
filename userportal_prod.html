@@ -15,7 +15,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="style/images/ico.ico"/>
     <link href="style/lib/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <link href="build/style/css/style-min.css?version=2.0build003" rel="stylesheet" type="text/css"/>
+    <link href="build/style/css/style-min.css?version=2.0build004" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript">
         if (!window.console) {
@@ -1690,11 +1690,12 @@
             <%}%>
         </td>
         <td>
+            <%if(schooltimeWeek){%>
+                <%=schooltimeWeek%> - <%=schooltimeDay%>&nbsp;
+            <%}%>
             <%if(startTime1){%>
                 <%=startTime1%>-<%=finishTime1%>
                 <%if(startTime2){%>, <%=startTime2%> - <%=finishTime2%><%}%>
-            <%}else{%>
-            -- --
             <%}%>
         </td>
         <td class="addr"><%=address%></td>
@@ -1803,10 +1804,15 @@
     <tr id="startTime">
         <th>上课时间</th>
         <% _.each(courses, function(course) { %>
-        <td class="courseId_<%= course.id %>"><%if(course.startTime1){%>
+        <td class="courseId_<%= course.id %>">
+            <p><%if(schooltimeWeek){%>
+            <%=schooltimeWeek%> - <%=schooltimeDay%>
+            <%}%></p>
+            <p><%if(course.startTime1){%>
             <%= course.startTime1 %>-<%= course.finishTime1 %>
             <% if (course.startTime2) { %>, <%= course.startTime2 %> - <%= course.finishTime2 %><% } %>
-            <%}%></td>
+            <%}%></p>
+        </td>
         <% }); %>
     </tr>
 
@@ -2709,8 +2715,8 @@
 </script>
 </div>
 <!-- load libraries-->
-<script src="build/common.min.js?version=2.0build003" type="text/javascript"></script>
-<script src="build/main.min.js?version=2.0build003" type="text/javascript"></script>
+<script src="build/common.min.js?version=2.0build004" type="text/javascript"></script>
+<script src="build/main.min.js?version=2.0build004" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8" src="http://gate.looyu.com/52669/117998.js"></script>
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
