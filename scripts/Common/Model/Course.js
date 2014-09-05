@@ -137,8 +137,8 @@ var Course = Backbone.Model.extend({
                 data.startTime2 = Utilities.parseNum(data.startTime2, 10);
                 data.finishTime2 = Utilities.parseNum(data.finishTime2, 10);//上课时间
 
-                data.schoolTimeWeek = Utilities.toSchoolTimeList(data.schoolTimeWeek, EnumConfig.schooltimeWeek);//周末什么的
-                data.schoolTimeDay = Utilities.toSchoolTimeList(data.schoolTimeDay, EnumConfig.schooltimeDay);//白天什么的
+                data.schooltimeWeek = Utilities.toSchoolTimeList(data.schooltimeWeek, EnumConfig.schooltimeWeek);//周末什么的
+                data.schooltimeDay = Utilities.toSchoolTimeList(data.schooltimeDay, EnumConfig.schooltimeDay);//白天什么的
 
                 if (data.teacherList) {
                     for (i = 0; i < data.teacherList.length; i++) {
@@ -177,8 +177,8 @@ var Course = Backbone.Model.extend({
             json.finishTime1 = json.finishTime1 == null ? null : Math.floor(json.finishTime1 / 100) + ":" + ((json.finishTime1 % 100 < 10) ? "0" + json.finishTime1 % 100 : json.finishTime1 % 100);
             json.finishTime2 = json.finishTime2 == null ? null : Math.floor(json.finishTime2 / 100) + ":" + ((json.finishTime2 % 100 < 10) ? "0" + json.finishTime2 % 100 : json.finishTime2 % 100);
 
-            json.schoolTimeWeek = Utilities.toSchoolTimeText(json.schoolTimeWeek, EnumConfig.schooltimeWeek);//周末什么的
-            json.schoolTimeDay = Utilities.toSchoolTimeText(json.schoolTimeDay, EnumConfig.schooltimeDay);//白天什么的
+            json.schooltimeWeek = Utilities.toSchoolTimeText(json.schooltimeWeek, EnumConfig.schooltimeWeek);//周末什么的
+            json.schooltimeDay = Utilities.toSchoolTimeText(json.schooltimeDay, EnumConfig.schooltimeDay);//白天什么的
 
 
             if (json.studyDays) {
@@ -284,8 +284,8 @@ var Course = Backbone.Model.extend({
             json.finishTime1 = json.finishTime1 == null ? null : Math.floor(json.finishTime1 / 100) + ":" + ((json.finishTime1 % 100 < 10) ? "0" + json.finishTime1 % 100 : json.finishTime1 % 100);
             json.finishTime2 = json.finishTime2 == null ? null : Math.floor(json.finishTime2 / 100) + ":" + ((json.finishTime2 % 100 < 10) ? "0" + json.finishTime2 % 100 : json.finishTime2 % 100);
 
-            json.schoolTimeWeek = Utilities.toSchoolTimeText(json.schoolTimeWeek, EnumConfig.schooltimeWeek);//周末什么的
-            json.schoolTimeDay = Utilities.toSchoolTimeText(json.schoolTimeDay, EnumConfig.schooltimeDay);//白天什么的
+            json.schooltimeWeek = Utilities.toSchoolTimeText(json.schooltimeWeek, EnumConfig.schooltimeWeek);//周末什么的
+            json.schooltimeDay = Utilities.toSchoolTimeText(json.schooltimeDay, EnumConfig.schooltimeDay);//白天什么的
 
             json.price = this.get("price");
             json.cashback = this.get("cashback");
