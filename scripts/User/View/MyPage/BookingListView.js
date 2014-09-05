@@ -60,6 +60,7 @@ var BookingListView = MultiPageView3.extend({
     bindEvents: function () {
         var self = this;
         $("#bookingSummary").on("click", ".js_btn_operate", function (e) {
+
             var $target = $(e.target);
             var bookingId = $target.data('id');
             if (!bookingId) {
