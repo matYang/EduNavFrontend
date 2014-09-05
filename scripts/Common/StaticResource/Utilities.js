@@ -144,8 +144,8 @@ var Utilities = {
 //        }
 //        var date = new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
         /*必须先转换为number 否则13位以上string会出现invalid date*/
-        timestamp = parseInt(timestamp,10);
-        if(isNaN(timestamp)){
+        timestamp = parseInt(timestamp, 10);
+        if (isNaN(timestamp)) {
             return null;
         }
         return new Date(timestamp);
@@ -224,7 +224,7 @@ var Utilities = {
 
     parseNum: function (val) {
         val = parseFloat(val);
-        if(isNaN(val))
+        if (isNaN(val))
             return null;
         return val
     },
@@ -309,7 +309,7 @@ var Utilities = {
                 }, 120000);
             },
             error: function (data) {
-                $info.html(data.message||"发送失败，请检查网络正常并重试");
+                $info.html(data.message || "发送失败，请检查网络正常并重试");
                 $button.val("重新发送").prop("disabled", false);
             }
         };
@@ -376,7 +376,31 @@ var Utilities = {
         };
         catArray = getCat(categoryValue, 0, {children: categoryObj});
         return catArray;
+    },
+
+    toSchoolTimeList: function (val, textEnum) {
+        console.log(val);
+        //value = 1 or + 2 or + 4
+        var list = [];
+        if (!val || textEnum === undefined) {
+            return list;
+        }
+        _.each(textEnum, function (v, k) {//k is the number value in schoolTimeDay or schoolTimeWeek
+            if ((k & val ) !== 0)
+                list.push(parseInt(k));
+        }, list);
+        if (list.join() === '')
+            return undefined;
+        return list;
+    },
+
+    toSchoolTimeText: function (list, textEnum) {
+        if (!list || textEnum === undefined) {
+            return '';
+        }
+        var text = _.map(list, function (val) {
+            return textEnum[val];
+        });
+        return text.join('，');
     }
-
-
 };

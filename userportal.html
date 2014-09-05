@@ -1704,11 +1704,12 @@
             <%}%>
         </td>
         <td>
+            <%if(schoolTimeWeek){%>
+                <%=schoolTimeWeek%>，<%=schoolTimeDay%>&nbsp;&nbsp;
+            <%}%>
             <%if(startTime1){%>
                 <%=startTime1%>-<%=finishTime1%>
                 <%if(startTime2){%>, <%=startTime2%> - <%=finishTime2%><%}%>
-            <%}else{%>
-            -- --
             <%}%>
         </td>
         <td class="addr"><%=address%></td>

@@ -84,13 +84,18 @@ var EnumConfig = {
     'CourseStatus': {
         onlined: 2 //已上线
     },
-
-    'PartnerQualification': {
-        verified: 0,
-        unverified: 1
-    },
-
     'WeekText':['星期一','星期二','星期三','星期四','星期五','星期六','星期日'],
+
+    //first letter will be lowercase from now on
+    schooltimeDay: {
+        3: '白天',
+        4: '晚上'
+    },
+    schooltimeWeek: {
+        1: '平时',
+        2: '周末'
+    },
+    //end
 
     'BookingHistoryText':{
         0:'您提交了订单，请您在30分钟内完成支付，过时系统将自动取消',

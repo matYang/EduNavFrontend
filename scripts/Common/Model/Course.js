@@ -48,6 +48,10 @@ var Course = Backbone.Model.extend({
                 'finishTime1': undefined,
                 'startTime2': undefined,
                 'finishTime2': undefined,//上课时间
+                'schoolTimeWeek': undefined,//平时 周末
+                'schoolTimeDay': undefined,//
+
+
                 'classSize': undefined,//班级类型
                 'openCourseRequirement': undefined,//开班要求
                 'cutoffDate': undefined,//报名截止日期
@@ -133,6 +137,9 @@ var Course = Backbone.Model.extend({
                 data.startTime2 = Utilities.parseNum(data.startTime2, 10);
                 data.finishTime2 = Utilities.parseNum(data.finishTime2, 10);//上课时间
 
+                data.schoolTimeWeek = Utilities.toSchoolTimeList(data.schoolTimeWeek, EnumConfig.schooltimeWeek);//周末什么的
+                data.schoolTimeDay = Utilities.toSchoolTimeList(data.schoolTimeDay, EnumConfig.schooltimeDay);//白天什么的
+
                 if (data.teacherList) {
                     for (i = 0; i < data.teacherList.length; i++) {
                         imgArr[i] = new Teacher(data.teacherList[i], {parse: true});
@@ -169,6 +176,9 @@ var Course = Backbone.Model.extend({
             json.startTime2 = json.startTime2 == null ? null : Math.floor(json.startTime2 / 100) + ":" + ((json.startTime2 % 100 < 10) ? "0" + json.startTime2 % 100 : json.startTime2 % 100);
             json.finishTime1 = json.finishTime1 == null ? null : Math.floor(json.finishTime1 / 100) + ":" + ((json.finishTime1 % 100 < 10) ? "0" + json.finishTime1 % 100 : json.finishTime1 % 100);
             json.finishTime2 = json.finishTime2 == null ? null : Math.floor(json.finishTime2 / 100) + ":" + ((json.finishTime2 % 100 < 10) ? "0" + json.finishTime2 % 100 : json.finishTime2 % 100);
+
+            json.schoolTimeWeek = Utilities.toSchoolTimeText(json.schoolTimeWeek, EnumConfig.schooltimeWeek);//周末什么的
+            json.schoolTimeDay = Utilities.toSchoolTimeText(json.schoolTimeDay, EnumConfig.schooltimeDay);//白天什么的
 
 
             if (json.studyDays) {
@@ -274,6 +284,8 @@ var Course = Backbone.Model.extend({
             json.finishTime1 = json.finishTime1 == null ? null : Math.floor(json.finishTime1 / 100) + ":" + ((json.finishTime1 % 100 < 10) ? "0" + json.finishTime1 % 100 : json.finishTime1 % 100);
             json.finishTime2 = json.finishTime2 == null ? null : Math.floor(json.finishTime2 / 100) + ":" + ((json.finishTime2 % 100 < 10) ? "0" + json.finishTime2 % 100 : json.finishTime2 % 100);
 
+            json.schoolTimeWeek = Utilities.toSchoolTimeText(json.schoolTimeWeek, EnumConfig.schooltimeWeek);//周末什么的
+            json.schoolTimeDay = Utilities.toSchoolTimeText(json.schoolTimeDay, EnumConfig.schooltimeDay);//白天什么的
 
             json.price = this.get("price");
             json.cashback = this.get("cashback");
