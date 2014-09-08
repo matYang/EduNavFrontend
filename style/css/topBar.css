@@ -2,7 +2,7 @@
 /* CSS Document */
 
 .topBar{ height:75px; background:url(../images/top_bar_bg.png) repeat-x;}
-.topBar .topBar-inner{width:1000px; margin:0 auto;background:url(../images/top_bar_bg.png) repeat-x;}
+.topBar .topBar-inner{width:1200px; margin:0 auto;background:url(../images/top_bar_bg.png) repeat-x;}
 
 #logo{float:left; width:155px; height:75px; background:url(../images/logo.png) no-repeat; text-indent:-9999px;}
 .topBar-navigation{float:left; height:60px; margin-left:20px; line-height:60px; color:#fff; font-size:18px;}
