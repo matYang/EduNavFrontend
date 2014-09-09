@@ -26,7 +26,7 @@
     -o-transition: all 0.2s;
     transition: all 0.2s;
 }
-.login_reg a:hover,.user_info a:hover{
+.login_reg .hd a:hover,.user_info a:hover{
     color: #ffffff;
 }
 
