@@ -379,7 +379,7 @@ var Utilities = {
     },
 
     toSchoolTimeList: function (val, textEnum) {
-        console.log(val);
+        // console.log(val);
         //value = 1 or + 2 or + 4
         var list = [];
         if (!val || textEnum === undefined) {
