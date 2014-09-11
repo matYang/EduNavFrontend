@@ -144,9 +144,9 @@
 <script type="text/template" id="tpl_banner">
     <div id="visual_container">
         <ul class="bjqs">
-            <li style="display: block;"><img src="style/images/banner.jpg" alt="" height="320"></li>
-            <li style="display: none;"><img src="style/images/banner2.jpg" alt="" height="320"></li>
-            <li style="display: none;"><img src="style/images/banner3.jpg" alt="" height="320"></li>
+            <li><img src="style/images/banner1.jpg" alt="" height="320"></li>
+            <li><img src="style/images/banner2.png" alt="" height="320"></li>
+            <li><img src="style/images/banner3.png" alt="" height="320"></li>
         </ul>
     </div>
 </script>
@@ -1450,13 +1450,11 @@
     </div>
     <div class="row2 clearfix">
         <div id="courseSlide" class="gallary clearfix">
-            <div>
                 <ul class="bjqs">
                     <% _.each(classPhotoList,function(photo){%>
                     <li><img src="<%=photo.imgUrl%>"></li>
                     <%})%>
                 </ul>
-            </div>
         </div>
         <div class="course_map">
             <div class="addr" title="<%= address %>">上课地点：<%= address %></div>
@@ -2592,7 +2590,7 @@
             <a class="jiathis_button_qzone invitation_icon qzone">QQ空间</a>
             <a class="jiathis_button_douban invitation_icon douban">豆瓣</a>
             <a class="jiathis_button_kaixin001 invitation_icon kaixin">开心网</a>
-            <a class="jiathis_button_weixin invitation_icon weixin">微信</a>
+            <!--<a class="jiathis_button_weixin invitation_icon weixin">微信</a>-->
         </div>
 
         <dl class="invitation_tip" style="margin-top:50px;">

@@ -1,23 +1,83 @@
 @charset "utf-8";
 /* CSS Document */
 
-.index #topBar{position:absolute; top:0; left:0; width:100%;z-index: 999;;}
+.index #topBar{position:absolute; top:0; left:0; width:100%;z-index: 999;}
 .index #main{ margin-top:60px;min-width: 1000px;}
 
-.index #visualScope {width:100%; height:320px;margin:0 auto; background:#069c5e; overflow:hidden;}
+.index #visualScope {width:100%; height:320px;margin:0 auto; overflow:hidden; }
+
+/*在屏幕宽度超过1440时 左右会出现空白背景
+    #1 设置图片的宽度为1960px 适应高分辨率屏 retina除外
+    #2 根据不同图片设置不同背景图 这个比较麻烦 大图必须匹配对应的背景图
+    # (接2)图片滚动中动态变换外部容器#visual_container的background 使用js控制 可改写bjqs插件来实现
+    #简单考虑 现阶段使用方案1比较合适 并且出现复杂图片后 背景图不可能与banner切合完美
+    # 所以让设计师去重修一下图片 最优化压缩大图
+*/
+/*这里只提供了上下层纯色分层明显的第三张banner的背景图 第二张复杂图片难以提供背景图切合*/
+/* background:url(../images/banner3_bg.png) repeat-x;*/
+
 /*visual_container  */
 .index #visual_container,
 .index #visual_container .slidee,
 .index #visual_container .slidee li {height:320px}
 
-.index #visual_container{width: 1px;margin: 0 auto;position: relative;}
-.index #visual_container .slidee {width:1500px; position:absolute; left:-750px; overflow:hidden;}
+/*Banner 图片滚动*/
+.index #visual_container{position: relative;left: 50%}
+/*容器中设置了left为50% 那么以下三个子容器(两个ul和一个ol)
+    必须设置margin-left用于将子容器向左/2宽度 使其水平居中
+    todo 后面可以讲单独的设置统一提取出现 写到移出style中
+    */
+#visual_container ul.bjqs{
+    width:1440px; margin-left:-720px;
+    position:relative; list-style:none;
+    padding:0;overflow:hidden; display:none;}
+#visual_container li.bjqs-slide{position:absolute; display:none;}
+
+/*left and right controls 左右切换滚动图按钮*/
+#visualScope ul.bjqs-controls{
+    margin-left:-720px;
+    list-style:none;z-index:9999;
+}
+#visualScope ul.bjqs-controls li a{
+    position:absolute;
+    top:180px; display:block;
+    width:40px; height:80px;
+    background:url(../images/banner_pre_next.png) no-repeat;
+}
+
+#visualScope ul.bjqs-controls li.bjqs-prev a{left:0;background-position:0 0; margin-left: -540px;}
+#visualScope ul.bjqs-controls li.bjqs-prev a:hover{ background-position:-40px 0;}
+#visualScope ul.bjqs-controls li.bjqs-next a{right:900px;background-position:0 -80px; margin-left: -460px;}
+#visualScope ul.bjqs-controls li.bjqs-next a:hover{ background-position:-40px -80;}
+/*共同的hover状态*/
+#visualScope ul.bjqs-controls li a:hover{background-color:rgba(0,0,0,0.1);}
 
 
 
-/* #visual_container .slidee li {position:absolute;top:0;left:0}   */
-/*.index #visual_container .bjqs li {display:none;}*/
-/*.index #visual_container .bjqs li:first-child { display:block;}*/
+/*banner切换按钮 todo 需要结合bjqs的下方分页按钮 与课程详情页中的一致*/
+.index #visualScope ol.bjqs-markers{
+    position:absolute;
+    top:228px; z-index:99;
+    padding: 0;
+    text-align: center; list-style: none;
+    width:400px;
+    margin-left: -720px;
+}
+.index #visualScope ol.bjqs-markers li{display:inline;}
+.index #visualScope ol.bjqs-markers li a{
+    display: inline-block;
+    margin-right:5px;
+    width:10px; height:10px; text-indent:-9999px;
+    background:rgba(255,255,255,.95);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99ffffff',endColorstr='#99ffffff');
+    cursor:pointer;
+    -webkit-transition: all 0.65s;
+    -moz-transition: all 0.65s;
+    -ms-transition: all 0.65s;
+    -o-transition: all 0.65s;
+    transition: all 0.65s;}
+.index #visualScope ol.bjqs-markers li a:hover{ background:#2a2e39;}
+.index #visualScope ol.bjqs-markers li.active-marker a{ background:#2a2e39;filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99000000',endColorstr='#99000000'); }
 
 .index .content{ margin-top:-74px; position:relative;}
 .index .content .category{ margin-bottom:100px;}
