@@ -151,7 +151,7 @@ var BannerView = Backbone.View.extend({
         //img slider
         $('#visual_container').bjqs({
             height: 320,
-            width: 1440,
+            width: 1960,
 //            randomstart: true,     // start from a random slide
             animtype: 'fade', // accepts 'fade' or 'slide'
             animduration: 750, // how fast the animation are

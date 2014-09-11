@@ -28,14 +28,14 @@
     todo 后面可以讲单独的设置统一提取出现 写到移出style中
     */
 #visual_container ul.bjqs{
-    width:1440px; margin-left:-720px;
+    width:1960px; margin-left:-980px;
     position:relative; list-style:none;
     padding:0;overflow:hidden; display:none;}
 #visual_container li.bjqs-slide{position:absolute; display:none;}
 
 /*left and right controls 左右切换滚动图按钮*/
 #visualScope ul.bjqs-controls{
-    margin-left:-720px;
+    margin-left:-980px;
     list-style:none;z-index:9999;
 }
 #visualScope ul.bjqs-controls li a{
@@ -47,12 +47,8 @@
 
 #visualScope ul.bjqs-controls li.bjqs-prev a{left:0;background-position:0 0; margin-left: -540px;}
 #visualScope ul.bjqs-controls li.bjqs-prev a:hover{ background-position:-40px 0;}
-#visualScope ul.bjqs-controls li.bjqs-next a{right:900px;background-position:0 -80px; margin-left: -460px;}
-#visualScope ul.bjqs-controls li.bjqs-next a:hover{ background-position:-40px -80;}
-/*共同的hover状态*/
-#visualScope ul.bjqs-controls li a:hover{background-color:rgba(0,0,0,0.1);}
-
-
+#visualScope ul.bjqs-controls li.bjqs-next a{right:1420px;background-position:0 -80px; margin-left: -460px;}
+#visualScope ul.bjqs-controls li.bjqs-next a:hover{ background-position:-40px -80px;}
 
 /*banner切换按钮 todo 需要结合bjqs的下方分页按钮 与课程详情页中的一致*/
 .index #visualScope ol.bjqs-markers{
@@ -61,7 +57,7 @@
     padding: 0;
     text-align: center; list-style: none;
     width:400px;
-    margin-left: -720px;
+    margin-left: -980px;
 }
 .index #visualScope ol.bjqs-markers li{display:inline;}
 .index #visualScope ol.bjqs-markers li a{
