@@ -33,7 +33,7 @@
     padding:0;overflow:hidden; display:none;}
 #visual_container li.bjqs-slide{position:absolute; display:none;}
 
-/*left and right controls*/
+/*left and right controls 左右切换滚动图按钮*/
 #visualScope ul.bjqs-controls{
     margin-left:-720px;
     list-style:none;z-index:9999;
@@ -45,10 +45,12 @@
     background:url(../images/banner_pre_next.png) no-repeat;
 }
 
-#visualScope ul.bjqs-controls li.bjqs-prev a{background-position:0 0; left:50px;margin-left: -540px;}
-#visualScope ul.bjqs-controls li.bjqs-prev a:hover{ background-position:0 -40px;}
-#visualScope ul.bjqs-controls li.bjqs-next a{background-position:0 -80px; right:50px;margin-left: -460px;}
-#visualScope ul.bjqs-controls li.bjqs-next a:hover{ background-position:-40px 0; background-color:rgba(0,0,0,.45);}
+#visualScope ul.bjqs-controls li.bjqs-prev a{left:0;background-position:0 0; margin-left: -540px;}
+#visualScope ul.bjqs-controls li.bjqs-prev a:hover{ background-position:-40px 0;}
+#visualScope ul.bjqs-controls li.bjqs-next a{right:900px;background-position:0 -80px; margin-left: -460px;}
+#visualScope ul.bjqs-controls li.bjqs-next a:hover{ background-position:-40px -80;}
+/*共同的hover状态*/
+#visualScope ul.bjqs-controls li a:hover{background-color:rgba(0,0,0,0.1);}
 
 
 
