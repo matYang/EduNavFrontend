@@ -24,7 +24,7 @@ var UsernameModal = BaseFormView.extend({
                 })
             ];
         }
-        this.model =  new User();
+        this.model_tmp =  new User();
         //fromPageName will be 'setting' or 'share'
         this.notifier = new Backbone.Notifier();
         this.render();
@@ -50,7 +50,7 @@ var UsernameModal = BaseFormView.extend({
 
     submitAction: function () {
         var that = this;
-        app.userManager.changeInfo(this.model, {
+        app.userManager.changeInfo(this.model_tmp, {
             success: function(user){
                 that.saveSuccess.call(that,user);
             },

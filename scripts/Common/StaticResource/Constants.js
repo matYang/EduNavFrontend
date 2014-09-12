@@ -70,7 +70,10 @@ var Constants = {
         "mypage_password", "mypage_setting", "mypage_share",
         //设置用户名的弹出框
         "mypage_usernameModal",
-
+        //设置毕业院校的弹出框
+        "mypage_chooseSchoolModal",
+        //设置工作行業的弹出框
+        "mypage_chooseWorkModal",
         //底部栏
         "aboutUs", "joinUs", "contactUs", "advise", "help",
 

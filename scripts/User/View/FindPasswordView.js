@@ -69,8 +69,8 @@ var FindPasswordView = BaseFormView.extend({
         var that = this;
         if (state !== 2) {
             $("#getSms").on("click", function () {
-                if (Utilities.phoneValid(that.model.accountIdentifier).valid) {
-                    app.userManager.forgetPassword(that.model.accountIdentifier, Utilities.defaultSmsRequestHandler($("#getSms"), $("#smsInfo")));
+                if (Utilities.phoneValid(that.model_tmp.accountIdentifier).valid) {
+                    app.userManager.forgetPassword(that.model_tmp.accountIdentifier, Utilities.defaultSmsRequestHandler($("#getSms"), $("#smsInfo")));
                 } else {
                     $("#smsInfo").html("请先输入正确的手机号");
                 }
@@ -80,7 +80,7 @@ var FindPasswordView = BaseFormView.extend({
         }
     },
     submitAction: function () {
-        app.userManager.recoverPassword(this.model, {
+        app.userManager.recoverPassword(this.model_tmp, {
             success: this.successCallback,
             error: this.changeError
         });

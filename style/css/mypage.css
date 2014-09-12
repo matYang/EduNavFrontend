@@ -1,7 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-/*TODO md这段真是尼玛恶心 还尼玛有id啊 已怒删!*/
 table{border-top:1px solid #ccc; border-right:1px solid #ccc;border-collapse: collapse}
 table td{
     border-bottom:1px solid #ccc; border-left:1px solid #ccc;
@@ -12,7 +11,7 @@ table td.col4{padding-left:20px;}
 table td.col4 span{padding:2px; background:#ff5500; color:#fff; margin-left:5px;}
 table td.col5 span{ padding-left:25px; background:url(../images/icon.png) no-repeat left -306px; color:#128d56;}
 table td.col5 input{width:60px; height:24px; background:#128d56; border:none; color:#fff; font-size:12px; margin-top:3px; cursor:pointer;}
-/*TODO 尼玛有空了把上面这段删掉*/
+/*TODO 有空了把上面这段删掉*/
 /**********左栏**********/
 #mypage_sidebar{float:left; width:198px; border:1px solid #cccccc;}
 #mypage_sidebar .mypage_sidebar_title{ height:50px; line-height:50px; font-weight:bold; color:#fff; padding-left:35px; background:#128d56 url(../images/icon.png) no-repeat 15px 16px;}
@@ -52,10 +51,6 @@ table td.col5 input{width:60px; height:24px; background:#128d56; border:none; co
 #mypage_content .summaryItem1{ background: url(../images/summaryItem1.png) no-repeat 56px center;}
 #mypage_content .summaryItem2{ background: url(../images/summaryItem2.png) no-repeat 29px center;}
 #mypage_content .summaryItem3{ background: url(../images/summaryItem3.png) no-repeat 64px center;}
-
-
-
-
 
 
 
@@ -120,12 +115,6 @@ thead tr.bookingEntry td.detail{text-align: center}
 .icon-status.info{background-position: 0 -264px;}
 .icon-status.canceled{background-position: 0 -759px;}
 /*rewritten end */
-
-
-
-
-
-
 
 /*订单详情页*/
 #mypage_content .row0{border-bottom:1px dotted #ccc; padding:10px 25px; line-height:35px;}
@@ -256,3 +245,36 @@ thead tr.bookingEntry td.detail{text-align: center}
 #mypage_content .invitation .weixin{ background-position:0 -250px;}
 
 #mypage_content .invitation #copy_content_container{height: 110px;}
+
+
+/*个人资料*/
+/*选择学校弹出框*/
+/*header */
+.schoolModal .notifier-inner{padding:0;}
+.schoolModal .notifier-close,.viewTeacherModal .notifier-close:hover{
+    z-index: 104;
+    text-indent: -9999px;
+    width: 20px;
+    height: 20px;
+    background: url(../images/close.png) no-repeat;
+    cursor: pointer;
+}
+.schoolModal .notifier-message{padding-top: 36px;}
+.schoolModal .notifier-message h3{
+    position: absolute;top:0;left:0;
+    text-indent: 1.2em;
+    height: 36px;line-height: 36px;
+    width: 100%;background-color: #128d56;color: white;text-align: left;}
+
+.schoolModal .chooseshoolContent{
+    padding: 10px;
+}
+.schoolModal .province_select{
+    text-align: left;
+    padding: 10px 0;
+    color: #636363;font-size:12px;
+}
+.school_list{background: #F7F7F7;padding: 7px 0 10px; overflow-y: auto;}
+.school_list ul{min-height:240px;padding-left: 10px; line-height:22px;text-align: left;}
+.school_list ul li{cursor: pointer;display: inline-block;float: left;overflow: hidden;width: 220px; font-size:12px;}
+.school_list ul li .square {background-color: #333;display: inline-block;font-size: 0;height: 3px;margin-right: 8px;vertical-align: middle;width: 3px;}

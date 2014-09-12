@@ -182,7 +182,7 @@
     -o-transition: all 0.3s;
     transition: all 0.3s;
 }
-/*名师团队单个教师的弹出层*/
+/*名师团队单个教师的弹出层 todo 这里需要变为公用的class 存在header的情况下*/
 .viewTeacherModal .notifier-close,.viewTeacherModal .notifier-close:hover{
     z-index: 104;
     text-indent: -9999px;

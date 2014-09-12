@@ -207,7 +207,7 @@
     GeneralManager.prototype.fetchLocations = function (callback) {
         var self = this;
         if (testMockObj.testMode) {
-            callback.success(testMockObj.testLocations);
+            callback.success(testMockObj.testLocations.data);
             return;
         }
         $.ajax({
@@ -215,7 +215,7 @@
             type: 'GET',
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                self.locationList = data;
+                self.locationList = data.data;
                 self.locationTimeStamp = new Date();
                 if (callback) {
                     callback.success(self.locationList);
@@ -224,6 +224,33 @@
             error: function (data, textStatus, jqXHR) {
                 if (callback) {
                     callback.error($.parseJSON(data.responseText));
+                }
+            }
+        });
+    };
+
+    //拉取学校
+    GeneralManager.prototype.fetchSchools = function (callback) {
+        var self = this;
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testSchools.data);
+            return;
+        }
+        $.ajax({
+            url: ApiResource.general_school,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                if(!data.data){
+                    data = [];
+                }
+                if (callback) {
+                    callback.success(data.data);
+                }
+            },
+            error: function (response, textStatus, jqXHR) {
+                if (callback) {
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });
@@ -239,6 +266,7 @@
         if (this.categoryList.length === 0 || shouldReload(this.categoryTimeStamp)) {
             index = addToQueue(this.categoryQueue, reference);
             this.fetchCategories({
+                //todo should be changed, just return data
                 success: reference.renderCategories,
                 error: function () {
                 }
@@ -259,6 +287,7 @@
         if (this.locationList.length === 0 || shouldReload(this.locationTimeStamp)) {
             index = addToQueue(this.locationQueue, reference);
             this.fetchLocations({
+                //todo should be changed, just return data
                 success: reference.renderLocations,
                 error: function () {
                 }
@@ -268,22 +297,6 @@
             reference.renderLocations(this.locationList);
         }
         return index;
-    };
-
-    //@deprecated (actually I don't know what this method does, it's never used)
-    GeneralManager.prototype.removeFromCategoryQueue = function (index) {
-        if (typeof index === 'undefined' && index < 0) {
-            return;
-        }
-        this.categoryQueue[index] = null;
-    };
-
-    //@deprecated (actually I don't know what this method does, it's never used)
-    GeneralManager.prototype.removeFromLocationQueue = function (index) {
-        if (typeof index === 'undefined' && index < 0) {
-            return;
-        }
-        this.locationQueue[index] = null;
     };
 
 

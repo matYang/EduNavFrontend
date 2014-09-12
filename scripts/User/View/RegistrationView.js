@@ -72,10 +72,10 @@ var RegistrationView = BaseFormView.extend({
         ];
         this.ref = params.ref;
         this.invite = params.invite;
-        this.model = {};//初始化清空
+        this.model_tmp = {};//初始化清空
         this.render();
         if (this.invite) {
-            this.model.appliedInvitationCode = this.invite;
+            this.model_tmp.appliedInvitationCode = this.invite;
             $("#invitationCodeInput").val(this.invite).prop("disabled", true);
         }
     },
@@ -83,10 +83,10 @@ var RegistrationView = BaseFormView.extend({
         var that = this;
         $("#loginBox").hide();
         $("#getSms").on("click", function (e) {
-            if (Utilities.phoneValid(that.model.phone).valid) {
+            if (Utilities.phoneValid(that.model_tmp.phone).valid) {
                 var $btnGetSms = $(this);
                 $btnGetSms.val("发送中...").prop("disabled", true);
-                app.userManager.smsVerification(that.model.phone, Utilities.defaultSmsRequestHandler($btnGetSms, $("#smsInfo")));
+                app.userManager.smsVerification(that.model_tmp.phone, Utilities.defaultSmsRequestHandler($btnGetSms, $("#smsInfo")));
             } else {
                 $("#smsInfo").html("请先输入您的手机号");
             }
@@ -117,8 +117,8 @@ var RegistrationView = BaseFormView.extend({
         }, 1000);
     },
     submitAction: function () {
-        this.model.authCode = this.model.authCode.toUpperCase();
-        app.userManager.registerUser(this.model, {
+        this.model_tmp.authCode = this.model_tmp.authCode.toUpperCase();
+        app.userManager.registerUser(this.model_tmp, {
             success: this.successCallback,
             error: function (data) {
                 Info.displayNotice(data.message);

@@ -48,7 +48,7 @@ var BaseFormView = Backbone.View.extend({
         e.data.field.testValue(val, $(e.target));
     },
     bindEvents: function() {
-        this.isBB = this.model instanceof Backbone.Model;
+        this.isBB = this.model_tmp instanceof Backbone.Model;
         this.fieldNum = this.fields.length;
         var i, that = this;
         for ( i = 0; i < this.fieldNum; i++ ) {
@@ -63,7 +63,7 @@ var BaseFormView = Backbone.View.extend({
             } else {
                 $field.on("change", {"field":field}, this.testFieldValue);
             }
-            if (field.get("modelAttr") && this.model) {
+            if (field.get("modelAttr") && this.model_tmp) {
                 this.bindFieldToModel(field);
             }
         }
@@ -158,12 +158,12 @@ var BaseFormView = Backbone.View.extend({
         }
     },
     bindFieldToModel: function (field) {
-        var that = this, value = this.isBB ? this.model.get(field.get("modelAttr")) : this.model[field.get("modelAttr")];
+        var that = this, value = this.isBB ? this.model_tmp.get(field.get("modelAttr")) : this.model_tmp[field.get("modelAttr")];
             var $field = $("#"+field.get("fieldId")).on("change", {"field":field }, function (e) {
             if (that.isBB) {
-                that.model.set(e.data.field.get("modelAttr"), $(this).val());
+                that.model_tmp.set(e.data.field.get("modelAttr"), $(this).val());
             } else {
-                that.model[e.data.field.get("modelAttr")] =$(this).val();
+                that.model_tmp[e.data.field.get("modelAttr")] =$(this).val();
             }
         });
         if (value) {
@@ -175,9 +175,9 @@ var BaseFormView = Backbone.View.extend({
         }
         if (value === undefined) {
             if (that.isBB) {
-                that.model.set(field.get("modelAttr"), "");
+                that.model_tmp.set(field.get("modelAttr"), "");
             } else {
-                that.model[field.get("modelAttr")] = "";
+                that.model_tmp[field.get("modelAttr")] = "";
             }
         }
     },

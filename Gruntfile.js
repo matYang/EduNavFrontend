@@ -23,7 +23,6 @@ module.exports = function(grunt) {
               "scripts/Common/StaticResource/Constants.js",
               "scripts/Common/StaticResource/ApiResource.js",
               "scripts/Common/StaticResource/Resources.js",
-              "scripts/Common/StaticResource/Status.js",
               "scripts/Common/StaticResource/Utilities.js",
               "scripts/Common/Model/Representation/*.js",
               "scripts/Common/Model/*.js",

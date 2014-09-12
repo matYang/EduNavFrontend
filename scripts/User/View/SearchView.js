@@ -243,11 +243,11 @@ var SearchView = Backbone.View.extend({
             // for (var prov in locations) {
             //     var city = locations[prov];
             //     for (var attr in city) {
-            var districts = locations.data[0].children[0].children, district;
+            var districts = locations[0].children[0].children, district;
             for (i = 0; i < districts.length; i++) {
                 buf[i] = this.subCategoryTemplate({value: districts[i].value, name: districts[i].name});
             }
-            $dist = $("#filter_district");
+            var $dist = $("#filter_district");
             $dist.append(buf.join(""));
             this.titleObj.city = "南京";
             if (locationValue) {

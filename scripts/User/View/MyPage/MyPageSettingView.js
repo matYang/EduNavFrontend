@@ -1,15 +1,15 @@
 var MyPageSettingView = BaseFormView.extend({
-    el:"#mypage_content",
+    el: "#mypage_content",
     form: false,
     submitButtonId: "updateInfo",
 
     initialize: function () {
-        _.bindAll(this, 'render', 'close','submitAction', 'bindEvents', 'saveSuccess', 'saveError');
+        _.bindAll(this, 'render', 'close', 'submitAction', 'bindEvents', 'saveSuccess', 'saveError');
         this.isClosed = false;
         if (!this.fields || !this.fields.length) {
             this.fields = [
                 new BaseField({
-                    name:"名字",
+                    name: "名字",
                     fieldId: "inputName",
                     fieldType: "text",
                     mandatory: true,
@@ -17,7 +17,7 @@ var MyPageSettingView = BaseFormView.extend({
                     buildValidatorDiv: this.buildValidatorDiv
                 }),
                 new BaseField({
-                    name:"E-mail",
+                    name: "E-mail",
                     fieldId: "inputEmail",
                     fieldType: "text",
                     mandatory: false,
@@ -29,30 +29,48 @@ var MyPageSettingView = BaseFormView.extend({
             ];
         }
         this.template = _.template(tpl.get('mypage_setting'));
-        this.model =  app.sessionManager.sessionModel;
+        this.model = app.sessionManager.sessionModel;
+        this.model_tmp = _.clone(this.model);
         app.viewRegistration.register(this);
+        this.chooseSchoolView = new ChooseSchoolView({view: this});
+//        this.chooseWorkView = new ChooseWorkView({view:this});
         this.render();
         this.bindEvents();
     },
 
     render: function () {
-        this.$el.html(this.template(this.model._toJSON()));
+        this.$el.html(this.template(this.model_tmp._toJSON()));
     },
     bindEvents: function () {
         var self = this;
         BaseFormView.prototype.bindEvents.call(this);
-        $('.js_setUsernameModal').on('click',function(){
-           //打开设置用户名的modal
-            self.usernameModal = new UsernameModal({view:self});
+        $('.js_setUsernameModal').on('click', function () {
+            //打开设置用户名的modal
+            self.usernameModal = new UsernameModal({view: self});
         });
+        //选择学校
+        $('#inputSchool').focus(function () {
+            if(!self.chooseSchoolView.isShow){
+                self.chooseSchoolView.show();
+            }
+        });
+//        $('#inputWork').focus(function () {
+//            console.log(111);
+//            self.chooseWorkView.show();
+//        });
+    },
+
+    setChoosedSchool:function(schoolObj){
+        this.choosedSchool = schoolObj;
+        $('#inputSchool').val(schoolObj.name);
     },
 
     submitAction: function () {
-        var that = this, date = new Date ();
-        this.model.set('gender',$('input[name="sex"]:checked').val());
-        this.model.set('invitationCode',undefined);
+        var that = this, date = new Date();
+        this.model_tmp.set('gender', $('input[name="sex"]:checked').val());
+        this.model_tmp.set('schoolId', that.choosedSchool.id);
 //        this.model.set('identify',$('input[name="identify"]:checked').val());//todo 已工作或者还是学生
-        app.userManager.changeInfo(this.model, {
+        app.userManager.changeInfo(this.model_tmp, {
             "success": that.saveSuccess,
             "error": that.saveError
         });
@@ -60,21 +78,20 @@ var MyPageSettingView = BaseFormView.extend({
     },
 
     saveSuccess: function (user) {
-        this.model.set("name", user.get("name"));
-        this.model.set("email", user.get("email"));
-        app.sessionManager.sessionModel.set("name", user.get("name"));
-        app.sessionManager.sessionModel.set("email", user.get("email"));
+        //return user model to refresh sessionModel
+        this.model = app.sessionManager.sessionModel = user;
         $("#updateInfo").attr("value", "更新完毕");
         $("#mypage_name").html(this.model.get("name"));
         $("#username").html(this.model.get("name"));
         $("#mypage_info").find("p[class=email]").html("<span></span>" + this.model.get("email"));
 
+        //refresh view
         app.navigate("mypage/setting", {
             trigger: true
         });
     },
     saveError: function (data) {
-        Info.displayNotice(data.message|| "服务器连接失败，请稍后再试。");
+        Info.displayNotice(data.message || "服务器连接失败，请稍后再试。");
         $("#updateInfo").attr("value", "更新失败(重试)");
     },
 
@@ -91,15 +108,15 @@ var MyPageSettingView = BaseFormView.extend({
     buildValidatorDiv: function (valid, type, text) {
         //This function overloads baseField's default buildValidatorDiv. It should only be invoked by BaseField's testValue function, thus this refers the BaseForm model in this case,
         //This function is not bound to the view.
-        $("#"+this.get("fieldId")+"_info").remove();
+        $("#" + this.get("fieldId") + "_info").remove();
         if (valid) {
-            return '<span class="success" id="'+this.get("fieldId")+'_right"></span>';
+            return '<span class="success" id="' + this.get("fieldId") + '_right"></span>';
         } else if (type === "empty") {
-            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong" ><span class="form_tip"><span class="form_tip_top">' + this.get("name")+"不能为空" + '</span><span class="form_tip_bottom"></span></span></span>';
+            return '<span class="wrong" id="' + this.get("fieldId") + '_wrong" ><span class="form_tip"><span class="form_tip_top">' + this.get("name") + "不能为空" + '</span><span class="form_tip_bottom"></span></span></span>';
         } else if (text) {
-            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' + text + '</span><span class="form_tip_bottom"></span></span></span>';
+            return '<span class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' + text + '</span><span class="form_tip_bottom"></span></span></span>';
         } else {
-            return '<span class="wrong" id="'+this.get("fieldId")+'_wrong"><span class="form_tip"><span class="form_tip_top">' +  this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></span>';
+            return '<span class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' + this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></span>';
         }
     }
 });
