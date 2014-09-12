@@ -69,12 +69,12 @@ var NewBookingView = BaseFormView.extend({
             sr.set("categoryValue", course.get("categoryValue"));
             app.navigate("search/" + sr.toQueryString(), {replace: true, trigger: true});
         }
-        this.model_tmp = new Booking();
-        this.model_tmp.set("course", course);
-        this.$el.append(this.template(this.model_tmp._toJSON()));
+        this.model = new Booking();
+        this.model.set("course", course);
+        this.$el.append(this.template(this.model._toJSON()));
 
         this.renderPrice(EnumConfig.PayType.offline);
-        this.model_tmp.initBookingFromCourse(course);
+        this.model.initBookingFromCourse(course);
         //render dom后根据判断是否登录来进行dom'的更改
         this.bindEvents();
         this.autoName();
@@ -141,7 +141,7 @@ var NewBookingView = BaseFormView.extend({
         });
         //返回到课程详情
         $('#content').on('click', '.js_gotoCourse', function () {
-            app.navigate("course/" + that.model_tmp.get("courseId"), true);
+            app.navigate("course/" + that.model.get("courseId"), true);
         });
         $('#js_needHelp').on('click',function(){
             app.navigate('service/help',true);
@@ -178,7 +178,7 @@ var NewBookingView = BaseFormView.extend({
             }
         });
         //有具体开课日期则限制预约报名日期的max为开课日期
-        if (this.model_tmp.get("course").get("startUponArrival")) {
+        if (this.model.get("course").get("startUponArrival")) {
             $("#booking_date").on("keypress", function (e) {
                 e.preventDefault();
             }).datepicker({
@@ -186,14 +186,14 @@ var NewBookingView = BaseFormView.extend({
                 buttonImage: "calendar.gif",
                 buttonText: "Calendar",
                 minDate: new Date(),
-                maxDate: this.model_tmp.get("course").get("startDate"),
-                defaultDate: that.model_tmp.get("scheduledTime"),
+                maxDate: this.model.get("course").get("startDate"),
+                defaultDate: that.model.get("scheduledTime"),
                 onSelect: function (text, inst) {
                     var d = new Date();
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.model_tmp.set("scheduledTime", d);
+                    that.model.set("scheduledTime", d);
                 }
             });
         } else {
@@ -204,13 +204,13 @@ var NewBookingView = BaseFormView.extend({
                 buttonImage: "calendar.gif",
                 buttonText: "Calendar",
                 minDate: new Date(),
-                defaultDate: that.model_tmp.get("scheduledTime"),
+                defaultDate: that.model.get("scheduledTime"),
                 onSelect: function (text, inst) {
                     var d = new Date();
                     d.setDate(inst.selectedDay);
                     d.setMonth(inst.selectedMonth);
                     d.setYear(inst.selectedYear);
-                    that.model_tmp.set("scheduledTime", d);
+                    that.model.set("scheduledTime", d);
                 }
             });
         }
@@ -252,9 +252,9 @@ var NewBookingView = BaseFormView.extend({
         //线下支付直接显示原价 右侧显示cashback的数量
         $(this.priceContainer).html(this.priceTemplate({
             payType: payType,
-            price: this.model_tmp.get('course').get('price'),
-            commission: this.model_tmp.get('course').get('commission'),
-            cashback: this.model_tmp.get('course').get('cashback')
+            price: this.model.get('course').get('price'),
+            commission: this.model.get('course').get('commission'),
+            cashback: this.model.get('course').get('cashback')
         }));
     },
 //    loginCheck: function () {
@@ -269,22 +269,22 @@ var NewBookingView = BaseFormView.extend({
             //未登录的可以使用返现券啦
 //            this.model.set("cashbackAmount", 0);
             //这里再次强制设置支付类型 防止网页上的更改
-            this.model_tmp.set('type', EnumConfig.PayType.offline);
+            this.model.set('type', EnumConfig.PayType.offline);
         } else {
             //登录用户可选择是否选择使用优惠券 这里注释下行 设为默认已使用
             //this.model.set("cashback", $("#booking_useCashback").prop("checked") ? this.model.get("cashbackAmount") : 0);
         }
         $("#" + this.submitButtonId).val("预订中...");
-        this.model_tmp.set('type', $('input[name="bookingType"]:checked').val());
+        this.model.set('type', $('input[name="bookingType"]:checked').val());
         //如果选择在线支付价格需要减去在线支付折扣 course.commission
-        if (this.model_tmp.get('type') == EnumConfig.PayType.online && this.model_tmp.get('course').get('commission')) {
-            this.model_tmp.set('price', this.model_tmp.get('price') - this.model_tmp.get('course').get('commission'));
+        if (this.model.get('type') == EnumConfig.PayType.online && this.model.get('course').get('commission')) {
+            this.model.set('price', this.model.get('price') - this.model.get('course').get('commission'));
         }
-        this.model_tmp.set("userId", app.sessionManager.sessionModel.get("userId"));
+        this.model.set("userId", app.sessionManager.sessionModel.get("userId"));
 
 
-        this.model_tmp.set("course", undefined);
-        app.userManager.initBooking(this.model_tmp, {
+        this.model.set("course", undefined);
+        app.userManager.initBooking(this.model, {
             success: function (booking) {
                 self.autoLogin.call(self, booking);
             },
@@ -299,7 +299,7 @@ var NewBookingView = BaseFormView.extend({
             var pwd = booking.get('note');
             booking.unset('note');
             //TODO 这里进行自动登录
-            app.sessionManager.login(self.model_tmp.get('phone'), pwd, 1, {
+            app.sessionManager.login(self.model.get('phone'), pwd, 1, {
                 success: function (response) {
                     //重置sessionUser并且render topBar
                     app.userManager.sessionUser = app.sessionManager.sessionModel;
