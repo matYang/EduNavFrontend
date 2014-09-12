@@ -5,7 +5,6 @@ var ChooseSchoolView = Backbone.View.extend({
     form: false,
     modalClass: 'schoolModal',
     template: _.template(tpl.get('mypage_chooseSchoolModal')),
-    isShow:false,
 
     initialize: function (opt) {
 
@@ -83,13 +82,10 @@ var ChooseSchoolView = Backbone.View.extend({
 
     show: function () {
         this.modalView = this.notify.notify();
-        console.log(this.modalView);
-        this.isShow = true;
         this.bindEvents();
     },
     hide: function () {
         this.modalView.destroy();
-        this.isShow = false;
     },
 
     close: function () {

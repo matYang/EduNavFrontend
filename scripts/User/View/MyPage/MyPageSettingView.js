@@ -50,9 +50,7 @@ var MyPageSettingView = BaseFormView.extend({
         });
         //选择学校
         $('#inputSchool').focus(function () {
-            if(!self.chooseSchoolView.isShow){
-                self.chooseSchoolView.show();
-            }
+            self.chooseSchoolView.show();
         });
 //        $('#inputWork').focus(function () {
 //            console.log(111);
@@ -60,7 +58,7 @@ var MyPageSettingView = BaseFormView.extend({
 //        });
     },
 
-    setChoosedSchool:function(schoolObj){
+    setChoosedSchool: function (schoolObj) {
         this.choosedSchool = schoolObj;
         $('#inputSchool').val(schoolObj.name);
     },
