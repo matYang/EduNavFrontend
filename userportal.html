@@ -2309,8 +2309,8 @@
                 <span>请选择省市：</span>
                 <select id="chooseshoolshen" name="select" style="cursor: default;">
                     <option value="请选择">- 请选择省 -</option>
-                    <%_.each(province,function(v,index){%>
-                    <option value="<%=index%>"><%=v.name%></option>
+                    <%_.each(province,function(v){%>
+                    <option value="<%=v.value%>"><%=v.name%></option>
                     <%})%>
                 </select>
                 <select id="chooseshoolshi" name="select">

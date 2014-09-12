@@ -7,7 +7,8 @@ var ChooseSchoolView = Backbone.View.extend({
     template: _.template(tpl.get('mypage_chooseSchoolModal')),
 
     initialize: function (opt) {
-        //将attr绑定到this中 native code
+        //将attr绑定到this中 native code todo 那么如果是通过prototype定义的renderLocations是否与下面一致
+        //不写bindAll的话renderLocations只会出现在_proto_中而不是对象的直接属性中
         _.bindAll(this, 'renderLocations', 'renderSchools', 'close');
 
         var self = this;
@@ -24,7 +25,7 @@ var ChooseSchoolView = Backbone.View.extend({
         var self = this;
         this.province = locations;
         _.each(this.province, function (v, index) {
-            self.keyMap[v.value] = v.child;
+            self.keyMap[v.value] = v.children;
         });
         this.notify = new Backbone.Notifier({
             fadeInMs: 0,
