@@ -74,6 +74,7 @@ var NewBookingView = BaseFormView.extend({
         this.$el.append(this.template(this.model._toJSON()));
 
         this.renderPrice(EnumConfig.PayType.offline);
+        //这里从course中初始化booking 已经默认设置了cashback为booking中的cashbackAmount
         this.model.initBookingFromCourse(course);
         //render dom后根据判断是否登录来进行dom'的更改
         this.bindEvents();
