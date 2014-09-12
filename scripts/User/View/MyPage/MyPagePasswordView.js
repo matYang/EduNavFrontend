@@ -65,7 +65,7 @@ var MyPagePasswordView = BaseFormView.extend({
     },
 
     submitAction: function () {
-        app.userManager.changePassword(this.model_tmp, {
+        app.userManager.changePassword(this.model, {
             "success": this.passwordSuccess,
             "error": this.passwordError
         });
@@ -114,7 +114,7 @@ var MyPagePasswordView = BaseFormView.extend({
         this.clearPassword();
     },
     clearPassword: function () {
-        this.model_tmp = {};
+        this.model = {};
         $("#oldPassword").val("");
         $("#newPassword").val("");
         $("#confirmPassword").val("");
