@@ -7,6 +7,8 @@ var ChooseSchoolView = Backbone.View.extend({
     template: _.template(tpl.get('mypage_chooseSchoolModal')),
 
     initialize: function (opt) {
+        //将attr绑定到this中 native code
+        _.bindAll(this, 'renderLocations', 'renderSchools', 'close');
 
         var self = this;
         app.viewRegistration.register(this);
@@ -16,10 +18,14 @@ var ChooseSchoolView = Backbone.View.extend({
         this.province = [];
         this.city = {};
         this.keyMap = {};
+        app.generalManager.getLocations(this);
+    },
+    renderLocations: function (locations) {
+        var self = this;
+        this.province = locations;
         _.each(this.province, function (v, index) {
             self.keyMap[v.value] = v.child;
         });
-
         this.notify = new Backbone.Notifier({
             fadeInMs: 0,
             fadeOutMs: 0,
@@ -33,10 +39,6 @@ var ChooseSchoolView = Backbone.View.extend({
             cls: self.modalClass,
             width: '712'
         });
-        app.generalManager.getLocations(this);
-    },
-    renderLocations:function(locations){
-        this.province = locations;
     },
     bindEvents: function () {
         var self = this;
@@ -61,17 +63,17 @@ var ChooseSchoolView = Backbone.View.extend({
             });
         });
         //选择某个学校
-        $('.school_list').on('click','li',function(){
+        $('.school_list').on('click', 'li', function () {
             var schoolId = $(this).data('value');
             var schoolName = $(this).text();
-            self.parentView.setChoosedSchool({id:schoolId,name:schoolName});
+            self.parentView.setChoosedSchool({id: schoolId, name: schoolName});
             self.hide();
         });
     },
     renderSchools: function (schoolList) {
         var school_buf = '';
         _.each(schoolList, function (school) {
-            school_buf += '<li data-value='+school.id+' title="' + school.name + '"><span class="square"></span>' + school.name + '</li>';
+            school_buf += '<li data-value=' + school.id + ' title="' + school.name + '"><span class="square"></span>' + school.name + '</li>';
         });
         $('#schoolclearfix').html(school_buf);
     },
