@@ -31,7 +31,7 @@ var MyPageSettingView = BaseFormView.extend({
         this.template = _.template(tpl.get('mypage_setting'));
         this.sessionModel = app.sessionManager.sessionModel;
         //model temp
-        this.model = new User(this.sessionModel.toJSON());
+        this.model = new User(this.sessionModel.attributes);
         //初始化学校信息
         this.choosedSchool = {
             id: this.model.schoolId,
