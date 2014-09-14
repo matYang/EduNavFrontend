@@ -10,6 +10,7 @@ var User = Backbone.Model.extend({
             'phone': '',
             'password': '',
             'email': '',
+            'schoolId': undefined,
             'gender': undefined,
             'invitationCode': undefined,
             'appliedInvitationCode': '',
@@ -44,21 +45,19 @@ var User = Backbone.Model.extend({
             if (data instanceof Array) {
                 data = data[0];
             }
-            data.id = Utilities.parseNum(data.id, 10);
+            data.id = Utilities.parseNum(data.id);
             data.userId = data.id;
 
-            data.gender = Utilities.parseNum(data.gender, 10);
+            data.gender = Utilities.parseNum(data.gender);
+            data.schoolId = Utilities.parseNum(data.schoolId);
 
             data.createTime = Utilities.castFromAPIFormat(data.createTime);
             data.lastLogin = Utilities.castFromAPIFormat(data.lastLogin);
             data.lastModifyTime = Utilities.castFromAPIFormat(data.lastModifyTime);
 
-
             data.couponTotal = Utilities.parseNum(data.couponTotal);
             data.account = new Account(data.account,{parse:true});
             data.credit = new Credit(data.credit,{parse:true});
-
-
         }
         return data;
     },
@@ -75,7 +74,7 @@ var User = Backbone.Model.extend({
     },
 
     toJSON: function () {
-        //user向服务器发送请求时 只需要以下几个参数
+        //user向服务器发送请求时 主要用于更新用户信息 只需要以下几个参数
         var json = _.clone(this.attributes);
         var user = {};
         user.id = json.id;
@@ -83,6 +82,7 @@ var User = Backbone.Model.extend({
         user.name = json.name;
         user.email = json.email;
         user.gender = json.gender;
+        user.schoolId = json.schoolId;
         user.invitationCode = json.invitationCode;
         return user;
     }

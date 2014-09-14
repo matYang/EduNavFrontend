@@ -377,10 +377,10 @@ var SearchView = Backbone.View.extend({
     },
     /*处理筛选事件(上课时间 课程费用等)*/
     filterResult: function ($filter, $target) {
-        $("#resultNum").html('...');
         if ($target.hasClass("active")) {
             return;
         }
+        $("#resultNum").html('...');
         $filter.find(".active").removeClass("active");
         $target.addClass("active");
         var criteria = $filter.attr("id").split("_")[1], dataValue; //提取过滤类型 如'filter_classMode' to 'classMode'
