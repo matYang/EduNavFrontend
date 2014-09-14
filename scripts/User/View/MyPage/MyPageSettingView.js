@@ -4,7 +4,7 @@ var MyPageSettingView = BaseFormView.extend({
     submitButtonId: "updateInfo",
 
     initialize: function () {
-        _.bindAll(this, 'render', 'close', 'submitAction', 'bindEvents', 'saveSuccess', 'saveError');
+        _.bindAll(this, 'render', 'close', 'submitAction', 'bindEvents', 'setChoosedSchool', 'saveSuccess', 'saveError');
         this.isClosed = false;
         if (!this.fields || !this.fields.length) {
             this.fields = [
@@ -29,12 +29,13 @@ var MyPageSettingView = BaseFormView.extend({
             ];
         }
         this.template = _.template(tpl.get('mypage_setting'));
-        this.model = app.sessionManager.sessionModel;
-        this.model_tmp = _.clone(this.model);
+        this.sessionModel = app.sessionManager.sessionModel;
+        //model temp
+        this.model = new User(this.sessionModel.toJSON());
         //初始化学校信息
         this.choosedSchool = {
-            id:this.model_tmp.schoolId,
-            name:this.model_tmp.schoolName
+            id: this.model.schoolId,
+            name: this.model.schoolName
         };
         app.viewRegistration.register(this);
         this.chooseSchoolView = new ChooseSchoolView({view: this});
@@ -44,7 +45,7 @@ var MyPageSettingView = BaseFormView.extend({
     },
 
     render: function () {
-        this.$el.html(this.template(this.model_tmp._toJSON()));
+        this.$el.html(this.template(this.model._toJSON()));
     },
     bindEvents: function () {
         var self = this;
@@ -70,8 +71,8 @@ var MyPageSettingView = BaseFormView.extend({
 
     submitAction: function () {
         var that = this, date = new Date();
-        this.model_tmp.set('gender', $('input[name="sex"]:checked').val());
-        this.model_tmp.set('schoolId', that.choosedSchool.id);
+        this.model.set('gender', $('input[name="sex"]:checked').val());
+        this.model.set('schoolId', that.choosedSchool.id);
 //        this.model.set('identify',$('input[name="identify"]:checked').val());//todo 已工作或者还是学生
         app.userManager.changeInfo(this.model, {
             "success": that.saveSuccess,
@@ -82,7 +83,8 @@ var MyPageSettingView = BaseFormView.extend({
 
     saveSuccess: function (user) {
         //return user model to refresh sessionModel
-        this.model = app.sessionManager.sessionModel = user;
+        app.sessionManager.sessionModel = user;
+        this.model = new User(user.toJSON());
         $("#updateInfo").attr("value", "更新完毕");
         $("#mypage_name").html(this.model.get("name"));
         $("#username").html(this.model.get("name"));
