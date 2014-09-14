@@ -31,6 +31,11 @@ var MyPageSettingView = BaseFormView.extend({
         this.template = _.template(tpl.get('mypage_setting'));
         this.model = app.sessionManager.sessionModel;
         this.model_tmp = _.clone(this.model);
+        //初始化学校信息
+        this.choosedSchool = {
+            id:this.model_tmp.schoolId,
+            name:this.model_tmp.schoolName
+        };
         app.viewRegistration.register(this);
         this.chooseSchoolView = new ChooseSchoolView({view: this});
 //        this.chooseWorkView = new ChooseWorkView({view:this});
