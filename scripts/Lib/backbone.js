@@ -600,7 +600,7 @@
   // its models in sort order, as they're added and removed.
   var Collection = Backbone.Collection = function(models, options) {
     options || (options = {});
-    if (options.model_tmp) this.model_tmp = options.model_tmp;
+    if (options.model) this.model = options.model;
     if (options.comparator !== void 0) this.comparator = options.comparator;
     this._reset();
     this.initialize.apply(this, arguments);
@@ -616,7 +616,7 @@
 
     // The default model for a collection is just a **Backbone.Model**.
     // This should be overridden in most cases.
-    model_tmp: Model,
+    model: Model,
 
     // Initialize is an empty function by default. Override it with your own
     // initialization logic.
@@ -672,7 +672,7 @@
       models = singular ? (models ? [models] : []) : _.clone(models);
       var i, l, id, model, attrs, existing, sort;
       var at = options.at;
-      var targetModel = this.model_tmp;
+      var targetModel = this.model;
       var sortable = this.comparator && (at == null) && options.sort !== false;
       var sortAttr = _.isString(this.comparator) ? this.comparator : null;
       var toAdd = [], toRemove = [], modelMap = {};
@@ -912,7 +912,7 @@
       if (attrs instanceof Model) return attrs;
       options = options ? _.clone(options) : {};
       options.collection = this;
-      var model = new this.model_tmp(attrs, options);
+      var model = new this.model(attrs, options);
       if (!model.validationError) return model;
       this.trigger('invalid', this, model.validationError, options);
       return false;
