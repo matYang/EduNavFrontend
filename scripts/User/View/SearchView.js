@@ -413,7 +413,7 @@ var SearchView = Backbone.View.extend({
             if (dataValue === "noreq") {
                 this.searchRepresentation.set("locationValue", undefined);
                 if (this.compareWidgetView.map) {
-                    this.compareWidgetView.map.setCenter(this.locations.data[0].name);
+                    this.compareWidgetView.map.setCenter(this.locations[0].name);
                     this.compareWidgetView.map.map.setZoom(9);
                 }
             } else {
