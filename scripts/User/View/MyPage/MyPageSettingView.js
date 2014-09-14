@@ -73,7 +73,7 @@ var MyPageSettingView = BaseFormView.extend({
         this.model_tmp.set('gender', $('input[name="sex"]:checked').val());
         this.model_tmp.set('schoolId', that.choosedSchool.id);
 //        this.model.set('identify',$('input[name="identify"]:checked').val());//todo 已工作或者还是学生
-        app.userManager.changeInfo(this.model_tmp, {
+        app.userManager.changeInfo(this.model, {
             "success": that.saveSuccess,
             "error": that.saveError
         });
