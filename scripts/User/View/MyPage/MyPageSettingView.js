@@ -84,7 +84,7 @@ var MyPageSettingView = BaseFormView.extend({
     saveSuccess: function (user) {
         //return user model to refresh sessionModel
         app.sessionManager.sessionModel = user;
-        this.model = new User(user.toJSON());
+        this.model = new User(user.attributes);
         $("#updateInfo").attr("value", "更新完毕");
         $("#mypage_name").html(this.model.get("name"));
         $("#username").html(this.model.get("name"));
