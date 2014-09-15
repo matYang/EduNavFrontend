@@ -4,6 +4,7 @@ var SearchResultView = MultiPageView.extend({
     noMessage: _.template(tpl.get("search_noMessage")),
     entryTemplate: _.template(tpl.get("searchResultEntry")),
     pageEntryNumber: 10,
+    scroll:false,
     initialize: function (searchRepresentation, compareWidget) {
         _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
         MultiPageView.prototype.initialize.call(this);
@@ -13,9 +14,7 @@ var SearchResultView = MultiPageView.extend({
         //对比组件
         this.compareWidgetView = compareWidget || this.compareWidgetView;
         this.user = app.sessionManager.sessionModel;
-        this.initialized = true;
-        var start = this.sr.get('start');
-        var count = this.sr.get('count');
+
         this.fetchAction();
         this.bindEvents();
         this.bindEntryEvents();
@@ -27,7 +26,7 @@ var SearchResultView = MultiPageView.extend({
         for (var i = 0; i < courseIds.length; i++) {
             $("#compare_" + courseIds[i]).find("input").attr("class", "remove btn_gray").val("已加入对比").removeClass("add").addClass("remove");
         }
-        //todo 这里是为了声明页面加载完毕
+        //todo 这里是为了声明页面加载完毕 seo
         $('body').attr('pageRenderReady', '')
     },
     bindEvents: function () {

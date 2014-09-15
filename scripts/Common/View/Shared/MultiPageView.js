@@ -16,9 +16,9 @@ var MultiPageView = Backbone.View.extend({
     entryRowNum: 1,
     noMessage: _.template("暂无消息"),
     eventBound: false,
-    $entryContainer: null,
+    $entryContainer: null, // 列表容器
     isTable: false,
-    $tableContainer: null,
+    $tableContainer: null, //如果是table
     scroll: true,//设置换页后是否自动滚动到容器上方
     scrollTarget: null,//滚动到的元素位置
     initialize: function () {
