@@ -49,21 +49,18 @@ var MyPageCouponView = Backbone.View.extend({
 });
 
 
-var UsableCouponView = MultiPageView3.extend({
+var UsableCouponView = MultiPageView.extend({
     entryContainer:'usableList',
     el: "#coupons_container",
     table: "#usableTable",
-    minHeight: 144,
     pageEntryNumber: 8,
-    entryHeight: 36,
     entryTemplate: _.template(tpl.get("mypage_usableCouponRow")),
     template: _.template(tpl.get("mypage_couponUsable")),
     noMessage: _.template(tpl.get("usable_coupon_noMessage")),
     scrollTarget:'#couponNavBtn',
     initialize: function () {
         this.$el.append(this.template);
-        MultiPageView3.prototype.initialize.call(this);
-        this.pageNumberClass = "searchResultPageNumber";
+        MultiPageView.prototype.initialize.call(this);
         this.pageNumberId = "couponPageNum";
         this.pageNavigator = "usableCouponListNavigator";
         this.pageNavigatorClass = "page blank1 clearfix";
@@ -95,7 +92,7 @@ var UsableCouponView = MultiPageView3.extend({
     },
     render: function (data) {
         this.messages = data || new Bookings();
-        MultiPageView3.prototype.render.call(this);
+        MultiPageView.prototype.render.call(this);
     },
     renderError:function(){
       //todo error handler
@@ -108,21 +105,18 @@ var UsableCouponView = MultiPageView3.extend({
     }
 });
 
-var GotCouponView = MultiPageView3.extend({
+var GotCouponView = MultiPageView.extend({
     entryContainer:'gotList',
     el: "#coupons_container",
     table: "#gotTable",
-    minHeight: 144,
     pageEntryNumber: 2,
-    entryHeight: 36,
     entryTemplate: _.template(tpl.get("mypage_gotCouponRow")),
     template: _.template(tpl.get("mypage_couponGot")),
     noMessage: _.template(tpl.get("got_coupon_noMessage")),
     scrollTarget:'#couponNavBtn',
     initialize: function () {
         this.$el.append(this.template);
-        MultiPageView3.prototype.initialize.call(this);
-        this.pageNumberClass = "searchResultPageNumber";
+        MultiPageView.prototype.initialize.call(this);
         this.pageNumberId = "couponPageNum";
         this.pageNavigator = "gotCouponListNavigator";
         this.pageNavigatorClass = "page blank1 clearfix";
@@ -151,7 +145,7 @@ var GotCouponView = MultiPageView3.extend({
     },
     render: function (data) {
         this.messages = data || new Bookings();
-        MultiPageView3.prototype.render.call(this);
+        MultiPageView.prototype.render.call(this);
     },
     renderError:function(){
         //todo error handler

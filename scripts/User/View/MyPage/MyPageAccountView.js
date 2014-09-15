@@ -46,12 +46,10 @@ var MyPageCashView = Backbone.View.extend({
         }
     }
 });
-var InCashView = MultiPageView3.extend({
+var InCashView = MultiPageView.extend({
     entryContainer:'accountInList',
     el: "#accountContainer",
-    minHeight: 144,
     pageEntryNumber: 2,
-    entryHeight: 36,
     entryTemplate: _.template(tpl.get("mypage_accountInRow")),
     template: _.template(tpl.get("mypage_accountIn")),
     noMessage: _.template(tpl.get("accountInNoMessage")),
@@ -59,7 +57,7 @@ var InCashView = MultiPageView3.extend({
     pageNavigatorClass:'page blank1 clearfix',
     initialize: function () {
         this.$el.append(this.template);
-        MultiPageView3.prototype.initialize.call(this);
+        MultiPageView.prototype.initialize.call(this);
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
 
@@ -87,7 +85,7 @@ var InCashView = MultiPageView3.extend({
     },
     render: function (data) {
         this.messages = data || new AccountHistories();
-        MultiPageView3.prototype.render.call(this);
+        MultiPageView.prototype.render.call(this);
     },
     renderError:function(){
         //todo error handler
@@ -99,12 +97,10 @@ var InCashView = MultiPageView3.extend({
         }
     }
 });
-var OutCashView = MultiPageView3.extend({
+var OutCashView = MultiPageView.extend({
     entryContainer:'accountOutList',
     el: "#accountContainer",
-    minHeight: 144,
     pageEntryNumber: 2,
-    entryHeight: 36,
     entryTemplate: _.template(tpl.get("mypage_accountOutRow")),
     template: _.template(tpl.get("mypage_accountOut")),
     noMessage: _.template(tpl.get("accountOutNoMessage")),
@@ -112,7 +108,7 @@ var OutCashView = MultiPageView3.extend({
     pageNavigatorClass:'page blank1 clearfix',
     initialize: function () {
         this.$el.append(this.template);
-        MultiPageView3.prototype.initialize.call(this);
+        MultiPageView.prototype.initialize.call(this);
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
 
@@ -140,7 +136,7 @@ var OutCashView = MultiPageView3.extend({
     },
     render: function (data) {
         this.messages = data || new AccountHistories();
-        MultiPageView3.prototype.render.call(this);
+        MultiPageView.prototype.render.call(this);
     },
     renderError:function(){
         //todo error handler

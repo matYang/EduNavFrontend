@@ -1,4 +1,4 @@
-var BookingListView = MultiPageView3.extend({
+var BookingListView = MultiPageView.extend({
     entryContainer: "bookingSummary tbody",
     actionClass: "bookingTitle",
     pageNavigator: "bookingNavigator",
@@ -6,7 +6,6 @@ var BookingListView = MultiPageView3.extend({
     pageNumberClass: "bookingPage",
     pageNumberId: "bookingPage",
     entryRowNum: 1,
-    entryHeight: 106,
     noMessage: _.template(tpl.get("booking_noMessage")),
     $domContainer: null,
     el: "#bookingSummary",
@@ -15,7 +14,7 @@ var BookingListView = MultiPageView3.extend({
     initialize: function (bookingSr) {
         //初始化过滤条件
         this.bookingSr = bookingSr;
-        MultiPageView3.prototype.initialize.call(this);
+        MultiPageView.prototype.initialize.call(this);
         this.entryTemplate = _.template(tpl.get("booking_entry"));
         app.viewRegistration.register(this);
         this.isClosed = false;
@@ -35,7 +34,6 @@ var BookingListView = MultiPageView3.extend({
             self.bookingSr.set("start", (pageIndex - 1) * self.pageEntryNumber);
         }
         self.bookingSr.set("count", self.pageEntryNumber);
-        //这儿start和pageIndex转来转去的是要体现数学很好..
         self.currentPage = self.bookingSr.get('start') / self.pageEntryNumber + 1;
         $("#bookingSummary tbody").empty().append("<tr><td colspan='4'><div class='loading'></div></td></tr>");
         app.userManager.fetchBookings(self.bookingSr, {
@@ -46,7 +44,7 @@ var BookingListView = MultiPageView3.extend({
     render: function (data) {
         this.messages = data || new Bookings();
         //这里进行数据的显示
-        MultiPageView3.prototype.render.call(this);
+        MultiPageView.prototype.render.call(this);
     },
     renderError: function (data) {
         if (!this.isClosed) {
