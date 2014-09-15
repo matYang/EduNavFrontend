@@ -182,7 +182,7 @@
     -o-transition: all 0.3s;
     transition: all 0.3s;
 }
-/*名师团队单个教师的弹出层*/
+/*名师团队单个教师的弹出层 todo 这里需要变为公用的class 存在header的情况下*/
 .viewTeacherModal .notifier-close,.viewTeacherModal .notifier-close:hover{
     z-index: 104;
     text-indent: -9999px;
@@ -196,7 +196,7 @@
     position: absolute;top:0;left:0;
     text-indent: 1.2em;
     height: 36px;line-height: 36px;
-    width: 622px;background-color: #128d56;color: white;text-align: left;}
+    width: 100%;background-color: #128d56;color: white;text-align: left;}
 /*.viewTeacherModal .notifier-message div,.viewTeacherModal .notifier-message img{margin-top: 10px}*/
 .viewTeacherModal .notifier-message img{float: left;width:140px;height: 140px;margin-right: 15px}
 .viewTeacherModal .notifier-message div{text-align: left;text-indent: 2em;line-height: 24px;}

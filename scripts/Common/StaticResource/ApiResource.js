@@ -12,6 +12,7 @@
 
             moduleSufixResource: {
                 'general': {
+                    school:"/school",
                     location:"/location",
                     category:"/category",
                     partner:"/partner",
@@ -58,7 +59,9 @@
 
             return {
                 general_location: api_maker(api_modules.rootPrefix, "general", "location"),
+                general_school: api_maker(api_modules.rootPrefix, "general", "school"),
                 general_category: api_maker(api_modules.rootPrefix, "general", "category"),
+
                 general_partner: api_maker(api_modules.rootPrefix, "general", "partner"),
 
                 courses: api_maker(api_modules.rootPrefix, "course", "course"),

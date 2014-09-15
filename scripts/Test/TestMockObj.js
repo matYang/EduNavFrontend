@@ -201,6 +201,8 @@ testMockObj = {
             }
         ]
     },
+    testSchools:
+    {"errorCode":0,"start":0,"count":0,"total":0,"data":[{"errorCode":0,"name":"南京财经大学红山学院","children":[],"id":213,"enabled":0,"locationId":35},{"errorCode":0,"name":"江苏农林职业技术学院","children":[],"id":214,"enabled":0,"locationId":35},{"errorCode":0,"name":"江苏大学","children":[],"id":215,"enabled":0,"locationId":35},{"errorCode":0,"name":"江苏大学京江学院","children":[],"id":216,"enabled":0,"locationId":35},{"errorCode":0,"name":"江苏省司法警官高等职业学校","children":[],"id":217,"enabled":0,"locationId":35},{"errorCode":0,"name":"江苏科技大学","children":[],"id":218,"enabled":0,"locationId":35},{"errorCode":0,"name":"金山职业技术学院","children":[],"id":219,"enabled":0,"locationId":35},{"errorCode":0,"name":"镇江高等专科学校","children":[],"id":220,"enabled":0,"locationId":35}]},
     testLocations: {
         "start": 0,
         "count": 1,

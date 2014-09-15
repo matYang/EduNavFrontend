@@ -47,7 +47,9 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'count': undefined,
 
             'order': undefined,
-            'columnKey': undefined
+            'columnKey': undefined,
+
+            'enabled':1//等于1 会将templateId相同的课程只显示一个 在相关课程中调用需要设为undefined
         };
     },
 

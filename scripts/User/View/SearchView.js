@@ -243,11 +243,11 @@ var SearchView = Backbone.View.extend({
             // for (var prov in locations) {
             //     var city = locations[prov];
             //     for (var attr in city) {
-            var districts = locations.data[0].children[0].children, district;
+            var districts = locations[0].children[0].children, district;
             for (i = 0; i < districts.length; i++) {
                 buf[i] = this.subCategoryTemplate({value: districts[i].value, name: districts[i].name});
             }
-            $dist = $("#filter_district");
+            var $dist = $("#filter_district");
             $dist.append(buf.join(""));
             this.titleObj.city = "南京";
             if (locationValue) {
@@ -377,10 +377,10 @@ var SearchView = Backbone.View.extend({
     },
     /*处理筛选事件(上课时间 课程费用等)*/
     filterResult: function ($filter, $target) {
-        $("#resultNum").html('...');
         if ($target.hasClass("active")) {
             return;
         }
+        $("#resultNum").html('...');
         $filter.find(".active").removeClass("active");
         $target.addClass("active");
         var criteria = $filter.attr("id").split("_")[1], dataValue; //提取过滤类型 如'filter_classMode' to 'classMode'
@@ -413,7 +413,7 @@ var SearchView = Backbone.View.extend({
             if (dataValue === "noreq") {
                 this.searchRepresentation.set("locationValue", undefined);
                 if (this.compareWidgetView.map) {
-                    this.compareWidgetView.map.setCenter(this.locations.data[0].name);
+                    this.compareWidgetView.map.setCenter(this.locations[0].name);
                     this.compareWidgetView.map.map.setZoom(9);
                 }
             } else {

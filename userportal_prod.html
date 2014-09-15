@@ -15,7 +15,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="style/images/ico.ico"/>
     <link href="style/lib/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <link href="build/style/css/style-min.css?version=2.0build004" rel="stylesheet" type="text/css"/>
+    <link href="build/style/css/style-min.css?version=2.0build007" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript">
         if (!window.console) {
@@ -44,7 +44,7 @@
             <a id="footer_advise" href="#">意见反馈</a>
             <a id="footer_contactUs" href="#">联系我们</a>
         </div>
-        <div class="footer-copyright"> Copyright &#169; 2014 爱上课 | <a href="http://www.miitbeian.gov.cn/"
+        <div class="footer-copyright"> Copyright &#169; 2014 南京爱上课信息技术有限公司 | <a href="http://www.miitbeian.gov.cn/"
                                                                       target="_blank">苏ICP备14025414号</a></div>
     </div>
 </div>
@@ -61,7 +61,7 @@
                 <li id="navigate_compare" class="button navigate_compare">课程对比</li>
                 <li id="navigate_tel" style="padding: 0 5px">
                     <img src="./style/images/tel2.png" class="img">
-                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><small>400-025-0084</small></a>
+                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><small>400-025-0884</small></a>
                 </li>
             </ul>
 
@@ -94,7 +94,7 @@
                 <li id="navigate_compare" class="button navigate_compare">课程对比</li>
                 <li id="navigate_tel" style="padding: 0 5px">
                     <img src="./style/images/tel2.png" class="img">
-                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><small>400-025-0084</small></a>
+                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><small>400-025-0884</small></a>
                 </li>
             </ul>
             <div class="login_reg">
@@ -130,9 +130,8 @@
 <script type="text/template" id="tpl_banner">
     <div id="visual_container">
         <ul class="bjqs">
-            <li style="display: block;"><img src="style/images/banner.jpg" alt="" height="320"></li>
-            <li style="display: none;"><img src="style/images/banner2.jpg" alt="" height="320"></li>
-            <li style="display: none;"><img src="style/images/banner3.jpg" alt="" height="320"></li>
+            <li><img src="style/images/banner2.png" alt="" height="320"></li>
+            <li><img src="style/images/banner3.png" alt="" height="320"></li>
         </ul>
     </div>
 </script>
@@ -1436,13 +1435,11 @@
     </div>
     <div class="row2 clearfix">
         <div id="courseSlide" class="gallary clearfix">
-            <div>
                 <ul class="bjqs">
                     <% _.each(classPhotoList,function(photo){%>
                     <li><img src="<%=photo.imgUrl%>"></li>
                     <%})%>
                 </ul>
-            </div>
         </div>
         <div class="course_map">
             <div class="addr" title="<%= address %>">上课地点：<%= address %></div>
@@ -1464,7 +1461,7 @@
     <div class="pull-right padding-x" style="height: 39px;line-height: 39px">
             VIP选课顾问&nbsp;
             <img src="./style/images/tel.png" class="img">
-            <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&amp;f=117996&amp;n=iskkf001" target="_blank"><strong class="text-primary">400-025-0084</strong></a>
+            <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&amp;f=117996&amp;n=iskkf001" target="_blank"><strong class="text-primary">400-025-0884</strong></a>
     </div>
 </ul>
 <div class="course_content">
@@ -1765,7 +1762,7 @@
 <table width="100%" cellpadding="0" cellspacing="0" >
 
     <tr id="price">
-        <th width="64">课程价格</th>
+        <th width="64px">课程价格</th>
         <% _.each(courses, function(course) { %>
         <td width="195" class="courseId_<%= course.id %>">
             <%if(!course.price){%>
@@ -1876,7 +1873,7 @@
 </div>
 <table width="100%" cellpadding="0" cellspacing="0" id="special_content">
     <tr id="passAgreement">
-        <th>签约保过</th>
+        <th width="64px">签约保过</th>
         <% _.each(courses, function(course) { %>
         <td width="195" class="courseId_<%= course.id %>"><%= course.passAgreement %></td>
         <% }); %>
@@ -1938,7 +1935,7 @@
 <table width="100%" cellpadding="0" cellspacing="0" id="teaching_content">
 
     <tr id="logoUrl">
-        <th width="64">品牌展示</th>
+        <th width="64px">品牌展示</th>
         <% _.each(courses, function(course) { %>
         <td class="courseId_<%= course.id %>" width="195"><img src="<%= course.logoUrl %>"/></td>
         <% }); %>
@@ -2234,6 +2231,20 @@
                 <label>邮<s></s>箱</label>
                 <input class="text" type="text" id="inputEmail">
             </div>
+            <div class="field">
+                <label>毕业院校</label>
+                <input class="text" type="text" id="inputSchool">
+            </div>
+            <!--<div class="field">-->
+                <!--<label>就读专业</label>-->
+                <!--<select id="inputProfession" name="select" style="cursor: default;">-->
+                    <!--<option value="请选择">- 请选择 -</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="field">-->
+                <!--<label>工作行业</label>-->
+                <!--<input class="text" type="text" id="inputWordKind">-->
+            <!--</div>-->
             <div class="btn">
                 <input class="btn_O" type="button" id="updateInfo" value="立即更新">
             </div>
@@ -2262,6 +2273,42 @@
             拥有用户名才可以凭此邀请好友，邀请成功可获取丰富的奖励~
         </div>
     </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_chooseWorkModal">
+    <div class="chooseshoolHeader"><a class="close" title="关闭" href="#"></a>
+        选择行业
+    </div>
+    <div class="chooseshoolContent">
+        <div class="pop_content_inner">
+            <!--todo 暂不需要选择行业modal-->
+        </div>
+
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_mypage_chooseSchoolModal">
+
+        <h3>选择毕业院校</h3>
+        <div class="chooseshoolContent">
+            <div class="province_select">
+                <span>请选择省市：</span>
+                <select id="chooseshoolshen" name="select" style="cursor: default;">
+                    <option value="请选择">- 请选择省 -</option>
+                    <%_.each(province,function(v){%>
+                    <option value="<%=v.value%>"><%=v.name%></option>
+                    <%})%>
+                </select>
+                <select id="chooseshoolshi" name="select">
+                    <option value="请选择">- 请选择市 -</option>
+
+                </select>
+            </div>
+            <div class="school_list">
+                <ul id="schoolclearfix" class="clearfix">
+                </ul>
+            </div>
+        </div>
 </script>
 
 <script type="text/templates" id="tpl_mypage_credit">
@@ -2578,7 +2625,7 @@
             <a class="jiathis_button_qzone invitation_icon qzone">QQ空间</a>
             <a class="jiathis_button_douban invitation_icon douban">豆瓣</a>
             <a class="jiathis_button_kaixin001 invitation_icon kaixin">开心网</a>
-            <a class="jiathis_button_weixin invitation_icon weixin">微信</a>
+            <!--<a class="jiathis_button_weixin invitation_icon weixin">微信</a>-->
         </div>
 
         <dl class="invitation_tip" style="margin-top:50px;">
@@ -2627,7 +2674,7 @@
             <dd>
                 <p>在线客服：<a class="text-error" href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank">--&gt;猛戳我&lt;--</a></p>
 
-                <p style="line-height: 43px;">人工客服：<img src="./style/images/tel.png"/> <b class="F_orange">400-025-0084</b></p>
+                <p style="line-height: 43px;">人工客服：<img src="./style/images/tel.png"/> <b class="F_orange">400-025-0884</b></p>
 
                 <p>客服E-mail：kefu@iShangke.cn</p>
 
@@ -2713,14 +2760,14 @@
 </script>
 </div>
 <!-- load libraries-->
-<script src="build/common.min.js?version=2.0build004" type="text/javascript"></script>
-<script src="build/main.min.js?version=2.0build004" type="text/javascript"></script>
+<script src="build/common.min.js?version=2.0build007" type="text/javascript"></script>
+
+<script src="build/main.min.js?version=2.0build007" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8" src="http://gate.looyu.com/52669/117998.js"></script>
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd53837e251eec82237fe7ebbe442e0cb' type='text/javascript'%3E%3C/script%3E"));
 </script>
-
 </body>
 </html>
 

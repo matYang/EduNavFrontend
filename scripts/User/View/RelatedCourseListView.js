@@ -11,6 +11,7 @@ var RelatedCourseListView = Backbone.View.extend({
         this.courseTemplateId = course.get('courseTemplateId');
         this.courseId = course.get('id');
         this.sr = new CourseSearchRepresentation();
+        this.sr.set('enabled', undefined);
         this.sr.set('courseTemplateId', this.courseTemplateId);
         var self = this;
         app.generalManager.findCourse(this.sr, {

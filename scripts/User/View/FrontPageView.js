@@ -150,15 +150,13 @@ var BannerView = Backbone.View.extend({
     bindEvents: function () {
         //img slider
         $('#visual_container').bjqs({
-            showcontrols: false,
-            showmarkers: false,
             height: 320,
-            width: 1440,
-            randomstart: true,     // start from a random slide
+            width: 1960,
+//            randomstart: true,     // start from a random slide
             animtype: 'fade', // accepts 'fade' or 'slide'
-            animduration: 1000, // how fast the animation are
-            animspeed: 4500, // the delay between each slide
-            hoverpause: false // pause the slider on hover
+            animduration: 750, // how fast the animation are
+            animspeed: 4200, // the delay between each slide
+            hoverpause: true // pause the slider on hover
         });
     },
 
