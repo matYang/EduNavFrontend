@@ -61,9 +61,7 @@ var UsableCouponView = MultiPageView.extend({
     initialize: function () {
         this.$el.append(this.template);
         MultiPageView.prototype.initialize.call(this);
-        this.pageNumberId = "couponPageNum";
         this.pageNavigator = "usableCouponListNavigator";
-        this.pageNavigatorClass = "page blank1 clearfix";
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
 
@@ -117,9 +115,7 @@ var GotCouponView = MultiPageView.extend({
     initialize: function () {
         this.$el.append(this.template);
         MultiPageView.prototype.initialize.call(this);
-        this.pageNumberId = "couponPageNum";
         this.pageNavigator = "gotCouponListNavigator";
-        this.pageNavigatorClass = "page blank1 clearfix";
         this.user = app.sessionManager.sessionModel;
         this.isClosed = false;
         this.sr = new CouponSearchRepresentation();

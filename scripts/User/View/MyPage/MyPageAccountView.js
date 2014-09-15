@@ -54,7 +54,6 @@ var InCashView = MultiPageView.extend({
     template: _.template(tpl.get("mypage_accountIn")),
     noMessage: _.template(tpl.get("accountInNoMessage")),
     pageNavigator:'accountInListPagination',
-    pageNavigatorClass:'page blank1 clearfix',
     initialize: function () {
         this.$el.append(this.template);
         MultiPageView.prototype.initialize.call(this);
@@ -105,7 +104,6 @@ var OutCashView = MultiPageView.extend({
     template: _.template(tpl.get("mypage_accountOut")),
     noMessage: _.template(tpl.get("accountOutNoMessage")),
     pageNavigator:'accountOutListPagination',
-    pageNavigatorClass:'page blank1 clearfix',
     initialize: function () {
         this.$el.append(this.template);
         MultiPageView.prototype.initialize.call(this);

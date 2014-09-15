@@ -58,7 +58,6 @@ var CreditTableView = MultiPageView.extend({
     entryTemplate: _.template(tpl.get("mypage_creditRow")),
     template: _.template(tpl.get("mypage_creditTable")),
     pageNavigator:'creditPageNav',
-    pageNavigatorClass:'page blank1 clearfix',
     initialize: function (allCoupons, coupons) {
         this.$el.append(this.template);
         MultiPageView.prototype.initialize.call(this);

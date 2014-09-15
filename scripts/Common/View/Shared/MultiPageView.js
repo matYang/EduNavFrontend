@@ -1,5 +1,6 @@
 var MultiPageView = Backbone.View.extend({
-
+    //分页按钮配置所需要提供的信息有保存按钮是第几页的数据 (之前放于id中) 以及可供触发事件的selector(之前使用class触发事件)
+    //如果一个页面上面存在多个分页的情况 需要在每个页面重新设置pageNumberClass为不同的值(用户绑定事件) 而pageNumberId就不需要了
     maxSize: 8, //分页组的最大容量
     entryTemplate: "", //单条记录的模板
     entryContainer: "", //结果列表 tbody
@@ -10,10 +11,9 @@ var MultiPageView = Backbone.View.extend({
     startIndex: 0,//开始记录数
     currentPage: 1,//当前页数
     pageNumberId: "page",//每个分页按钮的id前缀 结果为id='page_1'...
+    pageNumberClass: "page",//用户绑定事件
     entryEvent: "",//绑定在每条记录上的事件
     messages: null,//页面上面显示的经过过滤的信息(在假分页状态下)
-    entryHeight: -1,
-    entryRowNum: 1,
     noMessage: _.template("暂无消息"),
     eventBound: false,
     $entryContainer: null, // 列表容器
@@ -129,7 +129,7 @@ var MultiPageView = Backbone.View.extend({
             this.$pn.children("." + this.pageNumberClass).off();
             this.$pn.children(".pre").off();
             this.$pn.children(".next").off();
-            this.$pre = null;add
+            this.$pre = null;
             this.$next = null;
         }
         this.$pn = $("#" + this.pageNavigator);
