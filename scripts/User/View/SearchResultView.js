@@ -9,7 +9,7 @@ var SearchResultView = MultiPageView.extend({
         _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
         MultiPageView.prototype.initialize.call(this);
         this.sr = searchRepresentation;
-        this.$entryContainer = $("#" + this.entryContainer);
+        //$entryContainer根据entryContainer生成 直接使用即可 与el相同
         this.$entryContainer.empty();
         //对比组件
         this.compareWidgetView = compareWidget || this.compareWidgetView;
