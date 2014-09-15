@@ -255,6 +255,7 @@ var Course = Backbone.Model.extend({
 
             //以下为生成课程价格相关信息所需的字段
             json.price = this.get("price");
+            json.originalPrice = this.get("originalPrice");
             json.cashback = this.get("cashback");
             json.commission = this.get("commission");
             json.marking = this.get("marking");
