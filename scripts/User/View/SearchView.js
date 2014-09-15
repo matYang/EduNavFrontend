@@ -10,21 +10,20 @@ var SearchView = Backbone.View.extend({
     template: _.template(tpl.get('search')),
     initialize: function (params) {
         _.bindAll(this, 'render', 'bindEvents', 'bindCatSearchEvents', 'renderCategories', 'renderLocations', 'close');
-        this.allMessages = new Courses();
         //define the template
 
         this.timeDesc = true;
         this.priceDesc = true;
         this.isClosed = true;
-        this.titleObjs = [];
         this.titleObj = {};
 
         this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
-        //url路径中带有查询参数时 重置this.searchRepresentation
+        //url路径中带有查询参数时 重置this.searchRepresentation(初始值为new CourseSearchRepresentation())
         if (params) {
             try {
                 this.searchRepresentation = new CourseSearchRepresentation();
                 this.searchRepresentation.castFromQuery(params.searchKey);
+                //重新保存查询结果
                 app.storage.setSearchRepresentationCache(this.searchRepresentation, true);
             } catch (e) {
                 app.navigate("search", {replace: true, trigger: false});
@@ -41,12 +40,12 @@ var SearchView = Backbone.View.extend({
             // $("title").html("找课程 | " + this.searchRepresentation.toTitleString());//that will be too long
             this.$el.append(this.template);
             //异步加载目录和地址
-            app.generalManager.getCategories(this);//传递this参数,会在获取目录之后调用this.renderCategories()
+            app.generalManager.getCategories(this);//传递this,会在获取目录之后调用this.renderCategories()
             app.generalManager.getLocations(this);//同上 调用this.renderLocations
 
-            //加载course之前首先加载widget baiduMap course数据获取后会生成地图
+            //加载course之前首先加载widget baidu Map--course数据获取后会生成地图
             this.compareWidgetView = new CompareWidgetView();
-            //新建view时会调用一次fetchAction 则会进行一次数据渲染
+            //新建view时会调用一次fetchAction 则会进行一次数据渲染(传入课程搜索 传入对比组件)
             this.searchResultView = new SearchResultView(this.searchRepresentation, this.compareWidgetView);
             //初始化时同步url中的参数进行过滤
             this.syncFilters();
@@ -260,6 +259,7 @@ var SearchView = Backbone.View.extend({
             }
         }
     },
+    //进行课程搜索 重新设置搜索条件 并且获取数据
     courseSearch: function () {
         this.searchResultView.sr = this.searchRepresentation;
         //todo 加载结果数据 param is pageIndex(using page 1)

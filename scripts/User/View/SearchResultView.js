@@ -1,32 +1,21 @@
 var SearchResultView = MultiPageView.extend({
-    pageNumberClass: "searchResultPageNumber",
-    pageNumberId: "searchResultPageNumber",
     pageNavigator: "courseSearchResultNavigator",
-    pageNavigatorClass: "page blank1 clearfix",
     entryContainer: "searchResultDisplayPanel",
     noMessage: _.template(tpl.get("search_noMessage")),
     entryTemplate: _.template(tpl.get("searchResultEntry")),
-    extPn: true,
-    entryHeight: 157,
     pageEntryNumber: 10,
-    autoHeight: true,
+    scroll:false,
     initialize: function (searchRepresentation, compareWidget) {
-        var page;
-        if (!this.initialized) {
-            _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
-            MultiPageView.prototype.initialize.call(this);
-            this.sr = searchRepresentation;
-            this.$domContainer = $("#" + this.entryContainer);
-            this.$domContainer.empty();
-            this.compareWidgetView = compareWidget || this.compareWidgetView;
-            this.user = app.sessionManager.sessionModel;
-            this.initialized = true;
-            var start = this.sr.get('start');
-            var count = this.sr.get('count');
-            page = parseInt(start / count +1);
-            if (isNaN(page))page = undefined;
-        }
-        this.fetchAction(page);
+        _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
+        MultiPageView.prototype.initialize.call(this);
+        this.sr = searchRepresentation;
+        //$entryContainer根据entryContainer生成 直接使用即可 与el相同
+        this.$entryContainer.empty();
+        //对比组件
+        this.compareWidgetView = compareWidget || this.compareWidgetView;
+        this.user = app.sessionManager.sessionModel;
+
+        this.fetchAction();
         this.bindEvents();
         this.bindEntryEvents();
     },
@@ -37,12 +26,12 @@ var SearchResultView = MultiPageView.extend({
         for (var i = 0; i < courseIds.length; i++) {
             $("#compare_" + courseIds[i]).find("input").attr("class", "remove btn_gray").val("已加入对比").removeClass("add").addClass("remove");
         }
-        //todo 这里是为了声明页面加载完毕
+        //todo 这里是为了声明页面加载完毕 seo
         $('body').attr('pageRenderReady', '')
     },
     bindEvents: function () {
         var that = this, id;
-        this.$domContainer.on("click", ".compare", function (e) {
+        this.$entryContainer.on("click", ".compare", function (e) {
             if ($(e.target).hasClass("add")) {
                 id = Utilities.getId($(this).attr("id"));
                 if (that.compareWidgetView.addCourse(that.messages.get(Utilities.toInt(id)))) {
@@ -67,29 +56,31 @@ var SearchResultView = MultiPageView.extend({
         $('#searchResultDisplayPanel').on('click', '.viewDetail', function () {
             var courseId = $(this).data('id');
             if (courseId == '')return;
+            //百度统计
             _hmt.push(['_trackEvent', 'course', 'click', courseId]);
             app.navigate("course/" + courseId, true);
         });
     },
-    fetchAction: function (page) {
+    fetchAction: function (pageIndex) {
+        var self = this;
+        //根据过滤条件(包括分页信息)重新获取数据
+        if (pageIndex === undefined) {// 未传入参数
 
-        if (page === undefined) {// 未传入参数
-
-            if (this.sr.get("start") === undefined)// localStorage中不存在缓存
-                this.sr.set("start", 0);// 则设置默认的start为0
+            if (self.sr.get("start") === undefined)// localStorage中不存在缓存
+                self.sr.set("start", 0);// 则设置默认的start为0
         } else {
-            this.sr.set("start", (page - 1) * this.pageEntryNumber);
+            self.sr.set("start", (pageIndex - 1) * self.pageEntryNumber);
         }
-        this.sr.set("count", this.pageEntryNumber);
-        this.currentPage = page;
+        this.sr.set("count", self.pageEntryNumber);
+        self.currentPage = self.sr.get('start') / self.pageEntryNumber + 1;
+
         app.navigate("search/" + this.sr.toQueryString(), {trigger: false, replace: true});
         $("#" + this.entryContainer).empty().append('<div class="loading"></div>');
-        $("#courseSearchResultNavigator").empty();
         app.generalManager.findCourse(this.sr, {
-            success: this.renderSearchResults,
-            error: this.renderError
+            success: self.renderSearchResults,
+            error: self.renderError
         });
-        app.storage.setSearchRepresentationCache(this.sr, "course");
+        app.storage.setSearchRepresentationCache(self.sr, "course");
     },
     renderError: function (data) {
         if (!this.isClosed) {
@@ -121,7 +112,7 @@ var SearchResultView = MultiPageView.extend({
     },
     close: function () {
         if (!this.isClosed) {
-            this.$domContainer.off();
+            this.$entryContainer.off();
             MultiPageView.prototype.close.call(this);
             this.compareWidget = null;
         }

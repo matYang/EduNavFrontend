@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-.right_bar{ position:fixed; bottom:150px; right:10px;z-index: 50}
+.right_bar{ position:fixed; bottom:100px; right:10px;z-index: 50}
 .right_bar dl{width:60px;position:relative;}
 /*文字图标*/
 .right_bar dl dt{
@@ -36,8 +36,9 @@
 .right_bar .listening_test dt{ background-position:50% -57px;}
 /*课程对比*/
 .right_bar .comparison dt{ background-position:50% -122px;}
-/*二维码*/
+/*二维码 隐藏层宽度重置为200px*/
 .right_bar .qr_code dt{ background-position:50% -185px;}
+.right_bar dl.qr_code dd{width: 200px}
 /*返回顶部*/
 .right_bar .back_to_top dt{ background-color:#2e333f; background-position:50% -251px;}
 
