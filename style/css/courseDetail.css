@@ -196,7 +196,7 @@
     position: absolute;top:0;left:0;
     text-indent: 1.2em;
     height: 36px;line-height: 36px;
-    width: 622px;background-color: #128d56;color: white;text-align: left;}
+    width: 100%;background-color: #128d56;color: white;text-align: left;}
 /*.viewTeacherModal .notifier-message div,.viewTeacherModal .notifier-message img{margin-top: 10px}*/
 .viewTeacherModal .notifier-message img{float: left;width:140px;height: 140px;margin-right: 15px}
 .viewTeacherModal .notifier-message div{text-align: left;text-indent: 2em;line-height: 24px;}
