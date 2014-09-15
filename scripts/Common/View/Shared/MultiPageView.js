@@ -41,9 +41,6 @@ var MultiPageView = Backbone.View.extend({
     render: function () {
         //获取完数据后需要进行数据的展示
         var buf = [], i, length, height, message;
-//        if (!this.messages instanceof Backbone.Collection) {
-//            this.messages = this.allMessages;
-//        }
         var that = this;
         this.$entryContainer = $("#" + this.entryContainer);
         this.$entryContainer.empty();
@@ -66,6 +63,7 @@ var MultiPageView = Backbone.View.extend({
             if (!this.isTable) {
                 this.$entryContainer.append("<div class = 'noMessage'>" + this.noMessage() + "</div>");
             } else {
+                //根据在table中td个数设置no message
                 var td_length = this.$tableContainer.find('.thead tr td').length;
                 if (!td_length) {
                     td_length = 4;
@@ -79,6 +77,7 @@ var MultiPageView = Backbone.View.extend({
             }
         }
         var total = this.messages.total;
+        //存在两页时才显示分页组件
         if (total > this.pageEntryNumber) {
             this.setPageNavigator();
         } else {
@@ -100,7 +99,6 @@ var MultiPageView = Backbone.View.extend({
             } else {
                 $.smoothScroll()
             }
-
         }
         this.currentPage = pageIndex;
         this.startIndex = this.pageEntryNumber * (pageIndex - 1);
@@ -132,7 +130,7 @@ var MultiPageView = Backbone.View.extend({
             this.$pn.children("." + this.pageNumberClass).off();
             this.$pn.children(".pre").off();
             this.$pn.children(".next").off();
-            this.$pre = null;
+            this.$pre = null;add
             this.$next = null;
         }
         this.$pn = $("#" + this.pageNavigator);
