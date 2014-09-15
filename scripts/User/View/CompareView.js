@@ -4,10 +4,12 @@ var CompareView = Backbone.View.extend({
     initialize: function () {
         // $("#viewStyle").attr("href", "style/css/compare.css");
         $(document).scrollTop(0);
-        _.bindAll(this, "load", "render", "bindEvents", "renderError", "close");
+        _.bindAll(this, "load", "render", "afterRender", "bindEvents", "renderError", "close");
         this.load();
     },
+    //加载对比课程的数据
     load: function () {
+        //从localStorage中获取课程对比列表
         this.courseIdList = app.storage.getCoursesToCompare(); // array of items to compare
         if (!this.courseIdList.length) {
             Info.displayNotice("您还没有添加待比较的课程，先去查看感兴趣的课程吧");
@@ -18,6 +20,7 @@ var CompareView = Backbone.View.extend({
         $(document).scrollTop(0);
         this.isClosed = false;
         app.viewRegistration.register(this);
+        //存储对比的课程列表
         this.courses = [];
         if (this.courseIdList.length === 0) {
             this.render(new Courses());
@@ -30,7 +33,7 @@ var CompareView = Backbone.View.extend({
     },
     render: function (courses) {
         if (!courses.length) {
-            //In case of backend fails, no courses will be loaded even if the batchFetchCourse call succeeded
+            //如果渲染的数据为空 则进行提示
             Info.displayNotice("您还没有添加待比较的课程，先去查看感兴趣的课程吧");
             this.isClosed = true;
             app.navigate("search", {trigger: true, replace: true});
@@ -40,6 +43,7 @@ var CompareView = Backbone.View.extend({
             document.title = "爱上课 | 课程比较";
             this.courses = courses.toArray();
             var len = 0;
+            //将课程填充为4个(对比页最多容纳4个课程)
             while (len < 4) {
                 if (this.courses.length > len) {
                     this.courses[len] = this.courses[len]._toJSON();
@@ -48,7 +52,7 @@ var CompareView = Backbone.View.extend({
                 }
                 len++;
             }
-            this.$el.empty().append(this.template({courses: this.courses}));
+            this.$el.html(this.template({courses: this.courses}));
             this.$view = $("#compareView");
             this.afterRender();
             this.bindEvents();
@@ -65,15 +69,17 @@ var CompareView = Backbone.View.extend({
         this.configMoveButton();
         this.handleEmptyText();
     },
-    handleEmptyText: function(){
+    handleEmptyText: function () {
         this.$view.find("td:empty[class^='courseId_']").filter("[class!='courseId_-1']").text('-- --');
     },
+    //配置左右交换位置的按钮style class
     configMoveButton: function () {
         this.$view.find(".pre-disabled").removeClass("pre-disabled");
         this.$view.find(".next-disabled").removeClass("next-disabled");
         this.$view.find("#courseName").find(".pre:first").addClass("pre-disabled");
         this.$view.find("#courseName").find(".next:last").addClass("next-disabled");
     },
+    //绑定事件(交换课程位置 删除对比课程 查看对比课程 长文本内容的展开和收起)
     bindEvents: function () {
         var that = this;
         this.$tables = $("table");
@@ -109,7 +115,7 @@ var CompareView = Backbone.View.extend({
                     $(e.delegateTarget).css("border-bottom", "");
                 }
             });
-        /*课程名称中的事件*/
+        /*课程名称中的事件 查看课程详情*/
         $("#courseName").on("click", ".td", function (e) {
             var $e, index, index2, courseId;
             var styleClass = $(e.currentTarget).attr("class");
@@ -134,8 +140,11 @@ var CompareView = Backbone.View.extend({
                 var removed = false;
                 that.$view.find(".courseId_" + courseId).fadeOut(200, function () {
                     if (!removed) {
+                        //移除选中的课程 并且在后侧补齐
                         that.$view.find(".courseId_" + courseId).remove();
-                        that.$view.find("tr:not(#stickyPlaceholder)").append("<div class='courseId_-1 td' style='width: 195px'>");
+                        //这里头部的课程名称是通过div实现 而不是td
+                        that.$view.find('#courseName').append('<div class="courseId_-1 td" style="width: 195px"></div>');
+                        that.$view.find('tr:not(#stickyPlaceholder)').append("<td class='courseId_-1' style='width: 195px'></td>");
                         removed = true;
                         //移至animate回调中防止异步造成页面提早跳转产生的错误
                         that.configMoveButton();
@@ -168,6 +177,7 @@ var CompareView = Backbone.View.extend({
             }
             that.swapRow(index, index2);
         });
+        //课程名称在滚动时会固定在页面头部
         $(window).on("scroll", function () {
             if ($(this).scrollTop() >= 140) {
                 $("#courseName").addClass("stickyHeader");
@@ -193,7 +203,7 @@ var CompareView = Backbone.View.extend({
                 that.load();
             }
         });
-        /*机构信息中的展开和收起*/
+        /*机构信息中的内容展开和收起*/
         $("#partnerIntro").on("click", "a", function (e) {
             e.preventDefault();
             var cc, $pi = $(e.delegateTarget), text, course;
@@ -223,6 +233,7 @@ var CompareView = Backbone.View.extend({
             }
         });
     },
+    //交换两个课程的显示位置
     swapRow: function (index1, index2) {
         var temp, i, $td, $rows;
         if (index1 > index2) {
