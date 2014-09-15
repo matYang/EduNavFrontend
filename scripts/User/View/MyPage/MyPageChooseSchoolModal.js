@@ -14,6 +14,7 @@ var ChooseSchoolView = Backbone.View.extend({
         var self = this;
         app.viewRegistration.register(this);
         this.isClosed = false;
+        this.isShow = false;
         this.parentView = opt.view;
 
         this.province = [];
@@ -27,22 +28,18 @@ var ChooseSchoolView = Backbone.View.extend({
         _.each(this.province, function (v, index) {
             self.keyMap[v.value] = v.children;
         });
-        this.notify = new Backbone.Notifier({
-            fadeInMs: 0,
-            fadeOutMs: 0,
-            ms: null,
-            message: self.template({
-                province: self.province
-            }),
-            modal: true,
-            closeBtn: true,
-            position: 'center',
-            cls: self.modalClass,
-            width: '712'
-        });
+        $("body").append(this.template({
+            province: self.province
+        }));
     },
     bindEvents: function () {
+
         var self = this;
+        //关闭按钮
+        $('#chooseschoolclose').click(function(){
+            $('#chooseschoolAll').hide();
+            self.isShow = false;
+        });
         //选择省后的城市的二级联动
         $('#chooseshoolshen').change(function () {
             //alert($(this).val());
@@ -84,13 +81,18 @@ var ChooseSchoolView = Backbone.View.extend({
     },
 
     show: function () {
-        this.modalView = this.notify.notify();
+        //this.modalView = this.notify.notify();
+        $('#chooseschoolAll').show();
+
+        this.isShow = true;
         this.bindEvents();
     },
     hide: function () {
-        this.modalView.destroy();
+        $('#chooseschoolAll').hide();
+        this.isShow = false;
+        //alert(this.modalView.isshow);
+        //this.modalView.hide();
     },
-
     close: function () {
         if (!this.isClosed) {
             //this.modal.destroy();
