@@ -8,8 +8,8 @@ var SearchResultView = MultiPageView.extend({
         _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
         MultiPageView.prototype.initialize.call(this);
         this.sr = searchRepresentation;
-        this.$messageContainer = $("#" + this.entryContainer);
-        this.$messageContainer.empty();
+        this.$entryContainer = $("#" + this.entryContainer);
+        this.$entryContainer.empty();
         //对比组件
         this.compareWidgetView = compareWidget || this.compareWidgetView;
         this.user = app.sessionManager.sessionModel;
@@ -32,7 +32,7 @@ var SearchResultView = MultiPageView.extend({
     },
     bindEvents: function () {
         var that = this, id;
-        this.$messageContainer.on("click", ".compare", function (e) {
+        this.$entryContainer.on("click", ".compare", function (e) {
             if ($(e.target).hasClass("add")) {
                 id = Utilities.getId($(this).attr("id"));
                 if (that.compareWidgetView.addCourse(that.messages.get(Utilities.toInt(id)))) {
@@ -113,7 +113,7 @@ var SearchResultView = MultiPageView.extend({
     },
     close: function () {
         if (!this.isClosed) {
-            this.$messageContainer.off();
+            this.$entryContainer.off();
             MultiPageView.prototype.close.call(this);
             this.compareWidget = null;
         }
