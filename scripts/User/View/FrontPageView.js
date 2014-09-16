@@ -99,10 +99,10 @@ var FrontPageView = Backbone.View.extend({
             that.searchRepresentation.set("categoryValue", $(this).data("value"));
             app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
         });
-        $("#lv2Categories").on("click", ".lv2category", function (e) {
+        $("#lv2Categories").on("click", ".fleft", function (e) {
             if (e.target.tagName === "A") {
                 e.preventDefault();
-                that.searchRepresentation.set("categoryValue", $(this).data("value"));
+                that.searchRepresentation.set("categoryValue", $(this).parent().data("value"));
                 app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
             }
         });
