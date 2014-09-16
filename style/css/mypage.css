@@ -251,30 +251,36 @@ thead tr.bookingEntry td.detail{text-align: center}
 /*选择学校弹出框*/
 /*header */
 .schoolModal .notifier-inner{padding:0;}
-.schoolModal .notifier-close,.viewTeacherModal .notifier-close:hover{
-    z-index: 104;
-    text-indent: -9999px;
+#chooseschoolclose{
+    /*z-index: 104;
+    text-indent: -9999px;*/
+    margin: 7px 8px 8px 0;
+    display: block;
+    float: right;
     width: 20px;
     height: 20px;
     background: url(../images/close.png) no-repeat;
     cursor: pointer;
 }
 .schoolModal .notifier-message{padding-top: 36px;}
-.schoolModal .notifier-message h3{
-    position: absolute;top:0;left:0;
+#chooseschoolMain h3{
+   /* position: absolute;top:0;left:0;*/
     text-indent: 1.2em;
     height: 36px;line-height: 36px;
     width: 100%;background-color: #128d56;color: white;text-align: left;}
 
-.schoolModal .chooseshoolContent{
+.chooseshoolContent{
     padding: 10px;
 }
-.schoolModal .province_select{
+.province_select{
     text-align: left;
     padding: 10px 0;
     color: #636363;font-size:12px;
 }
-.school_list{background: #F7F7F7;padding: 7px 0 10px; overflow-y: auto;}
-.school_list ul{min-height:240px;padding-left: 10px; line-height:22px;text-align: left;}
+.school_list{background: #F7F7F7; height: 240px; padding: 7px 0 10px; overflow-y: auto;}
+.school_list ul{min-height:240px; height: auto; overflow-y: auto; padding-left: 10px; line-height:22px;text-align: left;}
 .school_list ul li{cursor: pointer;display: inline-block;float: left;overflow: hidden;width: 220px; font-size:12px;}
 .school_list ul li .square {background-color: #333;display: inline-block;font-size: 0;height: 3px;margin-right: 8px;vertical-align: middle;width: 3px;}
+
+#chooseschoolAll{display: none; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); position: fixed; z-index: 9999; top: 0;}
+#chooseschoolMain{ width: 712px; height: 358px; margin: 200px auto; z-index: 10000; background-color: #FFF;}

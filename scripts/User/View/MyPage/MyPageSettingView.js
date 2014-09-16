@@ -56,7 +56,10 @@ var MyPageSettingView = BaseFormView.extend({
         });
         //选择学校
         $('#inputSchool').focus(function () {
-            self.chooseSchoolView.show();
+            //alert(self.chooseSchoolView.isShow);
+            if (!self.chooseSchoolView.isShow)
+                self.chooseSchoolView.show();
+
         });
 //        $('#inputWork').focus(function () {
 //            console.log(111);
