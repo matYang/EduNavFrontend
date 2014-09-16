@@ -238,7 +238,7 @@
         }
         $.ajax({
             url: ApiResource.general_school,
-            data:'schoolId='+locationId,
+            data:'locationId='+locationId,
             type: 'GET',
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
