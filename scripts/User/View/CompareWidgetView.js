@@ -43,7 +43,11 @@ var CompareWidgetView = Backbone.View.extend({
     bindEvents: function () {
         var that = this;
         $("#compare").on("click", function () {
-            app.navigate("compare", true);
+            if(!app.topBarView.hasCourse()){
+                Info.displayNotice("您还没有添加待比较的课程，先去查看感兴趣的课程吧");
+            }else{
+                app.navigate("compare", true);
+            }
         });
         this.$domContainer.on("click", ".remove", function () {
             var id = Utilities.getId($(this).parent().attr("id"));
@@ -170,7 +174,11 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
     bindEvents: function () {
         var that = this;
         $("#compare").on("click", function () {
-            app.navigate("compare", true);
+            if(!app.topBarView.hasCourse()){
+                Info.displayNotice("您还没有添加待比较的课程，先去查看感兴趣的课程吧");
+            }else{
+                app.navigate("compare", true);
+            }
         });
         this.$domContainer.on("click", ".remove", function () {
             var id = Utilities.getId($(this).parent().attr("id"));

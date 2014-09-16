@@ -53,10 +53,9 @@ var TopBarView = Backbone.View.extend({
         $('#navigate_compare').on('click', function () {
             //如果不在compare页面，则进行判断内的代码
             if (location.hash.indexOf("compare") !== 1) {
-                if( self.hasNoCourse() ){
+                if(!self.hasCourse() ){
                     Info.displayNotice("您还没有添加待比较的课程，先去查看感兴趣的课程吧");
-/*                    this.isClosed = true;*/
-                    app.navigate("search", {trigger: true, replace: true});
+/*                    app.navigate("search", {trigger: true, replace: true});*/
                 }else{
                     app.infoModal.hide();
                     app.navigate("compare", true);
@@ -179,10 +178,10 @@ var TopBarView = Backbone.View.extend({
     },
 
     //判断有没有对比课程
-    hasNoCourse: function(){
+    hasCourse: function(){
         //从localStorage中获取课程对比列表
         this.courseIdList = app.storage.getCoursesToCompare(); // array of items to compare
-        return !this.courseIdList.length;
+        return !!this.courseIdList.length;
     },
 
     close: function () {
