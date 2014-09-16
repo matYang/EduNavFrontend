@@ -153,9 +153,11 @@ var CompareView = Backbone.View.extend({
                         //对比课程数量为0时提示
                         if (!that.courseIdList.length) {
                             Info.displayNotice("已经没有待比较的课程了，先去查看感兴趣的课程吧");
-                            that.isClosed = false;
-                            app.navigate("search", {trigger: true, replace: true});
+                            app.infoModal.show();
                         }
+                        $("#gotIt").on("click", function(){
+                            app.navigate("search", {trigger: true, replace: true});
+                        });
                     }
                 });
 
