@@ -11,6 +11,7 @@
 .topBar-navigation li.active{ background:#404652;}
 .topBar-navigation li a{ color: white}
 /*tel应没有hover变化*/
+.tel{float:right; margin-right:50px; margin-top:15px;}
 #navigate_tel:hover{background:none;}
 
 .login_reg span{display:inline-block; width:1px; height:14px; background:#fff; color:#fff}

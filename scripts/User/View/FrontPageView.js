@@ -109,7 +109,9 @@ var FrontPageView = Backbone.View.extend({
         $(".lv2category").on("click", "li", function (e) {
             if (e.target.tagName === "A") {
                 e.preventDefault();
-                that.searchRepresentation.set("categoryValue", $(this).data("value"));
+                var value = $(this).data("value");
+                if (value === undefined)return;
+                that.searchRepresentation.set("categoryValue", value);
                 app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
             }
         });
@@ -158,8 +160,8 @@ var BannerView = Backbone.View.extend({
             animspeed: 4200, // the delay between each slide
             hoverpause: true // pause the slider on hover
         });
-        $('#visual_container').css('width','');
-        $('#visual_container ol.bjqs-markers').css('left','');
+        $('#visual_container').css('width', '');
+        $('#visual_container ol.bjqs-markers').css('left', '');
     },
 
     close: function () {
