@@ -29,14 +29,7 @@ var MyPageSettingView = BaseFormView.extend({
             ];
         }
         this.template = _.template(tpl.get('mypage_setting'));
-        this.sessionModel = app.sessionManager.sessionModel;
-        //model在这里只是一个临时的模型 用于保存用户临时的输入 只有提交后才会更新到sessionModel中 sessionModel保存了用户的所有资料
-        this.model = new User(this.sessionModel.attributes);
-        //初始化学校信息
-        this.choosedSchool = {
-            id: this.model.schoolId,
-            name: this.model.schoolName
-        };
+
         app.viewRegistration.register(this);
         this.chooseSchoolView = new ChooseSchoolView({view: this});
 //        this.chooseWorkView = new ChooseWorkView({view:this});
@@ -45,6 +38,14 @@ var MyPageSettingView = BaseFormView.extend({
     },
 
     render: function () {
+        this.sessionModel = app.sessionManager.sessionModel;
+        //model在这里只是一个临时的模型 用于保存用户临时的输入 只有提交后才会更新到sessionModel中 sessionModel保存了用户的所有资料
+        this.model = new User(this.sessionModel.attributes);
+        //初始化学校信息
+        this.choosedSchool = {
+            id: this.model.schoolId,
+            name: this.model.schoolName
+        };
         this.$el.html(this.template(this.model._toJSON()));
     },
     bindEvents: function () {

@@ -99,7 +99,7 @@ var FrontPageView = Backbone.View.extend({
             that.searchRepresentation.set("categoryValue", $(this).data("value"));
             app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
         });
-        $("#lv2Categories").on("click", ".fleft", function (e) {
+        $("#lv2Categories").on("click", ".cat1", function (e) {
             if (e.target.tagName === "A") {
                 e.preventDefault();
                 that.searchRepresentation.set("categoryValue", $(this).data("value"));

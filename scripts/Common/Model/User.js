@@ -5,16 +5,16 @@ var User = Backbone.Model.extend({
             'id': -1,
             'userId': -1,
 
-            'avatarUrl': '',
-            'name': '',//真实姓名
-            'phone': '',
-            'password': '',
-            'email': '',
+            'avatarUrl': undefined,
+            'name': undefined,//真实姓名
+            'phone': undefined,
+            'password': undefined,
+            'email': undefined,
             'schoolId': undefined,
             'schoolName': undefined,
             'gender': undefined,
             'invitationCode': undefined,
-            'appliedInvitationCode': '',
+            'appliedInvitationCode': undefined,
 
             'createTime': undefined,
             'lastLogin': undefined,
