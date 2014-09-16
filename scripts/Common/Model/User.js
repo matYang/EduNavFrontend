@@ -11,6 +11,7 @@ var User = Backbone.Model.extend({
             'password': '',
             'email': '',
             'schoolId': undefined,
+            'schoolName': undefined,
             'gender': undefined,
             'invitationCode': undefined,
             'appliedInvitationCode': '',
