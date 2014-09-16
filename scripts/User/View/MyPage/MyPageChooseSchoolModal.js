@@ -55,7 +55,7 @@ var ChooseSchoolView = Backbone.View.extend({
         $('#chooseshoolshi').change(function () {
             var locationId = $(this).val();
             if (!locationId)return;
-            app.generalManager.fetchSchools({
+            app.generalManager.fetchSchools(locationId, {
                 success: self.renderSchools,
                 error: self.renderSchoolsError
             });

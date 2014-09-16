@@ -73,10 +73,9 @@ var AppRouter = Backbone.Router.extend({
         //intializing search query states & filter states, look into localStorage to find previous history
         this.compareList = this.storage.getCoursesToCompare();
 
-        this.curDate = new Date();
-        this.searchResult = new Courses();
         this.bindGlobalLinks();
     },
+    //全局的点击事件绑定(footer中的链接)
     bindGlobalLinks: function () {
         var that = this;
         $("#footer_service_link").on("click", 'a', function (e) {
@@ -88,12 +87,7 @@ var AppRouter = Backbone.Router.extend({
         });
     },
     defaultRoute: function () {
-        //if login, procees to main/:id, if not, proceed to front
-        if (this.sessionManager.hasSession()) {
-            this.navigate("search", {trigger: true});
-        } else {
-            this.navigate("front", {trigger: true});
-        }
+        this.navigate("front", {trigger: true});
     },
 
     front: function () {
@@ -195,5 +189,4 @@ var AppRouter = Backbone.Router.extend({
         localStorage.cache = JSON.stringify(app.cache.cache);
     });
     // $("body").append("<script type='text/javascript' src='http://tb.53kf.com/kf.php?arg=10074249&style=1'> </script>");
-    // console.log("Wow, Congratulations!");
 })();

@@ -230,7 +230,7 @@
     };
 
     //拉取学校
-    GeneralManager.prototype.fetchSchools = function (callback) {
+    GeneralManager.prototype.fetchSchools = function (locationId,callback) {
         var self = this;
         if (testMockObj.testMode) {
             callback.success(testMockObj.testSchools.data);
@@ -238,6 +238,7 @@
         }
         $.ajax({
             url: ApiResource.general_school,
+            data:'locationId='+locationId,
             type: 'GET',
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {

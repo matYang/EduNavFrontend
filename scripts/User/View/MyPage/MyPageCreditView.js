@@ -49,21 +49,18 @@ var MyPageCreditView = Backbone.View.extend({
 });
 
 
-var CreditTableView = MultiPageView3.extend({
+var CreditTableView = MultiPageView.extend({
     entryContainer:'creditEntryContainer',
     el: "#credit_pageContent",
     table: "#creditTable",
-    minHeight: 144,
     pageEntryNumber: 8,
-    entryHeight: 36,
     noMessage: _.template(tpl.get("credit_noMessage")),
     entryTemplate: _.template(tpl.get("mypage_creditRow")),
     template: _.template(tpl.get("mypage_creditTable")),
     pageNavigator:'creditPageNav',
-    pageNavigatorClass:'page blank1 clearfix',
     initialize: function (allCoupons, coupons) {
         this.$el.append(this.template);
-        MultiPageView3.prototype.initialize.call(this);
+        MultiPageView.prototype.initialize.call(this);
         this.isClosed = false;
 
         this.sr = new CreditHistorySearchRepresentation();
@@ -89,7 +86,7 @@ var CreditTableView = MultiPageView3.extend({
     },
     render: function (data) {
         this.messages = data || new Bookings();
-        MultiPageView3.prototype.render.call(this);
+        MultiPageView.prototype.render.call(this);
     },
     renderError:function(){
         //todo error handler

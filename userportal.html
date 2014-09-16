@@ -146,6 +146,7 @@
         <ul class="bjqs">
             <li><img src="style/images/banner2.png" alt="" height="320"></li>
             <li><img src="style/images/banner3.png" alt="" height="320"></li>
+            <li><img src="style/images/banner4.jpg" alt="" height="320"></li>
         </ul>
     </div>
 </script>
@@ -1776,7 +1777,7 @@
 <table width="100%" cellpadding="0" cellspacing="0" >
 
     <tr id="price">
-        <th width="64">课程价格</th>
+        <th width="64px">课程价格</th>
         <% _.each(courses, function(course) { %>
         <td width="195" class="courseId_<%= course.id %>">
             <%if(!course.price){%>
@@ -1887,7 +1888,7 @@
 </div>
 <table width="100%" cellpadding="0" cellspacing="0" id="special_content">
     <tr id="passAgreement">
-        <th>签约保过</th>
+        <th width="64px">签约保过</th>
         <% _.each(courses, function(course) { %>
         <td width="195" class="courseId_<%= course.id %>"><%= course.passAgreement %></td>
         <% }); %>
@@ -1949,7 +1950,7 @@
 <table width="100%" cellpadding="0" cellspacing="0" id="teaching_content">
 
     <tr id="logoUrl">
-        <th width="64">品牌展示</th>
+        <th width="64px">品牌展示</th>
         <% _.each(courses, function(course) { %>
         <td class="courseId_<%= course.id %>" width="195"><img src="<%= course.logoUrl %>"/></td>
         <% }); %>
@@ -2845,7 +2846,6 @@
 <script src="scripts/Common/DataManagers/UserManager.js" type="text/javascript"></script>
 
 <script src="scripts/Common/View/Shared/MultiPageView.js" type="text/javascript"></script>
-<script src="scripts/Common/View/Shared/MultiPageView3.js" type="text/javascript"></script>
 <script src="scripts/Common/View/Shared/BaseFormView.js" type="text/javascript"></script>
 <script src="scripts/Common/View/Shared/BaseDropDownView.js" type="text/javascript"></script>
 <script src="scripts/Common/View/BaiduMapView.js" type="text/javascript"></script>

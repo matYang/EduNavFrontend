@@ -1,99 +1,83 @@
 var MultiPageView = Backbone.View.extend({
-    /*
-     * @brief
-     This class is designed to display a set of messages in a view separated by page numbers.
-     Other views can extend this view and configure the setting according to the needs.
-     This base view provide the following features: page navigation, filtering
-
-     * @param actionClass: If this attribute is set, instead of entryClass, doms with this class will be bind to the entryEvent action when they are clicked
-     * @param pageNumberId: the base id for the page numbers in the form of pageId_, number will be appended to the end for event use
-     * @param messages: the filtered messages to be displayed in the view
-     *                   (including the ones in the pages not displaying, NOTE: it must be a different instance from allMessage in order for the collection event to work properly)
-     * @param entryHeight: the height of each entry, including margins and paddings, used for calculating container height
-     * @param entryRowNum: the number of entries displaying in the same row
-     * @param extPn: external page navigator
-     * @param _filters: private member holding registered filters, should never be referenced from external
-
-     //TODO:
-     */
+    //分页按钮配置所需要提供的信息有保存按钮是第几页的数据 (之前放于id中) 以及可供触发事件的selector(之前使用class触发事件)
+    //如果一个页面上面存在多个分页的情况 需要在每个页面重新设置pageNumberClass为不同的值(用户绑定事件) 而pageNumberId就不需要了
     maxSize: 8, //分页组的最大容量
     entryTemplate: "", //单条记录的模板
-    entryContainer: "", //结果列表
+    entryContainer: "", //结果列表 tbody
+    truePagination: true, //为true时必须指定fetchAction函数用于与后台交互获取分页数据
     entryClass: "", //每条记录的样式
-    pageNavigator: "", //分页数据的container
-    pageNavigatorClass: "",//container的样式
+    pageNavigator: "pagination", //分页数据的container
     pageEntryNumber: 10,//每页显示的记录数
     startIndex: 0,//开始记录数
     currentPage: 1,//当前页数
-    pageNumberClass: "",//分页数字的样式
-    pageNumberId: "",
+    pageNumberId: "page",//每个分页按钮的id前缀 结果为id='page_1'...
+    pageNumberClass: "page",//用户绑定事件
     entryEvent: "",//绑定在每条记录上的事件
-    allMessages: [],//获取的所有数据
     messages: null,//页面上面显示的经过过滤的信息(在假分页状态下)
-    entryHeight: -1,
-    entryRowNum: 1,
-    minHeight: 0,
     noMessage: _.template("暂无消息"),
     eventBound: false,
-    $domContainer: null,
+    $entryContainer: null, // 列表容器
+    isTable: false,
+    $tableContainer: null, //如果是table
+    scroll: true,//设置换页后是否自动滚动到容器上方
+    scrollTarget: null,//滚动到的元素位置
     initialize: function () {
         _.bindAll(this, "render", "toPage", "bindEntryEvent", "setPageNavigator", "clickPageHandler",
             "clickPreHandler", "clickNextHandler", "close");
+        this.$entryContainer = $("#" + this.entryContainer);
+        if (this.$entryContainer[0].tagName === 'TBODY') {
+            this.isTable = true;
+            this.$tableContainer = this.$entryContainer.parent();
+        }
+
+        if (this.isTable) {
+            this.$tableContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
+        } else {
+            this.$entryContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
+        }
     },
     fetchAction: function (page) {
     },
     render: function () {
+        //获取完数据后需要进行数据的展示
         var buf = [], i, length, height, message;
-        if (!this.messages instanceof Backbone.Collection) {
-            this.messages = this.allMessages;
-        }
-        this.$domContainer = $("#" + this.entryContainer);
-        this.$domContainer.empty();
-        if (this.messages.length > 0) {
-            if (this.table) {
-                $(this.table).show();
-                $(this.table).find(".noMessage").remove();
-            }
+        var that = this;
+        this.$entryContainer = $("#" + this.entryContainer);
+        this.$entryContainer.empty();
+        if (this.messages && this.messages.length > 0) {
+            //这里设置显示的数据
             length = this.messages.length - this.startIndex;
             length = (length < this.pageEntryNumber) ? length : this.pageEntryNumber;
-            for (i = 0; i < length; i++) {
-                if (this.messages instanceof Backbone.Collection) {
-                    message = this.messages.at(i + this.startIndex);
-                } else {
-                    message = this.messages[i + this.startIndex];
-                }
-                // if (message._toSimpleJSON) {
-                //     buf[i] = this.entryTemplate(message._toSimpleJSON());
-                // } else {
-                buf[i] = this.entryTemplate(message._toJSON());
-                //}
-            }
-            this.$domContainer.append(buf.join(""));
+            this.messages.each(function (message) {
+                message = message._toSimpleJSON?message._toSimpleJSON():message._toJSON();
+                buf.push(that.entryTemplate(message));
+            });
+            this.$entryContainer.append(buf.join(""));
             buf = null;
-            var $divs = this.$domContainer.children("div");
-            if ($divs.length) {
-                $divs.addClass(this.entryClass);
-            }
             if (this.entryEvent && !this.eventBound) {
+                //绑定进入详情页的事件
                 this.bindEntryEvent();
                 this.eventBound = true;
             }
         } else {
-            if (!this.table) {
-                this.$domContainer.append("<div class = 'noMessage'>" + this.noMessage() + "</div>");
+            if (!this.isTable) {
+                this.$entryContainer.append("<div class = 'noMessage'>" + this.noMessage() + "</div>");
             } else {
-                $(this.table).hide();
-                $(this.table).after("<div class = 'noMessage'>" + this.noMessage() + "</div>");
+                //根据在table中td个数设置no message
+                var td_length = this.$tableContainer.find('.thead tr td').length;
+                if (!td_length) {
+                    td_length = 4;
+                }
+                this.$entryContainer.append(
+                        "<tr><td colspan='"
+                        + td_length
+                        +"'><div class = 'noMessage'>"
+                        + this.noMessage()
+                        + "</div></td></tr>");
             }
         }
-        if (this.autoHeight) {
-            this.$domContainer.css("height", "auto");
-        } else if (this.entryHeight) {
-            height = Math.ceil(length / this.entryRowNum) * this.entryHeight;
-            height = (height > this.minHeight) ? height : this.minHeight;
-            this.$domContainer.css("height", height + "px");
-        }
         var total = this.messages.total;
+        //存在两页时才显示分页组件
         if (total > this.pageEntryNumber) {
             this.setPageNavigator();
         } else {
@@ -105,16 +89,25 @@ var MultiPageView = Backbone.View.extend({
         // this.messages.on("change", this.render);
     },
 
-    toPage: function (page) {
-        if(page===this.currentPage)return;
-        this.currentPage = page;
-        this.startIndex = this.pageEntryNumber * (page - 1);
-        this.fetchAction(page);
+    toPage: function (pageIndex) {
+        if(pageIndex===this.currentPage)return;
+        if (this.scroll) {
+            //如果设置了target 没有则到顶部
+            var $target = $(this.scrollTarget);
+            if ($target.length !== 0) {
+                $.smoothScroll({scrollTarget: $target})
+            } else {
+                $.smoothScroll()
+            }
+        }
+        this.currentPage = pageIndex;
+        this.startIndex = this.pageEntryNumber * (pageIndex - 1);
+        this.fetchAction(pageIndex);//抓取完会进行render
     },
     bindEntryEvent: function () {
 
         var self = this, eventClass = this.actionClass || this.entryClass;
-        this.$domContainer.on("click", "." + eventClass, function (e) {
+        this.$entryContainer.on("click", "." + eventClass, function (e) {
             e.preventDefault();
             var id = Utilities.toInt(Utilities.getId($(this).attr("id")));
             if (isNaN(id)) {
@@ -122,7 +115,6 @@ var MultiPageView = Backbone.View.extend({
             }
             self.entryEvent(id, e);
         });
-        this.entryBound = true;
     },
     setPageNavigator: function () {
         var buf = ['<a class="pre"></a>'],
@@ -137,20 +129,11 @@ var MultiPageView = Backbone.View.extend({
             this.$pn.children("." + this.pageNumberClass).off();
             this.$pn.children(".pre").off();
             this.$pn.children(".next").off();
-            if (this.extPn) {
-                this.$pn.empty();
-            } else {
-                this.$pn.remove();
-                this.$pn = null;
-            }
             this.$pre = null;
             this.$next = null;
         }
-        //TODO can auto detect table or div
-        if (!this.extPn) {
-            this.$domContainer.after($("<div>").attr("id", this.pageNavigator).attr("class", "blank1 page clearfix"));
-        }
         this.$pn = $("#" + this.pageNavigator);
+
 
         /*page core start*/
         var pageViewList = [];
@@ -194,7 +177,7 @@ var MultiPageView = Backbone.View.extend({
         }
 
         //step 3渲染这个分页组分页组 根据divBuf生成buf
-        _.each(pageViewList,function(page){
+        _.each(pageViewList, function (page) {
             divBuf[3] = page.number;
             divBuf[7] = page.text;
             buf.push(divBuf.join(""));
@@ -205,26 +188,20 @@ var MultiPageView = Backbone.View.extend({
         html = buf.join("");
         this.$pn.off()
             .empty()
-            .append(html)
-            .addClass(this.pageNavigatorClass);
+            .append(html);
         this.$pre = this.$pn.children(".pre");
         this.$next = this.$pn.children(".next");
         this.$pn.children("#" + this.pageNumberId + "_" + currentPageIndex).addClass("active");
         this.$pn.on("click", "." + this.pageNumberClass, this.clickPageHandler);
 
-
         if (this.currentPage === 1) {
-            //首页
             this.$pre.addClass("pre-disabled");
         } else {
-            //首页除外
             this.$pre.on("click", this.clickPreHandler);
         }
         if (this.currentPage === pageTotal) {
-            //末页
             this.$next.addClass("next-disabled");
         } else {
-            //末页除外
             this.$next.on("click", this.clickNextHandler);
         }
     },
@@ -238,15 +215,18 @@ var MultiPageView = Backbone.View.extend({
     clickPreHandler: function () {
         this.toPage(this.currentPage - 1);
     },
-
+    /*
+     active class should be the class indicating the selected tab/filter across the entire site.
+     Therefore it is hardcoded here.
+     */
     close: function () {
         if (!this.isClosed) {
             if (this.$pn) {
                 this.$pn.children("." + this.pageNumberClass).off();
             }
-            this.$domContainer.off();
-            this.$domContainer.empty();
-            this.$domContainer = null;
+            this.$entryContainer.off();
+            this.$entryContainer.empty();
+            this.$entryContainer = null;
             this.eventBound = false;
             this.isClosed = true;
         }

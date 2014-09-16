@@ -51,9 +51,16 @@ var TopBarView = Backbone.View.extend({
             }
         });
         $('#navigate_compare').on('click', function () {
+            //如果不在compare页面，则进行判断内的代码
             if (location.hash.indexOf("compare") !== 1) {
-                app.infoModal.hide();
-                app.navigate("compare", true);
+                if( self.hasNoCourse() ){
+                    Info.displayNotice("您还没有添加待比较的课程，先去查看感兴趣的课程吧");
+/*                    this.isClosed = true;*/
+                    app.navigate("search", {trigger: true, replace: true});
+                }else{
+                    app.infoModal.hide();
+                    app.navigate("compare", true);
+                }
             }
         });
         $('#logo,#navigate_home').on('click', function () {
@@ -169,6 +176,13 @@ var TopBarView = Backbone.View.extend({
                 Info.displayNotice("登出失败，请稍后再试");
             }
         });
+    },
+
+    //判断有没有对比课程
+    hasNoCourse: function(){
+        //从localStorage中获取课程对比列表
+        this.courseIdList = app.storage.getCoursesToCompare(); // array of items to compare
+        return !this.courseIdList.length;
     },
 
     close: function () {

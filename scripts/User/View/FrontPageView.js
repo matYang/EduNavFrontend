@@ -158,6 +158,8 @@ var BannerView = Backbone.View.extend({
             animspeed: 4200, // the delay between each slide
             hoverpause: true // pause the slider on hover
         });
+        $('#visual_container').css('width','');
+        $('#visual_container ol.bjqs-markers').css('left','');
     },
 
     close: function () {

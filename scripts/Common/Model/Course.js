@@ -43,13 +43,13 @@ var Course = Backbone.Model.extend({
                 'finishDate': undefined,//开课日期
                 'courseHourNum': undefined,//课时总数
                 'courseHourLength': undefined,//课时长度
-                'studyDays': undefined,//todo
-                'startTime1': undefined,
+                'studyDays': undefined,//todo 未使用
+                'startTime1': undefined, //number 一系列的上课时间组合
                 'finishTime1': undefined,
                 'startTime2': undefined,
-                'finishTime2': undefined,//上课时间
-                'schoolTimeWeek': undefined,//平时 周末
-                'schoolTimeDay': undefined,//
+                'finishTime2': undefined,
+                'schoolTimeWeek': undefined,//number平时(1) 周末(2)
+                'schoolTimeDay': undefined,//number 白天(1+2) 晚上(4)
 
 
                 'classSize': undefined,//班级类型
@@ -113,12 +113,12 @@ var Course = Backbone.Model.extend({
                 data.price = Utilities.parseNum(data.price);//爱上课价格
                 data.originalPrice = Utilities.parseNum(data.originalPrice);//原价
 
-                if(data.originalPrice == data.price){
+                if (data.originalPrice == data.price) {
                     data.originalPrice = null;
                 }
-                if(typeof data.price =='number' &&data.originalPrice=='number'){
-                    if(data.price>data.originalPrice){
-                        Info.warn('Price is large than original price!!CourseId>>'+data.id);
+                if (typeof data.price == 'number' && data.originalPrice == 'number') {
+                    if (data.price > data.originalPrice) {
+                        Info.warn('Price is large than original price!!CourseId>>' + data.id);
                     }
                 }
 
@@ -194,59 +194,21 @@ var Course = Backbone.Model.extend({
             json.studyDaysNote = json.studyDaysNote ? "(" + json.studyDaysNote + ")" : "";
             if (json.teacherList) {
                 var teacherList = [];
-                json.teacherList.forEach(function(teacher){
+                json.teacherList.forEach(function (teacher) {
                     teacherList.push((teacher._toJSON()));
                 });
                 json.teacherList = teacherList;
             }
             if (json.classPhotoList) {
                 var classPhotoList = [];
-                json.classPhotoList.forEach(function(photo){
+                json.classPhotoList.forEach(function (photo) {
                     classPhotoList.push((photo._toJSON()));
                 });
                 json.classPhotoList = classPhotoList;
             }
             return json;
         },
-//simplified toJSON, as courses are not updated by Ajax but by html form
-        toJSON: function () {
-            var json = _.clone(this.attributes),
-                i = 0,
-                introArr = [],
-                nameArr = [],
-                imgArr = [],
-                classImgArr = [];
-            json.startDate = Utilities.castToAPIFormat(this.get('startDate'));
-            json.finishDate = Utilities.castToAPIFormat(this.get('finishDate'));
-            json.cutoffDate = Utilities.castToAPIFormat(this.get('cutoffDate'));
-            json.createTime = Utilities.castToAPIFormat(this.get('createTime'));
-            json.noRefundDate = Utilities.castToAPIFormat(this.get('noRefundDate'));
-            json.cashbackDate = Utilities.castToAPIFormat(this.get('cashbackDate'));
 
-            json.partnerQualification = parseInt(json.partnerQualification, 10);
-            if (json.classPhotoList) {
-                for (i = 0; i < json.classPhotoList.length; i++) {
-                    if (json.classPhotoList[i] instanceof Photo) {
-                        classImgArr[i] = json.classPhotoList[i].toJSON();
-                    } else {
-                        classImgArr[i] = json.classPhotoList[i];
-
-                    }
-                }
-                json.classPhotoList = classImgArr;
-            }
-            if (json.teacherList) {
-                for (i = 0; i < json.teacherList.length; i++) {
-                    if (json.classPhotoList[i] instanceof Teacher) {
-                        imgArr[i] = json.teacherList[i].toJSON();
-                    } else {
-                        imgArr[i] = json.teacherList[i];
-                    }
-                }
-                json.teacherList = imgArr;
-            }
-            return json;
-        },
         /* generate object with html wrapping as values, these values will append to the compare table one by one */
 // parseToCompare: function () {
 //     var obj = {};
@@ -262,19 +224,22 @@ var Course = Backbone.Model.extend({
         isNew: function () {
             return this.get("id") === -1;
         },
+        //简化的course对象 这里主要用于生成course列表 multiPageView中会优先使用该方法 其次为_toJSON方法
         _toSimpleJSON: function () {
             var json = {};
+
             json.id = this.get("id");
             json.courseName = this.get("courseName");
-            json.regPhone = this.get("regPhone");
+            json.logoUrl = this.get("logoUrl");
+            json.instName = this.get("instName");
 
-            json.startUponArrival = this.get("startUponArrival");
+            //以下为显示开课日期所需的字段
+            json.regPhone = this.get("regPhone");//开课日期备注信息
+            json.startUponArrival = this.get("startUponArrival");//是否具有开课日期
             json.startDate = Utilities.getDateString(this.get('startDate'));
             json.finishDate = Utilities.getDateString(this.get('finishDate'));
 
-            json.createTime = Utilities.getDateString(this.get('createTime'));
-            json.cutoffDate = Utilities.getDateString(this.get('cutoffDate'));
-
+            //以下为显示开课时间所需的字段 平时周末以及白天晚上 加上一天内的上课时间
             json.startTime1 = this.get("startTime1");
             json.startTime2 = this.get("startTime2");
             json.finishTime1 = this.get("finishTime1");
@@ -283,20 +248,21 @@ var Course = Backbone.Model.extend({
             json.startTime2 = json.startTime2 == null ? null : Math.floor(json.startTime2 / 100) + ":" + ((json.startTime2 % 100 < 10) ? "0" + json.startTime2 % 100 : json.startTime2 % 100);
             json.finishTime1 = json.finishTime1 == null ? null : Math.floor(json.finishTime1 / 100) + ":" + ((json.finishTime1 % 100 < 10) ? "0" + json.finishTime1 % 100 : json.finishTime1 % 100);
             json.finishTime2 = json.finishTime2 == null ? null : Math.floor(json.finishTime2 / 100) + ":" + ((json.finishTime2 % 100 < 10) ? "0" + json.finishTime2 % 100 : json.finishTime2 % 100);
-
             json.schooltimeWeek = this.get("schooltimeWeek");
             json.schooltimeDay = this.get("schooltimeDay");
             json.schooltimeWeek = Utilities.toSchoolTimeText(json.schooltimeWeek, EnumConfig.schooltimeWeek);//周末什么的
             json.schooltimeDay = Utilities.toSchoolTimeText(json.schooltimeDay, EnumConfig.schooltimeDay);//白天什么的
 
+            //以下为生成课程价格相关信息所需的字段
             json.price = this.get("price");
+            json.originalPrice = this.get("originalPrice");
             json.cashback = this.get("cashback");
             json.commission = this.get("commission");
+            json.marking = this.get("marking");
 
+            //上课地址
             json.address = this.get("address");
 
-            json.logoUrl = this.get("logoUrl");
-            json.instName = this.get("instName");
             return json;
         }
     })
