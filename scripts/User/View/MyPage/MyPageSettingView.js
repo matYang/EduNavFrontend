@@ -30,7 +30,7 @@ var MyPageSettingView = BaseFormView.extend({
         }
         this.template = _.template(tpl.get('mypage_setting'));
         this.sessionModel = app.sessionManager.sessionModel;
-        //model temp
+        //model在这里只是一个临时的模型 用于保存用户临时的输入 只有提交后才会更新到sessionModel中 sessionModel保存了用户的所有资料
         this.model = new User(this.sessionModel.attributes);
         //初始化学校信息
         this.choosedSchool = {
@@ -76,7 +76,11 @@ var MyPageSettingView = BaseFormView.extend({
         var that = this, date = new Date();
         this.model.set('gender', $('input[name="sex"]:checked').val());
         this.model.set('schoolId', that.choosedSchool.id);
+
 //        this.model.set('identify',$('input[name="identify"]:checked').val());//todo 已工作或者还是学生
+
+        //这里和usernameModal中调用的方法为同一个 在更新资料时不能更新用户名 invitationCode 因此需要去除用户名才能提交更新
+        this.model.set('invitationCode', undefined);
         app.userManager.changeInfo(this.model, {
             "success": that.saveSuccess,
             "error": that.saveError
@@ -85,7 +89,7 @@ var MyPageSettingView = BaseFormView.extend({
     },
 
     saveSuccess: function (user) {
-        //return user model to refresh sessionModel
+        //将更新成功后的user信息同步到sessionModel中
         app.sessionManager.sessionModel = user;
         this.model = new User(user.attributes);
         $("#updateInfo").attr("value", "更新完毕");
