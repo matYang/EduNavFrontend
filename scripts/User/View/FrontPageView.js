@@ -24,6 +24,11 @@ var FrontPageView = Backbone.View.extend({
         } else if (this.banner.isClosed) {
             this.banner.render();
         }
+        if (!this.searchArea) {
+            this.searchArea = new SearchArea();
+        } else if (this.searchArea.isClosed) {
+            this.searchArea.render();
+        }
         this.$el.append(this.template);
         app.generalManager.getCategories(this);
     },
@@ -123,8 +128,36 @@ var FrontPageView = Backbone.View.extend({
             this.$el.empty();
             this.isClosed = true;
             this.banner.close();
+            this.searchArea.close();
             $("#content").css("padding-bottom", "");
             app.frontPageView = null;
+        }
+    }
+});
+
+var SearchArea = Backbone.View.extend({
+
+    el: '#searchArea',
+    initialize: function () {
+        _.bindAll(this, 'render', 'close');
+        this.template = _.template(tpl.get('SearchCourse'));
+        this.isClosed = false;
+        this.render();
+    },
+
+    render: function () {
+        if (!this.isClosed) {
+            app.viewRegistration.register(this);
+            this.$el.append(this.template);
+        }
+    },
+
+
+    close: function () {
+        if (!this.isClosed) {
+            this.$el.empty();
+            this.isClosed = true;
+
         }
     }
 });

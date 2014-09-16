@@ -82,3 +82,26 @@
 #searchWidgets.stickyHeader{position:fixed;top:5px;margin-left:750px;}
 #searchWidgets.stickyHeader #compare {margin-left:-1px;}
 #search_subCategory label {margin-right: 3px;}
+
+
+/*SearchArea*/
+.SearchContent{ min-width: 1300px; width: 100%; height: 480px;}
+.SearchContentA{ width: 1000px; height: 480px; margin: auto; margin-top: 20px;}
+.SearchCotentArea{ width: 500px; height: 350px; float: left;}
+.SearchCotentAreaTop{ width: 500px; height: 52px; background-image: url("../images/search.png");}
+.SearchCotentAreaTopRight{ background-position: 0 -100px;}
+.SearchCotentAreaMain{ width: 500px; height: 228px; background-color: #E3E4E6;}
+.SearchCotentAreaMainRight{ background-color: #E9EAEB;}
+.SearchCotentAreaBottom{ width: 500px; height: 46px; padding: 14px 0; background-color: #EBECEE;}
+.SearchCotentAreaBottomRight{ background-color: #F0F0F1;}
+.SearchCotentAreaMainA{width: 235px; height: 200px; margin: auto; display: block; padding: 13px 0;}
+.SearchCotentAreaMainA li{width: 255px; height: 40px; margin-bottom: 10px; position: relative;}
+.SearchContentA span{width: 70px; height: 40px; display: block; float: left; line-height: 40px; font-size: 15px; color: #666; font-family: "微软雅黑";}
+.selectFarme{ width: 150px; height: 40px; border: 0; outline: 0; display: block; float: left; color: #666; font-size: 12px; padding-left: 12px;  font-family: "微软雅黑";}
+.selectFarme option{ cursor: pointer;}
+.selectIcon{ width: 15px; height: 8px; display: block; background-image: url("../images/search.png"); background-position: 0 -200px; position: absolute; top: 15px; left: 200px;}
+.SearchCotentAreaMainB{ width: 480px; height: 200px; margin: auto; display: block; padding: 13px 0;}
+.SearchCotentAreaMainBLi{ min-width: 225px; width: auto; height: 40px; display: block; padding-bottom: 10px; position: relative; float: left; margin-left: 4px;}
+.inputMyInfo{ width: 370px; height: 90px; line-height: 20px; float: left; border: 0; outline: 0; font-size: 12px; color: #666; font-family: "微软雅黑"; padding: 5px;}
+.SearchIcon{ width: 250px; height: 46px; display: block; margin: auto; background-image: url("../images/search.png"); background-position: -340px -200px; cursor: pointer;}
+.ApplyIcon{ width: 250px; height: 46px; display: block; margin: auto; background-image: url("../images/search.png"); background-position: -50px -200px; cursor: pointer;}

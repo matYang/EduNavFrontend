@@ -42,6 +42,7 @@
 <div id='topBar' class='unselectable'></div>
 <div id='main' class='main'>
     <div id="visualScope"></div>
+    <div id="searchArea"></div>
     <div id='content' class='content'></div>
 </div>
 <div id='infoLayer'></div>
@@ -386,6 +387,80 @@
         <div id="compareItems" class="compare_items"></div>
         <div class="btns">
             <input type="button" value="开始对比" id="compare">
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_SearchCourse">
+    <div class="SearchContentA">
+        <div class="SearchCotentArea">
+            <div class="SearchCotentAreaTop SearchCotentAreaTopLeft"></div>
+            <div class="SearchCotentAreaMain SearchCotentAreaMainLeft">
+                <ul class="SearchCotentAreaMainA">
+                    <li>
+                        <span>课程类目</span>
+                        <select class="selectFarme" id="" name="select" style="cursor: default;">
+
+                            <option value="请选择"> 请选择 </option>
+                        </select>
+                        <i class="selectIcon"></i>
+                    </li>
+                    <li>
+                        <span>上课地区</span>
+                        <select class="selectFarme" id="" name="select" style="cursor: default;">
+                            <option value="请选择"> 不限 </option>
+                        </select>
+                        <i class="selectIcon"></i>
+                    </li>
+                    <li>
+                        <span>上课日期</span>
+                        <select class="selectFarme" id="" name="select" style="cursor: default;">
+                            <option value="请选择"> 请选择 </option>
+                        </select>
+                        <i class="selectIcon"></i>
+                    </li>
+                    <li>
+                        <span>班级类型</span>
+                        <select class="selectFarme" id="" name="select" style="cursor: default;">
+                            <option value="请选择"> 不限 </option>
+                        </select>
+                        <i class="selectIcon"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="SearchCotentAreaBottom SearchCotentAreaBottomLeft">
+                <a class="SearchIcon"></a>
+            </div>
+        </div>
+        <div class="SearchCotentArea">
+            <div class="SearchCotentAreaTop SearchCotentAreaTopRight"></div>
+            <div class="SearchCotentAreaMain SearchCotentAreaMainRight">
+                <ul class="SearchCotentAreaMainB">
+                    <li class="SearchCotentAreaMainBLi">
+                        <span>意向课程</span>
+                        <select class="selectFarme" id="" name="select" style="cursor: default;">
+                            <option value="请选择"> 雅思 </option>
+                        </select>
+                        <i class="selectIcon"></i>
+                    </li>
+                    <li class="SearchCotentAreaMainBLi"></li>
+                    <li class="SearchCotentAreaMainBLi">
+                        <span>联系电话</span>
+                        <input class="selectFarme" type="text">
+                    </li>
+                    <li class="SearchCotentAreaMainBLi">
+                        <span>学员姓名</span>
+                        <input class="selectFarme" type="text">
+                    </li>
+                    <li class="SearchCotentAreaMainBLi">
+                        <span>附加信息</span>
+                        <textarea class="inputMyInfo">#我的信息#</textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="SearchCotentAreaBottom SearchCotentAreaBottomRight">
+                <a class="ApplyIcon"></a>
+            </div>
         </div>
     </div>
 </script>

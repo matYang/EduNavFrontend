@@ -34,6 +34,8 @@ var Constants = {
         "mapLabel",
         "compareWidget", "courseDetailCompareWidget",
         "compareWidgetEntry",
+        //人工选课
+        "SearchCourse",
         //已筛选的条件 一二三级类目
         "req", "subCategoryContainer", "subSubCategoryContainer", "subSubCategory", "subCategory", "category",
 
