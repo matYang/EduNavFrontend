@@ -182,12 +182,7 @@ var TopBarView = Backbone.View.extend({
     hasNoCourse: function(){
         //从localStorage中获取课程对比列表
         this.courseIdList = app.storage.getCoursesToCompare(); // array of items to compare
-        if (this.courseIdList.length === 0) {
-            return true;
-        }else{
-            return false;
-        }
-
+        return !this.courseIdList.length;
     },
 
     close: function () {
