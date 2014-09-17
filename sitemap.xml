@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://www.ishangke.cn/</loc>
+  <lastmod>2014-09-17</lastmod>
+  <changefreq>always</changefreq>
+  <priority>1.0</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/search</loc>
+  <lastmod>2014-09-17</lastmod>
+  <changefreq>always</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc></loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/search/categoryValue=000000&#38;status=2&#38;start=0&#38;count=10&#38;enabled=1</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/search/categoryValue=000001&#38;status=2&#38;start=0&#38;count=10&#38;enabled=1</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/search/categoryValue=000002&#38;status=2&#38;start=0&#38;count=10&#38;enabled=1</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/search/categoryValue=000003&#38;status=2&#38;start=0&#38;count=10&#38;enabled=1</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/search/categoryValue=000004&#38;status=2&#38;start=0&#38;count=10&#38;enabled=1</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/search/categoryValue=000005&#38;status=2&#38;start=0&#38;count=10&#38;enabled=1</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/search/categoryValue=000006&#38;status=2&#38;start=0&#38;count=10&#38;enabled=1</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+
+<url>
+  <loc>http://www.ishangke.cn/course/150</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/course/2897</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/course/1168</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/course/1170</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>http://www.ishangke.cn/course/1054</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/course/1055</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/course/1133</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>http://www.ishangke.cn/course/1134</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+
+</urlset>
