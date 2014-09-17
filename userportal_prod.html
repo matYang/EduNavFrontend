@@ -16,7 +16,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="style/images/ico.ico"/>
     <link href="style/lib/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <link href="build/style/css/style-min.css?version=2.0build007" rel="stylesheet" type="text/css"/>
+    <link href="build/style/css/style-min.css?version=2.0build008" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript">
         if (!window.console) {
@@ -60,12 +60,7 @@
                 <li id="navigate_home" class="button navigate_home">首页</li>
                 <li id="navigate_search" class="button navigate_search">分类检索</li>
                 <li id="navigate_compare" class="button navigate_compare">课程对比</li>
-                <li id="navigate_tel" style="padding: 0 5px">
-                    <img src="./style/images/tel2.png" class="img">
-                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><small>400-025-0884</small></a>
-                </li>
             </ul>
-
             <div class="user_info">
                 <span id="greeting"></span>好，亲爱的
                 <span id="username" class="link">
@@ -77,6 +72,12 @@
                  </span>
                 <a id="logout" href="#">[退出]</a>
                 <a id="topbar-mypage" href="#">我的爱上课</a>
+            </div>
+            <div class="tel">
+                <li id="navigate_tel" style="padding: 0 5px">
+                    <img src="./style/images/top_bar_tel.png" class="img"/>
+                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"></a>
+                </li>
             </div>
         </div>
     </div>
@@ -93,10 +94,6 @@
                 <li id="navigate_home" class="button navigate_home">首页</li>
                 <li id="navigate_search" class="button navigate_search">分类检索</li>
                 <li id="navigate_compare" class="button navigate_compare">课程对比</li>
-                <li id="navigate_tel" style="padding: 0 5px">
-                    <img src="./style/images/tel2.png" class="img">
-                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><small>400-025-0884</small></a>
-                </li>
             </ul>
             <div class="login_reg">
                 <div class="hd">
@@ -123,6 +120,12 @@
                         <li><input id="login_button" class="btn_topnav_login" type="button" value="登 录"></li>
                     </ul>
                 </div>
+            </div>
+            <div class="tel">
+                <li id="navigate_tel" style="padding: 0 5px">
+                    <img src="./style/images/top_bar_tel.png" class="img"/>
+                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"></a>
+                </li>
             </div>
         </div>
     </div>
@@ -201,10 +204,10 @@
             <div id="filter_price" class="filterCriteria">
                 <label>课程费用：</label>
                 <span data-value="noreq" class="active">不限</span>
-                <span data-value="0-2499">2500元以下</span>
-                <span data-value="2500-4999">2500元~4999元</span>
-                <span data-value="5000-7499">5000元~7499元</span>
-                <span data-value="7500-9999">7500元~9999元</span>
+                <span data-value="0-499">500元以下</span>
+                <span data-value="500-999">500元~999元</span>
+                <span data-value="1000-4999">1000元~4999元</span>
+                <span data-value="5000-9999">5000元~9999元</span>
                 <span data-value="10000-">10000元以上</span>
             </div>
         </div>
@@ -1755,8 +1758,11 @@
         <h2 class="F_green courseTitle" style="cursor:pointer;"><%= course.courseName %></h2>
 
         <div class="btn"><input class="btn_O" type="button" value="立即预订"/></div>
-        <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next"
-                                                                                           href="#">向后</a></div>
+        <div class="set">
+            <a class="pre" href="#">向前</a>
+            <a class="delete" href="#">删除</a>
+            <a class="next" href="#">向后</a>
+        </div>
     </div>
     <% }); %>
 </div>
@@ -2769,9 +2775,9 @@
 </script>
 </div>
 <!-- load libraries-->
-<script src="build/common.min.js?version=2.0build008" type="text/javascript"></script>
+<script src="build/common.min.js?version=2.0build009" type="text/javascript"></script>
 
-<script src="build/main.min.js?version=2.0build008" type="text/javascript"></script>
+<script src="build/main.min.js?version=2.0build009" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8" src="http://gate.looyu.com/52669/117998.js"></script>
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");

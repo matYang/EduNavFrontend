@@ -100,7 +100,6 @@
 
 <script type="text/template" id="tpl_topBar-notLoggedIn">
     <div class="topBar unselectable">
-        <!--topBar-->
         <div class="topBar-inner clearfix">
             <h1 id="logo" class="link topBar-logo">
                 <a></a>
@@ -1773,7 +1772,11 @@
         <h2 class="F_green courseTitle" style="cursor:pointer;"><%= course.courseName %></h2>
 
         <div class="btn"><input class="btn_O" type="button" value="立即预订"/></div>
-        <div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div>
+        <div class="set">
+            <a class="pre" href="#">向前</a>
+            <a class="delete" href="#">删除</a>
+            <a class="next" href="#">向后</a>
+        </div>
     </div>
     <% }); %>
 </div>
