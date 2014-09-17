@@ -29,6 +29,16 @@ var FrontPageView = Backbone.View.extend({
         } else if (this.searchArea.isClosed) {
             this.searchArea.render();
         }
+        $(".SearchIcon").on("click", function () {
+            if (!this.artificialSelection) {
+                this.artificialSelection = new ArtificialSelection();
+
+            } else if (this.artificialSelection.isClosed) {
+                this.artificialSelection.render();
+            } else if (!this.artificialSelection.isShow) {
+                this.artificialSelection.show();
+            }
+        });
         this.$el.append(this.template);
         app.generalManager.getCategories(this);
     },
@@ -129,12 +139,13 @@ var FrontPageView = Backbone.View.extend({
             this.isClosed = true;
             this.banner.close();
             this.searchArea.close();
+            //this.artificialSelection.close();
             $("#content").css("padding-bottom", "");
             app.frontPageView = null;
         }
     }
 });
-
+//首页的搜素
 var SearchArea = Backbone.View.extend({
 
     el: '#searchArea',
@@ -143,6 +154,7 @@ var SearchArea = Backbone.View.extend({
         this.template = _.template(tpl.get('SearchCourse'));
         this.isClosed = false;
         this.render();
+        this.bindEvents();
     },
 
     render: function () {
@@ -150,6 +162,214 @@ var SearchArea = Backbone.View.extend({
             app.viewRegistration.register(this);
             this.$el.append(this.template);
         }
+
+    },
+    bindEvents: function () {
+
+    },
+
+    close: function () {
+        if (!this.isClosed) {
+            this.$el.empty();
+            this.isClosed = true;
+            var isShow = false;
+
+
+        }
+    }
+});
+//人工选课
+var ArtificialSelection = Backbone.View.extend({
+
+    el: '#main',
+    initialize: function () {
+        _.bindAll(this, 'render', 'close');
+        this.template = _.template(tpl.get('artificialSelection'));
+        this.isClosed = false;
+        this.isShow = false;
+        this.render();
+        this.bindEvents();
+
+    },
+
+    render: function () {
+        if (!this.isClosed) {
+            app.viewRegistration.register(this);
+            this.$el.append(this.template);
+        }
+    },
+    bindEvents: function () {
+        var that = this;
+        $(".popMainClose").on("click", function () {
+            that.hide();
+        });
+
+        $(".popBtnNo").on("click",function(){
+            that.hide();
+        });
+
+        $("#btnAppleartificialSelection").on("click",function(){
+            that.hide();
+            if (!this.popTip) {
+                this.popTip = new PopTip();
+
+            } else if (this.popTip.isClosed) {
+                this.popTip.render();
+            } else if (!this.popTip.isShow) {
+                this.popTip.show();
+            }
+        });
+
+        $(".popTxt").on("click",function(){
+            that.hide();
+            if (!this.courseTip) {
+                this.courseTip = new CourseTip();
+
+            } else if (this.courseTip.isClosed) {
+                this.courseTip.render();
+            } else if (!this.courseTip.isShow) {
+                this.courseTip.show();
+            }
+        });
+    },
+    show: function () {
+        $("#popartificialSelection").show();
+        this.isShow = true;
+    },
+    hide: function () {
+        $("#popartificialSelection").hide();
+        this.isShow = false;
+    },
+
+
+    close: function () {
+        if (!this.isClosed) {
+            this.$el.empty();
+            this.isClosed = true;
+
+        }
+    }
+});
+//申请成功弹出窗口
+var PopTip = Backbone.View.extend({
+
+    el: '.index',
+    initialize: function () {
+        _.bindAll(this, 'render', 'close');
+        this.template = _.template(tpl.get('popTip'));
+        this.isClosed = false;
+        this.isShow = false;
+        this.render();
+        this.bindEvents();
+
+    },
+
+    render: function () {
+        if (!this.isClosed) {
+            app.viewRegistration.register(this);
+            this.$el.append(this.template);
+        }
+    },
+    bindEvents: function () {
+        var that = this;
+        $(".popTipMidA").on("click",function(){
+            that.hide();
+        });
+    },
+    show: function () {
+        $("#popSuccessApple").show();
+        this.isShow = true;
+    },
+    hide: function () {
+        $("#popSuccessApple").hide();
+        this.isShow = false;
+    },
+
+
+    close: function () {
+        if (!this.isClosed) {
+            this.$el.empty();
+            this.isClosed = true;
+
+        }
+    }
+});
+//免费试听
+var FreeTrial = Backbone.View.extend({
+
+    el: '#main',
+    initialize: function () {
+        _.bindAll(this, 'render', 'close');
+        this.template = _.template(tpl.get('freeTrial'));
+        this.isClosed = false;
+        this.isShow = false;
+        this.render();
+        this.bindEvents();
+    },
+
+    render: function () {
+        if (!this.isClosed) {
+            app.viewRegistration.register(this);
+            this.$el.append(this.template);
+        }
+    },
+    bindEvents: function () {
+        var that = this;
+        $(".courseTipClose").on("click", function () {
+            that.hide();
+        });
+    },
+    show: function () {
+        $("#popfreeTrial").show();
+        this.isShow = true;
+    },
+    hide: function () {
+        $("#popfreeTrial").hide();
+        this.isShow = false;
+    },
+
+
+    close: function () {
+        if (!this.isClosed) {
+            this.$el.empty();
+            this.isClosed = true;
+
+        }
+    }
+});
+
+//课程弹出框
+var CourseTip = Backbone.View.extend({
+
+    el: '#main',
+    initialize: function () {
+        _.bindAll(this, 'render', 'close');
+        this.template = _.template(tpl.get('courseTip'));
+        this.isClosed = false;
+        this.isShow = false;
+        this.render();
+        this.bindEvents();
+    },
+
+    render: function () {
+        if (!this.isClosed) {
+            app.viewRegistration.register(this);
+            this.$el.append(this.template);
+        }
+    },
+    bindEvents: function () {
+        var that = this;
+        $(".courseTipClose").on("click", function () {
+            that.hide();
+        });
+    },
+    show: function () {
+        $("#popcourseTip").show();
+        this.isShow = true;
+    },
+    hide: function () {
+        $("#popcourseTip").hide();
+        this.isShow = false;
     },
 
 
@@ -191,8 +411,8 @@ var BannerView = Backbone.View.extend({
             animspeed: 4200, // the delay between each slide
             hoverpause: true // pause the slider on hover
         });
-        $('#visual_container').css('width','');
-        $('#visual_container ol.bjqs-markers').css('left','');
+        $('#visual_container').css('width', '');
+        $('#visual_container ol.bjqs-markers').css('left', '');
     },
 
     close: function () {
