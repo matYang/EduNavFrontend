@@ -75,7 +75,8 @@
                 <li id="navigate_search" class="button navigate_search">分类检索</li>
                 <li id="navigate_compare" class="button navigate_compare">课程对比</li>
             </ul>
-            <div class="user_info">
+
+            <!--<div class="user_info">
                 <span id="greeting"></span>好，亲爱的
                 <span id="username" class="link">
                     <% if(name){%>
@@ -86,12 +87,16 @@
                  </span>
                 <a id="logout" href="#">[退出]</a>
                 <a id="topbar-mypage" href="#">我的爱上课</a>
-            </div>
+            </div>-->
             <div class="tel">
                 <li id="navigate_tel" style="padding: 0 5px">
                     <img src="./style/images/top_bar_tel.png" class="img"/>
                     <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"></a>
                 </li>
+            </div>
+            <div>
+                <span><img src="style/images/top_nav_pic1.png"/></span>
+                <span id=""><img src="style/images/top_nav_pic2.png"></span>
             </div>
         </div>
     </div>
@@ -1503,9 +1508,15 @@
     <% if (startTime1) { %>
     <dd class="clearfix">
         <label>上课时间</label>
-
-        <div><%= startTime1 %>-<%= finishTime1 %>
-            <% if (startTime2) { %>, <%= startTime2 %> - <%= finishTime2 %><% } %>
+        <div>
+            <p><%if(schooltimeWeek){%>
+                <%=schooltimeWeek%>&nbsp;（<%=schooltimeDay%>）&nbsp;
+                <%}%>
+                <%if(startTime1){%>
+                <%=startTime1%>-<%=finishTime1%>
+                <%if(startTime2){%>, <%=startTime2%> - <%=finishTime2%><%}%>
+                <%}%>
+            </p>
         </div>
     </dd>
     <%}%>
