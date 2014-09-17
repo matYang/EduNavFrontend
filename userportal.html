@@ -248,8 +248,7 @@
                 <div class="fright">
                     当前促销：
                     <label for="check_originalPrice"> <input id="check_originalPrice" type="checkbox" name="originalPriceStart"/>会员折扣</label>
-                    <label for="check_cashback"> <input id="check_cashback" type="checkbox" name="cashback"/>线下返现</label>
-                    <label for="check_commission"><input id="check_commission" type="checkbox" name="commission"/>在线立减</label>
+                    <label for="check_cashback"> <input id="check_cashback" type="checkbox" name="cashback"/>返现</label>
                 </div>
             </div>
             <!--searchResultSorter end-->
@@ -275,8 +274,7 @@
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/><span><%= instName%></span></div>
         <div class="col1">
             <p class="title">
-                <a class="F_green courseTitle viewDetail" data-id="<%= id %>">
-                    <%= courseName %></a>
+                <a class="F_green courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
             </p>
 
             <p class="desc"><span>上课日期:</span>
@@ -303,43 +301,20 @@
 
         </div>
         <div class="col2">
-            <p class="original_cost">&nbsp;
-                <%if(originalPrice){%>
-                原价：<span>￥<%=originalPrice%></span>
-                <%}%>
-            </p>
-            <p class="price">
-                <%if(!price){%>
-                <span class="sign">￥</span><small>机构定制</small>
-                <%}else{%>
-                <span class="sign">￥</span><%= price %>
-                <%}%>
-            </p>
+            <p class="original_cost text-default" style="margin-bottom: 2px;">门店价</p>
+            <p class="price">*<%= commission/10 %>折</p>
             <%if(cashback){%>
             <div>
-            <a class="label cashback"><%=cashback %>元
+            <a class="label cashback"><%=cashback %>+元
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">
-                        前台付现，入学成功可立即返还<%=cashback %>元至现金账户！
+                        前台付现，入学成功可至少返还<%=cashback %>元至现金账户！
                     </div>
                 </div>
             </a>
             </div>
             <%}%>
-            <%if(commission){%>
-            <div class="margin-y-sm">
-            <a class="label save"><%= commission %>元
-                <div class="tip">
-                    <div class="arrow"></div>
-                    <div class="tip_content">
-                        选择在线支付，支付时即可立减<%=commission %>元！
-                    </div>
-                </div>
-            </a>
-            </div>
-            <%}%>
-
         </div>
         <div class="col3">
             <div class="compare" id="compare_<%= id %>"><input class="btn_g add" type="button" value="+对比"/></div>
@@ -639,29 +614,29 @@
                 <div>
                     <label>爱特价：</label>
                     <%if(!price){ %>
-                    <span class="sign" style="font-size:14px;">¥</span>
-                    <span style="font-size:24px; color:#ff5500;vertical-align:-2px">机构定制
-                    </span>
+                        <span class="sign" style="font-size:14px;">¥</span>
+                        <span style="font-size:24px; color:#ff5500;vertical-align:-2px">机构定制
+                        </span>
                     <%}else{%>
-                    <span class="sign" style="font-size:14px;">¥</span>
-                    <span style="font-size:24px; color:#ff5500;vertical-align:-2px"><%= price %>
-                    </span>
-                    &nbsp;&nbsp;
-                    <%if(type===EnumConfig.PayType.online&&course.commission){%>
-                    <s>原价：¥<%=course.price%></s>
-                    <%}%>
-                    &nbsp;&nbsp;
-                    <%if(type===EnumConfig.PayType.offline&&course.cashbackAmount){%>
-                    <a class="label cashbacked"><%= realCashbackAmount %>元
-                        <div class="tip">
-                            <div class="arrow"></div>
-                            <div class="tip_content">
-                                本课程最多可返现<%= course.cashback %>元，
-                                已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount<cashbackAmount){%>（您的可用返现券额不足）<%}%>，
-                                入学成功即返还<%= realCashbackAmount %>元至现金账户！
+                        <span class="sign" style="font-size:14px;">¥</span>
+                        <span style="font-size:24px; color:#ff5500;vertical-align:-2px"><%= price %>
+                        </span>
+                        &nbsp;&nbsp;
+                        <%if(type===EnumConfig.PayType.online&&course.commission){%>
+                        <s>原价：¥<%=course.price%></s>
+                        <%}%>
+                        &nbsp;&nbsp;
+                        <%if(type===EnumConfig.PayType.offline&&course.cashbackAmount){%>
+                        <a class="label cashbacked"><%= realCashbackAmount %>元
+                            <div class="tip">
+                                <div class="arrow"></div>
+                                <div class="tip_content">
+                                    本课程最多可返现<%= course.cashback %>元，
+                                    已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount){%>（您的可用返现券额不足）<%}%>，
+                                    入学成功即返还<%= realCashbackAmount %>元至现金账户！
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
                     <%}%>
                     <%if(type===EnumConfig.PayType.online&&course.commission)%>
                     <a class="label saved"><%=course.commission%>元</a>
@@ -1088,7 +1063,7 @@
                     <div class="tip">
                         <div class="arrow"></div>
                         <div class="tip_content">
-                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                            前台付现，入学成功可至少返还<%= course.cashback %>元至现金账户！
                         </div>
                     </div>
                 </a>
@@ -1167,7 +1142,7 @@
                     <div class="tip">
                         <div class="arrow"></div>
                         <div class="tip_content">
-                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                            前台付现，入学成功可至少返还<%= course.cashback %>元至现金账户！
                         </div>
                     </div>
                 </a>
@@ -1204,7 +1179,7 @@
                     <div class="tip">
                         <div class="arrow"></div>
                         <div class="tip_content">
-                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                            前台付现，入学成功可至少返还<%= course.cashback %>元至现金账户！
                         </div>
                     </div>
                 </a>
@@ -1416,39 +1391,20 @@
             </dd>
         </dl>
         <div class="col2">
-            <div class="price">
-                <%if(!price){%>
-                <span class="sign">￥</span><small>定制</small>
-                <%}else{%>
-                    <%if(originalPrice){%>
-                    <s style="font-size:14px; color:#333;">原价：￥<%= originalPrice %></s>
-                    <%}%>
-                <span class="sign">￥</span><%= price %>
-                <%}%>
-            </div>
+            <div class="price"><small class="text-default">门店价</small>&nbsp;<%= commission/10 %>折</div>
             <%if(cashback){%>
-            <div class="label cashback"><%=cashback %>元
+            <div class="label cashback"><%=cashback %>+元
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">
-                        前台付现，入学成功可立即返还<%=cashback %>元至现金账户！
-                    </div>
-                </div>
-            </div>
-            <%}%>
-            <%if(commission){%>
-            <div class="label save"><%= commission %>元
-                <div class="tip">
-                    <div class="arrow"></div>
-                    <div class="tip_content">
-                        选择在线支付，支付时即可立减<%=commission %>元！
+                        前台付现，入学成功可至少返还<%=cashback %>元至现金账户！
                     </div>
                 </div>
             </div>
             <%}%>
         </div>
         <div class="col3">
-            <input type="button" id="bookNow" value="立即预订" class="btn_O"/>
+            <input type="button" id="bookNow" value="立即咨询" class="btn_O"/>
         </div>
 
     </div>
@@ -1679,7 +1635,7 @@
                 <td width="22%">上课日期</td>
                 <td width="20%">上课时间</td>
                 <td class="addr">上课地点</td>
-                <td width="12%">价格</td>
+                <td width="12%">门店折扣</td>
                 <td width="12%">--</td>
             </tr>
             </thead>
@@ -1715,14 +1671,7 @@
             <%}%>
         </td>
         <td class="addr"><%=address%></td>
-        <td>
-            <span class="F_orange dotted-line">
-            <%if(!price){%>
-            定制
-            <%}else{%>
-            ￥<%= price %>
-            <%}%></span>
-        </td>
+        <td><span class="F_orange dotted-line"><%= commission/10 %>折</span></td>
         <td>
             <%if(current){%>
             <a class="inline-block">
@@ -1792,7 +1741,7 @@
             <%}else{%>
             <div class="price">￥<%= course.price %></div>
                 <%if(course.cashback){%> <a class="label cashback"><%=course.cashback %>元</a> <%}%>
-                <%if(course.commission){%> <a class="label save"><%= course.commission %>元</a> <%}%>
+                <!--<%if(course.commission){%> <a class="label save"><%= course.commission %>元</a> <%}%>-->
             <%}%>
         </td>
         <% }); %>

@@ -201,9 +201,11 @@ var CourseDetailView = Backbone.View.extend({
                 $("#tab_5").addClass("active")
             }
         });
+        //todo 这里根据课程的状态来判断是否可以进行申请 在这里加上'申请人工选课'(不需要判断课程状态)和'申请免费试听'(需要判断课程状态)
         if (this.course.get("status") === EnumConfig.CourseStatus.onlined) {
             $("#bookNow").on("click", function () {
-                app.navigate("booking/c" + that.courseId, true);
+                //todo 这里屏蔽了下订单的入口
+//                app.navigate("booking/c" + that.courseId, true);
             });
         } else {
             $("#bookNow").attr("class", "btn_W").val("当前不可预订").prop("disabled", true);

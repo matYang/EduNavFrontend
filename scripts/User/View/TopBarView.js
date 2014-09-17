@@ -38,12 +38,18 @@ var TopBarView = Backbone.View.extend({
 
     bindEvents: function () {
         var self = this;
-        /*  navigation events  */
-        //main nav
-
+//        //处理路由切换
+//        app.bind('all',function(router){
+//            var routerName = router.replace('route:','');
+//            if(!routerName)return;
+//            console.log(routerName)
+//            $('.topBar-navigation li').removeClass('active');
+//            $('#navigate_'+routerName).addClass('active')
+//        });
         this.$passwordInput = $("#login_password");
         this.$usernameInput = $("#login_username");
         this.$rememberInput = $("#login_remember");
+
         $('#navigate_search').on('click', function () {
             if (location.hash.indexOf("search") !== 1) {
                 app.navigate("search", true);
@@ -53,10 +59,10 @@ var TopBarView = Backbone.View.extend({
         $('#navigate_compare').on('click', function () {
             //如果不在compare页面，则进行判断内的代码
             if (location.hash.indexOf("compare") !== 1) {
-                if(!self.hasCourse() ){
+                if (!self.hasCourse()) {
                     Info.displayNotice("您还没有添加待比较的课程，先去查看感兴趣的课程吧");
-/*                    app.navigate("search", {trigger: true, replace: true});*/
-                }else{
+                    /*                    app.navigate("search", {trigger: true, replace: true});*/
+                } else {
                     app.infoModal.hide();
                     app.navigate("compare", true);
                 }
@@ -141,7 +147,7 @@ var TopBarView = Backbone.View.extend({
                     app.userManager.sessionUser = app.sessionManager.sessionModel;
                     if (location.hash.indexOf("register") > -1) {
                         app.navigate("front", true);
-                    }else{
+                    } else {
                         self.render();
                     }
                 },
@@ -178,7 +184,7 @@ var TopBarView = Backbone.View.extend({
     },
 
     //判断有没有对比课程
-    hasCourse: function(){
+    hasCourse: function () {
         //从localStorage中获取课程对比列表
         this.courseIdList = app.storage.getCoursesToCompare(); // array of items to compare
         return !!this.courseIdList.length;
