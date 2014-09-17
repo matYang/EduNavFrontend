@@ -36,6 +36,7 @@
 .login_reg{float:right; position:relative;}
 .login_reg .hd{ font-size:18px; line-height:60px; }
 .login_reg .bd { position:absolute; top:69px; left:-141px; width:262px; background:#f8f8f8; border:1px  solid #ccc; -index:99; }
+.login_reg .bd1 { position: absolute; top:62px; left:-141px; width:160px; height: 217px;font-size:18px; background:#21252F; border:1px  solid #ccc; -index:99; }
 .login_reg .bd ul { padding:20px; }
 .checkbox {
     height:20px;

@@ -30,6 +30,7 @@ var TopBarView = Backbone.View.extend({
             $("#greeting").html(time);
         } else {
             this.$el.html(this.notLoggedInTemplate);
+            $("#user_info_pic").hide();
             $("#topbar_loginbox").hide();
             $("#credentialWrong").hide();
         }
@@ -115,6 +116,12 @@ var TopBarView = Backbone.View.extend({
                 e.stopPropagation();
             });
         } else {
+            $('#user_info_pic').hover(function (e) {
+                e.preventDefault();
+                $("#user_info").toggle();
+                self.$('#user_info_pic').trigger("focus");
+                e.stopPropagation();//stop to document body event handler
+            });
             $('#logout').on('click', function (e) {
                 e.preventDefault();
                 self.logout();
@@ -123,6 +130,22 @@ var TopBarView = Backbone.View.extend({
                 e.preventDefault();
                 app.navigate("mypage", true);
             });
+            $("#personal").on('click', function (e) {
+                e.preventDefault();
+                app.navigate("mypage", true);
+            });
+            $("#management").on('click', function (e) {
+                e.preventDefault();
+                app.navigate("mypage/booking", true);
+            });
+            $("#userInfo").on('click', function (e) {
+                e.preventDefault();
+                app.navigate("mypage/setting", true);
+            });
+            /*$("#logout").on('click', function (e) {
+                e.preventDefault();
+                app.navigate("front", true);
+            });*/
         }
     },
     login: function () {
