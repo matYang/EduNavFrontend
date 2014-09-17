@@ -34,6 +34,8 @@ var Constants = {
         "mapLabel",
         "compareWidget", "courseDetailCompareWidget",
         "compareWidgetEntry",
+        //人工选课
+        "SearchCourse",
         //已筛选的条件 一二三级类目
         "req", "subCategoryContainer", "subSubCategoryContainer", "subSubCategory", "subCategory", "category",
 
@@ -80,8 +82,16 @@ var Constants = {
         //其它
         "infoModal",
         "sideBarView",//侧边工具栏
-        "banner"//首页的大屏滚动banner
+        "banner",//首页的大屏滚动banner
 
+        //申请成功弹出窗
+        "popTip",
+        //人工选课弹出框
+        "artificialSelection",
+        //免费试听弹出框
+        "freeTrial",
+        //课程选择页面
+        "courseTip"
     ],
     gender: {
         "male": 0,

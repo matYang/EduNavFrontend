@@ -43,10 +43,11 @@
 <div id='topBar' class='unselectable'></div>
 <div id='main' class='main'>
     <div id="visualScope"></div>
+    <div id="searchArea"></div>
     <div id='content' class='content'></div>
 </div>
 <div id='infoLayer'></div>
-<div id='overlay' class="mask1" class="hidden"></div>
+<!--<div id='overlay' class="mask1" class="hidden"></div>-->
 <div id="popup" class="hidden pop"
      style=" top:200px; left: 50%; width:500px; min-height:100px; margin-left: -250px; z-index:200;"></div>
 
@@ -192,6 +193,200 @@
             </ul>
         </div>
     </div>
+</script>
+
+<script type="text/templates" id="tpl_freeTrial">
+    <div class="popM" id="popfreeTrial">
+        <div class="popMain">
+            <div class="popMainA">
+                <div class="popTopBar"></div>
+                <div class="popTopBlack"></div>
+                <div class="popTitle">
+                    <div class="popTitleA">
+                        <span class="popTSpanLeft">申请免费试听</span>
+                        <a class="popShu"></a>
+                        <div class="popTitleRight">
+                            <i class="popIconQuan"></i>
+                            <span class="popTSpanRight">全城最低价，全场7折起</span>
+                        </div>
+                    </div>
+                    <a class="popMainClose"></a>
+                </div>
+                <div class="popContent">
+                    <div class="popContentA">
+                        <ul class="popContentUl">
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>意向课程：</span>
+                                <p>雅思6分精品班</p>
+                            </li>
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>学员姓名：</span>
+                                <input class="popTxt" type="text">
+                            </li>
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>联系电话：</span>
+                                <input class="popTxt" type="text">
+                            </li>
+                            <li>
+                                <i class="popIconStar popIconStarSpec"></i>
+                                <span>附加信息：</span>
+                                <textarea class="popTxt popTxtSpec" placeholder="亲，请填上空闲的时间，择校、择课要求等信息，以便更好的为您服务"></textarea>
+                            </li>
+                        </ul>
+                        <div class="popBtn">
+                            <a class="popBtnYes" id="btnApplefreeTrial"></a>
+                            <a class="popBtnNo">放弃申请</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+<script type="text/template" id="tpl_popTip">
+    <div class="popTip" id="popSuccessApple">
+        <div class="popTipTop">
+            <a class="popTipTopIcon"></a>
+            <span>申请已提交</span>
+        </div>
+        <div class="popTipMid">
+            30分钟后（若亲未备注其他时间）爱上课资深顾问将与您联系。
+        </div>
+        <div class="popTipBottom">
+            <div class="popTipMidA"></div>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_courseTip">
+    <div class="coursepopMenban" id="popcourseTip">
+        <div class="coursepopMain">
+            <div class="courseTip">
+                <div class="courseTipA">
+                    <div class="courseTipClose">X</div>
+                    <ul class="courseTipATop">
+                        <li class="courseTipATopHover CourseTipATopHoverSpec">语言培训</li>
+                        <li class="courseTipATopHover">IT培训</li>
+                        <li class="courseTipATopHover">资格认证</li>
+                        <li class="courseTipATopHover">学历文聘</li>
+                    </ul>
+                    <div class="courseTipAContent">
+                        <ul class="courseTipAContentDes">
+                            <li>
+                                <div class="courseTipAContentTop">基础考级</div>
+                                <ul class="courseTipAContentDesUl">
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+                                    <li>计算机一级</li>
+                                    <li>计算机二级</li>
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="courseTipAContentTop">基础考级</div>
+                                <ul class="courseTipAContentDesUl">
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+                                    <li>计算机一级</li>
+                                    <li>计算机二级</li>
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="courseTipAContentTop">基础考级</div>
+                                <ul class="courseTipAContentDesUl">
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+                                    <li>计算机一级</li>
+                                    <li>计算机二级</li>
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="courseTipAContentTop">基础考级</div>
+                                <ul class="courseTipAContentDesUl">
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+                                    <li>计算机一级</li>
+                                    <li>计算机二级</li>
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_artificialSelection">
+    <div class="popM" id="popartificialSelection">
+        <div class="popMain">
+            <div class="popMainA">
+                <div class="popTopBar"></div>
+                <div class="popTopBlack"></div>
+                <div class="popTitle">
+                    <div class="popTitleA">
+                        <span class="popTSpanLeft">申请人工选课</span>
+                        <a class="popShu"></a>
+                        <div class="popTitleRight">
+                            <i class="popIconQuan"></i>
+                            <span class="popTSpanRight">数百大牌培训机构，总有一个适合你</span>
+                        </div>
+                    </div>
+                    <a class="popMainClose"></a>
+                </div>
+                <div class="popContent">
+                    <div class="popContentA">
+                        <ul class="popContentUl">
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>意向课程：</span>
+                                <select class="popTxt" name="select" style="cursor: default;">
+                                    <option value="请选择">- 请选择 -</option>
+                                </select>
+                                <a class="inputIcon"></a>
+                            </li>
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>学员姓名：</span>
+                                <input class="popTxt" type="text">
+                            </li>
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>联系电话：</span>
+                                <input class="popTxt" type="text">
+                            </li>
+                            <li>
+                                <i class="popIconStar popIconStarSpec"></i>
+                                <span>附加信息：</span>
+                                <textarea class="popTxt popTxtSpec" placeholder="亲，请填上空闲的时间，择校、择课要求等信息，以便更好的为您服务"></textarea>
+                            </li>
+                        </ul>
+                        <div class="popBtn">
+                            <a class="popBtnYes" id="btnAppleartificialSelection"></a>
+                            <a class="popBtnNo">放弃申请</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </script>
 
 <script type="text/template" id="tpl_search">
@@ -382,6 +577,80 @@
         <div id="compareItems" class="compare_items"></div>
         <div class="btns">
             <input type="button" value="开始对比" id="compare">
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_SearchCourse">
+    <div class="SearchContentA">
+        <div class="SearchCotentArea">
+            <div class="SearchCotentAreaTop SearchCotentAreaTopLeft"></div>
+            <div class="SearchCotentAreaMain SearchCotentAreaMainLeft">
+                <ul class="SearchCotentAreaMainA">
+                    <li>
+                        <span>课程类目</span>
+                        <select class="selectFarme" id="" name="select" style="cursor: default;">
+
+                            <option value="请选择"> 请选择 </option>
+                        </select>
+                        <i class="selectIcon"></i>
+                    </li>
+                    <li>
+                        <span>上课地区</span>
+                        <select class="selectFarme" id="" name="select" style="cursor: default;">
+                            <option value="请选择"> 不限 </option>
+                        </select>
+                        <i class="selectIcon"></i>
+                    </li>
+                    <li>
+                        <span>上课日期</span>
+                        <select class="selectFarme" id="" name="select" style="cursor: default;">
+                            <option value="请选择"> 请选择 </option>
+                        </select>
+                        <i class="selectIcon"></i>
+                    </li>
+                    <li>
+                        <span>班级类型</span>
+                        <select class="selectFarme" id="" name="select" style="cursor: default;">
+                            <option value="请选择"> 不限 </option>
+                        </select>
+                        <i class="selectIcon"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="SearchCotentAreaBottom SearchCotentAreaBottomLeft">
+                <a class="SearchIcon"></a>
+            </div>
+        </div>
+        <div class="SearchCotentArea">
+            <div class="SearchCotentAreaTop SearchCotentAreaTopRight"></div>
+            <div class="SearchCotentAreaMain SearchCotentAreaMainRight">
+                <ul class="SearchCotentAreaMainB">
+                    <li class="SearchCotentAreaMainBLi">
+                        <span>意向课程</span>
+                        <select class="selectFarme" id="" name="select" style="cursor: default;">
+                            <option value="请选择"> 雅思 </option>
+                        </select>
+                        <i class="selectIcon"></i>
+                    </li>
+                    <li class="SearchCotentAreaMainBLi"></li>
+                    <li class="SearchCotentAreaMainBLi">
+                        <span>联系电话</span>
+                        <input class="selectFarme" type="text">
+                    </li>
+                    <li class="SearchCotentAreaMainBLi">
+                        <span>学员姓名</span>
+                        <input class="selectFarme" type="text">
+                    </li>
+                    <li class="SearchCotentAreaMainBLi">
+                        <span>附加信息</span>
+                        <textarea class="inputMyInfo" placeholder="#我的信息#"></textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="SearchCotentAreaBottom SearchCotentAreaBottomRight">
+                <a class="ApplyIcon"></a>
+            </div>
         </div>
     </div>
 </script>
