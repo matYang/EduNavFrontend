@@ -93,6 +93,12 @@
     position: relative;
     z-index: 1;
 }
+/*todo #设置元素浮动要记得清除浮动(撑开父容器) 清除浮动有多种写法
+ *coverflow:hidden是最简单的一种
+ *不过大多数还是使用:after伪类clear:both
+ *具体内容百度一下参考几篇博客深入了解一下
+ *同时参考一个框架了解一下框架如何提供通用的布局类 如何在其中清除浮动
+ */
 .SearchCotentArea{ width: 500px; height: 350px; float: left;}
 .SearchCotentAreaTop{ width: 500px; height: 52px; background-image: url("../images/search.png");}
 .SearchCotentAreaTopRight{ background-position: 0 -100px;}
@@ -132,25 +138,55 @@
 
 /*人工选课，免费试听弹出层*/
 .popM{ width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); position: fixed; z-index: 2000; top: 0;}
-.popMain{ width: 100%; height: 635px; position: absolute; z-index: 2001; top:10%}
-.popMainA{ width: 720px; height: 635px; background-color: #FFF; margin: auto;}
+.popMain{ width: 100%; position: absolute; z-index: 2001; top:10%}
+.popMainA{ width: 720px; background-color: #FFF; margin: auto;}
 .popTopBar{ width: 720px; height: 8px; background-color: #008E54;}
 .popTopBlack{ width: 720px; height: 1px;}
-.popTitle{ width: 720px; height: 100px; background-color: #3B3C3C; position: relative;}
+.popTitle{
+    position: relative;
+    width: 720px;
+    /*#内层具有高度 不用在外层设置高度*/
+    /*height: 100px;*/
+    background-color: #3B3C3C;
+}
 .popMainClose{ width: 48px; height: 48px; display: block; position: absolute; left: 720px; top: 1px; cursor: pointer; background-image: url("../images/popclose.png");}
-.popTitleA{ width: 670px; height: 70px; padding: 15px 25px;}
-.popTSpanLeft{ font-size: 24px; padding:0 25px; color: #FDAE00; float: left; line-height: 70px;}
+.popTitleA{
+    width: 670px; height: 50px;
+    padding: 15px 25px;}
+.popTSpanLeft{
+    font-size: 24px;
+    padding:0 25px;
+    color: #FDAE00;
+    float: left; line-height: 50px;}
 .popTitleRight{ padding-left: 25px; float: left;}
-.popIconQuan{ display: block; width: 20px; height: 70px; background-image: url("../images/popIcon.png"); background-position: 0 28px; background-repeat: no-repeat; float: left;}
-.popTSpanRight{ color: #FFF; font-size: 14px; line-height: 70px; padding-left: 5px; }
-.popShu{ width: 5px; height: 70px; background-color: #008E54; float: left; display: block;}
-.popContent{ width: 420px; height: 415px; padding: 55px 150px;}
-.popContentUl{ width: 420px; height: 335px; display: block;}
-.popContentUl li{ width: 420px; height: 32px; display: block; margin-bottom: 26px; position: relative;}
+.popIconQuan{
+    display: block;
+    float: left;
+    width: 20px; height: 40px;
+    background: url("../images/popIcon.png") 0 18px no-repeat;
+}
+.popTSpanRight{ color: #FFF; font-size: 14px; line-height: 50px; padding-left: 5px; }
+.popShu{
+    float: left; display: block;
+    width: 5px; height: 70px;
+    margin-top: -10px;
+    background-color: #008E54;
+}
+.popContent{
+    width: 420px;
+    padding: 25px 0;
+    margin: 0 auto;
+}
+.popContentUl{  display: block;width: 420px;height:250px;margin-bottom: 20px}
+.popContentUl li{
+    width: 420px; height: 32px;
+    display: block;
+    margin-bottom: 18px;
+    position: relative;}
 .popContentUl li span{width: 90px; font-size: 18px; line-height: 32px; color: #333; padding-left: 6px; float: left;}
 .popContentUl li p{ width: 205px; height: 32px; float: left; line-height: 32px; color: #7F7F7F; font-size: 18px;}
 .popTxt{ width: 205px; height: 32px; float: left; background-color: #EFEFEF; border: 0; outline: 0;}
-.popTxtSpec{ width: 284px; height: 137px; line-height: 24px; font-size: 12px; padding: 10px;}
+.popTxtSpec{ width: 284px; height: 100px; line-height: 24px; font-size: 12px; padding: 10px;}
 .popIconStar{ width: 8px; height: 32px; display: block; background-image: url("../images/popIcon.png"); background-position: -20px 12px; background-repeat: no-repeat; float: left;}
 .popIconStarSpec{ background-position: 200px 200px;}
 .popBtn{ width: 360px; height: 70px; padding-top: 20px; margin: auto;}
@@ -172,7 +208,9 @@
 
 /*课程弹出窗口*/
 .coursepopMenban{ width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); position: fixed; z-index: 3000; top: 0;}
-.coursepopMain{ width: 100%; height: 635px; position: absolute; z-index: 3001; top:30%}
+.coursepopMain{
+    width: 100%; height: 635px;
+    position: absolute; z-index: 3001; top:20%}
 .courseTip{ width: 900px; height: 400px; border: 6px solid rgba(0,0,0,0.4); margin: auto; background-color: #FFF;}
 .courseTipA{width: 860px; height: 360px; padding: 20px; position: relative}
 .courseTipATop{ width: 860px; height: 60px; display: block;}
