@@ -16,8 +16,8 @@
     text-overflow: ellipsis;}
 /*价格等的信息*/
 .courseDetail .banner .row1 .col2{float:left; width:205px; margin-top:5px;text-align: center;}
-.courseDetail .banner .row1 .col2 .label{margin: 2px 4px;}
-.courseDetail .banner .price{ font-size:26px;margin-bottom: 5px;}
+.courseDetail .banner .price{ font-size:26px;}
+.courseDetail .banner .tip .price{ font-size:16px;}
 .courseDetail .banner .price .sign{ color:#333;}
 /*预订按钮*/
 .courseDetail .banner .row1 .col3{float:right; margin-top:5px;}

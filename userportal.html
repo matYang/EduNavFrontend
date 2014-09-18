@@ -509,8 +509,8 @@
 
         </div>
         <div class="col2">
-            <p class="original_cost text-default" style="margin-bottom: 2px;">门店价</p>
-            <p class="price">*<%= commission/10 %>折</p>
+            <p class="original_cost text-light" style="margin-bottom: 2px;">门店价</p>
+            <p class="price">*<%= commission %>折</p>
             <%if(cashback){%>
             <div>
             <a class="label cashback"><%=cashback %>+元
@@ -805,7 +805,7 @@
     </div>
     <div class="blank1"></div>
     <div class="title scrollTarget" style="border-bottom: none">
-        为保证您的账号安全，6个月以前的订单请联系客服400-025-0884
+        课程具体开班日期，请联系客服：<span class="text-error">400-025-0884</span>
     </div>
     <table id="bookingSummary" class="table-clean" border="0" width="100%" cellpadding="0" cellspacing="0">
         <thead>
@@ -831,9 +831,9 @@
             <div class="dayOfWeek"><%=course.startDateWeek%></div>
             <%}%>
         </td>
-        <td class="detail">
+        <td class="detail bookingTitle" id="bookingTitle_bookingId_<%= id %>" style="cursor: pointer">
             <img class="img-logo" src="<%=course.logoUrl%>">
-            <h3><a class="F_green bookingTitle"  id="bookingTitle_bookingId_<%= id %>" href="#"><%= course.courseName %></a></h3>
+            <h3><a class="F_green "><%= course.courseName %></a></h3>
             <p>
                 <span class="price">
                    <%if(!price){%>
@@ -847,7 +847,7 @@
         </td>
         <td class="payType">
             <p><%= EnumConfig.BookingTypeText[type]%></p>
-            <p>报名日期:<%=scheduledTime%></p>
+            <p class="text-error">（试听免费）</p>
         </td>
         <td class="status">
 
@@ -895,33 +895,30 @@
 
                 <div>
                     <label>爱特价:</label>
-                    <%if(!price){ %>
-                        <span class="sign" style="font-size:14px;">¥</span>
-                        <span style="font-size:24px; color:#ff5500;vertical-align:-2px">机构定制
-                        </span>
-                    <%}else{%>
-                        <span class="sign" style="font-size:14px;">¥</span>
-                        <span style="font-size:24px; color:#ff5500;vertical-align:-2px"><%= price %>
-                        </span>
-                        &nbsp;&nbsp;
-                        <%if(type===EnumConfig.PayType.online&&course.commission){%>
-                        <s>原价:¥<%=course.price%></s>
-                        <%}%>
-                        &nbsp;&nbsp;
-                        <%if(type===EnumConfig.PayType.offline&&course.cashbackAmount){%>
-                        <a class="label cashbacked"><%= realCashbackAmount %>元
+                    <span class="text-light" style="font-size:14px;">门店价</span>
+                    <span style="color:#ff5500;">
+                        <span class="price">*<%= course.commission %>折</span>
+                        <a class="has-tip has-tip-top">【?】
                             <div class="tip">
                                 <div class="arrow"></div>
                                 <div class="tip_content">
-                                    本课程最多可返现<%= course.cashback %>元，
-                                    已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount){%>（您的可用返现券额不足）<%}%>，
-                                    入学成功即返还<%= realCashbackAmount %>元至现金账户！
+                                    无论学校与亲以什么价格成交，亲都能在付费后，从爱上课获取<span class="price">5%</span>的现金返现哟！
                                 </div>
                             </div>
                         </a>
-                    <%}%>
-                    <%if(type===EnumConfig.PayType.online&&course.commission)%>
-                    <a class="label saved"><%=course.commission%>元</a>
+                    </span>
+                    &nbsp;&nbsp;
+                    <%if(type===EnumConfig.PayType.offline&&course.cashbackAmount){%>
+                    <a class="label cashbacked"><%= realCashbackAmount %>元
+                        <div class="tip">
+                            <div class="arrow"></div>
+                            <div class="tip_content">
+                                本课程最多可返现<%= course.cashback %>元，
+                                已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount){%>（您的可用返现券额不足）<%}%>，
+                                入学成功即返还<%= realCashbackAmount %>元至现金账户！
+                            </div>
+                        </div>
+                    </a>
                     <%}%>
                 </div>
             </div>
@@ -958,7 +955,7 @@
                     <%}%>
                     <p>
                         <label>咨询电话:</label>
-                        <span>400-025-0884</span>
+                        <span>025-58991945（9:00-24:00）</span>
                     </p>
                 </div>
                 <div class="fleft">
@@ -1003,12 +1000,6 @@
                         <label>学员姓名:</label>
                         <%= name %>
                     </p>
-
-                    <p>
-                        <label>报名日期:</label>
-                        <span class="F_orange"><%= scheduledTime %></span>
-                    </p>
-
                 </div>
                 <div class="fleft">
                     <p>
@@ -1673,9 +1664,19 @@
             </dd>
         </dl>
         <div class="col2">
-            <div class="price"><small class="text-default">门店价</small>&nbsp;<%= commission/10 %>折</div>
+            <div class="">
+                <small class="text-light">门店价</small>&nbsp;<span class="price"><%= commission %>折</span>&nbsp;
+                <a class="has-tip has-tip-top">【?】
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            无论学校与亲以什么价格成交，亲都能在付费后，从爱上课获取<span class="price"><%=100-commission%>%</span>的现金返现！
+                        </div>
+                    </div>
+                </a>
+            </div>
             <%if(cashback){%>
-            <div class="label cashback"><%=cashback %>+元
+            <div class="label cashback margin-top"><%=cashback %>+元
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">

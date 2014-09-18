@@ -160,7 +160,7 @@ a:hover, a:active{
 
 /*need remove end*/
 
-/*tip 提示框 原有样式*/
+/*tip 提示框 引用设计师写的样式*/
 .tip{
     position:absolute;
     z-index:99;
@@ -175,7 +175,7 @@ a:hover, a:active{
 }
 .tip_content{ padding:8px;}
 
-/*返 立减 common label 带后续的隐藏标签说明框*/
+/*’返‘/’立减‘ 的标签 带后续的隐藏标签说明框tip*/
 .label{
     display:inline-block;
     position:relative;
@@ -192,9 +192,59 @@ a:hover, a:active{
     margin-right: 2px;padding: 0 2px;
     color: white;
 }
+/*这里扩展设计师写的样式 处于标签内部的tip样式 指定position的位置*/
 .label .tip{display:none; top:26px; right:-39px;/*border-color: inherit;*/}
-.label:hover .tip{display:block;}
 .label .tip_content{ padding:8px;text-align: center;}
+/*标签处于hover状态时显示其中的tip*/
+.label:hover .tip{display:block;}
+
+
+
+
+
+/**
+ * has-tip has-tip-top/has-tip-bottom
+ * todo 这个从label中独立出来 后续需要将label中的tip使用也修改为has-tip 这里仅使用了top所以只写了top
+ * 外层加上has-tip 内层具有tip
+ * 在has-tip:hover时显示tip
+ */
+.has-tip{ position: relative;color: #aaaaaa}
+.has-tip .tip{
+    display:none;
+    position:absolute;
+    z-index:99;
+    width:313px;
+    border:1px solid #a7a7a7;
+    font-size:12px; line-height:22px;
+    background:#fff;color: #666;
+}
+.has-tip .tip .arrow{
+    position: absolute;
+    top: auto;left: auto;
+    width: 15px;height: 8px;
+}
+.has-tip:hover .tip{display: block;}
+
+/*设置tip的位置*/
+.has-tip.has-tip-bottom .tip{
+    top: 28px;
+    right: -46px;
+    }.has-tip.has-tip-bottom .tip .arrow{
+        top:-8px; left:243px;
+        background:url(../images/arrow.png) no-repeat;}
+.has-tip.has-tip-top .tip{
+    bottom: 28px;
+    right:-46px; }
+    .has-tip.has-tip-top .tip .arrow{
+        bottom:-8px; left:243px;
+        background:url(../images/arrow-down.png) no-repeat;}
+
+
+
+
+
+
+
 
 
 /*label的独立style*/
@@ -277,7 +327,7 @@ a:hover, a:active{
 .text-primary,a.text-primary{color: #128d56; }
 .text-warning,a.text-warning{color: #f7a501; }
 .text-error,a.text-error{color: #FF5500; }
-.text-default,a.text-default{color: #aaaaaa; }
+.text-light,a.text-light {color: #aaaaaa; }
 
 /*带有下点点的字体因其重要性字体会调大*/
 .dotted-line{
