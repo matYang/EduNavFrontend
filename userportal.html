@@ -806,7 +806,7 @@
     </div>
     <div class="blank1"></div>
     <div class="title scrollTarget" style="border-bottom: none">
-        为保证您的账号安全，6个月以前的订单请联系客服400-025-0884
+        课程具体开班日期，请联系客服：<span class="text-error">400-025-0884</span>
     </div>
     <table id="bookingSummary" class="table-clean" border="0" width="100%" cellpadding="0" cellspacing="0">
         <thead>
@@ -832,9 +832,9 @@
             <div class="dayOfWeek"><%=course.startDateWeek%></div>
             <%}%>
         </td>
-        <td class="detail">
+        <td class="detail bookingTitle" id="bookingTitle_bookingId_<%= id %>" style="cursor: pointer">
             <img class="img-logo" src="<%=course.logoUrl%>">
-            <h3><a class="F_green bookingTitle"  id="bookingTitle_bookingId_<%= id %>" href="#"><%= course.courseName %></a></h3>
+            <h3><a class="F_green "><%= course.courseName %></a></h3>
             <p>
                 <span class="price">
                    <%if(!price){%>
@@ -848,7 +848,7 @@
         </td>
         <td class="payType">
             <p><%= EnumConfig.BookingTypeText[type]%></p>
-            <p>报名日期:<%=scheduledTime%></p>
+            <p class="text-error">（试听免费）</p>
         </td>
         <td class="status">
 
