@@ -327,7 +327,7 @@ a:hover, a:active{
 .text-primary,a.text-primary{color: #128d56; }
 .text-warning,a.text-warning{color: #f7a501; }
 .text-error,a.text-error{color: #FF5500; }
-.text-default,a.text-default{color: #aaaaaa; }
+.text-light,a.text-light {color: #aaaaaa; }
 
 /*带有下点点的字体因其重要性字体会调大*/
 .dotted-line{
