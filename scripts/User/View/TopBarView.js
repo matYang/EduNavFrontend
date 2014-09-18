@@ -132,7 +132,7 @@ var TopBarView = Backbone.View.extend({
                 e.preventDefault();
                 self.logout();
             });
-            $("#topbar-mypage").on('click', function (e) {
+            $("#userPic").on('click', function (e) {
                 e.preventDefault();
                 app.navigate("mypage", true);
             });
@@ -148,10 +148,10 @@ var TopBarView = Backbone.View.extend({
                 e.preventDefault();
                 app.navigate("mypage/setting", true);
             });
-            /*$("#logout").on('click', function (e) {
+            $("#cash").on('click', function (e) {
                 e.preventDefault();
-                app.navigate("front", true);
-            });*/
+                app.navigate("mypage/cash", true);
+            });
         }
     },
     login: function () {

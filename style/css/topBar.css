@@ -32,11 +32,13 @@
 }
 
 
-.pic{float:right; margin-right:50px; margin-top:0px;}
+.pic{float:right;width: 60px; height: 60px; margin-right:50px; margin-top:0px;background-image: url("../images/top_nav_pic_1.png");}
+.pic:hover{background-image: url("../images/top_nav_pic_2.png");}
+#userPic {width: 60px;height: 60px;}
 .login_reg{float:right; position:relative;}
 .login_reg .hd{ font-size:18px; line-height:60px; }
 .login_reg .bd { position:absolute; top:69px; left:-141px; width:262px; background:#f8f8f8; border:1px  solid #ccc; -index:99; }
-.login_reg .ql { position: absolute; display: none; top:60px; left:-40px; width:160px; height: 181px;font-size:18px; text-align: center;line-height: 50px; background:#21252F; -index:99; }
+.login_reg .ql { position: absolute; display: none; top:60px; left:-92px; width:160px; height: 217px;font-size:16px; text-align: center;line-height: 50px; background:#21252F; z-index:999; }
 .ql a {width:160px; height:45px; background:#21252F; display:block; margin: 0;}
 .ql a:hover{ background:#333844; }
 .login_reg .bd ul { padding:20px; }
