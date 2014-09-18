@@ -81,7 +81,7 @@
 .index #visualScope ol.bjqs-markers li a:hover{ background:#2a2e39;}
 .index #visualScope ol.bjqs-markers li.active-marker a{ background:#2a2e39;filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99000000',endColorstr='#99000000'); }
 
-.index .content{ margin-top:-74px; position:relative;}
+.index .content{position:relative;}
 .index .content .category{ margin-bottom:100px;}
 
 .index .tab2{ height:88px; width:1000px; background:url(../images/tab2.png) no-repeat;}
