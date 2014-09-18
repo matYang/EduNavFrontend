@@ -97,9 +97,8 @@
 .SearchCotentAreaMainA{width: 235px; height: 200px; margin: auto; display: block; padding: 13px 0;}
 .SearchCotentAreaMainA li{width: 255px; height: 40px; margin-bottom: 10px; position: relative;}
 .SearchContentA span{width: 70px; height: 40px; display: block; float: left; line-height: 40px; font-size: 15px; color: #666; font-family: "微软雅黑";}
-.selectFarme{ width: 150px; height: 40px; border: 0; outline: 0; display: block; float: left; color: #666; font-size: 12px; padding-left: 12px;  font-family: "微软雅黑";}
-.selectFarme option{ cursor: pointer;}
-.selectIcon{ width: 15px; height: 8px; display: block; background-image: url("../images/search.png"); background-position: 0 -200px; position: absolute; top: 15px; left: 200px;}
+.selectFarme{ width: 150px; height: 40px; cursor: pointer; border: 0; outline: 0; display: block; float: left; color: #666; font-size: 12px; padding-left: 12px;  font-family: "微软雅黑";}
+.selectIcon{ width: 15px; height: 8px; display: block; background-image: url("../images/search.png"); background-position: 0 -200px; position: absolute; top: 15px; left: 202px;}
 .SearchCotentAreaMainB{ width: 480px; height: 200px; margin: auto; display: block; padding: 13px 0;}
 .SearchCotentAreaMainBLi{ min-width: 225px; width: auto; height: 40px; display: block; padding-bottom: 10px; position: relative; float: left; margin-left: 4px;}
 .inputMyInfo{ width: 370px; height: 90px; line-height: 20px; float: left; border: 0; outline: 0; font-size: 12px; color: #666; font-family: "微软雅黑"; padding: 5px;}
@@ -139,7 +138,7 @@
 
 
 /*申请成功弹出窗口*/
-.popTip{ width: 530px; height: 130px; position: fixed; top: 30%; left: 40%; background-color: #FFF; box-shadow: 0 0 10px #008E54;}
+.popTip{ width: 530px; height: 130px; position: fixed; top: 30%; left: 40%; background-color: #FFF; box-shadow: 0 0 10px #008E54; }
 .popTipTop{ width: 500px; height: 28px; padding: 22px 0 0 30px;}
 .popTipTopIcon{ width: 44px; height: 28px; background-image: url("../images/poptipIcon.png"); float: left;}
 .popTipTop span{ line-height: 28px; font-size: 24px; color: #008E54; font-weight: bold; padding-left: 8px;}
@@ -149,19 +148,27 @@
 
 
 /*课程弹出窗口*/
-.coursepopMenban{ width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); position: fixed; z-index: 2000; top: 0;}
-.coursepopMain{ width: 100%; height: 635px; position: absolute; z-index: 2001; top:10%}
+.coursepopMenban{ width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); position: fixed; z-index: 3000; top: 0;}
+.coursepopMain{ width: 100%; height: 635px; position: absolute; z-index: 3001; top:30%}
 .courseTip{ width: 900px; height: 400px; border: 6px solid rgba(0,0,0,0.4); margin: auto; background-color: #FFF;}
 .courseTipA{width: 860px; height: 360px; padding: 20px; position: relative}
 .courseTipATop{ width: 860px; height: 60px; display: block;}
 .courseTipATopHover{position: relative; width: 210px; height: 43px; background-color: #EEE; float: left;  margin-right: 2px; text-align: center; line-height: 43px; font-size: 18px; cursor: pointer;}
 .courseTipATopHoverSpec:after{position: absolute;bottom: -10px;height:0;width:0;left:50%; margin-left: -10px;content:'';border: 10px solid transparent; border-top: 11px solid #000; border-bottom: none; display:block;}
 .courseTipATopHoverSpec{background-color: #000; color: #FFF;}
-.courseTipAContentDes{ width: 820px; height: 280px; padding: 0 20px; height: auto; overflow-y: auto;}
-.courseTipAContentDes li{ width: 820px; min-height: 70px; height: auto; cursor: pointer;}
+.courseTipAContent{width: 850px; height: 280px; overflow-x: hidden;}
+.courseTipAContentDes{ width: 830px; min-height: 280px; padding: 0 0 0 20px; height: auto; overflow-y: auto;}
+.courseTipAContentDes li{ width: 810px; min-height: 70px; height: auto; cursor: pointer;}
 .courseTipAContentTop{ height: 30px; line-height: 30px; font-size: 14px; color: #000;}
 .courseTipAContentDesUl{ padding: 8px 0; border-bottom: 1px dashed #888;}
 .courseTipAContentDesUl li{ display: inline-block; width: auto; min-height: 20px; line-height: 20px; color: #888; margin-right: 20px; font-size: 14px; cursor: pointer;}
 .courseTipAContentDesUl li:hover{ color: #008E54;}
 .courseTipATopHoverSpec{ background-color: #000; color: #fff;}
-.courseTipClose{ width: 45px; height: 45px; position: absolute; top: 0; left: 908px; color: #FFF; background-color: rgba(0,0,0,0.4); font-size: 30px; text-align: center; line-height: 40px;}
+.courseTipClose{
+    width: 45px; height: 45px;
+    position: absolute; top: -6px; left: 906px;
+    color: #FFF; background-color: #999;
+    font-size: 30px; text-align: center; line-height: 40px;
+    cursor: pointer;
+}
+.disnone{ display: none;}

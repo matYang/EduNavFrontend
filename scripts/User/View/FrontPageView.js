@@ -29,16 +29,7 @@ var FrontPageView = Backbone.View.extend({
         } else if (this.searchArea.isClosed) {
             this.searchArea.render();
         }
-        $(".SearchIcon").on("click", function () {
-            if (!this.artificialSelection) {
-                this.artificialSelection = new ArtificialSelection();
 
-            } else if (this.artificialSelection.isClosed) {
-                this.artificialSelection.render();
-            } else if (!this.artificialSelection.isShow) {
-                this.artificialSelection.show();
-            }
-        });
         this.$el.append(this.template);
         app.generalManager.getCategories(this);
     },
@@ -165,6 +156,48 @@ var SearchArea = Backbone.View.extend({
 
     },
     bindEvents: function () {
+        var that = this;
+        $(".SearchIcon").on("click", function () {
+            if (!that.artificialSelection) {
+                that.artificialSelection = new ArtificialSelection();
+
+            } else if (that.artificialSelection.isClosed) {
+                that.artificialSelection.render();
+            } else if (!that.artificialSelection.isShow) {
+                that.artificialSelection.show();
+            }
+
+
+        });
+
+        $(".ApplyIcon").on("click", function () {
+            if (!that.freeTrial) {
+                that.freeTrial = new FreeTrial();
+
+            } else if (that.freeTrial.isClosed) {
+                that.freeTrial.render();
+            } else if (!that.freeTrial.isShow) {
+                that.freeTrial.show();
+            }
+        });
+
+        $("#corseChoose").on("click", function () {
+            var thats = this;
+            if (!that.courseTip) {
+                that.courseTip = new CourseTip();
+            } else if (that.courseTip.isClosed) {
+                that.courseTip.render();
+            } else if (!that.courseTip.isShow) {
+                that.courseTip.show();
+            }
+
+            $(".courseTipAContentDesUl li").on("click", function () {
+                //alert("1");
+                that.courseTip.hide();
+                $(thats).val(" " + $(this).html());
+            });
+        });
+
 
     },
 
@@ -181,7 +214,7 @@ var SearchArea = Backbone.View.extend({
 //人工选课
 var ArtificialSelection = Backbone.View.extend({
 
-    el: '#main',
+    el: '#overlayASelection',
     initialize: function () {
         _.bindAll(this, 'render', 'close');
         this.template = _.template(tpl.get('artificialSelection'));
@@ -204,46 +237,55 @@ var ArtificialSelection = Backbone.View.extend({
             that.hide();
         });
 
-        $(".popBtnNo").on("click",function(){
+        $(".popBtnNo").on("click", function () {
             that.hide();
         });
 
-        $("#btnAppleartificialSelection").on("click",function(){
+        $("#btnAppleartificialSelection").on("click", function () {
             that.hide();
             if (!this.popTip) {
                 this.popTip = new PopTip();
-
             } else if (this.popTip.isClosed) {
                 this.popTip.render();
-            } else if (!this.popTip.isShow) {
+            }
+            if (!this.popTip.isShow) {
                 this.popTip.show();
+
             }
         });
 
-        $(".popTxt").on("click",function(){
-            that.hide();
-            if (!this.courseTip) {
-                this.courseTip = new CourseTip();
-
-            } else if (this.courseTip.isClosed) {
-                this.courseTip.render();
-            } else if (!this.courseTip.isShow) {
-                this.courseTip.show();
+        $(".popTxt").on("click", function () {
+            var thats=this;
+            if (!that.courseTip) {
+                that.courseTip = new CourseTip();
+            } else if (that.courseTip.isClosed) {
+                that.courseTip.render();
+            } else if (!that.courseTip.isShow) {
+                that.courseTip.show();
             }
+
+            $(".courseTipAContentDesUl li").on("click",function(){
+                //alert("2");
+                that.courseTip.hide();
+                $(thats).val(" "+$(this).html());
+            });
         });
+
+
     },
     show: function () {
-        $("#popartificialSelection").show();
+        $("#popartificialSelection").fadeIn(400);
         this.isShow = true;
     },
     hide: function () {
-        $("#popartificialSelection").hide();
+        $("#popartificialSelection").fadeOut(400);
         this.isShow = false;
     },
 
 
     close: function () {
         if (!this.isClosed) {
+            this.popTip.close();
             this.$el.empty();
             this.isClosed = true;
 
@@ -253,7 +295,7 @@ var ArtificialSelection = Backbone.View.extend({
 //申请成功弹出窗口
 var PopTip = Backbone.View.extend({
 
-    el: '.index',
+    el: '#overlayApplySuc',
     initialize: function () {
         _.bindAll(this, 'render', 'close');
         this.template = _.template(tpl.get('popTip'));
@@ -261,7 +303,6 @@ var PopTip = Backbone.View.extend({
         this.isShow = false;
         this.render();
         this.bindEvents();
-
     },
 
     render: function () {
@@ -272,16 +313,17 @@ var PopTip = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
-        $(".popTipMidA").on("click",function(){
+        $(".popTipMidA").on("click", function () {
             that.hide();
         });
     },
     show: function () {
-        $("#popSuccessApple").show();
+        $("#popSuccessApple").fadeIn(400);
         this.isShow = true;
+        setTimeout(this.hide(), 15000);
     },
     hide: function () {
-        $("#popSuccessApple").hide();
+        $("#popSuccessApple").fadeOut(2500);
         this.isShow = false;
     },
 
@@ -297,7 +339,7 @@ var PopTip = Backbone.View.extend({
 //免费试听
 var FreeTrial = Backbone.View.extend({
 
-    el: '#main',
+    el: '#overlayFreeTrial',
     initialize: function () {
         _.bindAll(this, 'render', 'close');
         this.template = _.template(tpl.get('freeTrial'));
@@ -315,16 +357,20 @@ var FreeTrial = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
-        $(".courseTipClose").on("click", function () {
+        $(".popMainClose").on("click", function () {
+            that.hide();
+        });
+
+        $(".popBtnNo").on("click", function () {
             that.hide();
         });
     },
     show: function () {
-        $("#popfreeTrial").show();
+        $("#popfreeTrial").fadeIn(400);
         this.isShow = true;
     },
     hide: function () {
-        $("#popfreeTrial").hide();
+        $("#popfreeTrial").fadeOut(400);
         this.isShow = false;
     },
 
@@ -341,7 +387,7 @@ var FreeTrial = Backbone.View.extend({
 //课程弹出框
 var CourseTip = Backbone.View.extend({
 
-    el: '#main',
+    el: '#overlayCourse',
     initialize: function () {
         _.bindAll(this, 'render', 'close');
         this.template = _.template(tpl.get('courseTip'));
@@ -362,13 +408,22 @@ var CourseTip = Backbone.View.extend({
         $(".courseTipClose").on("click", function () {
             that.hide();
         });
+        $(".courseTipATopHover").hover(function () {
+            $(".courseTipATopHover").removeClass("courseTipATopHoverSpec");
+            $(this).addClass("courseTipATopHoverSpec");
+        }, function () {
+
+        });
+
+
+
     },
     show: function () {
-        $("#popcourseTip").show();
+        $("#popcourseTip").fadeIn(400);
         this.isShow = true;
     },
     hide: function () {
-        $("#popcourseTip").hide();
+        $("#popcourseTip").fadeOut(400);
         this.isShow = false;
     },
 

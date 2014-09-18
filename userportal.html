@@ -46,7 +46,14 @@
     <div id='content' class='content'></div>
 </div>
 <div id='infoLayer'></div>
-<!--<div id='overlay' class="mask1" class="hidden"></div>-->
+<div id="overlay">
+    <div id='overlayCourse'></div>
+    <div id='overlayFreeTrial'></div>
+    <div id='overlayASelection'></div>
+    <div id='overlayApplySuc'></div>
+</div>
+
+<!-- class="mask1" class="hidden"-->
 <div id="popup" class="hidden pop"
      style=" top:200px; left: 50%; width:500px; min-height:100px; margin-left: -250px; z-index:200;"></div>
 
@@ -243,19 +250,30 @@
 </script>
 
 <script type="text/template" id="tpl_courseTip">
-    <div class="coursepopMenban" id="popcourseTip">
+    <div id="popcourseTip" class="coursepopMenban">
         <div class="coursepopMain">
             <div class="courseTip">
                 <div class="courseTipA">
                     <div class="courseTipClose">X</div>
                     <ul class="courseTipATop">
-                        <li class="courseTipATopHover CourseTipATopHoverSpec">语言培训</li>
+                        <li class="courseTipATopHover courseTipATopHoverSpec">语言培训</li>
                         <li class="courseTipATopHover">IT培训</li>
                         <li class="courseTipATopHover">资格认证</li>
                         <li class="courseTipATopHover">学历文聘</li>
                     </ul>
                     <div class="courseTipAContent">
                         <ul class="courseTipAContentDes">
+                            <li>
+                                <div class="courseTipAContentTop">基础考级</div>
+                                <ul class="courseTipAContentDesUl">
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+                                    <li>计算机一级</li>
+                                    <li>计算机二级</li>
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+                                </ul>
+                            </li>
                             <li>
                                 <div class="courseTipAContentTop">基础考级</div>
                                 <ul class="courseTipAContentDesUl">
@@ -335,9 +353,10 @@
                             <li>
                                 <i class="popIconStar"></i>
                                 <span>意向课程：</span>
-                                <select class="popTxt" name="select" style="cursor: default;">
+                                <!--<select class="popTxt" name="select" style="cursor: default;">
                                     <option value="请选择">- 请选择 -</option>
-                                </select>
+                                </select>-->
+                                <input id="aSelectiontxt" class="popTxt"  type="text" value=" 请选择 ">
                                 <a class="inputIcon"></a>
                             </li>
                             <li>
@@ -593,31 +612,22 @@
                 <ul class="SearchCotentAreaMainA">
                     <li>
                         <span>课程类目</span>
-                        <select class="selectFarme" id="" name="select" style="cursor: default;">
-
-                            <option value="请选择"> 请选择 </option>
-                        </select>
+                        <input id="corseChoose" class="selectFarme" type="text" value=" 请选择 ">
                         <i class="selectIcon"></i>
                     </li>
                     <li>
                         <span>上课地区</span>
-                        <select class="selectFarme" id="" name="select" style="cursor: default;">
-                            <option value="请选择"> 不限 </option>
-                        </select>
+                        <input id="" class="selectFarme"  type="text" value=" 不限 ">
                         <i class="selectIcon"></i>
                     </li>
                     <li>
                         <span>上课日期</span>
-                        <select class="selectFarme" id="" name="select" style="cursor: default;">
-                            <option value="请选择"> 请选择 </option>
-                        </select>
+                        <input id="" class="selectFarme"  type="text" value=" 请选择 ">
                         <i class="selectIcon"></i>
                     </li>
                     <li>
                         <span>班级类型</span>
-                        <select class="selectFarme" id="" name="select" style="cursor: default;">
-                            <option value="请选择"> 不限 </option>
-                        </select>
+                        <input id="" class="selectFarme"  type="text" value=" 不限 ">
                         <i class="selectIcon"></i>
                     </li>
                 </ul>
