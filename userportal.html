@@ -847,7 +847,7 @@
                    <%}%>
                 </span>
             </p>
-            <p class="address" title="<%= course.address %>">上课地址：<%= course.address %></p>
+            <p class="address" title="<%= course.address %>">上课地址:<%= course.address %></p>
         </td>
         <td class="payType">
             <p><%= EnumConfig.BookingTypeText[type]%></p>
@@ -891,14 +891,14 @@
     <div id="bookingDetail" class="mypage_content_inner">
         <div class="row0 clearfix">
             <div class="fleft">
-                <p><label>订单号：<%= reference %></label> <span>(<%= createTime %>预订)</span></p>
+                <p><label>订单号:<%= reference %></label> <span>(<%= createTime %>预订)</span></p>
 
-                <p><label>状<s></s>态：<b class="F_green" id="bookingStatus">
+                <p><label>状<s></s>态:<b class="F_green" id="bookingStatus">
                     <%= EnumConfig.BookingStatusText[status] %></b></label>
                 </p>
 
                 <div>
-                    <label>爱特价：</label>
+                    <label>爱特价:</label>
                     <%if(!price){ %>
                         <span class="sign" style="font-size:14px;">¥</span>
                         <span style="font-size:24px; color:#ff5500;vertical-align:-2px">机构定制
@@ -909,7 +909,7 @@
                         </span>
                         &nbsp;&nbsp;
                         <%if(type===EnumConfig.PayType.online&&course.commission){%>
-                        <s>原价：¥<%=course.price%></s>
+                        <s>原价:¥<%=course.price%></s>
                         <%}%>
                         &nbsp;&nbsp;
                         <%if(type===EnumConfig.PayType.offline&&course.cashbackAmount){%>
@@ -995,7 +995,7 @@
                 </div>
             </div>
             <p>
-                <label>上课地址：</label>
+                <label>上课地址:</label>
                 <span><%= course.address %></span></p>
         </div>
         <div class="row3">
@@ -1272,19 +1272,19 @@
         <div class="fleft"><img class="js_gotoCourse" src="<%= course.logoUrl %>" width="90"/></div>
         <div class="fright">
             <div class="title link js_gotoCourse"><%= course.courseName %></div>
-            <div class="desc "><strong>适合学员：</strong> <%= course.suitableStudent %></div>
+            <div class="desc "><strong>适合学员:</strong> <%= course.suitableStudent %></div>
         </div>
     </div>
     <div class="row2">
         <%if(course.classSize){%>
         <div class="section">
-            <label>班级类型：</label>
+            <label>班级类型:</label>
 
             <div><%= course.classSize %></div>
         </div>
         <%}%>
         <div class="section">
-            <label>上课日期：</label>
+            <label>上课日期:</label>
 
             <div>
                 <%if(!course.startUponArrival){%>
@@ -1299,7 +1299,7 @@
             </span></div>
         <%if(course.startTime1){%>
         <div class="section">
-            <label>上课时间：</label>
+            <label>上课时间:</label>
 
             <div>
                 <%= course.startTime1 %> - <%= course.finishTime1 %>
@@ -1310,7 +1310,7 @@
         </div>
         <%}%>
         <div class="section">
-            <label>上课地址：</label>
+            <label>上课地址:</label>
 
             <div><%= course.address %></div>
         </div>
@@ -1575,20 +1575,20 @@
         </div>
         <div class="row2">
             <div class="fright acn">试听不满意，无条件退全款！</div>
-            <p><label>订单号： </label><%= reference %></p>
+            <p><label>订单号: </label><%= reference %></p>
 
-            <p><label>支付方式： </label> <%= EnumConfig.BookingTypeText[type] %></p>
+            <p><label>支付方式: </label> <%= EnumConfig.BookingTypeText[type] %></p>
 
-            <p><label>课程名称： </label><%= course.courseName %></p>
+            <p><label>课程名称: </label><%= course.courseName %></p>
 
-            <p><label>教育机构： </label><%= course.instName %></p>
+            <p><label>教育机构: </label><%= course.instName %></p>
 
-            <p><label>上课地址： </label><%= course.address %></p>
+            <p><label>上课地址: </label><%= course.address %></p>
 
-            <p><label>咨询电话： </label>400-025-0884</p>
+            <p><label>咨询电话: </label>400-025-0884</p>
 
             <p>
-                <label>开课日期： </label>
+                <label>开课日期: </label>
                 <%if(course.startUponArrival===0){%>
                 <%= course.regPhone %>
                 <%}else{%>
@@ -1599,12 +1599,12 @@
                 <%}%>
             </p>
 
-            <p><label>班级类型： </label><%= course.classSize %></p>
+            <p><label>班级类型: </label><%= course.classSize %></p>
 
-            <p><label>预约报到： </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
+            <p><label>预约报到: </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
 
             <div>
-                <label>费用总计： </label>
+                <label>费用总计: </label>
                 <%if(!price){%>
                 <b class="price">定制</b>
                 <%}else{%>
@@ -1668,7 +1668,7 @@
                 <input id="detail_compare_<%= id %>" class="add btn_g" type="button"
                        value=" +对比 ">
             </dt>
-            <dd>特惠信息：
+            <dd>特惠信息:
                 <%if(marking){%>
                 <%= marking %>
                 <%}else{%>
@@ -1703,7 +1703,7 @@
                 </ul>
         </div>
         <div class="course_map">
-            <div class="addr" title="<%= address %>">上课地点：<%= address %></div>
+            <div class="addr" title="<%= address %>">上课地点:<%= address %></div>
             <div class="map">
                 <a href="http://api.map.baidu.com/geocoder?address=<%= address.split('（')[0].split('(')[0] %>&output=html" target="_blank">
                     <img src="http://api.map.baidu.com/staticimage?width=328&height=184&zoom=14&center=<%= address.split('（')[0].split('(')[0] %>&markers=<%= address.split('（')[0].split('(')[0] %>"/>
@@ -1913,7 +1913,7 @@
 
 <dl id="content_5" class="clearfix">
     <dt>同类型课程</dt>
-    <dd class="F_green blank1" style="font-size:14px;">课程名称：<%= courseName %></dd>
+    <dd class="F_green blank1" style="font-size:14px;">课程名称:<%= courseName %></dd>
     <dd class="clearfix blank">
         <table width="100%" cellpadding="0" cellspacing="0">
             <thead>
@@ -2237,7 +2237,7 @@
 
     <div class="mypage_content_inner scrollTarget">
         <div class="total padding-x margin-bottom">
-            <img src="style/images/icon_monney.jpg">总金额：￥
+            <img src="style/images/icon_monney.jpg">总金额:￥
             <b class="F_orange"><%= account.balance %></b>
         </div>
         <div class="clearfix">
@@ -2644,14 +2644,14 @@
             </div>
             <div class="get_password">
                 <dl class="clearfix" id="cellContainer">
-                    <dt><span>*</span>手机：</dt>
+                    <dt><span>*</span>手机:</dt>
                     <dd>
                         <input id="findPassCellInput" type="text" class="text" value=""
                                placeholder="请输入手机号(请不要输入特殊符号或者字母)"><span class="right"></span>
                     </dd>
                 </dl>
                 <dl class="clearfix verify" id="authContainer">
-                    <dt><span>*</span>手机验证码：</dt>
+                    <dt><span>*</span>手机验证码:</dt>
                     <dd>
                         <input id="authCode" type="text" class="text">
                         <input type="button" value="获取手机验证码" id="getSms">
@@ -2661,14 +2661,14 @@
                     </dd>
                 </dl>
                 <dl class="clearfix" id="passContainer">
-                    <dt><span>*</span>新密码：</dt>
+                    <dt><span>*</span>新密码:</dt>
                     <dd>
                         <input type="password" id="findPassPassInput" class="password" value="" placeholder=""><span
                             class="right"></span>
                     </dd>
                 </dl>
                 <dl class="clearfix" id="confirmContainer">
-                    <dt><span>*</span>确认新密码：</dt>
+                    <dt><span>*</span>确认新密码:</dt>
                     <dd>
                         <input type="password" id="findPassConfirmInput" class="password">
                     </dd>
