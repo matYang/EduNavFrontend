@@ -179,42 +179,42 @@ var NewBookingView = BaseFormView.extend({
             }
         });
         //有具体开课日期则限制预约报名日期的max为开课日期
-        if (this.model.get("course").get("startUponArrival")) {
-            $("#booking_date").on("keypress", function (e) {
-                e.preventDefault();
-            }).datepicker({
-                buttonImageOnly: true,
-                buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                minDate: new Date(),
-                maxDate: this.model.get("course").get("startDate"),
-                defaultDate: that.model.get("scheduledTime"),
-                onSelect: function (text, inst) {
-                    var d = new Date();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    that.model.set("scheduledTime", d);
-                }
-            });
-        } else {
-            $("#booking_date").on("keypress", function (e) {
-                e.preventDefault();
-            }).datepicker({
-                buttonImageOnly: true,
-                buttonImage: "calendar.gif",
-                buttonText: "Calendar",
-                minDate: new Date(),
-                defaultDate: that.model.get("scheduledTime"),
-                onSelect: function (text, inst) {
-                    var d = new Date();
-                    d.setDate(inst.selectedDay);
-                    d.setMonth(inst.selectedMonth);
-                    d.setYear(inst.selectedYear);
-                    that.model.set("scheduledTime", d);
-                }
-            });
-        }
+//        if (this.model.get("course").get("startUponArrival")) {
+//            $("#booking_date").on("keypress", function (e) {
+//                e.preventDefault();
+//            }).datepicker({
+//                buttonImageOnly: true,
+//                buttonImage: "calendar.gif",
+//                buttonText: "Calendar",
+//                minDate: new Date(),
+//                maxDate: this.model.get("course").get("startDate"),
+//                defaultDate: that.model.get("scheduledTime"),
+//                onSelect: function (text, inst) {
+//                    var d = new Date();
+//                    d.setDate(inst.selectedDay);
+//                    d.setMonth(inst.selectedMonth);
+//                    d.setYear(inst.selectedYear);
+//                    that.model.set("scheduledTime", d);
+//                }
+//            });
+//        } else {
+//            $("#booking_date").on("keypress", function (e) {
+//                e.preventDefault();
+//            }).datepicker({
+//                buttonImageOnly: true,
+//                buttonImage: "calendar.gif",
+//                buttonText: "Calendar",
+//                minDate: new Date(),
+//                defaultDate: that.model.get("scheduledTime"),
+//                onSelect: function (text, inst) {
+//                    var d = new Date();
+//                    d.setDate(inst.selectedDay);
+//                    d.setMonth(inst.selectedMonth);
+//                    d.setYear(inst.selectedYear);
+//                    that.model.set("scheduledTime", d);
+//                }
+//            });
+//        }
         //登录框的展开和收起
         $(".js_loginBoxToggle").on("click", function (e) {
             var $bookingLogin = $("#booking_loginbox");
@@ -349,8 +349,8 @@ var NewBookingView = BaseFormView.extend({
     },
     close: function () {
         if (!this.isClosed) {
-            $("#booking_date").datepicker("destroy");
-            $("#ui-datepicker-div").remove();	//The destroy method does not work in IE, therefore manually remove it.
+//            $("#booking_date").datepicker("destroy");
+//            $("#ui-datepicker-div").remove();	//The destroy method does not work in IE, therefore manually remove it.
             this.$el.off();
             this.$el.empty();
             this.isClosed = true;
