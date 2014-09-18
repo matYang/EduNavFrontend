@@ -254,8 +254,8 @@ a:hover, a:active{
     color:#128d56;
 }
 .label.cashback:before{
-    content:'再返';
-    width: 2em;
+    content:'返';
+    width: 1em;
     background: #128d56;
 }
 /*将返*/
