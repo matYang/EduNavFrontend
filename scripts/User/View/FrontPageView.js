@@ -138,7 +138,6 @@ var FrontPageView = Backbone.View.extend({
 });
 //首页的搜素
 var SearchArea = Backbone.View.extend({
-
     el: '#searchArea',
     initialize: function () {
         _.bindAll(this, 'render', 'close');
@@ -187,7 +186,8 @@ var SearchArea = Backbone.View.extend({
                 that.courseTip = new CourseTip();
             } else if (that.courseTip.isClosed) {
                 that.courseTip.render();
-            } else if (!that.courseTip.isShow) {
+            }
+            if (!that.courseTip.isShow) {
                 that.courseTip.show();
             }
 
@@ -254,7 +254,7 @@ var ArtificialSelection = Backbone.View.extend({
             }
         });
 
-        $(".popTxt").on("click", function () {
+        $("#aSelectiontxt").on("click", function () {
             var thats=this;
             if (!that.courseTip) {
                 that.courseTip = new CourseTip();
