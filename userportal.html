@@ -367,13 +367,13 @@
                 <div class="popContent">
                     <div class="popContentA">
                         <ul class="popContentUl">
-                            <li>
+                            <li id="aSelectiontxt">
                                 <i class="popIconStar"></i>
                                 <span>意向课程：</span>
                                 <!--<select class="popTxt" name="select" style="cursor: default;">
                                     <option value="请选择">- 请选择 -</option>
                                 </select>-->
-                                <input id="aSelectiontxt" class="popTxt"  type="text" value=" 请选择 ">
+                                <input class="popTxt"  type="text" value=" 请选择 ">
                                 <a class="inputIcon"></a>
                             </li>
                             <li>
@@ -604,22 +604,22 @@
                 <ul class="SearchCotentAreaMainA">
                     <li>
                         <span>课程类目</span>
-                        <input id="corseChoose" class="selectFarme" type="text" value=" 请选择 ">
+                        <input id="corseChoose" class="selectFarme" type="text" placeholder="  请选择">
                         <i class="selectIcon"></i>
                     </li>
                     <li>
                         <span>上课地区</span>
-                        <input id="" class="selectFarme"  type="text" value=" 不限 ">
+                        <input id="" class="selectFarme"  type="text" placeholder="  不限">
                         <i class="selectIcon"></i>
                     </li>
                     <li>
                         <span>上课日期</span>
-                        <input id="" class="selectFarme"  type="text" value=" 请选择 ">
+                        <input id="" class="selectFarme"  type="text" placeholder="  请选择">
                         <i class="selectIcon"></i>
                     </li>
                     <li>
                         <span>班级类型</span>
-                        <input id="" class="selectFarme"  type="text" value=" 不限 ">
+                        <input id="" class="selectFarme"  type="text" placeholder="  不限">
                         <i class="selectIcon"></i>
                     </li>
                 </ul>
@@ -634,9 +634,10 @@
                 <ul class="SearchCotentAreaMainB">
                     <li class="SearchCotentAreaMainBLi">
                         <span>意向课程</span>
-                        <select class="selectFarme" id="" name="select" style="cursor: default;">
+                        <!--<select class="selectFarme" id="" name="select" style="cursor: default;">
                             <option value="请选择"> 雅思 </option>
-                        </select>
+                        </select>-->
+                        <input class="selectFarme" type="text" placeholder="雅思">
                         <i class="selectIcon"></i>
                     </li>
                     <li class="SearchCotentAreaMainBLi"></li>

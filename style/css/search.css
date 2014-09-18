@@ -97,7 +97,7 @@
 .SearchCotentAreaMainA{width: 235px; height: 200px; margin: auto; display: block; padding: 13px 0;}
 .SearchCotentAreaMainA li{width: 255px; height: 40px; margin-bottom: 10px; position: relative;}
 .SearchContentA span{width: 70px; height: 40px; display: block; float: left; line-height: 40px; font-size: 15px; color: #666; font-family: "微软雅黑";}
-.selectFarme{ width: 150px; height: 40px; cursor: pointer; border: 0; outline: 0; display: block; float: left; color: #666; font-size: 12px; padding-left: 12px;  font-family: "微软雅黑";}
+.SearchContentA .selectFarme{ width: 130px; height: 40px; padding: 0 12px; cursor: pointer; border: 0; outline: 0; display: block; float: left; color: #666; font-size: 12px; font-family: "微软雅黑";}
 .selectIcon{ width: 15px; height: 8px; display: block; background-image: url("../images/search.png"); background-position: 0 -200px; position: absolute; top: 15px; left: 202px;}
 .SearchCotentAreaMainB{ width: 480px; height: 200px; margin: auto; display: block; padding: 13px 0;}
 .SearchCotentAreaMainBLi{ min-width: 225px; width: auto; height: 40px; display: block; padding-bottom: 10px; position: relative; float: left; margin-left: 4px;}

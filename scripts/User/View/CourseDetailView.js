@@ -206,6 +206,14 @@ var CourseDetailView = Backbone.View.extend({
             $("#bookNow").on("click", function () {
                 //todo 这里屏蔽了下订单的入口
 //                app.navigate("booking/c" + that.courseId, true);
+                if (!that.freeTrial) {
+                    that.freeTrial = new FreeTrial();
+
+                } else if (that.freeTrial.isClosed) {
+                    that.freeTrial.render();
+                } else if (!that.freeTrial.isShow) {
+                    that.freeTrial.show();
+                }
             });
         } else {
             $("#bookNow").attr("class", "btn_W").val("当前不可预订").prop("disabled", true);
@@ -239,6 +247,52 @@ var CourseDetailView = Backbone.View.extend({
             $("#trialButton").off();
             this.isClosed = true;
             app.courseDetailView = null;
+        }
+    }
+});
+
+//免费试听
+var FreeTrial = Backbone.View.extend({
+
+    el: '#overlayFreeTrial',
+    initialize: function () {
+        _.bindAll(this, 'render', 'close');
+        this.template = _.template(tpl.get('freeTrial'));
+        this.isClosed = false;
+        this.isShow = false;
+        this.render();
+        this.bindEvents();
+    },
+
+    render: function () {
+        if (!this.isClosed) {
+            app.viewRegistration.register(this);
+            this.$el.append(this.template);
+        }
+    },
+    bindEvents: function () {
+        var that = this;
+        $(".popMainClose").on("click", function () {
+            that.hide();
+        });
+
+        $(".popBtnNo").on("click", function () {
+            that.hide();
+        });
+    },
+    show: function () {
+        $("#popfreeTrial").fadeIn(400);
+        this.isShow = true;
+    },
+    hide: function () {
+        $("#popfreeTrial").fadeOut(400);
+        this.isShow = false;
+    },
+
+    close: function () {
+        if (!this.isClosed) {
+            this.$el.empty();
+            this.isClosed = true;
         }
     }
 });

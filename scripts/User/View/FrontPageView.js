@@ -171,16 +171,9 @@ var SearchArea = Backbone.View.extend({
 
         });
 
-        $(".ApplyIcon").on("click", function () {
-            if (!that.freeTrial) {
-                that.freeTrial = new FreeTrial();
+        /*$(".ApplyIcon").on("click", function () {
 
-            } else if (that.freeTrial.isClosed) {
-                that.freeTrial.render();
-            } else if (!that.freeTrial.isShow) {
-                that.freeTrial.show();
-            }
-        });
+        });*/
 
         $("#corseChoose").on("click", function () {
             var thats = this;
@@ -206,6 +199,7 @@ var SearchArea = Backbone.View.extend({
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
+            //this.artificialSelection.close();
             this.isClosed = true;
             var isShow = false;
 
@@ -287,7 +281,12 @@ var ArtificialSelection = Backbone.View.extend({
 
     close: function () {
         if (!this.isClosed) {
-            this.popTip.close();
+            /*if(!this.popTip.isClosed)
+            {
+                this.popTip.close();
+            }*/
+            //this.popTip.close();
+            //this.courseTip.close();
             this.$el.empty();
             this.isClosed = true;
 
@@ -322,10 +321,10 @@ var PopTip = Backbone.View.extend({
     show: function () {
         $("#popSuccessApple").fadeIn(400);
         this.isShow = true;
-        setTimeout(this.hide(), 15000);
+        setTimeout(this.hide, 4000);
     },
     hide: function () {
-        $("#popSuccessApple").fadeOut(2500);
+        $("#popSuccessApple").fadeOut(400);
         this.isShow = false;
     },
 
@@ -334,57 +333,10 @@ var PopTip = Backbone.View.extend({
         if (!this.isClosed) {
             this.$el.empty();
             this.isClosed = true;
-
         }
     }
 });
-//免费试听
-var FreeTrial = Backbone.View.extend({
 
-    el: '#overlayFreeTrial',
-    initialize: function () {
-        _.bindAll(this, 'render', 'close');
-        this.template = _.template(tpl.get('freeTrial'));
-        this.isClosed = false;
-        this.isShow = false;
-        this.render();
-        this.bindEvents();
-    },
-
-    render: function () {
-        if (!this.isClosed) {
-            app.viewRegistration.register(this);
-            this.$el.append(this.template);
-        }
-    },
-    bindEvents: function () {
-        var that = this;
-        $(".popMainClose").on("click", function () {
-            that.hide();
-        });
-
-        $(".popBtnNo").on("click", function () {
-            that.hide();
-        });
-    },
-    show: function () {
-        $("#popfreeTrial").fadeIn(400);
-        this.isShow = true;
-    },
-    hide: function () {
-        $("#popfreeTrial").fadeOut(400);
-        this.isShow = false;
-    },
-
-
-    close: function () {
-        if (!this.isClosed) {
-            this.$el.empty();
-            this.isClosed = true;
-
-        }
-    }
-});
 
 //课程弹出框
 var CourseTip = Backbone.View.extend({
