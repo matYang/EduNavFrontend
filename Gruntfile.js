@@ -7,8 +7,8 @@ module.exports = function(grunt) {
         src: [
           "scripts/Lib/LoadFirst/*min.js",
           "scripts/Lib/backbone-min.js",
-          "scripts/Lib/jquery-ui-1.10.0.custom.min.js",
-          "scripts/Lib/datepicker-zh.js",
+//          "scripts/Lib/jquery-ui-1.10.0.custom.min.js",
+//          "scripts/Lib/datepicker-zh.js",
           "scripts/Lib/jquery.placeholder.min.js",
           "scripts/Lib/jquery.smooth-scroll.min.js",
           "scripts/Lib/json2.js",
