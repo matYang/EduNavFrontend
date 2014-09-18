@@ -24,19 +24,19 @@ module.exports = function(grunt) {
               "scripts/Common/StaticResource/ApiResource.js",
               "scripts/Common/StaticResource/Resources.js",
               "scripts/Common/StaticResource/Utilities.js",
-              "scripts/Common/Model/Representation/*.js",
-              "scripts/Common/Model/*.js",
+              "scripts/Model/Representation/*.js",
+              "scripts/Model/*.js",
               "scripts/Common/Service/*.js",
               "scripts/Test/TestMockObj.js",
               "scripts/Common/DataManagers/GeneralManager.js",
               "scripts/Common/DataManagers/SessionManager.js",
               "scripts/Common/DataManagers/UserManager.js",
-              "scripts/Common/View/Shared/*.js",
-              "scripts/Common/View/*.js",
-              "scripts/User/baiduLoadScript.js",
-              "scripts/User/View/MyPage/*.js",
-              "scripts/User/View/*.js",
-              "scripts/User/Main.js"
+              "scripts/View/Common/Shared/*.js",
+              "scripts/View/Common/*.js",
+              "scripts/baiduLoadScript.js",
+              "scripts/View/MyPage/*.js",
+              "scripts/View/*.js",
+              "scripts/Main.js"
               ],
         dest: 'build/Main.js'
       }
