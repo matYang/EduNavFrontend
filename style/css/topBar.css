@@ -32,8 +32,8 @@
 }
 
 
-.pic{float:right;width: 60px; height: 60px; margin-right:50px; margin-top:0px;background-image: url("../images/top_nav_pic_1.png");}
-.pic:hover{background-image: url("../images/top_nav_pic_2.png");}
+.userpic{float:right;width: 60px; height: 60px; margin-right:50px; margin-top:0px;background-image: url("../images/top_nav_pic_1.png");}
+.userpic:hover{background-image: url("../images/top_nav_pic_2.png");}
 #userPic {width: 60px;height: 60px;}
 .login_reg{float:right; position:relative;}
 .login_reg .hd{ font-size:18px; line-height:60px; }
