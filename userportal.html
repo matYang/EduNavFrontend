@@ -514,7 +514,7 @@
         </div>
         <div class="col2">
             <p class="original_cost text-default" style="margin-bottom: 2px;">门店价</p>
-            <p class="price">*<%= commission/10 %>折</p>
+            <p class="price">*<%= commission %>折</p>
             <%if(cashback){%>
             <div>
             <a class="label cashback"><%=cashback %>+元
@@ -1677,9 +1677,19 @@
             </dd>
         </dl>
         <div class="col2">
-            <div class="price"><small class="text-default">门店价</small>&nbsp;<%= commission/10 %>折</div>
+            <div class="">
+                <small class="text-default">门店价</small>&nbsp;<span class="price"><%= commission %>折</span>&nbsp;
+                <a class="has-tip has-tip-top">【?】
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            无论学校与亲以什么价格成交，亲都能在付费后，从爱上课获取<span class="price"><%=100-commission%>%</span>的现金返现！
+                        </div>
+                    </div>
+                </a>
+            </div>
             <%if(cashback){%>
-            <div class="label cashback"><%=cashback %>+元
+            <div class="label cashback margin-top"><%=cashback %>+元
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">
