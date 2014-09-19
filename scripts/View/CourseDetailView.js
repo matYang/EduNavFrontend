@@ -256,7 +256,7 @@ var FreeTrial = Backbone.View.extend({
 
     el: '#overlayFreeTrial',
     initialize: function () {
-        _.bindAll(this, 'render', 'closePop', 'close');
+        _.bindAll(this, 'render', 'autoName', 'closePop', 'close');
         this.validEle = '#detail_submit_error';
         this.template = _.template(tpl.get('freeTrial'));
         this.model = new Booking();
@@ -267,6 +267,7 @@ var FreeTrial = Backbone.View.extend({
     render: function () {
         app.viewRegistration.register(this);
         this.$el.html(this.template);
+        this.autoName();
     },
     clearModel: function () {
         //这里清空保单数据以及模型数据
@@ -275,6 +276,16 @@ var FreeTrial = Backbone.View.extend({
         $('#detail_phone_input').val('');
         $('#detail_note_text').val('');
         $(this.validEle).empty();
+    },
+    //自动填充用户名等
+    autoName: function () {
+        if (app.sessionManager.hasSession()) {
+            //自动填充手机号和用户名 如果存在的话
+            var name = app.sessionManager.sessionModel.get('username');
+            var phone = app.sessionManager.sessionModel.get('phone');
+            $('#detail_name_input').val(name);
+            $('#detail_phone_input').val(phone);
+        }
     },
     bindEvents: function () {
         var that = this;
@@ -323,6 +334,7 @@ var FreeTrial = Backbone.View.extend({
         });
     },
     show: function () {
+        this.autoName();
         $("#popfreeTrial").fadeIn(400);
     },
     hide: function () {
