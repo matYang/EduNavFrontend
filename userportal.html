@@ -502,7 +502,6 @@
             <p class="title">
                 <a class="F_green courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
             </p>
-
             <p class="desc"><span>上课日期:</span>
                 <%if(startUponArrival){%>
                 <%= startDate %>
@@ -513,18 +512,8 @@
                     <%= regPhone%>
                 <%}%>
             </p>
-
+            <p class="desc">大学城（商圈）: <%= circleName %></p>
             <p class="desc"><span>上课地址:</span> <%= address %></p>
-
-            <p class="desc">
-                <span>优惠信息:</span>
-                <%if(marking){%>
-                <%= marking %>
-                <%}else{%>
-                -- --
-                <%}%>
-            </p>
-
         </div>
         <div class="col2">
             <p class="original_cost text-light" style="margin-bottom: 2px;">门店价</p>
@@ -1665,13 +1654,7 @@
                 <input id="detail_compare_<%= id %>" class="add btn_g" type="button"
                        value=" +对比 ">
             </dt>
-            <dd>特惠信息:
-                <%if(marking){%>
-                <%= marking %>
-                <%}else{%>
-                -- --
-                <%}%>
-            </dd>
+            <dd class="text-light">【<%= instName %>】亲密合作伙伴 【爱上课】会员，可独享超值折扣优惠</dd>
         </dl>
         <div class="col2">
             <div class="">
@@ -1964,7 +1947,7 @@
             <%}%>
         </td>
         <td class="addr"><%=address%></td>
-        <td><span class="F_orange dotted-line"><%= commission/10 %>折</span></td>
+        <td><span class="F_orange dotted-line"><%= commission %>折</span></td>
         <td>
             <%if(current){%>
             <a class="inline-block">

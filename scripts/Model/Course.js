@@ -7,16 +7,12 @@ var Course = Backbone.Model.extend({
                 'createTime': undefined,
 
                 /*others*/
-                'reference': undefined,//课程识别号 不用了
-                'noRefundDate': undefined,
-                'cashbackDate': undefined,
                 'popularity': undefined,//人气值
                 'bookingType': undefined,
                 'startUponArrival': undefined,//转换成了是否有具体的开课日期
                 'regPhone': undefined,//转换成了没有开课日期的备注
                 'studyDaysNote': undefined,//备注信息
                 'qualityAssurance': undefined, //质量保证 修改为 课时信息
-                "contact": undefined,//课程联系方式
                 "trail": undefined,//试听
                 'status': undefined,//课程状态
                 'partnerQualification': undefined,//机构资质 是否进行认证
@@ -24,11 +20,12 @@ var Course = Backbone.Model.extend({
                 /*header部分信息*/
 
                 'categoryValue': undefined,//类目
+                'circleName': undefined,//大学城（商圈）名字
 
                 'courseName': undefined,//课程名
                 'suitableStudent': undefined,//适合学员
                 'cashback': undefined,//线下返现
-                'commission': undefined,//线上立减
+                'commission': undefined,//线上立减 修改为存储课程的折扣 0-100 {number}
                 'price': undefined,//爱上课价格
                 'originalPrice': undefined,//原价
 
@@ -53,8 +50,6 @@ var Course = Backbone.Model.extend({
 
 
                 'classSize': undefined,//班级类型
-                'openCourseRequirement': undefined,//开班要求
-                'cutoffDate': undefined,//报名截止日期
                 'instName': undefined,
                 'wholeName': undefined,
                 'partnerDistinction': undefined,//机构荣誉
@@ -123,10 +118,7 @@ var Course = Backbone.Model.extend({
                 }
 
                 /*基本信息*/
-                data.cutoffDate = Utilities.castFromAPIFormat(this.get('cutoffDate'));
                 data.createTime = Utilities.castFromAPIFormat(this.get('createTime'));
-                data.noRefundDate = Utilities.castFromAPIFormat(this.get('noRefundDate'));
-                data.cashbackDate = Utilities.castFromAPIFormat(this.get('cashbackDate'));
 
                 data.startDate = Utilities.castFromAPIFormat(data.startDate);
                 data.finishDate = Utilities.castFromAPIFormat(data.finishDate);//开课日期
@@ -160,8 +152,6 @@ var Course = Backbone.Model.extend({
         },
         _toJSON: function () {
             var json = _.clone(this.attributes), studyDays, i;
-//            if (typeof json.price === 'number')json.price = json.price.toFixed(2);
-//            if (typeof json.originalPrice === 'number')json.originalPrice = json.originalPrice.toFixed(2);
             if (json.startDate) {
                 var dateObj = json.startDate;
                 json.startDateDate = dateObj.getFullYear() + '年' + (dateObj.getMonth() + 1) + '月';
@@ -171,7 +161,6 @@ var Course = Backbone.Model.extend({
             json.startDate = Utilities.getDateString(this.get('startDate'));
             json.finishDate = Utilities.getDateString(this.get('finishDate'));
             json.createTime = Utilities.getDateString(this.get('createTime'));
-            json.cutoffDate = Utilities.getDateString(this.get('cutoffDate'));
             json.startTime1 = json.startTime1 == null ? null : Math.floor(json.startTime1 / 100) + ":" + ((json.startTime1 % 100 < 10) ? "0" + json.startTime1 % 100 : json.startTime1 % 100);
             json.startTime2 = json.startTime2 == null ? null : Math.floor(json.startTime2 / 100) + ":" + ((json.startTime2 % 100 < 10) ? "0" + json.startTime2 % 100 : json.startTime2 % 100);
             json.finishTime1 = json.finishTime1 == null ? null : Math.floor(json.finishTime1 / 100) + ":" + ((json.finishTime1 % 100 < 10) ? "0" + json.finishTime1 % 100 : json.finishTime1 % 100);
@@ -208,16 +197,6 @@ var Course = Backbone.Model.extend({
             }
             return json;
         },
-
-        /* generate object with html wrapping as values, these values will append to the compare table one by one */
-// parseToCompare: function () {
-//     var obj = {};
-//     obj.courseName = this.td() +  '<h2 class="F_green">' + this.get("courseName") + '</h2>'+
-//                 '<div class="btn blank1"><input class="btn_O" type="button" value="立即预订"/></div>' +
-//                 '<div class="set"><a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a></div></td>';
-//     obj.suitableStudent = this.td() + this.get("suitableStudent") + "</td>";
-//     obj.s
-// },
         td: function () {
             return "<td width='195' class='row_" + this.courseId + "'>";
         },
@@ -262,6 +241,7 @@ var Course = Backbone.Model.extend({
 
             //上课地址
             json.address = this.get("address");
+            json.circleName = this.get("circleName");
 
             return json;
         }
