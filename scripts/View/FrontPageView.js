@@ -199,7 +199,7 @@ var SearchArea = Backbone.View.extend({
         }
     }
 });
-//人工选课
+//申请人工选课弹出层 创建新申请
 var ArtificialSelection = Backbone.View.extend({
 
     el: '#overlayASelection',

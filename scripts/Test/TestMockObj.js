@@ -22,14 +22,18 @@ testMockObj = {
         .set("marking", '近期门店有优惠活动').set("courseName", "雅思英语").set("price", 10800).set('schoolTimeWeek',3).set('schoolTimeDay',3)
         .set("originalPrice", 12800).set("instName", "南京新东方").set("address", "南京市玄武区")
         .set("cashback", 10).set("commission", 95)
+        .set("circleName", '仙林大学城1')
         .set("status", EnumConfig.CourseStatus.onlined)
         .set("bookingType", 2).set('startUponArrival', 1).set('startDate', new Date()).set('quiz', 'adhj'),
-    testCourse2: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 2).set('schoolTimeWeek',1).set('schoolTimeDay',4)
+    testCourse2: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 2)
+        .set('schoolTimeWeek',1).set('schoolTimeDay',4)
+        .set("circleName", '仙林大学城2')
         .set("courseName", "SAT").set("price", 10800).set("instName", "School A").set("address", "南京市白下区")
         .set("cashback", 50).set("commission", 98)
         .set("status", EnumConfig.CourseStatus.onlined).set('startUponArrival', 1)
         .set('startDate', new Date(1400000000000)),
     testCourse3: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 3)
+        .set("circleName", '仙林大学城3')
         .set("courseName", "托福").set("price", 9800).set("instName", "School B").set("address", "南京市秦淮区")
         .set("cashback", 12).set("commission", 98)
         .set("status", EnumConfig.CourseStatus.onlined).set('startUponArrival', 0).set('schoolTimeWeek',2).set('schoolTimeDay',3)
@@ -37,6 +41,7 @@ testMockObj = {
     testCourse4: (new Course()).set("categoryValue", "000101").set("id", 4).set("courseName", "GRE")
         .set("commission", 97)
         .set("price", 12900)
+        .set("circleName", '仙林大学城4')
         .set("instName", "School C").set("address", "南京市建邺区").set("status", EnumConfig.CourseStatus.onlined)
         .set('startUponArrival', 1)
         .set('startDate', new Date()),
