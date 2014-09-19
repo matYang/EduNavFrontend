@@ -273,7 +273,7 @@
                     <div class="courseTipClose">X</div>
                     <ul class="courseTipATop">
                         <%_.each(courseTitle,function(v){%>
-                        <li class="courseTipATopHover" value="<%=v.value%>"><%=v.name%></li>
+                        <li class="courseTipATopHover" data-id="<%=v.id%>" data-value="<%=v.value%>"><%=v.name%></li>
                         <%})%>
                     </ul>
                     <div class="courseTipAContent">

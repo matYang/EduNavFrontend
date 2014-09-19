@@ -172,7 +172,7 @@ var SearchArea = Backbone.View.extend({
         });
 
         $("#corseChoose").on("click", function () {
-            $("#popcourseTip").attr("showid","corseChoose");
+
             var thats = this;
             if (!that.courseTip) {
                 that.courseTip = new CourseTip();
@@ -182,7 +182,7 @@ var SearchArea = Backbone.View.extend({
             if (!that.courseTip.isShow) {
                 that.courseTip.show();
             }
-
+            $("#popcourseTip").attr("showid", "corseChoose");
         });
 
 
@@ -243,7 +243,7 @@ var ArtificialSelection = Backbone.View.extend({
         });
 
         $("#aSelectiontxt").on("click", function () {
-            $("#popcourseTip").attr("showid","aSelectiontxt");
+            $("#popcourseTip").attr("showid", "aSelectiontxt");
             var thats = this;
             if (!that.courseTip) {
                 that.courseTip = new CourseTip();
@@ -252,7 +252,6 @@ var ArtificialSelection = Backbone.View.extend({
             } else if (!that.courseTip.isShow) {
                 that.courseTip.show();
             }
-
 
 
         });
@@ -332,57 +331,69 @@ var CourseTip = Backbone.View.extend({
 
     el: '#overlayCourse',
     initialize: function () {
+        var that=this;
         _.bindAll(this, 'render', 'close');
         this.template = _.template(tpl.get('courseTip'));
         this.isClosed = false;
         this.isShow = false;
-        this.courseAll = [
-            {name: '语言培训', value: 00, children: [
-                 {name: '英语', value: 0000, children: [
-                            {name: '四六级', value: 000000},
-                            {name: '雅思', value: 000001},
-                            {name: '托福', value: 000001}
-                                                          ]},
-                 {name: '小语种', value: 0001}
-            ]},
-            {name: 'IT培训', value: 01,children:[]},
-            {name: '资格认证', value: 02,children:[]},
-            {name: '学历文凭', value: 03,children:[]}
-        ];
-        this.courseLev1=[];
-        this.courseLev2=[];
-        this.render();
+        this.courseAll = testMockObj.testCategories.data;
+        this.courseLev1={};
+        this.courseSmallTitle = {};
+        this.courseLev2 = {};
+
 
         _.each(this.courseAll, function (v, index) {
-            this.courseLev1[v.value] = v.children;
+            that.courseLev1[index] = v.children;
         });
+
+        this.render();
     },
 
     render: function () {
-        var self = this;
+        var that = this;
 
 
         if (!this.isClosed) {
             app.viewRegistration.register(this);
             this.$el.append(this.template({
-                courseTitle: self.courseAll
+                courseTitle: that.courseAll
             }));
             $(".courseTipATop").find("li:first").addClass("courseTipATopHoverSpec");
-            var htmlcourse = '';
 
-            //_.each(self.courseLev1, function (v, index) {
-            htmlcourse+='<li>';
-            htmlcourse+='    <div class="courseTipAContentTop">111</div>';
-            htmlcourse+='    <ul class="courseTipAContentDesUl">';
-            htmlcourse+='        <li>办公应用</li>';
-            htmlcourse+='        <li>电脑维修</li>';
-            htmlcourse+='    </ul>';
-            htmlcourse+='</li>';
-            //});
+            //开始的时候生成的目录
+            //var x = $(".courseTipATopHoverSpec").attr("data-value");
+            var htmlcourse = "";
+            for(i=0;i<that.courseAll.length;i++)
+            {
+                htmlcourse += '<div class="cousedes cousedes0'+ i +' hidden">';
+                that.courseSmallTitle = that.courseLev1[i];
+                _.each(that.courseSmallTitle, function (v, index) {
+                    //console.log(v.children);
+                    that.courseLev2[index] = v.children;
+                });
+
+                _.each(that.courseSmallTitle, function (v, index) {
+                    htmlcourse += '<li>';
+                    htmlcourse += '    <div class="courseTipAContentTop"  data-value="'+ v.value+'" data-id="'+v.id+'">' + v.name + '</div>';
+                    htmlcourse += '    <ul class="courseTipAContentDesUl">';
+                    //添加三级目录
+                    _.each(that.courseLev2[index], function (s, index) {
+                        //console.log(v.children);
+                        htmlcourse += '<li data-value="'+ s.value+'" data-id="'+s.id+'">'+ s.name +'</li>';
+                    });
+                    htmlcourse += '    </ul>';
+                    htmlcourse += '</li>';
+                });
+                htmlcourse += '</div>';
+            }
             $(".courseTipAContentDes").html(htmlcourse);
+
+            $(".courseTipAContentDes").find(".cousedes:first").removeClass("hidden");
+
 
             this.bindEvents();
         }
+
 
 
     },
@@ -391,18 +402,23 @@ var CourseTip = Backbone.View.extend({
         $(".courseTipClose").on("click", function () {
             that.hide();
         });
+        //hover移动二级目录
         $(".courseTipATopHover").hover(function () {
             $(".courseTipATopHover").removeClass("courseTipATopHoverSpec");
+            $(".courseTipAContentDes").find(".cousedes").addClass("hidden");
+            var thisvalue=$(this).attr("data-value");
+            $(".courseTipAContentDes").find(".cousedes"+thisvalue).removeClass("hidden");
             $(this).addClass("courseTipATopHoverSpec");
+
         }, function () {
 
         });
 
+        //点击三级目录
         $(".courseTipAContentDesUl li").on("click", function () {
-            alert(that.courseLev1[0]);
-            that.courseTip.hide();
-            var txtid=$("#popcourseTip").attr("showid");
-            $(txtid).val("  " + $(this).html());
+            that.hide();
+            var txtid = $("#popcourseTip").attr("showid");
+            $("#"+txtid).val("  " + $(this).html());
         });
     },
     show: function () {
