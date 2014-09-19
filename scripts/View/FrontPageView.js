@@ -187,8 +187,8 @@ var SearchArea = Backbone.View.extend({
     initialize: function () {
         _.bindAll(this, 'render', 'close');
         this.catModels = {
-            catSearch:{},
-            catApply:null
+            catSearch: {},
+            catApply: null
         };//通过catModels保存自助选课和人工选课的category obj
         this.model = new Apply();
         this.searchRepresentation = new CourseSearchRepresentation();
@@ -348,10 +348,10 @@ var SearchArea = Backbone.View.extend({
 
     close: function () {
         //需要关闭 生成的view  courseTip popTip
-        if(this.courseTip){
+        if (this.courseTip) {
             this.courseTip.close();
         }
-        if(this.popTip){
+        if (this.popTip) {
             this.popTip.close();
         }
         this.$el.empty();
@@ -464,13 +464,13 @@ var SelectCatModal = Backbone.View.extend({
 
     el: '#overlayCourse',
     initialize: function () {
-        _.bindAll(this, 'render','renderCategories', 'close');
+        _.bindAll(this, 'render', 'renderCategories', 'close');
         this.template = _.template(tpl.get('courseTip'));
         this.isClosed = false;
         this.isShow = false;
         app.generalManager.getCategories(this);//传递this,会在获取目录之后调用this.renderCategories()
     },
-    renderCategories:function(categories){
+    renderCategories: function (categories) {
         var that = this;
         this.courseAll = categories.data;
         this.courseLev1 = {};
@@ -574,17 +574,14 @@ var SuccessPopTip = Backbone.View.extend({
     initialize: function () {
         _.bindAll(this, 'render', 'close');
         this.template = _.template(tpl.get('popTip'));
-        this.isClosed = false;
         this.isShow = false;
         this.render();
         this.bindEvents();
     },
 
     render: function () {
-        if (!this.isClosed) {
-            app.viewRegistration.register(this);
-            this.$el.append(this.template);
-        }
+        app.viewRegistration.register(this);
+        this.$el.append(this.template);
     },
     bindEvents: function () {
         var that = this;
@@ -604,10 +601,8 @@ var SuccessPopTip = Backbone.View.extend({
 
 
     close: function () {
-        if (!this.isClosed) {
-            this.$el.empty();
-            this.isClosed = true;
-        }
+        this.$el.empty();
+        this.isClosed = true;
     }
 });
 

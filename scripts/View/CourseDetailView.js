@@ -43,7 +43,7 @@ var CourseDetailView = Backbone.View.extend({
 
         $(document).scrollTop(0);
         $("body").addClass("courseDetail");
-        this.$el.append(this.template(this.course._toJSON()));
+        this.$el.html(this.template(this.course._toJSON()));
         //新建相关课程视图
         this.relatedCourseListView = new RelatedCourseListView({course: this.course});
         document.title = "爱上课 | " + this.course.get("category").name +
@@ -58,7 +58,6 @@ var CourseDetailView = Backbone.View.extend({
             $teacher = $($teachers[i]);
             maxHeight = maxHeight > $teacher.height() ? maxHeight : $teacher.height();
         }
-        this.offSetHeight = 0;
         $teachers.css("height", maxHeight);
 
         //img slider
@@ -113,7 +112,7 @@ var CourseDetailView = Backbone.View.extend({
         $('.teacher').on('click', '.more', function (e) {
             var teacherIndex = $(this).data('id');
             var teacher = {};
-            //todo 妹的老判断 后面把testMockObj给除了 统一使用json
+            //todo 后面把testMockObj给除了 统一使用json
             if (that.course.get('teacherList') instanceof  Backbone.Collection) {
                 teacher = that.course.get('teacherList').at(teacherIndex);
             } else {
@@ -204,11 +203,12 @@ var CourseDetailView = Backbone.View.extend({
         //这里根据课程的状态来判断是否可以进行申请 在这里加上'申请人工选课'(不需要判断课程状态)和'申请免费试听'(需要判断课程状态)
         if (this.course.get("status") === EnumConfig.CourseStatus.onlined) {
             $("#bookNow").on("click", function () {
-                //todo 这里屏蔽了下订单的入口
+                //这里屏蔽了下订单的入口
 //                app.navigate("booking/c" + that.courseId, true);
                 if (!that.freeTrial) {
                     that.freeTrial = new FreeTrial();
-                } else{
+                } else {
+                    that.freeTrial.closePop();
                     that.freeTrial.show();
                 }
             });
@@ -256,8 +256,8 @@ var FreeTrial = Backbone.View.extend({
 
     el: '#overlayFreeTrial',
     initialize: function () {
-        _.bindAll(this, 'render', 'close');
-        this.validEle ='#detail_submit_error';
+        _.bindAll(this, 'render', 'closePop', 'close');
+        this.validEle = '#detail_submit_error';
         this.template = _.template(tpl.get('freeTrial'));
         this.model = new Booking();
         this.render();
@@ -266,7 +266,7 @@ var FreeTrial = Backbone.View.extend({
 
     render: function () {
         app.viewRegistration.register(this);
-        this.$el.append(this.template);
+        this.$el.html(this.template);
     },
     clearModel: function () {
         //这里清空保单数据以及模型数据
@@ -289,33 +289,37 @@ var FreeTrial = Backbone.View.extend({
             var phone = $('#detail_phone_input').val();
             var note = $('#detail_note_text').val();
             $valid.empty();
-            if(!name){
+            if (!name) {
                 $valid.html('请输入您的姓名');
                 return
             }
-            if(!phone){
+            if (!phone) {
                 $valid.html('请输入您的联系电话');
                 return
             }
-            if(phone.length!==11||isNaN(parseInt(phone,10))){
+            if (phone.length !== 11 || isNaN(parseInt(phone, 10))) {
                 $valid.html('您的联系电话格式错误');
+                return
             }
-            that.model.set('name',name);
-            that.model.set('phone',phone);
-            that.model.set('note',note);
+            that.model.set('name', name);
+            that.model.set('phone', phone);
+            that.model.set('note', note);
             app.userManager.initBooking(that.model, {
                 success: function () {
+                    that.clearModel();
+                    that.hide();
                     //提交成功 关闭弹出框 弹出成功信息 清空表单数据
+                    if (!that.popTip) {
+                        that.popTip = new SuccessPopTip();
+                    } else {
+                        that.popTip.show();
+                    }
                 },
-                error: function () {
+                error: function (data) {
                     //todo 提交失败
+                    $(that.validEle).html(data.message||'提交失败 ，请稍后再试');
                 }
             });
-            if (!that.popTip) {
-                that.popTip = new SuccessPopTip();
-            } else {
-                that.popTip.show();
-            }
         });
     },
     show: function () {
@@ -325,11 +329,14 @@ var FreeTrial = Backbone.View.extend({
         $("#popfreeTrial").fadeOut(400);
         $(this.validEle).empty();
     },
-
-    close: function () {
+    closePop:function(){
         if (this.popTip) {
             this.popTip.close();
         }
+    },
+
+    close: function () {
+        this.closePop();
         this.$el.empty();
         this.isClosed = true;
     }
