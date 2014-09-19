@@ -266,16 +266,15 @@
 </script>
 
 <script type="text/template" id="tpl_courseTip">
-    <div id="popcourseTip" class="coursepopMenban">
+    <div id="popcourseTip" class="coursepopMenban" showid="">
         <div class="coursepopMain">
             <div class="courseTip">
                 <div class="courseTipA">
                     <div class="courseTipClose">X</div>
                     <ul class="courseTipATop">
-                        <li class="courseTipATopHover courseTipATopHoverSpec">语言培训</li>
-                        <li class="courseTipATopHover">IT培训</li>
-                        <li class="courseTipATopHover">资格认证</li>
-                        <li class="courseTipATopHover">学历文聘</li>
+                        <%_.each(courseTitle,function(v){%>
+                        <li class="courseTipATopHover" value="<%=v.value%>"><%=v.name%></li>
+                        <%})%>
                     </ul>
                     <div class="courseTipAContent">
                         <ul class="courseTipAContentDes">

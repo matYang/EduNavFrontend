@@ -172,6 +172,7 @@ var SearchArea = Backbone.View.extend({
         });
 
         $("#corseChoose").on("click", function () {
+            $("#popcourseTip").attr("showid","corseChoose");
             var thats = this;
             if (!that.courseTip) {
                 that.courseTip = new CourseTip();
@@ -182,10 +183,6 @@ var SearchArea = Backbone.View.extend({
                 that.courseTip.show();
             }
 
-            $(".courseTipAContentDesUl li").on("click", function () {
-                that.courseTip.hide();
-                $(thats).val(" " + $(this).html());
-            });
         });
 
 
@@ -246,7 +243,8 @@ var ArtificialSelection = Backbone.View.extend({
         });
 
         $("#aSelectiontxt").on("click", function () {
-            var thats=this;
+            $("#popcourseTip").attr("showid","aSelectiontxt");
+            var thats = this;
             if (!that.courseTip) {
                 that.courseTip = new CourseTip();
             } else if (that.courseTip.isClosed) {
@@ -255,12 +253,8 @@ var ArtificialSelection = Backbone.View.extend({
                 that.courseTip.show();
             }
 
-            $(".courseTipAContentDesUl li").on("click",function(){
-                //alert("2");
-                that.courseTip.hide();
-                //alert($(this).html());
-                $("#asel-course").val("  "+$(this).html());
-            });
+
+
         });
 
 
@@ -278,9 +272,9 @@ var ArtificialSelection = Backbone.View.extend({
     close: function () {
         if (!this.isClosed) {
             /*if(!this.popTip.isClosed)
-            {
-                this.popTip.close();
-            }*/
+             {
+             this.popTip.close();
+             }*/
             //this.popTip.close();
             //this.courseTip.close();
             this.$el.empty();
@@ -333,7 +327,6 @@ var PopTip = Backbone.View.extend({
     }
 });
 
-
 //课程弹出框
 var CourseTip = Backbone.View.extend({
 
@@ -343,15 +336,55 @@ var CourseTip = Backbone.View.extend({
         this.template = _.template(tpl.get('courseTip'));
         this.isClosed = false;
         this.isShow = false;
+        this.courseAll = [
+            {name: '语言培训', value: 00, children: [
+                 {name: '英语', value: 0000, children: [
+                            {name: '四六级', value: 000000},
+                            {name: '雅思', value: 000001},
+                            {name: '托福', value: 000001}
+                                                          ]},
+                 {name: '小语种', value: 0001}
+            ]},
+            {name: 'IT培训', value: 01,children:[]},
+            {name: '资格认证', value: 02,children:[]},
+            {name: '学历文凭', value: 03,children:[]}
+        ];
+        this.courseLev1=[];
+        this.courseLev2=[];
         this.render();
-        this.bindEvents();
+
+        _.each(this.courseAll, function (v, index) {
+            this.courseLev1[v.value] = v.children;
+        });
     },
 
     render: function () {
+        var self = this;
+
+
         if (!this.isClosed) {
             app.viewRegistration.register(this);
-            this.$el.append(this.template);
+            this.$el.append(this.template({
+                courseTitle: self.courseAll
+            }));
+            $(".courseTipATop").find("li:first").addClass("courseTipATopHoverSpec");
+            var htmlcourse = '';
+
+            //_.each(self.courseLev1, function (v, index) {
+            htmlcourse+='<li>';
+            htmlcourse+='    <div class="courseTipAContentTop">111</div>';
+            htmlcourse+='    <ul class="courseTipAContentDesUl">';
+            htmlcourse+='        <li>办公应用</li>';
+            htmlcourse+='        <li>电脑维修</li>';
+            htmlcourse+='    </ul>';
+            htmlcourse+='</li>';
+            //});
+            $(".courseTipAContentDes").html(htmlcourse);
+
+            this.bindEvents();
         }
+
+
     },
     bindEvents: function () {
         var that = this;
@@ -365,8 +398,12 @@ var CourseTip = Backbone.View.extend({
 
         });
 
-
-
+        $(".courseTipAContentDesUl li").on("click", function () {
+            alert(that.courseLev1[0]);
+            that.courseTip.hide();
+            var txtid=$("#popcourseTip").attr("showid");
+            $(txtid).val("  " + $(this).html());
+        });
     },
     show: function () {
         $("#popcourseTip").fadeIn(400);
@@ -382,7 +419,6 @@ var CourseTip = Backbone.View.extend({
         if (!this.isClosed) {
             this.$el.empty();
             this.isClosed = true;
-
         }
     }
 });
