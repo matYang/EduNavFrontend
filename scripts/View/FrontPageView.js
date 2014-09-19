@@ -171,10 +171,6 @@ var SearchArea = Backbone.View.extend({
 
         });
 
-        /*$(".ApplyIcon").on("click", function () {
-
-        });*/
-
         $("#corseChoose").on("click", function () {
             var thats = this;
             if (!that.courseTip) {
@@ -187,7 +183,6 @@ var SearchArea = Backbone.View.extend({
             }
 
             $(".courseTipAContentDesUl li").on("click", function () {
-                //alert("1");
                 that.courseTip.hide();
                 $(thats).val(" " + $(this).html());
             });
@@ -263,7 +258,8 @@ var ArtificialSelection = Backbone.View.extend({
             $(".courseTipAContentDesUl li").on("click",function(){
                 //alert("2");
                 that.courseTip.hide();
-                $(thats).val(" "+$(this).html());
+                //alert($(this).html());
+                $("#asel-course").val("  "+$(this).html());
             });
         });
 
