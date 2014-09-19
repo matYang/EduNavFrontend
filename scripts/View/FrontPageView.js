@@ -213,7 +213,7 @@ var SearchArea = Backbone.View.extend({
         this.model = new Apply();
         $('#home_phone_input').val('');
         $('#home_userName_input').val('');
-        $('#home_remark_input').val('');
+        $('#home_remark_text').val('');
     },
     bindEvents: function () {
         var that = this;
@@ -235,7 +235,7 @@ var SearchArea = Backbone.View.extend({
 
             var phone = $('#home_phone_input').val();
             var userName = $('#home_userName_input').val();
-            var remark = $('#home_remark_input').val();
+            var remark = $('#home_remark_text').val();
 
             //todo 提交的时候进行输入信息的验证 未输入或者输入错误的进行提示
             if (!phone) {
