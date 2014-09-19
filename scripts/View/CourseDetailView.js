@@ -206,7 +206,7 @@ var CourseDetailView = Backbone.View.extend({
                 //这里屏蔽了下订单的入口
 //                app.navigate("booking/c" + that.courseId, true);
                 if (!that.freeTrial) {
-                    that.freeTrial = new FreeTrial();
+                    that.freeTrial = new FreeTrial({course:that.course});
                 } else {
                     that.freeTrial.closePop();
                     that.freeTrial.show();
@@ -255,11 +255,12 @@ var CourseDetailView = Backbone.View.extend({
 var FreeTrial = Backbone.View.extend({
 
     el: '#overlayFreeTrial',
-    initialize: function () {
+    initialize: function (params) {
         _.bindAll(this, 'render', 'autoName', 'closePop', 'close');
         this.validEle = '#detail_submit_error';
         this.template = _.template(tpl.get('freeTrial'));
         this.model = new Booking();
+        this.model.initBookingFromCourse(params.course);
         this.render();
         this.bindEvents();
     },
@@ -315,6 +316,7 @@ var FreeTrial = Backbone.View.extend({
             that.model.set('name', name);
             that.model.set('phone', phone);
             that.model.set('note', note);
+            console.log(that.model.toJSON())
             app.userManager.initBooking(that.model, {
                 success: function () {
                     that.clearModel();
