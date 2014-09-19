@@ -107,12 +107,16 @@
 
 
 /*一级目录*/
-.index .c_item .fright li{float:left; width:84px; border-bottom:1px solid #f6eac3; height:48px; line-height:48px; text-align:center;}
-.index .c_item .clearfix li{ background-color: #FFF;}
-.index .c_item .fright li a:hover{ color: #1A8F5A;}
+.index .c_item .fright li{float:left; width:84px; border-bottom:1px solid #f6eac3; height:38px; margin: 5px 0; line-height:38px; text-align:center;}
+
+.index .c_item .clearfix li:hover{ background-color: #E5E6E8;}
+.index .c_item .clearfix li a{ height: 38px;margin: 5px 0;}
+.index .c_item .fright li a:hover{ color: #333;}
 
 .index tr.last td{ border-bottom:none!important;}
-.index td.last,.index li.last{border-right:none!important; border-bottom:none!important;}
+.index td.last,.index li.last{/*border-right:none!important;*/ border-bottom:none!important;}
+
+.index .c_item .clearfix li{ background-color: #FFF;  border-right: 1px solid #E5E6E8;}
 
 .index .school li{float:left; text-align:center; width:198px; height:102px;}
 .index .s_language { border-bottom:1px solid #edd68f; border-right:1px solid #edd68f;}
