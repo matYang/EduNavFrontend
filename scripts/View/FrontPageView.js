@@ -186,6 +186,7 @@ var SearchArea = Backbone.View.extend({
     el: '#searchArea',
     initialize: function () {
         _.bindAll(this, 'render', 'close');
+        this.model = new Apply();
         this.searchRepresentation = new CourseSearchRepresentation();
         this.template = _.template(tpl.get('SearchCourse'));
         this.isClosed = false;
