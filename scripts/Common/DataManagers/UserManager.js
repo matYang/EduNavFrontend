@@ -570,7 +570,7 @@
             callback.success();
             return;
         }
-        if (!(newApply instanceof Backbone.Model) || newApply.id > 0) {
+        if (!(newApply instanceof Backbone.Model)) {
             Info.warn('UserManager::newApply:: invalid parameter');
             return;
         }
