@@ -7,7 +7,7 @@ body, dl, dd, h1, h2, h3, h4, h5, h6, p, form { margin: 0; }
 body{ font-size:14px; color:#333;}
 label{font-weight:bold;color:#333}
 
-input[type="text"] { padding: 0; }
+input[type="text"] { padding: 0 10px; }
 ol, ul { margin: 0; padding: 0; }
 img { border: none; }
 ul,li{ list-style: none; }

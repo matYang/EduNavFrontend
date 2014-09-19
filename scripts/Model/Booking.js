@@ -11,15 +11,15 @@ var Booking = Backbone.Model.extend({
             'reference':undefined,
 
             /*需要填写的信息*/
-            'name': '',
-            'phone': '',
-            'email': '',
+            'name': undefined,
+            'phone': undefined,
+            'email': undefined,
             'scheduledTime': new Date(),
 
 
             'status': undefined,//订单状态
             'type': undefined,//订单类型 线上还是线下
-            'note': '',     //各种record
+            'note': undefined,     //各种record
 
             'price': undefined,//价格
             'cashbackAmount': undefined,//返利总额
