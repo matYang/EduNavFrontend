@@ -198,26 +198,31 @@ var SearchArea = Backbone.View.extend({
         app.viewRegistration.register(this);
         this.$el.append(this.template);
         app.generalManager.getLocations(this);//同上 调用this.renderLocations
-
     },
     /*加载上课地点选项*/
     renderLocations: function (locations) {
         var buf = ['<option value>不限</option>'];
         var districts = locations[0].children[0].children;
-        _.each(districts,function(district){
-            buf.push('<option value="'+district.value+'">'+district.name+'</option>');
+        _.each(districts, function (district) {
+            buf.push('<option value="' + district.value + '">' + district.name + '</option>');
         });
         var $dist = $("#home_location_select");
         $dist.html(buf.join(""));
     },
+    clearModel: function () {
+        this.model = new Apply();
+        $('#home_phone_input').val('');
+        $('#home_userName_input').val('');
+        $('#home_remark_input').val('');
+    },
     bindEvents: function () {
         var that = this;
-        
+
         //自助选课 课程类目的选择弹出框
         $("#corseChoose").on("click", function () {
             //todo 传入参数 说明是从搜索课程的view中获取的 参数为option
             if (!that.courseTip) {
-                that.courseTip = new CourseTip();
+                that.courseTip = new SelectCatModal();
             }
             else if (!that.courseTip.isShow) {
                 that.courseTip.show();
@@ -227,24 +232,28 @@ var SearchArea = Backbone.View.extend({
         });
         //首页 人工选课 ‘立即申请’按钮 提交人工选课的申请
         $("#btnSubmitApply").on("click", function () {
-            //todo 提交的时候进行输入信息的验证 未输入或者输入错误的进行提示
+
             var phone = $('#home_phone_input').val();
             var userName = $('#home_userName_input').val();
             var remark = $('#home_remark_input').val();
 
-            if(!phone){
+            //todo 提交的时候进行输入信息的验证 未输入或者输入错误的进行提示
+            if (!phone) {
                 alert('hi man,no phone number');
                 return
             }
-            if(!userName){
+            if (!userName) {
                 alert('hi man, no userName');
                 return
             }
-
+            that.model.set('phone', phone);
+            that.model.set('userName', userName);
+            that.model.set('remark', remark);
             app.userManager.initApply(that.model, {
                 success: function () {
+                    that.model = new Apply();
                     if (!that.popTip) {
-                        that.popTip = new PopTip();
+                        that.popTip = new SuccessPopTip();
                     } else {
                         that.popTip.show();
                     }
@@ -260,9 +269,9 @@ var SearchArea = Backbone.View.extend({
             var dataValue = $('#select_startDate').val();//上课日期
             var locationValue = $('#home_location_select').val();
             var classType = $('#home_classType_select').val();
-            dataValue= dataValue==''?undefined:dataValue;
-            locationValue= locationValue==''?undefined:locationValue;
-            classType= classType==''?undefined:classType;
+            dataValue = dataValue == '' ? undefined : dataValue;
+            locationValue = locationValue == '' ? undefined : locationValue;
+            classType = classType == '' ? undefined : classType;
 
             var now = new Date();
             var date1 = new Date(Date.parse([now.getFullYear(), now.getMonth() + 1].join('-')));
@@ -323,24 +332,19 @@ var SearchArea = Backbone.View.extend({
             that.searchRepresentation.set("locationValue", locationValue);
             that.searchRepresentation.set("classType", classType);
             app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
-            //以下内容为弹出人工选课的弹出框
-//            if (!that.artificialSelection) {
-//                that.artificialSelection = new ArtificialSelection();
-//
-//            } else if (that.artificialSelection.isClosed) {
-//                that.artificialSelection.render();
-//            } else if (!that.artificialSelection.isShow) {
-//                that.artificialSelection.show();
-//            }
-
-
         });
     },
 
     close: function () {
+        //需要关闭 生成的view  courseTip popTip
+        if(this.courseTip){
+            this.courseTip.close();
+        }
+        if(this.popTip){
+            this.popTip.close();
+        }
         this.$el.empty();
         //this.artificialSelection.close();
-        var isShow = false;
     }
 });
 
@@ -379,16 +383,16 @@ var ArtificialSelection = Backbone.View.extend({
             $("#popcourseTip").attr("showid", "aSelectiontxt");
             var thats = this;
             if (!that.courseTip) {
-                that.courseTip = new CourseTip();
+                that.courseTip = new SelectCatModal();
             } else if (!that.courseTip.isShow) {
                 that.courseTip.show();
             }
 
-            $(".courseTipAContentDesUl li").on("click",function(){
+            $(".courseTipAContentDesUl li").on("click", function () {
                 //alert("2");
                 that.courseTip.hide();
                 //alert($(this).html());
-                $("#asel-course").val("  "+$(this).html());
+                $("#asel-course").val("  " + $(this).html());
             });
         });
 
@@ -399,10 +403,10 @@ var ArtificialSelection = Backbone.View.extend({
             var userName = $('#home_userName_input').val();
             var remark = $('#home_remark_input').val();
 
-            if(!phone){
+            if (!phone) {
                 alert('hi man,no phone number')
             }
-            if(!userName){
+            if (!userName) {
                 alert('hi man, no userName')
             }
 
@@ -410,7 +414,7 @@ var ArtificialSelection = Backbone.View.extend({
                 success: function () {
                     that.hide();
                     if (!that.popTip) {
-                        that.popTip = new PopTip();
+                        that.popTip = new SuccessPopTip();
                     } else {
                         that.popTip.show();
                     }
@@ -445,28 +449,28 @@ var ArtificialSelection = Backbone.View.extend({
 });
 
 //课程弹出框
-var CourseTip = Backbone.View.extend({
+var SelectCatModal = Backbone.View.extend({
 
     el: '#overlayCourse',
     initialize: function () {
-        var that=this;
-        _.bindAll(this, 'render', 'close');
+        _.bindAll(this, 'render','renderCategories', 'close');
         this.template = _.template(tpl.get('courseTip'));
         this.isClosed = false;
         this.isShow = false;
-        this.courseAll = testMockObj.testCategories.data;
-        this.courseLev1={};
+        app.generalManager.getCategories(this);//传递this,会在获取目录之后调用this.renderCategories()
+    },
+    renderCategories:function(categories){
+        var that = this;
+        this.courseAll = categories.data;
+        this.courseLev1 = {};
         this.courseSmallTitle = {};
         this.courseLev2 = {};
-
-
         _.each(this.courseAll, function (v, index) {
             that.courseLev1[index] = v.children;
         });
 
         this.render();
     },
-
     render: function () {
         var that = this;
 
@@ -481,9 +485,8 @@ var CourseTip = Backbone.View.extend({
             //开始的时候生成的目录
             //var x = $(".courseTipATopHoverSpec").attr("data-value");
             var htmlcourse = "";
-            for(i=0;i<that.courseAll.length;i++)
-            {
-                htmlcourse += '<div class="cousedes cousedes0'+ i +' hidden">';
+            for (i = 0; i < that.courseAll.length; i++) {
+                htmlcourse += '<div class="cousedes cousedes0' + i + ' hidden">';
                 that.courseSmallTitle = that.courseLev1[i];
                 _.each(that.courseSmallTitle, function (v, index) {
                     //console.log(v.children);
@@ -492,12 +495,12 @@ var CourseTip = Backbone.View.extend({
 
                 _.each(that.courseSmallTitle, function (v, index) {
                     htmlcourse += '<li>';
-                    htmlcourse += '    <div class="courseTipAContentTop"  data-value="'+ v.value+'" data-id="'+v.id+'">' + v.name + '</div>';
+                    htmlcourse += '    <div class="courseTipAContentTop"  data-value="' + v.value + '" data-id="' + v.id + '">' + v.name + '</div>';
                     htmlcourse += '    <ul class="courseTipAContentDesUl">';
                     //添加三级目录
                     _.each(that.courseLev2[index], function (s, index) {
                         //console.log(v.children);
-                        htmlcourse += '<li data-value="'+ s.value+'" data-id="'+s.id+'">'+ s.name +'</li>';
+                        htmlcourse += '<li data-value="' + s.value + '" data-id="' + s.id + '">' + s.name + '</li>';
                     });
                     htmlcourse += '    </ul>';
                     htmlcourse += '</li>';
@@ -521,8 +524,8 @@ var CourseTip = Backbone.View.extend({
         $(".courseTipATopHover").hover(function () {
             $(".courseTipATopHover").removeClass("courseTipATopHoverSpec");
             $(".courseTipAContentDes").find(".cousedes").addClass("hidden");
-            var thisvalue=$(this).attr("data-value");
-            $(".courseTipAContentDes").find(".cousedes"+thisvalue).removeClass("hidden");
+            var thisvalue = $(this).attr("data-value");
+            $(".courseTipAContentDes").find(".cousedes" + thisvalue).removeClass("hidden");
             $(this).addClass("courseTipATopHoverSpec");
 
         }, function () {
@@ -533,7 +536,7 @@ var CourseTip = Backbone.View.extend({
         $(".courseTipAContentDesUl li").on("click", function () {
             that.hide();
             var txtid = $("#popcourseTip").attr("showid");
-            $("#"+txtid).val("  " + $(this).html());
+            $("#" + txtid).val("  " + $(this).html());
         });
     },
     show: function () {
@@ -554,7 +557,7 @@ var CourseTip = Backbone.View.extend({
     }
 });
 //申请成功弹出窗口
-var PopTip = Backbone.View.extend({
+var SuccessPopTip = Backbone.View.extend({
 
     el: '#overlayApplySuc',
     initialize: function () {
