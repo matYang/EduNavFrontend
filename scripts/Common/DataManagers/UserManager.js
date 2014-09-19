@@ -587,7 +587,7 @@
             error: function (model, response) {
                 Info.warn('UserManager::initApply:: save failed with response:');
                 if (callback) {
-                    callback.error($.parseJSON(model.responseText));
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });

@@ -391,7 +391,7 @@
                             </li>
                         </ul>
                         <div class="popBtn">
-                            <a class="popBtnYes" id="btnAppleartificialSelection"></a>
+                            <a class="popBtnYes" id="btnSubmitApply"></a>
                             <a class="popBtnNo">放弃申请</a>
                         </div>
                     </div>
@@ -591,23 +591,32 @@
                 <ul class="SearchCotentAreaMainA">
                     <li>
                         <span>课程类目</span>
-                        <input id="corseChoose" class="selectFarme" type="text" placeholder="  请选择">
+                        <input id="corseChoose" class="selectFarme" type="text" placeholder="请选择">
                         <i class="selectIcon"></i>
                     </li>
                     <li>
                         <span>上课地区</span>
-                        <input id="" class="selectFarme"  type="text" placeholder="  不限">
-                        <i class="selectIcon"></i>
+                        <select id="home_location_select" name="" class="selectFarme">
+                        </select>
                     </li>
                     <li>
                         <span>上课日期</span>
-                        <input id="" class="selectFarme"  type="text" placeholder="  请选择">
-                        <i class="selectIcon"></i>
+                        <select id="select_startDate" name="" class="selectFarme">
+                            <option value>不限</option>
+                            <option value="thisMonth">当月</option>
+                            <option value="nextMonth">下月</option>
+                            <option value="twoMonthsAfter">下下月</option>
+                        </select>
                     </li>
                     <li>
                         <span>班级类型</span>
-                        <input id="" class="selectFarme"  type="text" placeholder="  不限">
-                        <i class="selectIcon"></i>
+                        <select id="home_classType_select" name="" class="selectFarme">
+                            <option value>不限</option>
+                            <option value="0">VIP 1对1</option>
+                            <option value="1">小班授课（小于6人）</option>
+                            <option value="2">中班授课（6-30人）</option>
+                            <option value="3">大班授课（30人+）</option>
+                        </select>
                     </li>
                 </ul>
             </div>
@@ -630,20 +639,20 @@
                     <li class="SearchCotentAreaMainBLi"></li>
                     <li class="SearchCotentAreaMainBLi">
                         <span>联系电话</span>
-                        <input class="selectFarme" type="text">
+                        <input id="home_phone_input" class="selectFarme" type="text">
                     </li>
                     <li class="SearchCotentAreaMainBLi">
                         <span>学员姓名</span>
-                        <input class="selectFarme" type="text">
+                        <input id="home_userName_input" class="selectFarme" type="text">
                     </li>
                     <li class="SearchCotentAreaMainBLi">
                         <span>附加信息</span>
-                        <textarea class="inputMyInfo" placeholder="#我的信息#"></textarea>
+                        <textarea id="home_remark_text" class="inputMyInfo" placeholder="#我的信息#"></textarea>
                     </li>
                 </ul>
             </div>
             <div class="SearchCotentAreaBottom SearchCotentAreaBottomRight">
-                <a class="ApplyIcon"></a>
+                <a id="btnSubmitApply" class="ApplyIcon"></a>
             </div>
         </div>
     </div>

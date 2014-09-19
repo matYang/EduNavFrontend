@@ -108,8 +108,21 @@
 .SearchCotentAreaBottomRight{ background-color: #F0F0F1;}
 .SearchCotentAreaMainA{width: 235px; height: 200px; margin: auto; display: block; padding: 13px 0;}
 .SearchCotentAreaMainA li{width: 255px; height: 40px; margin-bottom: 10px; position: relative;}
-.SearchContentA span{width: 70px; height: 34px; display: block; float: left; line-height: 34px; font-size: 15px; color: #666; font-family: "微软雅黑";}
-.SearchContentA input.selectFarme{ width: 130px; height: 34px; padding: 0 12px; cursor: pointer; border: 0; outline: 0; display: block; float: left; color: #666; font-size: 12px; font-family: "微软雅黑";}
+.SearchContentA span{width: 70px; height: 34px; display: block; float: left; line-height: 34px; font-size: 15px; color: #666;}
+/*style of select and input*/
+.SearchContentA select.selectFarme,
+.SearchContentA input.selectFarme{
+    width: 130px; height: 34px;
+    padding: 0 12px;
+    cursor: pointer; border: 0;
+    outline: 0;
+    display: block;
+    float: left;
+    color: #666;
+    font-size: 12px;}
+.SearchContentA select.selectFarme{
+    width: 154px;
+}
 .selectIcon{ width: 15px; height: 8px; display: block; background-image: url("../images/search.png"); background-position: 0 -200px; position: absolute; top: 15px; left: 202px;}
 .SearchCotentAreaMainB{ width: 480px; height: 200px; margin: auto; display: block; padding: 13px 0;}
 .SearchCotentAreaMainBLi{
@@ -197,7 +210,13 @@
 
 
 /*申请成功弹出窗口*/
-.popTip{ width: 530px; height: 130px; position: fixed; top: 30%; left: 40%; background-color: #FFF; box-shadow: 0 0 10px #008E54; z-index: 600;}
+.popTip{
+    position: fixed;
+    top: 30%;
+    left:50%;
+    margin-left: -265px;
+    width: 530px; height: 130px;
+    background-color: #FFF; box-shadow: 0 0 10px #008E54; z-index: 600;}
 .popTipTop{ width: 500px; height: 28px; padding: 22px 0 0 30px;}
 .popTipTopIcon{ width: 44px; height: 28px; background-image: url("../images/poptipIcon.png"); float: left;}
 .popTipTop span{ line-height: 28px; font-size: 24px; color: #008E54; font-weight: bold; padding-left: 8px;}

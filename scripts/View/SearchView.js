@@ -60,6 +60,31 @@ var SearchView = Backbone.View.extend({
             document.title = "找课程?就上爱上课";
         }
     },
+    /*加载上课地点*/
+    renderLocations: function (locations) {
+        if (!this.isClosed) {
+            var buf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
+            this.locations = locations;
+            // for (var prov in locations) {
+            //     var city = locations[prov];
+            //     for (var attr in city) {
+            var districts = locations[0].children[0].children, district;
+            for (i = 0; i < districts.length; i++) {
+                buf[i] = this.subCategoryTemplate({value: districts[i].value, name: districts[i].name});
+            }
+            var $dist = $("#filter_district");
+            $dist.append(buf.join(""));
+            this.titleObj.city = "南京";
+            if (locationValue) {
+                $dist.find("span[data-value=noreq]").removeClass("active");
+                $dist.find("span[data-value=" + this.searchRepresentation.get("locationValue") + "]").addClass("active");
+                text = $dist.find("span[data-value=" + locationValue + "]").html();
+                $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
+            } else {
+                $dist.find("span[data-value=noreq]").addClass("active");
+            }
+        }
+    },
     /*加载课程类别*/
     renderCategories: function (categories) {
         if (!this.isClosed) {
@@ -235,30 +260,7 @@ var SearchView = Backbone.View.extend({
             this.$resultp.empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
         }
     },
-    renderLocations: function (locations) {
-        if (!this.isClosed) {
-            var buf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
-            this.locations = locations;
-            // for (var prov in locations) {
-            //     var city = locations[prov];
-            //     for (var attr in city) {
-            var districts = locations[0].children[0].children, district;
-            for (i = 0; i < districts.length; i++) {
-                buf[i] = this.subCategoryTemplate({value: districts[i].value, name: districts[i].name});
-            }
-            var $dist = $("#filter_district");
-            $dist.append(buf.join(""));
-            this.titleObj.city = "南京";
-            if (locationValue) {
-                $dist.find("span[data-value=noreq]").removeClass("active");
-                $dist.find("span[data-value=" + this.searchRepresentation.get("locationValue") + "]").addClass("active");
-                text = $("#filter_district").find("span[data-value=" + locationValue + "]").html();
-                $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
-            } else {
-                $dist.find("span[data-value=noreq]").addClass("active");
-            }
-        }
-    },
+
     //进行课程搜索 重新设置搜索条件 并且获取数据
     courseSearch: function () {
         this.searchResultView.sr = this.searchRepresentation;
