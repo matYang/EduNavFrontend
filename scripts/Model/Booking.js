@@ -14,7 +14,7 @@ var Booking = Backbone.Model.extend({
             'name': undefined,
             'phone': undefined,
             'email': undefined,
-            'scheduledTime': new Date(),
+            'scheduledTime': undefined,
 
 
             'status': undefined,//订单状态

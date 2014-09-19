@@ -86,7 +86,7 @@ var FrontPageView = Backbone.View.extend({
         var activeButton = $("#lv1Button").find("a:first").addClass("active");
         $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("value") + "]").removeClass("hidden");
         $("#content").css("padding-bottom", 0);
-        //todo 这里是为了声明页面加载完毕
+        //这里是为了声明页面加载完毕
         $('body').attr('pageRenderReady', '')
 
     },
@@ -186,6 +186,10 @@ var SearchArea = Backbone.View.extend({
     el: '#searchArea',
     initialize: function () {
         _.bindAll(this, 'render', 'close');
+        this.catModels = {
+            catSearch:{},
+            catApply:null
+        };//通过catModels保存自助选课和人工选课的category obj
         this.model = new Apply();
         this.searchRepresentation = new CourseSearchRepresentation();
         this.template = _.template(tpl.get('SearchCourse'));
@@ -219,16 +223,24 @@ var SearchArea = Backbone.View.extend({
         var that = this;
 
         //自助选课 课程类目的选择弹出框
-        $("#corseChoose").on("click", function () {
+        $("#courseChoose").on("click", function () {
             //todo 传入参数 说明是从搜索课程的view中获取的 参数为option
             if (!that.courseTip) {
-                that.courseTip = new SelectCatModal();
+                that.courseTip = new SelectCatModal({});
             }
             else if (!that.courseTip.isShow) {
                 that.courseTip.show();
             }
-            //todo 当然不能在这里绑定事件来获取返回的值了    
-            $("#popcourseTip").attr("showid", "corseChoose");
+        });
+        //人工选课 课程类目的选择弹出框
+        $("#applyCourseChoose").on("click", function () {
+            //todo 传入参数 说明是从搜索课程的view中获取的 参数为option
+            if (!that.courseTip) {
+                that.courseTip = new SelectCatModal({});
+            }
+            else if (!that.courseTip.isShow) {
+                that.courseTip.show();
+            }
         });
         //首页 人工选课 ‘立即申请’按钮 提交人工选课的申请
         $("#btnSubmitApply").on("click", function () {
@@ -303,7 +315,6 @@ var SearchArea = Backbone.View.extend({
                     } else {
                         date2.setMonth(date2.getMonth() + 1);
                     }
-
                 }
             } else if (dataValue === "twoMonthsAfter") {
                 if (month >= 10) {
@@ -396,7 +407,7 @@ var ArtificialSelection = Backbone.View.extend({
             });
         });
 
-        //todo 弹出层里 ‘立即申请’按钮 提交人工选课的申请
+        //弹出层里的‘立即申请’按钮 提交人工选课的申请
         $("#btnSubmitApply").on("click", function () {
             //todo 提交的时候进行输入信息的验证 未输入或者输入错误的进行提示
             var phone = $('#home_phone_input').val();

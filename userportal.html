@@ -212,10 +212,11 @@
                             <span class="popTSpanRight">全城最低价，全场7折起</span>
                         </div>
                     </div>
-                    <a class="popMainClose"></a>
+                    <a class="popMainClose js_popClose"></a>
                 </div>
                 <div class="popContent">
                     <div class="popContentA">
+                        <div id="detail_submit_error" class="text-error text-center margin-bottom"></div>
                         <ul class="popContentUl">
                             <li>
                                 <i class="popIconStar"></i>
@@ -225,22 +226,22 @@
                             <li>
                                 <i class="popIconStar"></i>
                                 <span>学员姓名：</span>
-                                <input class="popTxt" type="text">
+                                <input id="detail_name_input" class="popTxt" type="text" />
                             </li>
                             <li>
                                 <i class="popIconStar"></i>
                                 <span>联系电话：</span>
-                                <input class="popTxt" type="text">
+                                <input id="detail_phone_input" class="popTxt" type="text" />
                             </li>
                             <li>
                                 <i class="popIconStar popIconStarSpec"></i>
                                 <span>附加信息： &nbsp;&nbsp;(选填)</span>
-                                <textarea class="popTxt popTxtSpec" placeholder="亲，请填上空闲的时间，择校、择课要求等信息，以便更好的为您服务"></textarea>
+                                <textarea id="detail_note_input" class="popTxt popTxtSpec" placeholder="亲，请填上空闲的时间，择校、择课要求等信息，以便更好的为您服务"></textarea>
                             </li>
                         </ul>
                         <div class="popBtn">
                             <a class="popBtnYes" id="btnApplefreeTrial"></a>
-                            <a class="popBtnNo">放弃申请</a>
+                            <a class="popBtnNo js_popClose">放弃申请</a>
                         </div>
                     </div>
                 </div>
@@ -591,7 +592,7 @@
                 <ul class="SearchCotentAreaMainA">
                     <li>
                         <span>课程类目</span>
-                        <input id="corseChoose" class="selectFarme" type="text" placeholder="请选择">
+                        <input id="courseChoose" class="selectFarme" type="text" placeholder="请选择">
                         <i class="selectIcon"></i>
                     </li>
                     <li>
@@ -630,10 +631,7 @@
                 <ul class="SearchCotentAreaMainB">
                     <li class="SearchCotentAreaMainBLi">
                         <span>意向课程</span>
-                        <!--<select class="selectFarme" id="" name="select" style="cursor: default;">
-                            <option value="请选择"> 雅思 </option>
-                        </select>-->
-                        <input class="selectFarme" type="text" placeholder="雅思">
+                        <input id="applyCourseChoose" class="selectFarme" type="text" placeholder="请选择">
                         <i class="selectIcon"></i>
                     </li>
                     <li class="SearchCotentAreaMainBLi"></li>
