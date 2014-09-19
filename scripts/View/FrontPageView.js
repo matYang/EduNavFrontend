@@ -251,7 +251,7 @@ var SearchArea = Backbone.View.extend({
             that.model.set('remark', remark);
             app.userManager.initApply(that.model, {
                 success: function () {
-                    that.model = new Apply();
+                    that.clearModel();
                     if (!that.popTip) {
                         that.popTip = new SuccessPopTip();
                     } else {
