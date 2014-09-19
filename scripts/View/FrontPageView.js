@@ -207,7 +207,7 @@ var SearchArea = Backbone.View.extend({
         }
     }
 });
-//人工选课
+//人工选课弹出层
 var ArtificialSelection = Backbone.View.extend({
 
     el: '#overlayASelection',

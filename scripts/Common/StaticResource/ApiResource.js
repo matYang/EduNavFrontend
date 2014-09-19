@@ -32,15 +32,19 @@
                 },
 
                 'booking': {
-                    booking: '',
+                    create: '',
                     history: '/history',
-                    operate:'/{0}/{1}'
+                    operate:'/{0}/{1}'//{0} is bookingId,{1} is operation name
+                },
+                //人工选课申请
+                'purpose': {
+                    create: ''
                 },
                 'course': {
                     course: ''
                 },
                 'coupon': {
-                    coupon: ""
+                    coupon: ''
                 },
                 'credit': {
                     history: '/history'
@@ -77,7 +81,8 @@
                 user_login: api_maker(api_modules.rootPrefix, 'user', 'login'), //GET dded to session manager
                 user_logout: api_maker(api_modules.rootPrefix, 'user', 'logout'), //GET added to session manager
                 user_forgetPassword: api_maker(api_modules.rootPrefix, 'user', 'forgetPassword'),
-                user_booking: api_maker(api_modules.rootPrefix, 'booking', 'booking'),
+                user_apply: api_maker(api_modules.rootPrefix, 'purpose', 'create'),
+                user_booking: api_maker(api_modules.rootPrefix, 'booking', 'create'),
                 user_booking_history: api_maker(api_modules.rootPrefix, 'booking', 'history'),
                 user_booking_operate: api_maker(api_modules.rootPrefix, 'booking', 'operate'),
                 user_coupon: api_maker(api_modules.rootPrefix, 'coupon', 'coupon'),
