@@ -327,19 +327,6 @@
             </a>
             </div>
             <%}%>
-            <%if(commission){%>
-            <div class="margin-y-sm">
-            <a class="label save"><%= commission %>元
-                <div class="tip">
-                    <div class="arrow"></div>
-                    <div class="tip_content">
-                        选择在线支付，支付时即可立减<%=commission %>元！
-                    </div>
-                </div>
-            </a>
-            </div>
-            <%}%>
-
         </div>
         <div class="col3">
             <div class="compare" id="compare_<%= id %>"><input class="btn_g add" type="button" value="+对比"/></div>
@@ -1093,16 +1080,6 @@
                     </div>
                 </a>
                 <%}%>
-                <%if(course.commission){%>
-                <a class="label save"><%= course.commission %>元
-                    <div class="tip">
-                        <div class="arrow"></div>
-                        <div class="tip_content">
-                            选择在线支付，支付时即可立减<%= course.commission %>元！
-                        </div>
-                    </div>
-                </a>
-                <%}%>
             <%}%>
         </div>
 
@@ -1432,16 +1409,6 @@
                     <div class="arrow"></div>
                     <div class="tip_content">
                         前台付现，入学成功可立即返还<%=cashback %>元至现金账户！
-                    </div>
-                </div>
-            </div>
-            <%}%>
-            <%if(commission){%>
-            <div class="label save"><%= commission %>元
-                <div class="tip">
-                    <div class="arrow"></div>
-                    <div class="tip_content">
-                        选择在线支付，支付时即可立减<%=commission %>元！
                     </div>
                 </div>
             </div>
