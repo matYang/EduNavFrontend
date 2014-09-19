@@ -317,7 +317,7 @@ var FreeTrial = Backbone.View.extend({
                 },
                 error: function (data) {
                     //todo 提交失败
-                    $(that.validEle).html(data.message||'提交失败 ，请稍后再试');
+                    $(that.validEle).html(data.message || '提交失败 ，请稍后再试');
                 }
             });
         });
@@ -329,7 +329,7 @@ var FreeTrial = Backbone.View.extend({
         $("#popfreeTrial").fadeOut(400);
         $(this.validEle).empty();
     },
-    closePop:function(){
+    closePop: function () {
         if (this.popTip) {
             this.popTip.close();
         }

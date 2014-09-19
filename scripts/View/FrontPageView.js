@@ -588,6 +588,9 @@ var SuccessPopTip = Backbone.View.extend({
         $(".popTipMidA").on("click", function () {
             that.hide();
         });
+        $('#js_viewOtherCourses').on('click', function () {
+            app.navigate('search', true)
+        });
     },
     show: function () {
         $("#popSuccessApple").fadeIn(400);
