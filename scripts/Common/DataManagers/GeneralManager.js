@@ -175,7 +175,23 @@
     GeneralManager.prototype.fetchCategories = function (callback) {
         var self = this;
         if (testMockObj.testMode) {
-            callback.success(testMockObj.testCategories);
+            var cats = testMockObj.testCategories;
+            for(var i=0;i < cats.data.length;i++){
+                console.log('v1:'+cats.data[i].name);
+                var cat2 = cats.data[i].children;
+                for(var j = 0;j<cat2.length;j++){
+                    var cat3 = cat2[j].children;
+                    for(var k = 0;k<cat3.length;k++){
+                        if(cat3[k].enabled ==1){
+                            cat3.splice(k,1);
+                            k--;
+                        }
+
+                    }
+                }
+            }
+            console.log(cats);
+            callback.success(cats);
             return;
         }
 
@@ -185,6 +201,21 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (data, textStatus, jqXHR) {
+                    var cats = data;
+                    for(var i=0;i < cats.data.length;i++){
+                        console.log('v1:'+cats.data[i].name);
+                        var cat2 = cats.data[i].children;
+                        for(var j = 0;j<cat2.length;j++){
+                            var cat3 = cat2[j].children;
+                            for(var k = 0;k<cat3.length;k++){
+                                if(cat3[k].enabled ==1){
+                                    cat3.splice(k,1);
+                                    k--;
+                                }
+
+                            }
+                        }
+                    }
                     self.categoryList = data;
                     self.categoryTimeStamp = new Date();
                     if (callback) {
