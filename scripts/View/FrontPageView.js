@@ -185,11 +185,7 @@ var BannerView = Backbone.View.extend({
 var SearchArea = Backbone.View.extend({
     el: '#searchArea',
     initialize: function () {
-        _.bindAll(this, 'render', 'close');
-        this.catModels = {
-            catSearch: {},
-            catApply: null
-        };//通过catModels保存自助选课和人工选课的category obj
+        _.bindAll(this, 'render', 'close','selectCatSearch','selectCatApply');
         this.model = new Apply();
         this.colorInfoModal = new ColorInfoModal();
         this.searchRepresentation = new CourseSearchRepresentation();
@@ -219,37 +215,54 @@ var SearchArea = Backbone.View.extend({
         $('#home_userName_input').val('');
         $('#home_remark_text').val('');
     },
+    //以下两个均为选择目录后的回调函数 设置model 并更新view
+    selectCatSearch:function(cat){
+        this.catSearch = cat;
+        $('#courseChoose').val(cat.name);
+    },
+    selectCatApply:function(cat){
+        this.catApply = cat;
+        $('#applyCourseChoose').val(cat.name);
+    },
     bindEvents: function () {
         var that = this;
 
         //自助选课 课程类目的选择弹出框
         $("#courseChoose").on("click", function () {
-            //todo 传入参数 说明是从搜索课程的view中获取的 参数为option
+            //传入选择目录以后的回调函数
             if (!that.courseTip) {
-                that.courseTip = new SelectCatModal({});
+                that.courseTip = new SelectCatModal({callback:that.selectCatSearch});
             }
             else if (!that.courseTip.isShow) {
-                that.courseTip.show();
+                that.courseTip.show({callback:that.selectCatSearch});
             }
         });
         //人工选课 课程类目的选择弹出框
         $("#applyCourseChoose").on("click", function () {
-            //todo 传入参数 说明是从搜索课程的view中获取的 参数为option
+            //传入选择目录以后的回调函数
             if (!that.courseTip) {
-                that.courseTip = new SelectCatModal({});
+                that.courseTip = new SelectCatModal({callback:that.selectCatApply});
             }
             else if (!that.courseTip.isShow) {
-                that.courseTip.show();
+                that.courseTip.show({callback:that.selectCatApply});
             }
         });
         //首页 人工选课 ‘立即申请’按钮 提交人工选课的申请
         $("#btnSubmitApply").on("click", function () {
-
+            var categoryId = that.catApply&&that.catApply.id;
             var phone = $('#home_phone_input').val();
             var userName = $('#home_userName_input').val();
             var remark = $('#home_remark_text').val();
 
-            //todo 提交的时候进行输入信息的验证 未输入或者输入错误的进行提示
+            //提交的时候进行输入信息的验证 未输入或者输入错误的进行提示
+            if (!categoryId) {
+                that.colorInfoModal.show({message:'亲，请选择您的意向课程'});
+                return
+            }
+            if (!phone) {
+                that.colorInfoModal.show({message:'亲，请输入您的联系电话'});
+                return
+            }
             if (!phone) {
                 that.colorInfoModal.show({message:'亲，请输入您的联系电话'});
                 return
@@ -280,8 +293,7 @@ var SearchArea = Backbone.View.extend({
         });
         //首页 自助选课 ‘搜索’按钮 根据当前选择的搜索条件进入到对应的搜索内容中
         $(".SearchIcon").on("click", function () {
-            //todo 如何获取课程类目的值
-            var categoryValue = undefined;
+            var categoryValue = that.catSearch&&that.catSearch.value;
             var dataValue = $('#select_startDate').val();//上课日期
             var locationValue = $('#home_location_select').val();
             var classType = $('#home_classType_select').val();
@@ -364,7 +376,7 @@ var SearchArea = Backbone.View.extend({
     }
 });
 
-//申请人工选课弹出层 创建新申请
+//todo 申请人工选课 弹出层形式 创建新申请
 var ArtificialSelection = Backbone.View.extend({
 
     el: '#overlayASelection',
@@ -413,7 +425,7 @@ var ArtificialSelection = Backbone.View.extend({
 
         //弹出层里的‘立即申请’按钮 提交人工选课的申请
         $("#btnSubmitApply").on("click", function () {
-            //todo 提交的时候进行输入信息的验证 未输入或者输入错误的进行提示
+            //todo 弹出层形式 提交Booking的时候进行输入信息的验证 未输入或者输入错误的进行提示
             var phone = $('#home_phone_input').val();
             var userName = $('#home_userName_input').val();
             var remark = $('#home_remark_input').val();
@@ -463,12 +475,13 @@ var ArtificialSelection = Backbone.View.extend({
     }
 });
 
-//课程弹出框
+//课程类目选择弹出框
 var SelectCatModal = Backbone.View.extend({
 
     el: '#overlayCourse',
-    initialize: function () {
+    initialize: function (opt) {
         _.bindAll(this, 'render', 'renderCategories', 'close');
+        this.callback = opt.callback;
         this.template = _.template(tpl.get('courseTip'));
         this.isClosed = false;
         this.isShow = false;
@@ -550,11 +563,15 @@ var SelectCatModal = Backbone.View.extend({
         //点击三级目录
         $(".courseTipAContentDesUl li").on("click", function () {
             that.hide();
-            var txtid = $("#popcourseTip").attr("showid");
-            $("#" + txtid).val("  " + $(this).html());
+            var catObj = {};
+            catObj.id = $(this).data('id');
+            catObj.value = $(this).data('value');
+            catObj.name = $(this).text();
+            that.callback(catObj)
         });
     },
-    show: function () {
+    show: function (opt) {
+        this.callback = opt.callback;
         $("#popcourseTip").fadeIn(400);
         this.isShow = true;
     },
