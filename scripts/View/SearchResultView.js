@@ -40,7 +40,7 @@ var SearchResultView = MultiPageView.extend({
                     Info.displayNotice("您最多只能同时比较四个不同的科目。");
                 }
             } else {
-                $(e.target).attr("class", "add btn_g").val("+对比");
+                $(e.target).attr("class", "add btn_o").val("+对比");
                 id = Utilities.getId($(this).attr("id"));
                 that.compareWidgetView.removeCourse(Utilities.toInt(id));
             }

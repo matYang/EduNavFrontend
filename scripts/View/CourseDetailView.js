@@ -33,7 +33,6 @@ var CourseDetailView = Backbone.View.extend({
 
             },
             error: function (data) {
-                //todo should handle the error message display
                 Info.displayErrorPage("content", data.message);
             }
         });
@@ -317,7 +316,6 @@ var FreeTrial = Backbone.View.extend({
             that.model.set('name', name);
             that.model.set('phone', phone);
             that.model.set('note', note);
-            console.log(that.model.toJSON())
             app.userManager.initBooking(that.model, {
                 success: function () {
                     that.clearModel();
@@ -330,7 +328,6 @@ var FreeTrial = Backbone.View.extend({
                     }
                 },
                 error: function (data) {
-                    //todo 提交失败
                     $(that.validEle).html(data.message || '提交失败 ，请稍后再试');
                 }
             });
