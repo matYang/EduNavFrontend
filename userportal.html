@@ -55,7 +55,9 @@
 
 <!-- class="mask1" class="hidden"-->
 <div id="popup" class="hidden pop"
-     style=" top:200px; left: 50%; width:500px; min-height:100px; margin-left: -250px; z-index:200;"></div>
+     style=" top:200px; left: 50%; width:500px; min-height:100px; margin-left: -250px; z-index:2000;">
+</div>
+<div id="colorInfoModal" class="hidden"></div>
 
 <div class="footer">
     <div class="footer_inner">
@@ -2703,6 +2705,12 @@
             <input id="gotIt" class="btn_O" type="button" value="确认">
         </div>
     </div>
+</script>
+<script type="text/templates" id="tpl_colorInfoModal">
+    <div class="info-icon"></div>
+    <div id="infoMessage" class="info-content text-center">
+    </div>
+    <div id="closeBtn" class="info-close">返回</div>
 </script>
 
 <script type="text/templates" id="tpl_frontCategoryContainer">

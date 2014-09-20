@@ -191,6 +191,7 @@ var SearchArea = Backbone.View.extend({
             catApply: null
         };//通过catModels保存自助选课和人工选课的category obj
         this.model = new Apply();
+        this.colorInfoModal = new ColorInfoModal();
         this.searchRepresentation = new CourseSearchRepresentation();
         this.template = _.template(tpl.get('SearchCourse'));
         this.isClosed = false;
@@ -199,8 +200,7 @@ var SearchArea = Backbone.View.extend({
     },
 
     render: function () {
-        app.viewRegistration.register(this);
-        this.$el.append(this.template);
+        this.$el.html(this.template);
         app.generalManager.getLocations(this);//同上 调用this.renderLocations
     },
     /*加载上课地点选项*/
@@ -251,11 +251,15 @@ var SearchArea = Backbone.View.extend({
 
             //todo 提交的时候进行输入信息的验证 未输入或者输入错误的进行提示
             if (!phone) {
-                alert('hi man,no phone number');
+                that.colorInfoModal.show({message:'亲，请输入您的联系电话'});
+                return
+            }
+            if (phone.length!==11||isNaN(parseInt(phone,10))) {
+                that.colorInfoModal.show({message:'亲，您的联系电话输入有误'});
                 return
             }
             if (!userName) {
-                alert('hi man, no userName');
+                that.colorInfoModal.show({message:'亲，请输入您的姓名'});
                 return
             }
             that.model.set('phone', phone);
@@ -354,6 +358,7 @@ var SearchArea = Backbone.View.extend({
         if (this.popTip) {
             this.popTip.close();
         }
+        this.colorInfoModal.close();
         this.$el.empty();
         //this.artificialSelection.close();
     }
@@ -375,8 +380,7 @@ var ArtificialSelection = Backbone.View.extend({
 
     render: function () {
         if (!this.isClosed) {
-            app.viewRegistration.register(this);
-            this.$el.append(this.template);
+            this.$el.html(this.template);
         }
     },
     bindEvents: function () {

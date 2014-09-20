@@ -81,6 +81,7 @@ var Constants = {
 
         //其它
         "infoModal",
+        "colorInfoModal",
         "sideBarView",//侧边工具栏
         "banner",//首页的大屏滚动banner
 
