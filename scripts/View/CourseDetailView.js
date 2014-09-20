@@ -261,13 +261,14 @@ var FreeTrial = Backbone.View.extend({
         this.template = _.template(tpl.get('freeTrial'));
         this.model = new Booking();
         this.model.initBookingFromCourse(params.course);
-        this.render();
+        var courseName = params.course instanceof Backbone.Model?params.course.get('courseName'):params.course.courseName;
+        this.render(courseName);
         this.bindEvents();
     },
 
-    render: function () {
+    render: function (courseName) {
         app.viewRegistration.register(this);
-        this.$el.html(this.template);
+        this.$el.html(this.template({courseName:courseName}));
         this.autoName();
     },
     clearModel: function () {
