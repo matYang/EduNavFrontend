@@ -63,7 +63,8 @@ var ColorInfoModal = Backbone.View.extend({
         $("#overlay").addClass("hidden");
     },
     close: function () {
-        this.hide();
+        this.$el.hide();
+        $("#overlay").addClass("hidden");
         this.$el.empty();
     }
 });
