@@ -48,18 +48,18 @@ var ColorInfoModal = Backbone.View.extend({
     show: function (opt) {
         var self = this;
         $("#infoMessage").html(opt.message);
-        this.$el.removeClass("hidden");
+        this.$el.fadeIn(600);
         $("#overlay").removeClass("hidden");
-//        this.$el.fadeOut(3000, function () {
-//            self.hide();
-//        })
+        setTimeout(function () {
+            self.hide();
+        },1800)
     },
     bindEvents: function () {
         var that = this;
         $("#closeBtn").on("click", this.hide);
     },
     hide: function () {
-        this.$el.addClass("hidden");
+        this.$el.fadeOut(1000);
         $("#overlay").addClass("hidden");
     },
     close: function () {

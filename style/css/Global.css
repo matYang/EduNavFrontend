@@ -109,7 +109,7 @@ input.wrong_color{  border:1px solid #ff9a9a; background:#feffe3 left top repeat
 /*首页表单信息的提示信息弹出框*/
 #colorInfoModal{
     position: fixed;
-    top:200px; left: 50%;z-index:2000;
+    top:180px; left: 50%;z-index:2000;
     width:500px;margin-left: -250px;
     height: 50px;
     border: 1px solid #128D56;
