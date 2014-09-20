@@ -519,14 +519,21 @@
         </div>
         <div class="col2">
             <p class="original_cost text-light" style="margin-bottom: 2px;">门店价</p>
-            <p class="price">*<%= commission %>折</p>
+            <div class="price has-tip has-tip-top">*<%= commission %>折
+                <div class="tip">
+                    <div class="arrow"></div>
+                    <div class="tip_content">
+                        全城最低价，每周仅限<span class="text-error">10</span>个名额！
+                    </div>
+                </div>
+            </div>
             <%if(cashback){%>
             <div>
             <a class="label cashback"><%=cashback %>+元
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">
-                        前台付现，入学成功可至少返还<span class="price"><%=cashback %>元</span>至现金账户！
+                        前台付现，入学成功可至少返还<span class="text-error"><%=cashback %>元</span>至现金账户！
                     </div>
                 </div>
             </a>
