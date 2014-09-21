@@ -241,7 +241,15 @@
 .courseTipAContentDes li{ width: 810px; min-height: 70px; height: auto; cursor: pointer;}
 .courseTipAContentTop{ height: 30px; line-height: 30px; font-size: 14px; color: #000;}
 .courseTipAContentDesUl{ padding: 8px 0; border-bottom: 1px dashed #888;}
-.courseTipAContentDesUl li{ display: inline-block; width: auto; min-height: 20px; line-height: 20px; color: #888; margin-right: 20px; font-size: 14px; cursor: pointer;}
+.courseTipAContentDesUl li{
+    display: inline-block;
+    width: 100px;
+    min-height: 20px;
+    line-height: 20px;
+    color: #888;
+    padding:0 5px;
+    font-size: 14px;
+    cursor: pointer;}
 .courseTipAContentDesUl li:hover{ color: #008E54;}
 .courseTipATopHoverSpec{ background-color: #000; color: #fff;}
 .courseTipClose{
