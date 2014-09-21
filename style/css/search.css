@@ -248,8 +248,7 @@
     line-height: 20px;
     color: #888;
     padding:0 5px;
-    font-size: 14px;
-    cursor: pointer;}
+    font-size: 14px;}
 .courseTipAContentDesUl li:hover{ color: #008E54;}
 .courseTipATopHoverSpec{ background-color: #000; color: #fff;}
 .courseTipClose{
