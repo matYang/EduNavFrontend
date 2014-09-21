@@ -85,6 +85,7 @@ var FrontPageView = Backbone.View.extend({
         });
         //初始化激活的标签
         var activeButton = $("#lv1Button").find("a:first").addClass("active");
+        var activeButtonli = $("#lv1Button").find("li:first").addClass("active");
         $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("value") + "]").removeClass("hidden");
         $("#content").css("padding-bottom", 0);
         //这里是为了声明页面加载完毕
@@ -98,6 +99,7 @@ var FrontPageView = Backbone.View.extend({
             var category = $(this).data("value");
             $(e.delegateTarget).find(".active").removeClass("active");
             $(this).find("a").addClass("active");
+            $(this).addClass("active");
             $("#lv2Categories").children(".hidden").removeClass("hidden");
             $("#lv2Categories").children("div[data-parent!=" + category + "]").addClass("hidden");
         }).on("click", "li", function (e) {
