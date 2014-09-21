@@ -37,39 +37,41 @@ var FrontPageView = Backbone.View.extend({
         //build the buttons on front page;
 
         if (!this.isClosed) {
-            this.categories = categories;
-            //cbuf 一级目录列表
-            //scbuf 二级目录列表
-            //tcbuf 三级目录列表
-            var data = categories.data, len = data.length, i, j, k, cbuf = [], scbuf = [], tcbuf = [], children1, children2, tc = "", padding, lvl3counter = 0, obj = {};
+            //cat1 一级目录列表
+            //cat2 二级目录列表
+            //cat3 三级目录列表
+            var data = categories.data,
+                len = data.length,
+                colSize = Constants.categoryRowLength,//每行的列数
+                i, j, k,
+                cat1 = [], cat2 = [], cat3 = [],
+                children1, children2, padding, obj = {};
             for (i = 0; i < len; i++) {
-                cbuf[i] = this.buttonTemplate({value: data[i].value, name: data[i].name, index: i + 1});
+                cat1[i] = this.buttonTemplate({value: data[i].value, name: data[i].name, index: i + 1});
                 children1 = data[i].children || [];
                 for (j = 0; j < children1.length; j++) { //循环二级目录
                     children2 = children1[j].children;
                     for (k = 0; k < children2.length; k++) { //循环三级目录
-                        lvl3counter++;
-                        tcbuf[k] = this.catButtonTemplate({value: children2[k].value, name: children2[k].name});
+                        cat3[k] = this.catButtonTemplate({value: children2[k].value, name: children2[k].name});
                     }
-                    padding = (Constants.categoryRowMapper[i] - lvl3counter % Constants.categoryRowMapper[i]) % Constants.categoryRowMapper[i];
+                    padding = (colSize - children2.length % colSize) % colSize;
                     while (padding) {
-                        tcbuf.push("<li><a> --- </a></li>");
+                        cat3.push("<li><a> --- </a></li>");
                         padding--;
                     }
-                    obj.catgoryList = tcbuf.join("");
+                    obj.catgoryList = cat3.join("");
                     obj.catClass = 'cat' + (i + 1);//使用cat作为class 取一级循环中的序号 见index.css
                     obj.categoryName = children1[j].name;
                     obj.parentName = i;
                     obj.value = children1[j].value;
                     obj.parentValue = data[i].value;
-                    scbuf[j] = this.lvl2Template(obj);
-                    tcbuf = [];
-                    lvl3counter = 0;
+                    cat2[j] = this.lvl2Template(obj);
+                    cat3 = [];
                 }
-                $("#lv2Categories").append(scbuf.join(""));
-                scbuf = [];
+                $("#lv2Categories").append(cat2.join(""));
+                cat2 = [];
             }
-            $("#lv1Button").append(cbuf.join(""));
+            $("#lv1Button").append(cat1.join(""));
             obj = null;
 
             this.afterRender();
@@ -79,7 +81,8 @@ var FrontPageView = Backbone.View.extend({
     afterRender: function () {
         //二级目录 非第一行加入class "last" 控制边框显示 以及控制二级目录button的高度
         $("#lv2Categories").children("div").each(function (category) {
-            var rowLength = Constants.categoryRowMapper[$(this).data("parentname")], list = $(this).find("li"), rowNum = list.length / rowLength;
+            var rowLength = Constants.categoryRowLength,
+                list = $(this).find("li"), rowNum = list.length / rowLength;
             $(this).find("li:gt(-" + (rowLength + 1) + ")").addClass("last");
             $(this).addClass("c_h" + rowNum);
         });
@@ -116,13 +119,11 @@ var FrontPageView = Backbone.View.extend({
             }
         });
         $(".lv2category").on("click", "li", function (e) {
-            if (e.target.tagName === "A") {
-                e.preventDefault();
-                var value = $(this).data("value");
-                if (value === undefined)return;
-                that.searchRepresentation.set("categoryValue", value);
-                app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
-            }
+            e.preventDefault();
+            var value = $(this).data("value");
+            if (value === undefined)return;
+            that.searchRepresentation.set("categoryValue", value);
+            app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
         });
     },
     close: function () {

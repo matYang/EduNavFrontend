@@ -114,7 +114,7 @@ var Constants = {
         "live.com": "mail.live.com",
         "live.cn": "mail.live.com"
     },
-    categoryRowMapper: [10, 10, 5, 5],
+    categoryRowLength: 8,//首页目录每行的列数
     voidFunction: function () {
 
     }
