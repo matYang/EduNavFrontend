@@ -111,6 +111,7 @@ var Booking = Backbone.Model.extend({
         json.lastModifyTime = undefined;
         json.reference = undefined;
         json.enabled = undefined;
+        json.note = json.note||''+'【PC】';
         return json;
     },
     initBookingFromCourse: function (course) {

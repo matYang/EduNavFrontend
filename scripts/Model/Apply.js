@@ -25,5 +25,10 @@ var Apply = Backbone.Model.extend({
     },
     isNew: function () {
         return this.id === -1;
+    },
+    toJSON: function () {
+        var json = _.clone(this.attributes);
+        json.remark = json.remark||''+'【PC】';
+        return json;
     }
 });
