@@ -18,7 +18,7 @@ var Booking = Backbone.Model.extend({
 
 
             'status': undefined,//订单状态
-            'type': undefined,//订单类型 线上还是线下
+            'type': 1,//订单类型 0线上还是1线下 default 1
             'note': undefined,     //各种record
 
             'price': undefined,//价格
@@ -99,9 +99,7 @@ var Booking = Backbone.Model.extend({
     },
     toJSON: function () {//使用backbone进行resource的交互时采用的toJSON方法
         var json = _.clone(this.attributes);
-        json.type = parseInt(this.get('type'), 10);
-
-        json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
+//        json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
         json.noRefundDate = undefined;
         json.actionList = undefined;
         json.bookingId = undefined;
