@@ -403,7 +403,7 @@ var ApplyACourseModal = Backbone.View.extend({
     },
     //以下为选择目录后的回调函数 设置model 并更新view
     selectCatApply: function (cat) {
-        if(cat){
+        if (cat) {
             this.catApply = cat;
             $('#modalAChooseCat').val(cat.name);
         }
@@ -611,6 +611,7 @@ var SelectCatModal = Backbone.View.extend({
         if (!this.isClosed) {
             this.$el.empty();
             this.isClosed = true;
+
         }
     }
 });
