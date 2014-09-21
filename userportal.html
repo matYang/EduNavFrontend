@@ -363,39 +363,37 @@
                             <span class="popTSpanRight">数百大牌培训机构，总有一个适合你</span>
                         </div>
                     </div>
-                    <a class="popMainClose"></a>
+                    <a class="popAClose"></a>
                 </div>
                 <div class="popContent">
                     <div class="popContentA">
+                        <div id="modalA_submit_error" class="text-error text-center margin-bottom"></div>
                         <ul class="popContentUl">
                             <li id="aSelectiontxt">
                                 <i class="popIconStar"></i>
                                 <span>意向课程：</span>
-                                <!--<select class="popTxt" name="select" style="cursor: default;">
-                                    <option value="请选择">- 请选择 -</option>
-                                </select>-->
-                                <input id="asel-course" class="popTxt"  type="text" placeholder=" 请选择 ">
+                                <input id="modalAChooseCat" class="popTxt"  type="text" placeholder=" 请选择 ">
                                 <a class="inputIcon"></a>
                             </li>
                             <li>
                                 <i class="popIconStar"></i>
                                 <span>学员姓名：</span>
-                                <input class="popTxt" type="text">
+                                <input id="modalA_userName_input" class="popTxt" type="text" />
                             </li>
                             <li>
                                 <i class="popIconStar"></i>
                                 <span>联系电话：</span>
-                                <input class="popTxt" type="text">
+                                <input id="modalA_phone_input" class="popTxt" type="text" />
                             </li>
                             <li>
                                 <i class="popIconStar popIconStarSpec"></i>
                                 <span>附加信息：</span>
-                                <textarea class="popTxt popTxtSpec" placeholder="亲，请填上空闲的时间，择校、择课要求等信息，以便更好的为您服务"></textarea>
+                                <textarea id="modalA_remark_text" class="popTxt popTxtSpec" placeholder="亲，请填上空闲的时间，择校、择课要求等信息，以便更好的为您服务"></textarea>
                             </li>
                         </ul>
                         <div class="popBtn">
-                            <a class="popBtnYes" id="btnSubmitApply"></a>
-                            <a class="popBtnNo">放弃申请</a>
+                            <a class="popBtnYes" id="modalABtnSubmitApply"></a>
+                            <a class="popAClose ">放弃申请</a>
                         </div>
                     </div>
                 </div>
