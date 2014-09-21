@@ -173,7 +173,8 @@ var CourseDetailView = Backbone.View.extend({
                     $btn.removeClass("shown");
                 }
             }
-            if (position >= 500) {
+            //课程详情导航栏fixed
+            if (position >= 620) {
                 if ($("#navTabPlaceholder").length === 0) {
                     $("#courseNavigateTab").after("<ul id='navTabPlaceholder' class='tabButton tab'></ul>");
                 }
