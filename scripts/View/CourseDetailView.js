@@ -302,15 +302,15 @@ var FreeTrial = Backbone.View.extend({
             var note = $('#detail_note_text').val();
             $valid.empty();
             if (!name) {
-                $valid.html('请输入您的姓名');
+                $valid.html('<i class="icon icon-error"></i>请输入您的姓名');
                 return
             }
             if (!phone) {
-                $valid.html('请输入您的联系电话');
+                $valid.html('<i class="icon icon-error"></i>请输入您的联系电话');
                 return
             }
             if (phone.length !== 11 || isNaN(parseInt(phone, 10))) {
-                $valid.html('您的联系电话格式错误');
+                $valid.html('<i class="icon icon-error"></i>您的联系电话格式错误');
                 return
             }
             that.model.set('name', name);

@@ -352,6 +352,11 @@ a:hover, a:active{
     background-position: 0 -501px;
 }
 
+.icon-error{
+    background: url(../images/icon_wrong.png) no-repeat;
+    background-position: 0 -22px;
+}
+
 
 /*图片和图标的样式控制*/
 .img{
