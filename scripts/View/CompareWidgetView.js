@@ -13,9 +13,9 @@ var CompareWidgetView = Backbone.View.extend({
     load: function () {
         if (this.courseIds && this.courseIds.length) {
             app.generalManager.batchFetchCourses(this.courseIds, {
-                "success": this.render,
-                "error": function () {
-                    return;
+                success: this.render,
+                error: function () {
+                    //todo error message
                 }
             });
         } else {
@@ -142,6 +142,7 @@ var CompareWidgetView = Backbone.View.extend({
     }
 });
 
+/*课程详情页中右侧fixed栏目的对比功能的增加和删除 */
 var CourseDetailCompareWidgetView = CompareWidgetView.extend({
    el: ".right_bar .comparison",
    template: _.template(tpl.get("courseDetailCompareWidget")),
@@ -205,14 +206,18 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
                 $content.addClass("hidden");
             }
         });
+        //课程详情页面中右侧免费试听的事件绑定
         $("#trialButton").on("click", function (e) {
             e.preventDefault();
             var $this = $(this);
+            //处于关闭状态
             if ($(e.target).hasClass("close")) {
                 $this.find("img").attr("src", "style/images/up_mianfei.png").css("margin-left", 200);
                 $this.addClass("shrinked");
                 $(e.target).addClass("hidden");
-            } else if (e.target.tagName === "IMG") {
+            }
+            //点击图片（收缩和展开状态） 收缩状态展开 展开状态进入客服系统
+            else if (e.target.tagName === "IMG") {
                 if ($this.hasClass("shrinked")) {
                     $this.find("img").attr("src", "style/images/shiting.gif").css("margin-left", 0);
                     $this.removeClass("shrinked");
@@ -223,7 +228,7 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
 //                    app.navigate("booking/c" + app.courseDetailView.courseId, true);
                 }
             }
-        }).on("mouseover", "img", function (e) {
+        }).on("mouseover", "img", function (e) {//收缩状态下图片的hover状态改变
             if ($(e.delegateTarget).hasClass("shrinked")) {
                 $(e.target).attr("src", "style/images/up_shiting.png");
             }

@@ -206,7 +206,7 @@ var CourseDetailView = Backbone.View.extend({
                 //这里屏蔽了下订单的入口
 //                app.navigate("booking/c" + that.courseId, true);
                 if (!that.freeTrial) {
-                    that.freeTrial = new FreeTrial({course:that.course});
+                    that.freeTrial = new FreeTrial({course: that.course});
                 } else {
                     that.freeTrial.closePop();
                     that.freeTrial.show();
@@ -215,7 +215,11 @@ var CourseDetailView = Backbone.View.extend({
         } else {
             $("#bookNow").attr("class", "btn_W").val("当前不可预订").prop("disabled", true);
         }
-
+        //课程详情中广告图的事件绑定
+        $('.courseDetail .bannerImg').on('click', function () {
+            //打开客服系统
+            doyoo.util.openChat('g=82548');
+        });
         $("#siteMap").on("click", "span", function (e) {
             var id = e.target.id;
             if (id === "siteMap") {
@@ -228,9 +232,7 @@ var CourseDetailView = Backbone.View.extend({
 
     close: function () {
         if (!this.isClosed) {
-            if (this.$el !== 'undefined') {
-                this.$el.empty();
-            }
+            this.$el.empty();
             if (this.compareWidget) {
                 this.compareWidget.close();
             }
@@ -261,14 +263,14 @@ var FreeTrial = Backbone.View.extend({
         this.template = _.template(tpl.get('freeTrial'));
         this.model = new Booking();
         this.model.initBookingFromCourse(params.course);
-        var courseName = params.course instanceof Backbone.Model?params.course.get('courseName'):params.course.courseName;
+        var courseName = params.course instanceof Backbone.Model ? params.course.get('courseName') : params.course.courseName;
         this.render(courseName);
         this.bindEvents();
     },
 
     render: function (courseName) {
         app.viewRegistration.register(this);
-        this.$el.html(this.template({courseName:courseName}));
+        this.$el.html(this.template({courseName: courseName}));
         this.autoName();
     },
     clearModel: function () {
