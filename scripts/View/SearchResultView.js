@@ -22,9 +22,30 @@ var SearchResultView = MultiPageView.extend({
     render: function () {
         this.isClosed = false;
         MultiPageView.prototype.render.call(this);
+        this.afterRender();
+    },
+    //页面成功渲染后的结果
+    afterRender: function(){
+        //设置已加入对比的课程状态
         var courseIds = app.storage.getCoursesToCompare();
         for (var i = 0; i < courseIds.length; i++) {
             $("#compare_" + courseIds[i]).find("input").attr("class", "remove btn_gray").val("已加入对比").removeClass("add").addClass("remove");
+        }
+        //加入banner图
+        var $container = $('#'+this.entryContainer);
+        var total = $container.children('.searchResultEntry').length;
+        var imgTpl = _.template('<img class="bannerImg" src="<%=url%>" alt="<%=alt%>">');
+        var imgList = [
+            {url:'./style/images/search_banner2.jpg',alt:''},
+            {url:'./style/images/search_banner3.jpg',alt:''}
+        ];
+        if(total>=8){
+            $container.find('.searchResultEntry:nth-child(3)').after(imgTpl(imgList[0]));
+            $container.find('.searchResultEntry:nth-child(7)').after(imgTpl(imgList[1]));
+        }else if(total>=5){
+            $container.find('.searchResultEntry:nth-child(3)').after(imgTpl(imgList[0]));
+        }else if(total>=3){
+            $container.find('.searchResultEntry:nth-child(2)').after(imgTpl(imgList[0]));
         }
         //todo 这里是为了声明页面加载完毕 seo
         $('body').attr('pageRenderReady', '')

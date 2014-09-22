@@ -177,7 +177,6 @@
         if (testMockObj.testMode) {
             var cats = testMockObj.testCategories;
             for(var i=0;i < cats.data.length;i++){
-                console.log('v1:'+cats.data[i].name);
                 var cat2 = cats.data[i].children;
                 for(var j = 0;j<cat2.length;j++){
                     var cat3 = cat2[j].children;
@@ -190,7 +189,6 @@
                     }
                 }
             }
-            console.log(cats);
             callback.success(cats);
             return;
         }

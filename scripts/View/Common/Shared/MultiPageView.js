@@ -83,9 +83,6 @@ var MultiPageView = Backbone.View.extend({
         } else {
             $("#" + this.pageNavigator).empty();
         }
-        if (this.afterRender) {
-            this.afterRender();
-        }
         // this.messages.on("change", this.render);
     },
 
