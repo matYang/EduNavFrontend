@@ -200,7 +200,7 @@
 }
 .popContent{
     width: 420px;
-    padding: 0px 0 20px;
+    padding: 5px 0 20px;
     margin: 0 auto;
 }
 .popContentUl{  display: block;width: 420px;height:250px;margin-bottom: 20px}
