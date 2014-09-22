@@ -239,7 +239,7 @@
                             </li>
                         </ul>
                         <div class="popBtn">
-                            <a class="popBtnYes" id="btnApplefreeTrial"></a>
+                            <div class="popBtnYes" id="btnApplefreeTrial">立即申请</div>
                             <a class="popBtnNo">放弃申请</a>
                         </div>
                     </div>
@@ -391,7 +391,7 @@
                             </li>
                         </ul>
                         <div class="popBtn">
-                            <a class="popBtnYes" id="btnAppleartificialSelection"></a>
+                            <div class="popBtnYes" id="btnAppleartificialSelection">立即申请</div>
                             <a class="popBtnNo">放弃申请</a>
                         </div>
                     </div>
@@ -585,8 +585,15 @@
 
 <script type="text/template" id="tpl_SearchCourse">
     <div class="SearchContentA clearfix">
-        <div class="SearchCotentArea">
-            <div class="SearchCotentAreaTop SearchCotentAreaTopLeft"></div>
+        <a class="sTopBar"></a>
+        
+        <div class="SearchCotentArea Search-self-help">
+            <div class="SearchCotentAreaTop">
+                <a></a>
+                <span>自助选课</span>
+                <i></i>
+                <p>适合课程，比出来</p>
+            </div>
             <div class="SearchCotentAreaMain SearchCotentAreaMainLeft">
                 <ul class="SearchCotentAreaMainA">
                     <li>
@@ -612,11 +619,16 @@
                 </ul>
             </div>
             <div class="SearchCotentAreaBottom SearchCotentAreaBottomLeft">
-                <a class="SearchIcon"></a>
+                <div class="SearchIcon">搜索</div>
             </div>
         </div>
-        <div class="SearchCotentArea">
-            <div class="SearchCotentAreaTop SearchCotentAreaTopRight"></div>
+        <div class="SearchCotentArea  Search-person-help">
+            <div class="SearchCotentAreaTop">
+                <a></a>
+                <span>人工选课</span>
+                <i></i>
+                <p>20名资深选课顾问，免费服务</p>
+            </div>
             <div class="SearchCotentAreaMain SearchCotentAreaMainRight">
                 <ul class="SearchCotentAreaMainB">
                     <li class="SearchCotentAreaMainBLi">
@@ -643,7 +655,7 @@
                 </ul>
             </div>
             <div class="SearchCotentAreaBottom SearchCotentAreaBottomRight">
-                <a class="ApplyIcon"></a>
+                <div class="ApplyIcon">立即申请</div>
             </div>
         </div>
     </div>
