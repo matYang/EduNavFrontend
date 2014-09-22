@@ -40,17 +40,17 @@ var SearchResultView = MultiPageView.extend({
             {url:'./style/images/search_banner2.jpg',alt:''},
             {url:'./style/images/search_banner3.jpg',alt:''}
         ];
-        if(total>=10){
-            $container.find('.searchResultEntry:nth-child(1)').after(imgTpl(imgList[0]));
-            $container.find('.searchResultEntry:nth-child(5)').after(imgTpl(imgList[1]));
-            $container.find('.searchResultEntry:nth-child(9)').after(imgTpl(imgList[2]));
+        if(total>=9){
+            $container.children('.searchResultEntry:nth-child(1)').after(imgTpl(imgList[0]));
+            $container.children('.searchResultEntry:nth-child(5)').after(imgTpl(imgList[1]));
+            $container.children('.searchResultEntry:nth-child(10)').after(imgTpl(imgList[2]));
         } else if(total>=8){
-            $container.find('.searchResultEntry:nth-child(3)').after(imgTpl(imgList[0]));
-            $container.find('.searchResultEntry:nth-child(7)').after(imgTpl(imgList[1]));
+            $container.children('.searchResultEntry:nth-child(3)').after(imgTpl(imgList[0]));
+            $container.children('.searchResultEntry:nth-child(8)').after(imgTpl(imgList[1]));
         }else if(total>=5){
-            $container.find('.searchResultEntry:nth-child(3)').after(imgTpl(imgList[0]));
+            $container.children('.searchResultEntry:nth-child(3)').after(imgTpl(imgList[0]));
         }else if(total>=3){
-            $container.find('.searchResultEntry:nth-child(2)').after(imgTpl(imgList[0]));
+            $container.children('.searchResultEntry:nth-child(2)').after(imgTpl(imgList[0]));
         }
         $('#'+this.entryContainer+' .bannerImg').on('click',function(){
             //打开客服系统

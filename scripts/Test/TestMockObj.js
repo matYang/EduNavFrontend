@@ -46,6 +46,12 @@ testMockObj = {
         .set("instName", "School C").set("address", "南京市建邺区").set("status", EnumConfig.CourseStatus.onlined)
         .set('startUponArrival', 1)
         .set('startDate', new Date()),
+    testCourse5: (new Course()).set("categoryValue", "000101").set("id", 5).set("courseName", "GRE"),
+    testCourse6: (new Course()).set("categoryValue", "000101").set("id", 6).set("courseName", "GRE"),
+    testCourse7: (new Course()).set("categoryValue", "000101").set("id", 7).set("courseName", "GRE"),
+    testCourse8: (new Course()).set("categoryValue", "000101").set("id", 8).set("courseName", "GRE"),
+    testCourse9: (new Course()).set("categoryValue", "000101").set("id", 9).set("courseName", "GRE"),
+    testCourse10: (new Course()).set("categoryValue", "000101").set("id", 10).set("courseName", "GRE"),
     testBookings: new Bookings(),
     testBooking1: (new Booking()).set("id", 1).set("reference", "10001").set("status", 0).set("type", 1).set("name", "马修")
         .set("phone", 13915063907).set("email", "test@gmail.com").set("price", 11999)
@@ -131,7 +137,18 @@ testMockObj = {
     }
 };
 
-testMockObj.testCourses.add([testMockObj.testCourse1, testMockObj.testCourse2, testMockObj.testCourse3, testMockObj.testCourse4]);
+testMockObj.testCourses.add([
+    testMockObj.testCourse1,
+    testMockObj.testCourse2,
+    testMockObj.testCourse3,
+    testMockObj.testCourse4,
+    testMockObj.testCourse5,
+    testMockObj.testCourse6,
+    testMockObj.testCourse7,
+    testMockObj.testCourse8,
+    testMockObj.testCourse9,
+    testMockObj.testCourse10
+]);
 testMockObj.testCourses.total = 39;
 testMockObj.testBookings.add([testMockObj.testBooking1, testMockObj.testBooking2, testMockObj.testBooking3, testMockObj.testBooking4]);
 testMockObj.testCoupons.add([testMockObj.testCoupon1, testMockObj.testCoupon2, testMockObj.testCoupon3]);
