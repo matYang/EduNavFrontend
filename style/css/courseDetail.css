@@ -9,6 +9,21 @@
 .courseDetail .banner .row1 dt{font-size:24px; font-family:"Microsoft Yahei"; color:#128d56; margin-bottom:10px;}
 .courseDetail .banner .row1 dt span{ margin-left:10px; font-size: 14px;}
 
+/*课程详情中的4张+++广告图*/
+
+.courseDetail .bannerImg{
+    width: 1000px;
+    height: 137px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+/*主题内容去除padding以及border width对图片的影响*/
+.courseDetail .courseMain .bannerImg{
+    margin-left: -15px;
+    width: 998px;
+}
+
+
 /*课程名 机构名*/
 .courseDetail .banner .row1 .col1{
     float:left; width:590px;overflow: hidden;
@@ -16,8 +31,8 @@
     text-overflow: ellipsis;}
 /*价格等的信息*/
 .courseDetail .banner .row1 .col2{float:left; width:205px; margin-top:5px;text-align: center;}
-.courseDetail .banner .row1 .col2 .label{margin: 2px 4px;}
-.courseDetail .banner .price{ font-size:26px;margin-bottom: 5px;}
+.courseDetail .banner .price{ font-size:26px;}
+.courseDetail .banner .tip .price{ font-size:16px;}
 .courseDetail .banner .price .sign{ color:#333;}
 /*预订按钮*/
 .courseDetail .banner .row1 .col3{float:right; margin-top:5px;}
@@ -53,7 +68,7 @@
 .courseDetail .banner .row2 .course_map .map{width:328px; height:185px;}
  /*公用*/
 .courseDetail .courseMain{ position:relative; border:1px solid #ccc;}
-.courseDetail .courseMain .course_content{padding:15px;}
+.courseDetail .courseMain .course_content{padding:0 15px;}
 .courseDetail .courseMain .course_content dl{}
 .courseDetail .courseMain .course_content dt{
     border-bottom: 1px dotted #7f7f7f;

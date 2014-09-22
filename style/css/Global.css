@@ -7,7 +7,7 @@ body, dl, dd, h1, h2, h3, h4, h5, h6, p, form { margin: 0; }
 body{ font-size:14px; color:#333;}
 label{font-weight:bold;color:#333}
 
-input[type="text"] { padding: 0; }
+input[type="text"] { padding: 0 10px; }
 ol, ul { margin: 0; padding: 0; }
 img { border: none; }
 ul,li{ list-style: none; }
@@ -105,6 +105,43 @@ input.wrong_color{  border:1px solid #ff9a9a; background:#feffe3 left top repeat
 .pop .close{ position:absolute; top:10px; right:10px; width:20px; height:20px; background:url(../images/close.png) no-repeat; cursor:pointer;}
 .pop .pop_title{ height:35px; line-height:35px; padding-left:20px; background:#128d56; border-bottom:1px solid #ccc; font-weight:bold; color:#fff;}
 .pop_content{ padding:10px;}
+
+/*首页表单信息的提示信息弹出框*/
+#colorInfoModal{
+    position: fixed;
+    top:180px; left: 50%;z-index:2000;
+    width:500px;margin-left: -250px;
+    height: 50px;
+    border: 1px solid #128D56;
+    background: #ffffff;
+    box-shadow: rgba(0,0,0,0.5) 0 0 1px 2px;
+}
+#colorInfoModal .info-icon{
+    position: absolute;
+    left: 0;top: 0;
+    width: 50px;height: 50px;
+    background:#128D56 url("../images/icon-info.png") center center no-repeat;
+}
+#colorInfoModal .info-content{
+    padding:5px 5px 5px 60px;
+    width: 425px;
+    overflow: hidden;
+    color: #128D56;
+    font-size: 18px;
+    line-height: 40px;
+}
+#colorInfoModal .info-close{
+    position: absolute;
+    right: 0;bottom: 0;
+    display: inline-block;
+    width: 50px;height: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 14px;
+    color: #ffffff;
+
+    background: #128d56;
+}
 
 
 .loading{

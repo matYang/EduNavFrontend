@@ -563,31 +563,35 @@
         });
     };
 
-    /* Coupons */
-    //用于激活返现券
-    UserManager.prototype.claimCoupon = function (couponId, callback) {
+    //发起申请 申请人工选课 申请助学贷款等
+    UserManager.prototype.initApply = function (newApply, callback) {
         var self = this;
-        if (!this.sessionManager.hasSession()) {
-            Info.warn('UserManager::claimCoupon:: session does not exist.');
+        if (testMockObj.testMode) {
+            callback.success();
             return;
         }
-
-        $.ajax({
-            type: 'PUT',
-            url: ApiResource.user_coupon + "/" + couponId,
+        if (!(newApply instanceof Backbone.Model)) {
+            Info.warn('UserManager::newApply:: invalid parameter');
+            return;
+        }
+        newApply.overrideUrl(ApiResource.user_apply);
+        newApply.set('id', -1);
+        newApply.save({}, {
             dataType: 'json',
-            success: function (data) {
+
+            success: function (model, response) {
                 if (callback) {
-                    callback.success();
+                    callback.success(newApply);
                 }
             },
-            error: function (data, textStatus, jqXHR) {
-                Info.warn('UserManager::claimCoupon:: action failed');
+            error: function (model, response) {
+                Info.warn('UserManager::initApply:: save failed with response:');
                 if (callback) {
-                    callback.error($.parseJSON(data.responseText));
+                    callback.error($.parseJSON(response.responseText));
                 }
             }
         });
+
     };
 
 }).call(this);

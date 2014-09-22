@@ -6,6 +6,8 @@
 
 .index #visualScope {width:100%; height:320px;margin:0 auto; overflow:hidden; }
 
+.index #searchArea { width: 100%; height: auto;}
+
 /*在屏幕宽度超过1440时 左右会出现空白背景
     #1 设置图片的宽度为1960px 适应高分辨率屏 retina除外
     #2 根据不同图片设置不同背景图 这个比较麻烦 大图必须匹配对应的背景图
@@ -79,20 +81,19 @@
 .index #visualScope ol.bjqs-markers li a:hover{ background:#2a2e39;}
 .index #visualScope ol.bjqs-markers li.active-marker a{ background:#2a2e39;filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99000000',endColorstr='#99000000'); }
 
-.index .content{ margin-top:-74px; position:relative;}
+.index .content{position:relative;}
 .index .content .category{ margin-bottom:100px;}
 
-.index .tab2{ height:88px; width:1000px; background:url(../images/tab2.png) no-repeat;}
-.index .tab2 li{float:left; width:250px; height:88px; line-height:68px; margin-top:5px; text-align:center;font-size:24px; color:#fff}
-.index .tab2 li a,.tab2 li a:visited{display:block; height:88px; color:#fff; text-decoration:none;}
-.index .tab2 li.item1 a.active{ background:url(../images/tab2_active.png) no-repeat 0 68px;}
-.index .tab2 li.item2 a.active{ background:url(../images/tab2_active.png) no-repeat -250px 68px;}
-.index .tab2 li.item3 a.active{ background:url(../images/tab2_active.png) no-repeat -500px 68px;}
-.index .tab2 li.item4 a.active{ background:url(../images/tab2_active.png) no-repeat -750px 68px;}
+/*一级目录*/
+.index .tab2 .active{ background-color: #1A8F5A; color: #FFF;}
+.index .tab2{ height:52px; width:1000px; }
+.index .tabtop{width: 1000px; height: 2px; background-color: #1A8F5A;}
+.index .tab2 li{float:left; width:248px; margin-right: 2px; height:50px; line-height:50px; text-align:center; font-size:20px; color:#fff; background-color: #E5E6E8;}
+.index .tab2 li:hover{ background-color: #1A8F5A; color: #FFF;}
 
 .index .c_item{}
-.index .c_item .fleft{position:relative; width:148px; text-align:center;}
-.index .c_item .fleft a{color:#fff;vertical-align:middle; text-align:center; font-size:22px; font-weight:normal;}
+.index .c_item .fleft{position:relative; width:148px; text-align:center;  background-color: #1A8F5A;}
+.index .c_item .fleft a{color:#fff;vertical-align:middle; text-align:center; font-size:18px; font-weight:normal;}
 .index .c_item .fleft .top_arrow{ position:absolute; top:-1px; left:-1px; width:50px; height:50px;}
 .index .c_item .fright{width:850px;}
 
@@ -104,41 +105,29 @@
 .index .c_h6 .fleft{height:292px; line-height:292px; }
 .index .c_h7 .fleft{height:341px; line-height:341px; }
 
+
+/*一级目录*/
+.index .c_item .fright li{
+    float:left;
+    width: 100px;
+    /*border-bottom:1px solid #f6eac3;*/
+    height:38px;
+    margin: 5px 0;
+    padding: 0 2px;
+    line-height:38px; text-align:center;}
+
+.index .c_item .clearfix li:hover{ background-color: #E5E6E8;}
+.index .c_item .clearfix li a{ height: 38px;margin: 5px 0;}
+.index .c_item .fright li a:hover{ color: #333;}
+
 .index tr.last td{ border-bottom:none!important;}
-.index td.last,.index li.last{border-right:none!important; border-bottom:none!important;}
+.index td.last,.index li.last{/*border-right:none!important;*/ border-bottom:none!important;}
 
-.index .cat1{border:1px solid #edd68f;}/*语言类*/
-.index .cat1 .fleft{background:#dba501 url(../images/xy.png) repeat;}
-.index .cat1 .fleft .top_arrow{ background:url(../images/index_item1.png) no-repeat;}
-.index .cat1 .fright ul{}
-.index .cat1 .fright li{float:left; width:84px; border-left:1px solid #f6eac3; border-bottom:1px solid #f6eac3; height:48px; line-height:48px; text-align:center;}
-.index .cat1 .fright a:hover{color:#dba501;}
-.index .cat1 td{border-right:1px solid #feedba; border-bottom:1px solid #feedba;}
-
-.index .cat2{border:1px solid #8fddee;}/*学历文凭*/
-.index .cat2 .fleft{background:#01b5db url(../images/xy.png) repeat;}
-.index .cat2 .fleft .top_arrow{ background:url(../images/index_item2.png) no-repeat;}
-.index .cat2 .fright ul{}
-.index .cat2 .fright li{float:left; width:84px; border-left:1px solid #c2edf6;border-bottom:1px solid #c2edf6;  height:48px; line-height:48px; text-align:center;}
-.index .cat2 .fright a:hover{color:#01b5db;}
-.index .cat2 td{border-right:1px solid #c2edf6; border-bottom:1px solid #c2edf6;}
-
-.index .cat3{border:1px solid #9bddd2;}/*财务金融*/
-.index .cat3 .fleft{background:#37bca5 url(../images/xy.png) repeat;}
-.index .cat3 .fleft .top_arrow{ background:url(../images/index_item3.png) no-repeat;}
-.index .cat3 .fright ul{}
-.index .cat3 .fright li{float:left; width:169px; border-left:1px solid #cfefe9; border-bottom:1px solid #cfefe9; height:48px; line-height:48px; text-align:center;}
-.index .cat3 .fright a:hover{color:#37bca5;}
-.index .cat3 td{border-right:1px solid #cfefe9; border-bottom:1px solid #cfefe9;}
-
-.index .cat4{border:1px solid #e9cffe;}/*资格认证*/
-.index .cat4 .fleft{background:#ca88fd url(../images/xy.png) repeat;}
-.index .cat4 .fleft .top_arrow{ background:url(../images/index_item4.png) no-repeat;}
-.index .cat4 .fright ul{}
-.index .cat4 .fright li{float:left; width:169px; border-left:1px solid #f4e7ff; border-bottom:1px solid #f4e7ff; height:48px; line-height:48px; text-align:center;}
-.index .cat4 .fright a:hover{color:#ca88fd;}
-.index .cat4 td{border-right:1px solid #f4e7ff; border-bottom:1px solid #f4e7ff;}
-
+.index .c_item .clearfix li{ 
+    background-color: #FFF;  
+    border-right: 1px solid #E5E6E8;
+    cursor: pointer;
+}
 
 .index .school li{float:left; text-align:center; width:198px; height:102px;}
 .index .s_language { border-bottom:1px solid #edd68f; border-right:1px solid #edd68f;}

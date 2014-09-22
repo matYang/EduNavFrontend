@@ -143,13 +143,13 @@ thead tr.bookingEntry td.detail{text-align: center}
 
 #mypage_content .row2{ padding:20px;  border-bottom:1px dotted #ccc; line-height:32px;}
 #mypage_content .row2 h3{font-size:24px; color:#128d56; font-weight:normal; margin-bottom:10px;}
-#mypage_content .row2 .fleft{width:250px; margin-right:20px;}
+#mypage_content .row2 .fleft{width:300px; margin-right:20px;}
 #mypage_content .row2 p label{color:#666;width: 70px;
     display: inline-block;}
 
 #mypage_content .row3{padding:20px; border-bottom:1px dotted #ccc; line-height:36px;}
 #mypage_content .row3 h3{ color:#333;}
-#mypage_content .row3 .fleft{width:250px; margin-right:20px;}
+#mypage_content .row3 .fleft{width:300px; margin-right:20px;}
 #mypage_content .row3 p label{color:#666;}
 
 #mypage_content .row4{padding:20px;  border-bottom:1px dotted #ccc; line-height:36px;}

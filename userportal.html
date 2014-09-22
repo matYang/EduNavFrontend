@@ -15,7 +15,7 @@
     <title>爱上课 ishangke.cn</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="style/images/ico.ico"/>
-    <link href="style/lib/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <!--<link href="style/lib/jquery-ui.css" rel="stylesheet" type="text/css"/>-->
     <link href="style/css/Global.css" rel="stylesheet" type="text/css"/>
     <link href="style/css/notifier-base.css" rel="stylesheet" type="text/css"/>
     <link href="style/css/common-ui.css" rel="stylesheet" type="text/css"/>
@@ -43,12 +43,21 @@
 <div id='topBar' class='unselectable'></div>
 <div id='main' class='main'>
     <div id="visualScope"></div>
+    <div id="searchArea"></div>
     <div id='content' class='content'></div>
 </div>
 <div id='infoLayer'></div>
-<div id='overlay' class="mask1" class="hidden"></div>
+<div id="overlay"></div>
+<div id='overlayCourse'></div>
+<div id='overlayFreeTrial'></div>
+<div id='overlayASelection'></div>
+<div id='overlayApplySuc'></div>
+
+<!-- class="mask1" class="hidden"-->
 <div id="popup" class="hidden pop"
-     style=" top:200px; left: 50%; width:500px; min-height:100px; margin-left: -250px; z-index:200;"></div>
+     style=" top:200px; left: 50%; width:500px; min-height:100px; margin-left: -250px; z-index:2000;">
+</div>
+<div id="colorInfoModal" style="display: none"></div>
 
 <div class="footer">
     <div class="footer_inner">
@@ -75,7 +84,7 @@
                 <li id="navigate_search" class="button navigate_search">分类检索</li>
                 <li id="navigate_compare" class="button navigate_compare">课程对比</li>
             </ul>
-            <div class="user_info">
+            <!--<div class="user_info">
                 <span id="greeting"></span>好，亲爱的
                 <span id="username" class="link">
                     <% if(name){%>
@@ -86,11 +95,25 @@
                  </span>
                 <a id="logout" href="#">[退出]</a>
                 <a id="topbar-mypage" href="#">我的爱上课</a>
+            </div>-->
+            <div class="login_reg">
+                <div id="user_info_pic">
+                        <a id="userPic" href="#" class="userpic"><img src=" "/></a>
+                        <div id="user_info" class="ql">
+                            <ul>
+                                <li><a id="personal" href="#">个人中心</a></li>
+                                <li><a id="management" href="#">订单管理</a></li>
+                                <li><a id="cash" href="#">账户管理</a></li>
+                                <li><a id="userInfo" href="#">个人资料</a></li>
+                                <li><a id="logout" href="#">退出</a></li>
+                            </ul>
+                        </div>
+                </div>
+
             </div>
             <div class="tel">
                 <li id="navigate_tel" style="padding: 0 5px">
-                    <img src="./style/images/top_bar_tel.png" class="img"/>
-                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"></a>
+                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><img src="./style/images/top_bar_tel.png" class="img"/></a>
                 </li>
             </div>
         </div>
@@ -137,8 +160,7 @@
             </div>
             <div class="tel">
                 <li id="navigate_tel" style="padding: 0 5px">
-                    <img src="./style/images/top_bar_tel.png" class="img"/>
-                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"></a>
+                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><img src="./style/images/top_bar_tel.png" class="img"/></a>
                 </li>
             </div>
         </div>
@@ -157,6 +179,7 @@
 
 <script type="text/template" id="tpl_front">
     <div id="lv1Button" class="tab2 unselectable">
+        <div class="tabtop"></div>
     </div>
     <div class="category unselectable">
         <div id="lv2Categories"></div>
@@ -175,6 +198,210 @@
             </ul>
         </div>
     </div>
+</script>
+
+<script type="text/templates" id="tpl_freeTrial">
+    <div class="popM" id="popfreeTrial">
+        <div class="popMain">
+            <div class="popMainA">
+                <div class="popTopBar"></div>
+                <div class="popTopBlack"></div>
+                <div class="popTitle">
+                    <div class="popTitleA">
+                        <span class="popTSpanLeft">申请免费试听</span>
+                        <a class="popShu"></a>
+                        <div class="popTitleRight">
+                            <i class="popIconQuan"></i>
+                            <span class="popTSpanRight">全城最低价，全场7折起</span>
+                        </div>
+                    </div>
+                    <a class="popMainClose js_popClose"></a>
+                </div>
+                <div class="popContent">
+                    <div class="popContentA">
+                        <div id="detail_submit_error" class="text-error text-center margin-bottom"></div>
+                        <ul class="popContentUl">
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>意向课程：</span>
+                                <p><%=courseName%></p>
+                            </li>
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>学员姓名：</span>
+                                <input id="detail_name_input" class="popTxt" type="text" />
+                            </li>
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>联系电话：</span>
+                                <input id="detail_phone_input" class="popTxt" type="text" />
+                            </li>
+                            <li>
+                                <i class="popIconStar popIconStarSpec"></i>
+                                <span>附加信息： &nbsp;&nbsp;(选填)</span>
+                                <textarea id="detail_note_text" class="popTxt popTxtSpec" placeholder="亲，请填上空闲的时间，择校、择课要求等信息，以便更好的为您服务"></textarea>
+                            </li>
+                        </ul>
+                        <div class="popBtn">
+                            <a class="popBtnYes" id="btnApplefreeTrial"></a>
+                            <a class="popBtnNo js_popClose">放弃申请</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+<script type="text/template" id="tpl_popTip">
+    <div class="popTip" id="popSuccessApple">
+        <div class="popTipTop">
+            <a class="popTipTopIcon"></a>
+            <span>申请已提交</span>
+        </div>
+        <div class="popTipMid">
+            30分钟后（若亲未备注其他时间）爱上课资深顾问将与您联系。
+        </div>
+        <div class="popTipBottom">
+            <div id="js_viewOtherCourses" class="popTipMidA"></div>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_courseTip">
+    <div id="popcourseTip" class="coursepopMenban" showid="">
+        <div class="coursepopMain">
+            <div class="courseTip">
+                <div class="courseTipA">
+                    <div class="courseTipClose">X</div>
+                    <ul class="courseTipATop">
+                        <%_.each(courseTitle,function(v){%>
+                        <li class="courseTipATopHover" data-id="<%=v.id%>" data-value="<%=v.value%>"><%=v.name%></li>
+                        <%})%>
+                    </ul>
+                    <div class="courseTipAContent">
+                        <ul class="courseTipAContentDes">
+                            <li>
+                                <div class="courseTipAContentTop">基础考级</div>
+                                <ul class="courseTipAContentDesUl">
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+                                    <li>计算机一级</li>
+                                    <li>计算机二级</li>
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="courseTipAContentTop">基础考级</div>
+                                <ul class="courseTipAContentDesUl">
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+                                    <li>计算机一级</li>
+                                    <li>计算机二级</li>
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="courseTipAContentTop">基础考级</div>
+                                <ul class="courseTipAContentDesUl">
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+                                    <li>计算机一级</li>
+                                    <li>计算机二级</li>
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="courseTipAContentTop">基础考级</div>
+                                <ul class="courseTipAContentDesUl">
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+                                    <li>计算机一级</li>
+                                    <li>计算机二级</li>
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="courseTipAContentTop">基础考级</div>
+                                <ul class="courseTipAContentDesUl">
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+                                    <li>计算机一级</li>
+                                    <li>计算机二级</li>
+                                    <li>办公应用</li>
+                                    <li>电脑维修</li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_artificialSelection">
+    <div class="popM" id="popartificialSelection">
+        <div class="popMain">
+            <div class="popMainA">
+                <div class="popTopBar"></div>
+                <div class="popTopBlack"></div>
+                <div class="popTitle">
+                    <div class="popTitleA">
+                        <span class="popTSpanLeft">申请人工选课</span>
+                        <a class="popShu"></a>
+                        <div class="popTitleRight">
+                            <i class="popIconQuan"></i>
+                            <span class="popTSpanRight">数百大牌培训机构，总有一个适合你</span>
+                        </div>
+                    </div>
+                    <a class="popAClose"></a>
+                </div>
+                <div class="popContent">
+                    <div class="popContentA">
+                        <div id="modalA_submit_error" class="text-error text-center margin-bottom"></div>
+                        <ul class="popContentUl">
+                            <li id="aSelectiontxt">
+                                <i class="popIconStar"></i>
+                                <span>意向课程：</span>
+                                <input id="modalAChooseCat" class="popTxt"  type="text" placeholder=" 请选择 ">
+                                <a class="inputIcon"></a>
+                            </li>
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>学员姓名：</span>
+                                <input id="modalA_userName_input" class="popTxt" type="text" />
+                            </li>
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>联系电话：</span>
+                                <input id="modalA_phone_input" class="popTxt" type="text" />
+                            </li>
+                            <li>
+                                <i class="popIconStar popIconStarSpec"></i>
+                                <span>附加信息：</span>
+                                <textarea id="modalA_remark_text" class="popTxt popTxtSpec" placeholder="亲，请填上空闲的时间，择校、择课要求等信息，以便更好的为您服务"></textarea>
+                            </li>
+                        </ul>
+                        <div class="popBtn">
+                            <a class="popBtnYes" id="modalABtnSubmitApply"></a>
+                            <a class="popAClose ">放弃申请</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </script>
 
 <script type="text/template" id="tpl_search">
@@ -248,8 +475,7 @@
                 <div class="fright">
                     当前促销：
                     <label for="check_originalPrice"> <input id="check_originalPrice" type="checkbox" name="originalPriceStart"/>会员折扣</label>
-                    <label for="check_cashback"> <input id="check_cashback" type="checkbox" name="cashback"/>线下返现</label>
-                    <label for="check_commission"><input id="check_commission" type="checkbox" name="commission"/>在线立减</label>
+                    <label for="check_cashback"> <input id="check_cashback" type="checkbox" name="cashback"/>返现</label>
                 </div>
             </div>
             <!--searchResultSorter end-->
@@ -275,10 +501,9 @@
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/><span><%= instName%></span></div>
         <div class="col1">
             <p class="title">
-                <a class="F_green courseTitle viewDetail" data-id="<%= id %>">
-                    <%= courseName %></a>
+                <a class="F_green courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
             </p>
-
+            <p class="desc">大学城（商圈）: <%= circleName %></p>
             <p class="desc"><span>上课日期:</span>
                 <%if(startUponArrival){%>
                 <%= startDate %>
@@ -289,39 +514,25 @@
                     <%= regPhone%>
                 <%}%>
             </p>
-
             <p class="desc"><span>上课地址:</span> <%= address %></p>
-
-            <p class="desc">
-                <span>优惠信息:</span>
-                <%if(marking){%>
-                <%= marking %>
-                <%}else{%>
-                -- --
-                <%}%>
-            </p>
-
         </div>
         <div class="col2">
-            <p class="original_cost">&nbsp;
-                <%if(originalPrice){%>
-                原价：<span>￥<%=originalPrice%></span>
-                <%}%>
-            </p>
-            <p class="price">
-                <%if(!price){%>
-                <span class="sign">￥</span><small>机构定制</small>
-                <%}else{%>
-                <span class="sign">￥</span><%= price %>
-                <%}%>
-            </p>
-            <%if(cashback){%>
-            <div>
-            <a class="label cashback"><%=cashback %>元
+            <p class="original_cost text-light" style="margin-bottom: 2px;">门店价</p>
+            <div class="price has-tip has-tip-top">*<%= commission %>折
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">
-                        前台付现，入学成功可立即返还<%=cashback %>元至现金账户！
+                        全城最低价，每周仅限<span class="text-error">10</span>个名额！
+                    </div>
+                </div>
+            </div>
+            <%if(cashback){%>
+            <div>
+            <a class="label cashback"><%=cashback %>+元
+                <div class="tip">
+                    <div class="arrow"></div>
+                    <div class="tip_content">
+                        前台付现，入学成功可至少返还<span class="text-error"><%=cashback %>元</span>至现金账户！
                     </div>
                 </div>
             </a>
@@ -329,11 +540,9 @@
             <%}%>
         </div>
         <div class="col3">
-            <div class="compare" id="compare_<%= id %>"><input class="btn_g add" type="button" value="+对比"/></div>
 
-            <div class="blank" id="trial_<%= id %>"><input class="btn_o" value="免费试听" type="button"></div>
-
-            <div class="viewDetail" data-id="<%= id %>"><a class="F_green">查看详情</a></div>
+            <div class="blank margin-top" id="trial_<%= id %>"><input class="btn_g" value="查看详情" type="button"></div>
+            <div class="compare margin-top" id="compare_<%= id %>"><input class="btn_o add" type="button" value="+对比"/></div>
         </div>
     </div>
 </script>
@@ -377,6 +586,78 @@
         <div id="compareItems" class="compare_items"></div>
         <div class="btns">
             <input type="button" value="开始对比" id="compare">
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_SearchCourse">
+    <div class="SearchContentA clearfix">
+        <div class="SearchCotentArea">
+            <div class="SearchCotentAreaTop SearchCotentAreaTopLeft"></div>
+            <div class="SearchCotentAreaMain SearchCotentAreaMainLeft">
+                <ul class="SearchCotentAreaMainA">
+                    <li>
+                        <span>课程类目</span>
+                        <input id="courseChoose" class="selectFarme" type="text" placeholder="请选择">
+                        <i class="selectIcon"></i>
+                    </li>
+                    <li>
+                        <span>上课地区</span>
+                        <select id="home_location_select" name="" class="selectFarme">
+                        </select>
+                    </li>
+                    <li>
+                        <span>上课日期</span>
+                        <select id="select_startDate" name="" class="selectFarme">
+                            <option value>不限</option>
+                            <option value="thisMonth">当月</option>
+                            <option value="nextMonth">下月</option>
+                            <option value="twoMonthsAfter">下下月</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span>班级类型</span>
+                        <select id="home_classType_select" name="" class="selectFarme">
+                            <option value>不限</option>
+                            <option value="0">VIP 1对1</option>
+                            <option value="1">小班授课（小于6人）</option>
+                            <option value="2">中班授课（6-30人）</option>
+                            <option value="3">大班授课（30人+）</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+            <div class="SearchCotentAreaBottom SearchCotentAreaBottomLeft">
+                <a class="SearchIcon"></a>
+            </div>
+        </div>
+        <div class="SearchCotentArea">
+            <div class="SearchCotentAreaTop SearchCotentAreaTopRight"></div>
+            <div class="SearchCotentAreaMain SearchCotentAreaMainRight">
+                <ul class="SearchCotentAreaMainB">
+                    <li class="SearchCotentAreaMainBLi">
+                        <span>意向课程</span>
+                        <input id="applyCourseChoose" class="selectFarme" type="text" placeholder="请选择">
+                        <i class="selectIcon"></i>
+                    </li>
+                    <li class="SearchCotentAreaMainBLi"></li>
+                    <li class="SearchCotentAreaMainBLi">
+                        <span>联系电话</span>
+                        <input id="home_phone_input" class="selectFarme" type="text">
+                    </li>
+                    <li class="SearchCotentAreaMainBLi">
+                        <span>学员姓名</span>
+                        <input id="home_userName_input" class="selectFarme" type="text">
+                    </li>
+                    <li class="SearchCotentAreaMainBLi">
+                        <span>附加信息 &nbsp;&nbsp;(选填)</span>
+                        <textarea id="home_remark_text" class="inputMyInfo" placeholder="#我的信息#"></textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="SearchCotentAreaBottom SearchCotentAreaBottomRight">
+                <a id="btnSubmitApply" class="ApplyIcon"></a>
+            </div>
         </div>
     </div>
 </script>
@@ -535,7 +816,7 @@
     </div>
     <div class="blank1"></div>
     <div class="title scrollTarget" style="border-bottom: none">
-        为保证您的账号安全，6个月以前的订单请联系客服400-025-0884
+        课程具体开班日期，请联系客服：<span class="text-error">400-025-0884</span>
     </div>
     <table id="bookingSummary" class="table-clean" border="0" width="100%" cellpadding="0" cellspacing="0">
         <thead>
@@ -561,9 +842,9 @@
             <div class="dayOfWeek"><%=course.startDateWeek%></div>
             <%}%>
         </td>
-        <td class="detail">
+        <td class="detail bookingTitle" id="bookingTitle_bookingId_<%= id %>" style="cursor: pointer">
             <img class="img-logo" src="<%=course.logoUrl%>">
-            <h3><a class="F_green bookingTitle"  id="bookingTitle_bookingId_<%= id %>" href="#"><%= course.courseName %></a></h3>
+            <h3><a class="F_green "><%= course.courseName %></a></h3>
             <p>
                 <span class="price">
                    <%if(!price){%>
@@ -573,11 +854,11 @@
                    <%}%>
                 </span>
             </p>
-            <p class="address" title="<%= course.address %>">上课地址：<%= course.address %></p>
+            <p class="address" title="<%= course.address %>">上课地址:<%= course.address %></p>
         </td>
         <td class="payType">
             <p><%= EnumConfig.BookingTypeText[type]%></p>
-            <p>报名日期:<%=scheduledTime%></p>
+            <p class="text-error">（试听免费）</p>
         </td>
         <td class="status">
 
@@ -617,26 +898,26 @@
     <div id="bookingDetail" class="mypage_content_inner">
         <div class="row0 clearfix">
             <div class="fleft">
-                <p><label>订单号：<%= reference %></label> <span>(<%= createTime %>预订)</span></p>
+                <p><label>订单号:<%= reference %></label> <span>(<%= createTime %>预订)</span></p>
 
-                <p><label>状<s></s>态：<b class="F_green" id="bookingStatus">
+                <p><label>状<s></s>态:<b class="F_green" id="bookingStatus">
                     <%= EnumConfig.BookingStatusText[status] %></b></label>
                 </p>
 
                 <div>
-                    <label>爱特价：</label>
-                    <%if(!price){ %>
-                    <span class="sign" style="font-size:14px;">¥</span>
-                    <span style="font-size:24px; color:#ff5500;vertical-align:-2px">机构定制
+                    <label>爱特价:</label>
+                    <span class="text-light" style="font-size:14px;">门店价</span>
+                    <span style="color:#ff5500;">
+                        <span class="price">*<%= course.commission %>折</span>
+                        <a class="has-tip has-tip-top">【?】
+                            <div class="tip">
+                                <div class="arrow"></div>
+                                <div class="tip_content">
+                                    无论学校与亲以什么价格成交，亲都能在付费后，从爱上课获取<span class="price">5%</span>的现金返现哟！
+                                </div>
+                            </div>
+                        </a>
                     </span>
-                    <%}else{%>
-                    <span class="sign" style="font-size:14px;">¥</span>
-                    <span style="font-size:24px; color:#ff5500;vertical-align:-2px"><%= price %>
-                    </span>
-                    &nbsp;&nbsp;
-                    <%if(type===EnumConfig.PayType.online&&course.commission){%>
-                    <s>原价：¥<%=course.price%></s>
-                    <%}%>
                     &nbsp;&nbsp;
                     <%if(type===EnumConfig.PayType.offline&&course.cashbackAmount){%>
                     <a class="label cashbacked"><%= realCashbackAmount %>元
@@ -644,14 +925,11 @@
                             <div class="arrow"></div>
                             <div class="tip_content">
                                 本课程最多可返现<%= course.cashback %>元，
-                                已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount<cashbackAmount){%>（您的可用返现券额不足）<%}%>，
+                                已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount){%>（您的可用返现券额不足）<%}%>，
                                 入学成功即返还<%= realCashbackAmount %>元至现金账户！
                             </div>
                         </div>
                     </a>
-                    <%}%>
-                    <%if(type===EnumConfig.PayType.online&&course.commission)%>
-                    <a class="label saved"><%=course.commission%>元</a>
                     <%}%>
                 </div>
             </div>
@@ -688,7 +966,7 @@
                     <%}%>
                     <p>
                         <label>咨询电话:</label>
-                        <span>400-025-0884</span>
+                        <span>025-58991945（9:00-24:00）</span>
                     </p>
                 </div>
                 <div class="fleft">
@@ -721,7 +999,7 @@
                 </div>
             </div>
             <p>
-                <label>上课地址：</label>
+                <label>上课地址:</label>
                 <span><%= course.address %></span></p>
         </div>
         <div class="row3">
@@ -733,12 +1011,6 @@
                         <label>学员姓名:</label>
                         <%= name %>
                     </p>
-
-                    <p>
-                        <label>报名日期:</label>
-                        <span class="F_orange"><%= scheduledTime %></span>
-                    </p>
-
                 </div>
                 <div class="fleft">
                     <p>
@@ -998,19 +1270,19 @@
         <div class="fleft"><img class="js_gotoCourse" src="<%= course.logoUrl %>" width="90"/></div>
         <div class="fright">
             <div class="title link js_gotoCourse"><%= course.courseName %></div>
-            <div class="desc "><strong>适合学员：</strong> <%= course.suitableStudent %></div>
+            <div class="desc "><strong>适合学员:</strong> <%= course.suitableStudent %></div>
         </div>
     </div>
     <div class="row2">
         <%if(course.classSize){%>
         <div class="section">
-            <label>班级类型：</label>
+            <label>班级类型:</label>
 
             <div><%= course.classSize %></div>
         </div>
         <%}%>
         <div class="section">
-            <label>上课日期：</label>
+            <label>上课日期:</label>
 
             <div>
                 <%if(!course.startUponArrival){%>
@@ -1025,7 +1297,7 @@
             </span></div>
         <%if(course.startTime1){%>
         <div class="section">
-            <label>上课时间：</label>
+            <label>上课时间:</label>
 
             <div>
                 <%= course.startTime1 %> - <%= course.finishTime1 %>
@@ -1036,7 +1308,7 @@
         </div>
         <%}%>
         <div class="section">
-            <label>上课地址：</label>
+            <label>上课地址:</label>
 
             <div><%= course.address %></div>
         </div>
@@ -1075,7 +1347,7 @@
                     <div class="tip">
                         <div class="arrow"></div>
                         <div class="tip_content">
-                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                            前台付现，入学成功可至少返还<span class="price"><%= course.cashback %>元</span>至现金账户！
                         </div>
                     </div>
                 </a>
@@ -1144,7 +1416,7 @@
                     <div class="tip">
                         <div class="arrow"></div>
                         <div class="tip_content">
-                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                            前台付现，入学成功可至少返还<span class="price"><%= course.cashback %>元</span>至现金账户！
                         </div>
                     </div>
                 </a>
@@ -1181,7 +1453,7 @@
                     <div class="tip">
                         <div class="arrow"></div>
                         <div class="tip_content">
-                            前台付现，入学成功可立即返还<%= course.cashback %>元至现金账户！
+                            前台付现，入学成功可至少返还<span class="price"><%= course.cashback %>元</span>至现金账户！
                         </div>
                     </div>
                 </a>
@@ -1291,20 +1563,20 @@
         </div>
         <div class="row2">
             <div class="fright acn">试听不满意，无条件退全款！</div>
-            <p><label>订单号： </label><%= reference %></p>
+            <p><label>订单号: </label><%= reference %></p>
 
-            <p><label>支付方式： </label> <%= EnumConfig.BookingTypeText[type] %></p>
+            <p><label>支付方式: </label> <%= EnumConfig.BookingTypeText[type] %></p>
 
-            <p><label>课程名称： </label><%= course.courseName %></p>
+            <p><label>课程名称: </label><%= course.courseName %></p>
 
-            <p><label>教育机构： </label><%= course.instName %></p>
+            <p><label>教育机构: </label><%= course.instName %></p>
 
-            <p><label>上课地址： </label><%= course.address %></p>
+            <p><label>上课地址: </label><%= course.address %></p>
 
-            <p><label>咨询电话： </label>400-025-0884</p>
+            <p><label>咨询电话: </label>400-025-0884</p>
 
             <p>
-                <label>开课日期： </label>
+                <label>开课日期: </label>
                 <%if(course.startUponArrival===0){%>
                 <%= course.regPhone %>
                 <%}else{%>
@@ -1315,12 +1587,12 @@
                 <%}%>
             </p>
 
-            <p><label>班级类型： </label><%= course.classSize %></p>
+            <p><label>班级类型: </label><%= course.classSize %></p>
 
-            <p><label>预约报到： </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
+            <p><label>预约报到: </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
 
             <div>
-                <label>费用总计： </label>
+                <label>费用总计: </label>
                 <%if(!price){%>
                 <b class="price">定制</b>
                 <%}else{%>
@@ -1338,7 +1610,7 @@
                             <div class="arrow"></div>
                             <div class="tip_content">
                                 本课程最多可返现<%= course.cashback %>元，
-                                已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount<cashbackAmount){%>（您的可用返现券额不足）<%}%>，
+                                已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount < cashbackAmount){%>（您的可用返现券额不足）<%}%>，
                                 入学成功即返还<%= realCashbackAmount %>元至现金账户！
                             </div>
                         </div>
@@ -1384,38 +1656,33 @@
                 <input id="detail_compare_<%= id %>" class="add btn_g" type="button"
                        value=" +对比 ">
             </dt>
-            <dd>特惠信息：
-                <%if(marking){%>
-                <%= marking %>
-                <%}else{%>
-                -- --
-                <%}%>
-            </dd>
+            <dd class="text-light">【<%= instName %>】亲密合作伙伴 【爱上课】会员，可独享超值折扣优惠</dd>
         </dl>
         <div class="col2">
-            <div class="price">
-                <%if(!price){%>
-                <span class="sign">￥</span><small>定制</small>
-                <%}else{%>
-                    <%if(originalPrice){%>
-                    <s style="font-size:14px; color:#333;">原价：￥<%= originalPrice %></s>
-                    <%}%>
-                <span class="sign">￥</span><%= price %>
-                <%}%>
+            <div class="">
+                <small class="text-light">门店价</small>&nbsp;<span class="price"><%= commission %>折</span>&nbsp;
+                <a class="has-tip has-tip-top">【?】
+                    <div class="tip">
+                        <div class="arrow"></div>
+                        <div class="tip_content">
+                            无论学校与亲以什么价格成交，亲都能在付费后，从爱上课获取<span class="price"><%=100-commission%>%</span>的现金返现！
+                        </div>
+                    </div>
+                </a>
             </div>
             <%if(cashback){%>
-            <div class="label cashback"><%=cashback %>元
+            <div class="label cashback margin-top"><%=cashback %>+元
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">
-                        前台付现，入学成功可立即返还<%=cashback %>元至现金账户！
+                        前台付现，入学成功可至少返还<span class="price"><%=cashback %>元</span>至现金账户！
                     </div>
                 </div>
             </div>
             <%}%>
         </div>
         <div class="col3">
-            <input type="button" id="bookNow" value="立即预订" class="btn_O"/>
+            <input type="button" id="bookNow" value="立即咨询" class="btn_O"/>
         </div>
 
     </div>
@@ -1428,7 +1695,7 @@
                 </ul>
         </div>
         <div class="course_map">
-            <div class="addr" title="<%= address %>">上课地点：<%= address %></div>
+            <div class="addr" title="<%= address %>">上课地点:<%= address %></div>
             <div class="map">
                 <a href="http://api.map.baidu.com/geocoder?address=<%= address.split('（')[0].split('(')[0] %>&output=html" target="_blank">
                     <img src="http://api.map.baidu.com/staticimage?width=328&height=184&zoom=14&center=<%= address.split('（')[0].split('(')[0] %>&markers=<%= address.split('（')[0].split('(')[0] %>"/>
@@ -1437,7 +1704,8 @@
         </div>
     </div>
 </div>
-<div class="courseMain blank2">
+<img class="bannerImg" src="style/images/detail_banner1.jpg" alt="一对一服务，让你远离忽悠"/>
+<div class="courseMain">
 <ul id="courseNavigateTab" class="tabButton tab">
     <li id="tab_1" class="active">课程详情</li>
     <li id="tab_2">特色服务</li>
@@ -1534,6 +1802,7 @@
     </dd>
     <% } %>
 </dl>
+<img class="bannerImg" src="style/images/detail_banner2.jpg" alt="先评测，再选课；智能匹配，选课不花冤枉钱"/>
 <dl id="content_2" class="clearfix">
     <dt>特色服务</dt>
     <dd class="clearfix">
@@ -1604,6 +1873,7 @@
     <% } %>
 
 </dl>
+<img class="bannerImg" src="style/images/detail_banner3.jpg" alt="这门课程好不好？爱上课选课顾问最知道~"/>
 <dl id="content_4" class="clearfix">
     <dt>学校概况</dt>
     <% if (wholeName) { %>
@@ -1638,7 +1908,7 @@
 
 <dl id="content_5" class="clearfix">
     <dt>同类型课程</dt>
-    <dd class="F_green blank1" style="font-size:14px;">课程名称：<%= courseName %></dd>
+    <dd class="F_green blank1" style="font-size:14px;">课程名称:<%= courseName %></dd>
     <dd class="clearfix blank">
         <table width="100%" cellpadding="0" cellspacing="0">
             <thead>
@@ -1646,7 +1916,7 @@
                 <td width="22%">上课日期</td>
                 <td width="20%">上课时间</td>
                 <td class="addr">上课地点</td>
-                <td width="12%">价格</td>
+                <td width="12%">门店折扣</td>
                 <td width="12%">--</td>
             </tr>
             </thead>
@@ -1655,6 +1925,8 @@
         </table>
     </dd>
 </dl>
+<img class="bannerImg" src="style/images/detail_banner4.jpg" alt="做个免费评测再报名，申请个性化评测"/>
+
 </div>
 </div>
 </div>
@@ -1682,14 +1954,7 @@
             <%}%>
         </td>
         <td class="addr"><%=address%></td>
-        <td>
-            <span class="F_orange dotted-line">
-            <%if(!price){%>
-            定制
-            <%}else{%>
-            ￥<%= price %>
-            <%}%></span>
-        </td>
+        <td><span class="F_orange dotted-line"><%= commission %>折</span></td>
         <td>
             <%if(current){%>
             <a class="inline-block">
@@ -1740,9 +2005,7 @@
 
         <div class="btn"><input class="btn_O" type="button" value="立即预订"/></div>
         <div class="set">
-            <a class="pre" href="#">向前</a>
-            <a class="delete" href="#">删除</a>
-            <a class="next" href="#">向后</a>
+            <a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a>
         </div>
     </div>
     <% }); %>
@@ -1759,7 +2022,7 @@
             <%}else{%>
             <div class="price">￥<%= course.price %></div>
                 <%if(course.cashback){%> <a class="label cashback"><%=course.cashback %>元</a> <%}%>
-                <%if(course.commission){%> <a class="label save"><%= course.commission %>元</a> <%}%>
+                <!--<%if(course.commission){%> <a class="label save"><%= course.commission %>元</a> <%}%>-->
             <%}%>
         </td>
         <% }); %>
@@ -1969,7 +2232,7 @@
 
     <div class="mypage_content_inner scrollTarget">
         <div class="total padding-x margin-bottom">
-            <img src="style/images/icon_monney.jpg">总金额：￥
+            <img src="style/images/icon_monney.jpg">总金额:￥
             <b class="F_orange"><%= account.balance %></b>
         </div>
         <div class="clearfix">
@@ -2206,8 +2469,10 @@
             <div class="field">
                 <label>姓<s></s>名</label>
                 <input class="text" type="text" id="inputName" value="<%= name %>">
+                <%if(!name){%>
                 <span class="action" id="inputName_info"><span class="form_tip"><span
                         class="form_tip_top">请填写实际学员姓名</span><span class="form_tip_bottom"></span></span></span>
+                <%}%>
             </div>
             <div class="field">
                 <label>性<s></s>别</label>
@@ -2376,14 +2641,14 @@
             </div>
             <div class="get_password">
                 <dl class="clearfix" id="cellContainer">
-                    <dt><span>*</span>手机：</dt>
+                    <dt><span>*</span>手机:</dt>
                     <dd>
                         <input id="findPassCellInput" type="text" class="text" value=""
                                placeholder="请输入手机号(请不要输入特殊符号或者字母)"><span class="right"></span>
                     </dd>
                 </dl>
                 <dl class="clearfix verify" id="authContainer">
-                    <dt><span>*</span>手机验证码：</dt>
+                    <dt><span>*</span>手机验证码:</dt>
                     <dd>
                         <input id="authCode" type="text" class="text">
                         <input type="button" value="获取手机验证码" id="getSms">
@@ -2393,14 +2658,14 @@
                     </dd>
                 </dl>
                 <dl class="clearfix" id="passContainer">
-                    <dt><span>*</span>新密码：</dt>
+                    <dt><span>*</span>新密码:</dt>
                     <dd>
                         <input type="password" id="findPassPassInput" class="password" value="" placeholder=""><span
                             class="right"></span>
                     </dd>
                 </dl>
                 <dl class="clearfix" id="confirmContainer">
-                    <dt><span>*</span>确认新密码：</dt>
+                    <dt><span>*</span>确认新密码:</dt>
                     <dd>
                         <input type="password" id="findPassConfirmInput" class="password">
                     </dd>
@@ -2441,6 +2706,12 @@
             <input id="gotIt" class="btn_O" type="button" value="确认">
         </div>
     </div>
+</script>
+<script type="text/templates" id="tpl_colorInfoModal">
+    <div class="info-icon"></div>
+    <div id="infoMessage" class="info-content text-center">
+    </div>
+    <div id="closeBtn" class="info-close">返回</div>
 </script>
 
 <script type="text/templates" id="tpl_frontCategoryContainer">
@@ -2761,8 +3032,8 @@
 
 <script src="scripts/Lib/backbone-min.js" type="text/javascript"></script>
 
-<script src="scripts/Lib/jquery-ui-1.10.0.custom.min.js" type="text/javascript"></script>
-<script src="scripts/Lib/datepicker-zh.js" type="text/javascript"></script>
+<!--<script src="scripts/Lib/jquery-ui-1.10.0.custom.min.js" type="text/javascript"></script>-->
+<!--<script src="scripts/Lib/datepicker-zh.js" type="text/javascript"></script>-->
 <script src="scripts/Lib/jquery.placeholder.min.js" type="text/javascript"></script>
 <script src="scripts/Lib/jquery.smooth-scroll.min.js" type="text/javascript"></script>
 <script src="scripts/Lib/json2.js" type="text/javascript"></script>
@@ -2790,28 +3061,28 @@
 <script src="scripts/Common/Service/ViewRegistrationService.js" type="text/javascript"></script>
 <script src="scripts/Common/Service/EventClearService.js" type="text/javascript"></script>
 
-<script src="scripts/Common/Model/Representation/AccountHistorySearchRepresentation.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Representation/CreditHistorySearchRepresentation.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Representation/CouponSearchRepresentation.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Representation/BookingSearchRepresentation.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Representation/CourseSearchRepresentation.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Representation/PartnerSearchRepresentation.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Representation/UserSearchRepresentation.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Photo.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Teacher.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Course.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Transaction.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Coupon.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/CreditHistory.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Credit.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Booking.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/BookingHistory.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Account.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/AccountHistory.js" type="text/javascript"></script>
-<!--<script src="scripts/Common/Model/Admin.js" type="text/javascript"></script>-->
-<script src="scripts/Common/Model/Teacher.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/Partner.js" type="text/javascript"></script>
-<script src="scripts/Common/Model/User.js" type="text/javascript"></script>
+<script src="scripts/Model/Representation/AccountHistorySearchRepresentation.js" type="text/javascript"></script>
+<script src="scripts/Model/Representation/CreditHistorySearchRepresentation.js" type="text/javascript"></script>
+<script src="scripts/Model/Representation/CouponSearchRepresentation.js" type="text/javascript"></script>
+<script src="scripts/Model/Representation/BookingSearchRepresentation.js" type="text/javascript"></script>
+<script src="scripts/Model/Representation/CourseSearchRepresentation.js" type="text/javascript"></script>
+<script src="scripts/Model/Representation/PartnerSearchRepresentation.js" type="text/javascript"></script>
+<script src="scripts/Model/Representation/UserSearchRepresentation.js" type="text/javascript"></script>
+<script src="scripts/Model/Photo.js" type="text/javascript"></script>
+<script src="scripts/Model/Teacher.js" type="text/javascript"></script>
+<script src="scripts/Model/Course.js" type="text/javascript"></script>
+<script src="scripts/Model/Transaction.js" type="text/javascript"></script>
+<script src="scripts/Model/Coupon.js" type="text/javascript"></script>
+<script src="scripts/Model/CreditHistory.js" type="text/javascript"></script>
+<script src="scripts/Model/Credit.js" type="text/javascript"></script>
+<script src="scripts/Model/Booking.js" type="text/javascript"></script>
+<script src="scripts/Model/Apply.js" type="text/javascript"></script>
+<script src="scripts/Model/BookingHistory.js" type="text/javascript"></script>
+<script src="scripts/Model/Account.js" type="text/javascript"></script>
+<script src="scripts/Model/AccountHistory.js" type="text/javascript"></script>
+<script src="scripts/Model/Teacher.js" type="text/javascript"></script>
+<script src="scripts/Model/Partner.js" type="text/javascript"></script>
+<script src="scripts/Model/User.js" type="text/javascript"></script>
 
 <script src="scripts/Test/TestMockObj.js" type="text/javascript"></script>
 
@@ -2819,49 +3090,46 @@
 <script src="scripts/Common/DataManagers/SessionManager.js" type="text/javascript"></script>
 <script src="scripts/Common/DataManagers/UserManager.js" type="text/javascript"></script>
 
-<script src="scripts/Common/View/Shared/MultiPageView.js" type="text/javascript"></script>
-<script src="scripts/Common/View/Shared/BaseFormView.js" type="text/javascript"></script>
-<script src="scripts/Common/View/Shared/BaseDropDownView.js" type="text/javascript"></script>
-<script src="scripts/Common/View/BaiduMapView.js" type="text/javascript"></script>
+<script src="scripts/View/Common/Shared/MultiPageView.js" type="text/javascript"></script>
+<script src="scripts/View/Common/Shared/BaseFormView.js" type="text/javascript"></script>
+<script src="scripts/View/Common/Shared/BaseDropDownView.js" type="text/javascript"></script>
+<script src="scripts/View/Common/BaiduMapView.js" type="text/javascript"></script>
 <!-- load user module specific files-->
-<script src="scripts/User/View/MyPage/MyPageView.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/BookingDetailView.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/MyPageChooseSchoolModal.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/MyPageChooseWorkModal.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/BookingPayView.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/BookingListView.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/MyPageAccountView.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/MyPageCouponView.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/MyPageCreditView.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/MyPageBookingView.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/MyPagePasswordView.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/MyPageSettingView.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/MyPageDashboardView.js" type="text/javascript"></script>
-<script src="scripts/User/View/MyPage/MyPageShareView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/MyPageView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/BookingDetailView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/MyPageChooseSchoolModal.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/MyPageChooseWorkModal.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/BookingPayView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/BookingListView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/MyPageAccountView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/MyPageCouponView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/MyPageCreditView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/MyPageBookingView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/MyPagePasswordView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/MyPageSettingView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/MyPageDashboardView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/MyPageShareView.js" type="text/javascript"></script>
 
-<script src="scripts/User/View/MyPage/MyPageUsernameModal.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/MyPageUsernameModal.js" type="text/javascript"></script>
 
-<script src="scripts/User/View/CourseDetailView.js" type="text/javascript"></script>
-<script src="scripts/User/View/RelatedCourseListView.js" type="text/javascript"></script>
-<script src="scripts/User/View/NewBookingView.js" type="text/javascript"></script>
-<script src="scripts/User/View/SearchResultView.js" type="text/javascript"></script>
-<script src="scripts/User/View/SearchView.js" type="text/javascript"></script>
-<script src="scripts/User/View/CompareView.js" type="text/javascript"></script>
-<script src="scripts/User/View/SideBarView.js" type="text/javascript"></script>
-<script src="scripts/User/View/RegistrationView.js" type="text/javascript"></script>
-<script src="scripts/User/View/TopBarView.js" type="text/javascript"></script>
-<script src="scripts/User/View/FindPasswordView.js" type="text/javascript"></script>
-<script src="scripts/User/View/FrontPageView.js" type="text/javascript"></script>
-<script src="scripts/User/View/CompareWidgetView.js" type="text/javascript"></script>
-<script src="scripts/User/View/InfoModal.js" type="text/javascript"></script>
-<script src="scripts/User/View/ServiceCenterView.js" type="text/javascript"></script>
-<script src="scripts/User/Main.js" type="text/javascript"></script>
-<script src="scripts/User/baiduLoadScript.js" type="text/javascript"></script>
+<script src="scripts/View/CourseDetailView.js" type="text/javascript"></script>
+<script src="scripts/View/RelatedCourseListView.js" type="text/javascript"></script>
+<script src="scripts/View/NewBookingView.js" type="text/javascript"></script>
+<script src="scripts/View/SearchResultView.js" type="text/javascript"></script>
+<script src="scripts/View/SearchView.js" type="text/javascript"></script>
+<script src="scripts/View/CompareView.js" type="text/javascript"></script>
+<script src="scripts/View/SideBarView.js" type="text/javascript"></script>
+<script src="scripts/View/RegistrationView.js" type="text/javascript"></script>
+<script src="scripts/View/TopBarView.js" type="text/javascript"></script>
+<script src="scripts/View/FindPasswordView.js" type="text/javascript"></script>
+<script src="scripts/View/FrontPageView.js" type="text/javascript"></script>
+<script src="scripts/View/CompareWidgetView.js" type="text/javascript"></script>
+<script src="scripts/View/InfoModal.js" type="text/javascript"></script>
+<script src="scripts/View/ServiceCenterView.js" type="text/javascript"></script>
+<script src="scripts/Main.js" type="text/javascript"></script>
+<script src="scripts/baiduLoadScript.js" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8" src="http://gate.looyu.com/52669/117998.js"></script>
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd53837e251eec82237fe7ebbe442e0cb' type='text/javascript'%3E%3C/script%3E"));
-</script>
+
 </body>
 </html>
 

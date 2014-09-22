@@ -402,5 +402,16 @@ var Utilities = {
             return textEnum[val];
         });
         return text.join('+');
+    },
+
+    /**
+     * todo 用于获取下delta个月的开始和结束时间的时间戳 取代searchView里面根据选择的日期过滤的方法
+     * 如delta=1表示获取下个月的开始和结束时间（结束时间为下下个月的开始）
+     * @param delta 与当前月相差的月数（为正）
+     * @returns {*[]} 返回开始和结束时间的时间戳
+     */
+    getDeltaMonthTimestamp: function (delta) {
+        var date1 = 1, date2 = 1;
+        return [date1, date2]
     }
 };
