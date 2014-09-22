@@ -58,7 +58,7 @@
 /*banner切换按钮 todo 需要结合bjqs的下方分页按钮 与课程详情页中的一致*/
 .index #visualScope ol.bjqs-markers{
     position:absolute;
-    top:228px; z-index:99;
+    top:248px; z-index:99;
     padding: 0;
     text-align: center; list-style: none;
     width:400px;
