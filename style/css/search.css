@@ -214,7 +214,7 @@
     margin-bottom: 18px;
     position: relative;}
 .popContentUl li span{width: 90px; font-size: 18px; line-height: 32px; color: #333; padding-left: 6px; float: left;}
-.popContentUl li p{ width: 205px; height: 32px; float: left; line-height: 32px; color: #7F7F7F; font-size: 18px;}
+.popContentUl li p{overflow: hidden;text-overflow: ellipsis;white-space: nowrap; width: 310px; height: 32px; float: left; line-height: 32px; color: #7F7F7F; font-size: 18px;}
 .popTxt{ width: 205px; height: 32px; float: left; background-color: #EFEFEF; border: 0; outline: 0;}
 .popTxtSpec{ width: 284px; height: 100px; line-height: 24px; font-size: 12px; padding: 10px;}
 .popIconStar{ width: 8px; height: 32px; display: block; background-image: url("../images/popIcon.png"); background-position: -20px 12px; background-repeat: no-repeat; float: left;}
