@@ -2,10 +2,11 @@ var CourseSearchRepresentation = Backbone.Model.extend({
     defaults: function () {
         return {
 
-            'templateId':undefined,//相关课程搜索
+            'templateId':undefined,//相关课程搜索（同一个模板）
 
-            'categoryValue': undefined,
-            'locationValue': undefined,
+            'categoryValue': undefined,//筛选课程类目
+            'locationValue': undefined,//筛选地址
+            'circleValue': undefined,//筛选商圈
 
             'institutionName': undefined,
             'status': EnumConfig.CourseStatus.onlined,
