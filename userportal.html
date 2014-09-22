@@ -1620,7 +1620,7 @@
                             <div class="arrow"></div>
                             <div class="tip_content">
                                 本课程最多可返现<%= course.cashback %>元，
-                                已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount<cashbackAmount){%>（您的可用返现券额不足）<%}%>，
+                                已使用<%= realCashbackAmount %>元返现券<%if(realCashbackAmount < cashbackAmount){%>（您的可用返现券额不足）<%}%>，
                                 入学成功即返还<%= realCashbackAmount %>元至现金账户！
                             </div>
                         </div>
@@ -2479,8 +2479,10 @@
             <div class="field">
                 <label>姓<s></s>名</label>
                 <input class="text" type="text" id="inputName" value="<%= name %>">
+                <%if(!name){%>
                 <span class="action" id="inputName_info"><span class="form_tip"><span
                         class="form_tip_top">请填写实际学员姓名</span><span class="form_tip_bottom"></span></span></span>
+                <%}%>
             </div>
             <div class="field">
                 <label>性<s></s>别</label>
