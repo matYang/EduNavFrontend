@@ -36,10 +36,15 @@ var SearchResultView = MultiPageView.extend({
         var total = $container.children('.searchResultEntry').length;
         var imgTpl = _.template('<img class="bannerImg" src="<%=url%>" alt="<%=alt%>">');
         var imgList = [
+            {url:'./style/images/search_banner1.jpg',alt:''},
             {url:'./style/images/search_banner2.jpg',alt:''},
             {url:'./style/images/search_banner3.jpg',alt:''}
         ];
-        if(total>=8){
+        if(total>=10){
+            $container.find('.searchResultEntry:nth-child(1)').after(imgTpl(imgList[0]));
+            $container.find('.searchResultEntry:nth-child(5)').after(imgTpl(imgList[1]));
+            $container.find('.searchResultEntry:nth-child(9)').after(imgTpl(imgList[2]));
+        } else if(total>=8){
             $container.find('.searchResultEntry:nth-child(3)').after(imgTpl(imgList[0]));
             $container.find('.searchResultEntry:nth-child(7)').after(imgTpl(imgList[1]));
         }else if(total>=5){
@@ -47,6 +52,10 @@ var SearchResultView = MultiPageView.extend({
         }else if(total>=3){
             $container.find('.searchResultEntry:nth-child(2)').after(imgTpl(imgList[0]));
         }
+        $('#'+this.entryContainer+' .bannerImg').on('click',function(){
+            //打开客服系统
+            doyoo.util.openChat('g=82548');
+        });
         //todo 这里是为了声明页面加载完毕 seo
         $('body').attr('pageRenderReady', '')
     },
