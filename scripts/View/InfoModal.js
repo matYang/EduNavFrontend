@@ -33,3 +33,38 @@ var InfoModal = Backbone.View.extend({
         }
     }
 });
+
+var ColorInfoModal = Backbone.View.extend({
+    el: "#colorInfoModal",
+    template: _.template(tpl.get('colorInfoModal')),
+    initialize: function () {
+        _.bindAll(this, "render", "show", "bindEvents", "hide", "close");
+        this.render();
+        this.bindEvents();
+    },
+    render: function () {
+        this.$el.html(this.template);
+    },
+    show: function (opt) {
+        var self = this;
+        $("#infoMessage").html(opt.message);
+        this.$el.fadeIn(600);
+        $("#overlay").removeClass("hidden");
+        setTimeout(function () {
+            self.hide();
+        },1800)
+    },
+    bindEvents: function () {
+        var that = this;
+        $("#closeBtn").on("click", this.hide);
+    },
+    hide: function () {
+        this.$el.fadeOut(1000);
+        $("#overlay").addClass("hidden");
+    },
+    close: function () {
+        this.$el.hide();
+        $("#overlay").addClass("hidden");
+        this.$el.empty();
+    }
+});

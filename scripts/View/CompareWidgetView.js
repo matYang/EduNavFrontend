@@ -87,7 +87,7 @@ var CompareWidgetView = Backbone.View.extend({
     removeCourse: function (id) {
         var i;
         $("#compareEntry_courseId_" + id).remove();
-        $("#compare_" + id).children("input").attr("class", "add btn_g").val("+对比");
+//        $("#compare_" + id).children("input").attr("class", "add btn_o").val("+对比");
         app.storage.removeCourseFromCompare(id);
         this.courseIds = app.storage.getCoursesToCompare();
     },

@@ -233,10 +233,10 @@ a:hover, a:active{
         top:-8px; left:243px;
         background:url(../images/arrow.png) no-repeat;}
 .has-tip.has-tip-top .tip{
-    bottom: 28px;
+    bottom: 35px;
     right:-46px; }
     .has-tip.has-tip-top .tip .arrow{
-        bottom:-8px; left:243px;
+        bottom:-8px; right:90px;
         background:url(../images/arrow-down.png) no-repeat;}
 
 
@@ -350,6 +350,11 @@ a:hover, a:active{
 
 .icon-warning {
     background-position: 0 -501px;
+}
+
+.icon-error{
+    background: url(../images/icon_wrong.png) no-repeat;
+    background-position: 0 -22px;
 }
 
 

@@ -93,7 +93,6 @@
     position: relative;
     z-index: 1;
 }
-.sTopBar{ width: 47px; height: 20px; display: block; background-image: url("../images/searchBar.png"); position: absolute; left: 477px;}
 /*todo #设置元素浮动要记得清除浮动(撑开父容器) 清除浮动有多种写法
  *coverflow:hidden是最简单的一种
  *不过大多数还是使用:after伪类clear:both
@@ -101,23 +100,16 @@
  *同时参考一个框架了解一下框架如何提供通用的布局类 如何在其中清除浮动
  */
 .SearchCotentArea{ width: 500px; height: 350px; float: left;}
-.SearchCotentAreaTop{ width: 471px; height: 34px; background-color: #E9E9E9; padding: 11px 0 7px 29px;}
-.Search-self-help .SearchCotentAreaTop{ background-color: #1B8F5A;}
-.Search-person-help .SearchCotentAreaTop{ background-color: #1B8F83;}
-.Search-self-help .SearchCotentAreaTop a{ width: 34px; height: 34px; background-image: url("../images/selfHelp.png"); background-repeat: no-repeat; display: block; float: left; }
-.Search-person-help .SearchCotentAreaTop a{ width: 34px; height: 34px; background-image: url("../images/personHelp.png"); background-repeat: no-repeat; display: block; float: left; }
-.SearchCotentAreaTop span{line-height: 34px; font-size: 26px; color: #FFF; padding: 0 4px; float: left;}
-.SearchCotentAreaTop i{display: block; width: 13px; height: 13px; float: left; margin: 10px 4px 0 20px; background-image: url("../images/warnIcon.png");}
-.SearchCotentAreaTop p{line-height: 34px; font-size: 12px; color: #BBCD96;}
-
+.SearchCotentAreaTop{ width: 500px; height: 52px; background-image: url("../images/search.png");}
+.SearchCotentAreaTopRight{ background-position: 0 -100px;}
 .SearchCotentAreaMain{ width: 500px; height: 210px; background-color: #E3E4E6;}
 .SearchCotentAreaMainRight{ background-color: #E9EAEB;}
 .SearchCotentAreaBottom{ width: 500px; height: 46px; padding: 14px 0; background-color: #EBECEE;}
 .SearchCotentAreaBottomRight{ background-color: #F0F0F1;}
 .SearchCotentAreaMainA{width: 235px; height: 200px; margin: auto; display: block; padding: 13px 0;}
 .SearchCotentAreaMainA li{width: 255px; height: 40px; margin-bottom: 10px; position: relative;}
-.SearchCotentAreaMain span{width: 70px; height: 34px; display: block; float: left; line-height: 34px; font-size: 15px; color: #666; font-family: "微软雅黑";}
-.SearchCotentAreaMain input.selectFarme{ width: 130px; height: 34px; padding: 0 12px; cursor: pointer; border: 0; outline: 0; display: block; float: left; color: #666; font-size: 12px; font-family: "微软雅黑";}
+.SearchContentA span{width: 70px; height: 34px; display: block; float: left; line-height: 34px; font-size: 15px; color: #666; font-family: "微软雅黑";}
+.SearchContentA input.selectFarme{ width: 130px; height: 34px; padding: 0 12px; cursor: pointer; border: 0; outline: 0; display: block; float: left; color: #666; font-size: 12px; font-family: "微软雅黑";}
 .selectIcon{ width: 15px; height: 8px; display: block; background-image: url("../images/search.png"); background-position: 0 -200px; position: absolute; top: 15px; left: 202px;}
 .SearchCotentAreaMainB{ width: 480px; height: 200px; margin: auto; display: block; padding: 13px 0;}
 .SearchCotentAreaMainBLi{
@@ -139,8 +131,9 @@
     font-size: 12px;
     color: #666;
 }
-.SearchIcon{ width: 250px; height: 46px; text-align: center; color: #FFF; font-size: 18px; line-height: 46px; display: block; margin: auto;  background-color: #1B8F5A; cursor: pointer;}
-.ApplyIcon{ width: 250px; height: 46px; text-align: center; color: #FFF; font-size: 18px; line-height: 46px; display: block; margin: auto;  background-color: #1B8F83; cursor: pointer;}
+.SearchIcon{ width: 250px; height: 46px; display: block; margin: auto; background-image: url("../images/search.png"); background-position: -340px -200px; cursor: pointer;}
+.ApplyIcon{ width: 250px; height: 46px; display: block; margin: auto; background-image: url("../images/search.png"); background-position: -50px -200px; cursor: pointer;}
+
 
 
 /*人工选课，免费试听弹出层*/
@@ -197,7 +190,7 @@
 .popIconStar{ width: 8px; height: 32px; display: block; background-image: url("../images/popIcon.png"); background-position: -20px 12px; background-repeat: no-repeat; float: left;}
 .popIconStarSpec{ background-position: 200px 200px;}
 .popBtn{ width: 360px; height: 70px; padding-top: 20px; margin: auto;}
-.popBtnYes{ width: 238px; height: 69px; background-color: #FDAE00; line-height: 69px; text-align: center; color: #FFF; font-size: 22px; display: block; float: left; cursor: pointer;}
+.popBtnYes{ width: 238px; height: 69px; background-image: url("../images/btnApply.png"); display: block; float: left; cursor: pointer;}
 .popBtnNo{ width: 100px; height: 69px; padding-left: 20px; line-height: 69px; font-size: 14px; color: #909090; text-align: center; display: block; float: left; cursor: pointer;}
 .inputIcon{ width: 32px; height: 32px; display: block; background-image: url("../images/inputIcon.png"); position: absolute; left: 278px;}
 

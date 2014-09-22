@@ -11,15 +11,15 @@ var Booking = Backbone.Model.extend({
             'reference':undefined,
 
             /*需要填写的信息*/
-            'name': '',
-            'phone': '',
-            'email': '',
-            'scheduledTime': new Date(),
+            'name': undefined,
+            'phone': undefined,
+            'email': undefined,
+            'scheduledTime': undefined,
 
 
             'status': undefined,//订单状态
-            'type': undefined,//订单类型 线上还是线下
-            'note': '',     //各种record
+            'type': 1,//订单类型 0线上还是1线下 default 1
+            'note': undefined,     //各种record
 
             'price': undefined,//价格
             'cashbackAmount': undefined,//返利总额
@@ -99,9 +99,7 @@ var Booking = Backbone.Model.extend({
     },
     toJSON: function () {//使用backbone进行resource的交互时采用的toJSON方法
         var json = _.clone(this.attributes);
-        json.type = parseInt(this.get('type'), 10);
-
-        json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
+//        json.scheduledTime = Utilities.castToAPIFormat(this.get('scheduledTime'));
         json.noRefundDate = undefined;
         json.actionList = undefined;
         json.bookingId = undefined;
@@ -111,6 +109,7 @@ var Booking = Backbone.Model.extend({
         json.lastModifyTime = undefined;
         json.reference = undefined;
         json.enabled = undefined;
+        json.note = json.note||''+'【PC】';
         return json;
     },
     initBookingFromCourse: function (course) {
