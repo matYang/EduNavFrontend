@@ -41,7 +41,6 @@ testMockObj = {
     testCourse4: (new Course()).set("categoryValue", "000101").set("id", 4).set("courseName", "GRE")
         .set("commission", 97)
         .set("price", 12900)
-        .set("circleName", '仙林大学城4')
         .set("instName", "School C").set("address", "南京市建邺区").set("status", EnumConfig.CourseStatus.onlined)
         .set('startUponArrival', 1)
         .set('startDate', new Date()),

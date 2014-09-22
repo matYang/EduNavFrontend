@@ -503,7 +503,7 @@
             <p class="title">
                 <a class="F_green courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
             </p>
-            <p class="desc">大学城（商圈）: <%= circleName %></p>
+            <p class="desc">大学城（商圈）: <%= circleName||'-- --' %></p>
             <p class="desc"><span>上课日期:</span>
                 <%if(startUponArrival){%>
                 <%= startDate %>
