@@ -19,17 +19,19 @@ testMockObj = {
     testPhoto3: new Photo().set("id", 3).set("imgUrl", "/testUrl3"),
     testCourses: new Courses(),
     testCourse1: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 1)
-        .set("marking", '近期门店有优惠活动').set("courseName", "雅思英语").set("price", 10800).set('schoolTimeWeek',3).set('schoolTimeDay',3)
-        .set("originalPrice", 12800).set("instName", "南京新东方").set("address", "南京市玄武区")
-        .set("cashback", 10).set("commission", 95)
+        .set("courseName", "雅思英语").set("cashback", 10).set("commission", 95)
+        .set('schooltimeWeek',[1,2]).set('schooltimeDay',[3,4])
+        .set("instName", "南京新东方").set("address", "南京市玄武区")
         .set("circleName", '仙林大学城1')
         .set("status", EnumConfig.CourseStatus.onlined)
-        .set("bookingType", 2).set('startUponArrival', 1).set('startDate', new Date()).set('quiz', 'adhj'),
+        .set("bookingType", 1)
+        .set('startUponArrival', 1).set('startDate', new Date())
+        .set('quiz', 'adhj'),
     testCourse2: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 2)
-        .set('schoolTimeWeek',1).set('schoolTimeDay',4)
-        .set("circleName", '仙林大学城2')
         .set("courseName", "SAT").set("price", 10800).set("instName", "School A").set("address", "南京市白下区")
-        .set("cashback", 50).set("commission", 98)
+        .set('schooltimeWeek',[1]).set('schooltimeDay',[3,4])
+        .set('schoolTimeWeek',1).set('schoolTimeDay',4).set("cashback", 50).set("commission", 98)
+        .set("circleName", '仙林大学城2')
         .set("status", EnumConfig.CourseStatus.onlined).set('startUponArrival', 1)
         .set('startDate', new Date(1400000000000)),
     testCourse3: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 3)

@@ -167,7 +167,7 @@ var Course = Backbone.Model.extend({
             json.finishTime2 = json.finishTime2 == null ? null : Math.floor(json.finishTime2 / 100) + ":" + ((json.finishTime2 % 100 < 10) ? "0" + json.finishTime2 % 100 : json.finishTime2 % 100);
 
             json.schooltimeWeek = Utilities.toSchoolTimeText(json.schooltimeWeek, EnumConfig.schooltimeWeek);//周末什么的
-            json.schooltimeDay = Utilities.toSchoolTimeText(json.schooltimeDay, EnumConfig.schooltimeDay);//白天什么的
+            json.schooltimeDay = Utilities.toSchoolTimeText(json.schooltimeDay, EnumConfig.schooltimeDay, '/');//白天什么的
 
 
             if (json.studyDays) {
@@ -230,7 +230,7 @@ var Course = Backbone.Model.extend({
             json.schooltimeWeek = this.get("schooltimeWeek");
             json.schooltimeDay = this.get("schooltimeDay");
             json.schooltimeWeek = Utilities.toSchoolTimeText(json.schooltimeWeek, EnumConfig.schooltimeWeek);//周末什么的
-            json.schooltimeDay = Utilities.toSchoolTimeText(json.schooltimeDay, EnumConfig.schooltimeDay);//白天什么的
+            json.schooltimeDay = Utilities.toSchoolTimeText(json.schooltimeDay, EnumConfig.schooltimeDay, '/');//白天什么的
 
             //以下为生成课程价格相关信息所需的字段
             json.price = this.get("price");
@@ -250,7 +250,6 @@ var Course = Backbone.Model.extend({
 
 var Courses = Backbone.Collection.extend({
     model: Course,
-    url: Constants.origin + '/api/v1.0/course',
     start: 0,
     count: 0,
     total: 0,

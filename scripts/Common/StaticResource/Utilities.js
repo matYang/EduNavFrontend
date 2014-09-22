@@ -394,14 +394,17 @@ var Utilities = {
         return list;
     },
 
-    toSchoolTimeText: function (list, textEnum) {
+    toSchoolTimeText: function (list, textEnum, symbol) {
         if (!list || textEnum === undefined) {
             return '';
+        }
+        if(symbol===undefined){
+            symbol = '+'
         }
         var text = _.map(list, function (val) {
             return textEnum[val];
         });
-        return text.join('+');
+        return text.join(symbol);
     },
 
     /**
