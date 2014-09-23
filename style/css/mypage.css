@@ -176,6 +176,8 @@ thead tr.bookingEntry td.detail{text-align: center}
 
 #mypage_content #bookingNavigator{margin-bottom: 10px;}
 
+/*消除bookingSummary td 的背景色*/
+#bookingSummary td{background: none;}
 
 /*表单样式*/
 #mypage_content .form_style .field{ margin:20px 0;}
