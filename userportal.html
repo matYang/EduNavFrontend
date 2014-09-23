@@ -15,7 +15,7 @@
     <title>爱上课 ishangke.cn</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="style/images/ico.ico"/>
-    <link href="style/lib/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="style/lib/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
     <link href="style/css/Global.css" rel="stylesheet" type="text/css"/>
     <link href="style/css/notifier-base.css" rel="stylesheet" type="text/css"/>
     <link href="style/css/common-ui.css" rel="stylesheet" type="text/css"/>
@@ -819,6 +819,14 @@
     </div>
     <div class="title blank1 scrollTarget" style="border:1px solid #ccc;"><b>未入学订单</b></div>
     <table id="bookingSummary" style="border:1px solid #ccc; border-top:none;" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr class="bookingEntry">
+            <td class="date">开课日期</td>
+            <td class="detail">课程信息</td>
+            <td class="payType">支付方式</td>
+            <td class="status">订单状态</td>
+        </tr>
+        </thead>
         <tbody ></tbody>
     </table>
 </script>

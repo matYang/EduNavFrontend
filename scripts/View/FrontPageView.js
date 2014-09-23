@@ -231,6 +231,11 @@ var SearchArea = Backbone.View.extend({
     bindEvents: function () {
         var that = this;
 
+        /*select引用jquery-ui*/
+        $("#home_location_select").selectmenu();
+        $("#select_startDate").selectmenu();
+        $("#home_classType_select").selectmenu();
+
         //自助选课 课程类目的选择弹出框
         $("#courseChoose").on("click", function () {
             //传入选择目录以后的回调函数
