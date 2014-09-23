@@ -119,7 +119,7 @@ var TopBarView = Backbone.View.extend({
                 {
                     container.hide();
                 }
-                e.stopPropagation();
+//                e.stopPropagation();//it is really a bug
             });
         } else {
             $('#user_info_pic').hover(function (e) {

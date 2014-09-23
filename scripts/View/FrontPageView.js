@@ -212,6 +212,8 @@ var SearchArea = Backbone.View.extend({
         });
         var $dist = $("#home_location_select");
         $dist.html(buf.join(""));
+        //select should after it is ready
+        $dist.selectmenu();
     },
     clearModel: function () {
         this.model = new Apply();
@@ -230,6 +232,10 @@ var SearchArea = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+
+        /*select引用jquery-ui*/
+        $("#select_startDate").selectmenu();
+        $("#home_classType_select").selectmenu();
 
         //自助选课 课程类目的选择弹出框
         $("#courseChoose").on("click", function () {

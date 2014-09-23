@@ -15,6 +15,7 @@
     <title>爱上课 ishangke.cn</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="style/images/ico.ico"/>
+    <link href="style/lib/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
     <link href="build/style/css/style-min.css?version=2.1build001" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript">
@@ -119,9 +120,9 @@
             </ul>
             <div class="login_reg">
                 <div class="hd">
-                    <a class="js_loginDropToggle login" href="#">登录</a>
+                    <a class="js_loginDropToggle login">登录</a>
                     <span></span>
-                    <a id="signup_button" class="reg" href="#">注册</a>
+                    <a id="signup_button" class="reg">注册</a>
                 </div>
                 <div id="topbar_loginbox" class="bd">
                     <ul>
@@ -170,16 +171,16 @@
         <div id="lv2Categories"></div>
         <div class="school s_language blank2">
             <ul class="clearfix">
-                <li><img src="style/images/q1.png" style="width: 199px;height: 102px"></li>
-                <li><img src="style/images/q2.png" style="width: 199px;height: 102px"></li>
-                <li><img src="style/images/q3.png" style="width: 199px;height: 102px"></li>
-                <li><img src="style/images/q4.png" style="width: 199px;height: 102px"></li>
-                <li class="last"><img src="style/images/s6.png" style="margin-top: 20px;"></li>
-                <li><img src="style/images/q5.png" style="width: 199px;height: 102px"></li>
-                <li><img src="style/images/q6.png" style="width: 199px;height: 102px"></li>
-                <li><img src="style/images/q7.png" style="width: 199px;height: 102px"></li>
-                <li><img src="style/images/q8.png" style="width: 199px;height: 102px"></li>
-                <li class="last"><img src="style/images/s1.png" style="margin-top: 35px;"></li>
+                <li><img src="style/images/s1.png"></li>
+                <li><img src="style/images/s2.png"></li>
+                <li><img src="style/images/s3.png"></li>
+                <li><img src="style/images/s4.png"></li>
+                <li class="last"><img src="style/images/s5.png"></li>
+                <li><img src="style/images/s6.png"></li>
+                <li><img src="style/images/s7.png"></li>
+                <li><img src="style/images/s8.png"></li>
+                <li><img src="style/images/s9.png"></li>
+                <li class="last"><img src="style/images/s10.png"></li>
             </ul>
         </div>
     </div>
@@ -596,12 +597,12 @@
                     </li>
                     <li>
                         <span>上课地区</span>
-                        <select id="home_location_select" name="" class="selectFarme">
+                        <select id="home_location_select" name="home_location_select" class="selectFarme">
                         </select>
                     </li>
                     <li>
                         <span>上课日期</span>
-                        <select id="select_startDate" name="" class="selectFarme">
+                        <select id="select_startDate" name="select_startDate" class="selectFarme">
                             <option value>不限</option>
                             <option value="thisMonth">当月</option>
                             <option value="nextMonth">下月</option>
@@ -610,7 +611,7 @@
                     </li>
                     <li>
                         <span>班级类型</span>
-                        <select id="home_classType_select" name="" class="selectFarme">
+                        <select id="home_classType_select" name="home_classType_select" class="selectFarme">
                             <option value>不限</option>
                             <option value="0">VIP 1对1</option>
                             <option value="1">小班授课（小于6人）</option>
@@ -804,6 +805,14 @@
     </div>
     <div class="title blank1 scrollTarget" style="border:1px solid #ccc;"><b>未入学订单</b></div>
     <table id="bookingSummary" style="border:1px solid #ccc; border-top:none;" width="100%" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr class="bookingEntry">
+            <td class="date">开课日期</td>
+            <td class="detail">课程信息</td>
+            <td class="payType">支付方式</td>
+            <td class="status">订单状态</td>
+        </tr>
+        </thead>
         <tbody ></tbody>
     </table>
 </script>
