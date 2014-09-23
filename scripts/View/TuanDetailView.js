@@ -1,4 +1,4 @@
-var TuanDetailView = BaseFormView.extend({
+var TuanDetailView = Backbone.View.extend({
     el: "#content",
     //todo need to write template named 'tpl_tuanDetail'
     template: _.template(tpl.get("tuanDetail")),

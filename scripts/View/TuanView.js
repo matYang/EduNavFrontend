@@ -1,4 +1,4 @@
-var TuanView = BaseFormView.extend({
+var TuanView = Backbone.View.extend({
     el: "#content",
     //todo need to write template named 'tpl_tuan'
     template: _.template(tpl.get("tuan")),
