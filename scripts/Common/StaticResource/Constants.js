@@ -39,6 +39,9 @@ var Constants = {
         //已筛选的条件 一二三级类目
         "req", "subCategoryContainer", "subSubCategoryContainer", "subSubCategory", "subCategory", "category",
 
+        /*课程团购*/
+        'tuan','tuanDetail',
+
         /*课程详情*/
         "courseDetail",
         "relatedCourseRow", "relatedCourseNoRow", "relatedCourseErrorRow",//相关课程
