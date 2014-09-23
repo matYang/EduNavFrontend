@@ -129,8 +129,8 @@
 .SearchCotentAreaMainA li{width: 255px; height: 40px; margin-bottom: 10px; position: relative;}
 .SearchContentA span{width: 70px; height: 34px; display: block; float: left; line-height: 34px; font-size: 15px; color: #666;}
 /*style of select and input*/
-.SearchContentA select.selectFarme,
-.SearchContentA input.selectFarme{
+.SearchContentA select.selectFrame,
+.SearchContentA input.selectFrame{
     width: 130px; height: 34px;
     padding: 0 12px;
     cursor: pointer; border: 0;
@@ -139,7 +139,7 @@
     float: left;
     color: #666;
     font-size: 12px;}
-.SearchContentA select.selectFarme{
+.SearchContentA select.selectFrame{
     width: 154px;
 }
 .selectIcon{ width: 15px; height: 8px; display: block; background-image: url("../images/search.png"); background-position: 0 -200px; position: absolute; top: 15px; left: 202px;}
