@@ -6,9 +6,11 @@ var TuanView = Backbone.View.extend({
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "close");
         app.viewRegistration.register(this);
+        this.render();
 
     },
     render: function () {
+        this.$el.html(this.template());
         this.bindEvents();
     },
 

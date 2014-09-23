@@ -24,7 +24,7 @@ var AppRouter = Backbone.Router.extend({
         "mypage/:view": "mypage",
 
         //todo 课程团购
-        'tuan/':'tuan',
+        'tuan':'tuan',
         'tuan/:courseId':'tuanDetail',
 
         //课程详情ß
