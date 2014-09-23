@@ -83,7 +83,7 @@
             </h1>
             <ul class="topBar-navigation">
                 <li id="navigate_home" class="button navigate_home">首页</li>
-                <li id="navigate_search" class="button navigate_search">分类检索</li>
+                <li id="navigate_search" class="button navigate_search">课程分类</li>
                 <li id="navigate_compare" class="button navigate_compare">课程对比</li>
             </ul>
             <!--<div class="user_info">
@@ -601,24 +601,26 @@
                 <a></a>
                 <span>自助选课</span>
                 <i></i>
-                <p>适合课程，比出来</p>
+                <p>大数据支持，智能选出合适课程</p>
             </div>
 
             <div class="SearchCotentAreaMain SearchCotentAreaMainLeft">
                 <ul class="SearchCotentAreaMainA">
                     <li>
                         <span>课程类目</span>
-                        <input id="courseChoose" class="selectFarme" type="text" placeholder="请选择">
-                        <i class="selectIcon"></i>
+                        <span id="courseChooseContainer"  style="width: 154px;cursor: pointer">
+                            <input id="courseChoose" class="selectFrame" type="text" placeholder="请选择">
+                            <i class="selectIcon"></i>
+                        </span>
                     </li>
                     <li>
                         <span>上课地区</span>
-                        <select id="home_location_select" name="home_location_select" class="selectFarme">
+                        <select id="home_location_select" name="home_location_select" class="selectFrame">
                         </select>
                     </li>
                     <li>
                         <span>上课日期</span>
-                        <select id="select_startDate" name="select_startDate" class="selectFarme">
+                        <select id="select_startDate" name="select_startDate" class="selectFrame">
                             <option value>不限</option>
                             <option value="thisMonth">当月</option>
                             <option value="nextMonth">下月</option>
@@ -627,7 +629,7 @@
                     </li>
                     <li>
                         <span>班级类型</span>
-                        <select id="home_classType_select" name="home_classType_select" class="selectFarme">
+                        <select id="home_classType_select" name="home_classType_select" class="selectFrame">
                             <option value>不限</option>
                             <option value="0">VIP 1对1</option>
                             <option value="1">小班授课（小于6人）</option>
@@ -652,17 +654,19 @@
                 <ul class="SearchCotentAreaMainB">
                     <li class="SearchCotentAreaMainBLi">
                         <span>意向课程</span>
-                        <input id="applyCourseChoose" class="selectFarme" type="text" placeholder="请选择">
-                        <i class="selectIcon"></i>
+                        <span id="applyCourseChooseContainer"  style="width: 154px;cursor: pointer">
+                            <input id="applyCourseChoose" class="selectFrame" type="text" placeholder="请选择">
+                            <i class="selectIcon"></i>
+                        </span>
                     </li>
                     <li class="SearchCotentAreaMainBLi"></li>
                     <li class="SearchCotentAreaMainBLi">
                         <span>联系电话</span>
-                        <input id="home_phone_input" class="selectFarme" type="text">
+                        <input id="home_phone_input" class="selectFrame" type="text">
                     </li>
                     <li class="SearchCotentAreaMainBLi">
                         <span>学员姓名</span>
-                        <input id="home_userName_input" class="selectFarme" type="text">
+                        <input id="home_userName_input" class="selectFrame" type="text">
                     </li>
                     <li class="SearchCotentAreaMainBLi">
                         <span>附加信息 &nbsp;&nbsp;(选填)</span>

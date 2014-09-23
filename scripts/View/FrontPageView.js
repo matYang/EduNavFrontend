@@ -224,7 +224,7 @@ var SearchArea = Backbone.View.extend({
     //以下两个均为选择目录后的回调函数 设置model 并更新view
     selectCatSearch: function (cat) {
         this.catSearch = cat;
-        $('#courseChoose').val(cat.name);
+        $('#courseChoose ').val(cat.name);
     },
     selectCatApply: function (cat) {
         this.catApply = cat;
@@ -238,7 +238,7 @@ var SearchArea = Backbone.View.extend({
         $("#home_classType_select").selectmenu();
 
         //自助选课 课程类目的选择弹出框
-        $("#courseChoose").on("click", function () {
+        $("#courseChooseContainer").on("click", function () {
             //传入选择目录以后的回调函数
             if (!that.courseTip) {
                 that.courseTip = new SelectCatModal({callback: that.selectCatSearch});
@@ -248,7 +248,7 @@ var SearchArea = Backbone.View.extend({
             }
         });
         //人工选课 课程类目的选择弹出框
-        $("#applyCourseChoose").on("click", function () {
+        $("#applyCourseChooseContainer").on("click", function () {
             //传入选择目录以后的回调函数
             if (!that.courseTip) {
                 that.courseTip = new SelectCatModal({callback: that.selectCatApply});
