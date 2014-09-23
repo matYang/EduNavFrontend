@@ -212,6 +212,8 @@ var SearchArea = Backbone.View.extend({
         });
         var $dist = $("#home_location_select");
         $dist.html(buf.join(""));
+        //select should after it is ready
+        $dist.selectmenu();
     },
     clearModel: function () {
         this.model = new Apply();
@@ -232,7 +234,6 @@ var SearchArea = Backbone.View.extend({
         var that = this;
 
         /*select引用jquery-ui*/
-        $("#home_location_select").selectmenu();
         $("#select_startDate").selectmenu();
         $("#home_classType_select").selectmenu();
 
