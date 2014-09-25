@@ -2,26 +2,6 @@
 /* iShangke.cn */
 /* date:20140608 */
 /* author:djxiaoniud@163.com */
-html,body{font-family: 'Microsoft Yahei','SimSun','SimHei'}
-body, dl, dd, h1, h2, h3, h4, h5, h6, p, form { margin: 0; }
-body{ font-size:14px; color:#333;}
-label{font-weight:bold;color:#333}
-
-input[type="text"] { padding: 0 1px; }
-input[type="password"] { padding: 0 1px; }
-ol, ul { margin: 0; padding: 0; }
-img { border: none; }
-ul,li{ list-style: none; }
-
-
-.fleft { float: left; }
-.fright { float: right; }
-
-.row{
-    width:100%;
-    padding: 10px 20px;
-}
-
 .clearfix:after { clear: both; content: "."; display: block; font-size: 0; line-height: 0; visibility: hidden; width: 0; height: 0; }
 .clear { clear: both; }
 .blank { margin-top: 10px; }
@@ -47,25 +27,22 @@ input.text,select.text{height:28px; line-height:28px\9; border:1px solid #ccc; p
 .btn_W{width:150px; height:40px; background:url(../images/btn_W_long.png) no-repeat; font-size:14px; color:#128d56; border:none; cursor:pointer;}
 .btn_O{width:150px; height:40px; background:url(../images/btn_O_long.png) no-repeat; font-size:14px; color:#fff; border:none; cursor:pointer;}
 
-/*Sticky Footer*/
-html, body, .main { height: 100%; }
-body > .main { height: auto; min-height: 100%; }
-.content { padding-bottom: 40px; }  /* 必须使用和footer相同的高度 footer不为fix 可缩小padding */
-.footer { position: relative; margin-top: -80px; /* footer高度的负值 */ height: 80px; clear: both;}
+/* Footer*/
+.footer {
+    padding: 10px 0 12px; background: #248E4E;color: #ffffff}
+/*底部链接的样式*/
+.footer a,.footer a:visited{ color: #ffffff; }
+.footer a:hover{ color: #ffffff; text-decoration: underline; }
+/*底部段落的样式*/
+.footer p{ margin: 9px 0; font-size: 12px; }
 
-/*footer*/
-.footer { border-top:1px solid #d6d6d6; }
-.footer_inner{width:865px; height:79px; margin-left:auto; margin-right:auto; padding-left:135px; background:url(../images/logo2.png) no-repeat left center;}
-#footer_service_link{padding-top:20px;}
-#footer_service_link a{ color:#636363; padding:0 15px; border-right:1px solid #cccccc;}
-#footer_service_link a#footer_feedback{ border-right:none;}
-.footer-copyright{color:#888888; margin-top:8px; padding-left:15px;}
-.footer-copyright a{color:#888888;}
+.footer_inner{ width:1000px; margin-left:auto; margin-right:auto; text-align: center; }
+/*footer部分的页面切换链接*/
+#footer_service_link a{ padding:0 10px;}
+p.footer-copyright{}
+p.footer-phone{font-size: 14px}
 
-/*框架*/
-.w_730{width:730px;}
-.w_250{width:250px;}
-.content{width:1000px; margin:20px auto 100px;}
+
 
 /*公用模块样式*/
 /*tab*/

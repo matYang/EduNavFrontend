@@ -1,16 +1,37 @@
+@charset "utf-8";
 /* 2014-8-16
  * By Jet
 **/
 
 /*基本样式*/
-a, a:visited {
-    text-decoration: none;
-    color: #333333;
+html,body{font-family: 'Microsoft Yahei','SimSun','SimHei'; height: 100%; }
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form { margin: 0; }
+body{ font-size:14px; color:#333;}
+
+a, a:visited { text-decoration: none; color: #333333; }
+a:hover, a:active{ color: #128d56; }
+
+input[type="text"] { padding: 0 1px; }
+input[type="password"] { padding: 0 1px; }
+ol, ul { margin: 0; padding: 0; }
+img { border: none; }
+ul,li{ list-style: none; }
+
+
+label{font-weight:bold;color:#333}
+
+/*框架布局*/
+.w_730{width:730px;}
+.w_250{width:250px;}
+.container {width:1000px;margin:0 auto;padding: 30px 0;min-height: 600px}
+.fleft { float: left; }
+.fright { float: right; }
+
+.row{
+    width:100%;
+    padding: 10px 20px;
 }
 
-a:hover, a:active{
-    color: #128d56;
-}
 
 /**通用面板 默认样式*/
 .panel {

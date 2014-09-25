@@ -1,22 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
 
-.index #topBar{position:absolute; top:0; left:0; width:100%;z-index: 999;}
-.index #main{ margin-top:60px;}
+#visualScope {width:100%;margin:-15px auto 0; overflow:hidden; }
 
-.index #visualScope {width:100%; height:320px;margin:0 auto; overflow:hidden; }
-
-.index #searchArea { width: 100%; height: auto;}
-
-/*在屏幕宽度超过1440时 左右会出现空白背景
-    #1 设置图片的宽度为1960px 适应高分辨率屏 retina除外
-    #2 根据不同图片设置不同背景图 这个比较麻烦 大图必须匹配对应的背景图
-    # (接2)图片滚动中动态变换外部容器#visual_container的background 使用js控制 可改写bjqs插件来实现
-    #简单考虑 现阶段使用方案1比较合适
-    # 所以让设计师去重修一下图片 最优化压缩大图
-*/
-/*这里只提供了上下层纯色分层明显的第三张banner的背景图 其它设置纯色背景即可*/
-/* background:url(../images/banner3_bg.png) repeat-x;*/
+#searchArea { width: 100%;}
 
 /*visual_container  */
 .index #visual_container,
@@ -79,14 +66,12 @@
     -o-transition: all 0.65s;
     transition: all 0.65s;}
 .index #visualScope ol.bjqs-markers li a:hover{ background:#2a2e39;}
-.index #visualScope ol.bjqs-markers li.active-marker a{ background:#2a2e39;filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99000000',endColorstr='#99000000'); }
-
-.index .content{position:relative;}
-.index .content .category{ margin-bottom:100px;}
+.index #visualScope ol.bjqs-markers li.active-marker a{
+    background:#2a2e39;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99000000',endColorstr='#99000000'); }
 
 /*一级目录*/
 .index .tab2 .active{ background-color: #1A8F5A; color: #FFF;}
-.index .tab2{ height:52px; width:1000px; }
 .index .tabtop{width: 1000px; height: 2px; background-color: #1A8F5A;}
 .index .tab2 li{float:left; width:248px; margin-right: 2px; height:50px; line-height:50px; text-align:center; font-size:20px; color:#fff; background-color: #E5E6E8;}
 .index .tab2 li:hover{ background-color: #1A8F5A; color: #FFF;}

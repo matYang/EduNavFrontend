@@ -43,11 +43,11 @@
 </head>
 <body>
 <div id='topBar' class='unselectable'></div>
-<div id='main' class='main'>
-    <div id="visualScope"></div>
-    <div id="searchArea"></div>
-    <div id='content' class='content'></div>
-</div>
+
+<div id="visualScope"></div>
+<div id="searchArea"></div>
+<div id='content' class='container'></div>
+
 <div id='infoLayer'></div>
 <div id="overlay"></div>
 <div id='overlayCourse'></div>
@@ -63,15 +63,16 @@
 
 <div class="footer">
     <div class="footer_inner">
-        <div id="footer_service_link" class="footer-upperContent">
+        <p id="footer_service_link" class="footer-upperContent">
             <a id="footer_about" href="#">关于我们</a>
             <a id="footer_join" href="#">机构入驻</a>
             <a id="footer_help" href="#">常见问题</a>
             <a id="footer_advise" href="#">意见反馈</a>
             <a id="footer_contactUs" href="#">联系我们</a>
-        </div>
-        <div class="footer-copyright"> Copyright &#169; 2014 南京爱上课信息技术有限公司 | <a href="http://www.miitbeian.gov.cn/"
-                                                                      target="_blank">苏ICP备14025414号</a></div>
+        </p>
+        <p class="footer-copyright"> Copyright &#169; 2014 南京爱上课信息技术有限公司 | <a href="http://www.miitbeian.gov.cn/"
+                                                                      target="_blank">苏ICP备14025414号</a></p>
+        <p class="footer-phone">400-025-0884</p>
     </div>
 </div>
 <div id="allTemplates">
@@ -120,7 +121,6 @@
             </div>
         </div>
     </div>
-    <div id='topNoticeBar'></div>
 </script>
 
 <script type="text/template" id="tpl_topBar-notLoggedIn">
@@ -180,7 +180,7 @@
 </script>
 
 <script type="text/template" id="tpl_front">
-    <div id="lv1Button" class="tab2 unselectable">
+    <div id="lv1Button" class="tab2 clearfix unselectable">
         <div class="tabtop"></div>
     </div>
     <div class="category unselectable">

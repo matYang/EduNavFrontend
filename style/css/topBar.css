@@ -1,8 +1,17 @@
 @charset "utf-8";
 /* CSS Document */
 
-.topBar{ height:75px; background:url(../images/top_bar_bg.png) repeat-x;}
-.topBar .topBar-inner{width:1200px; margin:0 auto;background:url(../images/top_bar_bg.png) repeat-x;}
+.topBar{
+    position: relative;z-index: 999;
+    left: 0;right: 0;
+    height:75px;
+    background:url(../images/top_bar_bg.png) repeat-x;
+}
+.topBar .topBar-inner{
+    width:1100px;
+    margin:0 auto;
+    background:url(../images/top_bar_bg.png) repeat-x;
+}
 
 #logo{float:left; width:155px; height:75px; background:url(../images/logo.png) no-repeat; text-indent:-9999px;}
 .topBar-navigation{float:left; height:60px; margin-left:20px; line-height:60px; color:#fff; font-size:18px;}

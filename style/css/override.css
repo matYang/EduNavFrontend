@@ -1,13 +1,3 @@
-#topNoticeBar {
-	height: 16px;
-	width: 100%;
-	background-color: burlywood;
-	margin-top: -15px;
-	border-bottom: 1px rgb(181, 176, 45) solid;
-	text-align: center;
-	display:none;
-}
-
 .account dd.wrong {
 	background: none;
 }
