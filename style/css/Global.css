@@ -10,10 +10,7 @@
 .F_red { color: #ff0000; }
 .F_orange { color: #ff5500; }
 .F_green { color: #128d56; }
-.F_16 { font-size: 16px; }
-.F_18 { font-size: 18px; }
-a, a:visited { color: #333; text-decoration: none;}
-a:hover { color: #333; text-decoration: none;cursor: pointer;}
+
 a.F_green, a.F_green:visited { color: #128d56;}
 .hidden {display: none;}
 
@@ -26,23 +23,6 @@ input.text,select.text{height:28px; line-height:28px\9; border:1px solid #ccc; p
 .btn_G{width:150px; height:40px; background:url(../images/btn_G_long.png) no-repeat; font-size:14px; color:#fff; border:none; cursor:pointer;}
 .btn_W{width:150px; height:40px; background:url(../images/btn_W_long.png) no-repeat; font-size:14px; color:#128d56; border:none; cursor:pointer;}
 .btn_O{width:150px; height:40px; background:url(../images/btn_O_long.png) no-repeat; font-size:14px; color:#fff; border:none; cursor:pointer;}
-
-/* Footer*/
-.footer {
-    padding: 10px 0 12px; background: #248E4E;color: #ffffff}
-/*底部链接的样式*/
-.footer a,.footer a:visited{ color: #ffffff; }
-.footer a:hover{ color: #ffffff; text-decoration: underline; }
-/*底部段落的样式*/
-.footer p{ margin: 9px 0; font-size: 12px; }
-
-.footer_inner{ width:1000px; margin-left:auto; margin-right:auto; text-align: center; }
-/*footer部分的页面切换链接*/
-#footer_service_link a{ padding:0 10px;}
-p.footer-copyright{}
-p.footer-phone{font-size: 14px}
-
-
 
 /*公用模块样式*/
 /*tab*/

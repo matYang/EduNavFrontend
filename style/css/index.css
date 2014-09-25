@@ -132,6 +132,22 @@
 .index .s_attestation li.last{width:202px;}
 
 
+/* Footer*/
+.footer {
+    padding: 10px 0 12px; background: #248E4E;color: #ffffff}
+/*底部链接的样式*/
+.footer a,.footer a:visited{ color: #ffffff; }
+.footer a:hover{ color: #ffffff; text-decoration: underline; }
+/*底部段落的样式*/
+.footer p{ margin: 9px 0; font-size: 12px; }
+
+.footer_inner{ width:1000px; margin-left:auto; margin-right:auto; text-align: center; }
+/*footer部分的页面切换链接*/
+#footer_service_link a{ padding:0 10px;}
+p.footer-copyright{}
+p.footer-phone{font-size: 14px}
+
+
 
 
 
