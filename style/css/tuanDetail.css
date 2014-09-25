@@ -1,0 +1,152 @@
+/*团购detail*/
+#tuanDetail .panel_bg{ background-color: #FFF;}
+#tuanDetail{ width: 1000px; height: auto; min-height: 800px;}
+
+/*banner*/
+#tuanDetail .banner{ width: 960px; padding: 20px; height: 380px; margin-top: 15px;}
+
+/*pic*/
+#tuanDetail .pic{ width: 500px; height: 380px; float: left;}
+#tuanDetail .pic .pic_big{ width: 450px; height: 280px; margin: auto;}
+#tuanDetail .pic .pic_big a{ width: 450px; height: 280px; display: none;}
+#tuanDetail .pic .pic_big img{ width: 450px; height: 280px;}
+#tuanDetail .pic .pic_big .active{ display: block;}
+#tuanDetail .pic .pic_list{ width: 450px; height: 80px; margin: 20px auto;}
+#tuanDetail .pic .pic_list a{
+    width: 100px; height: 80px;
+    display: block;
+    margin-right: 25px;
+    float: left;
+    position: relative;
+}
+#tuanDetail .pic .pic_list img{ width: 100px; height: 80px;}
+#tuanDetail .pic .pic_list .active{
+    width: 100px; height: 80px;
+    position: absolute; z-index: 1;
+    background-color: rgba(255,255,255,0.8)
+}
+
+/*row*/
+#tuanDetail .row{ width: 450px; height: 380px; float: right; padding: 0;}
+#tuanDetail .row .price{
+    padding-left: 10px;
+    width: 410px; height: 80px;
+    background-color: #128d56; color: #fff;
+    line-height: 80px; font-size: 16px;
+}
+#tuanDetail .row .price span{margin-right: 20px; display: inline-block;}
+#tuanDetail .row .price strong{ font-size: 28px;}
+#tuanDetail .row h2{ padding-left: 0; color: #128d56; margin-bottom: 10px; text-align: left;}
+#tuanDetail .row .icon{ height: 50px; background-image: url("");}
+#tuanDetail .row span{ line-height: 30px; font-size: 14px; text-align: left;  display: block;}
+#tuanDetail .row a{ color: #128d56;}
+#tuanDetail .btn{ padding: 0;}
+#tuanDetail .btn a{
+    height: 50px;
+    display: block;
+    float: left;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    color: #fff;
+}
+#tuanDetail .btnbuy{
+    width: 280px;
+    background-color: #FF6A6A;
+}
+#tuanDetail .btnconsult{
+    width: 150px;
+    background-color: #47BC78;
+    margin-left: 10px;
+}
+
+/*tuanMain*/
+#tuanDetail .tuanMain{width: 1000px; height: auto; min-height: 800px; margin-top: 15px;}
+#tuanDetail .tuanMain a{color: #128d56;}
+/*fleft*/
+#tuanDetail .tuanMain .tuan_sorterArea{width: 770px; margin-bottom: 6px;}
+
+#tuanDetail .fleft{padding: 10px;}
+#tuanDetail .tuanMain .tuan_sorter{ width: 770px; height: 52px; line-height: 52px; overflow: hidden;}
+#tuanDetail .tuanMain .tuan_sorter li a{
+    display: block;
+    width: 182px; height: 52px;
+    margin-right: 7px;
+    background-color: #e9e9e9;
+    float: left;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    color: #333;
+}
+#tuanDetail .tuanMain .tuan_sorter a.active{background-color: #28B094; color: #fff;}
+#tuanDetail .tuanMain .tuan_sorter_bottom{ width: 750px; height: 2px; background-color: #28B094; display: block;}
+#tuan_content{padding: 10px;}
+#tuanDetail .tuanMain .content_inner{}
+#tuan_content dl{ width: 720px;}
+#tuan_content dd{ width: 680px; border-bottom: 1px solid #ccc; margin-left: 20px; line-height: 30px; height: auto;}
+#tuan_content dt{height: 30px; margin-top: 10px; line-height: 30px; font-size: 16px; font-weight: bold;}
+
+#tuan_content #tuan_content_1 dd p{ height: 40px; line-height: 40px;}
+
+#tuan_content #tuan_content_2 dd a{
+    width: 140px; height: 140px;
+    border-radius: 70px; background-color: #E9E9E9;
+    display: block; float: left; margin:0 30px 10px 0;
+}
+
+#tuan_content #tuan_content_3 dd a{
+    width: 120px; height: 120px;
+    border-radius: 60px; background-color: #E9E9E9;
+    display: block; float: left; margin: 0 10px 10px 0;
+}
+#tuan_content .warm_tip{
+    width: 640px; height: 250px;
+    padding: 20px;  margin-bottom: 20px;
+    background-color: #fffdf5;
+    float: left;
+}
+#tuan_content .warm_tip p{ display: block; width: 600px; height: 15px; float: left;}
+#tuan_content .warm_tip span{ width: 640px; float: left; display: block;}
+#tuanDetail .dticon{
+    width: 9px; height: 13px;
+    display: block;
+    background-image: url("../images/dtIcon.jpg");
+    float: left;
+    margin: 8px 10px 0 2px;
+}
+#tuanDetail .warmicon{
+    width: 18px; height: 18px;
+    display: block;
+    background-image: url("../images/warmIcon.png");
+    float: left;
+    margin: 5px 4px 0 2px;
+}
+/*evaluate评价*/
+#tuan_content .evaluate{ width: 680px; height: 200px;}
+
+#tuan_content .impresson{ width: 680px; min-height: 30px; height: auto; background-color: #f1f1f1;}
+#tuan_content .impresson .title{ padding: 8px;}
+#tuan_content .impresson label{ line-height: 13px;}
+#tuan_content .impresson .impressonLi{ height: 25px; padding: 8px;}
+#tuan_content .impresson .impressonLi label{ line-height: 25px; float: left; padding-left: 4px;}
+#tuan_content .impresson .impressonLi a{
+    height: 25px; line-height: 25px;
+    padding: 0 8px;
+    margin-left: 10px;
+    background-color: #45B39C;
+    float: left;
+    color: #fff;
+}
+
+#tuan_content .evaluateList li{ padding: 15px 0; line-height: 25px;border-bottom: 1px dashed #c3c3c3;}
+#tuan_content .evaluateList li span,label{ line-height: 25px; font-size: 12px;}
+#tuan_content .evaluateList .more{
+    text-align: center;
+    line-height: 80px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+#tuan_content .txt{width: 660px; height: 180px; padding: 0 10px; border: 1px solid #c3c3c3;}
+#tuan_content .txt textarea{ width: 660px; height: 100px; border: 0; outline: 0; padding: 10px 0; line-height: 20px; border-bottom: 1px solid #c3c3c3;}
+#tuan_content a.btnadd{ width: 190px; height: 48px; background-color: #47BC78; text-align: center; line-height: 48px; color: #fff;font-size: 16px; display: block; float: right; margin: 20px 0;}

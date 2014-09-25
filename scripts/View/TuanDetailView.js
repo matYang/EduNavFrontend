@@ -37,17 +37,23 @@ var TuanDetailView = Backbone.View.extend({
         document.title = '全城最低价';
         this.$el.html(this.template(this.course._toJSON()));
         $("#tuanDetail .pic .pic_list").find("i:first").removeClass("active");
+        $("body").css("background-color","#f1f1f1");
         this.bindEvents();
     },
 
     bindEvents: function () {
         var that = this;
+        /*banner图片的hover事件*/
         $("#tuanDetail .pic .pic_list a").hover(function(){
             var index =  $(this).attr("index");
             $("#tuanDetail .pic .pic_list i").addClass("active");
             $(this).find(".active").removeClass("active");
             $("#tuanDetail .pic .pic_big a").removeClass("active");
             $("#tuanDetail .pic .pic_big").find("a:eq("+index+")").addClass("active");
+        });
+        /*课程详情页面的click*/
+        $("#tuanDetail .tuan_sorter li").on("click",function(){
+
         });
     },
 

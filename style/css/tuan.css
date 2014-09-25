@@ -2,7 +2,11 @@
 
 
 /*团购 Banner*/
-#tuanBanner{ width: 1000px; height: 320px; border: 1px solid #CCC; margin-bottom: 30px; position: relative;}
+#tuanBanner{
+    width: 1000px; height: 320px;
+    margin-bottom: 30px;
+    position: relative;
+}
 #tuanBanner .pic{width: 700px; height: 320px; display: block; float: left;}
 #tuanBanner .pic .pics img{width: 700px; height: 320px; display: none;}
 #tuanBanner .pic .active img{width: 700px; height: 320px; display: block;}
@@ -33,25 +37,3 @@
 
 
 
-/*团购detail*/
-#tuanDetail{ width: 1000px; height: auto; min-height: 800px;}
-#tuanDetail .banner{ width: 1000px; height: 400px; border: 1px solid #CCC;}
-#tuanDetail .pic{ width: 450px; height: 400px; float: left;}
-#tuanDetail .pic .pic_big{ width: 400px; height: 300px; margin: auto;}
-#tuanDetail .pic .pic_big a{ width: 400px; height: 300px; display: none;}
-#tuanDetail .pic .pic_big img{ width: 400px; height: 300px;}
-#tuanDetail .pic .pic_big .active{ display: block;}
-#tuanDetail .pic .pic_list{ width: 450px; height: 80px; margin-top: 20px;}
-#tuanDetail .pic .pic_list a{
-    width: 100px; height: 80px;
-    display: block;
-    margin-left: 25px;
-    float: left;
-    position: relative;
-}
-#tuanDetail .pic .pic_list img{ width: 100px; height: 80px;}
-#tuanDetail .pic .pic_list .active{
-    width: 100px; height: 80px;
-    position: absolute; z-index: 1;
-    background-color: rgba(255,255,255,0.8)
-}
