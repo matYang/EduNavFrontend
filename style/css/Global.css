@@ -2,7 +2,14 @@
 /* iShangke.cn */
 /* date:20140608 */
 /* author:djxiaoniud@163.com */
-.clearfix:after { clear: both; content: "."; display: block; font-size: 0; line-height: 0; visibility: hidden; width: 0; height: 0; }
+.clearfix:after {
+    clear: both; content: ".";
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+    width: 0; height: 0;
+}
 .clear { clear: both; }
 .blank { margin-top: 10px; }
 .blank1 { margin-top: 15px; }

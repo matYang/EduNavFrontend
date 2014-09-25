@@ -6,17 +6,45 @@
     width: 1000px; height: 320px;
     margin-bottom: 30px;
     position: relative;
+    border: 1px solid #CFCFCF;
 }
 #tuanBanner .pic{width: 700px; height: 320px; display: block; float: left;}
 #tuanBanner .pic .pics img{width: 700px; height: 320px; display: none;}
 #tuanBanner .pic .active img{width: 700px; height: 320px; display: block;}
-#tuanBanner .tips{width: 300px; height: 80px; float: right; position: absolute; right: 0;}
+#tuanBanner .tips{width: 300px; float: right; position: absolute; right: 0;}
+
 #tuanBanner .tips_li{
-    width: 300px; height: 80px;
-    background-color: #e9e9e9;
+    width: 300px;
+    height: 80px;
+    background-color: #ffffff;
     cursor: pointer;
     float: right;
     position: relative;
+}
+#tuanBanner .tips_li + .tips_li{
+    border-bottom: 1px solid #CFCFCF;
+}
+#tuanBanner .tips_li .c-left{
+    width:160px;
+    line-height: 80px;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+    padding-left: 10px;
+}
+#tuanBanner .tips_li .c-right{
+    text-align: right;
+    width:120px;float: right;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+#tuanBanner .tips_li .price{font-size: 30px;color: #FC6B6D;}
+
+#tuanBanner .tips_li.active .price{
+    color: #ffffff;
 }
 #tuanBanner .tips_li.active{
     background-color: #399D70;
@@ -25,13 +53,19 @@
     padding-right: 16px;
     left: 16px;
 }
-#tuanBanner .tips_li.active:before,#tuanBanner .tips_li.active:after{
+#tuanBanner .tips_li.active:before,
+#tuanBanner .tips_li.active:after{
     display: block;
     content: ' ';
     position: absolute;
     width: 16px;
     height: 9px;
     bottom: -9px;
+}
+/*todo 未兼容IE 8*/
+#tuanBanner .tips_li:last-child.active:before,
+#tuanBanner .tips_li:last-child.active:after{
+    top:-9px;
 }
 #tuanBanner .tips_li.active:before{
     left: 0;
@@ -41,6 +75,15 @@
     right: 0;
     background: url("../images/tuan_active_right.png") no-repeat;
 }
+#tuanBanner .tips_li:last-child.active:before{
+    left: 0;
+    background: url("../images/tuan_active_left_last.png") no-repeat;
+}
+#tuanBanner .tips_li:last-child.active:after{
+    right: 0;
+    background: url("../images/tuan_active_right_last.png") no-repeat;
+}
+
 
 #tuanPage h1{
     border-bottom: 1px solid #B6D9CA;
@@ -67,7 +110,7 @@
     z-index: 1;
     background: url("../images/tuan_item_tag.png");
 }
-/**/
+/*分割线*/
 .t-item .line{
     display: block;
     border:1px solid #E8E8E8;
@@ -82,7 +125,7 @@
 /*团购item右侧内容*/
 .t-item .content{padding: 0 8px 0 16px;}
 .t-item .content .r{
-    width: 250px;
+    width: 255px;
     height: 64px;
     padding: 5px 0;
 }
@@ -101,9 +144,9 @@
     white-space: nowrap;
 }
 /*第3行中的价格和抢购按钮 r3需要clearfix*/
-.t-item .content .r.r3 .r-left{ float: left; width: 120px;}
-.t-item .content .r.r3 .r-right{ float: right; width: 130px;}
-.t-item .content .r.r3 .price{font-size: 32px;color: #FC6B6D;}
+.t-item .content .r.r3 .c-left{ float: left; width: 120px;}
+.t-item .content .r.r3 .c-right{ float: right; width: 130px;}
+.t-item .content .r.r3 .price{font-size: 30px;color: #FC6B6D;}
 .t-item .content .r.r3 .btn{height: 40px; line-height: 40px;font-size: 18px}
 
 
@@ -115,6 +158,3 @@
 
 /*团购 Footer*/
 #tuanFooter{ width: 1000px; height: 100px; border: 1px solid #cfcfcf;}
-
-
-
