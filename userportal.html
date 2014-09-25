@@ -83,22 +83,11 @@
                 <a></a>
             </h1>
             <ul class="topBar-navigation">
-                <li id="navigate_home" class="button navigate_home">首页</li>
-                <li id="navigate_search" class="button navigate_search">课程分类</li>
-                <li id="navigate_compare" class="button navigate_compare">课程对比</li>
+                <li id="navigate_home" class="button">首页</li>
+                <li id="navigate_search" class="button">课程分类</li>
+                <li id="navigate_compare" class="button">课程对比</li>
+                <li id="navigate_tuan" class="button">团购&bull;特卖<i class="icon-hot"></i></li>
             </ul>
-            <!--<div class="user_info">
-                <span id="greeting"></span>好，亲爱的
-                <span id="username" class="link">
-                    <% if(name){%>
-                        <%= name %>
-                    <% }else if(invitationCode){ %>
-                        <%= invitationCode %>
-                    <% }else{ %> 会员<%} %>
-                 </span>
-                <a id="logout" href="#">[退出]</a>
-                <a id="topbar-mypage" href="#">我的爱上课</a>
-            </div>-->
             <div class="login_reg">
                 <div id="user_info_pic">
                     <a id="userPic" href="#" class="userpic"><img src=" "/></a>
@@ -130,9 +119,10 @@
                 <a></a>
             </h1>
             <ul class="topBar-navigation">
-                <li id="navigate_home" class="button navigate_home">首页</li>
-                <li id="navigate_search" class="button navigate_search">课程分类</li>
-                <li id="navigate_compare" class="button navigate_compare">课程对比</li>
+                <li id="navigate_home" class="button">首页</li>
+                <li id="navigate_search" class="button">课程分类</li>
+                <li id="navigate_compare" class="button">课程对比</li>
+                <li id="navigate_tuan" class="button">团购&bull;特卖<i class="icon-hot"></i></li>
             </ul>
             <div class="login_reg">
                 <div class="hd">
@@ -3054,11 +3044,75 @@
 </script>
 
 <script type="text/templates" id="tpl_tuan">
-    <div id="tuanBanner">
-    </div>
-    <div id="tuanResult">
-    </div>
-    <div id="tuanFooter">
+    <div id="tuanPage">
+        <div id="tuanBanner">
+        </div>
+        <h1>大家都在团</h1>
+        <div class="row">
+            <div class="pull-left w_730">
+                <div class="t-item">
+                    <span class="tuan_tag">8.5折</span>
+                    <img class="banner" src="./style/images/t_item_banner_test.jpg" alt="爱上课精品课程团购"/>
+                    <div class="content">
+                        <div class="r r1">
+                            <p class="title">四六级英语秒杀，仅限4天</p>
+                            <p>已有 <span class="text-primary">1123</span> 人下单 </p>
+                        </div>
+                        <span class="line"></span>
+                        <div class="r r2">
+                            <p><i class="icon icon-clock"></i> <strong>4天22时1分20秒</strong></p>
+                            <p><i class="icon icon-location"></i> 南京市中山北路222号xx大厦6楼</p>
+                        </div>
+                        <span class="line"></span>
+                        <div class="r r3">
+                            <div class="r-left">
+                                <p class="price">￥399</p>
+                                <p>&nbsp;&nbsp;原价：<s>&nbsp;599&nbsp;</s></p>
+                            </div>
+                            <div class="r-right">
+                                <div class="btn btn_g btn-block">立即抢购</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="t-item">
+                    <span class="tuan_tag">8.5折</span>
+                    <img class="banner" src="./style/images/t_item_banner_test.jpg" alt="爱上课精品课程团购"/>
+                    <div class="content">
+                        <div class="r r1">
+                            <p class="title">四六级英语秒杀，仅限4天</p>
+                            <p>已有 <span class="text-primary">1123</span> 人下单 </p>
+                        </div>
+                        <span class="line"></span>
+                        <div class="r r2">
+                            <p><i class="icon icon-clock"></i> <strong>4天22时1分20秒</strong></p>
+                            <p><i class="icon icon-location"></i> 南京市中山北路222号xx大厦6楼xxxxxxxx</p>
+                        </div>
+                        <span class="line"></span>
+                        <div class="r r3">
+                            <div class="r-left">
+                                <p class="price">￥399</p>
+                                <p>&nbsp;&nbsp;原价：<s>&nbsp;599&nbsp;</s></p>
+                            </div>
+                            <div class="r-right">
+                                <div class="btn btn_g btn-block">立即抢购</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="pull-right w_250">
+                right side bar
+            </div>
+
+        </div>
+        <div id="tuanResult">
+
+        </div>
+        <div id="tuanFooter">
+        </div>
     </div>
 </script>
 
@@ -3080,7 +3134,6 @@
                     <a index="2"><i class="active"></i><img src="style/images/detail_banner3.png" alt=""/></a>
                 </div>
             </div>
-            <div class="row"></div>
         </div>
         <div class="tuanMain"></div>
     </div>

@@ -28,7 +28,15 @@ label{font-weight:bold;color:#333}
 .fright { float: right; }
 .row{
     width:100%;
-    padding: 10px 20px;
+}
+.row:after{
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+    width: 0; height: 0;
 }
 
 
@@ -377,6 +385,12 @@ label{font-weight:bold;color:#333}
     background-position: 0 -22px;
 }
 
+.icon-clock{
+    background: url(../images/icon_clock.png) no-repeat;
+}
+.icon-location{
+    background: url(../images/icon_location.png) no-repeat;
+}
 
 /*图片和图标的样式控制*/
 .img{

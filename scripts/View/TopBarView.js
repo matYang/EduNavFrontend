@@ -57,6 +57,12 @@ var TopBarView = Backbone.View.extend({
                 app.infoModal.hide();
             }
         });
+        $('#navigate_tuan').on('click', function () {
+            if (location.hash !== '#tuan') {
+                app.navigate("tuan", true);
+                app.infoModal.hide();
+            }
+        });
         $('#navigate_compare').on('click', function () {
             //如果不在compare页面，则进行判断内的代码
             if (location.hash.indexOf("compare") !== 1) {
