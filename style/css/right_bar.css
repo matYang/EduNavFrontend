@@ -38,7 +38,7 @@
 .right_bar .comparison dt{ background-position:50% -122px;}
 /*二维码 隐藏层宽度重置为200px*/
 .right_bar .qr_code dt{ background-position:50% -185px;}
-.right_bar dl.qr_code dd{width: 200px}
+.right_bar dl.qr_code dd{width: 160px}
 /*返回顶部*/
 .right_bar .back_to_top dt{ background-color:#2e333f; background-position:50% -251px;}
 
