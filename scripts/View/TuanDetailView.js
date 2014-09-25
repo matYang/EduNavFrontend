@@ -36,11 +36,19 @@ var TuanDetailView = Backbone.View.extend({
     render: function () {
         document.title = '全城最低价';
         this.$el.html(this.template(this.course._toJSON()));
+        $("#tuanDetail .pic .pic_list").find("i:first").removeClass("active");
         this.bindEvents();
     },
 
     bindEvents: function () {
         var that = this;
+        $("#tuanDetail .pic .pic_list a").hover(function(){
+            var index =  $(this).attr("index");
+            $("#tuanDetail .pic .pic_list i").addClass("active");
+            $(this).find(".active").removeClass("active");
+            $("#tuanDetail .pic .pic_big a").removeClass("active");
+            $("#tuanDetail .pic .pic_big").find("a:eq("+index+")").addClass("active");
+        });
     },
 
     close: function () {
