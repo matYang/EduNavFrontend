@@ -347,6 +347,7 @@ label{font-weight:bold;color:#333}
 
 /*字体 背景 边框颜色*/
 .border-primary{ border: 1px solid #128d56; }
+.border-light{ border: 1px solid #CFCFCF; }
 
 .bg-primary{ background-color: #128d56; }
 .bg-warning{ background-color: #f7a501; }

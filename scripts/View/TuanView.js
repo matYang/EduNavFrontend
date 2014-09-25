@@ -21,11 +21,6 @@ var TuanView = Backbone.View.extend({
         } else if (this.tuanResultView.isClosed) {
             this.tuanResultView.render();
         }
-        if (!this.tuanFooterView) {
-            this.tuanFooterView = new TuanFooterView();
-        } else if (this.tuanFooterView.isClosed) {
-            this.tuanFooterView.render();
-        }
         this.bindEvents();
     },
 
@@ -84,36 +79,6 @@ var TuanResultView = Backbone.View.extend({
     el: "#tuanResult",
     //todo need to write template named 'tpl_tuanResult'
     template: _.template(tpl.get("tuanResult")),
-    initialize: function () {
-        this.isClosed = false;
-        _.bindAll(this, "render", "bindEvents", "close");
-        app.viewRegistration.register(this);
-        this.render();
-
-    },
-    render: function () {
-        this.$el.html(this.template());
-        this.bindEvents();
-    },
-
-    bindEvents: function () {
-        var that = this;
-    },
-
-    close: function () {
-        if (!this.isClosed) {
-            this.$el.off();
-            this.$el.empty();
-            this.isClosed = true;
-        }
-    }
-});
-
-/*团底部view*/
-var TuanFooterView = Backbone.View.extend({
-    el: "#tuanFooter",
-    //todo need to write template named 'tpl_tuanResult'
-    template: _.template(tpl.get("tuanFooter")),
     initialize: function () {
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "close");

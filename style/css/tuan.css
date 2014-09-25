@@ -84,7 +84,12 @@
     background: url("../images/tuan_active_right_last.png") no-repeat;
 }
 
+/*主体内容 730&250*/
 
+#tuanPage .w_730,
+#tuanPage .w_250{
+    padding-top: 30px;
+}
 #tuanPage h1{
     border-bottom: 1px solid #B6D9CA;
     padding-bottom: 5px;
@@ -94,7 +99,7 @@
 #tuanPage .t-item{
     position: relative;
     height: 250px;
-    margin-top: 30px;
+    margin-bottom: 30px;
     padding-left: 450px;
     border: 1px solid #CFCFCF;
 }
@@ -111,7 +116,7 @@
     background: url("../images/tuan_item_tag.png");
 }
 /*分割线*/
-.t-item .line{
+.line{
     display: block;
     border:1px solid #E8E8E8;
     margin: 5px 0;
@@ -150,9 +155,26 @@
 .t-item .content .r.r3 .btn{height: 40px; line-height: 40px;font-size: 18px}
 
 
+/*右侧内容 筛选条件和广告图片*/
+.labels{margin-bottom: 10px}
+.labels span{
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding: 2px 8px;
+    margin: 5px 2px;
+    cursor: pointer;
+
+}
+.labels span.active{
+    border-radius: 10px;
+    color: #ffffff;
+    background: #4CBB7A;
+}
+
 
 /*团购 Result*/
-#tuanResult{ width: 1000px; height: 900px; border: 1px solid #CCC; margin-bottom: 30px;}
+#tuanResult{ width: 1000px;border: 1px solid #CCC; margin-bottom: 30px;}
 
 
 
