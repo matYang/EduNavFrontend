@@ -406,7 +406,7 @@
             <div id="filter_subCategory" class="filterCriteria">
             </div>
             <div id="filter_district" class="filterCriteria">
-                <label>上课地点：</label>
+                <label>上课地区：</label>
                 <span data-value="noreq" class="active">不限</span>
             </div>
             <div id="filter_startTime" class="filterCriteria">
@@ -510,7 +510,7 @@
         </div>
         <div class="col2">
             <p class="original_cost text-light" style="margin-bottom: 2px;">门店价</p>
-            <div class="price has-tip has-tip-top">*<%= commission %>折
+            <div class="price has-tip has-tip-top">*<%= commission/10 %>折
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">
@@ -925,7 +925,7 @@
                     <label>爱特价:</label>
                     <span class="text-light" style="font-size:14px;">门店价</span>
                     <span style="color:#ff5500;">
-                        <span class="price">*<%= course.commission %>折</span>
+                        <span class="price">*<%= course.commission/10 %>折</span>
                         <a class="has-tip has-tip-top">【?】
                             <div class="tip">
                                 <div class="arrow"></div>
@@ -1677,7 +1677,7 @@
         </dl>
         <div class="col2">
             <div class="">
-                <small class="text-light">门店价</small>&nbsp;<span class="price"><%= commission %>折</span>&nbsp;
+                <small class="text-light">门店价</small>&nbsp;<span class="price"><%= commission/10 %>折</span>&nbsp;
                 <a class="has-tip has-tip-top">【?】
                     <div class="tip">
                         <div class="arrow"></div>
@@ -1751,12 +1751,17 @@
             <%}%>
         </div>
     </dd>
-    <% if (startTime1) { %>
+    <% if (startTime1||schooltimeWeek) { %>
     <dd class="clearfix">
         <label>上课时间</label>
-
-        <div><%= startTime1 %>-<%= finishTime1 %>
-            <% if (startTime2) { %>, <%= startTime2 %> - <%= finishTime2 %><% } %>
+        <div>
+            <%if(schooltimeWeek){%>
+                <%=schooltimeWeek%>&nbsp;（<%=schooltimeDay%>）
+            <%}%>
+            <%if(startTime1){%>
+                <%=startTime1%>-<%=finishTime1%>
+                <%if(startTime2){%>, <%=startTime2%> - <%=finishTime2%><%}%>
+            <%}%>
         </div>
     </dd>
     <%}%>
@@ -1971,7 +1976,7 @@
             <%}%>
         </td>
         <td class="addr"><%=address%></td>
-        <td><span class="F_orange dotted-line"><%= commission %>折</span></td>
+        <td><span class="F_orange dotted-line"><%= commission/10 %>折</span></td>
         <td>
             <%if(current){%>
             <a class="inline-block">
