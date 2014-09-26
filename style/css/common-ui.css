@@ -20,6 +20,8 @@ ul,li{ list-style: none; }
 
 label{font-weight:bold;color:#333}
 
+textarea{resize: none;}
+
 /*框架布局*/
 .w_730{width:730px;}
 .w_250{width:250px;}

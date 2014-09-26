@@ -1,4 +1,4 @@
-var TuanearchRepresentation = Backbone.Model.extend({
+var TuanSearchRepresentation = Backbone.Model.extend({
     defaults: function () {
         //todo 确定需要过滤的字段条件
         return {
