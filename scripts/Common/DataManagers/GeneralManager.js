@@ -77,11 +77,47 @@
         });
     };
 
+    //根据ID拉取单个团购
+    GeneralManager.prototype.fetchCourse = function (id, callback) {
+        var cache = app.cache.get("tuan", id);
+        if (cache) {
+            if (callback) {
+                callback.success(new Tuan(cache, {parse: true}));
+                return;
+            }
+        }
+        var tuan = new Tuan();
+        //todo test data
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testCourses.get(id));
+            return;
+        }
+        tuan.overrideUrl(ApiResource.groupBuy);
+        tuan.set('id', id);
+        tuan.fetch({
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    callback.success(model);
+                }
+            },
+
+            error: function (model, response) {
+                Info.warn('fetch tuan failed');
+                if (callback) {
+                    callback.error($.parseJSON((response.responseText)));
+                }
+            }
+        });
+    };
+
+
     //根据ID列表批量拉取单个课程
     GeneralManager.prototype.batchFetchCourses = function (idSet, callback) {
         var cache, i, requestList = [], courses = new Courses();
         if (testMockObj.testMode) {
-            for (var i = 0; i < idSet.length; i++) {
+            for (i = 0; i < idSet.length; i++) {
                 courses.add(testMockObj.testCourses.get(idSet[i]));
             }
             callback.success(courses);
@@ -164,6 +200,41 @@
             },
             error: function (model, response) {
                 Info.warn('CourseManager::fetchSearchResult:: fetch failed with response:');
+                if (callback) {
+                    callback.error($.parseJSON(response.responseText));
+                }
+            }
+        });
+    };
+
+    //根据搜索条件搜索团购
+    GeneralManager.prototype.findTuan = function (tuanSearchRepresentation, callback) {
+        var searchResults = new Tuans();
+        if (!(tuanSearchRepresentation instanceof Backbone.Model)) {
+            Info.warn('GeneralManager::findTuan invalid parameter, exit');
+            return;
+        }
+
+        if (testMockObj.testMode) {
+            //todo 需要生成测试数据
+            searchResults = testMockObj.testCourses;
+            callback.success(searchResults);
+            return;
+        }
+
+        searchResults.overrideUrl(ApiResource.groupBuy);
+        searchResults.fetch({
+            data: tuanSearchRepresentation.toQueryString(),
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    app.cache.set("queryTuan", tuanSearchRepresentation.toQueryString(), searchResults.pluck("id"));
+                    callback.success(searchResults);
+                }
+            },
+            error: function (model, response) {
+                Info.warn('TuanManager::fetchSearchResult:: fetch failed with response:');
                 if (callback) {
                     callback.error($.parseJSON(response.responseText));
                 }
