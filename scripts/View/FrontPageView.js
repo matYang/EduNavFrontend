@@ -29,12 +29,14 @@ var FrontPageView = Backbone.View.extend({
         } else if (this.searchArea.isClosed) {
             this.searchArea.render();
         }
-        $("#content").append("<div id='tuanBanner'></div>");
+        $("#content").append("<span class='index_tip'>精品团购</span><div id='tuanBanner'></div>");
         if (!this.tuanBannerView) {
             this.tuanBannerView = new TuanBannerView();
         } else if (this.tuanBannerView.isClosed) {
             this.tuanBannerView.render();
         }
+
+        $("#content").append("<span class='index_tip'>课程推荐</span></div>");
         this.$el.append(this.template);
         app.generalManager.getCategories(this);
     },
@@ -219,8 +221,10 @@ var SearchArea = Backbone.View.extend({
     render: function () {
         this.$el.html(this.template);
         $("#searchCourse .topBar li:eq(0)").addClass("active");
+        $(".scperson").addClass("hidden");
         app.generalManager.getLocations(this);//同上 调用this.renderLocations
     },
+
     /*加载上课地点选项*/
     renderLocations: function (locations) {
         var buf = [];
@@ -230,7 +234,7 @@ var SearchArea = Backbone.View.extend({
         });
         var $dist = $("#location_list");
         $dist.html(buf.join(""));
-        $("#course_search").selectmenu();
+//        $("#course_search").selectmenu();
 
     },
     clearModel: function () {
@@ -251,7 +255,7 @@ var SearchArea = Backbone.View.extend({
     bindEvents: function () {
         var that = this;
         /*切换*/
-       $(".topBar li").on("click",function(){
+       $("#searchArea .topBar li").on("click",function(){
             var thisclass=$(this).attr("upclass");
            $(".searchContent").addClass("hidden");
            $("."+thisclass).removeClass("hidden");
@@ -259,31 +263,33 @@ var SearchArea = Backbone.View.extend({
            $(this).addClass("active");
        });
 
+        /**/
+        $("#location_list span").on("click",function(){
+            $("#location_list span").removeClass("active");
+            $("#location_list span").attr("id","");
+            $(this).addClass("active");
+            $(this).attr("id","home_location_select");
+        });
 
         //自助选课 课程类目的选择弹出框
-        $("#course_search").on("click", function () {
-            alert("q");
+        $("#courseChooseContainer").on("click", function () {
             //传入选择目录以后的回调函数
             if (!that.courseTip) {
-                that.courseTip = new SelectCatModal(/*{callback: that.selectCatSearch}*/);
+                that.courseTip = new SelectCatModal({callback: that.selectCatSearch});
             }
             else if (!that.courseTip.isShow) {
-                that.courseTip.show(/*{callback: that.selectCatSearch}*/);
+                that.courseTip.show({callback: that.selectCatSearch});
             }
         });
 
         //首页 人工选课 ‘立即申请’按钮 提交人工选课的申请
         $("#btnSubmitApply").on("click", function () {
-            var categoryId = that.catApply && that.catApply.id;
+            //var categoryId = that.catApply && that.catApply.id;
             var phone = $('#home_phone_input').val();
             var userName = $('#home_userName_input').val();
             var remark = $('#home_remark_text').val();
 
             //提交的时候进行输入信息的验证 未输入或者输入错误的进行提示
-            if (!categoryId) {
-                that.colorInfoModal.show({message: '亲，请选择您的意向课程'});
-                return
-            }
             if (!phone) {
                 that.colorInfoModal.show({message: '亲，请输入您的联系电话'});
                 return
@@ -300,7 +306,7 @@ var SearchArea = Backbone.View.extend({
                 that.colorInfoModal.show({message: '亲，请输入您的姓名'});
                 return
             }
-            that.model.set('categoryId', categoryId);
+            //that.model.set('categoryId', categoryId);
             that.model.set('phone', phone);
             that.model.set('userName', userName);
             that.model.set('remark', remark);
@@ -317,86 +323,26 @@ var SearchArea = Backbone.View.extend({
                 }
             });
         });
-        /*
         //首页 自助选课 ‘搜索’按钮 根据当前选择的搜索条件进入到对应的搜索内容中
         $(".SearchIcon").on("click", function () {
             var categoryValue = that.catSearch && that.catSearch.value;
-            var dataValue = $('#select_startDate').val();//上课日期
-            var locationValue = $('#home_location_select').val();
-            var classType = $('#home_classType_select').val();
-            dataValue = dataValue == '' ? undefined : dataValue;
+            var locationValue = $('#home_location_select').attr("value");
             locationValue = locationValue == '' ? undefined : locationValue;
-            classType = classType == '' ? undefined : classType;
-
-            var now = new Date();
-            var date1 = new Date(Date.parse([now.getFullYear(), now.getMonth() + 1].join('-')));
-            var date2;
-            var month = date1.getMonth();
-            //设置当月的时间
-            if (dataValue === "thisMonth") {
-                date2 = new Date(date1);
-                if (month === 11) {
-                    date2.setMonth(0);
-                    date2.setFullYear(date1.getFullYear() + 1);
-                } else {
-                    date2.setMonth(date1.getMonth() + 1);
-                }
-            }
-            //设置下个月的时间
-            else if (dataValue === "nextMonth") {
-                if (month === 11) {
-                    date1.setMonth(0);
-                    date1.setFullYear(date1.getFullYear() + 1);
-                    date2 = new Date(date1);
-                    date2.setMonth(date2.getMonth() + 1);
-                } else {
-                    date1.setMonth(date1.getMonth() + 1);
-                    date2 = new Date(date1);
-                    if (month === 10) {
-                        date2.setMonth(0);
-                        date2.setFullYear(date2.getFullYear() + 1);
-                    } else {
-                        date2.setMonth(date2.getMonth() + 1);
-                    }
-                }
-            } else if (dataValue === "twoMonthsAfter") {
-                if (month >= 10) {
-                    date1.setMonth((date1.getMonth() + 2) % 12);
-                    date1.setFullYear(date1.getFullYear() + 1);
-                    date2 = new Date(date1);
-                    date2.setMonth(date2.getMonth() + 1);
-                } else {
-                    date1.setMonth(date1.getMonth() + 2);
-                    date2 = new Date(date1);
-                    if (month === 10) {
-                        date2.setMonth(0);
-                        date2.setFullYear(date2.getFullYear() + 1);
-                    } else {
-                        date2.setMonth(date2.getMonth() + 1);
-                    }
-                }
-            } else {
-                date1 = undefined;
-                date2 = undefined;
-            }
 
             that.searchRepresentation.set("categoryValue", categoryValue);
-            that.searchRepresentation.set("startDateStart", date1);
-            that.searchRepresentation.set("startDateEnd", date2);
             that.searchRepresentation.set("locationValue", locationValue);
-            that.searchRepresentation.set("classType", classType);
             app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
-        });*/
+        });
     },
 
     close: function () {
         //需要关闭 生成的view  courseTip popTip
-        /*if (this.courseTip) {
+        if (this.courseTip) {
             this.courseTip.close();
         }
         if (this.popTip) {
             this.popTip.close();
-        }*/
+        }
         this.colorInfoModal.close();
         this.$el.empty();
     }

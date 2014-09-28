@@ -203,7 +203,7 @@
 /*searcharea*/
 #searchCourse{ width: 1000px; margin: auto; margin-top: 20px;}
 #searchCourse .searchCourse{ width: 450px; height: auto; float: left;}
-#searchCourse .topBar{ width: 450px; height: 55px;}
+#searchCourse .topBar{ width: 450px; height: 55px; z-index: 0;}
 #searchCourse .topBar li{ width: 225px; height: 55px; position: relative; float: left; background-color: #47BC78; cursor: pointer;}
 #searchCourse .topBar li a{ height: 40px; float: left; margin: 12px 5px 0 15px;}
 #searchCourse .topBar li a img{ width: 26px; height: 28px;}
@@ -255,7 +255,7 @@
 #searchCourse .location{ width: 317px; height: 161px; float: left; overflow: hidden;}
 #searchCourse .searchContent li .location span{ cursor: pointer; display: inline-block; width: auto; height: 38px; font-size: 12px; font-weight: normal; line-height: 38px; padding: 0 5px;}
 #searchCourse .searchContent li .location span:hover{ text-decoration: underline; color: #28B094;}
-
+#location_list .active{ text-decoration: underline; color: #28B094;}
 
 #searchCourse .adv{ width: 536px; height: 186px; display: block; float: right; margin-bottom: 19px;}
 #searchCourse .adv img{ width: 536px; height: 186px;}

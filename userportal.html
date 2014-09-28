@@ -600,7 +600,10 @@
             <ul class="searchContent scself">
                 <li>
                     <span>课程：</span>
-                    <select id="course_search"></select>
+                    <span id="courseChooseContainer"  style="width: 154px;cursor: pointer">
+                            <input id="courseChoose" class="selectFrame" type="text" placeholder="请选择">
+                            <i class="selectIcon"></i>
+                    </span>
                 </li>
                 <li class="clearfix">
                     <span>地点：</span>
@@ -609,22 +612,22 @@
                     </div>
                 </li>
                 <div class="btn">
-                    <a>搜索</a>
+                    <a class="SearchIcon">搜索</a>
                 </div>
             </ul>
 
-            <ul class="searchContent scperson hidden">
+            <ul class="searchContent scperson">
                 <li>
-                    <span id="home_phone_input">联系电话：</span>
-                    <input type="text">
+                    <span>联系电话：</span>
+                    <input id="home_phone_input" type="text">
                 </li>
                 <li>
-                    <span id="home_userName_input">学员姓名：</span>
-                    <input type="text">
+                    <span>学员姓名：</span>
+                    <input id="home_userName_input" type="text">
                 </li>
                 <li>
-                    <span id="home_remark_text">附加信息：</span>
-                    <textarea placeholder="(选填)"></textarea>
+                    <span>附加信息：</span>
+                    <textarea id="home_remark_text" placeholder="(选填)"></textarea>
                 </li>
                 <div class="btn">
                     <a id="btnSubmitApply">立即申请</a>
@@ -632,10 +635,51 @@
             </ul>
         </div>
         <a class="adv"><img src="style/images/adv1.png" alt=""/> </a>
-        <a class="adv"><img src="style/images/adv2.png" alt=""/> </a>
+        <a class="adv" style="margin-bottom: 0"><img src="style/images/adv2.png" alt=""/> </a>
     </div>
 
 
+</script>
+
+<script type="text/template" id="tpl_loginFast">
+    <div class="overlay">
+        <div id="login_fast">
+            <div class="login_Area">
+                <ul class="title">
+                    <li class="active" upid="login_content"><span>会员登录</span></li>
+                    <li upid="sign_content"><span>快捷登录（免注册）</span></li>
+                </ul>
+                <ul id="login_content" class="content">
+                    <li>
+                        <input class="txt_phone" type="text" placeholder="请输入手机号">
+                    </li>
+                    <li>
+                        <input class="txt_passed" type="text" placeholder="请输入密码">
+                    </li>
+                    <li style="height:30px;">
+                        <input class="check" type="checkbox">
+                        <span class="remind">记住我</span>
+                        <a class="passed">忘记密码？</a>
+                    </li>
+                    <li><a class="btnLogin">快速登入</a></li>
+                </ul>
+                <ul id="sign_content" class="content">
+                    <li>
+                        <input class="txt_phone" type="text" placeholder="请输入手机号">
+                    </li>
+                    <li>
+                        <input class="txt_passed" type="text" placeholder="请输入密码">
+                        <a class="identifying">发送验证码</a>
+                    </li>
+                    <li style="height:30px;">
+                        <input class="check" type="checkbox">
+                        <span class="remind">记住手机号</span>
+                    </li>
+                    <li><a class="btnLogin">快速登入</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </script>
 
 <script type="text/template" id="tpl_registration">

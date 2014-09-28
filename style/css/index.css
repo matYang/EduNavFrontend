@@ -147,6 +147,9 @@ p.footer-copyright{}
 p.footer-phone{font-size: 14px}
 
 
+/*小标题*/
+.index_tip{ width: 1000px; height: 45px; display: block; margin-bottom: 10px; border-bottom: 1px solid #B5DACA; line-height: 45px; color: #47BC78; font-size: 22px;}
+
 
 
 

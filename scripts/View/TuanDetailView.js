@@ -90,6 +90,19 @@ var TuanDetailView = Backbone.View.extend({
         this.tuan_content_3 = $("#tuan_content_3").offset().top;//特色服务
         this.tuan_content_4 = $("#tuan_content_4").offset().top;//评价
 
+        /*立即抢购快速登录*/
+        $("#tuanDetail .btnbuy").on("click",function(){
+            if(!app.sessionManager.hasSession())
+            {
+                if (!this.loginFastView) {
+                    this.loginFastView = new LoginFastView();
+                } else if (this.loginFastView.isClosed) {
+                    this.loginFastView.render();
+                }
+            }
+        });
+
+
         /*详情页click*/
         $("#tuanDetail .tuan_sorter li").on("click",function(){
             var tindex=$(this).attr("index");
@@ -151,3 +164,44 @@ var TuanDetailView = Backbone.View.extend({
         }
     }
 });
+
+
+
+/*快速登录、注册View*/
+var LoginFastView = Backbone.View.extend({
+    el: "#overlayASelection",
+    //todo need to write template named 'tpl_loginFast'
+    template: _.template(tpl.get("loginFast")),
+    initialize: function () {
+        this.isClosed = false;
+        _.bindAll(this, "render", "bindEvents", "close");
+        app.viewRegistration.register(this);
+        this.render();
+
+    },
+    render: function () {
+        this.$el.html(this.template());
+        $("#sign_content").addClass("hidden");
+        this.bindEvents();
+    },
+
+    bindEvents: function () {
+        var that = this;
+        $("#login_fast .title li").on("click",function(){
+            var upid=$(this).attr("upid");
+            $("#login_fast .title li").addClass("active");
+            $(this).removeClass("active");
+            $("#login_fast .content").addClass("hidden");
+            $("#"+upid).removeClass("hidden");
+        });
+    },
+
+    close: function () {
+        if (!this.isClosed) {
+            this.$el.off();
+            this.$el.empty();
+            this.isClosed = true;
+        }
+    }
+});
+
