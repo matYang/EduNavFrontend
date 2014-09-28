@@ -194,6 +194,41 @@ var LoginFastView = Backbone.View.extend({
             $("#login_fast .content").addClass("hidden");
             $("#"+upid).removeClass("hidden");
         });
+
+        $("#login_content .btnLogin").on("click",function(){
+            that.login();
+        });
+    },
+    login:function(){
+        var username = $("#login_content .txt_phone").val(),
+            password = $("#login_content .txt_passed").val(),
+            remember = $("#login_content .check") ? 1 : 0,
+            self = this;
+        if (username !== "" && password !== "") {
+            $('#login_content .btnLogin').html("登录中。。。").prop("disabled", true);
+            //这里继续登录操作 登录成功后直接进行session的获取(为同步请求)
+            //TODO JET:这一步操作和免注册预订的自动登录的代码可合并 应放至sessionManager中统一处理 包括logout 这里进行callback
+            app.sessionManager.login(username, password, remember, {
+                success: function () {
+                    //重置sessionUser并且render topBar
+                    app.userManager.sessionUser = app.sessionManager.sessionModel;
+                    if (location.hash.indexOf("register") > -1) {
+                        app.navigate("front", true);
+                    } else {
+                        self.close();
+                        //app.navigate("mypage/booking/:id/pay", true);
+                    }
+                },
+                error: function (data) {
+                    $("#credentialWrong").show().html(data.message || "服务器好像睡着了，请稍后再试");
+                    $('#login_button').val("登 录").prop("disabled", false);
+                    self.$passwordInput.val("");
+                }
+            });
+        } else {
+            //请输入密码
+            alert("输入有误，请重新输入");
+        }
     },
 
     close: function () {
