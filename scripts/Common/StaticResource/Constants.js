@@ -41,7 +41,7 @@ var Constants = {
 
         /*课程团购*/
         'tuan','tuanDetail',
-        'tuanBanner','tuanResult',
+        'tuanBanner','tuanResultEntry',
 
         /*课程详情*/
         "courseDetail",

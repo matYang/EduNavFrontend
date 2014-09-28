@@ -72,7 +72,6 @@
         </p>
         <p class="footer-copyright"> Copyright &#169; 2014 南京爱上课信息技术有限公司 | <a href="http://www.miitbeian.gov.cn/"
                                                                       target="_blank">苏ICP备14025414号</a></p>
-        <p class="footer-phone">400-025-0884</p>
     </div>
 </div>
 <div id="allTemplates">
@@ -3055,56 +3054,11 @@
         <h1>大家都在团</h1>
         <div class="row">
             <div class="pull-left w_730">
-                <div class="t-item">
-                    <span class="tuan_tag">8.5折</span>
-                    <img class="banner" src="./style/images/t_item_banner_test.jpg" alt="爱上课精品课程团购"/>
-                    <div class="content">
-                        <div class="r r1">
-                            <p class="title">四六级英语秒杀，仅限4天</p>
-                            <p>已有 <span class="text-primary">1123</span> 人下单 </p>
-                        </div>
-                        <span class="line"></span>
-                        <div class="r r2">
-                            <p><i class="icon icon-clock"></i> <strong>4天22时1分20秒</strong></p>
-                            <p><i class="icon icon-location"></i> 南京市中山北路222号xx大厦6楼</p>
-                        </div>
-                        <span class="line"></span>
-                        <div class="r r3">
-                            <div class="c-left">
-                                <p class="price">￥399</p>
-                                <p>&nbsp;&nbsp;原价：<s>&nbsp;599&nbsp;</s></p>
-                            </div>
-                            <div class="c-right">
-                                <div class="btn btn_g btn-block">立即抢购</div>
-                            </div>
-                        </div>
-                    </div>
+                <!--tuan list-->
+                <div id="tuanResultContainer">
                 </div>
-
-                <div class="t-item">
-                    <span class="tuan_tag">8.5折</span>
-                    <img class="banner" src="./style/images/t_item_banner_test.jpg" alt="爱上课精品课程团购"/>
-                    <div class="content">
-                        <div class="r r1">
-                            <p class="title">四六级英语秒杀，仅限4天</p>
-                            <p>已有 <span class="text-primary">1123</span> 人下单 </p>
-                        </div>
-                        <span class="line"></span>
-                        <div class="r r2">
-                            <p><i class="icon icon-clock"></i> <strong>4天22时1分20秒</strong></p>
-                            <p><i class="icon icon-location"></i> 南京市中山北路222号xx大厦6楼xxxxxxxx</p>
-                        </div>
-                        <span class="line"></span>
-                        <div class="r r3">
-                            <div class="c-left">
-                                <p class="price">￥39229</p>
-                                <p>&nbsp;&nbsp;原价：<s>&nbsp;599&nbsp;</s></p>
-                            </div>
-                            <div class="c-right">
-                                <div class="btn btn_g btn-block">立即抢购</div>
-                            </div>
-                        </div>
-                    </div>
+                <!--tuan pagination-->
+                <div id="tuanResultPage" class="page blank1 clearfix">
                 </div>
 
             </div>
@@ -3128,9 +3082,6 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-        <div id="tuanResult">
 
         </div>
         <div id="tuanFooter">
@@ -3178,12 +3129,32 @@
     </ul>
 </script>
 
-<script type="text/templates" id="tpl_tuanResult">
-    <!--<h2>这里是团购resultDes</h2>-->
-    <!--<div class="tuan_list"></div>-->
-    <!--<div class="tuan_Panel">-->
-        <!--<ul class="tuan_category"></ul>-->
-    <!--</div>-->
+<script type="text/templates" id="tpl_tuanResultEntry">
+    <div class="t-item">
+        <span class="tuan_tag"><%=discount%>折</span>
+        <img class="banner" src="<%=photoList[0].url%>" alt="<%=title%>"/>
+        <div class="content">
+            <div class="r r1">
+                <p class="title"><%=title%></p>
+                <p>已有 <span class="text-primary"><%=bookingTotal%></span> 人下单 </p>
+            </div>
+            <span class="line"></span>
+            <div class="r r2">
+                <p><i class="icon icon-clock"></i> <strong class="tuan_endTime" data-value="<%=endTime%>">--</strong></p>
+                <p><i class="icon icon-location"></i> <%=addressList[0].detail%></p>
+            </div>
+            <span class="line"></span>
+            <div class="r r3">
+                <div class="c-left">
+                    <p class="price">￥<%=groupBuyPrice%></p>
+                    <p>&nbsp;&nbsp;原价：<s>&nbsp;<%=course.originalPrice%>&nbsp;</s></p>
+                </div>
+                <div class="c-right">
+                    <div class="btn btn_g btn-block viewDetail" data-id="<%=id%>">立即抢购</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </script>
 
 <script type="text/templates" id="tpl_tuanFooter">
@@ -3499,6 +3470,7 @@
 <script src="scripts/Model/Booking.js" type="text/javascript"></script>
 <script src="scripts/Model/Apply.js" type="text/javascript"></script>
 <script src="scripts/Model/BookingHistory.js" type="text/javascript"></script>
+<script src="scripts/Model/Address.js" type="text/javascript"></script>
 <script src="scripts/Model/Account.js" type="text/javascript"></script>
 <script src="scripts/Model/AccountHistory.js" type="text/javascript"></script>
 <script src="scripts/Model/Teacher.js" type="text/javascript"></script>

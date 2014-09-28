@@ -78,18 +78,10 @@
     };
 
     //根据ID拉取单个团购
-    GeneralManager.prototype.fetchCourse = function (id, callback) {
-        var cache = app.cache.get("tuan", id);
-        if (cache) {
-            if (callback) {
-                callback.success(new Tuan(cache, {parse: true}));
-                return;
-            }
-        }
+    GeneralManager.prototype.fetchTuan = function (id, callback) {
         var tuan = new Tuan();
-        //todo test data
         if (testMockObj.testMode) {
-            callback.success(testMockObj.testCourses.get(id));
+            callback.success(testMockObj.testTuans.get(id));
             return;
         }
         tuan.overrideUrl(ApiResource.groupBuy);
@@ -216,8 +208,7 @@
         }
 
         if (testMockObj.testMode) {
-            //todo 需要生成测试数据
-            searchResults = testMockObj.testCourses;
+            searchResults = testMockObj.testTuans;
             callback.success(searchResults);
             return;
         }

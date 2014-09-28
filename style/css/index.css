@@ -134,7 +134,7 @@
 
 /* Footer*/
 .footer {
-    padding: 10px 0 12px; background: #248E4E;color: #ffffff}
+    padding: 10px 0 20px; background: #248E4E;color: #ffffff}
 /*底部链接的样式*/
 .footer a,.footer a:visited{ color: #ffffff; }
 .footer a:hover{ color: #ffffff; text-decoration: underline; }
