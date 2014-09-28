@@ -29,7 +29,12 @@ var FrontPageView = Backbone.View.extend({
         } else if (this.searchArea.isClosed) {
             this.searchArea.render();
         }
-
+        $("#content").append("<div id='tuanBanner'></div>");
+        if (!this.tuanBannerView) {
+            this.tuanBannerView = new TuanBannerView();
+        } else if (this.tuanBannerView.isClosed) {
+            this.tuanBannerView.render();
+        }
         this.$el.append(this.template);
         app.generalManager.getCategories(this);
     },
@@ -124,6 +129,19 @@ var FrontPageView = Backbone.View.extend({
             that.searchRepresentation.set("categoryValue", value);
             app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
         });
+        //背景色改变
+        $(".lv2category").hover(function(){
+            $(this).find(".fleft").css("background-color","#47BC78");
+        },function(){
+            $(this).find(".fleft").css("background-color","");
+        });
+        $(".lv2category .clearfix li").hover(function(){
+            $(this).find("a").css("color","#fff");
+            $(this).css({"background-color":"#47BC78","border-radius":"20px"});
+        },function(){
+            $(this).find("a").css("color","");
+            $(this).css({"background-color":""});
+        });
     },
     close: function () {
         if (!this.isClosed) {
@@ -135,6 +153,7 @@ var FrontPageView = Backbone.View.extend({
             this.isClosed = true;
             this.banner.close();
             this.searchArea.close();
+            this.tuanBannerView.close();
             //this.artificialSelection.close();
             app.frontPageView = null;
         }
@@ -199,19 +218,20 @@ var SearchArea = Backbone.View.extend({
 
     render: function () {
         this.$el.html(this.template);
+        $("#searchCourse .topBar li:eq(0)").addClass("active");
         app.generalManager.getLocations(this);//同上 调用this.renderLocations
     },
     /*加载上课地点选项*/
     renderLocations: function (locations) {
-        var buf = ['<option value>不限</option>'];
+        var buf = [];
         var districts = locations[0].children[0].children;
         _.each(districts, function (district) {
-            buf.push('<option value="' + district.value + '">' + district.name + '</option>');
+            buf.push('<span value="' + district.value + '">' + district.name + '</span>');
         });
-        var $dist = $("#home_location_select");
+        var $dist = $("#location_list");
         $dist.html(buf.join(""));
-        //select should after it is ready
-        $dist.selectmenu();
+        $("#course_search").selectmenu();
+
     },
     clearModel: function () {
         this.model = new Apply();
@@ -230,31 +250,28 @@ var SearchArea = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+        /*切换*/
+       $(".topBar li").on("click",function(){
+            var thisclass=$(this).attr("upclass");
+           $(".searchContent").addClass("hidden");
+           $("."+thisclass).removeClass("hidden");
+           $(".topBar li").removeClass("active");
+           $(this).addClass("active");
+       });
 
-        /*select引用jquery-ui*/
-        $("#select_startDate").selectmenu();
-        $("#home_classType_select").selectmenu();
 
         //自助选课 课程类目的选择弹出框
-        $("#courseChooseContainer").on("click", function () {
+        $("#course_search").on("click", function () {
+            alert("q");
             //传入选择目录以后的回调函数
             if (!that.courseTip) {
-                that.courseTip = new SelectCatModal({callback: that.selectCatSearch});
+                that.courseTip = new SelectCatModal(/*{callback: that.selectCatSearch}*/);
             }
             else if (!that.courseTip.isShow) {
-                that.courseTip.show({callback: that.selectCatSearch});
+                that.courseTip.show(/*{callback: that.selectCatSearch}*/);
             }
         });
-        //人工选课 课程类目的选择弹出框
-        $("#applyCourseChooseContainer").on("click", function () {
-            //传入选择目录以后的回调函数
-            if (!that.courseTip) {
-                that.courseTip = new SelectCatModal({callback: that.selectCatApply});
-            }
-            else if (!that.courseTip.isShow) {
-                that.courseTip.show({callback: that.selectCatApply});
-            }
-        });
+
         //首页 人工选课 ‘立即申请’按钮 提交人工选课的申请
         $("#btnSubmitApply").on("click", function () {
             var categoryId = that.catApply && that.catApply.id;
@@ -300,6 +317,7 @@ var SearchArea = Backbone.View.extend({
                 }
             });
         });
+        /*
         //首页 自助选课 ‘搜索’按钮 根据当前选择的搜索条件进入到对应的搜索内容中
         $(".SearchIcon").on("click", function () {
             var categoryValue = that.catSearch && that.catSearch.value;
@@ -368,17 +386,17 @@ var SearchArea = Backbone.View.extend({
             that.searchRepresentation.set("locationValue", locationValue);
             that.searchRepresentation.set("classType", classType);
             app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
-        });
+        });*/
     },
 
     close: function () {
         //需要关闭 生成的view  courseTip popTip
-        if (this.courseTip) {
+        /*if (this.courseTip) {
             this.courseTip.close();
         }
         if (this.popTip) {
             this.popTip.close();
-        }
+        }*/
         this.colorInfoModal.close();
         this.$el.empty();
     }

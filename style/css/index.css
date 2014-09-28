@@ -77,7 +77,7 @@
 .index .tab2 li:hover{ background-color: #1A8F5A; color: #FFF;}
 
 .index .c_item{}
-.index .c_item .fleft{position:relative; width:148px; text-align:center;  background-color: #1A8F5A;}
+.index .c_item .fleft{position:relative; width:148px; text-align:center;  background-color: #88D8B4;}
 .index .c_item .fleft a{color:#fff;vertical-align:middle; text-align:center; font-size:18px; font-weight:normal;}
 .index .c_item .fleft .top_arrow{ position:absolute; top:-1px; left:-1px; width:50px; height:50px;}
 .index .c_item .fright{width:850px;}
@@ -96,21 +96,20 @@
     float:left;
     width: 100px;
     /*border-bottom:1px solid #f6eac3;*/
-    height:38px;
-    margin: 5px 0;
+    height:28px;
+    margin: 10px 0;
     padding: 0 2px;
-    line-height:38px; text-align:center;}
+    line-height:28px; text-align:center;}
 
-.index .c_item .clearfix li:hover{ background-color: #E5E6E8;}
-.index .c_item .clearfix li a{ height: 38px;margin: 5px 0;}
+
+.index .c_item .clearfix li a{ height: 28px;margin: 10px 0; line-height: 28px;}
 .index .c_item .fright li a:hover{ color: #333;}
 
 .index tr.last td{ border-bottom:none!important;}
 .index td.last,.index li.last{/*border-right:none!important;*/ border-bottom:none!important;}
 
 .index .c_item .clearfix li{ 
-    background-color: #FFF;  
-    border-right: 1px solid #E5E6E8;
+    background-color: #FFF;
     cursor: pointer;
 }
 
