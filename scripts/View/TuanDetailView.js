@@ -90,6 +90,21 @@ var TuanDetailView = Backbone.View.extend({
         this.tuan_content_3 = $("#tuan_content_3").offset().top;//特色服务
         this.tuan_content_4 = $("#tuan_content_4").offset().top;//评价
 
+        /*立即抢购快速登录*/
+        $("#tuanDetail .btnbuy").on("click",function(){
+            if(!app.sessionManager.hasSession())
+            {
+                if (!this.loginFastView) {
+                    this.loginFastView = new LoginFastView();
+                } else if (this.loginFastView.isClosed) {
+                    this.loginFastView.render();
+                }
+            }
+            app.navigate("mypage/booking/1/pay", true);
+
+        });
+
+
         /*详情页click*/
         $("#tuanDetail .tuan_sorter li").on("click",function(){
             var tindex=$(this).attr("index");
@@ -151,3 +166,84 @@ var TuanDetailView = Backbone.View.extend({
         }
     }
 });
+
+
+
+/*快速登录、注册View*/
+var LoginFastView = Backbone.View.extend({
+    el: "#overlayASelection",
+    //todo need to write template named 'tpl_loginFast'
+    template: _.template(tpl.get("loginFast")),
+    initialize: function () {
+        this.isClosed = false;
+        _.bindAll(this, "render", "bindEvents", "close");
+        app.viewRegistration.register(this);
+        this.render();
+
+    },
+    render: function () {
+        this.$el.html(this.template());
+        $("#sign_content").addClass("hidden");
+        this.bindEvents();
+    },
+
+    bindEvents: function () {
+        var that = this;
+        $("#login_fast .title li").on("click",function(){
+            var upid=$(this).attr("upid");
+            $("#login_fast .title li").addClass("active");
+            $(this).removeClass("active");
+            $("#login_fast .content").addClass("hidden");
+            $("#"+upid).removeClass("hidden");
+        });
+
+        $("#login_content .btnLogin").on("click",function(){
+            that.login();
+        });
+    },
+    login:function(){
+        var username = $("#login_content .txt_phone").val(),
+            password = $("#login_content .txt_passed").val(),
+            remember = $("#login_content .check") ? 1 : 0,
+            self = this;
+        if(username=="")
+        {
+            alert("您输入的用户名不对，请重新输入！");
+            return;
+        }
+        if(password == "")
+        {
+            alert("您输入的用户名或者密码不对，请重新输入！");
+            return;
+        }
+            $('#login_content .btnLogin').html("登录中。。。").prop("disabled", true);
+            //这里继续登录操作 登录成功后直接进行session的获取(为同步请求)
+            //TODO JET:这一步操作和免注册预订的自动登录的代码可合并 应放至sessionManager中统一处理 包括logout 这里进行callback
+            app.sessionManager.login(username, password, remember, {
+                success: function () {
+                    //重置sessionUser并且render topBar
+                    app.userManager.sessionUser = app.sessionManager.sessionModel;
+                    if (location.hash.indexOf("register") > -1) {
+                        app.navigate("front", true);
+                    } else {
+                        self.close();
+                        app.navigate("mypage/booking/"+ app.userManager.userId+"/pay", true);
+                    }
+                },
+                error: function (data) {
+                    $("#credentialWrong").show().html(data.message || "服务器好像睡着了，请稍后再试");
+                    $('#login_button').val("登 录").prop("disabled", false);
+                    self.$passwordInput.val("");
+                }
+            });
+    },
+
+    close: function () {
+        if (!this.isClosed) {
+            this.$el.off();
+            this.$el.empty();
+            this.isClosed = true;
+        }
+    }
+});
+

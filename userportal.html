@@ -582,89 +582,100 @@
 </script>
 
 <script type="text/template" id="tpl_SearchCourse">
-    <div class="SearchContentA clearfix">
-        <i class="sTopBar"></i>
-
-        <div class="SearchCotentArea Search-self-help">
-            <div class="SearchCotentAreaTop">
-                <a></a>
-                <span>自助选课</span>
-                <i></i>
-                <p>大数据支持，智能选出合适课程</p>
-            </div>
-
-            <div class="SearchCotentAreaMain SearchCotentAreaMainLeft">
-                <ul class="SearchCotentAreaMainA">
-                    <li>
-                        <span>课程类目</span>
-                        <span id="courseChooseContainer"  style="width: 154px;cursor: pointer">
+    <div id="searchCourse" class="clearfix">
+        <div class="searchCourse">
+            <ul class="topBar">
+                <li class="self" upclass="scself">
+                    <a><img src="style/images/selfIcon.png" alt=""/></a>
+                    <span>自助选课</span>
+                    <i></i>
+                </li>
+                <li class="person" upclass="scperson">
+                    <a><img src="style/images/personIcon.png" alt=""/> </a>
+                    <span>专家帮你选</span>
+                    <i></i>
+                </li>
+            </ul>
+            <ul class="searchContent scself">
+                <li>
+                    <span>课程：</span>
+                    <span id="courseChooseContainer"  style="width: 154px;cursor: pointer">
                             <input id="courseChoose" class="selectFrame" type="text" placeholder="请选择">
                             <i class="selectIcon"></i>
-                        </span>
-                    </li>
-                    <li>
-                        <span>上课地区</span>
-                        <select id="home_location_select" name="home_location_select" class="selectFrame">
-                        </select>
-                    </li>
-                    <li>
-                        <span>上课日期</span>
-                        <select id="select_startDate" name="select_startDate" class="selectFrame">
-                            <option value>不限</option>
-                            <option value="thisMonth">当月</option>
-                            <option value="nextMonth">下月</option>
-                            <option value="twoMonthsAfter">下下月</option>
-                        </select>
-                    </li>
-                    <li>
-                        <span>班级类型</span>
-                        <select id="home_classType_select" name="home_classType_select" class="selectFrame">
-                            <option value>不限</option>
-                            <option value="0">VIP 1对1</option>
-                            <option value="1">小班授课（小于6人）</option>
-                            <option value="2">中班授课（6-30人）</option>
-                            <option value="3">大班授课（30人+）</option>
-                        </select>
-                    </li>
-                </ul>
-            </div>
-            <div class="SearchCotentAreaBottom SearchCotentAreaBottomLeft">
-                <div class="SearchIcon">搜索</div>
-            </div>
+                    </span>
+                </li>
+                <li class="clearfix">
+                    <span>地点：</span>
+                    <div id="location_list" class="location">
+
+                    </div>
+                </li>
+                <div class="btn">
+                    <a class="SearchIcon">搜索</a>
+                </div>
+            </ul>
+
+            <ul class="searchContent scperson">
+                <li>
+                    <span>联系电话：</span>
+                    <input id="home_phone_input" type="text">
+                </li>
+                <li>
+                    <span>学员姓名：</span>
+                    <input id="home_userName_input" type="text">
+                </li>
+                <li>
+                    <span>附加信息：</span>
+                    <textarea id="home_remark_text" placeholder="(选填)"></textarea>
+                </li>
+                <div class="btn">
+                    <a id="btnSubmitApply">立即申请</a>
+                </div>
+            </ul>
         </div>
-        <div class="SearchCotentArea  Search-person-help">
-            <div class="SearchCotentAreaTop">
-                <a></a>
-                <span>人工选课</span>
-                <i></i>
-                <p>20名资深选课顾问，免费服务</p>
-            </div>
-            <div class="SearchCotentAreaMain SearchCotentAreaMainRight">
-                <ul class="SearchCotentAreaMainB">
-                    <li class="SearchCotentAreaMainBLi">
-                        <span>意向课程</span>
-                        <span id="applyCourseChooseContainer"  style="width: 154px;cursor: pointer">
-                            <input id="applyCourseChoose" class="selectFrame" type="text" placeholder="请选择">
-                            <i class="selectIcon"></i>
-                        </span>
-                    </li>
-                    <li class="SearchCotentAreaMainBLi"></li>
-                    <li class="SearchCotentAreaMainBLi">
-                        <span>联系电话</span>
-                        <input id="home_phone_input" class="selectFrame" type="text">
-                    </li>
-                    <li class="SearchCotentAreaMainBLi">
-                        <span>学员姓名</span>
-                        <input id="home_userName_input" class="selectFrame" type="text">
-                    </li>
-                    <li class="SearchCotentAreaMainBLi">
-                        <span>附加信息 &nbsp;&nbsp;(选填)</span>
-                        <textarea id="home_remark_text" class="inputMyInfo" placeholder="#我的信息#"></textarea>
-                    </li>
+        <a class="adv"><img src="style/images/adv1.png" alt=""/> </a>
+        <a class="adv" style="margin-bottom: 0"><img src="style/images/adv2.png" alt=""/> </a>
+    </div>
+
+
+</script>
+
+<script type="text/template" id="tpl_loginFast">
+    <div class="overlay">
+        <div id="login_fast">
+            <div class="login_Area">
+                <ul class="title">
+                    <li upid="login_content"><span>会员登录</span></li>
+                    <li class="active" upid="sign_content"><span>快捷登录（免注册）</span></li>
                 </ul>
-            </div>
-            <div class="SearchCotentAreaBottom SearchCotentAreaBottomRight">
-                <div id="btnSubmitApply" class="ApplyIcon">立即申请</div>
+                <ul id="login_content" class="content">
+                    <li>
+                        <input class="txt_phone" type="text" placeholder="请输入手机号">
+                    </li>
+                    <li>
+                        <input class="txt_passed" type="password" placeholder="请输入密码">
+                    </li>
+                    <li style="height:30px;">
+                        <input class="check" type="checkbox">
+                        <span class="remind">记住我</span>
+                        <a class="passed">忘记密码？</a>
+                    </li>
+                    <li><a class="btnLogin">快速登入</a></li>
+                </ul>
+                <ul id="sign_content" class="content">
+                    <li>
+                        <input class="txt_phone" type="text" placeholder="请输入手机号">
+                    </li>
+                    <li>
+                        <input class="txt_passed" type="password" placeholder="请输入密码">
+                        <a class="identifying">发送验证码</a>
+                    </li>
+                    <li style="height:30px;">
+                        <input class="check" type="checkbox">
+                        <span class="remind">记住手机号</span>
+                    </li>
+                    <li><a class="btnLogin">快速登入</a></li>
+                </ul>
             </div>
         </div>
     </div>

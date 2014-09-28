@@ -88,84 +88,6 @@
 #search_subCategory label {margin-right: 3px;}
 
 
-/*SearchArea*/
-.SearchContent{ min-width: 1300px; width: 100%; height: 480px;}
-.SearchContentA{
-    width: 1000px;
-    margin: auto;
-    margin-top: -52px;
-    position: relative;
-    z-index: 1;
-}
-.sTopBar{ width: 47px; height: 20px; display: block; background-image: url("../images/searchBar.png"); position: absolute; left: 477px;}
-/*todo #设置元素浮动要记得清除浮动(撑开父容器) 清除浮动有多种写法
- *coverflow:hidden是最简单的一种
- *不过大多数还是使用:after伪类clear:both
- *具体内容百度一下参考几篇博客深入了解一下
- *同时参考一个框架了解一下框架如何提供通用的布局类 如何在其中清除浮动
- */
-.SearchCotentArea{ width: 500px; height: 350px; float: left;}
-.SearchCotentAreaTop{ width: 471px; height: 34px; background-color: #E9E9E9; padding: 11px 0 7px 29px;}
-.Search-self-help .SearchCotentAreaTop{ background-color: #1B8F5A;}
-.Search-person-help .SearchCotentAreaTop{ background-color: #1B8F83;}
-.Search-self-help .SearchCotentAreaTop a{ width: 34px; height: 34px; background-image: url("../images/selfHelp.png"); background-repeat: no-repeat; display: block; float: left; }
-.Search-person-help .SearchCotentAreaTop a{ width: 34px; height: 34px; background-image: url("../images/personHelp.png"); background-repeat: no-repeat; display: block; float: left; }
-.SearchCotentArea .SearchCotentAreaTop span{
-    line-height: 34px;
-    font-size: 18px;
-    color: #FFF;
-    padding: 0 4px;
-    float: left;
-    width: 80px;}
-.SearchCotentAreaTop i{display: block; width: 13px; height: 13px; float: left; margin: 10px 4px 0 20px; background-image: url("../images/warnIcon.png");}
-.SearchCotentAreaTop p{line-height: 34px; font-size: 12px; color: #BBCD96;}
-
-
-.SearchCotentAreaMain{ width: 500px; height: 210px; background-color: #E3E4E6;}
-.SearchCotentAreaMainRight{ background-color: #E9EAEB;}
-.SearchCotentAreaBottom{ width: 500px; height: 46px; padding: 14px 0; background-color: #EBECEE;}
-.SearchCotentAreaBottomRight{ background-color: #F0F0F1;}
-.SearchCotentAreaMainA{width: 235px; height: 200px; margin: auto; display: block; padding: 13px 0;}
-.SearchCotentAreaMainA li{width: 255px; height: 40px; margin-bottom: 10px; position: relative;}
-.SearchContentA span{width: 70px; height: 34px; display: block; float: left; line-height: 34px; font-size: 15px; color: #666;}
-/*style of select and input*/
-.SearchContentA select.selectFrame,
-.SearchContentA input.selectFrame{
-    width: 130px; height: 34px;
-    padding: 0 12px;
-    cursor: pointer; border: 0;
-    outline: 0;
-    display: block;
-    float: left;
-    color: #666;
-    font-size: 12px;}
-.SearchContentA select.selectFrame{
-    width: 154px;
-}
-.selectIcon{ width: 15px; height: 8px; display: block; background-image: url("../images/search.png"); background-position: 0 -200px; position: absolute; top: 15px; left: 202px;}
-.SearchCotentAreaMainB{ width: 480px; height: 200px; margin: auto; display: block; padding: 13px 0;}
-.SearchCotentAreaMainBLi{
-    min-width: 225px;
-    width: auto; height: 40px;
-    display: block;
-    padding-bottom: 10px;
-    position: relative;
-    float: left;
-    margin-left: 4px;
-}
-.inputMyInfo{
-    float: left;
-    width: 370px;
-    height: 74px;
-    padding: 10px;
-    line-height: 20px;
-    border: 0; outline: 0;
-    font-size: 12px;
-    color: #666;
-}
-.SearchIcon{ width: 250px; height: 46px; text-align: center; color: #FFF; font-size: 18px; line-height: 46px; display: block; margin: auto;  background-color: #1B8F5A; cursor: pointer;}
-.ApplyIcon{ width: 250px; height: 46px; text-align: center; color: #FFF; font-size: 18px; line-height: 46px; display: block; margin: auto;  background-color: #1B8F83; cursor: pointer;}
-
 /*人工选课，免费试听弹出层*/
 .popM{ width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); position: fixed; z-index: 2000; top: 0;}
 .popMain{ width: 100%; position: absolute; z-index: 2001; top:10%}
@@ -275,4 +197,65 @@
     font-size: 30px; text-align: center; line-height: 40px;
     cursor: pointer;
 }
-.disnone{ display: none;}
+
+
+
+/*searcharea*/
+#searchCourse{ width: 1000px; margin: auto; margin-top: 20px;}
+#searchCourse .searchCourse{ width: 450px; height: auto; float: left;}
+#searchCourse .topBar{ width: 450px; height: 55px; z-index: 0;}
+#searchCourse .topBar li{ width: 225px; height: 55px; position: relative; float: left; background-color: #47BC78; cursor: pointer;}
+#searchCourse .topBar li a{ height: 40px; float: left; margin: 12px 5px 0 15px;}
+#searchCourse .topBar li a img{ width: 26px; height: 28px;}
+#searchCourse .topBar li span{ height: 50px; line-height: 50px; float: left; color: #fff; font-size: 18px;}
+#searchCourse .topBar li i{display: block; width: 225px; height: 5px; position: absolute; bottom:0; background-color: #27ae61;}
+#searchCourse .topBar .active{background-color: #28B094;}
+#searchCourse .topBar .active i{background-color: #16A086;}
+#searchCourse .searchContent{ background-color: #eceeef; width: 450px; height: 312px; padding: 18px 0 0 0;}
+#searchCourse .searchContent li{ width: 410px; min-height: 45px; height: auto; margin: auto; padding-bottom: 15px;}
+.searchContent li span{ width: 85px; height: 45px; display: block; float: left; line-height: 45px; font-size: 16px; font-weight: bold; color: #4b6459;}
+#searchCourse .searchContent li input,select{
+    width: 297px; height: 25px;
+    line-height: 20px;
+    padding: 10px;
+    display: block;
+    border: 0; outline: 0;
+    float: left;
+}
+#searchCourse .searchContent li textarea{ width: 297px; height: 77px; line-height: 20px; border: 0; outline: 0; padding: 10px;}
+#searchCourse .searchContent .btn{width: 448px; height: 50px; background-color: #e7e9ea; padding: 15px 0;}
+#searchCourse .scperson .btn a{
+    line-height: 20px;
+    width: 150px;
+    display: block;
+    padding: 15px 20px;
+    text-align: center;
+    border-radius: 25px;
+    background-color: #28B094;
+    color: #fff;
+    margin: auto;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "微软雅黑";
+}
+#searchCourse .scself .btn a{
+    line-height: 20px;
+    width: 120px;
+    display: block;
+    padding: 15px 20px;
+    text-align: center;
+    border-radius: 25px;
+    background-color: #28B094;
+    color: #fff;
+    margin: auto;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "微软雅黑";
+}
+#searchCourse .location{ width: 317px; height: 161px; float: left; overflow: hidden;}
+#searchCourse .searchContent li .location span{ cursor: pointer; display: inline-block; width: auto; height: 38px; font-size: 12px; font-weight: normal; line-height: 38px; padding: 0 5px;}
+#searchCourse .searchContent li .location span:hover{ text-decoration: underline; color: #28B094;}
+#location_list .active{ text-decoration: underline; color: #28B094;}
+
+#searchCourse .adv{ width: 536px; height: 186px; display: block; float: right; margin-bottom: 19px;}
+#searchCourse .adv img{ width: 536px; height: 186px;}

@@ -24,6 +24,8 @@ var Constants = {
         "topBar-loggedIn", "topBar-notLoggedIn",
         /*注册模块*/
         "registration", "registration_finish", "findPassword_1", "findPassword_2",
+        /*快速登录*/
+        "loginFast",
 
         /*对比页*/
         "compareView",
