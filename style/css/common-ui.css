@@ -1,16 +1,46 @@
+@charset "utf-8";
 /* 2014-8-16
  * By Jet
 **/
 
 /*基本样式*/
-a, a:visited {
-    text-decoration: none;
-    color: #333333;
+html,body{font-family: 'Microsoft Yahei','SimSun','SimHei'; height: 100%; }
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form { margin: 0; }
+body{ font-size:14px; color:#333;}
+
+a, a:visited { text-decoration: none; color: #333333; }
+a:hover, a:active{ color: #128d56; cursor: pointer;}
+
+input[type="text"] { padding: 0 1px; }
+input[type="password"] { padding: 0 1px; }
+ol, ul { margin: 0; padding: 0; }
+img { border: none; }
+ul,li{ list-style: none; }
+
+
+label{font-weight:bold;color:#333}
+
+textarea{resize: none;}
+
+/*框架布局*/
+.w_730{width:730px;}
+.w_250{width:250px;}
+.container {width:1000px;margin:0 auto;padding: 30px 0;min-height: 500px}
+.fleft { float: left; }
+.fright { float: right; }
+.row{
+    width:100%;
+}
+.row:after{
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+    width: 0; height: 0;
 }
 
-a:hover, a:active{
-    color: #128d56;
-}
 
 /**通用面板 默认样式*/
 .panel {
@@ -319,6 +349,7 @@ a:hover, a:active{
 
 /*字体 背景 边框颜色*/
 .border-primary{ border: 1px solid #128d56; }
+.border-light{ border: 1px solid #CFCFCF; }
 
 .bg-primary{ background-color: #128d56; }
 .bg-warning{ background-color: #f7a501; }
@@ -357,6 +388,12 @@ a:hover, a:active{
     background-position: 0 -22px;
 }
 
+.icon-clock{
+    background: url(../images/icon_clock.png) no-repeat;
+}
+.icon-location{
+    background: url(../images/icon_location.png) no-repeat;
+}
 
 /*图片和图标的样式控制*/
 .img{

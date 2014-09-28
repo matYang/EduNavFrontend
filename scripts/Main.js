@@ -23,12 +23,16 @@ var AppRouter = Backbone.Router.extend({
         "mypage/booking/:id/pay": "myBookingPay",
         "mypage/:view": "mypage",
 
-        //课程详情
+        //todo 课程团购
+        'tuan':'tuan',
+        'tuan/:courseId':'tuanDetail',
+
+        //课程详情ß
         "course/:courseId": "courseDetail",
         "course/:courseId/": "courseDetail",
         //订单生成
         "booking/c:courseId": "newBooking",//新建booking
-        "booking/b:bookingId": "booking",//修改booking
+//        "booking/b:bookingId": "booking",//修改booking 暂不使用
         //课程对比
         "compare": "compare",
         "compare/*anything": "compare",
@@ -92,18 +96,46 @@ var AppRouter = Backbone.Router.extend({
 
     front: function () {
         this.frontPageView = new FrontPageView();
-
     },
 
+    //todo 团购页面
+    tuan: function(){
+        this.tuanView = new TuanView();
+    },
+    //todo 团购详情页
+    tuanDetail: function(courseId){
+        this.tuanDetailView = new TuanDetailView({
+            'courseId': Utilities.toInt(courseId)
+        });
+    },
+
+    //课程搜索 课程详情查看
     search: function () {
         this.searchView = new SearchView();
     },
-
     encodedSearch: function (encodedSearchKey) {
         this.searchView = new SearchView({
             "searchKey": encodedSearchKey
         });
         // this.advertisementView = new AdvertisementView ();
+    },
+    courseDetail: function (courseId) {
+        this.courseDetailView = new CourseDetailView({
+            'courseId': Utilities.toInt(courseId)
+        });
+    },
+    //课程对比
+    compare: function () {
+        this.compareView = new CompareView();
+    },
+
+    //个人中心页面
+    mypage: function (query) {
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("front", {trigger: true, replace: true});
+            return;
+        }
+        this.myPageView = new MyPageView({query: query});
     },
     myBooking: function (id) {
         if (!this.sessionManager.hasSession()) {
@@ -126,31 +158,18 @@ var AppRouter = Backbone.Router.extend({
         }
         this.myPagePayView = new BookingPayView({bookingId: id});
     },
-    mypage: function (query) {
-        if (!this.sessionManager.hasSession()) {
-            this.navigate("front", {trigger: true, replace: true});
-            return;
-        }
 
-        this.myPageView = new MyPageView({query: query});
-    },
 
-    courseDetail: function (courseId) {
-        this.courseDetailView = new CourseDetailView({
-            'courseId': Utilities.toInt(courseId)
-        });
-    },
+
 
     newBooking: function (courseId) {
         this.newBookingView = new NewBookingView({courseId: courseId});
     },
-    booking: function (bookingId) {
-        this.bookingEditView = new NewBookingView({reference: bookingId});
-    },
+    //修改订单 暂不使用
+//    booking: function (bookingId) {
+//        this.bookingEditView = new NewBookingView({reference: bookingId});
+//    },
 
-    compare: function () {
-        this.compareView = new CompareView();
-    },
 
     register: function (ref) {
         if (this.sessionManager.hasSession()) {

@@ -86,6 +86,7 @@
         if (!this.isSupported || !localStorage.sr) {
             this.sr = {
                 course: new CourseSearchRepresentation (),
+                tuan: new CourseSearchRepresentation (),
                 user: new UserSearchRepresentation (),
                 partner: new PartnerSearchRepresentation (),
                 booking: new BookingSearchRepresentation ()
@@ -95,6 +96,7 @@
             if (localStorage.sr) {
                 this.sr = {
                     course: new CourseSearchRepresentation (localStorage.sr.course, {parse: true}),
+                    tuan: new TuanSearchRepresentation (localStorage.sr.tuan, {parse: true}),
                     user: new UserSearchRepresentation (localStorage.sr.user, {parse: true}),
                     partner: new PartnerSearchRepresentation (localStorage.sr.partner, {parse: true}),
                     booking: new BookingSearchRepresentation (localStorage.sr.booking, {parse: true})

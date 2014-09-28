@@ -398,7 +398,7 @@ var Utilities = {
         if (!list || textEnum === undefined) {
             return '';
         }
-        if(symbol===undefined){
+        if (symbol === undefined) {
             symbol = '+'
         }
         var text = _.map(list, function (val) {
@@ -416,5 +416,23 @@ var Utilities = {
     getDeltaMonthTimestamp: function (delta) {
         var date1 = 1, date2 = 1;
         return [date1, date2]
+    },
+
+    countDown: function (selector) {
+        var $time = $(selector);
+        if($time.length<1)return;
+        var timestamp = $time.data('value');
+        var secondDelta = (timestamp - (new Date()).getTime()) / 1000;
+        if (isNaN(secondDelta) || secondDelta <= 0)return;
+        var countFn = function(){
+            var second = Math.floor(secondDelta % 60);             // 计算秒
+            var minute = Math.floor((secondDelta / 60) % 60);      //计算分
+            var hour = Math.floor((secondDelta / 3600) % 24);      //计算小时
+            var day = Math.floor((secondDelta / 3600) / 24);        //计算天
+            $time.html(day + '天' + hour + '小时' + minute + '分' + second + '秒');
+            secondDelta--;
+        };
+        countFn();//init immediately
+        return setInterval(countFn, 1000);
     }
 };

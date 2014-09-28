@@ -1,22 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
 
-.index #topBar{position:absolute; top:0; left:0; width:100%;z-index: 999;}
-.index #main{ margin-top:60px;}
+#visualScope {width:100%;margin:-15px auto 0; overflow:hidden; }
 
-.index #visualScope {width:100%; height:320px;margin:0 auto; overflow:hidden; }
-
-.index #searchArea { width: 100%; height: auto;}
-
-/*在屏幕宽度超过1440时 左右会出现空白背景
-    #1 设置图片的宽度为1960px 适应高分辨率屏 retina除外
-    #2 根据不同图片设置不同背景图 这个比较麻烦 大图必须匹配对应的背景图
-    # (接2)图片滚动中动态变换外部容器#visual_container的background 使用js控制 可改写bjqs插件来实现
-    #简单考虑 现阶段使用方案1比较合适
-    # 所以让设计师去重修一下图片 最优化压缩大图
-*/
-/*这里只提供了上下层纯色分层明显的第三张banner的背景图 其它设置纯色背景即可*/
-/* background:url(../images/banner3_bg.png) repeat-x;*/
+#searchArea { width: 100%;}
 
 /*visual_container  */
 .index #visual_container,
@@ -79,20 +66,18 @@
     -o-transition: all 0.65s;
     transition: all 0.65s;}
 .index #visualScope ol.bjqs-markers li a:hover{ background:#2a2e39;}
-.index #visualScope ol.bjqs-markers li.active-marker a{ background:#2a2e39;filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99000000',endColorstr='#99000000'); }
-
-.index .content{position:relative;}
-.index .content .category{ margin-bottom:100px;}
+.index #visualScope ol.bjqs-markers li.active-marker a{
+    background:#2a2e39;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99000000',endColorstr='#99000000'); }
 
 /*一级目录*/
 .index .tab2 .active{ background-color: #1A8F5A; color: #FFF;}
-.index .tab2{ height:52px; width:1000px; }
 .index .tabtop{width: 1000px; height: 2px; background-color: #1A8F5A;}
 .index .tab2 li{float:left; width:248px; margin-right: 2px; height:50px; line-height:50px; text-align:center; font-size:20px; color:#fff; background-color: #E5E6E8;}
 .index .tab2 li:hover{ background-color: #1A8F5A; color: #FFF;}
 
 .index .c_item{}
-.index .c_item .fleft{position:relative; width:148px; text-align:center;  background-color: #1A8F5A;}
+.index .c_item .fleft{position:relative; width:148px; text-align:center;  background-color: #88D8B4;}
 .index .c_item .fleft a{color:#fff;vertical-align:middle; text-align:center; font-size:18px; font-weight:normal;}
 .index .c_item .fleft .top_arrow{ position:absolute; top:-1px; left:-1px; width:50px; height:50px;}
 .index .c_item .fright{width:850px;}
@@ -111,21 +96,20 @@
     float:left;
     width: 100px;
     /*border-bottom:1px solid #f6eac3;*/
-    height:38px;
-    margin: 5px 0;
+    height:28px;
+    margin: 10px 0;
     padding: 0 2px;
-    line-height:38px; text-align:center;}
+    line-height:28px; text-align:center;}
 
-.index .c_item .clearfix li:hover{ background-color: #E5E6E8;}
-.index .c_item .clearfix li a{ height: 38px;margin: 5px 0;}
+
+.index .c_item .clearfix li a{ height: 28px;margin: 10px 0; line-height: 28px;}
 .index .c_item .fright li a:hover{ color: #333;}
 
 .index tr.last td{ border-bottom:none!important;}
 .index td.last,.index li.last{/*border-right:none!important;*/ border-bottom:none!important;}
 
 .index .c_item .clearfix li{ 
-    background-color: #FFF;  
-    border-right: 1px solid #E5E6E8;
+    background-color: #FFF;
     cursor: pointer;
 }
 
@@ -146,6 +130,25 @@
 .index .s_attestation li {border-top:1px solid #e9cffe; border-left:1px solid #e9cffe;}
 .index .s_attestation li.last{width:202px;}
 
+
+/* Footer*/
+.footer {
+    padding: 10px 0 20px; background: #248E4E;color: #ffffff}
+/*底部链接的样式*/
+.footer a,.footer a:visited{ color: #ffffff; }
+.footer a:hover{ color: #ffffff; text-decoration: underline; }
+/*底部段落的样式*/
+.footer p{ margin: 9px 0; font-size: 12px; }
+
+.footer_inner{ width:1000px; margin-left:auto; margin-right:auto; text-align: center; }
+/*footer部分的页面切换链接*/
+#footer_service_link a{ padding:0 10px;}
+p.footer-copyright{}
+p.footer-phone{font-size: 14px}
+
+
+/*小标题*/
+.index_tip{ width: 1000px; height: 45px; display: block; margin-bottom: 10px; border-bottom: 1px solid #B5DACA; line-height: 45px; color: #47BC78; font-size: 22px;}
 
 
 

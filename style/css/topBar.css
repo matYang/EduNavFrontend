@@ -1,15 +1,33 @@
 @charset "utf-8";
 /* CSS Document */
 
-.topBar{ height:75px; background:url(../images/top_bar_bg.png) repeat-x;}
-.topBar .topBar-inner{width:1200px; margin:0 auto;background:url(../images/top_bar_bg.png) repeat-x;}
+.topBar{
+    position: relative;z-index: 999;
+    left: 0;right: 0;
+    height:75px;
+    background:url(../images/top_bar_bg.png) repeat-x;
+}
+.topBar .topBar-inner{
+    width:1100px;
+    margin:0 auto;
+    background:url(../images/top_bar_bg.png) repeat-x;
+}
 
 #logo{float:left; width:155px; height:75px; background:url(../images/logo.png) no-repeat; text-indent:-9999px;}
-.topBar-navigation{float:left; height:60px; margin-left:20px; line-height:60px; color:#fff; font-size:18px;}
+.topBar-navigation{float:left; height:60px; margin-left:20px; line-height:60px;
+    color:#fff; font-size:16px;}
 .topBar-navigation li{float:left; padding:0 20px; margin-left:1px; cursor:pointer;}
 .topBar-navigation li:hover{ background:#404652;}
 .topBar-navigation li.active{ background:#404652;}
 .topBar-navigation li a{ color: white}
+.topBar-navigation li .icon-hot{
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    margin-left: -3px;
+    background: url("../images/icon_hot.png") no-repeat;
+
+}
 /*tel应没有hover变化*/
 .topBar .tel{float:right; margin-right:50px; margin-top:13px;}
 #navigate_tel:hover{background:none;}

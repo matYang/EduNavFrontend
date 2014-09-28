@@ -71,7 +71,9 @@ module.exports = function (grunt) {
                         'style/css/courseDetail.css',
                         'style/css/compare.css',
                         'style/css/booking.css',
-                        'style/css/aboutUs.css'
+                        'style/css/aboutUs.css',
+                        'style/css/tuan.css',
+                        'style/css/tuanDetail.css'
                     ]
                 }
             }

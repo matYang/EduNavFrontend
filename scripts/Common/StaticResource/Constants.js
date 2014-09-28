@@ -24,6 +24,8 @@ var Constants = {
         "topBar-loggedIn", "topBar-notLoggedIn",
         /*注册模块*/
         "registration", "registration_finish", "findPassword_1", "findPassword_2",
+        /*快速登录*/
+        "loginFast",
 
         /*对比页*/
         "compareView",
@@ -38,6 +40,10 @@ var Constants = {
         "SearchCourse",
         //已筛选的条件 一二三级类目
         "req", "subCategoryContainer", "subSubCategoryContainer", "subSubCategory", "subCategory", "category",
+
+        /*课程团购*/
+        'tuan','tuanDetail',
+        'tuanBanner','tuanResultEntry',
 
         /*课程详情*/
         "courseDetail",

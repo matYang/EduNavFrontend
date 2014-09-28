@@ -51,6 +51,10 @@
                 },
                 'account': {
                     history: '/history'
+                },
+                'groupBuy':{
+                    list:'',
+                    booking:'booking'
                 }
             }
         };
@@ -69,6 +73,8 @@
                 general_partner: api_maker(api_modules.rootPrefix, "general", "partner"),
 
                 courses: api_maker(api_modules.rootPrefix, "course", "course"),
+                groupBuy: api_maker(api_modules.rootPrefix, "groupBuy", "list"),
+                groupBuy_booking: api_maker(api_modules.rootPrefix, "groupBuy", "booking"),
 
 //                general_courseByIdList: api_maker(api_modules.rootPrefix, "general", "courseByIdList"),
                 
