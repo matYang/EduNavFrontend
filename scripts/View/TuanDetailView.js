@@ -100,6 +100,8 @@ var TuanDetailView = Backbone.View.extend({
                     this.loginFastView.render();
                 }
             }
+            app.navigate("mypage/booking/1/pay", true);
+
         });
 
 
@@ -204,7 +206,16 @@ var LoginFastView = Backbone.View.extend({
             password = $("#login_content .txt_passed").val(),
             remember = $("#login_content .check") ? 1 : 0,
             self = this;
-        if (username !== "" && password !== "") {
+        if(username=="")
+        {
+            alert("您输入的用户名不对，请重新输入！");
+            return;
+        }
+        if(password == "")
+        {
+            alert("您输入的用户名或者密码不对，请重新输入！");
+            return;
+        }
             $('#login_content .btnLogin').html("登录中。。。").prop("disabled", true);
             //这里继续登录操作 登录成功后直接进行session的获取(为同步请求)
             //TODO JET:这一步操作和免注册预订的自动登录的代码可合并 应放至sessionManager中统一处理 包括logout 这里进行callback
@@ -216,7 +227,7 @@ var LoginFastView = Backbone.View.extend({
                         app.navigate("front", true);
                     } else {
                         self.close();
-                        //app.navigate("mypage/booking/:id/pay", true);
+                        app.navigate("mypage/booking/"+ app.userManager.userId+"/pay", true);
                     }
                 },
                 error: function (data) {
@@ -225,10 +236,6 @@ var LoginFastView = Backbone.View.extend({
                     self.$passwordInput.val("");
                 }
             });
-        } else {
-            //请输入密码
-            alert("输入有误，请重新输入");
-        }
     },
 
     close: function () {
