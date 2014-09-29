@@ -390,5 +390,37 @@
         return index;
     };
 
+    //拉取评论
+    GeneralManager.prototype.findComments = function (sr,callback) {
+        var searchResults = new Comments();
+        if (!(sr instanceof Backbone.Model)||!sr.get('courseId')) {
+            Info.warn('GeneralManager::findComments invalid parameter, exit');
+            return;
+        }
+
+        if (testMockObj.testMode) {
+            searchResults = testMockObj.testComments;
+            callback.success(searchResults);
+            return;
+        }
+
+        searchResults.overrideUrl(ApiResource.course_comment+'/'+sr.get('courseId'));
+        searchResults.fetch({
+            data: sr.toQueryString(),
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    callback.success(searchResults);
+                }
+            },
+            error: function (model, response) {
+                if (callback) {
+                    callback.error($.parseJSON(response.responseText));
+                }
+            }
+        });
+    };
+
 
 }).call(this);

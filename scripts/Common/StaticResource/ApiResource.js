@@ -1,22 +1,22 @@
 (function () {
-    
+
 
     this.ApiResource = (function () {
 
         /*---------------  API level constants   --------------*/
         var api_modules = {
 
-            rootPrefix: Constants.origin +  '/api',
+            rootPrefix: Constants.origin + '/api',
             partnerRootPrefix: Constants.origin + '/p-api',
             versionPrefix: '/v2',
 
             moduleSufixResource: {
                 'general': {
-                    school:"/school",
-                    location:"/location",
-                    category:"/category",
-                    partner:"/partner",
-                    course:"/course"
+                    school: "/school",
+                    location: "/location",
+                    category: "/category",
+                    partner: "/partner",
+                    course: "/course"
                 },
 
                 'user': {
@@ -34,7 +34,7 @@
                 'booking': {
                     create: '',
                     history: '/history',
-                    operate:'/{0}/{1}'//{0} is bookingId,{1} is operation name
+                    operate: '/{0}/{1}'//{0} is bookingId,{1} is operation name
                 },
                 //人工选课申请
                 'purpose': {
@@ -52,15 +52,19 @@
                 'account': {
                     history: '/history'
                 },
-                'groupBuy':{
-                    list:'',
-                    booking:'booking'
+                'groupBuy': {
+                    list: '',
+                    booking: '/booking'
+                },
+                'comment': {
+                    'create': '',
+                    'course': '/course'
                 }
             }
         };
 
         var api_maker = function (prefix, resourceName, actionName) {
-            return prefix + api_modules.versionPrefix +'/'+ resourceName + api_modules.moduleSufixResource[resourceName][actionName];
+            return prefix + api_modules.versionPrefix + '/' + resourceName + api_modules.moduleSufixResource[resourceName][actionName];
         };
 
         var api_assembler = function () {
@@ -77,7 +81,7 @@
                 groupBuy_booking: api_maker(api_modules.rootPrefix, "groupBuy", "booking"),
 
 //                general_courseByIdList: api_maker(api_modules.rootPrefix, "general", "courseByIdList"),
-                
+
                 user_findSession: api_maker(api_modules.rootPrefix, 'user', 'findSession'), //GET added to session manaegr
                 user_smsVerification: api_maker(api_modules.rootPrefix, 'user', 'smsVerification'),
                 user_register: api_maker(api_modules.rootPrefix, 'user', 'register'), //GET and POST added to user manager
@@ -93,7 +97,10 @@
                 user_booking_operate: api_maker(api_modules.rootPrefix, 'booking', 'operate'),
                 user_coupon: api_maker(api_modules.rootPrefix, 'coupon', 'coupon'),
                 user_credit_history: api_maker(api_modules.rootPrefix, 'credit', 'history'),
-                user_account_history: api_maker(api_modules.rootPrefix, 'account', 'history')
+                user_account_history: api_maker(api_modules.rootPrefix, 'account', 'history'),
+
+                create_comment: api_maker(api_modules.rootPrefix, 'comment', 'create'),
+                course_comment: api_maker(api_modules.rootPrefix, 'comment', 'course')
             };
         };
 

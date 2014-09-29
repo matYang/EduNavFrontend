@@ -13,7 +13,7 @@ var TuanDetailView = Backbone.View.extend({
         app.generalManager.fetchTuan(opt.tuanId, {
             success: function (tuan) {
                 self.tuan = tuan.clone();
-                self.tuanPhotos = tuan.get('photoList').slice(2)//从第三张图片开始为团购详情页面的图片index = 2
+                self.tuanPhotos = tuan.get('photoList').slice(2);//从第三张图片开始为团购详情页面的图片index = 2
                 self.courseId = tuan.get("courseId");
 
                 self.render();
@@ -30,6 +30,7 @@ var TuanDetailView = Backbone.View.extend({
         var that = this;
         document.title = '全城最低价';
         this.$el.html(this.template(this.tuan._toJSON()));
+        this.commentsView = new TuanDetailCommentsView({courseId: that.courseId});
 
         $("body").css("background-color", "#f1f1f1");
         this.countDown = Utilities.countDown('#tuanDetail_endTime');//倒计时
@@ -70,13 +71,6 @@ var TuanDetailView = Backbone.View.extend({
             readOnly: true,
             start: 4
         });
-        /*评论的星级*/
-        for (var i = 0; i < 4; i++) {
-            $("#satr_user" + i).raty({
-                readOnly: true,
-                start: 4
-            });
-        }
 
         //详情中的图片展示
         var htmlphoto = '';
@@ -154,38 +148,6 @@ var TuanDetailView = Backbone.View.extend({
             });
         });
 
-        /*更多评论*/
-        /*$("#tuanDetail .more").on("click",function(){
-         var commentid=$(this).attr("commentid");
-
-         var commenthtml='';
-         commenthtml+='    <li>';
-         commenthtml+='        <div>';
-         commenthtml+='            <div id="satr_user'+commentid+'" class="satr_user"></div>';
-         commenthtml+='            <span>ppppppp0224</span>';
-         commenthtml+='        </div>';
-         commenthtml+='        <label>棒！</label>';
-         commenthtml+='    </li>';
-         $("#more_comment").append(commenthtml);
-         $("#satr_user"+commentid).raty({
-         readOnly:  true,
-         start: 4
-         });
-         commentid++;
-         $(this).attr("commentid",commentid);
-         $("#tuanDetail .more").stop();
-         });*/
-
-        /*添加评论*/
-        $("#tuanDetail .btnadd").on("click", function () {
-            var txtcomment = $("#tuanDetail .txt textarea").val();
-            var txtenvironment = $("#star_environment").attr("starscore");
-            var txtteacher = $("#star_teacher").attr("starscore");
-            var txtservice = $("#star_service").attr("starscore");
-            //todo Data interaction
-        });
-
-
         /*地图那块位置不变*/
         var navH = $("#tuan_fright").offset().top;
         //滚动条事件
@@ -227,13 +189,16 @@ var TuanDetailView = Backbone.View.extend({
             this.$el.off();
             this.$el.empty();
             if (this.countDown) {
-                this.countDown.clear();//clear window.interval
+                window.clearInterval(this.countDown);
             }
             if (this.teacherInfoView) {
                 this.teacherInfoView.close();
             }
             if (this.loginFastView) {
                 this.loginFastView.close();
+            }
+            if (this.commentsView) {
+                this.commentsView.close();
             }
             this.isClosed = true;
             $("body").css("background-color", "#fff");

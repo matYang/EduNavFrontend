@@ -44,8 +44,7 @@ var Constants = {
         /*课程团购*/
         'tuan','tuanDetail',
         'tuanBanner','tuanResultEntry',
-        /*评论model*/
-        "commentModel",
+        'tuanDetailCommentsContainer','commentEntry',
 
         /*课程详情*/
         "courseDetail",
