@@ -5,9 +5,6 @@ testMockObj = {
     testPartners: new Partners(),
     testPartner1: new Partner().set("id", 1),
     testPartner2: new Partner().set("id", 2),
-    testPartner3: new Partner().set("id", 3),
-    testPartner4: new Partner().set("id", 4),
-    testPartner5: new Partner().set("id", 5),
 
     testTeachers: new Teachers(),
     testTeacher1: new Teacher().set("id", 1).set("name", "Teacher A").set("imgUrl", "/testUrl1")
@@ -19,24 +16,29 @@ testMockObj = {
     testPhoto2: new Photo().set("id", 2).set("imgUrl", "/testUrl2"),
     testPhoto3: new Photo().set("id", 3).set("imgUrl", "/testUrl3"),
 
-    testAddressList:new Addresses(),
-    testAddress1:(new Address()).set('id',1).set('detail','南京市中山北路222号xx大厦1楼'),
-    testAddress2:(new Address()).set('id',2).set('detail','南京市中山北路222号xx大厦2楼'),
-    testAddress3:(new Address()).set('id',3).set('detail','南京市中山北路222号xx大厦3楼'),
+    testAddressList: new Addresses(),
+    testAddress1: (new Address()).set('id', 1).set('detail', '南京市中山北路222号xx大厦1楼'),
+    testAddress2: (new Address()).set('id', 2).set('detail', '南京市中山北路222号xx大厦2楼'),
+    testAddress3: (new Address()).set('id', 3).set('detail', '南京市中山北路222号xx大厦3楼'),
 
     testTuans: new Tuans(),
-    testTuan1: (new Tuan()).set('id', 1).set('title','团购测试标题1').set('groupBuyPrice', 299)
-        .set('bookingTotal', 123).set('hot', 1).set('endTime',1412200111111)
-        .set('photoList',[{url:'./style/images/t_item_banner_test.jpg'}]),
-    testTuan2:(new Tuan()).set('id', 2).set('title','团购测试标题2').set('groupBuyPrice', 299)
-        .set('bookingTotal', 123).set('hot', 1).set('endTime',1412200222222)
-        .set('photoList',[{url:'./style/images/t_item_banner_test.jpg'}]),
-    testTuan3:(new Tuan()).set('id', 3).set('title','团购测试标题3').set('groupBuyPrice', 299)
-        .set('bookingTotal', 123).set('hot', 1).set('endTime',1412200333333)
-        .set('photoList',[{url:'./style/images/t_item_banner_test.jpg'}]),
-    testTuan4:(new Tuan()).set('id', 4).set('title','团购测试标题4').set('groupBuyPrice', 299)
-        .set('bookingTotal', 123).set('hot', 1).set('endTime',1412200444444)
-        .set('photoList',[{url:'./style/images/t_item_banner_test.jpg'}]),
+    testTuan1: (new Tuan()).set('id', 1).set('title', '团购测试标题1').set('groupBuyPrice', 299)
+        .set('bookingTotal', 123).set('hot', 1).set('endTime', 1412200111111)
+        .set('photoList', [
+            {url: './style/images/t_item_banner_test.jpg'},//约定第一张为置顶课程的图片
+            {url: './style/images/t_item_banner_test.jpg'},//约定第二张为团购列表中的封面
+            {url: './style/images/t_item_banner_test.jpg'},//第三张之后的都是团购详情中的图片
+            {url: './style/images/t_item_banner_test.jpg'},
+        ]),
+    testTuan2: (new Tuan()).set('id', 2).set('title', '团购测试标题2').set('groupBuyPrice', 299)
+        .set('bookingTotal', 123).set('hot', 1).set('endTime', 1412200222222)
+        .set('photoList', [
+            {url: './style/images/t_item_banner_test.jpg'},//约定第一张为置顶课程的图片
+            {url: './style/images/t_item_banner_test.jpg'},//约定第二张为团购列表中的封面
+            {url: './style/images/t_item_banner_test.jpg'},//第三张之后的都是团购详情中的图片
+            {url: './style/images/t_item_banner_test.jpg'},
+        ]),
+
 
     testCourses: new Courses(),
     testCourse1: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 1)
@@ -49,27 +51,25 @@ testMockObj = {
         .set("status", EnumConfig.CourseStatus.onlined)
         .set("bookingType", 1)
         .set('startUponArrival', 1).set('startDate', new Date())
-        .set('quiz', 'adhj'),
-    testCourse2: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 2)
-        .set("courseName", "SAT").set("price", 10800).set("instName", "School A").set("address", "南京市白下区")
-        .set('schooltimeWeek', [1]).set('schooltimeDay', [3, 4])
-        .set('schoolTimeWeek', 1).set('schoolTimeDay', 4).set("cashback", 50).set("commission", 98)
-        .set("originalPrice", 399)
-        .set("circleName", '仙林大学城2')
-        .set("status", EnumConfig.CourseStatus.onlined).set('startUponArrival', 1)
-        .set('startDate', new Date(1400000000000)),
-    testCourse3: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 3)
-        .set("circleName", '仙林大学城3')
-        .set("courseName", "托福").set("price", 9800).set("instName", "School B").set("address", "南京市秦淮区")
-        .set("cashback", 12).set("commission", 98)
-        .set("status", EnumConfig.CourseStatus.onlined).set('startUponArrival', 0).set('schoolTimeWeek', 2).set('schoolTimeDay', 3)
-        .set('regPhone', '随到随学,机构咨询'),
-    testCourse4: (new Course()).set("categoryValue", "000101").set("id", 4).set("courseName", "GRE")
-        .set("commission", 97)
-        .set("price", 12900)
-        .set("instName", "School C").set("address", "南京市建邺区").set("status", EnumConfig.CourseStatus.onlined)
-        .set('startUponArrival', 1)
-        .set('startDate', new Date()),
+        //课程详情
+        .set('qualityAssurance', '课时信息-test')
+        .set('classSize', '班级类型-测试数据')
+        .set('teachingMaterialIntro', '教材介绍-test')
+        .set('teachingMaterialFee', '教材费用-test')
+        .set('suitableStudent', '适合学员-test')
+        //特色服务
+        .set('passAgreement', '签约保过-test')
+        .set('classTeacher', '推荐就业-test')
+        .set('certification', '结业证书-test')
+        .set('extracurricular', '课后互动-test')
+        .set('bonusService', '赠送服务-test')
+        .set('quiz', '阶段测评-test')
+        .set('teachingAndExercise', '讲练结合-test')
+        .set('questionBank', '题库支持-test')
+        .set('downloadMaterials', '课件下载-test'),
+    testCourse2: (new Course()).set("categoryValue", "000101").set("id", 2).set("courseName", "GRE"),
+    testCourse3: (new Course()).set("categoryValue", "000101").set("id", 3).set("courseName", "GRE"),
+    testCourse4: (new Course()).set("categoryValue", "000101").set("id", 4).set("courseName", "GRE"),
     testCourse5: (new Course()).set("categoryValue", "000101").set("id", 5).set("courseName", "GRE"),
     testCourse6: (new Course()).set("categoryValue", "000101").set("id", 6).set("courseName", "GRE"),
     testCourse7: (new Course()).set("categoryValue", "000101").set("id", 7).set("courseName", "GRE"),
@@ -354,18 +354,12 @@ testMockObj.testAddressList.add([
 ]);
 testMockObj.testTuans.add([
     testMockObj.testTuan1,
-    testMockObj.testTuan2,
-    testMockObj.testTuan3,
-    testMockObj.testTuan4,
+    testMockObj.testTuan2
 ]);
-testMockObj.testTuan1.set('course',testMockObj.testCourse1);
-testMockObj.testTuan2.set('course',testMockObj.testCourse2);
-testMockObj.testTuan3.set('course',testMockObj.testCourse1);
-testMockObj.testTuan4.set('course',testMockObj.testCourse2);
-testMockObj.testTuan1.set('addressList',testMockObj.testAddressList);
-testMockObj.testTuan2.set('addressList',testMockObj.testAddressList);
-testMockObj.testTuan3.set('addressList',testMockObj.testAddressList);
-testMockObj.testTuan4.set('addressList',testMockObj.testAddressList);
+testMockObj.testTuan1.set('course', testMockObj.testCourse1);
+testMockObj.testTuan2.set('course', testMockObj.testCourse2);
+testMockObj.testTuan1.set('addressList', testMockObj.testAddressList);
+testMockObj.testTuan2.set('addressList', testMockObj.testAddressList);
 testMockObj.testTuans.total = 29;
 testMockObj.testCourses.total = 39;
 testMockObj.testBookings.add([testMockObj.testBooking1, testMockObj.testBooking2, testMockObj.testBooking3, testMockObj.testBooking4]);
@@ -381,7 +375,7 @@ testMockObj.testCourse1.set("classPhotoList", testMockObj.testPhotos);
 testMockObj.testCourse2.set("classPhotoList", testMockObj.testPhotos);
 testMockObj.testCourse3.set("classPhotoList", testMockObj.testPhotos);
 
-testMockObj.testPartners.add([testMockObj.testPartner1, testMockObj.testPartner2, testMockObj.testPartner3, testMockObj.testPartner4]);
+testMockObj.testPartners.add([testMockObj.testPartner1, testMockObj.testPartner2]);
 
 testMockObj.testBooking1.set("course", testMockObj.testCourse1).set('reference', 'isk-2323-s232');
 testMockObj.testBooking2.set("course", testMockObj.testCourse2).set('reference', 'isk-2323-s232');

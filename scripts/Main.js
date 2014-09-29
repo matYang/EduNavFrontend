@@ -25,7 +25,7 @@ var AppRouter = Backbone.Router.extend({
 
         //todo 课程团购
         'tuan':'tuan',
-        'tuan/:courseId':'tuanDetail',
+        'tuan/:tuanId':'tuanDetail',
 
         //课程详情ß
         "course/:courseId": "courseDetail",
@@ -103,9 +103,9 @@ var AppRouter = Backbone.Router.extend({
         this.tuanView = new TuanView();
     },
     //todo 团购详情页
-    tuanDetail: function(courseId){
+    tuanDetail: function(tuanId){
         this.tuanDetailView = new TuanDetailView({
-            'courseId': Utilities.toInt(courseId)
+            'tuanId': Utilities.toInt(tuanId)
         });
     },
 

@@ -140,7 +140,6 @@ var TuanResultView = MultiPageView.extend({
     },
     bindEvents: function () {
         var that = this;
-
     },
 
     bindEntryEvents: function () {
