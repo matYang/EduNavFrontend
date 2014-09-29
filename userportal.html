@@ -46,7 +46,7 @@
 
 <div id="visualScope"></div>
 <div id="searchArea"></div>
-<div id='content' class='container'></div>
+<div id='content' class='container clearfix'></div>
 
 <div id='infoLayer'></div>
 <div id="overlay"></div>
@@ -3168,8 +3168,34 @@
     </div>
 </script>
 
+<script type="text/templates" id="tpl_commentModel">
+    <li>
+        <div>
+            <div id="satr_user" class="satr_user"></div>
+            <span>ppppppp0224</span>
+        </div>
+        <label>棒！</label>
+    </li>
+</script>
+
 <script type="text/templates" id="tpl_tuanFooter">
     <!--<h2>这里是团购的底部</h2>-->
+</script>
+
+<script type="text/templates" id="tpl_teacherInfo">
+    <div id="overlay_teacherInfo" class="overlay">
+        <div id="teacherInfo">
+            <div class="teacherInfoA">
+                <a></a>
+                <div class="teacher_info">
+                    <span>王玉梅</span>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;江苏朗阁外语培训中心阅读写作主讲老师，朗阁海外考试研究中心研究员。毕业于上海外国语大学，获高级口译证书及教务部高等学校教师资格证书。多年雅思、新托福教学和研究经验，对雅思和新托福的教学和考试均有深入的研究和独到的见解，教学风格严谨细腻，针对不同学生因材施教，把提高英语学习能力和考试技巧相结合，培养出多批满分及高分学员。 朗阁教育集团海外考试研究中心（RAFLE）研究员。江苏朗阁外语培训中心阅读、写作资深培训官。</p>
+                </div>
+            </div>
+            <i class="close">X</i>
+        </div>
+
+    </div>
 </script>
 
 <script type="text/templates" id="tpl_tuanDetail">
@@ -3206,7 +3232,7 @@
                 <span>剩余时间：<a>14天22时22分18秒</a></span>
                 <div class="btn">
                     <a class="btnbuy">立即抢购</a>
-                    <a class="btnconsult">咨询</a>
+                    <a class="btnconsult" onclick="doyoo.util.openChat('g=82548');return false;">咨询</a>
                 </div>
             </div>
         </div>
@@ -3297,14 +3323,39 @@
                     <dl id="tuan_content_3" class="content_inner">
                         <dt><i class="dticon"></i>特色服务</dt>
                         <dd class="clearfix">
-                            <a></a>
-                            <a></a>
-                            <a></a>
-                            <a></a>
-                            <a></a>
-                            <a></a>
-                            <a></a>
-                            <a></a>
+                            <div class="serviceli">
+                                <a><img title="讲练结合" src="style/images/spec_service_01.png" alt=""/></a>
+                                <span>讲练结合</span>
+                            </div>
+                            <div class="serviceli">
+                                <a><img title="阶段评测" src="style/images/spec_service_02.png" alt=""/></a>
+                                <span>阶段评测</span>
+                            </div>
+                            <div class="serviceli">
+                                <a><img title="结业证书" src="style/images/spec_service_03.png" alt=""/></a>
+                                <span>结业证书</span>
+                            </div>
+                            <div class="serviceli">
+                                <a><img title="课后互动" src="style/images/spec_service_04.png" alt=""/></a>
+                                <span>课后互动</span>
+                            </div>
+                            <div class="serviceli">
+                                <a><img title="课件下载" src="style/images/spec_service_05.png" alt=""/></a>
+                                <span>课件下载</span>
+                            </div>
+                            <div class="serviceli">
+                                <a><img title="签约保过" src="style/images/spec_service_06.png" alt=""/></a>
+                                <span>签约保过</span>
+                            </div>
+                            <div class="serviceli">
+                                <a><img title="题库支持" src="style/images/spec_service_07.png" alt=""/></a>
+                                <span>题库支持</span>
+                            </div>
+                            <div class="serviceli">
+                                <a><img title="赠送服务" src="style/images/spec_service_08.png" alt=""/></a>
+                                <span>赠送服务</span>
+                            </div>
+
                             <div class="warm_tip clearfix">
                                 <h4><i class="warmicon"></i> 温馨小贴士~</h4>
                                 <p></p>
@@ -3378,6 +3429,13 @@
                                 </li>
                                 <li>
                                     <div>
+                                        <div id="satr_user1" class="satr_user"></div>
+                                        <span>ppppppp0224</span>
+                                    </div>
+                                    <label>棒！</label>
+                                </li>
+                                <li>
+                                    <div>
                                         <div id="satr_user2" class="satr_user"></div>
                                         <span>ppppppp0224</span>
                                     </div>
@@ -3390,7 +3448,10 @@
                                     </div>
                                     <label>棒！</label>
                                 </li>
-                                <div class="more">
+                                <div id="more_comment"class="clearfix">
+
+                                </div>
+                                <div class="more" commentid="5" >
                                     更多精彩评价
                                 </div>
                             </ul>
@@ -3401,7 +3462,7 @@
                                             <span>请打分</span>
                                             <li>
                                                 <span>环境</span>
-                                                <div id="star_environment" class="star_sytle"></div>
+                                                <div id="star_environment" class="star_sytle" starscore=""></div>
                                             </li>
                                             <li>
                                                 <span>师质</span>
@@ -3420,6 +3481,24 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_overlayBooking">
+    <div id="overlay_booking" class="overlay">
+        <div class="booking">
+            <span>请您在新开的页面完成支付</span>
+            <ul class="message">
+
+                <li> <i></i>完成支付前请不要关闭窗口</li>
+
+                <li><i></i>完成付款后，请根据您的付款情况点击以下按钮</li>
+            </ul>
+            <div class="btn">
+                <a class="btnfalse">支付遇到问题</a>
+                <a class="btnsuccess">完成支付</a>
+            </div>
         </div>
     </div>
 </script>

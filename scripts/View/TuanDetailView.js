@@ -32,20 +32,34 @@ var TuanDetailView = Backbone.View.extend({
             }
         });
 
+
     },
     render: function () {
+        var that=this;
         document.title = '全城最低价';
         this.$el.html(this.template(this.course._toJSON()));
-        $("#tuanDetail .pic .pic_list").find("i:first").removeClass("active");
+
         $("body").css("background-color","#f1f1f1");
         /*评价星级*/
         $("#starDemo").raty({
             readOnly:  true,
             start: 4
         });
-        $("#star_environment").raty();
-        $("#star_teacher").raty();
-        $("#star_service").raty();
+        $("#star_environment").raty({
+            onClick: function(score) {
+                $("#star_environment").attr("starscore",score);
+            }
+        });
+        $("#star_teacher").raty({
+            onClick: function(score) {
+                $("#star_teacher").attr("starscore",score);
+            }
+        });
+        $("#star_service").raty({
+            onClick: function(score) {
+                $("#star_service").attr("starscore",score);
+            }
+        });
         $("#star_eleft").raty({
             readOnly:  true,
             start: 4
@@ -62,6 +76,7 @@ var TuanDetailView = Backbone.View.extend({
             readOnly:  true,
             start: 4
         });
+        /*评论的星级*/
         for(var i= 0;i<4;i++)
         {
             $("#satr_user"+i).raty({
@@ -69,12 +84,47 @@ var TuanDetailView = Backbone.View.extend({
                 start: 4
             });
         }
-
+        /*照片模板*/
+        this.photo=[
+            {photoloc:"style/images/detail_banner1.png"},
+            {photoloc:"style/images/detail_banner2.png"},
+            {photoloc:"style/images/detail_banner3.png"}
+            ];
+        var htmlphoto='';
+        htmlphoto+='<div class="pic_big">';
+        _.each(that.photo, function (v,index) {
+            htmlphoto += '<a class=""><img src="'+ v.photoloc +'" alt=""/></a>';
+        });
+        htmlphoto+='</div>';
+        htmlphoto+='<div class="pic_list">';
+        _.each(that.photo, function (v,index) {
+            htmlphoto += '<a index="'+index+'"><i class="active"></i><img src="'+ v.photoloc+'" alt=""/></a>';
+        });
+        htmlphoto+='</div>';
+        $("#tuanDetail .pic").html(htmlphoto);
+        $("#tuanDetail .pic .pic_big").find("a:first").addClass("active");
+        $("#tuanDetail .pic .pic_list").find("i:first").removeClass("active");
         this.bindEvents();
     },
 
     bindEvents: function () {
         var that = this;
+
+        /*教师详情*/
+        $("#tuan_content_2 .teacher_pic").on("click",function(){
+
+
+            if (!that.teacherInfoView) {
+                that.teacherInfoView = new TeacherInfoView();
+            }else if (that.teacherInfoView.isClosed) {
+                that.teacherInfoView.render();
+            }else if(!that.teacherInfoView.isShow)
+            {
+                that.teacherInfoView.show();
+            }
+        });
+
+
         /*banner图片的hover事件*/
         $("#tuanDetail .pic .pic_list a").hover(function(){
             var index =  $(this).attr("index");
@@ -100,7 +150,7 @@ var TuanDetailView = Backbone.View.extend({
                     this.loginFastView.render();
                 }
             }
-            app.navigate("mypage/booking/1/pay", true);
+            app.navigate("mypage/booking/"+app.sessionManager.getId() +"/pay", true);
 
         });
 
@@ -115,6 +165,38 @@ var TuanDetailView = Backbone.View.extend({
                 speed: 650
             });
         });
+
+        /*更多评论*/
+        /*$("#tuanDetail .more").on("click",function(){
+            var commentid=$(this).attr("commentid");
+
+            var commenthtml='';
+            commenthtml+='    <li>';
+            commenthtml+='        <div>';
+            commenthtml+='            <div id="satr_user'+commentid+'" class="satr_user"></div>';
+            commenthtml+='            <span>ppppppp0224</span>';
+            commenthtml+='        </div>';
+            commenthtml+='        <label>棒！</label>';
+            commenthtml+='    </li>';
+            $("#more_comment").append(commenthtml);
+            $("#satr_user"+commentid).raty({
+                readOnly:  true,
+                start: 4
+            });
+            commentid++;
+            $(this).attr("commentid",commentid);
+            $("#tuanDetail .more").stop();
+        });*/
+
+        /*添加评论*/
+        $("#tuanDetail .btnadd").on("click",function(){
+            var txtcomment=$("#tuanDetail .txt textarea").val();
+            var txtenvironment =$("#star_environment").attr("starscore");
+            var txtteacher =$("#star_teacher").attr("starscore");
+            var txtservice =$("#star_service").attr("starscore");
+            //todo Data interaction
+        });
+
 
 
 
@@ -161,6 +243,7 @@ var TuanDetailView = Backbone.View.extend({
         if (!this.isClosed) {
             this.$el.off();
             this.$el.empty();
+            //this.teacherInfoView.close();
             this.isClosed = true;
             $("body").css("background-color","#fff");
         }
@@ -236,6 +319,49 @@ var LoginFastView = Backbone.View.extend({
                     self.$passwordInput.val("");
                 }
             });
+    },
+
+    close: function () {
+        if (!this.isClosed) {
+            this.$el.off();
+            this.$el.empty();
+            this.isClosed = true;
+        }
+    }
+});
+
+
+/*教师详情弹出框View*/
+var TeacherInfoView = Backbone.View.extend({
+    el: "#overlayCourse",//借用课程那个弹出框的div
+    //todo need to write template named 'tpl_loginFast'
+    template: _.template(tpl.get("teacherInfo")),
+    initialize: function () {
+        this.isClosed = false;
+        this.isShow=false;
+        _.bindAll(this, "render", "bindEvents", "close");
+        app.viewRegistration.register(this);
+        this.render();
+
+    },
+    render: function () {
+        this.$el.html(this.template());
+        this.bindEvents();
+    },
+
+    bindEvents: function () {
+        var that = this;
+        $("#teacherInfo .close").on("click",function(){
+            that.hide();
+        });
+    },
+    show:function(){
+        $("#overlay_teacherInfo").show();
+        this.isShow=true;
+    },
+    hide:function(){
+        $("#overlay_teacherInfo").hide();
+        this.isShow=false;
     },
 
     close: function () {

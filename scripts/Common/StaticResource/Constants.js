@@ -44,6 +44,8 @@ var Constants = {
         /*课程团购*/
         'tuan','tuanDetail',
         'tuanBanner','tuanResultEntry',
+        /*评论model*/
+        "commentModel",
 
         /*课程详情*/
         "courseDetail",
@@ -98,7 +100,11 @@ var Constants = {
         //免费试听弹出框
         "freeTrial",
         //课程选择页面
-        "courseTip"
+        "courseTip",
+        //教师信息弹出框
+        "teacherInfo",
+        //支付未跳转页面弹出框
+        "overlayBooking"
     ],
     gender: {
         "male": 0,
