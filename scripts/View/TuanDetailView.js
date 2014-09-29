@@ -6,26 +6,18 @@ var TuanDetailView = Backbone.View.extend({
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "close");
         app.viewRegistration.register(this);
-
+        this.tuanId = opt.tuanId;//团购的Id
+        this.countDown = undefined;//团购的倒计时
         var self = this;
         //这里获取课程数据信息
-        app.generalManager.fetchCourse(opt.courseId, {
-            success: function (course) {
-                app.generalManager.fetchCategories({
-                    success: function (catObj) {
-                        self.course = course.clone();
-                        self.courseId = course.get("id");
-                        self.courseTemplateId = course.get("courseTemplateId");
-                        //将categoryValue转换成一二三级的键值对
-                        var catArray = Utilities.getCategoryArray(self.course.get("categoryValue"), catObj.data);
-                        self.course.set("category", catArray[0]);
-                        self.course.set("subCategory", catArray[1]);
-                        self.course.set("subSubCategory", catArray[2]);
-                        self.render();
-                        self.bindEvents();
-                    }
-                });
+        app.generalManager.fetchTuan(opt.tuanId, {
+            success: function (tuan) {
+                self.tuan = tuan.clone();
+                self.tuanPhotos = tuan.get('photoList').slice(2)//从第三张图片开始为团购详情页面的图片index = 2
+                self.courseId = tuan.get("courseId");
 
+                self.render();
+                self.bindEvents();
             },
             error: function (data) {
                 Info.displayErrorPage("content", data.message);
@@ -35,72 +27,69 @@ var TuanDetailView = Backbone.View.extend({
 
     },
     render: function () {
-        var that=this;
+        var that = this;
         document.title = '全城最低价';
-        this.$el.html(this.template(this.course._toJSON()));
+        this.$el.html(this.template(this.tuan._toJSON()));
 
-        $("body").css("background-color","#f1f1f1");
+        $("body").css("background-color", "#f1f1f1");
+        this.countDown = Utilities.countDown('#tuanDetail_endTime');//倒计时
         /*评价星级*/
         $("#starDemo").raty({
-            readOnly:  true,
+            readOnly: true,
             start: 4
         });
         $("#star_environment").raty({
-            onClick: function(score) {
-                $("#star_environment").attr("starscore",score);
+            onClick: function (score) {
+                $("#star_environment").attr("starscore", score);
             }
         });
         $("#star_teacher").raty({
-            onClick: function(score) {
-                $("#star_teacher").attr("starscore",score);
+            onClick: function (score) {
+                $("#star_teacher").attr("starscore", score);
             }
         });
         $("#star_service").raty({
-            onClick: function(score) {
-                $("#star_service").attr("starscore",score);
+            onClick: function (score) {
+                $("#star_service").attr("starscore", score);
             }
         });
         $("#star_eleft").raty({
-            readOnly:  true,
+            readOnly: true,
             start: 4
         });
         $("#evaluate_environment").raty({
-            readOnly:  true,
+            readOnly: true,
             start: 5
         });
         $("#evaluate_teacher").raty({
-            readOnly:  true,
+            readOnly: true,
             start: 4
         })
-        ;$("#evaluate_service").raty({
-            readOnly:  true,
+        ;
+        $("#evaluate_service").raty({
+            readOnly: true,
             start: 4
         });
         /*评论的星级*/
-        for(var i= 0;i<4;i++)
-        {
-            $("#satr_user"+i).raty({
-                readOnly:  true,
+        for (var i = 0; i < 4; i++) {
+            $("#satr_user" + i).raty({
+                readOnly: true,
                 start: 4
             });
         }
-        /*照片模板*/
-        this.photo=[
-            {photoloc:"style/images/detail_banner1.png"},
-            {photoloc:"style/images/detail_banner2.png"},
-            {photoloc:"style/images/detail_banner3.png"}
-            ];
-        var htmlphoto='';
-        htmlphoto+='<div class="pic_big">';
-        _.each(that.photo, function (v,index) {
-            htmlphoto += '<a class=""><img src="'+ v.photoloc +'" alt=""/></a>';
+
+        //详情中的图片展示
+        var htmlphoto = '';
+        htmlphoto += '<div class="pic_big">';
+        _.each(that.tuanPhotos, function (v, index) {
+            htmlphoto += '<a class=""><img src="' + v.url + '" alt=""/></a>';
         });
-        htmlphoto+='</div>';
-        htmlphoto+='<div class="pic_list">';
-        _.each(that.photo, function (v,index) {
-            htmlphoto += '<a index="'+index+'"><i class="active"></i><img src="'+ v.photoloc+'" alt=""/></a>';
+        htmlphoto += '</div>';
+        htmlphoto += '<div class="pic_list">';
+        _.each(that.tuanPhotos, function (v, index) {
+            htmlphoto += '<a index="' + index + '"><i class="active"></i><img src="' + v.url + '" alt=""/></a>';
         });
-        htmlphoto+='</div>';
+        htmlphoto += '</div>';
         $("#tuanDetail .pic").html(htmlphoto);
         $("#tuanDetail .pic .pic_big").find("a:first").addClass("active");
         $("#tuanDetail .pic .pic_list").find("i:first").removeClass("active");
@@ -111,27 +100,25 @@ var TuanDetailView = Backbone.View.extend({
         var that = this;
 
         /*教师详情*/
-        $("#tuan_content_2 .teacher_pic").on("click",function(){
+        $("#tuan_content_2 .teacher_pic").on("click", function () {
 
 
             if (!that.teacherInfoView) {
                 that.teacherInfoView = new TeacherInfoView();
-            }else if (that.teacherInfoView.isClosed) {
+            } else if (that.teacherInfoView.isClosed) {
                 that.teacherInfoView.render();
-            }else if(!that.teacherInfoView.isShow)
-            {
+            } else if (!that.teacherInfoView.isShow) {
                 that.teacherInfoView.show();
             }
         });
 
-
         /*banner图片的hover事件*/
-        $("#tuanDetail .pic .pic_list a").hover(function(){
-            var index =  $(this).attr("index");
+        $("#tuanDetail .pic .pic_list a").hover(function () {
+            var index = $(this).attr("index");
             $("#tuanDetail .pic .pic_list i").addClass("active");
             $(this).find(".active").removeClass("active");
             $("#tuanDetail .pic .pic_big a").removeClass("active");
-            $("#tuanDetail .pic .pic_big").find("a:eq("+index+")").addClass("active");
+            $("#tuanDetail .pic .pic_big").find("a:eq(" + index + ")").addClass("active");
         });
 
         /*每列的高度*/
@@ -141,24 +128,25 @@ var TuanDetailView = Backbone.View.extend({
         this.tuan_content_4 = $("#tuan_content_4").offset().top;//评价
 
         /*立即抢购快速登录*/
-        $("#tuanDetail .btnbuy").on("click",function(){
-            if(!app.sessionManager.hasSession())
-            {
-                if (!this.loginFastView) {
-                    this.loginFastView = new LoginFastView();
-                } else if (this.loginFastView.isClosed) {
-                    this.loginFastView.render();
+        $("#tuanDetail .btnbuy").on("click", function () {
+            if (!app.sessionManager.hasSession()) {
+                //如果没有登录 弹出框进行登录 或者 免注册登录（）
+                if (!that.loginFastView) {
+                    that.loginFastView = new LoginFastView();
+                } else if (that.loginFastView.isClosed) {
+                    that.loginFastView.render();
                 }
+            } else {
+                app.navigate("mypage/booking/" + app.sessionManager.getId() + "/pay", true);
             }
-            app.navigate("mypage/booking/"+app.sessionManager.getId() +"/pay", true);
 
         });
 
 
         /*详情页click*/
-        $("#tuanDetail .tuan_sorter li").on("click",function(){
-            var tindex=$(this).attr("index");
-            var id = "#tuan_content_"+tindex;
+        $("#tuanDetail .tuan_sorter li").on("click", function () {
+            var tindex = $(this).attr("index");
+            var id = "#tuan_content_" + tindex;
             $.smoothScroll({
                 scrollTarget: id,
                 offset: -40,
@@ -168,72 +156,67 @@ var TuanDetailView = Backbone.View.extend({
 
         /*更多评论*/
         /*$("#tuanDetail .more").on("click",function(){
-            var commentid=$(this).attr("commentid");
+         var commentid=$(this).attr("commentid");
 
-            var commenthtml='';
-            commenthtml+='    <li>';
-            commenthtml+='        <div>';
-            commenthtml+='            <div id="satr_user'+commentid+'" class="satr_user"></div>';
-            commenthtml+='            <span>ppppppp0224</span>';
-            commenthtml+='        </div>';
-            commenthtml+='        <label>棒！</label>';
-            commenthtml+='    </li>';
-            $("#more_comment").append(commenthtml);
-            $("#satr_user"+commentid).raty({
-                readOnly:  true,
-                start: 4
-            });
-            commentid++;
-            $(this).attr("commentid",commentid);
-            $("#tuanDetail .more").stop();
-        });*/
+         var commenthtml='';
+         commenthtml+='    <li>';
+         commenthtml+='        <div>';
+         commenthtml+='            <div id="satr_user'+commentid+'" class="satr_user"></div>';
+         commenthtml+='            <span>ppppppp0224</span>';
+         commenthtml+='        </div>';
+         commenthtml+='        <label>棒！</label>';
+         commenthtml+='    </li>';
+         $("#more_comment").append(commenthtml);
+         $("#satr_user"+commentid).raty({
+         readOnly:  true,
+         start: 4
+         });
+         commentid++;
+         $(this).attr("commentid",commentid);
+         $("#tuanDetail .more").stop();
+         });*/
 
         /*添加评论*/
-        $("#tuanDetail .btnadd").on("click",function(){
-            var txtcomment=$("#tuanDetail .txt textarea").val();
-            var txtenvironment =$("#star_environment").attr("starscore");
-            var txtteacher =$("#star_teacher").attr("starscore");
-            var txtservice =$("#star_service").attr("starscore");
+        $("#tuanDetail .btnadd").on("click", function () {
+            var txtcomment = $("#tuanDetail .txt textarea").val();
+            var txtenvironment = $("#star_environment").attr("starscore");
+            var txtteacher = $("#star_teacher").attr("starscore");
+            var txtservice = $("#star_service").attr("starscore");
             //todo Data interaction
         });
-
-
-
-
-
 
 
         /*地图那块位置不变*/
         var navH = $("#tuan_fright").offset().top;
         //滚动条事件
-        $(window).scroll(function(){
+        $(window).scroll(function () {
             //获取滚动条的滑动距离
             var scroH = $(this).scrollTop();
             //alert(scroH);
             //滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
-            if(scroH >= navH){
-                $("#tuan_fright").css({"position":"fixed","top":4,"margin-left":750});
+            if (scroH >= navH) {
+                $("#tuan_fright").css({"position": "fixed", "top": 4, "margin-left": 750});
                 $("#tuan_btn").show();
-                $("#tuanDetail .fright .site_map").css({"margin":"55px 0 0 0"});
-                $(".tuan_sorterArea").css({"position":"fixed","padding-top":"4px","top":0});
+                $("#tuanDetail .fright .site_map").css({"margin": "55px 0 0 0"});
+                $(".tuan_sorterArea").css({"position": "fixed", "padding-top": "4px", "top": 0});
             }
-            else if(scroH<navH){
-                $("#tuan_fright").css({"position":"relative","top":"","margin-left":""});
+            else if (scroH < navH) {
+                $("#tuan_fright").css({"position": "relative", "top": "", "margin-left": ""});
                 $("#tuan_btn").hide();
-                $("#tuanDetail .fright .site_map").css({"margin":""});
-                $(".tuan_sorterArea").css({"position":"","top":"","padding-top":"4px"});
+                $("#tuanDetail .fright .site_map").css({"margin": ""});
+                $(".tuan_sorterArea").css({"position": "", "top": "", "padding-top": "4px"});
             }
 
             $(".tuan_sorter li a").removeClass("active");
             /*滚动到下方，导航栏变active*/
-            var stickHeight=64;
-            if (scroH + 63 < that.tuan_content_2-stickHeight) {
+            var stickHeight = 64;
+            if (scroH + 63 < that.tuan_content_2 - stickHeight) {
                 $(".tuan_sorter li a:eq(0)").addClass("active");
-            } else if (scroH + 63 >= that.tuan_content_2-stickHeight && scroH + 63 < that.tuan_content_3-stickHeight) {
+            } else if (scroH + 63 >= that.tuan_content_2 - stickHeight && scroH + 63 < that.tuan_content_3 - stickHeight) {
                 $(".tuan_sorter li a:eq(1)").addClass("active");
-            } else if (scroH + 63 >= that.tuan_content_3-stickHeight && scroH + 63 < that.tuan_content_4-stickHeight) {
+            } else if (scroH + 63 >= that.tuan_content_3 - stickHeight && scroH + 63 < that.tuan_content_4 - stickHeight) {
                 $(".tuan_sorter li a:eq(2)").addClass("active");
-            } else if (scroH + 63 >= that.tuan_content_4-stickHeight) {
+            } else if (scroH + 63 >= that.tuan_content_4 - stickHeight) {
                 $(".tuan_sorter li a:eq(3)").addClass("active");
             }
         });
@@ -245,11 +228,10 @@ var TuanDetailView = Backbone.View.extend({
             this.$el.empty();
             //this.teacherInfoView.close();
             this.isClosed = true;
-            $("body").css("background-color","#fff");
+            $("body").css("background-color", "#fff");
         }
     }
 });
-
 
 
 /*快速登录、注册View*/
@@ -272,53 +254,51 @@ var LoginFastView = Backbone.View.extend({
 
     bindEvents: function () {
         var that = this;
-        $("#login_fast .title li").on("click",function(){
-            var upid=$(this).attr("upid");
+        $("#login_fast .title li").on("click", function () {
+            var upid = $(this).attr("upid");
             $("#login_fast .title li").addClass("active");
             $(this).removeClass("active");
             $("#login_fast .content").addClass("hidden");
-            $("#"+upid).removeClass("hidden");
+            $("#" + upid).removeClass("hidden");
         });
 
-        $("#login_content .btnLogin").on("click",function(){
+        $("#login_content .btnLogin").on("click", function () {
             that.login();
         });
     },
-    login:function(){
+    login: function () {
         var username = $("#login_content .txt_phone").val(),
             password = $("#login_content .txt_passed").val(),
             remember = $("#login_content .check") ? 1 : 0,
             self = this;
-        if(username=="")
-        {
+        if (username == "") {
             alert("您输入的用户名不对，请重新输入！");
             return;
         }
-        if(password == "")
-        {
+        if (password == "") {
             alert("您输入的用户名或者密码不对，请重新输入！");
             return;
         }
-            $('#login_content .btnLogin').html("登录中。。。").prop("disabled", true);
-            //这里继续登录操作 登录成功后直接进行session的获取(为同步请求)
-            //TODO JET:这一步操作和免注册预订的自动登录的代码可合并 应放至sessionManager中统一处理 包括logout 这里进行callback
-            app.sessionManager.login(username, password, remember, {
-                success: function () {
-                    //重置sessionUser并且render topBar
-                    app.userManager.sessionUser = app.sessionManager.sessionModel;
-                    if (location.hash.indexOf("register") > -1) {
-                        app.navigate("front", true);
-                    } else {
-                        self.close();
-                        app.navigate("mypage/booking/"+ app.userManager.userId+"/pay", true);
-                    }
-                },
-                error: function (data) {
-                    $("#credentialWrong").show().html(data.message || "服务器好像睡着了，请稍后再试");
-                    $('#login_button').val("登 录").prop("disabled", false);
-                    self.$passwordInput.val("");
+        $('#login_content .btnLogin').html("登录中。。。").prop("disabled", true);
+        //这里继续登录操作 登录成功后直接进行session的获取(为同步请求)
+        //TODO JET:这一步操作和免注册预订的自动登录的代码可合并 应放至sessionManager中统一处理 包括logout 这里进行callback
+        app.sessionManager.login(username, password, remember, {
+            success: function () {
+                //重置sessionUser并且render topBar
+                app.userManager.sessionUser = app.sessionManager.sessionModel;
+                if (location.hash.indexOf("register") > -1) {
+                    app.navigate("front", true);
+                } else {
+                    self.close();
+                    app.navigate("mypage/booking/" + app.userManager.userId + "/pay", true);
                 }
-            });
+            },
+            error: function (data) {
+                $("#credentialWrong").show().html(data.message || "服务器好像睡着了，请稍后再试");
+                $('#login_button').val("登 录").prop("disabled", false);
+                self.$passwordInput.val("");
+            }
+        });
     },
 
     close: function () {
@@ -338,7 +318,7 @@ var TeacherInfoView = Backbone.View.extend({
     template: _.template(tpl.get("teacherInfo")),
     initialize: function () {
         this.isClosed = false;
-        this.isShow=false;
+        this.isShow = false;
         _.bindAll(this, "render", "bindEvents", "close");
         app.viewRegistration.register(this);
         this.render();
@@ -351,17 +331,17 @@ var TeacherInfoView = Backbone.View.extend({
 
     bindEvents: function () {
         var that = this;
-        $("#teacherInfo .close").on("click",function(){
+        $("#teacherInfo .close").on("click", function () {
             that.hide();
         });
     },
-    show:function(){
+    show: function () {
         $("#overlay_teacherInfo").show();
-        this.isShow=true;
+        this.isShow = true;
     },
-    hide:function(){
+    hide: function () {
         $("#overlay_teacherInfo").hide();
-        this.isShow=false;
+        this.isShow = false;
     },
 
     close: function () {
