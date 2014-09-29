@@ -226,7 +226,12 @@ var TuanDetailView = Backbone.View.extend({
         if (!this.isClosed) {
             this.$el.off();
             this.$el.empty();
-            //this.teacherInfoView.close();
+            if (this.countDown) {
+                this.countDown.clear();//clear window.interval
+            }
+            if (this.teacherInfoView) {
+                this.teacherInfoView.close();
+            }
             this.isClosed = true;
             $("body").css("background-color", "#fff");
         }
