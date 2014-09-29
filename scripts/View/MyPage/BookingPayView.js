@@ -55,33 +55,7 @@ var BookingPayView = Backbone.View.extend({
 */
         //确认，去支付按钮
         $("#goToAlipay").on("click", function () {
-            /*//打开对话框 btn支付成功 btn支付遇到问题
-            that.payResultModel = that.notifier.notify({
-                fadeInMs: 0,
-                fadeOutMs: 0,
-                message: "<h1 class='title text-primary'>请您在新开的页面完成付款</h1>" +
-                    "<p>完成付款前请不要关闭此窗口</p>" +
-                    "<p>完成付款后请根据您的付款情况点击以下按钮</p>",
-                buttons: [
-                    {'data-role': 'failed', text: '支付遇到问题', class: 'btn btn-default'},
-                    {'data-role': 'success', text: '支付成功', 'class': 'btn btn-primary'}
-                ],
-                modal: true,
-                position: 'center',
-                ms: null,
-                width:'500'
-            })
-                .on('click:success', function () {
-                    app.navigate("mypage/booking/" + that.bookingId, true);
-                })
-                .on('click:failed', function () {
-                    app.navigate("mypage/booking/" + that.bookingId, true);
-                });
-            //打开新标签页进行支付 location
-            var payType = $('input[name=payType]:checked').val();
-            var url = '/api/v2/order/' + that.booking.id+'?type='+payType;
-            var s = window.open(url);
-            s.focus();*/
+
             if (!this.overlayBooking) {
                 this.overlayBooking = new OverlayBooking();
             } else if (this.overlayBooking.isClosed) {

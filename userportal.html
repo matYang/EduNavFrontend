@@ -1138,22 +1138,22 @@
             </h3>
         </div>
 
-        <div class="row1" style="min-height:130px">
+        <div class="row1" style="min-height:130px; padding: 10px 50px;" >
             <div class="field">
-                <label>状<s></s>态</label>
+                有效日期：
                 <%= EnumConfig.BookingStatusText[status] %>
             </div>
             <div class="field">
-                <label>订单号</label>
-                <%= reference %> <span>(<%= createTime %>预订)</span>
-            </div>
-            <div class="field">
-                <label>总金额</label>
+                支付总额：
                 <b class="price">￥<%= price %></b>
                 <%if(course.commission){%>
                 <a class="label saved"><%= course.commission %>元 </a>
                 <%}%>
             </div>
+            <div class="field">
+                支付成功后，凭借您本次订购使用的手机到 <span style="color: #32B077; font-size: 14px;"><%= course.instName %></span> 办理入学
+            </div>
+
             <!--currently not used-->
             <!--<div class="field" id="cashback_box">-->
                 <!--< if (course.cashback) { >-->
@@ -1179,7 +1179,7 @@
         </div>
         <div id="pane_platform" class="clearfix">
             <span class="tab1 clearfix padding-x">支付宝支付</span>
-            <ul class="bank_list clearfix" style=" border-bottom: 1px solid #ccc; margin-bottom: 20px;">
+            <ul class="bank_list clearfix" style=" border-bottom: 1px solid #f4f4f4; margin-bottom: 20px;">
                 <li id="alipay" class="active">
                     <!--&lt;!&ndash;--><label for="alipay"></label><!--&ndash;&gt;-->
                     <input id="alipay" name="payType" type="radio" checked="" value="alipay"><a>支付宝</a>
