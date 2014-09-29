@@ -351,6 +351,7 @@ testMockObj.testComments.add([
     testMockObj.testComment1,
     testMockObj.testComment2
 ]);
+testMockObj.testComments.total=13;
 
 testMockObj.testCourses.add([
     testMockObj.testCourse1,

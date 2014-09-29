@@ -2,6 +2,7 @@ var TuanDetailCommentsView = Backbone.View.extend({
     el: "#tuanDetailCommentsContainer",
     template: _.template(tpl.get("tuanDetailCommentsContainer")),
     entryContainer: '#commentsContainer',
+    pageContainer: '#commentsPagination',
     commentEntryTemplate: _.template(tpl.get("commentEntry")),
     initialize: function (opt) {
         this.courseId = opt.courseId;
@@ -11,44 +12,56 @@ var TuanDetailCommentsView = Backbone.View.extend({
         this.sr.set('start', 0);
         this.sr.set('count', 5);
         this.isClosed = false;
-        _.bindAll(this, "render", "afterRender", "bindEvents", "close");
+        _.bindAll(this, "render", "afterRender", "setPagination", "bindEvents", "close");
         app.viewRegistration.register(this);
         var self = this;
+        this.$el.html(this.template);
+        this.bindEvents();
+        this.fetchComments();
+    },
+    fetchComments: function () {
+        var that = this;
+        $(that.pageContainer).html('<div class="loading"></div>');
         //这里获取课程数据信息
         app.generalManager.findComments(this.sr, {
-            success: function (comments) {
-                self.comments = comments;
-                self.render();
-                self.bindEvents();
-            },
+            success: that.render,
             error: function (data) {
                 Info.displayErrorPage("content", data.message);
             }
         });
     },
-    render: function () {
-        this.$el.html(this.template);
+    render: function (comments) {
         var that = this;
         var commentsBuf = [];
-        this.comments.each(function (comment) {
+        comments.each(function (comment) {
             commentsBuf.push(that.commentEntryTemplate(comment._toJSON()))
         });
-        $(this.entryContainer).html(commentsBuf.join(''));
+        $(this.entryContainer).append(commentsBuf.join(''));
+        this.setPagination(comments.total);
         this.afterRender();
-        this.bindEvents();
     },
 
     afterRender: function () {
         /*评论的星级*/
-        var $comments = $('.commentStars');
+        var $comments = $('.commentStars:not([stared])');
         _.each($comments, function (comment) {
             var $comment = $(comment);
             var starCount = $comment.data('value');
+            $comment.attr('stared', '');
             $comment.raty({
                 readOnly: true,
                 start: starCount
             });
         });
+    },
+    //设置分页
+    setPagination: function (total) {
+        var hasMore = this.sr.get('start') + this.sr.get('count') < total;
+        if (hasMore) {
+            $(this.pageContainer).html('<a class="moreComments">更多精彩评价</a>')
+        } else {
+            $(this.pageContainer).html('没有更多评价了~')
+        }
     },
 
     bindEvents: function () {
@@ -56,26 +69,10 @@ var TuanDetailCommentsView = Backbone.View.extend({
 
 
         /*更多评论*/
-        /*$("#tuanDetail .more").on("click",function(){
-         var commentid=$(this).attr("commentid");
-
-         var commenthtml='';
-         commenthtml+='    <li>';
-         commenthtml+='        <div>';
-         commenthtml+='            <div id="satr_user'+commentid+'" class="satr_user"></div>';
-         commenthtml+='            <span>ppppppp0224</span>';
-         commenthtml+='        </div>';
-         commenthtml+='        <label>棒！</label>';
-         commenthtml+='    </li>';
-         $("#more_comment").append(commenthtml);
-         $("#satr_user"+commentid).raty({
-         readOnly:  true,
-         start: 4
-         });
-         commentid++;
-         $(this).attr("commentid",commentid);
-         $("#tuanDetail .more").stop();
-         });*/
+        this.$el.on("click", '.moreComments', function () {
+            that.sr.set('start', that.sr.get('start') + that.sr.get('count'));
+            that.fetchComments();
+        });
 
         /*添加评论*/
         $("#tuanDetail .btnadd").on("click", function () {
