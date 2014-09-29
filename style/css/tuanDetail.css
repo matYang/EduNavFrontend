@@ -95,10 +95,23 @@
 
 #tuan_content #tuan_content_2 dd a{
     width: 140px; height: 140px;
-    border-radius: 70px; background-color: #E9E9E9;
-    display: block; float: left; margin:0 30px 10px 0;
+    border-radius: 70px;
+    display: block;
+    float: left;
+    margin:0 30px 10px 0;
+    background-image: url("../images/spec_service_01.png");
+    background-size: 100% 100%;
 }
-
+#tuan_content #tuan_content_2 dd a span{
+    width: 140px; height: 140px;
+    display: none;
+    border-radius: 70px;
+    background-color: rgba(0,0,0,0.2);
+    color: #fff;
+    font-size: 12px;
+    line-height: 30px;
+    overflow: hidden;
+}
 #tuan_content #tuan_content_3 dd a{
     width: 120px; height: 120px;
     border-radius: 60px; background-color: #E9E9E9;

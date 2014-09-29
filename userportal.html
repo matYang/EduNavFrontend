@@ -3153,10 +3153,10 @@
     <div id="overlay_teacherInfo" class="overlay">
         <div id="teacherInfo">
             <div class="teacherInfoA">
-                <a></a>
+                <a><%=teacherInfo.imgUrl%></a>
                 <div class="teacher_info">
-                    <span>王玉梅</span>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;江苏朗阁外语培训中心阅读写作主讲老师，朗阁海外考试研究中心研究员。毕业于上海外国语大学，获高级口译证书及教务部高等学校教师资格证书。多年雅思、新托福教学和研究经验，对雅思和新托福的教学和考试均有深入的研究和独到的见解，教学风格严谨细腻，针对不同学生因材施教，把提高英语学习能力和考试技巧相结合，培养出多批满分及高分学员。 朗阁教育集团海外考试研究中心（RAFLE）研究员。江苏朗阁外语培训中心阅读、写作资深培训官。</p>
+                    <span><%=teacherInfo.name%></span>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;考<%=teacherInfo.infor%></p>
                 </div>
             </div>
             <i class="close">X</i>
@@ -3309,11 +3309,14 @@
                     </dl>
                     <dl id="tuan_content_2" class="content_inner">
                         <dt><i class="dticon"></i>学校师质</dt>
-                        <dd class="clearfix">
-                            <a class="teacher_pic"></a>
-                            <a class="teacher_pic"></a>
-                            <a class="teacher_pic"></a>
-                            <a class="teacher_pic"></a>
+                        <dd id="teacherArea" class="clearfix">
+                            <!--<a class="teacher_pic" teacherid="14"><span>江苏朗阁外语培训中心阅读写作主讲老师，朗阁海外考试研究中心研究员。毕业于上海外国语大学，获高级口译证书及教务部高等学校教师资格证书。多年雅思、新</span></a>
+                            <a class="teacher_pic" teacherid="15"><span></span></a>
+                            <a class="teacher_pic" teacherid="16"><span></span></a>
+                            <a class="teacher_pic" teacherid="17"><span></span></a>-->
+                            <%_.each(teacherList,function(v,index){%>
+                                <a class="teacher_pic" style="background-image: url('<%=v.imgUrl%>')" imgurl="<%=v.imgUrl%>" name="<%=v.name%>" teacherid="<%=v.id%>"><span><%=v.intro%></span></a>
+                            <%})%>
                         </dd>
 
                     </dl>
