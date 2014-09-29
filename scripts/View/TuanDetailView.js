@@ -238,6 +238,25 @@ var LoginFastView = Backbone.View.extend({
         $("#login_content .btnLogin").on("click", function () {
             that.login();
         });
+        $("#login_content .btnFastLogin").on("click", function () {
+            that.fastLogin();
+        });
+    },
+    fastLogin:function(){
+        var username = $("#sign_content .txt_phone").val(),
+            smsVerify = $("#sign_content .txt_passed").val();
+        app.sessionManager.fastlogin(username, smsVerify, {
+            success: function () {
+                //重置sessionUser并且render topBar
+                app.userManager.sessionUser = app.sessionManager.sessionModel;
+
+            },
+            error: function (data) {
+
+                self.$passwordInput.val("");
+            }
+        });
+
     },
     login: function () {
         var username = $("#login_content .txt_phone").val(),
@@ -259,12 +278,7 @@ var LoginFastView = Backbone.View.extend({
             success: function () {
                 //重置sessionUser并且render topBar
                 app.userManager.sessionUser = app.sessionManager.sessionModel;
-                if (location.hash.indexOf("register") > -1) {
-                    app.navigate("front", true);
-                } else {
-                    self.close();
-                    app.navigate("mypage/booking/" + app.userManager.userId + "/pay", true);
-                }
+                app.navigate("mypage/booking/" + app.userManager.userId + "/pay", true);
             },
             error: function (data) {
                 $("#credentialWrong").show().html(data.message || "服务器好像睡着了，请稍后再试");
