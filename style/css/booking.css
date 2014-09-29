@@ -22,10 +22,10 @@
 .courseBrief .section div{ display: inline-block;}
 
 /*右栏*/
-.panel {float:right; width:730px; border:3px solid #128d56; color:#000;}
-.panel .header{height:52px; line-height:52px; padding-left:20px; background:#128d56; font-size:18px; color:#fff;}
-.panel .title{border-bottom:1px solid #cccccc; height:40px; line-height:40px; margin:10px; padding:0 10px;}
-.panel .title h3{float:left; font-size:14px; color:#128d56; }
+.panel {margin: auto; width:907px; border:1px solid #e3e3e3; color:#000;}
+.panel .header{height:52px; line-height:52px; padding-left:20px; background:#28B094; font-size:18px; color:#fff;}
+.panel .title{border-bottom:1px solid #cccccc; height:81px; line-height:80px; margin:10px; padding:0 10px;}
+.panel .title h3{float:left; font-size:24px; color:#333; padding-left: 35px; font-weight: normal;}
 .panel .title .fright{ font-size:12px; padding-left:20px; color:#128d56; background:url(../images/icon.png) no-repeat 0 -491px;}
 
 .panel .row1{ margin:10px 10px 20px;}
@@ -55,6 +55,11 @@
 .panel #booking_date{width:100px;}
 .panel .row3{border-top:1px dotted #ccc; text-align:center; padding:20px 0 50px;}
 .panel .row3 .desc{ color:#666; margin-left:10px;}
+/*content*/
+#bookingDetail ul{ padding: 0 50px; margin: 0 10px;}
+#bookingDetail .tab1{ background-color: #fff; color: #333; padding-left: 60px; text-align: left; background-image: url("");}
+/*btn*/
+#goToAlipay{ width: 340px; height: 66px; background-image: url(""); background-color: #28B094; font-size: 24px; line-height: 66px;}
 /*new booking*/
 .newBooking .field b.price{color:#ff5500;border-bottom: 1px dotted #f60;margin-right: 18px;}
 .newBooking .row4{border-top:1px dotted #ccc; padding:20px 50px 40px; font-size:18px; color:#666;}
