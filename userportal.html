@@ -3244,22 +3244,16 @@
                 </div>
                 <div class="site_map panel_bg clearfix">
                     <h4>活动地图</h4>
-                    <a href="http://api.map.baidu.com/geocoder?address=南京市玄武区&output=html" target="_blank">
-                        <img src="http://api.map.baidu.com/staticimage?width=230&height=180&zoom=14&center=南京市玄武区&markers=南京市玄武区" alt=""/>
+                    <a href="http://api.map.baidu.com/geocoder?address=南京市&output=html" target="_blank">
+                        <img src="http://api.map.baidu.com/staticimage?width=230&height=180&zoom=14&center=南京市&markers=<%=addressList[0].detail%>" alt=""/>
                     </a>
                     <span>乘车路线：地铁10号线江湾体育场站 1号口 沿活动照片附上地图前来</span>
+                    <%_.each(addressList,function(address){%>
                     <dl>
-                        <dt>创迪教育（奥体店）</dt>
-                        <dd>南京江东中路237号雨润中央商场3楼</dd>
+                        <!--<dt>创迪教育</dt>-->
+                        <dd><%=address.detail%></dd>
                     </dl>
-                    <dl>
-                        <dt>创迪教育（奥体店）</dt>
-                        <dd>南京江东中路237号雨润中央商场3楼南京江东中路237号雨润中央商场3楼</dd>
-                    </dl>
-                    <dl>
-                        <dt>创迪教育（奥体店）</dt>
-                        <dd>南京江东中路237号雨润中央商场3楼</dd>
-                    </dl>
+                    <%})%>
                 </div>
                 <div class="hot_tuan panel_bg hidden">
                     <h4>一周热门团购</h4>

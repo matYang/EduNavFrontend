@@ -201,9 +201,9 @@
 #tuanDetail .fright .site_map{ width: 230px; min-height: 400px; padding: 10px; margin-bottom: 20px;}
 #tuanDetail .fright .site_map a{width: 230px; height: 180px; display: block; margin-bottom: 10px;}
 #tuanDetail .fright span{ font-size: 12px; line-height: 20px; margin: 5px 0;}
-#tuanDetail .fright dl{ border-top: 1px dashed #ccc; padding: 5px 0; margin-top: 10px;}
+#tuanDetail .fright dl{ border-top: 1px dashed #ccc; padding: 8px 0; margin-top: 4px;}
 #tuanDetail .fright dt{ font-weight: bold; line-height: 22px; }
-#tuanDetail .fright dd{font-size: 12px; line-height: 22px; }
+#tuanDetail .fright dd{font-size: 12px; line-height: 22px; cursor: pointer; }
 /*一周最热团购*/
 #tuanDetail .fright .hot_tuan{ width: 230px; min-height: 200px; padding: 10px;}
 #tuanDetail .fright .hot_tuan a{ width: 230px; height: 230px; display: block;}

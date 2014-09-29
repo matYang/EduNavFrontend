@@ -67,7 +67,6 @@ var TuanDetailCommentsView = Backbone.View.extend({
     bindEvents: function () {
         var that = this;
 
-
         /*更多评论*/
         this.$el.on("click", '.moreComments', function () {
             that.sr.set('start', that.sr.get('start') + that.sr.get('count'));
