@@ -151,7 +151,15 @@ p.footer-phone{font-size: 14px}
 .index_tip{ width: 1000px; height: 45px; display: block; margin-bottom: 10px; border-bottom: 1px solid #B5DACA; line-height: 45px; color: #47BC78; font-size: 22px;}
 
 
-
+/*pic*/
+#tuanPic{width:960px; height:242px; margin-top: 7px; background-color: #f3f3f3; padding: 7px 20px 20px 20px;}
+#tuanPic .pic_eve{width:960px; height:242px;}
+#tuanPic .pic_eve .pic_eve1{ width: 300px; height: 240px; display: block; float: left; margin: 0 10px; background-color: #fff;}
+#tuanPic .pic_main{ width: 300px; height: 195px; display: block;}
+#tuanPic .pic_main img{ width: 300px; height: 195px;}
+#tuanPic .pic_word span{ font-size: 14px; line-height: 45px; padding-left: 15px; float: left;}
+#tuanPic .pic_word span s{ color: #1a8f5a; text-decoration: none;}
+#tuanPic .pic_word strong{ font-size: 20px; line-height: 45px; color: red; float: right; padding-right: 20px;}
 
 
  

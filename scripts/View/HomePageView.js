@@ -38,6 +38,30 @@ var HomePageView = Backbone.View.extend({
 
         $("#content").append("<span class='index_tip'>课程推荐</span></div>");
         this.$el.append(this.template);
+
+        var htmlTuanpic = '';
+        for(var i=0; i<4; i++ ){
+            htmlTuanpic+='<ul class="pic_eve hidden">';
+            htmlTuanpic+='  <li>';
+            for(var j=0; j<3; j++ ){
+                htmlTuanpic +='      <div class="pic_eve1">';
+                htmlTuanpic +='          <a class="pic_main"><img src="tuan_front.png"> </a>';
+                htmlTuanpic +='              <div class="pic_word">';
+                htmlTuanpic +='                  <span>已有<s>456</s>人报名</span>';
+                htmlTuanpic +='                  <strong>￥456</strong>';
+                htmlTuanpic +='              </div>';
+                htmlTuanpic +='          </div>';
+            }
+            htmlTuanpic+='      </li>';
+            htmlTuanpic+=' </ul>';
+        }
+        $("#lv1Button").after("<div id='tuanPic'></div>");
+        $("#tuanPic").append(htmlTuanpic);
+        $("#tuanPic .pic_eve:first").removeClass("hidden");
+
+
+
+
         app.generalManager.getCategories(this);
     },
     renderCategories: function (categories) {
@@ -86,6 +110,8 @@ var HomePageView = Backbone.View.extend({
         }
     },
     afterRender: function () {
+        //滚动图片
+
         //二级目录 非第一行加入class "last" 控制边框显示 以及控制二级目录button的高度
         $("#lv2Categories").children("div").each(function (category) {
             var rowLength = Constants.categoryRowLength,
@@ -97,6 +123,14 @@ var HomePageView = Backbone.View.extend({
         var activeButton = $("#lv1Button").find("a:first").addClass("active");
         var activeButtonli = $("#lv1Button").find("li:first").addClass("active");
         $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("value") + "]").removeClass("hidden");
+
+        /*//添加滚动图片
+        var htmlpic = '';
+        for(var i=0;i<4;i++)
+        {
+
+        }
+        $("#lv1Button").after("<div id='tuanPic'></div>");*/
         //这里是为了声明页面加载完毕
         $('body').attr('pageRenderReady', '')
 
@@ -111,6 +145,8 @@ var HomePageView = Backbone.View.extend({
             $(this).addClass("active");
             $("#lv2Categories").children(".hidden").removeClass("hidden");
             $("#lv2Categories").children("div[data-parent!=" + category + "]").addClass("hidden");
+            $("#tuanPic .pic_eve").addClass("hidden");
+            $("#tuanPic .pic_eve:eq("+ category +")").removeClass("hidden");
         }).on("click", "li", function (e) {
             //一级目录click
             e.preventDefault();
