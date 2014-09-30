@@ -636,4 +636,36 @@
 
     };
 
+    //提交评论
+    UserManager.prototype.addComment = function (newComment, callback) {
+        var self = this;
+        if (testMockObj.testMode) {
+            newComment.set('user',{phone:'123****123'});
+            callback.success(newComment);
+            return;
+        }
+        if (!(newComment instanceof Backbone.Model)) {
+            Info.warn('UserManager::newComment:: invalid parameter');
+            return;
+        }
+        newComment.overrideUrl(ApiResource.user_apply);
+        newComment.set('id', -1);
+        newComment.save({}, {
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    callback.success(model);
+                }
+            },
+            error: function (model, response) {
+                Info.warn('UserManager::addComment:: save failed with response:');
+                if (callback) {
+                    callback.error($.parseJSON(response.responseText));
+                }
+            }
+        });
+
+    };
+
 }).call(this);

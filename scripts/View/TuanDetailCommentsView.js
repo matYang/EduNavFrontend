@@ -74,12 +74,26 @@ var TuanDetailCommentsView = Backbone.View.extend({
         });
 
         /*添加评论*/
-        $("#tuanDetail .btnadd").on("click", function () {
+        $("#btn_AddComment").on("click", function () {
             var txtcomment = $("#tuanDetail .txt textarea").val();
             var txtenvironment = $("#star_environment").attr("starscore");
             var txtteacher = $("#star_teacher").attr("starscore");
             var txtservice = $("#star_service").attr("starscore");
-            //todo Data interaction
+            var comment = new Comment();
+            comment.set('content',txtcomment);
+            comment.set('conditionRating',txtenvironment);
+            comment.set('attitudeRating',txtteacher);
+            comment.set('satisfactionRating',txtservice);
+            console.log(comment._toJSON());
+            app.userManager.addComment(comment,{
+                success:function(model){
+                    $(that.entryContainer).prepend(that.commentEntryTemplate(model._toJSON()));
+                    that.afterRender();
+                },
+                error:function(data){
+                    Info.alert('提交失败，请稍后再试~');
+                }
+            })
         });
     },
 

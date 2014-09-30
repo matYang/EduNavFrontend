@@ -2,17 +2,18 @@ var Comment = Backbone.Model.extend({
     defaults: function () {
         return {
             'id': -1,
-            'userId':undefined,
-            'title':undefined,
-            'content':undefined,
-            'user':undefined,
+            'userId': undefined,
+            'title': undefined,
+            'content': undefined,
+            'user': undefined,
 
+            'courseTemplateId': undefined,//创建评论时使用courseTemplateId
             //评分内容
-            'conditionRating':undefined,
-            'attitudeRating':undefined,
-            'satisfactionRating':undefined,
+            'conditionRating': undefined,//>>环境
+            'attitudeRating': undefined,//>>师资
+            'satisfactionRating': undefined,//服务
 
-            'createTime':undefined
+            'createTime': undefined
 
         };
     },
@@ -20,6 +21,7 @@ var Comment = Backbone.Model.extend({
         if (typeof data !== 'undefined') {
             data.id = parseInt(data.id, 10);
             data.userId = parseInt(data.userId, 10);
+            data.courseTemplateId = parseInt(data.courseTemplateId, 10);
 
             data.conditionRating = Utilities.parseNum(data.conditionRating);
             data.attitudeRating = Utilities.parseNum(data.attitudeRating);
@@ -33,9 +35,22 @@ var Comment = Backbone.Model.extend({
         var json = _.clone(this.attributes);
 
         json.createTime = Utilities.getDateString(this.get('createTime'));
-        json.evenRating = ((json.attitudeRating+json.conditionRating+json.satisfactionRating)/3).toFixed(1);
+        json.evenRating = ((
+            parseFloat(json.attitudeRating)
+            + parseFloat(json.conditionRating)
+            + parseFloat(json.satisfactionRating)
+            ) / 3).toFixed(1);
 
 
+        return json;
+    },
+
+    toJSON: function () {
+        var json = {};
+        json.content = this.attributes.content;
+        json.conditionRating = this.attributes.conditionRating;
+        json.attitudeRating = this.attributes.attitudeRating;
+        json.satisfactionRating = this.attributes.satisfactionRating;
         return json;
     },
     isNew: function () {
