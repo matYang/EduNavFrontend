@@ -91,7 +91,9 @@
 #tuan_content dd{ width: 680px; border-bottom: 1px solid #ccc; margin-left: 20px; line-height: 30px; height: auto;}
 #tuan_content dt{height: 30px; margin-top: 10px; line-height: 30px; font-size: 16px; font-weight: bold;}
 
-#tuan_content #tuan_content_1 dd p{ height: 40px; line-height: 40px;}
+#tuan_content #tuan_content_1 dd p{ min-height: 40px; height: auto; line-height: 40px;}
+#tuan_content #tuan_content_1 dd p label{ float: left;}
+#tuan_content #tuan_content_1 dd p span{ width: 610px; display: block; float: left; padding: 5px 0; line-height: 30px;}
 
 #tuan_content #tuan_content_2 dd a{
     width: 140px; height: 140px;
