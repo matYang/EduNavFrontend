@@ -13,7 +13,7 @@ var TuanDetailView = Backbone.View.extend({
         app.generalManager.fetchTuan(opt.tuanId, {
             success: function (tuan) {
                 self.tuan = tuan.clone();
-                self.tuanPhotos = tuan.get('photoList').slice(2)//从第三张图片开始为团购详情页面的图片index = 2
+                self.tuanPhotos = tuan.get('photoList').slice(2);//从第三张图片开始为团购详情页面的图片index = 2
                 self.courseId = tuan.get("courseId");
 
                 self.render();
@@ -23,42 +23,14 @@ var TuanDetailView = Backbone.View.extend({
                 Info.displayErrorPage("content", data.message);
             }
         });
-        this.teacherList=[
-            {
-                id:15,
-                imgUrl:"http://teacherimgbucket.oss-cn-hangzhou.aliyuncs.com/14/teacherp14i3t1411540031686-c3e929d32a423c5037e2117bb1141ef9.png",
-                name:"王玉梅",
-                intro:"1江苏朗阁外语培训中心阅读写作主讲老师，朗阁海外考试研究中心研究员。毕业于上海外国语大学，获高级口译证书及教务部高等学校教师资格证书。多年雅思、新托福教学和研究经验，对雅思和新托福的教学和考试均有深入的研究和独到的见解，教学风格严谨细腻，针对不同学生因材施教，把提高英语"
-            },
-            {
-                id:16,
-                imgUrl:"http://teacherimgbucket.oss-cn-hangzhou.aliyuncs.com/14/teacherp14i3t1411540031686-c3e929d32a423c5037e2117bb1141ef9.png",
-                name:"王我梅",
-                intro:"2江苏朗阁外语培训中心阅读写作主讲老师，朗阁海外考试研究中心研究员。毕业于上海外国语大学，获高级口译证书及教务部高等学校教师资格证书。多年雅思、新托福教学和研究经验，对雅思和新托福的教学和考试均有深入的研究和独到的见解，教学风格严谨细腻，针对不同学生因材施教，把提高英语"
-            },
-            {
-                id:17,
-                imgUrl:"http://teacherimgbucket.oss-cn-hangzhou.aliyuncs.com/14/teacherp14i3t1411540031686-c3e929d32a423c5037e2117bb1141ef9.png",
-                name:"王发梅",
-                intro:"3江苏朗阁外语培训中心阅读写作主讲老师，朗阁海外考试研究中心研究员。毕业于上海外国语大学，获高级口译证书及教务部高等学校教师资格证书。多年雅思、新托福教学和研究经验，对雅思和新托福的教学和考试均有深入的研究和独到的见解，教学风格严谨细腻，针对不同学生因材施教，把提高英语"
-            },
-            {
-                id:18,
-                imgUrl:"http://teacherimgbucket.oss-cn-hangzhou.aliyuncs.com/14/teacherp14i3t1411540031686-c3e929d32a423c5037e2117bb1141ef9.png",
-                name:"王的梅",
-                intro:"4江苏朗阁外语培训中心阅读写作主讲老师，朗阁海外考试研究中心研究员。毕业于上海外国语大学，获高级口译证书及教务部高等学校教师资格证书。多年雅思、新托福教学和研究经验，对雅思和新托福的教学和考试均有深入的研究和独到的见解，教学风格严谨细腻，针对不同学生因材施教，把提高英语"
-            }
-        ];
 
 
     },
     render: function () {
         var that = this;
         document.title = '全城最低价';
-        this.$el.html(this.template(
-            this.tuan._toJSON(),
-            that.teacherList
-        ));
+        this.$el.html(this.template(this.tuan._toJSON()));
+        this.commentsView = new TuanDetailCommentsView({courseId: that.courseId});
 
         $("body").css("background-color", "#f1f1f1");
         this.countDown = Utilities.countDown('#tuanDetail_endTime');//倒计时
@@ -93,19 +65,12 @@ var TuanDetailView = Backbone.View.extend({
         $("#evaluate_teacher").raty({
             readOnly: true,
             start: 4
-        });
+        })
+        ;
         $("#evaluate_service").raty({
             readOnly: true,
             start: 4
         });
-        /*评论的星级*/
-        for (var i = 0; i < 4; i++) {
-            $("#satr_user" + i).raty({
-                readOnly: true,
-                start: 4
-            });
-        }
-
 
         //详情中的图片展示
         var htmlphoto = '';
@@ -130,23 +95,15 @@ var TuanDetailView = Backbone.View.extend({
 
         /*教师详情*/
         $("#tuan_content_2 .teacher_pic").on("click", function () {
-            var txtteacher =$(this).find("span").html();
-            var txtid=$(this).attr("teacherid");
-            var txtname=$(this).attr("name");
-            var txtimg=$(this).attr("imgurl");
-            var teacherObj=[{name:txtname,id:txtid,imgUrl:txtimg,infor:txtteacher}];
+
+
             if (!that.teacherInfoView) {
-                that.teacherInfoView = new TeacherInfoView(teacherObj);
-            }else if (that.teacherInfoView.isClosed) {
+                that.teacherInfoView = new TeacherInfoView();
+            } else if (that.teacherInfoView.isClosed) {
                 that.teacherInfoView.render();
             } else if (!that.teacherInfoView.isShow) {
                 that.teacherInfoView.show();
             }
-        });
-        $("#tuan_content_2 .teacher_pic").hover(function(){
-            $(this).find("span").css("display","block");
-        },function(){
-            $(this).find("span").css("display","none");
         });
 
         /*banner图片的hover事件*/
@@ -191,38 +148,6 @@ var TuanDetailView = Backbone.View.extend({
             });
         });
 
-        /*更多评论*/
-        /*$("#tuanDetail .more").on("click",function(){
-         var commentid=$(this).attr("commentid");
-
-         var commenthtml='';
-         commenthtml+='    <li>';
-         commenthtml+='        <div>';
-         commenthtml+='            <div id="satr_user'+commentid+'" class="satr_user"></div>';
-         commenthtml+='            <span>ppppppp0224</span>';
-         commenthtml+='        </div>';
-         commenthtml+='        <label>棒！</label>';
-         commenthtml+='    </li>';
-         $("#more_comment").append(commenthtml);
-         $("#satr_user"+commentid).raty({
-         readOnly:  true,
-         start: 4
-         });
-         commentid++;
-         $(this).attr("commentid",commentid);
-         $("#tuanDetail .more").stop();
-         });*/
-
-        /*添加评论*/
-        $("#tuanDetail .btnadd").on("click", function () {
-            var txtcomment = $("#tuanDetail .txt textarea").val();
-            var txtenvironment = $("#star_environment").attr("starscore");
-            var txtteacher = $("#star_teacher").attr("starscore");
-            var txtservice = $("#star_service").attr("starscore");
-            //todo Data interaction
-        });
-
-
         /*地图那块位置不变*/
         var navH = $("#tuan_fright").offset().top;
         //滚动条事件
@@ -264,13 +189,16 @@ var TuanDetailView = Backbone.View.extend({
             this.$el.off();
             this.$el.empty();
             if (this.countDown) {
-                this.countDown.clear();//clear window.interval
+                window.clearInterval(this.countDown);
             }
             if (this.teacherInfoView) {
                 this.teacherInfoView.close();
             }
             if (this.loginFastView) {
                 this.loginFastView.close();
+            }
+            if (this.commentsView) {
+                this.commentsView.close();
             }
             this.isClosed = true;
             $("body").css("background-color", "#fff");
@@ -310,6 +238,25 @@ var LoginFastView = Backbone.View.extend({
         $("#login_content .btnLogin").on("click", function () {
             that.login();
         });
+        $("#login_content .btnFastLogin").on("click", function () {
+            that.fastLogin();
+        });
+    },
+    fastLogin:function(){
+        var username = $("#sign_content .txt_phone").val(),
+            smsVerify = $("#sign_content .txt_passed").val();
+        app.sessionManager.fastlogin(username, smsVerify, {
+            success: function () {
+                //重置sessionUser并且render topBar
+                app.userManager.sessionUser = app.sessionManager.sessionModel;
+
+            },
+            error: function (data) {
+
+                self.$passwordInput.val("");
+            }
+        });
+
     },
     login: function () {
         var username = $("#login_content .txt_phone").val(),
@@ -331,12 +278,7 @@ var LoginFastView = Backbone.View.extend({
             success: function () {
                 //重置sessionUser并且render topBar
                 app.userManager.sessionUser = app.sessionManager.sessionModel;
-                if (location.hash.indexOf("register") > -1) {
-                    app.navigate("front", true);
-                } else {
-                    self.close();
-                    app.navigate("mypage/booking/" + app.userManager.userId + "/pay", true);
-                }
+                app.navigate("mypage/booking/" + app.userManager.userId + "/pay", true);
             },
             error: function (data) {
                 $("#credentialWrong").show().html(data.message || "服务器好像睡着了，请稍后再试");
@@ -361,21 +303,16 @@ var TeacherInfoView = Backbone.View.extend({
     el: "#overlayCourse",//借用课程那个弹出框的div
     //todo need to write template named 'tpl_loginFast'
     template: _.template(tpl.get("teacherInfo")),
-    initialize: function (teacherObj) {
+    initialize: function () {
         this.isClosed = false;
         this.isShow = false;
         _.bindAll(this, "render", "bindEvents", "close");
         app.viewRegistration.register(this);
         this.render();
-        this.teacherInfo=teacherObj;
 
     },
     render: function () {
-        var self=this;
-        $(".teacher_info").find("p").html()
-        this.$el.html(this.template(
-            self.teacherInfo
-        ));
+        this.$el.html(this.template());
         this.bindEvents();
     },
 

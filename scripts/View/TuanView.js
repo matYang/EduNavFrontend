@@ -189,7 +189,7 @@ var TuanResultView = MultiPageView.extend({
     close: function () {
         if (!this.isClosed) {
             _.each(this.countDowns,function(item){
-                item.clear();
+                window.clearInterval(item)
             });
             this.$entryContainer.off();
             MultiPageView.prototype.close.call(this);

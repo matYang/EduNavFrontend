@@ -17,12 +17,22 @@ testMockObj = {
     testPhoto3: new Photo().set("id", 3).set("imgUrl", "/testUrl3"),
 
     testAddressList: new Addresses(),
-    testAddress1: (new Address()).set('id', 1).set('detail', '南京市中山北路222号xx大厦1楼'),
-    testAddress2: (new Address()).set('id', 2).set('detail', '南京市中山北路222号xx大厦2楼'),
+    testAddress1: (new Address()).set('id', 1).set('detail', '南京市玄武区孝陵卫200号'),
+    testAddress2: (new Address()).set('id', 2).set('detail', '南京市秦淮区人民政府'),
     testAddress3: (new Address()).set('id', 3).set('detail', '南京市中山北路222号xx大厦3楼'),
 
+    testComments: new Comments(),
+    testComment1: new Comment().set('id', 1).set('user', {phone: '133****23232'})
+        .set('content', '这是评论测试内容1').set('createTime', new Date())
+        .set('conditionRating', 2).set('attitudeRating', 3).set('satisfactionRating', 5),
+    testComment2: new Comment().set('id', 2).set('user', {phone: '150****23232'})
+        .set('content', '这是评论测试内容2').set('createTime', new Date())
+        .set('conditionRating', 2).set('attitudeRating', 3).set('satisfactionRating', 4),
+
+
     testTuans: new Tuans(),
-    testTuan1: (new Tuan()).set('id', 1).set('title', '团购测试标题1').set('groupBuyPrice', 299)
+    testTuan1: (new Tuan()).set('id', 1).set('courseId', 1)
+        .set('title', '团购测试标题1').set('groupBuyPrice', 299)
         .set('bookingTotal', 123).set('hot', 1).set('endTime', 1412200111111)
         .set('photoList', [
             {url: './style/images/t_item_banner_test.jpg'},//约定第一张为置顶课程的图片
@@ -30,7 +40,8 @@ testMockObj = {
             {url: './style/images/t_item_banner_test.jpg'},//第三张之后的都是团购详情中的图片
             {url: './style/images/t_item_banner_test.jpg'},
         ]),
-    testTuan2: (new Tuan()).set('id', 2).set('title', '团购测试标题2').set('groupBuyPrice', 299)
+    testTuan2: (new Tuan()).set('id', 2).set('courseId', 2)
+        .set('title', '团购测试标题2').set('groupBuyPrice', 299)
         .set('bookingTotal', 123).set('hot', 1).set('endTime', 1412200222222)
         .set('photoList', [
             {url: './style/images/t_item_banner_test.jpg'},//约定第一张为置顶课程的图片
@@ -335,6 +346,13 @@ testMockObj = {
     }
 };
 
+
+testMockObj.testComments.add([
+    testMockObj.testComment1,
+    testMockObj.testComment2
+]);
+testMockObj.testComments.total = 13;
+
 testMockObj.testCourses.add([
     testMockObj.testCourse1,
     testMockObj.testCourse2,
@@ -357,7 +375,7 @@ testMockObj.testTuans.add([
     testMockObj.testTuan2
 ]);
 testMockObj.testTuan1.set('course', testMockObj.testCourse1);
-testMockObj.testTuan2.set('course', testMockObj.testCourse2);
+testMockObj.testTuan2.set('course', testMockObj.testCourse1);
 testMockObj.testTuan1.set('addressList', testMockObj.testAddressList);
 testMockObj.testTuan2.set('addressList', testMockObj.testAddressList);
 testMockObj.testTuans.total = 29;
