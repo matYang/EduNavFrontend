@@ -144,6 +144,7 @@ var TuanDetailView = Backbone.View.extend({
                     that.loginFastView = new LoginFastView();
                 } else if (that.loginFastView.isClosed) {
                     that.loginFastView.render();
+                    that.loginFastView.show();
                 } else {
                     that.loginFastView.show();
                 }
@@ -267,7 +268,6 @@ var LoginFastView = Backbone.View.extend({
         });
 
         this.$el.on('click','.js_sendSms',function(e){
-            //todo 没有填手机号
             var phone = $("#sign_content .txt_phone").val();
             var $valid = $('#sign_content .errorMsg');
             $valid.html('');
