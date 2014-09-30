@@ -91,14 +91,29 @@
 #tuan_content dd{ width: 680px; border-bottom: 1px solid #ccc; margin-left: 20px; line-height: 30px; height: auto;}
 #tuan_content dt{height: 30px; margin-top: 10px; line-height: 30px; font-size: 16px; font-weight: bold;}
 
-#tuan_content #tuan_content_1 dd p{ height: 40px; line-height: 40px;}
+#tuan_content #tuan_content_1 dd p{ min-height: 40px; height: auto; line-height: 40px;}
+#tuan_content #tuan_content_1 dd p label{ float: left;}
+#tuan_content #tuan_content_1 dd p span{ width: 610px; display: block; float: left; padding: 5px 0; line-height: 30px;}
 
 #tuan_content #tuan_content_2 dd a{
     width: 140px; height: 140px;
-    border-radius: 70px; background-color: #E9E9E9;
-    display: block; float: left; margin:0 30px 10px 0;
+    border-radius: 70px;
+    display: block;
+    float: left;
+    margin:0 30px 10px 0;
+    background-image: url("../images/spec_service_01.png");
+    background-size: 100% 100%;
 }
-
+#tuan_content #tuan_content_2 dd a span{
+    width: 140px; height: 140px;
+    display: none;
+    border-radius: 70px;
+    background-color: rgba(0,0,0,0.2);
+    color: #fff;
+    font-size: 12px;
+    line-height: 30px;
+    overflow: hidden;
+}
 #tuan_content #tuan_content_3 dd a{
     width: 120px; height: 120px;
     border-radius: 60px; background-color: #E9E9E9;
@@ -198,7 +213,7 @@
 #tuanDetail .fright{}
 #tuanDetail .fright h4{ color: #072; line-height: 30px; height: 30px; font-weight: normal;}
 /*地图*/
-#tuanDetail .fright .site_map{ width: 230px; min-height: 400px; padding: 10px; margin-bottom: 20px;}
+#tuanDetail .fright .site_map{ width: 230px; min-height: 400px; padding: 10px; margin-bottom: 20px; margin-top: 4px;}
 #tuanDetail .fright .site_map a{width: 230px; height: 180px; display: block; margin-bottom: 10px;}
 #tuanDetail .fright span{ font-size: 12px; line-height: 20px; margin: 5px 0;}
 #tuanDetail .fright dl{ border-top: 1px dashed #ccc; padding: 8px 0; margin-top: 4px;}
