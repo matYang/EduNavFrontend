@@ -15,7 +15,7 @@ tpl = {
             }
             tplContent = tplContainer.find('#tpl_' + name).html();
             if (tplContent === undefined || tplContent === null){
-                alert("FATAL ERROR: Template with name: " + name + " not found, if you see this, please contact us");
+                console.log("FATAL ERROR: Template with name: " + name + " not found, if you see this, please contact us");
                 throw new Error();
             }
             this.templates[name] = tplContent;
@@ -31,7 +31,7 @@ tpl = {
     get:function (name) {
         if (this.templates[name] === undefined || this.templates[name] === null){
 
-            alert("FATAL ERROR: Retrived template " + name + " is not loaded");
+            console.log("FATAL ERROR: Retrived template " + name + " is not loaded");
             throw new Error();
         }
         return this.templates[name];

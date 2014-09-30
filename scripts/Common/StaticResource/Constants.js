@@ -31,7 +31,7 @@ var Constants = {
         "compareView",
 
         /*课程搜索模块*/
-        "front", "frontCategoryContainer", "frontButton", "frontCatButton",
+        "home", "homeCategoryContainer", "homeButton", "homeCatButton",
         "search", "searchResultEntry", "search_noMessage",
         "mapLabel",
         "compareWidget", "courseDetailCompareWidget",

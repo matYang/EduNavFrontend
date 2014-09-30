@@ -158,7 +158,7 @@ var TuanDetailView = Backbone.View.extend({
             var id = "#tuan_content_" + tindex;
             $.smoothScroll({
                 scrollTarget: id,
-                offset: -40,
+                offset: -63,
                 speed: 650
             });
         });

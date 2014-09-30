@@ -12,9 +12,7 @@ $.ajaxSetup({
 var AppRouter = Backbone.Router.extend({
 
     routes: {
-        "": "defaultRoute",
-
-        "front": "front",
+        "": "home",
         "search": "search",
         "search/*search": "encodedSearch",
 
@@ -90,12 +88,9 @@ var AppRouter = Backbone.Router.extend({
             that.navigate("service/" + e.target.id.split("_")[1], true);
         });
     },
-    defaultRoute: function () {
-        this.navigate("front", {trigger: true});
-    },
 
-    front: function () {
-        this.frontPageView = new FrontPageView();
+    home: function () {
+        this.homePageView = new HomePageView();
     },
 
     //todo 团购页面
@@ -132,14 +127,14 @@ var AppRouter = Backbone.Router.extend({
     //个人中心页面
     mypage: function (query) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("front", {trigger: true, replace: true});
+            this.navigate("home", {trigger: true, replace: true});
             return;
         }
         this.myPageView = new MyPageView({query: query});
     },
     myBooking: function (id) {
         if (!this.sessionManager.hasSession()) {
-            this.navigate("front", {trigger: true, replace: true});
+            this.navigate("home", {trigger: true, replace: true});
             return;
         }
         if (this.myPageView && !this.myPageView.isClosed) {
@@ -153,7 +148,7 @@ var AppRouter = Backbone.Router.extend({
     myBookingPay: function (id) {
         //BookingPayView
         if (!this.sessionManager.hasSession()) {
-            this.navigate("front", {trigger: true, replace: true});
+            this.navigate("home", {trigger: true, replace: true});
             return;
         }
         this.myPagePayView = new BookingPayView({bookingId: id});
