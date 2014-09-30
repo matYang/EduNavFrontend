@@ -40,12 +40,12 @@ var HomePageView = Backbone.View.extend({
         this.$el.append(this.template);
 
         var htmlTuanpic = '';
-        for(var i=0; i<4; i++ ){
+        for(var i=1; i<5; i++ ){
             htmlTuanpic+='<ul class="pic_eve hidden">';
             htmlTuanpic+='  <li>';
-            for(var j=0; j<3; j++ ){
+            for(var j=1; j<4; j++ ){
                 htmlTuanpic +='      <div class="pic_eve1">';
-                htmlTuanpic +='          <a class="pic_main"><img src="tuan_front.png"> </a>';
+                htmlTuanpic +='          <a class="pic_main"><img src="style/images/list'+ i + '_'+ j +'.png"> </a>';
                 htmlTuanpic +='              <div class="pic_word">';
                 htmlTuanpic +='                  <span>已有<s>456</s>人报名</span>';
                 htmlTuanpic +='                  <strong>￥456</strong>';
