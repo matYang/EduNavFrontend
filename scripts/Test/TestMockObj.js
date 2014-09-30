@@ -50,7 +50,9 @@ testMockObj = {
             {url: './style/images/t_item_banner_test.jpg'},//第三张之后的都是团购详情中的图片
             {url: './style/images/t_item_banner_test.jpg'},
         ]),
-
+    //团购订单
+    testGroupBuyBooking1: (new GroupBuyBooking).set('id', 1).set('groupBuyActivityId', 1).set('status',2)
+        .set('groupBuyPrice', 199).set('createTime', new Date()).set('userId',1).set('reference','ISK-1-1'),
 
     testCourses: new Courses(),
     testCourse1: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 1)

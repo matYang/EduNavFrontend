@@ -670,4 +670,67 @@
 
     };
 
+    //发起团购订单
+    UserManager.prototype.initGroupBuyBooking = function (groupBuyBooking, callback) {
+        var self = this;
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testGroupBuyBooking1);
+            return;
+        }
+        if (!(groupBuyBooking instanceof Backbone.Model) || newBooking.id > 0) {
+            Info.warn('UserManager::initGroupBuyBooking:: invalid parameter');
+            return;
+        }
+        groupBuyBooking.overrideUrl(ApiResource.groupBuy_booking);
+        groupBuyBooking.set('id', -1);
+        groupBuyBooking.set('userId', this.sessionManager.getId());
+        groupBuyBooking.save({}, {
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    callback.success(newBooking);
+                }
+            },
+            error: function (model, response) {
+                Info.warn('UserManager::initGroupBuyBooking:: save failed with response:');
+                if (callback) {
+                    callback.error($.parseJSON(model.responseText));
+                }
+            }
+        });
+
+    };
+    //用于根据订单id查询单个团购订单
+    UserManager.prototype.fetchGroupBuyBooking = function (id, callback) {
+
+        var groupBuyBooking = new GroupBuyBooking();
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testGroupBuyBooking1);
+            return;
+        }
+        if (!this.sessionManager.hasSession()) {
+            Info.warn('UserManager::groupBuyBooking:: session does not exist, exit');
+            return;
+        }
+
+        groupBuyBooking.overrideUrl(ApiResource.groupBuy_booking);
+        groupBuyBooking.set('id', id);
+        groupBuyBooking.fetch({
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    callback.success(model);
+                }
+            },
+            error: function (model, response) {
+                Info.warn('fetch groupBuyBooking failed');
+                if (callback) {
+                    callback.error($.parseJSON(response.responseText));
+                }
+            }
+        });
+    };
+
 }).call(this);

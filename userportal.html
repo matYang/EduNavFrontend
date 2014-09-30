@@ -1153,25 +1153,21 @@
         <div class="header">支付订单</div>
         <div class="title">
             <h3>
-                <%= course.courseName %>-
-                <span style="color:#333333"><%= course.instName %></span>
+                TODO课程名-
+                <span style="color:#333333">TODO机构名</span>
             </h3>
         </div>
 
         <div class="row1" style="min-height:130px; padding: 10px 50px;" >
             <div class="field">
-                有效日期：
-                <%= EnumConfig.BookingStatusText[status] %>
+                有效日期：TODO 团购endTime
             </div>
             <div class="field">
                 支付总额：
-                <b class="price">￥<%= price %></b>
-                <%if(course.commission){%>
-                <a class="label saved"><%= course.commission %>元 </a>
-                <%}%>
+                <b class="price">￥<%= groupBuyPrice %></b>
             </div>
             <div class="field">
-                支付成功后，凭借您本次订购使用的手机到 <span style="color: #32B077; font-size: 14px;"><%= course.instName %></span> 办理入学
+                支付成功后，凭借您本次订购使用的手机到 <span style="color: #32B077; font-size: 14px;">TODO机构名</span> 办理入学
             </div>
 
             <!--currently not used-->
@@ -3558,6 +3554,7 @@
 <script src="scripts/Model/Representation/CommentSearchRepresentation.js" type="text/javascript"></script>
 <script src="scripts/Model/Comment.js" type="text/javascript"></script>
 <script src="scripts/Model/Tuan.js" type="text/javascript"></script>
+<script src="scripts/Model/GroupBuyBooking.js" type="text/javascript"></script>
 <script src="scripts/Model/Photo.js" type="text/javascript"></script>
 <script src="scripts/Model/Teacher.js" type="text/javascript"></script>
 <script src="scripts/Model/Course.js" type="text/javascript"></script>

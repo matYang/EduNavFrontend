@@ -80,8 +80,7 @@
                 general_partner: api_maker(api_modules.rootPrefix, "general", "partner"),
 
                 courses: api_maker(api_modules.rootPrefix, "course", "course"),
-                groupBuy: api_maker(api_modules.rootPrefix, "groupBuy", "list"),
-                groupBuy_booking: api_maker(api_modules.rootPrefix, "groupBuy", "booking"),
+
 
 //                general_courseByIdList: api_maker(api_modules.rootPrefix, "general", "courseByIdList"),
 
@@ -105,6 +104,8 @@
                 user_fastLogin:api_maker(api_modules.rootPrefix, 'user', 'fastLogin'),
                 user_fastLoginSms:api_maker(api_modules.rootPrefix, 'user', 'fastLoginSms'),
 
+                groupBuy: api_maker(api_modules.rootPrefix, "groupBuy", "list"),
+                groupBuy_booking: api_maker(api_modules.rootPrefix, "groupBuy", "booking"),
                 create_comment: api_maker(api_modules.rootPrefix, 'comment', 'create'),
                 course_comment: api_maker(api_modules.rootPrefix, 'comment', 'course')
             };

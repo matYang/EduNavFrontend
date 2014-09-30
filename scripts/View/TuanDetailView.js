@@ -138,7 +138,19 @@ var TuanDetailView = Backbone.View.extend({
                     that.loginFastView.show();
                 }
             } else {
-                app.navigate("mypage/booking/" + app.sessionManager.getId() + "/pay", true);
+                var groupBuyBooking = new GroupBuyBooking();
+                groupBuyBooking.set('groupBuyPrice', that.tuan.get('groupBuyPrice'));
+                groupBuyBooking.set('groupBuyActivityId', that.tuan.get('id'));
+                //todo 提交订单获取订单id 进入支付页面
+                //todo 按钮处于生成订单状态 失败需要提示重试
+                app.userManager.initGroupBuyBooking(groupBuyBooking, {
+                    success: function (model) {
+                        app.navigate("mypage/booking/" + model.get('id') + "/pay", true);
+                    },
+                    error: function () {
+                        //todo 订单生成失败
+                    }
+                });
             }
         });
 
