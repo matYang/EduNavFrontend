@@ -1,9 +1,9 @@
-var FrontPageView = Backbone.View.extend({
+var HomePageView = Backbone.View.extend({
     el: '#content',
-    template: _.template(tpl.get('front')),
-    lvl2Template: _.template(tpl.get("frontCategoryContainer")),
-    buttonTemplate: _.template(tpl.get("frontButton")),
-    catButtonTemplate: _.template(tpl.get("frontCatButton")),
+    template: _.template(tpl.get('home')),
+    lvl2Template: _.template(tpl.get("homeCategoryContainer")),
+    buttonTemplate: _.template(tpl.get("homeButton")),
+    catButtonTemplate: _.template(tpl.get("homeCatButton")),
     initialize: function () {
         _.bindAll(this, 'render', 'renderCategories', 'bindEvents', 'close');
         // $("#viewStyle").attr("href", "style/css/index.css");
@@ -41,7 +41,7 @@ var FrontPageView = Backbone.View.extend({
         app.generalManager.getCategories(this);
     },
     renderCategories: function (categories) {
-        //build the buttons on front page;
+        //build the buttons on home page;
 
         if (!this.isClosed) {
             //cat1 一级目录列表
@@ -157,7 +157,7 @@ var FrontPageView = Backbone.View.extend({
             this.searchArea.close();
             this.tuanBannerView.close();
             //this.artificialSelection.close();
-            app.frontPageView = null;
+            app.homePageView = null;
         }
     }
 });

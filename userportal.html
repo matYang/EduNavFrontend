@@ -168,7 +168,7 @@
     </div>
 </script>
 
-<script type="text/template" id="tpl_front">
+<script type="text/template" id="tpl_home">
     <div id="lv1Button" class="tab2 clearfix unselectable">
         <div class="tabtop"></div>
     </div>
@@ -1209,7 +1209,7 @@
                 <li id="cmbc"><input value="CMBC" name="payType" type="radio"><a>民生银行</a></li>
                 <li id="brcb"><input value="BJRCB" name="payType" type="radio"><a>北京农商银行</a></li>
                 <li id="srcb"><input value="SHRCB" name="payType" type="radio"><a>上海农商银行</a></li>
-                <!--&lt;!&ndash;--><div class="more"><a class="F_green" href="#">查看更多</a></div><!--&ndash;&gt;-->
+                <!--<div class="more"><a class="F_green" href="#">查看更多</a></div>-->
             </ul>
         </div>
         <div class="courseBrief clearfix" style="width: 800px; padding-left: 60px;">
@@ -2713,7 +2713,7 @@
     <div id="closeBtn" class="info-close">返回</div>
 </script>
 
-<script type="text/templates" id="tpl_frontCategoryContainer">
+<script type="text/templates" id="tpl_homeCategoryContainer">
     <div data-value="<%= value %>" data-parent="<%= parentValue %>" data-parentname="<%= parentName %>"
          class="<%= catClass %> lv2category c_item blank1 hidden clearfix">
         <div class="fleft">
@@ -2775,11 +2775,11 @@
     <li data-value="<%= value %>"><%= name %></li>
 </script>
 
-<script type="text/templates" id="tpl_frontButton">
+<script type="text/templates" id="tpl_homeButton">
     <li data-value="<%= value %>" class="item<%= index %>"><a href="#"><%= name %></a></li>
 </script>
 
-<script type="text/templates" id="tpl_frontCatButton">
+<script type="text/templates" id="tpl_homeCatButton">
     <li data-value='<%= value %>'><a><%= name %></a></li>
 </script>
 
@@ -3217,10 +3217,10 @@
                     <a href="http://api.map.baidu.com/geocoder?address=南京市&output=html" target="_blank">
                         <img src="http://api.map.baidu.com/staticimage?width=230&height=180&zoom=14&center=南京市&markers=<%=addressList[0].detail%>" alt=""/>
                     </a>
-                    <span>乘车路线：地铁10号线江湾体育场站 1号口 沿活动照片附上地图前来</span>
+                    <!--<span>乘车路线：</span>-->
                     <%_.each(addressList,function(address){%>
                     <dl>
-                        <!--<dt>创迪教育</dt>-->
+                        <!--<dt>-- --</dt>-->
                         <dd><%=address.detail%></dd>
                     </dl>
                     <%})%>
@@ -3592,7 +3592,7 @@
 <script src="scripts/View/RegistrationView.js" type="text/javascript"></script>
 <script src="scripts/View/TopBarView.js" type="text/javascript"></script>
 <script src="scripts/View/FindPasswordView.js" type="text/javascript"></script>
-<script src="scripts/View/FrontPageView.js" type="text/javascript"></script>
+<script src="scripts/View/HomePageView.js" type="text/javascript"></script>
 <script src="scripts/View/CompareWidgetView.js" type="text/javascript"></script>
 <script src="scripts/View/InfoModal.js" type="text/javascript"></script>
 <script src="scripts/View/ServiceCenterView.js" type="text/javascript"></script>

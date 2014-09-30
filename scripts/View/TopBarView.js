@@ -76,8 +76,8 @@ var TopBarView = Backbone.View.extend({
             }
         });
         $('#logo,#navigate_home').on('click', function () {
-            if (location.hash.indexOf("front") !== 1) {
-                app.navigate("front", true);
+            if (location.hash !== '') {
+                app.navigate("", true);
                 app.infoModal.hide();
             }
         });
@@ -175,7 +175,7 @@ var TopBarView = Backbone.View.extend({
                     //重置sessionUser并且render topBar
                     app.userManager.sessionUser = app.sessionManager.sessionModel;
                     if (location.hash.indexOf("register") > -1) {
-                        app.navigate("front", true);
+                        app.navigate("", true);
                     } else {
                         self.render();
                     }
@@ -199,7 +199,7 @@ var TopBarView = Backbone.View.extend({
                 $(document.body).off('click', '.js_loginDropToggle');
                 app.userManager.sessionUser = app.sessionManager.sessionModel;
                 if (location.hash.indexOf("mypage") > -1) {
-                    app.navigate("front", true);
+                    app.navigate("", true);
                 }
                 that.render();
                 //todo 如果是处于创建订单页面(里面有登录通道) 也需要进行重新render 要注意dom上事件的重复绑定
