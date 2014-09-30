@@ -6,7 +6,6 @@ var TuanDetailView = Backbone.View.extend({
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "close");
         app.viewRegistration.register(this);
-        this.notifier = new Backbone.Notifier();
         this.tuanId = opt.tuanId;//团购的Id
         this.countDown = undefined;//团购的倒计时
         var self = this;
@@ -105,24 +104,16 @@ var TuanDetailView = Backbone.View.extend({
                 teacher = that.tuan.get('teacherList')[teacherIndex];
             }
 
-            var message = '<h3>' + teacher.get('name') +
-                '</h3><img src="' + teacher.get('imgUrl') +
-                '" alt="' + teacher.get('name') +
-                '"/><div>' + teacher.get('intro') +
-                '</div>';
-            that.viewTeacherModal = that.notifier.notify({
-                fadeInMs: 0,
-                fadeOutMs: 0,
-                ms: null,
-                message: message,
-                destroy: true,
-                modal: true,
-                'hideOnClick': false,
-                closeBtn: true,
-                position: 'center',
-                cls: 'viewTeacherModal',
-                width: '600'
-            })
+            if (!that.teacherInfoView) {
+                that.teacherInfoView = new TeacherInfoView();
+            } else if (that.teacherInfoView.isClosed) {
+                that.teacherInfoView.render();
+            }else if(!that.teacherInfoView.isShow){
+                that.teacherInfoView.show();
+            }
+            $("#teacherInfo img").attr("src",teacher.get('imgUrl'));
+            $("#teacherInfo span").html(teacher.get('name'));
+            $("#teacherInfo p").append(teacher.get('intro'));
         });
         $("#tuan_content_2 .teacher_pic").hover(function(){
             $(this).find("span").css("display","block");
@@ -351,13 +342,7 @@ var TeacherInfoView = Backbone.View.extend({
             that.hide();
         });
     },
-    show: function (teacherObj) {
-        $("#teacherInfo img").attr("src",teacherObj.imgUrl);
-        alert($("#teacherInfo img").attr("src"));
-        $("#teacherInfo span").html(teacherObj.name);
-        alert($("#teacherInfo span").html());
-        $("#teacherInfo p").append(teacherObj.infor);
-        alert($("#teacherInfo p").html());
+    show: function () {
         $("#overlay_teacherInfo").show();
         this.isShow = true;
     },
