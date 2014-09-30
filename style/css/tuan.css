@@ -116,9 +116,9 @@
     background: url("../images/tuan_item_tag.png");
 }
 /*分割线*/
-.line{
+.underline{
     display: block;
-    border:1px solid #E8E8E8;
+    border-bottom:1px solid #E8E8E8;
     margin: 5px 0;
 }
 /*团购item的大图*/

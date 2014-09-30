@@ -133,8 +133,10 @@ var BaiduMapView = Backbone.View.extend({
         this.markers = [];
     },
     formatAddr:function(addr){//小写是一个临时的解决方案
-        addr = addr.split('（')[0];
-        addr = addr.toLowerCase();
+        if(addr){
+            addr = addr.split('（')[0];
+            addr = addr.toLowerCase();
+        }
         return addr;
     },
     close: function () {

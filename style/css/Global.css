@@ -110,7 +110,7 @@ input.wrong_color{  border:1px solid #ff9a9a; background:#feffe3 left top repeat
 
 
 .loading{
-    display: inline-block;
+    display: block;
 	width: 75px;
 	height: 22px; 
 	background:#fafafa url(../images/loading.gif) center center no-repeat; 
@@ -124,7 +124,5 @@ input.wrong_color{  border:1px solid #ff9a9a; background:#feffe3 left top repeat
 	-moz-box-shadow: 0 3px 10px #777777;
 	box-shadow: 0 3px 10px #777777;
     margin: 20px auto 25px;
-	/*margin-left: 335px;*/
-    /*margin-top: 60px;*/
-    /*margin-bottom: 40px;*/
+	/*margin-left: 50%;*/
 }
