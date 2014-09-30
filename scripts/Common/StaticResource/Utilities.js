@@ -286,20 +286,29 @@ var Utilities = {
         $("#" + this.get("fieldId")).addClass("wrong_color");
         return '<dd class="wrong" id="' + this.get("fieldId") + '_wrong"><span class="form_tip"><span class="form_tip_top">' + this.get("errorText") + '</span><span class="form_tip_bottom"></span></span></dd>';
     },
+    /**
+     *
+     * @param $button 点击的按钮 需要变更显示的信息 倒计时
+     * @param $info 错误提示信息的输入框
+     * @returns {{success: success, error: error}}
+     */
     defaultSmsRequestHandler: function ($button, $info) {
         return {
             success: function () {
 //                $info.html("验证码已经发送至您的手机，若2分钟没有收到短信，请确认手机号填写正确并重试");\
-                $info.html("验证码已经发送至您的手机");
+
+                if ($info) {
+                    $info.html("验证码已经发送至您的手机");
+                }
 
                 var count_down = function (k) {
                     if (k > 0) {
                         setTimeout(function () {
-                            $button.val('重新发送(' + k + '秒)');
+                            $button.html('重新发送(' + k + '秒)');
                             count_down(k - 1);
                         }, 1000)
                     } else {
-                        $button.val('重新发送');
+                        $button.html('重新发送');
                     }
                 };
                 count_down(120);
@@ -309,7 +318,9 @@ var Utilities = {
                 }, 120000);
             },
             error: function (data) {
-                $info.html(data.message || "发送失败，请检查网络正常并重试");
+                if ($info) {
+                    $info.html(data.message || "发送失败，请检查网络正常并重试");
+                }
                 $button.val("重新发送").prop("disabled", false);
             }
         };
@@ -420,11 +431,11 @@ var Utilities = {
 
     countDown: function (selector) {
         var $time = $(selector);
-        if($time.length<1)return;
+        if ($time.length < 1)return;
         var timestamp = $time.data('value');
         var secondDelta = (timestamp - (new Date()).getTime()) / 1000;
         if (isNaN(secondDelta) || secondDelta <= 0)return;
-        var countFn = function(){
+        var countFn = function () {
             var second = Math.floor(secondDelta % 60);             // 计算秒
             var minute = Math.floor((secondDelta / 60) % 60);      //计算分
             var hour = Math.floor((secondDelta / 3600) % 24);      //计算小时

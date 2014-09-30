@@ -20,6 +20,10 @@
             Info.warn('UserManager::smsVerification:: session already exists, exit');
             return;
         }
+        if (testMockObj.testMode) {
+            callback.success();
+            return;
+        }
 
         $.ajax({
             type: 'GET',
@@ -39,6 +43,44 @@
             }
         });
     };
+
+    //免注册 快速登陆使用短信验证
+    //该方法用于发送注册时的验证短信
+    UserManager.prototype.fastLoginSms = function (phone, callback) {
+        var self = this;
+        if (!phone) {
+            Info.warn('UserManager::smsVerification:: invalid parameter');
+            return;
+        }
+        if (this.sessionManager.hasSession()) {
+            Info.warn('UserManager::smsVerification:: session already exists, exit');
+            return;
+        }
+
+        if (testMockObj.testMode) {
+            callback.success();
+            return;
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: ApiResource.user_fastLoginSms,
+            data: $.param({'phone': phone}),
+            dataType: 'json',
+            success: function (data) {
+                if (callback) {
+                    callback.success();
+                }
+            },
+            error: function (data, textStatus, jqXHR) {
+                Info.warn('UserManager::smsVerification:: action failed');
+                if (callback) {
+                    callback.error($.parseJSON(data.responseText));
+                }
+            }
+        });
+    };
+
 
     //@Deprecated
     UserManager.prototype.verifySMSAuthCode = function (phone, authCode, callback) {

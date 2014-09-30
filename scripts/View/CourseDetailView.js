@@ -61,7 +61,6 @@ var CourseDetailView = Backbone.View.extend({
 
         //img slider
         $('#courseSlide').bjqs({
-
             height: 215,
             width: 625,
             animtype: 'slide', // accepts 'fade' or 'slide'

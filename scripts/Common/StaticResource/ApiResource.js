@@ -28,7 +28,10 @@
                     changeCell: '/changeCell',
                     login: '/login/phone', //use phone number to login
                     logout: '/{0}/logout',
-                    forgetPassword: '/forgetPassword'
+                    forgetPassword: '/forgetPassword',
+
+                    fastLogin:'/qlogin',
+                    fastLoginSms:'/qloginSmsVerification'
                 },
 
                 'booking': {
@@ -98,6 +101,9 @@
                 user_coupon: api_maker(api_modules.rootPrefix, 'coupon', 'coupon'),
                 user_credit_history: api_maker(api_modules.rootPrefix, 'credit', 'history'),
                 user_account_history: api_maker(api_modules.rootPrefix, 'account', 'history'),
+
+                user_fastLogin:api_maker(api_modules.rootPrefix, 'user', 'fastLogin'),
+                user_fastLoginSms:api_maker(api_modules.rootPrefix, 'user', 'fastLoginSms'),
 
                 create_comment: api_maker(api_modules.rootPrefix, 'comment', 'create'),
                 course_comment: api_maker(api_modules.rootPrefix, 'comment', 'course')

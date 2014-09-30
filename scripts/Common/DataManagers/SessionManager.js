@@ -81,8 +81,9 @@
             return;
         }
         if (this.hasSession()) {
+            //todo should remove
             Info.alert('已经登录，请刷新页面');
-            app.navigate('/main', {trigger: true});
+            window.location.reload();
         }
         if (!(key && password)) {
             Info.alert('');
@@ -95,6 +96,46 @@
                 accountIdentifier: key,
                 password: password,
                 remember: remember
+            }),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                self.sessionModel = new User(data,{parse:true});
+                if (callback) {
+                    callback.success();
+                }
+            },
+
+            error: function (data) {
+                Info.warn('login failed');
+                if (callback) {
+                    callback.error($.parseJSON(data.responseText));
+                }
+            }
+        });
+    };
+
+    //快速登录 免注册登陆
+    SessionManager.prototype.fastLogin = function (phone,smsVerify, callback) {
+        var self = this;
+        if (testMockObj.testMode) {
+            this.sessionModel = testMockObj.testUser;
+            if (callback) {
+                callback.success();
+            }
+            return;
+        }
+        if (this.hasSession()) {
+            //todo should remove
+            Info.alert('已经登录，请刷新页面');
+            window.location.reload();
+        }
+        $.ajax({
+            url: ApiResource.user_fastLogin,
+            type: 'POST',
+            data: JSON.stringify({
+                accountIdentifier: phone,
+                password: smsVerify
             }),
             dataType: 'json',
             contentType: 'application/json',

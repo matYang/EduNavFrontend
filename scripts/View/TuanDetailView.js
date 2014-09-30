@@ -15,7 +15,7 @@ var TuanDetailView = Backbone.View.extend({
                 self.tuan = tuan.clone();
                 self.tuanPhotos = tuan.get('photoList').slice(2);//从第三张图片开始为团购详情页面的图片index = 2
                 self.courseId = tuan.get("courseId");
-                self.teacherList =  tuan.get("teacherList");
+                self.teacherList = tuan.get("teacherList");
 
                 self.render();
                 self.bindEvents();
@@ -108,17 +108,17 @@ var TuanDetailView = Backbone.View.extend({
                 that.teacherInfoView = new TeacherInfoView();
             } else if (that.teacherInfoView.isClosed) {
                 that.teacherInfoView.render();
-            }else if(!that.teacherInfoView.isShow){
+            } else if (!that.teacherInfoView.isShow) {
                 that.teacherInfoView.show();
             }
-            $("#teacherInfo img").attr("src",teacher.get('imgUrl'));
+            $("#teacherInfo img").attr("src", teacher.get('imgUrl'));
             $("#teacherInfo span").html(teacher.get('name'));
             $("#teacherInfo p").append(teacher.get('intro'));
         });
-        $("#tuan_content_2 .teacher_pic").hover(function(){
-            $(this).find("span").css("display","block");
-        },function(){
-            $(this).find("span").css("display","none");
+        $("#tuan_content_2 .teacher_pic").hover(function () {
+            $(this).find("span").css("display", "block");
+        }, function () {
+            $(this).find("span").css("display", "none");
         });
 
         /*banner图片的hover事件*/
@@ -144,11 +144,12 @@ var TuanDetailView = Backbone.View.extend({
                     that.loginFastView = new LoginFastView();
                 } else if (that.loginFastView.isClosed) {
                     that.loginFastView.render();
+                } else {
+                    that.loginFastView.show();
                 }
             } else {
                 app.navigate("mypage/booking/" + app.sessionManager.getId() + "/pay", true);
             }
-
         });
 
 
@@ -173,14 +174,14 @@ var TuanDetailView = Backbone.View.extend({
             //滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
             if (scroH >= navH) {
                 $("#tuan_fright").css({"position": "fixed", "top": 4, "margin-left": 750});
-                $("#tuanDetail .w_730").css("margin-top","63px");
+                $("#tuanDetail .w_730").css("margin-top", "63px");
                 $("#tuan_btn").show();
                 $("#tuanDetail .fright .site_map").css({"margin": "55px 0 0 0"});
                 $(".tuan_sorterArea").css({"position": "fixed", "padding-top": "4px", "top": 0});
             }
             else if (scroH < navH) {
                 $("#tuan_fright").css({"position": "relative", "top": "", "margin-left": ""});
-                $("#tuanDetail .w_730").css("margin-top","");
+                $("#tuanDetail .w_730").css("margin-top", "");
                 $("#tuan_btn").hide();
                 $("#tuanDetail .fright .site_map").css({"margin": ""});
                 $(".tuan_sorterArea").css({"position": "", "top": "", "padding-top": "4px"});
@@ -227,11 +228,10 @@ var TuanDetailView = Backbone.View.extend({
 /*快速登录、注册View*/
 var LoginFastView = Backbone.View.extend({
     el: "#overlayASelection",
-    //todo need to write template named 'tpl_loginFast'
     template: _.template(tpl.get("loginFast")),
     initialize: function () {
         this.isClosed = false;
-        _.bindAll(this, "render", "bindEvents", "close");
+        _.bindAll(this, "render", "bindEvents", "login", "fastLogin", "close");
         app.viewRegistration.register(this);
         this.render();
 
@@ -252,57 +252,110 @@ var LoginFastView = Backbone.View.extend({
             $("#" + upid).removeClass("hidden");
         });
 
-        $("#login_content .btnLogin").on("click", function () {
+        //点击背景隐藏登陆框 需要防止事件冒泡（弹出框位于$el中,$el为遮罩层）
+        this.$el.on('click', function () {
+            that.hide();
+        });
+        //防止事件冒泡
+        this.$el.on('click', '.login_Area', function (e) {
+            e.stopPropagation();
+        });
+
+        //忘记密码
+        $('#tuan_forgetPassword').click(function () {
+            app.navigate('lost', true)
+        });
+
+        this.$el.on('click','.js_sendSms',function(e){
+            //todo 没有填手机号
+            var phone = $("#sign_content .txt_phone").val();
+            var $valid = $('#sign_content .errorMsg');
+            $valid.html('');
+            if (!phone) {
+                $valid.html('<i class="icon icon-error"></i>请输入手机号');
+                return;
+            }
+            if (phone.length !== 11 || isNaN(parseInt(phone, 10))) {
+                $valid.html('<i class="icon icon-error"></i>手机号格式有误');
+                return
+            }
+           app.userManager.fastLoginSms(phone,Utilities.defaultSmsRequestHandler($(e.target)))
+        });
+        this.$el.on("click", '.btnLogin', function () {
             that.login();
         });
-        $("#login_content .btnFastLogin").on("click", function () {
+        this.$el.on("click", '.btnFastLogin', function () {
             that.fastLogin();
         });
     },
-    fastLogin:function(){
-        var username = $("#sign_content .txt_phone").val(),
+    fastLogin: function () {
+        var that = this;
+        var phone = $("#sign_content .txt_phone").val(),
             smsVerify = $("#sign_content .txt_passed").val();
-        app.sessionManager.fastlogin(username, smsVerify, {
+        var $valid = $('#sign_content .errorMsg');
+        $valid.html('');
+        if (!phone) {
+            $valid.html('<i class="icon icon-error"></i>请输入手机号');
+            return;
+        }
+        if (phone.length !== 11 || isNaN(parseInt(phone, 10))) {
+            $valid.html('<i class="icon icon-error"></i>手机号格式有误');
+            return
+        }
+        if (!smsVerify) {
+            $valid.html('<i class="icon icon-error"></i>请输入验证码');
+            return;
+        }
+        app.sessionManager.fastLogin(phone, smsVerify, {
             success: function () {
                 //重置sessionUser并且render topBar
                 app.userManager.sessionUser = app.sessionManager.sessionModel;
-
+                app.topBarView.render();
+                that.close();
             },
             error: function (data) {
-
-                self.$passwordInput.val("");
+                $('#sign_content .errorMsg').html(data.message || "服务器好像睡着了，请稍后再试");
+                $('#sign_content .btnLogin').html("快速登录").prop("disabled", false);
             }
         });
-
     },
     login: function () {
+        var that = this;
         var username = $("#login_content .txt_phone").val(),
             password = $("#login_content .txt_passed").val(),
-            remember = $("#login_content .check") ? 1 : 0,
-            self = this;
-        if (username == "") {
-            alert("您输入的用户名不对，请重新输入！");
+            remember = $("#login_content .check") ? 1 : 0;
+        var $valid = $('#login_content .errorMsg');
+        $valid.html('');
+        if (!username) {
+            $valid.html('<i class="icon icon-error"></i>请输入手机号或用户名');
             return;
         }
-        if (password == "") {
-            alert("您输入的用户名或者密码不对，请重新输入！");
+        if (!password) {
+            $valid.html('<i class="icon icon-error"></i>请输入密码');
             return;
         }
-        $('#login_content .btnLogin').html("登录中。。。").prop("disabled", true);
+        $('#login_content .btnLogin').html("登录中..").prop("disabled", true);
         //这里继续登录操作 登录成功后直接进行session的获取(为同步请求)
-        //TODO JET:这一步操作和免注册预订的自动登录的代码可合并 应放至sessionManager中统一处理 包括logout 这里进行callback
         app.sessionManager.login(username, password, remember, {
             success: function () {
                 //重置sessionUser并且render topBar
                 app.userManager.sessionUser = app.sessionManager.sessionModel;
-                app.navigate("mypage/booking/" + app.userManager.userId + "/pay", true);
+                app.topBarView.render();
+                that.close();
+
             },
             error: function (data) {
-                $("#credentialWrong").show().html(data.message || "服务器好像睡着了，请稍后再试");
-                $('#login_button').val("登 录").prop("disabled", false);
-                self.$passwordInput.val("");
+                $('#login_content .errorMsg').html(data.message || "服务器好像睡着了，请稍后再试");
+                $('#login_content .btnLogin').html("登 录").prop("disabled", false);
             }
         });
+    },
+
+    show: function () {
+        this.$el.show();
+    },
+    hide: function () {
+        this.$el.hide();
     },
 
     close: function () {
@@ -331,7 +384,7 @@ var TeacherInfoView = Backbone.View.extend({
 
     },
     render: function () {
-        var self=this;
+        var self = this;
         this.$el.html(this.template());
         this.bindEvents();
     },
