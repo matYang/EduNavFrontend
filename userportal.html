@@ -3140,13 +3140,14 @@
 </script>
 
 <script type="text/templates" id="tpl_teacherInfo">
+
     <div id="overlay_teacherInfo" class="overlay">
         <div id="teacherInfo">
             <div class="teacherInfoA">
-                <a><%=teacherInfo.imgUrl%></a>
+                <a><img src="" alt=""/></a>
                 <div class="teacher_info">
-                    <span><%=teacherInfo.name%></span>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;考<%=teacherInfo.infor%></p>
+                    <span></span>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
                 </div>
             </div>
             <i class="close">X</i>
@@ -3198,7 +3199,7 @@
             <div class="tuan_sorterArea">
                 <ul class="tuan_sorter">
                     <li index="1"><a class="active">课程详情</a></li>
-                    <li index="2"><a>学校师质</a></li>
+                    <li index="2"><a>学校师资</a></li>
                     <li index="3"><a>特色服务</a></li>
                     <li index="4"><a>评价</a></li>
                 </ul>
@@ -3242,7 +3243,7 @@
                         <dt><i class="dticon"></i>课程详情</dt>
                         <dd>
                             <% if (course.startTime1||course.schooltimeWeek) { %>
-                            <p>
+                            <p class="clearfix">
                                 <label>上课时间：</label>
                                 <span>
                                 <%if(course.schooltimeWeek){%>
@@ -3256,13 +3257,13 @@
                             </p>
                             <%}%>
                             <% if (course.qualityAssurance) { %>
-                            <p>
+                            <p class="clearfix">
                                 <label>课时信息：</label>
                                 <span><%=course.qualityAssurance%></span>
                             </p>
                             <%}%>
                             <% if (course.classSize) { %>
-                            <p>
+                            <p class="clearfix">
                                 <label>班级类型：</label>
                                 <span><%= course.classSize %></span>
                             </p>
@@ -3270,19 +3271,19 @@
 
 
                             <% if (course.teachingMaterialIntro) { %>
-                            <p>
+                            <p class="clearfix">
                                 <label>教材介绍：</label>
                                 <span><%=course.teachingMaterialIntro%></span>
                             </p>
                             <%}%>
                             <% if (course.teachingMaterialFee) { %>
-                            <p>
+                            <p class="clearfix">
                                 <label>教材费用：</label>
                                 <span><%=course.teachingMaterialFee%></span>
                             </p>
                             <%}%>
                             <% if (course.suitableStudent) { %>
-                            <p>
+                            <p class="clearfix">
                                 <label>适合学员：</label>
                                 <span><%= course.suitableStudent %></span>
                             </p>
@@ -3292,17 +3293,13 @@
 
                     </dl>
                     <dl id="tuan_content_2" class="content_inner">
-                        <dt><i class="dticon"></i>学校师质</dt>
+                        <dt><i class="dticon"></i>学校师资</dt>
                         <dd id="teacherArea" class="clearfix">
-                            <!--<a class="teacher_pic" teacherid="14"><span>江苏朗阁外语培训中心阅读写作主讲老师，朗阁海外考试研究中心研究员。毕业于上海外国语大学，获高级口译证书及教务部高等学校教师资格证书。多年雅思、新</span></a>
-                            <a class="teacher_pic" teacherid="15"><span></span></a>
-                            <a class="teacher_pic" teacherid="16"><span></span></a>
-                            <a class="teacher_pic" teacherid="17"><span></span></a>-->
-                            <%_.each(teacherList,function(v,index){%>
-                                <a class="teacher_pic" style="background-image: url('<%=v.imgUrl%>')" imgurl="<%=v.imgUrl%>" name="<%=v.name%>" teacherid="<%=v.id%>"><span><%=v.intro%></span></a>
-                            <%})%>
-                        </dd>
+                            <% for (var i =0; i < course.teacherList.length; i++) { %>
+                            <a class="teacher_pic" style="background-image: url('<%= course.teacherList[i].imgUrl %>')" data-id="<%=i%>"><span><%= course.teacherList[i].intro%></span></a>
+                            <% } %>
 
+                        </dd>
                     </dl>
                     <dl id="tuan_content_3" class="content_inner">
                         <dt><i class="dticon"></i>特色服务</dt>

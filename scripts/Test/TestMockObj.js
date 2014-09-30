@@ -378,6 +378,8 @@ testMockObj.testTuan1.set('course', testMockObj.testCourse1);
 testMockObj.testTuan2.set('course', testMockObj.testCourse1);
 testMockObj.testTuan1.set('addressList', testMockObj.testAddressList);
 testMockObj.testTuan2.set('addressList', testMockObj.testAddressList);
+testMockObj.testTuan1.set('teacherList', testMockObj.testTeachers);
+testMockObj.testTuan2.set('teacherList', testMockObj.testTeachers);
 testMockObj.testTuans.total = 29;
 testMockObj.testCourses.total = 39;
 testMockObj.testBookings.add([testMockObj.testBooking1, testMockObj.testBooking2, testMockObj.testBooking3, testMockObj.testBooking4]);

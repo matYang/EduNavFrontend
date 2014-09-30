@@ -6,6 +6,7 @@ var TuanDetailView = Backbone.View.extend({
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "close");
         app.viewRegistration.register(this);
+        this.notifier = new Backbone.Notifier();
         this.tuanId = opt.tuanId;//团购的Id
         this.countDown = undefined;//团购的倒计时
         var self = this;
@@ -15,6 +16,7 @@ var TuanDetailView = Backbone.View.extend({
                 self.tuan = tuan.clone();
                 self.tuanPhotos = tuan.get('photoList').slice(2);//从第三张图片开始为团购详情页面的图片index = 2
                 self.courseId = tuan.get("courseId");
+                self.teacherList =  tuan.get("teacherList");
 
                 self.render();
                 self.bindEvents();
@@ -31,7 +33,6 @@ var TuanDetailView = Backbone.View.extend({
         document.title = '全城最低价';
         this.$el.html(this.template(this.tuan._toJSON()));
         this.commentsView = new TuanDetailCommentsView({courseId: that.courseId});
-
         $("body").css("background-color", "#f1f1f1");
         this.countDown = Utilities.countDown('#tuanDetail_endTime');//倒计时
         /*评价星级*/
@@ -95,15 +96,38 @@ var TuanDetailView = Backbone.View.extend({
 
         /*教师详情*/
         $("#tuan_content_2 .teacher_pic").on("click", function () {
-
-
-            if (!that.teacherInfoView) {
-                that.teacherInfoView = new TeacherInfoView();
-            } else if (that.teacherInfoView.isClosed) {
-                that.teacherInfoView.render();
-            } else if (!that.teacherInfoView.isShow) {
-                that.teacherInfoView.show();
+            var teacherIndex = $(this).attr("data-id");
+            var teacher = {};
+            //todo 后面把testMockObj给除了 统一使用json
+            if (that.tuan.get('teacherList') instanceof  Backbone.Collection) {
+                teacher = that.tuan.get('teacherList').at(teacherIndex);
+            } else {
+                teacher = that.tuan.get('teacherList')[teacherIndex];
             }
+
+            var message = '<h3>' + teacher.get('name') +
+                '</h3><img src="' + teacher.get('imgUrl') +
+                '" alt="' + teacher.get('name') +
+                '"/><div>' + teacher.get('intro') +
+                '</div>';
+            that.viewTeacherModal = that.notifier.notify({
+                fadeInMs: 0,
+                fadeOutMs: 0,
+                ms: null,
+                message: message,
+                destroy: true,
+                modal: true,
+                'hideOnClick': false,
+                closeBtn: true,
+                position: 'center',
+                cls: 'viewTeacherModal',
+                width: '600'
+            })
+        });
+        $("#tuan_content_2 .teacher_pic").hover(function(){
+            $(this).find("span").css("display","block");
+        },function(){
+            $(this).find("span").css("display","none");
         });
 
         /*banner图片的hover事件*/
@@ -158,12 +182,14 @@ var TuanDetailView = Backbone.View.extend({
             //滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
             if (scroH >= navH) {
                 $("#tuan_fright").css({"position": "fixed", "top": 4, "margin-left": 750});
+                $("#tuanDetail .w_730").css("margin-top","63px");
                 $("#tuan_btn").show();
                 $("#tuanDetail .fright .site_map").css({"margin": "55px 0 0 0"});
                 $(".tuan_sorterArea").css({"position": "fixed", "padding-top": "4px", "top": 0});
             }
             else if (scroH < navH) {
                 $("#tuan_fright").css({"position": "relative", "top": "", "margin-left": ""});
+                $("#tuanDetail .w_730").css("margin-top","");
                 $("#tuan_btn").hide();
                 $("#tuanDetail .fright .site_map").css({"margin": ""});
                 $(".tuan_sorterArea").css({"position": "", "top": "", "padding-top": "4px"});
@@ -308,10 +334,13 @@ var TeacherInfoView = Backbone.View.extend({
         this.isShow = false;
         _.bindAll(this, "render", "bindEvents", "close");
         app.viewRegistration.register(this);
+        //this.teacherobj=teacherObj;
         this.render();
+
 
     },
     render: function () {
+        var self=this;
         this.$el.html(this.template());
         this.bindEvents();
     },
@@ -322,7 +351,13 @@ var TeacherInfoView = Backbone.View.extend({
             that.hide();
         });
     },
-    show: function () {
+    show: function (teacherObj) {
+        $("#teacherInfo img").attr("src",teacherObj.imgUrl);
+        alert($("#teacherInfo img").attr("src"));
+        $("#teacherInfo span").html(teacherObj.name);
+        alert($("#teacherInfo span").html());
+        $("#teacherInfo p").append(teacherObj.infor);
+        alert($("#teacherInfo p").html());
         $("#overlay_teacherInfo").show();
         this.isShow = true;
     },
