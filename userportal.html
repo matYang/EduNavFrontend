@@ -3472,36 +3472,40 @@
     <div id="commentsPagination" class="text-center padding-y">
         <a class="moreComments">更多精彩评价</a>
     </div>
-    <div class="clearfix">
-        <div class="txt">
-            <textarea placeholder="tukkomi!简单粗暴的说点啥吧"></textarea>
-            <ul class="star">
-                <span>请打分</span>
-                <li>
-                    <span>环境</span>
-                    <div id="star_environment" class="star_sytle" starscore=""></div>
-                </li>
-                <li>
-                    <span>师质</span>
-                    <div id="star_teacher" class="star_sytle"></div>
-                </li>
-                <li>
-                    <span>服务</span>
-                    <div id="star_service" class="star_sytle"></div>
-                </li>
-            </ul>
-        </div>
-        <a id="btn_AddComment" class="btnadd">填上去</a>
+    <div id="commentForm" class="clearfix">
+
     </div>
 </script>
 <script type="text/templates" id="tpl_commentEntry">
     <li>
-        <div>
+        <div class="clearfix">
             <div id="satr_user_<%=id%>" data-value="<%=evenRating%>" class="satr_user commentStars"></div>
             <span><%=user.phone%></span>
+            <span class="time"><%=createTime%></span>
         </div>
         <label><%=content%></label>
     </li>
+</script>
+<script type="text/templates" id="tpl_commentForm">
+    <div class="txt">
+        <textarea placeholder="tukkomi!简单粗暴的说点啥吧"></textarea>
+        <ul class="star">
+            <span>请打分</span>
+            <li>
+                <span>环境</span>
+                <div id="star_environment" class="star_sytle" starscore=""></div>
+            </li>
+            <li>
+                <span>师质</span>
+                <div id="star_teacher" class="star_sytle"></div>
+            </li>
+            <li>
+                <span>服务</span>
+                <div id="star_service" class="star_sytle"></div>
+            </li>
+        </ul>
+    </div>
+    <a id="btn_AddComment" class="btnadd">填上去</a>
 </script>
 
 
@@ -3601,6 +3605,7 @@
 <script src="scripts/View/TuanView.js" type="text/javascript"></script>
 <script src="scripts/View/TuanDetailView.js" type="text/javascript"></script>
 <script src="scripts/View/TuanDetailCommentsView.js" type="text/javascript"></script>
+<script src="scripts/View/CommentFormView.js" type="text/javascript"></script>
 
 <script src="scripts/View/CourseDetailView.js" type="text/javascript"></script>
 <script src="scripts/View/RelatedCourseListView.js" type="text/javascript"></script>

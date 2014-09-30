@@ -189,7 +189,13 @@
 #tuan_content .evaluateList li{ padding: 15px 0; line-height: 25px;border-bottom: 1px dashed #c3c3c3;}
 #tuan_content .evaluateList li .satr_user{ float: left; width: 100px; height: 20px; display: block;}
 #tuan_content .evaluateList li .satr_user img{ width: 14px; height: 14px;}
-#tuan_content .evaluateList li span{width: 580px; height: 20px; display: block; float: left; line-height: 20px; font-size: 12px; color: #333;}
+#tuan_content .evaluateList li span{
+    height: 22px; display: block;
+    float: left; line-height: 22px;
+    font-size: 12px; color: #999999;}
+#tuan_content .evaluateList li span.time{
+    float: right;
+}
 #tuan_content .evaluateList li label{ line-height: 25px; font-size: 12px; color: #000;}
 
 #tuan_content .evaluateList .more{

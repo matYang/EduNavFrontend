@@ -9,9 +9,9 @@ var Comment = Backbone.Model.extend({
 
             'courseTemplateId': undefined,//创建评论时使用courseTemplateId
             //评分内容
-            'conditionRating': undefined,//>>环境
-            'attitudeRating': undefined,//>>师资
-            'satisfactionRating': undefined,//服务
+            'conditionRating': 0,//>>环境
+            'attitudeRating': 0,//>>师资
+            'satisfactionRating': 0,//服务
 
             'createTime': undefined
 
@@ -47,6 +47,7 @@ var Comment = Backbone.Model.extend({
 
     toJSON: function () {
         var json = {};
+        json.courseTemplateId = this.attributes.courseTemplateId;
         json.content = this.attributes.content;
         json.conditionRating = this.attributes.conditionRating;
         json.attitudeRating = this.attributes.attitudeRating;

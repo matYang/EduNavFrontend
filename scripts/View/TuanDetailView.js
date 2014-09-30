@@ -15,6 +15,7 @@ var TuanDetailView = Backbone.View.extend({
                 self.tuan = tuan.clone();
                 self.tuanPhotos = tuan.get('photoList').slice(2);//从第三张图片开始为团购详情页面的图片index = 2
                 self.courseId = tuan.get("courseId");
+                self.courseTemplateId = tuan.get("course").get('templateId');
                 self.teacherList = tuan.get("teacherList");
 
                 self.render();
@@ -31,7 +32,10 @@ var TuanDetailView = Backbone.View.extend({
         var that = this;
         document.title = '全城最低价';
         this.$el.html(this.template(this.tuan._toJSON()));
-        this.commentsView = new TuanDetailCommentsView({courseId: that.courseId});
+        this.commentsView = new TuanDetailCommentsView({
+            courseId: that.courseId,
+            courseTemplateId: that.courseTemplateId
+        });
         $("body").css("background-color", "#f1f1f1");
         this.countDown = Utilities.countDown('#tuanDetail_endTime');//倒计时
         /*评价星级*/
@@ -39,21 +43,7 @@ var TuanDetailView = Backbone.View.extend({
             readOnly: true,
             start: 4
         });
-        $("#star_environment").raty({
-            onClick: function (score) {
-                $("#star_environment").attr("starscore", score);
-            }
-        });
-        $("#star_teacher").raty({
-            onClick: function (score) {
-                $("#star_teacher").attr("starscore", score);
-            }
-        });
-        $("#star_service").raty({
-            onClick: function (score) {
-                $("#star_service").attr("starscore", score);
-            }
-        });
+
         $("#star_eleft").raty({
             readOnly: true,
             start: 4
@@ -97,7 +87,6 @@ var TuanDetailView = Backbone.View.extend({
         $("#tuan_content_2 .teacher_pic").on("click", function () {
             var teacherIndex = $(this).attr("data-id");
             var teacher = {};
-            //todo 后面把testMockObj给除了 统一使用json
             if (that.tuan.get('teacherList') instanceof  Backbone.Collection) {
                 teacher = that.tuan.get('teacherList').at(teacherIndex);
             } else {
@@ -267,7 +256,7 @@ var LoginFastView = Backbone.View.extend({
             app.navigate('lost', true)
         });
 
-        this.$el.on('click','.js_sendSms',function(e){
+        this.$el.on('click', '.js_sendSms', function (e) {
             var phone = $("#sign_content .txt_phone").val();
             var $valid = $('#sign_content .errorMsg');
             $valid.html('');
@@ -279,7 +268,7 @@ var LoginFastView = Backbone.View.extend({
                 $valid.html('<i class="icon icon-error"></i>手机号格式有误');
                 return
             }
-           app.userManager.fastLoginSms(phone,Utilities.defaultSmsRequestHandler($(e.target)))
+            app.userManager.fastLoginSms(phone, Utilities.defaultSmsRequestHandler($(e.target)))
         });
         this.$el.on("click", '.btnLogin', function () {
             that.login();

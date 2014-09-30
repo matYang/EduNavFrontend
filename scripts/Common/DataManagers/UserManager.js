@@ -640,7 +640,9 @@
     UserManager.prototype.addComment = function (newComment, callback) {
         var self = this;
         if (testMockObj.testMode) {
+            newComment.set('id',Math.ceil(Math.random()*1000));
             newComment.set('user',{phone:'123****123'});
+            newComment.set('createTime',new Date());
             callback.success(newComment);
             return;
         }
