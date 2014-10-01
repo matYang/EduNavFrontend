@@ -148,7 +148,9 @@
 
 
 /*支付未跳转页面的弹出框*/
-#overlay_booking .booking{ width: 400px; height: 211px; padding: 22px; background-color: #fff; margin: 300px auto;}
+#overlay_booking .booking{
+    width: 400px; height: 211px; padding: 22px; background-color: #fff;
+    margin: 200px auto;}
 #overlay_booking span{
     width: 400px; height: 45px;
     display: block;

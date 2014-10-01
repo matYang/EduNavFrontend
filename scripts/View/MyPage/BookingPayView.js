@@ -70,7 +70,7 @@ var BookingPayView = Backbone.View.extend({
             //打开新标签页进行支付 location
             var payType = $('input[name=payType]:checked').val();
 //            var url = '/api/v2/order/' + that.booking.id + '?type=' + payType;//原order
-            var url = '/api/v2/groupBuy/' + that.booking.id + '/pay?type=' + payType;
+            var url = '/api/v2/groupBuy/' + that.bookingId + '/pay?type=' + payType;
             var s = window.open(url);
             s.focus();
         });
