@@ -52,8 +52,11 @@ testMockObj = {
         ]),
     //团购订单
     testGroupBuyBookings:new GroupBuyBookings(),
-    testGroupBuyBooking1: (new GroupBuyBooking).set('id', 1).set('groupBuyActivityId', 1).set('status',2)
-        .set('groupBuyPrice', 199).set('createTime', new Date()).set('userId',1).set('reference','ISK-1-1'),
+    testGroupBuyBooking1: (new GroupBuyBooking)
+        .set('id', 1).set('groupBuyActivityId', 1)
+        .set('status',0)
+        .set('groupBuyPrice', 199)
+        .set('createTime', new Date()).set('userId',1).set('reference','ISK-1-1'),
 
     testCourses: new Courses(),
     testCourse1: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 1)

@@ -51,7 +51,7 @@ var BookingPayView = Backbone.View.extend({
          });
          */
         //确认，去支付按钮
-        $("#goToAlipay").on("click", function () {
+        that.$el.on("click", '#goToAlipay', function () {
 
             if (!that.overlayBooking) {
                 that.overlayBooking = new OverlayBooking();
@@ -59,12 +59,12 @@ var BookingPayView = Backbone.View.extend({
                 that.overlayBooking.render();
             }
             //todo 进入团购订单页面
-            $("#overlay_booking .btnfalse").on("click", function () {
-                app.navigate("mypage/booking/" + that.bookingId, true);
+            that.$el.on("click", '.btnfalse', function () {
+                app.navigate("mypage/tbooking/" + that.bookingId, true);
                 $("#overlay_booking").remove();
             });
-            $("#overlay_booking .btnsuccess").on("click", function () {
-                app.navigate("mypage/booking/" + that.bookingId, true);
+            that.$el.on("click", '.btnsuccess', function () {
+                app.navigate("mypage/tbooking/" + that.bookingId, true);
                 $("#overlay_booking").remove();
             });
             //打开新标签页进行支付 location
@@ -77,6 +77,7 @@ var BookingPayView = Backbone.View.extend({
     },
     close: function () {
         if (!this.isClosed) {
+            this.$el.off();
             this.$el.empty();
             this.isClosed = true;
             if (this.overlayBooking) {
