@@ -1,13 +1,13 @@
 var GroupBuyBookingListView = MultiPageView.extend({
     entryContainer: "bookingSummary tbody",
-    actionClass: "bookingTitle",
+    actionClass: "viewDetail",
     pageNavigator: "bookingNavigator",
     pageEntryNumber: 8,
     noMessage: _.template(tpl.get("booking_noMessage")),
     $domContainer: null,
     el: "#bookingSummary",
     scrollTarget: '.scrollTarget',
-    bookingSr: new BookingSearchRepresentation(),
+    bookingSr: new GroupBuyBookingSearchRepresentation(),
     initialize: function (bookingSr) {
         //初始化过滤条件
         this.bookingSr = bookingSr;
@@ -32,7 +32,7 @@ var GroupBuyBookingListView = MultiPageView.extend({
         }
         self.bookingSr.set("count", self.pageEntryNumber);
         self.currentPage = self.bookingSr.get('start') / self.pageEntryNumber + 1;
-        $("#bookingSummary tbody").empty().append("<tr><td colspan='4'><div class='loading'></div></td></tr>");
+        $("#bookingSummary tbody").empty().append("<tr><td colspan='6'><div class='loading'></div></td></tr>");
         app.userManager.fetchGroupBuyBookings(self.bookingSr, {
             success: self.render,
             error: self.renderError

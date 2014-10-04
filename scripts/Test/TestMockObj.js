@@ -350,10 +350,10 @@ testMockObj = {
     }
 };
 
-
+testMockObj.testGroupBuyBooking1.set('groupBuyActivity', testMockObj.testTuan1);
 testMockObj.testGroupBuyBookings.add([
    testMockObj.testGroupBuyBooking1
-]),
+]);
 
 testMockObj.testComments.add([
     testMockObj.testComment1,

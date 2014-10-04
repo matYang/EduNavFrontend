@@ -64,7 +64,7 @@ var MultiPageView = Backbone.View.extend({
                 this.$entryContainer.append("<div class = 'noMessage'>" + this.noMessage() + "</div>");
             } else {
                 //根据在table中td个数设置no message
-                var td_length = this.$tableContainer.find('.thead tr td').length;
+                var td_length = this.$tableContainer.find('thead tr td').length;
                 if (!td_length) {
                     td_length = 4;
                 }

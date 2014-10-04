@@ -868,7 +868,7 @@
     </div>
     <table id="bookingSummary" class="table-clean" border="0" width="100%" cellpadding="0" cellspacing="0">
         <thead>
-        <tr class="bookingEntry">
+        <tr>
             <td class="date">开课日期</td>
             <td class="detail">课程信息</td>
             <td class="payType">支付方式</td>
@@ -946,13 +946,13 @@
     <div class="blank1"></div>
     <table id="bookingSummary" class="table-clean" border="0" width="100%" cellpadding="0" cellspacing="0">
         <thead>
-        <tr class="bookingEntry">
-            <td class="date">订购日期</td>
-            <td class="date">订单号</td>
-            <td class="date">课程信息</td>
-            <td class="detail">价格</td>
-            <td class="payType">支付状态</td>
-            <td class="status">有效期</td>
+        <tr>
+            <td width="110">订购日期</td>
+            <td width="110">订单号</td>
+            <td >团购信息</td>
+            <td width="100">价格</td>
+            <td width="100">支付状态</td>
+            <td width="110">有效期</td>
         </tr>
         </thead>
         <tbody></tbody>
@@ -960,25 +960,13 @@
 </script>
 
 <script type="text/template" id="tpl_groupBuyBooking_entry">
-    <tr class="bookingEntry" id="booking_reference_<%= reference %>">
-        <td class="date">
-            订购日期
-        </td>
-        <td class="date">
-            订单号
-        </td>
-        <td class="detail bookingTitle" id="bookingTitle_bookingId_<%= id %>" style="cursor: pointer">
-            课程信息
-        </td>
-        <td class="payType">
-            价格
-        </td>
-        <td class="status">
-            支付状态
-        </td>
-        <td class="status">
-            有效期
-        </td>
+    <tr class="groupBuyBookingEntry viewDetail" id="groupBuyBooking_reference_<%= id %>">
+        <td> <%=createTime%></td>
+        <td> <%=reference%></td>
+        <td> <%=groupBuyActivity.title%></td>
+        <td> ￥<span class="price"><%=groupBuyPrice%></span></td>
+        <td> <%=EnumConfig.GroupBuyBookingStatusText[status]%></td>
+        <td> <%=groupBuyActivity.endTimeText%></td>
     </tr>
 </script>
 
@@ -2804,7 +2792,7 @@
 
 <script type="text/templates" id="tpl_booking_noMessage">
     <div class="no_data">
-        <div>您目前没有未入学的订单哦~~</div>
+        <div>您暂没有对应的订单哦~~</div>
     </div>
 </script>
 

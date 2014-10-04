@@ -65,6 +65,9 @@ tr.bookingEntry{height:105px; border-bottom:1px solid #cccccc;}
 tr.bookingEntry:hover{ background:#e8f2ed;}
 tr.bookingEntry:last-child{border-bottom:none;}
 
+tr.groupBuyBookingEntry{ cursor: pointer}
+tr.groupBuyBookingEntry:hover{ background:#e8f2ed;}
+
 .bookingEntry td{
     line-height: 20px;/*尼玛又要覆盖上面的样式*/
     text-align: center;
