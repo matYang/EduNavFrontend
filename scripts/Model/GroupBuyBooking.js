@@ -12,8 +12,7 @@ var GroupBuyBooking = Backbone.Model.extend({
             'number':undefined,//支付宝流水号
 
             'user':new User(),//new User()
-            'groupBuyActivity':new Tuan(),
-            'course':new Course()
+            'groupBuyActivity':new Tuan()
 
         };
     },
@@ -26,10 +25,18 @@ var GroupBuyBooking = Backbone.Model.extend({
             data.status = parseInt(data.status, 10);
             data.createTime = Utilities.castFromAPIFormat(data.createTime);
             data.user = new User(data.user, {parse: true});
+            data.groupBuyActivity = new Tuan(data.groupBuyActivity, {parse: true});
 
         }
         return data;
     },
+    toJSON: function () {//使用backbone进行resource的交互时采用的toJSON方法
+        var json = _.clone(this.attributes);
+        json.user = undefined;
+        json.groupBuyActivity = undefined;
+        return json;
+    },
+
     _toJSON: function () {
         var json = _.clone(this.attributes);
         json.createTime = Utilities.getDateString(json.createTime);
