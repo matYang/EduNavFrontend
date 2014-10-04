@@ -23,9 +23,13 @@ var Tuan = Backbone.Model.extend({
             data.groupBuyPrice = Utilities.parseNum(data.groupBuyPrice);
             data.bookingTotal = parseInt(data.bookingTotal, 10);
             data.hot = parseInt(data.hot, 10);
-            data.endTime = Utilities.castFromAPIFormat(data.endTime);
+            data.endTime = data.endTime || 0;
             data.status = parseInt(data.status, 10);
 
+            //不存在原价则使用爱上课价代替
+            if (!data.course.originalPirce) {
+                data.course.originalPrice = data.course.price;
+            }
             data.course = new Course(data.course, {parse: true});
             if (data.addressList) {
                 for (i = 0; i < data.addressList.length; i++) {
