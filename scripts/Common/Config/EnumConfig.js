@@ -124,6 +124,12 @@ var EnumConfig = {
     'AccountOperationText':{
         0:'提现支出',
         1:'返现收入'
+    },
+    //团购订单状态
+    'GroupBuyBookingStatusText':{
+        0:'未支付',
+        1:'已支付',
+        2:'已取消'
     }
 
 };

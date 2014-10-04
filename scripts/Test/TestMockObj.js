@@ -51,6 +51,7 @@ testMockObj = {
             {url: './style/images/t_item_banner_test.jpg'},
         ]),
     //团购订单
+    testGroupBuyBookings:new GroupBuyBookings(),
     testGroupBuyBooking1: (new GroupBuyBooking).set('id', 1).set('groupBuyActivityId', 1).set('status',2)
         .set('groupBuyPrice', 199).set('createTime', new Date()).set('userId',1).set('reference','ISK-1-1'),
 
@@ -349,6 +350,10 @@ testMockObj = {
     }
 };
 
+
+testMockObj.testGroupBuyBookings.add([
+   testMockObj.testGroupBuyBooking1
+]),
 
 testMockObj.testComments.add([
     testMockObj.testComment1,

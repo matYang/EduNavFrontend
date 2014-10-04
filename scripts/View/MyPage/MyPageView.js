@@ -24,7 +24,6 @@ var MyPageView = Backbone.View.extend({
 
     render: function (user) {
         if (!this.isClosed) {
-//            this.user = user;
             this.$el.append(this.template(this.user._toJSON()));
 
             var time, date = new Date();
@@ -87,8 +86,13 @@ var MyPageView = Backbone.View.extend({
                 break;
             case "booking":
                 $("#bookingManage").addClass("active");
-                document.title = "我的爱上课 > 我的订单 | 爱上课";
+                document.title = "我的爱上课 > 我的试听订单 | 爱上课";
                 this.activeChildView = new MyPageBookingView({user: this.user});
+                break;
+            case "groupBuyBooking":
+                $("#groupBuyBookingManage").addClass("active");
+                document.title = "我的爱上课 > 我的团购订单 | 爱上课";
+                this.activeChildView = new MyPageGroupBuyBookingView({user: this.user});
                 break;
             case "share":
                 $("#share").addClass("active");
@@ -119,12 +123,21 @@ var MyPageView = Backbone.View.extend({
             });
 
 
-        //订单管理>课程订单
+        //订单管理>试听订单
         $("#bookingManage").on("click", function () {
             if (that.query !== "booking") {
                 $("#mypage_sidebar").find(".active").removeClass("active");
                 that.query = "booking";
                 app.navigate("mypage/booking");
+                that.createChildView();
+            }
+        });
+        //订单管理>团购订单
+        $("#groupBuyBookingManage").on("click", function () {
+            if (that.query !== "groupBuyBooking") {
+                $("#mypage_sidebar").find(".active").removeClass("active");
+                that.query = "groupBuyBooking";
+                app.navigate("mypage/groupBuyBooking");
                 that.createChildView();
             }
         });

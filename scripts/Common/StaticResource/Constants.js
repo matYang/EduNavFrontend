@@ -59,9 +59,13 @@ var Constants = {
         "mypage_base", "mypage_dashboard",
 
         //我的订单
-        "mypage_bookingList", "booking_entry", "booking_noMessage",
+        //我的试听订单
+        "booking_noMessage",
+        "mypage_bookingList", "booking_entry",
         "mypage_bookingDetail", "mypage_bookingPay",
         "mypage_bookingDetailHistory", "mypage_bookingDetailFlow",
+        //我的团购订单
+        "mypage_groupBuyBookingList", "groupBuyBooking_entry",
 
         //我的优惠券
         "mypage_coupons",

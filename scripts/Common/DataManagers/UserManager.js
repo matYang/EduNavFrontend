@@ -733,4 +733,41 @@
         });
     };
 
+    /**
+     * 根据搜索条件抓取团购订单列表
+     * @param groupBuyBookingSr 见GroupBuyBookingSearchRepresentation.js
+     * @param callback
+     */
+    UserManager.prototype.fetchGroupBuyBookings = function (groupBuyBookingSr, callback) {
+        var self = this;
+
+        if (!this.sessionManager.hasSession()) {
+            Info.warn('UserManager::fetchGroupBuyBookings:: session does not exist, exit');
+            return;
+        }
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testGroupBuyBookings);
+            return;
+        }
+        var bookings = new GroupBuyBookings();
+        bookings.overrideUrl(ApiResource.groupBuy_booking);
+        bookings.fetch({
+            data: groupBuyBookingSr.toQueryString(),
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    callback.success(bookings);
+                }
+            },
+
+            error: function (model, response) {
+                Info.warn('UserManager::fetchGroupBuyBookings:: fetch failed with response:');
+                if (callback) {
+                    callback.error($.parseJSON(response.responseText));
+                }
+            }
+        });
+    };
+
 }).call(this);
