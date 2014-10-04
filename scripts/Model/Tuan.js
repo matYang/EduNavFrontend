@@ -10,8 +10,8 @@ var Tuan = Backbone.Model.extend({
             'endTime': undefined,//到期时间
             'status': undefined,//上线状态
 
-            'photoList': undefined,//团购的图片 banner中只取第一张
-            'addressList': undefined,//团购活动覆盖的地址
+            'photoList': [],//团购的图片 banner中只取第一张
+            'addressList': [],//团购活动覆盖的地址
             'course': undefined //Course model
         };
     },
@@ -27,12 +27,10 @@ var Tuan = Backbone.Model.extend({
             data.status = parseInt(data.status, 10);
 
             data.course = new Course(data.course, {parse: true});
-            var addressList;
             if (data.addressList) {
                 for (i = 0; i < data.addressList.length; i++) {
-                    addressList[i] = new Address(data.addressList[i], {parse: true});
+                    data.addressList[i] = new Address(data.addressList[i], {parse: true});
                 }
-                data.addressList = addressList;
             }
         }
         return data;

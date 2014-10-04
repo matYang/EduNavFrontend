@@ -47,10 +47,6 @@ var TuanView = Backbone.View.extend({
             })
 
         },
-        //用于团购数据的获取 todo 分页
-        fetchAction: function () {
-
-        },
 
         close: function () {
             if (!this.isClosed) {
