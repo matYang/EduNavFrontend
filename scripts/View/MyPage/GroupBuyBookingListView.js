@@ -50,7 +50,7 @@ var GroupBuyBookingListView = MultiPageView.extend({
     },
 
     entryEvent: function (id) {
-        app.navigate("mypage/booking/" + id, true);
+        app.navigate("mypage/tbooking/" + id, true);
     },
     bindEvents: function () {
         var self = this;

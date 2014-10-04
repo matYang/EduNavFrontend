@@ -65,7 +65,9 @@ var Constants = {
         "mypage_bookingDetail", "mypage_bookingPay",
         "mypage_bookingDetailHistory", "mypage_bookingDetailFlow",
         //我的团购订单
-        "mypage_groupBuyBookingList", "groupBuyBooking_entry",
+        "mypage_groupBuyBookingList",
+        "mypage_groupBuyBookingDetail",
+        "groupBuyBooking_entry",
 
         //我的优惠券
         "mypage_coupons",

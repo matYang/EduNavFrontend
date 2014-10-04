@@ -52,8 +52,15 @@ var MyPageView = Backbone.View.extend({
                 if (!this.reference) {
                     throw "invalid access";
                 }
-                document.title = "我的爱上课 > 订单详情 | 爱上课";
+                document.title = "我的爱上课 > 试听订单详情 | 爱上课";
                 this.activeChildView = new BookingDetailView({bookingId: this.reference});
+                break;
+            case "tbookingDetail":
+                if (!this.reference) {
+                    throw "invalid access";
+                }
+                document.title = "我的爱上课 > 团购订单详情 | 爱上课";
+                this.activeChildView = new GroupBuyBookingDetailView({bookingId: this.reference});
                 break;
             case "setting":
                 $("#editInfo").addClass("active");

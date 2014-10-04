@@ -950,7 +950,7 @@
             <td width="110">订购日期</td>
             <td width="110">订单号</td>
             <td >团购信息</td>
-            <td width="100">价格</td>
+            <td width="100">c价格</td>
             <td width="100">支付状态</td>
             <td width="110">有效期</td>
         </tr>
@@ -970,11 +970,115 @@
     </tr>
 </script>
 
+<script type="text/template" id="tpl_mypage_groupBuyBookingDetail">
+
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green link">订单详情</span></div>
+    <div class="blank1"></div>
+    <div id="bookingDetail" class="mypage_content_inner clearfix">
+        <div class="row0 clearfix">
+            <div class="fleft">
+                <div>
+                    <label>订单号:<%= reference %></label>
+                    <span>(<%= createTime %>预订)</span>
+                </div>
+
+                <div>
+                    <label>状<s></s>态:<b class="F_green" id="bookingStatus">
+                    <%= EnumConfig.GroupBuyBookingStatusText[status] %></b></label>
+                </div>
+
+                <div>
+                    <label>团购价:</label>
+                    ￥<span class="price"><%= groupBuyPrice %></span>
+                    （原价￥<%=groupBuyActivity.course.originalPrice%>）
+                </div>
+                <div>
+                    <label>有效期:</label>
+                    <span><%= groupBuyActivity.endTimeText %></span>
+                </div>
+                <div>
+                    <label>团购须知:</label>
+                    <span>支付成功后，凭借学员的手机号和订单确认短信到机构前台登记入学</span>
+                </div>
+            </div>
+            <div class="fright btn" style="text-align:center">
+                <% if(status==0){ %>
+                <button class="btn_O js_btnGoToPay">去支付</button>
+                <% } %>
+            </div>
+        </div>
+        <div class="row2">
+            <h3><%= groupBuyActivity.course.courseName %></h3>
+
+            <div class="clearfix">
+                <div class="fleft">
+                    <p>
+                        <label>教育机构:</label>
+                        <span><%= groupBuyActivity.course.instName %></span>
+                    </p>
+                    <%if(groupBuyActivity.course.classSize){ %>
+                    <p>
+                        <label>班级类型:</label>
+                        <%= groupBuyActivity.course.classSize %>
+                    </p>
+                    <%}%>
+                    <p>
+                        <label>咨询电话:</label>
+                        <span>025-58991945（9:00-24:00）</span>
+                    </p>
+                </div>
+                <div class="fleft">
+
+                    <p>
+                        <label>上课日期:</label>
+                        <%if(!groupBuyActivity.course.startUponArrival){%>
+                        <span><%= groupBuyActivity.course.regPhone %></span>
+                        <%}else{%>
+                        <span class="badge bg-error">始</span> <%= groupBuyActivity.course.startDate %>
+                    </p>
+                    <%if(groupBuyActivity.course.finishDate){%>
+                    <p>
+                        <label></label>
+                        <span class="badge bg-primary">终</span>
+                        <%= groupBuyActivity.course.finishDate %>
+                        <%}%>
+                    </p>
+                    <%}%>
+                    <% if (groupBuyActivity.course.startTime1) {%>
+                    <p>
+                        <label>上课时间:</label>
+                        <%= groupBuyActivity.course.startTime1 %> - <%= groupBuyActivity.course.finishTime1 %>
+                        <% if (groupBuyActivity.course.startTime2 > 0) {%>
+                        ；<%= groupBuyActivity.course.startTime2 %> - <%= groupBuyActivity.course.finishTime2 %>
+                        <% } %>
+                    </p>
+                    <% } %>
+                </div>
+            </div>
+            <!--<p>-->
+                <!--<label>上课地址:</label>-->
+                <!--<span></span>-->
+            <!--</p>-->
+        </div>
+
+
+        <!--<div class="row4">-->
+            <!--<h3>支付信息</h3>-->
+
+            <!--<p>-->
+                <!--<label>支付方式:</label>-->
+            <!--</p>-->
+        <!--</div>-->
+        <div id="printBooking" class="print"><a href="#">订单打印</a></div>
+        <!--bookingDetail end-->
+    </div>
+</script>
+
 <script type="text/template" id="tpl_mypage_bookingDetail">
 
     <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green link">订单详情</span></div>
     <div class="blank1"></div>
-    <div id="bookingDetail" class="mypage_content_inner">
+    <div id="bookingDetail" class="mypage_content_inner clearfix">
         <div class="row0 clearfix">
             <div class="fleft">
                 <p><label>订单号:<%= reference %></label> <span>(<%= createTime %>预订)</span></p>
@@ -3618,11 +3722,14 @@
 <!-- load user module specific files-->
 <script src="scripts/View/MyPage/MyPageView.js" type="text/javascript"></script>
 <script src="scripts/View/MyPage/BookingDetailView.js" type="text/javascript"></script>
-<script src="scripts/View/MyPage/MyPageChooseSchoolModal.js" type="text/javascript"></script>
-<script src="scripts/View/MyPage/MyPageChooseWorkModal.js" type="text/javascript"></script>
-<script src="scripts/View/MyPage/BookingPayView.js" type="text/javascript"></script>
 <script src="scripts/View/MyPage/BookingListView.js" type="text/javascript"></script>
 <script src="scripts/View/MyPage/GroupBuyBookingListView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/GroupBuyBookingDetailView.js" type="text/javascript"></script>
+<script src="scripts/View/MyPage/BookingPayView.js" type="text/javascript"></script>
+
+<script src="scripts/View/MyPage/MyPageChooseSchoolModal.js" type="text/javascript"></script>
+
+<script src="scripts/View/MyPage/MyPageChooseWorkModal.js" type="text/javascript"></script>
 
 <script src="scripts/View/MyPage/MyPageAccountView.js" type="text/javascript"></script>
 <script src="scripts/View/MyPage/MyPageCouponView.js" type="text/javascript"></script>

@@ -351,6 +351,7 @@ testMockObj = {
 };
 
 testMockObj.testGroupBuyBooking1.set('groupBuyActivity', testMockObj.testTuan1);
+testMockObj.testGroupBuyBooking1.set('course', testMockObj.testCourse1);
 testMockObj.testGroupBuyBookings.add([
    testMockObj.testGroupBuyBooking1
 ]);

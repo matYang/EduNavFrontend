@@ -18,6 +18,7 @@ var AppRouter = Backbone.Router.extend({
 
         "mypage": "mypage",
         "mypage/booking/:id": "myBooking",
+        "mypage/tbooking/:id": "myTBooking",
         "mypage/booking/:id/pay": "myBookingPay",
         "mypage/:view": "mypage",
 
@@ -132,6 +133,7 @@ var AppRouter = Backbone.Router.extend({
         }
         this.myPageView = new MyPageView({query: query});
     },
+    //我的试听申请订单
     myBooking: function (id) {
         if (!this.sessionManager.hasSession()) {
             this.navigate("home", {trigger: true, replace: true});
@@ -143,6 +145,20 @@ var AppRouter = Backbone.Router.extend({
             this.myPageView.createChildView();
         } else {
             this.myPageView = new MyPageView({query: "bookingDetail", reference: id});
+        }
+    },
+    //我的团购订单
+    myTBooking: function (id) {
+        if (!this.sessionManager.hasSession()) {
+            this.navigate("home", {trigger: true, replace: true});
+            return;
+        }
+        if (this.myPageView && !this.myPageView.isClosed) {
+            this.myPageView.query = "tbookingDetail";
+            this.myPageView.reference = id;
+            this.myPageView.createChildView();
+        } else {
+            this.myPageView = new MyPageView({query: "tbookingDetail", reference: id});
         }
     },
     myBookingPay: function (id) {
