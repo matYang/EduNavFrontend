@@ -677,7 +677,7 @@
             callback.success(testMockObj.testGroupBuyBooking1);
             return;
         }
-        if (!(groupBuyBooking instanceof Backbone.Model) || newBooking.id > 0) {
+        if (!(groupBuyBooking instanceof Backbone.Model) || groupBuyBooking.id > 0) {
             Info.warn('UserManager::initGroupBuyBooking:: invalid parameter');
             return;
         }
