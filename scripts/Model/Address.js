@@ -8,7 +8,7 @@ var Address = Backbone.Model.extend({
     idAttribute: 'id',
 
     parse: function (data) {
-        var json = {};
+        var json = _.clone(this.attributes);
         if ( typeof data !== 'undefined') {
             
             json.id = parseInt(data.id, 10);

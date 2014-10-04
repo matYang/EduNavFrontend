@@ -26,11 +26,11 @@ var Tuan = Backbone.Model.extend({
             data.endTime = data.endTime || 0;
             data.status = parseInt(data.status, 10);
 
-            //不存在原价则使用爱上课价代替
-            if (!data.course.originalPirce) {
-                data.course.originalPrice = data.course.price;
-            }
             data.course = new Course(data.course, {parse: true});
+            //不存在原价则使用爱上课价代替
+            if(!data.course.get('originalPrice')){
+                data.course.set('originalPrice',data.course.get('price'))
+            }
             if (data.addressList) {
                 for (i = 0; i < data.addressList.length; i++) {
                     data.addressList[i] = new Address(data.addressList[i], {parse: true});

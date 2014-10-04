@@ -109,7 +109,7 @@ var Course = Backbone.Model.extend({
                 data.originalPrice = Utilities.parseNum(data.originalPrice);//原价
 
                 if (data.originalPrice == data.price) {
-                    data.originalPrice = null;
+                    data.originalPrice = undefined;
                 }
                 if (typeof data.price == 'number' && data.originalPrice == 'number') {
                     if (data.price > data.originalPrice) {
