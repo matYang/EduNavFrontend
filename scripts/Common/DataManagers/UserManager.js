@@ -689,7 +689,7 @@
 
             success: function (model, response) {
                 if (callback) {
-                    callback.success(newBooking);
+                    callback.success(groupBuyBooking);
                 }
             },
             error: function (model, response) {

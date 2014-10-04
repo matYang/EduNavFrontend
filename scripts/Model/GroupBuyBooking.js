@@ -41,7 +41,6 @@ var GroupBuyBooking = Backbone.Model.extend({
         var json = _.clone(this.attributes);
         json.createTime = Utilities.getDateString(json.createTime);
         json.user = json.user._toJSON();
-        json.course = json.course._toJSON();
         json.groupBuyActivity = json.groupBuyActivity._toJSON();
         return json;
     },
