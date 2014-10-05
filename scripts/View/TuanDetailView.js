@@ -1,10 +1,9 @@
 var TuanDetailView = Backbone.View.extend({
     el: "#content",
-    //todo need to write template named 'tpl_tuanDetail'
     template: _.template(tpl.get("tuanDetail")),
     initialize: function (opt) {
         this.isClosed = false;
-        _.bindAll(this, "render", "bindEvents", "close");
+        _.bindAll(this, "render", "bindEvents", 'showLoginModal', "close");
         app.viewRegistration.register(this);
         this.tuanId = opt.tuanId;//团购的Id
         this.countDown = undefined;//团购的倒计时
@@ -33,7 +32,7 @@ var TuanDetailView = Backbone.View.extend({
         this.$el.html(this.template(this.tuan._toJSON()));
         this.commentsView = new TuanDetailCommentsView({
             courseId: that.courseId,
-            parentView:that
+            parentView: that
         });
         $("body").css("background-color", "#f1f1f1");
         this.countDown = Utilities.countDown('#tuanDetail_endTime');//倒计时
@@ -126,15 +125,7 @@ var TuanDetailView = Backbone.View.extend({
         /*立即抢购快速登录*/
         $("#tuanDetail .btnbuy").on("click", function () {
             if (!app.sessionManager.hasSession()) {
-                //如果没有登录 弹出框进行登录 或者 免注册登录（）
-                if (!that.loginFastView) {
-                    that.loginFastView = new LoginFastView();
-                } else if (that.loginFastView.isClosed) {
-                    that.loginFastView.render();
-                    that.loginFastView.show();
-                } else {
-                    that.loginFastView.show();
-                }
+                that.showLoginModal();
             } else {
                 var groupBuyBooking = new GroupBuyBooking();
                 groupBuyBooking.set('groupBuyPrice', that.tuan.get('groupBuyPrice'));
@@ -200,6 +191,19 @@ var TuanDetailView = Backbone.View.extend({
                 $(".tuan_sorter li a:eq(3)").addClass("active");
             }
         });
+    },
+
+    showLoginModal: function () {
+        var that = this;
+        //如果没有登录 弹出框进行登录 或者 免注册登录（）
+        if (!that.loginFastView) {
+            that.loginFastView = new LoginFastView();
+        } else if (that.loginFastView.isClosed) {
+            that.loginFastView.render();
+            that.loginFastView.show();
+        } else {
+            that.loginFastView.show();
+        }
     },
 
     close: function () {

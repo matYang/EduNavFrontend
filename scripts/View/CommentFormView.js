@@ -44,7 +44,7 @@ var CommentFormView = Backbone.View.extend({
         /*添加评论*/
         this.$el.on("click", '#btn_AddComment', function () {
             if (!app.sessionManager.hasSession()) {
-                Info.alert('提交失败，请稍后再试~');
+                that.parentView.parentView.showLoginModal();
                 return;
             }
             var txtcomment = $("#tuanDetail .txt textarea").val();
@@ -64,6 +64,7 @@ var CommentFormView = Backbone.View.extend({
                     //重置
                     that.render();
                     //设置评论内容的分页信息 +1
+                    //todo 如果其他人也提交了评论 还是会出现重复的评论
                     that.parentView.sr.set('start', that.parentView.sr.get('start') + 1);
                 },
                 error: function (data) {
