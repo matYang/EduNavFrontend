@@ -76,7 +76,6 @@ var TuanDetailView = Backbone.View.extend({
         $("#tuanDetail .pic").html(htmlphoto);
         $("#tuanDetail .pic .pic_big").find("a:first").addClass("active");
         $("#tuanDetail .pic .pic_list").find("i:first").removeClass("active");
-        this.bindEvents();
     },
 
     bindEvents: function () {
