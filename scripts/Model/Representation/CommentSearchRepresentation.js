@@ -10,8 +10,8 @@ var CommentSearchRepresentation = Backbone.Model.extend({
             'start': undefined,
             'count': undefined,
 
-            'order': undefined,
-            'columnKey': undefined
+            'order': 'desc',
+            'columnKey': 'createTime'
 
         };
     },
