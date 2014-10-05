@@ -32,7 +32,8 @@ var TuanDetailView = Backbone.View.extend({
         document.title = '全城最低价';
         this.$el.html(this.template(this.tuan._toJSON()));
         this.commentsView = new TuanDetailCommentsView({
-            courseId: that.courseId
+            courseId: that.courseId,
+            parentView:that
         });
         $("body").css("background-color", "#f1f1f1");
         this.countDown = Utilities.countDown('#tuanDetail_endTime');//倒计时

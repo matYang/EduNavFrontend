@@ -44,11 +44,16 @@ var CommentFormView = Backbone.View.extend({
         });
         /*添加评论*/
         this.$el.on("click",'#btn_AddComment', function () {
+            if(!app.sessionManager.hasSession()){
+                Info.alert('提交失败，请稍后再试~');
+                return;
+            }
             var txtcomment = $("#tuanDetail .txt textarea").val();
             that.comment.set('content',txtcomment);
 
             app.userManager.addComment(that.comment,{
                 success:function(model){
+                    model.set('user',app.sessionManager.sessionModel);
                     $('#commentsContainer').prepend(that.commentEntryTemplate(model._toJSON()));
                     var $comment = $('#satr_user_'+model.get('id'));
                     var starCount = $comment.data('value');

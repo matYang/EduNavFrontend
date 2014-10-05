@@ -5,7 +5,7 @@ var Comment = Backbone.Model.extend({
             'userId': undefined,
             'title': undefined,
             'content': undefined,
-            'user': undefined,
+            'user': new User(),
 
             'courseTemplateId': undefined,//创建评论时使用courseTemplateId
             //评分内容

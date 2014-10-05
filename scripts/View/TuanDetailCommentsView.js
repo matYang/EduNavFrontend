@@ -6,6 +6,7 @@ var TuanDetailCommentsView = Backbone.View.extend({
     commentEntryTemplate: _.template(tpl.get("commentEntry")),
     initialize: function (opt) {
         this.courseId = opt.courseId;
+        this.parentView = opt.parentView;
         this.comment = new Comment();
         //评论的搜索条件 初始化courseId
         this.sr = new CommentSearchRepresentation();
