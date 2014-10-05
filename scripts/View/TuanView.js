@@ -64,22 +64,50 @@ var TuanBannerView = Backbone.View.extend({
     el: "#tuanBanner",
     template: _.template(tpl.get("tuanBanner")),
     initialize: function () {
+        var that = this;
         this.isClosed = false;
         _.bindAll(this, "render", "afterRender", "bindEvents", "close");
         app.viewRegistration.register(this);
+        //should be no error
+        app.generalManager.findTopTuan({
+            success:that.render
+        });
         this.render();
     },
-    render: function () {
+    render: function (tuans) {
+        if(!tuans||!tuans.length){
+            return;
+        }
+        //left img buf and right text buf
+        var l_buf=[],r_buf=[];
         this.$el.html(this.template());
+        tuans.forEach(function(tuan){
+           tuan = tuan._toJSON();
+           l_buf.push('<a class="pics" href="#tuan/'+tuan.id+'" target="_blank"><img src="'+tuan.photoList[0].url+'" alt=""/></a> ');
+           r_buf.push(
+               '<li class="tips_li">'
+                   +'<div class="c c-left">'+tuan.title+'</div>'
+                   +'<div class="c c-right">'
+                       +'<p class="price">￥'+tuan.groupBuyPrice+'</p>'
+                       +'<p>&nbsp;&nbsp;原价：<s>&nbsp;'+tuan.course.originalPrice+'&nbsp;</s></p>'
+                   +'</div>'
+               +'</li>'
+           )
+        });
+        this.$el.find('.pic').html(l_buf.join(''));
+        this.$el.find('.tips').html(r_buf.join(''));
+
         this.afterRender();
         this.bindEvents();
     },
     afterRender:function(){
+        this.$el.find('.pic .pics:first').addClass('active');
+        this.$el.find('.tips .tips_li:first').addClass('active');
     },
     bindEvents: function () {
         var that = this;
         $(".tips .tips_li").hover(function () {
-            var bindex = $(this).attr("index");
+            var bindex = $(".tips .tips_li").index(this);
             $(".tips .tips_li").removeClass("active");
             $(this).addClass("active");
             $(".pic .pics").removeClass("active");

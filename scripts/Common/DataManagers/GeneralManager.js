@@ -239,9 +239,6 @@
 
         if (testMockObj.testMode) {
             searchResults = testMockObj.testTuans;
-            for (var i = searchResults.length; i <= 4; i++) {
-                searchResults.push(testMockObj.testTuan1);
-            }
             callback.success(searchResults);
             return;
         }
@@ -254,17 +251,8 @@
             success: function (model, response) {
                 var length = searchResults.length;
                 var i;
-                if(!length){
-                    if(length<4){
-                        for (i = length; i <= 4; i++) {
-                            searchResults.push(searchResults.at(0));
-                        }
-                    }
-                    if(length>4){
-                        for (i = length; i > 4; i--) {
-                            searchResults.pop();
-                        }
-                    }
+                for (i = length; i > 4; i--) {
+                    searchResults.pop();
                 }
                 callback.success(searchResults);
             },
