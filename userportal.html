@@ -3335,8 +3335,8 @@
                 </div>
                 <div class="icon">
                     <div id="starDemo"></div>
-                    <a>4分</a>
-                    <span>(1562人评价)</span>
+                    <a><%=course.evenRating%>分</a>
+                    <span>(0人评价)</span>
                 </div>
                 <span>已有<a><%=bookingTotal%></a>人下单</span>
                 <span>剩余时间：<a id="tuanDetail_endTime" data-value="<%=endTime%>">--</a></span>
@@ -3525,26 +3525,26 @@
                             <div class="evaluate">
                                 <div class="title">*用户对本团购的消费评价</div>
                                 <ul class="eleft">
-                                    <li class="score">4.8</li>
+                                    <li class="score"><%=course.evenRating%></li>
                                     <li id="star_eleft"></li>
-                                    <li>共有<span> 1245 </span>人评价</li>
+                                    <li>共有<span id="commentTotal"> 0 </span>人评价</li>
                                 </ul>
                                 <div class="emid"></div>
                                 <ul class="eright">
                                     <li>
                                         <span>环境</span>
                                         <div id="evaluate_environment" class="eright_star"></div>
-                                        <a>5.0</a>
+                                        <a><%=course.conditionRating%></a>
                                     </li>
                                     <li>
                                         <span>师质</span>
                                         <div id="evaluate_teacher" class="eright_star"></div>
-                                        <a>4.5</a>
+                                        <a><%=course.attitudeRating%></a>
                                     </li>
                                     <li>
                                         <span>服务</span>
                                         <div id="evaluate_service" class="eright_star"></div>
-                                        <a>4.8</a>
+                                        <a><%=course.satisfactionRating%></a>
                                     </li>
 
                                 </ul>

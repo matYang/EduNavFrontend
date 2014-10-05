@@ -85,7 +85,12 @@ var Course = Backbone.Model.extend({
                 /*特色服务*/
                 'certification': undefined,//结业证书
                 'extracurricular': undefined,//课后互动
-                'bonusService': undefined//赠送服务
+                'bonusService': undefined,//赠送服务
+
+                'conditionRating': 0,
+                'attitudeRating': 0,
+                'satisfactionRating': 0,
+                'evenRating': 0
             };
         },
         parse: function (data) {
@@ -195,6 +200,11 @@ var Course = Backbone.Model.extend({
                 });
                 json.classPhotoList = classPhotoList;
             }
+            json.evenRating = ((
+                parseFloat(json.attitudeRating)
+                + parseFloat(json.conditionRating)
+                + parseFloat(json.satisfactionRating)
+                ) / 3).toFixed(1);
             return json;
         },
         td: function () {

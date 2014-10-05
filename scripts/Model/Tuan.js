@@ -12,7 +12,7 @@ var Tuan = Backbone.Model.extend({
 
             'photoList': [],//团购的图片 banner中只取第一张
             'addressList': [],//团购活动覆盖的地址
-            'course': undefined //Course model
+            'course': undefined //Course model 实际上是template
         };
     },
     parse: function (data) {
@@ -28,8 +28,8 @@ var Tuan = Backbone.Model.extend({
 
             data.course = new Course(data.course, {parse: true});
             //不存在原价则使用爱上课价代替
-            if(!data.course.get('originalPrice')){
-                data.course.set('originalPrice',data.course.get('price'))
+            if (!data.course.get('originalPrice')) {
+                data.course.set('originalPrice', data.course.get('price'))
             }
             if (data.addressList) {
                 for (i = 0; i < data.addressList.length; i++) {
