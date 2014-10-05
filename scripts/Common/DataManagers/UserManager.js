@@ -650,7 +650,7 @@
             Info.warn('UserManager::newComment:: invalid parameter');
             return;
         }
-        newComment.overrideUrl(ApiResource.user_apply);
+        newComment.overrideUrl(ApiResource.create_comment);
         newComment.set('id', -1);
         newComment.save({}, {
             dataType: 'json',

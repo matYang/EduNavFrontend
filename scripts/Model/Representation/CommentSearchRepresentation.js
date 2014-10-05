@@ -2,7 +2,7 @@ var CommentSearchRepresentation = Backbone.Model.extend({
     defaults: function () {
         //todo 确定需要过滤的字段条件
         return {
-            'courseId':undefined,
+            'courseTemplateId':undefined,
 
             'createTimeStart': undefined,//创建日期的start和end范围
             'createTimeEnd': undefined,

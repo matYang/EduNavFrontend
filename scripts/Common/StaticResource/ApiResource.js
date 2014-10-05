@@ -61,7 +61,7 @@
                 },
                 'comment': {
                     'create': '',
-                    'course': '/course'
+                    'course': ''
                 }
             }
         };

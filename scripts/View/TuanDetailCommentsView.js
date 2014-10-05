@@ -10,7 +10,8 @@ var TuanDetailCommentsView = Backbone.View.extend({
         this.comment = new Comment();
         //评论的搜索条件 初始化courseId
         this.sr = new CommentSearchRepresentation();
-        this.sr.set('courseId', opt.courseId);
+        //其实团购里面的courseId以及course都是课程模板相关内容
+        this.sr.set('courseTemplateId', opt.courseId);
         this.sr.set('start', 0);
         this.sr.set('count', 5);
         this.isClosed = false;

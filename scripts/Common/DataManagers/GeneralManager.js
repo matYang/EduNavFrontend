@@ -393,7 +393,7 @@
     //拉取评论
     GeneralManager.prototype.findComments = function (sr,callback) {
         var searchResults = new Comments();
-        if (!(sr instanceof Backbone.Model)||!sr.get('courseId')) {
+        if (!(sr instanceof Backbone.Model)||!sr.get('courseTemplateId')) {
             Info.warn('GeneralManager::findComments invalid parameter, exit');
             return;
         }
@@ -404,7 +404,7 @@
             return;
         }
 
-        searchResults.overrideUrl(ApiResource.course_comment+'/'+sr.get('courseId'));
+        searchResults.overrideUrl(ApiResource.course_comment);
         searchResults.fetch({
             data: sr.toQueryString(),
             dataType: 'json',
