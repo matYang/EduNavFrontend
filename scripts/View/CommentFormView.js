@@ -13,7 +13,7 @@ var CommentFormView = Backbone.View.extend({
 
     },
 
-    render: function (comments) {
+    render: function () {
         var that = this;
         this.comment = new Comment();
         this.comment.set('courseTemplateId',this.courseTemplateId);

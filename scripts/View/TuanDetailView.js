@@ -15,7 +15,6 @@ var TuanDetailView = Backbone.View.extend({
                 self.tuan = tuan.clone();
                 self.tuanPhotos = tuan.get('photoList').slice(2);//从第三张图片开始为团购详情页面的图片index = 2
                 self.courseId = tuan.get("courseId");
-                self.courseTemplateId = tuan.get("course").get('templateId');
                 self.teacherList = tuan.get("teacherList");
 
                 self.render();
@@ -33,8 +32,7 @@ var TuanDetailView = Backbone.View.extend({
         document.title = '全城最低价';
         this.$el.html(this.template(this.tuan._toJSON()));
         this.commentsView = new TuanDetailCommentsView({
-            courseId: that.courseId,
-            courseTemplateId: that.courseTemplateId
+            courseId: that.courseId
         });
         $("body").css("background-color", "#f1f1f1");
         this.countDown = Utilities.countDown('#tuanDetail_endTime');//倒计时
