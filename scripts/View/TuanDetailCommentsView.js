@@ -70,7 +70,11 @@ var TuanDetailCommentsView = Backbone.View.extend({
         if (hasMore) {
             $(this.pageContainer).html('<a class="moreComments">更多精彩评价</a>')
         } else {
-            $(this.pageContainer).html('没有更多评价了~')
+            if(this.sr.get('start') == 0){
+                $(this.pageContainer).html('暂时没有任何评价~')
+            }else{
+                $(this.pageContainer).html('没有更多评价了~')
+            }
         }
     },
 
