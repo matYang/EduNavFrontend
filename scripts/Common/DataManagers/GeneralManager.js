@@ -134,7 +134,7 @@
         requestCourses.overrideUrl(ApiResource.courses);
         requestCourses.fetch({
             dataType: 'json',
-            data: $.param({'idSet':idSet}, true),//traditional is true
+            data: $.param({'idSet': idSet}, true),//traditional is true
             success: function (response, model) {
                 if (callback) {
                     var array = requestCourses.toArray(), i = 0;
@@ -233,18 +233,63 @@
         });
     };
 
+    //搜索置顶的团购 一个不显示 不足4个补齐 超过4个  取4个
+    GeneralManager.prototype.findTopTuan = function (callback) {
+        var searchResults = new Tuans();
+
+        if (testMockObj.testMode) {
+            searchResults = testMockObj.testTuans;
+            for (var i = searchResults.length; i <= 4; i++) {
+                searchResults.push(testMockObj.testTuan1);
+            }
+            callback.success(searchResults);
+            return;
+        }
+
+        searchResults.overrideUrl(ApiResource.groupBuy);
+        searchResults.fetch({
+            data: 'hot=1',
+            dataType: 'json',
+
+            success: function (model, response) {
+                var length = searchResults.length;
+                var i;
+                if(!length){
+                    if(length<4){
+                        for (i = length; i <= 4; i++) {
+                            searchResults.push(searchResults.at(0));
+                        }
+                    }
+                    if(length>4){
+                        for (i = length; i > 4; i--) {
+                            searchResults.pop();
+                        }
+                    }
+                }
+                callback.success(searchResults);
+            },
+            error: function (model, response) {
+                Info.warn('TuanManager::fetchSearchResult:: fetch failed with response:');
+                if (callback) {
+                    callback.error($.parseJSON(response.responseText));
+                }
+            }
+        });
+    };
+
+
     //拉取课程类目
     GeneralManager.prototype.fetchCategories = function (callback) {
         var self = this;
         if (testMockObj.testMode) {
             var cats = testMockObj.testCategories;
-            for(var i=0;i < cats.data.length;i++){
+            for (var i = 0; i < cats.data.length; i++) {
                 var cat2 = cats.data[i].children;
-                for(var j = 0;j<cat2.length;j++){
+                for (var j = 0; j < cat2.length; j++) {
                     var cat3 = cat2[j].children;
-                    for(var k = 0;k<cat3.length;k++){
-                        if(cat3[k].enabled ==1){
-                            cat3.splice(k,1);
+                    for (var k = 0; k < cat3.length; k++) {
+                        if (cat3[k].enabled == 1) {
+                            cat3.splice(k, 1);
                             k--;
                         }
 
@@ -262,13 +307,13 @@
                 dataType: 'json',
                 success: function (data, textStatus, jqXHR) {
                     var cats = data;
-                    for(var i=0;i < cats.data.length;i++){
+                    for (var i = 0; i < cats.data.length; i++) {
                         var cat2 = cats.data[i].children;
-                        for(var j = 0;j<cat2.length;j++){
+                        for (var j = 0; j < cat2.length; j++) {
                             var cat3 = cat2[j].children;
-                            for(var k = 0;k<cat3.length;k++){
-                                if(cat3[k].enabled ==1){
-                                    cat3.splice(k,1);
+                            for (var k = 0; k < cat3.length; k++) {
+                                if (cat3[k].enabled == 1) {
+                                    cat3.splice(k, 1);
                                     k--;
                                 }
 
@@ -320,7 +365,7 @@
     };
 
     //拉取学校
-    GeneralManager.prototype.fetchSchools = function (locationId,callback) {
+    GeneralManager.prototype.fetchSchools = function (locationId, callback) {
         var self = this;
         if (testMockObj.testMode) {
             callback.success(testMockObj.testSchools.data);
@@ -328,11 +373,11 @@
         }
         $.ajax({
             url: ApiResource.general_school,
-            data:'locationId='+locationId,
+            data: 'locationId=' + locationId,
             type: 'GET',
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                if(!data.data){
+                if (!data.data) {
                     data = [];
                 }
                 if (callback) {
@@ -391,9 +436,9 @@
     };
 
     //拉取评论
-    GeneralManager.prototype.findComments = function (sr,callback) {
+    GeneralManager.prototype.findComments = function (sr, callback) {
         var searchResults = new Comments();
-        if (!(sr instanceof Backbone.Model)||!sr.get('courseTemplateId')) {
+        if (!(sr instanceof Backbone.Model) || !sr.get('courseTemplateId')) {
             Info.warn('GeneralManager::findComments invalid parameter, exit');
             return;
         }

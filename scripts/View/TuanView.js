@@ -62,7 +62,6 @@ var TuanView = Backbone.View.extend({
 /*团BannerView*/
 var TuanBannerView = Backbone.View.extend({
     el: "#tuanBanner",
-    //todo need to write template named 'tpl_tuanBanner'
     template: _.template(tpl.get("tuanBanner")),
     initialize: function () {
         this.isClosed = false;
