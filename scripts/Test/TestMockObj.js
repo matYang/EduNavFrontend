@@ -34,7 +34,7 @@ testMockObj = {
     testTuans: new Tuans(),
     testTuan1: (new Tuan()).set('id', 1).set('courseId', 1)
         .set('title', '团购测试标题1').set('groupBuyPrice', 299)
-        .set('bookingTotal', 123).set('hot', 1).set('endTime', 1412200111111)
+        .set('bookingTotal', 123).set('hot', 1).set('endTime', (new Date()).getTime()+3600000*24*7)
         .set('photoList', [
             {url: './style/images/t_item_banner_test.jpg'},//约定第一张为置顶课程的图片
             {url: './style/images/t_item_banner_test.jpg'},//约定第二张为团购列表中的封面
@@ -43,7 +43,7 @@ testMockObj = {
         ]),
     testTuan2: (new Tuan()).set('id', 2).set('courseId', 2)
         .set('title', '团购测试标题2').set('groupBuyPrice', 299)
-        .set('bookingTotal', 123).set('hot', 1).set('endTime', 1412200222222)
+        .set('bookingTotal', 123).set('hot', 1).set('endTime', (new Date()).getTime()+3600000*24*3)
         .set('photoList', [
             {url: './style/images/t_item_banner_test.jpg'},//约定第一张为置顶课程的图片
             {url: './style/images/t_item_banner_test.jpg'},//约定第二张为团购列表中的封面

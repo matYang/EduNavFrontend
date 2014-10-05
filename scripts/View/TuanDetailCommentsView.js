@@ -5,6 +5,7 @@ var TuanDetailCommentsView = Backbone.View.extend({
     pageContainer: '#commentsPagination',
     commentEntryTemplate: _.template(tpl.get("commentEntry")),
     initialize: function (opt) {
+        var that = this;
         this.courseId = opt.courseId;
         this.parentView = opt.parentView;
         this.comment = new Comment();
@@ -20,6 +21,7 @@ var TuanDetailCommentsView = Backbone.View.extend({
         var self = this;
         this.$el.html(this.template);
         this.commentFormView = new CommentFormView({
+            parentView:that,
             //其实这里的courseId就是templateId
             courseTemplateId:this.courseId,
             commentEntryTemplate:this.commentEntryTemplate
@@ -30,7 +32,7 @@ var TuanDetailCommentsView = Backbone.View.extend({
     fetchComments: function () {
         var that = this;
         $(that.pageContainer).html('<div class="loading"></div>');
-        //这里获取课程数据信息
+
         app.generalManager.findComments(this.sr, {
             success: that.render,
             error: function (data) {
