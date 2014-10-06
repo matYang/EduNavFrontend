@@ -36,7 +36,7 @@ var TuanDetailCommentsView = Backbone.View.extend({
         app.generalManager.findComments(this.sr, {
             success: that.render,
             error: function (data) {
-                Info.displayErrorPage("content", data.message);
+//                Info.displayErrorPage("content", data.message);
             }
         });
     },
