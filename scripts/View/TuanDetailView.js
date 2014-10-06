@@ -94,9 +94,9 @@ var TuanDetailView = Backbone.View.extend({
             var teacher = {};
             //you forgot 'course'!! teacherList is not in 'tuan'
             if (that.tuan.get('course').get('teacherList') instanceof  Backbone.Collection) {
-                teacher = that.tuan.get('teacherList').at(teacherIndex);
+                teacher = that.tuan.get('course').get('teacherList').at(teacherIndex);
             } else {
-                teacher = that.tuan.get('teacherList')[teacherIndex];
+                teacher = that.tuan.get('course').get('teacherList')[teacherIndex];
             }
 
             if (!that.teacherInfoView) {
