@@ -92,7 +92,8 @@ var TuanDetailView = Backbone.View.extend({
         $("#tuan_content_2 .teacher_pic").on("click", function () {
             var teacherIndex = $(this).attr("data-id");
             var teacher = {};
-            if (that.tuan.get('teacherList') instanceof  Backbone.Collection) {
+            //you forgot 'course'!! teacherList is not in 'tuan'
+            if (that.tuan.get('course').get('teacherList') instanceof  Backbone.Collection) {
                 teacher = that.tuan.get('teacherList').at(teacherIndex);
             } else {
                 teacher = that.tuan.get('teacherList')[teacherIndex];
