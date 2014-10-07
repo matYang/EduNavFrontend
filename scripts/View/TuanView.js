@@ -3,7 +3,7 @@ var TuanView = Backbone.View.extend({
         template: _.template(tpl.get("tuan")),
         initialize: function () {
             this.isClosed = false;
-            _.bindAll(this, "render", "bindEvents", "close");
+            _.bindAll(this, "render","renderBusiness", "bindEvents", "close");
             app.viewRegistration.register(this);
             //从本地初始化搜索条件
             this.searchRepresentation = app.storage.getSearchRepresentationCache("tuan");
@@ -11,6 +11,8 @@ var TuanView = Backbone.View.extend({
             this.render();
         },
         render: function () {
+
+            //var business = app.generalManager.fetchBusiness();
             this.$el.html(this.template());
             if (!this.tuanBannerView) {
                 this.tuanBannerView = new TuanBannerView();
@@ -22,7 +24,19 @@ var TuanView = Backbone.View.extend({
             } else if (this.tuanResultView.isClosed) {
                 this.tuanResultView.render();
             }
+            app.generalManager.getBusiness(this);//调用renderBusiness
             this.bindEvents();
+
+        },
+        renderBusiness:function(Business){
+            var business = Business;
+            var businessHtml = '';
+            for(var i = 0;i<business.length;i++)
+            {
+                businessHtml += '<span data-value="'+ business[i].value +'">'+ business[i].name +'</span>';
+            }
+            $("#business-category").html(businessHtml);
+            $("#business-category").find("span:eq(0)").addClass("active");
         },
 
         bindEvents: function () {
