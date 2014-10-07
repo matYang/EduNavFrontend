@@ -222,10 +222,13 @@ var Utilities = {
         return params;
     },
 
-    parseNum: function (val) {
+    parseNum: function (val, fixed) {
         val = parseFloat(val);
         if (isNaN(val))
             return null;
+        if (fixed) {
+            val = val.toFixed(fixed);
+        }
         return val
     },
 

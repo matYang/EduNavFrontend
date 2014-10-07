@@ -152,6 +152,9 @@ var Course = Backbone.Model.extend({
                     }
                     data.classPhotoList = classImgArr;
                 }
+                data.conditionRating = Utilities.parseNum(data.conditionRating, 1);
+                data.attitudeRating = Utilities.parseNum(data.attitudeRating, 1);
+                data.satisfactionRating = Utilities.parseNum(data.satisfactionRating, 1);
             }
             return data;
         },
