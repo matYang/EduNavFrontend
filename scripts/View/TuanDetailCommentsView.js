@@ -21,10 +21,10 @@ var TuanDetailCommentsView = Backbone.View.extend({
         var self = this;
         this.$el.html(this.template);
         this.commentFormView = new CommentFormView({
-            parentView:that,
+            parentView: that,
             //其实这里的courseId就是templateId
-            courseTemplateId:this.courseId,
-            commentEntryTemplate:this.commentEntryTemplate
+            courseTemplateId: this.courseId,
+            commentEntryTemplate: this.commentEntryTemplate
         });
         this.bindEvents();
         this.fetchComments();
@@ -70,15 +70,16 @@ var TuanDetailCommentsView = Backbone.View.extend({
             });
         });
     },
-    //设置分页
+    //设置分页 以及设置页面上面的评论总数
     setPagination: function (total) {
+        $('.commentsTotal').html(total);
         var hasMore = this.sr.get('start') + this.sr.get('count') < total;
         if (hasMore) {
             $(this.pageContainer).html('<a class="moreComments">更多精彩评价</a>')
         } else {
-            if(this.sr.get('start') == 0){
+            if (this.sr.get('start') == 0) {
                 $(this.pageContainer).html('暂时没有任何评价~')
-            }else{
+            } else {
                 $(this.pageContainer).html('没有更多评价了~')
             }
         }
