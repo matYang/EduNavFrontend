@@ -41,7 +41,12 @@
 #tuanDetail .row .icon{ height: 17px; padding: 27px 0 13px 0; width: 420px; background-image: url("");}
 #starDemo{ float: left;}
 #tuanDetail .row .icon a{ float: left; color: #ffbd6b; line-height: 20px; margin-left: 10px;}
-#tuanDetail .row .icon span{ line-height: 20px; float: left; margin-left: 10px;}
+
+#tuanDetail .row .icon span {
+    line-height: 20px;
+    display: inline;
+}
+
 #tuanDetail .row span{ line-height: 40px; font-size: 14px; text-align: left;  display: block;}
 #tuanDetail .row a{ color: #128d56;}
 #tuanDetail .btn{ padding: 0; width: 468px; margin-top: 15px;}
