@@ -321,7 +321,7 @@
 #teacherInfo .teacherInfoA a img{ width: 150px; height: 150px; border-radius: 75px;}
 #teacherInfo .teacher_info{ width: 500px; height: 214px; float: left; padding: 13px 2px;}
 #teacherInfo .teacher_info span{ line-height: 50px; line-height: 50px; font-size: 16px; color: #28B094; margin-left: 5px;}
-#teacherInfo .teacher_info p{ font-size: 12px; line-height: 25px;}
+#teacherInfo .teacher_info .teacher_message{ width: 500px; height: 150px; display: block; overflow: auto; font-size: 12px; line-height: 25px;}
 #teacherInfo .close{
     width: 32px; height: 32px;
     display: block;
