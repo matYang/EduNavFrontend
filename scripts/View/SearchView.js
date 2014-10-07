@@ -63,15 +63,23 @@ var SearchView = Backbone.View.extend({
     /*加载上课地点*/
     renderLocations: function (locations) {
         if (!this.isClosed) {
-            var buf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
+            var buf = [], chbuf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
             this.locations = locations;
             // for (var prov in locations) {
             //     var city = locations[prov];
             //     for (var attr in city) {
+            //加载行政区/商圈
+            var loc = [{"value":"0000","name":"行政区"},{"value":"0001","name":"商圈"}];
+            for (i = 0; i < loc.length; i++) {
+                buf[i] = this.subCategoryTemplate({value: loc[i].value, name: loc[i].name});
+            }
+            //加载行政区
             var districts = locations[0].children[0].children, district;
             for (i = 0; i < districts.length; i++) {
-                buf[i] = this.subCategoryTemplate({value: districts[i].value, name: districts[i].name});
+                chbuf[i] = this.subSubCategoryTemplate({value: districts[i].value, name: districts[i].name});
+                var tt = this.subSubCategoryContainerTemplate({value: districts[i].value, entries: chbuf.join("")});
             }
+            buf.push(tt);
             var $dist = $("#filter_district");
             $dist.append(buf.join(""));
             this.titleObj.city = "南京";
@@ -159,6 +167,7 @@ var SearchView = Backbone.View.extend({
         } else {
             $("#filter_district").find("span[data-value=noreq]").addClass("active").siblings().removeClass("active");
         }
+
     },
     //过滤 开课日期 上课时间（开始和结束） 班级类型 课程费用（开始和结束） 是否返现
     syncFilters: function () {
