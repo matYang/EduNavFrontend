@@ -29,6 +29,12 @@ var TuanDetailCommentsView = Backbone.View.extend({
         this.bindEvents();
         this.fetchComments();
     },
+
+    /**
+     * 根据设置的sr拉取评论内容
+     * 分页container中显示loading 评论内容container中append下一页的评论内容
+     * *如果需要重新拉取内容 需要重置start为0 然后清空评论内容的container
+     */
     fetchComments: function () {
         var that = this;
         $(that.pageContainer).html('<div class="loading"></div>');
