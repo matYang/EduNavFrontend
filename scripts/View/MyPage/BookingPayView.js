@@ -72,8 +72,7 @@ var BookingPayView = Backbone.View.extend({
 //            var url = '/api/v2/order/' + that.booking.id + '?type=' + payType;//原order
             var url = '/api/v2/groupBuy/' + that.bookingId + '/pay?type=' + payType;
             var s = window.open(url);
-            //var s = 'http://www.ishangke.cn' + url;
-            s.focus();
+            //s.focus();
         });
     },
     close: function () {

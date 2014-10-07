@@ -3393,56 +3393,91 @@
                     </dl>
                     <dl id="tuan_content_1" class="content_inner">
                         <dt><i class="dticon"></i>课程详情</dt>
-                        <dd>
+                        <dd class="clearfix">
+                            <p class="clearfix">
+                                <label>上课日期</label>
+                                <span>
+                                    <%if(course.startUponArrival===0){%>
+                                    <%= course.regPhone %>
+                                    <%}else{%>
+                                    <%= course.startDate %>
+                                    <%if(course.finishDate){%>
+                                    - <%= course.finishDate %>
+                                    <%}%>
+                                    <%}%>
+                                </span>
+                            </p>
                             <% if (course.startTime1||course.schooltimeWeek) { %>
                             <p class="clearfix">
-                                <label>上课时间：</label>
+                                <label>上课时间</label>
                                 <span>
-                                <%if(course.schooltimeWeek){%>
+                                    <%if(course.schooltimeWeek){%>
                                     <%=course.schooltimeWeek%>&nbsp;（<%=course.schooltimeDay%>）
-                                <%}%>
-                                <%if(course.startTime1){%>
+                                    <%}%>
+                                    <%if(course.startTime1){%>
                                     <%=course.startTime1%>-<%=course.finishTime1%>
                                     <%if(course.startTime2){%>, <%=course.startTime2%> - <%=course.finishTime2%><%}%>
-                                <%}%>
+                                    <%}%>
                                 </span>
                             </p>
                             <%}%>
                             <% if (course.qualityAssurance) { %>
                             <p class="clearfix">
-                                <label>课时信息：</label>
+                                <label>课时信息</label>
                                 <span><%=course.qualityAssurance%></span>
                             </p>
-                            <%}%>
+                            <% } %>
                             <% if (course.classSize) { %>
                             <p class="clearfix">
-                                <label>班级类型：</label>
+                                <label>班级类型</label>
+
                                 <span><%= course.classSize %></span>
                             </p>
-                            <%}%>
-
-
+                            <% } %>
                             <% if (course.teachingMaterialIntro) { %>
                             <p class="clearfix">
-                                <label>教材介绍：</label>
-                                <span><%=course.teachingMaterialIntro%></span>
+                                <label>教材介绍</label>
+
+                                <span><%= course.teachingMaterialIntro %></span>
                             </p>
-                            <%}%>
+                            <% } %>
                             <% if (course.teachingMaterialFee) { %>
                             <p class="clearfix">
-                                <label>教材费用：</label>
-                                <span><%=course.teachingMaterialFee%></span>
+                                <label>教材费用</label>
+
+                                <span><%= course.teachingMaterialFee %></span>
                             </p>
-                            <%}%>
+                            <% } %>
                             <% if (course.suitableStudent) { %>
                             <p class="clearfix">
-                                <label>适合学员：</label>
+                                <label>适合学员</label>
+
                                 <span><%= course.suitableStudent %></span>
                             </p>
-                            <%}%>
+                            <% } %>
+                            <% if (course.courseIntro) { %>
+                            <p class="clearfix">
+                                <label>课程介绍</label>
+
+                                <span><%= course.courseIntro %></span>
+                            </p>
+                            <% } %>
+                            <% if (course.outline) { %>
+                            <p class="clearfix">
+                                <label>课程提纲</label>
+
+                                <span><%= course.outline %></span>
+                            </p>
+                            <% } %>
+
+                            <% if (course.goal) { %>
+                            <p class="clearfix">
+                                <label>教学目标</label>
+
+                                <span><%= course.goal %></span>
+                            </p>
+                            <% } %>
                         </dd>
-
-
                     </dl>
                     <dl id="tuan_content_2" class="content_inner">
                         <dt><i class="dticon"></i>学校师资</dt>
