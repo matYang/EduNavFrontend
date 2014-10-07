@@ -52,20 +52,27 @@ var CommentFormView = Backbone.View.extend({
 
             app.userManager.addComment(that.comment, {
                 success: function (model) {
-                    model.set('user', app.sessionManager.sessionModel);
-                    $('#commentsContainer').prepend(that.commentEntryTemplate(model._toJSON()));
-                    var $comment = $('#satr_user_' + model.get('id'));
-                    var starCount = $comment.data('value');
-                    $comment.attr('stared', '');
-                    $comment.raty({
-                        readOnly: true,
-                        start: starCount
-                    });
-                    //重置
+                    //重置表单
                     that.render();
+
+                    //方案1 直接追加内容 忽略。。问题太多
+                    //model.set('user', app.sessionManager.sessionModel);
+//                    var $comment = $('#satr_user_' + model.get('id'));
+//                    var starCount = $comment.data('value');
+//                    $comment.attr('stared', '');
+//                    $comment.raty({
+//                        readOnly: true,
+//                        start: starCount
+//                    });
+
                     //设置评论内容的分页信息 +1
-                    //todo 如果其他人也提交了评论 还是会出现重复的评论
-                    that.parentView.sr.set('start', that.parentView.sr.get('start') + 1);
+                    //如果其他人也提交了评论 还是会出现重复的评论 这里还是使用方案2了
+//                    that.parentView.sr.set('start', that.parentView.sr.get('start') + 1);
+                    //方案2 重新拉取第一页评论
+                    //清空评论主体内容并重置start为0
+                    $('#commentsContainer').html('');
+                    that.parentView.sr.set('start', 0);
+                    that.parentView.fetchComments();
                 },
                 error: function (data) {
                     Info.alert('提交失败，请稍后再试~');
