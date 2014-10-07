@@ -347,7 +347,15 @@ testMockObj = {
                 ]
             }
         ]
+    },
+    test:{"errorCode":0,"start":0,"count":0,"total":0,"data":[
+        {"errorCode":0,"name":"仙林大学城","value":"00","children":[],"id":1,"lastModifyTime":1405056802000,"createTime":1405056805000,"enabled":0},
+        {"errorCode":0,"name":"江宁大学城","value":"01","children":[],"id":2,"lastModifyTime":1405398561000,"createTime":1405398566000,"enabled":0},
+        {"errorCode":0,"name":"浦口大学城","value":"02","children":[],"id":3,"lastModifyTime":1405484991000,"createTime":1405484995000,"enabled":0},
+        {"errorCode":0,"name":"新街口","value":"03","children":[],"id":4,"lastModifyTime":1405571419000,"createTime":1405571423000,"enabled":0},
+        {"errorCode":0,"name":"鼓楼","value":"04","children":[],"id":5,"lastModifyTime":1405398647000,"createTime":1405485051000,"enabled":0}]
     }
+
 };
 
 
