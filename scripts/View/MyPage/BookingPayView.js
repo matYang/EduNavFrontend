@@ -39,8 +39,9 @@ var BookingPayView = Backbone.View.extend({
             $(paneId).show();
             $(paneId).siblings().hide();
             //set active input checked
-            $('#bookingDetail .bank_list li').find("input").attr("checked", false);
-            $(this).find("input").attr("checked", true);
+            //todo need to remove because input[type=radio] is grouped by 'name'
+            $('#bookingDetail .bank_list li').find("input").prop("checked", false);
+            $(this).find("input").prop("checked", true);
         });
         /*//具体选择某一个银行或者某一个平台的支付方式
          $('#pane_platform ul').on('click','li',function(e){
