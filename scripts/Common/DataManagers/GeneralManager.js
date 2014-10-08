@@ -34,12 +34,15 @@
 
         this.categoryList = [];
         this.locationList = [];
+        this.businessList = [];
 
         this.categoryQueue = [];
         this.locationQueue = [];
+        this.businessQueue = [];
 
         this.categoryTimeStamp = new Date();
         this.locationTimeStamp = new Date();
+        this.businessTimeStamp = new Date();
     };
 
     //根据ID拉取单个课程
@@ -319,6 +322,32 @@
         });
     };
 
+    //拉取商圈
+    GeneralManager.prototype.fetchBusiness = function (callback) {
+        var self = this;
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testBusiness.data);
+            return;
+        }
+        $.ajax({
+            url: ApiResource.general_business,//todo 改成商圈的api
+            type: 'GET',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                self.businessList = data.data;
+                self.businessTimeStamp = new Date();
+                if (callback) {
+                    callback.success(self.businessList);
+                }
+            },
+            error: function (data, textStatus, jqXHR) {
+                if (callback) {
+                    callback.error($.parseJSON(data.responseText));
+                }
+            }
+        });
+    };
+
     //拉取学校
     GeneralManager.prototype.fetchSchools = function (locationId,callback) {
         var self = this;
@@ -390,10 +419,31 @@
         return index;
     };
 
+    //如果本地存有地区信息的缓存并且尚为过期，该方法会自动调用reference里的renderBusiness方法。
+    //如果本地没有地区信息或者地区信息已经过期，该方法会触发fetchCategories方法，并在成功后触发reference里的renderBusiness方法
+    //reference为调用该方法的view的自身
+    //e.g: app.generalManager.getCategoreis(this)
+    GeneralManager.prototype.getBusiness = function (reference) {
+        var index = -1;
+        if (this.businessList.length === 0 || shouldReload(this.businessTimeStamp)) {
+            index = addToQueue(this.businessQueue, reference);
+            this.fetchBusiness({
+                //todo should be changed, just return data
+                success: reference.renderBusiness,
+                error: function () {
+                }
+            });
+        }
+        else {
+            reference.renderBusiness(this.businessList);
+        }
+        return index;
+    };
+
     //拉取评论
-    GeneralManager.prototype.findComments = function (sr,callback) {
+    GeneralManager.prototype.findComments = function (sr, callback) {
         var searchResults = new Comments();
-        if (!(sr instanceof Backbone.Model)||!sr.get('courseId')) {
+        if (!(sr instanceof Backbone.Model) || !sr.get('courseTemplateId')) {
             Info.warn('GeneralManager::findComments invalid parameter, exit');
             return;
         }
@@ -404,7 +454,7 @@
             return;
         }
 
-        searchResults.overrideUrl(ApiResource.course_comment+'/'+sr.get('courseId'));
+        searchResults.overrideUrl(ApiResource.course_comment);
         searchResults.fetch({
             data: sr.toQueryString(),
             dataType: 'json',

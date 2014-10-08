@@ -9,7 +9,7 @@ var SearchView = Backbone.View.extend({
     reqTemplate: _.template(tpl.get("req")),
     template: _.template(tpl.get('search')),
     initialize: function (params) {
-        _.bindAll(this, 'render', 'bindEvents', 'bindCatSearchEvents', 'renderCategories', 'renderLocations', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'bindCatSearchEvents', 'renderCategories', 'renderLocations','renderBusiness', 'close');
         //define the template
 
         this.timeDesc = true;
@@ -92,6 +92,15 @@ var SearchView = Backbone.View.extend({
                 $dist.find("span[data-value=noreq]").addClass("active");
             }
         }
+    },
+    //加载商圈
+    renderBusiness:function(Business){
+        var bubuf=[], business = Business;
+        for (i = 0; i < business.length; i++) {
+            bubuf[i] = this.subSubCategoryTemplate({value: business[i].value, name: business[i].name});
+            var tb = this.subSubCategoryContainerTemplate({value: business[i].value, entries: bubuf.join("")});
+        }
+        $("#filter_district").append(tb);
     },
     /*加载课程类别*/
     renderCategories: function (categories) {

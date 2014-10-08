@@ -74,6 +74,7 @@
 
             return {
                 general_location: api_maker(api_modules.rootPrefix, "general", "location"),
+                general_business: api_maker(api_modules.rootPrefix, "general", "circle"),//商圈的api
                 general_school: api_maker(api_modules.rootPrefix, "general", "school"),
                 general_category: api_maker(api_modules.rootPrefix, "general", "category"),
 
