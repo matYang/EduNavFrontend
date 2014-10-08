@@ -2,13 +2,13 @@ var CourseSearchRepresentation = Backbone.Model.extend({
     defaults: function () {
         return {
 
-            'templateId':undefined,//相关课程搜索（同一个模板）
+            'templateId': undefined,//相关课程搜索（同一个模板）
 
             'categoryValue': undefined,//筛选课程类目
             'locationValue': undefined,//筛选地址
             'circleValue': undefined,//筛选商圈
 
-            'institutionName': undefined,
+            'courseName': undefined,
             'status': EnumConfig.CourseStatus.onlined,
 
             //开课和结课日期
@@ -50,7 +50,7 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'order': undefined,
             'columnKey': undefined,
 
-            'enabled':1//等于1 会将templateId相同的课程只显示一个 在相关课程中调用需要设为undefined
+            'enabled': 1//等于1 会将templateId相同的课程只显示一个 在相关课程中调用需要设为undefined
         };
     },
 

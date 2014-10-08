@@ -396,6 +396,19 @@
 </script>
 
 <script type="text/template" id="tpl_search">
+    <div class="searchAll clearfix">
+        <div class="search_top">
+            <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
+            <a class="search_btn"></a>
+        </div>
+        <!--<div class="search_tip">-->
+        <!--<span style="color: #333">大家都在搜:</span>-->
+        <!--<span>四六级</span>-->
+        <!--<span>四六级</span>-->
+        <!--<span>四六级</span>-->
+        <!--<span>四六级</span>-->
+        <!--</div>-->
+    </div>
     <!--筛选框-->
     <div id="searchPanel" class="filter unselectable">
         <ul id="search_category" class="tab filterCriteria">
@@ -582,12 +595,11 @@
 </script>
 
 <script type="text/template" id="tpl_SearchCourse">
-    <div class="frontBanner">
-    </div>
-    <div id="searchAll" class="clearfix">
+    <div class="frontBanner"></div>
+    <div class="searchAll clearfix">
         <div class="search_top">
-            <input type="text" placeholder="搜索感兴趣的#课程#">
-            <a><img src="style/images/selfIcon.png" alt=""/></a>
+            <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
+            <a class="search_btn"></a>
         </div>
         <!--<div class="search_tip">-->
         <!--<span style="color: #333">大家都在搜:</span>-->
@@ -1291,15 +1303,12 @@
         <div class="header">支付订单</div>
         <div class="title">
             <h3>
-                TODO课程名-
-                <span style="color:#333333">TODO机构名</span>
+                <%= title %>-
+                <!--<span style="color:#333333">机构名</span>-->
             </h3>
         </div>
 
         <div class="row1" style="min-height:130px; padding: 10px 50px;" >
-            <div class="field">
-                有效日期：TODO 团购endTime
-            </div>
             <div class="field">
                 支付总额：
                 <b class="price">￥<%= groupBuyPrice %></b>
@@ -3380,7 +3389,7 @@
                     <!--<span>乘车路线：</span>-->
                     <%_.each(addressList,function(address){%>
                     <dl>
-                        <!--<dt>-- --</dt>-->
+                        <dt><%=address.realAddress%></dt>
                         <dd><%=address.detail%></dd>
                     </dl>
                     <%})%>

@@ -40,26 +40,24 @@ var HomePageView = Backbone.View.extend({
         this.$el.append(this.template);
 
         var htmlTuanpic = '';
-        for(var i=1; i<5; i++ ){
-            htmlTuanpic+='<ul class="pic_eve hidden">';
-            htmlTuanpic+='  <li>';
-            for(var j=1; j<4; j++ ){
-                htmlTuanpic +='      <div class="pic_eve1">';
-                htmlTuanpic +='          <a class="pic_main"><img src="style/images/list'+ i + '_'+ j +'.png"> </a>';
-                htmlTuanpic +='              <div class="pic_word">';
-                htmlTuanpic +='                  <span>已有<s>456</s>人报名</span>';
-                htmlTuanpic +='                  <strong>￥456</strong>';
-                htmlTuanpic +='              </div>';
-                htmlTuanpic +='          </div>';
+        for (var i = 1; i < 5; i++) {
+            htmlTuanpic += '<ul class="pic_eve hidden">';
+            htmlTuanpic += '  <li>';
+            for (var j = 1; j < 4; j++) {
+                htmlTuanpic += '      <div class="pic_eve1">';
+                htmlTuanpic += '          <a class="pic_main"><img src="style/images/list' + i + '_' + j + '.png"> </a>';
+                htmlTuanpic += '              <div class="pic_word">';
+                htmlTuanpic += '                  <span>已有<s>456</s>人报名</span>';
+                htmlTuanpic += '                  <strong>￥456</strong>';
+                htmlTuanpic += '              </div>';
+                htmlTuanpic += '          </div>';
             }
-            htmlTuanpic+='      </li>';
-            htmlTuanpic+=' </ul>';
+            htmlTuanpic += '      </li>';
+            htmlTuanpic += ' </ul>';
         }
         $("#lv1Button").after("<div id='tuanPic'></div>");
         $("#tuanPic").append(htmlTuanpic);
         $("#tuanPic .pic_eve:first").removeClass("hidden");
-
-
 
 
         app.generalManager.getCategories(this);
@@ -125,12 +123,12 @@ var HomePageView = Backbone.View.extend({
         $("#lv2Categories").children("div[data-parent=" + activeButton.parent().data("value") + "]").removeClass("hidden");
 
         /*//添加滚动图片
-        var htmlpic = '';
-        for(var i=0;i<4;i++)
-        {
+         var htmlpic = '';
+         for(var i=0;i<4;i++)
+         {
 
-        }
-        $("#lv1Button").after("<div id='tuanPic'></div>");*/
+         }
+         $("#lv1Button").after("<div id='tuanPic'></div>");*/
         //这里是为了声明页面加载完毕
         $('body').attr('pageRenderReady', '')
 
@@ -146,7 +144,7 @@ var HomePageView = Backbone.View.extend({
             $("#lv2Categories").children(".hidden").removeClass("hidden");
             $("#lv2Categories").children("div[data-parent!=" + category + "]").addClass("hidden");
             $("#tuanPic .pic_eve").addClass("hidden");
-            $("#tuanPic .pic_eve:eq("+ category +")").removeClass("hidden");
+            $("#tuanPic .pic_eve:eq(" + category + ")").removeClass("hidden");
         }).on("click", "li", function (e) {
             //一级目录click
             e.preventDefault();
@@ -168,17 +166,17 @@ var HomePageView = Backbone.View.extend({
             app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
         });
         //背景色改变
-        $(".lv2category").hover(function(){
-            $(this).find(".fleft").css("background-color","#47BC78");
-        },function(){
-            $(this).find(".fleft").css("background-color","");
+        $(".lv2category").hover(function () {
+            $(this).find(".fleft").css("background-color", "#47BC78");
+        }, function () {
+            $(this).find(".fleft").css("background-color", "");
         });
-        $(".lv2category .clearfix li").hover(function(){
-            $(this).find("a").css("color","#fff");
-            $(this).css({"background-color":"#47BC78","border-radius":"20px"});
-        },function(){
-            $(this).find("a").css("color","");
-            $(this).css({"background-color":""});
+        $(".lv2category .clearfix li").hover(function () {
+            $(this).find("a").css("color", "#fff");
+            $(this).css({"background-color": "#47BC78", "border-radius": "20px"});
+        }, function () {
+            $(this).find("a").css("color", "");
+            $(this).css({"background-color": ""});
         });
     },
     close: function () {
@@ -240,7 +238,7 @@ var HomePageView = Backbone.View.extend({
 //});
 
 
-//首页的自助选课和人工选课
+//首页的自助选课和人工选课 以及 课程搜索
 var SearchArea = Backbone.View.extend({
     el: '#searchArea',
     initialize: function () {
@@ -290,21 +288,29 @@ var SearchArea = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+        //首页的按照课程名搜索
+        this.$el.on('click', '.search_btn', function () {
+            var courseName = $('.search_input').val();
+            that.searchRepresentation = new CourseSearchRepresentation();
+            that.searchRepresentation.set("courseName", courseName);
+            app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
+        });
+
         /*切换*/
-       $("#searchArea .topBar li").on("click",function(){
-            var thisclass=$(this).attr("upclass");
-           $(".searchContent").addClass("hidden");
-           $("."+thisclass).removeClass("hidden");
-           $(".topBar li").removeClass("active");
-           $(this).addClass("active");
-       });
+        $("#searchArea .topBar li").on("click", function () {
+            var thisclass = $(this).attr("upclass");
+            $(".searchContent").addClass("hidden");
+            $("." + thisclass).removeClass("hidden");
+            $(".topBar li").removeClass("active");
+            $(this).addClass("active");
+        });
 
         /**/
-        $("#location_list span").on("click",function(){
+        $("#location_list span").on("click", function () {
             $("#location_list span").removeClass("active");
-            $("#location_list span").attr("id","");
+            $("#location_list span").attr("id", "");
             $(this).addClass("active");
-            $(this).attr("id","home_location_select");
+            $(this).attr("id", "home_location_select");
         });
 
         //自助选课 课程类目的选择弹出框

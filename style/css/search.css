@@ -250,7 +250,6 @@
     margin: auto;
     font-size: 16px;
     cursor: pointer;
-    font-family: "微软雅黑";
 }
 #searchCourse .location{ width: 317px; height: 161px; float: left; overflow: hidden;}
 #searchCourse .searchContent li .location span{ cursor: pointer; display: inline-block; width: auto; height: 38px; font-size: 12px; font-weight: normal; line-height: 38px; padding: 0 5px;}
@@ -260,10 +259,51 @@
 #searchCourse .adv{ width: 536px; height: 186px; display: block; float: right; margin-bottom: 19px;}
 #searchCourse .adv img{ width: 536px; height: 186px;}
 
-#searchAll{ width: 1000px; margin: auto; margin-top: 10px;}
-#searchAll .search_top{ width: 1000px; height: 65px; background-color: #ededed; border-radius: 10px; overflow: hidden;}
-#searchAll .search_top input{ width: 880px; height: 25px; line-height: 35px; font-size: 14px; padding: 20px 0 20px 30px; border: 0; outline: 0; background-color: #ededed;}
-#searchAll .search_top a{width: 60px; height: 45px; background-color: #ff6a6a; padding: 20px 0 0 30px; float: right;}
-#searchAll .search_tip{ width: 1000px; height: 45px;}
-#searchAll .search_tip span{ line-height: 45px; float: left; color: #47BC78; font-size: 14px; cursor: pointer; margin-left: 10px;}
+/*课程名搜索*/
+.searchAll {
+    width: 1000px;
+    margin: auto;
+    margin-bottom: 25px;
+}
+
+.searchAll .search_top {
+    width: 1000px;
+    height: 65px;
+    background-color: #ededed;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.searchAll .search_top input {
+    width: 860px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+    padding: 20px 0 20px 30px;
+    border: 0;
+    outline: 0;
+    background-color: #ededed;
+}
+
+.searchAll .search_top a.search_btn {
+    width: 90px;
+    height: 65px;
+    text-align: center;
+    background: url(../images/selfIcon.png) center center no-repeat #ff6a6a;
+    float: right;
+}
+
+.searchAll .search_tip {
+    width: 1000px;
+    height: 45px;
+}
+
+.searchAll .search_tip span {
+    line-height: 45px;
+    float: left;
+    color: #47BC78;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 10px;
+}
 
