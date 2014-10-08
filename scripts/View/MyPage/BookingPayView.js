@@ -60,11 +60,11 @@ var BookingPayView = Backbone.View.extend({
                 that.overlayBooking.render();
             }
             //todo 进入团购订单页面
-            that.$el.on("click", '.btnfalse', function () {
+            $('.btnfalse').on('click', function () {
                 app.navigate("mypage/tbooking/" + that.bookingId, true);
                 $("#overlay_booking").remove();
             });
-            that.$el.on("click", '.btnsuccess', function () {
+            $('.btnsuccess').on('click', function () {
                 app.navigate("mypage/tbooking/" + that.bookingId, true);
                 $("#overlay_booking").remove();
             });
@@ -78,6 +78,8 @@ var BookingPayView = Backbone.View.extend({
     },
     close: function () {
         if (!this.isClosed) {
+            $('.btnfalse').off();
+            $('.btnsuccess').off();
             this.$el.off();
             this.$el.empty();
             this.isClosed = true;
