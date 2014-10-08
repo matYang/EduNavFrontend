@@ -127,12 +127,12 @@ var Course = Backbone.Model.extend({
 
                 data.startDate = Utilities.castFromAPIFormat(data.startDate);
                 data.finishDate = Utilities.castFromAPIFormat(data.finishDate);//开课日期
-                data.courseHourNum = Utilities.parseNum(data.courseHourNum, 10);//课时总数
-                data.courseHourLength = Utilities.parseNum(data.courseHourLength, 10);//课时长度
-                data.startTime1 = Utilities.parseNum(data.startTime1, 10);
-                data.finishTime1 = Utilities.parseNum(data.finishTime1, 10);
-                data.startTime2 = Utilities.parseNum(data.startTime2, 10);
-                data.finishTime2 = Utilities.parseNum(data.finishTime2, 10);//上课时间
+                data.courseHourNum = Utilities.parseNum(data.courseHourNum);//课时总数
+                data.courseHourLength = Utilities.parseNum(data.courseHourLength);//课时长度
+                data.startTime1 = Utilities.parseNum(data.startTime1);
+                data.finishTime1 = Utilities.parseNum(data.finishTime1);
+                data.startTime2 = Utilities.parseNum(data.startTime2);
+                data.finishTime2 = Utilities.parseNum(data.finishTime2);//上课时间
 
                 data.schooltimeWeek = Utilities.toSchoolTimeList(data.schooltimeWeek, EnumConfig.schooltimeWeek);//周末什么的
                 data.schooltimeDay = Utilities.toSchoolTimeList(data.schooltimeDay, EnumConfig.schooltimeDay);//白天什么的

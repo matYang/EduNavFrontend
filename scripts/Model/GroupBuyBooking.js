@@ -20,7 +20,7 @@ var GroupBuyBooking = Backbone.Model.extend({
         if (typeof data !== 'undefined') {
             data.id = parseInt(data.id, 10);
             data.groupBuyActivityId = parseInt(data.groupBuyActivityId, 10);
-            data.groupBuyPrice = Utilities.parseNum(data.groupBuyPrice, 10);
+            data.groupBuyPrice = Utilities.parseNum(data.groupBuyPrice);
             data.userId = parseInt(data.userId, 10);
             data.status = parseInt(data.status, 10);
             data.createTime = Utilities.castFromAPIFormat(data.createTime);

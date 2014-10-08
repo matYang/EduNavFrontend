@@ -31,7 +31,7 @@ var Account = Backbone.Model.extend({
             data.balance = Utilities.parseNum(data.balance);
 
             data.enabled = Utilities.parseNum(data.enabled);
-            data.deleted = Utilities.parseNum(data.deleted, 10);
+            data.deleted = Utilities.parseNum(data.deleted);
 
             data.balance = parseFloat(data.balance);
             data.balance = isNaN(data.balance)?0:data.balance;
