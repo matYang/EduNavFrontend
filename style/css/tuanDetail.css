@@ -15,7 +15,7 @@
 #tuanDetail .pic .pic_list a{
     width: 98px; height: 60px;
     display: block;
-    margin-right: 25px;
+    margin-right: 12px;
     float: left;
     position: relative;
 }
@@ -85,7 +85,7 @@
     background-color: #fff;
     float: left;
     text-align: center;
-    font-size: 14px;
+    font-size: 20px;
     cursor: pointer;
     color: #333;
 }
@@ -93,19 +93,26 @@
 #tuanDetail .tuanMain .tuan_sorter_bottom{ width: 730px; height: 2px; background-color: #28B094; display: block;}
 #tuanDetail .tuanMain .content_inner{}
 #tuan_content dl{ width: 710px;}
-#tuan_content dd{ width: 680px; border-bottom: 1px solid #ccc; margin-left: 20px; line-height: 30px; height: auto;}
-#tuan_content dt{height: 30px; margin-top: 10px; line-height: 30px; font-size: 16px; font-weight: bold;}
+#tuan_content dd{ width: 680px; border-bottom: 1px solid #e4e4e4; margin-left: 20px; line-height: 30px; height: auto;}
+#tuan_content dt{height: 30px; margin-top: 10px; line-height: 30px; font-size: 15px; font-weight: bold; color: #000;}
 
 #tuan_content #tuan_content_1 dd p{ min-height: 40px; height: auto; line-height: 40px;}
-#tuan_content #tuan_content_1 dd p label{ float: left; margin-right: 15px;}
-#tuan_content #tuan_content_1 dd p span{ width: 600px; display: block; float: left; padding: 5px 0; line-height: 30px;}
+#tuan_content #tuan_content_1 dd p label{ float: left; margin-right: 15px; color: #000;}
+#tuan_content #tuan_content_1 dd p span{
+    width: 600px;
+    display: block;
+    float: left;
+    padding: 5px 0;
+    line-height: 30px;
+    font-size: 12px;
+}
 
 #tuan_content #tuan_content_2 dd a{
     width: 140px; height: 140px;
     border-radius: 70px;
     display: block;
     float: left;
-    margin:0 30px 10px 0;
+    margin:10px 30px 20px 0;
     background-image: url("../images/spec_service_01.png");
     background-size: 100% 100%;
 }
@@ -126,15 +133,15 @@
     overflow: hidden;
 }
 #tuan_content #tuan_content_3 .serviceli{
-    width: 120px; height: 160px; float: left;  margin: 0 10px 10px 0;
+    width: 120px; height: 160px; float: left;  margin: 0 15px 10px 0;
 }
 #tuan_content_3 .serviceli span{
     width: 120px; height: 30px;
     line-height: 40px;
     text-align: center;
     display: block;
-    color: #47BC78;
-    font-size: 12px;
+    color: #128d56;
+    font-size: 14px;
     float: left;
 }
 #tuan_content .warm_tip{
@@ -321,7 +328,7 @@
 
 /*教师详情*/
 #teacherInfo{ width: 740px; height: 240px; background-color: #28B094; margin: 300px auto; position: relative;}
-#teacherInfo .teacherInfoA{ width: 731px; height: 240px; background-color: #fff; float: right;}
+#teacherInfo .teacherInfoA{ width: 731px; min-height: 200px; background-color: #fff; float: right;}
 #teacherInfo a{ width: 150px; height: 150px; margin: 45px 30px; border-radius: 75px; display: block; float: left; }
 #teacherInfo .teacherInfoA a img{ width: 150px; height: 150px; border-radius: 75px;}
 #teacherInfo .teacher_info{ width: 500px; height: 214px; float: left; padding: 13px 2px;}

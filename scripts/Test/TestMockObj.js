@@ -351,7 +351,7 @@ testMockObj = {
             }
         ]
     },
-    testBusiness:{
+    testCircle:{
         "errorCode":0,"start":0,"count":0,"total":0,"data":[
             {"errorCode":0,"name":"仙林大学城","value":"00","children":[],"id":0,"lastModifyTime":1405056802000,"createTime":1405056805000},
             {"errorCode":0,"name":"江宁大学城","value":"01","children":[],"id":2,"lastModifyTime":1405398561000,"createTime":1405398566000},

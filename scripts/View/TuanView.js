@@ -3,7 +3,7 @@ var TuanView = Backbone.View.extend({
         template: _.template(tpl.get("tuan")),
         initialize: function () {
             this.isClosed = false;
-            _.bindAll(this, "render","renderBusiness", "bindEvents", "close");
+            _.bindAll(this, "render","renderCircle", "bindEvents", "close");
             app.viewRegistration.register(this);
             //从本地初始化搜索条件
             this.searchRepresentation = app.storage.getSearchRepresentationCache("tuan");
@@ -12,7 +12,7 @@ var TuanView = Backbone.View.extend({
         },
         render: function () {
 
-            //var business = app.generalManager.fetchBusiness();
+            //var circle = app.generalManager.fetchCircle();
             this.$el.html(this.template());
             if (!this.tuanBannerView) {
                 this.tuanBannerView = new TuanBannerView();
@@ -24,19 +24,19 @@ var TuanView = Backbone.View.extend({
             } else if (this.tuanResultView.isClosed) {
                 this.tuanResultView.render();
             }
-            app.generalManager.getBusiness(this);//调用renderBusiness
+            app.generalManager.getCircle(this);//调用renderCircle
             this.bindEvents();
 
         },
-        renderBusiness:function(Business){
-            var business = Business;
-            var businessHtml = '';
-            for(var i = 0;i<business.length;i++)
+        renderCircle:function(Circle){
+            var circle = Circle;
+            var circleHtml = '';
+            for(var i = 0;i<circle.length;i++)
             {
-                businessHtml += '<span data-value="'+ business[i].value +'">'+ business[i].name +'</span>';
+                circleHtml += '<span data-value="'+ circle[i].value +'">'+ circle[i].name +'</span>';
             }
-            $("#business-category").html(businessHtml);
-            $("#business-category").find("span:eq(0)").addClass("active");
+            $("#circle-category").html(circleHtml);
+            $("#circle-category").find("span:eq(0)").addClass("active");
         },
 
         bindEvents: function () {
