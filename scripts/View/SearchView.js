@@ -65,14 +65,15 @@ var SearchView = Backbone.View.extend({
     /*加载上课地点*/
     renderLocations: function (locations) {
         var self = this;
+        //加载行政区/商圈//todo 地区和商圈的Value
+        var loc = [{"value":"location","name":"行政区"},{"value":"circle","name":"商圈"}];
         if (!this.isClosed) {
             var buf = [], chbuf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
             this.locations = locations;
             // for (var prov in locations) {
             //     var city = locations[prov];
             //     for (var attr in city) {
-            //加载行政区/商圈
-            var loc = [{"value":"00","name":"行政区"},{"value":"01","name":"商圈"}];
+
             for (i = 0; i < loc.length; i++) {
                 buf[i] = this.subCategoryTemplate({value: loc[i].value, name: loc[i].name});
             }
@@ -80,7 +81,7 @@ var SearchView = Backbone.View.extend({
             var districts = locations[0].children[0].children, district;
             for (i = 0; i < districts.length; i++) {
                 chbuf[i] = this.subSubCategoryTemplate({value: districts[i].value, name: districts[i].name});
-                var tt = this.subSubCategoryContainerTemplate({value: districts[i].value, entries: chbuf.join("")});
+                var tt = this.subSubCategoryContainerTemplate({value: "location", entries: chbuf.join("")});
             }
             buf.push(tt);
             var $dist = $("#filter_district");
@@ -90,25 +91,50 @@ var SearchView = Backbone.View.extend({
     },
     /*加载商圈*/
     renderCircle:function(Circle){
+        var self = this;
         var bubuf=[], circle = Circle;
         for (i = 0; i < circle.length; i++) {
             bubuf[i] = this.subSubCategoryTemplate({value: circle[i].value, name: circle[i].name});
-            var tb = this.subSubCategoryContainerTemplate({value: circle[i].value, entries: bubuf.join("")});
+            var tb = this.subSubCategoryContainerTemplate({value: "circle", entries: bubuf.join("")});
         }
         $("#filter_district").append(tb);
+        this.showLocation();
     },
     /*渲染地址*/
     showLocation:function(){
         var self = this;
+        var locationValue = this.searchRepresentation.get("locationValue");
+        var circleValue = this.searchRepresentation.get("circleValue");
         var $dist = $("#filter_district");
         this.titleObj.city = "南京";
-        if (self.locationValue) {
-            $dist.find("span[data-value=noreq]").removeClass("active");
-            $dist.find("span[data-value=" + this.searchRepresentation.get("locationValue") + "]").addClass("active");
-            text = $dist.find("span[data-value=" + self.locationValue + "]").html();
-            $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: self.locationValue, text: text}));
-        } else {
+        if (!locationValue && !circleValue) {
             $dist.find("span[data-value=noreq]").addClass("active");
+        } else if(locationValue == "location" || circleValue == "circle"){
+            $dist.find("span[data-value=noreq]").removeClass("active");
+            //如果原本选择的是行政区
+            if(locationValue == "location"){
+                $dist.find("span[data-value="+ locationValue +"]").addClass("active");
+                var text = $dist.find("span[data-value=" + locationValue + "]").html();
+                $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
+                $dist.find("p[data-parentvalue=" + locationValue + "]").removeClass("hidden");
+            }else{//如果原本选择的是商圈
+                $dist.find("span[data-value="+ circleValue +"]").addClass("active");
+                var text = $dist.find("span[data-value=" + circleValue + "]").html();
+                $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
+                $dist.find("p[data-parentvalue=" + circleValue + "]").removeClass("hidden");
+            }
+        }else if(locationValue){//如果原本选择的是行政区下的小标题
+            $dist.find("span[data-value=noreq]").removeClass("active");
+            $dist.find("span[data-value="+ locationValue +"]").addClass("active");
+            $dist.find("p[data-parentvalue='location']").removeClass("hidden");
+            var text = $dist.find("span[data-value=" + locationValue + "]").html();
+            $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
+        }else{//如果原本选择的是商圈下的小标题
+            $dist.find("span[data-value=noreq]").removeClass("active");
+            $dist.find("span[data-value="+ circleValue +"]").addClass("active");
+            $dist.find("p[data-parentvalue='circle']").removeClass("hidden");
+            var text = $dist.find("span[data-value=" + circleValue + "]").html();
+            $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
         }
 
     },
@@ -177,16 +203,6 @@ var SearchView = Backbone.View.extend({
             text = $filter_sub.find("span[data-value=" + categoryValue + "]").html();
             $searchReqs.append(this.reqTemplate({criteria: "subCategory", dataValue: categoryValue, text: text}));
         }
-    },
-    //过滤 上课地点
-    syncLocation: function () {
-        var locationValue = this.searchRepresentation.get("locationValue");
-        if (locationValue) {
-            $("#filter_district").find("span[data-value=" + locationValue + "]").addClass("active").siblings().removeClass("active");
-        } else {
-            $("#filter_district").find("span[data-value=noreq]").addClass("active").siblings().removeClass("active");
-        }
-
     },
     //过滤 开课日期 上课时间（开始和结束） 班级类型 课程费用（开始和结束） 是否返现
     syncFilters: function () {
@@ -324,13 +340,19 @@ var SearchView = Backbone.View.extend({
             e.preventDefault();
             var cri = $(e.target).data("cri");
             that.filterResult($("#filter_" + cri), $("#filter_" + cri).find("[data-value=noreq]").removeClass("active"));
+            $("#filter_" + cri).find("p").addClass("hidden");
         });
 
         //行政区和商圈
         $("#filter_district").find(".subCategory").on("click",function(){
             var v= $(this).attr("data-value");
+            if( v == "location"){
+                var index = 0;
+            }else if( v == "circle"){
+                var index = 1;
+            }
             $("#filter_district").find("p").addClass("hidden");
-            $("#filter_district").find("p:eq("+ v +")").removeClass("hidden");
+            $("#filter_district").find("p:eq("+ index +")").removeClass("hidden");
         });
         $("#filter_district").find("span[data-value=noreq]").on("click",function(){
             $("#filter_district").find("p").addClass("hidden");
@@ -452,17 +474,37 @@ var SearchView = Backbone.View.extend({
             dataValue = $target.data("value");
             if (dataValue === "noreq") {
                 this.searchRepresentation.set("locationValue", undefined);
+                this.searchRepresentation.set("circleValue", undefined);
                 if (this.compareWidgetView.map) {
                     this.compareWidgetView.map.setCenter(this.locations[0].name);
                     this.compareWidgetView.map.map.setZoom(9);
                 }
-            } else {
+            } else if(dataValue === "location"){//判断是不是行政区
                 this.searchRepresentation.set("locationValue", $target.data("value"));
+                this.searchRepresentation.set("circleValue", undefined);
                 this.titleObj.district = $target.html();
                 if (this.compareWidgetView.map) {
                     this.compareWidgetView.map.setCenter($target.html());
                     this.compareWidgetView.map.map.setZoom(11);
                 }
+            }else if(dataValue === "circle"){//判断是不是商圈
+                this.searchRepresentation.set("circleValue", $target.data("value"));
+                this.searchRepresentation.set("locationValue", undefined);
+                this.titleObj.district = $target.html();
+                if (this.compareWidgetView.map) {
+                    this.compareWidgetView.map.setCenter($target.html());
+                    this.compareWidgetView.map.map.setZoom(13);
+                }
+            }else{
+                //判断是商圈下的还是行政区
+                if($target.parent().data("parentvalue") === "location"){
+                    this.searchRepresentation.set("locationValue", dataValue);
+                    this.searchRepresentation.set("circleValue", undefined);
+                }else{
+                    this.searchRepresentation.set("circleValue", dataValue);
+                    this.searchRepresentation.set("locationValue", undefined);
+                }
+
             }
         }
         //上课时间 start end
@@ -563,6 +605,7 @@ var SearchView = Backbone.View.extend({
     },
     close: function () {
         if (!this.isClosed) {
+            $("body").css("background-color", "");
             //removing all event handlers
             if (this.compareWidgetView) {
                 this.compareWidgetView.close();

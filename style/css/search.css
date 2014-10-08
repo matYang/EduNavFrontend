@@ -2,69 +2,100 @@
 /* CSS Document */
 
 /*筛选框*/
-#searchPanel{ border:1px solid #cccccc;}
+#searchPanel{}
 
-#searchPanel .filter_content{ padding:10px 15px; font-size:12px; color:#333333;}
+#searchPanel .filter_content{ padding:10px 15px; font-size:12px; color:#333333; background-color: #fff;}
 
-#searchPanel .filterCriteria{padding:12px 0; border-bottom:1px dotted #ccc;}
+
+#searchPanel .filterCriteria{padding:12px 0;}
+#searchPanel .filterCriteriadotted{ border-bottom:1px dotted #ccc;}
 #searchPanel #priceFilter {border:none;}
 
-#searchPanel .filterCriteria label{ font-weight:bold; color:#666666;}
+#searchPanel .filterCriteria label{ font-weight:bold; color:#939393;}
 #searchPanel .filterCriteria label s{margin:0 13px;}
 
-#searchPanel .filterCriteria span{ padding:3px 8px; cursor:pointer; display:inline-block;}
-#searchPanel .filterCriteria span.active{ background:#128d56; color:#fff;}
+#searchPanel .filterCriteria span{ padding:3px 8px; cursor:pointer; display:inline-block; color: #444;}
+#searchPanel .filterCriteria span.active{ background:#28B094; color:#fff;}
+#searchPanel .filterCriteria p span.active{ background:#47BC78; color:#fff; border-radius: 11px;}
 
-#searchPanel #filter_subCategory p{ margin:10px 0 0 68px; border:1px solid #ccc; padding:10px; background: none repeat scroll 0% 0% #E7F3EE;}
-#searchPanel #filter_subCategory p span{padding:3px 8px;}
+#searchPanel .tab{padding: 0; border-bottom: 2px solid #28B094; margin-bottom: 4px;}
+#searchPanel .tab li{
+    width: 248px;
+    height: 50px;
+    padding: 0;
+    text-align: center;
+    border: 0;
+    margin:0 2px 0 0;
+    background-color: #fff;
+    font-size: 18px;
+    line-height: 50px;
+}
+#searchPanel .tab li.active{ background-color: #28B094; color: #fff;}
+#search_category{ width: 1000px; height: 50px;}
 
-#searchPanel #filter_district p{ margin:10px 0 0 68px; border:1px solid #ccc; padding:10px; background: none repeat scroll 0% 0% #E7F3EE;}
-#searchPanel #filter_district p span{padding:3px 8px;}
+
+#searchPanel #filter_subCategory p{ margin:0 0 0 56px; padding:5px 10px 0 10px;}
+#searchPanel #filter_subCategory p span{padding:3px 8px; margin-top: 5px;}
+
+#searchPanel #filter_district p{ margin:0 0 0 56px; padding:5px 10px 0 10px;}
+#searchPanel #filter_district p span{padding:3px 8px; margin-top: 5px;}
 /*搜索结果*/
-#searchReqs{ line-height:30px; font-size:14px;}/*搜素条件*/
-#searchReqs a{padding:4px 20px 4px 5px; margin-left:10px; border:1px solid #88c6aa; color:#88c6aa;  font-size:12px; background:url(../images/close1.png) no-repeat right top;}
-#searchReqs a:hover{ border:1px solid #128d56; color:#128d56; background:url(../images/close2.png) no-repeat right top; text-decoration:none;}
+#searchReqs{ line-height:30px; font-size:14px; background-color: #fff; padding: 10px; color: #939393;}/*搜素条件*/
+#searchReqs a{padding:3px 27px 3px 5px; margin-left:10px; border:1px solid #28B094; color:#28B094;  font-size:12px; background:url(../images/close1.png) no-repeat right top;}
+#searchReqs a:hover{ border:1px solid #28B094; color:#28B094; background:url(../images/close1.png) no-repeat right top; text-decoration:none;}
 /*搜索结果页面的广告图样式*/
 .search_result .bannerImg{
     width: 730px;
     height: 107px;
     cursor: pointer;}
-.search_result #searchResultSorter{border:1px solid #dddddd; border-top:2px solid #128d56; background:#eeeeee;}/*选择显示方式*/
+.search_result #searchResultSorter{ background:#79B0A5; margin-bottom: -4px;}/*选择显示方式*/
 .search_result .sorter{float:left; height:35px; line-height:36px; margin-left:15px; color:#333; font-size:14px;}
-.search_result .sorter li{float:left; padding:0 25px; text-align:center; cursor: pointer; width: 70px;}
-.search_result .sorter li.active{ background:url(../images/active.png) no-repeat center; color:#fff;}
+.search_result .sorter li{float:left; padding:0 25px; text-align:center; cursor: pointer; width: 70px; color:#fff;}
+/*.search_result .sorter li.active{ background:url(../images/active.png) no-repeat center; color:#fff;}*/
 .search_result .sorter li.line{width:1px; height:12px; padding:0; background:#ccc; margin:10px 8px 0;}
 .search_result #searchResultSorter .fright{ margin:7px 15px 0 0; color:#666; font-size:12px;}
 .search_result #searchResultSorter .fright input{ vertical-align:-2px;}
 
 .search_result .no_data{ margin-top:100px; margin-left:140px; padding-left:60px; background:url(../images/no_data.png) no-repeat left center;}
 .search_result .no_data div{ padding:12px 0 12px; font-size:24px;color:#128d56;}
+
+#searchResultDisplayPanel{ background-color: #fff;}
+
 .search_result .searchResultEntry{ margin:5px 0; border:1px solid #dddddd; min-height:105px; padding:15px 0 15px 15px; font-size:12px;}
-.search_result .pic{position:relative; float:left; width:100px; height:100px; border:1px solid #ccc; margin-right:10px;}
+.search_result .pic{position:relative; float:left; width:137px; height:137px; border:1px solid #ccc; margin-right:10px;}
 .search_result .pic span{ display:block; position:absolute; top:78px; left:0; width:100%; text-align:center; color:#fff; height:22px; line-height:22px; background-color:rgba(0,0,0,.5); filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#77000000',endColorstr='#77000000');}
 
 .search_result .col1{float:left; width:325px; padding-right:5px; line-height:24px; border-right:1px solid #cccccc;}
-.search_result .col1 .title{font-size:14px; font-weight:bold; margin-bottom:7px;}
-.search_result .col1 .desc{width: 325px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.search_result .col1 .title{font-size:18px; font-weight:bold; color: #060606;}
+.search_result .col1 .title a{ color: #060606;}
+.search_result .col1 .title a:hover{ color: #060606;}
+.search_result .col1 .desc{width: 325px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; color: #626161; margin-bottom: 15px;}
 .search_result .col1 .desc s{margin:0 12px;}
+.search_result .col1 .descSpec{color:#060606; margin: 5px 0 24px 0;}
+.search_result .col1 .desc .locationIcon{ width: 16px; height: 20px; display: inline-block; background-image: url("../images/location.jpg"); margin: 0 6px -5px 0;}
+.search_result .col1 .desc .heartIcon{ width: 16px; height: 14px; display: inline-block; background-image: url("../images/heart.png"); margin: 0 8px -3px 0;}
 
-.search_result .col2{float:left; position:relative; width:128px; height:105px; text-align:center; border-right:1px solid #eee; font-size:14px;}
-.search_result .col2 .price{font-size:24px; color:#ff5500;}
+.search_result .col2{float:left; position:relative; width:222px; height:150px; text-align:center; border-right:1px solid #eee; font-size:14px;}
+.search_result .col2 .price{min-width: 90px; font-size:20px; color:#ff6A6A; float: left; padding: 0 10px 10px 20px;}
 .search_result .col2 .price .sign{font-size:14px; color:#333333;}
 .search_result .col2 .cashback{margin-top:5px;}
 .search_result .col2 .original_cost{ font-size:12px;margin-top: 2px;}
 .search_result .col2 .original_cost span{ text-decoration:line-through; }
+.search_result .col2 .fan{ float: left; }
+.search_result .col3{ width: 210px; height: 36px; float: left; margin: 0 0 0 20px; padding: 0;}
+.search_result .col3 .btn_g{ width: 96px; height: 36px; background-color: #ff6a6a; float: left; margin-right: 10px;}
+.search_result .col3 .btn_o{ width: 96px; height: 36px; background-color: #47bc78; float: left;}
 
-.search_result .col3{float:left; width:140px; height:105px; text-align:center;}
+/*.search_result .col3{}
 .search_result .col3  input.btn_g,
 .search_result .col3  input.btn_o,
 .search_result .col3  input.btn_gray{width:100px;}
 
-.search_result .col3 .viewDetail{ margin-top:20px; font-weight:bold; color:#128d56;}
+.search_result .col3 .viewDetail{ margin-top:20px; font-weight:bold; color:#128d56;}*/
 
 /*对比框*/
-#CompareWidgetContainer{border:1px solid #cccccc;border-top:2px solid #128d56; }
-#CompareWidgetContainer .compareTitle{ height:35px; line-height:35px; color:#128d56; padding-left:15px; font-weight:bold; font-size:14px; background:#eeeeee; border-bottom:1px solid #cccccc;}
+#CompareWidgetContainer{ background-color: #fff;}
+#CompareWidgetContainer .compareTitle{ height:35px; line-height:35px; padding-left:15px; font-weight:bold; font-size:14px; background:#79B0A5; color: #fff;}
 #CompareWidgetContainer #compareItems{}
 #CompareWidgetContainer .compareEntry{ position:relative; padding:15px 35px 10px 10px; border-bottom:1px dotted #ccc; font-size:12px;}
 #CompareWidgetContainer .compareEntry:hover{background:#e2ece7;}
@@ -74,10 +105,10 @@
 #CompareWidgetContainer .compareEntry .remove{ position:absolute; right:10px; top:15px; width:20px; height:20px; background:url(../images/close3.png) no-repeat; cursor:pointer;}
 #CompareWidgetContainer .compareEntry .remove:hover{ background:url(../images/close3_hover.png) no-repeat;}
 #CompareWidgetContainer .btns{ text-align:center; margin:10px auto;}
-#CompareWidgetContainer #compare{width:215px; height:32px; border:none; font-size:14px; color:#fff; cursor:pointer; background:url(../images/compare.png) no-repeat;}
+#CompareWidgetContainer #compare{width:215px; height:32px; border:none; font-size:14px; color:#fff; cursor:pointer; background-color: #28B094;}
 
 /*百度地图自定义图标*/
-#mainMap{ position:relative; border:1px solid #ccc; width:248px; height:338px; z-index:50;}
+#mainMap{ position:relative; border:1px solid #ccc; width:248px; height:338px; z-index:50;background-color: #fff;}
 #mainMap .map_icon{ position:absolute; cursor:pointer; z-index:52}
 #mainMap .map_icon:hover{z-index:54}
 #mainMap .map_icon span{display:inline-block; height:30px; padding-left:28px; height:30px; line-height:24px; background:url(../images/map_icon.png) no-repeat 0 -31px;font-size:12px; color:#ea5514;}
@@ -85,7 +116,7 @@
 #mainMap .map_icon:hover span{display:inline-block; height:30px; padding-left:28px; height:30px; line-height:24px; background:url(../images/map_icon.png) no-repeat 0 0;font-size:12px;color:#15ae67;}
 #mainMap .map_icon:hover em{ display:inline-block; position:relative; top:6px; width:10px; height:20px; background:url(../images/map_icon.png) no-repeat -191px -2px;}
 
-#searchWidgets.stickyHeader{position:fixed;top:5px;margin-left:750px;}
+#searchWidgets.stickyHeader{position:fixed;top:5px;margin-left:750px;background-color: #fff;}
 #searchWidgets.stickyHeader #compare {margin-left:-1px;}
 #search_subCategory label {margin-right: 3px;}
 

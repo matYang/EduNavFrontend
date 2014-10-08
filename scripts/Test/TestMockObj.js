@@ -362,7 +362,7 @@ testMockObj = {
 
 testMockObj.testGroupBuyBookings.add([
    testMockObj.testGroupBuyBooking1
-]),
+]);
 
 testMockObj.testComments.add([
     testMockObj.testComment1,
