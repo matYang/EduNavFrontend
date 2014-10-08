@@ -3390,31 +3390,15 @@
                     <dl id="tuan_content_1" class="content_inner">
                         <dt><i class="dticon"></i>课程详情</dt>
                         <dd class="clearfix">
-                            <p class="clearfix">
-                                <label>上课日期</label>
-                                <span>
-                                    <%if(course.startUponArrival===0){%>
-                                    <%= course.regPhone %>
-                                    <%}else{%>
-                                    <%= course.startDate %>
-                                    <%if(course.finishDate){%>
-                                    - <%= course.finishDate %>
-                                    <%}%>
-                                    <%}%>
-                                </span>
-                            </p>
                             <% if (course.startTime1||course.schooltimeWeek) { %>
                             <p class="clearfix">
                                 <label>上课时间</label>
-                                <span>
-                                    <%if(course.schooltimeWeek){%>
-                                    <%=course.schooltimeWeek%>&nbsp;（<%=course.schooltimeDay%>）
+
+                            <div>
+                                <%if(course.contact){%>
+                                <%=course.contact%>
                                     <%}%>
-                                    <%if(course.startTime1){%>
-                                    <%=course.startTime1%>-<%=course.finishTime1%>
-                                    <%if(course.startTime2){%>, <%=course.startTime2%> - <%=course.finishTime2%><%}%>
-                                    <%}%>
-                                </span>
+                            </div>
                             </p>
                             <%}%>
                             <% if (course.qualityAssurance) { %>
@@ -3481,7 +3465,6 @@
                             <% for (var i =0; i < course.teacherList.length; i++) { %>
                             <a class="teacher_pic" style="background-image: url('<%= course.teacherList[i].imgUrl %>')" data-id="<%=i%>"><span><%= course.teacherList[i].intro%></span></a>
                             <% } %>
-
                         </dd>
                     </dl>
                     <dl id="tuan_content_3" class="content_inner">
@@ -3584,13 +3567,10 @@
                             <div id="tuanDetailCommentsContainer">
 
                             </div>
-
-
                         </dd>
                     </dl>
                 </div>
             </div>
-
         </div>
     </div>
 </script>
