@@ -4,13 +4,12 @@
 .topBar{
     position: relative;z-index: 999;
     left: 0;right: 0;
-    height:75px;
+    height: 60px;
     background: #282C37;
 }
 .topBar .topBar-inner{
     width:1100px;
     margin:0 auto;
-    background: #282C37;
 }
 
 #logo{float:left; width:155px; height:75px; background:url(../images/logo.png) no-repeat; text-indent:-9999px;}
@@ -101,5 +100,6 @@
     min-width: 1000px;
     height: 400px;
     background: url("../images/front_banner.png") center center no-repeat #282C37;
+    margin-top: -15px;
     margin-bottom: 20px;
 }
