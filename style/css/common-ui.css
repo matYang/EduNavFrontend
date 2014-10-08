@@ -368,12 +368,30 @@ textarea{resize: none;}
 
 .bg-primary{ background-color: #128d56; }
 .bg-warning{ background-color: #f7a501; }
-.bg-error{ background-color: #FF5500; }
 
-.text-primary,a.text-primary{color: #128d56; }
-.text-warning,a.text-warning{color: #f7a501; }
-.text-error,a.text-error{color: #FF5500; }
-.text-light,a.text-light {color: #aaaaaa; }
+.bg-error {
+    background-color: #FB6D6D;
+}
+
+.ft-default, a.ft-default {
+    color: #4CBA7A;
+}
+
+.ft-primary, a.ft-primary {
+    color: #128d56;
+}
+
+.ft-warning, a.ft-warning {
+    color: #f7a501;
+}
+
+.ft-error, a.ft-error {
+    color: #FB6D6D;
+}
+
+.ft-light, a.ft-light {
+    color: #aaaaaa;
+}
 
 /*带有下点点的字体因其重要性字体会调大*/
 .dotted-line{
