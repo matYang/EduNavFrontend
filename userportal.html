@@ -396,11 +396,11 @@
 </script>
 
 <script type="text/template" id="tpl_search">
-    <div class="searchAll clearfix">
-        <div class="search_top">
-            <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
-            <a class="search_btn"></a>
-        </div>
+    <!--<div class="searchAll clearfix">-->
+    <!--<div class="search_top">-->
+    <!--<input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">-->
+    <!--<a class="search_btn"></a>-->
+    <!--</div>-->
         <!--<div class="search_tip">-->
         <!--<span style="color: #333">大家都在搜:</span>-->
         <!--<span>四六级</span>-->
@@ -408,7 +408,7 @@
         <!--<span>四六级</span>-->
         <!--<span>四六级</span>-->
         <!--</div>-->
-    </div>
+    <!--</div>-->
     <!--筛选框-->
     <div id="searchPanel" class="filter unselectable">
         <ul id="search_category" class="tab filterCriteria">
@@ -596,11 +596,11 @@
 
 <script type="text/template" id="tpl_SearchCourse">
     <div class="frontBanner"></div>
-    <div class="searchAll clearfix">
-        <div class="search_top">
-            <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
-            <a class="search_btn"></a>
-        </div>
+    <!--<div class="searchAll clearfix">-->
+    <!--<div class="search_top">-->
+    <!--<input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">-->
+    <!--<a class="search_btn"></a>-->
+    <!--</div>-->
         <!--<div class="search_tip">-->
         <!--<span style="color: #333">大家都在搜:</span>-->
         <!--<span>四六级</span>-->
@@ -608,7 +608,7 @@
         <!--<span>四六级</span>-->
         <!--<span>四六级</span>-->
         <!--</div>-->
-    </div>
+    <!--</div>-->
 
     <div id="searchCourse" class="clearfix">
         <div class="searchCourse">
@@ -3250,7 +3250,9 @@
 <script type="text/templates" id="tpl_tuanResultEntry">
     <div class="t-item">
         <span class="tuan_tag"><%=discount%>折</span>
-        <a href="#/tuan/<%=id%>" target="_blank"><img class="banner" src="<%=photoList[1]&&photoList[1].url%>" alt="<%=title%>"/></a>
+        <a href="#/tuan/<%=id%>" target="_blank"><img class="banner" width="386" height="286"
+                                                      src="<%=photoList[0]&&photoList[0].url%>" alt="<%=title%>"/></a>
+
         <div class="content">
             <div class="r r1">
                 <p class="title">
