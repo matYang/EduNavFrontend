@@ -96,41 +96,47 @@
     font-size: 24px;
     color: #1D8C58;
 }
+
+/*分割线*/
+.underline {
+    display: block;
+    border-bottom: 1px solid #E8E8E8;
+    margin: 5px 0;
+}
+
 #tuanPage .t-item{
     position: relative;
-    height: 250px;
+    height: 246px;
     margin-bottom: 30px;
-    padding-left: 450px;
+    padding-left: 386px;
     border: 1px solid #CFCFCF;
 }
 /*团购item的左上方的折扣信息*/
 .t-item .tuan_tag{
     position: absolute;
-    left:-30px; top: -30px;
+    left: -25px;
+    top: -25px;
     display: block;
-    width: 90px; height: 90px;
-    line-height: 90px;
-    color: #ffffff; font-size: 24px;
+    width: 72px;
+    height: 72px;
+    line-height: 72px;
+    color: #ffffff;
+    font-size: 20px;
     text-align: center;
     z-index: 1;
-    background: url("../images/tuan_item_tag.png");
-}
-/*分割线*/
-.underline{
-    display: block;
-    border-bottom:1px solid #E8E8E8;
-    margin: 5px 0;
+    background: url("../images/tuan_item_tag.png") center no-repeat;
 }
 /*团购item的大图*/
 .t-item img.banner{
     position: absolute;
     left: 0;top: 0;
-    width: 450px; height: 250px;
+    width: 386px;
+    height: 246px;
 }
 /*团购item右侧内容*/
 .t-item .content{padding: 0 8px 0 16px;}
 .t-item .content .r{
-    width: 255px;
+    width: 100%;
     height: 64px;
     padding: 5px 0;
 }
@@ -139,7 +145,12 @@
 .t-item .content .r.r2{}
 .t-item .content .r.r3{}
 /*第1行中的标题*/
-.t-item .content .r.r1 .title{font-size: 20px; cursor: pointer;}
+.t-item .content .r.r1 .title {
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 /*第1和2行中的p*/
 .t-item .content .r.r1 p,
 .t-item .content .r.r2 p{
@@ -149,10 +160,26 @@
     white-space: nowrap;
 }
 /*第3行中的价格和抢购按钮 r3需要clearfix*/
-.t-item .content .r.r3 .c-left{ float: left; width: 120px;}
-.t-item .content .r.r3 .c-right{ float: right; width: 130px;}
-.t-item .content .r.r3 .price{font-size: 30px;color: #FC6B6D;}
-.t-item .content .r.r3 .btn{height: 40px; line-height: 40px;font-size: 18px}
+.t-item .content .r.r3 .c-left {
+    float: left;
+    width: 40%;
+}
+
+.t-item .content .r.r3 .c-right {
+    float: right;
+    width: 60%;
+}
+
+.t-item .content .r.r3 .price {
+    font-family: Arial;
+    font-size: 30px;
+    color: #FC6B6D;
+    font-weight: bold;
+}
+
+.t-item .content .r.r3 .btn {
+    font-size: 18px
+}
 
 
 /*右侧内容 筛选条件和广告图片*/

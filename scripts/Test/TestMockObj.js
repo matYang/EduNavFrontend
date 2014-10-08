@@ -18,7 +18,7 @@ testMockObj = {
     testPhoto3: new Photo().set("id", 3).set("imgUrl", "/testUrl3"),
 
     testAddressList: new Addresses(),
-    testAddress1: (new Address()).set('id', 1).set('detail', '南京市玄武区孝陵卫200号'),
+    testAddress1: (new Address()).set('id', 1).set('detail', '南京市玄武区孝陵卫200号xx街道xx路xx楼xxx层xx室'),
     testAddress2: (new Address()).set('id', 2).set('detail', '南京市秦淮区人民政府'),
     testAddress3: (new Address()).set('id', 3).set('detail', '南京市中山北路222号xx大厦3楼'),
 
