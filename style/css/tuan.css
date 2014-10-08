@@ -139,7 +139,7 @@
 .t-item .content .r.r2{}
 .t-item .content .r.r3{}
 /*第1行中的标题*/
-.t-item .content .r.r1 .title{font-size: 20px}
+.t-item .content .r.r1 .title{font-size: 20px; cursor: pointer;}
 /*第1和2行中的p*/
 .t-item .content .r.r1 p,
 .t-item .content .r.r2 p{
