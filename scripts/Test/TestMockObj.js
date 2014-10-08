@@ -344,6 +344,30 @@ testMockObj = {
                                 "value": "000002",
                                 "name": "秦淮区",
                                 "children": []
+                            },
+                            {
+                                "id": 6,
+                                "value": "000001",
+                                "name": "鼓楼区",
+                                "children": []
+                            },
+                            {
+                                "id": 6,
+                                "value": "000002",
+                                "name": "秦淮区",
+                                "children": []
+                            },
+                            {
+                                "id": 6,
+                                "value": "000001",
+                                "name": "鼓楼区",
+                                "children": []
+                            },
+                            {
+                                "id": 6,
+                                "value": "000002",
+                                "name": "秦淮区",
+                                "children": []
                             }
                         ]
                     }

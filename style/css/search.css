@@ -211,7 +211,15 @@
 #searchCourse .topBar li i{display: block; width: 225px; height: 5px; position: absolute; bottom:0; background-color: #27ae61;}
 #searchCourse .topBar .active{background-color: #28B094;}
 #searchCourse .topBar .active i{background-color: #16A086;}
-#searchCourse .searchContent{ background-color: #eceeef; width: 450px; height: 312px; padding: 18px 0 0 0;}
+
+#searchCourse .searchContent {
+    position: relative;
+    background-color: #eceeef;
+    width: 450px;
+    height: 302px;
+    padding: 30px 0 0 0;
+}
+
 #searchCourse .searchContent li{ width: 410px; min-height: 45px; height: auto; margin: auto; padding-bottom: 15px;}
 .searchContent li span{ width: 85px; height: 45px; display: block; float: left; line-height: 45px; font-size: 16px; font-weight: bold; color: #4b6459;}
 #searchCourse .searchContent li input,select{
@@ -221,9 +229,19 @@
     display: block;
     border: 0; outline: 0;
     float: left;
+    font-size: 14px;
 }
 #searchCourse .searchContent li textarea{ width: 297px; height: 77px; line-height: 20px; border: 0; outline: 0; padding: 10px;}
-#searchCourse .searchContent .btn{width: 448px; height: 50px; background-color: #e7e9ea; padding: 15px 0;}
+
+#searchCourse .searchContent .btn {
+    position: absolute;
+    bottom: 0;
+    width: 448px;
+    height: 50px;
+    background-color: #e7e9ea;
+    padding: 15px 0;
+}
+
 #searchCourse .scperson .btn a{
     line-height: 20px;
     width: 150px;
@@ -236,7 +254,6 @@
     margin: auto;
     font-size: 16px;
     cursor: pointer;
-    font-family: "微软雅黑";
 }
 #searchCourse .scself .btn a{
     line-height: 20px;
@@ -251,12 +268,41 @@
     font-size: 16px;
     cursor: pointer;
 }
-#searchCourse .location{ width: 317px; height: 161px; float: left; overflow: hidden;}
-#searchCourse .searchContent li .location span{ cursor: pointer; display: inline-block; width: auto; height: 38px; font-size: 12px; font-weight: normal; line-height: 38px; padding: 0 5px;}
-#searchCourse .searchContent li .location span:hover{ text-decoration: underline; color: #28B094;}
+
+#searchCourse .location {
+    width: 317px;
+    float: left;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+#searchCourse .searchContent .location span {
+    cursor: pointer;
+    display: inline-block;
+    width: auto;
+    height: 38px;
+    font-weight: normal;
+    line-height: 38px;
+    padding: 0 5px;
+    font-size: 16px;
+    margin-right: 12px;
+}
+
+#searchCourse .searchContent .location span:hover {
+    text-decoration: underline;
+    color: #28B094;
+}
+
 #location_list .active{ text-decoration: underline; color: #28B094;}
 
-#searchCourse .adv{ width: 536px; height: 186px; display: block; float: right; margin-bottom: 19px;}
+#searchCourse .adv {
+    width: 536px;
+    height: 186px;
+    display: block;
+    float: right;
+    margin-bottom: 15px;
+}
+
 #searchCourse .adv img{ width: 536px; height: 186px;}
 
 /*课程名搜索*/
