@@ -34,15 +34,15 @@
 
         this.categoryList = [];
         this.locationList = [];
-        this.businessList = [];
+        this.circleList = [];
 
         this.categoryQueue = [];
         this.locationQueue = [];
-        this.businessQueue = [];
+        this.circleQueue = [];
 
         this.categoryTimeStamp = new Date();
         this.locationTimeStamp = new Date();
-        this.businessTimeStamp = new Date();
+        this.circleTimeStamp = new Date();
     };
 
     //根据ID拉取单个课程
@@ -323,21 +323,21 @@
     };
 
     //拉取商圈
-    GeneralManager.prototype.fetchBusiness = function (callback) {
+    GeneralManager.prototype.fetchCircle = function (callback) {
         var self = this;
         if (testMockObj.testMode) {
-            callback.success(testMockObj.testBusiness.data);
+            callback.success(testMockObj.testCircle.data);
             return;
         }
         $.ajax({
-            url: ApiResource.general_business,//todo 改成商圈的api
+            url: ApiResource.general_circle,//todo 改成商圈的api
             type: 'GET',
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                self.businessList = data.data;
-                self.businessTimeStamp = new Date();
+                self.circleList = data.data;
+                self.circleTimeStamp = new Date();
                 if (callback) {
-                    callback.success(self.businessList);
+                    callback.success(self.circleList);
                 }
             },
             error: function (data, textStatus, jqXHR) {
@@ -419,23 +419,23 @@
         return index;
     };
 
-    //如果本地存有地区信息的缓存并且尚为过期，该方法会自动调用reference里的renderBusiness方法。
-    //如果本地没有地区信息或者地区信息已经过期，该方法会触发fetchCategories方法，并在成功后触发reference里的renderBusiness方法
+    //如果本地存有地区信息的缓存并且尚为过期，该方法会自动调用reference里的renderCircle方法。
+    //如果本地没有地区信息或者地区信息已经过期，该方法会触发fetchCategories方法，并在成功后触发reference里的renderCircle方法
     //reference为调用该方法的view的自身
     //e.g: app.generalManager.getCategoreis(this)
-    GeneralManager.prototype.getBusiness = function (reference) {
+    GeneralManager.prototype.getCircle = function (reference) {
         var index = -1;
-        if (this.businessList.length === 0 || shouldReload(this.businessTimeStamp)) {
-            index = addToQueue(this.businessQueue, reference);
-            this.fetchBusiness({
+        if (this.circleList.length === 0 || shouldReload(this.circleTimeStamp)) {
+            index = addToQueue(this.circleQueue, reference);
+            this.fetchCircle({
                 //todo should be changed, just return data
-                success: reference.renderBusiness,
+                success: reference.renderCircle,
                 error: function () {
                 }
             });
         }
         else {
-            reference.renderBusiness(this.businessList);
+            reference.renderCircle(this.circleList);
         }
         return index;
     };

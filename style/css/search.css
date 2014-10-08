@@ -18,6 +18,8 @@
 #searchPanel #filter_subCategory p{ margin:10px 0 0 68px; border:1px solid #ccc; padding:10px; background: none repeat scroll 0% 0% #E7F3EE;}
 #searchPanel #filter_subCategory p span{padding:3px 8px;}
 
+#searchPanel #filter_district p{ margin:10px 0 0 68px; border:1px solid #ccc; padding:10px; background: none repeat scroll 0% 0% #E7F3EE;}
+#searchPanel #filter_district p span{padding:3px 8px;}
 /*搜索结果*/
 #searchReqs{ line-height:30px; font-size:14px;}/*搜素条件*/
 #searchReqs a{padding:4px 20px 4px 5px; margin-left:10px; border:1px solid #88c6aa; color:#88c6aa;  font-size:12px; background:url(../images/close1.png) no-repeat right top;}

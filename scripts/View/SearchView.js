@@ -9,7 +9,7 @@ var SearchView = Backbone.View.extend({
     reqTemplate: _.template(tpl.get("req")),
     template: _.template(tpl.get('search')),
     initialize: function (params) {
-        _.bindAll(this, 'render', 'bindEvents', 'bindCatSearchEvents', 'renderCategories', 'renderLocations','renderBusiness', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'bindCatSearchEvents', 'renderCategories', 'renderLocations','renderCircle', 'close');
         //define the template
 
         this.timeDesc = true;
@@ -34,6 +34,8 @@ var SearchView = Backbone.View.extend({
         //injecting the template
     },
     render: function () {
+        //背景
+        $("body").css("background-color", "#f1f1f1");
         if (this.isClosed) {
             this.isClosed = false;
             app.viewRegistration.register(this);
@@ -42,7 +44,7 @@ var SearchView = Backbone.View.extend({
             //异步加载目录和地址
             app.generalManager.getCategories(this);//传递this,会在获取目录之后调用this.renderCategories()
             app.generalManager.getLocations(this);//同上 调用this.renderLocations
-
+            app.generalManager.getCircle(this);//同上
             //加载course之前首先加载widget baidu Map--course数据获取后会生成地图
             this.compareWidgetView = new CompareWidgetView();
             //新建view时会调用一次fetchAction 则会进行一次数据渲染(传入课程搜索 传入对比组件)
@@ -62,6 +64,7 @@ var SearchView = Backbone.View.extend({
     },
     /*加载上课地点*/
     renderLocations: function (locations) {
+        var self = this;
         if (!this.isClosed) {
             var buf = [], chbuf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
             this.locations = locations;
@@ -69,7 +72,7 @@ var SearchView = Backbone.View.extend({
             //     var city = locations[prov];
             //     for (var attr in city) {
             //加载行政区/商圈
-            var loc = [{"value":"0000","name":"行政区"},{"value":"0001","name":"商圈"}];
+            var loc = [{"value":"00","name":"行政区"},{"value":"01","name":"商圈"}];
             for (i = 0; i < loc.length; i++) {
                 buf[i] = this.subCategoryTemplate({value: loc[i].value, name: loc[i].name});
             }
@@ -82,25 +85,32 @@ var SearchView = Backbone.View.extend({
             buf.push(tt);
             var $dist = $("#filter_district");
             $dist.append(buf.join(""));
-            this.titleObj.city = "南京";
-            if (locationValue) {
-                $dist.find("span[data-value=noreq]").removeClass("active");
-                $dist.find("span[data-value=" + this.searchRepresentation.get("locationValue") + "]").addClass("active");
-                text = $dist.find("span[data-value=" + locationValue + "]").html();
-                $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
-            } else {
-                $dist.find("span[data-value=noreq]").addClass("active");
-            }
+
         }
     },
-    //加载商圈
-    renderBusiness:function(Business){
-        var bubuf=[], business = Business;
-        for (i = 0; i < business.length; i++) {
-            bubuf[i] = this.subSubCategoryTemplate({value: business[i].value, name: business[i].name});
-            var tb = this.subSubCategoryContainerTemplate({value: business[i].value, entries: bubuf.join("")});
+    /*加载商圈*/
+    renderCircle:function(Circle){
+        var bubuf=[], circle = Circle;
+        for (i = 0; i < circle.length; i++) {
+            bubuf[i] = this.subSubCategoryTemplate({value: circle[i].value, name: circle[i].name});
+            var tb = this.subSubCategoryContainerTemplate({value: circle[i].value, entries: bubuf.join("")});
         }
         $("#filter_district").append(tb);
+    },
+    /*渲染地址*/
+    showLocation:function(){
+        var self = this;
+        var $dist = $("#filter_district");
+        this.titleObj.city = "南京";
+        if (self.locationValue) {
+            $dist.find("span[data-value=noreq]").removeClass("active");
+            $dist.find("span[data-value=" + this.searchRepresentation.get("locationValue") + "]").addClass("active");
+            text = $dist.find("span[data-value=" + self.locationValue + "]").html();
+            $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: self.locationValue, text: text}));
+        } else {
+            $dist.find("span[data-value=noreq]").addClass("active");
+        }
+
     },
     /*加载课程类别*/
     renderCategories: function (categories) {
@@ -314,6 +324,16 @@ var SearchView = Backbone.View.extend({
             e.preventDefault();
             var cri = $(e.target).data("cri");
             that.filterResult($("#filter_" + cri), $("#filter_" + cri).find("[data-value=noreq]").removeClass("active"));
+        });
+
+        //行政区和商圈
+        $("#filter_district").find(".subCategory").on("click",function(){
+            var v= $(this).attr("data-value");
+            $("#filter_district").find("p").addClass("hidden");
+            $("#filter_district").find("p:eq("+ v +")").removeClass("hidden");
+        });
+        $("#filter_district").find("span[data-value=noreq]").on("click",function(){
+            $("#filter_district").find("p").addClass("hidden");
         });
     },
     bindSortEvents: function () {
