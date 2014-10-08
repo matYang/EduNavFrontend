@@ -19,11 +19,11 @@ var HomePageView = Backbone.View.extend({
         app.viewRegistration.register(this);
         this.searchRepresentation = new CourseSearchRepresentation();
         $("body").addClass("index");
-        if (!this.banner) {
-            this.banner = new BannerView();
-        } else if (this.banner.isClosed) {
-            this.banner.render();
-        }
+//        if (!this.banner) {
+//            this.banner = new BannerView();
+//        } else if (this.banner.isClosed) {
+//            this.banner.render();
+//        }
         if (!this.searchArea) {
             this.searchArea = new SearchArea();
         } else if (this.searchArea.isClosed) {
@@ -189,7 +189,7 @@ var HomePageView = Backbone.View.extend({
             $("body").removeClass("index");
             this.$el.empty();
             this.isClosed = true;
-            this.banner.close();
+//            this.banner.close();
             this.searchArea.close();
             this.tuanBannerView.close();
             //this.artificialSelection.close();
@@ -198,46 +198,46 @@ var HomePageView = Backbone.View.extend({
     }
 });
 
-var BannerView = Backbone.View.extend({
-
-    el: '#visualScope',
-    initialize: function () {
-        _.bindAll(this, 'render', 'bindEvents', 'close');
-        this.template = _.template(tpl.get('banner'));
-        this.isClosed = false;
-        this.render();
-    },
-
-    render: function () {
-        if (!this.isClosed) {
-            app.viewRegistration.register(this);
-            this.$el.append(this.template);
-            this.bindEvents();
-        }
-    },
-
-    bindEvents: function () {
-        //img slider
-        $('#visual_container').bjqs({
-            height: 320,
-            width: 1960,
-//            randomstart: true,     // start from a random slide
-            animtype: 'fade', // accepts 'fade' or 'slide'
-            animduration: 750, // how fast the animation are
-            animspeed: 4200, // the delay between each slide
-            hoverpause: true // pause the slider on hover
-        });
-        $('#visual_container').css('width', '');
-        $('#visual_container ol.bjqs-markers').css('left', '');
-    },
-
-    close: function () {
-        if (!this.isClosed) {
-            this.$el.empty();
-            this.isClosed = true;
-        }
-    }
-});
+//var BannerView = Backbone.View.extend({
+//
+//    el: '#visualScope',
+//    initialize: function () {
+//        _.bindAll(this, 'render', 'bindEvents', 'close');
+//        this.template = _.template(tpl.get('banner'));
+//        this.isClosed = false;
+//        this.render();
+//    },
+//
+//    render: function () {
+//        if (!this.isClosed) {
+//            app.viewRegistration.register(this);
+//            this.$el.append(this.template);
+//            this.bindEvents();
+//        }
+//    },
+//
+//    bindEvents: function () {
+//        //img slider
+//        $('#visual_container').bjqs({
+//            height: 320,
+//            width: 1960,
+////            randomstart: true,     // start from a random slide
+//            animtype: 'fade', // accepts 'fade' or 'slide'
+//            animduration: 750, // how fast the animation are
+//            animspeed: 4200, // the delay between each slide
+//            hoverpause: true // pause the slider on hover
+//        });
+//        $('#visual_container').css('width', '');
+//        $('#visual_container ol.bjqs-markers').css('left', '');
+//    },
+//
+//    close: function () {
+//        if (!this.isClosed) {
+//            this.$el.empty();
+//            this.isClosed = true;
+//        }
+//    }
+//});
 
 
 //首页的自助选课和人工选课
