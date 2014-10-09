@@ -114,6 +114,9 @@
     font-size: 18px;
     font-weight: bold;
     padding-top: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .search_result .col1 .title a {
