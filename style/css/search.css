@@ -32,8 +32,40 @@
     background-color: #fff;
     font-size: 18px;
     line-height: 50px;
+
 }
+
+#searchPanel .tab.tab5 li {
+    width: 198px;
+}
+
 #searchPanel .tab li.active{ background-color: #28B094; color: #fff;}
+
+#searchPanel .tab li.actived p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#searchPanel .tab li.actived {
+    position: relative;
+    overflow: visible;
+    width: 200px;
+    margin-right: 0;
+    color: #fff;
+    background-color: #32AF94;
+}
+
+#searchPanel .tab li.actived .clearSearch {
+    position: absolute;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    right: -12px;
+    top: -12px;
+    background: url(../images/icon_close.png) center no-repeat;
+}
+
 #search_category{ width: 1000px; height: 50px;}
 
 
@@ -453,20 +485,28 @@
 .searchAll .search_top {
     width: 1000px;
     height: 65px;
-    background-color: #ededed;
     border-radius: 10px;
     overflow: hidden;
 }
 
+.searchAll .search_top,
+.searchAll .search_top input {
+    background-color: #ededed;
+}
+
+.searchAll .search_top.white,
+.searchAll .search_top.white input {
+    background-color: #ffffff;
+}
+
 .searchAll .search_top input {
     width: 860px;
-    height: 25px;
-    line-height: 25px;
-    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
     padding: 20px 0 20px 30px;
     border: 0;
     outline: 0;
-    background-color: #ededed;
 }
 
 .searchAll .search_top a.search_btn {

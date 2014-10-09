@@ -277,9 +277,11 @@ var SearchArea = Backbone.View.extend({
         //首页的按照课程名搜索
         this.$el.on('click', '.search_btn', function () {
             var courseName = $('.search_input').val();
-            that.searchRepresentation = new CourseSearchRepresentation();
-            that.searchRepresentation.set("courseName", courseName);
-            app.navigate("search/" + that.searchRepresentation.toQueryString(), true);
+            var searchRepresentation = new CourseSearchRepresentation();
+            if (courseName) {
+                searchRepresentation.set("courseName", courseName);
+            }
+            app.navigate("search/" + searchRepresentation.toQueryString(), true);
         });
 
         /*切换*/
