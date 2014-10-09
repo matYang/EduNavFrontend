@@ -29,14 +29,10 @@ var TuanDetailView = Backbone.View.extend({
     render: function () {
         var that = this;
         document.title = '全城最低价';
-        this.rate1 = this.tuan.get('course').get('conditionRating');
-        this.rate2 = this.tuan.get('course').get('attitudeRating');
-        this.rate3 = this.tuan.get('course').get('satisfactionRating');
-        this.evenRating = ((
-            parseFloat(this.rate1)
-            + parseFloat(this.rate2)
-            + parseFloat(this.rate3)
-            ) / 3).toFixed(1);
+        var rate1 = this.tuan.get('course').get('conditionRating');
+        var rate2 = this.tuan.get('course').get('attitudeRating');
+        var rate3 = this.tuan.get('course').get('satisfactionRating');
+        var evenRating = this.tuan.get('course').get('evenRating');
         this.$el.html(this.template(this.tuan._toJSON()));
         this.commentsView = new TuanDetailCommentsView({
             courseId: that.courseId,
@@ -47,25 +43,25 @@ var TuanDetailView = Backbone.View.extend({
         /*评价星级*/
         $("#starDemo").raty({
             readOnly: true,
-            start: that.evenRating
+            start: evenRating
         });
 
         $("#star_eleft").raty({
             readOnly: true,
-            start: that.evenRating
+            start: evenRating
         });
         $("#evaluate_environment").raty({
             readOnly: true,
-            start: that.rate1
+            start: rate1
         });
         $("#evaluate_teacher").raty({
             readOnly: true,
-            start: that.rate2
+            start: rate2
         })
         ;
         $("#evaluate_service").raty({
             readOnly: true,
-            start: that.rate3
+            start: rate3
         });
 
         //详情中的图片展示

@@ -71,6 +71,11 @@ testMockObj = {
         .set("bookingTotal", 127)
         .set("groupBuyActivity", {id: 1})
         .set('startUponArrival', 1).set('startDate', new Date())
+
+        .set('conditionRating', 2)
+        .set('attitudeRating', 1)
+        .set('satisfactionRating', 3)
+        .set('evenRating', '2.0')
         //课程详情
         .set('qualityAssurance', '课时信息-test')
         .set('classSize', '班级类型-测试数据')

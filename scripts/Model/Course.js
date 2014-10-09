@@ -157,6 +157,9 @@ var Course = Backbone.Model.extend({
                 data.conditionRating = Utilities.parseNum(data.conditionRating, 1);
                 data.attitudeRating = Utilities.parseNum(data.attitudeRating, 1);
                 data.satisfactionRating = Utilities.parseNum(data.satisfactionRating, 1);
+                data.evenRating = (data.conditionRating
+                    + data.attitudeRating
+                    + data.satisfactionRating / 3).toFixed(1);
             }
             return data;
         },
@@ -205,11 +208,6 @@ var Course = Backbone.Model.extend({
                 });
                 json.classPhotoList = classPhotoList;
             }
-            json.evenRating = ((
-                parseFloat(json.attitudeRating)
-                + parseFloat(json.conditionRating)
-                + parseFloat(json.satisfactionRating)
-                ) / 3).toFixed(1);
             return json;
         },
         td: function () {

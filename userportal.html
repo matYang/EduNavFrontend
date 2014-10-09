@@ -2044,9 +2044,9 @@
         </div>
         <div class="icon">
             <div id="starDemo"></div>
-            <a>4分</a>
-            <span>(1562人评价)</span>
+            <a><%=evenRating%>分</a>
 
+            <div>&nbsp;(<i class="commentsTotal">--</i>人评价)</div>
         </div>
         <div>
             <%if(cashback){%>
@@ -2101,6 +2101,7 @@
                  alt=""/>
         </a>
         <dl>
+            <dt><%= instName %></dt>
             <dd><%= address %></dd>
         </dl>
 
@@ -2270,9 +2271,9 @@
                 <div class="evaluate">
                     <div class="title">*用户对本团购的消费评价</div>
                     <ul class="eleft">
-                        <li class="score">4.8</li>
+                        <li class="score"><%=evenRating%></li>
                         <li id="star_eleft"></li>
-                        <li>共有<span> 1245 </span>人评价</li>
+                        <li>共有<span class="commentsTotal">--</span>人评价</li>
                     </ul>
                     <div class="emid"></div>
                     <ul class="eright">
@@ -2280,19 +2281,19 @@
                             <span>环境</span>
 
                             <div id="evaluate_environment" class="eright_star"></div>
-                            <a>5.0</a>
+                            <a><%=conditionRating%></a>
                         </li>
                         <li>
                             <span>师质</span>
 
                             <div id="evaluate_teacher" class="eright_star"></div>
-                            <a>4.5</a>
+                            <a><%=attitudeRating%></a>
                         </li>
                         <li>
                             <span>服务</span>
 
                             <div id="evaluate_service" class="eright_star"></div>
-                            <a>4.8</a>
+                            <a><%=satisfactionRating%></a>
                         </li>
 
                     </ul>
@@ -3585,7 +3586,7 @@
             <div id="starDemo"></div>
             <a><%=course.evenRating%>分</a>
 
-            <div>&nbsp;(<span class="commentsTotal">--</span>人评价)</div>
+            <div>&nbsp;(<i class="commentsTotal">--</i>人评价)</div>
         </div>
         <span>已有<a><%=bookingTotal%></a>人下单</span>
         <span>剩余时间：<a id="tuanDetail_endTime" data-value="<%=endTime%>">--</a></span>
@@ -3623,7 +3624,7 @@
         <!--<span>乘车路线：</span>-->
         <%_.each(addressList,function(address){%>
         <dl>
-            <dt><%=address.realAddress%></dt>
+            <dt><%=address.realAddress||course.instName%></dt>
             <dd><%=address.detail%></dd>
         </dl>
         <%})%>

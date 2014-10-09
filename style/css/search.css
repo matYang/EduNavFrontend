@@ -112,12 +112,16 @@
 .search_result .col1 .title {
     font-size: 18px;
     font-weight: bold;
-    color: #060606;
     padding-top: 2px;
 }
 
-.search_result .col1 .title a{ color: #060606;}
-.search_result .col1 .title a:hover{ color: #060606;}
+.search_result .col1 .title a {
+    color: #333333;
+}
+
+.search_result .col1 .title a:hover {
+    color: #333333;
+}
 
 .search_result .col1 .desc {
     overflow: hidden;

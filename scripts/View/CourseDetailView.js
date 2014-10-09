@@ -42,8 +42,7 @@ var CourseDetailView = Backbone.View.extend({
         var that = this;
 
         $(document).scrollTop(0);
-        $("body").addClass("courseDetail");
-        $("body").css("background-color", "#f1f1f1");
+        $("body").addClass("courseDetail").css("background-color", "#f1f1f1");
         this.$el.html(this.template(this.course._toJSON()));
         //新建相关课程视图
         this.relatedCourseListView = new RelatedCourseListView({course: this.course});
@@ -65,8 +64,6 @@ var CourseDetailView = Backbone.View.extend({
 
         this.compareWidget = new CourseDetailCompareWidgetView();
 
-        var $content2 = $(".tuan_content_2");
-        var $content3 = $(".tuan_content_3");
         this.content1_top = $(".tuan_content_1").offset().top;//课程详情
         this.content2_top = $(".tuan_content_2").offset().top;//特色服务
         this.content3_top = $(".tuan_content_3").offset().top;//名师团队
@@ -96,26 +93,32 @@ var CourseDetailView = Backbone.View.extend({
         //这里是为了声明页面加载完毕
         $('body').attr('pageRenderReady', '');
         //star
+        var rate1 = this.course.get('conditionRating');
+        var rate2 = this.course.get('attitudeRating');
+        var rate3 = this.course.get('satisfactionRating');
+        var evenRating = this.course.get('evenRating');
+        /*评价星级*/
         $("#starDemo").raty({
             readOnly: true,
-            start: 4
+            start: evenRating
         });
+
         $("#star_eleft").raty({
             readOnly: true,
-            start: 4
+            start: evenRating
         });
         $("#evaluate_environment").raty({
             readOnly: true,
-            start: 5
+            start: rate1
         });
         $("#evaluate_teacher").raty({
             readOnly: true,
-            start: 4
+            start: rate2
         })
         ;
         $("#evaluate_service").raty({
             readOnly: true,
-            start: 4
+            start: rate3
         });
         $(".courseDetail .pic .pic_big").find("a:first").addClass("active");
         $(".courseDetail .pic .pic_list").find("i:first").removeClass("active");

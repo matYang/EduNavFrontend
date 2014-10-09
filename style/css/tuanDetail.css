@@ -1,6 +1,13 @@
 /*团购detail*/
-.panel_bg{ background-color: #FFF;}
-#tuanDetail{ width: 1000px; height: auto; min-height: 800px;}
+.panel_bg {
+    background-color: #FFF;
+}
+
+#tuanDetail {
+    width: 1000px;
+    height: auto;
+    min-height: 800px;
+}
 
 /*banner*/
 #tuanDetail .banner,
@@ -52,7 +59,8 @@
 
 #tuanDetail .pic .pic_list a,
 .courseDetail .pic .pic_list a {
-    width: 98px; height: 60px;
+    width: 98px;
+    height: 60px;
     display: block;
     margin-right: 12px;
     float: left;
@@ -67,9 +75,11 @@
 
 #tuanDetail .pic .pic_list .active,
 .courseDetail .pic .pic_list .active {
-    width: 98px; height: 60px;
-    position: absolute; z-index: 1;
-    background-color: rgba(255,255,255,0.8)
+    width: 98px;
+    height: 60px;
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.8)
 }
 
 /*row*/
@@ -80,16 +90,35 @@
     float: right;
     padding: 0;
 }
+
 .courseDetail .row .price,
-#tuanDetail .row .price{
+#tuanDetail .row .price {
     padding-left: 10px;
-    width: 458px; height: 80px;
-    background-color: #128d56; color: #fff;
-    line-height: 80px; font-size: 16px;
+    width: 458px;
+    height: 80px;
+    background-color: #128d56;
+    color: #fff;
+    line-height: 80px;
+    font-size: 16px;
 }
-.courseDetail .small_title{ height: 40px; margin-bottom: 3px;}
-.courseDetail .small_title h3{ float: left; line-height: 40px; color: #128D56;}
-.courseDetail .small_title input{ width: 100px; height: 35px; float: right; margin-left: 10px;}
+
+.courseDetail .small_title {
+    height: 40px;
+    margin-bottom: 3px;
+}
+
+.courseDetail .small_title h3 {
+    float: left;
+    line-height: 40px;
+    color: #128D56;
+}
+
+.courseDetail .small_title input {
+    width: 100px;
+    height: 35px;
+    float: right;
+    margin-left: 10px;
+}
 
 #tuanDetail .row .price span,
 .courseDetail .row .price span {
@@ -103,9 +132,10 @@
 }
 
 .courseDetail .row .price strong,
-#tuanDetail .row .price strong{
+#tuanDetail .row .price strong {
     font-size: 28px;
 }
+
 .courseDetail .row .price strong {
     font-size: 28px;
 }
@@ -117,25 +147,75 @@
     margin-bottom: 10px;
     text-align: left;
 }
+
 .courseDetail .row .icon,
-#tuanDetail .row .icon{
+#tuanDetail .row .icon {
     height: 17px;
     padding: 27px 0 13px 0;
     width: 420px;
     background-image: url("");
 }
 
-#starDemo{ float: left;}
-#tuanDetail .row .icon a{ float: left; color: #ffbd6b; line-height: 20px; margin-left: 10px;}
-#tuanDetail .row .icon span{ line-height: 20px; float: left; margin-left: 10px;}
-.courseDetail .row .icon a{ float: left; color: #C69F5E; line-height: 20px; margin-left: 10px;}
-.courseDetail .row .icon span{ line-height: 20px; float: left; padding: 0 10px;}
-#tuanDetail .row span{ line-height: 40px; font-size: 14px; text-align: left;  display: block;}
-#tuanDetail .row a{ color: #128d56;}
-.courseDetail .btn{ padding: 0; width: 468px; margin-top: 25px;}
-#tuanDetail .btn{ padding: 0; width: 468px; margin-top: 15px;}
+#starDemo {
+    float: left;
+}
+
+#tuanDetail .row .icon a {
+    float: left;
+    color: #ffbd6b;
+    line-height: 20px;
+    margin-left: 10px;
+}
+
+#tuanDetail .row .icon span {
+    line-height: 20px;
+    float: left;
+    margin-left: 10px;
+}
+
+.courseDetail .row .icon a {
+    float: left;
+    color: #C69F5E;
+    line-height: 20px;
+    margin-left: 10px;
+}
+
+.courseDetail .row .icon span {
+    line-height: 20px;
+    float: left;
+    padding: 0 10px;
+}
+
+#tuanDetail .row .icon i,
+.courseDetail .row .icon i {
+    font-style: normal
+}
+
+#tuanDetail .row span {
+    line-height: 40px;
+    font-size: 14px;
+    text-align: left;
+    display: block;
+}
+
+#tuanDetail .row a {
+    color: #128d56;
+}
+
+.courseDetail .btn {
+    padding: 0;
+    width: 468px;
+    margin-top: 25px;
+}
+
+#tuanDetail .btn {
+    padding: 0;
+    width: 468px;
+    margin-top: 15px;
+}
+
 .courseDetail .btn a,
-#tuanDetail .btn a{
+#tuanDetail .btn a {
     height: 50px;
     display: block;
     text-align: center;
@@ -159,11 +239,26 @@
 }
 
 /*tuanMain*/
-.tuanMain{width: 1000px; height: auto; min-height: 800px; margin-top: 15px; position: relative;}
-.tuanMain a{color: #128d56;}
+.tuanMain {
+    width: 1000px;
+    height: auto;
+    min-height: 800px;
+    margin-top: 15px;
+    position: relative;
+}
+
+.tuanMain a {
+    color: #128d56;
+}
+
 /*fleft*/
 
-.tuanMain .tuan_sorterArea{width: 748px; padding-bottom: 5px; float: left; background-color: #f1f1f1;}
+.tuanMain .tuan_sorterArea {
+    width: 748px;
+    padding-bottom: 5px;
+    float: left;
+    background-color: #f1f1f1;
+}
 
 #tuanDetail .w_730,
 .courseDetail .w_730 {
@@ -171,11 +266,20 @@
     padding: 10px;
 }
 
-#searchResultContent .w_730{width: 730px;}
-.tuanMain .tuan_sorter{ width: 740px; height: 52px; line-height: 52px;}
-.tuanMain .tuan_sorter li a{
+#searchResultContent .w_730 {
+    width: 730px;
+}
+
+.tuanMain .tuan_sorter {
+    width: 740px;
+    height: 52px;
+    line-height: 52px;
+}
+
+.tuanMain .tuan_sorter li a {
     display: block;
-    width: 177px; height: 52px;
+    width: 177px;
+    height: 52px;
     margin-right: 7px;
     background-color: #fff;
     float: left;
@@ -184,17 +288,64 @@
     cursor: pointer;
     color: #333;
 }
-#tuanDetail .tuanMain .tuan_sorter a.active{background-color: #28B094; color: #fff;}
-#tuanDetail .tuanMain .tuan_sorter_bottom{ width: 730px; height: 2px; background-color: #28B094; display: block;}
-.courseDetail .tuanMain .tuan_sorter a.active{background-color: #28B094; color: #fff;}
-.courseDetail .tuanMain .tuan_sorter_bottom{ width: 730px; height: 2px; background-color: #28B094; display: block;}
-#tuanDetail .tuanMain .content_inner{}
-.tuan_content dl{ width: 710px;}
-.tuan_content dd{ width: 680px; border-bottom: 1px solid #ccc; margin-left: 20px; line-height: 30px; height: auto;}
-.tuan_content dt{height: 30px; margin-top: 10px; line-height: 30px; font-size: 16px; font-weight: bold;}
 
-.tuan_content .tuan_content_1 dd p{ min-height: 40px; height: auto; line-height: 40px;}
-.tuan_content .tuan_content_1 dd p label{ float: left; margin-right: 10px;}
+#tuanDetail .tuanMain .tuan_sorter a.active {
+    background-color: #28B094;
+    color: #fff;
+}
+
+#tuanDetail .tuanMain .tuan_sorter_bottom {
+    width: 730px;
+    height: 2px;
+    background-color: #28B094;
+    display: block;
+}
+
+.courseDetail .tuanMain .tuan_sorter a.active {
+    background-color: #28B094;
+    color: #fff;
+}
+
+.courseDetail .tuanMain .tuan_sorter_bottom {
+    width: 730px;
+    height: 2px;
+    background-color: #28B094;
+    display: block;
+}
+
+#tuanDetail .tuanMain .content_inner {
+}
+
+.tuan_content dl {
+    width: 710px;
+}
+
+.tuan_content dd {
+    width: 680px;
+    border-bottom: 1px solid #ccc;
+    margin-left: 20px;
+    line-height: 30px;
+    height: auto;
+}
+
+.tuan_content dt {
+    height: 30px;
+    margin-top: 10px;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tuan_content .tuan_content_1 dd p {
+    min-height: 40px;
+    height: auto;
+    line-height: 40px;
+}
+
+.tuan_content .tuan_content_1 dd p label {
+    float: left;
+    margin-right: 10px;
+}
 
 .tuan_content .tuan_content_1 dd p span {
     width: 580px;
@@ -204,36 +355,49 @@
     line-height: 30px;
 }
 
-.tuan_content .tuan_content_2 dd a{
-    width: 140px; height: 140px;
+.tuan_content .tuan_content_2 dd a {
+    width: 140px;
+    height: 140px;
     border-radius: 70px;
     display: block;
     float: left;
-    margin:0 30px 10px 0;
+    margin: 0 30px 10px 0;
     background-image: url("../images/spec_service_01.png");
     background-size: 100% 100%;
 }
-.tuan_content .tuan_content_2 dd a span{
-    width: 140px; height: 140px;
+
+.tuan_content .tuan_content_2 dd a span {
+    width: 140px;
+    height: 140px;
     display: none;
     border-radius: 70px;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
     color: #fff;
     font-size: 12px;
     line-height: 30px;
     overflow: hidden;
 }
-.tuan_content .tuan_content_3 dd a{
-    width: 120px; height: 120px;
-    border-radius: 60px; background-color: #E9E9E9;
-    display: block; float: left;
+
+.tuan_content .tuan_content_3 dd a {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    background-color: #E9E9E9;
+    display: block;
+    float: left;
     overflow: hidden;
 }
-.tuan_content .tuan_content_3 .serviceli{
-    width: 120px; height: 160px; float: left;  margin: 0 10px 10px 0;
+
+.tuan_content .tuan_content_3 .serviceli {
+    width: 120px;
+    height: 160px;
+    float: left;
+    margin: 0 10px 10px 0;
 }
-.tuan_content_3 .serviceli span{
-    width: 120px; height: 30px;
+
+.tuan_content_3 .serviceli span {
+    width: 120px;
+    height: 30px;
     line-height: 40px;
     text-align: center;
     display: block;
@@ -241,55 +405,182 @@
     font-size: 12px;
     float: left;
 }
-.tuan_content .warm_tip{
-    width: 640px; height: 250px;
-    padding: 20px;  margin-bottom: 20px;
+
+.tuan_content .warm_tip {
+    width: 640px;
+    height: 250px;
+    padding: 20px;
+    margin-bottom: 20px;
     background-color: #fffdf5;
     float: left;
 }
-.tuan_content .warm_tip p{ display: block; width: 600px; height: 15px; float: left;}
-.tuan_content .warm_tip span{ width: 640px; float: left; display: block;}
+
+.tuan_content .warm_tip p {
+    display: block;
+    width: 600px;
+    height: 15px;
+    float: left;
+}
+
+.tuan_content .warm_tip span {
+    width: 640px;
+    float: left;
+    display: block;
+}
+
 .courseDetail .dticon,
-#tuanDetail .dticon{
-    width: 9px; height: 13px;
+#tuanDetail .dticon {
+    width: 9px;
+    height: 13px;
     display: block;
     background-image: url("../images/dtIcon.jpg");
     float: left;
     margin: 8px 10px 0 2px;
 }
+
 .courseDetail .warmicon,
-#tuanDetail .warmicon{
-    width: 18px; height: 18px;
+#tuanDetail .warmicon {
+    width: 18px;
+    height: 18px;
     display: block;
     background-image: url("../images/warmIcon.png");
     float: left;
     margin: 5px 4px 0 2px;
 }
+
 /*evaluate评价*/
-.tuan_content dt span{ font-size: 12px; padding-left: 20px; font-weight: normal; text-decoration: underline; color: #45B39C; cursor: pointer;}
-.tuan_content .evaluate{ width: 680px; height: 200px;}
-.tuan_content .evaluate .title{ font-size: 14px; padding-left: 20px; color: #656565;}
-.tuan_content .evaluate .eleft{ width: 300px; height: 140px; float: left; margin-left: 20px; padding: 10px 0 0 0;}
-.tuan_content .eleft .score{ font-size: 36px; color: #ff6a6a; height: 40px;}
-#star_eleft{ height: 30px;}
-#star_eleft img{ width: 20px; height: 20px;}
-.tuan_content .eleft li{ font-size: 12px; line-height: 30px; text-align: center;}
-.tuan_content .evaluate .emid{ width: 1px; height: 70px; margin-top: 30px; background-color: #c3c3c3; float: left;}
-.tuan_content .evaluate .eright{width: 350px; height: 130px; float: left; padding: 10px 0 0 0;}
-.tuan_content .evaluate .eright img{ width: 24px; height: 24px;}
-.tuan_content .eright li{ width: 260px; height: 40px; line-height: 24px; margin: auto;}
-.tuan_content .eright span{ width:40px; height:24px; line-height: 24px; display: block; float: left; margin-right: 10px;}
-.tuan_content .eright .eright_star{width: 140px; height: 24px; display: block; float: left; margin-right: 20px;}
-.tuan_content .eright a{ width: 30px; height:24px; line-height: 24px; display: block; float: left; color: #ff7200; font-weight: bold;}
+.tuan_content dt span {
+    font-size: 12px;
+    padding-left: 20px;
+    font-weight: normal;
+    text-decoration: underline;
+    color: #45B39C;
+    cursor: pointer;
+}
 
+.tuan_content .evaluate {
+    width: 680px;
+    height: 200px;
+}
 
-.tuan_content .impresson{ width: 680px; min-height: 30px; height: auto; background-color: #f1f1f1;}
-.tuan_content .impresson .title{ padding: 8px;}
-.tuan_content .impresson label{ line-height: 13px;}
-.tuan_content .impresson .impressonLi{ height: 25px; padding: 8px;}
-.tuan_content .impresson .impressonLi label{ line-height: 25px; float: left; padding-left: 4px;}
-.tuan_content .impresson .impressonLi a{
-    height: 25px; line-height: 25px;
+.tuan_content .evaluate .title {
+    font-size: 14px;
+    padding-left: 20px;
+    color: #656565;
+}
+
+.tuan_content .evaluate .eleft {
+    width: 300px;
+    height: 140px;
+    float: left;
+    margin-left: 20px;
+    padding: 10px 0 0 0;
+}
+
+.tuan_content .eleft .score {
+    font-size: 36px;
+    color: #ff6a6a;
+    height: 40px;
+}
+
+#star_eleft {
+    height: 30px;
+}
+
+#star_eleft img {
+    width: 20px;
+    height: 20px;
+}
+
+.tuan_content .eleft li {
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.tuan_content .evaluate .emid {
+    width: 1px;
+    height: 70px;
+    margin-top: 30px;
+    background-color: #c3c3c3;
+    float: left;
+}
+
+.tuan_content .evaluate .eright {
+    width: 350px;
+    height: 130px;
+    float: left;
+    padding: 10px 0 0 0;
+}
+
+.tuan_content .evaluate .eright img {
+    width: 24px;
+    height: 24px;
+}
+
+.tuan_content .eright li {
+    width: 260px;
+    height: 40px;
+    line-height: 24px;
+    margin: auto;
+}
+
+.tuan_content .eright span {
+    width: 40px;
+    height: 24px;
+    line-height: 24px;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+.tuan_content .eright .eright_star {
+    width: 140px;
+    height: 24px;
+    display: block;
+    float: left;
+    margin-right: 20px;
+}
+
+.tuan_content .eright a {
+    width: 30px;
+    height: 24px;
+    line-height: 24px;
+    display: block;
+    float: left;
+    color: #ff7200;
+    font-weight: bold;
+}
+
+.tuan_content .impresson {
+    width: 680px;
+    min-height: 30px;
+    height: auto;
+    background-color: #f1f1f1;
+}
+
+.tuan_content .impresson .title {
+    padding: 8px;
+}
+
+.tuan_content .impresson label {
+    line-height: 13px;
+}
+
+.tuan_content .impresson .impressonLi {
+    height: 25px;
+    padding: 8px;
+}
+
+.tuan_content .impresson .impressonLi label {
+    line-height: 25px;
+    float: left;
+    padding-left: 4px;
+}
+
+.tuan_content .impresson .impressonLi a {
+    height: 25px;
+    line-height: 25px;
     padding: 0 8px;
     margin-left: 10px;
     background-color: #45B39C;
@@ -297,49 +588,190 @@
     color: #fff;
 }
 
-.tuan_content .evaluateList li{ padding: 15px 0; line-height: 25px;border-bottom: 1px dashed #c3c3c3;}
-.tuan_content .evaluateList li .satr_user{ float: left; width: 100px; height: 20px; display: block;}
-.tuan_content .evaluateList li .satr_user img{ width: 14px; height: 14px;}
-.tuan_content .evaluateList li span{
-    height: 22px; display: block;
-    float: left; line-height: 22px;
-    font-size: 12px; color: #999999;}
-.tuan_content .evaluateList li span.time{
+.tuan_content .evaluateList li {
+    padding: 15px 0;
+    line-height: 25px;
+    border-bottom: 1px dashed #c3c3c3;
+}
+
+.tuan_content .evaluateList li .satr_user {
+    float: left;
+    width: 100px;
+    height: 20px;
+    display: block;
+}
+
+.tuan_content .evaluateList li .satr_user img {
+    width: 14px;
+    height: 14px;
+}
+
+.tuan_content .evaluateList li span {
+    height: 22px;
+    display: block;
+    float: left;
+    line-height: 22px;
+    font-size: 12px;
+    color: #999999;
+}
+
+.tuan_content .evaluateList li span.time {
     float: right;
 }
-.tuan_content .evaluateList li label{ line-height: 25px; font-size: 12px; color: #000;}
 
-.tuan_content .evaluateList .more{
+.tuan_content .evaluateList li label {
+    line-height: 25px;
+    font-size: 12px;
+    color: #000;
+}
+
+.tuan_content .evaluateList .more {
     text-align: center;
     line-height: 80px;
     text-decoration: underline;
     cursor: pointer;
 }
-.tuan_content .txt{width: 660px; height: 170px; padding: 0 10px; border: 1px solid #c3c3c3;}
-.tuan_content .txt textarea{ width: 660px; height: 100px; border: 0; outline: 0; padding: 10px 0; line-height: 20px; border-bottom: 1px solid #c3c3c3;}
-.tuan_content a.btnadd{ width: 190px; height: 48px; background-color: #47BC78; text-align: center; line-height: 48px; color: #fff;font-size: 16px; display: block; float: right; margin: 20px 0;}
-/*星级评价*/
-.tuan_content .star{ width: 660px; height: 16px; line-height: 16px; margin-top: 10px;}
-.tuan_content .star span{display: block; width: 50px; height: 16px; line-height: 16px; float: left; color: #000;}
-.tuan_content .star li{ height: 16px; width: 160px; display: block; margin-left: 40px; float: left;}
-.tuan_content .star li span{display: block; width: 40px; height: 16px; line-height: 16px; float: left;  color: #333;}
-.tuan_content .star_sytle{ display: block; width: 100px; height: 16px; line-height: 16px; margin-right: 5px; float: left;}
 
+.tuan_content .txt {
+    width: 660px;
+    height: 170px;
+    padding: 0 10px;
+    border: 1px solid #c3c3c3;
+}
+
+.tuan_content .txt textarea {
+    width: 660px;
+    height: 100px;
+    border: 0;
+    outline: 0;
+    padding: 10px 0;
+    line-height: 20px;
+    border-bottom: 1px solid #c3c3c3;
+}
+
+.tuan_content a.btnadd {
+    width: 190px;
+    height: 48px;
+    background-color: #47BC78;
+    text-align: center;
+    line-height: 48px;
+    color: #fff;
+    font-size: 16px;
+    display: block;
+    float: right;
+    margin: 20px 0;
+}
+
+/*星级评价*/
+.tuan_content .star {
+    width: 660px;
+    height: 16px;
+    line-height: 16px;
+    margin-top: 10px;
+}
+
+.tuan_content .star span {
+    display: block;
+    width: 50px;
+    height: 16px;
+    line-height: 16px;
+    float: left;
+    color: #000;
+}
+
+.tuan_content .star li {
+    height: 16px;
+    width: 160px;
+    display: block;
+    margin-left: 40px;
+    float: left;
+}
+
+.tuan_content .star li span {
+    display: block;
+    width: 40px;
+    height: 16px;
+    line-height: 16px;
+    float: left;
+    color: #333;
+}
+
+.tuan_content .star_sytle {
+    display: block;
+    width: 100px;
+    height: 16px;
+    line-height: 16px;
+    margin-right: 5px;
+    float: left;
+}
 
 /*fright*/
-#tuanDetail .fright{}
-#tuanDetail .fright h4{ color: #072; line-height: 30px; height: 30px; font-weight: normal;}
+#tuanDetail .fright {
+}
+
+#tuanDetail .fright h4 {
+    color: #072;
+    line-height: 30px;
+    height: 30px;
+    font-weight: normal;
+}
+
 /*地图*/
-.w_260 .site_map{ width: 230px; padding: 10px; margin-bottom: 20px; margin-top: 4px;}
-.w_260 .site_map a{width: 230px; height: 180px; display: block; margin-bottom: 10px;}
-.w_260 span{ font-size: 12px; line-height: 20px; margin: 5px 0;}
-.w_260 dl{ border-top: 1px dashed #ccc; padding: 8px 0; margin-top: 4px;}
-.w_260 dt{ font-weight: bold; line-height: 22px; }
-.w_260 dd{font-size: 12px; line-height: 22px; cursor: pointer; }
+.w_260 .site_map {
+    width: 230px;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 4px;
+}
+
+.w_260 .site_map a {
+    width: 230px;
+    height: 180px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.w_260 span {
+    font-size: 12px;
+    line-height: 20px;
+    margin: 5px 0;
+}
+
+.w_260 dl {
+    border-top: 1px dashed #ccc;
+    padding: 8px 0;
+    margin-top: 4px;
+}
+
+.w_260 dt {
+    font-weight: bold;
+    line-height: 22px;
+}
+
+.w_260 dd {
+    font-size: 12px;
+    line-height: 22px;
+    cursor: pointer;
+}
+
 /*一周最热团购*/
-#tuanDetail .fright .hot_tuan{ width: 230px; min-height: 200px; padding: 10px;}
-#tuanDetail .fright .hot_tuan a{ width: 230px; height: 230px; display: block;}
-#tuanDetail .fright .hot_tuan img{ width: 230px; height: 230px;}
+#tuanDetail .fright .hot_tuan {
+    width: 230px;
+    min-height: 200px;
+    padding: 10px;
+}
+
+#tuanDetail .fright .hot_tuan a {
+    width: 230px;
+    height: 230px;
+    display: block;
+}
+
+#tuanDetail .fright .hot_tuan img {
+    width: 230px;
+    height: 230px;
+}
+
 /*下拉时候多出来的按钮*/
 #tuanDetail .fright .tuan_btn,
 .courseDetail .fright .tuan_btn {
@@ -357,42 +789,103 @@
     line-height: 52px;
 }
 
-#tuanDetail #tuan_fright .btnbuy{ width: 150px; height: 52px; float: left;}
-#tuanDetail #tuan_fright .btnconsult{ width: 90px; height: 52px; float: right;}
-.courseDetail #tuan_fright .btnbuy{ width: 120px; height: 52px; float: left;}
-.courseDetail #tuan_fright .btnconsult{ width: 120px; height: 52px; float: right;}
+#tuanDetail #tuan_fright .btnbuy {
+    width: 150px;
+    height: 52px;
+    float: left;
+}
 
+#tuanDetail #tuan_fright .btnconsult {
+    width: 90px;
+    height: 52px;
+    float: right;
+}
 
+.courseDetail #tuan_fright .btnbuy {
+    width: 120px;
+    height: 52px;
+    float: left;
+}
+
+.courseDetail #tuan_fright .btnconsult {
+    width: 120px;
+    height: 52px;
+    float: right;
+}
 
 /*快速登录*/
 
-.overlay{width:100%;height:100%;background-color:rgba(0,0,0,0.5);position:fixed; z-index:1999; top:0;}
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 1999;
+    top: 0;
+}
 
-#login_fast{width: 100%; top: 200px; position: absolute; z-index: 2000;}
-#login_fast .login_Area{ width: 335px; background-color: #fff; margin: auto;}
-#login_fast .title{ width: 335px; height: 45px; border-bottom: 1px solid #e7e7e7;}
-#login_fast .title li{
+#login_fast {
+    width: 100%;
+    top: 200px;
+    position: absolute;
+    z-index: 2000;
+}
+
+#login_fast .login_Area {
+    width: 335px;
+    background-color: #fff;
+    margin: auto;
+}
+
+#login_fast .title {
+    width: 335px;
+    height: 45px;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+#login_fast .title li {
     width: 166px;
     height: 45px;
     display: block;
     float: left;
     border-right: 1px solid #e7e7e7;
-    cursor: pointer;}
+    cursor: pointer;
+}
 
-#login_fast .title li span{ width: 166px; height: 45px; display: block; line-height: 45px; text-align: center; color: #929292; font-weight: bold;}
-#login_fast .txt_phone,.txt_passed{
-    width: 232px; height: 25px;
+#login_fast .title li span {
+    width: 166px;
+    height: 45px;
+    display: block;
+    line-height: 45px;
+    text-align: center;
+    color: #929292;
+    font-weight: bold;
+}
+
+#login_fast .txt_phone, .txt_passed {
+    width: 232px;
+    height: 25px;
     display: block;
     background-color: #F4F4F4;
     line-height: 25px;
-    border: 0; outline: 0;
+    border: 0;
+    outline: 0;
     padding: 10px 0 10px 10px;
     float: left;
 }
-#login_content .txt_passed{ padding: 10px 0 10px 10px;}
-#sign_content .txt_passed{ width: 125px; padding: 10px 0 10px 10px;}
-#login_fast .identifying{
-    width: 102px; height: 45px;
+
+#login_content .txt_passed {
+    padding: 10px 0 10px 10px;
+}
+
+#sign_content .txt_passed {
+    width: 125px;
+    padding: 10px 0 10px 10px;
+}
+
+#login_fast .identifying {
+    width: 102px;
+    height: 45px;
     display: block;
     background-color: #2cb175;
     text-align: center;
@@ -401,33 +894,58 @@
     float: right;
     font-size: 13px;
 }
-#login_fast .content{
+
+#login_fast .content {
     padding-bottom: 20px;
 }
-#login_fast .content li{
-    width: 242px; height: 45px;
-    margin-left:auto;
-    margin-right:auto;
+
+#login_fast .content li {
+    width: 242px;
+    height: 45px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 15px;
 }
-#login_fast .content li.errorMsg{
+
+#login_fast .content li.errorMsg {
     height: auto;
     font-size: 13px;
     margin-top: 10px;
 }
 
-#login_fast .check{ width: 14px; height: 14px; font-size: 10px; display: block; float: left; margin-left: 4px;}
-#login_fast .remind{ width: 70px; height: 30px; display: block; float: left; font-size: 12px; padding-left: 5px; color: #b7b7b7;}
-#login_fast .passed{
-    width: 80px; height: 30px;
-    float: right; color: #12BD56;
+#login_fast .check {
+    width: 14px;
+    height: 14px;
+    font-size: 10px;
+    display: block;
+    float: left;
+    margin-left: 4px;
+}
+
+#login_fast .remind {
+    width: 70px;
+    height: 30px;
+    display: block;
+    float: left;
+    font-size: 12px;
+    padding-left: 5px;
+    color: #b7b7b7;
+}
+
+#login_fast .passed {
+    width: 80px;
+    height: 30px;
+    float: right;
+    color: #12BD56;
     font-size: 12px;
     text-decoration: underline;
     text-align: right;
     cursor: pointer;
 }
-#login_fast .btnIn{
-    width: 232px; height: 45px;
+
+#login_fast .btnIn {
+    width: 232px;
+    height: 45px;
     background-color: #28B094;
     text-align: center;
     line-height: 45px;
@@ -438,19 +956,68 @@
     margin: -15px auto;
 }
 
-#login_fast .title .active{ background-color: #f4f4f4;}
-
+#login_fast .title .active {
+    background-color: #f4f4f4;
+}
 
 /*教师详情*/
-#teacherInfo{ width: 740px; height: 240px; background-color: #28B094; margin: 300px auto; position: relative;}
-#teacherInfo .teacherInfoA{ width: 731px; min-height: 200px; background-color: #fff; float: right;}
-#teacherInfo a{ width: 150px; height: 150px; margin: 45px 30px; border-radius: 75px; display: block; float: left; }
-#teacherInfo .teacherInfoA a img{ width: 150px; height: 150px; border-radius: 75px;}
-#teacherInfo .teacher_info{ width: 500px; height: 214px; float: left; padding: 13px 2px;}
-#teacherInfo .teacher_info span{ line-height: 50px; line-height: 50px; font-size: 16px; color: #28B094; margin-left: 5px;}
-#teacherInfo .teacher_info .teacher_message{ width: 500px; height: 150px; display: block; overflow: auto; font-size: 12px; line-height: 25px;}
-#teacherInfo .close{
-    width: 32px; height: 32px;
+#teacherInfo {
+    width: 740px;
+    height: 240px;
+    background-color: #28B094;
+    margin: 300px auto;
+    position: relative;
+}
+
+#teacherInfo .teacherInfoA {
+    width: 731px;
+    min-height: 200px;
+    background-color: #fff;
+    float: right;
+}
+
+#teacherInfo a {
+    width: 150px;
+    height: 150px;
+    margin: 45px 30px;
+    border-radius: 75px;
+    display: block;
+    float: left;
+}
+
+#teacherInfo .teacherInfoA a img {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+}
+
+#teacherInfo .teacher_info {
+    width: 500px;
+    height: 214px;
+    float: left;
+    padding: 13px 2px;
+}
+
+#teacherInfo .teacher_info span {
+    line-height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    color: #28B094;
+    margin-left: 5px;
+}
+
+#teacherInfo .teacher_info .teacher_message {
+    width: 500px;
+    height: 150px;
+    display: block;
+    overflow: auto;
+    font-size: 12px;
+    line-height: 25px;
+}
+
+#teacherInfo .close {
+    width: 32px;
+    height: 32px;
     display: block;
     background-color: #28B094;
     color: #fff;
@@ -463,11 +1030,17 @@
     cursor: pointer;
 }
 
-
 /*课程内容里面的表格*/
 
-.tuan_content thead tr td{ background-color: #79B0A5; color: #fff;}
-.tuan_content tbody td button{ background-color: #FF6A6A; border-radius: 17px;}
+.tuan_content thead tr td {
+    background-color: #79B0A5;
+    color: #fff;
+}
+
+.tuan_content tbody td button {
+    background-color: #FF6A6A;
+    border-radius: 17px;
+}
 
 .tuan_content tbody td {
     padding: 5px 0;
