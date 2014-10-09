@@ -7,11 +7,13 @@ var Course = Backbone.Model.extend({
                 'createTime': undefined,
 
                 /*others*/
+                'groupBuyActivity': null,//团购信息
+                'bookingTotal': 0,//预订总数
                 'popularity': undefined,//人气值
                 'bookingType': undefined,
                 'startUponArrival': undefined,//转换成了是否有具体的开课日期
                 'regPhone': undefined,//转换成了没有开课日期的备注
-                'studyDaysNote': undefined,//备注信息
+//                'studyDaysNote': undefined,//备注信息
                 'qualityAssurance': undefined, //质量保证 修改为 课时信息
                 "trail": undefined,//试听
                 'status': undefined,//课程状态
@@ -40,7 +42,7 @@ var Course = Backbone.Model.extend({
                 'finishDate': undefined,//开课日期
                 'courseHourNum': undefined,//课时总数
                 'courseHourLength': undefined,//课时长度
-                'studyDays': undefined,//todo 未使用
+//                'studyDays': undefined,//todo 未使用
                 'startTime1': undefined, //number 一系列的上课时间组合
                 'finishTime1': undefined,
                 'startTime2': undefined,
@@ -178,17 +180,17 @@ var Course = Backbone.Model.extend({
             json.schooltimeDay = Utilities.toSchoolTimeText(json.schooltimeDay, EnumConfig.schooltimeDay, '/');//白天什么的
 
 
-            if (json.studyDays) {
-                studyDays = "每周";
-                for (i = 0; i < json.studyDays.length; i++) {
-                    studyDays = studyDays + Constants.weekDayArray[json.studyDays [i]];
-                    if (i < json.studyDays.length - 1) {
-                        studyDays += ", ";
-                    }
-                }
-                json.studyDays = studyDays;
-            }
-            json.studyDaysNote = json.studyDaysNote ? "(" + json.studyDaysNote + ")" : "";
+//            if (json.studyDays) {
+//                studyDays = "每周";
+//                for (i = 0; i < json.studyDays.length; i++) {
+//                    studyDays = studyDays + Constants.weekDayArray[json.studyDays [i]];
+//                    if (i < json.studyDays.length - 1) {
+//                        studyDays += ", ";
+//                    }
+//                }
+//                json.studyDays = studyDays;
+//            }
+//            json.studyDaysNote = json.studyDaysNote ? "(" + json.studyDaysNote + ")" : "";
             if (json.teacherList) {
                 var teacherList = [];
                 json.teacherList.forEach(function (teacher) {
@@ -225,6 +227,9 @@ var Course = Backbone.Model.extend({
             json.logoUrl = this.get("logoUrl");
             json.instName = this.get("instName");
 
+            json.bookingTotal = this.get("bookingTotal");
+            json.groupBuyActivity = this.get("groupBuyActivity");
+
             //以下为显示开课日期所需的字段
             json.regPhone = this.get("regPhone");//开课日期备注信息
             json.startUponArrival = this.get("startUponArrival");//是否具有开课日期
@@ -249,8 +254,8 @@ var Course = Backbone.Model.extend({
             json.price = this.get("price");
             json.originalPrice = this.get("originalPrice");
             json.cashback = this.get("cashback");
-            json.commission = this.get("commission");
-            json.marking = this.get("marking");
+            json.commission = this.get("commission");//折扣
+//            json.marking = this.get("marking");//优惠信息 不显示了
 
             //上课地址
             json.address = this.get("address");

@@ -267,7 +267,15 @@
     float: left;
     font-size: 14px;
 }
-#searchCourse .searchContent li textarea{ width: 297px; height: 77px; line-height: 20px; border: 0; outline: 0; padding: 10px;}
+
+#searchCourse .searchContent li textarea {
+    width: 297px;
+    height: 64px;
+    line-height: 20px;
+    border: 0;
+    outline: 0;
+    padding: 10px;
+}
 
 #searchCourse .searchContent .btn {
     position: absolute;

@@ -5,7 +5,7 @@ var Tuan = Backbone.Model.extend({
             'courseId': -1,
             'title': -1,//团购标题
             'groupBuyPrice': undefined,//团购价格
-            'bookingTotal': 0,//预订总素
+            'bookingTotal': 0,//预订总数
             'hot': undefined,//是否指定推荐 banner的四个团购课程
             'endTime': undefined,//到期时间
             'status': undefined,//上线状态
