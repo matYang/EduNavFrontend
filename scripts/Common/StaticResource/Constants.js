@@ -42,8 +42,8 @@ var Constants = {
         "req", "subCategoryContainer", "subSubCategoryContainer", "subSubCategory", "subCategory", "category",
 
         /*课程团购*/
-        'tuan','tuanDetail',
-        'tuanBanner','tuanResultEntry',
+        'tuan', 'tuanDetail',
+        'tuanBanner', 'tuanResultEntry',
         //评论相关
         'tuanDetailCommentsContainer',
         'commentEntry',
@@ -96,6 +96,7 @@ var Constants = {
         "aboutUs", "joinUs", "contactUs", "advise", "help",
 
         //其它
+        'errorPay',//支付失败的帮助页面
         "infoModal",
         "colorInfoModal",
         "sideBarView",//侧边工具栏

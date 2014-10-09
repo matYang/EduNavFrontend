@@ -23,8 +23,8 @@ var AppRouter = Backbone.Router.extend({
         "mypage/:view": "mypage",
 
         //todo 课程团购
-        'tuan':'tuan',
-        'tuan/:tuanId':'tuanDetail',
+        'tuan': 'tuan',
+        'tuan/:tuanId': 'tuanDetail',
 
         //课程详情ß
         "course/:courseId": "courseDetail",
@@ -47,6 +47,8 @@ var AppRouter = Backbone.Router.extend({
         //底部链接
         "service": "serviceCenter",
         "service/:tab": "serviceCenter",
+
+        "error/pay": 'errorPay',
 
         "*default": "error"
     },
@@ -95,11 +97,11 @@ var AppRouter = Backbone.Router.extend({
     },
 
     //todo 团购页面
-    tuan: function(){
+    tuan: function () {
         this.tuanView = new TuanView();
     },
     //todo 团购详情页
-    tuanDetail: function(tuanId){
+    tuanDetail: function (tuanId) {
         this.tuanDetailView = new TuanDetailView({
             'tuanId': Utilities.toInt(tuanId)
         });
@@ -171,8 +173,6 @@ var AppRouter = Backbone.Router.extend({
     },
 
 
-
-
     newBooking: function (courseId) {
         this.newBookingView = new NewBookingView({courseId: courseId});
     },
@@ -205,6 +205,9 @@ var AppRouter = Backbone.Router.extend({
     },
     serviceCenter: function (tab) {
         this.serviceCenterView = new ServiceCenterView({tab: tab});
+    },
+    errorPay: function () {
+        this.errorPayView = new ErrorPayView();
     }
 });
 

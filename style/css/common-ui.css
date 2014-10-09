@@ -391,7 +391,10 @@ textarea{resize: none;}
 .border-light{ border: 1px solid #CFCFCF; }
 
 .bg-primary{ background-color: #128d56; }
-.bg-warning{ background-color: #f7a501; }
+
+.bg-warning {
+    background-color: #F15922;
+}
 
 .bg-error {
     background-color: #FB6D6D;
@@ -406,7 +409,7 @@ textarea{resize: none;}
 }
 
 .ft-warning, a.ft-warning {
-    color: #f7a501;
+    color: #F15922;
 }
 
 .ft-error, a.ft-error {
@@ -415,6 +418,24 @@ textarea{resize: none;}
 
 .ft-light, a.ft-light {
     color: #aaaaaa;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    display: block;
+}
+
+.h1 {
+}
+
+.h2 {
+}
+
+.h3 {
 }
 
 /*带有下点点的字体因其重要性字体会调大*/
@@ -428,7 +449,7 @@ textarea{resize: none;}
     width: 20px;
     height: 20px;
     display: inline-block;
-    vertical-align: text-bottom;
+    vertical-align: top;
     background: url(../images/icon.png) no-repeat;
 }
 
@@ -450,6 +471,12 @@ textarea{resize: none;}
 }
 .icon-location{
     background: url(../images/icon_location.png) no-repeat;
+}
+
+.icon-info-large {
+    width: 40px;
+    height: 40px;
+    background: url(../images/icon_info_large.png) no-repeat;
 }
 
 /*图片和图标的样式控制*/
@@ -494,5 +521,60 @@ body > #wrap {
     clear: both;
     background: #248E4E;
     color: #ffffff
+}
+
+/*支付失败的帮助页面 panel*/
+#errorPayPanel {
+    color: #333333;
+}
+
+#errorPayPanel .panel-header {
+    color: #ffffff;
+}
+
+#errorPayPanel .h1 {
+    font-size: 22px;
+    line-height: 40px;
+}
+
+#errorPayPanel .h2 {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.answer {
+    padding-left: 15px;
+    margin: 15px 0;
+}
+
+.answer dt {
+    position: relative;
+    font-weight: bold;
+    line-height: 24px
+}
+
+.answer dt:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: -14px;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background: url("../images/dot_warn.png") center no-repeat;
+}
+
+.answer dd {
+    margin-left: -3px;
+    line-height: 24px;
+}
+
+.answer a {
+    color: #F15922;
+    text-decoration: underline;
+}
+
+.answer a:hover {
+    color: #F15922;
 }
 
