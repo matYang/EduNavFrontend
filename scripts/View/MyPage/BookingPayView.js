@@ -61,8 +61,9 @@ var BookingPayView = Backbone.View.extend({
             }
             //todo 进入团购订单页面
             $('.btnfalse').on('click', function () {
-                app.navigate("mypage/tbooking/" + that.bookingId, true);
-                $("#overlay_booking").remove();
+                var ref = window.location.hash;
+                ref = ref.substring(1);
+                app.navigate('error/pay/ref=' + ref, true);
             });
             $('.btnsuccess').on('click', function () {
                 app.navigate("mypage/tbooking/" + that.bookingId, true);

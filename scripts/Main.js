@@ -26,7 +26,7 @@ var AppRouter = Backbone.Router.extend({
         'tuan': 'tuan',
         'tuan/:tuanId': 'tuanDetail',
 
-        //课程详情ß
+        //课程详情
         "course/:courseId": "courseDetail",
         "course/:courseId/": "courseDetail",
         //订单生成
@@ -48,7 +48,7 @@ var AppRouter = Backbone.Router.extend({
         "service": "serviceCenter",
         "service/:tab": "serviceCenter",
 
-        "error/pay": 'errorPay',
+        "error/pay/ref=*ref": 'errorPay',
 
         "*default": "error"
     },
@@ -206,8 +206,8 @@ var AppRouter = Backbone.Router.extend({
     serviceCenter: function (tab) {
         this.serviceCenterView = new ServiceCenterView({tab: tab});
     },
-    errorPay: function () {
-        this.errorPayView = new ErrorPayView();
+    errorPay: function (ref) {
+        this.errorPayView = new ErrorPayView({"ref": ref});
     }
 });
 

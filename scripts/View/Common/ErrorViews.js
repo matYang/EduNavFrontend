@@ -5,9 +5,11 @@
 var ErrorPayView = Backbone.View.extend({
     el: '#content',
     template: _.template(tpl.get('errorPay')),
-    initialize: function () {
+    initialize: function (param) {
         _.bindAll(this, 'render', 'bindEvents', 'close');
+        app.viewRegistration.register(this);
         this.isClosed = false;
+        this.ref = param.ref;
         this.render();
         this.bindEvents();
     },
@@ -16,6 +18,11 @@ var ErrorPayView = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+
+        this.$el.on('click', '.backToPay', function () {
+            var toPage = that.ref || "mypage";
+            app.navigate(toPage, true);
+        })
     },
     close: function () {
         if (!this.isClosed) {
