@@ -139,7 +139,7 @@ var SearchView = Backbone.View.extend({
                 cbuf = [], scbuf = [], tcbuf = [],
                 children1, children2,
                 tc = "";
-            if (!this.searchRepresentation.get("categoryValue")) {
+            if (!this.searchRepresentation.get("courseName") && !this.searchRepresentation.get("categoryValue")) {
                 this.searchRepresentation.set("categoryValue", data[0].value);
             }
             //一级目录
@@ -173,6 +173,9 @@ var SearchView = Backbone.View.extend({
     /*渲染选中的课程类别*/
     showCategory: function () {
         var text, count, value, categoryValue = this.searchRepresentation.get("categoryValue");
+        if (!categoryValue) {
+            return
+        }
         $("#search_category").find("li[data-value=" + categoryValue.substr(0, 2) + "]").addClass("active").siblings("li").removeClass("active");
         var $filter_sub = $("#filter_subCategory");
         var $searchReqs = $("#searchReqs");
