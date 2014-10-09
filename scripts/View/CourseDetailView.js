@@ -39,6 +39,7 @@ var CourseDetailView = Backbone.View.extend({
     },
 
     render: function () {
+        var that = this;
 
         $(document).scrollTop(0);
         $("body").addClass("courseDetail");
@@ -118,6 +119,11 @@ var CourseDetailView = Backbone.View.extend({
         });
         $(".courseDetail .pic .pic_big").find("a:first").addClass("active");
         $(".courseDetail .pic .pic_list").find("i:first").removeClass("active");
+
+        this.commentsView = new TuanDetailCommentsView({
+            courseId: that.courseId,
+            parentView: that
+        });
     },
     bindEvents: function () {
         var that = this;

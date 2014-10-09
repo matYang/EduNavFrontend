@@ -80,14 +80,16 @@
     float: right;
     padding: 0;
 }
-
-#tuanDetail .row .price,
-.courseDetail .row .price {
+.courseDetail .row .price,
+#tuanDetail .row .price{
     padding-left: 10px;
     width: 458px; height: 80px;
     background-color: #128d56; color: #fff;
     line-height: 80px; font-size: 16px;
 }
+.courseDetail .small_title{ height: 40px; margin-bottom: 3px;}
+.courseDetail .small_title h3{ float: left; line-height: 40px; color: #128D56;}
+.courseDetail .small_title input{ width: 100px; height: 35px; float: right; margin-left: 10px;}
 
 #tuanDetail .row .price span,
 .courseDetail .row .price span {
@@ -100,7 +102,10 @@
     text-decoration: line-through;
 }
 
-#tuanDetail .row .price strong,
+.courseDetail .row .price strong,
+#tuanDetail .row .price strong{
+    font-size: 28px;
+}
 .courseDetail .row .price strong {
     font-size: 28px;
 }
@@ -112,9 +117,8 @@
     margin-bottom: 10px;
     text-align: left;
 }
-
-#tuanDetail .row .icon,
-.courseDetail .row .icon {
+.courseDetail .row .icon,
+#tuanDetail .row .icon{
     height: 17px;
     padding: 27px 0 13px 0;
     width: 420px;
@@ -124,9 +128,11 @@
 #starDemo{ float: left;}
 #tuanDetail .row .icon a{ float: left; color: #ffbd6b; line-height: 20px; margin-left: 10px;}
 #tuanDetail .row .icon span{ line-height: 20px; float: left; margin-left: 10px;}
+.courseDetail .row .icon a{ float: left; color: #C69F5E; line-height: 20px; margin-left: 10px;}
+.courseDetail .row .icon span{ line-height: 20px; float: left; padding: 0 10px;}
 #tuanDetail .row span{ line-height: 40px; font-size: 14px; text-align: left;  display: block;}
 #tuanDetail .row a{ color: #128d56;}
-.courseDetail .btn,
+.courseDetail .btn{ padding: 0; width: 468px; margin-top: 25px;}
 #tuanDetail .btn{ padding: 0; width: 468px; margin-top: 15px;}
 .courseDetail .btn a,
 #tuanDetail .btn a{

@@ -9,7 +9,7 @@ var SearchView = Backbone.View.extend({
     reqTemplate: _.template(tpl.get("req")),
     template: _.template(tpl.get('search')),
     initialize: function (params) {
-        _.bindAll(this, 'render', 'bindEvents', 'bindCatSearchEvents', 'renderCategories', 'renderLocations','renderCircle', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'bindCatSearchEvents', 'renderCategories', 'renderLocations', 'renderCircle', 'close');
         //define the template
 
         this.timeDesc = true;
@@ -66,17 +66,10 @@ var SearchView = Backbone.View.extend({
     renderLocations: function (locations) {
         var self = this;
         //加载行政区/商圈//todo 地区和商圈的Value
-        var loc = [{"value":"location","name":"行政区"},{"value":"circle","name":"商圈"}];
         if (!this.isClosed) {
             var buf = [], chbuf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
             this.locations = locations;
-            // for (var prov in locations) {
-            //     var city = locations[prov];
-            //     for (var attr in city) {
 
-            for (i = 0; i < loc.length; i++) {
-                buf[i] = this.subCategoryTemplate({value: loc[i].value, name: loc[i].name});
-            }
             //加载行政区
             var districts = locations[0].children[0].children, district;
             for (i = 0; i < districts.length; i++) {
@@ -84,15 +77,13 @@ var SearchView = Backbone.View.extend({
                 var tt = this.subSubCategoryContainerTemplate({value: "location", entries: chbuf.join("")});
             }
             buf.push(tt);
-            var $dist = $("#filter_district");
-            $dist.append(buf.join(""));
-
+            $("#filter_district").append(buf.join(""));
         }
     },
     /*加载商圈*/
-    renderCircle:function(Circle){
+    renderCircle: function (Circle) {
         var self = this;
-        var bubuf=[], circle = Circle;
+        var bubuf = [], circle = Circle;
         for (i = 0; i < circle.length; i++) {
             bubuf[i] = this.subSubCategoryTemplate({value: circle[i].value, name: circle[i].name});
             var tb = this.subSubCategoryContainerTemplate({value: "circle", entries: bubuf.join("")});
@@ -101,7 +92,7 @@ var SearchView = Backbone.View.extend({
         this.showLocation();
     },
     /*渲染地址*/
-    showLocation:function(){
+    showLocation: function () {
         var self = this;
         var locationValue = this.searchRepresentation.get("locationValue");
         var circleValue = this.searchRepresentation.get("circleValue");
@@ -109,29 +100,29 @@ var SearchView = Backbone.View.extend({
         this.titleObj.city = "南京";
         if (!locationValue && !circleValue) {
             $dist.find("span[data-value=noreq]").addClass("active");
-        } else if(locationValue == "location" || circleValue == "circle"){
+        } else if (locationValue == "location" || circleValue == "circle") {
             $dist.find("span[data-value=noreq]").removeClass("active");
             //如果原本选择的是行政区
-            if(locationValue == "location"){
-                $dist.find("span[data-value="+ locationValue +"]").addClass("active");
+            if (locationValue == "location") {
+                $dist.find("span[data-value=" + locationValue + "]").addClass("active");
                 var text = $dist.find("span[data-value=" + locationValue + "]").html();
                 $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
                 $dist.find("p[data-parentvalue=" + locationValue + "]").removeClass("hidden");
-            }else{//如果原本选择的是商圈
-                $dist.find("span[data-value="+ circleValue +"]").addClass("active");
+            } else {//如果原本选择的是商圈
+                $dist.find("span[data-value=" + circleValue + "]").addClass("active");
                 var text = $dist.find("span[data-value=" + circleValue + "]").html();
                 $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
                 $dist.find("p[data-parentvalue=" + circleValue + "]").removeClass("hidden");
             }
-        }else if(locationValue){//如果原本选择的是行政区下的小标题
+        } else if (locationValue) {//如果原本选择的是行政区下的小标题
             $dist.find("span[data-value=noreq]").removeClass("active");
-            $dist.find("span[data-value="+ locationValue +"]").addClass("active");
+            $dist.find("span[data-value=" + locationValue + "]").addClass("active");
             $dist.find("p[data-parentvalue='location']").removeClass("hidden");
             var text = $dist.find("span[data-value=" + locationValue + "]").html();
             $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
-        }else{//如果原本选择的是商圈下的小标题
+        } else {//如果原本选择的是商圈下的小标题
             $dist.find("span[data-value=noreq]").removeClass("active");
-            $dist.find("span[data-value="+ circleValue +"]").addClass("active");
+            $dist.find("span[data-value=" + circleValue + "]").addClass("active");
             $dist.find("p[data-parentvalue='circle']").removeClass("hidden");
             var text = $dist.find("span[data-value=" + circleValue + "]").html();
             $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
@@ -343,18 +334,20 @@ var SearchView = Backbone.View.extend({
             $("#filter_" + cri).find("p").addClass("hidden");
         });
 
+        var $filter_district = $("#filter_district");
         //行政区和商圈
-        $("#filter_district").find(".subCategory").on("click",function(){
-            var v= $(this).attr("data-value");
-            if( v == "location"){
-                var index = 0;
-            }else if( v == "circle"){
-                var index = 1;
+        $filter_district.on("click", '.subCategory', function () {
+            var v = $(this).attr("data-value");
+            var index;
+            if (v == "location") {
+                index = 0;
+            } else if (v == "circle") {
+                index = 1;
             }
-            $("#filter_district").find("p").addClass("hidden");
-            $("#filter_district").find("p:eq("+ index +")").removeClass("hidden");
+            $filter_district.find("p").addClass("hidden");
+            $filter_district.find("p:eq(" + index + ")").removeClass("hidden");
         });
-        $("#filter_district").find("span[data-value=noreq]").on("click",function(){
+        $filter_district.find("span[data-value=noreq]").on("click", function () {
             $("#filter_district").find("p").addClass("hidden");
         });
     },
@@ -479,7 +472,7 @@ var SearchView = Backbone.View.extend({
                     this.compareWidgetView.map.setCenter(this.locations[0].name);
                     this.compareWidgetView.map.map.setZoom(9);
                 }
-            } else if(dataValue === "location"){//判断是不是行政区
+            } else if (dataValue === "location") {//判断是不是行政区
                 this.searchRepresentation.set("locationValue", $target.data("value"));
                 this.searchRepresentation.set("circleValue", undefined);
                 this.titleObj.district = $target.html();
@@ -487,7 +480,7 @@ var SearchView = Backbone.View.extend({
                     this.compareWidgetView.map.setCenter($target.html());
                     this.compareWidgetView.map.map.setZoom(11);
                 }
-            }else if(dataValue === "circle"){//判断是不是商圈
+            } else if (dataValue === "circle") {//判断是不是商圈
                 this.searchRepresentation.set("circleValue", $target.data("value"));
                 this.searchRepresentation.set("locationValue", undefined);
                 this.titleObj.district = $target.html();
@@ -495,12 +488,12 @@ var SearchView = Backbone.View.extend({
                     this.compareWidgetView.map.setCenter($target.html());
                     this.compareWidgetView.map.map.setZoom(13);
                 }
-            }else{
+            } else {
                 //判断是商圈下的还是行政区
-                if($target.parent().data("parentvalue") === "location"){
+                if ($target.parent().data("parentvalue") === "location") {
                     this.searchRepresentation.set("locationValue", dataValue);
                     this.searchRepresentation.set("circleValue", undefined);
-                }else{
+                } else {
                     this.searchRepresentation.set("circleValue", dataValue);
                     this.searchRepresentation.set("locationValue", undefined);
                 }

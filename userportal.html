@@ -413,8 +413,8 @@
                     <span>韩语TOPIK1基础班</span>
                 </a>
                 <div class="pic_word">
-                    <span>已有<s>456</s>人报名</span>
-                    <strong>￥456</strong>
+                    <span>已有<s>298</s>人报名</span>
+                    <strong>￥2000</strong>
                 </div>
             </div>
         </li>
@@ -425,8 +425,8 @@
                     <span>业余制日语0-N2基础班</span>
                 </a>
                 <div class="pic_word">
-                    <span>已有<s>456</s>人报名</span>
-                    <strong>￥456</strong>
+                    <span>已有<s>298</s>人报名</span>
+                    <strong>￥4730</strong>
                 </div>
             </div>
         </li>
@@ -437,8 +437,8 @@
                     <span>雅思6.5高分班（周末)</span>
                 </a>
                 <div class="pic_word">
-                    <span>已有<s>456</s>人报名</span>
-                    <strong>￥456</strong>
+                    <span>已有<s>1233</s>人报名</span>
+                    <strong>￥3490</strong>
                 </div>
             </div>
         </li>
@@ -451,8 +451,8 @@
                     <span>CCIE+CCNP+CCNA直通车</span>
                 </a>
                 <div class="pic_word">
-                    <span>已有<s>456</s>人报名</span>
-                    <strong>￥456</strong>
+                    <span>已有<s>34</s>人报名</span>
+                    <strong>￥18800</strong>
                 </div>
             </div>
         </li>
@@ -463,8 +463,8 @@
                     <span>Photoshop</span>
                 </a>
                 <div class="pic_word">
-                    <span>已有<s>456</s>人报名</span>
-                    <strong>￥456</strong>
+                    <span>已有<s>1887</s>人报名</span>
+                    <strong>￥665</strong>
                 </div>
             </div>
         </li>
@@ -475,8 +475,8 @@
                     <span>室内设计就业班</span>
                 </a>
                 <div class="pic_word">
-                    <span>已有<s>456</s>人报名</span>
-                    <strong>￥456</strong>
+                    <span>已有<s>530</s>人报名</span>
+                    <strong>￥2000</strong>
                 </div>
             </div>
         </li>
@@ -489,8 +489,8 @@
                     <span>导游基础考证班</span>
                 </a>
                 <div class="pic_word">
-                    <span>已有<s>456</s>人报名</span>
-                    <strong>￥456</strong>
+                    <span>已有<s>1432</s>人报名</span>
+                    <strong>￥980</strong>
                 </div>
             </div>
         </li>
@@ -501,8 +501,8 @@
                     <span>会计证精讲班</span>
                 </a>
                 <div class="pic_word">
-                    <span>已有<s>456</s>人报名</span>
-                    <strong>￥456</strong>
+                    <span>已有<s>424</s>人报名</span>
+                    <strong>￥599</strong>
                 </div>
             </div>
         </li>
@@ -513,8 +513,8 @@
                     <span>教师资格证小学</span>
                 </a>
                 <div class="pic_word">
-                    <span>已有<s>456</s>人报名</span>
-                    <strong>￥456</strong>
+                    <span>已有<s>566</s>人报名</span>
+                    <strong>￥1000</strong>
                 </div>
             </div>
         </li>
@@ -527,8 +527,8 @@
                     <span>公共课单科精英计划（三门联报特价班）</span>
                 </a>
                 <div class="pic_word">
-                    <span>已有<s>456</s>人报名</span>
-                    <strong>￥456</strong>
+                    <span>已有<s>322</s>人报名</span>
+                    <strong>￥13000</strong>
                 </div>
             </div>
         </li>
@@ -539,8 +539,8 @@
                     <span>2016考研单科飞跃（政治、英语、数学）</span>
                 </a>
                 <div class="pic_word">
-                    <span>已有<s>456</s>人报名</span>
-                    <strong>￥456</strong>
+                    <span>已有<s>1570</s>人报名</span>
+                    <strong>￥5300</strong>
                 </div>
             </div>
         </li>
@@ -551,8 +551,8 @@
                     <span>南京财经大学自考（会计）</span>
                 </a>
                 <div class="pic_word">
-                    <span>已有<s>456</s>人报名</span>
-                    <strong>￥456</strong>
+                    <span>已有<s>121</s>人报名</span>
+                    <strong>￥6900</strong>
                 </div>
             </div>
         </li>
@@ -584,6 +584,8 @@
             <div id="filter_district" class="filterCriteria filterCriteriadotted">
                 <label>上课地区：</label>
                 <span data-value="noreq" class="active">不限</span>
+                <div data-value="location" class="subCategory span">行政区</div>
+                <div data-value="circle" class="subCategory span active">商圈</div>
             </div>
             <div id="filter_startTime" class="filterCriteria">
                 <label>开课日期：</label>
@@ -1999,17 +2001,25 @@
         </div>
     </div>
     <div class="row">
-        <h2><%= courseName %></h2>
+        <h1 style="color: #128D56"><%= courseName %></h1>
+        <div class="small_title">
+            <h3>【<%= instName %>】</h3>
+            <div>
+                <input style="background-color: #FF6A6A" class="add btn_g" type="button" value="正在团">
+                <input style="background-color: #47BC78" id="detail_compare_<%= id %>" class="add btn_g" type="button" value=" +对比 ">
+
+            </div>
+        </div>
         <div class="price">
             <span>爱上课指导价：
                 <%if(originalPrice){%>
-                <strong><%=originalPrice%></strong> 元
+                ￥<strong><%=originalPrice%></strong>
                 <%}else if(price){%>
-                <strong><%=price%></strong> 元
+                ￥<strong><%=price%></strong>
                 <%}else{%>
                 <strong>待定</strong>
                 <%}%>
-                
+
             </span>
             <span>（门店价 <%= commission/10 %>折）</span>
         </div>
@@ -2018,12 +2028,34 @@
             <a>4分</a>
             <span>(1562人评价)</span>
         </div>
-        <span>已有<a>45</a>人下单</span>
+        <div>
+            <%if(cashback){%>
+            <div class="cashback margin-top"><%=cashback %>+元
+                <div class="tip">
+                    <div class="arrow"></div>
+                    <div class="tip_content">
+                        前台付现，入学成功可至少返还<span class="price"><%=cashback %>元</span>至现金账户！
+                    </div>
+                </div>
+            </div>
+            <a class="has-tip has-tip-bottom">【如何返?】
+                <div class="tip">
+                    <div class="arrow"></div>
+                    <div class="tip_content">
+                        无论学校与亲以什么价格成交，亲都能在付费后，从爱上课获取<span class="price"><%=100-commission%>%</span>的现金返现！
+                    </div>
+                </div>
+            </a>
+            <%}%>
+
+        </div>
         <div class="btn">
             <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
             <a class="btnconsult bookNow" data-value="<%=courseId%>">申请免费试听</a>
         </div>
     </div>
+
+
 </div>
 <div class="tuanMain clearfix">
     <div class="tuan_sorterArea">
