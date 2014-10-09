@@ -49,12 +49,14 @@
 #tuanBanner .tips_li .c-left {
     width: 160px;
     line-height: 80px;
-    font-size: 16px;
+    font-size: 18px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     float: left;
     padding-left: 10px;
+
+    font-weight: bold;
 }
 
 #tuanBanner .tips_li .c-right {
@@ -66,10 +68,13 @@
 }
 
 #tuanBanner .tips_li .price {
+    font-family: Arial;
+    font-weight: bold;
     font-size: 30px;
     color: #FC6B6D;
 }
 
+#tuanBanner .tips_li.active a,
 #tuanBanner .tips_li.active .price {
     color: #ffffff;
 }
