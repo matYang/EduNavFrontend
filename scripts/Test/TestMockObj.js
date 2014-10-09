@@ -34,7 +34,7 @@ testMockObj = {
     testTuans: new Tuans(),
     testTuan1: (new Tuan()).set('id', 1).set('courseId', 1)
         .set('title', '团购测试标题1').set('groupBuyPrice', 299)
-        .set('bookingTotal', 123).set('hot', 1).set('endTime', (new Date()).getTime()+3600000*24*7)
+        .set('bookingTotal', 123).set('hot', 1).set('endTime', (new Date()).getTime() + 3600000 * 24 * 7)
         .set('photoList', [
             {url: './style/images/t_item_banner_test.jpg'},//约定第一张为置顶课程的图片
             {url: './style/images/t_item_banner_test.jpg'},//约定第二张为团购列表中的封面
@@ -43,7 +43,7 @@ testMockObj = {
         ]),
     testTuan2: (new Tuan()).set('id', 2).set('courseId', 2)
         .set('title', '团购测试标题2').set('groupBuyPrice', 299)
-        .set('bookingTotal', 123).set('hot', 1).set('endTime', (new Date()).getTime()+3600000*24*3)
+        .set('bookingTotal', 123).set('hot', 1).set('endTime', (new Date()).getTime() + 3600000 * 24 * 3)
         .set('photoList', [
             {url: './style/images/t_item_banner_test.jpg'},//约定第一张为置顶课程的图片
             {url: './style/images/t_item_banner_test.jpg'},//约定第二张为团购列表中的封面
@@ -51,12 +51,12 @@ testMockObj = {
             {url: './style/images/t_item_banner_test.jpg'},
         ]),
     //团购订单
-    testGroupBuyBookings:new GroupBuyBookings(),
+    testGroupBuyBookings: new GroupBuyBookings(),
     testGroupBuyBooking1: (new GroupBuyBooking)
         .set('id', 1).set('groupBuyActivityId', 1)
-        .set('status',0)
+        .set('status', 0)
         .set('groupBuyPrice', 199)
-        .set('createTime', new Date()).set('userId',1).set('reference','ISK-1-1'),
+        .set('createTime', new Date()).set('userId', 1).set('reference', 'ISK-1-1'),
 
     testCourses: new Courses(),
     testCourse1: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 1)
@@ -87,13 +87,6 @@ testMockObj = {
         .set('downloadMaterials', '课件下载-test'),
     testCourse2: (new Course()).set("categoryValue", "000101").set("id", 2).set("courseName", "GRE"),
     testCourse3: (new Course()).set("categoryValue", "000101").set("id", 3).set("courseName", "GRE"),
-    testCourse4: (new Course()).set("categoryValue", "000101").set("id", 4).set("courseName", "GRE"),
-    testCourse5: (new Course()).set("categoryValue", "000101").set("id", 5).set("courseName", "GRE"),
-    testCourse6: (new Course()).set("categoryValue", "000101").set("id", 6).set("courseName", "GRE"),
-    testCourse7: (new Course()).set("categoryValue", "000101").set("id", 7).set("courseName", "GRE"),
-    testCourse8: (new Course()).set("categoryValue", "000101").set("id", 8).set("courseName", "GRE"),
-    testCourse9: (new Course()).set("categoryValue", "000101").set("id", 9).set("courseName", "GRE"),
-    testCourse10: (new Course()).set("categoryValue", "000101").set("id", 10).set("courseName", "GRE"),
     testBookings: new Bookings(),
     testBooking1: (new Booking()).set("id", 1).set("reference", "10001").set("status", 0).set("type", 1).set("name", "马修")
         .set("phone", 13915063907).set("email", "test@gmail.com").set("price", 11999)
@@ -375,13 +368,13 @@ testMockObj = {
             }
         ]
     },
-    testCircle:{
-        "errorCode":0,"start":0,"count":0,"total":0,"data":[
-            {"errorCode":0,"name":"仙林大学城","value":"00","children":[],"id":0,"lastModifyTime":1405056802000,"createTime":1405056805000},
-            {"errorCode":0,"name":"江宁大学城","value":"01","children":[],"id":2,"lastModifyTime":1405398561000,"createTime":1405398566000},
-            {"errorCode":0,"name":"浦口大学城","value":"02","children":[],"id":3,"lastModifyTime":1405484991000,"createTime":1405484995000},
-            {"errorCode":0,"name":"新街口","value":"03","children":[],"id":4,"lastModifyTime":1405571419000,"createTime":1405571423000},
-            {"errorCode":0,"name":"鼓楼","value":"04","children":[],"id":5,"lastModifyTime":1405398647000,"createTime":1405485051000}
+    testCircle: {
+        "errorCode": 0, "start": 0, "count": 0, "total": 0, "data": [
+            {"errorCode": 0, "name": "仙林大学城", "value": "00", "children": [], "id": 0, "lastModifyTime": 1405056802000, "createTime": 1405056805000},
+            {"errorCode": 0, "name": "江宁大学城", "value": "01", "children": [], "id": 2, "lastModifyTime": 1405398561000, "createTime": 1405398566000},
+            {"errorCode": 0, "name": "浦口大学城", "value": "02", "children": [], "id": 3, "lastModifyTime": 1405484991000, "createTime": 1405484995000},
+            {"errorCode": 0, "name": "新街口", "value": "03", "children": [], "id": 4, "lastModifyTime": 1405571419000, "createTime": 1405571423000},
+            {"errorCode": 0, "name": "鼓楼", "value": "04", "children": [], "id": 5, "lastModifyTime": 1405398647000, "createTime": 1405485051000}
         ]}
 
 };
@@ -389,7 +382,7 @@ testMockObj = {
 testMockObj.testGroupBuyBooking1.set('groupBuyActivity', testMockObj.testTuan1);
 testMockObj.testGroupBuyBooking1.set('course', testMockObj.testCourse1);
 testMockObj.testGroupBuyBookings.add([
-   testMockObj.testGroupBuyBooking1
+    testMockObj.testGroupBuyBooking1
 ]);
 
 testMockObj.testComments.add([
@@ -401,14 +394,7 @@ testMockObj.testComments.total = 13;
 testMockObj.testCourses.add([
     testMockObj.testCourse1,
     testMockObj.testCourse2,
-    testMockObj.testCourse3,
-    testMockObj.testCourse4,
-    testMockObj.testCourse5,
-    testMockObj.testCourse6,
-    testMockObj.testCourse7,
-    testMockObj.testCourse8,
-    testMockObj.testCourse9,
-    testMockObj.testCourse10
+    testMockObj.testCourse3
 ]);
 testMockObj.testAddressList.add([
     testMockObj.testAddress1,

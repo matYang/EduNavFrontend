@@ -143,7 +143,7 @@ var TuanResultView = MultiPageView.extend({
     entryContainer: "tuanResultContainer",
     noMessage: _.template(tpl.get("search_noMessage")),
     entryTemplate: _.template(tpl.get("tuanResultEntry")),
-    pageEntryNumber: 10,
+    pageEntryNumber: 1000,
     scroll: false,
     initialize: function () {
         _.bindAll(this, "bindEvents", "renderSearchResults", "clearCountdown", "renderError", "close");
