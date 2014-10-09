@@ -14,6 +14,7 @@ var TuanView = Backbone.View.extend({
         render: function () {
 
             //var circle = app.generalManager.fetchCircle();
+            $(document).scrollTop(0);
             this.$el.html(this.template());
             if (!this.tuanBannerView) {
                 this.tuanBannerView = new TuanBannerView();
