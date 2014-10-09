@@ -4,9 +4,19 @@
 **/
 
 /*基本样式*/
-html,body{font-family: 'Microsoft Yahei','SimSun','SimHei'; height: 100%; }
-body, dl, dd, h1, h2, h3, h4, h5, h6, p, form { margin: 0; }
-body{ font-size:14px; color:#333;}
+html, body {
+    font-family: 'Microsoft Yahei', 'SimSun', 'SimHei';
+    height: 100%;
+}
+
+body, dl, dd, h1, h2, h3, h4, h5, h6, p, form {
+    margin: 0;
+}
+
+body {
+    font-size: 14px;
+    color: #333;
+}
 
 a:active,
 a:hover {
@@ -24,36 +34,74 @@ a {
     color: #333333;
 }
 
-input[type="text"] { padding: 0 1px; }
-input[type="password"] { padding: 0 1px; }
-ol, ul { margin: 0; padding: 0; }
-img { border: none; }
-ul,li{ list-style: none; }
+input[type="text"] {
+    padding: 0 1px;
+}
 
+input[type="password"] {
+    padding: 0 1px;
+}
 
-label{font-weight:bold;color:#333}
+ol, ul {
+    margin: 0;
+    padding: 0;
+}
 
-textarea{resize: none;}
+img {
+    border: none;
+}
+
+ul, li {
+    list-style: none;
+}
+
+label {
+    font-weight: bold;
+    color: #333
+}
+
+textarea {
+    resize: none;
+}
 
 /*框架布局*/
-.w_730{width:730px;}
-.w_250{width:250px;}
-.container {width:1000px;margin:0 auto;padding: 30px 0;min-height: 500px}
-.fleft { float: left; }
-.fright { float: right; }
-.row{
-    width:100%;
+.w_730 {
+    width: 730px;
 }
-.row:after{
+
+.w_250 {
+    width: 250px;
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 30px 0;
+    min-height: 500px
+}
+
+.fleft {
+    float: left;
+}
+
+.fright {
+    float: right;
+}
+
+.row {
+    width: 100%;
+}
+
+.row:after {
     clear: both;
     content: ".";
     display: block;
     font-size: 0;
     line-height: 0;
     visibility: hidden;
-    width: 0; height: 0;
+    width: 0;
+    height: 0;
 }
-
 
 /**通用面板 默认样式*/
 .panel {
@@ -64,14 +112,17 @@ textarea{resize: none;}
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
+
 /*panel components all padding*/
 .panel .panel-header, .panel .panel-body, .panel .panel-footer {
     padding: 15px 20px;
 }
+
 /*header and footer font-size*/
 .panel .panel-header, .panel .panel-footer {
     font-size: 18px;
 }
+
 /*style of panel body*/
 .panel .panel-body {
 }
@@ -102,7 +153,7 @@ textarea{resize: none;}
     display: inline-block;
     text-align: center;
     vertical-align: middle;
-    border:1px solid transparent;
+    border: 1px solid transparent;
     white-space: nowrap;
     cursor: pointer;
     /*can override*/
@@ -111,7 +162,7 @@ textarea{resize: none;}
     font-size: 20px;
 }
 
-.btn.btn-block{
+.btn.btn-block {
     display: block;
 }
 
@@ -167,7 +218,7 @@ textarea{resize: none;}
 }
 
 /*badge 与label相对应 只是没有后面的说明*/
-.badge{
+.badge {
     display: inline-block;
     min-width: 10px;
     padding: 3px;
@@ -183,71 +234,104 @@ textarea{resize: none;}
 
 /*以下部分需要后续删除 统一使用.label*/
 /*need remove start*/
-.cashback{
-    display:inline-block;
-    position:relative;
+.cashback {
+    display: inline-block;
+    position: relative;
     border: 1px solid #32AF94;
     border-radius: 2px;
     font-family: SimSun, serif;
-    font-size:12px;
+    font-size: 12px;
     line-height: 18px;
     color: #32AF94;
-    padding-left: 19px;padding-right: 3px;
+    padding-left: 19px;
+    padding-right: 3px;
 }
-.cashback:before{
+
+.cashback:before {
     content: '返';
-    position: absolute;left: 0;top:0;
+    position: absolute;
+    left: 0;
+    top: 0;
     color: white;
     background: #32AF94;
     padding: 0 2px;
     width: 12px;
 }
-.cashback .tip{display:none; top:26px; right:-39px;}
-.cashback:hover .tip{display:block;}
+
+.cashback .tip {
+    display: none;
+    top: 26px;
+    right: -39px;
+}
+
+.cashback:hover .tip {
+    display: block;
+}
 
 /*need remove end*/
 
 /*tip 提示框 引用设计师写的样式*/
-.tip{
-    position:absolute;
-    z-index:99;
-    width:313px;
-    border:1px solid #a7a7a7; background:#fff;color: #666;
-    font-size:12px; line-height:22px;}
-.tip .arrow{
-    position:absolute;
-    top:-8px; left:243px;
-    width:15px; height:8px;
-    background:url(../images/arrow.png) no-repeat;
+.tip {
+    position: absolute;
+    z-index: 99;
+    width: 313px;
+    border: 1px solid #a7a7a7;
+    background: #fff;
+    color: #666;
+    font-size: 12px;
+    line-height: 22px;
 }
-.tip_content{ padding:8px;}
+
+.tip .arrow {
+    position: absolute;
+    top: -8px;
+    left: 243px;
+    width: 15px;
+    height: 8px;
+    background: url(../images/arrow.png) no-repeat;
+}
+
+.tip_content {
+    padding: 8px;
+}
 
 /*’返‘/’立减‘ 的标签 带后续的隐藏标签说明框tip*/
-.label{
-    display:inline-block;
-    position:relative;
-    border: 1px solid;border-radius: 2px;
-    font-size:12px;
+.label {
+    display: inline-block;
+    position: relative;
+    border: 1px solid;
+    border-radius: 2px;
+    font-size: 12px;
     font-family: SimSun, serif;
     line-height: 18px;
     padding-right: 2px;
-    padding-left: 0;/*该行为了去除.cashback遗留样式的多余padding*/
+    padding-left: 0; /*该行为了去除.cashback遗留样式的多余padding*/
 }
-.label:before{
+
+.label:before {
     display: inline-block;
     position: relative;
-    margin-right: 2px;padding: 0 2px;
+    margin-right: 2px;
+    padding: 0 2px;
     color: white;
 }
+
 /*这里扩展设计师写的样式 处于标签内部的tip样式 指定position的位置*/
-.label .tip{display:none; top:26px; right:-39px;/*border-color: inherit;*/}
-.label .tip_content{ padding:8px;text-align: center;}
+.label .tip {
+    display: none;
+    top: 26px;
+    right: -39px; /*border-color: inherit;*/
+}
+
+.label .tip_content {
+    padding: 8px;
+    text-align: center;
+}
+
 /*标签处于hover状态时显示其中的tip*/
-.label:hover .tip{display:block;}
-
-
-
-
+.label:hover .tip {
+    display: block;
+}
 
 /**
  * has-tip has-tip-top/has-tip-bottom
@@ -255,92 +339,152 @@ textarea{resize: none;}
  * 外层加上has-tip 内层具有tip
  * 在has-tip:hover时显示tip
  */
-.has-tip{ position: relative;color: #aaaaaa}
-.has-tip .tip{
-    display:none;
-    position:absolute;
-    z-index:99;
-    width:313px;
-    border:1px solid #a7a7a7;
-    font-size:12px; line-height:22px;
-    background:#fff;color: #666;
+.has-tip {
+    position: relative;
+    color: #aaaaaa
 }
-.has-tip .tip .arrow{
+
+.has-tip .tip {
+    display: none;
     position: absolute;
-    top: auto;left: auto;
-    width: 15px;height: 8px;
+    z-index: 99;
+    width: 313px;
+    border: 1px solid #a7a7a7;
+    font-size: 12px;
+    line-height: 22px;
+    background: #fff;
+    color: #666;
 }
-.has-tip:hover .tip{display: block;}
+
+.has-tip .tip .arrow {
+    position: absolute;
+    top: auto;
+    left: auto;
+    width: 15px;
+    height: 8px;
+}
+
+.has-tip:hover .tip {
+    display: block;
+}
 
 /*设置tip的位置*/
-.has-tip.has-tip-bottom .tip{
+.has-tip.has-tip-bottom .tip {
     top: 28px;
     right: -46px;
-    }.has-tip.has-tip-bottom .tip .arrow{
-        top:-8px; left:243px;
-        background:url(../images/arrow.png) no-repeat;}
-.has-tip.has-tip-top .tip{
+}
+
+.has-tip.has-tip-bottom .tip .arrow {
+    top: -8px;
+    left: 243px;
+    background: url(../images/arrow.png) no-repeat;
+}
+
+.has-tip.has-tip-top .tip {
     bottom: 35px;
-    right:-46px; }
-    .has-tip.has-tip-top .tip .arrow{
-        bottom:-8px; right:90px;
-        background:url(../images/arrow-down.png) no-repeat;}
+    right: -46px;
+}
 
-
-
-
-
-
-
-
+.has-tip.has-tip-top .tip .arrow {
+    bottom: -8px;
+    right: 90px;
+    background: url(../images/arrow-down.png) no-repeat;
+}
 
 /*label的独立style*/
 /*返*/
-.label.cashback{
+.label.cashback {
     border-color: #32AF94;
     color: #32AF94;
 }
-.label.cashback:before{
-    content:'返';
+
+.label.cashback:before {
+    content: '返';
     width: 1em;
     background: #32AF94;
 }
+
 /*将返*/
-.label.cashbacked{
+.label.cashbacked {
     border-color: #32AF94;
     color: #32AF94;
 }
-.label.cashbacked:before{
-    content:'可返';
+
+.label.cashbacked:before {
+    content: '可返';
     width: 2em;
     background: #32AF94;
 }
 
 /*立减*/
-.label.save,.label.saved{
+.label.save, .label.saved {
     border-color: #ff5500;
-    color:#ff5500;
+    color: #ff5500;
 }
-.label.save:before,.label.saved:before{
-    content:'立减';
+
+.label.save:before, .label.saved:before {
+    content: '立减';
     width: 2em;
     background: #ff5500;
 }
+
 /*已减*/
-.label.saved:before{
-    content:'已减';
+.label.saved:before {
+    content: '已减';
 }
 
 /*page change to ul li later*/
-.page {display:block;text-align: right; }/*翻页*/
-.page a, .page span {display: inline-block;}
-.page .pre {background: url(../images/page.png) no-repeat 0 -24px; text-indent: -32768px; width: 25px; height: 25px; }
-.page .pre-disabled {background: url(../images/page.png) no-repeat 0 0; text-indent: -32768px; }
-.page .next {background: url(../images/page.png) no-repeat -24px -24px; text-indent: -32768px; width: 25px; height: 25px; }
-.page .next-disabled {background: url(../images/page.png) no-repeat -24px 0; text-indent: -32768px; }
-.page .pre:after,.page .next:after{content:' ';display: inline-block;}
-.page a, .page span {width: 25px; height: 25px; line-height: 25px; text-align: center; margin: 0 10px;}
-.page a.active {color: #128d56; font-weight:bold;}
+.page {
+    display: block;
+    text-align: right;
+}
+
+/*翻页*/
+.page a, .page span {
+    display: inline-block;
+}
+
+.page .pre {
+    background: url(../images/page.png) no-repeat 0 -24px;
+    text-indent: -32768px;
+    width: 25px;
+    height: 25px;
+}
+
+.page .pre-disabled {
+    background: url(../images/page.png) no-repeat 0 0;
+    text-indent: -32768px;
+}
+
+.page .next {
+    background: url(../images/page.png) no-repeat -24px -24px;
+    text-indent: -32768px;
+    width: 25px;
+    height: 25px;
+}
+
+.page .next-disabled {
+    background: url(../images/page.png) no-repeat -24px 0;
+    text-indent: -32768px;
+}
+
+.page .pre:after, .page .next:after {
+    content: ' ';
+    display: inline-block;
+}
+
+.page a, .page span {
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    margin: 0 10px;
+}
+
+.page a.active {
+    color: #128d56;
+    font-weight: bold;
+}
 
 /*通用工具类*/
 
@@ -370,34 +514,90 @@ textarea{resize: none;}
 }
 
 /* End hide from IE-mac */
+.text-overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
-.text-center { text-align: center; }
-.text-right { text-align: right; }
-.pull-left { float: left; }
-.pull-right { float: right; }
+.text-center {
+    text-align: center;
+}
 
-.padding-sm { padding: 10px 15px; }
-.padding-md { padding: 15px 20px; }
-.padding-lg { padding: 20px 30px; }
-.padding-x{padding-left: 10px;padding-right: 10px}
-.padding-y{padding-top: 10px;padding-bottom: 10px}
-.padding-bottom{padding-bottom: 5px}
+.text-right {
+    text-align: right;
+}
 
-.margin-x { margin: 0  5px; }
-.margin-y { margin: 10px 0 20px; }
-.margin-y-sm { margin: 5px 0; }
+.pull-left {
+    float: left;
+}
 
-.margin-top { margin-top: 8px; }
-.margin-bottom { margin-bottom: 12px; }
+.pull-right {
+    float: right;
+}
 
+.padding-sm {
+    padding: 10px 15px;
+}
 
-.inline-block{ display: inline-block; }
+.padding-md {
+    padding: 15px 20px;
+}
+
+.padding-lg {
+    padding: 20px 30px;
+}
+
+.padding-x {
+    padding-left: 10px;
+    padding-right: 10px
+}
+
+.padding-y {
+    padding-top: 10px;
+    padding-bottom: 10px
+}
+
+.padding-bottom {
+    padding-bottom: 5px
+}
+
+.margin-x {
+    margin: 0 5px;
+}
+
+.margin-y {
+    margin: 10px 0 20px;
+}
+
+.margin-y-sm {
+    margin: 5px 0;
+}
+
+.margin-top {
+    margin-top: 8px;
+}
+
+.margin-bottom {
+    margin-bottom: 12px;
+}
+
+.inline-block {
+    display: inline-block;
+}
 
 /*字体 背景 边框颜色*/
-.border-primary{ border: 1px solid #128d56; }
-.border-light{ border: 1px solid #CFCFCF; }
+.border-primary {
+    border: 1px solid #128d56;
+}
 
-.bg-primary{ background-color: #128d56; }
+.border-light {
+    border: 1px solid #CFCFCF;
+}
+
+.bg-primary {
+    background-color: #128d56;
+}
 
 .bg-warning {
     background-color: #F15922;
@@ -458,10 +658,11 @@ textarea{resize: none;}
 }
 
 /*带有下点点的字体因其重要性字体会调大*/
-.dotted-line{
+.dotted-line {
     font-size: 1.2em;
     border-bottom: 1px dotted #aaaaaa;
 }
+
 /*通用图标 已在支付页面使用 这里仅为icon.png文件提供icon的统一管理 其它图片只能自己加了*/
 /*覆盖样式在icon之前加class*/
 .icon {
@@ -480,15 +681,16 @@ textarea{resize: none;}
     background-position: 0 -501px;
 }
 
-.icon-error{
+.icon-error {
     background: url(../images/icon_wrong.png) no-repeat;
     background-position: 0 -22px;
 }
 
-.icon-clock{
+.icon-clock {
     background: url(../images/icon_clock.png) no-repeat;
 }
-.icon-location{
+
+.icon-location {
     background: url(../images/icon_location.png) no-repeat;
 }
 
@@ -499,23 +701,29 @@ textarea{resize: none;}
 }
 
 /*图片和图标的样式控制*/
-.img{
+.img {
     vertical-align: text-bottom;
 }
-.img.tel1{ }
-.img.tel2{ }
+
+.img.tel1 {
+}
+
+.img.tel2 {
+}
+
 /***************我是分割线*****************/
 /***************非基本但通用样式 之后需要独立出来*****************/
 /*图片的大小控制*/
 /*机构图片控制 我的订单中*/
-.img-logo{
+.img-logo {
     width: 70px;
     height: 70px;
     display: inline-block;
 }
-.img-logo img{
-    width:70px;
-    height:70px;
+
+.img-logo img {
+    width: 70px;
+    height: 70px;
 }
 
 /*sticky footer */

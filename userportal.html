@@ -2375,9 +2375,10 @@
         <div class="th" style="width: 64px">课程名称</div>
         <% _.each(courses, function(course) { %>
         <div class="courseId_<%= course.id %> td" style="width: 195px">
-        <h2 class="F_green courseTitle" style="cursor:pointer;"><%= course.courseName %></h2>
+            <h2 class="F_green courseTitle text-overflow margin-top" style="cursor:pointer;"><%= course.courseName
+                %></h2>
 
-            <div class="btn"><input class="btn_O" type="button" value="立即预订"/></div>
+            <div class="margin-top"><input class="btn btn-default btn-sm" type="button" value="立即预订"/></div>
             <div class="set">
                 <a class="pre" href="#">向前</a><a class="delete" href="#">删除</a><a class="next" href="#">向后</a>
             </div>
@@ -3584,8 +3585,8 @@
         <span>已有<a><%=bookingTotal%></a>人下单</span>
         <span>剩余时间：<a id="tuanDetail_endTime" data-value="<%=endTime%>">--</a></span>
 
-        <div class="btn">
-            <a class="btnbuy">立即抢购</a>
+        <div class="btns">
+        <a class="btnbuy">立即抢购</a>
             <a class="btnconsult" onclick="doyoo.util.openChat('g=82548');return false;">咨询</a>
         </div>
     </div>
