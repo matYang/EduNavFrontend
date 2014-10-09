@@ -61,7 +61,6 @@ var CourseDetailView = Backbone.View.extend({
         $teachers.css("height", maxHeight);
 
 
-
         this.compareWidget = new CourseDetailCompareWidgetView();
 
         this.content1_top = $(".tuan_content_1").offset().top;//课程详情
@@ -159,10 +158,10 @@ var CourseDetailView = Backbone.View.extend({
         });
         //详细查看教师
         /*$('.teacher').on('click', '.more', function (e) {
-            var teacherIndex = $(this).data('id');
-            var teacher = {};
+         var teacherIndex = $(this).data('id');
+         var teacher = {};
 
-        });*/
+         });*/
         $("#detail_compare_" + this.course.id).on("click", function () {
             if ($(this).hasClass("add")) {
                 if (that.compareWidget.addCourse(that.course)) {
@@ -237,9 +236,9 @@ var CourseDetailView = Backbone.View.extend({
 
         //这里根据课程的状态来判断是否可以进行申请 在这里加上'申请人工选课'(不需要判断课程状态)和'申请免费试听'(需要判断课程状态)
         if (this.course.get("status") === EnumConfig.CourseStatus.onlined) {
-            $(".bookNow").on("click", function () {
+            this.$el.on("click", '.bookNow', function () {
                 var id = $(this).data('value');//< data-value=''>
-                if(!id)return;
+                if (!id)return;
                 //这里屏蔽了下订单的入口
 //                app.navigate("booking/c" + that.courseId, true);
                 if (!that.freeTrial) {
