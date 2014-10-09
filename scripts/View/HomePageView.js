@@ -37,10 +37,6 @@ var HomePageView = Backbone.View.extend({
             this.tuanBannerView.render();
         }
 
-        $("#content").append("<span class='index_tip'>课程推荐</span></div>");
-        this.$el.append(this.template);
-
-
         $("#lv1Button").after("<div id='tuanPic'></div>");
 
 
@@ -112,8 +108,8 @@ var HomePageView = Backbone.View.extend({
          for(var i=0;i<4;i++)
          {
 
-        }
-        $("#lv1Button").after("<div id='tuanPic'></div>");*/
+         }
+         $("#lv1Button").after("<div id='tuanPic'></div>");*/
         if (!that.homePic) {
             that.homePic = new HomePic();
         } else if (that.homePic.isClosed) {
