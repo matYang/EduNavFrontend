@@ -153,6 +153,8 @@ textarea{resize: none;}
 }
 
 .btn.btn-sm {
+    padding: 8px 30px;
+    font-size: 18px;
 }
 
 .btn.btn-lg {
