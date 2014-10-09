@@ -154,7 +154,7 @@ var TuanDetailView = Backbone.View.extend({
 
 
         /*详情页click*/
-        $(".tuan_content .tuan_sorter li").on("click", function () {
+        $("#tuanDetail .tuan_sorter li").on("click", function () {
             var tindex = $(this).attr("index");
             var id = ".tuan_content_" + tindex;
             $.smoothScroll({
