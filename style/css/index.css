@@ -71,10 +71,23 @@
 /*filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99000000',endColorstr='#99000000'); }*/
 
 /*一级目录*/
-.index .tab2 .active{ background-color: #1A8F5A; color: #FFF;}
-.index .tabtop{width: 1000px; height: 2px; background-color: #1A8F5A;}
+.index .tab2 .active {
+    background-color: #28B094;
+    color: #FFF;
+}
+
+.index .tabtop {
+    width: 1000px;
+    height: 2px;
+    background-color: #28B094;
+}
+
 .index .tab2 li{float:left; width:248px; margin-right: 2px; height:50px; line-height:50px; text-align:center; font-size:20px; color:#fff; background-color: #E5E6E8;}
-.index .tab2 li:hover{ background-color: #1A8F5A; color: #FFF;}
+
+.index .tab2 li:hover {
+    background-color: #28B094;
+    color: #FFF;
+}
 
 .index .c_item{}
 .index .c_item .fleft{position:relative; width:148px; text-align:center;  background-color: #88D8B4;}
@@ -166,7 +179,14 @@ p.footer-phone{font-size: 14px}
 
 
 /*pic*/
-#tuanPic{width:960px; height:242px; margin-top: 7px; background-color: #f3f3f3; padding: 7px 20px 20px 20px;}
+#tuanPic {
+    width: 960px;
+    height: 242px;
+    margin-top: 5px;
+    background-color: #f3f3f3;
+    padding: 7px 20px 20px 20px;
+}
+
 #tuanPic .pic_eve{width:960px; height:242px;}
 #tuanPic .pic_eve .pic_eve1{ width: 300px; height: 240px; display: block; float: left; margin: 0 10px; background-color: #fff;}
 #tuanPic .pic_main{ width: 300px; height: 195px; display: block; position: relative;}
