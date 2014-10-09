@@ -1310,7 +1310,7 @@
         <div class="title">
             <h3>
                 <%= groupBuyActivity.title %>-
-                <!--<span style="color:#333333">机构名</span>-->
+                <small style="color:#333333"><%= groupBuyActivity.course.instName %></small>
             </h3>
         </div>
 
@@ -1320,7 +1320,8 @@
                 <b class="price">￥<%= groupBuyPrice %></b>
             </div>
             <div class="field">
-                支付成功后，凭借您本次订购使用的手机到 <span style="color: #32B077; font-size: 14px;">TODO机构名</span> 办理入学
+                支付成功后，凭借您本次订购使用的手机到 <span style="color: #32B077; font-size: 14px;"><%= groupBuyActivity.course.instName %></span>
+                办理入学
             </div>
 
             <!--currently not used-->
@@ -1350,7 +1351,6 @@
             <span class="tab1 clearfix padding-x">支付宝支付</span>
             <ul class="bank_list clearfix" style=" border-bottom: 1px solid #f4f4f4; margin-bottom: 20px;">
                 <li id="alipay" class="active">
-                    <!--&lt;!&ndash;--><label for="alipay"></label><!--&ndash;&gt;-->
                     <input id="alipay" name="payType" type="radio" checked="" value="alipay"><a>支付宝</a>
                 </li>
             </ul>
