@@ -95,7 +95,27 @@ var CourseDetailView = Backbone.View.extend({
         //这里是为了声明页面加载完毕
         $('body').attr('pageRenderReady', '');
         //star
-        $("#starDemo").raty();
+        $("#starDemo").raty({
+            readOnly: true,
+            start: 4
+        });
+        $("#star_eleft").raty({
+            readOnly: true,
+            start: 4
+        });
+        $("#evaluate_environment").raty({
+            readOnly: true,
+            start: 5
+        });
+        $("#evaluate_teacher").raty({
+            readOnly: true,
+            start: 4
+        })
+        ;
+        $("#evaluate_service").raty({
+            readOnly: true,
+            start: 4
+        });
         $(".courseDetail .pic .pic_big").find("a:first").addClass("active");
         $(".courseDetail .pic .pic_list").find("i:first").removeClass("active");
     },
