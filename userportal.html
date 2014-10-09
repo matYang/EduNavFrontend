@@ -3560,12 +3560,11 @@
                             <% if (course.startTime1||course.schooltimeWeek) { %>
                             <p class="clearfix">
                                 <label>上课时间</label>
-
-                            <div>
-                                <%if(course.contact){%>
-                                <%=course.contact%>
+                                <span>
+                                    <%if(course.contact){%>
+                                        <%=course.contact%>
                                     <%}%>
-                            </div>
+                                </span>
                             </p>
                             <%}%>
                             <% if (course.qualityAssurance) { %>
