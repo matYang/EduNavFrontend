@@ -77,7 +77,8 @@ testMockObj = {
         .set('createTime', new Date()).set('userId', 1).set('reference', 'ISK-1-1'),
 
     testCourses: new Courses(),
-    testCourse1: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 1)
+    testCourse1: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText)
+        .set("id", 1).set("courseTemplateId", 1)
         .set("courseName", "雅思英语雅思英语雅思英语雅思").set("cashback", 10).set("commission", 95)
         .set("originalPrice", 899)
         .set('schooltimeWeek', [1, 2]).set('schooltimeDay', [3, 4])
@@ -110,7 +111,8 @@ testMockObj = {
         .set('teachingAndExercise', '讲练结合-test')
         .set('questionBank', '题库支持-test')
         .set('downloadMaterials', '课件下载-test'),
-    testCourse2: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 2)
+    testCourse2: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText)
+        .set("id", 2).set("courseTemplateId", 1)
         .set("courseName", "雅思英语").set("cashback", 10).set("commission", 95)
         .set("originalPrice", 899)
         .set('schooltimeWeek', [1, 2]).set('schooltimeDay', [3, 4])
