@@ -1171,7 +1171,6 @@
             <td>团购信息</td>
             <td width="100">价格</td>
             <td width="100">支付状态</td>
-            <td width="110">有效期</td>
         </tr>
         </thead>
         <tbody></tbody>
@@ -1185,7 +1184,6 @@
         <td> <%=groupBuyActivity.title%></td>
         <td> ￥<span class="price"><%=groupBuyPrice%></span></td>
         <td> <%=EnumConfig.GroupBuyBookingStatusText[status]%></td>
-        <td> <%=groupBuyActivity.endTimeText%></td>
     </tr>
 </script>
 
@@ -1212,17 +1210,13 @@
                     （原价￥<%=groupBuyActivity.course.originalPrice%>）
                 </div>
                 <div>
-                    <label>有效期:</label>
-                    <span><%= groupBuyActivity.endTimeText %></span>
-                </div>
-                <div>
                     <label>团购须知:</label>
                     <span>支付成功后，凭借学员的手机号和订单确认短信到机构前台登记入学</span>
                 </div>
             </div>
-            <div class="fright btn" style="text-align:center">
+            <div class="fright" style="text-align:center">
                 <% if(status==0){ %>
-                <button class="btn_O js_btnGoToPay">去支付</button>
+                <button class="btn btn-default btn-sm js_btnGoToPay">去支付</button>
                 <% } %>
             </div>
         </div>
@@ -3513,7 +3507,8 @@
                 <p><i class="icon icon-clock"></i> <strong class="tuan_endTime ft-error"
                                                            data-value="<%=endTime%>">--</strong></p>
 
-                <p><i class="icon icon-location"></i> <%=addressList[0]&&addressList[0].detail%></p>
+                <p title="<%=addressList[0]&&addressList[0].detail%>"><i class="icon icon-location"></i>
+                    <%=addressList[0]&&addressList[0].detail%></p>
             </div>
             <span class="underline"></span>
 
