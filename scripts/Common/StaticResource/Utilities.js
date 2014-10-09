@@ -227,7 +227,7 @@ var Utilities = {
         if (isNaN(val))
             return null;
         if (fixed) {
-            val = val.toFixed(fixed);
+            val = parseFloat(val.toFixed(fixed));
         }
         return val
     },
