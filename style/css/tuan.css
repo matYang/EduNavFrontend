@@ -61,7 +61,7 @@
 
 #tuanBanner .tips_li .c-right {
     text-align: right;
-    width: 940px;
+    width: 94px;
     float: right;
     padding-top: 10px;
     padding-right: 10px;
@@ -86,6 +86,7 @@
     padding-right: 16px;
     left: 16px;
 }
+
 #tuanBanner .tips_li.active:before,
 #tuanBanner .tips_li.active:after {
     display: block;
@@ -95,6 +96,7 @@
     height: 9px;
     bottom: -9px;
 }
+
 /*todo 未兼容IE 8*/
 #tuanBanner .tips_li:last-child.active:before,
 #tuanBanner .tips_li:last-child.active:after {
@@ -149,6 +151,7 @@
     padding-left: 386px;
     border: 1px solid #CFCFCF;
 }
+
 /*团购item的左上方的折扣信息*/
 .t-item .tuan_tag {
     position: absolute;
@@ -164,6 +167,7 @@
     z-index: 1;
     background: url("../images/tuan_item_tag.png") center no-repeat;
 }
+
 /*团购item的大图*/
 .t-item img.banner {
     position: absolute;
@@ -172,6 +176,7 @@
     width: 386px;
     height: 246px;
 }
+
 /*团购item右侧内容*/
 .t-item .content {
     padding: 0 8px 0 16px;
@@ -182,6 +187,7 @@
     height: 64px;
     padding: 5px 0;
 }
+
 /*团购item右侧内容的3行内容*/
 .t-item .content .r.r1 {
 }
@@ -208,6 +214,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 /*第3行中的价格和抢购按钮 r3需要clearfix*/
 .t-item .content .r.r3 .c-left {
     float: left;
