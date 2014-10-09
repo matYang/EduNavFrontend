@@ -33,7 +33,7 @@ var TuanView = Backbone.View.extend({
             var circle = Circle;
             var circleHtml = '<span data-value="no">不限</span>';
             for (var i = 0; i < circle.length; i++) {
-                circleHtml += '<span data-value="' + circle[i].value + '">' + circle[i].name + '</span>';
+                circleHtml += '<span data-value="' + circle[i].id + '">' + circle[i].name + '</span>';
             }
             $("#labels_circle").html(circleHtml).find("span:eq(0)").addClass("active");
         },
