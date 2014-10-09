@@ -461,5 +461,6 @@
 
 .tuan_content thead tr td{ background-color: #79B0A5; color: #fff;}
 .tuan_content tbody td button{ background-color: #FF6A6A; border-radius: 17px;}
-.tuan_content tbody td{ padding: 20px 0;}
+.tuan_content tbody td{padding: 5px 0;
+    height: 44px;}
 
