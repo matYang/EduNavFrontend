@@ -26,6 +26,8 @@ var Constants = {
         "registration", "registration_finish", "findPassword_1", "findPassword_2",
         /*快速登录*/
         "loginFast",
+        /*首页推荐课程滚动图*/
+        "homePic",
 
         /*对比页*/
         "compareView",

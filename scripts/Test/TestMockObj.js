@@ -383,6 +383,7 @@ testMockObj = {
             {"errorCode":0,"name":"新街口","value":"03","children":[],"id":4,"lastModifyTime":1405571419000,"createTime":1405571423000},
             {"errorCode":0,"name":"鼓楼","value":"04","children":[],"id":5,"lastModifyTime":1405398647000,"createTime":1405485051000}
         ]}
+
 };
 
 testMockObj.testGroupBuyBooking1.set('groupBuyActivity', testMockObj.testTuan1);

@@ -37,25 +37,11 @@ var HomePageView = Backbone.View.extend({
             this.tuanBannerView.render();
         }
 
-        var htmlTuanpic = '';
-        for (var i = 1; i < 5; i++) {
-            htmlTuanpic += '<ul class="pic_eve hidden">';
-            htmlTuanpic += '  <li>';
-            for (var j = 1; j < 4; j++) {
-                htmlTuanpic += '      <div class="pic_eve1">';
-                htmlTuanpic += '          <a class="pic_main"><img src="style/images/list' + i + '_' + j + '.png"> </a>';
-                htmlTuanpic += '              <div class="pic_word">';
-                htmlTuanpic += '                  <span>已有<s>456</s>人报名</span>';
-                htmlTuanpic += '                  <strong>￥456</strong>';
-                htmlTuanpic += '              </div>';
-                htmlTuanpic += '          </div>';
-            }
-            htmlTuanpic += '      </li>';
-            htmlTuanpic += ' </ul>';
-        }
+        $("#content").append("<span class='index_tip'>课程推荐</span></div>");
+        this.$el.append(this.template);
+
+
         $("#lv1Button").after("<div id='tuanPic'></div>");
-        $("#tuanPic").append(htmlTuanpic);
-        $("#tuanPic .pic_eve:first").removeClass("hidden");
 
 
         app.generalManager.getCategories(this);
@@ -106,6 +92,7 @@ var HomePageView = Backbone.View.extend({
         }
     },
     afterRender: function () {
+        var that = this;
         //滚动图片
 
         //二级目录 非第一行加入class "last" 控制边框显示 以及控制二级目录button的高度
@@ -125,8 +112,13 @@ var HomePageView = Backbone.View.extend({
          for(var i=0;i<4;i++)
          {
 
-         }
-         $("#lv1Button").after("<div id='tuanPic'></div>");*/
+        }
+        $("#lv1Button").after("<div id='tuanPic'></div>");*/
+        if (!that.homePic) {
+            that.homePic = new HomePic();
+        } else if (that.homePic.isClosed) {
+            that.homePic.render();
+        }
         //这里是为了声明页面加载完毕
         $('body').attr('pageRenderReady', '')
 
@@ -575,7 +567,6 @@ var SelectCatModal = Backbone.View.extend({
 
             $(".courseTipAContentDes").find(".cousedes:first").removeClass("hidden");
 
-
             this.bindEvents();
         }
     },
@@ -661,6 +652,31 @@ var SuccessPopTip = Backbone.View.extend({
         this.isShow = false;
     },
 
+
+    close: function () {
+        this.$el.empty();
+        this.isClosed = true;
+    }
+});
+
+//首页滚动图片
+var HomePic = Backbone.View.extend({
+
+    el: '#tuanPic',
+    initialize: function () {
+        _.bindAll(this, 'render', 'close');
+        this.template = _.template(tpl.get('homePic'));
+        this.isShow = false;
+        this.render();
+        this.bindEvents();
+    },
+
+    render: function () {
+        this.$el.append(this.template);
+    },
+    bindEvents: function () {
+        var that = this;
+    },
 
     close: function () {
         this.$el.empty();
