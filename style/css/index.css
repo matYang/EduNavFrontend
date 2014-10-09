@@ -195,6 +195,8 @@ p.footer-phone{font-size: 14px}
     width: 290px;
     height: 30px;
     position: absolute;
+    /*一定要加上left或right*/
+    left: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.4);
     color: #fff;
