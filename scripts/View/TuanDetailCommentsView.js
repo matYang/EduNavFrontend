@@ -6,13 +6,13 @@ var TuanDetailCommentsView = Backbone.View.extend({
     commentEntryTemplate: _.template(tpl.get("commentEntry")),
     initialize: function (opt) {
         var that = this;
-        this.courseId = opt.courseId;
+        this.templateId = opt.templateId;
         this.parentView = opt.parentView;
         this.comment = new Comment();
-        //评论的搜索条件 初始化courseId
+        //评论的搜索条件 初始化templateId
         this.sr = new CommentSearchRepresentation();
         //其实团购里面的courseId以及course都是课程模板相关内容
-        this.sr.set('courseTemplateId', opt.courseId);
+        this.sr.set('courseTemplateId', opt.templateId);
         this.sr.set('start', 0);
         this.sr.set('count', 5);
         this.isClosed = false;
@@ -22,8 +22,7 @@ var TuanDetailCommentsView = Backbone.View.extend({
         this.$el.html(this.template);
         this.commentFormView = new CommentFormView({
             parentView: that,
-            //其实这里的courseId就是templateId
-            courseTemplateId: this.courseId,
+            courseTemplateId: this.templateId,
             commentEntryTemplate: this.commentEntryTemplate
         });
         this.bindEvents();

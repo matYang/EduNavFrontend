@@ -4,7 +4,6 @@ var CommentFormView = Backbone.View.extend({
     initialize: function (opt) {
         this.parentView = opt.parentView;
         this.courseTemplateId = opt.courseTemplateId;
-        this.commentEntryTemplate = opt.commentEntryTemplate;
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "close");
         app.viewRegistration.register(this);
@@ -75,7 +74,7 @@ var CommentFormView = Backbone.View.extend({
                     that.parentView.fetchComments();
                 },
                 error: function (data) {
-                    Info.alert('提交失败，请稍后再试~');
+                    Info.alert(data.message || '提交失败，请稍后再试~');
                 }
             })
         });

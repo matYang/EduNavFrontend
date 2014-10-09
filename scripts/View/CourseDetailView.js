@@ -123,7 +123,7 @@ var CourseDetailView = Backbone.View.extend({
         $(".courseDetail .pic .pic_list").find("i:first").removeClass("active");
 
         this.commentsView = new TuanDetailCommentsView({
-            courseId: that.courseId,
+            templateId: that.courseTemplateId,
             parentView: that
         });
     },

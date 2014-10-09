@@ -35,7 +35,7 @@ var TuanDetailView = Backbone.View.extend({
         var evenRating = this.tuan.get('course').get('evenRating');
         this.$el.html(this.template(this.tuan._toJSON()));
         this.commentsView = new TuanDetailCommentsView({
-            courseId: that.courseId,
+            templateId: that.courseId,
             parentView: that
         });
         $("body").css("background-color", "#f1f1f1");
