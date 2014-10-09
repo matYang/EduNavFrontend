@@ -174,6 +174,12 @@
 .search_result .col3 .btn_g{ width: 96px; height: 36px; background-color: #ff6a6a; float: left; margin-right: 10px;}
 .search_result .col3 .btn_o{ width: 96px; height: 36px; background-color: #47bc78; float: left;}
 
+.search_result .col3 .btn_gray {
+    width: 96px;
+    height: 36px;
+    float: left;
+}
+
 /*.search_result .col3{}
 .search_result .col3  input.btn_g,
 .search_result .col3  input.btn_o,

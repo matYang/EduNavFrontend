@@ -9,6 +9,7 @@ var Course = Backbone.Model.extend({
                 /*others*/
                 'groupBuyActivity': null,//团购信息
                 'bookingTotal': 0,//预订总数
+                'viewTotal': 0,//浏览总数
                 'popularity': undefined,//人气值
                 'bookingType': undefined,
                 'startUponArrival': undefined,//转换成了是否有具体的开课日期
@@ -235,6 +236,7 @@ var Course = Backbone.Model.extend({
             json.instName = this.get("instName");
 
             json.bookingTotal = this.get("bookingTotal");
+            json.viewTotal = this.get("viewTotal");
             json.groupBuyActivity = this.get("groupBuyActivity");
 
             //以下为显示开课日期所需的字段
