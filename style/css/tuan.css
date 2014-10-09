@@ -190,6 +190,7 @@
 }
 
 .t-item .content .r.r3 {
+    padding-top: 10px;
 }
 
 /*第1行中的标题*/
@@ -216,6 +217,7 @@
 .t-item .content .r.r3 .c-right {
     float: right;
     width: 60%;
+    text-align: center;
 }
 
 .t-item .content .r.r3 .price {
