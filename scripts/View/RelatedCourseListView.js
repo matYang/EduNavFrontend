@@ -25,9 +25,9 @@ var RelatedCourseListView = Backbone.View.extend({
     render: function (courses) {
         var self = this;
         //可以显示当前课程 不可查看详情
-//        courses = courses.reject(function (course) {
-//            return course.get('id') === self.courseId;
-//        });
+        courses = courses.reject(function (course) {
+            return course.get('id') === self.courseId;
+        });
         if (courses && courses.length > 0) {
             var buf = [], course;
             var len = Math.min(20, courses.length);//最多显示前xx个课程

@@ -65,7 +65,7 @@
 .search_result .pic{position:relative; float:left; width:137px; height:137px; border:1px solid #ccc; margin-right:10px;}
 .search_result .pic span{ display:block; position:absolute; top:78px; left:0; width:100%; text-align:center; color:#fff; height:22px; line-height:22px; background-color:rgba(0,0,0,.5); filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#77000000',endColorstr='#77000000');}
 
-.search_result .col1{float:left; width:325px; padding-right:5px; line-height:24px; border-right:1px solid #cccccc;}
+.search_result .col1{float:left; width:310px; padding-right:5px; line-height:24px; border-right:1px solid #cccccc;}
 .search_result .col1 .title{font-size:18px; font-weight:bold; color: #060606;}
 .search_result .col1 .title a{ color: #060606;}
 .search_result .col1 .title a:hover{ color: #060606;}
@@ -75,7 +75,7 @@
 .search_result .col1 .desc .locationIcon{ width: 16px; height: 20px; display: inline-block; background-image: url("../images/location.jpg"); margin: 0 6px -5px 0;}
 .search_result .col1 .desc .heartIcon{ width: 16px; height: 14px; display: inline-block; background-image: url("../images/heart.png"); margin: 0 8px -3px 0;}
 
-.search_result .col2{float:left; position:relative; width:222px; height:150px; text-align:center; border-right:1px solid #eee; font-size:14px;}
+.search_result .col2{float:left; position:relative; width:222px; height:150px; text-align:center; font-size:14px;}
 .search_result .col2 .price{min-width: 90px; font-size:20px; color:#ff6A6A; float: left; padding: 0 10px 10px 20px;}
 .search_result .col2 .price .sign{font-size:14px; color:#333333;}
 .search_result .col2 .cashback{margin-top:5px;}

@@ -84,7 +84,7 @@ var TuanDetailView = Backbone.View.extend({
         var that = this;
 
         /*教师详情*/
-        $("#tuan_content_2 .teacher_pic").on("click", function () {
+        $(".tuan_content_2 .teacher_pic").on("click", function () {
             var teacherIndex = $(this).attr("data-id");
             var teacher = {};
             if (that.tuan.get('teacherList') instanceof  Backbone.Collection) {
@@ -104,7 +104,7 @@ var TuanDetailView = Backbone.View.extend({
             $("#teacherInfo span").html(teacher.get('name'));
             $("#teacherInfo p").append(teacher.get('intro'));
         });
-        $("#tuan_content_2 .teacher_pic").hover(function () {
+        $(".tuan_content_2 .teacher_pic").hover(function () {
             $(this).find("span").css("display", "block");
         }, function () {
             $(this).find("span").css("display", "none");
@@ -120,10 +120,10 @@ var TuanDetailView = Backbone.View.extend({
         });
 
         /*每列的高度*/
-        this.tuan_content_1 = $("#tuan_content_1").offset().top;//课程详情
-        this.tuan_content_2 = $("#tuan_content_2").offset().top;//学校师质
-        this.tuan_content_3 = $("#tuan_content_3").offset().top;//特色服务
-        this.tuan_content_4 = $("#tuan_content_4").offset().top;//评价
+        this.tuan_content_1 = $(".tuan_content_1").offset().top;//课程详情
+        this.tuan_content_2 = $(".tuan_content_2").offset().top;//学校师质
+        this.tuan_content_3 = $(".tuan_content_3").offset().top;//特色服务
+        this.tuan_content_4 = $(".tuan_content_4").offset().top;//评价
 
         /*立即抢购快速登录*/
         $("#tuanDetail .btnbuy").on("click", function () {
@@ -156,9 +156,9 @@ var TuanDetailView = Backbone.View.extend({
 
 
         /*详情页click*/
-        $("#tuanDetail .tuan_sorter li").on("click", function () {
+        $(".tuan_content .tuan_sorter li").on("click", function () {
             var tindex = $(this).attr("index");
-            var id = "#tuan_content_" + tindex;
+            var id = ".tuan_content_" + tindex;
             $.smoothScroll({
                 scrollTarget: id,
                 offset: -63,
@@ -177,14 +177,14 @@ var TuanDetailView = Backbone.View.extend({
             if (scroH >= navH) {
                 $("#tuan_fright").css({"position": "fixed", "top": 4, "margin-left": 750});
                 $("#tuanDetail .w_730").css("margin-top", "63px");
-                $("#tuan_btn").show();
+                $(".tuan_btn").show();
                 $("#tuanDetail .fright .site_map").css({"margin": "55px 0 0 0"});
                 $(".tuan_sorterArea").css({"position": "fixed", "padding-top": "4px", "top": 0});
             }
             else if (scroH < navH) {
                 $("#tuan_fright").css({"position": "relative", "top": "", "margin-left": ""});
                 $("#tuanDetail .w_730").css("margin-top", "");
-                $("#tuan_btn").hide();
+                $(".tuan_btn").hide();
                 $("#tuanDetail .fright .site_map").css({"margin": ""});
                 $(".tuan_sorterArea").css({"position": "", "top": "", "padding-top": "4px"});
             }
