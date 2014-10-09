@@ -6,6 +6,9 @@ var TuanSearchRepresentation = Backbone.Model.extend({
             'courseId':undefined,
             'title':undefined,
 
+            'circleId': undefined,
+            'categoryId': undefined,
+
             'createTimeStart':undefined,//创建日期的start和end范围
             'createTimeEnd':undefined,
             'endTimeStart':undefined,//结束日期的start和end范围
@@ -17,7 +20,7 @@ var TuanSearchRepresentation = Backbone.Model.extend({
             'status': EnumConfig.CourseStatus.onlined,
 
 
-            'useCache': 1,
+            'useCache': 0,//不使用缓存
 
             'start': undefined,
             'count': undefined,

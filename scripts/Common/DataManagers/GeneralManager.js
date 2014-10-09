@@ -223,6 +223,7 @@
 
             success: function (model, response) {
                 if (callback) {
+                    //todo tuan sr cache
                     app.cache.set("queryTuan", tuanSearchRepresentation.toQueryString(), searchResults.pluck("id"));
                     callback.success(searchResults);
                 }

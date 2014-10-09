@@ -3,10 +3,11 @@ var TuanView = Backbone.View.extend({
         template: _.template(tpl.get("tuan")),
         initialize: function () {
             this.isClosed = false;
-            _.bindAll(this, "render","renderCircle", "bindEvents", "close");
+            _.bindAll(this, "render", "renderCircle", "bindEvents", "close");
             app.viewRegistration.register(this);
-            //从本地初始化搜索条件
-            this.searchRepresentation = app.storage.getSearchRepresentationCache("tuan");
+
+//            this.searchRepresentation = app.storage.getSearchRepresentationCache("tuan");
+//            this.searchRepresentation = new TuanSearchRepresentation();
 
             this.render();
         },
@@ -20,7 +21,7 @@ var TuanView = Backbone.View.extend({
                 this.tuanBannerView.render();
             }
             if (!this.tuanResultView) {
-                this.tuanResultView = new TuanResultView(this.searchRepresentation);
+                this.tuanResultView = new TuanResultView();
             } else if (this.tuanResultView.isClosed) {
                 this.tuanResultView.render();
             }
@@ -28,38 +29,36 @@ var TuanView = Backbone.View.extend({
             this.bindEvents();
 
         },
-        renderCircle:function(Circle){
+        renderCircle: function (Circle) {
             var circle = Circle;
-            var circleHtml = '';
-            for(var i = 0;i<circle.length;i++)
-            {
-                circleHtml += '<span data-value="'+ circle[i].value +'">'+ circle[i].name +'</span>';
+            var circleHtml = '<span data-value="no">不限</span>';
+            for (var i = 0; i < circle.length; i++) {
+                circleHtml += '<span data-value="' + circle[i].value + '">' + circle[i].name + '</span>';
             }
-            $("#circle-category").html(circleHtml);
-            $("#circle-category").find("span:eq(0)").addClass("active");
+            $("#labels_circle").html(circleHtml).find("span:eq(0)").addClass("active");
         },
 
         bindEvents: function () {
             var that = this;
-            //绑定右栏筛选按钮 todo 设置searchRepresentationModel存储当前的筛选条件
-            $('.labels-category').on('click', 'span', function (e) {
+            //绑定右栏筛选按钮 设置searchRepresentationModel存储当前的筛选条件
+            $('.labels').on('click', 'span', function (e) {
+                var $deleget = $(e.delegateTarget);
                 var $target = $(e.target);
                 if ($target.hasClass('active')) {
                     return
                 }
                 $target.siblings().removeClass('active');
                 $target.addClass('active');
-                //todo 这里添加设置search按钮 直接fetch
-            });
-            $('.labels-location').on('click', 'span', function (e) {
-                var $target = $(e.target);
-                if ($target.hasClass('active')) {
-                    return
+                var value = $target.data('value');
+                var filterId = $deleget.attr("id").split("_")[1] + 'Id';// 'location'+'Id'
+                if (value == 'no') {
+                    that.tuanResultView.sr.set(filterId, undefined);
+                } else {
+                    that.tuanResultView.sr.set(filterId, value);
                 }
-                $target.siblings().removeClass('active');
-                $target.addClass('active');
-            })
+                that.tuanResultView.fetchAction(1);
 
+            });
         },
 
         close: function () {
@@ -84,29 +83,29 @@ var TuanBannerView = Backbone.View.extend({
         app.viewRegistration.register(this);
         //should be no error
         app.generalManager.findTopTuan({
-            success:that.render
+            success: that.render
         });
         this.render();
     },
     render: function (tuans) {
-        if(!tuans||!tuans.length){
+        if (!tuans || !tuans.length) {
             return;
         }
         //left img buf and right text buf
-        var l_buf=[],r_buf=[];
+        var l_buf = [], r_buf = [];
         this.$el.html(this.template());
-        tuans.forEach(function(tuan){
-           tuan = tuan._toJSON();
-           l_buf.push('<a class="pics" href="#tuan/'+tuan.id+'" target="_blank"><img src="'+tuan.photoList[0].url+'" alt=""/></a> ');
-           r_buf.push(
-                   '<li class="tips_li"><a href="#tuan/' + tuan.id + '" target="_blank">'
-                   +'<div class="c c-left">'+tuan.title+'</div>'
-                   +'<div class="c c-right">'
-                       +'<p class="price">￥'+tuan.groupBuyPrice+'</p>'
-                       +'<p>&nbsp;&nbsp;原价：<s>&nbsp;'+tuan.course.originalPrice+'&nbsp;</s></p>'
-                   +'</div>'
-                   + '</a></li>'
-           )
+        tuans.forEach(function (tuan) {
+            tuan = tuan._toJSON();
+            l_buf.push('<a class="pics" href="#tuan/' + tuan.id + '" target="_blank"><img src="' + tuan.photoList[0].url + '" alt=""/></a> ');
+            r_buf.push(
+                    '<li class="tips_li"><a href="#tuan/' + tuan.id + '" target="_blank">'
+                    + '<div class="c c-left">' + tuan.title + '</div>'
+                    + '<div class="c c-right">'
+                    + '<p class="price">￥' + tuan.groupBuyPrice + '</p>'
+                    + '<p>&nbsp;&nbsp;原价：<s>&nbsp;' + tuan.course.originalPrice + '&nbsp;</s></p>'
+                    + '</div>'
+                    + '</a></li>'
+            )
         });
         this.$el.find('.pic').html(l_buf.join(''));
         this.$el.find('.tips').html(r_buf.join(''));
@@ -114,7 +113,7 @@ var TuanBannerView = Backbone.View.extend({
         this.afterRender();
         this.bindEvents();
     },
-    afterRender:function(){
+    afterRender: function () {
         this.$el.find('.pic .pics:first').addClass('active');
         this.$el.find('.tips .tips_li:first').addClass('active');
     },
@@ -145,11 +144,11 @@ var TuanResultView = MultiPageView.extend({
     noMessage: _.template(tpl.get("search_noMessage")),
     entryTemplate: _.template(tpl.get("tuanResultEntry")),
     pageEntryNumber: 10,
-    scroll:false,
-    initialize: function (representation, compareWidget) {
-        _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
+    scroll: false,
+    initialize: function () {
+        _.bindAll(this, "bindEvents", "renderSearchResults", "clearCountdown", "renderError", "close");
         MultiPageView.prototype.initialize.call(this);
-        this.sr = representation;
+        this.sr = new TuanSearchRepresentation();
         //$entryContainer根据entryContainer生成 直接使用即可 与el相同
         this.$entryContainer.empty();
         this.user = app.sessionManager.sessionModel;
@@ -165,15 +164,24 @@ var TuanResultView = MultiPageView.extend({
         this.afterRender();
     },
     //页面成功渲染后的结果
-    afterRender: function(){
+    afterRender: function () {
+        //首先清除之前的倒计时
+        this.clearCountdown();
+
         var self = this;
         //endTime 倒计时
         var $countDowns = $('.tuan_endTime');
-        $.each($countDowns,function(k,$item){
+        $.each($countDowns, function (k, $item) {
             self.countDowns.push(Utilities.countDown($item))
         });
         //这里是为了声明页面加载完毕 seo
         $('body').attr('pageRenderReady', '')
+    },
+    clearCountdown: function () {
+        _.each(this.countDowns, function (item) {
+            window.clearInterval(item);
+        });
+        this.countDowns = [];
     },
     bindEvents: function () {
         var that = this;
@@ -225,9 +233,7 @@ var TuanResultView = MultiPageView.extend({
     },
     close: function () {
         if (!this.isClosed) {
-            _.each(this.countDowns,function(item){
-                window.clearInterval(item)
-            });
+            this.clearCountdown();
             this.$entryContainer.off();
             MultiPageView.prototype.close.call(this);
         }
