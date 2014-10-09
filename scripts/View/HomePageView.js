@@ -24,20 +24,18 @@ var HomePageView = Backbone.View.extend({
 //        } else if (this.banner.isClosed) {
 //            this.banner.render();
 //        }
+        this.$el.append(this.template);
+
         if (!this.searchArea) {
             this.searchArea = new SearchArea();
         } else if (this.searchArea.isClosed) {
             this.searchArea.render();
         }
-        $("#content").append("<span class='index_tip'>精品团购</span><div id='tuanBanner'></div>");
         if (!this.tuanBannerView) {
             this.tuanBannerView = new TuanBannerView();
         } else if (this.tuanBannerView.isClosed) {
             this.tuanBannerView.render();
         }
-
-        $("#content").append("<span class='index_tip'>课程推荐</span></div>");
-        this.$el.append(this.template);
 
         var htmlTuanpic = '';
         for (var i = 1; i < 5; i++) {

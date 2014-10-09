@@ -364,6 +364,10 @@ textarea{resize: none;}
     display: block;
 }
 
+.hidden {
+    display: none;
+}
+
 /* End hide from IE-mac */
 
 .text-center { text-align: center; }

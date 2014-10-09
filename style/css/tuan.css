@@ -1,6 +1,7 @@
 /*团购 Banner*/
 #tuanBanner {
     width: 1000px;
+    /*height: 318px;*/
     height: 320px;
     margin-bottom: 30px;
     position: relative;
@@ -9,20 +10,19 @@
 
 #tuanBanner .pic {
     width: 700px;
-    height: 320px;
     display: block;
     float: left;
 }
 
 #tuanBanner .pic .pics img {
+    /*margin-left: -1px;*/
+    /*margin-top: -1px;*/
     width: 700px;
     height: 320px;
     display: none;
 }
 
 #tuanBanner .pic .active img {
-    width: 700px;
-    height: 320px;
     display: block;
 }
 
