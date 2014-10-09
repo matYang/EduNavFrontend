@@ -672,22 +672,20 @@
                 <a class="courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
             </p>
             <p class="desc descSpec"><%= circleName||'-- --' %></p>
-            <!--<p class="desc"><span>上课日期:</span>
-                <%if(startUponArrival){%>
-                <%= startDate %>
-                <%if(finishDate){%>
-                - <%= finishDate %>
-                <%}%>
-                <%}else{%>
-                    <%= regPhone%>
-                <%}%>
-            </p>-->
-            <p class="desc"><!--<i class="heartIcon"></i>-->已有<span class="F_green">25</span>人报名</p>
+
+            <p class="desc">
+                <!--<i class="heartIcon"></i>-->
+                已有 <span class="ft-primary"><%=bookingTotal%></span> 人报名
+            </p>
+
             <p class="desc"><i class="locationIcon"></i> <%= address %></p>
         </div>
         <div class="col2">
             <div class="clearfix" style="padding-top: 30px">
-                <div class="price has-tip has-tip-top">*<%= commission/10 %>折
+                <div class="price has-tip has-tip-top">
+                    ￥<%if(originalPrice){%><%=originalPrice%>
+                    <%}else if(price){%><%=price%>
+                    <%}else{%>待定<%}%>
                     <div class="tip">
                         <div class="arrow"></div>
                         <div class="tip_content">
@@ -707,7 +705,9 @@
                     </a>
                 </div>
                 <%}%>
+                <%if(groupBuyActivity){%>
                 <span class="badge" style="margin-top: 5px;">团</span>
+                <%}%>
             </div>
 
             <div class="col3 clearfix">
