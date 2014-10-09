@@ -65,6 +65,9 @@ var AppRouter = Backbone.Router.extend({
         this.generalManager = new GeneralManager();
         this.userManager = new UserManager(this.sessionManager);
         this.infoModal = new InfoModal();
+        $.ajaxSetup({
+            cache: false //close AJAX cache
+        });
         this.sessionManager.fetchSession(false, {
             success: function () {
                 Info.log("session fetch success");
