@@ -688,7 +688,7 @@
 
 <script type="text/template" id="tpl_searchResultEntry">
     <div class="searchResultEntry clearfix">
-        <div class="pic"><img src="<%= logoUrl %>" width="137" height="137"/></div>
+        <div class="pic"><img src="<%= logoUrl %>" width="135" height="135"/></div>
         <div class="col1">
             <p class="title">
                 <a class="courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
@@ -2020,7 +2020,11 @@
         <div class="small_title">
             <h3>【<%= instName %>】</h3>
             <div>
-                <input style="background-color: #FF6A6A" class="add btn_g" type="button" value="正在团">
+                <%if(groupBuyActivity){%>
+                <a href="#tuan/<%=groupBuyActivity.id%>" target="_blank"><input style="background-color: #FF6A6A"
+                                                                                class="add btn_g" type="button"
+                                                                                value="正在团"></a>
+                <%}%>
                 <input style="background-color: #47BC78" id="detail_compare_<%= id %>" class="add btn_g" type="button" value=" +对比 ">
 
             </div>
@@ -2042,6 +2046,7 @@
             <div id="starDemo"></div>
             <a>4分</a>
             <span>(1562人评价)</span>
+
         </div>
         <div>
             <%if(cashback){%>
@@ -2049,7 +2054,7 @@
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">
-                        前台付现，入学成功可至少返还<span class="price"><%=cashback %>元</span>至现金账户！
+                        前台付现，入学成功可至少返还<span class="ft-price ft-larger"><%=cashback %>元</span>至现金账户！
                     </div>
                 </div>
             </div>
@@ -2057,12 +2062,12 @@
                 <div class="tip">
                     <div class="arrow"></div>
                     <div class="tip_content">
-                        无论学校与亲以什么价格成交，亲都能在付费后，从爱上课获取<span class="price"><%=100-commission%>%</span>的现金返现！
+                        无论学校与亲以什么价格成交，亲都能在付费后，从爱上课获取<span class="ft-price ft-larger"><%=100-commission%>%</span>的现金返现！
                     </div>
                 </div>
             </a>
             <%}%>
-
+            已有<span class="ft-primary"> <%=bookingTotal%></span> 人下单
         </div>
         <div class="btn">
             <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
@@ -2329,7 +2334,7 @@
                 <%if(startTime2){%>, <%=startTime2%> - <%=finishTime2%><%}%></p>
             <%}%>
         </td>
-        <td class="addr"><%=address%></td>
+        <td class="addr"><p><%=address%></p></td>
         <!--<td><span class="F_orange dotted-line"><%= commission/10 %>折</span></td>-->
         <td>
             <%if(current){%>
@@ -3639,7 +3644,7 @@
             <dd class="clearfix">
                 <% if (course.startTime1||course.schooltimeWeek) { %>
                 <p class="clearfix">
-                    <label>上课时间</label>
+                    <label>上课时间：</label>
                                 <span>
                                     <%if(course.contact){%>
                                         <%=course.contact%>
@@ -3649,48 +3654,48 @@
                 <%}%>
                 <% if (course.qualityAssurance) { %>
                 <p class="clearfix">
-                    <label>课时信息</label>
+                    <label>课时信息：</label>
                     <span><%=course.qualityAssurance%></span>
                 </p>
                 <% } %>
                 <% if (course.classSize) { %>
                 <p class="clearfix">
-                    <label>班级类型</label>
+                    <label>班级类型：</label>
 
                     <span><%= course.classSize %></span>
                 </p>
                 <% } %>
                 <% if (course.teachingMaterialIntro) { %>
                 <p class="clearfix">
-                    <label>教材介绍</label>
+                    <label>教材介绍：</label>
 
                     <span><%= course.teachingMaterialIntro %></span>
                 </p>
                 <% } %>
                 <% if (course.teachingMaterialFee) { %>
                 <p class="clearfix">
-                    <label>教材费用</label>
+                    <label>教材费用：</label>
 
                     <span><%= course.teachingMaterialFee %></span>
                 </p>
                 <% } %>
                 <% if (course.suitableStudent) { %>
                 <p class="clearfix">
-                    <label>适合学员</label>
+                    <label>适合学员：</label>
 
                     <span><%= course.suitableStudent %></span>
                 </p>
                 <% } %>
                 <% if (course.courseIntro) { %>
                 <p class="clearfix">
-                    <label>课程介绍</label>
+                    <label>课程介绍：</label>
 
                     <span><%= course.courseIntro %></span>
                 </p>
                 <% } %>
                 <% if (course.outline) { %>
                 <p class="clearfix">
-                    <label>课程提纲</label>
+                    <label>课程提纲：</label>
 
                     <span><%= course.outline %></span>
                 </p>
@@ -3698,7 +3703,7 @@
 
                 <% if (course.goal) { %>
                 <p class="clearfix">
-                    <label>教学目标</label>
+                    <label>教学目标：</label>
 
                     <span><%= course.goal %></span>
                 </p>

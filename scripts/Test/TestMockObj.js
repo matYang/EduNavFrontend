@@ -64,7 +64,7 @@ testMockObj = {
         .set("originalPrice", 899)
         .set('schooltimeWeek', [1, 2]).set('schooltimeDay', [3, 4])
         .set('startTime1', '0900').set('finishTime1', '1100')
-        .set("instName", "南京新东方").set("address", "南京市玄武区")
+        .set("instName", "南京新东方").set("address", "南京市玄武区南京市玄武区南京市玄武区南京市玄武区南京市玄武区南京市玄武区")
         .set("circleName", '仙林大学城1')
         .set("status", EnumConfig.CourseStatus.onlined)
         .set("bookingType", 1)
@@ -87,8 +87,34 @@ testMockObj = {
         .set('teachingAndExercise', '讲练结合-test')
         .set('questionBank', '题库支持-test')
         .set('downloadMaterials', '课件下载-test'),
-    testCourse2: (new Course()).set("categoryValue", "000101").set("id", 2).set("courseName", "GRE"),
-    testCourse3: (new Course()).set("categoryValue", "000101").set("id", 3).set("courseName", "GRE"),
+    testCourse2: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 2)
+        .set("courseName", "雅思英语").set("cashback", 10).set("commission", 95)
+        .set("originalPrice", 899)
+        .set('schooltimeWeek', [1, 2]).set('schooltimeDay', [3, 4])
+        .set('startTime1', '0900').set('finishTime1', '1100')
+        .set("instName", "南京新东方").set("address", "南京市玄武区南京市玄武区南京市玄武区南京市玄武区南京市玄武区南京市玄武区")
+        .set("circleName", '仙林大学城1')
+        .set("status", EnumConfig.CourseStatus.onlined)
+        .set("bookingType", 1)
+        .set("bookingTotal", 127)
+        .set("groupBuyActivity", {id: 1})
+        .set('startUponArrival', 1).set('startDate', new Date())
+        //课程详情
+        .set('qualityAssurance', '课时信息-test')
+        .set('classSize', '班级类型-测试数据')
+        .set('teachingMaterialIntro', '教材介绍-test')
+        .set('teachingMaterialFee', '教材费用-test')
+        .set('suitableStudent', '适合学员-test')
+        //特色服务
+        .set('passAgreement', '签约保过-test')
+        .set('classTeacher', '推荐就业-test')
+        .set('certification', '结业证书-test')
+        .set('extracurricular', '课后互动-test')
+        .set('bonusService', '赠送服务-test')
+        .set('quiz', '阶段测评-test')
+        .set('teachingAndExercise', '讲练结合-test')
+        .set('questionBank', '题库支持-test')
+        .set('downloadMaterials', '课件下载-test'), testCourse3: (new Course()).set("categoryValue", "000101").set("id", 3).set("courseName", "GRE"),
     testBookings: new Bookings(),
     testBooking1: (new Booking()).set("id", 1).set("reference", "10001").set("status", 0).set("type", 1).set("name", "马修")
         .set("phone", 13915063907).set("email", "test@gmail.com").set("price", 11999)

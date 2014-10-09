@@ -171,14 +171,14 @@ textarea{resize: none;}
     display: inline-block;
     min-width: 10px;
     padding: 3px;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1;
     color: #fff;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: 2px;
-    background-color: #FF6A6A;
+    background-color: #FC5A3C;
 }
 
 /*以下部分需要后续删除 统一使用.label*/
@@ -186,18 +186,19 @@ textarea{resize: none;}
 .cashback{
     display:inline-block;
     position:relative;
-    border: 1px solid #128d56;border-radius: 2px;
+    border: 1px solid #32AF94;
+    border-radius: 2px;
     font-family: SimSun, serif;
     font-size:12px;
     line-height: 18px;
-    color:#128d56;
+    color: #32AF94;
     padding-left: 19px;padding-right: 3px;
 }
 .cashback:before{
     content: '返';
     position: absolute;left: 0;top:0;
     color: white;
-    background: #128D56;
+    background: #32AF94;
     padding: 0 2px;
     width: 12px;
 }
@@ -296,23 +297,23 @@ textarea{resize: none;}
 /*label的独立style*/
 /*返*/
 .label.cashback{
-    border-color: #128d56;
-    color:#128d56;
+    border-color: #32AF94;
+    color: #32AF94;
 }
 .label.cashback:before{
     content:'返';
     width: 1em;
-    background: #128d56;
+    background: #32AF94;
 }
 /*将返*/
 .label.cashbacked{
-    border-color: #128d56;
-    color:#128d56;
+    border-color: #32AF94;
+    color: #32AF94;
 }
 .label.cashbacked:before{
     content:'可返';
     width: 2em;
-    background: #128d56;
+    background: #32AF94;
 }
 
 /*立减*/
@@ -422,8 +423,20 @@ textarea{resize: none;}
     color: #FB6D6D;
 }
 
+.ft-price, a.ft-price {
+    color: #FF6A6A;
+}
+
 .ft-light, a.ft-light {
     color: #aaaaaa;
+}
+
+.ft-large {
+    font-size: 1.2em
+}
+
+.ft-larger {
+    font-size: 1.5em
 }
 
 .h1,

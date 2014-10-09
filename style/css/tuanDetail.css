@@ -195,7 +195,14 @@
 
 .tuan_content .tuan_content_1 dd p{ min-height: 40px; height: auto; line-height: 40px;}
 .tuan_content .tuan_content_1 dd p label{ float: left; margin-right: 10px;}
-.tuan_content .tuan_content_1 dd p span{ width: 600px; display: block; float: left; padding: 5px 0; line-height: 30px;}
+
+.tuan_content .tuan_content_1 dd p span {
+    width: 580px;
+    display: block;
+    float: left;
+    padding: 5px 0;
+    line-height: 30px;
+}
 
 .tuan_content .tuan_content_2 dd a{
     width: 140px; height: 140px;
@@ -461,6 +468,18 @@
 
 .tuan_content thead tr td{ background-color: #79B0A5; color: #fff;}
 .tuan_content tbody td button{ background-color: #FF6A6A; border-radius: 17px;}
-.tuan_content tbody td{padding: 5px 0;
-    height: 44px;}
+
+.tuan_content tbody td {
+    padding: 5px 0;
+    height: 44px;
+
+}
+
+.tuan_content tbody td.addr {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
 
