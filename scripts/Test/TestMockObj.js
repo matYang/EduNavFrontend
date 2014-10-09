@@ -78,7 +78,7 @@ testMockObj = {
 
     testCourses: new Courses(),
     testCourse1: (new Course()).set("categoryValue", "000101").set("partnerIntro", longText).set("id", 1)
-        .set("courseName", "雅思英语雅思英语雅思英语雅思英语雅思英语").set("cashback", 10).set("commission", 95)
+        .set("courseName", "雅思英语雅思英语雅思英语雅思").set("cashback", 10).set("commission", 95)
         .set("originalPrice", 899)
         .set('schooltimeWeek', [1, 2]).set('schooltimeDay', [3, 4])
         .set('startTime1', '0900').set('finishTime1', '1100')

@@ -208,14 +208,14 @@
     margin-top: 25px;
 }
 
-#tuanDetail .btn {
+#tuanDetail .btns {
     padding: 0;
     width: 468px;
     margin-top: 15px;
 }
 
-.courseDetail .btn a,
-#tuanDetail .btn a {
+.courseDetail .btns a,
+#tuanDetail .btns a {
     height: 50px;
     display: block;
     text-align: center;
