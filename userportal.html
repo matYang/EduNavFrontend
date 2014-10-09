@@ -688,24 +688,24 @@
 
 <script type="text/template" id="tpl_searchResultEntry">
     <div class="searchResultEntry clearfix">
-        <div class="pic"><img src="<%= logoUrl %>" width="135" height="135"/></div>
+        <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/></div>
         <div class="col1">
             <p class="title">
                 <a class="courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
             </p>
 
-            <p class="desc descSpec"><%= circleName||'-- --' %></p>
+            <p class="desc descSpec">[<%= circleName||'-- --' %>]</p>
 
             <p class="desc">
-                <!--<i class="heartIcon"></i>-->
+                <i class="heartIcon"></i>
                 已有 <span class="ft-primary"><%=bookingTotal%></span> 人报名
             </p>
 
             <p class="desc"><i class="locationIcon"></i> <%= address %></p>
         </div>
         <div class="col2">
-            <div class="clearfix" style="padding-top: 30px">
-                <div class="price has-tip has-tip-top">
+            <div class="clearfix" style="padding-top: 20px">
+            <div class="price has-tip has-tip-top">
                     ￥<%if(originalPrice){%><%=originalPrice%>
                     <%}else if(price){%><%=price%>
                     <%}else{%>待定<%}%>
@@ -2338,15 +2338,13 @@
         <td class="addr"><p><%=address%></p></td>
         <!--<td><span class="F_orange dotted-line"><%= commission/10 %>折</span></td>-->
         <td>
-            <%if(current){%>
-            <a class="inline-block">
-                <button type="button" class="btn_gray">当前课程</button>
-            </a>
-            <%}else{%>
+            <!--if(current)-->
+            <!--<a class="inline-block">-->
+            <!--<button type="button" class="btn_gray">当前课程</button>-->
+            <!--</a>-->
             <a class="inline-block">
                 <button type="button" class="btn_g bookNow" data-value="<%= id %>">申请试听</button>
             </a>
-            <%}%>
 
         </td>
     </tr>

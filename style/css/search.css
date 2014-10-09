@@ -83,7 +83,7 @@
 
 .search_result .searchResultEntry {
     margin: 5px 0;
-    height: 130px;
+    height: 120px;
     padding: 15px 0;
 }
 
@@ -94,9 +94,10 @@
 .search_result .pic {
     position: relative;
     float: left;
-    width: 135px;
-    height: 135px;
-    margin-right: 10px;
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+    margin-top: 15px;
 }
 
 .search_result .col1 {
@@ -128,24 +129,37 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     color: #626161;
-    margin-top: 10px;
+    margin-top: 4px;
 }
 
 .search_result .col1 .desc s{margin:0 12px;}
 
 .search_result .col1 .descSpec {
-    color: #060606;
-    margin: 5px 0 20px 0;
+    color: #666;
+    margin: 5px 0 15px 0;
 }
 
-.search_result .col1 .desc .locationIcon{ width: 16px; height: 20px; display: inline-block; background-image: url("../images/location.jpg"); margin: 0 6px -5px 0;}
-.search_result .col1 .desc .heartIcon{ width: 16px; height: 14px; display: inline-block; background-image: url("../images/heart.png"); margin: 0 8px -3px 0;}
+.search_result .col1 .desc .locationIcon {
+    width: 16px;
+    height: 20px;
+    display: inline-block;
+    background-image: url("../images/location.jpg");
+    margin: 0 2px -5px 0;
+}
+
+.search_result .col1 .desc .heartIcon {
+    width: 16px;
+    height: 14px;
+    display: inline-block;
+    background-image: url("../images/heart.png");
+    margin: 0 2px -3px 0;
+}
 
 .search_result .col2{float:left; position:relative; width:222px; height:150px; text-align:center; font-size:14px;}
 
 .search_result .col2 .price {
     min-width: 90px;
-    font-size: 20px;
+    font-size: 24px;
     color: #ff6A6A;
     float: left;
     padding: 0 10px 10px 15px;
@@ -467,4 +481,3 @@
     cursor: pointer;
     margin-left: 10px;
 }
-
