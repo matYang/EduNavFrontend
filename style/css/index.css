@@ -1,74 +1,74 @@
 @charset "utf-8";
 /* CSS Document */
 
-#visualScope {width:100%;margin:-15px auto 0; overflow:hidden; }
+/*#visualScope {width:100%;margin:-15px auto 0; overflow:hidden; }*/
 
-#searchArea { width: 100%;}
+/*#searchArea { width: 100%;}*/
 
 /*visual_container  */
-.index #visual_container,
-.index #visual_container .slidee,
-.index #visual_container .slidee li {height:320px}
+/*.index #visual_container,*/
+/*.index #visual_container .slidee,*/
+/*.index #visual_container .slidee li {height:320px}*/
 
 /*Banner 图片滚动*/
-.index #visual_container{
-    width: 100%;
-}
+/*.index #visual_container{*/
+/*width: 100%;*/
+/*}*/
 
-#visual_container ul.bjqs{
-    left:50%;
-    position:relative; list-style:none;
-    padding:0;
-    overflow:visible;
-    display:none;}
-#visual_container li.bjqs-slide{
-    margin-left: -980px;
-    position:absolute; display:none;
-}
+/*#visual_container ul.bjqs{*/
+/*left:50%;*/
+/*position:relative; list-style:none;*/
+/*padding:0;*/
+/*overflow:visible;*/
+/*display:none;}*/
+/*#visual_container li.bjqs-slide{*/
+/*margin-left: -980px;*/
+/*position:absolute; display:none;*/
+/*}*/
 
 /*left and right controls 左右切换滚动图按钮*/
-#visualScope ul.bjqs-controls{
-    list-style:none;z-index:9999;
-}
-#visualScope ul.bjqs-controls li a{
-    position:absolute;
-    display:block;
-    width:38px; height:80px;
-    background:url(../images/banner_pre_next.png) no-repeat;
-}
+/*#visualScope ul.bjqs-controls{*/
+/*list-style:none;z-index:9999;*/
+/*}*/
+/*#visualScope ul.bjqs-controls li a{*/
+/*position:absolute;*/
+/*display:block;*/
+/*width:38px; height:80px;*/
+/*background:url(../images/banner_pre_next.png) no-repeat;*/
+/*}*/
 
-#visualScope ul.bjqs-controls li.bjqs-prev a{left:10px;background-position:0 0;}
-#visualScope ul.bjqs-controls li.bjqs-prev a:hover{ background-position:-40px 0;}
-#visualScope ul.bjqs-controls li.bjqs-next a{right:10px;background-position:0 -80px;}
-#visualScope ul.bjqs-controls li.bjqs-next a:hover{ background-position:-40px -80px;}
+/*#visualScope ul.bjqs-controls li.bjqs-prev a{left:10px;background-position:0 0;}*/
+/*#visualScope ul.bjqs-controls li.bjqs-prev a:hover{ background-position:-40px 0;}*/
+/*#visualScope ul.bjqs-controls li.bjqs-next a{right:10px;background-position:0 -80px;}*/
+/*#visualScope ul.bjqs-controls li.bjqs-next a:hover{ background-position:-40px -80px;}*/
 
 /*banner切换按钮 todo 需要结合bjqs的下方分页按钮 与课程详情页中的一致*/
-.index #visualScope ol.bjqs-markers{
-    position:absolute;
-    top:248px; z-index:99;
-    padding: 0;
-    text-align: center; list-style: none;
-    width:400px;
-    left: 50%;
-    margin-left: -200px;
-}
-.index #visualScope ol.bjqs-markers li{display:inline;}
-.index #visualScope ol.bjqs-markers li a{
-    display: inline-block;
-    margin-right:5px;
-    width:10px; height:10px; text-indent:-9999px;
-    background:rgba(255,255,255,.95);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99ffffff',endColorstr='#99ffffff');
-    cursor:pointer;
-    -webkit-transition: all 0.65s;
-    -moz-transition: all 0.65s;
-    -ms-transition: all 0.65s;
-    -o-transition: all 0.65s;
-    transition: all 0.65s;}
-.index #visualScope ol.bjqs-markers li a:hover{ background:#2a2e39;}
-.index #visualScope ol.bjqs-markers li.active-marker a{
-    background:#2a2e39;
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99000000',endColorstr='#99000000'); }
+/*.index #visualScope ol.bjqs-markers{*/
+/*position:absolute;*/
+/*top:248px; z-index:99;*/
+/*padding: 0;*/
+/*text-align: center; list-style: none;*/
+/*width:400px;*/
+/*left: 50%;*/
+/*margin-left: -200px;*/
+/*}*/
+/*.index #visualScope ol.bjqs-markers li{display:inline;}*/
+/*.index #visualScope ol.bjqs-markers li a{*/
+/*display: inline-block;*/
+/*margin-right:5px;*/
+/*width:10px; height:10px; text-indent:-9999px;*/
+/*background:rgba(255,255,255,.95);*/
+/*filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99ffffff',endColorstr='#99ffffff');*/
+/*cursor:pointer;*/
+/*-webkit-transition: all 0.65s;*/
+/*-moz-transition: all 0.65s;*/
+/*-ms-transition: all 0.65s;*/
+/*-o-transition: all 0.65s;*/
+/*transition: all 0.65s;}*/
+/*.index #visualScope ol.bjqs-markers li a:hover{ background:#2a2e39;}*/
+/*.index #visualScope ol.bjqs-markers li.active-marker a{*/
+/*background:#2a2e39;*/
+/*filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#99000000',endColorstr='#99000000'); }*/
 
 /*一级目录*/
 .index .tab2 .active{ background-color: #1A8F5A; color: #FFF;}
@@ -130,17 +130,31 @@
 .index .s_attestation li {border-top:1px solid #e9cffe; border-left:1px solid #e9cffe;}
 .index .s_attestation li.last{width:202px;}
 
+/* Footer #footer见common-ui.css*/
+.footer_inner {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 0 20px;
+    text-align: center;
+}
 
-/* Footer*/
-.footer {
-    padding: 10px 0 20px; background: #248E4E;color: #ffffff}
 /*底部链接的样式*/
-.footer a,.footer a:visited{ color: #ffffff; }
-.footer a:hover{ color: #ffffff; text-decoration: underline; }
-/*底部段落的样式*/
-.footer p{ margin: 9px 0; font-size: 12px; }
+.footer_inner a, .footer a:visited {
+    color: #ffffff;
+}
 
-.footer_inner{ width:1000px; margin-left:auto; margin-right:auto; text-align: center; }
+.footer_inner a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/*底部段落的样式*/
+.footer_inner p {
+    margin: 9px 0;
+    font-size: 12px;
+}
+
 /*footer部分的页面切换链接*/
 #footer_service_link a{ padding:0 10px;}
 p.footer-copyright{}

@@ -1,120 +1,117 @@
 .account dd.wrong {
-	background: none;
+    background: none;
 }
 
-#bookingSummary .no_data{
-	margin-top: 0px;
+#bookingSummary .no_data {
+    margin-top: 0px;
 }
 
 .search_result {
-	min-height:431px;
+    min-height: 431px;
 }
 
 .noMessage {
-	/*padding-top: 20px;*/
+    /*padding-top: 20px;*/
 }
 
-#walletSummary span{
-	margin-right: 4px;
+#walletSummary span {
+    margin-right: 4px;
 }
 
 li a, .page a {
-	cursor:pointer;
+    cursor: pointer;
 }
 
 #topbar_loginbox {
-	z-index: 100;
+    z-index: 100;
 }
 
 #registerVeriCode_wrong {
-	margin-left: 132px;
+    margin-left: 132px;
 }
 
 .get_password #authCode {
-	width:100px;
+    width: 100px;
 }
+
 #popup {
-	position: fixed;
+    position: fixed;
 }
 
 #mainMap {
-	z-index: 100;
-	background-color: #eee;
-}
-
-.footer {
-	z-index: -1;
+    z-index: 100;
+    background-color: #eee;
 }
 
 #cancelBooking {
-	margin-top:20px;
+    margin-top: 20px;
 }
 
 .unselectable {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: -moz-none;
-  -ms-user-select: none;
-  user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .mypage_sidebar_title {
-	cursor: pointer;
+    cursor: pointer;
 }
 
-
 .course_content .teacherInfo {
-	margin-bottom: 10px;
-	
+    margin-bottom: 10px;
+
 }
 
 .course_content dd label {
-	float:left;
+    float: left;
 }
 
 .courseDetail .courseMain .course_content dt {
-	float:left;
-	width: 100%;
+    float: left;
+    width: 100%;
 }
 
 .link {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .teacherInfo .name {
-	float: left;
-	width: 200px;
+    float: left;
+    width: 200px;
 }
 
 .compare_button {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 #siteMap span {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .courseDetail .bottom {
-	margin-top: 5px;
+    margin-top: 5px;
 }
 
-#booking_loginnote{
-	margin-left: 125px;
+#booking_loginnote {
+    margin-left: 125px;
 }
 
 #booking_date {
-	margin-right: 8px;
+    margin-right: 8px;
 }
 
 #copy_content:hover {
-	background-color:#dddddd;
+    background-color: #dddddd;
 }
 
 #copy_content {
-	overflow: hidden;
-	resize:none;
+    overflow: hidden;
+    resize: none;
 }
+
 /*all element hover state*/
 /*.ui-state-hover,
 .ui-widget-content .ui-state-hover,
@@ -129,27 +126,27 @@ li a, .page a {
 /*override jquery ui date picker style*/
 /*.ui-datepicker td span, .ui-datepicker td a{ padding: 0; text-align: center; }*/
 /*.ui-datepicker{*/
-    /*color:#128D56;*/
-    /*border-color: #128D56;}*/
-    /*.ui-datepicker .ui-datepicker-header{*/
-        /*color: #128d56;*/
-        /*border: none;*/
-        /*border-bottom: 2px solid #128d56;*/
-        /*border-radius: 0;*/
-        /*background: none;}*/
-    /*.ui-datepicker.ui-datepicker-calendar .ui-state-default{*/
-        /*color: #128d56;*/
-        /*background: none;}*/
-    /*.ui-datepicker .ui-datepicker-calendar .ui-state-active{*/
-        /*color: #ffffff;*/
-        /*border-color: #128d56;*/
-        /*background: #128d56;}*/
+/*color:#128D56;*/
+/*border-color: #128D56;}*/
+/*.ui-datepicker .ui-datepicker-header{*/
+/*color: #128d56;*/
+/*border: none;*/
+/*border-bottom: 2px solid #128d56;*/
+/*border-radius: 0;*/
+/*background: none;}*/
+/*.ui-datepicker.ui-datepicker-calendar .ui-state-default{*/
+/*color: #128d56;*/
+/*background: none;}*/
+/*.ui-datepicker .ui-datepicker-calendar .ui-state-active{*/
+/*color: #ffffff;*/
+/*border-color: #128d56;*/
+/*background: #128d56;}*/
 
 #search_category {
-	border-bottom: 1px solid #cccccc !important;
-	margin-top: -4px;
-	padding-right: 0 !important;
-	padding-bottom: 0 !important;
-	padding-top: 0 !important;
-	padding-left: 20px !important;
+    border-bottom: 1px solid #cccccc !important;
+    margin-top: -4px;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-left: 20px !important;
 }
