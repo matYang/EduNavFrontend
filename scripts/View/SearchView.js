@@ -50,7 +50,6 @@ var SearchView = Backbone.View.extend({
             //新建view时会调用一次fetchAction 则会进行一次数据渲染(传入课程搜索 传入对比组件)
             this.searchResultView = new SearchResultView(this.searchRepresentation, this.compareWidgetView);
             //初始化时同步url中的参数进行过滤
-            this.syncSearch();
             this.syncFilters();
             this.syncSorter();
             var $searchReqs = $("#searchReqs");
@@ -66,7 +65,7 @@ var SearchView = Backbone.View.extend({
     /*加载上课地点*/
     renderLocations: function (locations) {
         var self = this;
-        //加载行政区/商圈//todo 地区和商圈的Value
+        //加载行政区/商圈//
         if (!this.isClosed) {
             var buf = [], chbuf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
             this.locations = locations;
@@ -200,20 +199,15 @@ var SearchView = Backbone.View.extend({
         }
     },
 
-    //渲染当前的搜索条件
-    syncSearch: function () {
-        var courseName = this.searchRepresentation.get("courseName");
-        if (courseName) {
-            this.$el.find('input.search_input').val(courseName);
-            $('#search_category').addClass('tab5').append('<li class="actived" data-value="search"><i class="clearSearch"></i><p>' + courseName + '</p></li>');
-        } else {
-            $('#search_category').removeClass('tab5').find('.actived').remove();
-        }
-    },
-    //过滤条件的同步 开课日期 上课时间（开始和结束） 班级类型 课程费用（开始和结束） 是否返现
+    /**
+     * 过滤条件的同步
+     * 课程名（用户从输入框输入） 开课日期 上课时间（开始和结束） 班级类型 课程费用（开始和结束） 是否返现
+     * 同步条件的active状态以及在下方显示的搜索条件
+     */
     syncFilters: function () {
         var startPrice = this.searchRepresentation.get("priceStart"),
             priceEnd = this.searchRepresentation.get("priceEnd"),
+            courseName = this.searchRepresentation.get("courseName"),
             classType = this.searchRepresentation.get("classType"),
             startDateStart = this.searchRepresentation.get("startDateStart"),
             startDateEnd = this.searchRepresentation.get("startDateEnd"),
@@ -225,6 +219,11 @@ var SearchView = Backbone.View.extend({
             schooltimeDay = this.searchRepresentation.get("schooltimeDay"),
             value, text;
         var $searchReqs = $("#searchReqs");
+        //用户输入的课程名
+        if (courseName !== undefined) {
+            $('#search_category').addClass('tab5').append('<li class="actived" data-value="search"><i class="clearSearch"></i><p>' + courseName + '</p></li>');
+            $searchReqs.append(this.reqTemplate({criteria: "courseName", dataValue: '', text: courseName}));
+        }
         if (startPrice !== undefined) {
             value = startPrice + "-";
             if (priceEnd !== undefined) {
@@ -314,7 +313,7 @@ var SearchView = Backbone.View.extend({
     //进行课程搜索 重新设置搜索条件 并且获取数据
     courseSearch: function () {
         this.searchResultView.sr = this.searchRepresentation;
-        //todo 加载结果数据 param is pageIndex(using page 1)
+        //加载结果数据 param is pageIndex(using page 1)
         this.searchResultView.fetchAction(1);//每次搜索查询的时候重设为第一页
     },
 
@@ -361,12 +360,19 @@ var SearchView = Backbone.View.extend({
                 $searchWidgets.removeClass("stickyHeader");
             }
         });
-        /*已选择的查询条件中的删除事件*/
+        /*已选择的查询条件中的删除事件 相当于点击不限的情况 这需要将courseName单独处理*/
         $searchReqs.on("click", "a", function (e) {
             e.preventDefault();
             var cri = $(e.target).data("cri");
-            that.filterResult($("#filter_" + cri), $("#filter_" + cri).find("[data-value=noreq]").removeClass("active"));
-            $("#filter_" + cri).find("p").addClass("hidden");
+            if (cri == 'courseName') {
+                //todo 去除课程名的搜索
+                //移除第5个标签 清空搜索input框 移除满足的条件
+                that.clearCourseNameSearch();
+                return;
+            }
+            var $filterCri = $("#filter_" + cri);
+            that.filterResult($filterCri, $filterCri.find("[data-value=noreq]").removeClass("active"));
+            $filterCri.find("p").addClass("hidden");
         });
 
         var $filter_district = $("#filter_district");
@@ -480,11 +486,23 @@ var SearchView = Backbone.View.extend({
             that.courseSearch();
         });
         $("#search_category").on("click", ".clearSearch", function (e) {
-            that.searchRepresentation.set("courseName", undefined);
-            $('#search_category').removeClass('tab5').find('.actived').remove();
-            that.$el.find('input.search_input').val('');
-            that.courseSearch();
+            that.clearCourseNameSearch()
         });
+    },
+    clearCourseNameSearch: function () {
+        //todo
+        var $searchReqs = $("#searchReqs");
+        var that = this;
+        $("a[data-cri=courseName]").remove();
+        if ($searchReqs.find("a").length) {
+            $searchReqs.removeClass("hidden");
+        } else {
+            $searchReqs.addClass("hidden");
+        }
+        that.searchRepresentation.set("courseName", undefined);
+        $('#search_category').removeClass('tab5').find('.actived').remove();
+        that.$el.find('input.search_input').val('');
+        that.courseSearch();
     },
     /*处理筛选事件(上课时间 课程费用等)*/
     filterResult: function ($filter, $target) {
@@ -503,7 +521,6 @@ var SearchView = Backbone.View.extend({
                 {criteria: criteria, dataValue: dataValue, text: $filter.find("[data-value=" + dataValue + "]").html()}
             ));
         }
-
         var $searchReqs = $("#searchReqs");
         if ($searchReqs.find("a").length) {
             $searchReqs.removeClass("hidden");
@@ -650,7 +667,6 @@ var SearchView = Backbone.View.extend({
         }
         this.courseSearch();
         //this.searchRepresentation.set(criteria, dataId);
-        //todo
     },
     close: function () {
         if (!this.isClosed) {
