@@ -184,7 +184,7 @@
 }
 
 .login_reg .bd ul {
-    padding: 20px;
+    padding: 20px 20px 10px;
 }
 
 .checkbox {
@@ -227,16 +227,6 @@
 .login_reg .forget_password, .login_reg .forget_password:visited {
     float: right;
     color: #128d56;
-}
-
-.btn_topnav_login {
-    width: 220px;
-    height: 40px;
-    background: url(../images/login_btn.png) no-repeat;
-    border: none;
-    font-size: 16px;
-    color: #fff;
-    cursor: pointer;
 }
 
 .frontBanner {

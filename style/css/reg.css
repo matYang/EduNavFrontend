@@ -22,7 +22,10 @@
 .sign_up .sign_up_inner dl.verify dd.success{ margin-left:88px;}
 .sign_up .success{ margin-top:10px;}
 
-.sign_up .btns { padding-left: 130px; margin-top: 40px; }
+.sign_up .btns {
+    padding-left: 130px;
+}
+
 .sign_up #registerVeriCode { width: 100px; }
 .sign_up #getSms {
     border-radius: 3px;
