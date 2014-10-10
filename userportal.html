@@ -2202,7 +2202,9 @@
                 <div class="teacherInfor clearfix">
                     <a class="teacher_pic" style="background-image: url('<%= teacherList[i].imgUrl %>')"
                        data-id="<%=i%>">
-                        <span>查看详情</span>
+                        <div class="overlay_teacher">
+                            <span>查看详情</span>
+                        </div>
                     </a>
                     <span><%= teacherList[i].name %></span>
                 </div>
@@ -3733,8 +3735,10 @@
             <dd class="teacherArea clearfix">
                 <% for (var i =0; i < course.teacherList.length; i++) { %>
                 <div class="teacherInfor clearfix">
-                    <a class="teacher_pic" style="background-image: url('<%= course.teacherList[i].imgUrl %>')"
-                       data-id="<%=i%>"><span>查看详情</span>
+                    <a class="teacher_pic" style="background-image: url('<%= course.teacherList[i].imgUrl %>')" data-id="<%=i%>">
+                        <div class="overlay_teacher">
+                            <span>查看详情</span>
+                        </div>
                     </a>
                     <span><%= course.teacherList[i].name %></span>
                 </div>

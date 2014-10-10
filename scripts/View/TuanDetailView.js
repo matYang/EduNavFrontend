@@ -106,10 +106,10 @@ var TuanDetailView = Backbone.View.extend({
             $("#teacherInfo .teacher_message").html(teacher.get('intro'));
         });
         $(".tuan_content_2 .teacher_pic").hover(function () {
-            $(this).css("background","#28B094");
+            $(this).find(".overlay_teacher").show();
             $(this).find("span").css("display", "block");
         }, function () {
-            $(this).css("background","");
+            $(this).find(".overlay_teacher").hide();
             $(this).find("span").css("display", "none");
         });
 
