@@ -337,12 +337,14 @@
     height: auto;
     line-height: 40px;
 }
-
+.tuan_content .tuan_content_2 dd label,
 .tuan_content .tuan_content_1 dd label {
+    line-height: 40px;
+    height: 40px;
     float: left;
     margin-right: 10px;
 }
-
+.tuan_content .tuan_content_2 dd .span,
 .tuan_content .tuan_content_1 dd .span {
     width: 580px;
     float: left;
