@@ -2035,7 +2035,7 @@
         </div>
     </div>
     <div class="row">
-        <h1 style="color: #128D56"><%= courseName %></h1>
+        <h1 style="color: #128D56;font-weight: normal"><%= courseName %></h1>
 
         <div class="small_title">
             <h3>【<%= instName %>】</h3>
@@ -2191,8 +2191,14 @@
             <dt><i class="dticon"></i>学校师资</dt>
             <dd class="teacherArea clearfix">
                 <% for (var i =0; i < teacherList.length; i++) { %>
-                <a class="teacher_pic" style="background-image: url('<%= teacherList[i].imgUrl %>')"
-                   data-id="<%=i%>"><span>查看简介</span></a>
+                <div class="teacherInfor clearfix">
+                    <a class="teacher_pic" style="background-image: url('<%= teacherList[i].imgUrl %>')"
+                       data-id="<%=i%>">
+                        <span>查看详情</span>
+                    </a>
+                    <span><%= teacherList[i].name %></span>
+                </div>
+
                 <% } %>
             </dd>
         </dl>

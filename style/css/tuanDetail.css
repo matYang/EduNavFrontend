@@ -110,8 +110,8 @@
 
 .courseDetail .small_title h3 {
     float: left;
-    line-height: 40px;
-    color: #128D56;
+    line-height: 30px;
+    font-weight: normal;
 }
 
 .courseDetail .small_title input {
@@ -404,7 +404,7 @@
     width: 120px;
     height: 160px;
     float: left;
-    margin: 0 10px 10px 0;
+    margin: 10px 10px 10px 0;
 }
 
 .tuan_content_3 .serviceli span {
