@@ -34,7 +34,7 @@
 
 .topBar-navigation li {
     float: left;
-    padding: 0 20px;
+    padding: 0 30px;
     margin-left: 1px;
     cursor: pointer;
 }
@@ -57,6 +57,15 @@
     width: 36px;
     margin-left: -3px;
     background: url("../images/icon_hot.png") no-repeat;
+
+}
+.topBar-navigation li .icon-tip {
+    display: inline-block;
+    height: 6px;
+    width: 10px;
+    margin-left: 5px;
+    margin-top: 15px;
+    background: url("../images/icon_tip.png") no-repeat;
 
 }
 
@@ -103,23 +112,24 @@
     color: #ffffff;
 }
 
-.userpic {
-    float: right;
-    width: 60px;
-    height: 60px;
-    margin-right: 50px;
-    margin-top: 0px;
-    background-image: url("../images/top_nav_pic_1.png");
+.userpic img{
+    float: left;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin-top: 10px;
+    /*background-image: url("../");
+    background-repeat: no-repeat;*/
 }
 
-.userpic:hover {
+/*.userpic:hover {
     background-image: url("../images/top_nav_pic_2.png");
-}
+}*/
 
-#userPic {
+/*#userPic {
     width: 60px;
     height: 60px;
-}
+}*/
 
 .login_reg {
     float: right;
@@ -143,29 +153,31 @@
 
 /*个人中心的dropdown*/
 .login_reg .ql {
+    width: 198px;
     position: absolute;
     display: none;
     top: 60px;
-    left: -92px;
-    width: 160px;
+    left: -30px;
     text-align: center;
     background: #21252F;
     z-index: 999;
     padding-bottom: 5px;
 }
-
+.topBar-navigation .login_reg li {
+    padding: 0;
+}
 /*dropdown中的li>a*/
-.ql a {
+.login_reg .ql a {
     font-size: 14px;
     line-height: 35px;
-    width: 160px;
-    height: 35px;
+    width: 196px;
+    height: 38px;
     background: #21252F;
     display: block;
-    margin: 3px 0;
+    margin: 0;
 }
 
-.ql a:hover {
+.login_reg .ql a:hover {
     background: #333844;
 }
 

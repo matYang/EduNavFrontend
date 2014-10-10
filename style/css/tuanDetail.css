@@ -996,7 +996,8 @@
 #teacherInfo .teacher_info span {
     line-height: 50px;
     line-height: 50px;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     color: #28B094;
     margin-left: 5px;
 }
@@ -1006,7 +1007,7 @@
     height: 150px;
     display: block;
     overflow: auto;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 25px;
 }
 

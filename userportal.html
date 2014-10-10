@@ -89,25 +89,28 @@
             </h1>
             <ul class="topBar-navigation">
                 <li id="navigate_home" class="button">首页</li>
-                <li id="navigate_search" class="button">课程分类</li>
-                <li id="navigate_compare" class="button">课程对比</li>
+                <li id="navigate_search" class="button">课程</li>
+                <!--<li id="navigate_compare" class="button">课程对比</li>-->
                 <li id="navigate_tuan" class="button">团购&bull;特卖<i class="icon-hot"></i></li>
-            </ul>
-            <div class="login_reg">
-                <div id="user_info_pic">
-                    <a id="userPic" href="#" class="userpic"><img src=" "/></a>
-                    <div id="user_info" class="ql">
-                        <ul>
-                            <li><a id="personal" href="#">个人中心</a></li>
-                            <li><a id="management" href="#">订单管理</a></li>
-                            <li><a id="cash" href="#">账户管理</a></li>
-                            <li><a id="userInfo" href="#">个人资料</a></li>
-                            <li><a id="logout" href="#">退出</a></li>
-                        </ul>
+                <li class="button">
+                    <div class="login_reg">
+                        <div id="user_info_pic">
+                            <a id="userPic" href="#" class="userpic"><img src="style/images/top_nav_pic_1.png" alt=""/>Tukkomi<i class="icon-tip"></i></a>
+                            <div id="user_info" class="ql">
+                                <ul>
+                                    <li><a id="personal" href="#">个人中心</a></li>
+                                    <li><a id="management" href="#">订单管理</a></li>
+                                    <li><a id="cash" href="#">账户管理</a></li>
+                                    <li><a id="userInfo" href="#">个人资料</a></li>
+                                    <li><a id="logout" href="#">退出</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-            </div>
+                </li>
+            </ul>
+            <!---->
             <div class="tel">
                 <li id="navigate_tel" style="padding: 0 5px">
                     <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><img
@@ -2132,20 +2135,7 @@
         </dl>
         <dl class="tuan_content_1" class="content_inner">
             <dt><i class="dticon"></i>课程详情</dt>
-            <dd class="clearfix">
-                <% if (startTime1||schooltimeWeek) { %>
-                    <label>上课时间：</label>
-                                    <div class="span">
-                                    <%if(schooltimeWeek){%>
-                                        <%=schooltimeWeek%>&nbsp;（<%=schooltimeDay%>）
-                                    <%}%>
-                                    <%if(startTime1){%>
-                                        <%=startTime1%>-<%=finishTime1%>
-                                        <%if(startTime2){%>, <%=startTime2%> - <%=finishTime2%><%}%>
-                                    <%}%>
-                                    </div>
-                <%}%>
-            </dd>
+
             <dd class="clearfix">
                 <% if (qualityAssurance) { %>
                     <label>课时信息：</label>

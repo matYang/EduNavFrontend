@@ -86,6 +86,7 @@
 .search_result #searchResultSorter{ background:#79B0A5; margin-bottom: -4px;}/*选择显示方式*/
 .search_result .sorter{float:left; height:35px; line-height:36px; margin-left:15px; color:#333; font-size:14px;}
 .search_result .sorter li{float:left; padding:0 25px; text-align:center; cursor: pointer; width: 70px; color:#fff;}
+.search_result .sorter li:hover{ background-color: #8AC4B8;}
 /*.search_result .sorter li.active{ background:url(../images/active.png) no-repeat center; color:#fff;}*/
 .search_result .sorter li.line{width:1px; height:12px; padding:0; background:#ccc; margin:10px 8px 0;}
 
@@ -507,6 +508,7 @@
     padding: 20px 0 20px 30px;
     border: 0;
     outline: 0;
+    font-family: "微软雅黑";
 }
 
 .searchAll .search_top a.search_btn {
