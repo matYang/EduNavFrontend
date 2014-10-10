@@ -102,20 +102,20 @@ var SearchView = Backbone.View.extend({
         if (!locationValue && !circleValue) {
             $dist.find("span[data-value=noreq]").addClass("active");
         } /*else if (locationValue == "location" || circleValue == "circle") {
-            $dist.find("span[data-value=noreq]").removeClass("active");
-            //如果原本选择的是行政区
-            if (locationValue == "location") {
-                $dist.find("span[data-value=" + locationValue + "]").addClass("active");
-                var text = $dist.find("span[data-value=" + locationValue + "]").html();
-                $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
-                $dist.find("p[data-parentvalue=" + locationValue + "]").removeClass("hidden");
-            } else {//如果原本选择的是商圈
-                $dist.find("span[data-value=" + circleValue + "]").addClass("active");
-                var text = $dist.find("span[data-value=" + circleValue + "]").html();
-                $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
-                $dist.find("p[data-parentvalue=" + circleValue + "]").removeClass("hidden");
-            }
-        } */else if (locationValue) {//如果原本选择的是行政区下的小标题
+         $dist.find("span[data-value=noreq]").removeClass("active");
+         //如果原本选择的是行政区
+         if (locationValue == "location") {
+         $dist.find("span[data-value=" + locationValue + "]").addClass("active");
+         var text = $dist.find("span[data-value=" + locationValue + "]").html();
+         $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
+         $dist.find("p[data-parentvalue=" + locationValue + "]").removeClass("hidden");
+         } else {//如果原本选择的是商圈
+         $dist.find("span[data-value=" + circleValue + "]").addClass("active");
+         var text = $dist.find("span[data-value=" + circleValue + "]").html();
+         $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
+         $dist.find("p[data-parentvalue=" + circleValue + "]").removeClass("hidden");
+         }
+         } */ else if (locationValue) {//如果原本选择的是行政区下的小标题
             $dist.find("span[data-value=noreq]").removeClass("active");
             $dist.find("span[data-value=" + locationValue + "]").addClass("active");
             $dist.find("p[data-parentvalue='location']").removeClass("hidden");
@@ -325,12 +325,23 @@ var SearchView = Backbone.View.extend({
         //顶部的按照课程名进行搜索
         this.$el.on('click', '.search_btn', function () {
             var courseName = $('.search_input').val();
-            var searchRepresentation = new CourseSearchRepresentation();
             if (courseName) {
+                var searchRepresentation = new CourseSearchRepresentation();
                 searchRepresentation.set("courseName", courseName);
+                app.navigate("search/" + searchRepresentation.toQueryString(), true);
             }
-            app.navigate("search/" + searchRepresentation.toQueryString(), true);
+
         });
+        //大家都在搜
+        $(".search_tip").on("click",".search_span",function(){
+            var courseName = $(this).html();
+            if (courseName) {
+                var searchRepresentation = new CourseSearchRepresentation();
+                searchRepresentation.set("courseName", courseName);
+                app.navigate("search/" + searchRepresentation.toQueryString(), true);
+            }
+        });
+
         /*具体筛选条件的点击事件*/
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
             //parent node and child node as params
@@ -364,14 +375,14 @@ var SearchView = Backbone.View.extend({
             var v = $(this).attr("data-value");
             var index;
             if (v == "location") {
-                 $filter_district.find("span").removeClass("active");
-                 $filter_district.find(".span").removeClass("active");
-                 $(this).addClass("active");
+                $filter_district.find("span").removeClass("active");
+                $filter_district.find(".span").removeClass("active");
+                $(this).addClass("active");
                 index = 0;
             } else if (v == "circle") {
                 $filter_district.find("span").removeClass("active");
-                 $filter_district.find(".span").removeClass("active");
-                 $(this).addClass("active");
+                $filter_district.find(".span").removeClass("active");
+                $(this).addClass("active");
                 index = 1;
             }
             $filter_district.find("p").addClass("hidden");
