@@ -283,6 +283,15 @@ var SearchArea = Backbone.View.extend({
             }
             app.navigate("search/" + searchRepresentation.toQueryString(), true);
         });
+        //大家都在搜
+        $(".search_tip").on("click",".search_span",function(){
+            var courseName = $(this).html();
+            if (courseName) {
+                var searchRepresentation = new CourseSearchRepresentation();
+                searchRepresentation.set("courseName", courseName);
+                app.navigate("search/" + searchRepresentation.toQueryString(), true);
+            }
+        });
 
         /*切换*/
         $("#searchArea .topBar li").on("click", function () {

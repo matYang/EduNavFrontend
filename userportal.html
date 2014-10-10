@@ -611,23 +611,27 @@
 
 <script type="text/template" id="tpl_search">
     <div class="container">
-        <div class="searchAll clearfix">
-            <div class="search_top white">
-                <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
-                <a class="search_btn"></a>
-            </div>
-            <!--<div class="search_tip">-->
-            <!--<span style="color: #333">大家都在搜:</span>-->
-            <!--<span>四六级</span>-->
-            <!--<span>四六级</span>-->
-            <!--<span>四六级</span>-->
-            <!--<span>四六级</span>-->
-            <!--</div>-->
+    <div class="searchAll clearfix">
+        <div class="search_top white">
+            <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
+            <a class="search_btn"></a>
         </div>
-        <!--筛选框-->
-        <div id="searchPanel" class="filter unselectable">
-            <ul id="search_category" class="tab filterCriteria">
-            </ul>
+        <div class="search_tip">
+            <span style="color: #333">大家都在搜:</span>
+            <span class="search_span">四六级</span>
+            <span class="search_span">考研</span>
+            <span class="search_span">会计证</span>
+            <span class="search_span">日语</span>
+            <span class="search_span">雅思</span>
+            <span class="search_span">托福</span>
+            <span class="search_span">导游证</span>
+            <span class="search_span">教师证</span>
+        </div>
+    </div>
+    <!--筛选框-->
+    <div id="searchPanel" class="filter unselectable">
+        <ul id="search_category" class="tab filterCriteria">
+        </ul>
 
             <div id="filterPanel" class="filter_content">
                 <div id="filter_subCategory" class="filterCriteria filterCriteriadotted">
@@ -831,13 +835,17 @@
             <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
             <a class="search_btn"></a>
         </div>
-        <!--<div class="search_tip">-->
-        <!--<span style="color: #333">大家都在搜:</span>-->
-        <!--<span>四六级</span>-->
-        <!--<span>四六级</span>-->
-        <!--<span>四六级</span>-->
-        <!--<span>四六级</span>-->
-        <!--</div>-->
+        <div class="search_tip">
+            <span style="color: #333">大家都在搜:</span>
+            <span class="search_span">四六级</span>
+            <span class="search_span">考研</span>
+            <span class="search_span">会计证</span>
+            <span class="search_span">日语</span>
+            <span class="search_span">雅思</span>
+            <span class="search_span">托福</span>
+            <span class="search_span">导游证</span>
+            <span class="search_span">教师证</span>
+        </div>
     </div>
 
     <div id="searchCourse" class="clearfix">
@@ -2180,16 +2188,14 @@
             </dd>
             <dd class="clearfix">
                 <% if (teachingMaterialIntro) { %>
-                <label>教材介绍：</label>
-
-                <div class="span"><%=teachingMaterialIntro%></div>
+                    <label>教材介绍：</label>
+                    <div class="span"><%=teachingMaterialIntro%></div>
                 <%}%>
             </dd>
             <dd class="clearfix">
                 <% if (teachingMaterialFee) { %>
-                <label>教材费用：</label>
-
-                <div class="span"><%=teachingMaterialFee%></div>
+                    <label>教材费用：</label>
+                    <div class="span"><%=teachingMaterialFee%></div>
                 <%}%>
             </dd>
             <dd class="clearfix">
@@ -3617,7 +3623,7 @@
             <div>&nbsp;(<i class="commentsTotal">--</i>人评价)</div>
         </div>
         <span>已有<a><%=bookingTotal%></a>人下单</span>
-        <span>剩余时间：<a id="tuanDetail_endTime" data-value="<%=endTime%>">--</a></span>
+        <span style="font-weight: bold">剩余时间：<a id="tuanDetail_endTime" data-value="<%=endTime%>">--</a></span>
 
         <div class="btns">
             <a class="btnbuy">立即抢购</a>
