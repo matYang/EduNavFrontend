@@ -639,6 +639,7 @@ var SuccessPopTip = Backbone.View.extend({
     render: function () {
         app.viewRegistration.register(this);
         this.$el.append(this.template);
+        setTimeout(this.hide,1500)
     },
     bindEvents: function () {
         var that = this;
