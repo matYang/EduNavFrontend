@@ -104,7 +104,7 @@ var TuanDetailView = Backbone.View.extend({
             }
             $("#teacherInfo img").attr("src", teacher.get('imgUrl'));
             $("#teacherInfo span").html(teacher.get('name'));
-            $("#teacherInfo .teacher_message").append(teacher.get('intro'));
+            $("#teacherInfo .teacher_message").html(teacher.get('intro'));
         });
         $(".tuan_content_2 .teacher_pic").hover(function () {
             $(this).find("span").css("display", "block");

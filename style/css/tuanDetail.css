@@ -314,11 +314,12 @@
 
 .tuan_content dl {
     width: 710px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
 .tuan_content dd {
     width: 680px;
-    border-bottom: 1px solid #ccc;
     margin-left: 20px;
     line-height: 30px;
     height: auto;
@@ -332,28 +333,26 @@
     font-weight: bold;
 }
 
-.tuan_content .tuan_content_1 dd p {
-    min-height: 40px;
+.tuan_content .tuan_content_1 dd {
     height: auto;
     line-height: 40px;
 }
 
-.tuan_content .tuan_content_1 dd p label {
+.tuan_content .tuan_content_1 dd label {
     float: left;
     margin-right: 10px;
 }
 
-.tuan_content .tuan_content_1 dd p span {
+.tuan_content .tuan_content_1 dd .span {
     width: 580px;
-    display: block;
     float: left;
     padding: 5px 0;
     line-height: 30px;
 }
 
 .tuan_content .tuan_content_2 dd a {
-    width: 140px;
-    height: 140px;
+    width: 110px;
+    height: 110px;
     border-radius: 70px;
     display: block;
     float: left;
@@ -363,15 +362,16 @@
 }
 
 .tuan_content .tuan_content_2 dd a span {
-    width: 140px;
-    height: 140px;
+    width: 110px;
+    height: 110px;
     display: none;
     border-radius: 70px;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #28B094;
     color: #fff;
-    font-size: 12px;
-    line-height: 30px;
+    font-size: 16px;
+    line-height: 110px;
     overflow: hidden;
+    text-align: center;
 }
 
 .tuan_content .tuan_content_3 dd a {
@@ -404,7 +404,6 @@
 
 .tuan_content .warm_tip {
     width: 640px;
-    height: 250px;
     padding: 20px;
     margin-bottom: 20px;
     background-color: #fffdf5;
