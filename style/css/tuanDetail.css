@@ -1068,3 +1068,5 @@
     -webkit-box-orient: vertical;
 }
 
+.overlay_teacher{ width: 110px; height: 70px; padding-top: 40px; border-radius: 55px; display: none; margin-top: -40px; background-color: #28B094;}
+

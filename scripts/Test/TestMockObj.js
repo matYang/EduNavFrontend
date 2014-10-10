@@ -8,10 +8,10 @@ testMockObj = {
     testPartner2: new Partner().set("id", 2),
 
     testTeachers: new Teachers(),
-    testTeacher1: new Teacher().set("id", 1).set("name", "Teacher A").set("imgUrl", "/testUrl1")
+    testTeacher1: new Teacher().set("id", 1).set("name", "Teacher A").set("imgUrl", "http://teacherimgbucket.oss-cn-hangzhou.aliyuncs.com/34/teacherp34i1t1408610594409-eb0e2a9c61e844b84d214e64828a415d.png")
         .set('intro', '这是SD卡很疯狂和水电费三角裤好地方水电费水电费较深的回复三等奖回复水电费金黄色的'),
-    testTeacher2: new Teacher().set("id", 2).set("name", "Teacher B").set("imgUrl", "/testUrl1"),
-    testTeacher3: new Teacher().set("id", 3).set("name", "Teacher C").set("imgUrl", "/testUrl1"),
+    testTeacher2: new Teacher().set("id", 2).set("name", "Teacher B").set("imgUrl", "http://teacherimgbucket.oss-cn-hangzhou.aliyuncs.com/34/teacherp34i1t1408610594409-eb0e2a9c61e844b84d214e64828a415d.png"),
+    testTeacher3: new Teacher().set("id", 3).set("name", "Teacher C").set("imgUrl", "http://teacherimgbucket.oss-cn-hangzhou.aliyuncs.com/34/teacherp34i1t1408610594409-eb0e2a9c61e844b84d214e64828a415d.png"),
     testPhotos: new Photos(),
     testPhoto1: (new Photo()).set("id", 1).set("imgUrl", "/testUrl1"),
     testPhoto2: new Photo().set("id", 2).set("imgUrl", "/testUrl2"),
