@@ -56,7 +56,7 @@ var Tuan = Backbone.Model.extend({
         //生成markers
         json.addressMarkers = [];
         _.each(json.addressList, function (address) {
-            json.addressMarkers.push(address.split('（')[0].split('(')[0]);
+            json.addressMarkers.push(address.detail.split('（')[0].split('(')[0]);
         });
         json.addressMarkers = json.addressMarkers.join('|');
         return json;
