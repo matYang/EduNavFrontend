@@ -2222,6 +2222,29 @@
 
                 <% } %>
             </dd>
+
+
+            <% if (wholeName) { %>
+            <dd class="clearfix">
+                <label>机构全称：</label>
+
+                <div class="span"><%= wholeName %></div>
+            </dd>
+            <%}%>
+            <% if (partnerIntro) { %>
+            <dd class="clearfix">
+                <label>机构简介：</label>
+
+                <div class="span"><%= partnerIntro %></div>
+            </dd>
+            <%}%>
+            <% if (partnerDistinction) { %>
+            <dd class="clearfix">
+                <label>机构荣誉：</label>
+
+                <div class="span"><%= partnerDistinction %></div>
+            </dd>
+            <%}%>
         </dl>
         <dl class="tuan_content_3" class="content_inner">
             <dt><i class="dticon"></i>特色服务</dt>
@@ -3678,11 +3701,19 @@
                  alt=""/>
         </a>
         <!--<span>乘车路线：</span>-->
+
         <%_.each(addressList,function(address){%>
-        <dl>
-            <dt><%=address.realAddress||course.instName%></dt>
-            <dd><%=address.detail%></dd>
-        </dl>
+            <%if(addressList.length > 3){%>
+            <dl class="map_info">
+            <%}else{%>
+            <dl>
+            <%}%>
+                <dt>
+                    <%=address.realAddress||course.instName%>
+                    <i></i>
+                </dt>
+                <dd><%=address.detail%></dd>
+            </dl>
         <%})%>
     </div>
     <div class="hot_tuan panel_bg hidden">
@@ -3780,6 +3811,27 @@
 
                 <% } %>
             </dd>
+            <% if (course.wholeName) { %>
+            <dd class="clearfix">
+                <label>机构全称：</label>
+
+                <div class="span"><%= course.wholeName %></div>
+            </dd>
+            <%}%>
+            <% if (course.partnerIntro) { %>
+            <dd class="clearfix">
+                <label>机构简介：</label>
+
+                <div class="span"><%= course.partnerIntro %></div>
+            </dd>
+            <%}%>
+            <% if (course.partnerDistinction) { %>
+            <dd class="clearfix">
+                <label>机构荣誉：</label>
+
+                <div class="span"><%= course.partnerDistinction %></div>
+            </dd>
+            <%}%>
         </dl>
         <dl class="tuan_content_3" class="content_inner">
             <dt><i class="dticon"></i>特色服务</dt>
