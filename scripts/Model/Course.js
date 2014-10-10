@@ -167,9 +167,8 @@ var Course = Backbone.Model.extend({
                 if (!data.satisfactionRating) {
                     data.satisfactionRating = 0;
                 }
-                data.evenRating = (data.conditionRating
-                    + data.attitudeRating
-                    + data.satisfactionRating / 3);
+                data.evenRating = ((data.conditionRating + data.attitudeRating + data.satisfactionRating) / 3);
+                data.evenRating = Utilities.parseNum(data.evenRating, 1);
             }
             return data;
         },
