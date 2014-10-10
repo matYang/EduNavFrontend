@@ -75,9 +75,41 @@
 
 #searchPanel #filter_district p{ margin:0 0 0 56px; padding:5px 10px 0 10px;}
 #searchPanel #filter_district p span{padding:3px 8px; margin-top: 5px;}
-/*搜索结果*/
-#searchReqs{ line-height:30px; font-size:14px; background-color: #fff; padding: 10px; color: #939393;}/*搜素条件*/
-#searchReqs a{padding:3px 27px 3px 5px; margin-left:10px; border:1px solid #28B094; color:#28B094;  font-size:12px; background:url(../images/close1.png) no-repeat right top;}
+
+/*满足条件的搜索结果*/
+#searchReqs {
+    line-height: 30px;
+    font-size: 14px;
+    background-color: #fff;
+    padding-top: 10px;
+    color: #939393;
+}
+
+/*搜素条件 div为前面的文字 a为后面每一个的条件*/
+#searchReqs div,
+#searchReqs a {
+    border: 1px solid transparent;
+    padding: 0 0 0 5px;
+    margin-left: 10px;
+    display: inline-block;
+    height: 23px;
+    line-height: 23px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#searchReqs a {
+    max-width: 140px;
+    padding-right: 27px;
+    border-color: #28B094;
+    color: #28B094;
+    font-size: 12px;
+    background: url(../images/close1.png) no-repeat right center;
+    /* width: 180px; */
+}
+
 #searchReqs a:hover{ border:1px solid #28B094; color:#28B094; background:url(../images/close1.png) no-repeat right top; text-decoration:none;}
 /*搜索结果页面的广告图样式*/
 .search_result .bannerImg{

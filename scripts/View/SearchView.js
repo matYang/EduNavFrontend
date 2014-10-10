@@ -210,7 +210,7 @@ var SearchView = Backbone.View.extend({
             $('#search_category').removeClass('tab5').find('.actived').remove();
         }
     },
-    //过滤 开课日期 上课时间（开始和结束） 班级类型 课程费用（开始和结束） 是否返现
+    //过滤条件的同步 开课日期 上课时间（开始和结束） 班级类型 课程费用（开始和结束） 是否返现
     syncFilters: function () {
         var startPrice = this.searchRepresentation.get("priceStart"),
             priceEnd = this.searchRepresentation.get("priceEnd"),
@@ -392,6 +392,9 @@ var SearchView = Backbone.View.extend({
             $("#filter_district").find("p").addClass("hidden");
         });
     },
+    /**
+     * 绑定爱上课推荐、时间、价格等的点击进行过滤的事件
+     */
     bindSortEvents: function () {
         var that = this;
         $("#time").on("click", function () {
@@ -456,6 +459,9 @@ var SearchView = Backbone.View.extend({
             that.courseSearch();
         });
     },
+    /**
+     * 绑定一级目录的点击事件和右边的搜索条件（用户从输入框输入的）清除的点击事件
+     */
     bindCatSearchEvents: function () {
         var that = this;
         /*一级目录的点击事件 data-value为两位数字*/
