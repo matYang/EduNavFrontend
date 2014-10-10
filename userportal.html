@@ -3714,8 +3714,13 @@
             <dt><i class="dticon"></i>学校师资</dt>
             <dd class="teacherArea clearfix">
                 <% for (var i =0; i < course.teacherList.length; i++) { %>
-                <a class="teacher_pic" style="background-image: url('<%= course.teacherList[i].imgUrl %>')"
-                   data-id="<%=i%>"><span>查看详情</span></a>
+                <div class="teacherInfor clearfix">
+                    <a class="teacher_pic" style="background-image: url('<%= course.teacherList[i].imgUrl %>')"
+                       data-id="<%=i%>"><span>查看详情</span>
+                    </a>
+                    <span><%= course.teacherList[i].name %></span>
+                </div>
+
                 <% } %>
             </dd>
         </dl>
