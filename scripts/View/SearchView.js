@@ -364,8 +364,14 @@ var SearchView = Backbone.View.extend({
             var v = $(this).attr("data-value");
             var index;
             if (v == "location") {
+                 $filter_district.find("span").removeClass("active");
+                 $filter_district.find(".span").removeClass("active");
+                 $(this).addClass("active");
                 index = 0;
             } else if (v == "circle") {
+                $filter_district.find("span").removeClass("active");
+                 $filter_district.find(".span").removeClass("active");
+                 $(this).addClass("active");
                 index = 1;
             }
             $filter_district.find("p").addClass("hidden");

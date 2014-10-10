@@ -19,6 +19,7 @@
     padding:3px 8px; cursor:pointer; display:inline-block; color: #444;
 }
 #searchPanel .filterCriteria span.active{ background:#28B094; color:#fff;}
+#searchPanel .filterCriteria .span.active{ background:#28B094; color:#fff;}
 #searchPanel .filterCriteria p span.active{ background:#47BC78; color:#fff; border-radius: 11px;}
 
 #searchPanel .tab{padding: 0; border-bottom: 2px solid #28B094; margin-bottom: 4px;}
