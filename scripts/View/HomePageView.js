@@ -303,7 +303,7 @@ var SearchArea = Backbone.View.extend({
         });
 
         /**/
-        $("#location_list span").on("click", function () {
+        $("#location_list").on("click", 'span', function () {
             $("#location_list span").removeClass("active");
             $("#location_list span").attr("id", "");
             $(this).addClass("active");
