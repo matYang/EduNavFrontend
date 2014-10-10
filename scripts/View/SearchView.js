@@ -101,7 +101,7 @@ var SearchView = Backbone.View.extend({
         this.titleObj.city = "南京";
         if (!locationValue && !circleValue) {
             $dist.find("span[data-value=noreq]").addClass("active");
-        } else if (locationValue == "location" || circleValue == "circle") {
+        } /*else if (locationValue == "location" || circleValue == "circle") {
             $dist.find("span[data-value=noreq]").removeClass("active");
             //如果原本选择的是行政区
             if (locationValue == "location") {
@@ -115,7 +115,7 @@ var SearchView = Backbone.View.extend({
                 $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
                 $dist.find("p[data-parentvalue=" + circleValue + "]").removeClass("hidden");
             }
-        } else if (locationValue) {//如果原本选择的是行政区下的小标题
+        } */else if (locationValue) {//如果原本选择的是行政区下的小标题
             $dist.find("span[data-value=noreq]").removeClass("active");
             $dist.find("span[data-value=" + locationValue + "]").addClass("active");
             $dist.find("p[data-parentvalue='location']").removeClass("hidden");

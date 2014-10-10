@@ -416,7 +416,7 @@
     <ul class="pic_eve">
         <li>
             <div class="pic_eve1">
-                <a class="pic_main">
+                <a class="pic_main" href="#course/1445">
                     <img src="style/images/list1_1.png">
                     <span>韩语TOPIK1基础班</span>
                 </a>
@@ -429,7 +429,7 @@
         </li>
         <li>
             <div class="pic_eve1">
-                <a class="pic_main">
+                <a class="pic_main" href="#course/4664">
                     <img src="style/images/list1_3.png">
                     <span>业余制日语0-N2基础班</span>
                 </a>
@@ -442,7 +442,7 @@
         </li>
         <li>
             <div class="pic_eve1">
-                <a class="pic_main">
+                <a class="pic_main" href="#course/8197">
                     <img src="style/images/list1_2.png">
                     <span>雅思6.5高分班（周末)</span>
                 </a>
@@ -457,7 +457,7 @@
     <ul class="pic_eve hidden">
         <li>
             <div class="pic_eve1">
-                <a class="pic_main">
+                <a class="pic_main" href="#course/6217">
                     <img src="style/images/list2_1.png">
                     <span>CCIE+CCNP+CCNA直通车</span>
                 </a>
@@ -470,7 +470,7 @@
         </li>
         <li>
             <div class="pic_eve1">
-                <a class="pic_main">
+                <a class="pic_main" href="#course/765">
                     <img src="style/images/list2_2.png">
                     <span>Photoshop</span>
                 </a>
@@ -483,7 +483,7 @@
         </li>
         <li>
             <div class="pic_eve1">
-                <a class="pic_main">
+                <a class="pic_main" href="#course/5597">
                     <img src="style/images/list2_3.png">
                     <span>室内设计就业班</span>
                 </a>
@@ -498,7 +498,7 @@
     <ul class="pic_eve hidden">
         <li>
             <div class="pic_eve1">
-                <a class="pic_main">
+                <a class="pic_main" href="#course/7318">
                     <img src="style/images/list3_1.png">
                     <span>导游基础考证班</span>
                 </a>
@@ -511,7 +511,7 @@
         </li>
         <li>
             <div class="pic_eve1">
-                <a class="pic_main">
+                <a class="pic_main" href="#course/3397">
                     <img src="style/images/list3_2.png">
                     <span>会计证精讲班</span>
                 </a>
@@ -524,7 +524,7 @@
         </li>
         <li>
             <div class="pic_eve1">
-                <a class="pic_main">
+                <a class="pic_main" href="#course/4736">
                     <img src="style/images/list3_3.png">
                     <span>教师资格证小学</span>
                 </a>
@@ -539,7 +539,7 @@
     <ul class="pic_eve hidden">
         <li>
             <div class="pic_eve1">
-                <a class="pic_main">
+                <a class="pic_main" href="#course/6384">
                     <img src="style/images/list4_1.png">
                     <span>公共课单科精英计划（三门联报特价班）</span>
                 </a>
@@ -552,7 +552,7 @@
         </li>
         <li>
             <div class="pic_eve1">
-                <a class="pic_main">
+                <a class="pic_main" href="#course/1547">
                     <img src="style/images/list4_2.png">
                     <span>2016考研单科飞跃（政治、英语、数学）</span>
                 </a>
@@ -565,7 +565,7 @@
         </li>
         <li>
             <div class="pic_eve1">
-                <a class="pic_main">
+                <a class="pic_main" href="#course/3989">
                     <img src="style/images/list4_3.png">
                     <span>南京财经大学自考（会计）</span>
                 </a>
@@ -664,7 +664,7 @@
                 </ul>
                 <div class="fright">
                     当前促销：
-                    <label for="check_originalPrice"> <input id="check_originalPrice" type="checkbox" name="originalPriceStart"/>会员折扣</label>
+                    <label for="check_originalPrice"> <input id="check_originalPrice" type="checkbox" name="originalPriceStart"/>团购热卖</label>
                     <label for="check_cashback"> <input id="check_cashback" type="checkbox" name="cashback"/>返现</label>
                 </div>
             </div>
@@ -2006,8 +2006,8 @@
             <%})%>
         </div>
         <div class="pic_list">
-            <% _.each(classPhotoList,function(photo){%>
-            <a index="<%=photo.index%>"><i class="active"></i><img src="<%=photo.imgUrl%>" alt=""/></a>
+            <% _.each(classPhotoList,function(photo,index){%>
+            <a index="<%=index%>"><i class="active"></i><img src="<%=photo.imgUrl%>" alt=""/></a>
             <%})%>
         </div>
     </div>
@@ -2132,11 +2132,10 @@
         </dl>
         <dl class="tuan_content_1" class="content_inner">
             <dt><i class="dticon"></i>课程详情</dt>
-            <dd>
+            <dd class="clearfix">
                 <% if (startTime1||schooltimeWeek) { %>
-                <p class="clearfix">
                     <label>上课时间：</label>
-                                    <span>
+                                    <div class="span">
                                     <%if(schooltimeWeek){%>
                                         <%=schooltimeWeek%>&nbsp;（<%=schooltimeDay%>）
                                     <%}%>
@@ -2144,40 +2143,37 @@
                                         <%=startTime1%>-<%=finishTime1%>
                                         <%if(startTime2){%>, <%=startTime2%> - <%=finishTime2%><%}%>
                                     <%}%>
-                                    </span>
-                </p>
+                                    </div>
                 <%}%>
+            </dd>
+            <dd class="clearfix">
                 <% if (qualityAssurance) { %>
-                <p class="clearfix">
                     <label>课时信息：</label>
-                    <span><%=qualityAssurance%></span>
-                </p>
+                    <div class="span"><%=qualityAssurance%></div>
                 <%}%>
+            </dd>
+            <dd class="clearfix">
                 <% if (classSize) { %>
-                <p class="clearfix">
                     <label>班级类型：</label>
-                    <span><%= classSize %></span>
-                </p>
+                    <div class="span"><%= classSize %></div>
                 <%}%>
-
-
+            </dd>
+            <dd class="clearfix">
                 <% if (teachingMaterialIntro) { %>
-                <p class="clearfix">
                     <label>教材介绍：</label>
-                    <span><%=teachingMaterialIntro%></span>
-                </p>
+                    <div class="span"><%=teachingMaterialIntro%></div>
                 <%}%>
+            </dd>
+            <dd class="clearfix">
                 <% if (teachingMaterialFee) { %>
-                <p class="clearfix">
                     <label>教材费用：</label>
-                    <span><%=teachingMaterialFee%></span>
-                </p>
+                    <div class="span"><%=teachingMaterialFee%></div>
                 <%}%>
+            </dd>
+            <dd class="clearfix">
                 <% if (suitableStudent) { %>
-                <p class="clearfix">
                     <label>适合学员：</label>
-                    <span><%= suitableStudent %></span>
-                </p>
+                    <div class="span"><%= suitableStudent %></div>
                 <%}%>
             </dd>
 
@@ -2251,8 +2247,8 @@
                     <h4><i class="warmicon"></i> 温馨小贴士~</h4>
 
                     <p></p>
-                    <span>1、拍下后需在60分钟内付款，否则订单会自动关闭。支付成功后商家客服将在48小时内进行处理，处理时间：周一至周五9:00-17:00，如果周末或法定节假日将顺延至工作日处理。也可自行联系商家客服处理</span>
-                    <span>2、预定信息一旦提交，行程将无法变更，无法取消，不能办理退款，请谨慎购买。</span>
+                    <span>1、预约成功后商家客服将在48小时内进行处理，处理时间：周一至周五9:00-17:00，如果周末或法定节假日将顺延至工作日处理。也可自行联系商家客服处理</span>
+                    <span>2、预订信息一旦提交，行程将无法变更，无法取消，请谨慎预约。</span>
 
                     <p></p>
                     <span>【爱上课】售后投诉专用邮箱：service.lm@qyer.com</span>
@@ -3639,69 +3635,69 @@
             <dt><i class="dticon"></i>课程详情</dt>
             <dd class="clearfix">
                 <% if (course.startTime1||course.schooltimeWeek) { %>
-                <p class="clearfix">
                     <label>上课时间：</label>
-                                <span>
+                                <div class="span">
                                     <%if(course.contact){%>
                                         <%=course.contact%>
                                     <%}%>
-                                </span>
-                </p>
+                                </div>
                 <%}%>
+            </dd>
+            <dd class="clearfix">
                 <% if (course.qualityAssurance) { %>
-                <p class="clearfix">
                     <label>课时信息：</label>
-                    <span><%=course.qualityAssurance%></span>
-                </p>
+                    <div class="span"><%=course.qualityAssurance%></div>
                 <% } %>
+            </dd>
+            <dd class="clearfix">
                 <% if (course.classSize) { %>
-                <p class="clearfix">
                     <label>班级类型：</label>
 
-                    <span><%= course.classSize %></span>
-                </p>
+                    <div class="span"><%= course.classSize %></div>
                 <% } %>
+            <dd class="clearfix">
                 <% if (course.teachingMaterialIntro) { %>
-                <p class="clearfix">
                     <label>教材介绍：</label>
 
-                    <span><%= course.teachingMaterialIntro %></span>
-                </p>
+                    <div class="span"><%= course.teachingMaterialIntro %></div>
                 <% } %>
+            </dd>
+            <dd class="clearfix">
                 <% if (course.teachingMaterialFee) { %>
-                <p class="clearfix">
                     <label>教材费用：</label>
 
-                    <span><%= course.teachingMaterialFee %></span>
-                </p>
+                    <div class="span"><%= course.teachingMaterialFee %></div>
                 <% } %>
+            </dd>
+            <dd class="clearfix">
                 <% if (course.suitableStudent) { %>
-                <p class="clearfix">
                     <label>适合学员：</label>
 
-                    <span><%= course.suitableStudent %></span>
-                </p>
+                    <div class="span"><%= course.suitableStudent %></div>
                 <% } %>
+            </dd>
+            <dd class="clearfix">
                 <% if (course.courseIntro) { %>
-                <p class="clearfix">
                     <label>课程介绍：</label>
 
-                    <span><%= course.courseIntro %></span>
-                </p>
+                    <div class="span"><%= course.courseIntro %></div>
                 <% } %>
+            </dd>
+            <dd class="clearfix">
                 <% if (course.outline) { %>
                 <p class="clearfix">
                     <label>课程提纲：</label>
 
-                    <span><%= course.outline %></span>
+                    <div class="span"><%= course.outline %></div>
                 </p>
                 <% } %>
-
+            </dd>
+            <dd class="clearfix">
                 <% if (course.goal) { %>
                 <p class="clearfix">
                     <label>教学目标：</label>
 
-                    <span><%= course.goal %></span>
+                    <div class="span"><%= course.goal %></div>
                 </p>
                 <% } %>
             </dd>
@@ -3774,8 +3770,8 @@
                     <h4><i class="warmicon"></i> 温馨小贴士~</h4>
 
                     <p></p>
-                    <span>1、拍下后需在60分钟内付款，否则订单会自动关闭。支付成功后商家客服将在48小时内进行处理，处理时间：周一至周五9:00-17:00，如果周末或法定节假日将顺延至工作日处理。也可自行联系商家客服处理</span>
-                    <span>2、预定信息一旦提交，行程将无法变更，无法取消，不能办理退款，请谨慎购买。</span>
+                    <span>1、预约成功后商家客服将在48小时内进行处理，处理时间：周一至周五9:00-17:00，如果周末或法定节假日将顺延至工作日处理。也可自行联系商家客服处理</span>
+                    <span>2、预订信息一旦提交，行程将无法变更，无法取消，请谨慎预约。</span>
 
                     <p></p>
                     <span>【爱上课】售后投诉专用邮箱：service.lm@qyer.com</span>

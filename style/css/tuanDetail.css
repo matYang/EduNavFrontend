@@ -314,11 +314,11 @@
 
 .tuan_content dl {
     width: 710px;
+    border-bottom: 1px solid #ccc;
 }
 
 .tuan_content dd {
     width: 680px;
-    border-bottom: 1px solid #ccc;
     margin-left: 20px;
     line-height: 30px;
     height: auto;
@@ -332,20 +332,18 @@
     font-weight: bold;
 }
 
-.tuan_content .tuan_content_1 dd p {
-    min-height: 40px;
+.tuan_content .tuan_content_1 dd {
     height: auto;
     line-height: 40px;
 }
 
-.tuan_content .tuan_content_1 dd p label {
+.tuan_content .tuan_content_1 dd label {
     float: left;
     margin-right: 10px;
 }
 
-.tuan_content .tuan_content_1 dd p span {
+.tuan_content .tuan_content_1 dd .span {
     width: 580px;
-    display: block;
     float: left;
     padding: 5px 0;
     line-height: 30px;
