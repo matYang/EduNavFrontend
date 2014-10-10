@@ -128,12 +128,12 @@ var TopBarView = Backbone.View.extend({
 //                e.stopPropagation();//it is really a bug
             });
         } else {
-            $('#user_info_pic').hover(function (e) {
-                e.preventDefault();
-                $("#user_info").toggle();
-                self.$('#user_info_pic').trigger("focus");
-                e.stopPropagation();//stop to document body event handler
-            });
+//            $('#user_info_pic').hover(function (e) {
+//                e.preventDefault();
+//                $("#user_info").toggle();
+//                self.$('#user_info_pic').trigger("focus");
+//                e.stopPropagation();//stop to document body event handler
+//            });
             $('#logout').on('click', function (e) {
                 e.preventDefault();
                 self.logout();

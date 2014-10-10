@@ -59,15 +59,15 @@
     background: url("../images/icon_hot.png") no-repeat;
 
 }
-.topBar-navigation li .icon-tip {
-    display: inline-block;
-    height: 6px;
-    width: 10px;
-    margin-left: 5px;
-    margin-top: 15px;
-    background: url("../images/icon_tip.png") no-repeat;
+/*.topBar-navigation li .icon-tip {*/
+    /*display: inline-block;*/
+    /*height: 6px;*/
+    /*width: 10px;*/
+    /*margin-left: 5px;*/
+    /*margin-top: 15px;*/
+    /*background: url("../images/icon_tip.png") no-repeat;*/
 
-}
+/*}*/
 
 /*tel应没有hover变化*/
 .topBar .tel {
@@ -122,9 +122,6 @@
     background-repeat: no-repeat;*/
 }
 
-/*.userpic:hover {
-    background-image: url("../images/top_nav_pic_2.png");
-}*/
 
 /*#userPic {
     width: 60px;
@@ -134,8 +131,12 @@
 .login_reg {
     float: right;
     position: relative;
+    height: 60px;
 }
 
+#userPic {
+    cursor: pointer;
+}
 .login_reg .hd {
     font-size: 18px;
     line-height: 60px;
@@ -153,28 +154,29 @@
 
 /*个人中心的dropdown*/
 .login_reg .ql {
-    width: 198px;
     position: absolute;
     display: none;
     top: 60px;
-    left: -30px;
+    right: 0;
+    width: 160px;
     text-align: center;
     background: #21252F;
     z-index: 999;
     padding-bottom: 5px;
 }
-.topBar-navigation .login_reg li {
-    padding: 0;
+
+.login_reg:hover .ql{
+    display: block;
 }
 /*dropdown中的li>a*/
 .login_reg .ql a {
     font-size: 14px;
     line-height: 35px;
-    width: 196px;
-    height: 38px;
+    width: 160px;
+    height: 35px;
     background: #21252F;
     display: block;
-    margin: 0;
+    margin: 3px 0;
 }
 
 .login_reg .ql a:hover {
