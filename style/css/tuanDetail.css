@@ -314,6 +314,7 @@
 
 .tuan_content dl {
     width: 710px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
 }
 
@@ -403,7 +404,6 @@
 
 .tuan_content .warm_tip {
     width: 640px;
-    height: 250px;
     padding: 20px;
     margin-bottom: 20px;
     background-color: #fffdf5;
