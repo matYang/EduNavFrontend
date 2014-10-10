@@ -128,7 +128,7 @@ var TuanDetailView = Backbone.View.extend({
         this.tuan_content_3 = $(".tuan_content_3").offset().top;//特色服务
         this.tuan_content_4 = $(".tuan_content_4").offset().top;//评价
 
-        /*立即抢购快速登录*/
+        /*立即抢购(快速登录)*/
         $("#tuanDetail .btnbuy").on("click", function () {
             if (!app.sessionManager.hasSession()) {
                 that.showLoginModal();
@@ -140,10 +140,20 @@ var TuanDetailView = Backbone.View.extend({
                 //todo 按钮处于生成订单状态 失败需要提示重试
                 app.userManager.initGroupBuyBooking(groupBuyBooking, {
                     success: function (model) {
-                        app.navigate("mypage/booking/" + model.get('id') + "/pay", true);
+                        var url = "#mypage/booking/" + model.get('id') + "/pay";
+
+                        //#1 模拟点击事件 防止浏览器拦截
+                        var a = $('<a href="' + url + '" target="_blank"></a>').get(0);
+                        var e = document.createEvent('MouseEvents');
+                        e.initEvent('click', true, true);
+                        a.dispatchEvent(e);
+                        //#2 window.open
+//                        window.open(url);
+                        //#3 当前页打开
+//                        app.navigate(url, true);//navigate里面不需要#号
                     },
-                    error: function () {
-                        //todo 订单生成失败
+                    error: function (data) {
+                        Info.alert(data.message || '抢购失败，请稍后再试~');
                     }
                 });
             }
