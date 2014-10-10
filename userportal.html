@@ -44,11 +44,11 @@
 <body>
 <div id='topBar' class='unselectable'></div>
 <!--<div id="visualScope"></div>-->
-<div id="searchArea"></div>
+<div id="searchArea" class="wrapper bg-white"></div>
 
 <div id="wrap">
     <div id="main" class="clearfix">
-        <div id='content' class='container clearfix'></div>
+        <div id='content' class='clearfix'></div>
     </div>
 </div>
 
@@ -180,16 +180,26 @@
 </script>
 
 <script type="text/template" id="tpl_home">
-    <span class="index_tip">精品团购</span>
-    <div id="tuanBanner" class="clearfix"></div>
-    <span class="index_tip">课程推荐</span>
 
-    <div id="lv1Button" class="tab2 clearfix unselectable">
-        <div class="tabtop"></div>
+    <div class="wrapper bg-white">
+        <div class="container">
+            <span class="index_tip">精品团购</span>
+
+            <div id="tuanBanner" class="clearfix"></div>
+            <span class="index_tip">课程推荐</span>
+
+            <div id="lv1Button" class="tab2 clearfix unselectable">
+                <div class="tabtop"></div>
+            </div>
+            <div class="category unselectable">
+                <div id="lv2Categories"></div>
+
+            </div>
+        </div>
     </div>
-    <div class="category unselectable">
-        <div id="lv2Categories"></div>
-        <div class="school s_language blank2">
+    <div class="wrapper bg-grey">
+        <div class="container">
+            <div class="school s_language">
             <ul class="clearfix">
                 <li><img width="199" height="102" src="style/images/s1.png"></li>
                 <li><img width="199" height="102" src="style/images/s2.png"></li>
@@ -203,6 +213,7 @@
                 <li class="last"><img width="199" height="102" src="style/images/s10.png"></li>
             </ul>
         </div>
+    </div>
     </div>
 </script>
 
@@ -583,6 +594,7 @@
 </script>
 
 <script type="text/template" id="tpl_search">
+    <div class="container">
     <div class="searchAll clearfix">
         <div class="search_top white">
             <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
@@ -687,6 +699,7 @@
             </div>
         </div>
     </div><!--search_result end-->
+    </div>
 </script>
 
 <script type="text/template" id="tpl_searchResultEntry">
@@ -992,7 +1005,8 @@
 </script>
 
 <script type="text/template" id="tpl_mypage_base">
-    <div id="mypage_main" class="clearfix">
+    <div class="wrapper bg-white">
+        <div id="mypage_main" class="clearfix container">
         <div id="mypage_sidebar">
             <div class="mypage_sidebar_title">我的爱上课</div>
             <div class="mypage_sidebar_section p1">
@@ -1048,6 +1062,7 @@
             </div>
         </div>
         <div id="mypage_content" class="mypage_min_height" style="border:none;">
+        </div>
         </div>
     </div>
 </script>
@@ -1239,28 +1254,10 @@
                         <%= groupBuyActivity.course.classSize %>
                     </p>
                     <%}%>
-                    <p>
-                        <label>咨询电话:</label>
-                        <span>025-58991945（9:00-24:00）</span>
-                    </p>
+
                 </div>
                 <div class="fleft">
 
-                    <p>
-                        <label>上课日期:</label>
-                        <%if(!groupBuyActivity.course.startUponArrival){%>
-                        <span><%= groupBuyActivity.course.regPhone %></span>
-                        <%}else{%>
-                        <span class="badge bg-error">始</span> <%= groupBuyActivity.course.startDate %>
-                    </p>
-                    <%if(groupBuyActivity.course.finishDate){%>
-                    <p>
-                        <label></label>
-                        <span class="badge bg-primary">终</span>
-                        <%= groupBuyActivity.course.finishDate %>
-                        <%}%>
-                    </p>
-                    <%}%>
                     <% if (groupBuyActivity.course.startTime1) {%>
                     <p>
                         <label>上课时间:</label>
@@ -1270,12 +1267,17 @@
                         <% } %>
                     </p>
                     <% } %>
+                    <p>
+                        <label>咨询电话:</label>
+                        <span>025-58991945（9:00-24:00）</span>
+                    </p>
                 </div>
             </div>
-            <!--<p>-->
-            <!--<label>上课地址:</label>-->
-            <!--<span></span>-->
-            <!--</p>-->
+            <p>
+                <label>上课日期:</label>
+
+            <div><%= groupBuyActivity.course.contact %></div>
+            </p>
         </div>
 
 
@@ -1502,7 +1504,8 @@
 
 <script type="text/template" id="tpl_mypage_bookingPay">
 
-    <form id="bookingDetail" class="panel">
+    <div class="container">
+        <form id="bookingDetail" class="panel">
         <div class="header">支付订单</div>
         <div class="title">
             <h3>
@@ -1582,7 +1585,8 @@
 
             <div class="blank2"></div>
         </div>
-    </form>
+        </form>
+    </div>
 </script>
 
 <script type="text/template" id="tpl_newBooking">
@@ -1992,6 +1996,8 @@
 
 
 <script type="text/template" id="tpl_courseDetail">
+<div class="wrapper bg-grey">
+<div class="container">
 <div id='widgets'></div>
 <div id="siteMap" class="sitemap">
     <span id="lv1cat" data-value="<%= category.value %>"><%= category.name %></span>
@@ -2016,29 +2022,32 @@
     </div>
     <div class="row">
         <h1 style="color: #128D56"><%= courseName %></h1>
+
         <div class="small_title">
             <h3>【<%= instName %>】</h3>
+
             <div>
                 <%if(groupBuyActivity){%>
                 <a href="#tuan/<%=groupBuyActivity.id%>" target="_blank"><input style="background-color: #FF6A6A"
                                                                                 class="add btn_g" type="button"
                                                                                 value="正在团"></a>
                 <%}%>
-                <input style="background-color: #47BC78" id="detail_compare_<%= id %>" class="add btn_g" type="button" value=" +对比 ">
+                <input style="background-color: #47BC78" id="detail_compare_<%= id %>" class="add btn_g" type="button"
+                       value=" +对比 ">
 
             </div>
         </div>
         <div class="price">
-            <span>爱上课指导价：
-                <%if(originalPrice){%>
-                ￥<strong><%=originalPrice%></strong>
-                <%}else if(price){%>
-                ￥<strong><%=price%></strong>
-                <%}else{%>
-                <strong>待定</strong>
-                <%}%>
+                        <span>爱上课指导价：
+                            <%if(originalPrice){%>
+                            ￥<strong><%=originalPrice%></strong>
+                            <%}else if(price){%>
+                            ￥<strong><%=price%></strong>
+                            <%}else{%>
+                            <strong>待定</strong>
+                            <%}%>
 
-            </span>
+                        </span>
             <span>（门店价 <%= commission/10 %>折）</span>
         </div>
         <div class="icon">
@@ -2069,7 +2078,7 @@
             已有<span class="ft-primary"> <%=bookingTotal%></span> 人下单
         </div>
         <div class="btns">
-        <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
+            <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
             <a class="btnconsult bookNow" data-value="<%=courseId%>">申请免费试听</a>
         </div>
     </div>
@@ -2090,7 +2099,7 @@
 <!--左边-->
 <div id="tuan_fright" class="fright w_260">
     <div class="tuan_btn" class="btns">
-    <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
+        <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
         <a class="btnconsult bookNow" data-value="<%=courseId%>">申请免费试听</a>
     </div>
     <div class="site_map panel_bg clearfix">
@@ -2110,14 +2119,12 @@
         <a><img src="style/images/detail_banner1.png" alt=""/></a>
     </div>
 </div>
+<!--left end-->
 
 <!--右边-->
 <div id="course_fright" class="fleft w_730 panel_bg">
-
-
     <div class="tuan_content clearfix">
-
-    <dl>
+        <dl>
             <dd class="clearfix blank">
                 <table width="100%" cellpadding="0" cellspacing="0">
                     <thead>
@@ -2128,12 +2135,11 @@
                         <td width="20%">--</td>
                     </tr>
                     </thead>
-                    <tbody id="relatedCourseList">
-                    </tbody>
+                    <tbody id="relatedCourseList"></tbody>
                 </table>
             </dd>
         </dl>
-        <dl class="tuan_content_1" class="content_inner">
+        <dl class="tuan_content_1 content_inner">
             <dt><i class="dticon"></i>课程详情</dt>
 
             <dd class="clearfix">
@@ -2166,8 +2172,6 @@
                     <div class="span"><%= suitableStudent %></div>
                 <%}%>
             </dd>
-
-
         </dl>
         <dl class="tuan_content_2" class="content_inner">
             <dt><i class="dticon"></i>学校师资</dt>
@@ -2232,7 +2236,6 @@
                     <span>课件下载</span>
                 </div>
                 <% } %>
-
                 <div class="warm_tip clearfix">
                     <h4><i class="warmicon"></i> 温馨小贴士~</h4>
 
@@ -2277,20 +2280,16 @@
                             <div id="evaluate_service" class="eright_star"></div>
                             <a><%=satisfactionRating%></a>
                         </li>
-
                     </ul>
                 </div>
-
-                <div id="tuanDetailCommentsContainer">
-
-                </div>
-
-
+                <div id="tuanDetailCommentsContainer"></div>
             </dd>
         </dl>
-
-
     </div>
+</div>
+<!--right end-->
+</div>
+<!--tuan main end-->
 </div>
 </div>
 </div>
@@ -2352,6 +2351,7 @@
 
 
 <script type="text/template" id="tpl_compareView">
+<div class="container">
 <div id="compareView" class="compare">
 <div class="title clearfix" id="basic_collapse">
     <span class="up">课程详情</span>
@@ -2589,6 +2589,7 @@
     </tr>
 </table>
 
+</div>
 </div>
 </script>
 
@@ -3407,7 +3408,8 @@
 </script>
 
 <script type="text/templates" id="tpl_tuan">
-    <div id="tuanPage">
+    <div class="wrapper bg-white">
+        <div id="tuanPage" class="container">
         <div id="tuanBanner" class="clearfix">
         </div>
         <h1>大家都在团</h1>
@@ -3455,7 +3457,12 @@
             </div>
 
         </div>
-        <!--<div id="tuanFooter">-->
+
+        </div>
+    </div>
+
+    <div class="wrapper bg-grey">
+        <!--<div id="tuanFooter" class="container">-->
         <!--</div>-->
     </div>
 </script>
@@ -3539,8 +3546,8 @@
 </script>
 
 <script type="text/templates" id="tpl_tuanDetail">
-
-<div id="tuanDetail" class="clearfix">
+<div class="wrapper bg-grey">
+<div id="tuanDetail" class="clearfix container">
 <!--<div class="sitemap">团购></div>-->
 
 <div class="banner panel_bg">
@@ -3814,6 +3821,7 @@
 </div>
 </div>
 </div>
+</div>
 </script>
 
 <script type="text/templates" id="tpl_overlayBooking">
@@ -3894,8 +3902,9 @@
     <a id="btn_AddComment" class="btnadd">填上去</a>
 </script>
 <script type="text/templates" id="tpl_errorPay">
-    <div id="errorPayPanel" class="panel">
-        <div class="panel-header bg-warning">
+    <div class="container">
+        <div id="errorPayPanel" class="panel">
+            <div class="panel-header bg-warning">
             <span class="h1"><i class="icon icon-info-large"></i> 支付遇到问题</span>
         </div>
         <div class="panel-body">
@@ -3923,6 +3932,7 @@
                 </dl>
             </div>
 
+        </div>
         </div>
     </div>
 </script>
