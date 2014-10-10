@@ -384,10 +384,11 @@ p.footer-phone {
 
  /*机构图片*/
 
-.partner_title{ width: 1000px; height: 48px; margin: auto;}
-.partner_title i{ display: inline-block; width: 1px; height: 48px; background-color:#36975C;}
-.partner_title span{display: inline-block; height: 48px; font-size: 14px; color: #36975C; line-height: 48px;}
-.partners{ width: 1000px; margin: auto;}
+.partner_title{ width: 1000px; height: 48px; margin: 20px auto;}
+.partner_title img{ margin: 8px 10px 0 0;  float: left;}
+.partner_title i{ display: block; width: 1px; height: 48px; background-color:#36975C; float: left;}
+.partner_title span{display: block; width: 200px; height: 48px; float: left; font-size: 18px; color: #36975C; line-height: 48px; margin-left: 10px;}
+.partners{ width: 1000px; margin: auto; margin-bottom: 20px;}
 .partners .partnerLi{ width: 240px; height: 160px; cursor: pointer; margin: 10px 10px 10px 0; position: relative;}
 .partnerLi img{ width: 240px; height: 160px;}
 .paetners_info{
@@ -403,4 +404,5 @@ p.footer-phone {
     font-size: 14px;
 }
 
-.partners .partnerLi:hover .paetners_info{ display: block;}
+/*
+.partners .partnerLi:hover .paetners_info{ display: block;}*/
