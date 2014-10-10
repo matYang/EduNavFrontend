@@ -16,6 +16,7 @@ body, dl, dd, h1, h2, h3, h4, h5, h6, p, form {
 body {
     font-size: 14px;
     color: #333;
+    background: #F1F1F1;
 }
 
 a:active,
@@ -77,7 +78,6 @@ textarea {
     width: 1000px;
     margin: 0 auto;
     padding: 30px 0;
-    min-height: 500px
 }
 
 .fleft {
@@ -495,16 +495,11 @@ textarea {
     clear: both;
     visibility: hidden;
 }
-
-.clearfix {
-    display: inline-block;
-}
-
 /* Hides from IE-mac \*/
-* html .clearfix {
-    height: 1%;
-}
-
+/** html .wrapper,*/
+/** html .clearfix {*/
+/*height: 1%;*/
+/*}*/
 .clearfix {
     display: block;
 }
@@ -592,9 +587,10 @@ textarea {
 }
 
 .border-light {
-    border: 1px solid #CFCFCF;
+    border: 1px solid #F1F1F1;
 }
 
+/*background*/
 .bg-primary {
     background-color: #128d56;
 }
@@ -605,6 +601,15 @@ textarea {
 
 .bg-error {
     background-color: #FB6D6D;
+}
+
+.bg-light,
+.bg-grey {
+    background-color: #F1F1F1;
+}
+
+.bg-white {
+    background-color: #ffffff;
 }
 
 .ft-default, a.ft-default {
