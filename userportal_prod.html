@@ -600,13 +600,17 @@
                 <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
                 <a class="search_btn"></a>
             </div>
-            <!--<div class="search_tip">-->
-            <!--<span style="color: #333">大家都在搜:</span>-->
-            <!--<span>四六级</span>-->
-            <!--<span>四六级</span>-->
-            <!--<span>四六级</span>-->
-            <!--<span>四六级</span>-->
-            <!--</div>-->
+            <div class="search_tip">
+                <span style="color: #333">大家都在搜:</span>
+                <span class="search_span">四六级</span>
+                <span class="search_span">考研</span>
+                <span class="search_span">会计证</span>
+                <span class="search_span">日语</span>
+                <span class="search_span">雅思</span>
+                <span class="search_span">托福</span>
+                <span class="search_span">导游证</span>
+                <span class="search_span">教师证</span>
+            </div>
         </div>
         <!--筛选框-->
         <div id="searchPanel" class="filter unselectable">
@@ -815,13 +819,17 @@
             <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
             <a class="search_btn"></a>
         </div>
-        <!--<div class="search_tip">-->
-        <!--<span style="color: #333">大家都在搜:</span>-->
-        <!--<span>四六级</span>-->
-        <!--<span>四六级</span>-->
-        <!--<span>四六级</span>-->
-        <!--<span>四六级</span>-->
-        <!--</div>-->
+        <div class="search_tip">
+            <span style="color: #333">大家都在搜:</span>
+            <span class="search_span">四六级</span>
+            <span class="search_span">考研</span>
+            <span class="search_span">会计证</span>
+            <span class="search_span">日语</span>
+            <span class="search_span">雅思</span>
+            <span class="search_span">托福</span>
+            <span class="search_span">导游证</span>
+            <span class="search_span">教师证</span>
+        </div>
     </div>
 
     <div id="searchCourse" class="clearfix">
@@ -3185,86 +3193,95 @@
 </script>
 
 <script type="text/templates" id="tpl_aboutUs">
-    <div class="aboutus">
-        <div class="aboutus_banner"><img src="style/images/aboutus_banner.jpg" width="1000" height="200"/></div>
-        <dl class="intro">
-            <dt>公司简介</dt>
-            <dd>
-                <p>
-                    爱上课（镇江爱上课网络科技有限公司隶属于南京爱上课信息技术有限公司），致力于成为中国领先的教育培训课程在线预订服务提供商，努力为数亿学员打造专注专业、物超所值、智能便捷的课程预订平台。通过网站(www.iShangke.cn)、微信服务号、24小时预订热线（400热线）等平台，为消费者提供面授课程、在线课程、折扣课程、团购课程、特价课程等教学产品的预订服务。</p>
-            </dd>
-        </dl>
-        <dl class="team">
-            <dt>团队背景</dt>
-            <dd>
-                <p>
-                    爱上课是一家技术驱动的互联网公司，技术开发人员全部拥有美国硅谷、世界500强、上市互联网公司工作背景。公司未成立时，已得到国内外多家知名风投关注，并在爱上课网发布内测版本阶段，成功获得数百万人民币投资。</p>
-            </dd>
-        </dl>
-        <dl class="advantage">
-            <dt>产品特色</dt>
-            <dd>
-                <p><span>专<s></s>注：</span>爱团队只做一件事，让您轻轻松松选到最适合的培训机构与课程</p>
+    <div class="wrapper bg-white">
+        <div class="container">
+            <div class="aboutus">
+                <div class="aboutus_banner"><img src="style/images/aboutus_banner.jpg" width="1000" height="200"/></div>
+                <dl class="intro">
+                    <dt>公司简介</dt>
+                    <dd>
+                        <p>
+                            爱上课（镇江爱上课网络科技有限公司隶属于南京爱上课信息技术有限公司），致力于成为中国领先的教育培训课程在线预订服务提供商，努力为数亿学员打造专注专业、物超所值、智能便捷的课程预订平台。通过网站(www.iShangke.cn)、微信服务号、24小时预订热线（400热线）等平台，为消费者提供面授课程、在线课程、折扣课程、团购课程、特价课程等教学产品的预订服务。</p>
+                    </dd>
+                </dl>
+                <dl class="team">
+                    <dt>团队背景</dt>
+                    <dd>
+                        <p>
+                            爱上课是一家技术驱动的互联网公司，技术开发人员全部拥有美国硅谷、世界500强、上市互联网公司工作背景。公司未成立时，已得到国内外多家知名风投关注，并在爱上课网发布内测版本阶段，成功获得数百万人民币投资。</p>
+                    </dd>
+                </dl>
+                <dl class="advantage">
+                    <dt>产品特色</dt>
+                    <dd>
+                        <p><span>专<s></s>注：</span>爱团队只做一件事，让您轻轻松松选到最适合的培训机构与课程</p>
 
-                <p><span>权<s></s>威：</span>已与国内外上千家教育集团、上市公司签订深度合作协议，只为将最真实的课程信息与最低折扣价格通过最透明的方式推送给您</p>
+                        <p><span>权<s></s>威：</span>已与国内外上千家教育集团、上市公司签订深度合作协议，只为将最真实的课程信息与最低折扣价格通过最透明的方式推送给您</p>
 
-                <p><span>特<s></s>惠：</span>不定期的与教学机构联手举办各种特价活动，不出学费也能学习知名培训课程</p>
+                        <p><span>特<s></s>惠：</span>不定期的与教学机构联手举办各种特价活动，不出学费也能学习知名培训课程</p>
 
-                <p><span>高品质：</span>严格的教学机构准入与退出审核制度，爱上课平台中只有权威机构，只有精品课程</p>
-            </dd>
-        </dl>
+                        <p><span>高品质：</span>严格的教学机构准入与退出审核制度，爱上课平台中只有权威机构，只有精品课程</p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
     </div>
 </script>
 
 <script type="text/templates" id="tpl_joinUs">
-    <div class="ruzhu_banner"><img src="style/images/jgrz.png" height="90" width="1000"></div>
-    <div class="ruzhu_part2 blank2">
-        <div class="rz_p2_title"><img src="style/images/rz_p2_title.png" height="31" width="356"></div>
-        <dl class="clearfix blank1">
-            <dt class="fleft"> 教育刚需的市场下，不知您在坐等学员报名的心情是焦虑不安？还是无忧无虑？前者与后者的差距可能不只是一点点。</dt>
-            <dd class="fright"> 爱上课，致力于舒缓机构坐等学员上门报名的焦虑感，通过贴心客户经理与机构、学员充分沟通，结合课程相应特色，进行多渠道高密度推广，让机构无畏市场竞争，专心教学，坐等学员登门。
-            </dd>
-        </dl>
-    </div>
-    <div class="service clearfix">
-        <dl class="fleft s1">
-            <dt>五星级的盟友</dt>
-            <dd>
-                <p>执子之手，结伴五星盟友，共享教育刚需</p>
+    <div class="wrapper bg-white">
+        <div class="container">
+            <div class="ruzhu_banner"><img src="style/images/jgrz.png" height="90" width="1000"></div>
+            <div class="ruzhu_part2 blank2">
+                <div class="rz_p2_title"><img src="style/images/rz_p2_title.png" height="31" width="356"></div>
+                <dl class="clearfix blank1">
+                    <dt class="fleft"> 教育刚需的市场下，不知您在坐等学员报名的心情是焦虑不安？还是无忧无虑？前者与后者的差距可能不只是一点点。</dt>
+                    <dd class="fright">
+                        爱上课，致力于舒缓机构坐等学员上门报名的焦虑感，通过贴心客户经理与机构、学员充分沟通，结合课程相应特色，进行多渠道高密度推广，让机构无畏市场竞争，专心教学，坐等学员登门。
+                    </dd>
+                </dl>
+            </div>
+            <div class="service clearfix">
+                <dl class="fleft s1">
+                    <dt>五星级的盟友</dt>
+                    <dd>
+                        <p>执子之手，结伴五星盟友，共享教育刚需</p>
 
-                <p>体验五星平台，享受五星服务，收获五星推广</p>
-            </dd>
-        </dl>
-        <dl class="fright s2">
-            <dt>五星级的平台</dt>
-            <dd>
-                <p>免费：平台使用永久免费，平台更新永久免费</p>
+                        <p>体验五星平台，享受五星服务，收获五星推广</p>
+                    </dd>
+                </dl>
+                <dl class="fright s2">
+                    <dt>五星级的平台</dt>
+                    <dd>
+                        <p>免费：平台使用永久免费，平台更新永久免费</p>
 
-                <p>开放：无论机构规模，只需法人组织提供高质量教学服务</p>
+                        <p>开放：无论机构规模，只需法人组织提供高质量教学服务</p>
 
-                <p>公平：严格保密各机构意向报名学员信息，保护机构权益，提升转化率</p>
+                        <p>公平：严格保密各机构意向报名学员信息，保护机构权益，提升转化率</p>
 
-                <p>精致：顶级设计师竭力创作清新页面风格，致力改善学员选课、购课体验</p>
-            </dd>
-        </dl>
-        <dl class="fleft s3 blank1">
-            <dt>五星级的服务</dt>
-            <dd>
-                <p>贴心：客户代表不定期回访交流，探讨转化率提升方案</p>
+                        <p>精致：顶级设计师竭力创作清新页面风格，致力改善学员选课、购课体验</p>
+                    </dd>
+                </dl>
+                <dl class="fleft s3 blank1">
+                    <dt>五星级的服务</dt>
+                    <dd>
+                        <p>贴心：客户代表不定期回访交流，探讨转化率提升方案</p>
 
-                <p>用心：每月发布平台成效报告，清晰获知该月转化成效</p>
+                        <p>用心：每月发布平台成效报告，清晰获知该月转化成效</p>
 
-                <p>省心：扩展机构获得学员渠道，减轻机构转化学员成本</p>
-            </dd>
-        </dl>
-        <dl class="fright s4 blank1">
-            <dt>五星级的推广</dt>
-            <dd>
-                <p>密集线下推广：精英地推团队加盟，每年百万营销预算；地毯式营销，助推合作机构品牌传播</p>
+                        <p>省心：扩展机构获得学员渠道，减轻机构转化学员成本</p>
+                    </dd>
+                </dl>
+                <dl class="fright s4 blank1">
+                    <dt>五星级的推广</dt>
+                    <dd>
+                        <p>密集线下推广：精英地推团队加盟，每年百万营销预算；地毯式营销，助推合作机构品牌传播</p>
 
-                <p>领先SEO技术：运用硅谷先进SEO技术，增强合作机构在百度，360，搜狗等搜索引擎曝光度</p>
-            </dd>
-        </dl>
+                        <p>领先SEO技术：运用硅谷先进SEO技术，增强合作机构在百度，360，搜狗等搜索引擎曝光度</p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
     </div>
 </script>
 
@@ -3308,99 +3325,112 @@
 </script>
 
 <script type="text/templates" id="tpl_advise">
-    <div class="advise">
-        <div class="aboutus_banner"><img src="style/images/aboutus_banner.jpg" width="1000" height="200"></div>
-        <dl class="">
-            <dt>意见反馈</dt>
-            <dd>
-                <p>爱上课的成功上线得益于众多投资人与测试用户的坦率真言，爱上课的明天更需要乐于直言提出批评的用户。爱上课承诺，我们将仔细的聆听您的建议，
-                    并认为它能改变爱上课的命运。</p>
+    <div class="wrapper bg-white">
+        <div class="container">
+            <div class="advise">
+                <div class="aboutus_banner"><img src="style/images/aboutus_banner.jpg" width="1000" height="200"></div>
+                <dl class="">
+                    <dt>意见反馈</dt>
+                    <dd>
+                        <p>爱上课的成功上线得益于众多投资人与测试用户的坦率真言，爱上课的明天更需要乐于直言提出批评的用户。爱上课承诺，我们将仔细的聆听您的建议，
+                            并认为它能改变爱上课的命运。</p>
 
-                <div><input class="text" type="text" placeholder="请填写您的联系方式"></div>
-                <div class="blank">
-                    <textarea placeholder="请在这里填写您的建议..."></textarea>
-                </div>
-                <div class="blank">
-                    <input class="btn_G" type="button" value="提交">
-                </div>
-                <div class="blank1">您也可以发送E-mail至kefu@ishangke.cn，会有专门工作人员与您联系。</div>
-            </dd>
-        </dl>
+                        <div><input class="text" type="text" placeholder="请填写您的联系方式"></div>
+                        <div class="blank">
+                            <textarea placeholder="请在这里填写您的建议..."></textarea>
+                        </div>
+                        <div class="blank">
+                            <input class="btn_G" type="button" value="提交">
+                        </div>
+                        <div class="blank1">您也可以发送E-mail至kefu@ishangke.cn，会有专门工作人员与您联系。</div>
+                    </dd>
+                </dl>
+            </div>
+        </div>
     </div>
 </script>
 
 <script type="text/templates" id="tpl_contactUs">
-    <div class="contact_us">
-        <div class="aboutus_banner"><img src="style/images/aboutus_banner.jpg" width="1000" height="200"></div>
-        <dl class="tel">
-            <dt>联系方式</dt>
-            <dd>
-                <p>在线客服：<a class="text-error" href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001"
-                           target="_blank">--&gt;猛戳我&lt;--</a></p>
+    <div class="wrapper bg-white">
+        <div class="container">
+            <div class="contact_us">
+                <div class="aboutus_banner"><img src="style/images/aboutus_banner.jpg" width="1000" height="200"></div>
+                <dl class="tel">
+                    <dt>联系方式</dt>
+                    <dd>
+                        <p>在线客服：<a class="text-error"
+                                   href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001"
+                                   target="_blank">--&gt;猛戳我&lt;--</a></p>
 
-                <p style="line-height: 43px;">人工客服：<img src="./style/images/tel.png"/> <b
-                        class="F_orange">400-025-0884</b></p>
+                        <p style="line-height: 43px;">人工客服：<img src="./style/images/tel.png"/> <b
+                                class="F_orange">400-025-0884</b></p>
 
-                <p>客服E-mail：kefu@iShangke.cn</p>
+                        <p>客服E-mail：kefu@iShangke.cn</p>
 
-                <p>工作时间：周一至周日9:00-18:00</p>
+                        <p>工作时间：周一至周日9:00-18:00</p>
 
-                <p>总部地址：镇江市润州区电力路139号</p>
+                        <p>总部地址：镇江市润州区电力路139号</p>
 
-                <p>南京分公司：南京市雨花台区宁双路28号</p>
+                        <p>南京分公司：南京市雨花台区宁双路28号</p>
 
-                <p>客服热线：400-025-0884</p>
-            </dd>
-            <dt style="margin-top:30px;">教学机构合作</dt>
-            <dd>
-                <p>联系人：徐老师</p>
+                        <p>客服热线：400-025-0884</p>
+                    </dd>
+                    <dt style="margin-top:30px;">教学机构合作</dt>
+                    <dd>
+                        <p>联系人：徐老师</p>
 
-                <p>QQ：2970731934</p>
+                        <p>QQ：2970731934</p>
 
-                <p>Email: Eric.xu@iShangke.cn</p>
-            </dd>
-            <dt style="margin-top:30px;">友链互换</dt>
-            <dd>
-                <p>QQ：2970731934</p>
-            </dd>
-        </dl>
+                        <p>Email: Eric.xu@iShangke.cn</p>
+                    </dd>
+                    <dt style="margin-top:30px;">友链互换</dt>
+                    <dd>
+                        <p>QQ：2970731934</p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
     </div>
 </script>
 
 <script type="text/templates" id="tpl_help">
-    <div class="help">
-        <div class="aboutus_banner"><img src="style/images/aboutus_banner.jpg" width="1000" height="200"></div>
+    <div class="wrapper bg-white">
+        <div class="container">
+            <div class="help">
+                <div class="aboutus_banner"><img src="style/images/aboutus_banner.jpg" width="1000" height="200"></div>
 
-        <dl class="">
-            <dt>帮助中心</dt>
-            <dd>
-                <p><strong class="F_green">如何快速免费获得返利券？</strong></p>
+                <dl class="">
+                    <dt>帮助中心</dt>
+                    <dd>
+                        <p><strong class="F_green">如何快速免费获得返利券？</strong></p>
 
-                <div>1、邀请新用户 在邀请码页面中将邀请码或邀请链接扩散给好友及陌生人。</div>
-                <div>2、新用户注册 新用户完成注册后即可获得10元消费券，完成第一次预订可获得20元消费券，完成报到入学成功，可另获得10元现金奖励。</div>
-                <div>3、激活消费券 在消费券页面中，找到待激活消费券，输入验证码。</div>
+                        <div>1、邀请新用户 在邀请码页面中将邀请码或邀请链接扩散给好友及陌生人。</div>
+                        <div>2、新用户注册 新用户完成注册后即可获得10元消费券，完成第一次预订可获得20元消费券，完成报到入学成功，可另获得10元现金奖励。</div>
+                        <div>3、激活消费券 在消费券页面中，找到待激活消费券，输入验证码。</div>
 
-                <p style="margin-top:20px;"><strong class="F_green">如何使用返利券？</strong></p>
+                        <p style="margin-top:20px;"><strong class="F_green">如何使用返利券？</strong></p>
 
-                <div>1、找课程 登录或注册后选择带有标识<img src="style/images/return.gif">的课程。</div>
-                <div>2、填写订单 预订时，默认已使用消费券。</div>
-                <div>3、激活消费券 开学后7天左右返现至您的爱上课现金账户内。</div>
+                        <div>1、找课程 登录或注册后选择带有标识<img src="style/images/return.gif">的课程。</div>
+                        <div>2、填写订单 预订时，默认已使用消费券。</div>
+                        <div>3、激活消费券 开学后7天左右返现至您的爱上课现金账户内。</div>
 
-                <p style="margin-top:20px;"><strong class="F_green">邀请好友可以获得哪些奖励？</strong></p>
+                        <p style="margin-top:20px;"><strong class="F_green">邀请好友可以获得哪些奖励？</strong></p>
 
-                <div>1. 每邀请一位好友完成注册，双方都能获得<b class="F_orange">20元红包</b>奖励；</div>
-                <div>2. 当被邀请好友完成第一次预订，您还能获得<b class="F_orange">10元现金</b>奖励；</div>
-                <div>3. 每月28日“爱抵扣”活动日，大多数课程支持红包无上限<b class="F_orange">全额抵扣</b>。</div>
+                        <div>1. 每邀请一位好友完成注册，双方都能获得<b class="F_orange">20元红包</b>奖励；</div>
+                        <div>2. 当被邀请好友完成第一次预订，您还能获得<b class="F_orange">10元现金</b>奖励；</div>
+                        <div>3. 每月28日“爱抵扣”活动日，大多数课程支持红包无上限<b class="F_orange">全额抵扣</b>。</div>
 
-                <p style="margin-top:20px;"><strong class="F_green">邀请规则</strong></p>
+                        <p style="margin-top:20px;"><strong class="F_green">邀请规则</strong></p>
 
-                <div>1. 邀请好友次数无上限；</div>
-                <div>2. 红包奖励与现金奖励支持无限制累积；</div>
-                <div>3. 红包拥有长达2个月有效期，未使用的红包过期后会自动消失。</div>
+                        <div>1. 邀请好友次数无上限；</div>
+                        <div>2. 红包奖励与现金奖励支持无限制累积；</div>
+                        <div>3. 红包拥有长达2个月有效期，未使用的红包过期后会自动消失。</div>
 
-                <p style="margin-top:20px;"><strong>若上述热点问题不能解答您的疑惑请点击网站右侧悬浮客服窗或拨打我们400客服热线</strong></p>
-            </dd>
-        </dl>
+                        <p style="margin-top:20px;"><strong>若上述热点问题不能解答您的疑惑请点击网站右侧悬浮客服窗或拨打我们400客服热线</strong></p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
     </div>
 </script>
 <script type="text/templates" id="tpl_sideBarView">
@@ -3601,7 +3631,7 @@
             <div>&nbsp;(<i class="commentsTotal">--</i>人评价)</div>
         </div>
         <span>已有<a><%=bookingTotal%></a>人下单</span>
-        <span>剩余时间：<a id="tuanDetail_endTime" data-value="<%=endTime%>">--</a></span>
+        <span style="font-weight: bold">剩余时间：<a id="tuanDetail_endTime" data-value="<%=endTime%>">--</a></span>
 
         <div class="btns">
             <a class="btnbuy">立即抢购</a>
