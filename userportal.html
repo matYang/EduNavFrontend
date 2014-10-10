@@ -3701,11 +3701,19 @@
                  alt=""/>
         </a>
         <!--<span>乘车路线：</span>-->
+
         <%_.each(addressList,function(address){%>
-        <dl>
-            <dt><%=address.realAddress||course.instName%></dt>
-            <dd><%=address.detail%></dd>
-        </dl>
+            <%if(addressList.length > 3){%>
+            <dl class="map_info">
+            <%}else{%>
+            <dl>
+            <%}%>
+                <dt>
+                    <%=address.realAddress||course.instName%>
+                    <i></i>
+                </dt>
+                <dd><%=address.detail%></dd>
+            </dl>
         <%})%>
     </div>
     <div class="hot_tuan panel_bg hidden">

@@ -1072,3 +1072,6 @@
 
 .overlay_teacher{ width: 110px; height: 70px; padding-top: 40px; border-radius: 55px; display: none; margin-top: -40px; background-color: #28B094;}
 
+.map_info dd{ display: none;}
+.map_info:hover dd{display: block;}
+.map_info i{ width: 9px; height: 5px; display: block; float: right; margin-top: 5px; background-image: url("../images/map_tip.png")}
