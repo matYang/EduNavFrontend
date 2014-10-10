@@ -38,7 +38,6 @@ var TuanDetailView = Backbone.View.extend({
             templateId: that.courseId,
             parentView: that
         });
-        $("body").css("background-color", "#f1f1f1");
         this.countDown = Utilities.countDown('#tuanDetail_endTime');//倒计时
         /*评价星级*/
         $("#starDemo").raty({
@@ -228,7 +227,6 @@ var TuanDetailView = Backbone.View.extend({
                 this.commentsView.close();
             }
             this.isClosed = true;
-            $("body").css("background-color", "#fff");
         }
     }
 });

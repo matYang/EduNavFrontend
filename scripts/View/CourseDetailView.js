@@ -42,7 +42,6 @@ var CourseDetailView = Backbone.View.extend({
         var that = this;
 
         $(document).scrollTop(0);
-        $("body").css("background-color", "#f1f1f1");
         this.$el.html(this.template(this.course._toJSON()));
         //新建相关课程视图
         this.relatedCourseListView = new RelatedCourseListView({course: this.course});
@@ -283,7 +282,6 @@ var CourseDetailView = Backbone.View.extend({
             this.notifier = null;
             $(document).off("scroll");
             $("#courseNavigateTab").off();
-            $("body").css("background-color", "");
             $("#trialButton").off();
             this.isClosed = true;
             app.courseDetailView = null;
@@ -389,7 +387,6 @@ var FreeTrial = Backbone.View.extend({
     },
 
     close: function () {
-        $("body").css("background-color", "");
         this.closePop();
         this.$el.empty();
         this.isClosed = true;
