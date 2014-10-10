@@ -164,6 +164,7 @@ textarea {
 
 .btn.btn-block {
     display: block;
+    width: 100%;
 }
 
 /*设置字体颜色 背景和边框颜色  */
