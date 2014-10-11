@@ -184,7 +184,7 @@ var TuanDetailView = Backbone.View.extend({
                 $("#tuanDetail .w_730").css("margin-top", "63px");
                 $(".tuan_btn").show();
                 $("#tuanDetail .fright .site_map").css({"margin": "55px 0 0 0"});
-                $(".tuan_sorterArea").css({"position": "fixed", "padding-top": "4px", "top": 0});
+                $(".tuan_sorterArea").css({"position": "fixed", "padding-top": "4px", "top": 0, "z-index": 100});
             }
             else if (scroH < navH) {
                 $("#tuan_fright").css({"position": "relative", "top": "", "margin-left": ""});
