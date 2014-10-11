@@ -751,8 +751,8 @@
             <!--左栏开始-->
             <div class="fleft w_730">
                 <div id="searchResultSorter" class="clearfix unselectable">
-                    <ul class="sorter">
-                        <li id="editorPick" class="active">爱上课推荐</li>
+                    <ul class="sorter clearfix">
+                    <li id="editorPick" class="active">爱上课推荐</li>
                         <!--<li class="line"></li>-->
                         <li id="time">时间</li>
                         <!--<li class="line"></li>-->
@@ -2194,9 +2194,9 @@
     </div>
     <div class="site_map panel_bg clearfix">
         <h4>活动地图</h4>
-        <a href="http://api.map.baidu.com/geocoder?address=<%= address%》&output=html" target="_blank">
-        <img src="http://api.map.baidu.com/staticimage?width=230&height=180&markers=<%= address.split('（')[0].split('(')[0] %>"
-                 alt=""/>
+        <a href="http://api.map.baidu.com/geocoder?address=<%= address%>&output=html" target="_blank">
+            <img src="http://api.map.baidu.com/staticimage?width=230&height=180&markers=<%= address.split('（')[0].split('(')[0] %>"
+                 alt="<%= address%>"/>
         </a>
         <dl>
             <dt><%= instName %></dt>
@@ -3241,8 +3241,9 @@
 </script>
 
 <script type="text/templates" id="tpl_search_noMessage">
-    <div class="no_data">
-        <div>很抱歉，没有找到符合您条件的课程~~</div>
+
+    <div class="text-center margin-y">
+        <img src="./style/images/no_course.png" alt="对不起，暂无您想找的课程"/>
     </div>
 </script>
 

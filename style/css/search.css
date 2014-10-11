@@ -185,7 +185,6 @@
 
 .search_result #searchResultSorter {
     background: #79B0A5;
-    margin-bottom: -4px;
 }
 
 /*选择显示方式*/
@@ -248,7 +247,10 @@
 }
 
 #searchResultDisplayPanel {
-    padding: 0 15px;
+}
+
+#searchResultDisplayPanel .noMessage {
+
 }
 
 .search_result .searchResultEntry + .searchResultEntry {
@@ -256,9 +258,9 @@
 }
 
 .search_result .searchResultEntry {
-    margin: 5px 0;
     height: 120px;
     padding: 15px 0;
+    background: #ffffff;
 }
 
 .searchResultEntry .has-tip.has-tip-top .tip {
@@ -270,8 +272,7 @@
     float: left;
     width: 100px;
     height: 100px;
-    margin-right: 15px;
-    margin-top: 15px;
+    margin: 15px 15px 15px 20px;
 }
 
 .search_result .col1 {
