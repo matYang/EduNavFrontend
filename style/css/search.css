@@ -24,20 +24,22 @@
 
 #searchPanel .tab{padding: 0; border-bottom: 2px solid #28B094; margin-bottom: 4px;}
 #searchPanel .tab li{
-    width: 248px;
+    width: 247px;
     height: 50px;
     padding: 0;
     text-align: center;
     border: 0;
-    margin:0 2px 0 0;
+    margin:0 4px 0 0;
     background-color: #fff;
     font-size: 18px;
     line-height: 50px;
 
 }
 
+#searchPanel .tab .last{ margin-right: 0; float: right;}
+
 #searchPanel .tab.tab5 li {
-    width: 198px;
+    width: 196px;
 }
 
 #searchPanel .tab li.active{ background-color: #28B094; color: #fff;}
