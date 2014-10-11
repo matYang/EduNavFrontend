@@ -63,11 +63,11 @@ var HomePageView = Backbone.View.extend({
                     for (k = 0; k < children2.length; k++) { //循环三级目录
                         cat3[k] = this.catButtonTemplate({value: children2[k].value, name: children2[k].name});
                     }
-                    padding = (colSize - children2.length % colSize) % colSize;
+                    /*padding = (colSize - children2.length % colSize) % colSize;
                     while (padding) {
                         cat3.push("<li><a> --- </a></li>");
                         padding--;
-                    }
+                    }*/
                     obj.catgoryList = cat3.join("");
                     obj.catClass = 'cat' + (i + 1);//使用cat作为class 取一级循环中的序号 见index.css
                     obj.categoryName = children1[j].name;
@@ -94,7 +94,7 @@ var HomePageView = Backbone.View.extend({
         //二级目录 非第一行加入class "last" 控制边框显示 以及控制二级目录button的高度
         $("#lv2Categories").children("div").each(function (category) {
             var rowLength = Constants.categoryRowLength,
-                list = $(this).find("li"), rowNum = list.length / rowLength;
+                list = $(this).find("li"), rowNum = Math.ceil(list.length / rowLength);
             $(this).find("li:gt(-" + (rowLength + 1) + ")").addClass("last");
             $(this).addClass("c_h" + rowNum);
         });

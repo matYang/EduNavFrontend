@@ -352,7 +352,7 @@ var SearchView = Backbone.View.extend({
             $searchWidgets = $("#searchWidgets");
             $searchAll = $(".searchAll");
             if ($("#searchResultContent").height() > $searchWidgets.height()) {
-                if (scroll > $searchPanel.height() + srh + 100 + $searchAll.height()) {
+                if (scroll > $searchPanel.height() + srh + 130 + $searchAll.height()) {
                     $searchWidgets.addClass("stickyHeader");
                 } else {
                     $searchWidgets.removeClass("stickyHeader");
