@@ -16,7 +16,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="style/images/ico.ico"/>
     <link href="style/lib/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-    <link href="build/style/css/style-min.css?version=2.1build003" rel="stylesheet" type="text/css"/>
+    <link href="build/style/css/style-min.css?version=3.0build001" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript">
         if (!window.console) {
@@ -667,7 +667,7 @@
         <!--筛选结果-->
 
         <div id="searchReqs" class="blank1 unselectable hidden">
-            <span><span id="resultNum"></span>个课程满足以下条件</span>
+            <div><span id="resultNum"></span>个课程满足以下条件</div>
         </div>
 
         <div id="searchResultContent" class="search_result clearfix blank">
@@ -2208,6 +2208,29 @@
 
                 <% } %>
             </dd>
+
+
+            <% if (wholeName) { %>
+            <dd class="clearfix">
+                <label>机构全称：</label>
+
+                <div class="span"><%= wholeName %></div>
+            </dd>
+            <%}%>
+            <% if (partnerIntro) { %>
+            <dd class="clearfix">
+                <label>机构简介：</label>
+
+                <div class="span"><%= partnerIntro %></div>
+            </dd>
+            <%}%>
+            <% if (partnerDistinction) { %>
+            <dd class="clearfix">
+                <label>机构荣誉：</label>
+
+                <div class="span"><%= partnerDistinction %></div>
+            </dd>
+            <%}%>
         </dl>
         <dl class="tuan_content_3" class="content_inner">
             <dt><i class="dticon"></i>特色服务</dt>
@@ -3666,12 +3689,20 @@
                  alt=""/>
         </a>
         <!--<span>乘车路线：</span>-->
+
         <%_.each(addressList,function(address){%>
-        <dl>
-            <dt><%=address.realAddress||course.instName%></dt>
-            <dd><%=address.detail%></dd>
-        </dl>
-        <%})%>
+        <%if(addressList.length > 3){%>
+        <dl class="map_info">
+            <%}else{%>
+            <dl>
+                <%}%>
+                <dt>
+                    <%=address.realAddress||course.instName%>
+                    <i></i>
+                </dt>
+                <dd><%=address.detail%></dd>
+            </dl>
+            <%})%>
     </div>
     <div class="hot_tuan panel_bg hidden">
         <h4>一周热门团购</h4>
@@ -3683,198 +3714,219 @@
 <div class="fleft w_730 panel_bg">
 
 
-    <div class="tuan_content" class="clearfix">
-        <dl class="tuan_content_1" class="content_inner">
-            <dt><i class="dticon"></i>课程详情</dt>
-            <dd class="clearfix">
-                <% if (course.startTime1||course.schooltimeWeek) { %>
-                <label>上课时间：</label>
+<div class="tuan_content" class="clearfix">
+<dl class="tuan_content_1" class="content_inner">
+    <dt><i class="dticon"></i>课程详情</dt>
+    <dd class="clearfix">
+        <% if (course.startTime1||course.schooltimeWeek) { %>
+        <label>上课时间：</label>
 
-                <div class="span">
-                    <%if(course.contact){%>
-                    <%=course.contact%>
-                    <%}%>
+        <div class="span">
+            <%if(course.contact){%>
+            <%=course.contact%>
+            <%}%>
+        </div>
+        <%}%>
+    </dd>
+    <dd class="clearfix">
+        <% if (course.qualityAssurance) { %>
+        <label>课时信息：</label>
+
+        <div class="span"><%=course.qualityAssurance%></div>
+        <% } %>
+    </dd>
+    <dd class="clearfix">
+        <% if (course.classSize) { %>
+        <label>班级类型：</label>
+
+        <div class="span"><%= course.classSize %></div>
+        <% } %>
+    <dd class="clearfix">
+        <% if (course.teachingMaterialIntro) { %>
+        <label>教材介绍：</label>
+
+        <div class="span"><%= course.teachingMaterialIntro %></div>
+        <% } %>
+    </dd>
+    <dd class="clearfix">
+        <% if (course.teachingMaterialFee) { %>
+        <label>教材费用：</label>
+
+        <div class="span"><%= course.teachingMaterialFee %></div>
+        <% } %>
+    </dd>
+    <dd class="clearfix">
+        <% if (course.suitableStudent) { %>
+        <label>适合学员：</label>
+
+        <div class="span"><%= course.suitableStudent %></div>
+        <% } %>
+    </dd>
+    <dd class="clearfix">
+        <% if (course.courseIntro) { %>
+        <label>课程介绍：</label>
+
+        <div class="span"><%= course.courseIntro %></div>
+        <% } %>
+    </dd>
+    <dd class="clearfix">
+        <% if (course.outline) { %>
+        <label>课程提纲：</label>
+
+        <div class="span"><%= course.outline %></div>
+        <% } %>
+    </dd>
+    <dd class="clearfix">
+        <% if (course.goal) { %>
+        <label>教学目标：</label>
+
+        <div class="span"><%= course.goal %></div>
+        <% } %>
+    </dd>
+</dl>
+<dl class="tuan_content_2" class="content_inner">
+    <dt><i class="dticon"></i>学校师资</dt>
+    <dd class="teacherArea clearfix">
+        <% for (var i =0; i < course.teacherList.length; i++) { %>
+        <div class="teacherInfor clearfix">
+            <a class="teacher_pic" style="background-image: url('<%= course.teacherList[i].imgUrl %>')"
+               data-id="<%=i%>">
+                <div class="overlay_teacher">
+                    <span>查看详情</span>
                 </div>
-                <%}%>
-            </dd>
-            <dd class="clearfix">
-                <% if (course.qualityAssurance) { %>
-                <label>课时信息：</label>
+            </a>
+            <span><%= course.teacherList[i].name %></span>
+        </div>
 
-                <div class="span"><%=course.qualityAssurance%></div>
-                <% } %>
-            </dd>
-            <dd class="clearfix">
-                <% if (course.classSize) { %>
-                <label>班级类型：</label>
+        <% } %>
+    </dd>
+    <% if (course.wholeName) { %>
+    <dd class="clearfix">
+        <label>机构全称：</label>
 
-                <div class="span"><%= course.classSize %></div>
-                <% } %>
-            <dd class="clearfix">
-                <% if (course.teachingMaterialIntro) { %>
-                <label>教材介绍：</label>
+        <div class="span"><%= course.wholeName %></div>
+    </dd>
+    <%}%>
+    <% if (course.partnerIntro) { %>
+    <dd class="clearfix">
+        <label>机构简介：</label>
 
-                <div class="span"><%= course.teachingMaterialIntro %></div>
-                <% } %>
-            </dd>
-            <dd class="clearfix">
-                <% if (course.teachingMaterialFee) { %>
-                <label>教材费用：</label>
+        <div class="span"><%= course.partnerIntro %></div>
+    </dd>
+    <%}%>
+    <% if (course.partnerDistinction) { %>
+    <dd class="clearfix">
+        <label>机构荣誉：</label>
 
-                <div class="span"><%= course.teachingMaterialFee %></div>
-                <% } %>
-            </dd>
-            <dd class="clearfix">
-                <% if (course.suitableStudent) { %>
-                <label>适合学员：</label>
+        <div class="span"><%= course.partnerDistinction %></div>
+    </dd>
+    <%}%>
+</dl>
+<dl class="tuan_content_3" class="content_inner">
+    <dt><i class="dticon"></i>特色服务</dt>
+    <dd class="clearfix">
+        <% if (course.passAgreement) { %>
+        <div class="serviceli">
+            <a><img title="签约保过" src="style/images/spec_service_06.png" alt=""/></a>
+            <span>签约保过</span>
+        </div>
+        <% } %>
+        <% if (course.classTeacher) { %>
+        <!--todo 无推荐就业-->
+        <% } %>
+        <% if (course.certification) { %>
+        <div class="serviceli">
+            <a><img title="结业证书" src="style/images/spec_service_03.png" alt=""/></a>
+            <span>结业证书</span>
+        </div>
+        <% } %>
+        <% if (course.extracurricular) { %>
+        <div class="serviceli">
+            <a><img title="课后互动" src="style/images/spec_service_04.png" alt=""/></a>
+            <span>课后互动</span>
+        </div>
+        <% } %>
+        <% if (course.bonusService) { %>
+        <div class="serviceli">
+            <a><img title="赠送服务" src="style/images/spec_service_08.png" alt=""/></a>
+            <span>赠送服务</span>
+        </div>
+        <% } %>
+        <% if (course.quiz) { %>
+        <div class="serviceli">
+            <a><img title="阶段评测" src="style/images/spec_service_02.png" alt=""/></a>
+            <span>阶段评测</span>
+        </div>
+        <% } %>
+        <% if (course.teachingAndExercise) { %>
+        <div class="serviceli">
+            <a><img title="讲练结合" src="style/images/spec_service_01.png" alt=""/></a>
+            <span>讲练结合</span>
+        </div>
+        <% } %>
+        <% if (course.questionBank) { %>
+        <div class="serviceli">
+            <a><img title="题库支持" src="style/images/spec_service_07.png" alt=""/></a>
+            <span>题库支持</span>
+        </div>
+        <% } %>
+        <% if (course.downloadMaterials) { %>
+        <div class="serviceli">
+            <a><img title="课件下载" src="style/images/spec_service_05.png" alt=""/></a>
+            <span>课件下载</span>
+        </div>
+        <% } %>
 
-                <div class="span"><%= course.suitableStudent %></div>
-                <% } %>
-            </dd>
-            <dd class="clearfix">
-                <% if (course.courseIntro) { %>
-                <label>课程介绍：</label>
+        <div class="warm_tip clearfix">
+            <h4><i class="warmicon"></i> 温馨小贴士~</h4>
 
-                <div class="span"><%= course.courseIntro %></div>
-                <% } %>
-            </dd>
-            <dd class="clearfix">
-                <% if (course.outline) { %>
-                <label>课程提纲：</label>
+            <p></p>
+            <span>1、付款成功后商家客服将在48小时内进行处理，处理时间：周一至周五9:00-17:00，如遇周末或法定节假日将顺延至工作日处理；</span>
+            <span>2、预订信息一旦提交，行程将无法变更，无法取消，请谨慎购买。</span>
 
-                <div class="span"><%= course.outline %></div>
-                <% } %>
-            </dd>
-            <dd class="clearfix">
-                <% if (course.goal) { %>
-                <label>教学目标：</label>
+        </div>
+    </dd>
+</dl>
+<dl class="tuan_content_4" class="content_inner">
+    <dt><i class="dticon"></i>评价<!--<span>我有2条评价</span>--></dt>
+    <dd class="clearfix">
+        <div class="evaluate">
+            <div class="title">*用户对本团购的消费评价</div>
+            <ul class="eleft">
+                <li class="score"><%=course.evenRating%></li>
+                <li id="star_eleft"></li>
+                <li>共有<span class="commentsTotal">--</span>人评价</li>
+            </ul>
+            <div class="emid"></div>
+            <ul class="eright">
+                <li>
+                    <span>环境</span>
 
-                <div class="span"><%= course.goal %></div>
-                <% } %>
-            </dd>
-        </dl>
-        <dl class="tuan_content_2" class="content_inner">
-            <dt><i class="dticon"></i>学校师资</dt>
-            <dd class="teacherArea clearfix">
-                <% for (var i =0; i < course.teacherList.length; i++) { %>
-                <div class="teacherInfor clearfix">
-                    <a class="teacher_pic" style="background-image: url('<%= course.teacherList[i].imgUrl %>')"
-                       data-id="<%=i%>">
-                        <div class="overlay_teacher">
-                            <span>查看详情</span>
-                        </div>
-                    </a>
-                    <span><%= course.teacherList[i].name %></span>
-                </div>
+                    <div id="evaluate_environment" class="eright_star"></div>
+                    <a><%=course.conditionRating%></a>
+                </li>
+                <li>
+                    <span>师质</span>
 
-                <% } %>
-            </dd>
-        </dl>
-        <dl class="tuan_content_3" class="content_inner">
-            <dt><i class="dticon"></i>特色服务</dt>
-            <dd class="clearfix">
-                <% if (course.passAgreement) { %>
-                <div class="serviceli">
-                    <a><img title="签约保过" src="style/images/spec_service_06.png" alt=""/></a>
-                    <span>签约保过</span>
-                </div>
-                <% } %>
-                <% if (course.classTeacher) { %>
-                <!--todo 无推荐就业-->
-                <% } %>
-                <% if (course.certification) { %>
-                <div class="serviceli">
-                    <a><img title="结业证书" src="style/images/spec_service_03.png" alt=""/></a>
-                    <span>结业证书</span>
-                </div>
-                <% } %>
-                <% if (course.extracurricular) { %>
-                <div class="serviceli">
-                    <a><img title="课后互动" src="style/images/spec_service_04.png" alt=""/></a>
-                    <span>课后互动</span>
-                </div>
-                <% } %>
-                <% if (course.bonusService) { %>
-                <div class="serviceli">
-                    <a><img title="赠送服务" src="style/images/spec_service_08.png" alt=""/></a>
-                    <span>赠送服务</span>
-                </div>
-                <% } %>
-                <% if (course.quiz) { %>
-                <div class="serviceli">
-                    <a><img title="阶段评测" src="style/images/spec_service_02.png" alt=""/></a>
-                    <span>阶段评测</span>
-                </div>
-                <% } %>
-                <% if (course.teachingAndExercise) { %>
-                <div class="serviceli">
-                    <a><img title="讲练结合" src="style/images/spec_service_01.png" alt=""/></a>
-                    <span>讲练结合</span>
-                </div>
-                <% } %>
-                <% if (course.questionBank) { %>
-                <div class="serviceli">
-                    <a><img title="题库支持" src="style/images/spec_service_07.png" alt=""/></a>
-                    <span>题库支持</span>
-                </div>
-                <% } %>
-                <% if (course.downloadMaterials) { %>
-                <div class="serviceli">
-                    <a><img title="课件下载" src="style/images/spec_service_05.png" alt=""/></a>
-                    <span>课件下载</span>
-                </div>
-                <% } %>
+                    <div id="evaluate_teacher" class="eright_star"></div>
+                    <a><%=course.attitudeRating%></a>
+                </li>
+                <li>
+                    <span>服务</span>
 
-                <div class="warm_tip clearfix">
-                    <h4><i class="warmicon"></i> 温馨小贴士~</h4>
+                    <div id="evaluate_service" class="eright_star"></div>
+                    <a><%=course.satisfactionRating%></a>
+                </li>
 
-                    <p></p>
-                    <span>1、付款成功后商家客服将在48小时内进行处理，处理时间：周一至周五9:00-17:00，如遇周末或法定节假日将顺延至工作日处理；</span>
-                    <span>2、预订信息一旦提交，行程将无法变更，无法取消，请谨慎购买。</span>
+            </ul>
+        </div>
 
-                </div>
-            </dd>
-        </dl>
-        <dl class="tuan_content_4" class="content_inner">
-            <dt><i class="dticon"></i>评价<!--<span>我有2条评价</span>--></dt>
-            <dd class="clearfix">
-                <div class="evaluate">
-                    <div class="title">*用户对本团购的消费评价</div>
-                    <ul class="eleft">
-                        <li class="score"><%=course.evenRating%></li>
-                        <li id="star_eleft"></li>
-                        <li>共有<span class="commentsTotal">--</span>人评价</li>
-                    </ul>
-                    <div class="emid"></div>
-                    <ul class="eright">
-                        <li>
-                            <span>环境</span>
+        <div id="tuanDetailCommentsContainer">
 
-                            <div id="evaluate_environment" class="eright_star"></div>
-                            <a><%=course.conditionRating%></a>
-                        </li>
-                        <li>
-                            <span>师质</span>
-
-                            <div id="evaluate_teacher" class="eright_star"></div>
-                            <a><%=course.attitudeRating%></a>
-                        </li>
-                        <li>
-                            <span>服务</span>
-
-                            <div id="evaluate_service" class="eright_star"></div>
-                            <a><%=course.satisfactionRating%></a>
-                        </li>
-
-                    </ul>
-                </div>
-
-                <div id="tuanDetailCommentsContainer">
-
-                </div>
-            </dd>
-        </dl>
-    </div>
+        </div>
+    </dd>
+</dl>
+</div>
 </div>
 </div>
 </div>
@@ -3997,9 +4049,9 @@
 
 </div>
 <!-- load libraries-->
-<script src="build/common.min.js?version=2.1build003" type="text/javascript"></script>
+<script src="build/common.min.js?version=3.0build001" type="text/javascript"></script>
 
-<script src="build/main.min.js?version=2.1build003" type="text/javascript"></script>
+<script src="build/main.min.js?version=3.0build001" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8" src="http://gate.looyu.com/52669/117998.js"></script>
 <script type="text/javascript">
     var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
