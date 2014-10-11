@@ -32,7 +32,9 @@
     font-size: 16px;
 }
 
+/*topbar导航中的单个菜单*/
 .topBar-navigation li {
+    position: relative;
     float: left;
     padding: 0 30px;
     margin-left: 1px;
@@ -52,12 +54,13 @@
 }
 
 .topBar-navigation li .icon-hot {
+    position: absolute;
+    right: -1px;
+    top: 0;
     display: inline-block;
     height: 36px;
     width: 36px;
-    margin-left: -3px;
     background: url("../images/icon_hot.png") no-repeat;
-
 }
 /*.topBar-navigation li .icon-tip {*/
     /*display: inline-block;*/
