@@ -382,4 +382,27 @@ p.footer-phone {
 }
 
 
- 
+ /*机构图片*/
+
+.partner_title{ width: 1000px; height: 48px; margin: 20px auto 10px;}
+.partner_title img{ margin: 8px 10px 0 0;  float: left;}
+.partner_title i{ display: block; width: 1px; height: 48px; background-color:#36975C; float: left;}
+.partner_title span{display: block; width: 200px; height: 48px; float: left; font-size: 18px; color: #36975C; line-height: 48px; margin-left: 10px;}
+.partners{ width: 1000px; margin: auto; margin-bottom: 10px;}
+.partners .partnerLi{ width: 240px; height: 160px; cursor: pointer; margin: 0 10px 10px 0; position: relative;}
+.partnerLi img{ width: 240px; height: 160px;}
+.paetners_info{
+    display: none;
+    padding: 5px;
+    width: 230px;
+    height: 150px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0; left: 0;
+    background-color: rgba(255,255,255,0.4);
+    line-height: 30px;
+    font-size: 14px;
+}
+
+/*
+.partners .partnerLi:hover .paetners_info{ display: block;}*/
