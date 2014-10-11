@@ -127,7 +127,8 @@ var CompareView = Backbone.View.extend({
             }
             //立即预订
             if (e.target.tagName === "INPUT") {
-                app.navigate("booking/c" + courseId, true);
+                app.navigate("course/" + courseId, true);
+//                app.navigate("booking/c" + courseId, true);//no more exits
                 return;
             }
             if (e.target.tagName !== "A") {
@@ -155,7 +156,7 @@ var CompareView = Backbone.View.extend({
                             Info.displayNotice("已经没有待比较的课程了，先去查看感兴趣的课程吧");
                             app.infoModal.show();
                         }
-                        $("#gotIt").on("click", function(){
+                        $("#gotIt").on("click", function () {
                             app.navigate("search", {trigger: true, replace: true});
                         });
                     }
