@@ -387,7 +387,7 @@ p.footer-phone {
 .partner_title {
     width: 1000px;
     height: 48px;
-    margin: 25px auto 15px;
+    margin: 20px auto;
 }
 
 .partner_title img{ margin: 8px 10px 0 0;  float: left;}
@@ -397,7 +397,7 @@ p.footer-phone {
 .partners {
     width: 1000px;
     margin: auto;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .partners .partnerLi{ width: 240px; height: 160px; cursor: pointer; margin: 0 10px 10px 0; position: relative;}
