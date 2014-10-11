@@ -140,7 +140,7 @@ var TuanDetailView = Backbone.View.extend({
                 //todo 按钮处于生成订单状态 失败需要提示重试
                 app.userManager.initGroupBuyBooking(groupBuyBooking, {
                     success: function (model) {
-                        var url = "#mypage/booking/" + model.get('id') + "/pay";
+                        var url = "mypage/booking/" + model.get('id') + "/pay";
 
                         //#1 模拟点击事件 防止浏览器拦截
 //                        var a = $('<a href="' + url + '" target="_blank"></a>').get(0);
@@ -148,9 +148,9 @@ var TuanDetailView = Backbone.View.extend({
 //                        e.initEvent('click', true, true);
 //                        a.dispatchEvent(e);
                         //#2 window.open
-                        window.open(url);
+//                        window.open(url);
                         //#3 当前页打开
-//                        app.navigate(url, true);//navigate里面不需要#号
+                        app.navigate(url, true);//navigate里面不需要#号
                     },
                     error: function (data) {
                         Info.alert(data.message || '抢购失败，请稍后再试~');
@@ -184,7 +184,7 @@ var TuanDetailView = Backbone.View.extend({
                 $("#tuanDetail .w_730").css("margin-top", "63px");
                 $(".tuan_btn").show();
                 $("#tuanDetail .fright .site_map").css({"margin": "55px 0 0 0"});
-                $(".tuan_sorterArea").css({"position": "fixed", "padding-top": "4px", "top": 0});
+                $(".tuan_sorterArea").css({"position": "fixed", "padding-top": "4px", "top": 0, "z-index": 100});
             }
             else if (scroH < navH) {
                 $("#tuan_fright").css({"position": "relative", "top": "", "margin-left": ""});
