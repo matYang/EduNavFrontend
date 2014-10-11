@@ -560,8 +560,9 @@
 .searchAll .search_tip span {
     line-height: 45px;
     float: left;
-    color: #47BC78;
+    color: #333;
     font-size: 14px;
-    cursor: pointer;
     margin-left: 10px;
 }
+.searchAll .search_tip .search_span{ cursor: pointer;}
+.searchAll .search_tip .search_span:hover{ text-decoration: underline; color: #47BC78; }
