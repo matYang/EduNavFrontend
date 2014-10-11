@@ -254,6 +254,7 @@
     padding-bottom: 5px;
     float: left;
     background-color: #f1f1f1;
+    z-index: 999;
 }
 
 #tuanDetail .w_730,
