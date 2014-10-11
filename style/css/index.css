@@ -290,7 +290,11 @@
 
 /*footer部分的页面切换链接*/
 #footer_service_link a {
-    padding: 0 10px;
+    padding: 0 5px;
+}
+
+#footer_service_link span {
+    color: #FEF380;
 }
 
 p.footer-copyright {
