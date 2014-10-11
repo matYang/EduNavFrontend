@@ -140,6 +140,7 @@ var SearchView = Backbone.View.extend({
                 tc = "";
             if (!this.searchRepresentation.get("courseName") && !this.searchRepresentation.get("categoryValue")) {
                 this.searchRepresentation.set("categoryValue", data[0].value);
+
             }
             //一级目录
             for (i = 0; i < len; i++) {
@@ -176,6 +177,7 @@ var SearchView = Backbone.View.extend({
             return
         }
         $("#search_category").find("li[data-value=" + categoryValue.substr(0, 2) + "]").addClass("active").siblings("li").removeClass("active");
+        $("#search_category").find("li:last").addClass("last");
         var $filter_sub = $("#filter_subCategory");
         var $searchReqs = $("#searchReqs");
         if (categoryValue.length === 2) {
@@ -223,6 +225,7 @@ var SearchView = Backbone.View.extend({
         if (courseName !== undefined) {
             $('#search_category').addClass('tab5').append('<li class="actived" data-value="search"><i class="clearSearch"></i><p>' + courseName + '</p></li>');
             $searchReqs.append(this.reqTemplate({criteria: "courseName", dataValue: '', text: courseName}));
+            $("#filter_subCategory").addClass("hidden");
         }
         if (startPrice !== undefined) {
             value = startPrice + "-";
@@ -379,6 +382,7 @@ var SearchView = Backbone.View.extend({
             var $filterCri = $("#filter_" + cri);
             that.filterResult($filterCri, $filterCri.find("[data-value=noreq]").removeClass("active"));
             $filterCri.find("p").addClass("hidden");
+            $("#search_category").find("li:last").addClass("last");
         });
 
         var $filter_district = $("#filter_district");
@@ -478,6 +482,7 @@ var SearchView = Backbone.View.extend({
         var that = this;
         /*一级目录的点击事件 data-value为两位数字*/
         $("#search_category").on("click", "li", function (e) {
+            $("#filter_subCategory").removeClass("hidden");
             if ($(this).hasClass("active")) {
                 return;
             }
@@ -492,11 +497,12 @@ var SearchView = Backbone.View.extend({
             that.courseSearch();
         });
         $("#search_category").on("click", ".clearSearch", function (e) {
-            that.clearCourseNameSearch()
+            that.clearCourseNameSearch();
         });
     },
     clearCourseNameSearch: function () {
         //todo
+
         var $searchReqs = $("#searchReqs");
         var that = this;
         $("a[data-cri=courseName]").remove();
@@ -506,9 +512,15 @@ var SearchView = Backbone.View.extend({
             $searchReqs.addClass("hidden");
         }
         that.searchRepresentation.set("courseName", undefined);
+        that.searchRepresentation.set("categoryValue", "00");
+
         $('#search_category').removeClass('tab5').find('.actived').remove();
         that.$el.find('input.search_input').val('');
+        $("#search_category").find("li:last").addClass("last");
         that.courseSearch();
+        //location.reload();
+
+
     },
     /*处理筛选事件(上课时间 课程费用等)*/
     filterResult: function ($filter, $target) {

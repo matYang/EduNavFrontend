@@ -408,16 +408,16 @@ p.footer-phone {
 .partnerLi img{ width: 240px; height: 160px;}
 .paetners_info{
     display: none;
-    padding: 5px;
-    width: 230px;
-    height: 150px;
+    padding: 10px;
+    width: 220px;
+    height: 140px;
     overflow: hidden;
     position: absolute;
     bottom: 0; left: 0;
-    background-color: rgba(255,255,255,0.4);
-    line-height: 30px;
-    font-size: 14px;
+    background-color: rgba(255,255,255,0.95);
+    line-height: 35px;
+    font-size: 16px;
+    color: #1a1a1a;
 }
 
-/*
-.partners .partnerLi:hover .paetners_info{ display: block;}*/
+.partners .partnerLi:hover .paetners_info{ display: block;}
