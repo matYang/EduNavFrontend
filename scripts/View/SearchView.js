@@ -350,8 +350,9 @@ var SearchView = Backbone.View.extend({
         $(document).on("scroll", function () {
             var scroll = $(this).scrollTop(), srh = $searchReqs.hasClass("hidden") ? 0 : 46;
             $searchWidgets = $("#searchWidgets");
+            $searchAll = $(".searchAll");
             if ($("#searchResultContent").height() > $searchWidgets.height()) {
-                if (scroll > $searchPanel.height() + srh + 100) {
+                if (scroll > $searchPanel.height() + srh + 100 + $searchAll.height()) {
                     $searchWidgets.addClass("stickyHeader");
                 } else {
                     $searchWidgets.removeClass("stickyHeader");
@@ -359,6 +360,11 @@ var SearchView = Backbone.View.extend({
             } else {
                 $searchWidgets.removeClass("stickyHeader");
             }
+//            if(scroll > $searchWidgets.offset().top){
+//                $searchWidgets.addClass("stickyHeader");
+//            }else{
+//                $searchWidgets.removeClass("stickyHeader");
+//            }
         });
         /*已选择的查询条件中的删除事件 相当于点击不限的情况 这需要将courseName单独处理*/
         $searchReqs.on("click", "a", function (e) {
