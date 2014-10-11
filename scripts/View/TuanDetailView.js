@@ -143,12 +143,12 @@ var TuanDetailView = Backbone.View.extend({
                         var url = "#mypage/booking/" + model.get('id') + "/pay";
 
                         //#1 模拟点击事件 防止浏览器拦截
-                        var a = $('<a href="' + url + '" target="_blank"></a>').get(0);
-                        var e = document.createEvent('MouseEvents');
-                        e.initEvent('click', true, true);
-                        a.dispatchEvent(e);
+//                        var a = $('<a href="' + url + '" target="_blank"></a>').get(0);
+//                        var e = document.createEvent('MouseEvents');
+//                        e.initEvent('click', true, true);
+//                        a.dispatchEvent(e);
                         //#2 window.open
-//                        window.open(url);
+                        window.open(url);
                         //#3 当前页打开
 //                        app.navigate(url, true);//navigate里面不需要#号
                     },
