@@ -434,32 +434,7 @@ testMockObj = {
 
 testMockObj.testGroupBuyBooking1.set('groupBuyActivity', testMockObj.testTuan1);
 testMockObj.testGroupBuyBooking1.set('course', testMockObj.testCourse1);
-testMockObj.testGroupBuyBookings.add([
-    testMockObj.testGroupBuyBooking1
-]);
 
-testMockObj.testComments.add([
-    testMockObj.testComment1,
-    testMockObj.testComment2
-]);
-testMockObj.testComments.total = 13;
-
-testMockObj.testCourses.add([
-    testMockObj.testCourse1,
-    testMockObj.testCourse2,
-    testMockObj.testCourse3
-]);
-testMockObj.testAddressList.add([
-    testMockObj.testAddress1,
-    testMockObj.testAddress2,
-    testMockObj.testAddress3
-]);
-testMockObj.testTuans.add([
-    testMockObj.testTuan1,
-    testMockObj.testTuan2,
-    testMockObj.testTuan3,
-    testMockObj.testTuan4
-]);
 testMockObj.testTuan1.set('course', testMockObj.testCourse1);
 testMockObj.testTuan2.set('course', testMockObj.testCourse1);
 testMockObj.testTuan3.set('course', testMockObj.testCourse1);
@@ -468,8 +443,7 @@ testMockObj.testTuan1.set('addressList', testMockObj.testAddressList);
 testMockObj.testTuan2.set('addressList', testMockObj.testAddressList);
 testMockObj.testTuan1.set('teacherList', testMockObj.testTeachers);
 testMockObj.testTuan2.set('teacherList', testMockObj.testTeachers);
-testMockObj.testTuans.total = 29;
-testMockObj.testCourses.total = 39;
+
 testMockObj.testBookings.add([testMockObj.testBooking1, testMockObj.testBooking2, testMockObj.testBooking3, testMockObj.testBooking4]);
 testMockObj.testCoupons.add([testMockObj.testCoupon1, testMockObj.testCoupon2, testMockObj.testCoupon3]);
 testMockObj.testTeachers.add([testMockObj.testTeacher1, testMockObj.testTeacher2, testMockObj.testTeacher3]);
@@ -504,3 +478,32 @@ testMockObj.testAccountHistory1.set('charge', 700).set('createTime', new Date())
 testMockObj.testAccountHistory2.set('charge', 300).set('createTime', new Date()).set('operation', 0);
 testMockObj.testAccountHistory3.set('charge', 400).set('createTime', new Date()).set('operation', 0);
 testMockObj.testAccountHistories.add([testMockObj.testAccountHistory1, testMockObj.testAccountHistory2, testMockObj.testAccountHistory3]);
+
+testMockObj.testGroupBuyBookings.add([
+    testMockObj.testGroupBuyBooking1
+]);
+
+testMockObj.testComments.add([
+    testMockObj.testComment1,
+    testMockObj.testComment2
+]);
+
+testMockObj.testCourses.add([
+    testMockObj.testCourse1,
+    testMockObj.testCourse2,
+    testMockObj.testCourse3
+]);
+testMockObj.testAddressList.add([
+    testMockObj.testAddress1,
+    testMockObj.testAddress2,
+    testMockObj.testAddress3
+]);
+testMockObj.testTuans.add([
+    testMockObj.testTuan1,
+    testMockObj.testTuan2,
+    testMockObj.testTuan3,
+    testMockObj.testTuan4
+]);
+testMockObj.testTuans.total = 29;
+testMockObj.testCourses.total = 2300;
+testMockObj.testComments.total = 13;

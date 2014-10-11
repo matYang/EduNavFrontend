@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="true">
     <meta name="HandheldFriendly" content="description">
     <meta name="baidu-site-verification" content="UpWGVCfDwx"/>
@@ -750,8 +751,8 @@
             <!--左栏开始-->
             <div class="fleft w_730">
                 <div id="searchResultSorter" class="clearfix unselectable">
-                    <ul class="sorter">
-                        <li id="editorPick" class="active">爱上课推荐</li>
+                    <ul class="sorter clearfix">
+                    <li id="editorPick" class="active">爱上课推荐</li>
                         <!--<li class="line"></li>-->
                         <li id="time">时间</li>
                         <!--<li class="line"></li>-->
@@ -1101,7 +1102,7 @@
                 <div class="mypage_sidebar_section p1">
                     <div class="mypage_sidebar_sectionContent">
                         <div id="mypage_avatar">
-                            <img src="style/images/user_pic.jpg" width="150" height="150"/>
+                            <img src="style/images/user_pic.png" width="150" height="150"/>
 
                             <p><span id="mypage_greeting"></span>好，亲爱的
                             <span id="mypage_name">
@@ -2193,9 +2194,9 @@
     </div>
     <div class="site_map panel_bg clearfix">
         <h4>活动地图</h4>
-        <a href="http://api.map.baidu.com/geocoder?address=南京市&output=html" target="_blank">
+        <a href="http://api.map.baidu.com/geocoder?address=<%= address%>&output=html" target="_blank">
             <img src="http://api.map.baidu.com/staticimage?width=230&height=180&markers=<%= address.split('（')[0].split('(')[0] %>"
-                 alt=""/>
+                 alt="<%= address%>"/>
         </a>
         <dl>
             <dt><%= instName %></dt>
@@ -3240,8 +3241,9 @@
 </script>
 
 <script type="text/templates" id="tpl_search_noMessage">
-    <div class="no_data">
-        <div>很抱歉，没有找到符合您条件的课程~~</div>
+
+    <div class="text-center margin-y">
+        <img src="./style/images/no_course.png" alt="对不起，暂无您想找的课程"/>
     </div>
 </script>
 
@@ -3299,7 +3301,7 @@
             <dt>公司简介</dt>
             <dd>
                 <p>
-                    镇江爱上课网络科技有限公司隶属于南京爱上课信息技术有限公司，致力于成为中国领先的教育培训课程在线预订服务提供商，努力为数亿学员打造专注专业、物超所值、智能便捷的课程预订平台。通过网站(www.iShangke.cn)、微信服务号、24小时预订热线（400热线）等平台，为消费者提供面授课程、在线课程、折扣课程、团购课程、特价课程等教学产品的预订服务。</p>
+                    镇江爱上课网络科技有限公司，致力于成为中国领先的教育培训课程在线预订服务提供商，努力为数亿学员打造专注专业、物超所值、智能便捷的课程预订平台。通过网站(www.iShangke.cn)、微信服务号、24小时预订热线（400热线）等平台，为消费者提供面授课程、在线课程、折扣课程、团购课程、特价课程等教学产品的预订服务。</p>
             </dd>
         </dl>
         <dl class="team">
@@ -3951,9 +3953,8 @@
                     <h4><i class="warmicon"></i> 温馨小贴士~</h4>
 
                     <p></p>
-                    <span>1、付款成功后商家客服将在48小时内进行处理，处理时间：周一至周五9:00-17:00，如遇周末或法定节假日将顺延至工作日处理；</span>
-                    <span>2、预订信息一旦提交，行程将无法变更，无法取消，请谨慎购买。</span>
-
+                    <span>1.付款成功后，课程顾问将在48小时内与您进行电话确认。请保持手机通畅。</span>
+                    <span>2.如遇任何问题，请拨打客服电话 400-025-0884 进行咨询。</span>
                 </div>
             </dd>
         </dl>

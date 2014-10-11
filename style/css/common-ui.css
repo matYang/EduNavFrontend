@@ -496,6 +496,7 @@ textarea {
     clear: both;
     visibility: hidden;
 }
+
 /* Hides from IE-mac \*/
 /** html .wrapper,*/
 /** html .clearfix {*/
@@ -507,6 +508,10 @@ textarea {
 
 .hidden {
     display: none;
+}
+
+.center-block {
+    margin: 0 auto;
 }
 
 /* End hide from IE-mac */
@@ -588,7 +593,7 @@ textarea {
 }
 
 .border-light {
-    border: 1px solid #F1F1F1;
+    border: 1px solid #CFCFCF;
 }
 
 /*background*/

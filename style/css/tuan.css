@@ -31,6 +31,9 @@
     float: right;
     position: absolute;
     right: 0;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
 }
 
 #tuanBanner .tips_li {
@@ -40,23 +43,26 @@
     cursor: pointer;
     float: right;
     position: relative;
+    /*border box*/
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
 }
 
 #tuanBanner .tips_li + .tips_li {
-    border-bottom: 1px solid #CFCFCF;
+    border-top: 1px solid #CFCFCF;
 }
 
 #tuanBanner .tips_li .c-left {
+    float: left;
     width: 186px;
     line-height: 80px;
+    padding-left: 10px;
     font-size: 18px;
+    font-weight: bold;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    float: left;
-    padding-left: 10px;
-
-    font-weight: bold;
 }
 
 #tuanBanner .tips_li .c-right {
@@ -74,19 +80,23 @@
     color: #FC6B6D;
 }
 
+/*hover激活状态时的样式 文字字体以及背景色 位置*/
 #tuanBanner .tips_li.active a,
 #tuanBanner .tips_li.active .price {
     color: #ffffff;
 }
-
 #tuanBanner .tips_li.active {
+    border-color: transparent;
     background-color: #399D70;
     color: #ffffff;
+    /*padding增大宽度32px 左超出32px 则设置左间距16px使其居中*/
     padding-left: 16px;
     padding-right: 16px;
     left: 16px;
+    width: 332px;
 }
 
+/*hover激活状态下的图标设置 使用伪元素设置*/
 #tuanBanner .tips_li.active:before,
 #tuanBanner .tips_li.active:after {
     display: block;
@@ -94,15 +104,20 @@
     position: absolute;
     width: 16px;
     height: 9px;
+
+    top: auto;
     bottom: -9px;
 }
 
+/*最后一个元素效果设为向上折叠*/
 /*todo 未兼容IE 8*/
 #tuanBanner .tips_li:last-child.active:before,
 #tuanBanner .tips_li:last-child.active:after {
     top: -9px;
+    bottom: auto;
 }
 
+/*激活状态左图标和右图标*/
 #tuanBanner .tips_li.active:before {
     left: 0;
     background: url("../images/tuan_active_left.png") no-repeat;
@@ -113,6 +128,7 @@
     background: url("../images/tuan_active_right.png") no-repeat;
 }
 
+/*激活状态下最后一个元素的左图标和右图标*/
 #tuanBanner .tips_li:last-child.active:before {
     left: 0;
     background: url("../images/tuan_active_left_last.png") no-repeat;

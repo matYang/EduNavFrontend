@@ -2,28 +2,68 @@
 /* CSS Document */
 
 /*筛选框*/
-#searchPanel{}
+#searchPanel {
+}
 
-#searchPanel .filter_content{ padding:10px 15px; font-size:12px; color:#333333; background-color: #fff;}
+#searchPanel .filter_content {
+    padding: 10px 15px;
+    font-size: 12px;
+    color: #333333;
+    background-color: #fff;
+}
 
+#searchPanel .filterCriteria {
+    padding: 12px 0;
+}
 
-#searchPanel .filterCriteria{padding:12px 0;}
-#searchPanel .filterCriteriadotted{ border-bottom:1px dotted #ccc;}
-#searchPanel #priceFilter {border:none;}
+#searchPanel .filterCriteriadotted {
+    border-bottom: 1px dotted #ccc;
+}
 
-#searchPanel .filterCriteria label{ font-weight:bold; color:#939393;}
-#searchPanel .filterCriteria label s{margin:0 13px;}
+#searchPanel #priceFilter {
+    border: none;
+}
+
+#searchPanel .filterCriteria label {
+    font-weight: bold;
+    color: #939393;
+}
+
+#searchPanel .filterCriteria label s {
+    margin: 0 13px;
+}
 
 #searchPanel .filterCriteria .span,
-#searchPanel .filterCriteria span{
-    padding:3px 8px; cursor:pointer; display:inline-block; color: #444;
+#searchPanel .filterCriteria span {
+    padding: 3px 8px;
+    cursor: pointer;
+    display: inline-block;
+    color: #444;
 }
-#searchPanel .filterCriteria span.active{ background:#28B094; color:#fff;}
-#searchPanel .filterCriteria .span.active{ background:#28B094; color:#fff;}
-#searchPanel .filterCriteria p span.active{ background:#47BC78; color:#fff; border-radius: 11px;}
 
-#searchPanel .tab{padding: 0; border-bottom: 2px solid #28B094; margin-bottom: 4px;}
-#searchPanel .tab li{
+#searchPanel .filterCriteria span.active {
+    background: #28B094;
+    color: #fff;
+}
+
+#searchPanel .filterCriteria .span.active {
+    background: #28B094;
+    color: #fff;
+}
+
+#searchPanel .filterCriteria p span.active {
+    background: #47BC78;
+    color: #fff;
+    border-radius: 11px;
+}
+
+#searchPanel .tab {
+    padding: 0;
+    border-bottom: 2px solid #28B094;
+    margin-bottom: 4px;
+}
+
+#searchPanel .tab li {
     width: 247px;
     height: 50px;
     padding: 0;
@@ -42,7 +82,10 @@
     width: 196px;
 }
 
-#searchPanel .tab li.active{ background-color: #28B094; color: #fff;}
+#searchPanel .tab li.active {
+    background-color: #28B094;
+    color: #fff;
+}
 
 #searchPanel .tab li.actived p {
     overflow: hidden;
@@ -69,14 +112,30 @@
     background: url(../images/icon_close.png) center no-repeat;
 }
 
-#search_category{ width: 1000px; height: 50px;}
+#search_category {
+    width: 1000px;
+    height: 50px;
+}
 
+#searchPanel #filter_subCategory p {
+    margin: 0 0 0 56px;
+    padding: 5px 10px 0 10px;
+}
 
-#searchPanel #filter_subCategory p{ margin:0 0 0 56px; padding:5px 10px 0 10px;}
-#searchPanel #filter_subCategory p span{padding:3px 8px; margin-top: 5px;}
+#searchPanel #filter_subCategory p span {
+    padding: 3px 8px;
+    margin-top: 5px;
+}
 
-#searchPanel #filter_district p{ margin:0 0 0 56px; padding:5px 10px 0 10px;}
-#searchPanel #filter_district p span{padding:3px 8px; margin-top: 5px;}
+#searchPanel #filter_district p {
+    margin: 0 0 0 56px;
+    padding: 5px 10px 0 10px;
+}
+
+#searchPanel #filter_district p span {
+    padding: 3px 8px;
+    margin-top: 5px;
+}
 
 /*满足条件的搜索结果*/
 #searchReqs {
@@ -112,18 +171,55 @@
     /* width: 180px; */
 }
 
-#searchReqs a:hover{ border:1px solid #28B094; color:#28B094; background:url(../images/close1.png) no-repeat right top; text-decoration:none;}
+#searchReqs a:hover {
+    border: 1px solid #28B094;
+    color: #28B094;
+    background: url(../images/close1.png) no-repeat right top;
+    text-decoration: none;
+}
+
 /*搜索结果页面的广告图样式*/
-.search_result .bannerImg{
+.search_result .bannerImg {
     width: 730px;
     height: 107px;
-    cursor: pointer;}
-.search_result #searchResultSorter{ background:#79B0A5; margin-bottom: -4px;}/*选择显示方式*/
-.search_result .sorter{float:left; height:35px; line-height:36px; margin-left:15px; color:#333; font-size:14px;}
-.search_result .sorter li{float:left; padding:0 25px; text-align:center; cursor: pointer; width: 70px; color:#fff;}
-.search_result .sorter li:hover{ background-color: #8AC4B8;}
+    cursor: pointer;
+}
+
+.search_result #searchResultSorter {
+    background: #79B0A5;
+}
+
+/*选择显示方式*/
+.search_result .sorter {
+    float: left;
+    height: 35px;
+    line-height: 36px;
+    margin-left: 15px;
+    color: #333;
+    font-size: 14px;
+}
+
+.search_result .sorter li {
+    float: left;
+    padding: 0 25px;
+    text-align: center;
+    cursor: pointer;
+    width: 70px;
+    color: #fff;
+}
+
+.search_result .sorter li:hover {
+    background-color: #8AC4B8;
+}
+
 /*.search_result .sorter li.active{ background:url(../images/active.png) no-repeat center; color:#fff;}*/
-.search_result .sorter li.line{width:1px; height:12px; padding:0; background:#ccc; margin:10px 8px 0;}
+.search_result .sorter li.line {
+    width: 1px;
+    height: 12px;
+    padding: 0;
+    background: #ccc;
+    margin: 10px 8px 0;
+}
 
 .search_result #searchResultSorter .fright {
     margin: 9px 15px 0 0;
@@ -135,14 +231,28 @@
     color: #ffffff;
 }
 
-.search_result #searchResultSorter .fright input{ vertical-align:-2px;}
+.search_result #searchResultSorter .fright input {
+    vertical-align: -2px;
+}
 
-.search_result .no_data{ margin-top:100px; margin-left:140px; padding-left:60px; background:url(../images/no_data.png) no-repeat left center;}
-.search_result .no_data div{ padding:12px 0 12px; font-size:24px;color:#128d56;}
+.search_result .no_data {
+    margin-top: 100px;
+    margin-left: 140px;
+    padding-left: 60px;
+    background: url(../images/no_data.png) no-repeat left center;
+}
+
+.search_result .no_data div {
+    padding: 12px 0 12px;
+    font-size: 24px;
+    color: #128d56;
+}
 
 #searchResultDisplayPanel {
-    background-color: #fff;
-    padding: 0 15px;
+}
+
+#searchResultDisplayPanel .noMessage {
+
 }
 
 .search_result .searchResultEntry + .searchResultEntry {
@@ -150,9 +260,9 @@
 }
 
 .search_result .searchResultEntry {
-    margin: 5px 0;
     height: 120px;
     padding: 15px 0;
+    background: #ffffff;
 }
 
 .searchResultEntry .has-tip.has-tip-top .tip {
@@ -164,8 +274,7 @@
     float: left;
     width: 100px;
     height: 100px;
-    margin-right: 15px;
-    margin-top: 15px;
+    margin: 15px 15px 15px 20px;
 }
 
 .search_result .col1 {
@@ -203,7 +312,9 @@
     margin-top: 4px;
 }
 
-.search_result .col1 .desc s{margin:0 12px;}
+.search_result .col1 .desc s {
+    margin: 0 12px;
+}
 
 .search_result .col1 .descSpec {
     color: #666;
@@ -226,7 +337,14 @@
     margin: 0 2px -3px 0;
 }
 
-.search_result .col2{float:left; position:relative; width:222px; height:150px; text-align:center; font-size:14px;}
+.search_result .col2 {
+    float: left;
+    position: relative;
+    width: 222px;
+    height: 150px;
+    text-align: center;
+    font-size: 14px;
+}
 
 .search_result .col2 .price {
     min-width: 90px;
@@ -236,14 +354,50 @@
     padding: 0 10px 10px 15px;
 }
 
-.search_result .col2 .price .sign{font-size:14px; color:#333333;}
-.search_result .col2 .cashback{margin-top:5px;}
-.search_result .col2 .original_cost{ font-size:12px;margin-top: 2px;}
-.search_result .col2 .original_cost span{ text-decoration:line-through; }
-.search_result .col2 .fan{ float: left; }
-.search_result .col3{ width: 210px; height: 36px; float: left; margin: 0 0 0 20px; padding: 0;}
-.search_result .col3 .btn_g{ width: 96px; height: 36px; background-color: #ff6a6a; float: left; margin-right: 10px;}
-.search_result .col3 .btn_o{ width: 96px; height: 36px; background-color: #47bc78; float: left;}
+.search_result .col2 .price .sign {
+    font-size: 14px;
+    color: #333333;
+}
+
+.search_result .col2 .cashback {
+    margin-top: 5px;
+}
+
+.search_result .col2 .original_cost {
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.search_result .col2 .original_cost span {
+    text-decoration: line-through;
+}
+
+.search_result .col2 .fan {
+    float: left;
+}
+
+.search_result .col3 {
+    width: 210px;
+    height: 36px;
+    float: left;
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+
+.search_result .col3 .btn_g {
+    width: 96px;
+    height: 36px;
+    background-color: #ff6a6a;
+    float: left;
+    margin-right: 10px;
+}
+
+.search_result .col3 .btn_o {
+    width: 96px;
+    height: 36px;
+    background-color: #47bc78;
+    float: left;
+}
 
 .search_result .col3 .btn_gray {
     width: 96px;
@@ -259,156 +413,620 @@
 .search_result .col3 .viewDetail{ margin-top:20px; font-weight:bold; color:#128d56;}*/
 
 /*对比框*/
-#CompareWidgetContainer{ background-color: #fff;}
-#CompareWidgetContainer .compareTitle{ height:35px; line-height:35px; padding-left:15px; font-weight:bold; font-size:14px; background:#79B0A5; color: #fff;}
-#CompareWidgetContainer #compareItems{}
-#CompareWidgetContainer .compareEntry{ position:relative; padding:15px 35px 10px 10px; border-bottom:1px dotted #ccc; font-size:12px;}
-#CompareWidgetContainer .compareEntry:hover{background:#e2ece7;}
-#CompareWidgetContainer .compareEntry .desc a,.compareEntry .desc a:visited{ color:#128d56;}
-#CompareWidgetContainer .compareEntry .price{ padding-left:5px; margin-top:10px; color:#ff5500;}
-#CompareWidgetContainer .compareEntry .price .sign{color:#333333;}
-#CompareWidgetContainer .compareEntry .remove{ position:absolute; right:10px; top:15px; width:20px; height:20px; background:url(../images/close3.png) no-repeat; cursor:pointer;}
-#CompareWidgetContainer .compareEntry .remove:hover{ background:url(../images/close3_hover.png) no-repeat;}
-#CompareWidgetContainer .btns{ text-align:center; margin:10px auto;}
-#CompareWidgetContainer #compare{width:215px; height:32px; border:none; font-size:14px; color:#fff; cursor:pointer; background-color: #28B094;}
+#CompareWidgetContainer {
+    background-color: #fff;
+}
+
+#CompareWidgetContainer .compareTitle {
+    height: 35px;
+    line-height: 35px;
+    padding-left: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    background: #79B0A5;
+    color: #fff;
+}
+
+#CompareWidgetContainer #compareItems {
+}
+
+#CompareWidgetContainer .compareEntry {
+    position: relative;
+    padding: 15px 35px 10px 10px;
+    border-bottom: 1px dotted #ccc;
+    font-size: 12px;
+}
+
+#CompareWidgetContainer .compareEntry:hover {
+    background: #e2ece7;
+}
+
+#CompareWidgetContainer .compareEntry .desc a, .compareEntry .desc a:visited {
+    color: #128d56;
+}
+
+#CompareWidgetContainer .compareEntry .price {
+    padding-left: 5px;
+    margin-top: 10px;
+    color: #ff5500;
+}
+
+#CompareWidgetContainer .compareEntry .price .sign {
+    color: #333333;
+}
+
+#CompareWidgetContainer .compareEntry .remove {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    background: url(../images/close3.png) no-repeat;
+    cursor: pointer;
+}
+
+#CompareWidgetContainer .compareEntry .remove:hover {
+    background: url(../images/close3_hover.png) no-repeat;
+}
+
+#CompareWidgetContainer .btns {
+    text-align: center;
+    margin: 10px auto;
+}
+
+#CompareWidgetContainer #compare {
+    width: 215px;
+    height: 32px;
+    border: none;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #28B094;
+}
 
 /*百度地图自定义图标*/
-#mainMap{ position:relative; border:1px solid #ccc; width:248px; height:338px; z-index:50;background-color: #fff;}
-#mainMap .map_icon{ position:absolute; cursor:pointer; z-index:52}
-#mainMap .map_icon:hover{z-index:54}
-#mainMap .map_icon span{display:inline-block; height:30px; padding-left:28px; height:30px; line-height:24px; background:url(../images/map_icon.png) no-repeat 0 -31px;font-size:12px; color:#ea5514;}
-#mainMap .map_icon em{ display:inline-block; position:relative; top:6px; width:10px; height:20px; background:url(../images/map_icon.png) no-repeat -191px -33px;}
-#mainMap .map_icon:hover span{display:inline-block; height:30px; padding-left:28px; height:30px; line-height:24px; background:url(../images/map_icon.png) no-repeat 0 0;font-size:12px;color:#15ae67;}
-#mainMap .map_icon:hover em{ display:inline-block; position:relative; top:6px; width:10px; height:20px; background:url(../images/map_icon.png) no-repeat -191px -2px;}
+#mainMap {
+    position: relative;
+    border: 1px solid #ccc;
+    width: 248px;
+    height: 338px;
+    z-index: 50;
+    background-color: #fff;
+}
 
-#searchWidgets.stickyHeader{position:fixed;top:5px;margin-left:750px;background-color: #fff;}
-#searchWidgets.stickyHeader #compare {margin-left:-1px;}
-#search_subCategory label {margin-right: 3px;}
+#mainMap .map_icon {
+    position: absolute;
+    cursor: pointer;
+    z-index: 52
+}
 
+#mainMap .map_icon:hover {
+    z-index: 54
+}
+
+#mainMap .map_icon span {
+    display: inline-block;
+    height: 30px;
+    padding-left: 28px;
+    height: 30px;
+    line-height: 24px;
+    background: url(../images/map_icon.png) no-repeat 0 -31px;
+    font-size: 12px;
+    color: #ea5514;
+}
+
+#mainMap .map_icon em {
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    width: 10px;
+    height: 20px;
+    background: url(../images/map_icon.png) no-repeat -191px -33px;
+}
+
+#mainMap .map_icon:hover span {
+    display: inline-block;
+    height: 30px;
+    padding-left: 28px;
+    height: 30px;
+    line-height: 24px;
+    background: url(../images/map_icon.png) no-repeat 0 0;
+    font-size: 12px;
+    color: #15ae67;
+}
+
+#mainMap .map_icon:hover em {
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    width: 10px;
+    height: 20px;
+    background: url(../images/map_icon.png) no-repeat -191px -2px;
+}
+
+#searchWidgets.stickyHeader {
+    position: fixed;
+    top: 5px;
+    margin-left: 750px;
+    background-color: #fff;
+}
+
+#searchWidgets.stickyHeader #compare {
+    margin-left: -1px;
+}
+
+#search_subCategory label {
+    margin-right: 3px;
+}
 
 /*人工选课，免费试听弹出层*/
-.popM{ width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); position: fixed; z-index: 2000; top: 0;}
-.popMain{ width: 100%; position: absolute; z-index: 2001; top:10%}
-.popMainA{ width: 720px; background-color: #FFF; margin: auto;}
-.popTopBar{ width: 720px; height: 8px; background-color: #008E54;}
-.popTopBlack{ width: 720px; height: 1px;}
-.popTitle{
+.popM {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+}
+
+.popMain {
+    width: 100%;
+    position: absolute;
+    z-index: 2001;
+    top: 10%
+}
+
+.popMainA {
+    width: 720px;
+    background-color: #FFF;
+    margin: auto;
+}
+
+.popTopBar {
+    width: 720px;
+    height: 8px;
+    background-color: #008E54;
+}
+
+.popTopBlack {
+    width: 720px;
+    height: 1px;
+}
+
+.popTitle {
     position: relative;
     width: 720px;
     /*#内层具有高度 不用在外层设置高度*/
     /*height: 100px;*/
     background-color: #3B3C3C;
 }
-.popMainClose{ width: 48px; height: 48px; display: block; position: absolute; left: 720px; top: 1px; cursor: pointer; background-image: url("../images/popclose.png");}
-.popTitleA{
-    width: 670px; height: 50px;
-    padding: 15px 25px;}
-.popTSpanLeft{
+
+.popMainClose {
+    width: 48px;
+    height: 48px;
+    display: block;
+    position: absolute;
+    left: 720px;
+    top: 1px;
+    cursor: pointer;
+    background-image: url("../images/popclose.png");
+}
+
+.popTitleA {
+    width: 670px;
+    height: 50px;
+    padding: 15px 25px;
+}
+
+.popTSpanLeft {
     font-size: 24px;
-    padding:0 25px;
+    padding: 0 25px;
     color: #FDAE00;
-    float: left; line-height: 50px;}
-.popTitleRight{ padding-left: 25px; float: left;}
-.popIconQuan{
+    float: left;
+    line-height: 50px;
+}
+
+.popTitleRight {
+    padding-left: 25px;
+    float: left;
+}
+
+.popIconQuan {
     display: block;
     float: left;
-    width: 20px; height: 40px;
+    width: 20px;
+    height: 40px;
     background: url("../images/popIcon.png") 0 18px no-repeat;
 }
-.popTSpanRight{ color: #FFF; font-size: 14px; line-height: 50px; padding-left: 5px; }
-.popShu{
-    float: left; display: block;
-    width: 5px; height: 70px;
+
+.popTSpanRight {
+    color: #FFF;
+    font-size: 14px;
+    line-height: 50px;
+    padding-left: 5px;
+}
+
+.popShu {
+    float: left;
+    display: block;
+    width: 5px;
+    height: 70px;
     margin-top: -10px;
     background-color: #008E54;
 }
-.popContent{
+
+.popContent {
     width: 420px;
     padding: 5px 0 20px;
     margin: 0 auto;
 }
-.popContentUl{  display: block;width: 420px;height:250px;margin-bottom: 20px}
-.popContentUl li{
-    width: 420px; height: 32px;
+
+.popContentUl {
+    display: block;
+    width: 420px;
+    height: 250px;
+    margin-bottom: 20px
+}
+
+.popContentUl li {
+    width: 420px;
+    height: 32px;
     display: block;
     margin-bottom: 18px;
-    position: relative;}
-.popContentUl li span{width: 90px; font-size: 18px; line-height: 32px; color: #333; padding-left: 6px; float: left;}
-.popContentUl li p{overflow: hidden;text-overflow: ellipsis;white-space: nowrap; width: 310px; height: 32px; float: left; line-height: 32px; color: #7F7F7F; font-size: 18px;}
-.popTxt{ width: 205px; height: 32px; float: left; background-color: #EFEFEF; border: 0; outline: 0;}
-.popTxtSpec{ width: 284px; height: 100px; line-height: 24px; font-size: 12px; padding: 10px;}
-.popIconStar{ width: 8px; height: 32px; display: block; background-image: url("../images/popIcon.png"); background-position: -20px 12px; background-repeat: no-repeat; float: left;}
-.popIconStarSpec{ background-position: 200px 200px;}
-.popBtn{ width: 360px; height: 70px; padding-top: 20px; margin: auto;}
-.popBtnYes{ width: 238px; height: 69px; background-color: #FDAE00; line-height: 69px; text-align: center; color: #FFF; font-size: 22px; display: block; float: left; cursor: pointer;}
-.popBtnNo{ width: 100px; height: 69px; padding-left: 20px; line-height: 69px; font-size: 14px; color: #909090; text-align: center; display: block; float: left; cursor: pointer;}
-.inputIcon{ width: 32px; height: 32px; display: block; background-image: url("../images/inputIcon.png"); position: absolute; left: 278px;}
+    position: relative;
+}
 
+.popContentUl li span {
+    width: 90px;
+    font-size: 18px;
+    line-height: 32px;
+    color: #333;
+    padding-left: 6px;
+    float: left;
+}
 
+.popContentUl li p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 310px;
+    height: 32px;
+    float: left;
+    line-height: 32px;
+    color: #7F7F7F;
+    font-size: 18px;
+}
+
+.popTxt {
+    width: 205px;
+    height: 32px;
+    float: left;
+    background-color: #EFEFEF;
+    border: 0;
+    outline: 0;
+}
+
+.popTxtSpec {
+    width: 284px;
+    height: 100px;
+    line-height: 24px;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.popIconStar {
+    width: 8px;
+    height: 32px;
+    display: block;
+    background-image: url("../images/popIcon.png");
+    background-position: -20px 12px;
+    background-repeat: no-repeat;
+    float: left;
+}
+
+.popIconStarSpec {
+    background-position: 200px 200px;
+}
+
+.popBtn {
+    width: 360px;
+    height: 70px;
+    padding-top: 20px;
+    margin: auto;
+}
+
+.popBtnYes {
+    width: 238px;
+    height: 69px;
+    background-color: #FDAE00;
+    line-height: 69px;
+    text-align: center;
+    color: #FFF;
+    font-size: 22px;
+    display: block;
+    float: left;
+    cursor: pointer;
+}
+
+.popBtnNo {
+    width: 100px;
+    height: 69px;
+    padding-left: 20px;
+    line-height: 69px;
+    font-size: 14px;
+    color: #909090;
+    text-align: center;
+    display: block;
+    float: left;
+    cursor: pointer;
+}
+
+.inputIcon {
+    width: 32px;
+    height: 32px;
+    display: block;
+    background-image: url("../images/inputIcon.png");
+    position: absolute;
+    left: 278px;
+}
 
 /*申请成功弹出窗口*/
-.popTip{
+.popTip {
     position: fixed;
     top: 30%;
-    left:50%;
+    left: 50%;
     margin-left: -265px;
-    width: 530px; height: 130px;
-    background-color: #FFF; box-shadow: 0 0 10px #008E54; z-index: 600;}
-.popTipTop{ width: 500px; height: 28px; padding: 22px 0 0 30px;}
-.popTipTopIcon{ width: 44px; height: 28px; background-image: url("../images/poptipIcon.png"); float: left;}
-.popTipTop span{ line-height: 28px; font-size: 24px; color: #008E54; font-weight: bold; padding-left: 8px;}
-.popTipMid{ width: 500px; height: 45px; line-height: 45px; padding-left: 30px; font-weight: bold; color: #FDAE00;}
-.popTipBottom{ width: 530px; height: 35px; line-height: 28px; }
-.popTipMidA{ width: 175px; height: 35px; background-image: url("../images/tip_bottom.png"); float: right; cursor: pointer;}
+    width: 530px;
+    height: 130px;
+    background-color: #FFF;
+    box-shadow: 0 0 10px #008E54;
+    z-index: 600;
+}
 
+.popTipTop {
+    width: 500px;
+    height: 28px;
+    padding: 22px 0 0 30px;
+}
+
+.popTipTopIcon {
+    width: 44px;
+    height: 28px;
+    background-image: url("../images/poptipIcon.png");
+    float: left;
+}
+
+.popTipTop span {
+    line-height: 28px;
+    font-size: 24px;
+    color: #008E54;
+    font-weight: bold;
+    padding-left: 8px;
+}
+
+.popTipMid {
+    width: 500px;
+    height: 45px;
+    line-height: 45px;
+    padding-left: 30px;
+    font-weight: bold;
+    color: #FDAE00;
+}
+
+.popTipBottom {
+    width: 530px;
+    height: 35px;
+    line-height: 28px;
+}
+
+.popTipMidA {
+    width: 175px;
+    height: 35px;
+    background-image: url("../images/tip_bottom.png");
+    float: right;
+    cursor: pointer;
+}
 
 /*课程弹出窗口*/
-.coursepopMenban{ width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); position: fixed; z-index: 3000; top: 0;}
-.coursepopMain{
-    width: 100%; height: 635px;
-    position: absolute; z-index: 3001; top:20%}
-.courseTip{ width: 900px; height: 400px; border: 6px solid rgba(0,0,0,0.4); margin: auto; background-color: #FFF;}
-.courseTipA{width: 860px; height: 360px; padding: 20px; position: relative}
-.courseTipATop{ width: 860px; height: 60px; display: block;}
-.courseTipATopHover{position: relative; width: 210px; height: 43px; background-color: #EEE; float: left;  margin-right: 2px; text-align: center; line-height: 43px; font-size: 18px; cursor: pointer;}
-.courseTipATopHoverSpec:after{position: absolute;bottom: -10px;height:0;width:0;left:50%; margin-left: -10px;content:'';border: 10px solid transparent; border-top: 11px solid #000; border-bottom: none; display:block;}
-.courseTipATopHoverSpec{background-color: #000; color: #FFF;}
-.courseTipAContent{width: 850px; height: 280px; overflow-x: hidden;}
-.courseTipAContentDes{ width: 830px; min-height: 280px; padding: 0 0 0 20px; height: auto; overflow-y: auto;}
-.courseTipAContentDes li{ width: 810px; min-height: 70px; height: auto; cursor: pointer;}
-.courseTipAContentTop{ height: 30px; line-height: 30px; font-size: 14px; color: #000;}
-.courseTipAContentDesUl{ padding: 8px 0; border-bottom: 1px dashed #888;}
-.courseTipAContentDesUl li{
+.coursepopMenban {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 3000;
+    top: 0;
+}
+
+.coursepopMain {
+    width: 100%;
+    height: 635px;
+    position: absolute;
+    z-index: 3001;
+    top: 20%
+}
+
+.courseTip {
+    width: 900px;
+    height: 400px;
+    border: 6px solid rgba(0, 0, 0, 0.4);
+    margin: auto;
+    background-color: #FFF;
+}
+
+.courseTipA {
+    width: 860px;
+    height: 360px;
+    padding: 20px;
+    position: relative
+}
+
+.courseTipATop {
+    width: 860px;
+    height: 60px;
+    display: block;
+}
+
+.courseTipATopHover {
+    position: relative;
+    width: 210px;
+    height: 43px;
+    background-color: #EEE;
+    float: left;
+    margin-right: 2px;
+    text-align: center;
+    line-height: 43px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.courseTipATopHoverSpec:after {
+    position: absolute;
+    bottom: -10px;
+    height: 0;
+    width: 0;
+    left: 50%;
+    margin-left: -10px;
+    content: '';
+    border: 10px solid transparent;
+    border-top: 11px solid #000;
+    border-bottom: none;
+    display: block;
+}
+
+.courseTipATopHoverSpec {
+    background-color: #000;
+    color: #FFF;
+}
+
+.courseTipAContent {
+    width: 850px;
+    height: 280px;
+    overflow-x: hidden;
+}
+
+.courseTipAContentDes {
+    width: 830px;
+    min-height: 280px;
+    padding: 0 0 0 20px;
+    height: auto;
+    overflow-y: auto;
+}
+
+.courseTipAContentDes li {
+    width: 810px;
+    min-height: 70px;
+    height: auto;
+    cursor: pointer;
+}
+
+.courseTipAContentTop {
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #000;
+}
+
+.courseTipAContentDesUl {
+    padding: 8px 0;
+    border-bottom: 1px dashed #888;
+}
+
+.courseTipAContentDesUl li {
     display: inline-block;
     width: 100px;
     min-height: 20px;
     line-height: 20px;
     color: #888;
-    padding:0 5px;
-    font-size: 14px;}
-.courseTipAContentDesUl li:hover{ color: #008E54;}
-.courseTipATopHoverSpec{ background-color: #000; color: #fff;}
-.courseTipClose{
-    width: 45px; height: 45px;
-    position: absolute; top: -6px; left: 906px;
-    color: #FFF; background-color: #999;
-    font-size: 30px; text-align: center; line-height: 40px;
+    padding: 0 5px;
+    font-size: 14px;
+}
+
+.courseTipAContentDesUl li:hover {
+    color: #008E54;
+}
+
+.courseTipATopHoverSpec {
+    background-color: #000;
+    color: #fff;
+}
+
+.courseTipClose {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: -6px;
+    left: 906px;
+    color: #FFF;
+    background-color: #999;
+    font-size: 30px;
+    text-align: center;
+    line-height: 40px;
     cursor: pointer;
 }
 
-
-
 /*searcharea*/
-#searchCourse{ width: 1000px; margin: auto; margin-top: 20px;}
-#searchCourse .searchCourse{ width: 450px; height: auto; float: left;}
-#searchCourse .topBar{ width: 450px; height: 55px; z-index: 0;}
-#searchCourse .topBar li{ width: 225px; height: 55px; position: relative; float: left; background-color: #47BC78; cursor: pointer;}
-#searchCourse .topBar li a{ height: 40px; float: left; margin: 12px 5px 0 15px;}
-#searchCourse .topBar li a img{ width: 26px; height: 28px;}
-#searchCourse .topBar li span{ height: 50px; line-height: 50px; float: left; color: #fff; font-size: 18px;}
-#searchCourse .topBar li i{display: block; width: 225px; height: 5px; position: absolute; bottom:0; background-color: #27ae61;}
-#searchCourse .topBar .active{background-color: #28B094;}
-#searchCourse .topBar .active i{background-color: #16A086;}
+#searchCourse {
+    width: 1000px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+#searchCourse .searchCourse {
+    width: 450px;
+    height: auto;
+    float: left;
+}
+
+#searchCourse .topBar {
+    width: 450px;
+    height: 55px;
+    z-index: 0;
+}
+
+#searchCourse .topBar li {
+    width: 225px;
+    height: 55px;
+    position: relative;
+    float: left;
+    background-color: #47BC78;
+    cursor: pointer;
+}
+
+#searchCourse .topBar li a {
+    height: 40px;
+    float: left;
+    margin: 12px 5px 0 15px;
+}
+
+#searchCourse .topBar li a img {
+    width: 26px;
+    height: 28px;
+}
+
+#searchCourse .topBar li span {
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    color: #fff;
+    font-size: 18px;
+}
+
+#searchCourse .topBar li i {
+    display: block;
+    width: 225px;
+    height: 5px;
+    position: absolute;
+    bottom: 0;
+    background-color: #27ae61;
+}
+
+#searchCourse .topBar .active {
+    background-color: #28B094;
+}
+
+#searchCourse .topBar .active i {
+    background-color: #16A086;
+}
 
 #searchCourse .searchContent {
     position: relative;
@@ -418,14 +1036,33 @@
     padding: 30px 0 0 0;
 }
 
-#searchCourse .searchContent li{ width: 410px; min-height: 45px; height: auto; margin: auto; padding-bottom: 15px;}
-.searchContent li span{ width: 85px; height: 45px; display: block; float: left; line-height: 45px; font-size: 16px; font-weight: bold; color: #4b6459;}
-#searchCourse .searchContent li input,select{
-    width: 297px; height: 25px;
+#searchCourse .searchContent li {
+    width: 410px;
+    min-height: 45px;
+    height: auto;
+    margin: auto;
+    padding-bottom: 15px;
+}
+
+.searchContent li span {
+    width: 85px;
+    height: 45px;
+    display: block;
+    float: left;
+    line-height: 45px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #4b6459;
+}
+
+#searchCourse .searchContent li input, select {
+    width: 297px;
+    height: 25px;
     line-height: 20px;
     padding: 10px;
     display: block;
-    border: 0; outline: 0;
+    border: 0;
+    outline: 0;
     float: left;
     font-size: 14px;
 }
@@ -448,7 +1085,7 @@
     padding: 15px 0;
 }
 
-#searchCourse .scperson .btn a{
+#searchCourse .scperson .btn a {
     line-height: 20px;
     width: 150px;
     display: block;
@@ -461,7 +1098,8 @@
     font-size: 16px;
     cursor: pointer;
 }
-#searchCourse .scself .btn a{
+
+#searchCourse .scself .btn a {
     line-height: 20px;
     width: 120px;
     display: block;
@@ -499,7 +1137,10 @@
     color: #28B094;
 }
 
-#location_list .active{ text-decoration: underline; color: #28B094;}
+#location_list .active {
+    text-decoration: underline;
+    color: #28B094;
+}
 
 #searchCourse .adv {
     width: 536px;
@@ -509,7 +1150,10 @@
     margin-bottom: 15px;
 }
 
-#searchCourse .adv img{ width: 536px; height: 186px;}
+#searchCourse .adv img {
+    width: 536px;
+    height: 186px;
+}
 
 /*课程名搜索*/
 .searchAll {
@@ -566,5 +1210,12 @@
     font-size: 14px;
     margin-left: 10px;
 }
-.searchAll .search_tip .search_span{ cursor: pointer;}
-.searchAll .search_tip .search_span:hover{ text-decoration: underline; color: #47BC78; }
+
+.searchAll .search_tip .search_span {
+    cursor: pointer;
+}
+
+.searchAll .search_tip .search_span:hover {
+    text-decoration: underline;
+    color: #47BC78;
+}
