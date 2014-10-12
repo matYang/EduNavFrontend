@@ -1,7 +1,10 @@
 var MultiPageView = Backbone.View.extend({
     //分页按钮配置所需要提供的信息有保存按钮是第几页的数据 (之前放于id中) 以及可供触发事件的selector(之前使用class触发事件)
     //如果一个页面上面存在多个分页的情况 需要在每个页面重新设置pageNumberClass为不同的值(用户绑定事件) 而pageNumberId就不需要了
-    maxSize: 8, //分页组的最大容量
+    maxSize: 7, //分页组的最大容量 奇数个
+    rotate: true,//分页是否随当前页滚动（当前页显示在分页组的中间）
+    firstCount: 1,//分页的前几个始终显示分页的数量 如2则显示第一页和第二页一直显示
+    lastCount: 2,//同上 最后几个
     entryTemplate: "", //单条记录的模板
     entryContainer: "", //结果列表 tbody
     truePagination: true, //为true时必须指定fetchAction函数用于与后台交互获取分页数据
@@ -49,7 +52,7 @@ var MultiPageView = Backbone.View.extend({
             length = this.messages.length - this.startIndex;
             length = (length < this.pageEntryNumber) ? length : this.pageEntryNumber;
             this.messages.each(function (message) {
-                message = message._toSimpleJSON?message._toSimpleJSON():message._toJSON();
+                message = message._toSimpleJSON ? message._toSimpleJSON() : message._toJSON();
                 buf.push(that.entryTemplate(message));
             });
             this.$entryContainer.append(buf.join(""));
@@ -71,7 +74,7 @@ var MultiPageView = Backbone.View.extend({
                 this.$entryContainer.append(
                         "<tr><td colspan='"
                         + td_length
-                        +"'><div class = 'noMessage'>"
+                            + "'><div class = 'noMessage'>"
                         + this.noMessage()
                         + "</div></td></tr>");
             }
@@ -87,7 +90,7 @@ var MultiPageView = Backbone.View.extend({
     },
 
     toPage: function (pageIndex) {
-        if(pageIndex===this.currentPage)return;
+        if (pageIndex === this.currentPage)return;
         if (this.scroll) {
             //如果设置了target 没有则到顶部
             var $target = $(this.scrollTarget);
@@ -140,7 +143,7 @@ var MultiPageView = Backbone.View.extend({
                 text: text
             }
         };//用于生成pageViewList
-        //default start and end in current page group
+        //当前分页组的默认起始和结束页
         var startPage = 1, endPage = pageTotal;
 
         //step 1根据currentPage判断是处于哪一个分页组 即获取startPage和endPage
@@ -148,12 +151,25 @@ var MultiPageView = Backbone.View.extend({
         var currentPageGroupIndex = Math.ceil(currentPageIndex / this.maxSize);//当前页处于的分页组
 
         //step 2(optional)如果存在多个分页组 则重新计算startPage和endPage
+        //二次分页 将所有的分页数字分成多个分页组 每个分页组最多显示maxSize个分页数字
         if (pageGroupSize > 1) {
-            //*** Visible pages are paginated with maxSize
-            startPage = (currentPageGroupIndex - 1 ) * this.maxSize + 1;
+            if (this.rotate) {//当前页显示在分页组中间
+                //起始页应为当前页向前取maxSize/2(向下取整)个 如果第一页超出（小于0）则取1
+                startPage = Math.max(currentPageIndex - Math.floor(this.maxSize / 2), 1);
+                endPage = startPage + this.maxSize - 1;
 
-            // Adjust last page if limit is exceeded
-            endPage = Math.min(startPage + this.maxSize - 1, pageTotal);
+                //如果最后一页超出（大于分页总数）
+                if (endPage > pageTotal) {
+                    endPage = pageTotal;
+                    startPage = endPage - this.maxSize + 1;
+                }
+            } else {
+                //设置当前分页组的起始页
+                startPage = (currentPageGroupIndex - 1 ) * this.maxSize + 1;
+
+                //设置当前分页组的结束页
+                endPage = Math.min(startPage + this.maxSize - 1, pageTotal);
+            }
         }
 
         //step 3 根据startPage和endPage生成分页数组
@@ -162,18 +178,41 @@ var MultiPageView = Backbone.View.extend({
             pageViewList.push(page);
         }
 
-        //step 4(optional)如果存在多个分页组 则设置切换分页组的链接
+        //step 4如果存在多个分页组 则设置切换分页组的链接
+        //当然也可以不设置链接（需要在makePage中增加属性来判断是否加链接）
         if (pageGroupSize > 1) {
-            //添加切换分页组的链接
-            if (startPage > 1) {//非第一个分页组
-                pageViewList.unshift(makePage(startPage - 1, '...'));
+            if (this.rotate) {
+                //rotate模式下需要根据firstCount和lastCount来生成切换分页组的链接
+                if (startPage > this.firstCount + 1) {
+                    pageViewList.unshift(makePage(startPage - 1, '...'));
+                }
+                if (endPage < pageTotal - this.lastCount) {
+                    pageViewList.push(makePage(endPage + 1, '...'));
+                }
+            } else {
+                //添加切换分页组的链接
+                if (startPage > 1) {//非第一个分页组
+                    pageViewList.unshift(makePage(startPage - 1, '...'));
+                }
+                if (endPage < pageTotal) {//非最后一个分页组
+                    pageViewList.push(makePage(endPage + 1, '...'));
+                }
             }
-            if (endPage < pageTotal) {//非最后一个分页组
-                pageViewList.push(makePage(endPage + 1, '...'));
+        }
+        //step 5 设置显示的最开始firstCount页和最后lastCount页
+        if (startPage > this.firstCount) {
+            pageViewList.unshift(makePage(1, '1'));
+        }
+        //判断需要push一个还是多个
+        //如共40页 lastCount=2情况下 endPage<=38或则需要push39和40;endPage=39则push40
+        //这里实现为<=38 push 39(38+1);<=39 push 40(39+1)
+        for (i = this.lastCount; i > 0; i--) {
+            if (endPage <= pageTotal - i) {
+                pageViewList.push(makePage(pageTotal - i, pageTotal - i + 1));
             }
         }
 
-        //step 3渲染这个分页组分页组 根据divBuf生成buf
+        //step 6渲染这个分页组分页组 根据divBuf生成buf
         _.each(pageViewList, function (page) {
             divBuf[3] = page.number;
             divBuf[7] = page.text;
