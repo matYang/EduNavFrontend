@@ -7,37 +7,29 @@
     <meta name="HandheldFriendly" content="true">
     <meta name="HandheldFriendly" content="description">
     <meta name="baidu-site-verification" content="UpWGVCfDwx"/>
-    <meta name="keywords" content="爱上课,南京,培训网,培训,教育,教育培训,培训课程,培训招生网,中国培训网,外语培训,英语培训学校,职业培训,学历教育,中小学辅导">
+    <meta name="keywords" content="南京爱上课,爱上课,培训网,培训,教育,教育培训,培训课程,培训招生网,中国培训网,外语培训,英语培训学校,职业培训,学历教育,中小学辅导">
     <meta name="description" content="爱上课, 为您选择最合适，最优惠的课程。找培训就来「爱上课」.">
     <meta http-equiv="pragma" content="no-cache"/>
     <meta http-equiv="content-type" content="no-cache, must-revalidate"/>
     <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT"/>
     <!--watch out for IE-->
     <title>爱上课 ishangke.cn</title>
-
     <link rel="shortcut icon" type="image/x-icon" href="style/images/ico.ico"/>
-    <link href="style/lib/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-    <link href="build/style/css/style-min.css?version=3.0build002" rel="stylesheet" type="text/css"/>
 
-    <script type="text/javascript">
-        if (!window.console) {
-            window.console = {log: function () {
-            } };
-        }
-    </script>
+    <link rel="stylesheet" type="text/css" href="style/lib/jquery-ui.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="build/style/css/style-min.css?version=3.0build002"/>
 </head>
 <body>
-<div id='topBar' class='unselectable'></div>
-<!--<div id="visualScope"></div>-->
-<div id="searchArea" class="wrapper bg-white"></div>
 
+<!--main start-->
+<div id='topBar' class='unselectable'></div>
+<div id="searchArea" class="wrapper bg-white"></div>
 <div id="wrap">
     <div id="main" class="clearfix">
         <div id='content' class='clearfix'></div>
     </div>
 </div>
-
-
 <div id='infoLayer'></div>
 <div id="overlay"></div>
 <div id='overlayCourse'></div>
@@ -178,18 +170,21 @@
         <div class="partners clearfix">
             <div class="partnerLi pull-left">
                 <img src="style/images/s1.png" alt="" title="百创"/>
+
                 <div class="paetners_info">
                     中国人力资源研究会南京市唯一合作伙伴，用友财务软件南京市唯一授权合作单位， 211学府合作单位
                 </div>
             </div>
             <div class="partnerLi pull-left">
                 <img src="style/images/s2.png" alt=""/>
+
                 <div class="paetners_info">
                     国内最大、最权威的专业小语种培训基地，法国著名Gefor语言学院及德国ASL学院的战略合作同盟
                 </div>
             </div>
             <div class="partnerLi pull-left">
                 <img src="style/images/s3.png" alt=""/>
+
                 <div class="paetners_info">
                     计算机3年VFP通过率高达95%，C语言、VB通过率高达85%；往届通过率高达85%以上
                 </div>
@@ -752,7 +747,7 @@
             <a class="close" href="#">关闭</a>
         </div>
     </div>
-    <dt id="compareToggle" class="compare_button">课程对比</dt>
+    <dt id="compareToggle" class="compare_button"><i></i><span>课程对比</span></dt>
     <div id="compareWidgetContent" class="hidden">
         <div id="compareItems" class="compare_items"></div>
         <div class="btns">
@@ -799,7 +794,7 @@
                 <li>
                     <span>课程类别：</span>
                     <span id="courseChooseContainer" style="width: 154px;cursor: pointer">
-                            <input id="courseChoose" class="selectFrame" type="text" placeholder="请选择">
+                            <input id="courseChoose" class="selectFrame liInput" type="text" placeholder="请选择">
                             <i class="selectIcon"></i>
                     </span>
                 </li>
@@ -818,11 +813,11 @@
             <ul class="searchContent scperson">
                 <li>
                     <span>联系电话：</span>
-                    <input id="home_phone_input" type="text">
+                    <input id="home_phone_input" class="liInput" type="text">
                 </li>
                 <li>
                     <span>学员姓名：</span>
-                    <input id="home_userName_input" type="text">
+                    <input id="home_userName_input" class="liInput" type="text">
                 </li>
                 <li>
                     <span>附加信息：</span>
@@ -920,6 +915,7 @@
                         <dt><span>*</span>输入验证码：</dt>
                         <dd>
                             <input id="registerVeriCode" type="text" class="text" placeholder="获取手机验证码">
+
                             <div id="getSms">获取手机验证码</div>
                         </dd>
                     </dl>
@@ -965,6 +961,7 @@
                     <div class="mypage_sidebar_sectionContent">
                         <div id="mypage_avatar">
                             <img src="style/images/user_pic.png" width="150" height="150"/>
+
                             <p><span id="mypage_greeting"></span>好，亲爱的
                             <span id="mypage_name">
                             <% if(name){%>
@@ -1296,6 +1293,7 @@
         <%}%>
         <div class="row2">
             <h3><%= course.courseName %></h3>
+
             <div class="clearfix">
                 <div class="fleft">
                     <p><label>教育机构:</label> <span><%= course.instName %></span></p>
@@ -1835,11 +1833,17 @@
         <div class="row2">
             <div class="fright acn">试听不满意，无条件退全款！</div>
             <p><label>订单号: </label><%= reference %></p>
+
             <p><label>支付方式: </label> <%= EnumConfig.BookingTypeText[type] %></p>
+
             <p><label>课程名称: </label><%= course.courseName %></p>
+
             <p><label>教育机构: </label><%= course.instName %></p>
+
             <p><label>上课地址: </label><%= course.address %></p>
+
             <p><label>咨询电话: </label>400-025-0884</p>
+
             <p>
                 <label>开课日期: </label>
                 <%if(course.startUponArrival===0){%>
@@ -1851,8 +1855,11 @@
                 <%}%>
                 <%}%>
             </p>
+
             <p><label>班级类型: </label><%= course.classSize %></p>
+
             <p><label>预约报到: </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
+
             <div>
                 <label>费用总计: </label>
                 <%if(!price){%>
@@ -1956,6 +1963,7 @@
         <div class="icon">
             <div id="starDemo"></div>
             <a><%=evenRating%>分</a>
+
             <div>&nbsp;(<i class="commentsTotal">--</i>人评价)</div>
         </div>
         <div>
@@ -2057,12 +2065,14 @@
             <dd class="clearfix">
                 <% if (teachingMaterialIntro) { %>
                 <label>教材介绍：</label>
+
                 <div class="span"><%=teachingMaterialIntro%></div>
                 <%}%>
             </dd>
             <dd class="clearfix">
                 <% if (teachingMaterialFee) { %>
                 <label>教材费用：</label>
+
                 <div class="span"><%=teachingMaterialFee%></div>
                 <%}%>
             </dd>
@@ -2092,18 +2102,21 @@
             <% if (wholeName) { %>
             <dd class="clearfix">
                 <label>机构全称：</label>
+
                 <div class="span"><%= wholeName %></div>
             </dd>
             <%}%>
             <% if (partnerIntro) { %>
             <dd class="clearfix">
                 <label>机构简介：</label>
+
                 <div class="span"><%= partnerIntro %></div>
             </dd>
             <%}%>
             <% if (partnerDistinction) { %>
             <dd class="clearfix">
                 <label>机构荣誉：</label>
+
                 <div class="span"><%= partnerDistinction %></div>
             </dd>
             <%}%>
@@ -2164,6 +2177,7 @@
                 <% } %>
                 <div class="warm_tip clearfix">
                     <h4><i class="warmicon"></i> 温馨小贴士~</h4>
+
                     <p></p>
                     <span>1、先在【爱上课】免费预约登记，预约成功后客服将在48小时内进行处理，然后凭借登记的手机号码去学校报名缴费；</span>
                     <span>2、在学校报名时请说明由【爱上课】推荐，并要求培训机构在收据上标明【爱上课】字样，同时联系我们进行确认（400-025-0884）。开课后第二个 月下旬进行返现。</span>
@@ -2185,16 +2199,19 @@
                     <ul class="eright">
                         <li>
                             <span>环境</span>
+
                             <div id="evaluate_environment" class="eright_star"></div>
                             <a><%=conditionRating%></a>
                         </li>
                         <li>
                             <span>师质</span>
+
                             <div id="evaluate_teacher" class="eright_star"></div>
                             <a><%=attitudeRating%></a>
                         </li>
                         <li>
                             <span>服务</span>
+
                             <div id="evaluate_service" class="eright_star"></div>
                             <a><%=satisfactionRating%></a>
                         </li>
@@ -3111,8 +3128,11 @@
                     <dt>产品特色</dt>
                     <dd>
                         <p><span>专<s></s>注：</span>爱团队只做一件事，让您轻轻松松选到最适合的培训机构与课程</p>
+
                         <p><span>权<s></s>威：</span>已与国内外上千家教育集团、上市公司签订深度合作协议，只为将最真实的课程信息与最低折扣价格通过最透明的方式推送给您</p>
+
                         <p><span>特<s></s>惠：</span>不定期的与教学机构联手举办各种特价活动，不出学费也能学习知名培训课程</p>
+
                         <p><span>高品质：</span>严格的教学机构准入与退出审核制度，爱上课平台中只有权威机构，只有精品课程</p>
                     </dd>
                 </dl>
@@ -3147,8 +3167,11 @@
                     <dt>五星级的平台</dt>
                     <dd>
                         <p>免费：平台使用永久免费，平台更新永久免费</p>
+
                         <p>开放：无论机构规模，只需法人组织提供高质量教学服务</p>
+
                         <p>公平：严格保密各机构意向报名学员信息，保护机构权益，提升转化率</p>
+
                         <p>精致：顶级设计师竭力创作清新页面风格，致力改善学员选课、购课体验</p>
                     </dd>
                 </dl>
@@ -3156,7 +3179,9 @@
                     <dt>五星级的服务</dt>
                     <dd>
                         <p>贴心：客户代表不定期回访交流，探讨转化率提升方案</p>
+
                         <p>用心：每月发布平台成效报告，清晰获知该月转化成效</p>
+
                         <p>省心：扩展机构获得学员渠道，减轻机构转化学员成本</p>
                     </dd>
                 </dl>
@@ -3164,6 +3189,7 @@
                     <dt>五星级的推广</dt>
                     <dd>
                         <p>密集线下推广：精英地推团队加盟，每年百万营销预算；地毯式营销，助推合作机构品牌传播</p>
+
                         <p>领先SEO技术：运用硅谷先进SEO技术，增强合作机构在百度，360，搜狗等搜索引擎曝光度</p>
                     </dd>
                 </dl>
@@ -3252,15 +3278,21 @@
                                 class="F_orange">400-025-0884</b></p>
 
                         <p>客服E-mail：kefu@iShangke.cn</p>
+
                         <p>工作时间：周一至周日9:00-18:00</p>
+
                         <p>总部地址：镇江市润州区电力路139号</p>
+
                         <p>南京分公司：南京市雨花台区宁双路28号</p>
+
                         <p>客服热线：400-025-0884</p>
                     </dd>
                     <dt style="margin-top:30px;">教学机构合作</dt>
                     <dd>
                         <p>联系人：徐老师</p>
+
                         <p>QQ：2970731934</p>
+
                         <p>Email: Eric.xu@iShangke.cn</p>
                     </dd>
                     <dt style="margin-top:30px;">友链互换</dt>
@@ -3314,7 +3346,10 @@
 <script type="text/templates" id="tpl_sideBarView">
     <div class="right_bar">
         <dl class="customer_service">
-            <dt>在线客服</dt>
+            <dt>
+                <i></i>
+                <span>在线客服</span>
+            </dt>
             <dd>
                 <ul class="cs_online" onclick="doyoo.util.openChat('g=82548');return false;">
                     <li class="list1">求助选课</li>
@@ -3325,15 +3360,24 @@
             </dd>
         </dl>
         <dl class="listening_test" onclick="doyoo.util.openChat('g=82548');return false;">
-            <dt>免费试听</dt>
+            <dt>
+                <i></i>
+                <span>免费试听</span>
+            </dt>
         </dl>
         <dl class="comparison"></dl>
         <dl class="qr_code">
-            <dt>二维码</dt>
+            <dt>
+                <i></i>
+                <span>二维码</span>
+            </dt>
             <dd><img width="160" height="160" src="./style/images/erweima.jpg"></dd>
         </dl>
         <dl class="back_to_top">
-            <dt>返回顶部</dt>
+            <dt>
+                <i></i>
+                <span>返回顶部</span>
+            </dt>
         </dl>
     </div>
 </script>
@@ -3643,7 +3687,7 @@
         <div class="teacherInfor clearfix">
             <a class="teacher_pic" style="background-image: url('<%= course.teacherList[i].imgUrl %>')"
                data-id="<%=i%>">
-            <div class="overlay_teacher">
+                <div class="overlay_teacher">
                     <span>查看详情</span>
                 </div>
             </a>
@@ -3675,7 +3719,7 @@
     <%}%>
 </dl>
 <dl class="tuan_content_3 content_inner">
-<dt><i class="dticon"></i>特色服务</dt>
+    <dt><i class="dticon"></i>特色服务</dt>
     <dd class="clearfix">
         <% if (course.passAgreement) { %>
         <div class="serviceli">
@@ -3739,7 +3783,7 @@
     </dd>
 </dl>
 <dl class="tuan_content_4 content_inner">
-<dt><i class="dticon"></i>评价<!--<span>我有2条评价</span>--></dt>
+    <dt><i class="dticon"></i>评价<!--<span>我有2条评价</span>--></dt>
     <dd class="clearfix">
         <div class="evaluate">
             <div class="title">*用户对本团购的消费评价</div>
@@ -3891,6 +3935,15 @@
 </script>
 
 </div>
+<!--main end-->
+
+<script type="text/javascript">
+    if (!window.console) {
+        window.console = {log: function () {
+        } };
+    }
+    var _hmt = _hmt || [];
+</script>
 <!-- load libraries-->
 <script src="build/common.min.js?version=3.0build001" type="text/javascript"></script>
 
