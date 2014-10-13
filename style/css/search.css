@@ -1170,6 +1170,9 @@
     float: right;
     margin-bottom: 15px;
 }
+#searchCourse .adv:hover{
+    opacity: 0.9;
+}
 
 #searchCourse .adv img {
     width: 536px;
