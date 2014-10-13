@@ -76,6 +76,11 @@ var BookingPayView = Backbone.View.extend({
             var s = window.open(url);
             //s.focus();
         });
+        //显示更多
+        $(".more-pay").on("click",function(){
+            $("#more_bank").show();
+            $(this).hide();
+        });
     },
     close: function () {
         if (!this.isClosed) {
