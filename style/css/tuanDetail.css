@@ -370,7 +370,7 @@
 .tuan_content .tuan_content_2 dd a {
     width: 110px;
     height: 70px;
-    border-radius: 70px;
+    /*border-radius: 70px;*/
     display: block;
     padding-top: 40px;
     position: relative;
@@ -1004,12 +1004,22 @@
     border-radius: 75px;
     display: block;
     float: left;
+    position: relative;
 }
 
 #teacherInfo .teacherInfoA a img {
     width: 150px;
     height: 150px;
-    border-radius: 75px;
+    /*border-radius: 75px;*/
+}
+
+#teacherInfo .teacherInfoA a .overlay_te{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    left: 0;
+    bottom: 0;
+    background-image: url("../images/overlay_teacher_info.png");
 }
 
 #teacherInfo .teacher_info {
@@ -1078,16 +1088,28 @@
     -webkit-box-orient: vertical;
 }
 
-.overlay_teacher{
-    width: 112px; height: 72px;
-    padding-top: 39px;
-    border-radius: 56px;
-    display: none;
+.overlay_t{
+    width: 114px; height: 74px;
+    padding-top: 40px;
+
     margin-top: -40px;
-    background-color: #28B094;
     position: absolute;
-    bottom: -1px;
-    left: -1px;
+    bottom: -2px;
+    left: -2px;
+    z-index: 2;
+    background-image: url("../images/overlay_teacher.png");
+}
+
+.overlay_teacher{
+    display: none;
+    width: 110px;
+    height: 110px;
+    position: absolute;
+    /*border-radius: 56px;*/
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: #28B094;
 }
 
 .map_info dd{ display: none;}

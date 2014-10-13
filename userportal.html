@@ -2098,6 +2098,8 @@
                     <a class="teacher_pic" style="background-image: url('<%= teacherList[i].imgUrl %>')"
                        data-id="<%=i%>">
                         <div class="overlay_teacher">
+                        </div>
+                        <div class="overlay_t">
                             <span>查看详情</span>
                         </div>
                     </a>
@@ -3493,7 +3495,10 @@
     <div id="overlay_teacherInfo" class="overlay">
         <div id="teacherInfo">
             <div class="teacherInfoA clearfix">
-                <a><img src="" alt=""/></a>
+                <a>
+                    <img src="" alt=""/>
+                    <div class="overlay_te"></div>
+                </a>
 
                 <div class="teacher_info">
                     <span></span>
@@ -3675,6 +3680,8 @@
             <a class="teacher_pic" style="background-image: url('<%= course.teacherList[i].imgUrl %>')"
                data-id="<%=i%>">
                 <div class="overlay_teacher">
+                </div>
+                <div class="overlay_t">
                     <span>查看详情</span>
                 </div>
             </a>
