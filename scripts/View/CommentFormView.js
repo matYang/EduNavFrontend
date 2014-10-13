@@ -46,7 +46,8 @@ var CommentFormView = Backbone.View.extend({
                 that.parentView.parentView.showLoginModal();
                 return;
             }
-            var txtcomment = $("#tuanDetail .txt textarea").val();
+            //var txtcomment = $("#tuanDetail .txt textarea").val();
+            var txtcomment = $(this).parent().find(".txt textarea").val();
             that.comment.set('content', txtcomment);
 
             app.userManager.addComment(that.comment, {
