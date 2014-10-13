@@ -16,24 +16,24 @@
     <title>爱上课 ishangke.cn</title>
     <link rel="shortcut icon" type="image/x-icon" href="style/images/ico.ico"/>
 
-    <!--<link rel="stylesheet" type="text/css" href="style/lib/jquery-ui.min.css"/>-->
+    <link rel="stylesheet" type="text/css" href="style/lib/jquery-ui.min.css"/>
 
     <link rel="stylesheet" type="text/css" href="style/css/Global.css"/>
-    <!--<link rel="stylesheet" type="text/css" href="style/css/notifier-base.css"/>-->
+    <link rel="stylesheet" type="text/css" href="style/css/notifier-base.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/common-ui.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/modals.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/topBar.css"/>
-    <!--<link rel="stylesheet" type="text/css" href="style/css/right_bar.css"/>-->
+    <link rel="stylesheet" type="text/css" href="style/css/right_bar.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/override.css"/>
-    <!--<link rel="stylesheet" type="text/css" href="style/css/index.css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="style/css/reg.css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="style/css/search.css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="style/css/mypage.css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="style/css/courseDetail.css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="style/css/compare.css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="style/css/booking.css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="style/css/aboutUs.css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="style/css/tuan.css"/>-->
+    <link rel="stylesheet" type="text/css" href="style/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/reg.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/search.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/mypage.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/courseDetail.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/compare.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/booking.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/aboutUs.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/tuan.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/tuanDetail.css"/>
 </head>
 <body>
@@ -84,13 +84,13 @@
 <!--modals start-->
 <!--teacher modal-->
 <script type="text/templates" id="tpl_teacherModal">
-<div id="teacherModal" class="modal">
-    <div class="teacherModal">
+<div id="teacherModal" class="modal modal-teacher">
+    <div class="modal-inner">
         <div class="teacherInfoA clearfix">
             <a><img src="<%=imgUrl%>" alt="<%=name%>"/></a>
             <div class="teacher_info">
                 <span><%=name%></span>
-                <div class="teacher_message"><%intro%></div>
+                <div class="teacher_message"><%=intro%></div>
             </div>
         </div>
         <i class="close">X</i>

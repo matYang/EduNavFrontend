@@ -1,41 +1,68 @@
-
-.modal-bg {overflow: scroll;
+/**
+ * modal bg(position)
+ * modal(position)
+ * --dialog(margin&width)
+ */
+/*base start*/
+.modal-bg {
+    display: none;
     position: fixed;
     top: 0;
+    left: 0;
     right: 0;
     bottom: 0;
-    left: 0;
     z-index: 1040;
     background-color: #000000;
+    /*opacity */
+    filter: alpha(opacity=50);
     opacity: 0.5;
 }
 
 .modal {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1044;
-    margin: 300px 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1050;
+    overflow-x: hidden;
+    /*overflow-y: auto;*/
+    overflow: hidden;
+    outline: 0;
 }
+.modal-inner{
+    position: relative;
+    margin: 250px auto;
+}
+/*base end*/
+
 
 /*教师modal*/
 /*教师详情*/
-.teacherModal {
+.modal-teacher .modal-inner{
     width: 740px;
     height: 240px;
     background-color: #28B094;
-    margin: 0 auto;
-    position: relative;
 }
 
-.teacherModal .teacherInfoA {
+.modal-teacher .teacherInfoA {
     width: 731px;
     min-height: 200px;
     background-color: #fff;
     float: right;
 }
 
-.teacherModal a {
+.modal-teacher .teacherInfoA .overlay_te{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    left: 0;
+    bottom: 0;
+    background-image: url("../images/overlay_teacher_info.png");
+}
+
+.modal-teacher a {
     width: 150px;
     height: 150px;
     margin: 45px 30px;
@@ -44,20 +71,20 @@
     float: left;
 }
 
-.teacherModal .teacherInfoA a img {
+.modal-teacher .teacherInfoA img {
     width: 150px;
     height: 150px;
-    border-radius: 75px;
+    /*border-radius: 75px;*/
 }
 
-.teacherModal .teacher_info {
+.modal-teacher .teacher_info {
     width: 500px;
     height: 214px;
     float: left;
     padding: 13px 2px;
 }
 
-.teacherModal .teacher_info span {
+.modal-teacher .teacher_info span {
     line-height: 50px;
     font-size: 18px;
     font-weight: bold;
@@ -65,7 +92,7 @@
     margin-left: 5px;
 }
 
-.teacherModal .teacher_info .teacher_message {
+.modal-teacher .teacher_info .teacher_message {
     width: 500px;
     height: 150px;
     display: block;
@@ -74,7 +101,7 @@
     line-height: 25px;
 }
 
-.teacherModal .close {
+.modal-teacher .close {
     width: 32px;
     height: 32px;
     display: block;
@@ -88,3 +115,5 @@
     font-style: normal;
     cursor: pointer;
 }
+
+
