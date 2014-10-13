@@ -255,14 +255,24 @@
 
 }
 
-.search_result .searchResultEntry + .searchResultEntry {
-    border-top: 2px dotted #cccccc;
-}
-
 .search_result .searchResultEntry {
     height: 120px;
     padding: 15px 0;
     background: #ffffff;
+    position: relative;
+}
+
+.search_result .searchResultEntry + .searchResultEntry:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 5px;
+    top: 0;
+    width: 720px;
+    height: 20px;
+    /*support with :after*/
+    background: url(../images/line_x.png) repeat-x;
+    visibility: visible;
 }
 
 .searchResultEntry .has-tip.has-tip-top .tip {
@@ -278,13 +288,25 @@
 }
 
 .search_result .col1 {
+    position: relative;
     float: left;
     width: 346px;
     padding-right: 5px;
     line-height: 24px;
     /*padding for dotted border*/
-    padding-top: 1px;
-    border-right: 2px dotted #cccccc;
+    /*padding-top: 1px;*/
+    /*border-right: 2px dotted #cccccc;*/
+}
+
+.search_result .col1:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+    height: 123px;
+    background: url(../images/line_y.png) repeat-y;
 }
 
 .search_result .col1 .title {
@@ -508,7 +530,6 @@
     display: inline-block;
     height: 30px;
     padding-left: 28px;
-    height: 30px;
     line-height: 24px;
     background: url(../images/map_icon.png) no-repeat 0 -31px;
     font-size: 12px;
@@ -1187,7 +1208,6 @@
     padding: 20px 0 20px 30px;
     border: 0;
     outline: 0;
-    font-family: "微软雅黑";
 }
 
 .searchAll .search_top a.search_btn {
