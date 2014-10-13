@@ -1,17 +1,19 @@
 @charset "utf-8";
 /* CSS Document */
 .right_bar{ position:fixed; bottom:100px; right:10px;z-index: 50}
-.right_bar dl{width:60px;position:relative;}
+.right_bar dl{width:60px;position:relative;height: 52px; padding-top: 8px; margin-bottom:5px;background-color: #128d56;}
 /*文字图标*/
 .right_bar dl dt{
-    width:60px; height:60px;
-    text-indent:-9999px;
-    margin-bottom:5px;
+    width:60px;
+    height: 23px;
+    /*text-indent:-9999px;*/
     background:url(../images/right_bar.png) no-repeat;
-    background-color: #128d56;
-    cursor:pointer;}
-.right_bar dl dt:hover{background-color: #bbbbbb;}
+    cursor:pointer;
+    position: relative;
+}
+.right_bar dl:hover{background-color: #bbbbbb;}
 /*文字图标的隐藏层*/
+.right_bar dl dt span{ position: absolute; bottom: -30px; line-height: 30px; font-size: 12px; width: 60px; text-align: center; color: #fff;}
 .right_bar dl dd{
     opacity: 0.2;
     position:absolute;z-index: -1;
@@ -31,17 +33,17 @@
     opacity: 1;
 }
 /*在线客服*/
-.right_bar .customer_service dt{ background-position:50% 6px;}
+.right_bar .customer_service dt{ background-position:50% 0;}
 /*免费试听*/
-.right_bar .listening_test dt{ background-position:50% -57px;}
+.right_bar .listening_test dt{ background-position:50% -24px;}
 /*课程对比*/
-.right_bar .comparison dt{ background-position:50% -122px;}
+.right_bar .comparison dt{ background-position:50% -47px;}
 /*二维码 隐藏层宽度重置为200px*/
-.right_bar .qr_code dt{ background-position:50% -185px;}
+.right_bar .qr_code dt{ background-position:50% -73px;}
 .right_bar dl.qr_code dd{width: 160px}
 /*返回顶部*/
-.right_bar .back_to_top dt{ background-color:#2e333f; background-position:50% -251px;}
-
+.right_bar .back_to_top{ background-color:#2e333f;}
+.right_bar .back_to_top dt{ background-position:50% -100px;}
 /*在线客服的隐藏层内容样式*/
 .cs_online li{
     padding-left:88px;
