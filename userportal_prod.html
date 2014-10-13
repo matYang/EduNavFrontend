@@ -18,7 +18,7 @@
 
     <link rel="stylesheet" type="text/css" href="style/lib/jquery-ui.min.css"/>
 
-    <link rel="stylesheet" type="text/css" href="build/style/css/style-min.css?version=3.0build002"/>
+    <link rel="stylesheet" type="text/css" href="build/style/css/style-min.css?version=3.0build003"/>
 </head>
 <body>
 
@@ -61,7 +61,28 @@
                                                                               target="_blank">苏ICP备14025414号</a></p>
     </div>
 </div>
+
+<div id="modals"></div>
+
 <div id="allTemplates">
+<!--modals start-->
+<!--teacher modal-->
+<script type="text/templates" id="tpl_teacherModal">
+    <div id="teacherModal" class="modal modal-teacher">
+        <div class="modal-inner">
+            <div class="teacherInfoA clearfix">
+                <a><img src="<%=imgUrl%>" alt="<%=name%>"/></a>
+                <div class="teacher_info">
+                    <span><%=name%></span>
+                    <div class="teacher_message"><%=intro%></div>
+                </div>
+            </div>
+            <i class="close">X</i>
+        </div>
+    </div>
+</script>
+<!--modals end-->
+
 <script type="text/template" id="tpl_topBar-loggedIn">
     <div class="topBar">
         <div class="topBar-inner clearfix">
@@ -91,8 +112,9 @@
             </div>
             <div class="tel">
                 <li id="navigate_tel" style="padding: 0 5px">
-                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank"><img
-                            src="./style/images/top_bar_tel.png" class="img"/></a>
+                    <a href="http://chat.looyu.com/chat/chat/p.do?c=52669&f=117996&n=iskkf001" target="_blank">
+                        <img src="./style/images/top_bar_tel.png" style="width: 162px;height: 29px;" class="img"/>
+                    </a>
                 </li>
             </div>
         </div>
@@ -170,21 +192,18 @@
         <div class="partners clearfix">
             <div class="partnerLi pull-left">
                 <img src="style/images/s1.png" alt="" title="百创"/>
-
                 <div class="paetners_info">
                     中国人力资源研究会南京市唯一合作伙伴，用友财务软件南京市唯一授权合作单位， 211学府合作单位
                 </div>
             </div>
             <div class="partnerLi pull-left">
                 <img src="style/images/s2.png" alt=""/>
-
                 <div class="paetners_info">
                     国内最大、最权威的专业小语种培训基地，法国著名Gefor语言学院及德国ASL学院的战略合作同盟
                 </div>
             </div>
             <div class="partnerLi pull-left">
                 <img src="style/images/s3.png" alt=""/>
-
                 <div class="paetners_info">
                     计算机3年VFP通过率高达95%，C语言、VB通过率高达85%；往届通过率高达85%以上
                 </div>
@@ -204,7 +223,7 @@
             <div class="partnerLi pull-left">
                 <img src="style/images/s6.png" alt=""/>
                 <div class="paetners_info">
-                    拥有400余名专业IT技术工程师，各类培训教师及资深专家40余名，10年以上企事业信息化建设经验，大量高端教学设施
+                    拥有400余名专业IT技术工程师，各类培训教师及资深专家40余名，10年以上企事业信息化建设经验和高端教学设施
                 </div>
             </div>
             <div class="partnerLi pull-left">
@@ -915,7 +934,6 @@
                         <dt><span>*</span>输入验证码：</dt>
                         <dd>
                             <input id="registerVeriCode" type="text" class="text" placeholder="获取手机验证码">
-
                             <div id="getSms">获取手机验证码</div>
                         </dd>
                     </dl>
@@ -961,7 +979,6 @@
                     <div class="mypage_sidebar_sectionContent">
                         <div id="mypage_avatar">
                             <img src="style/images/user_pic.png" width="150" height="150"/>
-
                             <p><span id="mypage_greeting"></span>好，亲爱的
                             <span id="mypage_name">
                             <% if(name){%>
@@ -1293,7 +1310,6 @@
         <%}%>
         <div class="row2">
             <h3><%= course.courseName %></h3>
-
             <div class="clearfix">
                 <div class="fleft">
                     <p><label>教育机构:</label> <span><%= course.instName %></span></p>
@@ -1451,37 +1467,43 @@
             </div>
             <div id="pane_platform" class="clearfix">
                 <span class="tab1 clearfix margin-bottom">支付宝支付</span>
-                <ul class="bank_list clearfix" style=" border-bottom: 1px solid #f4f4f4; margin-bottom: 20px;">
+                <ul class="bank_list clearfix" style="margin-bottom: 20px;">
                     <li id="alipay" class="active">
                         <input id="alipay" name="payType" type="radio" checked="" value="alipay"><a>支付宝</a>
                     </li>
+                    <div class="more-pay">
+                        <i></i>
+                        <span>更多支付方式</span>
+                    </div>
                 </ul>
-                <span class="tab1 clearfix margin-bottom">银行卡</span>
-                <ul class="bank_list clearfix">
-                    <li id="boc"><input value="BOC-DEBIT" name="payType" type="radio"><a>中国银行</a></li>
-                    <li id="icbc"><input value="ICBC-DEBIT" name="payType" type="radio"><a>工商银行</a></li>
-                    <li id="cmb"><input value="CMB-DEBIT" name="payType" type="radio"><a>招商银行</a></li>
-                    <li id="ccb"><input value="CCB-DEBIT" name="payType" type="radio"><a>建设银行</a></li>
-                    <li id="abc"><input value="ABC" name="payType" type="radio"><a>农业银行</a></li>
-                    <li id="spdb"><input value="SPDB-DEBIT" name="payType" type="radio"><a>浦发银行</a></li>
-                    <li id="cib"><input value="CIB" name="payType" type="radio"><a>兴业银行</a></li>
-                    <li id="gdb"><input value="GDB-DEBIT" name="payType" type="radio"><a>广发银行</a></li>
-                    <li id="fdb"><input value="FDB" name="payType" type="radio"><a>富滇银行</a></li>
-                    <li id="citic"><input value="CITIC" name="payType" type="radio"><a>中信银行</a></li>
-                    <li id="hzb"><input value="HZCBB2C" name="payType" type="radio"><a>杭州银行</a></li>
-                    <li id="shb"><input value="SHBANK" name="payType" type="radio"><a>上海银行</a></li>
-                    <li id="nbcb"><input value="NBBANK" name="payType" type="radio"><a>宁波银行</a></li>
-                    <li id="pab"><input value="SPABANK" name="payType" type="radio"><a>平安银行</a></li>
-                    <li id="post"><input value="PSBC-DEBIT" name="payType" type="radio"><a>邮政银行</a></li>
-                    <li id="bcom"><input value="COMM" name="payType" type="radio"><a>交通银行</a></li>
-                    <li id="ceb"><input value="CEB-DEBIT" name="payType" type="radio"><a>光大银行</a></li>
-                    <li id="bob"><input value="BJBANK" name="payType" type="radio"><a>北京银行</a></li>
-                    <li id="wzcb"><input value="WZCBB2C-DEBIT" name="payType" type="radio"><a>温州银行</a></li>
-                    <li id="cmbc"><input value="CMBC" name="payType" type="radio"><a>民生银行</a></li>
-                    <li id="brcb"><input value="BJRCB" name="payType" type="radio"><a>北京农商银行</a></li>
-                    <li id="srcb"><input value="SHRCB" name="payType" type="radio"><a>上海农商银行</a></li>
-                    <!--<div class="more"><a class="F_green" href="#">查看更多</a></div>-->
-                </ul>
+                <div id="more_bank" style="display: none; margin-bottom: 20px;">
+                    <span class="tab1 clearfix margin-bottom">银联卡支付</span>
+                    <ul class="bank_list clearfix">
+                        <li id="boc"><input value="BOC-DEBIT" name="payType" type="radio"><a>中国银行</a></li>
+                        <li id="icbc"><input value="ICBC-DEBIT" name="payType" type="radio"><a>工商银行</a></li>
+                        <li id="cmb"><input value="CMB-DEBIT" name="payType" type="radio"><a>招商银行</a></li>
+                        <li id="ccb"><input value="CCB-DEBIT" name="payType" type="radio"><a>建设银行</a></li>
+                        <li id="abc"><input value="ABC" name="payType" type="radio"><a>农业银行</a></li>
+                        <li id="spdb"><input value="SPDB-DEBIT" name="payType" type="radio"><a>浦发银行</a></li>
+                        <li id="cib"><input value="CIB" name="payType" type="radio"><a>兴业银行</a></li>
+                        <li id="gdb"><input value="GDB-DEBIT" name="payType" type="radio"><a>广发银行</a></li>
+                        <li id="fdb"><input value="FDB" name="payType" type="radio"><a>富滇银行</a></li>
+                        <li id="citic"><input value="CITIC" name="payType" type="radio"><a>中信银行</a></li>
+                        <li id="hzb"><input value="HZCBB2C" name="payType" type="radio"><a>杭州银行</a></li>
+                        <li id="shb"><input value="SHBANK" name="payType" type="radio"><a>上海银行</a></li>
+                        <li id="nbcb"><input value="NBBANK" name="payType" type="radio"><a>宁波银行</a></li>
+                        <li id="pab"><input value="SPABANK" name="payType" type="radio"><a>平安银行</a></li>
+                        <li id="post"><input value="PSBC-DEBIT" name="payType" type="radio"><a>邮政银行</a></li>
+                        <li id="bcom"><input value="COMM" name="payType" type="radio"><a>交通银行</a></li>
+                        <li id="ceb"><input value="CEB-DEBIT" name="payType" type="radio"><a>光大银行</a></li>
+                        <li id="bob"><input value="BJBANK" name="payType" type="radio"><a>北京银行</a></li>
+                        <li id="wzcb"><input value="WZCBB2C-DEBIT" name="payType" type="radio"><a>温州银行</a></li>
+                        <li id="cmbc"><input value="CMBC" name="payType" type="radio"><a>民生银行</a></li>
+                        <li id="brcb"><input value="BJRCB" name="payType" type="radio"><a>北京农商银行</a></li>
+                        <li id="srcb"><input value="SHRCB" name="payType" type="radio"><a>上海农商银行</a></li>
+                        <!--<div class="more"><a class="F_green" href="#">查看更多</a></div>-->
+                    </ul>
+                </div>
             </div>
             <div class="courseBrief clearfix" style="width: 800px; padding-left: 60px;">
                 <div class="row4 clearfix">
@@ -1833,17 +1855,11 @@
         <div class="row2">
             <div class="fright acn">试听不满意，无条件退全款！</div>
             <p><label>订单号: </label><%= reference %></p>
-
             <p><label>支付方式: </label> <%= EnumConfig.BookingTypeText[type] %></p>
-
             <p><label>课程名称: </label><%= course.courseName %></p>
-
             <p><label>教育机构: </label><%= course.instName %></p>
-
             <p><label>上课地址: </label><%= course.address %></p>
-
             <p><label>咨询电话: </label>400-025-0884</p>
-
             <p>
                 <label>开课日期: </label>
                 <%if(course.startUponArrival===0){%>
@@ -1855,11 +1871,8 @@
                 <%}%>
                 <%}%>
             </p>
-
             <p><label>班级类型: </label><%= course.classSize %></p>
-
             <p><label>预约报到: </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
-
             <div>
                 <label>费用总计: </label>
                 <%if(!price){%>
@@ -1963,7 +1976,6 @@
         <div class="icon">
             <div id="starDemo"></div>
             <a><%=evenRating%>分</a>
-
             <div>&nbsp;(<i class="commentsTotal">--</i>人评价)</div>
         </div>
         <div>
@@ -2010,7 +2022,6 @@
         <a class="btnconsult bookNow" data-value="<%=courseId%>">申请免费试听</a>
     </div>
     <div class="site_map panel_bg clearfix">
-        <h4>活动地图</h4>
         <a href="http://api.map.baidu.com/geocoder?address=<%= address%>&output=html" target="_blank">
             <img src="http://api.map.baidu.com/staticimage?width=230&height=180&markers=<%= address.split('（')[0].split('(')[0] %>"
                  alt="<%= address%>"/>
@@ -2035,7 +2046,7 @@
                 <table width="100%" cellpadding="0" cellspacing="0">
                     <thead>
                     <tr>
-                        <td width="25%">上课日期</td>
+                        <td width="25%">开课日期</td>
                         <td width="25%">上课时间</td>
                         <td class="addr">上课地点</td>
                         <td width="20%">--</td>
@@ -2092,6 +2103,8 @@
                     <a class="teacher_pic" style="background-image: url('<%= teacherList[i].imgUrl %>')"
                        data-id="<%=i%>">
                         <div class="overlay_teacher">
+                        </div>
+                        <div class="overlay_t">
                             <span>查看详情</span>
                         </div>
                     </a>
@@ -2102,21 +2115,18 @@
             <% if (wholeName) { %>
             <dd class="clearfix">
                 <label>机构全称：</label>
-
                 <div class="span"><%= wholeName %></div>
             </dd>
             <%}%>
             <% if (partnerIntro) { %>
             <dd class="clearfix">
                 <label>机构简介：</label>
-
                 <div class="span"><%= partnerIntro %></div>
             </dd>
             <%}%>
             <% if (partnerDistinction) { %>
             <dd class="clearfix">
                 <label>机构荣誉：</label>
-
                 <div class="span"><%= partnerDistinction %></div>
             </dd>
             <%}%>
@@ -2177,7 +2187,6 @@
                 <% } %>
                 <div class="warm_tip clearfix">
                     <h4><i class="warmicon"></i> 温馨小贴士~</h4>
-
                     <p></p>
                     <span>1、先在【爱上课】免费预约登记，预约成功后客服将在48小时内进行处理，然后凭借登记的手机号码去学校报名缴费；</span>
                     <span>2、在学校报名时请说明由【爱上课】推荐，并要求培训机构在收据上标明【爱上课】字样，同时联系我们进行确认（400-025-0884）。开课后第二个 月下旬进行返现。</span>
@@ -2199,19 +2208,16 @@
                     <ul class="eright">
                         <li>
                             <span>环境</span>
-
                             <div id="evaluate_environment" class="eright_star"></div>
                             <a><%=conditionRating%></a>
                         </li>
                         <li>
                             <span>师质</span>
-
                             <div id="evaluate_teacher" class="eright_star"></div>
                             <a><%=attitudeRating%></a>
                         </li>
                         <li>
                             <span>服务</span>
-
                             <div id="evaluate_service" class="eright_star"></div>
                             <a><%=satisfactionRating%></a>
                         </li>
@@ -2259,7 +2265,7 @@
             <!--<button type="button" class="btn_gray">当前课程</button>-->
             <!--</a>-->
             <a class="inline-block">
-                <button type="button" class="btn_g bookNow" data-value="<%= id %>">申请试听</button>
+                <button type="button" class="btn_g bookNow" data-value="<%= id %>">申请免费试听</button>
             </a>
         </td>
     </tr>
@@ -2831,18 +2837,6 @@
         <div>
             拥有用户名才可以凭此邀请好友，邀请成功可获取丰富的奖励~
         </div>
-    </div>
-</script>
-
-<script type="text/templates" id="tpl_mypage_chooseWorkModal">
-    <div class="chooseshoolHeader"><a class="close" title="关闭" href="#"></a>
-        选择行业
-    </div>
-    <div class="chooseshoolContent">
-        <div class="pop_content_inner">
-            <!--todo 暂不需要选择行业modal-->
-        </div>
-
     </div>
 </script>
 
@@ -3506,7 +3500,10 @@
     <div id="overlay_teacherInfo" class="overlay">
         <div id="teacherInfo">
             <div class="teacherInfoA clearfix">
-                <a><img src="" alt=""/></a>
+                <a>
+                    <img src="" alt=""/>
+                    <div class="overlay_te"></div>
+                </a>
 
                 <div class="teacher_info">
                     <span></span>
@@ -3580,7 +3577,6 @@
         <a class="btnconsult" onclick="doyoo.util.openChat('g=82548');return false;">咨询</a>
     </div>
     <div class="site_map panel_bg clearfix">
-        <h4>活动地图</h4>
         <a href="http://api.map.baidu.com/geocoder?address=南京市&output=html" target="_blank">
             <img src="http://api.map.baidu.com/staticimage?width=230&height=180&markers=<%=addressMarkers%>"
                  alt=""/>
@@ -3688,6 +3684,8 @@
             <a class="teacher_pic" style="background-image: url('<%= course.teacherList[i].imgUrl %>')"
                data-id="<%=i%>">
                 <div class="overlay_teacher">
+                </div>
+                <div class="overlay_t">
                     <span>查看详情</span>
                 </div>
             </a>
@@ -3947,7 +3945,7 @@
 <!-- load libraries-->
 <script src="build/common.min.js?version=3.0build001" type="text/javascript"></script>
 
-<script src="build/main.min.js?version=3.0build002" type="text/javascript"></script>
+<script src="build/main.min.js?version=3.0build003" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8" src="http://gate.looyu.com/52669/117998.js"></script>
 <script type="text/javascript">
     var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
@@ -3960,4 +3958,3 @@ document.write(unescape("%3Cspan id='cnzz_stat_icon_1253323961'%3E%3C/span%3E%3C
 }</style>
 </body>
 </html>
-

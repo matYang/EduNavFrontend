@@ -45,7 +45,7 @@ testMockObj = {
         .set('title', '团购测试标题2').set('groupBuyPrice', 299)
         .set('bookingTotal', 123).set('hot', 1).set('endTime', (new Date()).getTime() + 3600000 * 24 * 3)
         .set('photoList', [
-            {url: './style/images/t_item_banner_test.jpg'},//约定第一张为置顶课程的图片
+            {url: 'http://classroomimgbucket.oss-cn-hangzhou.aliyuncs.com/0/groupBuyPhotop0i3t1412912432645-f9ef509b992fb1cc75ad9c740dbae4a7.png'},//约定第一张为置顶课程的图片
             {url: './style/images/t_item_banner_test.jpg'},//约定第二张为团购列表中的封面
             {url: './style/images/t_item_banner_test.jpg'},//第三张之后的都是团购详情中的图片
             {url: './style/images/t_item_banner_test.jpg'},
