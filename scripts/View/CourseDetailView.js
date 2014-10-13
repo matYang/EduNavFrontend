@@ -2,7 +2,7 @@ var CourseDetailView = Backbone.View.extend({
     el: "#content",
     template: _.template(tpl.get('courseDetail')),
     initialize: function (courseIdWrapper) {
-        _.bindAll(this, 'render', 'bindEvents', 'showLoginModal', 'close');
+        _.bindAll(this, 'render', 'bindEvents','showLoginModal', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.sr = new CourseSearchRepresentation();
