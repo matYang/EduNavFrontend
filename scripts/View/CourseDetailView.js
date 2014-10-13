@@ -196,7 +196,7 @@ var CourseDetailView = Backbone.View.extend({
                 speed: 650
             });
         });
-        var navH = $("#course_fright").offset().top;
+        var navH = $("#tuan_fright").offset().top;
         //滚动条事件
         $(window).scroll(function () {
             /*地图那块位置不变*/
