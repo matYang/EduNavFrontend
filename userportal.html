@@ -166,8 +166,10 @@
     <div class="wrapper bg-white">
         <div class="container">
             <span class="index_tip">精品团购</span>
+
             <div id="tuanBanner" class="clearfix"></div>
             <span class="index_tip">课程推荐</span>
+
             <div id="lv1Button" class="tab2 clearfix unselectable">
                 <div class="tabtop"></div>
             </div>
@@ -185,48 +187,56 @@
         <div class="partners clearfix">
             <div class="partnerLi pull-left">
                 <img src="style/images/s1.png" alt="" title="百创"/>
+
                 <div class="paetners_info">
                     中国人力资源研究会南京市唯一合作伙伴，用友财务软件南京市唯一授权合作单位， 211学府合作单位
                 </div>
             </div>
             <div class="partnerLi pull-left">
                 <img src="style/images/s2.png" alt=""/>
+
                 <div class="paetners_info">
                     国内最大、最权威的专业小语种培训基地，法国著名Gefor语言学院及德国ASL学院的战略合作同盟
                 </div>
             </div>
             <div class="partnerLi pull-left">
                 <img src="style/images/s3.png" alt=""/>
+
                 <div class="paetners_info">
                     计算机3年VFP通过率高达95%，C语言、VB通过率高达85%；往届通过率高达85%以上
                 </div>
             </div>
             <div class="partnerLi pull-right">
                 <img src="style/images/s4.png" alt=""/>
+
                 <div class="paetners_info">
                     中国著名国际教育集团EIC启德教育集团旗下的国际语言培训机构，中国成立最早、规模最大的英语培训机构之一
                 </div>
             </div>
             <div class="partnerLi pull-left">
                 <img src="style/images/s5.png" alt=""/>
+
                 <div class="paetners_info">
                     全国小语种培训第一品牌，专注于日、法、韩、德、西等多国小语种培训和特色英语培训
                 </div>
             </div>
             <div class="partnerLi pull-left">
                 <img src="style/images/s6.png" alt=""/>
+
                 <div class="paetners_info">
                     拥有400余名专业IT技术工程师，各类培训教师及资深专家40余名，10年以上企事业信息化建设经验，大量高端教学设施
                 </div>
             </div>
             <div class="partnerLi pull-left">
                 <img src="style/images/s7.png" alt=""/>
+
                 <div class="paetners_info">
                     连续3年全国十佳公考培训机构，江苏省考面试特训营通过率高达92.94%，连续命中江苏省考面试多道真题
                 </div>
             </div>
             <div class="partnerLi pull-right">
                 <img src="style/images/s8.png" alt=""/>
+
                 <div class="paetners_info">
                     名牌大学+热门专业+国内外七大权威证书，学员已连续多年蝉联新日语能力考全国状元
                 </div>
@@ -260,6 +270,7 @@
                             <li>
                                 <i class="popIconStar"></i>
                                 <span>意向课程：</span>
+
                                 <p><%=courseName%></p>
                             </li>
                             <li>
@@ -927,6 +938,7 @@
                         <dt><span>*</span>输入验证码：</dt>
                         <dd>
                             <input id="registerVeriCode" type="text" class="text" placeholder="获取手机验证码">
+
                             <div id="getSms">获取手机验证码</div>
                         </dd>
                     </dl>
@@ -972,6 +984,7 @@
                     <div class="mypage_sidebar_sectionContent">
                         <div id="mypage_avatar">
                             <img src="style/images/user_pic.png" width="150" height="150"/>
+
                             <p><span id="mypage_greeting"></span>好，亲爱的
                             <span id="mypage_name">
                             <% if(name){%>
@@ -1303,6 +1316,7 @@
         <%}%>
         <div class="row2">
             <h3><%= course.courseName %></h3>
+
             <div class="clearfix">
                 <div class="fleft">
                     <p><label>教育机构:</label> <span><%= course.instName %></span></p>
@@ -1842,11 +1856,17 @@
         <div class="row2">
             <div class="fright acn">试听不满意，无条件退全款！</div>
             <p><label>订单号: </label><%= reference %></p>
+
             <p><label>支付方式: </label> <%= EnumConfig.BookingTypeText[type] %></p>
+
             <p><label>课程名称: </label><%= course.courseName %></p>
+
             <p><label>教育机构: </label><%= course.instName %></p>
+
             <p><label>上课地址: </label><%= course.address %></p>
+
             <p><label>咨询电话: </label>400-025-0884</p>
+
             <p>
                 <label>开课日期: </label>
                 <%if(course.startUponArrival===0){%>
@@ -1858,8 +1878,11 @@
                 <%}%>
                 <%}%>
             </p>
+
             <p><label>班级类型: </label><%= course.classSize %></p>
+
             <p><label>预约报到: </label><%= scheduledTime %> <span>（过时您的特价订单将失效）</span></p>
+
             <div>
                 <label>费用总计: </label>
                 <%if(!price){%>
@@ -1963,6 +1986,7 @@
         <div class="icon">
             <div id="starDemo"></div>
             <a><%=evenRating%>分</a>
+
             <div>&nbsp;(<i class="commentsTotal">--</i>人评价)</div>
         </div>
         <div>
@@ -2101,18 +2125,21 @@
             <% if (wholeName) { %>
             <dd class="clearfix">
                 <label>机构全称：</label>
+
                 <div class="span"><%= wholeName %></div>
             </dd>
             <%}%>
             <% if (partnerIntro) { %>
             <dd class="clearfix">
                 <label>机构简介：</label>
+
                 <div class="span"><%= partnerIntro %></div>
             </dd>
             <%}%>
             <% if (partnerDistinction) { %>
             <dd class="clearfix">
                 <label>机构荣誉：</label>
+
                 <div class="span"><%= partnerDistinction %></div>
             </dd>
             <%}%>
@@ -2173,6 +2200,7 @@
                 <% } %>
                 <div class="warm_tip clearfix">
                     <h4><i class="warmicon"></i> 温馨小贴士~</h4>
+
                     <p></p>
                     <span>1、先在【爱上课】免费预约登记，预约成功后客服将在48小时内进行处理，然后凭借登记的手机号码去学校报名缴费；</span>
                     <span>2、在学校报名时请说明由【爱上课】推荐，并要求培训机构在收据上标明【爱上课】字样，同时联系我们进行确认（400-025-0884）。开课后第二个 月下旬进行返现。</span>
@@ -2194,16 +2222,19 @@
                     <ul class="eright">
                         <li>
                             <span>环境</span>
+
                             <div id="evaluate_environment" class="eright_star"></div>
                             <a><%=conditionRating%></a>
                         </li>
                         <li>
                             <span>师质</span>
+
                             <div id="evaluate_teacher" class="eright_star"></div>
                             <a><%=attitudeRating%></a>
                         </li>
                         <li>
                             <span>服务</span>
+
                             <div id="evaluate_service" class="eright_star"></div>
                             <a><%=satisfactionRating%></a>
                         </li>
@@ -2823,18 +2854,6 @@
         <div>
             拥有用户名才可以凭此邀请好友，邀请成功可获取丰富的奖励~
         </div>
-    </div>
-</script>
-
-<script type="text/templates" id="tpl_mypage_chooseWorkModal">
-    <div class="chooseshoolHeader"><a class="close" title="关闭" href="#"></a>
-        选择行业
-    </div>
-    <div class="chooseshoolContent">
-        <div class="pop_content_inner">
-            <!--todo 暂不需要选择行业modal-->
-        </div>
-
     </div>
 </script>
 

@@ -95,8 +95,8 @@ var ChooseSchoolView = Backbone.View.extend({
     },
     close: function () {
         if (!this.isClosed) {
+            //todo 关闭后没有对弹出框进行任何处理！！需要remove掉选择框
             //this.modal.destroy();
-            this.notifier = null;
         }
     }
 });
