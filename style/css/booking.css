@@ -146,7 +146,13 @@
 .bank_list #alipay a{background-position:0 -1097px}/*支付宝*/
 .bank_list .more{float:left;border:1px dotted #128d56; width:200px; height:46px; line-height:46px;  margin-right:10px; margin-bottom:10px; cursor:pointer; text-align:center; }
 
-
+/*更多*/
+.more-pay{float:left; border:1px solid #ccc; width:180px; padding:10px; margin-right:10px; margin-bottom:10px; cursor:pointer;}
+.more-pay i{ width: 9px; height: 8px; display: inline-block; background: url("../images/more_pay_1.png") no-repeat; margin: 0 0 0 30px;}
+.more-pay span{height: 28px; line-height: 28px; font-size: 14px; color: #128d56; padding-left: 4px;}
+.more-pay:hover{background-color: #28B094;}
+.more-pay:hover i{background-image: url("../images/more_pay_2.png")}
+.more-pay:hover span{color: #fff;}
 /*支付未跳转页面的弹出框*/
 #overlay_booking .booking{
     width: 400px; height: 211px; padding: 22px; background-color: #fff;
