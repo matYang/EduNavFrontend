@@ -1055,8 +1055,7 @@
     color: #4b6459;
 }
 
-#searchCourse .searchContent li input,
-#searchCourse .searchContent li select {
+#searchCourse .searchContent li .liInput {
     width: 297px;
     height: 25px;
     line-height: 20px;

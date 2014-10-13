@@ -196,12 +196,11 @@ var CourseDetailView = Backbone.View.extend({
                 speed: 650
             });
         });
-
-
+        var navH = $("#course_fright").offset().top;
         //滚动条事件
         $(window).scroll(function () {
             /*地图那块位置不变*/
-            var navH = $("#searchWidgets").offset().top;
+
             //获取滚动条的滑动距离
             var scroH = $(this).scrollTop();
             //alert(scroH);
