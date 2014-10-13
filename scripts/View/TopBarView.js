@@ -226,3 +226,29 @@ var TopBarView = Backbone.View.extend({
         }
     }
 });
+
+/**
+ * 弹出层的遮罩层 初始化 以及show和hide 加上事件绑定
+ */
+var ModalBgView = Backbone.View.extend({
+    el:'body',
+    modalBg:'.modal-bg',
+    template:'<div class="modal-bg"></div>',
+    //todo 当元素不存在（用户手动在控制台移除了该dom，属于特殊情况）时需要重新生成元素 包括show hide eventOn和eventOff
+    initialize: function () {
+        _.bindAll(this, 'show', 'hide', 'eventOn', 'eventOff')
+    },
+    show: function () {
+        this.$el.prepend(this.template);
+    },
+    hide: function () {
+        $(this.modalBg).remove();
+    },
+    //传入的fn需要bind到对应的view中（如果存在this）
+    eventOn: function (fn) {
+        $(this.modalBg).on('click', fn)
+    },
+    eventOff: function () {
+        $(this.modalBg).off()
+    }
+});

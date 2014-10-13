@@ -1007,13 +1007,13 @@
     position: relative;
 }
 
-#teacherInfo .teacherInfoA a img {
+#teacherInfo .teacherInfoA img {
     width: 150px;
     height: 150px;
     /*border-radius: 75px;*/
 }
 
-#teacherInfo .teacherInfoA a .overlay_te{
+#teacherInfo .teacherInfoA .overlay_te{
     position: absolute;
     width: 150px;
     height: 150px;
@@ -1030,7 +1030,6 @@
 }
 
 #teacherInfo .teacher_info span {
-    line-height: 50px;
     line-height: 50px;
     font-size: 18px;
     font-weight: bold;

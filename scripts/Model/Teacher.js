@@ -6,8 +6,7 @@ var Teacher = Backbone.Model.extend({
             'partnerId': -1,
             'name':'',
             'intro': '',
-            'imgUrl': '',
-            'createTime': new Date()
+            'imgUrl': ''
         };
     },
     idAttribute: 'id',
@@ -16,19 +15,11 @@ var Teacher = Backbone.Model.extend({
         if ( typeof data !== 'undefined') {
             data.id = parseInt(data.id, 10);
             data.partnerId = parseInt(data.partnerId, 10);
-            data.createTime = Utilities.castFromAPIFormat(data.createTime);
         }
         return data;
     },
     _toJSON: function () {
-        var json = _.clone(this.attributes);
-        json.createTime = Utilities.getDateString(this.get('createTime'));
-        return json;
-    },
-    toJSON: function () {
-        var json = _.clone(this.attributes);
-        json.createTime = Utilities.castToAPIFormat(this.get('createTime'));
-        return json;
+        return _.clone(this.attributes);
     }
 });
 

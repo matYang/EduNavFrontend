@@ -5,6 +5,7 @@ var TuanDetailView = Backbone.View.extend({
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", 'showLoginModal', "close");
         app.viewRegistration.register(this);
+        this.teacherModal = new TeacherModal();
         this.tuanId = opt.tuanId;//团购的Id
         this.countDown = undefined;//团购的倒计时
         var self = this;
@@ -93,17 +94,7 @@ var TuanDetailView = Backbone.View.extend({
             } else {
                 teacher = that.tuan.get('course').get('teacherList')[teacherIndex];
             }
-
-            if (!that.teacherInfoView) {
-                that.teacherInfoView = new TeacherInfoView();
-            } else if (that.teacherInfoView.isClosed) {
-                that.teacherInfoView.render();
-            } else if (!that.teacherInfoView.isShow) {
-                that.teacherInfoView.show();
-            }
-            $("#teacherInfo img").attr("src", teacher.get('imgUrl'));
-            $("#teacherInfo span").html(teacher.get('name'));
-            $("#teacherInfo .teacher_message").html(teacher.get('intro'));
+            that.teacherModal.show(teacher);
         });
         $(".tuan_content_2 .teacher_pic").hover(function () {
             $(this).find(".overlay_teacher").show();
@@ -229,8 +220,8 @@ var TuanDetailView = Backbone.View.extend({
             if (this.countDown) {
                 window.clearInterval(this.countDown);
             }
-            if (this.teacherInfoView) {
-                this.teacherInfoView.close();
+            if (this.teacherModal) {
+                this.teacherModal.close();
             }
             if (this.loginFastView) {
                 this.loginFastView.close();
@@ -384,50 +375,3 @@ var LoginFastView = Backbone.View.extend({
         }
     }
 });
-
-
-/*教师详情弹出框View*/
-var TeacherInfoView = Backbone.View.extend({
-    el: "#overlayCourse",//借用课程那个弹出框的div
-    //todo need to write template named 'tpl_loginFast'
-    template: _.template(tpl.get("teacherInfo")),
-    initialize: function () {
-        this.isClosed = false;
-        this.isShow = false;
-        _.bindAll(this, "render", "bindEvents", "close");
-        app.viewRegistration.register(this);
-        //this.teacherobj=teacherObj;
-        this.render();
-
-
-    },
-    render: function () {
-        var self = this;
-        this.$el.html(this.template());
-        this.bindEvents();
-    },
-
-    bindEvents: function () {
-        var that = this;
-        $("#teacherInfo .close").on("click", function () {
-            that.hide();
-        });
-    },
-    show: function () {
-        $("#overlay_teacherInfo").show();
-        this.isShow = true;
-    },
-    hide: function () {
-        $("#overlay_teacherInfo").hide();
-        this.isShow = false;
-    },
-
-    close: function () {
-        if (!this.isClosed) {
-            this.$el.off();
-            this.$el.empty();
-            this.isClosed = true;
-        }
-    }
-});
-

@@ -35,6 +35,7 @@ module.exports = function (grunt) {
                     "scripts/Common/DataManagers/UserManager.js",
                     "scripts/View/Common/Shared/*.js",
                     "scripts/View/Common/*.js",
+                    "scripts/View/Modal/*.js",
                     "scripts/baiduLoadScript.js",
                     "scripts/View/MyPage/*.js",
                     "scripts/View/*.js",
@@ -62,6 +63,8 @@ module.exports = function (grunt) {
                         'style/css/Global.css',
                         'style/css/notifier-base.css',
                         'style/css/common-ui.css',
+                        'style/css/modals.css',
+
                         'style/css/topBar.css',
                         'style/css/right_bar.css',
                         'style/css/override.css',

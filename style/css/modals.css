@@ -1,0 +1,90 @@
+
+.modal-bg {overflow: scroll;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000000;
+    opacity: 0.5;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1044;
+    margin: 300px 0;
+}
+
+/*教师modal*/
+/*教师详情*/
+.teacherModal {
+    width: 740px;
+    height: 240px;
+    background-color: #28B094;
+    margin: 0 auto;
+    position: relative;
+}
+
+.teacherModal .teacherInfoA {
+    width: 731px;
+    min-height: 200px;
+    background-color: #fff;
+    float: right;
+}
+
+.teacherModal a {
+    width: 150px;
+    height: 150px;
+    margin: 45px 30px;
+    border-radius: 75px;
+    display: block;
+    float: left;
+}
+
+.teacherModal .teacherInfoA a img {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+}
+
+.teacherModal .teacher_info {
+    width: 500px;
+    height: 214px;
+    float: left;
+    padding: 13px 2px;
+}
+
+.teacherModal .teacher_info span {
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #28B094;
+    margin-left: 5px;
+}
+
+.teacherModal .teacher_info .teacher_message {
+    width: 500px;
+    height: 150px;
+    display: block;
+    overflow: auto;
+    font-size: 14px;
+    line-height: 25px;
+}
+
+.teacherModal .close {
+    width: 32px;
+    height: 32px;
+    display: block;
+    background-color: #28B094;
+    color: #fff;
+    font-size: 14px;
+    line-height: 32px;
+    text-align: center;
+    position: absolute;
+    right: -32px;
+    font-style: normal;
+    cursor: pointer;
+}

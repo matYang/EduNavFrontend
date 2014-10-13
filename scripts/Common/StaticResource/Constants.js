@@ -111,7 +111,7 @@ var Constants = {
         //课程选择页面
         "courseTip",
         //教师信息弹出框
-        "teacherInfo",
+        "teacherModal",
         //支付未跳转页面弹出框
         "overlayBooking"
     ],

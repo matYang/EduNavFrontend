@@ -219,6 +219,7 @@ var AppRouter = Backbone.Router.extend({
 (function () {
     app = new AppRouter();
     app.topBarView = new TopBarView();
+    app.bg = new ModalBgView();
     app.sideBarView = new SiderBarView();
     Backbone.history.start();
     $(window).unload(function () {

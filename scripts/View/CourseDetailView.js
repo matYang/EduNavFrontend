@@ -2,10 +2,11 @@ var CourseDetailView = Backbone.View.extend({
     el: "#content",
     template: _.template(tpl.get('courseDetail')),
     initialize: function (courseIdWrapper) {
-        _.bindAll(this, 'render', 'bindEvents','showLoginModal', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'showLoginModal', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.sr = new CourseSearchRepresentation();
+        this.teacherModal = new TeacherModal();
         this.user = app.sessionManager.sessionModel;
         var self = this;
         app.generalManager.fetchCategories({success: function (data) {
@@ -137,17 +138,7 @@ var CourseDetailView = Backbone.View.extend({
             } else {
                 teacher = that.course.get('teacherList')[teacherIndex];
             }
-
-            if (!that.teacherInfoView) {
-                that.teacherInfoView = new TeacherInfoView();
-            } else if (that.teacherInfoView.isClosed) {
-                that.teacherInfoView.render();
-            } else if (!that.teacherInfoView.isShow) {
-                that.teacherInfoView.show();
-            }
-            $("#teacherInfo img").attr("src", teacher.get('imgUrl'));
-            $("#teacherInfo span").html(teacher.get('name'));
-            $("#teacherInfo .teacher_message").html(teacher.get('intro'));
+            that.teacherModal.show(teacher);
         });
         $(".tuan_content_2 .teacher_pic").hover(function () {
             $(this).find(".overlay_teacher").show();
@@ -156,12 +147,7 @@ var CourseDetailView = Backbone.View.extend({
             $(this).find(".overlay_teacher").hide();
             $(this).find("span").css("display", "none");
         });
-        //详细查看教师
-        /*$('.teacher').on('click', '.more', function (e) {
-         var teacherIndex = $(this).data('id');
-         var teacher = {};
 
-         });*/
         $("#detail_compare_" + this.course.id).on("click", function () {
             if ($(this).hasClass("add")) {
                 if (that.compareWidget.addCourse(that.course)) {
@@ -289,9 +275,6 @@ var CourseDetailView = Backbone.View.extend({
             }
             if (this.freeTrial) {
                 this.freeTrial.close();
-            }
-            if (this.viewTeacherModal) {
-                this.viewTeacherModal.destroy();
             }
             if (this.commentsView) {
                 this.commentsView.close();
