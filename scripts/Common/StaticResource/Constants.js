@@ -102,7 +102,7 @@ var Constants = {
         "infoModal",
         "colorInfoModal",
         "sideBarView",//侧边工具栏
-        "banner",//首页的大屏滚动banner
+//        "banner",//首页的大屏滚动banner
 
         //申请成功弹出窗
         "popTip",
