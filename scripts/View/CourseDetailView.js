@@ -2,7 +2,7 @@ var CourseDetailView = Backbone.View.extend({
     el: "#content",
     template: _.template(tpl.get('courseDetail')),
     initialize: function (courseIdWrapper) {
-        _.bindAll(this, 'render', 'bindEvents', 'close');
+        _.bindAll(this, 'render', 'bindEvents','showLoginModal', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.notifier = new Backbone.Notifier();
@@ -269,6 +269,19 @@ var CourseDetailView = Backbone.View.extend({
         });
     },
 
+    showLoginModal: function () {
+        var that = this;
+        //如果没有登录 弹出框进行登录 或者 免注册登录（）
+        if (!that.loginFastView) {
+            that.loginFastView = new LoginFastView();
+        } else if (that.loginFastView.isClosed) {
+            that.loginFastView.render();
+            that.loginFastView.show();
+        } else {
+            that.loginFastView.show();
+        }
+    },
+
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
@@ -280,6 +293,9 @@ var CourseDetailView = Backbone.View.extend({
             }
             if (this.viewTeacherModal) {
                 this.viewTeacherModal.destroy();
+            }
+            if (this.commentsView) {
+                this.commentsView.close();
             }
             this.notifier = null;
             $(document).off("scroll");
