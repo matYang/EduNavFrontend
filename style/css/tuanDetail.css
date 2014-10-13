@@ -410,6 +410,8 @@
     margin: 10px 10px 10px 0;
 }
 
+.tuan_content .tuan_content_3 .serviceli img{ width: 120px; height: 120px;}
+
 .tuan_content_3 .serviceli span {
     width: 120px;
     height: 30px;
@@ -743,6 +745,10 @@
     height: 180px;
     display: block;
     margin-bottom: 10px;
+}
+
+.w_260 .site_map a img{
+    width: 230px; height: 180px;
 }
 
 .w_260 span {
