@@ -255,7 +255,6 @@ thead tr.bookingEntry td.detail{text-align: center}
 /*个人资料*/
 /*选择学校弹出框*/
 /*header */
-.schoolModal .notifier-inner{padding:0;}
 #chooseschoolclose{
     /*z-index: 104;
     text-indent: -9999px;*/
@@ -267,7 +266,6 @@ thead tr.bookingEntry td.detail{text-align: center}
     background: url(../images/close.png) no-repeat;
     cursor: pointer;
 }
-.schoolModal .notifier-message{padding-top: 36px;}
 #chooseschoolMain h3{
    /* position: absolute;top:0;left:0;*/
     text-indent: 1.2em;

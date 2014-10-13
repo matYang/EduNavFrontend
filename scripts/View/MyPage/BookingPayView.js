@@ -1,7 +1,6 @@
 var BookingPayView = Backbone.View.extend({
     el: "#content",
     initialize: function (params) {
-        this.notifier = new Backbone.Notifier();
         this.isClosed = false;
         this.template = _.template(tpl.get("mypage_bookingPay"));
         _.bindAll(this, 'render', 'bindEvents', 'close');

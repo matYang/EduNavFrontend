@@ -5,7 +5,6 @@ var CourseDetailView = Backbone.View.extend({
         _.bindAll(this, 'render', 'bindEvents','showLoginModal', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
-        this.notifier = new Backbone.Notifier();
         this.sr = new CourseSearchRepresentation();
         this.user = app.sessionManager.sessionModel;
         var self = this;
@@ -297,7 +296,6 @@ var CourseDetailView = Backbone.View.extend({
             if (this.commentsView) {
                 this.commentsView.close();
             }
-            this.notifier = null;
             $(document).off("scroll");
             $("#courseNavigateTab").off();
             $("#trialButton").off();
