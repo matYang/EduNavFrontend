@@ -498,6 +498,7 @@ var SearchView = Backbone.View.extend({
         });
         $("#search_category").on("click", ".clearSearch", function (e) {
             that.clearCourseNameSearch();
+            return;
         });
     },
     clearCourseNameSearch: function () {
@@ -512,15 +513,14 @@ var SearchView = Backbone.View.extend({
             $searchReqs.addClass("hidden");
         }
         that.searchRepresentation.set("courseName", undefined);
-        that.searchRepresentation.set("categoryValue", "00");
 
         $('#search_category').removeClass('tab5').find('.actived').remove();
         that.$el.find('input.search_input').val('');
         $("#search_category").find("li:last").addClass("last");
         that.courseSearch();
-        //location.reload();
-
-
+        //todo 有问题
+        that.showCategory();
+        app.navigate("search/" + "categoryValue=00", true);
     },
     /*处理筛选事件(上课时间 课程费用等)*/
     filterResult: function ($filter, $target) {
