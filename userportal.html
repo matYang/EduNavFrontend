@@ -14,22 +14,16 @@
     <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT"/>
     <!--watch out for IE-->
     <title>爱上课 ishangke.cn</title>
-
     <link rel="shortcut icon" type="image/x-icon" href="style/images/ico.ico"/>
-    <link href="style/lib/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-    <link href="style/css/Global.css" rel="stylesheet" type="text/css"/>
-    <link href="style/css/notifier-base.css" rel="stylesheet" type="text/css"/>
-    <link href="style/css/common-ui.css" rel="stylesheet" type="text/css"/>
-    <link href="style/css/topBar.css" rel="stylesheet" type="text/css"/>
-    <link href="style/css/right_bar.css" rel="stylesheet" type="text/css"/>
-    <link href="style/css/override.css" rel="stylesheet" type="text/css"/>
 
-    <script type="text/javascript">
-        if (!window.console) {
-            window.console = {log: function () {
-            } };
-        }
-    </script>
+    <link rel="stylesheet" type="text/css" href="style/lib/jquery-ui.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="style/css/Global.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/notifier-base.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/common-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/topBar.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/right_bar.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/override.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/index.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/reg.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/search.css"/>
@@ -40,20 +34,17 @@
     <link rel="stylesheet" type="text/css" href="style/css/aboutUs.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/tuan.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/tuanDetail.css"/>
-    <script>var _hmt = _hmt || [];</script>
 </head>
 <body>
-<div id='topBar' class='unselectable'></div>
-<!--<div id="visualScope"></div>-->
-<div id="searchArea" class="wrapper bg-white"></div>
 
+<!--main start-->
+<div id='topBar' class='unselectable'></div>
+<div id="searchArea" class="wrapper bg-white"></div>
 <div id="wrap">
     <div id="main" class="clearfix">
         <div id='content' class='clearfix'></div>
     </div>
 </div>
-
-
 <div id='infoLayer'></div>
 <div id="overlay"></div>
 <div id='overlayCourse'></div>
@@ -3936,6 +3927,15 @@
 </script>
 
 </div>
+<!--main end-->
+
+<script type="text/javascript">
+    if (!window.console) {
+        window.console = {log: function () {
+        } };
+    }
+    var _hmt = _hmt || [];
+</script>
 <!-- load libraries-->
 <script src="scripts/Lib/LoadFirst/jquery-1.11.1.min.js"></script>
 <script src="scripts/Lib/LoadFirst/underscore-min.js" type="text/javascript"></script>
