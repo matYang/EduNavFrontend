@@ -15,15 +15,13 @@ var Address = Backbone.Model.extend({
         return data;
     },
     _toJSON: function () {
-        var json = _.clone(this.attributes);
-        return json;
+        return  _.clone(this.attributes);
     }
 });
 
 
 var Addresses = Backbone.Collection.extend({
     model: Address,
-
     start: 0,
     count: 0,
     total: 0,
