@@ -1,6 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
-.right_bar{ position:fixed; bottom:100px; right:10px;z-index: 50}
+.right_bar{
+    position:fixed; bottom:100px; right:10px;z-index: 50;
+    -webkit-transform: translateZ(0);
+}
 .right_bar dl{width:60px;position:relative;}
 /*文字图标*/
 .right_bar dl dt{
@@ -56,40 +59,6 @@
 .cs_online li.list2{ background-position:20px -57px;}
 .cs_online li.list3{ background-position:20px -138px;}
 .cs_online li.list4{ background-position:20px -216px; border-bottom:none;}
-
-/*仅出现在课程详情的免费试听弹出*/
-.shiting {
-    position: fixed;
-    top: 66px;
-    right: 6px;
-    width: 290px;
-    height: 140px;
-    z-index: 9999;
-}
-
-.shiting_inner {
-    padding: 10px;
-    padding-top: 20px;
-    text-align: center;
-}
-
-.shiting .btn {
-    margin-top: 10px;
-}
-
-.shiting p {
-    margin-top: 10px;
-}
-
-.shiting .close {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 27px;
-    height: 27px;
-    background: url(../images/shiting_close.png) no-repeat;
-    text-indent: -9999px;
-}
 
 /*对比框*/
 .compare{line-height:14px;}

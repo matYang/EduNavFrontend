@@ -281,7 +281,6 @@ var CourseDetailView = Backbone.View.extend({
             }
             $(document).off("scroll");
             $("#courseNavigateTab").off();
-            $("#trialButton").off();
             this.isClosed = true;
             app.courseDetailView = null;
         }

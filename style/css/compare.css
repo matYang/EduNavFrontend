@@ -162,6 +162,7 @@
     margin-top: 0;
     width: 999px;
     z-index: 999;
+    -webkit-transform: translateZ(0);
 }
 
 #noAddColumn, #noAddColumn td {

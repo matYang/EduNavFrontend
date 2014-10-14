@@ -43,9 +43,9 @@ var CompareWidgetView = Backbone.View.extend({
     bindEvents: function () {
         var that = this;
         $("#compare").on("click", function () {
-            if(!app.topBarView.hasCourse()){
+            if (!app.topBarView.hasCourse()) {
                 Info.displayNotice("您还没有添加待比较的课程，先去查看感兴趣的课程吧");
-            }else{
+            } else {
                 app.navigate("compare", true);
             }
         });
@@ -93,35 +93,34 @@ var CompareWidgetView = Backbone.View.extend({
     },
     renderMap: function () {
         var self = this;
-        if (typeof BMap == "undefined" || this.map || !app.searchView) {
-            return
-        }
-        var i = 0, courses = [];
-        if (app.searchView && app.searchView.searchResultView&&app.searchView.searchResultView.messages) {
-            courses = app.searchView.searchResultView.messages;
-        }
-        //新建百度地图view
-        this.map = new MainMapView();
-        if (app.searchView && app.searchView.searchRepresentation) {
-            if (app.searchView.searchRepresentation.get("district")) {
-                this.map.map.centerAndZoom((app.searchView.searchRepresentation.get("city")  || "南京") + "市" + 
-                    app.searchView.searchRepresentation.get("district") + "区", 12);
-            } else {
-                this.map.map.centerAndZoom(app.searchView.searchRepresentation.get("city") || "南京", 10);
-            }
-        } else {
-            this.map.map.centerAndZoom("南京", 9);
-        }
-        //过滤相同的地址后再发送请求 减少请求次数
-        var courseLocationMap = {};
-        for (i = 0; i < courses.length; i++) {
-            courseLocationMap[courses.at(i).get("instName")] = courses.at(i).get("address");
-        }
-
-        _.each(courseLocationMap,function(address,instName){
-            self.map.getLatLng(address, instName);
-        });
-        this.rendered = true;
+//        if (typeof BMap == "undefined" || this.map || !app.searchView) {
+//            return
+//        }
+//        var i = 0, courses = [];
+//        if (app.searchView && app.searchView.searchResultView&&app.searchView.searchResultView.messages) {
+//            courses = app.searchView.searchResultView.messages;
+//        }
+//        //新建百度地图view
+//        this.map = new MainMapView();
+//        if (app.searchView && app.searchView.searchRepresentation) {
+//            if (app.searchView.searchRepresentation.get("district")) {
+//                this.map.map.centerAndZoom((app.searchView.searchRepresentation.get("city")  || "南京") + "市" +
+//                    app.searchView.searchRepresentation.get("district") + "区", 12);
+//            } else {
+//                this.map.map.centerAndZoom(app.searchView.searchRepresentation.get("city") || "南京", 10);
+//            }
+//        } else {
+//            this.map.map.centerAndZoom("南京", 9);
+//        }
+//        //过滤相同的地址后再发送请求 减少请求次数
+//        var courseLocationMap = {};
+//        for (i = 0; i < courses.length; i++) {
+//            courseLocationMap[courses.at(i).get("instName")] = courses.at(i).get("address");
+//        }
+//
+//        _.each(courseLocationMap,function(address,instName){
+//            self.map.getLatLng(address, instName);
+//        });
     },
     close: function () {
         if (!this.isClosed) {
@@ -133,10 +132,10 @@ var CompareWidgetView = Backbone.View.extend({
             }
             this.isClosed = true;
             this.$el.empty();
-            if (this.map) {
-                this.map.close();
-            }
-            this.el = "";
+//            if (this.map) {
+//                this.map.close();
+//            }
+            this.el = null;
 
         }
     }
@@ -144,8 +143,8 @@ var CompareWidgetView = Backbone.View.extend({
 
 /*课程详情页中右侧fixed栏目的对比功能的增加和删除 */
 var CourseDetailCompareWidgetView = CompareWidgetView.extend({
-   el: ".right_bar .comparison",
-   template: _.template(tpl.get("courseDetailCompareWidget")),
+    el: ".right_bar .comparison",
+    template: _.template(tpl.get("courseDetailCompareWidget")),
     initialize: function () {
         CompareWidgetView.prototype.initialize.call(this);
     },
@@ -175,9 +174,9 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
     bindEvents: function () {
         var that = this;
         $("#compare").on("click", function () {
-            if(!app.topBarView.hasCourse()){
+            if (!app.topBarView.hasCourse()) {
                 Info.displayNotice("您还没有添加待比较的课程，先去查看感兴趣的课程吧");
-            }else{
+            } else {
                 app.navigate("compare", true);
             }
         });
@@ -198,43 +197,12 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
                 that.load();
             }
         });
-        $("#compareToggle").on("click", function () {
+        that.$el.on("click", '#compareToggle', function () {
             var $content = $("#compareWidgetContent");
             if ($content.hasClass("hidden")) {
                 $content.removeClass("hidden");
             } else {
                 $content.addClass("hidden");
-            }
-        });
-        //课程详情页面中右侧免费试听的事件绑定
-        $("#trialButton").on("click", function (e) {
-            e.preventDefault();
-            var $this = $(this);
-            //处于关闭状态
-            if ($(e.target).hasClass("close")) {
-                $this.find("img").attr("src", "style/images/up_mianfei.png").css("margin-left", 200);
-                $this.addClass("shrinked");
-                $(e.target).addClass("hidden");
-            }
-            //点击图片（收缩和展开状态） 收缩状态展开 展开状态进入客服系统
-            else if (e.target.tagName === "IMG") {
-                if ($this.hasClass("shrinked")) {
-                    $this.find("img").attr("src", "style/images/shiting.gif").css("margin-left", 0);
-                    $this.removeClass("shrinked");
-                    $this.find(".close").removeClass("hidden");
-                } else {
-                    //打开客服系统
-                    doyoo.util.openChat('g=82548');
-//                    app.navigate("booking/c" + app.courseDetailView.courseId, true);
-                }
-            }
-        }).on("mouseover", "img", function (e) {//收缩状态下图片的hover状态改变
-            if ($(e.delegateTarget).hasClass("shrinked")) {
-                $(e.target).attr("src", "style/images/up_shiting.png");
-            }
-        }).on("mouseout", "img", function (e) {
-            if ($(e.delegateTarget).hasClass("shrinked")) {
-                $(e.target).attr("src", "style/images/up_mianfei.png");
             }
         });
     },
@@ -248,8 +216,6 @@ var CourseDetailCompareWidgetView = CompareWidgetView.extend({
     close: function (id) {
         if (!this.isClosed) {
             CompareWidgetView.prototype.close.call(this);
-            $("#compareToggle").off();
-            $("#trialButton").off();
             this.$el.off();
             this.isClosed = true;
         }
