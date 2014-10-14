@@ -409,14 +409,14 @@ p.footer-phone {
 .partnerLi img{ width: 240px; height: 160px;}
 .paetners_info{
     display: none;
-    padding: 10px;
+    padding: 15px 10px;
     width: 220px;
-    height: 140px;
+    height: 130px;
     overflow: hidden;
     position: absolute;
     bottom: 0; left: 0;
     background-color: rgba(255,255,255,0.95);
-    line-height: 35px;
+    line-height: 30px;
     font-size: 16px;
     color: #1a1a1a;
 }

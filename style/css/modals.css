@@ -53,6 +53,16 @@
     float: right;
 }
 
+.modal-teacher a {
+    width: 150px;
+    height: 150px;
+    margin: 45px 30px;
+    border-radius: 75px;
+    display: block;
+    float: left;
+    position: relative;
+}
+
 .modal-teacher .teacherInfoA .overlay_te{
     position: absolute;
     width: 150px;
@@ -62,14 +72,7 @@
     background-image: url("../images/overlay_teacher_info.png");
 }
 
-.modal-teacher a {
-    width: 150px;
-    height: 150px;
-    margin: 45px 30px;
-    border-radius: 75px;
-    display: block;
-    float: left;
-}
+
 
 .modal-teacher .teacherInfoA img {
     width: 150px;
