@@ -120,12 +120,12 @@ var SearchResultView = MultiPageView.extend({
     renderSearchResults: function (data) {
         if (!this.isClosed) {
             //prevent memory leaks
-            if (typeof BMap !== "undefined" && !this.compareWidgetView.map) {
-                this.compareWidgetView.renderMap();
-            }
-            if (this.compareWidgetView.map) {
-                this.compareWidgetView.map.removeAllMarkers();
-            }
+//            if (typeof BMap !== "undefined" && !this.compareWidgetView.map) {
+//                this.compareWidgetView.renderMap();
+//            }
+//            if (this.compareWidgetView.map) {
+//                this.compareWidgetView.map.removeAllMarkers();
+//            }
             var searchResults = data || new Courses();
             this.allMessages = searchResults;
             this.messages = searchResults;

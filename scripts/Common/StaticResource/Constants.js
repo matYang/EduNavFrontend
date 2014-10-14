@@ -35,6 +35,7 @@ var Constants = {
         /*课程搜索模块*/
         "home", "homeCategoryContainer", "homeButton", "homeCatButton",
         "search", "searchResultEntry", "search_noMessage",
+        //地图上的自定义标签
         "mapLabel",
         "compareWidget", "courseDetailCompareWidget",
         "compareWidgetEntry",

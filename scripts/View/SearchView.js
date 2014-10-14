@@ -564,26 +564,26 @@ var SearchView = Backbone.View.extend({
             if (dataValue === "noreq") {
                 this.searchRepresentation.set("locationValue", undefined);
                 this.searchRepresentation.set("circleValue", undefined);
-                if (this.compareWidgetView.map) {
-                    this.compareWidgetView.map.setCenter(this.locations[0].name);
-                    this.compareWidgetView.map.map.setZoom(9);
-                }
+//                if (this.compareWidgetView.map) {
+//                    this.compareWidgetView.map.setCenter(this.locations[0].name);
+//                    this.compareWidgetView.map.map.setZoom(9);
+//                }
             } else if (dataValue === "location") {//判断是不是行政区
                 this.searchRepresentation.set("locationValue", $target.data("value"));
                 this.searchRepresentation.set("circleValue", undefined);
                 this.titleObj.district = $target.html();
-                if (this.compareWidgetView.map) {
-                    this.compareWidgetView.map.setCenter($target.html());
-                    this.compareWidgetView.map.map.setZoom(11);
-                }
+//                if (this.compareWidgetView.map) {
+//                    this.compareWidgetView.map.setCenter($target.html());
+//                    this.compareWidgetView.map.map.setZoom(11);
+//                }
             } else if (dataValue === "circle") {//判断是不是商圈
                 this.searchRepresentation.set("circleValue", $target.data("value"));
                 this.searchRepresentation.set("locationValue", undefined);
                 this.titleObj.district = $target.html();
-                if (this.compareWidgetView.map) {
-                    this.compareWidgetView.map.setCenter($target.html());
-                    this.compareWidgetView.map.map.setZoom(13);
-                }
+//                if (this.compareWidgetView.map) {
+//                    this.compareWidgetView.map.setCenter($target.html());
+//                    this.compareWidgetView.map.map.setZoom(13);
+//                }
             } else {
                 //判断是商圈下的还是行政区
                 if ($target.parent().data("parentvalue") === "location") {

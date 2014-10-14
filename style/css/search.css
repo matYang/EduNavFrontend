@@ -506,64 +506,6 @@
     background-color: #28B094;
 }
 
-/*百度地图自定义图标*/
-#mainMap {
-    position: relative;
-    border: 1px solid #ccc;
-    width: 248px;
-    height: 338px;
-    z-index: 50;
-    background-color: #fff;
-}
-
-#mainMap .map_icon {
-    position: absolute;
-    cursor: pointer;
-    z-index: 52
-}
-
-#mainMap .map_icon:hover {
-    z-index: 54
-}
-
-#mainMap .map_icon span {
-    display: inline-block;
-    height: 30px;
-    padding-left: 28px;
-    line-height: 24px;
-    background: url(../images/map_icon.png) no-repeat 0 -31px;
-    font-size: 12px;
-    color: #ea5514;
-}
-
-#mainMap .map_icon em {
-    display: inline-block;
-    position: relative;
-    top: 6px;
-    width: 10px;
-    height: 20px;
-    background: url(../images/map_icon.png) no-repeat -191px -33px;
-}
-
-#mainMap .map_icon:hover span {
-    display: inline-block;
-    height: 30px;
-    padding-left: 28px;
-    height: 30px;
-    line-height: 24px;
-    background: url(../images/map_icon.png) no-repeat 0 0;
-    font-size: 12px;
-    color: #15ae67;
-}
-
-#mainMap .map_icon:hover em {
-    display: inline-block;
-    position: relative;
-    top: 6px;
-    width: 10px;
-    height: 20px;
-    background: url(../images/map_icon.png) no-repeat -191px -2px;
-}
 
 #searchWidgets.stickyHeader {
     position: fixed;
