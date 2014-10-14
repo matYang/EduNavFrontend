@@ -359,11 +359,15 @@ p.footer-phone {
     /*一定要加上left或right*/
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #000;
     color: #fff;
     line-height: 30px;
     font-size: 14px;
     padding-left: 10px;
+    filter:alpha(opacity=40);
+    -moz-opacity:0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4;
 }
 
 #tuanPic .pic_word span {
@@ -415,10 +419,14 @@ p.footer-phone {
     overflow: hidden;
     position: absolute;
     bottom: 0; left: 0;
-    background-color: rgba(255,255,255,0.95);
+    background-color: #fff;
     line-height: 30px;
     font-size: 16px;
     color: #1a1a1a;
+    filter:alpha(opacity=95);
+    -moz-opacity:0.95;
+    -khtml-opacity: 0.95;
+    opacity: 0.95;
 }
 
 .partners .partnerLi:hover .paetners_info{ display: block;}

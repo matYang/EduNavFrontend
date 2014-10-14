@@ -108,9 +108,6 @@ textarea {
     border: 3px solid transparent;
     background-color: #ffffff;
     margin-bottom: 20px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 
 /*panel components all padding*/
