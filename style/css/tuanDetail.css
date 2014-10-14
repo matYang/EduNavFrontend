@@ -10,8 +10,7 @@
 }
 
 /*banner*/
-#tuanDetail .banner,
-.courseDetail .banner {
+.detailArea .banner {
     width: 945px;
     padding: 25px 27px 25px 28px;
     height: 390px;
@@ -19,46 +18,41 @@
 }
 
 /*pic*/
-#tuanDetail .pic,
-.courseDetail .pic {
+.detailArea .pic {
     width: 460px;
-    height: 380px;
+    height: 392px;
     float: left;
 }
 
-#tuanDetail .pic .pic_big,
-.courseDetail .pic .pic_big {
+/*大图*/
+.detailArea .pic_big {
     width: 460px;
     height: 322px;
 }
 
-#tuanDetail .pic .pic_big a,
-.courseDetail .pic .pic_big a {
+.detailArea .pic_big a {
     width: 460px;
     height: 322px;
     display: none;
 }
 
-#tuanDetail .pic .pic_big img,
-.courseDetail .pic .pic_big img {
+.detailArea .pic_big img {
     width: 460px;
     height: 322px;
 }
 
-#tuanDetail .pic .pic_big .active,
-.courseDetail .pic .pic_big .active {
+.detailArea .pic_big .active {
     display: block;
 }
 
-#tuanDetail .pic .pic_list,
-.courseDetail .pic .pic_list {
+/*小图*/
+.detailArea .pic_list {
     width: 460px;
     height: 60px;
     margin-top: 10px;
 }
 
-#tuanDetail .pic .pic_list a,
-.courseDetail .pic .pic_list a {
+.detailArea .pic_list a {
     width: 98px;
     height: 60px;
     display: block;
@@ -67,14 +61,12 @@
     position: relative;
 }
 
-#tuanDetail .pic .pic_list img,
-.courseDetail .pic .pic_list img {
+.detailArea .pic_list img {
     width: 98px;
     height: 60px;
 }
 
-#tuanDetail .pic .pic_list .active,
-.courseDetail .pic .pic_list .active {
+.detailArea .pic_list .active {
     width: 98px;
     height: 60px;
     position: absolute;
@@ -83,16 +75,14 @@
 }
 
 /*row*/
-#tuanDetail .row,
-.courseDetail .row {
+.detailArea .row {
     width: 468px;
     height: 322px;
     float: right;
     padding: 0;
 }
 
-.courseDetail .row .price,
-#tuanDetail .row .price {
+.detailArea .row .price {
     padding-left: 10px;
     width: 458px;
     height: 80px;
@@ -102,58 +92,49 @@
     font-size: 16px;
 }
 
-.courseDetail .small_title {
+.detailArea .small_title {
     height: 40px;
     margin-top: 8px;
     margin-bottom: 3px;
 }
 
-.courseDetail .small_title h3 {
+.detailArea .small_title h3 {
     float: left;
     line-height: 30px;
     font-weight: normal;
 }
 
-.courseDetail .small_title input {
+.detailArea .small_title input {
     width: 100px;
     height: 35px;
     float: right;
     margin-left: 10px;
 }
 
-#tuanDetail .row .price span,
-.courseDetail .row .price span {
+.detailArea .row .price span {
     margin-right: 20px;
     display: inline-block;
 }
 
-#tuanDetail .row .price span s,
-.courseDetail .row .price span s {
+.detailArea .row .price span s {
     text-decoration: line-through;
 }
 
-.courseDetail .row .price strong,
-#tuanDetail .row .price strong {
+.detailArea .row .price strong {
     font-size: 28px;
 }
 
-.courseDetail .row .price strong {
-    font-size: 28px;
-}
-
-#tuanDetail .row h2,
-.courseDetail .row h2 {
+.detailArea .row h2 {
     padding-left: 0;
     color: #128d56;
     margin-bottom: 10px;
     text-align: left;
 }
 
-.courseDetail .row .icon,
-#tuanDetail .row .icon {
+.detailArea .row .icon {
     height: 17px;
     padding: 27px 0 13px 0;
-    width: 420px;
+    width: 100%;
     background-image: url("");
 }
 
@@ -161,57 +142,38 @@
     float: left;
 }
 
-#tuanDetail .row .icon a {
-    float: left;
-    color: #ffbd6b;
-    line-height: 20px;
-    margin-left: 10px;
-}
-
-#tuanDetail .row .icon span {
-    line-height: 20px;
-    float: left;
-    margin-left: 10px;
-}
-
-.courseDetail .row .icon a {
+.detailArea .row .icon a {
     float: left;
     color: #C69F5E;
     line-height: 20px;
     margin-left: 10px;
 }
 
-.courseDetail .row .icon span {
+.detailArea .row .icon span {
     line-height: 20px;
     float: left;
     padding: 0 10px;
 }
 
-#tuanDetail .row .icon i,
-.courseDetail .row .icon i {
+.detailArea .row .icon i {
     font-style: normal
 }
 
-#tuanDetail .row span {
+.detailArea .row .span {
     line-height: 40px;
     font-size: 14px;
     text-align: left;
     display: block;
 }
 
-#tuanDetail .row a {
-    color: #128d56;
-}
 
-.courseDetail .btns,
-#tuanDetail .btns {
+.detailArea .btns {
     padding: 0;
     width: 468px;
     margin-top: 18px;
 }
 
-.courseDetail .btns a,
-#tuanDetail .btns a {
+.detailArea .btns a {
     height: 50px;
     display: block;
     text-align: center;
@@ -220,22 +182,22 @@
     color: #fff;
 }
 
-#tuanDetail .btnbuy,
-.courseDetail .btnbuy {
+
+.detailArea .btnbuy {
     width: 260px;
     background-color: #FF6A6A;
     float: left;
 }
 
-#tuanDetail .btnconsult,
-.courseDetail .btnconsult {
+
+.detailArea .btnconsult {
     width: 198px;
     background-color: #47BC78;
     float: right;
 }
 
-/*tuanMain*/
-.tuanMain {
+/*detailMain,下方主要内容*/
+.detailMain {
     width: 1000px;
     height: auto;
     min-height: 800px;
@@ -243,13 +205,13 @@
     position: relative;
 }
 
-.tuanMain a {
+.detailMain a {
     color: #128d56;
 }
 
 /*fleft*/
 
-.tuanMain .tuan_sorterArea {
+.detailMain .tuan_sorterArea {
     width: 748px;
     padding-bottom: 5px;
     float: left;
@@ -257,23 +219,19 @@
     z-index: 999;
 }
 
-#tuanDetail .w_730,
-.courseDetail .w_730 {
+
+.detailArea .w_730 {
     width: 710px;
     padding: 10px;
 }
 
-#searchResultContent .w_730 {
-    width: 730px;
-}
-
-.tuanMain .tuan_sorter {
+.detailMain .tuan_sorter {
     width: 740px;
     height: 52px;
     line-height: 52px;
 }
 
-.tuanMain .tuan_sorter li a {
+.detailMain .tuan_sorter li a {
     display: block;
     width: 177px;
     height: 52px;
@@ -286,31 +244,16 @@
     color: #333;
 }
 
-#tuanDetail .tuanMain .tuan_sorter a.active {
+.detailMain .tuan_sorter a.active {
     background-color: #28B094;
     color: #fff;
 }
 
-#tuanDetail .tuanMain .tuan_sorter_bottom {
+.detailMain .tuan_sorter_bottom {
     width: 730px;
     height: 2px;
     background-color: #28B094;
     display: block;
-}
-
-.courseDetail .tuanMain .tuan_sorter a.active {
-    background-color: #28B094;
-    color: #fff;
-}
-
-.courseDetail .tuanMain .tuan_sorter_bottom {
-    width: 730px;
-    height: 2px;
-    background-color: #28B094;
-    display: block;
-}
-
-#tuanDetail .tuanMain .content_inner {
 }
 
 .tuan_content dl {
@@ -445,8 +388,7 @@
     display: block;
 }
 
-.courseDetail .dticon,
-#tuanDetail .dticon {
+.detailArea .dticon {
     width: 9px;
     height: 13px;
     display: block;
@@ -455,8 +397,7 @@
     margin: 8px 10px 0 2px;
 }
 
-.courseDetail .warmicon,
-#tuanDetail .warmicon {
+.detailArea .warmicon {
     width: 18px;
     height: 18px;
     display: block;
@@ -723,9 +664,6 @@
 }
 
 /*fright*/
-#tuanDetail .fright {
-}
-
 #tuanDetail .fright h4 {
     color: #072;
     line-height: 30px;
@@ -794,15 +732,13 @@
 }
 
 /*下拉时候多出来的按钮*/
-#tuanDetail .fright .tuan_btn,
-.courseDetail .fright .tuan_btn {
+.detailArea .fright .tuan_btn {
     width: 250px;
     display: none;
     margin-top: 0;
 }
 
-#tuanDetail .tuan_btn a,
-.courseDetail .tuan_btn a {
+.detailArea .tuan_btn a {
     color: #fff;
     font-size: 18px;
     margin-bottom: 4px;
