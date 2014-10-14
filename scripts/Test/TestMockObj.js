@@ -140,6 +140,13 @@ testMockObj = {
         .set('teachingAndExercise', '讲练结合-test')
         .set('questionBank', '题库支持-test')
         .set('downloadMaterials', '课件下载-test'), testCourse3: (new Course()).set("categoryValue", "000101").set("id", 3).set("courseName", "GRE"),
+    testCourse4: (new Course()).set("categoryValue", "000101").set('id',4),
+    testCourse5: (new Course()).set("categoryValue", "000101").set('id',5),
+    testCourse6: (new Course()).set("categoryValue", "000101").set('id',6),
+    testCourse7: (new Course()).set("categoryValue", "000101").set('id',7),
+    testCourse8: (new Course()).set("categoryValue", "000101").set('id',8),
+    testCourse9: (new Course()).set("categoryValue", "000101").set('id',9),
+    testCourse10: (new Course()).set("categoryValue", "000101").set('id',10),
     testBookings: new Bookings(),
     testBooking1: (new Booking()).set("id", 1).set("reference", "10001").set("status", 0).set("type", 1).set("name", "马修")
         .set("phone", 13915063907).set("email", "test@gmail.com").set("price", 11999)
@@ -491,7 +498,10 @@ testMockObj.testComments.add([
 testMockObj.testCourses.add([
     testMockObj.testCourse1,
     testMockObj.testCourse2,
-    testMockObj.testCourse3
+    testMockObj.testCourse3,
+    testMockObj.testCourse4,
+    testMockObj.testCourse5,
+    testMockObj.testCourse6
 ]);
 testMockObj.testAddressList.add([
     testMockObj.testAddress1,

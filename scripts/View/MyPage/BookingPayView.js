@@ -52,22 +52,8 @@ var BookingPayView = Backbone.View.extend({
          */
         //确认，去支付按钮
         that.$el.on("click", '#goToAlipay', function () {
-
-            if (!that.overlayBooking) {
-                that.overlayBooking = new OverlayBooking();
-            } else if (that.overlayBooking.isClosed) {
-                that.overlayBooking.render();
-            }
-            //todo 进入团购订单页面
-            $('.btnfalse').on('click', function () {
-                var ref = window.location.hash;
-                ref = ref.substring(1);
-                app.navigate('error/pay/ref=' + ref, true);
-            });
-            $('.btnsuccess').on('click', function () {
-                app.navigate("mypage/tbooking/" + that.bookingId, true);
-                $("#overlay_booking").remove();
-            });
+            that.overlayBooking = new PayInfoModal({bookingId:that.bookingId});
+            that.overlayBooking.show();
             //打开新标签页进行支付 location
             var payType = $('input[name=payType]:checked').val();
 //            var url = '/api/v2/order/' + that.booking.id + '?type=' + payType;//原order
@@ -77,51 +63,18 @@ var BookingPayView = Backbone.View.extend({
         });
         //显示更多
         $(".more-pay").on("click",function(){
-            $("#more_bank").show();
+            $("#more_bank").slideDown();
             $(this).hide();
         });
     },
     close: function () {
         if (!this.isClosed) {
-            $('.btnfalse').off();
-            $('.btnsuccess').off();
             this.$el.off();
             this.$el.empty();
             this.isClosed = true;
             if (this.overlayBooking) {
                 this.overlayBooking.close();
             }
-        }
-    }
-});
-
-/*支付未跳转页面View*/
-var OverlayBooking = Backbone.View.extend({
-    el: "#overlayCourse",//借用课程那个弹出框的div
-    template: _.template(tpl.get("overlayBooking")),
-    initialize: function () {
-        this.isClosed = false;
-        this.isShow = false;
-        _.bindAll(this, "render", "bindEvents", "close");
-        app.viewRegistration.register(this);
-        this.render();
-
-    },
-    render: function () {
-        this.$el.html(this.template());
-        this.bindEvents();
-    },
-
-    bindEvents: function () {
-        var that = this;
-
-    },
-
-    close: function () {
-        if (!this.isClosed) {
-            this.$el.off();
-            this.$el.empty();
-            this.isClosed = true;
         }
     }
 });

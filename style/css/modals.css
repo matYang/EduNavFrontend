@@ -11,7 +11,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1040;
+    z-index: 2040;
     background-color: #000000;
     /*opacity */
     filter: alpha(opacity=50);
@@ -27,7 +27,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1050;
+    z-index: 2050;
     overflow-x: hidden;
     /*overflow-y: auto;*/
     overflow: hidden;
@@ -39,9 +39,60 @@
 }
 /*base end*/
 
+/*支付结果信息确认modal*/
+.modal-payInfo .modal-inner{
+    width: 400px;
+    height: 211px;
+    padding: 22px;
+    background-color: #fff;
+    margin: 200px auto;
+}
+/*支付未跳转页面的弹出框*/
+.modal-payInfo span{
+    width: 400px; height: 45px;
+    display: block;
+    line-height: 45px;
+    text-align: center;
+    color: #2cb179;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px dashed #2cb179;
+}
+.modal-payInfo .message{ padding: 15px 0;}
+.modal-payInfo .message li{
+    width: 225px; min-height: 20px;
+    display: block;
+    margin-left: 120px;
+    line-height: 30px;
+    color: #8b8b8b;
+    position: relative;
+    font-size: 14px;
+}
+.modal-payInfo .message li i{
+    width: 6px; height: 6px;
+    border-radius: 2px;
+    display: block;
+    background-color: #8b8b8b;
+    position: absolute;
+    left: -15px;
+    top: 12px;
 
-/*教师modal*/
-/*教师详情*/
+}
+.modal-payInfo .btn{ width: 400px; margin-top: 10px; padding: 0;}
+.modal-payInfo .btn a{
+    width: 167px; height: 38px;
+    display: block;
+    border-radius: 19px;
+    line-height: 38px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+}
+.modal-payInfo .btnfalse{ float: left; margin-left: 20px; background-color: #c7c7c7;}
+.modal-payInfo .btnsuccess{ float: right; margin-right: 20px; background-color: #28B094;}
+
+/*教师详情modal*/
 .modal-teacher .modal-inner{
     width: 740px;
     height: 240px;

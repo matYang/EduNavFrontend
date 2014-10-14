@@ -24,8 +24,7 @@ var Constants = {
         "topBar-loggedIn", "topBar-notLoggedIn",
         /*注册模块*/
         "registration", "registration_finish", "findPassword_1", "findPassword_2",
-        /*快速登录*/
-        "loginFast",
+
         /*首页推荐课程滚动图*/
         "homePic",
 
@@ -98,23 +97,25 @@ var Constants = {
 
         //其它
         'errorPay',//支付失败的帮助页面
-        "infoModal",
-        "colorInfoModal",
+
         "sideBarView",//侧边工具栏
 //        "banner",//首页的大屏滚动banner
 
-        //申请成功弹出窗
-        "popTip",
-        //人工选课弹出框
-        "artificialSelection",
-        //免费试听弹出框
-        "freeTrial",
-        //课程选择页面
-        "courseTip",
-        //教师信息弹出框
-        "teacherModal",
-        //支付未跳转页面弹出框
-        "overlayBooking"
+        "infoModal",//信息提示 没有背景
+
+        //todo 使用Modal start
+        "loginFast",//【课程详情|团购详情】快速登录
+        "freeTrial",//【课程详情】免费试听弹出框
+        "courseTip",//【首页】课程选择页面
+        "popTip",//【首页】申请成功弹出窗
+        "colorInfoModal",//【首页】表单验证提示
+        //todo 使用Modal end
+
+        "teacherModal",//【课程详情|团购详情】教师信息弹出框
+        "payInfoModal",//【团购订单支付页面】支付结果用户确认--遇到问题或成功
+
+        //todo 人工选课弹出框 暂未使用
+        "artificialSelection"
     ],
     gender: {
         "male": 0,
