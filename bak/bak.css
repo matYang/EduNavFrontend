@@ -8,3 +8,37 @@
 
 .to_top .to_top_inner a:hover{background-color: #aaa;color: #fff;}
 .to_top .to_top_inner a:hover s{ background-position:-20px 0;}
+
+/*仅出现在课程详情的免费试听弹出*/
+.shiting {
+    position: fixed;
+    top: 66px;
+    right: 6px;
+    width: 290px;
+    height: 140px;
+    z-index: 9999;
+}
+
+.shiting_inner {
+    padding: 10px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.shiting .btn {
+    margin-top: 10px;
+}
+
+.shiting p {
+    margin-top: 10px;
+}
+
+.shiting .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 27px;
+    height: 27px;
+    background: url(../images/shiting_close.png) no-repeat;
+    text-indent: -9999px;
+}

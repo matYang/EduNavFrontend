@@ -36,6 +36,7 @@ li a, .page a {
 
 #popup {
     position: fixed;
+    -webkit-transform: translateZ(0);
 }
 
 #mainMap {

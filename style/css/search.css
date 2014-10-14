@@ -570,6 +570,7 @@
     top: 5px;
     margin-left: 750px;
     background-color: #fff;
+    -webkit-transform: translateZ(0);
 }
 
 #searchWidgets.stickyHeader #compare {
@@ -588,6 +589,7 @@
     position: fixed;
     z-index: 2000;
     top: 0;
+    -webkit-transform: translateZ(0);
 }
 
 .popMain {
@@ -802,6 +804,7 @@
     background-color: #FFF;
     box-shadow: 0 0 10px #008E54;
     z-index: 600;
+    -webkit-transform: translateZ(0);
 }
 
 .popTipTop {
@@ -856,6 +859,7 @@
     position: fixed;
     z-index: 3000;
     top: 0;
+    -webkit-transform: translateZ(0);
 }
 
 .coursepopMain {

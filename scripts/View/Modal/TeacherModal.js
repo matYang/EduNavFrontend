@@ -17,7 +17,7 @@ var TeacherModal = Backbone.View.extend({
         this.render(teacher);
         this.$backdropEl.show();
         this.$modalEl.fadeIn(200);
-        //events
+        //events on
         this.$modalEl.on("click", '.close', self.hide);
         this.$modalEl.on('click', self._hideOnBackdropClick);
         this.$backdropEl.on('click', self._hideOnBackdropClick);
@@ -33,7 +33,7 @@ var TeacherModal = Backbone.View.extend({
     hide: function () {
         this.$modalEl.fadeOut(200);
         this.$backdropEl.fadeOut(200);
-        //events
+        //events off
         this.$modalEl.off("click", '.close', self.hide);
         this.$modalEl.off('click', self._hideOnBackdropClick);
         this.$backdropEl.off('click', self._hideOnBackdropClick);
@@ -55,4 +55,3 @@ var TeacherModal = Backbone.View.extend({
         }
     }
 });
-

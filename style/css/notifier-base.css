@@ -15,6 +15,7 @@
     overflow: visible;
     font-size: 13px;
     text-align: center;
+    -webkit-transform: translateZ(0);
 }
 
 .notifier .notifier-inner {

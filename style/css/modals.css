@@ -16,6 +16,8 @@
     /*opacity */
     filter: alpha(opacity=50);
     opacity: 0.5;
+    /*trigger render for chrome*/
+    -webkit-transform: translateZ(0);
 }
 
 .modal {

@@ -843,6 +843,7 @@
     position: fixed;
     z-index: 1999;
     top: 0;
+    -webkit-transform: translateZ(0);
 }
 
 #login_fast {
