@@ -274,6 +274,12 @@ var SearchArea = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+        //回车触发
+        this.$el.on("keypress", function (e) {
+            if (e.which === 13) {
+                $(".search_btn").click();
+            }
+        });
         //首页的按照课程名搜索
         this.$el.on('click', '.search_btn', function () {
             var courseName = $('.search_input').val();
