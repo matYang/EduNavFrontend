@@ -823,7 +823,7 @@
 .courseTip {
     width: 900px;
     height: 400px;
-    border: 6px solid rgba(0, 0, 0, 0.4);
+    border: 6px solid #292e38;
     margin: auto;
     background-color: #FFF;
 }
