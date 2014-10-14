@@ -191,18 +191,19 @@ var CourseDetailView = Backbone.View.extend({
             //alert(scroH);
             //滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
             if (scroH >= navH) {
-                $("#tuan_fright").css({"position": "fixed", "top": 4, "margin-left": 750});
+                $("#tuan_fright").addClass("stickyHeader");
                 $(".courseDetail .w_730").css("margin-top", "63px");
                 $(".tuan_btn").show();
                 $(".courseDetail .fright .site_map").css({"margin": "55px 0 0 0"});
-                $(".tuan_sorterArea").css({"position": "fixed", "padding-top": "4px", "top": 0, "z-index": 100});
+                $(".tuan_sorterArea").addClass("stickyHeader");
             }
             else if (scroH < navH) {
-                $("#tuan_fright").css({"position": "relative", "top": "", "margin-left": ""});
+                //$("#tuan_fright").css({"position": "relative", "top": "", "margin-left": ""});
+                $("#tuan_fright").removeClass("stickyHeader");
                 $(".courseDetail .w_730").css("margin-top", "");
                 $(".tuan_btn").hide();
                 $(".courseDetail .fright .site_map").css({"margin": ""});
-                $(".tuan_sorterArea").css({"position": "", "top": "", "padding-top": "4px"});
+                $(".tuan_sorterArea").removeClass("stickyHeader");
             }
 
             $(".tuan_sorter li a").removeClass("active");

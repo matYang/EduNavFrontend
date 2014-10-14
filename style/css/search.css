@@ -509,7 +509,7 @@
 
 #searchWidgets.stickyHeader {
     position: fixed;
-    top: 5px;
+    top: 0;
     margin-left: 750px;
     background-color: #fff;
     -webkit-transform: translateZ(0);

@@ -219,6 +219,14 @@
     z-index: 999;
 }
 
+.detailMain .tuan_sorterArea.stickyHeader{
+    position: fixed;
+    padding-top: 5px;
+    top: 0;
+    z-index: 100;
+    -webkit-transform: translateZ(0);
+}
+
 
 .detailArea .w_730 {
     width: 710px;
@@ -768,6 +776,13 @@
     width: 120px;
     height: 52px;
     float: right;
+}
+
+#tuan_fright.stickyHeader {
+    position: fixed;
+    top: 5px;
+    margin-left: 750px;
+    -webkit-transform: translateZ(0);
 }
 
 /*快速登录*/
