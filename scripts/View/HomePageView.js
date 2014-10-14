@@ -68,7 +68,8 @@ var HomePageView = Backbone.View.extend({
                         cat3.push("<li><a> --- </a></li>");
                         padding--;
                     }*/
-                    obj.catgoryList = cat3.join("");
+                    obj.catgoryList = cat3.j
+                    oin("");
                     obj.catClass = 'cat' + (i + 1);//使用cat作为class 取一级循环中的序号 见index.css
                     obj.categoryName = children1[j].name;
                     obj.parentName = i;
@@ -274,6 +275,12 @@ var SearchArea = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+        //回车触发
+        this.$el.on("keypress", function (e) {
+            if (e.which === 13) {
+                $(".search_btn").click();
+            }
+        });
         //首页的按照课程名搜索
         this.$el.on('click', '.search_btn', function () {
             var courseName = $('.search_input').val();

@@ -323,7 +323,12 @@ var SearchView = Backbone.View.extend({
     bindEvents: function () {
         var that = this, $searchPanel = $("#searchPanel"), $searchReqs = $("#searchReqs");
         this.bindSortEvents();
-
+        //回车触发
+        this.$el.on("keypress", function (e) {
+            if (e.which === 13) {
+                $(".search_btn").click();
+            }
+        });
         //顶部的按照课程名进行搜索
         this.$el.on('click', '.search_btn', function () {
             var courseName = $('.search_input').val();
