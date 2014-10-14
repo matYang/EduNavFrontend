@@ -68,8 +68,7 @@ var HomePageView = Backbone.View.extend({
                         cat3.push("<li><a> --- </a></li>");
                         padding--;
                     }*/
-                    obj.catgoryList = cat3.j
-                    oin("");
+                    obj.catgoryList = cat3.join("");
                     obj.catClass = 'cat' + (i + 1);//使用cat作为class 取一级循环中的序号 见index.css
                     obj.categoryName = children1[j].name;
                     obj.parentName = i;
