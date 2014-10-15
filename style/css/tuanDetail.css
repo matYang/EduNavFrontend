@@ -688,18 +688,11 @@
     width: 230px;
     padding: 10px;
     margin-bottom: 20px;
-    margin-top: 4px;
 }
 
 .w_260 .site_map a {
-    width: 230px;
-    height: 180px;
     display: block;
     margin-bottom: 10px;
-}
-
-.w_260 .site_map a img{
-    width: 230px; height: 180px;
 }
 
 .w_260 span {
