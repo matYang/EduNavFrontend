@@ -174,14 +174,12 @@ var TuanDetailView = Backbone.View.extend({
                 $("#tuan_fright").addClass("stickyHeader");
                 $("#tuanDetail .w_730").css("margin-top", "63px");
                 $(".tuan_btn").show();
-                $("#tuanDetail .fright .site_map").css({"margin": "55px 0 0 0"});
                 $(".tuan_sorterArea").addClass("stickyHeader");
             }
             else if (scroH < navH) {
                 $("#tuan_fright").removeClass("stickyHeader");
                 $("#tuanDetail .w_730").css("margin-top", "");
                 $(".tuan_btn").hide();
-                $("#tuanDetail .fright .site_map").css({"margin": ""});
                 $(".tuan_sorterArea").removeClass("stickyHeader");
             }
 

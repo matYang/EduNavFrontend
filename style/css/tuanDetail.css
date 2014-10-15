@@ -747,13 +747,12 @@
 .detailArea .fright .tuan_btn {
     width: 250px;
     display: none;
-    margin-top: 0;
+    margin: 0 0 5px 0;
 }
 
 .detailArea .tuan_btn a {
     color: #fff;
     font-size: 18px;
-    margin-bottom: 4px;
     text-align: center;
     line-height: 52px;
 }
@@ -998,3 +997,15 @@
 .map_info dd{ display: none;}
 .map_info:hover dd{display: block;}
 .map_info i{ width: 9px; height: 5px; display: block; float: right; margin-top: 5px; background-image: url("../images/map_tip.png")}
+
+
+
+
+/*承诺*/
+.promise{ width: 230px; padding: 10px; margin-bottom: 10px;}
+.promise h3{ color: #349e6F; margin: 10px 0 20px 0;}
+.promise li{ margin-bottom: 10px;}
+.promiseIcon{ width: 30px; height: 30px; float: left; margin-right: 10px;}
+.promiseIcon img{ width: 30px; height: 30px;}
+.promiseInfo{ width: 190px; display: block; float: right;}
+.promiseInfo h3{ line-height: 30px; color: #333; margin: 0;}

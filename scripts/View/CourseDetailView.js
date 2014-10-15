@@ -194,15 +194,12 @@ var CourseDetailView = Backbone.View.extend({
                 $("#tuan_fright").addClass("stickyHeader");
                 $(".courseDetail .w_730").css("margin-top", "63px");
                 $(".tuan_btn").show();
-                $(".courseDetail .fright .site_map").css({"margin": "55px 0 0 0"});
                 $(".tuan_sorterArea").addClass("stickyHeader");
             }
             else if (scroH < navH) {
-                //$("#tuan_fright").css({"position": "relative", "top": "", "margin-left": ""});
                 $("#tuan_fright").removeClass("stickyHeader");
                 $(".courseDetail .w_730").css("margin-top", "");
                 $(".tuan_btn").hide();
-                $(".courseDetail .fright .site_map").css({"margin": ""});
                 $(".tuan_sorterArea").removeClass("stickyHeader");
             }
 

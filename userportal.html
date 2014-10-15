@@ -2055,10 +2055,39 @@
 </div>
 <!--左边-->
 <div id="tuan_fright" class="fright w_260">
-    <div class="tuan_btn" class="btns">
+    <div class="tuan_btn clearfix" class="btns">
         <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
         <a class="btnconsult bookNow" data-value="<%=courseId%>">申请免费试听</a>
     </div>
+
+    <!--爱上课承诺-->
+    <div class="promise panel_bg clearfix hidden">
+        <h3>爱上课承诺</h3>
+        <ul>
+            <li class="clearfix">
+                <a class="promiseIcon"><img src="style/images/promise_free.jpg" alt=""/></a>
+                <div class="promiseInfo">
+                    <h3>免费</h3>
+                    <p>免费咨询，免费测评，免费预约，免费试听</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <a class="promiseIcon"><img src="style/images/promise_quality.jpg" alt=""/></a>
+                <div class="promiseInfo">
+                    <h3>优质</h3>
+                    <p>只推荐优质课程，只合作优质学校，避免欺诈陷阱</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <a class="promiseIcon"><img src="style/images/promise_preferential.png" alt=""/></a>
+                <div class="promiseInfo">
+                    <h3>享优惠</h3>
+                    <p>订课程享网站返现，最高可达1526元；团购特卖月月有</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
     <div class="site_map panel_bg clearfix">
         <a href="http://api.map.baidu.com/geocoder?address=<%= address%>&output=html" target="_blank">
             <img src="http://api.map.baidu.com/staticimage?width=230&height=180&markers=<%= address.split('（')[0].split('(')[0] %>"
@@ -3613,9 +3642,36 @@
 
 <!--左边-->
 <div id="tuan_fright" class="fright w_260">
-    <div class="tuan_btn" class="btn">
+    <div class="tuan_btn clearfix" class="btn">
         <a class="btnbuy">立即抢购</a>
         <a class="btnconsult" onclick="doyoo.util.openChat('g=82548');return false;">咨询</a>
+    </div>
+    <!--爱上课承诺-->
+    <div class="promise panel_bg clearfix hidden">
+        <h3>爱上课承诺</h3>
+        <ul>
+            <li class="clearfix">
+                <a class="promiseIcon"><img src="style/images/promise_free.jpg" alt=""/></a>
+                <div class="promiseInfo">
+                    <h3>免费</h3>
+                    <p>免费咨询，免费测评，免费预约，免费试听</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <a class="promiseIcon"><img src="style/images/promise_quality.jpg" alt=""/></a>
+                <div class="promiseInfo">
+                    <h3>优质</h3>
+                    <p>只推荐优质课程，只合作优质学校，避免欺诈陷阱</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <a class="promiseIcon"><img src="style/images/promise_preferential.png" alt=""/></a>
+                <div class="promiseInfo">
+                    <h3>享优惠</h3>
+                    <p>订课程享网站返现，最高可达1526元；团购特卖月月有</p>
+                </div>
+            </li>
+        </ul>
     </div>
     <div class="site_map panel_bg clearfix">
         <a href="http://api.map.baidu.com/geocoder?address=南京市&output=html" target="_blank">
