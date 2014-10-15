@@ -34,7 +34,7 @@ var SearchResultView = MultiPageView.extend({
         //加入banner图
         var $container = $('#'+this.entryContainer);
         var total = $container.children('.searchResultEntry').length;
-        var imgTpl = _.template('<div class="searchResultEntry adv"><img width="731" height="153" class="bannerImg" src="<%=url%>" alt="<%=alt%>"></div>');
+        var imgTpl = _.template('<div class="searchResultEntry adv"><img width="730" height="150" class="bannerImg" src="<%=url%>" alt="<%=alt%>"></div>');
         var imgList = [
             {url:'./style/images/search_a1.jpg',alt:'学什么？专家帮你挑'},
             {url:'./style/images/search_a2.jpg',alt:'警惕！十大培训陷阱'}
