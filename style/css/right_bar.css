@@ -1,22 +1,21 @@
 @charset "utf-8";
 /* CSS Document */
 .right_bar{
-    position:fixed; bottom:140px; right:10px;z-index: 50;
+    position:fixed; bottom:100px; right:10px;z-index: 50;
     -webkit-transform: translateZ(0);
 }
-.right_bar dl{width:60px;position:relative;background-color: #128d56;}
+.right_bar dl{width:60px;position:relative;margin-bottom:5px;}
 /*文字图标*/
 .right_bar dl dt{
     height: 52px;
     padding-top: 8px;
-    margin-bottom:5px;
     width:60px;
     /*text-indent:-9999px;*/
-
+    background-color: #128d56;
     cursor:pointer;
 }
 .right_bar dl dt i{width: 60px; height: 23px;background:url(../images/right_bar.png) no-repeat; display: block;}
-.right_bar dl:hover{background-color: #bbbbbb;}
+.right_bar dl:hover dt{background-color: #bbbbbb;}
 /*文字图标的隐藏层*/
 .right_bar dl dt span{ line-height: 30px; font-size: 12px; width: 60px; display: block; height: 30px; text-align: center; color: #fff;}
 .right_bar dl dd{
@@ -47,8 +46,8 @@
 .right_bar .qr_code dt i{ background-position:50% -73px;}
 .right_bar dl.qr_code dd{width: 160px}
 /*返回顶部*/
-.right_bar .back_to_top{ display: none}
-.right_bar .back_to_top dt{ background-color:#2e333f;}
+.right_bar .back_to_top{  height: 60px;}
+.right_bar .back_to_top dt{display: none; background-color:#2e333f;}
 .right_bar .back_to_top dt i{ background-position:50% -100px;}
 /*在线客服的隐藏层内容样式*/
 .cs_online li{

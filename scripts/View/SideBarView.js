@@ -25,10 +25,10 @@ var SiderBarView = Backbone.View.extend({
             //alert(scroH);
             //滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
             if (scroH >= 400) {
-                $('.right_bar .back_to_top').fadeIn();
+                $('.right_bar .back_to_top dt').fadeIn();
             }
             else if (scroH < 400) {
-                $('.right_bar .back_to_top').fadeOut();
+                $('.right_bar .back_to_top dt').fadeOut();
             }
         });
 
