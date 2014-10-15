@@ -67,10 +67,10 @@
 
 #tuanBanner .tips_li .c-right {
     text-align: right;
-    width: 94px;
+    width: 96px;
     float: right;
     padding-top: 10px;
-    padding-right: 10px;
+    padding-right: 8px;
 }
 
 #tuanBanner .tips_li .price {
