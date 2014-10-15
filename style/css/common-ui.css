@@ -397,8 +397,8 @@ textarea {
     position: absolute;
     display: none;
     z-index: 99;
-    bottom: 35px;
-    right: -46px;
+    bottom: 130px;
+    left: 90px;
 }
 
 .has-tip-t .tip-t .tip_content-t{
@@ -411,6 +411,7 @@ textarea {
     background: #fff;
     color: #666;
     border-radius: 5px;
+    box-shadow: 2px 2px 6px rgba(241, 241, 241, 0.6)
 }
 
 .has-tip-t .tip-t .arrow-t {
@@ -419,12 +420,12 @@ textarea {
     left: 0;
     width: 20px;
     height: 29px;
-    background-image: url("row_t.png");
+    background-image: url("../images/row_t.png");
 }
 
-.has-tip-t:hover .tip-t {
+/*.has-tip-t:hover .tip-t {
     display: block;
-}
+}*/
 
 /*label的独立style*/
 /*返*/

@@ -352,11 +352,8 @@
 .tuan_content .tuan_content_3 dd a {
     width: 120px;
     height: 120px;
-    border-radius: 60px;
-    background-color: #E9E9E9;
     display: block;
     float: left;
-    overflow: hidden;
 }
 
 .tuan_content .tuan_content_3 .serviceli {
