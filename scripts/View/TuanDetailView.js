@@ -3,7 +3,7 @@ var TuanDetailView = Backbone.View.extend({
     template: _.template(tpl.get("tuanDetail")),
     initialize: function (opt) {
         this.isClosed = false;
-        _.bindAll(this, "render", "bindEvents", 'showLoginModal', "close");
+        _.bindAll(this, "render", "bindEvents", 'renderMap', 'showLoginModal', "close");
         app.viewRegistration.register(this);
         this.teacherModal = new TeacherModal();
         this.tuanId = opt.tuanId;//团购的Id
@@ -24,8 +24,6 @@ var TuanDetailView = Backbone.View.extend({
                 Info.displayErrorPage("content", data.message);
             }
         });
-
-
     },
     render: function () {
         var that = this;
@@ -79,6 +77,31 @@ var TuanDetailView = Backbone.View.extend({
         $("#tuanDetail .pic").html(htmlphoto);
         $("#tuanDetail .pic .pic_big").find("a:first").addClass("active");
         $("#tuanDetail .pic .pic_list").find("i:first").removeClass("active");
+    },
+    //在地图脚本回调结束后会执行renderMap见mapLoadScript
+    renderMap: function () {
+        var self = this;
+        self.addressList = [];
+        this.tuan.get('addressList').forEach(function (address) {
+            self.addressList.push((address.toLocationObj()));
+        });
+        //新建地图view
+        this.mapView = new MapView({mapElId: 'smallMap'});
+        this.mapView.addMarker(self.addressList[0]);
+        $('#smallMap').after('<a class="margin-top viewLarge text-center">查看完整地图</a>');
+        $('.addressItem').hover( function () {
+            var index = $(this).data('index');
+            var address = self.addressList[index];
+            self.mapView.removeAllMarkers();
+            self.mapView.addMarker(address);
+        },function(){});
+        this.$el.on('click', '.viewLarge', function () {
+            self.mapModal = new MapModal({addressList: self.addressList});
+            var $body = $('body');
+            var width = $body.width() - 40;
+            var height = $body.height() - 60;
+            self.mapModal.show({width: width, height: height});
+        });
     },
 
     bindEvents: function () {

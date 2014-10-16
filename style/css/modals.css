@@ -14,8 +14,8 @@
     z-index: 2040;
     background-color: #000000;
     /*opacity */
-    filter: alpha(opacity=50);
-    opacity: 0.5;
+    filter: alpha(opacity=40);
+    opacity: 0.4;
     /*trigger render for chrome*/
     -webkit-transform: translateZ(0);
 }
@@ -27,6 +27,8 @@
     left: 0;
     right: 0;
     bottom: 0;
+    height: 100%;
+    width: 100%;
     z-index: 2050;
     overflow-x: hidden;
     /*overflow-y: auto;*/
@@ -36,15 +38,73 @@
 .modal-inner{
     position: relative;
     margin: 250px auto;
+    background-color: #ffffff;
 }
+
 /*base end*/
+
+/*完整地图modal*/
+.anchorBL{
+    display:none;
+}
+.modal-map .modal-close{
+    float: right;
+    display: block;
+    width: 20px;height: 20px;
+    margin-top: -2px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color:#aaaaaa;
+}
+.modal-map .modal-close:hover{
+    color: #444444;
+}
+.modal-map .modal-inner{
+    margin: 10px auto;
+    top:50%;
+    border: 1px solid #bababa;
+
+    text-align: left;
+    -webkit-box-shadow: 0 0 5px #ABABAB;
+    -moz-box-shadow: 0 0 5px #ABABAB;
+    box-shadow: 0 0 5px #ABABAB;
+}
+.modal-map .modal-header{
+    font-size: 14px;
+    padding: 14px 12px;
+    border-bottom: solid 1px #dbdbdb;
+}
+.modal-map .modal-header .modal-close{
+
+}
+.modal-map .addressList{
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: solid 1px #dbdbdb;
+}
+.modal-map .addressList .addressItem{
+    background-color: #ffffff;
+    padding: 20px 15px;
+    border-bottom: solid 1px #dbdbdb;
+}
+.modal-map .addressList .addressItem:hover,
+.modal-map .addressList .addressItem.active{
+    cursor: pointer;
+    background-color: #e2ece7;
+}
+/*地址列表的每一项 机构名和地址具体信息*/
+.modal-map .addressList .addressTitle{ margin-bottom: 5px; }
+.modal-map .addressList .addressDetail{font-size: 13px;color:#444444;}
+
 
 /*支付结果信息确认modal*/
 .modal-payInfo .modal-inner{
     width: 400px;
     height: 211px;
     padding: 22px;
-    background-color: #fff;
+    background-color: #ffffff;
     margin: 200px auto;
 }
 /*支付未跳转页面的弹出框*/
