@@ -173,4 +173,8 @@
 .modal-freeTrial .modal-inner{
     width: 720px;
 }
+/*快速登录modal*/
+.modal-loginFast .modal-inner{
+    width: 335px;
+}
 

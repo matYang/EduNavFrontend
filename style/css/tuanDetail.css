@@ -799,9 +799,6 @@
 
 #login_fast {
     width: 100%;
-    top: 200px;
-    position: absolute;
-    z-index: 2000;
 }
 
 #login_fast .login_Area {

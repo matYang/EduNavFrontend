@@ -109,6 +109,7 @@ var Constants = {
         "popTip",//【首页】申请成功弹出窗
         "colorInfoModal",//【首页】表单验证提示
         //todo 使用Modal end
+        "loginFastModal",//【课程详情|团购详情】快速登录
         "freeTrialModal",//【课程详情】免费试听弹出框
         "teacherModal",//【课程详情|团购详情】教师信息弹出框
         "payInfoModal",//【团购订单支付页面】支付结果用户确认--遇到问题或成功
