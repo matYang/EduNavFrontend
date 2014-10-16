@@ -206,6 +206,28 @@
         </div>
     </div>
 </script>
+<script type="text/templates" id="tpl_courseTipModal">
+    <div id="courseTipModal" class="modal modal-courseTip">
+        <div class="modal-inner">
+                <div class="coursepopMain">
+                    <div class="courseTip">
+                        <div class="courseTipA">
+                            <div class="courseTipClose close">X</div>
+                            <ul class="courseTipATop">
+                                <%_.each(data,function(v){%>
+                                <li class="courseTipATopHover" data-id="<%=v.id%>" data-value="<%=v.value%>"><%=v.name%></li>
+                                <%})%>
+                            </ul>
+                            <div class="courseTipAContent">
+                                <ul class="courseTipAContentDes">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</script>
 <!--modals end-->
 
 <script type="text/template" id="tpl_topBar-loggedIn">
@@ -376,62 +398,6 @@
             </div>
         </div>
     </div>
-</script>
-
-<script type="text/templates" id="tpl_freeTrial">
-    <div class="popM" id="popfreeTrial">
-        <div class="popMain">
-            <div class="popMainA">
-                <div class="popTopBar"></div>
-                <div class="popTopBlack"></div>
-                <div class="popTitle">
-                    <div class="popTitleA">
-                        <span class="popTSpanLeft">申请免费试听</span>
-                        <a class="popShu"></a>
-
-                        <div class="popTitleRight">
-                            <i class="popIconQuan"></i>
-                            <span class="popTSpanRight">全城最低价，全场7折起</span>
-                        </div>
-                    </div>
-                    <a class="popMainClose js_popClose"></a>
-                </div>
-                <div class="popContent">
-                    <div class="popContentA">
-                        <div id="detail_submit_error" class="text-error text-center margin-bottom"></div>
-                        <ul class="popContentUl">
-                            <li>
-                                <i class="popIconStar"></i>
-                                <span>意向课程：</span>
-                                <p><%=courseName%></p>
-                            </li>
-                            <li>
-                                <i class="popIconStar"></i>
-                                <span>学员姓名：</span>
-                                <input id="detail_name_input" class="popTxt" type="text"/>
-                            </li>
-                            <li>
-                                <i class="popIconStar"></i>
-                                <span>联系电话：</span>
-                                <input id="detail_phone_input" class="popTxt" type="text"/>
-                            </li>
-                            <li>
-                                <i class="popIconStar popIconStarSpec"></i>
-                                <span>附加信息： &nbsp;&nbsp;(选填)</span>
-                                <textarea id="detail_note_text" class="popTxt popTxtSpec"
-                                          placeholder="亲，请填上空闲的时间，择校、择课要求等信息，以便更好的为您服务"></textarea>
-                            </li>
-                        </ul>
-                        <div class="popBtn">
-                            <div class="popBtnYes" id="btnApplefreeTrial">立即申请</div>
-                            <a class="popBtnNo js_popClose">放弃申请</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </script>
 
 <script type="text/template" id="tpl_popTip">
@@ -982,43 +948,6 @@
         <a onclick="doyoo.util.openChat('g=82548');return false;" class="adv" style="margin-bottom: 0">
             <img src="style/images/a2.jpg" width="536" height="186" alt="精品课程，免费试听"/>
         </a>
-    </div>
-</script>
-
-<script type="text/template" id="tpl_loginFast">
-    <div class="overlay">
-        <div id="login_fast">
-            <div class="login_Area">
-                <ul class="title">
-                    <li upid="login_content"><span>会员登录</span></li>
-                    <li class="active" upid="sign_content"><span>快捷登录（免注册）</span></li>
-                </ul>
-                <ul id="login_content" class="content">
-                    <li class="errorMsg text-center text-error"></li>
-                    <li><input class="txt_phone" type="text" placeholder="手机号/用户名"></li>
-                    <li><input class="txt_passed" type="password" placeholder="请输入密码"></li>
-                    <li style="height:30px;">
-                        <input class="check" type="checkbox">
-                        <span class="remind">记住我</span>
-                        <a id="tuan_forgetPassword" class="passed">忘记密码？</a>
-                    </li>
-                    <li><a class="btnLogin btnIn">登 陆</a></li>
-                </ul>
-                <ul id="sign_content" class="content">
-                    <li class="errorMsg text-center text-error"></li>
-                    <li><input class="txt_phone" type="text" placeholder="请输入手机号"></li>
-                    <li>
-                        <input class="txt_passed" type="password" placeholder="请输入验证码">
-                        <a class="js_sendSms identifying">发送验证码</a>
-                    </li>
-                    <li style="height:30px;">
-                        <input class="check" type="checkbox">
-                        <span class="remind">记住手机号</span>
-                    </li>
-                    <li><a class="btnFastLogin btnIn">快速登录</a></li>
-                </ul>
-            </div>
-        </div>
     </div>
 </script>
 
@@ -4329,6 +4258,7 @@
 <script src="scripts/View/Modal/PayInfoModal.js" type="text/javascript"></script>
 <script src="scripts/View/Modal/FreeTrialModal.js" type="text/javascript"></script>
 <script src="scripts/View/Modal/LoginFastModal.js" type="text/javascript"></script>
+<script src="scripts/View/Modal/SelectCatModal.js" type="text/javascript"></script>
 
 <!-- load user module specific files-->
 <script src="scripts/View/MyPage/MyPageView.js" type="text/javascript"></script>

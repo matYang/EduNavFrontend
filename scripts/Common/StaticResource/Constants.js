@@ -99,16 +99,16 @@ var Constants = {
 //        "banner",//首页的大屏滚动banner
 
         "infoModal",//信息提示 没有背景
+        "popTip",//【首页】申请成功弹出窗 没有背景
+        "colorInfoModal",//【首页】表单验证提示 没有背景
 
         //todo 使用Modal start
         "mypage_usernameModal", //设置用户名的弹出框
         "mypage_chooseSchoolModal", //设置毕业院校的弹出框
-        "loginFast",//【课程详情|团购详情】快速登录
-        "freeTrial",//【课程详情】免费试听弹出框
         "courseTip",//【首页】课程选择页面
-        "popTip",//【首页】申请成功弹出窗
-        "colorInfoModal",//【首页】表单验证提示
+
         //todo 使用Modal end
+        "courseTipModal",//【首页】课程选择页面
         "loginFastModal",//【课程详情|团购详情】快速登录
         "freeTrialModal",//【课程详情】免费试听弹出框
         "teacherModal",//【课程详情|团购详情】教师信息弹出框

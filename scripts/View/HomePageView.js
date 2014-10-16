@@ -233,10 +233,12 @@ var SearchArea = Backbone.View.extend({
         this.model = new Apply();
         this.colorInfoModal = new ColorInfoModal();
         this.searchRepresentation = new CourseSearchRepresentation();
+        this.selectCatModal = new SelectCatModal({callback: this.selectCatSearch});
         this.template = _.template(tpl.get('SearchCourse'));
         this.isClosed = false;
         this.render();
         this.bindEvents();
+
     },
 
     render: function () {
@@ -320,12 +322,13 @@ var SearchArea = Backbone.View.extend({
         //自助选课 课程类目的选择弹出框
         $("#courseChooseContainer").on("click", function () {
             //传入选择目录以后的回调函数
-            if (!that.courseTip) {
-                that.courseTip = new SelectCatModal({callback: that.selectCatSearch});
-            }
-            else if (!that.courseTip.isShow) {
-                that.courseTip.show({callback: that.selectCatSearch});
-            }
+//            if (!that.courseTip) {
+//                that.courseTip = new SelectCatModal({callback: that.selectCatSearch});
+//            }
+//            else if (!that.courseTip.isShow) {
+//                that.courseTip.show({callback: that.selectCatSearch});
+//            }
+            that.selectCatModal.show();
         });
 
         //首页 人工选课 ‘立即申请’按钮 提交人工选课的申请
@@ -518,118 +521,118 @@ var SearchArea = Backbone.View.extend({
 //});
 
 //课程类目选择弹出框
-var SelectCatModal = Backbone.View.extend({
-
-    el: '#overlayCourse',
-    initialize: function (opt) {
-        _.bindAll(this, 'render', 'renderCategories', 'close');
-        this.callback = opt.callback;
-        this.template = _.template(tpl.get('courseTip'));
-        this.isClosed = false;
-        this.isShow = false;
-        app.generalManager.getCategories(this);//传递this,会在获取目录之后调用this.renderCategories()
-    },
-    renderCategories: function (categories) {
-        var that = this;
-        this.courseAll = categories.data;
-        this.courseLev1 = {};
-        this.courseSmallTitle = {};
-        this.courseLev2 = {};
-        _.each(this.courseAll, function (v, index) {
-            that.courseLev1[index] = v.children;
-        });
-
-        this.render();
-    },
-    render: function () {
-        var that = this;
-
-
-        if (!this.isClosed) {
-            app.viewRegistration.register(this);
-            this.$el.append(this.template({
-                courseTitle: that.courseAll
-            }));
-            $(".courseTipATop").find("li:first").addClass("courseTipATopHoverSpec");
-
-            //开始的时候生成的目录
-            //var x = $(".courseTipATopHoverSpec").attr("data-value");
-            var htmlcourse = "";
-            for (var i = 0; i < that.courseAll.length; i++) {
-                htmlcourse += '<div class="cousedes cousedes0' + i + ' hidden">';
-                that.courseSmallTitle = that.courseLev1[i];
-                _.each(that.courseSmallTitle, function (v, index) {
-                    //console.log(v.children);
-                    that.courseLev2[index] = v.children;
-                });
-
-                _.each(that.courseSmallTitle, function (v, index) {
-                    htmlcourse += '<li>';
-                    htmlcourse += '    <div class="courseTipAContentTop"  data-value="' + v.value + '" data-id="' + v.id + '">' + v.name + '</div>';
-                    htmlcourse += '    <ul class="courseTipAContentDesUl">';
-                    //添加三级目录
-                    _.each(that.courseLev2[index], function (s, index) {
-                        //console.log(v.children);
-                        htmlcourse += '<li data-value="' + s.value + '" data-id="' + s.id + '">' + s.name + '</li>';
-                    });
-                    htmlcourse += '    </ul>';
-                    htmlcourse += '</li>';
-                });
-                htmlcourse += '</div>';
-            }
-            $(".courseTipAContentDes").html(htmlcourse).find(".cousedes:first").removeClass("hidden");
-
-            this.bindEvents();
-        }
-    },
-    bindEvents: function () {
-        var that = this;
-        $(".courseTipClose").on("click", function () {
-            that.hide();
-        });
-        //hover移动二级目录
-        $(".courseTipATopHover").hover(function () {
-            $(".courseTipATopHover").removeClass("courseTipATopHoverSpec");
-            $(".courseTipAContentDes").find(".cousedes").addClass("hidden");
-            var thisvalue = $(this).attr("data-value");
-            $(".courseTipAContentDes").find(".cousedes" + thisvalue).removeClass("hidden");
-            $(this).addClass("courseTipATopHoverSpec");
-
-        }, function () {
-
-        });
-
-        //点击三级目录
-        $(".courseTipAContentDesUl li").on("click", function () {
-            that.hide();
-            var catObj = {};
-            catObj.id = $(this).data('id');
-            catObj.value = $(this).data('value');
-            catObj.name = $(this).text();
-            that.callback(catObj);
-            catObj = null;
-        });
-    },
-    show: function (opt) {
-        this.callback = opt.callback;
-        $("#popcourseTip").fadeIn(400);
-        this.isShow = true;
-    },
-    hide: function () {
-        $("#popcourseTip").fadeOut(400);
-        this.isShow = false;
-    },
-
-
-    close: function () {
-        if (!this.isClosed) {
-            this.$el.empty();
-            this.isClosed = true;
-
-        }
-    }
-});
-//申请成功弹出窗口
+//var SelectCatModal = Backbone.View.extend({
+//
+//    el: '#overlayCourse',
+//    initialize: function (opt) {
+//        _.bindAll(this, 'render', 'renderCategories', 'close');
+//        this.callback = opt.callback;
+//        this.template = _.template(tpl.get('courseTip'));
+//        this.isClosed = false;
+//        this.isShow = false;
+//        app.generalManager.getCategories(this);//传递this,会在获取目录之后调用this.renderCategories()
+//    },
+//    renderCategories: function (categories) {
+//        var that = this;
+//        this.courseAll = categories.data;
+//        this.courseLev1 = {};
+//        this.courseSmallTitle = {};
+//        this.courseLev2 = {};
+//        _.each(this.courseAll, function (v, index) {
+//            that.courseLev1[index] = v.children;
+//        });
+//
+//        this.render();
+//    },
+//    render: function () {
+//        var that = this;
+//
+//
+//        if (!this.isClosed) {
+//            app.viewRegistration.register(this);
+//            this.$el.append(this.template({
+//                courseTitle: that.courseAll
+//            }));
+//            $(".courseTipATop").find("li:first").addClass("courseTipATopHoverSpec");
+//
+//            //开始的时候生成的目录
+//            //var x = $(".courseTipATopHoverSpec").attr("data-value");
+//            var htmlcourse = "";
+//            for (var i = 0; i < that.courseAll.length; i++) {
+//                htmlcourse += '<div class="cousedes cousedes0' + i + ' hidden">';
+//                that.courseSmallTitle = that.courseLev1[i];
+//                _.each(that.courseSmallTitle, function (v, index) {
+//                    //console.log(v.children);
+//                    that.courseLev2[index] = v.children;
+//                });
+//
+//                _.each(that.courseSmallTitle, function (v, index) {
+//                    htmlcourse += '<li>';
+//                    htmlcourse += '    <div class="courseTipAContentTop"  data-value="' + v.value + '" data-id="' + v.id + '">' + v.name + '</div>';
+//                    htmlcourse += '    <ul class="courseTipAContentDesUl">';
+//                    //添加三级目录
+//                    _.each(that.courseLev2[index], function (s, index) {
+//                        //console.log(v.children);
+//                        htmlcourse += '<li data-value="' + s.value + '" data-id="' + s.id + '">' + s.name + '</li>';
+//                    });
+//                    htmlcourse += '    </ul>';
+//                    htmlcourse += '</li>';
+//                });
+//                htmlcourse += '</div>';
+//            }
+//            $(".courseTipAContentDes").html(htmlcourse).find(".cousedes:first").removeClass("hidden");
+//
+//            this.bindEvents();
+//        }
+//    },
+//    bindEvents: function () {
+//        var that = this;
+//        $(".courseTipClose").on("click", function () {
+//            that.hide();
+//        });
+//        //hover移动二级目录
+//        $(".courseTipATopHover").hover(function () {
+//            $(".courseTipATopHover").removeClass("courseTipATopHoverSpec");
+//            $(".courseTipAContentDes").find(".cousedes").addClass("hidden");
+//            var thisvalue = $(this).attr("data-value");
+//            $(".courseTipAContentDes").find(".cousedes" + thisvalue).removeClass("hidden");
+//            $(this).addClass("courseTipATopHoverSpec");
+//
+//        }, function () {
+//
+//        });
+//
+//        //点击三级目录
+//        $(".courseTipAContentDesUl li").on("click", function () {
+//            that.hide();
+//            var catObj = {};
+//            catObj.id = $(this).data('id');
+//            catObj.value = $(this).data('value');
+//            catObj.name = $(this).text();
+//            that.callback(catObj);
+//            catObj = null;
+//        });
+//    },
+//    show: function (opt) {
+//        this.callback = opt.callback;
+//        $("#popcourseTip").fadeIn(400);
+//        this.isShow = true;
+//    },
+//    hide: function () {
+//        $("#popcourseTip").fadeOut(400);
+//        this.isShow = false;
+//    },
+//
+//
+//    close: function () {
+//        if (!this.isClosed) {
+//            this.$el.empty();
+//            this.isClosed = true;
+//
+//        }
+//    }
+//});
+////申请成功弹出窗口
 var SuccessPopTip = Backbone.View.extend({
 
     el: '#overlayApplySuc',
