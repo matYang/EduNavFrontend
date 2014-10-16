@@ -225,7 +225,7 @@ var CourseDetailView = Backbone.View.extend({
                 var id = $(this).data('value');//< data-value=''>
                 if (!id)return;
                 //这里屏蔽了下订单的入口
-                app.navigate("booking/c" + that.courseId, true);
+                //app.navigate("booking/c" + that.courseId, true);
                 if (!that.freeTrial) {
                     that.course.set('id', id);
                     that.freeTrial = new FreeTrial({course: that.course});
