@@ -121,6 +121,7 @@ var HomePageView = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+
         //一级目录hover
         $("#lv1Button").on("mouseover", "li", function (e) {
             var category = $(this).data("value");
@@ -283,11 +284,11 @@ var SearchArea = Backbone.View.extend({
         //首页的按照课程名搜索
         this.$el.on('click', '.search_btn', function () {
             var courseName = $('.search_input').val();
-            var searchRepresentation = new CourseSearchRepresentation();
             if (courseName) {
+                var searchRepresentation = new CourseSearchRepresentation();
                 searchRepresentation.set("courseName", courseName);
+                app.navigate("search/" + searchRepresentation.toQueryString(), true);
             }
-            app.navigate("search/" + searchRepresentation.toQueryString(), true);
         });
         //大家都在搜
         $(".search_tip").on("click",".search_span",function(){

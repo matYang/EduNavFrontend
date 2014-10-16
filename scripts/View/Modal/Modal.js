@@ -39,7 +39,7 @@ var Modal = Backbone.View.extend({
         this.isShown = false;
         //events off
         this._escape();
-        this.$modalEl.off("click", '.close', self.hide);
+        this.$modalEl.off();
         if(!this.static) {
             this.$modalEl.off('click', self._hideOnBackdropClick);
             this.$backdropEl.off('click', self._hideOnBackdropClick);

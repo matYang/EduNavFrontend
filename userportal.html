@@ -114,6 +114,60 @@
     </div>
 </div>
 </script>
+<script type="text/templates" id="tpl_freeTrialModal">
+    <div id="freeTrialModal" class="modal modal-freeTrial">
+        <div class="modal-inner">
+            <div class="popMainA">
+                <div class="popTopBar"></div>
+                <div class="popTopBlack"></div>
+                <div class="popTitle">
+                    <div class="popTitleA">
+                        <span class="popTSpanLeft">申请免费试听</span>
+                        <a class="popShu"></a>
+
+                        <div class="popTitleRight">
+                            <i class="popIconQuan"></i>
+                            <span class="popTSpanRight">全城最低价，全场7折起</span>
+                        </div>
+                    </div>
+                    <a class="popMainClose js_popClose"></a>
+                </div>
+                <div class="popContent">
+                    <div class="popContentA">
+                        <div id="detail_submit_error" class="text-error text-center margin-bottom"></div>
+                        <ul class="popContentUl">
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>意向课程：</span>
+                                <p><%=courseName%></p>
+                            </li>
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>学员姓名：</span>
+                                <input id="detail_name_input" class="popTxt" type="text"/>
+                            </li>
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>联系电话：</span>
+                                <input id="detail_phone_input" class="popTxt" type="text"/>
+                            </li>
+                            <li>
+                                <i class="popIconStar popIconStarSpec"></i>
+                                <span>附加信息： &nbsp;&nbsp;(选填)</span>
+                                <textarea id="detail_note_text" class="popTxt popTxtSpec"
+                                          placeholder="亲，请填上空闲的时间，择校、择课要求等信息，以便更好的为您服务"></textarea>
+                            </li>
+                        </ul>
+                        <div class="popBtn">
+                            <div class="popBtnYes" id="btnApplefreeTrial">立即申请</div>
+                            <a class="popBtnNo js_popClose">放弃申请</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
 <!--modals end-->
 
 <script type="text/template" id="tpl_topBar-loggedIn">
