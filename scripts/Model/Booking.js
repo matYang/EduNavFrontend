@@ -115,12 +115,18 @@ var Booking = Backbone.Model.extend({
     initBookingFromCourse: function (course) {
 
         this.set("userId", app.sessionManager.sessionModel.id);
-        this.set("partnerId", course.get("partnerId"));
-        this.set("courseId", course.get("id"));
-        this.set("courseTemplateId", course.get("courseTemplateId"));
+//        this.set("partnerId", course.get("partnerId"));
+//        this.set("courseId", course.get("id"));
+//        this.set("courseTemplateId", course.get("courseTemplateId"));
+//        this.set("course", course);
+//        this.set("price", course.get("price"));
+//        this.set("cashbackAmount", course.get("cashback"));
+        this.set("partnerId", course.partnerId);
+        this.set("courseId", course.id);
+        this.set("courseTemplateId", course.courseTemplateId);
         this.set("course", course);
-        this.set("price", course.get("price"));
-        this.set("cashbackAmount", course.get("cashback"));
+        this.set("price", course.price);
+        this.set("cashbackAmount", course.cashback);
         //TODO add cashbackAmount when course is finalized
     }
 });

@@ -169,5 +169,8 @@
     font-style: normal;
     cursor: pointer;
 }
-
+/*免费试听modal*/
+.modal-freeTrial .modal-inner{
+    width: 720px;
+}
 

@@ -9,15 +9,17 @@ var Modal = Backbone.View.extend({
     //todo 处理传入的参数
     initialize: function (opt) {
         _.bindAll(this, 'show', 'hide', 'close', '_render', '_hideOnBackdropClick', '_escape');
-        this.$backdropEl = $('<div class="modal-bg"></div>');
+
         this.isShown = false;
         app.viewRegistration.register(this);
     },
     show: function (msgObj) {
         var self = this;
         this._render(msgObj);
+        this.$backdropEl = $('<div class="modal-bg"></div>');
         //elements shown
         this.$modalEl = $(this.modalEl);
+
         this.$backdropEl.insertAfter(this.$modalEl).show();
         this.$modalEl.fadeIn(this.fadeTime);
         this.isShown = true;
