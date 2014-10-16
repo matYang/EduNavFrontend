@@ -7,6 +7,7 @@ var CourseDetailView = Backbone.View.extend({
         this.isClosed = false;
         this.sr = new CourseSearchRepresentation();
         this.teacherModal = new TeacherModal();
+        this.freeTrialModal = new FreeTrialModal();
         this.user = app.sessionManager.sessionModel;
         var self = this;
         app.generalManager.fetchCategories({success: function (data) {
@@ -225,14 +226,16 @@ var CourseDetailView = Backbone.View.extend({
                 if (!id)return;
                 //这里屏蔽了下订单的入口
 //                app.navigate("booking/c" + that.courseId, true);
-                if (!that.freeTrial) {
-                    that.course.set('id', id);
-                    that.freeTrial = new FreeTrial({course: that.course});
-                } else {
-                    that.freeTrial.model.set('courseId', id);
-                    that.freeTrial.closePop();
-                    that.freeTrial.show();
-                }
+//                if (!that.freeTrial) {
+//                    that.course.set('id', id);
+//                    that.freeTrial = new FreeTrial({course: that.course});
+//                } else {
+//                    that.freeTrial.model.set('courseId', id);
+//                    that.freeTrial.closePop();
+//                    that.freeTrial.show();
+//                }
+                that.course.set('id', id);
+                that.freeTrialModal.show(that.course);
             });
         } else {
             $(".bookNow").attr("class", "btn_W").val("当前不可预订").prop("disabled", true);
