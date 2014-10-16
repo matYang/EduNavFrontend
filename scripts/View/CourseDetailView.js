@@ -50,7 +50,7 @@ var CourseDetailView = Backbone.View.extend({
         this.mapView = new MapView({mapElId: 'smallMap'});
         this.mapView.addMarker(locationObj);
         $('#smallMap').after('<a class="margin-top viewLarge text-center">查看完整地图</a>');
-        $('.viewLarge').click(function () {
+        this.$el.on('click', '.viewLarge', function () {
             self.mapModal = new MapModal({addressList: [locationObj ]});
             var $body = $('body');
             var width=$body.width() -40;
