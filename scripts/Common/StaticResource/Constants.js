@@ -88,10 +88,7 @@ var Constants = {
 
         //个人资料
         "mypage_password", "mypage_setting", "mypage_share",
-        //设置用户名的弹出框
-        "mypage_usernameModal",
-        //设置毕业院校的弹出框
-        "mypage_chooseSchoolModal",
+
         //底部栏
         "aboutUs", "joinUs", "contactUs", "advise", "help",
 
@@ -104,6 +101,8 @@ var Constants = {
         "infoModal",//信息提示 没有背景
 
         //todo 使用Modal start
+        "mypage_usernameModal", //设置用户名的弹出框
+        "mypage_chooseSchoolModal", //设置毕业院校的弹出框
         "loginFast",//【课程详情|团购详情】快速登录
         "freeTrial",//【课程详情】免费试听弹出框
         "courseTip",//【首页】课程选择页面

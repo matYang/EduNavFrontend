@@ -2202,8 +2202,16 @@
             <dt><i class="dticon"></i>特色服务</dt>
             <dd class="clearfix">
                 <% if (passAgreement) { %>
-                <div class="serviceli">
-                    <a><img title="签约保过" src="style/images/spec_service_06.png" alt=""/></a>
+                <div class="serviceli has-tip-t">
+                    <a>
+                        <img title="签约保过" src="style/images/spec_service_06.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <%=passAgreement%>
+                            </div>
+                        </div>
+                    </a>
                     <span>签约保过</span>
                 </div>
                 <% } %>
@@ -2211,44 +2219,100 @@
                 <!--todo 无推荐就业-->
                 <% } %>
                 <% if (certification) { %>
-                <div class="serviceli">
-                    <a><img title="结业证书" src="style/images/spec_service_03.png" alt=""/></a>
+                <div class="serviceli has-tip-t">
+                    <a>
+                        <img title="结业证书" src="style/images/spec_service_03.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <%=certification%>
+                            </div>
+                        </div>
+                    </a>
                     <span>结业证书</span>
                 </div>
                 <% } %>
                 <% if (extracurricular) { %>
-                <div class="serviceli">
-                    <a><img title="课后互动" src="style/images/spec_service_04.png" alt=""/></a>
+                <div class="serviceli has-tip-t">
+                    <a>
+                        <img title="课后互动" src="style/images/spec_service_04.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <%=extracurricular%>
+                            </div>
+                        </div>
+                    </a>
                     <span>课后互动</span>
                 </div>
                 <% } %>
                 <% if (bonusService) { %>
-                <div class="serviceli">
-                    <a><img title="赠送服务" src="style/images/spec_service_08.png" alt=""/></a>
+                <div class="serviceli has-tip-t">
+                    <a>
+                        <img title="赠送服务" src="style/images/spec_service_08.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <%=bonusService%>
+                            </div>
+                        </div>
+                    </a>
                     <span>赠送服务</span>
                 </div>
                 <% } %>
                 <% if (quiz) { %>
-                <div class="serviceli">
-                    <a><img title="阶段评测" src="style/images/spec_service_02.png" alt=""/></a>
+                <div class="serviceli has-tip-t">
+                    <a>
+                        <img title="阶段评测" src="style/images/spec_service_02.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <%=quiz%>
+                            </div>
+                        </div>
+                    </a>
                     <span>阶段评测</span>
                 </div>
                 <% } %>
                 <% if (teachingAndExercise) { %>
-                <div class="serviceli">
-                    <a><img title="讲练结合" src="style/images/spec_service_01.png" alt=""/></a>
+                <div class="serviceli has-tip-t">
+                    <a>
+                        <img title="讲练结合" src="style/images/spec_service_01.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <%=teachingAndExercise%>
+                            </div>
+                        </div>
+                    </a>
                     <span>讲练结合</span>
                 </div>
                 <% } %>
                 <% if (questionBank) { %>
-                <div class="serviceli">
-                    <a><img title="题库支持" src="style/images/spec_service_07.png" alt=""/></a>
+                <div class="serviceli has-tip-t">
+                    <a>
+                        <img title="题库支持" src="style/images/spec_service_07.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <%=questionBank%>
+                            </div>
+                        </div>
+                    </a>
                     <span>题库支持</span>
                 </div>
                 <% } %>
                 <% if (downloadMaterials) { %>
-                <div class="serviceli">
-                    <a><img title="课件下载" src="style/images/spec_service_05.png" alt=""/></a>
+                <div class="serviceli has-tip-t">
+                    <a>
+                        <img title="课件下载" src="style/images/spec_service_05.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <%=downloadMaterials%>
+                            </div>
+                        </div>
+                    </a>
                     <span>课件下载</span>
                 </div>
                 <% } %>
@@ -3817,65 +3881,117 @@
     <dt><i class="dticon"></i>特色服务</dt>
     <dd class="clearfix">
         <% if (course.passAgreement) { %>
-        <div class="serviceli">
-            <a class="has-tip-t">
+        <div class="serviceli has-tip-t">
+            <a>
                 <img title="签约保过" src="style/images/spec_service_06.png" alt=""/>
                 <div class="tip-t">
                     <div class="arrow-t"></div>
                     <div class="tip_content-t">
-                        无论学校与亲以什么价格成交，亲都能在付费后，从爱上课获取无论学校与亲以什么价格无论学校与亲以什么价格
+                        <%=course.passAgreement%>
                     </div>
                 </div>
             </a>
             <span>签约保过</span>
         </div>
-        <!--<div class="serviceli">
-            <a><img title="结业证书" src="style/images/spec_service_06.png" alt=""/></a>
-            <span>签约保过</span>
-        </div>-->
         <% } %>
         <% if (course.classTeacher) { %>
         <!--todo 无推荐就业-->
         <% } %>
         <% if (course.certification) { %>
-        <div class="serviceli">
-            <a><img title="结业证书" src="style/images/spec_service_03.png" alt=""/></a>
+        <div class="serviceli has-tip-t">
+            <a>
+                <img title="结业证书" src="style/images/spec_service_03.png" alt=""/>
+                <div class="tip-t">
+                    <div class="arrow-t"></div>
+                    <div class="tip_content-t">
+                        <%=course.certification%>
+                    </div>
+                </div>
+            </a>
             <span>结业证书</span>
         </div>
         <% } %>
         <% if (course.extracurricular) { %>
-        <div class="serviceli">
-            <a><img title="课后互动" src="style/images/spec_service_04.png" alt=""/></a>
+        <div class="serviceli has-tip-t">
+            <a>
+                <img title="课后互动" src="style/images/spec_service_04.png" alt=""/>
+                <div class="tip-t">
+                    <div class="arrow-t"></div>
+                    <div class="tip_content-t">
+                        <%=course.extracurricular%>
+                    </div>
+                </div>
+            </a>
             <span>课后互动</span>
         </div>
         <% } %>
         <% if (course.bonusService) { %>
-        <div class="serviceli">
-            <a><img title="赠送服务" src="style/images/spec_service_08.png" alt=""/></a>
+        <div class="serviceli has-tip-t">
+            <a>
+                <img title="赠送服务" src="style/images/spec_service_08.png" alt=""/>
+                <div class="tip-t">
+                    <div class="arrow-t"></div>
+                    <div class="tip_content-t">
+                        <%=course.bonusService%>
+                    </div>
+                </div>
+            </a>
             <span>赠送服务</span>
         </div>
         <% } %>
         <% if (course.quiz) { %>
-        <div class="serviceli">
-            <a><img title="阶段评测" src="style/images/spec_service_02.png" alt=""/></a>
+        <div class="serviceli has-tip-t">
+            <a>
+                <img title="阶段评测" src="style/images/spec_service_02.png" alt=""/>
+                <div class="tip-t">
+                    <div class="arrow-t"></div>
+                    <div class="tip_content-t">
+                        <%=course.quiz%>
+                    </div>
+                </div>
+            </a>
             <span>阶段评测</span>
         </div>
         <% } %>
         <% if (course.teachingAndExercise) { %>
-        <div class="serviceli">
-            <a><img title="讲练结合" src="style/images/spec_service_01.png" alt=""/></a>
+        <div class="serviceli has-tip-t">
+            <a>
+                <img title="讲练结合" src="style/images/spec_service_01.png" alt=""/>
+                <div class="tip-t">
+                    <div class="arrow-t"></div>
+                    <div class="tip_content-t">
+                        <%=course.teachingAndExercise%>
+                    </div>
+                </div>
+            </a>
             <span>讲练结合</span>
         </div>
         <% } %>
         <% if (course.questionBank) { %>
-        <div class="serviceli">
-            <a><img title="题库支持" src="style/images/spec_service_07.png" alt=""/></a>
+        <div class="serviceli has-tip-t">
+            <a>
+                <img title="题库支持" src="style/images/spec_service_07.png" alt=""/>
+                <div class="tip-t">
+                    <div class="arrow-t"></div>
+                    <div class="tip_content-t">
+                        <%=course.questionBank%>
+                    </div>
+                </div>
+            </a>
             <span>题库支持</span>
         </div>
         <% } %>
         <% if (course.downloadMaterials) { %>
-        <div class="serviceli">
-            <a><img title="课件下载" src="style/images/spec_service_05.png" alt=""/></a>
+        <div class="serviceli has-tip-t">
+            <a>
+                <img title="课件下载" src="style/images/spec_service_05.png" alt=""/>
+                <div class="tip-t">
+                    <div class="arrow-t"></div>
+                    <div class="tip_content-t">
+                        <%=course.downloadMaterials%>
+                    </div>
+                </div>
+            </a>
             <span>课件下载</span>
         </div>
         <% } %>

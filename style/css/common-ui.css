@@ -397,7 +397,7 @@ textarea {
     position: absolute;
     display: none;
     z-index: 99;
-    bottom: 130px;
+    bottom: 173px;
     left: 90px;
 }
 
@@ -423,9 +423,9 @@ textarea {
     background-image: url("../images/row_t.png");
 }
 
-/*.has-tip-t:hover .tip-t {
+.has-tip-t:hover .tip-t {
     display: block;
-}*/
+}
 
 /*label的独立style*/
 /*返*/
