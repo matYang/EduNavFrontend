@@ -31,7 +31,7 @@ var MyPageSettingView = BaseFormView.extend({
         this.template = _.template(tpl.get('mypage_setting'));
 
         app.viewRegistration.register(this);
-        this.chooseSchoolView = new ChooseSchoolView({view: this});
+        this.schoolModal = new SchoolModal({view: this});
 //        this.chooseWorkView = new ChooseWorkView({view:this});
         this.render();
         this.bindEvents();
@@ -56,12 +56,15 @@ var MyPageSettingView = BaseFormView.extend({
             self.usernameModal = new UsernameModal({view: self});
         });
         //选择学校
-        $('#inputSchool').focus(function () {
-            //alert(self.chooseSchoolView.isShow);
-            if (!self.chooseSchoolView.isShow)
-                self.chooseSchoolView.show();
-
+        $('#inputSchool').focus(function(){
+            self.schoolModal.show();
         });
+//        $('#inputSchool').focus(function () {
+//            //alert(self.chooseSchoolView.isShow);
+//            if (!self.chooseSchoolView.isShow)
+//                self.chooseSchoolView.show();
+//
+//        });
 //        $('#inputWork').focus(function () {
 //            console.log(111);
 //            self.chooseWorkView.show();

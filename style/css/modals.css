@@ -241,4 +241,8 @@
 .modal-courseTip .modal-inner{
     width: 912px;
 }
+/*学校选择modal*/
+.modal-school .modal-inner{
+    width: 712px;
+}
 
