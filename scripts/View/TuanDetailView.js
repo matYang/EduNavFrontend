@@ -8,6 +8,7 @@ var TuanDetailView = Backbone.View.extend({
         this.teacherModal = new TeacherModal();
         this.tuanId = opt.tuanId;//团购的Id
         this.countDown = undefined;//团购的倒计时
+        this.loginFastModal = new LoginFastModal();
         var self = this;
         //这里获取课程数据信息
         app.generalManager.fetchTuan(opt.tuanId, {
@@ -174,14 +175,12 @@ var TuanDetailView = Backbone.View.extend({
                 $("#tuan_fright").addClass("stickyHeader");
                 $("#tuanDetail .w_730").css("margin-top", "63px");
                 $(".tuan_btn").show();
-                $("#tuanDetail .fright .site_map").css({"margin": "55px 0 0 0"});
                 $(".tuan_sorterArea").addClass("stickyHeader");
             }
             else if (scroH < navH) {
                 $("#tuan_fright").removeClass("stickyHeader");
                 $("#tuanDetail .w_730").css("margin-top", "");
                 $(".tuan_btn").hide();
-                $("#tuanDetail .fright .site_map").css({"margin": ""});
                 $(".tuan_sorterArea").removeClass("stickyHeader");
             }
 
@@ -203,14 +202,15 @@ var TuanDetailView = Backbone.View.extend({
     showLoginModal: function () {
         var that = this;
         //如果没有登录 弹出框进行登录 或者 免注册登录（）
-        if (!that.loginFastView) {
-            that.loginFastView = new LoginFastView();
-        } else if (that.loginFastView.isClosed) {
-            that.loginFastView.render();
-            that.loginFastView.show();
-        } else {
-            that.loginFastView.show();
-        }
+//        if (!that.loginFastView) {
+//            that.loginFastView = new LoginFastView();
+//        } else if (that.loginFastView.isClosed) {
+//            that.loginFastView.render();
+//            that.loginFastView.show();
+//        } else {
+//            that.loginFastView.show();
+//        }
+        this.loginFastModal.show();
     },
 
     close: function () {
@@ -223,9 +223,9 @@ var TuanDetailView = Backbone.View.extend({
             if (this.teacherModal) {
                 this.teacherModal.close();
             }
-            if (this.loginFastView) {
+            /*if (this.loginFastView) {
                 this.loginFastView.close();
-            }
+            }*/
             if (this.commentsView) {
                 this.commentsView.close();
             }

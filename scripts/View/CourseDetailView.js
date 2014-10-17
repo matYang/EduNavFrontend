@@ -6,6 +6,8 @@ var CourseDetailView = Backbone.View.extend({
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.sr = new CourseSearchRepresentation();
+
+        this.freeTrialModal = new FreeTrialModal();
         this.teacherModal = new TeacherModal();
         this.user = app.sessionManager.sessionModel;
         var self = this;
@@ -194,15 +196,12 @@ var CourseDetailView = Backbone.View.extend({
                 $("#tuan_fright").addClass("stickyHeader");
                 $(".courseDetail .w_730").css("margin-top", "63px");
                 $(".tuan_btn").show();
-                $(".courseDetail .fright .site_map").css({"margin": "55px 0 0 0"});
                 $(".tuan_sorterArea").addClass("stickyHeader");
             }
             else if (scroH < navH) {
-                //$("#tuan_fright").css({"position": "relative", "top": "", "margin-left": ""});
                 $("#tuan_fright").removeClass("stickyHeader");
                 $(".courseDetail .w_730").css("margin-top", "");
                 $(".tuan_btn").hide();
-                $(".courseDetail .fright .site_map").css({"margin": ""});
                 $(".tuan_sorterArea").removeClass("stickyHeader");
             }
 
@@ -227,15 +226,17 @@ var CourseDetailView = Backbone.View.extend({
                 var id = $(this).data('value');//< data-value=''>
                 if (!id)return;
                 //这里屏蔽了下订单的入口
-//                app.navigate("booking/c" + that.courseId, true);
-                if (!that.freeTrial) {
-                    that.course.set('id', id);
-                    that.freeTrial = new FreeTrial({course: that.course});
-                } else {
-                    that.freeTrial.model.set('courseId', id);
-                    that.freeTrial.closePop();
-                    that.freeTrial.show();
-                }
+                //app.navigate("booking/c" + that.courseId, true);
+//                if (!that.freeTrial) {
+//                    that.course.set('id', id);
+//                    that.freeTrial = new FreeTrial({course: that.course});
+//                } else {
+//                    that.freeTrial.model.set('courseId', id);
+//                    that.freeTrial.closePop();
+//                    that.freeTrial.show();
+//                }
+                that.course.set('id', id);
+                that.freeTrialModal.show(that.course);
             });
         } else {
             $(".bookNow").attr("class", "btn_W").val("当前不可预订").prop("disabled", true);
@@ -289,105 +290,105 @@ var CourseDetailView = Backbone.View.extend({
 });
 
 //免费试听
-var FreeTrial = Backbone.View.extend({
-
-    el: '#overlayFreeTrial',
-    initialize: function (params) {
-        _.bindAll(this, 'render', 'autoName', 'closePop', 'close');
-        this.validEle = '#detail_submit_error';
-        this.template = _.template(tpl.get('freeTrial'));
-        this.model = new Booking();
-        this.model.initBookingFromCourse(params.course);
-        var courseName = params.course instanceof Backbone.Model ? params.course.get('courseName') : params.course.courseName;
-        this.render(courseName);
-        this.bindEvents();
-    },
-
-    render: function (courseName) {
-        app.viewRegistration.register(this);
-        this.$el.html(this.template({courseName: courseName}));
-        this.autoName();
-    },
-    clearModel: function () {
-        //这里清空保单数据以及模型数据
-        this.model = new Booking();
-        $('#detail_name_input').val('');
-        $('#detail_phone_input').val('');
-        $('#detail_note_text').val('');
-        $(this.validEle).empty();
-    },
-    //自动填充用户名等
-    autoName: function () {
-        if (app.sessionManager.hasSession()) {
-            //自动填充手机号和用户名 如果存在的话
-            var name = app.sessionManager.sessionModel.get('username');
-            var phone = app.sessionManager.sessionModel.get('phone');
-            $('#detail_name_input').val(name);
-            $('#detail_phone_input').val(phone);
-        }
-    },
-    bindEvents: function () {
-        var that = this;
-        $(".js_popClose").on("click", function () {
-            that.hide();
-        });
-
-        //提交免费申请 使用Bookings
-        $("#btnApplefreeTrial").on('click', function () {
-            var $valid = $(that.validEle);
-            var name = $('#detail_name_input').val();
-            var phone = $('#detail_phone_input').val();
-            var note = $('#detail_note_text').val();
-            $valid.empty();
-            if (!name) {
-                $valid.html('<i class="icon icon-error"></i>亲，请输入您的姓名');
-                return
-            }
-            if (!phone) {
-                $valid.html('<i class="icon icon-error"></i>亲，请输入您的联系电话');
-                return
-            }
-            if (phone.length !== 11 || isNaN(parseInt(phone, 10))) {
-                $valid.html('<i class="icon icon-error"></i>亲，您的联系电话输入有误');
-                return
-            }
-            that.model.set('name', name);
-            that.model.set('phone', phone);
-            that.model.set('note', note);
-            app.userManager.initBooking(that.model, {
-                success: function () {
-                    that.clearModel();
-                    that.hide();
-                    //提交成功 关闭弹出框 弹出成功信息 清空表单数据
-                    if (!that.popTip) {
-                        that.popTip = new SuccessPopTip();
-                    } else {
-                        that.popTip.show();
-                    }
-                },
-                error: function (data) {
-                    $(that.validEle).html(data.message || '提交失败 ，请稍后再试');
-                }
-            });
-        });
-    },
-    show: function () {
-        this.autoName();
-        $("#popfreeTrial").fadeIn(400);
-    },
-    hide: function () {
-        $("#popfreeTrial").fadeOut(400);
-        $(this.validEle).empty();
-    },
-    closePop: function () {
-        if (this.popTip) {
-            this.popTip.close();
-        }
-    },
-
-    close: function () {
-        this.closePop();
-        this.$el.empty();
-        this.isClosed = true;
-    }
-});
+//var FreeTrial = Backbone.View.extend({
+//
+//    el: '#modals',
+//    initialize: function (params) {
+//        _.bindAll(this, 'render', 'autoName', 'closePop', 'close');
+//        this.validEle = '#detail_submit_error';
+//        this.template = _.template(tpl.get('freeTrial'));
+//        this.model = new Booking();
+//        this.model.initBookingFromCourse(params.course);
+//        var courseName = params.course instanceof Backbone.Model ? params.course.get('courseName') : params.course.courseName;
+//        this.render(courseName);
+//        this.bindEvents();
+//    },
+//
+//    render: function (courseName) {
+//        app.viewRegistration.register(this);
+//        this.$el.html(this.template({courseName: courseName}));
+//        this.autoName();
+//    },
+//    clearModel: function () {
+//        //这里清空保单数据以及模型数据
+//        this.model = new Booking();
+//        $('#detail_name_input').val('');
+//        $('#detail_phone_input').val('');
+//        $('#detail_note_text').val('');
+//        $(this.validEle).empty();
+//    },
+//    //自动填充用户名等
+//    autoName: function () {
+//        if (app.sessionManager.hasSession()) {
+//            //自动填充手机号和用户名 如果存在的话
+//            var name = app.sessionManager.sessionModel.get('username');
+//            var phone = app.sessionManager.sessionModel.get('phone');
+//            $('#detail_name_input').val(name);
+//            $('#detail_phone_input').val(phone);
+//        }
+//    },
+//    bindEvents: function () {
+//        var that = this;
+//        $(".js_popClose").on("click", function () {
+//            that.hide();
+//        });
+//
+//        //提交免费申请 使用Bookings
+//        $("#btnApplefreeTrial").on('click', function () {
+//            var $valid = $(that.validEle);
+//            var name = $('#detail_name_input').val();
+//            var phone = $('#detail_phone_input').val();
+//            var note = $('#detail_note_text').val();
+//            $valid.empty();
+//            if (!name) {
+//                $valid.html('<i class="icon icon-error"></i>亲，请输入您的姓名');
+//                return
+//            }
+//            if (!phone) {
+//                $valid.html('<i class="icon icon-error"></i>亲，请输入您的联系电话');
+//                return
+//            }
+//            if (phone.length !== 11 || isNaN(parseInt(phone, 10))) {
+//                $valid.html('<i class="icon icon-error"></i>亲，您的联系电话输入有误');
+//                return
+//            }
+//            that.model.set('name', name);
+//            that.model.set('phone', phone);
+//            that.model.set('note', note);
+//            app.userManager.initBooking(that.model, {
+//                success: function () {
+//                    that.clearModel();
+//                    that.hide();
+//                    //提交成功 关闭弹出框 弹出成功信息 清空表单数据
+//                    if (!that.popTip) {
+//                        that.popTip = new SuccessPopTip();
+//                    } else {
+//                        that.popTip.show();
+//                    }
+//                },
+//                error: function (data) {
+//                    $(that.validEle).html(data.message || '提交失败 ，请稍后再试');
+//                }
+//            });
+//        });
+//    },
+//    show: function () {
+//        this.autoName();
+//        $("#popfreeTrial").fadeIn(400);
+//    },
+//    hide: function () {
+//        $("#popfreeTrial").fadeOut(400);
+//        $(this.validEle).empty();
+//    },
+//    closePop: function () {
+//        if (this.popTip) {
+//            this.popTip.close();
+//        }
+//    },
+//
+//    close: function () {
+//        this.closePop();
+//        this.$el.empty();
+//        this.isClosed = true;
+//    }
+//});

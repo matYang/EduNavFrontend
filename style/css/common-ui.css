@@ -389,6 +389,44 @@ textarea {
     background: url(../images/arrow-down.png) no-repeat;
 }
 
+
+/*特色服务的小标签*/
+.has-tip-t{position: relative;}
+
+.has-tip-t .tip-t{
+    position: absolute;
+    display: none;
+    z-index: 99;
+    bottom: 173px;
+    left: 90px;
+}
+
+.has-tip-t .tip-t .tip_content-t{
+
+    width: 295px;
+    padding: 10px;
+    border: 2px solid #f1f1f1;
+    font-size: 12px;
+    line-height: 22px;
+    background: #fff;
+    color: #666;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px rgba(241, 241, 241, 0.6)
+}
+
+.has-tip-t .tip-t .arrow-t {
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+    width: 20px;
+    height: 29px;
+    background-image: url("../images/row_t.png");
+}
+
+.has-tip-t:hover .tip-t {
+    display: block;
+}
+
 /*label的独立style*/
 /*返*/
 .label.cashback {

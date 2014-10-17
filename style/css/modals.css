@@ -169,5 +169,16 @@
     font-style: normal;
     cursor: pointer;
 }
-
+/*免费试听modal*/
+.modal-freeTrial .modal-inner{
+    width: 720px;
+}
+/*快速登录modal*/
+.modal-loginFast .modal-inner{
+    width: 335px;
+}
+/*课程选择modal*/
+.modal-courseTip .modal-inner{
+    width: 912px;
+}
 

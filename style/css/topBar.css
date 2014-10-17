@@ -13,6 +13,8 @@
 .topBar .topBar-inner {
     width: 1100px;
     margin: 0 auto;
+    height: 60px;
+    background: #282C37;
 }
 
 #logo {

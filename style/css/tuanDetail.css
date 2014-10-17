@@ -352,11 +352,8 @@
 .tuan_content .tuan_content_3 dd a {
     width: 120px;
     height: 120px;
-    border-radius: 60px;
-    background-color: #E9E9E9;
     display: block;
     float: left;
-    overflow: hidden;
 }
 
 .tuan_content .tuan_content_3 .serviceli {
@@ -684,35 +681,37 @@
 }
 
 /*地图*/
-.w_260 .site_map {
+.w_260 .map {
     width: 230px;
     padding: 10px;
     margin-bottom: 20px;
 }
 
-.w_260 .site_map a {
+.w_260 .map-pic {
     display: block;
     margin-bottom: 10px;
 }
 
+/*
 .w_260 span {
     font-size: 12px;
     line-height: 20px;
     margin: 5px 0;
 }
+*/
 
-.w_260 dl {
+.w_260 .map_list {
     border-top: 1px dashed #ccc;
     padding: 8px 0;
     margin-top: 4px;
 }
 
-.w_260 dt {
+.w_260 .map_list dt {
     font-weight: bold;
     line-height: 22px;
 }
 
-.w_260 dd {
+.w_260 .map_list dd {
     font-size: 12px;
     line-height: 22px;
     cursor: pointer;
@@ -740,13 +739,12 @@
 .detailArea .fright .tuan_btn {
     width: 250px;
     display: none;
-    margin-top: 0;
+    margin: 0 0 5px 0;
 }
 
 .detailArea .tuan_btn a {
     color: #fff;
     font-size: 18px;
-    margin-bottom: 4px;
     text-align: center;
     line-height: 52px;
 }
@@ -803,9 +801,6 @@
 
 #login_fast {
     width: 100%;
-    top: 200px;
-    position: absolute;
-    z-index: 2000;
 }
 
 #login_fast .login_Area {
@@ -991,3 +986,15 @@
 .map_info dd{ display: none;}
 .map_info:hover dd{display: block;}
 .map_info i{ width: 9px; height: 5px; display: block; float: right; margin-top: 5px; background-image: url("../images/map_tip.png")}
+
+
+
+
+/*承诺*/
+.promise{ width: 230px; padding: 10px; margin-bottom: 10px;}
+.promise h3{ color: #349e6F; margin: 10px 0 20px 0;}
+.promise li{ margin-bottom: 10px;}
+.promiseIcon{ width: 30px; height: 30px; float: left; margin-right: 10px;}
+.promiseIcon img{ width: 30px; height: 30px;}
+.promiseInfo{ width: 190px; display: block; float: right;}
+.promiseInfo h3{ line-height: 30px; color: #333; margin: 0;}
