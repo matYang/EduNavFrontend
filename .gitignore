@@ -1,6 +1,3 @@
 node_modules/
-style/images/Thumbs.db
 build/
-design/
-design/css
-.idea/
+.idea/*
