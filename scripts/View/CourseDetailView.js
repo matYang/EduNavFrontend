@@ -2,13 +2,15 @@ var CourseDetailView = Backbone.View.extend({
     el: "#content",
     template: _.template(tpl.get('courseDetail')),
     initialize: function (courseIdWrapper) {
-        _.bindAll(this, 'render', 'bindEvents', 'showLoginModal', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'showLoginModal', 'renderMap', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.sr = new CourseSearchRepresentation();
 
         this.freeTrialModal = new FreeTrialModal();
         this.teacherModal = new TeacherModal();
+        this.loginFastModal = new LoginFastModal();//快速登录
+
         this.user = app.sessionManager.sessionModel;
         var self = this;
         app.generalManager.fetchCategories({success: function (data) {
@@ -39,7 +41,27 @@ var CourseDetailView = Backbone.View.extend({
             }
         });
     },
-
+    //在地图脚本回调结束后会执行renderMap见mapLoadScript
+    renderMap: function () {
+        var self = this;
+        var locationObj = {
+            name: this.course.get('address'),
+            label: this.course.get('instName'),
+            lat: 0,
+            lng: 0
+        };
+        //新建地图view
+        this.mapView = new MapView({mapElId: 'smallMap'});
+        this.mapView.addMarker(locationObj);
+        $('#smallMap').after('<a class="margin-top viewLarge text-center">查看完整地图</a>');
+        this.$el.on('click', '.viewLarge', function () {
+            self.mapModal = new MapModal({addressList: [locationObj ]});
+            var $body = $('body');
+            var width=$body.width() -40;
+            var height=$body.height() -60;
+            self.mapModal.show({width:width,height:height});
+        });
+    },
     render: function () {
         var that = this;
 
@@ -257,16 +279,8 @@ var CourseDetailView = Backbone.View.extend({
     },
 
     showLoginModal: function () {
-        var that = this;
         //如果没有登录 弹出框进行登录 或者 免注册登录（）
-        if (!that.loginFastView) {
-            that.loginFastView = new LoginFastView();
-        } else if (that.loginFastView.isClosed) {
-            that.loginFastView.render();
-            that.loginFastView.show();
-        } else {
-            that.loginFastView.show();
-        }
+        this.loginFastModal.show();
     },
 
     close: function () {

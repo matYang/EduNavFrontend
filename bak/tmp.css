@@ -1,0 +1,235 @@
+@charset "utf-8";
+/* CSS Document */
+
+.topBar {
+    position: relative;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #282C37;
+}
+
+.topBar .topBar-inner {
+    width: 1100px;
+    margin: 0 auto;
+}
+
+#logo {
+    float: left;
+    width: 155px;
+    height: 75px;
+    background: url(../images/logo.png) no-repeat;
+    text-indent: -9999px;
+}
+
+.topBar-navigation {
+    float: left;
+    height: 60px;
+    margin-left: 20px;
+    line-height: 60px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.topBar-navigation li {
+    float: left;
+    padding: 0 20px;
+    margin-left: 1px;
+    cursor: pointer;
+}
+
+.topBar-navigation li:hover {
+    background: #404652;
+}
+
+.topBar-navigation li.active {
+    background: #404652;
+}
+
+.topBar-navigation li a {
+    color: white
+}
+
+.topBar-navigation li .icon-hot {
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    margin-left: -3px;
+    background: url("../images/icon_hot.png") no-repeat;
+
+}
+
+/*tel应没有hover变化*/
+.topBar .tel {
+    float: right;
+    margin-right: 50px;
+    margin-top: 13px;
+}
+
+#navigate_tel:hover {
+    background: none;
+}
+
+.login_reg span {
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    background: #fff;
+    color: #fff
+}
+
+.user_info {
+    float: right;
+    font-size: 14px;
+    line-height: 60px;
+    color: #fff;
+}
+
+.user_info a, .user_info a:visited, .login_reg a, .login_reg a:visited {
+    color: #cccccc;
+    margin: 0 8px;
+}
+
+.login_reg a, .user_info a {
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.login_reg .hd a:hover, .user_info a:hover {
+    color: #ffffff;
+}
+
+.userpic {
+    float: right;
+    width: 60px;
+    height: 60px;
+    margin-right: 50px;
+    margin-top: 0px;
+    background-image: url("../images/top_nav_pic_1.png");
+    background-size: 60px 60px;
+}
+
+.userpic:hover {
+    background-image: url("../images/top_nav_pic_2.png");
+}
+
+#userPic {
+    width: 60px;
+    height: 60px;
+}
+
+.login_reg {
+    float: right;
+    position: relative;
+}
+
+.login_reg .hd {
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.login_reg .bd {
+    position: absolute;
+    top: 69px;
+    left: -141px;
+    width: 262px;
+    border: 1px solid #ccc;
+    z-index: 99;
+    background: #f8f8f8;
+}
+
+/*个人中心的dropdown*/
+.login_reg .ql {
+    position: absolute;
+    display: none;
+    top: 60px;
+    left: -92px;
+    width: 160px;
+    text-align: center;
+    background: #21252F;
+    z-index: 999;
+    padding-bottom: 5px;
+}
+
+/*dropdown中的li>a*/
+.ql a {
+    font-size: 14px;
+    line-height: 35px;
+    width: 160px;
+    height: 35px;
+    background: #21252F;
+    display: block;
+    margin: 3px 0;
+}
+
+.ql a:hover {
+    background: #333844;
+}
+
+.login_reg .bd ul {
+    padding: 20px;
+}
+
+.checkbox {
+    height: 20px;
+    line-height: 20px;
+    padding-left: 30px;
+    background: url(../images/checkbox.png) no-repeat 0 0;
+    cursor: pointer;
+}
+
+.checkbox.checked {
+    background-position: 0 -20px;
+}
+
+.login_reg .bd ul li {
+    margin-bottom: 10px;
+}
+
+.login_reg .wrong {
+    text-align: left;
+    line-height: 26px;
+    padding-left: 20px;
+    background: url(../images/icon_wrong.png) no-repeat 0 -22px;
+    font-size: 12px;
+}
+
+.login_reg .bd ul li input.text {
+    width: 210px;
+    height: 38px;
+    line-height: 38 px\9;
+    border: 1px solid #cccccc;
+    padding-left: 10px;
+    color: #333;
+}
+
+.login_reg .bd ul li .checkbox {
+    float: left;
+}
+
+.login_reg .forget_password, .login_reg .forget_password:visited {
+    float: right;
+    color: #128d56;
+}
+
+.btn_topnav_login {
+    width: 220px;
+    height: 40px;
+    background: url(../images/login_btn.png) no-repeat;
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.frontBanner {
+    width: 100%;
+    min-width: 1000px;
+    height: 400px;
+    background: url("../images/front_banner.png") center center no-repeat #282C37;
+    margin-bottom: 20px;
+}

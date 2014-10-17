@@ -1118,7 +1118,7 @@
     cursor: pointer;
     display: inline-block;
     width: auto;
-    height: 38px;
+    height: 32px;
     font-weight: normal;
     line-height: 38px;
     padding: 0 5px;
@@ -1135,7 +1135,6 @@
     text-decoration: underline;
     color: #28B094;
 }
-
 
 .adv{
     display: block;

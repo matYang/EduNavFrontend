@@ -36,7 +36,7 @@ module.exports = function (grunt) {
                     "scripts/View/Common/Shared/*.js",
                     "scripts/View/Common/*.js",
                     "scripts/View/Modal/*.js",
-                    "scripts/baiduLoadScript.js",
+                    "scripts/mapLoadScript.js",
                     "scripts/View/MyPage/*.js",
                     "scripts/View/*.js",
                     "scripts/Main.js"

@@ -2,14 +2,17 @@ var Address = Backbone.Model.extend({
     defaults: function () {
         return {
             'id': -1,
-            'detail':undefined
+            'lng':0,
+            'lat':0,
+            'realAddress': undefined,
+            'detail': undefined
         };
     },
     idAttribute: 'id',
 
     parse: function (data) {
-        if ( typeof data !== 'undefined') {
-            
+        if (typeof data !== 'undefined') {
+
             data.id = parseInt(data.id, 10);
         }
         return data;
@@ -17,13 +20,20 @@ var Address = Backbone.Model.extend({
     _toJSON: function () {
         var json = _.clone(this.attributes);
         return json;
+    },
+    toLocationObj: function (label) {
+        return {
+            label: this.get('realAddress')||label,
+            name: this.get('detail'),
+            lat: this.get('lat'),
+            lng: this.get('lng')
+        }
     }
 });
 
 
 var Addresses = Backbone.Collection.extend({
     model: Address,
-
     start: 0,
     count: 0,
     total: 0,
@@ -36,13 +46,13 @@ var Addresses = Backbone.Collection.extend({
     },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
-        if ( typeof urlOverride !== 'undefined') {
+        if (typeof urlOverride !== 'undefined') {
             this.url = urlOverride;
         }
     },
 
     overrideUrl: function (urlOverride) {
-        if ( typeof urlOverride !== 'undefined') {
+        if (typeof urlOverride !== 'undefined') {
             this.url = urlOverride;
         }
     }

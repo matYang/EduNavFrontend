@@ -20,10 +20,17 @@
     width: 700px;
     height: 320px;
     display: none;
+    opacity: 0;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
 }
 
 #tuanBanner .pic .active img {
     display: block;
+    opacity: 1;
 }
 
 #tuanBanner .tips {
@@ -47,6 +54,7 @@
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box; /* Firefox, other Gecko */
     box-sizing: border-box; /* Opera/IE 8+ */
+
 }
 
 #tuanBanner .tips_li + .tips_li {
@@ -80,6 +88,21 @@
     color: #FC6B6D;
 }
 
+#tuanBanner .tips_li{
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    -ms-transition: background-color 0.2s;
+    -o-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+}
+#tuanBanner .tips_li a,
+#tuanBanner .tips_li .price {
+    -webkit-transition: color 0.2s;
+    -moz-transition: color 0.2s;
+    -ms-transition: color 0.2s;
+    -o-transition: color 0.2s;
+    transition: color 0.2s;
+}
 /*hover激活状态时的样式 文字字体以及背景色 位置*/
 #tuanBanner .tips_li.active a,
 #tuanBanner .tips_li.active .price {
@@ -94,6 +117,7 @@
     padding-right: 16px;
     left: 16px;
     width: 332px;
+
 }
 
 /*hover激活状态下的图标设置 使用伪元素设置*/
@@ -129,12 +153,14 @@
 }
 
 /*激活状态下最后一个元素的左图标和右图标*/
-#tuanBanner .tips_li:last-child.active:before {
+#tuanBanner .tips_li:last-child.active:before,
+#tuanBanner .tips_li.last-child.active:before {
     left: 0;
     background: url("../images/tuan_active_left_last.png") no-repeat;
 }
 
-#tuanBanner .tips_li:last-child.active:after {
+#tuanBanner .tips_li:last-child.active:after,
+#tuanBanner .tips_li.last-child.active:after{
     right: 0;
     background: url("../images/tuan_active_right_last.png") no-repeat;
 }
