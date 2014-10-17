@@ -71,8 +71,6 @@ var MapView = Backbone.View.extend({
 
     //set center and set marker
     _setMarker: function (point, locationName) {
-        console.log(point);
-        console.log(locationName);
         //todo 如果locationObj是由百度地图返回 里面的标点和英文的大小写可能会发生变化
         //todo 那么从map中取地理位置对应的机构名时会发生错误
         if (point) {
