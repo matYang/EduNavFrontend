@@ -83,11 +83,11 @@ var TuanDetailView = Backbone.View.extend({
     },
     //在地图脚本回调结束后会执行renderMap见mapLoadScript
     renderMap: function () {
-        if (typeof BMap !== 'undefined'&& !this.mapView) {
+        if (typeof BMap !== 'undefined' && !this.mapView) {
             var self = this;
             self.addressList = [];
             this.tuan.get('addressList').forEach(function (address) {
-                self.addressList.push((address.toLocationObj()));
+                self.addressList.push((address.toLocationObj(self.tuan.get('course').get('instName'))));
             });
             //新建地图view
             this.mapView = new MapView({mapElId: 'smallMap'});
