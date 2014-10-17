@@ -103,10 +103,9 @@ var Constants = {
 
         //todo 使用Modal start
         "mypage_usernameModal", //设置用户名的弹出框
-        "mypage_chooseSchoolModal", //设置毕业院校的弹出框
-        "courseTip",//【首页】课程选择页面
 
         //todo 使用Modal end
+        "mypage_schoolModal", //设置毕业院校的弹出框
         "courseTipModal",//【首页】课程选择页面
         "loginFastModal",//【课程详情|团购详情】快速登录
         "freeTrialModal",//【课程详情】免费试听弹出框
