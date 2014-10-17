@@ -124,11 +124,11 @@ var SearchResultView = MultiPageView.extend({
             this.messages = searchResults;
             var total = searchResults.total;
             $("#resultNum").html(total);
-            for (i = 0; i < searchResults.length; i++) {
-                if (this.compareWidgetView.map) {
-                    this.compareWidgetView.map.getLatLng(searchResults.at(i).get("address"), searchResults.at(i).get("instName"));
-                }
-            }
+//            for (i = 0; i < searchResults.length; i++) {
+//                if (this.compareWidgetView.map) {
+//                    this.compareWidgetView.map.getLatLng(searchResults.at(i).get("address"), searchResults.at(i).get("instName"));
+//                }
+//            }
             this.startIndex = 0;
             this.render();
         }

@@ -11,7 +11,6 @@ var Modal = Backbone.View.extend({
         _.bindAll(this, 'show', 'hide', 'close', '_render', '_hideOnBackdropClick', '_escape');
 
         this.isShown = false;
-        app.viewRegistration.register(this);
     },
     show: function (msgObj) {
         var self = this;

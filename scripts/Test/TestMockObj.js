@@ -18,9 +18,9 @@ testMockObj = {
     testPhoto3: new Photo().set("id", 3).set("imgUrl", "/testUrl3"),
 
     testAddressList: new Addresses(),
-    testAddress1: (new Address()).set('id', 1).set('detail', '南京市玄武区孝陵卫200号xx街道xx路xx楼xxx层xx室'),
-    testAddress2: (new Address()).set('id', 2).set('detail', '南京市秦淮区人民政府'),
-    testAddress3: (new Address()).set('id', 3).set('detail', '南京市中山北路222号xx大厦3楼'),
+    testAddress1: (new Address()).set('id', 1).set('detail', '南京市江宁区胜太路109号大才大厦6楼').set('realAddress', '江宁校区'),
+    testAddress2: (new Address()).set('id', 2).set('detail', '南京市秦淮区人民政府').set('realAddress', '秦淮校区'),
+    testAddress3: (new Address()).set('id', 3).set('detail', '南京市秦淮区中山南路89号江苏文化大厦22楼').set('realAddress', '中山南路校区'),
 
     testComments: new Comments(),
     testComment1: new Comment().set('id', 1).set('user', {phone: '133****23232'})
@@ -83,7 +83,7 @@ testMockObj = {
         .set("originalPrice", 899)
         .set('schooltimeWeek', [1, 2]).set('schooltimeDay', [3, 4])
         .set('startTime1', '0900').set('finishTime1', '1100')
-        .set("instName", "南京新东方").set("address", "南京市玄武区南京市玄武区南京市玄武区南京市玄武区南京市玄武区南京市玄武区")
+        .set("instName", "南京新东方").set("address", "南京市江宁区胜太路109号大才大厦6楼（AB）")
         .set("circleName", '仙林大学城1')
         .set("status", EnumConfig.CourseStatus.onlined)
         .set("bookingType", 1)
