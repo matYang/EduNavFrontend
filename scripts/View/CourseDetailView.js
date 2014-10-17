@@ -41,24 +41,26 @@ var CourseDetailView = Backbone.View.extend({
     },
     //在地图脚本回调结束后会执行renderMap见mapLoadScript
     renderMap: function () {
-        var self = this;
-        var locationObj = {
-            name: this.course.get('address'),
-            label: this.course.get('instName'),
-            lat: 0,
-            lng: 0
-        };
-        //新建地图view
-        this.mapView = new MapView({mapElId: 'smallMap'});
-        this.mapView.addMarker(locationObj);
-        $('#smallMap').after('<a class="margin-top viewLarge text-center">查看完整地图</a>');
-        this.$el.on('click', '.viewLarge', function () {
-            self.mapModal = new MapModal({addressList: [locationObj ]});
-            var $body = $('body');
-            var width=$body.width() -40;
-            var height=$body.height() -60;
-            self.mapModal.show({width:width,height:height});
-        });
+        if (typeof BMap !== 'undefined' && !this.mapView) {
+            var self = this;
+            var locationObj = {
+                name: this.course.get('address'),
+                label: this.course.get('instName'),
+                lat: 0,
+                lng: 0
+            };
+            //新建地图view
+            this.mapView = new MapView({mapElId: 'smallMap'});
+            this.mapView.addMarker(locationObj);
+            $('#smallMap').after('<a class="margin-top block J_viewLarge text-center">查看完整地图</a>');
+            this.$el.on('click', '.J_viewLarge', function () {
+                self.mapModal = new MapModal({addressList: [locationObj ]});
+                var $body = $('body');
+                var width = $body.width() - 40;
+                var height = $body.height() - 60;
+                self.mapModal.show({width: width, height: height});
+            });
+        }
     },
     render: function () {
         var that = this;
@@ -147,6 +149,7 @@ var CourseDetailView = Backbone.View.extend({
             templateId: that.courseTemplateId,
             parentView: that
         });
+        this.renderMap();
     },
     bindEvents: function () {
         var that = this;

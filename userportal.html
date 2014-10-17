@@ -3781,7 +3781,7 @@
     </div>
     <div class="map panel_bg clearfix">
         <div id="smallMap" style="width: 230px;height:180px"></div>
-        <%_.each(addressList,function(address){%>
+        <%_.each(addressList,function(address, index){%>
         <dl data-index="<%=index%>" class="addressItem map_list <%if(addressList.length > 3){%>map_info<%}%>">                
                 <dt>
                     <%=address.realAddress||course.instName%>
@@ -4203,7 +4203,6 @@
 
 <script src="scripts/Lib/bjqs.js" type="text/javascript"></script>
 <script src="scripts/Lib/backbone.notifier.js" type="text/javascript"></script>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=EGmLgAXhZCm4QcY74YdeOXdl"></script>
 <!-- load common files like config, resource, service, model, data manager-->
 <!-- under all circumstances, constants/prototypes/info must be loaded first-->
 <script src="scripts/Common/Config/EnvConfig.js" type="text/javascript"></script>

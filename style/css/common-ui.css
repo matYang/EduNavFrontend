@@ -549,7 +549,11 @@ textarea {
     display: none;
 }
 
+.block{
+    display: block;
+}
 .center-block {
+    display: block;
     margin: 0 auto;
 }
 

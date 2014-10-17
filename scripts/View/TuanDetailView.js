@@ -78,31 +78,37 @@ var TuanDetailView = Backbone.View.extend({
         $("#tuanDetail .pic").html(htmlphoto);
         $("#tuanDetail .pic .pic_big").find("a:first").addClass("active");
         $("#tuanDetail .pic .pic_list").find("i:first").removeClass("active");
+
+        this.renderMap();
     },
     //在地图脚本回调结束后会执行renderMap见mapLoadScript
     renderMap: function () {
-        var self = this;
-        self.addressList = [];
-        this.tuan.get('addressList').forEach(function (address) {
-            self.addressList.push((address.toLocationObj()));
-        });
-        //新建地图view
-        this.mapView = new MapView({mapElId: 'smallMap'});
-        this.mapView.addMarker(self.addressList[0]);
-        $('#smallMap').after('<a class="margin-top viewLarge text-center">查看完整地图</a>');
-        $('.addressItem').hover( function () {
-            var index = $(this).data('index');
-            var address = self.addressList[index];
-            self.mapView.removeAllMarkers();
-            self.mapView.addMarker(address);
-        },function(){});
-        this.$el.on('click', '.viewLarge', function () {
-            self.mapModal = new MapModal({addressList: self.addressList});
-            var $body = $('body');
-            var width = $body.width() - 40;
-            var height = $body.height() - 60;
-            self.mapModal.show({width: width, height: height});
-        });
+        if (typeof BMap !== 'undefined'&& !this.mapView) {
+            var self = this;
+            self.addressList = [];
+            this.tuan.get('addressList').forEach(function (address) {
+                self.addressList.push((address.toLocationObj()));
+            });
+            //新建地图view
+            this.mapView = new MapView({mapElId: 'smallMap'});
+            this.mapView.addMarker(self.addressList[0]);
+            $('#smallMap').after('<a class="margin-top J_viewLarge block text-center">查看完整地图</a>');
+            $('.addressItem').hover(function () {
+                var a = BMap;
+                var index = $(this).data('index');
+                var address = self.addressList[index];
+                self.mapView.removeAllMarkers();
+                self.mapView.addMarker(address);
+            }, function () {
+            });
+            this.$el.on('click', '.J_viewLarge', function () {
+                self.mapModal = new MapModal({addressList: self.addressList});
+                var $body = $('body');
+                var width = $body.width() - 40;
+                var height = $body.height() - 60;
+                self.mapModal.show({width: width, height: height});
+            });
+        }
     },
 
     bindEvents: function () {
@@ -247,8 +253,8 @@ var TuanDetailView = Backbone.View.extend({
                 this.teacherModal.close();
             }
             /*if (this.loginFastView) {
-                this.loginFastView.close();
-            }*/
+             this.loginFastView.close();
+             }*/
             if (this.commentsView) {
                 this.commentsView.close();
             }

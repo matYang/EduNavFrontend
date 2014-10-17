@@ -26,7 +26,7 @@ var MapView = Backbone.View.extend({
             this.type = obj.type;
         }
         this.mapElId = obj.mapElId;
-        if (BMap !== undefined) {
+        if (typeof BMap !== 'undefined') {
             this.geocoder = new BMap.Geocoder();
             this.map = new BMap.Map(this.mapElId);  //this should never expire
             this.map.setCurrentCity("南京");
