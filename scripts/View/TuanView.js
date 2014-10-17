@@ -66,6 +66,7 @@ var TuanView = Backbone.View.extend({
             if (!this.isClosed) {
                 this.$el.off();
                 this.$el.empty();
+                this.tuanBannerView.close();
                 this.isClosed = true;
                 $('.labels').off();
             }
@@ -80,7 +81,8 @@ var TuanBannerView = Backbone.View.extend({
     initialize: function () {
         var that = this;
         this.isClosed = false;
-        _.bindAll(this, "render", "afterRender", "bindEvents", "close");
+        this.index = 1;
+        _.bindAll(this, "render", "afterRender", "bindEvents", "close", 'changePic');
         app.viewRegistration.register(this);
         //should be no error
         app.generalManager.findTopTuan({
@@ -120,13 +122,32 @@ var TuanBannerView = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+
+        setTimeout(that.changePic,3000);
+
         $(".tips .tips_li").hover(function () {
             var bindex = $(".tips .tips_li").index(this);
             $(".tips .tips_li").removeClass("active");
             $(this).addClass("active");
             $(".pic .pics").removeClass("active");
             $(".pic .pics:eq(" + bindex + ")").addClass("active");
+            that.index = bindex;
         });
+    },
+    changePic:function(){
+        var that = this;
+        $(".tips .tips_li").removeClass("active");
+        $(".tips .tips_li:eq(" + that.index + ")").addClass("active");
+        $(".pic .pics").removeClass("active");
+        $(".pic .pics:eq(" + that.index + ")").addClass("active");
+
+        setTimeout(that.changePic,3000);
+
+        if(that.index == "3"){
+            that.index = -1;
+        }
+
+        that.index++;
     },
 
     close: function () {
