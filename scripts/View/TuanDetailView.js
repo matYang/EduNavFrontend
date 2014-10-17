@@ -248,144 +248,144 @@ var TuanDetailView = Backbone.View.extend({
     }
 });
 
-
-/*快速登录、注册View*/
-var LoginFastView = Backbone.View.extend({
-    el: "#overlayASelection",
-    template: _.template(tpl.get("loginFast")),
-    initialize: function () {
-        this.isClosed = false;
-        _.bindAll(this, "render", "bindEvents", "login", "fastLogin", "close");
-        app.viewRegistration.register(this);
-        this.render();
-
-    },
-    render: function () {
-        this.$el.html(this.template());
-        $("#sign_content").addClass("hidden");
-        this.bindEvents();
-    },
-
-    bindEvents: function () {
-        var that = this;
-        $("#login_fast .title li").on("click", function () {
-            var upid = $(this).attr("upid");
-            $("#login_fast .title li").addClass("active");
-            $(this).removeClass("active");
-            $("#login_fast .content").addClass("hidden");
-            $("#" + upid).removeClass("hidden");
-        });
-
-        //点击背景隐藏登陆框 需要防止事件冒泡（弹出框位于$el中,$el为遮罩层）
-        this.$el.on('click', function () {
-            that.hide();
-        });
-        //防止事件冒泡
-        this.$el.on('click', '.login_Area', function (e) {
-            e.stopPropagation();
-        });
-
-        //忘记密码
-        $('#tuan_forgetPassword').click(function () {
-            app.navigate('lost', true)
-        });
-
-        this.$el.on('click', '.js_sendSms', function (e) {
-            var phone = $("#sign_content .txt_phone").val();
-            var $valid = $('#sign_content .errorMsg');
-            $valid.html('');
-            if (!phone) {
-                $valid.html('<i class="icon icon-error"></i>请输入手机号');
-                return;
-            }
-            if (phone.length !== 11 || isNaN(parseInt(phone, 10))) {
-                $valid.html('<i class="icon icon-error"></i>手机号格式有误');
-                return
-            }
-            app.userManager.fastLoginSms(phone, Utilities.defaultSmsRequestHandler($(e.target)))
-        });
-        this.$el.on("click", '.btnLogin', function () {
-            that.login();
-        });
-        this.$el.on("click", '.btnFastLogin', function () {
-            that.fastLogin();
-        });
-    },
-    fastLogin: function () {
-        var that = this;
-        var phone = $("#sign_content .txt_phone").val(),
-            smsVerify = $("#sign_content .txt_passed").val();
-        var $valid = $('#sign_content .errorMsg');
-        $valid.html('');
-        if (!phone) {
-            $valid.html('<i class="icon icon-error"></i>请输入手机号');
-            return;
-        }
-        if (phone.length !== 11 || isNaN(parseInt(phone, 10))) {
-            $valid.html('<i class="icon icon-error"></i>手机号格式有误');
-            return
-        }
-        if (!smsVerify) {
-            $valid.html('<i class="icon icon-error"></i>请输入验证码');
-            return;
-        }
-        app.sessionManager.fastLogin(phone, smsVerify, {
-            success: function () {
-                //重置sessionUser并且render topBar
-                app.userManager.sessionUser = app.sessionManager.sessionModel;
-                app.topBarView.render();
-                that.close();
-            },
-            error: function (data) {
-                $('#sign_content .errorMsg').html(data.message || "服务器好像睡着了，请稍后再试");
-                $('#sign_content .btnLogin').html("快速登录").prop("disabled", false);
-            }
-        });
-    },
-    login: function () {
-        var that = this;
-        var username = $("#login_content .txt_phone").val(),
-            password = $("#login_content .txt_passed").val(),
-            remember = $("#login_content .check") ? 1 : 0;
-        var $valid = $('#login_content .errorMsg');
-        $valid.html('');
-        if (!username) {
-            $valid.html('<i class="icon icon-error"></i>请输入手机号或用户名');
-            return;
-        }
-        if (!password) {
-            $valid.html('<i class="icon icon-error"></i>请输入密码');
-            return;
-        }
-        $('#login_content .btnLogin').html("登录中..").prop("disabled", true);
-        //这里继续登录操作 登录成功后直接进行session的获取(为同步请求)
-        app.sessionManager.login(username, password, remember, {
-            success: function () {
-                //重置sessionUser并且render topBar
-                app.userManager.sessionUser = app.sessionManager.sessionModel;
-                app.topBarView.render();
-                that.close();
-
-            },
-            error: function (data) {
-                $('#login_content .errorMsg').html(data.message || "服务器好像睡着了，请稍后再试");
-                $('#login_content .btnLogin').html("登 录").prop("disabled", false);
-            }
-        });
-    },
-
-    show: function () {
-        this.$el.show();
-    },
-    hide: function () {
-        this.$el.hide();
-    },
-
-    close: function () {
-        if (!this.isClosed) {
-            this.$el.off();
-            this.$el.empty();
-            this.isClosed = true;
-        }
-    }
-});
+//
+///*快速登录、注册View*/
+//var LoginFastView = Backbone.View.extend({
+//    el: "#overlayASelection",
+//    template: _.template(tpl.get("loginFast")),
+//    initialize: function () {
+//        this.isClosed = false;
+//        _.bindAll(this, "render", "bindEvents", "login", "fastLogin", "close");
+//        app.viewRegistration.register(this);
+//        this.render();
+//
+//    },
+//    render: function () {
+//        this.$el.html(this.template());
+//        $("#sign_content").addClass("hidden");
+//        this.bindEvents();
+//    },
+//
+//    bindEvents: function () {
+//        var that = this;
+//        $("#login_fast .title li").on("click", function () {
+//            var upid = $(this).attr("upid");
+//            $("#login_fast .title li").addClass("active");
+//            $(this).removeClass("active");
+//            $("#login_fast .content").addClass("hidden");
+//            $("#" + upid).removeClass("hidden");
+//        });
+//
+//        //点击背景隐藏登陆框 需要防止事件冒泡（弹出框位于$el中,$el为遮罩层）
+//        this.$el.on('click', function () {
+//            that.hide();
+//        });
+//        //防止事件冒泡
+//        this.$el.on('click', '.login_Area', function (e) {
+//            e.stopPropagation();
+//        });
+//
+//        //忘记密码
+//        $('#tuan_forgetPassword').click(function () {
+//            app.navigate('lost', true)
+//        });
+//
+//        this.$el.on('click', '.js_sendSms', function (e) {
+//            var phone = $("#sign_content .txt_phone").val();
+//            var $valid = $('#sign_content .errorMsg');
+//            $valid.html('');
+//            if (!phone) {
+//                $valid.html('<i class="icon icon-error"></i>请输入手机号');
+//                return;
+//            }
+//            if (phone.length !== 11 || isNaN(parseInt(phone, 10))) {
+//                $valid.html('<i class="icon icon-error"></i>手机号格式有误');
+//                return
+//            }
+//            app.userManager.fastLoginSms(phone, Utilities.defaultSmsRequestHandler($(e.target)))
+//        });
+//        this.$el.on("click", '.btnLogin', function () {
+//            that.login();
+//        });
+//        this.$el.on("click", '.btnFastLogin', function () {
+//            that.fastLogin();
+//        });
+//    },
+//    fastLogin: function () {
+//        var that = this;
+//        var phone = $("#sign_content .txt_phone").val(),
+//            smsVerify = $("#sign_content .txt_passed").val();
+//        var $valid = $('#sign_content .errorMsg');
+//        $valid.html('');
+//        if (!phone) {
+//            $valid.html('<i class="icon icon-error"></i>请输入手机号');
+//            return;
+//        }
+//        if (phone.length !== 11 || isNaN(parseInt(phone, 10))) {
+//            $valid.html('<i class="icon icon-error"></i>手机号格式有误');
+//            return
+//        }
+//        if (!smsVerify) {
+//            $valid.html('<i class="icon icon-error"></i>请输入验证码');
+//            return;
+//        }
+//        app.sessionManager.fastLogin(phone, smsVerify, {
+//            success: function () {
+//                //重置sessionUser并且render topBar
+//                app.userManager.sessionUser = app.sessionManager.sessionModel;
+//                app.topBarView.render();
+//                that.close();
+//            },
+//            error: function (data) {
+//                $('#sign_content .errorMsg').html(data.message || "服务器好像睡着了，请稍后再试");
+//                $('#sign_content .btnLogin').html("快速登录").prop("disabled", false);
+//            }
+//        });
+//    },
+//    login: function () {
+//        var that = this;
+//        var username = $("#login_content .txt_phone").val(),
+//            password = $("#login_content .txt_passed").val(),
+//            remember = $("#login_content .check") ? 1 : 0;
+//        var $valid = $('#login_content .errorMsg');
+//        $valid.html('');
+//        if (!username) {
+//            $valid.html('<i class="icon icon-error"></i>请输入手机号或用户名');
+//            return;
+//        }
+//        if (!password) {
+//            $valid.html('<i class="icon icon-error"></i>请输入密码');
+//            return;
+//        }
+//        $('#login_content .btnLogin').html("登录中..").prop("disabled", true);
+//        //这里继续登录操作 登录成功后直接进行session的获取(为同步请求)
+//        app.sessionManager.login(username, password, remember, {
+//            success: function () {
+//                //重置sessionUser并且render topBar
+//                app.userManager.sessionUser = app.sessionManager.sessionModel;
+//                app.topBarView.render();
+//                that.close();
+//
+//            },
+//            error: function (data) {
+//                $('#login_content .errorMsg').html(data.message || "服务器好像睡着了，请稍后再试");
+//                $('#login_content .btnLogin').html("登 录").prop("disabled", false);
+//            }
+//        });
+//    },
+//
+//    show: function () {
+//        this.$el.show();
+//    },
+//    hide: function () {
+//        this.$el.hide();
+//    },
+//
+//    close: function () {
+//        if (!this.isClosed) {
+//            this.$el.off();
+//            this.$el.empty();
+//            this.isClosed = true;
+//        }
+//    }
+//});
