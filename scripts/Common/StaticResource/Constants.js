@@ -103,7 +103,6 @@ var Constants = {
 
         //todo 使用Modal start
         "mypage_usernameModal", //设置用户名的弹出框
-        "mypage_chooseSchoolModal", //设置毕业院校的弹出框
 
         //todo 使用Modal end
         "mypage_schoolModal", //设置毕业院校的弹出框

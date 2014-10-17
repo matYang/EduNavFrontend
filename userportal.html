@@ -256,7 +256,7 @@
         <div class="modal-inner">
             <div id="chooseschoolMain">
 
-                <h3>选择毕业院校<a id="chooseschoolclose"></a></h3>
+                <h3>选择毕业院校<a id="chooseschoolclose" class="close"></a></h3>
 
                 <div class="chooseshoolContent">
 
@@ -264,7 +264,8 @@
                         <span>请选择省市：</span>
                         <select id="chooseshoolshen" name="select" style="cursor: default;">
                             <option value="请选择">- 请选择省 -</option>
-                            <%_.each(locations,function(v){%>
+
+                            <%_.each(data,function(v){%>
                             <option value="<%=v.value%>"><%=v.name%></option>
                             <%})%>
                         </select>
@@ -3026,38 +3027,6 @@
             拥有用户名才可以凭此邀请好友，邀请成功可获取丰富的奖励~
         </div>
     </div>
-</script>
-
-<script type="text/templates" id="tpl_mypage_chooseSchoolModal">
-    <div id="chooseschoolAll">
-        <div id="chooseschoolMain">
-
-            <h3>选择毕业院校<a id="chooseschoolclose"></a></h3>
-
-            <div class="chooseshoolContent">
-
-                <div class="province_select">
-                    <span>请选择省市：</span>
-                    <select id="chooseshoolshen" name="select" style="cursor: default;">
-                        <option value="请选择">- 请选择省 -</option>
-                        <%_.each(province,function(v){%>
-                        <option value="<%=v.value%>"><%=v.name%></option>
-                        <%})%>
-                    </select>
-                    <select id="chooseshoolshi" name="select">
-                        <option value="请选择">- 请选择市 -</option>
-
-                    </select>
-                </div>
-                <div class="school_list">
-                    <ul id="schoolclearfix" class="clearfix">
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </script>
 
 <script type="text/templates" id="tpl_mypage_credit">

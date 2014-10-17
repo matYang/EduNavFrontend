@@ -275,17 +275,17 @@ thead tr.bookingEntry td.detail{text-align: center}
 .chooseshoolContent{
     padding: 10px;
 }
-#chooseschoolAll .province_select{
+.modal-school .province_select{
     text-align: left;
     padding: 10px 0;
     color: #636363;font-size:12px;
 }
-#chooseschoolAll .school_list{background: #F7F7F7; height: 240px; padding: 7px 0 10px; overflow-y: auto;}
-#chooseschoolAll .school_list ul{min-height:240px; height: auto; overflow-y: auto; padding-left: 10px; line-height:22px;text-align: left;}
-#chooseschoolAll .school_list ul li{cursor: pointer;display: inline-block;float: left;overflow: hidden;width: 220px; font-size:12px;}
-#chooseschoolAll .school_list ul li .square {background-color: #333;display: inline-block;font-size: 0;height: 3px;margin-right: 8px;vertical-align: middle;width: 3px;}
+.modal-school .school_list{background: #F7F7F7; height: 240px; padding: 7px 0 10px; overflow-y: auto;}
+.modal-school .school_list ul{min-height:240px; height: auto; padding-left: 10px; line-height:22px;text-align: left;}
+.modal-school .school_list ul li{cursor: pointer;display: inline-block;float: left;overflow: hidden;width: 220px; font-size:12px;}
+.modal-school .school_list ul li .square {background-color: #333;display: inline-block;font-size: 0;height: 3px;margin-right: 8px;vertical-align: middle;width: 3px;}
 
-#chooseschoolAll{
+.modal-school{
     display: none;
     width: 100%;
     height: 100%;
@@ -303,3 +303,7 @@ thead tr.bookingEntry td.detail{text-align: center}
     margin: 200px auto;
     z-index: 10000;
     background-color: #FFF;}
+
+
+
+.mypage_content_inner input{ padding-left: 10px;}
