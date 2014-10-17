@@ -92,7 +92,7 @@
 .modal-map .addressList .addressItem:hover,
 .modal-map .addressList .addressItem.active{
     cursor: pointer;
-    background-color: #e2ece7;
+    background-color: #F7F7F7;
 }
 /*地址列表的每一项 机构名和地址具体信息*/
 .modal-map .addressList .addressTitle{ margin-bottom: 5px; }
