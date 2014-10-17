@@ -9,6 +9,8 @@ var CourseDetailView = Backbone.View.extend({
 
         this.freeTrialModal = new FreeTrialModal();
         this.teacherModal = new TeacherModal();
+        this.loginFastModal = new LoginFastModal();//快速登录
+
         this.user = app.sessionManager.sessionModel;
         var self = this;
         app.generalManager.fetchCategories({success: function (data) {
@@ -280,16 +282,8 @@ var CourseDetailView = Backbone.View.extend({
     },
 
     showLoginModal: function () {
-        var that = this;
         //如果没有登录 弹出框进行登录 或者 免注册登录（）
-        if (!that.loginFastView) {
-            that.loginFastView = new LoginFastView();
-        } else if (that.loginFastView.isClosed) {
-            that.loginFastView.render();
-            that.loginFastView.show();
-        } else {
-            that.loginFastView.show();
-        }
+        this.loginFastModal.show();
     },
 
     close: function () {

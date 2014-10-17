@@ -13,9 +13,9 @@ testMockObj = {
     testTeacher2: new Teacher().set("id", 2).set("name", "Teacher B").set("imgUrl", "http://teacherimgbucket.oss-cn-hangzhou.aliyuncs.com/34/teacherp34i1t1408610594409-eb0e2a9c61e844b84d214e64828a415d.png"),
     testTeacher3: new Teacher().set("id", 3).set("name", "Teacher C").set("imgUrl", "http://teacherimgbucket.oss-cn-hangzhou.aliyuncs.com/34/teacherp34i1t1408610594409-eb0e2a9c61e844b84d214e64828a415d.png"),
     testPhotos: new Photos(),
-    testPhoto1: (new Photo()).set("id", 1).set("imgUrl", "/testUrl1"),
-    testPhoto2: new Photo().set("id", 2).set("imgUrl", "/testUrl2"),
-    testPhoto3: new Photo().set("id", 3).set("imgUrl", "/testUrl3"),
+    testPhoto1: (new Photo()).set("id", 1).set("imgUrl", "http://classroomimgbucket.oss-cn-hangzhou.aliyuncs.com/14/classPhotop14i3t1412930934524-cfe4c084e868abe54c995cd31cdcd216.png"),
+    testPhoto2: new Photo().set("id", 2).set("imgUrl", "http://classroomimgbucket.oss-cn-hangzhou.aliyuncs.com/14/classPhotop14i3t1412931202030-f313475b8d270ee35e1988c8ff73efcc.png"),
+    testPhoto3: new Photo().set("id", 3).set("imgUrl", "http://classroomimgbucket.oss-cn-hangzhou.aliyuncs.com/14/classPhotop14i3t1412930949911-e42b2f331c43be379f2dcd4bbdbd232c.png"),
 
     testAddressList: new Addresses(),
     testAddress1: (new Address()).set('id', 1).set('detail', '南京市江宁区胜太路109号大才大厦6楼').set('realAddress', '江宁校区'),
