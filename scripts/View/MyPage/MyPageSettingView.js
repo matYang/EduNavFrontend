@@ -54,6 +54,7 @@ var MyPageSettingView = BaseFormView.extend({
         $('.js_setUsernameModal').on('click', function () {
             //打开设置用户名的modal
             self.usernameModal = new UsernameModal({view: self});
+            self.usernameModal.show();
         });
         //选择学校
         $('#inputSchool').focus(function(){

@@ -245,4 +245,18 @@
 .modal-school .modal-inner{
     width: 712px;
 }
+/*设置用户名modal*/
+.modal-username .modal-inner{
+    width: 520px;
+    padding: 30px 40px 20px;
+}
+
+.modal-username .margin-y{
+    width: 150px;
+    margin: 20px auto;
+}
+
+.modal-username .messagetxt{
+    text-align: center;
+}
 
