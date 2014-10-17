@@ -2109,12 +2109,12 @@
         </ul>
     </div>
 
-    <div class="site_map panel_bg clearfix">
-        <a href="http://api.map.baidu.com/geocoder?address=<%= address%>&output=html" target="_blank">
+    <div class="map panel_bg clearfix">
+        <a class="map-pic" href="http://api.map.baidu.com/geocoder?address=<%= address%>&output=html" target="_blank">
             <img src="http://api.map.baidu.com/staticimage?width=230&height=180&markers=<%= address.split('（')[0].split('(')[0] %>"
                  alt="<%= address%>"/>
         </a>
-        <dl>
+        <dl class="map_list">
             <dt><%= instName %></dt>
             <dd><%= address %></dd>
         </dl>
@@ -3758,16 +3758,16 @@
             </li>
         </ul>
     </div>
-    <div class="site_map panel_bg clearfix">
-        <a href="http://api.map.baidu.com/geocoder?address=南京市&output=html" target="_blank">
+    <div class="map panel_bg clearfix">
+        <a class="map-pic" href="http://api.map.baidu.com/geocoder?address=南京市&output=html" target="_blank">
             <img src="http://api.map.baidu.com/staticimage?width=230&height=180&markers=<%=addressMarkers%>"
                  alt=""/>
         </a>
         <%_.each(addressList,function(address){%>
         <%if(addressList.length > 3){%>
-        <dl class="map_info">
+        <dl class="map_info map_list">
             <%}else{%>
-            <dl>
+            <dl class="map_list">
                 <%}%>
                 <dt>
                     <%=address.realAddress||course.instName%>

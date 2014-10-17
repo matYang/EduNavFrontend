@@ -681,35 +681,37 @@
 }
 
 /*地图*/
-.w_260 .site_map {
+.w_260 .map {
     width: 230px;
     padding: 10px;
     margin-bottom: 20px;
 }
 
-.w_260 .site_map a {
+.w_260 .map-pic {
     display: block;
     margin-bottom: 10px;
 }
 
+/*
 .w_260 span {
     font-size: 12px;
     line-height: 20px;
     margin: 5px 0;
 }
+*/
 
-.w_260 dl {
+.w_260 .map_list {
     border-top: 1px dashed #ccc;
     padding: 8px 0;
     margin-top: 4px;
 }
 
-.w_260 dt {
+.w_260 .map_list dt {
     font-weight: bold;
     line-height: 22px;
 }
 
-.w_260 dd {
+.w_260 .map_list dd {
     font-size: 12px;
     line-height: 22px;
     cursor: pointer;
