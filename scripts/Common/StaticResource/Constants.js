@@ -34,8 +34,7 @@ var Constants = {
         /*课程搜索模块*/
         "home", "homeCategoryContainer", "homeButton", "homeCatButton",
         "search", "searchResultEntry", "search_noMessage",
-        //地图上的自定义标签
-        "mapLabel",
+
         "compareWidget", "courseDetailCompareWidget",
         "compareWidgetEntry",
         //人工选课
@@ -111,6 +110,7 @@ var Constants = {
         "courseTipModal",//【首页】课程选择页面
         "loginFastModal",//【课程详情|团购详情】快速登录
         "freeTrialModal",//【课程详情】免费试听弹出框
+        "mapModal",//todo 大屏地图
         "teacherModal",//【课程详情|团购详情】教师信息弹出框
         "payInfoModal",//【团购订单支付页面】支付结果用户确认--遇到问题或成功
 
