@@ -82,7 +82,7 @@ var TuanBannerView = Backbone.View.extend({
         var that = this;
         this.isClosed = false;
         this.index = 1;
-        _.bindAll(this, "render", "afterRender", "bindEvents", "close", 'changePic');
+        _.bindAll(this, "render", "afterRender", "bindEvents", "close", 'changePic','clearTime');
         app.viewRegistration.register(this);
         //should be no error
         app.generalManager.findTopTuan({
@@ -122,8 +122,9 @@ var TuanBannerView = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+        this.clearTime();
 
-        setTimeout(that.changePic,3000);
+        this.setTimer = setTimeout(that.changePic,3000);
 
         $(".tips .tips_li").hover(function () {
             var bindex = $(".tips .tips_li").index(this);
@@ -133,6 +134,9 @@ var TuanBannerView = Backbone.View.extend({
             $(".pic .pics:eq(" + bindex + ")").addClass("active");
             that.index = bindex;
         });
+    },
+    clearTime:function(){
+        clearTimeout(this.setTimer);
     },
     changePic:function(){
         var that = this;
@@ -151,7 +155,9 @@ var TuanBannerView = Backbone.View.extend({
     },
 
     close: function () {
+        debugger
         if (!this.isClosed) {
+            this.clearTime();
             this.$el.off();
             this.$el.empty();
             this.isClosed = true;

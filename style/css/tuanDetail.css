@@ -673,6 +673,7 @@
 }
 
 /*fright*/
+
 #tuanDetail .fright h4 {
     color: #072;
     line-height: 30px;
@@ -681,13 +682,12 @@
 }
 
 /*地图*/
-.w_260 .map {
-    width: 230px;
+.w_250 .map {
     padding: 10px;
     margin-bottom: 20px;
 }
 
-.w_260 .map-pic {
+.w_250 .map-pic {
     display: block;
     margin-bottom: 10px;
 }
@@ -695,18 +695,18 @@
     cursor: pointer;
 }
 
-.w_260 .map_list {
+.w_250 .map_list {
     border-top: 1px dashed #ccc;
     padding: 8px 0;
     margin-top: 4px;
 }
 
-.w_260 .map_list dt {
+.w_250 .map_list dt {
     font-weight: bold;
     line-height: 22px;
 }
 
-.w_260 .map_list dd {
+.w_250 .map_list dd {
     font-size: 12px;
     line-height: 22px;
     cursor: pointer;
@@ -714,7 +714,7 @@
 
 /*一周最热团购*/
 #tuanDetail .fright .hot_tuan {
-    width: 230px;
+
     min-height: 200px;
     padding: 10px;
 }
@@ -986,7 +986,7 @@
 
 
 /*承诺*/
-.promise{ width: 230px; padding: 10px; margin-bottom: 10px;}
+.promise{  padding: 10px; margin-bottom: 10px;}
 .promise h3{ color: #349e6F; margin: 10px 0 20px 0;}
 .promise li{ margin-bottom: 10px;}
 .promiseIcon{ width: 30px; height: 30px; float: left; margin-right: 10px;}
