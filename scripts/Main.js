@@ -13,8 +13,14 @@ var AppRouter = Backbone.Router.extend({
 
     routes: {
         "": "home",
+        //课程搜索
         "search": "search",
         "search/*search": "encodedSearch",
+
+        //机构搜索(inst-->parnter使用inst对应后台的partner)
+        "inst": "partnerSearch",
+        "inst/*search": "partnerEncodedSearch",
+        "inst/:partnerId": "partnerDetail",
 
         "mypage": "mypage",
         "mypage/booking/:id": "myBooking",
@@ -99,11 +105,25 @@ var AppRouter = Backbone.Router.extend({
         this.homePageView = new HomePageView();
     },
 
-    //todo 团购页面
+    //机构搜索（带参数） 以及详情查看
+    partnerSearch: function () {
+        this.partnerSearchView = new PartnerSearchView();
+    },
+    partnerEncodedSearch: function (encodedSearchKey) {
+        this.partnerSearchView = new PartnerSearchView({
+            "searchKey": encodedSearchKey
+        });
+    },
+    partnerDetail: function (partnerId) {
+        this.partnerDetailView = new PartnerDetailView({
+            'partnerId': Utilities.toInt(partnerId)
+        });
+    },
+
+    //团购页面和详情页
     tuan: function () {
         this.tuanView = new TuanView();
     },
-    //todo 团购详情页
     tuanDetail: function (tuanId) {
         this.tuanDetailView = new TuanDetailView({
             'tuanId': Utilities.toInt(tuanId)

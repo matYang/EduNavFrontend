@@ -135,10 +135,6 @@
         }
     };
 
-    StorageService.prototype.setViewCache = function (type, view) {
-        this.views[type] = view;
-    };
-
     StorageService.prototype.getViewCache = function (type, params) {
         this.views[type] = this.views[type];
         if (!this.views[type]){

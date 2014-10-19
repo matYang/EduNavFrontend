@@ -1,4 +1,4 @@
-var CourseDetailView = Backbone.View.extend({
+var PartnerDetailView = Backbone.View.extend({
     el: "#content",
     template: _.template(tpl.get('courseDetail')),
     initialize: function (courseIdWrapper) {
@@ -41,7 +41,7 @@ var CourseDetailView = Backbone.View.extend({
             }
         });
     },
-    //在地图脚本回调结束后会执行renderMap见mapLoadScript
+    //todo 在地图脚本回调结束后会执行renderMap见mapLoadScript
     renderMap: function () {
         if (typeof BMap !== 'undefined' && !this.mapView) {
             var self = this;
@@ -281,18 +281,17 @@ var CourseDetailView = Backbone.View.extend({
         });
     },
 
-    showLoginModal: function () {
-        //如果没有登录 弹出框进行登录 或者 免注册登录（）
-        this.loginFastModal.show();
-    },
-
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
+            if (this.compareWidget) {
+                this.compareWidget.close();
+            }
             if (this.commentsView) {
                 this.commentsView.close();
             }
             $(document).off("scroll");
+            $("#courseNavigateTab").off();
             this.isClosed = true;
             app.courseDetailView = null;
         }
