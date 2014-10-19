@@ -35,6 +35,7 @@ module.exports = function (grunt) {
                     "scripts/Common/DataManagers/UserManager.js",
                     "scripts/View/Common/Shared/*.js",
                     "scripts/View/Common/*.js",
+                    "scripts/View/Modal/Modal.js",
                     "scripts/View/Modal/*.js",
                     "scripts/mapLoadScript.js",
                     "scripts/View/MyPage/*.js",
