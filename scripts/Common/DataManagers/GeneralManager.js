@@ -304,6 +304,40 @@
         });
     };
 
+    //根据搜索条件搜索机构列表 partnerSearchRepresentation
+    GeneralManager.prototype.findPartner = function (sr, callback) {
+        var searchResults = new Tuans();
+        if (!(sr instanceof Backbone.Model)) {
+            Info.warn('GeneralManager::findPartner invalid parameter, exit');
+            return;
+        }
+
+        if (testMockObj.testMode) {
+            searchResults = testMockObj.testTuans;
+            callback.success(searchResults);
+            return;
+        }
+
+        searchResults.overrideUrl(ApiResource.groupBuy);
+        searchResults.fetch({
+            data: sr.toQueryString(),
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    //todo tuan sr cache
+                    app.cache.set("queryTuan", sr.toQueryString(), searchResults.pluck("id"));
+                    callback.success(searchResults);
+                }
+            },
+            error: function (model, response) {
+                Info.warn('TuanManager::fetchSearchResult:: fetch failed with response:');
+                if (callback) {
+                    callback.error($.parseJSON(response.responseText));
+                }
+            }
+        });
+    };
 
     //拉取课程类目
     GeneralManager.prototype.fetchCategories = function (callback) {
