@@ -35,13 +35,13 @@ a {
     color: #333333;
 }
 
-input[type="text"] {
-    padding: 0 1px;
-}
+/*input[type="text"] {*/
+    /*padding: 0 1px;*/
+/*}*/
 
-input[type="password"] {
-    padding: 0 1px;
-}
+/*input[type="password"] {*/
+    /*padding: 0 1px;*/
+/*}*/
 
 ol, ul {
     margin: 0;

@@ -764,8 +764,19 @@
             </div>
 
             <!--右栏开始 todo 加上课程申请的入口 备注信息需要标注来源-->
-            <div id="searchWidgets" class="fright w_250 unselectable">
-                <div id="CompareWidgetContainer" class="clearfix"></div>
+            <div class="fright w_250 unselectable needFixed ">
+                <div id="applyFormContainer" class="bg-white clearfix padding-sm">
+                    <div class="text-center"><img width="186" height="116" src="./style/images/right_form_a.png" alt=""/></div>
+                    <div class="sk-form">
+                        <input class="sk-input" type="text" placeholder="想学点什么？"/>
+                        <input class="sk-input" type="text" placeholder="想在哪儿学？"/>
+                        <div class="sk-form-btn">ok</div>
+                    </div>
+                </div>
+                <div class="blank"></div>
+                <a class="adv" onclick="doyoo.util.openChat('g=82548');return false;">
+                    <img src="./style/images/widget_a.jpg" alt="别人家的孩子都在学什么"/>
+                </a>
             </div>
         </div>
         <!--search_result end-->
@@ -775,23 +786,27 @@
 <script type="text/template" id="tpl_partnerSearchResultEntry">
     <div class="searchResultEntry clearfix">
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/></div>
-        <div class="col1">
+        <div class="col">
             <p class="title">
                 <a class="courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
                 <%if(groupBuyActivity){%>
                 <span class="badge" style="margin-top: 5px;">团</span>
                 <%}%>
+
             </p>
-
-            <p class="desc descSpec">[<%= circleName||'-- --' %>]</p>
-
+            <p class="desc descSpec"><i class="i_partner i_partner_eye"></i>
+                <span>2000</span>
+                <i class="i_dash"></i>
+                <span>老师20</span>
+                <i class="i_dash"></i>
+                <span><a>10门课程</a></span>
+                <i class="i_dash"></i>
+                <span class="raty"></span>
+            </p>
             <p class="desc">
-                <i class="heartIcon"></i><%=viewTotal%>
-                &nbsp;&nbsp;
-                已有 <span class="ft-primary"><%=bookingTotal%></span> 人报名
+                <i class="i_partner i_partner_hat"></i> 雅思 托福 会计证
             </p>
-
-            <p class="desc"><i class="locationIcon"></i> <%= address %></p>
+            <p class="desc"><i class="i_partner i_partner_location"></i> <%= address %></p>
         </div>
     </div>
 </script>

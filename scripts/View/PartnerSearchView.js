@@ -273,22 +273,17 @@ var PartnerSearchView = Backbone.View.extend({
         });
         $(document).on("scroll", function () {
             var scroll = $(this).scrollTop(), srh = $searchReqs.hasClass("hidden") ? 0 : 46;
-            $searchWidgets = $("#searchWidgets");
+            var $needFixed = $(".needFixed");
             $searchAll = $(".searchAll");
-            if ($("#searchResultContent").height() > $searchWidgets.height()) {
+            if ($("#searchResultContent").height() > $needFixed.height()) {
                 if (scroll > $searchPanel.height() + srh + 130 + $searchAll.height()) {
-                    $searchWidgets.addClass("stickyHeader");
+                    $needFixed.addClass("stickyHeader");
                 } else {
-                    $searchWidgets.removeClass("stickyHeader");
+                    $needFixed.removeClass("stickyHeader");
                 }
             } else {
-                $searchWidgets.removeClass("stickyHeader");
+                $needFixed.removeClass("stickyHeader");
             }
-//            if(scroll > $searchWidgets.offset().top){
-//                $searchWidgets.addClass("stickyHeader");
-//            }else{
-//                $searchWidgets.removeClass("stickyHeader");
-//            }
         });
         /*已选择的查询条件中的删除事件 相当于点击不限的情况 这需要将courseName单独处理*/
         $searchReqs.on("click", "a", function (e) {
