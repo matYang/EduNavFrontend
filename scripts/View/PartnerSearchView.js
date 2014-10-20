@@ -10,28 +10,19 @@ var PartnerSearchView = Backbone.View.extend({
     template: _.template(tpl.get('partnerSearch')),
     initialize: function (params) {
         _.bindAll(this, 'render', 'bindEvents', 'bindCatSearchEvents', 'renderCategories', 'renderLocations', 'renderCircle', 'close');
-        //define the template
-
-        this.timeDesc = true;
-        this.priceDesc = true;
         this.isClosed = true;
         this.titleObj = {};
 
-        this.searchRepresentation = app.storage.getSearchRepresentationCache("partner");
-        //url路径中带有查询参数时 重置this.searchRepresentation(初始值为new CourseSearchRepresentation())
+        this.searchRepresentation = new PartnerSearchRepresentation();
+        //url路径中带有查询参数时 重置this.searchRepresentation(初始值为new PartnerSearchRepresentation())
         if (params) {
             try {
-                this.searchRepresentation = new CourseSearchRepresentation();
                 this.searchRepresentation.castFromQuery(params.searchKey);
-                //重新保存查询结果
-                app.storage.setSearchRepresentationCache(this.searchRepresentation, true);
             } catch (e) {
                 app.navigate("inst/search", {replace: true, trigger: false});
-                this.searchRepresentation = new CourseSearchRepresentation();
             }
         }
         this.render();
-        //injecting the template
     },
     render: function () {
         if (this.isClosed) {
@@ -139,21 +130,7 @@ var PartnerSearchView = Backbone.View.extend({
         this.titleObj.city = "南京";
         if (!locationValue && !circleValue) {
             $dist.find("span[data-value=noreq]").addClass("active");
-        } /*else if (locationValue == "location" || circleValue == "circle") {
-         $dist.find("span[data-value=noreq]").removeClass("active");
-         //如果原本选择的是行政区
-         if (locationValue == "location") {
-         $dist.find("span[data-value=" + locationValue + "]").addClass("active");
-         var text = $dist.find("span[data-value=" + locationValue + "]").html();
-         $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
-         $dist.find("p[data-parentvalue=" + locationValue + "]").removeClass("hidden");
-         } else {//如果原本选择的是商圈
-         $dist.find("span[data-value=" + circleValue + "]").addClass("active");
-         var text = $dist.find("span[data-value=" + circleValue + "]").html();
-         $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
-         $dist.find("p[data-parentvalue=" + circleValue + "]").removeClass("hidden");
-         }
-         } */ else if (locationValue) {//如果原本选择的是行政区下的小标题
+        } else if (locationValue) {//如果原本选择的是行政区下的小标题
             $dist.find("span[data-value=noreq]").removeClass("active");
             $dist.find("span[data-value=" + locationValue + "]").addClass("active");
             $dist.find("p[data-parentvalue='location']").removeClass("hidden");
@@ -414,15 +391,14 @@ var PartnerSearchView = Backbone.View.extend({
             if ($(this).hasClass("active")) {
                 return;
             }
-            var dataId = $(e.target).data("value"), cv;
+            var dataValue = $(e.target).data("value"), cv;
             //如果是最右侧的用户搜索文字 阻止事件冒泡（改变active状态）
-            if (dataId == 'search') {
+            if (dataValue == 'search') {
                 e.stopPropagation();
                 return
             }
-            that.searchRepresentation.set("categoryValue", dataId);
-            that.showCategory(that.searchRepresentation.get("categoryValue"));
-            that.partnerSearch();
+            that.searchRepresentation.set("categoryValue", dataValue);
+            that.showCategory(dataValue);
         });
         $("#search_category").on("click", ".clearSearch", function (e) {
             that.clearCourseNameSearch();
@@ -445,9 +421,9 @@ var PartnerSearchView = Backbone.View.extend({
         that.partnerSearch();
         //todo 有问题
         that.showCategory();
-        app.navigate("inst/search/" + "categoryValue=00", true);
+        app.navigate("inst/search/" + "categoryValue=0000", true);
     },
-    /*处理筛选事件(上课时间 课程费用等)*/
+    /*处理筛选事件--二级目录和三级目录(todo 机构筛选不处理二级目录的事件)*/
     filterResult: function ($filter, $target) {
         if ($target.hasClass("active")) {
             return;
@@ -480,6 +456,7 @@ var PartnerSearchView = Backbone.View.extend({
             $target.siblings("p").addClass("hidden");
             $target.siblings("[data-parentvalue=" + dataValue + "]").removeClass("hidden");
             $target = null;
+            return
         } else if (criteria === "district") {
             dataValue = $target.data("value");
             if (dataValue === "noreq") {
