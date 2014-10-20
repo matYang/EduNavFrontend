@@ -40,6 +40,9 @@
                     history: '/history',
                     operate: '/{0}/{1}'//{0} is bookingId,{1} is operation name
                 },
+                'partner':{
+                  list:''
+                },
                 //人工选课申请
                 'purpose': {
                     create: ''
@@ -79,9 +82,7 @@
                 general_school: api_maker(api_modules.rootPrefix, "general", "school"),
                 general_category: api_maker(api_modules.rootPrefix, "general", "category"),
 
-                general_partner: api_maker(api_modules.rootPrefix, "general", "partner"),
 
-                courses: api_maker(api_modules.rootPrefix, "course", "course"),
 
 
 //                general_courseByIdList: api_maker(api_modules.rootPrefix, "general", "courseByIdList"),
@@ -106,6 +107,8 @@
                 user_fastLogin:api_maker(api_modules.rootPrefix, 'user', 'fastLogin'),
                 user_fastLoginSms:api_maker(api_modules.rootPrefix, 'user', 'fastLoginSms'),
 
+                partners: api_maker(api_modules.rootPrefix, "partner", "list"),
+                courses: api_maker(api_modules.rootPrefix, "course", "course"),
                 groupBuy: api_maker(api_modules.rootPrefix, "groupBuy", "list"),
                 groupBuy_booking: api_maker(api_modules.rootPrefix, "groupBuy", "booking"),
                 create_comment: api_maker(api_modules.rootPrefix, 'comment', 'create'),

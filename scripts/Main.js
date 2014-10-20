@@ -18,8 +18,8 @@ var AppRouter = Backbone.Router.extend({
         "search/*search": "encodedSearch",
 
         //机构搜索(inst-->parnter使用inst对应后台的partner)
-        "inst": "partnerSearch",
-        "inst/*search": "partnerEncodedSearch",
+        "inst/search": "partnerSearch",
+        "inst/search/*search": "partnerEncodedSearch",
         "inst/:partnerId": "partnerDetail",
 
         "mypage": "mypage",

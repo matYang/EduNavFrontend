@@ -1,15 +1,14 @@
 var PartnerDetailView = Backbone.View.extend({
     el: "#content",
     template: _.template(tpl.get('partnerDetail')),
-    initialize: function (courseIdWrapper) {
-        _.bindAll(this, 'render', 'bindEvents', 'showLoginModal', 'renderMap', 'close');
+    initialize: function (opt) {
+        _.bindAll(this, 'render', 'bindEvents', 'renderMap', 'close');
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.sr = new CourseSearchRepresentation();
 
         this.freeTrialModal = new FreeTrialModal();
         this.teacherModal = new TeacherModal();
-        this.loginFastModal = new LoginFastModal();//快速登录
 
         this.user = app.sessionManager.sessionModel;
         var self = this;
@@ -18,7 +17,7 @@ var PartnerDetailView = Backbone.View.extend({
         }});
         // this.newBooking = new Booking();
         // $("#viewStyle").attr("href", "style/css/courseDetail.css");
-        app.generalManager.fetchCourse(courseIdWrapper.courseId, {
+        app.generalManager.fetchCourse(opt.partnerId, {
             success: function (course) {
                 app.generalManager.fetchCategories({
                     success: function (catObj) {

@@ -26,7 +26,7 @@ var PartnerSearchView = Backbone.View.extend({
                 //重新保存查询结果
                 app.storage.setSearchRepresentationCache(this.searchRepresentation, true);
             } catch (e) {
-                app.navigate("inst", {replace: true, trigger: false});
+                app.navigate("inst/search", {replace: true, trigger: false});
                 this.searchRepresentation = new CourseSearchRepresentation();
             }
         }
@@ -278,7 +278,7 @@ var PartnerSearchView = Backbone.View.extend({
             if (courseName) {
                 var searchRepresentation = new CourseSearchRepresentation();
                 searchRepresentation.set("courseName", courseName);
-                app.navigate("inst/" + searchRepresentation.toQueryString(), true);
+                app.navigate("inst/search/" + searchRepresentation.toQueryString(), true);
             }
 
         });
@@ -288,7 +288,7 @@ var PartnerSearchView = Backbone.View.extend({
             if (courseName) {
                 var searchRepresentation = new CourseSearchRepresentation();
                 searchRepresentation.set("courseName", courseName);
-                app.navigate("inst/" + searchRepresentation.toQueryString(), true);
+                app.navigate("inst/search/" + searchRepresentation.toQueryString(), true);
             }
         });
 
@@ -468,7 +468,7 @@ var PartnerSearchView = Backbone.View.extend({
         that.partnerSearch();
         //todo 有问题
         that.showCategory();
-        app.navigate("inst/" + "categoryValue=00", true);
+        app.navigate("inst/search/" + "categoryValue=00", true);
     },
     /*处理筛选事件(上课时间 课程费用等)*/
     filterResult: function ($filter, $target) {

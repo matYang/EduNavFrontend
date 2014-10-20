@@ -97,7 +97,7 @@ var PartnerSearchResultView = MultiPageView.extend({
         this.sr.set("count", self.pageEntryNumber);
         self.currentPage = self.sr.get('start') / self.pageEntryNumber + 1;
 
-        app.navigate("inst/" + this.sr.toQueryString(), {trigger: false, replace: true});
+        app.navigate("inst/search/" + this.sr.toQueryString(), {trigger: false, replace: true});
         $("#" + this.entryContainer).empty().append('<div class="loading"></div>');
         app.generalManager.findCourse(this.sr, {
             success: self.renderSearchResults,
