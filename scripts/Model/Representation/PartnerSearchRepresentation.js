@@ -1,4 +1,4 @@
-var InstSearchRepresentation = Backbone.Model.extend({
+var PartnerSearchRepresentation = Backbone.Model.extend({
     defaults: function () {
         return {
             'partnerId': undefined,
