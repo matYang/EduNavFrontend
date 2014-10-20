@@ -2,9 +2,18 @@ var longText = "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊";
 testMockObj = {
     testMode: (C_ENV_VAR === "LOCAL") ? true : false,
     //testUser中的id为-1即为未登录状态
-    testUser: new User().set('name', '白痴').set('phone', '15012312312').set('gender', 0).set('id', 1),
+    testUser: new User().set('name', '白痴').set('phone', '15012312312').set('gender', 0).set('id', 1).set('invitationCode', 'test'),
     testPartners: new Partners(),
-    testPartner1: new Partner().set("id", 1),
+    testPartner1: (new Partner())
+        .set("id", 1)
+        .set("wholeName", "南京万厦建设职业培训中心")
+        .set("hqLocation", "南京市新街口中山东路18号南京国际贸易中心16楼A1")
+        .set('partnerQualification', 1)
+        .set("reference", "wanxia")
+        .set('instName', "万厦培训")
+        .set("partnerDistinction", "《住建委定点机构》《劳动局诚信学校》")
+        .set('logoUrl', 'http://logobucket.oss-cn-hangzhou.aliyuncs.com/3/logop3i3t1412906863958-cc10ac1f1f968413be0e8bfa454accca.png')
+        .set("partnerIntro","南京万厦建设职业培训中心是市住建委定点培训机构，年培训学员数千人，权威正规、通过率高，在行业内有较高的知名度和美誉度。 主营项目：一、二级建造师、造价员、施工员、质检员等八大员，建筑电工、焊工、架子工等特殊工种！"),
     testPartner2: new Partner().set("id", 2),
 
     testTeachers: new Teachers(),
@@ -465,6 +474,15 @@ testMockObj.testCourse2.set("classPhotoList", testMockObj.testPhotos);
 testMockObj.testCourse3.set("classPhotoList", testMockObj.testPhotos);
 
 testMockObj.testPartners.add([testMockObj.testPartner1, testMockObj.testPartner2]);
+
+testMockObj.testPartner1.set("teacherList", testMockObj.testTeachers);
+testMockObj.testPartner2.set("teacherList", testMockObj.testTeachers);
+
+testMockObj.testPartner1.set("classPhotoList", testMockObj.testPhotos);
+testMockObj.testPartner2.set("classPhotoList", testMockObj.testPhotos);
+
+testMockObj.testPartner1.set('addressList', testMockObj.testAddressList);
+testMockObj.testPartner2.set('addressList', testMockObj.testAddressList);
 
 testMockObj.testBooking1.set("course", testMockObj.testCourse1).set('reference', 'isk-2323-s232');
 testMockObj.testBooking2.set("course", testMockObj.testCourse2).set('reference', 'isk-2323-s232');

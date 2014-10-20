@@ -80,6 +80,41 @@
         });
     };
 
+    //根据ID拉取单个机构
+    GeneralManager.prototype.fetchPartner = function (id, callback) {
+        var cache = app.cache.get("partner", id);
+        if (cache) {
+            if (callback) {
+                callback.success(new Partner(cache, {parse: true}));
+                return;
+            }
+        }
+        var partner = new Partner();
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testPartners.get(id));
+            return;
+        }
+        partner.overrideUrl(ApiResource.partner);
+        partner.set('id', id);
+        partner.fetch({
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    callback.success(model);
+                    app.cache.set("partner", id, partner.toJSON());
+                }
+            },
+
+            error: function (model, response) {
+                Info.warn('fetch partner failed');
+                if (callback) {
+                    callback.error($.parseJSON((response.responseText)));
+                }
+            }
+        });
+    };
+
     //根据ID拉取单个团购
     GeneralManager.prototype.fetchTuan = function (id, callback) {
         var tuan = new Tuan();

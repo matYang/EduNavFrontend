@@ -3,7 +3,6 @@ var Partner = Backbone.Model.extend({
     defaults: function () {
         return {
             'id': -1,
-            'partnerId': -1,
             'wholeName':'',
             'hqLocation': '',
             'partnerQualification': '',
@@ -14,7 +13,7 @@ var Partner = Backbone.Model.extend({
             'logoUrl':'',
             'classPhotoList': [],
             'teacherList': [],
-            
+            'addressList':[],
             'createTime': new Date()
         };
     },
@@ -62,19 +61,33 @@ var Partner = Backbone.Model.extend({
     _toJSON: function () {
         var json = _.clone(this.attributes), i;
         json.createTime = Utilities.getDateString(this.get('createTime'));
-        if (json.classPhotoList) {
-            for (i = 0; i < json.classPhotoList.length; i++ ) {
-                if (json.classPhotoList[i] instanceof Photo) {
-                    json.classPhotoList[i] = json.classPhotoList[i]._toJSON();
-                }
-            }
-        }
+//        if (json.classPhotoList) {
+//            for (i = 0; i < json.classPhotoList.length; i++ ) {
+//                if (json.classPhotoList[i] instanceof Photo) {
+//                    json.classPhotoList[i] = json.classPhotoList[i]._toJSON();
+//                }
+//            }
+//        }
+//        if (json.teacherList) {
+//            for (i = 0; i < json.teacherList.length; i++ ) {
+//                if (json.teacherList[i] instanceof Teacher) {
+//                    json.teacherList[i] = json.teacherList[i]._toJSON();
+//                }
+//            }
+//        }
         if (json.teacherList) {
-            for (i = 0; i < json.teacherList.length; i++ ) {
-                if (json.teacherList[i] instanceof Teacher) {
-                    json.teacherList[i] = json.teacherList[i]._toJSON();
-                }
-            }
+            var teacherList = [];
+            json.teacherList.forEach(function (teacher) {
+                teacherList.push((teacher._toJSON()));
+            });
+            json.teacherList = teacherList;
+        }
+        if (json.classPhotoList) {
+            var classPhotoList = [];
+            json.classPhotoList.forEach(function (photo) {
+                classPhotoList.push((photo._toJSON()));
+            });
+            json.classPhotoList = classPhotoList;
         }
         return json;
     }
