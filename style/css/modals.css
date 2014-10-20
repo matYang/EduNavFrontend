@@ -232,7 +232,10 @@
 /*免费试听modal*/
 .modal-freeTrial .modal-inner{
     width: 720px;
-    margin: 100px auto;
+    /*margin: 100px auto;*/
+    height: 486px;
+    top:50%;
+    margin-top: -243px;
 }
 /*快速登录modal*/
 .modal-loginFast .modal-inner{
