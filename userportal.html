@@ -295,6 +295,7 @@
             <ul class="topBar-navigation">
                 <li id="navigate_home" class="button">首页</li>
                 <li id="navigate_search" class="button">课程</li>
+                <li id="navigate_inst" class="button">学校</li>
                 <li id="navigate_tuan" class="button">团购&bull;特卖<i class="icon-hot"></i></li>
             </ul>
             <!---->
@@ -333,6 +334,7 @@
             <ul class="topBar-navigation">
                 <li id="navigate_home" class="button">首页</li>
                 <li id="navigate_search" class="button">课程</li>
+                <li id="navigate_inst" class="button">学校</li>
                 <li id="navigate_tuan" class="button">团购&bull;特卖<i class="icon-hot"></i></li>
             </ul>
             <div class="login_reg">
@@ -693,6 +695,109 @@
             </div>
         </li>
     </ul>
+</script>
+
+<script type="text/template" id="tpl_search">
+    <div class="container">
+        <div class="searchAll clearfix">
+            <div class="search_top white">
+                <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
+                <a class="search_btn"></a>
+            </div>
+            <div class="search_tip">
+                <span style="color: #333">大家都在搜:</span>
+                <span class="search_span">四六级</span>
+                <span class="search_span">考研</span>
+                <span class="search_span">会计证</span>
+                <span class="search_span">日语</span>
+                <span class="search_span">雅思</span>
+                <span class="search_span">托福</span>
+                <span class="search_span">导游证</span>
+                <span class="search_span">教师证</span>
+            </div>
+        </div>
+        <!--筛选框-->
+        <div id="searchPanel" class="filter unselectable">
+            <ul id="search_category" class="tab filterCriteria">
+            </ul>
+
+            <div id="filterPanel" class="filter_content">
+                <div id="filter_subCategory" class="filterCriteria filterCriteriadotted">
+                </div>
+                <div id="filter_district" class="filterCriteria filterCriteriadotted">
+                    <label>上课地区：</label>
+                    <span data-value="noreq" class="active">不限</span>
+
+                    <div data-value="location" class="subCategory span">行政区</div>
+                    <div data-value="circle" class="subCategory span">商圈</div>
+                </div>
+            </div>
+        </div>
+
+        <!--筛选结果-->
+        <div id="searchReqs" class="blank1 unselectable hidden">
+            <div><span id="resultNum"></span>个课程满足以下条件</div>
+        </div>
+
+        <div id="searchResultContent" class="search_result clearfix blank">
+            <!--左栏开始-->
+            <div class="fleft w_730">
+                <div id="searchResultSorter" class="clearfix unselectable">
+                    <ul class="sorter clearfix">
+                        <li id="editorPick" class="active">爱上课推荐</li>
+                        <!--<li class="line"></li>-->
+                        <li id="time">时间</li>
+                        <!--<li class="line"></li>-->
+                        <li id="price">价格</li>
+                    </ul>
+                    <div class="fright">
+                        当前促销：
+                        <!--<label for="check_originalPrice"> <input id="check_originalPrice" type="checkbox"-->
+                        <!--name="originalPriceStart"/>团购热卖</label>-->
+                        <label for="check_cashback"> <input id="check_cashback" type="checkbox"
+                                                            name="cashback"/>返现</label>
+                    </div>
+                </div>
+                <!--searchResultSorter end-->
+                <div id="searchResultDisplayPanel">
+                </div>
+                <div id="partnerSearchResultNavigator" class="page blank1 clearfix">
+
+                </div>
+                <a onclick="doyoo.util.openChat('g=82548');return false;" class="adv" ><img class="margin-top" src="./style/images/search_a3.jpg" width="730" height="85" alt="击穿最低价！返现进行时！"/></a>
+            </div>
+
+            <!--右栏开始 todo 加上课程申请的入口 备注信息需要标注来源-->
+            <div id="searchWidgets" class="fright w_250 unselectable">
+                <div id="CompareWidgetContainer" class="clearfix"></div>
+            </div>
+        </div>
+        <!--search_result end-->
+    </div>
+</script>
+
+<script type="text/template" id="tpl_partnerSearchResultEntry">
+    <div class="searchResultEntry clearfix">
+        <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/></div>
+        <div class="col1">
+            <p class="title">
+                <a class="courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
+                <%if(groupBuyActivity){%>
+                <span class="badge" style="margin-top: 5px;">团</span>
+                <%}%>
+            </p>
+
+            <p class="desc descSpec">[<%= circleName||'-- --' %>]</p>
+
+            <p class="desc">
+                <i class="heartIcon"></i><%=viewTotal%>
+                &nbsp;&nbsp;
+                已有 <span class="ft-primary"><%=bookingTotal%></span> 人报名
+            </p>
+
+            <p class="desc"><i class="locationIcon"></i> <%= address %></p>
+        </div>
+    </div>
 </script>
 
 <script type="text/template" id="tpl_search">

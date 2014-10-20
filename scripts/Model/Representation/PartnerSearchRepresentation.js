@@ -1,9 +1,9 @@
 var PartnerSearchRepresentation = Backbone.Model.extend({
     defaults: function () {
         return {
+            //筛选条件有【学校名】【是否参团】【课程类目】【商圈和行政区】
             'partnerId': undefined,
             'instName': undefined,
-
             'categoryValue': undefined,//筛选课程类目
             'locationValue': undefined,//筛选地址
             'circleValue': undefined,//筛选商圈
@@ -15,6 +15,7 @@ var PartnerSearchRepresentation = Backbone.Model.extend({
             'start': undefined,
             'count': undefined,
 
+            //todo 机构排序字段 有【爱上课推荐--根据人气】【老师数】【课程数-实际为模板数】
             'order': undefined,
             'columnKey': undefined
         };

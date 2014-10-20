@@ -571,7 +571,7 @@ var SearchView = Backbone.View.extend({
             } else if (dataValue === "location") {//判断是不是行政区
                 this.searchRepresentation.set("locationValue", $target.data("value"));
                 this.searchRepresentation.set("circleValue", undefined);
-                this.titleObj.district = $target.html();
+                this.titleObj.location = $target.html();
 //                if (this.compareWidgetView.map) {
 //                    this.compareWidgetView.map.setCenter($target.html());
 //                    this.compareWidgetView.map.map.setZoom(11);
@@ -579,7 +579,7 @@ var SearchView = Backbone.View.extend({
             } else if (dataValue === "circle") {//判断是不是商圈
                 this.searchRepresentation.set("circleValue", $target.data("value"));
                 this.searchRepresentation.set("locationValue", undefined);
-                this.titleObj.district = $target.html();
+                this.titleObj.circle = $target.html();
 //                if (this.compareWidgetView.map) {
 //                    this.compareWidgetView.map.setCenter($target.html());
 //                    this.compareWidgetView.map.map.setZoom(13);

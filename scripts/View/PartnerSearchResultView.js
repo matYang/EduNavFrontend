@@ -1,5 +1,5 @@
 var SearchResultView = MultiPageView.extend({
-    pageNavigator: "courseSearchResultNavigator",
+    pageNavigator: "partnerSearchResultNavigator",
     entryContainer: "searchResultDisplayPanel",
     noMessage: _.template(tpl.get("search_noMessage")),
     entryTemplate: _.template(tpl.get("searchResultEntry")),
