@@ -1,6 +1,6 @@
 var PartnerDetailView = Backbone.View.extend({
     el: "#content",
-    template: _.template(tpl.get('courseDetail')),
+    template: _.template(tpl.get('partnerDetail')),
     initialize: function (courseIdWrapper) {
         _.bindAll(this, 'render', 'bindEvents', 'showLoginModal', 'renderMap', 'close');
         app.viewRegistration.register(this);

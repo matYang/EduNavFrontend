@@ -31,6 +31,10 @@ var Constants = {
         /*对比页*/
         "compareView",
 
+        /*todo 机构模块*/
+        "partnerSearch", "partnerSearchResultEntry", "partnerSearch_noMessage",
+        "partnerDetail",
+
         /*课程搜索模块*/
         "home", "homeCategoryContainer", "homeButton", "homeCatButton",
         "search", "searchResultEntry", "search_noMessage",

@@ -7,7 +7,7 @@ var PartnerSearchView = Backbone.View.extend({
 
     subCategoryContainerTemplate: _.template(tpl.get("subCategoryContainer")),
     reqTemplate: _.template(tpl.get("req")),
-    template: _.template(tpl.get('search')),
+    template: _.template(tpl.get('partnerSearch')),
     initialize: function (params) {
         _.bindAll(this, 'render', 'bindEvents', 'bindCatSearchEvents', 'renderCategories', 'renderLocations', 'renderCircle', 'close');
         //define the template
@@ -26,7 +26,7 @@ var PartnerSearchView = Backbone.View.extend({
                 //重新保存查询结果
                 app.storage.setSearchRepresentationCache(this.searchRepresentation, true);
             } catch (e) {
-                app.navigate("search", {replace: true, trigger: false});
+                app.navigate("inst", {replace: true, trigger: false});
                 this.searchRepresentation = new CourseSearchRepresentation();
             }
         }
@@ -46,7 +46,7 @@ var PartnerSearchView = Backbone.View.extend({
             app.generalManager.getLocations(this);//同上 调用this.renderLocations
             app.generalManager.getCircle(this);//同上
             //新建view时会调用一次fetchAction 则会进行一次数据渲染(传入课程搜索 传入对比组件)
-            this.searchResultView = new SearchResultView(this.searchRepresentation, this.compareWidgetView);
+            this.searchResultView = new PartnerSearchResultView(this.searchRepresentation, this.compareWidgetView);
             //初始化时同步url中的参数进行过滤
             this.syncFilters();
             this.syncSorter();
@@ -278,7 +278,7 @@ var PartnerSearchView = Backbone.View.extend({
             if (courseName) {
                 var searchRepresentation = new CourseSearchRepresentation();
                 searchRepresentation.set("courseName", courseName);
-                app.navigate("search/" + searchRepresentation.toQueryString(), true);
+                app.navigate("inst/" + searchRepresentation.toQueryString(), true);
             }
 
         });
@@ -288,7 +288,7 @@ var PartnerSearchView = Backbone.View.extend({
             if (courseName) {
                 var searchRepresentation = new CourseSearchRepresentation();
                 searchRepresentation.set("courseName", courseName);
-                app.navigate("search/" + searchRepresentation.toQueryString(), true);
+                app.navigate("inst/" + searchRepresentation.toQueryString(), true);
             }
         });
 
@@ -468,7 +468,7 @@ var PartnerSearchView = Backbone.View.extend({
         that.partnerSearch();
         //todo 有问题
         that.showCategory();
-        app.navigate("search/" + "categoryValue=00", true);
+        app.navigate("inst/" + "categoryValue=00", true);
     },
     /*处理筛选事件(上课时间 课程费用等)*/
     filterResult: function ($filter, $target) {

@@ -1,8 +1,8 @@
-var SearchResultView = MultiPageView.extend({
+var PartnerSearchResultView = MultiPageView.extend({
     pageNavigator: "partnerSearchResultNavigator",
     entryContainer: "searchResultDisplayPanel",
-    noMessage: _.template(tpl.get("search_noMessage")),
-    entryTemplate: _.template(tpl.get("searchResultEntry")),
+    noMessage: _.template(tpl.get("partnerSearch_noMessage")),
+    entryTemplate: _.template(tpl.get("partnerSearchResultEntry")),
     pageEntryNumber: 10,
     scroll:false,
     initialize: function (searchRepresentation, compareWidget) {
@@ -97,7 +97,7 @@ var SearchResultView = MultiPageView.extend({
         this.sr.set("count", self.pageEntryNumber);
         self.currentPage = self.sr.get('start') / self.pageEntryNumber + 1;
 
-        app.navigate("search/" + this.sr.toQueryString(), {trigger: false, replace: true});
+        app.navigate("inst/" + this.sr.toQueryString(), {trigger: false, replace: true});
         $("#" + this.entryContainer).empty().append('<div class="loading"></div>');
         app.generalManager.findCourse(this.sr, {
             success: self.renderSearchResults,
