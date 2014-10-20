@@ -62,7 +62,7 @@
 
 #tuanBanner .tips_li .c-left {
     float: left;
-    width: 180px;
+    width: 210px;
     line-height: 80px;
     padding-left: 10px;
     font-size: 18px;
@@ -116,7 +116,6 @@
     padding-right: 16px;
     left: 16px;
     width: 362px;
-
 }
 
 /*hover激活状态下的图标设置 使用伪元素设置*/

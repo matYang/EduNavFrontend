@@ -232,6 +232,7 @@
 /*免费试听modal*/
 .modal-freeTrial .modal-inner{
     width: 720px;
+    margin: 100px auto;
 }
 /*快速登录modal*/
 .modal-loginFast .modal-inner{
@@ -239,10 +240,12 @@
 }
 /*课程选择modal*/
 .modal-courseTip .modal-inner{
+    margin: 100px auto;
     width: 912px;
 }
 /*学校选择modal*/
 .modal-school .modal-inner{
+    margin: 100px auto;
     width: 712px;
 }
 /*设置用户名modal*/

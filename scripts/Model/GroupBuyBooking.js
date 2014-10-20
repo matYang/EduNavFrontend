@@ -4,7 +4,7 @@ var GroupBuyBooking = Backbone.Model.extend({
             'id': -1,//订单Id
             'groupBuyActivityId': -1,//团购的Id
             'groupBuyPrice': undefined,//团购价格
-
+            'type': 0, //0来源于电脑端 1来源于手机端
             'userId': undefined,
             'status': undefined,
             'createTime': undefined,

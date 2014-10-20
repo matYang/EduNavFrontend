@@ -358,7 +358,7 @@ var SearchArea = Backbone.View.extend({
             //that.model.set('categoryId', categoryId);
             that.model.set('phone', phone);
             that.model.set('userName', userName);
-            that.model.set('remark', remark);
+            that.model.set('remark', '【PC-首页】'+remark);
             app.userManager.initApply(that.model, {
                 success: function () {
                     that.clearModel();

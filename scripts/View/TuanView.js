@@ -78,11 +78,13 @@ var TuanView = Backbone.View.extend({
 var TuanBannerView = Backbone.View.extend({
     el: "#tuanBanner",
     template: _.template(tpl.get("tuanBanner")),
+    timer: null,
+    total: 4,
+    index:0,
     initialize: function () {
         var that = this;
         this.isClosed = false;
-        this.index = 1;
-        _.bindAll(this, "render", "afterRender", "bindEvents", "close", 'changePic','clearTime');
+        _.bindAll(this, "render", "afterRender", "bindEvents", "close", 'changePic', 'moveTo');
         app.viewRegistration.register(this);
         //should be no error
         app.generalManager.findTopTuan({
@@ -110,6 +112,7 @@ var TuanBannerView = Backbone.View.extend({
                     + '</a></li>'
             )
         });
+        this.total = Math.min(tuans.total, 4);
         this.$el.find('.pic').html(l_buf.join(''));
         this.$el.find('.tips').html(r_buf.join(''));
 
@@ -122,44 +125,40 @@ var TuanBannerView = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
-        this.clearTime();
 
-        this.setTimer = setTimeout(that.changePic,3000);
+        this.timer = setTimeout(that.changePic, 3000);
 
         $(".tips .tips_li").hover(function () {
-            var bindex = $(".tips .tips_li").index(this);
-            $(".tips .tips_li").removeClass("active");
+            var $tipLis = $(".tips .tips_li");
+            that.index = $tipLis.index(this);
+            $tipLis.removeClass("active last");
             $(this).addClass("active");
-            $(".pic .pics").removeClass("active");
-            $(".pic .pics:eq(" + bindex + ")").addClass("active");
-            that.index = bindex;
+            that.moveTo(that.index);
+        }, function () {
         });
     },
-    clearTime:function(){
-        clearTimeout(this.setTimer);
-    },
-    changePic:function(){
-        var that = this;
-        $(".tips .tips_li").removeClass("active");
-        $(".tips .tips_li:eq(" + that.index + ")").addClass("active");
+    changePic: function () {
+        this.index = (this.index + 1) % 4;
+        $(".tips .tips_li").removeClass("active last");
+        $(".tips .tips_li:eq(" + this.index + ")").addClass("active");
         $(".pic .pics").removeClass("active");
-        $(".pic .pics:eq(" + that.index + ")").addClass("active");
-
-        setTimeout(that.changePic,3000);
-
-        if(that.index == "3"){
-            that.index = -1;
+        this.moveTo(this.index);
+        this.timer = setTimeout(this.changePic, 3000);
+    },
+    moveTo: function (index) {
+        $(".pic .pics").removeClass("active");
+        if (index == this.total) {
+            $(".pic .pics:eq(" + index + ")").addClass("active last");
+        } else {
+            $(".pic .pics:eq(" + index + ")").addClass("active");
         }
-
-        that.index++;
     },
 
     close: function () {
-        debugger
         if (!this.isClosed) {
-            this.clearTime();
             this.$el.off();
             this.$el.empty();
+            window.clearTimeout(this.timer);
             this.isClosed = true;
         }
     }
