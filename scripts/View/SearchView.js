@@ -34,10 +34,10 @@ var SearchView = Backbone.View.extend({
         //injecting the template
     },
     render: function () {
-        //背景
         if (this.isClosed) {
             this.isClosed = false;
             app.viewRegistration.register(this);
+            app.topBarView.activeNavigator('search');
             // $("title").html("找课程 | " + this.searchRepresentation.toTitleString());//that will be too long
             this.$el.append(this.template);
             //异步加载目录和地址
@@ -710,6 +710,7 @@ var SearchView = Backbone.View.extend({
             this.$el.empty();
             this.isClosed = true;
             app.searchView = null;
+            app.topBarView.clearNavigator();
         }
     }
 });

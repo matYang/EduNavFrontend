@@ -17,6 +17,7 @@ var HomePageView = Backbone.View.extend({
         document.title = "爱上课 | 为您选择最合适，最优惠的课程";
         this.isClosed = false;
         app.viewRegistration.register(this);
+        app.topBarView.activeNavigator('home');
         this.searchRepresentation = new CourseSearchRepresentation();
         $("body").addClass("index");
 //        if (!this.banner) {
@@ -179,6 +180,7 @@ var HomePageView = Backbone.View.extend({
             this.tuanBannerView.close();
             //this.artificialSelection.close();
             app.homePageView = null;
+            app.topBarView.clearNavigator();
         }
     }
 });

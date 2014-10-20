@@ -37,6 +37,7 @@ var PartnerSearchView = Backbone.View.extend({
         if (this.isClosed) {
             this.isClosed = false;
             app.viewRegistration.register(this);
+            app.topBarView.activeNavigator('inst');
             // $("title").html("找课程 | " + this.searchRepresentation.toTitleString());//that will be too long
             this.$el.append(this.template);
             //异步加载目录和地址
@@ -201,18 +202,14 @@ var PartnerSearchView = Backbone.View.extend({
 
     /**
      * 过滤条件的同步
-     * 课程名（用户从输入框输入） 开课日期 上课时间（开始和结束） 班级类型 课程费用（开始和结束） 是否返现
+     * 课程名（用户从输入框输入） 是否返现
      * 同步条件的active状态以及在下方显示的搜索条件
      */
     syncFilters: function () {
-        var startPrice = this.searchRepresentation.get("priceStart"),
-            priceEnd = this.searchRepresentation.get("priceEnd"),
-            courseName = this.searchRepresentation.get("courseName"),
-
-            cashback = this.searchRepresentation.get("cashbackStart"),
-            value, text;
+        var courseName = this.searchRepresentation.get("courseName"),
+            cashback = this.searchRepresentation.get("cashbackStart");
         var $searchReqs = $("#searchReqs");
-        //用户输入的课程名
+        //用户输入的机构名
         if (courseName !== undefined) {
             $('#search_category').addClass('tab5').append('<li class="actived" data-value="search"><i class="clearSearch"></i><p>' + courseName + '</p></li>');
             $searchReqs.append(this.reqTemplate({criteria: "courseName", dataValue: '', text: courseName}));
@@ -297,7 +294,6 @@ var PartnerSearchView = Backbone.View.extend({
             //parent node and child node as params
             that.filterResult($(e.delegateTarget), $(e.target));
         });
-        this.scrollSensorOn = true;
         $(document).on("scroll", function () {
             var scroll = $(this).scrollTop(), srh = $searchReqs.hasClass("hidden") ? 0 : 46;
             $searchWidgets = $("#searchWidgets");
@@ -397,23 +393,7 @@ var PartnerSearchView = Backbone.View.extend({
             that.searchRepresentation.set("order", undefined);
             that.partnerSearch();
         });
-
-        $("input[name=cashback]").on("change", function () {
-            if ($(this).prop("checked")) {
-                that.searchRepresentation.set("cashbackStart", 1);
-            } else {
-                that.searchRepresentation.set("cashbackStart", undefined);
-            }
-            that.partnerSearch();
-        });
-        $("input[name=commission]").on("change", function () {
-            if ($(this).prop("checked")) {
-                that.searchRepresentation.set("commission", 1);
-            } else {
-                that.searchRepresentation.set("commission", undefined);
-            }
-            that.partnerSearch();
-        });
+        //todo 机构是否有参与团购的课程
         $("input[name=originalPriceStart]").on("change", function () {
             if ($(this).prop("checked")) {
                 that.searchRepresentation.set("originalPriceStart", 1);
@@ -446,12 +426,9 @@ var PartnerSearchView = Backbone.View.extend({
         });
         $("#search_category").on("click", ".clearSearch", function (e) {
             that.clearCourseNameSearch();
-            return;
         });
     },
     clearCourseNameSearch: function () {
-        //todo
-
         var $searchReqs = $("#searchReqs");
         var that = this;
         $("a[data-cri=courseName]").remove();
@@ -528,7 +505,6 @@ var PartnerSearchView = Backbone.View.extend({
             }
         }
         this.partnerSearch();
-        //this.searchRepresentation.set(criteria, dataId);
     },
     close: function () {
         if (!this.isClosed) {
@@ -549,7 +525,8 @@ var PartnerSearchView = Backbone.View.extend({
             $("#searchReqs").off();
             this.$el.empty();
             this.isClosed = true;
-            app.searchView = null;
+            app.partnerSearchView = null;
+            app.topBarView.clearNavigator();
         }
     }
 });
