@@ -35,7 +35,6 @@ var SearchView = Backbone.View.extend({
     },
     render: function () {
         //背景
-        $("body").css("background-color", "#f1f1f1");
         if (this.isClosed) {
             this.isClosed = false;
             app.viewRegistration.register(this);
@@ -693,7 +692,6 @@ var SearchView = Backbone.View.extend({
     },
     close: function () {
         if (!this.isClosed) {
-            $("body").css("background-color", "");
             //removing all event handlers
             if (this.compareWidgetView) {
                 this.compareWidgetView.close();

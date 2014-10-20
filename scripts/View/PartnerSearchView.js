@@ -34,8 +34,6 @@ var PartnerSearchView = Backbone.View.extend({
         //injecting the template
     },
     render: function () {
-        //背景
-        $("body").css("background-color", "#f1f1f1");
         if (this.isClosed) {
             this.isClosed = false;
             app.viewRegistration.register(this);
@@ -59,73 +57,6 @@ var PartnerSearchView = Backbone.View.extend({
             this.bindEvents();
             document.title = "找机构?就上爱上课";
         }
-    },
-    /*加载上课地点*/
-    renderLocations: function (locations) {
-        var self = this;
-        //加载行政区/商圈//
-        if (!this.isClosed) {
-            var buf = [], chbuf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
-            this.locations = locations;
-
-            //加载行政区
-            var districts = locations[0].children[0].children, district;
-            for (i = 0; i < districts.length; i++) {
-                chbuf[i] = this.subSubCategoryTemplate({value: districts[i].value, name: districts[i].name});
-                var tt = this.subSubCategoryContainerTemplate({value: "location", entries: chbuf.join("")});
-            }
-            buf.push(tt);
-            $("#filter_district").append(buf.join(""));
-        }
-    },
-    /*加载商圈*/
-    renderCircle: function (Circle) {
-        var self = this;
-        var bubuf = [], circle = Circle;
-        for (i = 0; i < circle.length; i++) {
-            bubuf[i] = this.subSubCategoryTemplate({value: circle[i].value, name: circle[i].name});
-            var tb = this.subSubCategoryContainerTemplate({value: "circle", entries: bubuf.join("")});
-        }
-        $("#filter_district").append(tb);
-        this.showLocation();
-    },
-    /*渲染地址*/
-    showLocation: function () {
-        var self = this;
-        var locationValue = this.searchRepresentation.get("locationValue");
-        var circleValue = this.searchRepresentation.get("circleValue");
-        var $dist = $("#filter_district");
-        this.titleObj.city = "南京";
-        if (!locationValue && !circleValue) {
-            $dist.find("span[data-value=noreq]").addClass("active");
-        } /*else if (locationValue == "location" || circleValue == "circle") {
-         $dist.find("span[data-value=noreq]").removeClass("active");
-         //如果原本选择的是行政区
-         if (locationValue == "location") {
-         $dist.find("span[data-value=" + locationValue + "]").addClass("active");
-         var text = $dist.find("span[data-value=" + locationValue + "]").html();
-         $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
-         $dist.find("p[data-parentvalue=" + locationValue + "]").removeClass("hidden");
-         } else {//如果原本选择的是商圈
-         $dist.find("span[data-value=" + circleValue + "]").addClass("active");
-         var text = $dist.find("span[data-value=" + circleValue + "]").html();
-         $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
-         $dist.find("p[data-parentvalue=" + circleValue + "]").removeClass("hidden");
-         }
-         } */ else if (locationValue) {//如果原本选择的是行政区下的小标题
-            $dist.find("span[data-value=noreq]").removeClass("active");
-            $dist.find("span[data-value=" + locationValue + "]").addClass("active");
-            $dist.find("p[data-parentvalue='location']").removeClass("hidden");
-            var text = $dist.find("span[data-value=" + locationValue + "]").html();
-            $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
-        } else {//如果原本选择的是商圈下的小标题
-            $dist.find("span[data-value=noreq]").removeClass("active");
-            $dist.find("span[data-value=" + circleValue + "]").addClass("active");
-            $dist.find("p[data-parentvalue='circle']").removeClass("hidden");
-            var text = $dist.find("span[data-value=" + circleValue + "]").html();
-            $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
-        }
-
     },
     /*加载课程类别*/
     renderCategories: function (categories) {
@@ -168,6 +99,75 @@ var PartnerSearchView = Backbone.View.extend({
             this.bindCatSearchEvents();
         }
     },
+    /*加载上课地点*/
+    renderLocations: function (locations) {
+        var self = this;
+        //加载行政区/商圈//
+        if (!this.isClosed) {
+            var buf = [], chbuf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
+            this.locations = locations;
+
+            //加载行政区
+            var districts = locations[0].children[0].children, district;
+            for (i = 0; i < districts.length; i++) {
+                chbuf[i] = this.subSubCategoryTemplate({value: districts[i].value, name: districts[i].name});
+                var tt = this.subSubCategoryContainerTemplate({value: "location", entries: chbuf.join("")});
+            }
+            buf.push(tt);
+            $("#filter_district").append(buf.join(""));
+        }
+    },
+    /*加载商圈*/
+    renderCircle: function (Circle) {
+        var self = this;
+        var bubuf = [], circle = Circle;
+        for (i = 0; i < circle.length; i++) {
+            bubuf[i] = this.subSubCategoryTemplate({value: circle[i].value, name: circle[i].name});
+            var tb = this.subSubCategoryContainerTemplate({value: "circle", entries: bubuf.join("")});
+        }
+        $("#filter_district").append(tb);
+        this.showLocation();
+    },
+
+    /*渲染地址*/
+    showLocation: function () {
+        var self = this;
+        var locationValue = this.searchRepresentation.get("locationValue");
+        var circleValue = this.searchRepresentation.get("circleValue");
+        var $dist = $("#filter_district");
+        this.titleObj.city = "南京";
+        if (!locationValue && !circleValue) {
+            $dist.find("span[data-value=noreq]").addClass("active");
+        } /*else if (locationValue == "location" || circleValue == "circle") {
+         $dist.find("span[data-value=noreq]").removeClass("active");
+         //如果原本选择的是行政区
+         if (locationValue == "location") {
+         $dist.find("span[data-value=" + locationValue + "]").addClass("active");
+         var text = $dist.find("span[data-value=" + locationValue + "]").html();
+         $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
+         $dist.find("p[data-parentvalue=" + locationValue + "]").removeClass("hidden");
+         } else {//如果原本选择的是商圈
+         $dist.find("span[data-value=" + circleValue + "]").addClass("active");
+         var text = $dist.find("span[data-value=" + circleValue + "]").html();
+         $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
+         $dist.find("p[data-parentvalue=" + circleValue + "]").removeClass("hidden");
+         }
+         } */ else if (locationValue) {//如果原本选择的是行政区下的小标题
+            $dist.find("span[data-value=noreq]").removeClass("active");
+            $dist.find("span[data-value=" + locationValue + "]").addClass("active");
+            $dist.find("p[data-parentvalue='location']").removeClass("hidden");
+            var text = $dist.find("span[data-value=" + locationValue + "]").html();
+            $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
+        } else {//如果原本选择的是商圈下的小标题
+            $dist.find("span[data-value=noreq]").removeClass("active");
+            $dist.find("span[data-value=" + circleValue + "]").addClass("active");
+            $dist.find("p[data-parentvalue='circle']").removeClass("hidden");
+            var text = $dist.find("span[data-value=" + circleValue + "]").html();
+            $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
+        }
+
+    },
+
     /*渲染选中的课程类别*/
     showCategory: function () {
         var text, count, value, categoryValue = this.searchRepresentation.get("categoryValue");
@@ -227,25 +227,25 @@ var PartnerSearchView = Backbone.View.extend({
     //同步排序条件
     syncSorter: function () {
         var order = this.searchRepresentation.get("order"), columnKey = this.searchRepresentation.get("columnKey");
-        if (columnKey === "startDate") {
-            $("#price").html("价格").removeClass("active");
+        if (columnKey === "courseCount") {
+            $("#courseCount").html("课程数").removeClass("active");
             $("#editorPick").removeClass("active");
             if (order === "asc") {
-                this.timeDesc = true;
-                $("#time").html("时间↑").addClass("active");
+                this.teacherCountDesc = true;
+                $("#teacherCount").html("教师数↑").addClass("active");
             } else {
-                $("#time").html("时间↓").addClass("active");
-                this.timeDesc = false;
+                $("#teacherCount").html("教师数↓").addClass("active");
+                this.teacherCountDesc = false;
             }
-        } else if (columnKey === "price") {
-            $("#time").html("时间").removeClass("active");
+        } else if (columnKey === "teacherCount") {
+            $("#teacherCount").html("教师数").removeClass("active");
             $("#editorPick").removeClass("active");
             if (order === "asc") {
-                $("#price").html("价格↑").addClass("active");
-                this.priceDesc = true;
+                $("#courseCount").html("课程数↑").addClass("active");
+                this.courseCountDesc = true;
             } else {
-                $("#price").html("价格↓").addClass("active");
-                this.priceDesc = false;
+                $("#courseCount").html("课程数↓").addClass("active");
+                this.courseCountDesc = false;
             }
         }
     },
@@ -283,7 +283,7 @@ var PartnerSearchView = Backbone.View.extend({
 
         });
         //大家都在搜
-        $(".search_tip").on("click",".search_span",function(){
+        $(".search_tip").on("click", ".search_span", function () {
             var courseName = $(this).html();
             if (courseName) {
                 var searchRepresentation = new CourseSearchRepresentation();
@@ -357,41 +357,41 @@ var PartnerSearchView = Backbone.View.extend({
         });
     },
     /**
-     * 绑定爱上课推荐、时间、价格等的点击进行过滤的事件
+     * 绑定进行过滤的事件
      */
     bindSortEvents: function () {
         var that = this;
-        $("#time").on("click", function () {
-            $("#price").html("价格").removeClass("active");
+        this.$el.on("click", '#teacherCount', function () {
+            that.teacherCountDesc = !that.teacherCountDesc;
+            $("#courseCount").html("课程数").removeClass("active");
             $("#editorPick").removeClass("active");
-            if (that.timeDesc) {
-                $(this).html("时间↓").addClass("active");
+            if (that.teacherCountDesc) {
+                $(this).html("教师数↓").addClass("active");
             } else {
-                $(this).html("时间↑").addClass("active");
+                $(this).html("教师数↑").addClass("active");
             }
-            that.searchRepresentation.set("columnKey", "startDate");
-            that.searchRepresentation.set("order", that.timeDesc ? "desc" : "asc");
-            that.timeDesc = !that.timeDesc;
+            that.searchRepresentation.set("columnKey", "teacherCount");
+            that.searchRepresentation.set("order", that.teacherCountDesc ? "desc" : "asc");
             that.partnerSearch();
         });
-        $("#price").on("click", function () {
-            $("#time").html("时间").removeClass("active");
+        this.$el.on("click", '#courseCount', function () {
+            that.courseCountDesc = !that.courseCountDesc;
+            $("#teacherCount").html("教师数").removeClass("active");
             $("#editorPick").removeClass("active");
-            if (that.priceDesc) {
-                $(this).html("价格↓").addClass("active");
+            if (that.courseCountDesc) {
+                $(this).html("课程数↓").addClass("active");
             } else {
-                $(this).html("价格↑").addClass("active");
+                $(this).html("课程数↑").addClass("active");
             }
-            that.searchRepresentation.set("columnKey", "price");
-            that.searchRepresentation.set("order", that.priceDesc ? "desc" : "asc");
-            that.priceDesc = !that.priceDesc;
+            that.searchRepresentation.set("columnKey", "courseCount");
+            that.searchRepresentation.set("order", that.courseCountDesc ? "desc" : "asc");
             that.partnerSearch();
 
         });
         //点击爱上课推荐进行数据的重新获取
         $("#editorPick").on("click", function () {
-            $("#time").html("时间").removeClass("active");
-            $("#price").html("价格").removeClass("active");
+            $("#courseCount").html("课程数").removeClass("active");
+            $("#teacherCount").html("教师数").removeClass("active");
             $(this).html("爱上课推荐").addClass("active");
             that.searchRepresentation.set("columnKey", undefined);
             that.searchRepresentation.set("order", undefined);
@@ -475,6 +475,7 @@ var PartnerSearchView = Backbone.View.extend({
         if ($target.hasClass("active")) {
             return;
         }
+        var $searchReqs = $("#searchReqs");
         $("#resultNum").html('...');
         $filter.find(".active").removeClass("active");
         $target.addClass("active");
@@ -483,11 +484,11 @@ var PartnerSearchView = Backbone.View.extend({
         dataValue = $target.data("value");
         if (dataValue !== "noreq") {
             //显示当前结果的过滤条件
-            $("#searchReqs").append(this.reqTemplate(
+            $searchReqs.append(this.reqTemplate(
                 {criteria: criteria, dataValue: dataValue, text: $filter.find("[data-value=" + dataValue + "]").html()}
             ));
         }
-        var $searchReqs = $("#searchReqs");
+
         if ($searchReqs.find("a").length) {
             $searchReqs.removeClass("hidden");
         } else {
@@ -507,26 +508,14 @@ var PartnerSearchView = Backbone.View.extend({
             if (dataValue === "noreq") {
                 this.searchRepresentation.set("locationValue", undefined);
                 this.searchRepresentation.set("circleValue", undefined);
-//                if (this.compareWidgetView.map) {
-//                    this.compareWidgetView.map.setCenter(this.locations[0].name);
-//                    this.compareWidgetView.map.map.setZoom(9);
-//                }
             } else if (dataValue === "location") {//判断是不是行政区
                 this.searchRepresentation.set("locationValue", $target.data("value"));
                 this.searchRepresentation.set("circleValue", undefined);
                 this.titleObj.district = $target.html();
-//                if (this.compareWidgetView.map) {
-//                    this.compareWidgetView.map.setCenter($target.html());
-//                    this.compareWidgetView.map.map.setZoom(11);
-//                }
             } else if (dataValue === "circle") {//判断是不是商圈
                 this.searchRepresentation.set("circleValue", $target.data("value"));
                 this.searchRepresentation.set("locationValue", undefined);
                 this.titleObj.district = $target.html();
-//                if (this.compareWidgetView.map) {
-//                    this.compareWidgetView.map.setCenter($target.html());
-//                    this.compareWidgetView.map.map.setZoom(13);
-//                }
             } else {
                 //判断是商圈下的还是行政区
                 if ($target.parent().data("parentvalue") === "location") {
@@ -536,107 +525,13 @@ var PartnerSearchView = Backbone.View.extend({
                     this.searchRepresentation.set("circleValue", dataValue);
                     this.searchRepresentation.set("locationValue", undefined);
                 }
-
             }
-        }
-        //上课时间 start end
-        else if (criteria === "startTime") {
-            var now = new Date();
-            var date1 = new Date(Date.parse([now.getFullYear(), now.getMonth() + 1].join('-')));
-            var date2;
-            var month = date1.getMonth();
-            //设置当月的时间
-            if (dataValue === "thisMonth") {
-                date2 = new Date(date1);
-                if (month === 11) {
-                    date2.setMonth(0);
-                    date2.setFullYear(date1.getFullYear() + 1);
-                } else {
-                    date2.setMonth(date1.getMonth() + 1);
-                }
-            }
-            //设置下个月的时间
-            else if (dataValue === "nextMonth") {
-                if (month === 11) {
-                    date1.setMonth(0);
-                    date1.setFullYear(date1.getFullYear() + 1);
-                    date2 = new Date(date1);
-                    date2.setMonth(date2.getMonth() + 1);
-                } else {
-                    date1.setMonth(date1.getMonth() + 1);
-                    date2 = new Date(date1);
-                    if (month === 10) {
-                        date2.setMonth(0);
-                        date2.setFullYear(date2.getFullYear() + 1);
-                    } else {
-                        date2.setMonth(date2.getMonth() + 1);
-                    }
-
-                }
-            } else if (dataValue === "twoMonthsAfter") {
-                if (month >= 10) {
-                    date1.setMonth((date1.getMonth() + 2) % 12);
-                    date1.setFullYear(date1.getFullYear() + 1);
-                    date2 = new Date(date1);
-                    date2.setMonth(date2.getMonth() + 1);
-                } else {
-                    date1.setMonth(date1.getMonth() + 2);
-                    date2 = new Date(date1);
-                    if (month === 10) {
-                        date2.setMonth(0);
-                        date2.setFullYear(date2.getFullYear() + 1);
-                    } else {
-                        date2.setMonth(date2.getMonth() + 1);
-                    }
-                }
-            } else {
-                date1 = undefined;
-                date2 = undefined;
-            }
-            this.searchRepresentation.set("startDateStart", date1);
-            this.searchRepresentation.set("startDateEnd", date2);
-        }
-        else if (criteria === "price") {
-            if (dataValue === "noreq") {
-                this.searchRepresentation.set("priceStart", undefined);
-                this.searchRepresentation.set("priceEnd", undefined);
-            } else {
-                var priceRange = dataValue.split("-");
-                var minPrice = Utilities.toInt(priceRange[0]), maxPrice;
-                if (priceRange.length === 1) {
-                    maxPrice = undefined;
-                } else {
-                    maxPrice = Utilities.toInt(priceRange[1]);
-                }
-                this.searchRepresentation.set("priceStart", minPrice);
-                this.searchRepresentation.set("priceEnd", isNaN(maxPrice) ? undefined : maxPrice);
-            }
-        } else if (criteria === "classMode") {
-            if (dataValue === "noreq") {
-                this.searchRepresentation.set("classType", undefined);
-            } else {
-                this.searchRepresentation.set("classType", dataValue);
-            }
-        }
-        //上课时间 平时或者周末的上午 下午 晚上
-        else if (criteria === "schoolTime") {
-            var week, day;
-            if (dataValue === "noreq") {
-                week = day = undefined;
-            } else {
-                var rs = dataValue.split("_");
-                week = rs[0] === '' ? undefined : rs[0];
-                day = rs[1] === '' ? undefined : rs[1];
-            }
-            this.searchRepresentation.set("schooltimeWeek", week);
-            this.searchRepresentation.set("schooltimeDay", day);
         }
         this.partnerSearch();
         //this.searchRepresentation.set(criteria, dataId);
     },
     close: function () {
         if (!this.isClosed) {
-            $("body").css("background-color", "");
             //removing all event handlers
             if (this.compareWidgetView) {
                 this.compareWidgetView.close();
