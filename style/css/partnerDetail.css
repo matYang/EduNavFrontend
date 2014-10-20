@@ -1,0 +1,67 @@
+/*机构详情页面*/
+
+/*row*/
+.partnerDetail .row h1{float: left}
+
+/*分享图标*/
+.partnerDetail .share{
+    width: 24px;
+    height: 24px;
+    display: block;
+    background-image: url("../images/share.jpg");
+    float: left;
+    margin: 6px 0 0 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.partnerDetail .shareArea{
+    display: none;
+    min-width: 130px;
+    padding: 5px 2px;
+    position: absolute;
+    left: 26px;
+    top:-6px;
+    background-color: #fff;
+}
+
+.partnerDetail .share:hover .shareArea{display: block;}
+
+.partnerDetail .shareArea li{ float: left; padding: 0 2px;}
+
+.partnerDetail .shareArea li a img{ width: 22px; height: 23px;}
+
+.small_title .star-score{ margin-left: 8px;float: left;}
+
+.small_title .tuanIcon{
+    width: 52px;
+    height: 23px;
+    background-color: #ff5933;
+    line-height: 23px;
+    text-align: center;
+    color: #fff;
+    margin: -2px 0 0 12px;
+    float: left;
+}
+.small_title .comment{
+    float: left;
+    margin-left: 8px;
+}
+
+.rowLi{ padding: 5px 0}
+
+.dash-line{ border-bottom: 1px dashed #d9d9d9;}
+
+.rowLi .icons{
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+}
+
+.rowLi .icon img{ width: 24px; height: 24px;}
+
+.rowLi span{height: 24px; line-height: 24px; font-size: 14px;}
+
+/*main*/
+.indentification{ width: 16px; height: 40px; display: block; float: left;}
+.indentification img{ width: 16px; height: 16px; margin-top: 12px;}

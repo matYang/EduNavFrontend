@@ -27,6 +27,9 @@ function initMap() {
     if (app && app.tuanDetailView) {
         app.tuanDetailView.renderMap();
     }
+    if (app && app.partnerDetailView) {
+        app.partnerDetailView.renderMap();
+    }
 }
 //function initGMap() {
 //    if (app && app.courseDetailView) {

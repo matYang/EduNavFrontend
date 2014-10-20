@@ -744,6 +744,18 @@
     line-height: 52px;
 }
 
+#tuan_fright .btnbuy {
+    width: 120px;
+    height: 52px;
+    float: left;
+}
+
+#tuan_fright .btnconsult {
+    width: 120px;
+    height: 52px;
+    float: right;
+}
+
 #tuanDetail #tuan_fright .btnbuy {
     width: 150px;
     height: 52px;
@@ -756,17 +768,7 @@
     float: right;
 }
 
-.courseDetail #tuan_fright .btnbuy {
-    width: 120px;
-    height: 52px;
-    float: left;
-}
 
-.courseDetail #tuan_fright .btnconsult {
-    width: 120px;
-    height: 52px;
-    float: right;
-}
 
 #tuan_fright.stickyHeader {
     position: fixed;
@@ -986,10 +988,27 @@
 
 
 /*承诺*/
-.promise{  padding: 10px; margin-bottom: 10px;}
-.promise h3{ color: #349e6F; margin: 10px 0 20px 0;}
-.promise li{ margin-bottom: 10px;}
-.promiseIcon{ width: 30px; height: 30px; float: left; margin-right: 10px;}
-.promiseIcon img{ width: 30px; height: 30px;}
-.promiseInfo{ width: 190px; display: block; float: right;}
-.promiseInfo h3{ line-height: 30px; color: #333; margin: 0;}
+.promise{  padding: 15px 0 15px 15px; margin-bottom: 10px;}
+.promise h3{ color: #349e6F; float: left; width: 90px; line-height: 30px;}
+.promise .promisePic{ width: 145px; float: right;}
+.promise .promisePic li{ width: 40px; padding-left: 5px; float: left; }
+.promise .has-tip-t .tip-t{ left: 15px; bottom: 55px;}
+.promise .has-tip-t .tip-t .tip_content-t{ width: 185px; padding: 0; overflow: hidden;}
+.promiseIcon .tip_content-t h4{
+    width: 100%;
+    height: 28px;
+    background-color: #ff7878;
+    color: #fff;
+    padding-left: 15px;
+    line-height: 28px;
+    font-size: 14px;
+}
+.promiseIcon .tip_content-t span{
+    display: inline-block;
+    text-align: center;
+    width: 145px;
+    padding: 10px 20px;
+    line-height: 20px;
+    font-size: 14px;
+
+}

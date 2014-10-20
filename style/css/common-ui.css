@@ -411,7 +411,7 @@ textarea {
     background: #fff;
     color: #666;
     border-radius: 5px;
-    box-shadow: 2px 2px 6px rgba(241, 241, 241, 0.6)
+    /*box-shadow: 2px 2px 6px rgba(241, 241, 241, 0.6)*/
 }
 
 .has-tip-t .tip-t .arrow-t {
