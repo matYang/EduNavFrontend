@@ -482,8 +482,6 @@ var SearchView = Backbone.View.extend({
         });
     },
     clearCourseNameSearch: function () {
-        //todo
-
         var $searchReqs = $("#searchReqs");
         var that = this;
         $("a[data-cri=courseName]").remove();

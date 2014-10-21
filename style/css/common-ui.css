@@ -34,6 +34,9 @@ a {
     text-decoration: none;
     color: #333333;
 }
+a.a-dec:hover{
+    text-decoration: underline;
+}
 
 /*input[type="text"] {*/
     /*padding: 0 1px;*/

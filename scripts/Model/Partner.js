@@ -3,31 +3,40 @@ var Partner = Backbone.Model.extend({
     defaults: function () {
         return {
             'id': -1,
-            'wholeName':'',
+            'wholeName': '',
             'hqLocation': '',
             'partnerQualification': '',
             'reference': '',
             'instName': '',
             'partnerIntro': '',
             'partnerDistinction': '',
-            'logoUrl':'',
+            'logoUrl': '',
+
+            'rating':4.0, // 评分初始值为4
+            'popularity': 0,
+            'teacherCount': 0,
+            'courseCount': 0,
+
             'classPhotoList': [],
             'teacherList': [],
-            'addressList':[],
+            'addressList': [],
+            'categoryList': [],
             'createTime': new Date()
         };
     },
     idAttribute: 'id',
 
     parse: function (data) {
-        var i, json = {}, photos = [], photoIds = [], teachers = [], teacherIds = [];
-        if ( typeof data !== 'undefined') {
+        var i, json = {}, photos = [], addresses = [], teachers = [];
+        if (typeof data !== 'undefined') {
             if (data instanceof Array) {
                 data = data[0];
             }
             json.id = parseInt(data.id, 10);
             json.partnerId = json.id;
             json.wholeName = decodeURI(data.wholeName);
+
+            json.rating = Utilities.parseNum(data.rating, 1);
 
             json.partnerIntro = decodeURI(data.partnerIntro);
             json.partnerDistinction = decodeURI(data.partnerDistinction);
@@ -41,40 +50,32 @@ var Partner = Backbone.Model.extend({
             json.logoUrl = decodeURIComponent(data.logoUrl);
 
             if (data.classPhotoList) {
-                for (i = 0; i < data.classPhotoList.length; i++ ) {
+                for (i = 0; i < data.classPhotoList.length; i++) {
                     photos[i] = new Photo(data.classPhotoList[i], {parse: true});
                 }
                 json.classPhotoList = photos;
             }
             if (data.teacherList) {
-                for (i = 0; i < data.teacherList.length; i++ ) {
+                for (i = 0; i < data.teacherList.length; i++) {
                     teachers[i] = new Teacher(data.teacherList[i], {parse: true});
                 }
                 json.teacherList = teachers;
             }
+            if (data.addressList) {
+                for (i = 0; i < data.addressList.length; i++) {
+                    addresses[i] = new Address(data.addressList[i], {parse: true});
+                }
+                json.addressList = addresses;
+            }
 
             json.createTime = Utilities.castFromAPIFormat(data.createTime);
-            
+
         }
         return json;
     },
     _toJSON: function () {
         var json = _.clone(this.attributes), i;
         json.createTime = Utilities.getDateString(this.get('createTime'));
-//        if (json.classPhotoList) {
-//            for (i = 0; i < json.classPhotoList.length; i++ ) {
-//                if (json.classPhotoList[i] instanceof Photo) {
-//                    json.classPhotoList[i] = json.classPhotoList[i]._toJSON();
-//                }
-//            }
-//        }
-//        if (json.teacherList) {
-//            for (i = 0; i < json.teacherList.length; i++ ) {
-//                if (json.teacherList[i] instanceof Teacher) {
-//                    json.teacherList[i] = json.teacherList[i]._toJSON();
-//                }
-//            }
-//        }
         if (json.teacherList) {
             var teacherList = [];
             json.teacherList.forEach(function (teacher) {
@@ -88,6 +89,13 @@ var Partner = Backbone.Model.extend({
                 classPhotoList.push((photo._toJSON()));
             });
             json.classPhotoList = classPhotoList;
+        }
+        if (json.addressList) {
+            var addressList = [];
+            json.addressList.forEach(function (address) {
+                addressList.push((address._toJSON()));
+            });
+            json.addressList = addressList;
         }
         return json;
     }
@@ -110,13 +118,13 @@ var Partners = Backbone.Collection.extend({
     },
     initialize: function (urlOverride) {
         _.bindAll(this, 'overrideUrl');
-        if ( typeof urlOverride !== 'undefined') {
+        if (typeof urlOverride !== 'undefined') {
             this.url = urlOverride;
         }
     },
 
     overrideUrl: function (urlOverride) {
-        if ( typeof urlOverride !== 'undefined') {
+        if (typeof urlOverride !== 'undefined') {
             this.url = urlOverride;
         }
     }

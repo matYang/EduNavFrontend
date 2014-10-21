@@ -791,25 +791,37 @@
 
 <script type="text/template" id="tpl_partnerSearchResultEntry">
     <div class="searchResultEntry clearfix">
-        <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/></div>
+        <div class="pic">
+            <a href="#/inst/<%=id%>" target="_blank">
+                <img src="<%= logoUrl %>" width="100" height="100"/>
+            </a>
+        </div>
         <div class="col">
             <p class="title">
-                <a class="courseTitle viewDetail" data-id="<%= id %>"><%= instName %></a>
-                <span class="badge" style="margin-top: 5px;">团</span>
+                <a href="#/inst/<%=id%>" target="_blank" class="courseTitle viewDetail" data-id="<%= id %>"><%= instName %></a>
+                <!--<span class="badge" style="margin-top: 5px;">团</span>-->
             </p>
             <p class="desc descSpec"><i class="i_partner i_partner_eye"></i>
-                <span>2000</span>
+                <span><%=popularity%></span>
                 <i class="i_dash"></i>
-                <span>老师20</span>
+                <span>老师<%=teacherCount%></span>
                 <i class="i_dash"></i>
-                <span><a>10门课程</a></span>
+                <a href="#/inst/<%=id%>" target="_blank" class="ft-primary a-dec"><%=courseCount%>门课程</a>
                 <i class="i_dash"></i>
-                <span class="raty"></span>
+                <span id="raty_<%=id%>" class="raty" data-value="<%=rating%>"></span>
+                <span><%=rating%></span>
             </p>
             <p class="desc">
-                <i class="i_partner i_partner_hat"></i> 雅思 托福 会计证
+                <i class="i_partner i_partner_hat"></i>
+                <%_.each(categoryList,function(c){%>
+                <span><%=c.name%></span>
+                <%})%>
             </p>
-            <p class="desc"><i class="i_partner i_partner_location"></i> <%= hqLocation %></p>
+            <p class="desc"><i class="i_partner i_partner_location"></i>
+                <%_.each(addressList,function(a){%>
+                <span><%=a.circleName%></span>
+                <%})%>
+            </p>
         </div>
     </div>
 </script>

@@ -6,6 +6,7 @@ testMockObj = {
     testPartners: new Partners(),
     testPartner1: (new Partner())
         .set("id", 1)
+        .set("popularity", 123).set("teacherCount", 3).set("courseCount", 23)
         .set("wholeName", "南京万厦建设职业培训中心")
         .set("hqLocation", "南京市新街口中山东路18号南京国际贸易中心16楼A1")
         .set('partnerQualification', 1)
@@ -14,7 +15,9 @@ testMockObj = {
         .set("partnerDistinction", "《住建委定点机构》《劳动局诚信学校》")
         .set('logoUrl', 'http://logobucket.oss-cn-hangzhou.aliyuncs.com/3/logop3i3t1412906863958-cc10ac1f1f968413be0e8bfa454accca.png')
         .set("partnerIntro","南京万厦建设职业培训中心是市住建委定点培训机构，年培训学员数千人，权威正规、通过率高，在行业内有较高的知名度和美誉度。 主营项目：一、二级建造师、造价员、施工员、质检员等八大员，建筑电工、焊工、架子工等特殊工种！"),
-    testPartner2: new Partner().set("id", 2),
+    testPartner2: new Partner().set("id", 2)
+        .set('instName', "南京健康学校")
+        .set("popularity", 323).set("teacherCount", 8).set("courseCount", 33),
 
     testTeachers: new Teachers(),
     testTeacher1: new Teacher().set("id", 1).set("name", "Teacher A").set("imgUrl", "http://teacherimgbucket.oss-cn-hangzhou.aliyuncs.com/34/teacherp34i1t1408610594409-eb0e2a9c61e844b84d214e64828a415d.png")
@@ -27,9 +30,15 @@ testMockObj = {
     testPhoto3: new Photo().set("id", 3).set("imgUrl", "http://classroomimgbucket.oss-cn-hangzhou.aliyuncs.com/14/classPhotop14i3t1412930949911-e42b2f331c43be379f2dcd4bbdbd232c.png"),
 
     testAddressList: new Addresses(),
-    testAddress1: (new Address()).set('id', 1).set('detail', '南京市江宁区胜太路109号大才大厦6楼').set('realAddress', '江宁校区'),
-    testAddress2: (new Address()).set('id', 2).set('detail', '南京市秦淮区人民政府').set('realAddress', '秦淮校区'),
-    testAddress3: (new Address()).set('id', 3).set('detail', '南京市秦淮区中山南路89号江苏文化大厦22楼').set('realAddress', '中山南路校区'),
+    testAddress1: (new Address()).set('id', 1)
+        .set('detail', '南京市江宁区胜太路109号大才大厦6楼').set('realAddress', '江宁校区')
+        .set('circleName','江宁大学城').set('circleId' ,1),
+    testAddress2: (new Address()).set('id', 2)
+        .set('detail', '南京市秦淮区人民政府').set('realAddress', '秦淮校区')
+        .set('circleName','地铁2号线周边').set('circleId' ,2),
+    testAddress3: (new Address()).set('id', 3)
+        .set('detail', '南京市秦淮区中山南路89号江苏文化大厦22楼').set('realAddress', '中山南路校区')
+        .set('circleName','城区其它商业区').set('circleId' ,3),
 
     testComments: new Comments(),
     testComment1: new Comment().set('id', 1).set('user', {phone: '133****23232'})
@@ -197,6 +206,10 @@ testMockObj = {
     testCoupon2: (new Coupon()).set("id", 2).set("balance", 20).set("total", 30),
     testCoupon3: (new Coupon()).set("id", 3).set("balance", 25).set("total", 30),
 
+    testCategory1:[
+        { "errorCode": 0, "name": "育婴师", "children": [], "id": 283 },
+        { "errorCode": 0, "name": "公共营养师", "children": [], "id": 300 }
+    ],
     testCategories: {"errorCode": 0, "start": 0, "count": 0, "total": 0, "data": [
         {"errorCode": 0, "name": "语言培训", "value": "00", "children": [
             {"errorCode": 0, "name": "英语", "value": "0000", "children": [
@@ -477,12 +490,12 @@ testMockObj.testPartners.add([testMockObj.testPartner1, testMockObj.testPartner2
 
 testMockObj.testPartner1.set("teacherList", testMockObj.testTeachers);
 testMockObj.testPartner2.set("teacherList", testMockObj.testTeachers);
-
 testMockObj.testPartner1.set("classPhotoList", testMockObj.testPhotos);
 testMockObj.testPartner2.set("classPhotoList", testMockObj.testPhotos);
-
 testMockObj.testPartner1.set('addressList', testMockObj.testAddressList);
 testMockObj.testPartner2.set('addressList', testMockObj.testAddressList);
+testMockObj.testPartner1.set('categoryList', testMockObj.testCategory1);
+testMockObj.testPartner2.set('categoryList', testMockObj.testCategory1);
 
 testMockObj.testBooking1.set("course", testMockObj.testCourse1).set('reference', 'isk-2323-s232');
 testMockObj.testBooking2.set("course", testMockObj.testCourse2).set('reference', 'isk-2323-s232');

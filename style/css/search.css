@@ -315,6 +315,11 @@
     width: 570px;
     padding-top: 8px;
 }
+.search_result .col .raty{
+    vertical-align: text-top;
+    display: inline-block;
+    height: 18px;
+}
 
 .search_result .col1:after {
     content: '';

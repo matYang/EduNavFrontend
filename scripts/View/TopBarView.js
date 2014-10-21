@@ -56,7 +56,7 @@ var TopBarView = Backbone.View.extend({
             }
         });
         $('#navigate_inst').on('click', function () {
-            if (location.hash !== '#inst') {
+            if (location.hash.indexOf("inst/search") !== 1) {
                 app.navigate("inst/search", true);
                 app.infoModal.hide();
             }

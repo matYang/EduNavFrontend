@@ -23,13 +23,16 @@ var PartnerSearchResultView = MultiPageView.extend({
     },
     //页面成功渲染后的结果
     afterRender: function(){
-        //设置已加入对比的课程状态
-        var courseIds = app.storage.getCoursesToCompare();
-        for (var i = 0; i < courseIds.length; i++) {
-            $("#compare_" + courseIds[i]).find("input").attr("class", "remove btn_gray").val("已加入对比").removeClass("add").addClass("remove");
-        }
-        //加入banner图
         var $container = $('#'+this.entryContainer);
+        //渲染评分
+
+        $container.find('.raty').each(function(index, raty){
+            $(raty).raty({
+                readOnly: true,
+                start: $(raty).data('value')
+            });
+        });
+        //加入banner图
         var total = $container.children('.searchResultEntry').length;
         var imgTpl = _.template('<div class="searchResultEntry adv"><img width="730" height="150" class="bannerImg" src="<%=url%>" alt="<%=alt%>"></div>');
         var imgList = [
