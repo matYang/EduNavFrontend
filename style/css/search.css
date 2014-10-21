@@ -1165,7 +1165,18 @@
     height: 186px;
 }
 
-/*课程名搜索*/
+/*课程名和机构名搜索*/
+.i-search-caret{
+    display: inline-block;
+    height: 0;
+    width: 0;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #555555 transparent transparent transparent;
+    position: absolute;
+    top: 30px;
+    right: 15px;
+}
 .searchAll {
     width: 1000px;
     margin: auto;
@@ -1223,6 +1234,7 @@
     width: 80px;
     cursor: pointer;
     position: relative;
+    color: #555555;
 }
 .searchAll .search_top .search_input {
     width: 760px;
