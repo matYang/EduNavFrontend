@@ -393,7 +393,7 @@ var PartnerSearchView = Backbone.View.extend({
         that.partnerSearch();
         //todo 有问题
         that.showCategory();
-        app.navigate("inst/search/" + "categoryValue=0000", true);
+        app.navigate("inst/search/" + "categoryValue=00", true);
     },
     /*处理筛选事件--二级目录和三级目录(todo 机构筛选不处理二级目录的事件)*/
     filterResult: function ($filter, $target) {
@@ -436,11 +436,9 @@ var PartnerSearchView = Backbone.View.extend({
             } else if (dataValue === "location") {//判断是不是行政区
                 this.sr.set("locationValue", $target.data("value"));
                 this.sr.set("circleValue", undefined);
-                this.titleObj.district = $target.html();
             } else if (dataValue === "circle") {//判断是不是商圈
                 this.sr.set("circleValue", $target.data("value"));
                 this.sr.set("locationValue", undefined);
-                this.titleObj.district = $target.html();
             } else {
                 //判断是商圈下的还是行政区
                 if ($target.parent().data("parentvalue") === "location") {

@@ -700,9 +700,18 @@
 
 <script type="text/template" id="tpl_searchBar">
     <div class="searchAll clearfix">
-        <div class="search_top <%=style%>">
-            <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#" value="<%=name%>">
+        <div class="clearfix search_top <%=style%>">
+            <div class="search_type">
+                <%=searchText%>
+                <span class="icon-caret"></span>
+                <ul class="search_typeSelect">
+                <li data-value="course" class="<%if(searchType=='course'){%>active<%}%>">课程</li>
+                <li data-value="partner" class="<%if(searchType=='partner'){%>active<%}%>">学校</li>
+            </ul>
+            </div>
+            <input class="search_input" type="text" placeholder="搜索感兴趣的#<%=searchText%>#" value="<%=name%>">
             <a class="search_btn"></a>
+
         </div>
         <div class="search_tip">
             <span style="color: #333">大家都在搜:</span>
@@ -1022,23 +1031,7 @@
 
 <script type="text/template" id="tpl_SearchCourse">
     <div class="frontBanner"></div>
-    <div class="searchAll clearfix">
-        <div class="search_top">
-            <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
-            <a class="search_btn"></a>
-        </div>
-        <div class="search_tip">
-            <span style="color: #333">大家都在搜:</span>
-            <span class="search_span">四六级</span>
-            <span class="search_span">考研</span>
-            <span class="search_span">会计证</span>
-            <span class="search_span">日语</span>
-            <span class="search_span">雅思</span>
-            <span class="search_span">托福</span>
-            <span class="search_span">导游证</span>
-            <span class="search_span">教师证</span>
-        </div>
-    </div>
+    <div id="searchBarWrap"></div>
 
     <div id="searchCourse" class="clearfix">
         <div class="searchCourse">

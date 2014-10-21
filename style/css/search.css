@@ -317,8 +317,7 @@
 }
 .search_result .col .raty{
     vertical-align: text-top;
-    display: inline-block;
-    height: 18px;
+
 }
 
 .search_result .col1:after {
@@ -1175,38 +1174,73 @@
 
 .searchAll .search_top {
     width: 1000px;
-    height: 65px;
+    height: 60px;
     border-radius: 10px;
-    overflow: hidden;
+    position: relative;
 }
-
-.searchAll .search_top,
-.searchAll .search_top input {
-    background-color: #ededed;
+.searchAll .search_top .search_typeSelect{
+    display: none;
+    position: absolute;
+    width: 100px;
+    background: #ffffff;
+    top:60px;left: 0;
+    border: 2px solid #dddddd;
+    z-index: 120;
 }
-
-.searchAll .search_top.white,
-.searchAll .search_top.white input {
+.searchAll .search_type:hover .search_typeSelect{
+    display: block;
+}
+.searchAll .search_top.white .search_typeSelect{
+    border: 2px solid #dddddd;
+}
+.search_typeSelect li{
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 16px;
+}
+.search_typeSelect li:hover,
+.search_typeSelect li.active{
+    background: #EDEDED;
+}
+.searchAll .search_top{
+    background-color: #EDEDED;
+}
+.searchAll .search_top.white{
     background-color: #ffffff;
 }
-
-.searchAll .search_top input {
-    width: 860px;
-    height: 30px;
-    line-height: 30px;
+/*search 3 elements start*/
+.searchAll .search_top .search_type,
+.searchAll .search_top .search_input {
+    padding: 18px 10px 14px;
+    line-height: 28px;
     font-size: 18px;
-    padding: 20px 0 20px 30px;
+    display: inline-block;
+}
+.searchAll .search_top .search_type {
+    text-align: center;
+    width: 80px;
+    cursor: pointer;
+    position: relative;
+}
+.searchAll .search_top .search_input {
+    width: 760px;
+    height: 30px;
     border: 0;
     outline: 0;
+    background-color: transparent;
 }
-
-.searchAll .search_top a.search_btn {
+.searchAll .search_top .search_btn {
     width: 90px;
-    height: 65px;
+    height: 60px;
     text-align: center;
     background: url(../images/selfIcon.png) center center no-repeat #ff6a6a;
     float: right;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
+/*search 3 elements end*/
 
 .searchAll .search_tip {
     width: 1000px;
