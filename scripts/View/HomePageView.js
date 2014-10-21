@@ -421,7 +421,7 @@ var SuccessPopTip = Backbone.View.extend({
     show: function () {
         $("#popSuccessApple").fadeIn(400);
         this.isShow = true;
-        setTimeout(this.hide, 4000);
+        setTimeout(this.hide, 3500);
     },
     hide: function () {
         $("#popSuccessApple").fadeOut(400);

@@ -241,6 +241,15 @@ var PartnerSearchView = Backbone.View.extend({
     bindEvents: function () {
         var that = this, $searchPanel = $("#searchPanel"), $searchReqs = $("#searchReqs");
         this.bindSortEvents();
+        /*绑定右侧表单的提交操作*/
+        this.$el.on('click','.sk-form-btn', function(){
+//            if (!that.popTip) {
+                app.infoModal.setMessage('提交成功~').show();
+//                that.popTip = new SuccessPopTip();
+//            } else {
+//                that.popTip.show();
+//            }
+        });
 
         /*具体筛选条件的点击事件*/
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
@@ -461,6 +470,9 @@ var PartnerSearchView = Backbone.View.extend({
             this.compareWidgetView = null;
             if (this.searchResultView) {
                 this.searchResultView.close();
+            }
+            if (this.popTip) {
+                this.popTip.close();
             }
             $("#filterPanel").children(".filterCriteria").off();
             $("#search_category").off();
