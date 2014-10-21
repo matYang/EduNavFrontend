@@ -34,6 +34,7 @@ var Constants = {
         /*todo 机构模块*/
         "partnerSearch", "partnerSearchResultEntry", "partnerSearch_noMessage",
         "partnerDetail",
+        "belongPartnerRow","belongPartnerNoRow","belongPartnerErrorRow",
 
         /*课程搜索模块*/
         "home", "homeCategoryContainer", "homeButton", "homeCatButton",

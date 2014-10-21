@@ -5,8 +5,10 @@ var CourseSearchRepresentation = Backbone.Model.extend({
             'templateId': undefined,//相关课程搜索（同一个模板）
 
             'categoryValue': undefined,//筛选课程类目
+            'categoryId': undefined,
             'locationValue': undefined,//筛选地址
             'circleValue': undefined,//筛选商圈
+            'circleId': undefined,
 
             'courseName': undefined,
             'status': EnumConfig.CourseStatus.onlined,

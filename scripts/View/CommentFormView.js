@@ -5,6 +5,7 @@ var CommentFormView = Backbone.View.extend({
         this.parentView = opt.parentView;
         this.courseTemplateId = opt.courseTemplateId;
         this.isClosed = false;
+        this.showState = opt.showState;
         _.bindAll(this, "render", "bindEvents", "close");
         app.viewRegistration.register(this);
         var self = this;
@@ -16,7 +17,9 @@ var CommentFormView = Backbone.View.extend({
         this.comment = new Comment();
         this.comment.set('courseTemplateId', this.courseTemplateId);
         //todo 是否登陆
-        this.$el.html(this.template());
+        if(this.showState == "true"){
+            this.$el.html(this.template());
+        }
         this.bindEvents();
     },
 

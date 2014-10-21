@@ -34,9 +34,12 @@ var TuanDetailView = Backbone.View.extend({
         var rate3 = this.tuan.get('course').get('satisfactionRating');
         var evenRating = this.tuan.get('course').get('evenRating');
         this.$el.html(this.template(this.tuan._toJSON()));
+        //判断要不要出现评论框，true出现评论框，false不出现
+        var showState = $("#tuanDetailCommentsContainer").attr("isshow");
         this.commentsView = new TuanDetailCommentsView({
             templateId: that.courseId,
-            parentView: that
+            parentView: that,
+            showState:showState
         });
         this.countDown = Utilities.countDown('#tuanDetail_endTime');//倒计时
         /*评价星级*/

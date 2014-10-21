@@ -147,9 +147,12 @@ var CourseDetailView = Backbone.View.extend({
         $(".courseDetail .pic .pic_big").find("a:first").addClass("active");
         $(".courseDetail .pic .pic_list").find("i:first").removeClass("active");
 
+        //判断要不要出现评论框，true出现评论框，false不出现
+        var showState = $("#tuanDetailCommentsContainer").attr("isshow");
         this.commentsView = new TuanDetailCommentsView({
             templateId: that.courseTemplateId,
-            parentView: that
+            parentView: that,
+            showState:showState
         });
         this.renderMap();
     },
