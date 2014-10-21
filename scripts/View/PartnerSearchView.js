@@ -9,7 +9,7 @@ var PartnerSearchView = Backbone.View.extend({
     reqTemplate: _.template(tpl.get("req")),
     template: _.template(tpl.get('partnerSearch')),
     initialize: function (params) {
-        _.bindAll(this, 'render', 'bindEvents', 'bindCatSearchEvents', 'renderCategories', 'renderLocations', 'renderCircle', 'close');
+        _.bindAll(this, 'render', 'bindEvents', 'bindCatSearchEvents', 'renderCategories', 'renderLocations', 'renderCircle', 'close', 'partnerSearch');
         this.isClosed = true;
         this.titleObj = {};
 
@@ -460,6 +460,7 @@ var PartnerSearchView = Backbone.View.extend({
             if (this.searchBarView) {
                 this.searchBarView.close();
             }
+            this.compareWidgetView = null;
             if (this.searchResultView) {
                 this.searchResultView.close();
             }
@@ -470,6 +471,7 @@ var PartnerSearchView = Backbone.View.extend({
             this.searchResultView = null;
             $(document).off("scroll");
             $("#searchReqs").off();
+            this.$el.off();
             this.$el.empty();
             this.isClosed = true;
             app.partnerSearchView = null;
