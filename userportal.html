@@ -2162,6 +2162,8 @@
                 </ul>
             </i>
 
+
+
         </div>
 
 
@@ -2175,31 +2177,33 @@
 
         <div class="dash-line"></div>
 
-        <div class="rowLi">
-            <a class="icons"><img src="style/images/rowli_1.png" alt=""/></a>
-            <span>雅思</span>
-            <span>雅思</span>
-            <span>雅思</span>
-            <span>雅思</span>
-        </div>
 
-        <div class="rowLi">
-            <a class="icons"><img src="style/images/rowli_2.png" alt=""/></a>
-            <span>雅思</span>
-            <span>雅思</span>
-            <span>雅思</span>
-            <span>雅思</span>
-        </div>
+        <p class="desc">
+            <i class="i_partner i_partner_hat"></i>
+            <%_.each(categoryList,function(c){%>
+            <span><%=c.name%></span>
+            <%})%>
+        </p>
+
+        <p class="desc" style="margin-bottom: 15px;">
+            <i class="i_partner i_partner_location"></i>
+            <%_.each(addressList,function(a){%>
+            <span><%=a.circleName%></span>
+            <%})%>
+
+        </p>
 
         <div class="dash-line"></div>
 
-        <div class="rowLi">
-            <a class="icons"><img src="style/images/rowli_3.png" alt=""/></a>
-            <span>雅思</span>
-            <span>雅思</span>
-            <span>雅思</span>
-            <span>雅思</span>
-        </div>
+        <p class="desc descSpec"><i class="i_partner i_partner_eye"></i>
+            <span>2000</span>
+            <i class="i_dash"></i>
+            <span>老师20</span>
+            <i class="i_dash"></i>
+            <span><a>10门课程</a></span>
+            <i class="i_dash"></i>
+            <span class="raty"></span>
+        </p>
 
         <div class="btns">
             <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
@@ -2276,10 +2280,15 @@
 
     <div class="map panel_bg clearfix">
         <div id="smallMap" style="width: 230px;height:180px"></div>
-        <dl class="map_list">
-            <dt><%= instName %></dt>
-            <dd><%= hqLocation %></dd>
+        <%_.each(addressList,function(address, index){%>
+        <dl data-index="<%=index%>" class="addressItem map_list <%if(addressList.length > 3){%>map_info<%}%>">
+            <dt>
+                <%=address.realAddress||course.instName%>
+                <i></i>
+            </dt>
+            <dd><%=address.detail%></dd>
         </dl>
+        <%})%>
     </div>
     <div class="hot_tuan panel_bg hidden">
         <h4>一周热门团购</h4>
@@ -2310,11 +2319,17 @@
         <%}%>
     </dd>
     <dd class="clearfix">
-        <% if (hqLocation) { %>
+
         <label>校区地址：</label>
 
-        <div class="span"><%=hqLocation%></div>
-        <%}%>
+        <div class="span">
+            <ul>
+                <% _.each(addressList,function(address){%>
+                <ol class=""> <%=address.realAddress%> : <%=address.detail%></ol>
+                <%})%>
+            </ul>
+        </div>
+
     </dd>
     <dd class="clearfix">
         <% if (partnerDistinction) { %>
@@ -2355,42 +2370,69 @@
         <% } %>
     </dd>
 </dl>
-<dl class="tuan_content_3" class="content_inner">
+<dl class="tuan_content_3" class="content_inner" style="border: 0">
     <dt><i class="dticon"></i>课程介绍</dt>
+    <dd>
+        <select name="select" id="courseChoose">
+            <option value="课程分类">课程分类</option>
+            <%_.each(categoryList,function(c){%>
+            <option value="<%=c.name%>" data-id="<%=c.id%>"><%=c.name%></option>
+            <%})%>
+        </select>
+        <select name="select" id="locationChoose">
+            <option value="上课地点">上课地点</option>
+            <%_.each(addressList,function(a){%>
+            <option value="<%=a.circleName%>" data-id="<%=a.id%>"><%=a.circleName%></option>
+            <%})%>
+        </select>
+        <input id="searchInPartner" type="button" value="OK" class="btn_search"/>
+    </dd>
+</dl>
+<dl>
     <dd class="clearfix">
-
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <td width="30%">课程名称</td>
+                <td class="addr">地点</td>
+                <td width="10%">价格【?】</td>
+                <td width="25%">--</td>
+            </tr>
+            </thead>
+            <tbody id="belongPartnerList"></tbody>
+        </table>
     </dd>
 </dl>
 <dl class="tuan_content_4" class="content_inner">
     <dt><i class="dticon"></i>评价<!--<span>我有2条评价</span>--></dt>
     <dd class="clearfix">
-        <div class="evaluate">
-            <div class="title">*用户对本团购的消费评价</div>
-            <ul class="eleft">
-                <li class="score">4</li>
-                <li id="star_eleft"></li>
-                <li>共有<span class="commentsTotal">--</span>人评价</li>
-            </ul>
-            <div class="emid"></div>
-            <ul class="eright">
-                <li>
-                    <span>环境</span>
-                    <div id="evaluate_environment" class="eright_star"></div>
-                    <a></a>
-                </li>
-                <li>
-                    <span>师质</span>
-                    <div id="evaluate_teacher" class="eright_star"></div>
-                    <a></a>
-                </li>
-                <li>
-                    <span>服务</span>
-                    <div id="evaluate_service" class="eright_star"></div>
-                    <a></a>
-                </li>
-            </ul>
-        </div>
-        <div id="tuanDetailCommentsContainer"></div>
+        <!--<div class="evaluate">-->
+            <!--<div class="title">*用户对本团购的消费评价</div>-->
+            <!--<ul class="eleft">-->
+                <!--<li class="score">4</li>-->
+                <!--<li id="star_eleft"></li>-->
+                <!--<li>共有<span class="commentsTotal">--</span>人评价</li>-->
+            <!--</ul>-->
+            <!--<div class="emid"></div>-->
+            <!--<ul class="eright">-->
+                <!--<li>-->
+                    <!--<span>环境</span>-->
+                    <!--<div id="evaluate_environment" class="eright_star"></div>-->
+                    <!--<a></a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<span>师质</span>-->
+                    <!--<div id="evaluate_teacher" class="eright_star"></div>-->
+                    <!--<a></a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<span>服务</span>-->
+                    <!--<div id="evaluate_service" class="eright_star"></div>-->
+                    <!--<a></a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <div id="tuanDetailCommentsContainer" isshow="false"></div>
     </dd>
 </dl>
 </div>
@@ -2402,6 +2444,68 @@
 </div>
 </div>
 </script>
+
+<script type="text/template" id="tpl_belongPartnerRow">
+    <tr>
+        <td style="text-align: left; padding-left: 4px;">
+
+            <p data-id="<%= id %>">
+                <%if(groupBuyActivity){%>
+                    <span class="badge" style="width: 16px;height: 16px; padding: 1px; line-height: 16px; margin-right: 2px;">团</span>
+                <%}%>
+                <%if(cashback){%>
+                    <span class="badge" style="width: 16px;height: 16px; padding: 1px; line-height: 16px; margin-right: 2px; background-color: #28B094">返</span>
+                <%}%>
+                <%= courseName %>
+            </p>
+        </td>
+        <td class="addr"><p><%=address%></p></td>
+        <td>
+            ￥<%if(originalPrice){%><%=originalPrice%>
+            <%}else if(price){%><%=price%>
+            <%}else{%>待定<%}%>
+        </td>
+        <!--<td><span class="F_orange dotted-line"><%= commission/10 %>折</span></td>-->
+        <td>
+            <!--if(current)-->
+            <!--<a class="inline-block">-->
+            <!--<button type="button" class="btn_gray">当前课程</button>-->
+            <!--</a>-->
+            <a class="inline-block">
+                <a href="#course/<%= id %>" target="_parent">
+                    <button type="button" class="btn_g" style="background-color: #47bc78;" data-value="<%= id %>">详情</button>
+                </a>
+
+                <%if(groupBuyActivity){%>
+                <a href="#tuan/<%= id %>" target="_parent">
+                    <button type="button" class="btn_g" data-value="<%= id %>">去团购 ></button>
+                </a>
+                <%}else{%>
+                <button type="button" class="btn_g" data-value="<%= id %>" onclick="doyoo.util.openChat('g=82548');return false;">获取优惠</button>
+                <%}%>
+            </a>
+        </td>
+    </tr>
+</script>
+<script type="text/template" id="tpl_belongPartnerNoRow">
+    <tr>
+        <td colspan="4">
+            <div class="noMessage margin-y">
+                <div><i class="icon icon-warning"></i>很抱歉，暂没有同类型课程~~</div>
+            </div>
+        </td>
+    </tr>
+</script>
+<script type="text/template" id="tpl_belongPartnerErrorRow">
+    <tr>
+        <td colspan="4">
+            <div class="noMessage margin-y">
+                <div><i class="icon icon-warning"></i>很抱歉，暂时无法查询到同类型课程~~</div>
+            </div>
+        </td>
+    </tr>
+</script>
+
 
 <script type="text/template" id="tpl_courseDetail">
     <div class="wrapper bg-grey detailArea">
@@ -2507,33 +2611,7 @@
         <a class="btnconsult bookNow" data-value="<%=courseId%>">申请免费试听</a>
     </div>
 
-    <!--爱上课承诺-->
-    <div class="promise panel_bg clearfix hidden">
-        <h3>爱上课承诺</h3>
-        <ul>
-            <li class="clearfix">
-                <a class="promiseIcon"><img src="style/images/promise_free.jpg" alt=""/></a>
-                <div class="promiseInfo">
-                    <h3>免费</h3>
-                    <p>免费咨询，免费测评，免费预约，免费试听</p>
-                </div>
-            </li>
-            <li class="clearfix">
-                <a class="promiseIcon"><img src="style/images/promise_quality.jpg" alt=""/></a>
-                <div class="promiseInfo">
-                    <h3>优质</h3>
-                    <p>只推荐优质课程，只合作优质学校，避免欺诈陷阱</p>
-                </div>
-            </li>
-            <li class="clearfix">
-                <a class="promiseIcon"><img src="style/images/promise_preferential.png" alt=""/></a>
-                <div class="promiseInfo">
-                    <h3>享优惠</h3>
-                    <p>订课程享网站返现，最高可达1526元；团购特卖月月有</p>
-                </div>
-            </li>
-        </ul>
-    </div>
+
 
     <div class="map panel_bg clearfix">
         <div id="smallMap" style="width: 230px;height:180px"></div>
@@ -2803,7 +2881,7 @@
                         </li>
                     </ul>
                 </div>
-                <div id="tuanDetailCommentsContainer"></div>
+                <div id="tuanDetailCommentsContainer" isshow="true"></div>
             </dd>
         </dl>
     </div>
@@ -4130,33 +4208,6 @@
         <a class="btnbuy">立即抢购</a>
         <a class="btnconsult" onclick="doyoo.util.openChat('g=82548');return false;">咨询</a>
     </div>
-    <!--爱上课承诺-->
-    <div class="promise panel_bg clearfix hidden">
-        <h3>爱上课承诺</h3>
-        <ul>
-            <li class="clearfix">
-                <a class="promiseIcon"><img src="style/images/promise_free.jpg" alt=""/></a>
-                <div class="promiseInfo">
-                    <h3>免费</h3>
-                    <p>免费咨询，免费测评，免费预约，免费试听</p>
-                </div>
-            </li>
-            <li class="clearfix">
-                <a class="promiseIcon"><img src="style/images/promise_quality.jpg" alt=""/></a>
-                <div class="promiseInfo">
-                    <h3>优质</h3>
-                    <p>只推荐优质课程，只合作优质学校，避免欺诈陷阱</p>
-                </div>
-            </li>
-            <li class="clearfix">
-                <a class="promiseIcon"><img src="style/images/promise_preferential.png" alt=""/></a>
-                <div class="promiseInfo">
-                    <h3>享优惠</h3>
-                    <p>订课程享网站返现，最高可达1526元；团购特卖月月有</p>
-                </div>
-            </li>
-        </ul>
-    </div>
     <div class="map panel_bg clearfix">
         <div id="smallMap" style="width: 230px;height:180px"></div>
         <%_.each(addressList,function(address, index){%>
@@ -4452,7 +4503,7 @@
             </ul>
         </div>
 
-        <div id="tuanDetailCommentsContainer">
+        <div id="tuanDetailCommentsContainer" isshow="true">
 
         </div>
     </dd>
@@ -4679,6 +4730,7 @@
 <script src="scripts/View/PartnerSearchResultView.js" type="text/javascript"></script>
 <script src="scripts/View/PartnerSearchView.js" type="text/javascript"></script>
 <script src="scripts/View/PartnerDetailView.js" type="text/javascript"></script>
+<script src="scripts/View/BelongPartnerListView.js" type="text/javascript"></script>
 
 <script src="scripts/View/TuanView.js" type="text/javascript"></script>
 <script src="scripts/View/TuanDetailView.js" type="text/javascript"></script>

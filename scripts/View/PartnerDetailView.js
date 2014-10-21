@@ -12,16 +12,12 @@ var PartnerDetailView = Backbone.View.extend({
 
         this.user = app.sessionManager.sessionModel;
         var self = this;
-//        app.generalManager.fetchCategories({success: function (data) {
-//            self.categoryObj = data;
-//        }});
-        // this.newBooking = new Booking();
-        // $("#viewStyle").attr("href", "style/css/courseDetail.css");
         app.generalManager.fetchPartner(opt.partnerId, {
             success: function (partner) {
                 self.partner = partner.clone();
                 self.partnerPhotos = partner.get('classPhotoList').slice(2);//从第三张图片开始为团购详情页面的图片index = 2
                 self.teacherList = partner.get("teacherList");
+                self.addressList =partner.get("addressList");
 
                 self.render();
                 self.bindEvents();
@@ -57,21 +53,23 @@ var PartnerDetailView = Backbone.View.extend({
 
         $(document).scrollTop(0);
         this.$el.html(this.template(this.partner._toJSON()));
+
+        this.belongPartnerListView = new BelongPartnerListView({partner : this.partner});
 //        //新建相关课程视图
-//        this.relatedCourseListView = new RelatedCourseListView({partner: this.partner});
+//        this.relatedCourseListView = new RelatedCourseListView({course: this.partner});
 //        document.title = "爱上课 | " + this.partner.get("category").name +
 //            " | " + this.partner.get("subCategory").name +
 //            " | " + this.partner.get("subSubCategory").name +
 //            "培训 | " + this.partner.get("courseName");
 
         /*移除所有table的宽度*/
-//        $('.course_content .rich table').css('width', '100%');
-//        var $teachers = $(".teacherInfo"), i, maxHeight = -1, $teacher;
-//        for (i = 0; i < $teachers.length; i++) {
-//            $teacher = $($teachers[i]);
-//            maxHeight = maxHeight > $teacher.height() ? maxHeight : $teacher.height();
-//        }
-//        $teachers.css("height", maxHeight);
+        $('.course_content .rich table').css('width', '100%');
+        var $teachers = $(".teacherInfo"), i, maxHeight = -1, $teacher;
+        for (i = 0; i < $teachers.length; i++) {
+            $teacher = $($teachers[i]);
+            maxHeight = maxHeight > $teacher.height() ? maxHeight : $teacher.height();
+        }
+        $teachers.css("height", maxHeight);
 
 
         //this.compareWidget = new CourseDetailCompareWidgetView();
@@ -80,28 +78,8 @@ var PartnerDetailView = Backbone.View.extend({
         this.content2_top = $(".tuan_content_2").offset().top;//特色服务
         this.content3_top = $(".tuan_content_3").offset().top;//名师团队
         this.content4_top = $(".tuan_content_4").offset().top;//评价
-        //this.content5_top = $("#content_5").offset().top;//同类型课程
 
-        //如果栏目下的数据为空 则移除该栏目的显示
-        //名师团队
-//        if ($content3.children('dd').length === 0) {
-//            var height3 = $content3.outerHeight();
-//            $content3.remove();
-//            $("#tab_3").remove();
-//            //this.content5_top -= height3;
-//            this.content4_top -= height3;
-//            this.content3_top = this.content4_top;
-//        }
-//        //特色服务
-//        if ($content2.children('dd').find('.item').length === 0) {
-//            var height2 = $content2.outerHeight();
-//            $content2.remove();
-//            $("#tab_2").remove();
-//            //this.content5_top -= height2;
-//            this.content4_top -= height2;
-//            this.content3_top -= height2;
-//            this.content2_top = this.content3_top
-//        }
+
         //这里是为了声明页面加载完毕
         $('body').attr('pageRenderReady', '');
         //star
@@ -135,10 +113,16 @@ var PartnerDetailView = Backbone.View.extend({
         $(".detailArea .pic .pic_big").find("a:first").addClass("active");
         $(".detailArea .pic .pic_list").find("i:first").removeClass("active");
 //
+        //判断要不要出现评论框，true出现评论框，false不出现
+        var showState = $("#tuanDetailCommentsContainer").attr("isshow");
         this.commentsView = new TuanDetailCommentsView({
-            templateId: that.courseTemplateId,
-            parentView: that
+            partnerId: that.partner.get("id"),
+            parentView: that,
+            showState:showState
         });
+
+        $("#courseChoose").selectmenu();
+        $("#locationChoose").selectmenu();
         this.renderMap();
     },
     bindEvents: function () {
@@ -196,12 +180,14 @@ var PartnerDetailView = Backbone.View.extend({
                 $(".partnerDetail .w_730").css("margin-top", "63px");
                 $(".tuan_btn").show();
                 $(".tuan_sorterArea").addClass("stickyHeader");
+                $(".promise").addClass("hidden");
             }
             else if (scroH < navH) {
                 $("#tuan_fright").removeClass("stickyHeader");
                 $(".partnerDetail .w_730").css("margin-top", "");
                 $(".tuan_btn").hide();
                 $(".tuan_sorterArea").removeClass("stickyHeader");
+                $(".promise").removeClass("hidden");
             }
 
             $(".tuan_sorter li a").removeClass("active");
@@ -233,6 +219,19 @@ var PartnerDetailView = Backbone.View.extend({
             that.sr.set("categoryValue", $(this).data('value'));
             app.navigate("search/" + that.sr.toQueryString(), true);
         });
+
+
+        //
+        $("#searchInPartner").on("click",function(){
+            var cat = $("#courseChoose").attr("data-id");
+            var loc = $("#locationChoose").attr("data-id");
+            that.belongPartnerListView.close();
+            that.belongPartnerListView = new BelongPartnerListView({
+                partner : that.partner,
+                categoryId:cat,
+                locationId:loc
+            });
+        });
     },
 
     close: function () {
@@ -244,9 +243,16 @@ var PartnerDetailView = Backbone.View.extend({
             if (this.commentsView) {
                 this.commentsView.close();
             }
+            if(this.teacherModal){
+                this.teacherModal.close();
+            }
+            if(this.freeTrialModal){
+                this.freeTrialModal.close();
+            }
             $(document).off("scroll");
             $("#courseNavigateTab").off();
             this.isClosed = true;
+            this.belongPartnerListView.close();
             app.partnerDetailView = null;
         }
     }

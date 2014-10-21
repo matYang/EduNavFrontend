@@ -269,6 +269,9 @@ var Course = Backbone.Model.extend({
             json.address = this.get("address");
             json.circleName = this.get("circleName");
 
+            //类目
+            json.categoryValue = this.get("categoryValue");
+
             return json;
         }
     })
