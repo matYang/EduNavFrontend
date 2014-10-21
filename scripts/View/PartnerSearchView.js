@@ -13,11 +13,11 @@ var PartnerSearchView = Backbone.View.extend({
         this.isClosed = true;
         this.titleObj = {};
 
-        this.searchRepresentation = new PartnerSearchRepresentation();
-        //url路径中带有查询参数时 重置this.searchRepresentation(初始值为new PartnerSearchRepresentation())
+        this.sr = new PartnerSearchRepresentation();
+        //url路径中带有查询参数时 重置this.sr(初始值为new PartnerSearchRepresentation())
         if (params) {
             try {
-                this.searchRepresentation.castFromQuery(params.searchKey);
+                this.sr.castFromQuery(params.searchKey);
             } catch (e) {
                 app.navigate("inst/search", {replace: true, trigger: false});
             }
@@ -29,14 +29,15 @@ var PartnerSearchView = Backbone.View.extend({
             this.isClosed = false;
             app.viewRegistration.register(this);
             app.topBarView.activeNavigator('inst');
-            // $("title").html("找课程 | " + this.searchRepresentation.toTitleString());//that will be too long
+            // $("title").html("找课程 | " + this.sr.toTitleString());//that will be too long
             this.$el.append(this.template);
+            this.searchBarView = new SearchBarView({searchType: 'partner', style: 'white', name:this.sr.get('instName')});
             //异步加载目录和地址
             app.generalManager.getCategories(this);//传递this,会在获取目录之后调用this.renderCategories()
             app.generalManager.getLocations(this);//同上 调用this.renderLocations
             app.generalManager.getCircle(this);//同上
             //新建view时会调用一次fetchAction 则会进行一次数据渲染(传入课程搜索 传入对比组件)
-            this.searchResultView = new PartnerSearchResultView(this.searchRepresentation, this.compareWidgetView);
+            this.searchResultView = new PartnerSearchResultView(this.sr, this.compareWidgetView);
             //初始化时同步url中的参数进行过滤
             this.syncFilters();
             this.syncSorter();
@@ -59,8 +60,8 @@ var PartnerSearchView = Backbone.View.extend({
                 cbuf = [], scbuf = [], tcbuf = [],
                 children1, children2,
                 tc = "";
-            if (!this.searchRepresentation.get("courseName") && !this.searchRepresentation.get("categoryValue")) {
-                this.searchRepresentation.set("categoryValue", data[0].value);
+            if (!this.sr.get("instName") && !this.sr.get("categoryValue")) {
+                this.sr.set("categoryValue", data[0].value);
 
             }
             //一级目录
@@ -96,7 +97,7 @@ var PartnerSearchView = Backbone.View.extend({
         var self = this;
         //加载行政区/商圈//
         if (!this.isClosed) {
-            var buf = [], chbuf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
+            var buf = [], chbuf = [], i, text, locationValue = this.sr.get("locationValue");
             this.locations = locations;
 
             //加载行政区
@@ -124,8 +125,8 @@ var PartnerSearchView = Backbone.View.extend({
     /*渲染地址*/
     showLocation: function () {
         var self = this;
-        var locationValue = this.searchRepresentation.get("locationValue");
-        var circleValue = this.searchRepresentation.get("circleValue");
+        var locationValue = this.sr.get("locationValue");
+        var circleValue = this.sr.get("circleValue");
         var $dist = $("#filter_district");
         this.titleObj.city = "南京";
         if (!locationValue && !circleValue) {
@@ -148,7 +149,7 @@ var PartnerSearchView = Backbone.View.extend({
 
     /*渲染选中的课程类别*/
     showCategory: function () {
-        var text, count, value, categoryValue = this.searchRepresentation.get("categoryValue");
+        var text, count, value, categoryValue = this.sr.get("categoryValue");
         if (!categoryValue) {
             return
         }
@@ -183,13 +184,13 @@ var PartnerSearchView = Backbone.View.extend({
      * 同步条件的active状态以及在下方显示的搜索条件
      */
     syncFilters: function () {
-        var courseName = this.searchRepresentation.get("courseName"),
-            cashback = this.searchRepresentation.get("cashbackStart");
+        var instName = this.sr.get("instName"),
+            cashback = this.sr.get("cashbackStart");
         var $searchReqs = $("#searchReqs");
         //用户输入的机构名
-        if (courseName !== undefined) {
-            $('#search_category').addClass('tab5').append('<li class="actived" data-value="search"><i class="clearSearch"></i><p>' + courseName + '</p></li>');
-            $searchReqs.append(this.reqTemplate({criteria: "courseName", dataValue: '', text: courseName}));
+        if (instName !== undefined) {
+            $('#search_category').addClass('tab5').append('<li class="actived" data-value="search"><i class="clearSearch"></i><p>' + instName + '</p></li>');
+            $searchReqs.append(this.reqTemplate({criteria: "instName", dataValue: '', text: instName}));
             $("#filter_subCategory").addClass("hidden");
         }
 
@@ -200,7 +201,7 @@ var PartnerSearchView = Backbone.View.extend({
     },
     //同步排序条件
     syncSorter: function () {
-        var order = this.searchRepresentation.get("order"), columnKey = this.searchRepresentation.get("columnKey");
+        var order = this.sr.get("order"), columnKey = this.sr.get("columnKey");
         if (columnKey === "courseCount") {
             $("#courseCount").html("课程数").removeClass("active");
             $("#editorPick").removeClass("active");
@@ -232,7 +233,7 @@ var PartnerSearchView = Backbone.View.extend({
 
     //进行课程搜索 重新设置搜索条件 并且获取数据
     partnerSearch: function () {
-        this.searchResultView.sr = this.searchRepresentation;
+        this.searchResultView.sr = this.sr;
         //加载结果数据 param is pageIndex(using page 1)
         this.searchResultView.fetchAction(1);//每次搜索查询的时候重设为第一页
     },
@@ -240,31 +241,6 @@ var PartnerSearchView = Backbone.View.extend({
     bindEvents: function () {
         var that = this, $searchPanel = $("#searchPanel"), $searchReqs = $("#searchReqs");
         this.bindSortEvents();
-        //回车触发
-        this.$el.on("keypress", function (e) {
-            if (e.which === 13) {
-                $(".search_btn").click();
-            }
-        });
-        //顶部的按照课程名进行搜索
-        this.$el.on('click', '.search_btn', function () {
-            var courseName = $('.search_input').val();
-            if (courseName) {
-                var searchRepresentation = new CourseSearchRepresentation();
-                searchRepresentation.set("courseName", courseName);
-                app.navigate("inst/search/" + searchRepresentation.toQueryString(), true);
-            }
-
-        });
-        //大家都在搜
-        $(".search_tip").on("click", ".search_span", function () {
-            var courseName = $(this).html();
-            if (courseName) {
-                var searchRepresentation = new CourseSearchRepresentation();
-                searchRepresentation.set("courseName", courseName);
-                app.navigate("inst/search/" + searchRepresentation.toQueryString(), true);
-            }
-        });
 
         /*具体筛选条件的点击事件*/
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
@@ -285,14 +261,14 @@ var PartnerSearchView = Backbone.View.extend({
                 $needFixed.removeClass("stickyHeader");
             }
         });
-        /*已选择的查询条件中的删除事件 相当于点击不限的情况 这需要将courseName单独处理*/
+        /*已选择的查询条件中的删除事件 相当于点击不限的情况 这需要将instName单独处理*/
         $searchReqs.on("click", "a", function (e) {
             e.preventDefault();
             var cri = $(e.target).data("cri");
-            if (cri == 'courseName') {
+            if (cri == 'instName') {
                 //todo 去除课程名的搜索
                 //移除第5个标签 清空搜索input框 移除满足的条件
-                that.clearCourseNameSearch();
+                that.clearInstNameSearch();
                 return;
             }
             var $filterCri = $("#filter_" + cri);
@@ -338,8 +314,8 @@ var PartnerSearchView = Backbone.View.extend({
             } else {
                 $(this).html("教师数↑").addClass("active");
             }
-            that.searchRepresentation.set("columnKey", "teacherCount");
-            that.searchRepresentation.set("order", that.teacherCountDesc ? "desc" : "asc");
+            that.sr.set("columnKey", "teacherCount");
+            that.sr.set("order", that.teacherCountDesc ? "desc" : "asc");
             that.partnerSearch();
         });
         this.$el.on("click", '#courseCount', function () {
@@ -351,8 +327,8 @@ var PartnerSearchView = Backbone.View.extend({
             } else {
                 $(this).html("课程数↑").addClass("active");
             }
-            that.searchRepresentation.set("columnKey", "courseCount");
-            that.searchRepresentation.set("order", that.courseCountDesc ? "desc" : "asc");
+            that.sr.set("columnKey", "courseCount");
+            that.sr.set("order", that.courseCountDesc ? "desc" : "asc");
             that.partnerSearch();
 
         });
@@ -361,16 +337,16 @@ var PartnerSearchView = Backbone.View.extend({
             $("#courseCount").html("课程数").removeClass("active");
             $("#teacherCount").html("教师数").removeClass("active");
             $(this).html("爱上课推荐").addClass("active");
-            that.searchRepresentation.set("columnKey", undefined);
-            that.searchRepresentation.set("order", undefined);
+            that.sr.set("columnKey", undefined);
+            that.sr.set("order", undefined);
             that.partnerSearch();
         });
         //todo 机构是否有参与团购的课程
         $("input[name=originalPriceStart]").on("change", function () {
             if ($(this).prop("checked")) {
-                that.searchRepresentation.set("originalPriceStart", 1);
+                that.sr.set("originalPriceStart", 1);
             } else {
-                that.searchRepresentation.set("originalPriceStart", undefined);
+                that.sr.set("originalPriceStart", undefined);
             }
             that.partnerSearch();
         });
@@ -392,26 +368,27 @@ var PartnerSearchView = Backbone.View.extend({
                 e.stopPropagation();
                 return
             }
-            that.searchRepresentation.set("categoryValue", dataValue);
+            that.sr.set("categoryValue", dataValue);
             that.showCategory(dataValue);
+            that.partnerSearch();
         });
         $("#search_category").on("click", ".clearSearch", function (e) {
-            that.clearCourseNameSearch();
+            that.clearInstNameSearch();
         });
     },
-    clearCourseNameSearch: function () {
+    clearInstNameSearch: function () {
         var $searchReqs = $("#searchReqs");
         var that = this;
-        $("a[data-cri=courseName]").remove();
+        $("a[data-cri=instName]").remove();
         if ($searchReqs.find("a").length) {
             $searchReqs.removeClass("hidden");
         } else {
             $searchReqs.addClass("hidden");
         }
-        that.searchRepresentation.set("courseName", undefined);
+        that.sr.set("instName", undefined);
 
         $('#search_category').removeClass('tab5').find('.actived').remove();
-        that.$el.find('input.search_input').val('');
+        that.$el.find('.search_input').val('');
         $("#search_category").find("li:last").addClass("last");
         that.partnerSearch();
         //todo 有问题
@@ -444,35 +421,34 @@ var PartnerSearchView = Backbone.View.extend({
         }
         if (criteria === "subCategory") {
             if (dataValue === "noreq") {
-                this.searchRepresentation.set("categoryValue", $target.parent().data("parentvalue"));
+                this.sr.set("categoryValue", $target.parent().data("parentvalue"));
             } else {
-                this.searchRepresentation.set("categoryValue", dataValue);
+                this.sr.set("categoryValue", dataValue);
             }
             $target.siblings("p").addClass("hidden");
             $target.siblings("[data-parentvalue=" + dataValue + "]").removeClass("hidden");
             $target = null;
-            return
         } else if (criteria === "district") {
             dataValue = $target.data("value");
             if (dataValue === "noreq") {
-                this.searchRepresentation.set("locationValue", undefined);
-                this.searchRepresentation.set("circleValue", undefined);
+                this.sr.set("locationValue", undefined);
+                this.sr.set("circleValue", undefined);
             } else if (dataValue === "location") {//判断是不是行政区
-                this.searchRepresentation.set("locationValue", $target.data("value"));
-                this.searchRepresentation.set("circleValue", undefined);
+                this.sr.set("locationValue", $target.data("value"));
+                this.sr.set("circleValue", undefined);
                 this.titleObj.district = $target.html();
             } else if (dataValue === "circle") {//判断是不是商圈
-                this.searchRepresentation.set("circleValue", $target.data("value"));
-                this.searchRepresentation.set("locationValue", undefined);
+                this.sr.set("circleValue", $target.data("value"));
+                this.sr.set("locationValue", undefined);
                 this.titleObj.district = $target.html();
             } else {
                 //判断是商圈下的还是行政区
                 if ($target.parent().data("parentvalue") === "location") {
-                    this.searchRepresentation.set("locationValue", dataValue);
-                    this.searchRepresentation.set("circleValue", undefined);
+                    this.sr.set("locationValue", dataValue);
+                    this.sr.set("circleValue", undefined);
                 } else {
-                    this.searchRepresentation.set("circleValue", dataValue);
-                    this.searchRepresentation.set("locationValue", undefined);
+                    this.sr.set("circleValue", dataValue);
+                    this.sr.set("locationValue", undefined);
                 }
             }
         }
@@ -481,10 +457,9 @@ var PartnerSearchView = Backbone.View.extend({
     close: function () {
         if (!this.isClosed) {
             //removing all event handlers
-            if (this.compareWidgetView) {
-                this.compareWidgetView.close();
+            if (this.searchBarView) {
+                this.searchBarView.close();
             }
-            this.compareWidgetView = null;
             if (this.searchResultView) {
                 this.searchResultView.close();
             }

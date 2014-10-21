@@ -4,6 +4,7 @@ var PartnerSearchRepresentation = Backbone.Model.extend({
             //筛选条件有【学校名】【是否参团】【课程类目】【商圈和行政区】
             'partnerId': undefined,
             'instName': undefined,
+            'wholeName': undefined,
             'categoryValue': undefined,//筛选课程类目
             'locationValue': undefined,//筛选地址
             'circleValue': undefined,//筛选商圈

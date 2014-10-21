@@ -5,19 +5,16 @@ var PartnerSearchResultView = MultiPageView.extend({
     entryTemplate: _.template(tpl.get("partnerSearchResultEntry")),
     pageEntryNumber: 10,
     scroll:false,
-    initialize: function (searchRepresentation, compareWidget) {
+    initialize: function (searchRepresentation) {
         _.bindAll(this, "bindEvents", "renderSearchResults", "renderError", "close");
         MultiPageView.prototype.initialize.call(this);
         this.sr = searchRepresentation;
         //$entryContainer根据entryContainer生成 直接使用即可 与el相同
         this.$entryContainer.empty();
-        //对比组件
-        this.compareWidgetView = compareWidget || this.compareWidgetView;
         this.user = app.sessionManager.sessionModel;
 
         this.fetchAction();
         this.bindEvents();
-        this.bindEntryEvents();
     },
     render: function () {
         this.isClosed = false;
@@ -53,36 +50,7 @@ var PartnerSearchResultView = MultiPageView.extend({
         $('body').attr('pageRenderReady', '')
     },
     bindEvents: function () {
-        var that = this, id;
-        this.$entryContainer.on("click", ".compare", function (e) {
-            if ($(e.target).hasClass("add")) {
-                id = Utilities.getId($(this).attr("id"));
-                if (that.compareWidgetView.addCourse(that.messages.get(Utilities.toInt(id)))) {
-                    $(e.target).attr("class", "remove btn_gray").val("已加入对比");
-                } else {
-                    Info.displayNotice("您最多只能同时比较四个不同的科目。");
-                }
-            } else {
-                $(e.target).attr("class", "add btn_o").val("+对比");
-                id = Utilities.getId($(this).attr("id"));
-                that.compareWidgetView.removeCourse(Utilities.toInt(id));
-            }
-
-        }).on("click", ".blank", function (e) {
-            e.preventDefault();
-            id = Utilities.getId($(this).attr("id"));
-            app.navigate("course/" + id, true);
-        });
-    },
-
-    bindEntryEvents: function () {
-        $('#searchResultDisplayPanel').on('click', '.viewDetail', function () {
-            var courseId = $(this).data('id');
-            if (courseId == '')return;
-            //百度统计
-            _hmt.push(['_trackEvent', 'course', 'click', courseId]);
-            app.navigate("course/" + courseId, true);
-        });
+        var that = this;
     },
     fetchAction: function (pageIndex) {
         var self = this;
@@ -99,7 +67,7 @@ var PartnerSearchResultView = MultiPageView.extend({
 
         app.navigate("inst/search/" + this.sr.toQueryString(), {trigger: false, replace: true});
         $("#" + this.entryContainer).empty().append('<div class="loading"></div>');
-        app.generalManager.findCourse(this.sr, {
+        app.generalManager.findPartner(this.sr, {
             success: self.renderSearchResults,
             error: self.renderError
         });
@@ -137,7 +105,6 @@ var PartnerSearchResultView = MultiPageView.extend({
         if (!this.isClosed) {
             this.$entryContainer.off();
             MultiPageView.prototype.close.call(this);
-            this.compareWidget = null;
         }
     }
 });

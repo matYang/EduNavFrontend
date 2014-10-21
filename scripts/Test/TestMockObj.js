@@ -535,3 +535,4 @@ testMockObj.testTuans.add([
 testMockObj.testTuans.total = 29;
 testMockObj.testCourses.total = 382;
 testMockObj.testComments.total = 13;
+testMockObj.testPartners.total = 300;

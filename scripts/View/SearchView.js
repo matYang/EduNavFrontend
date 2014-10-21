@@ -17,17 +17,17 @@ var SearchView = Backbone.View.extend({
         this.isClosed = true;
         this.titleObj = {};
 
-        this.searchRepresentation = app.storage.getSearchRepresentationCache("course");
-        //url路径中带有查询参数时 重置this.searchRepresentation(初始值为new CourseSearchRepresentation())
+        this.sr = app.storage.getSearchRepresentationCache("course");
+        //url路径中带有查询参数时 重置this.sr(初始值为new CourseSearchRepresentation())
         if (params) {
             try {
-                this.searchRepresentation = new CourseSearchRepresentation();
-                this.searchRepresentation.castFromQuery(params.searchKey);
+                this.sr = new CourseSearchRepresentation();
+                this.sr.castFromQuery(params.searchKey);
                 //重新保存查询结果
-                app.storage.setSearchRepresentationCache(this.searchRepresentation, true);
+                app.storage.setSearchRepresentationCache(this.sr, true);
             } catch (e) {
                 app.navigate("search", {replace: true, trigger: false});
-                this.searchRepresentation = new CourseSearchRepresentation();
+                this.sr = new CourseSearchRepresentation();
             }
         }
         this.render();
@@ -38,8 +38,9 @@ var SearchView = Backbone.View.extend({
             this.isClosed = false;
             app.viewRegistration.register(this);
             app.topBarView.activeNavigator('search');
-            // $("title").html("找课程 | " + this.searchRepresentation.toTitleString());//that will be too long
+            // $("title").html("找课程 | " + this.sr.toTitleString());//that will be too long
             this.$el.append(this.template);
+            this.searchBarView = new SearchBarView({searchType: 'course', style: 'white', name:this.sr.get('courseName')});
             //异步加载目录和地址
             app.generalManager.getCategories(this);//传递this,会在获取目录之后调用this.renderCategories()
             app.generalManager.getLocations(this);//同上 调用this.renderLocations
@@ -47,7 +48,7 @@ var SearchView = Backbone.View.extend({
             //加载course之前首先加载widget baidu Map--course数据获取后会生成地图
             this.compareWidgetView = new CompareWidgetView();
             //新建view时会调用一次fetchAction 则会进行一次数据渲染(传入课程搜索 传入对比组件)
-            this.searchResultView = new SearchResultView(this.searchRepresentation, this.compareWidgetView);
+            this.searchResultView = new SearchResultView(this.sr, this.compareWidgetView);
             //初始化时同步url中的参数进行过滤
             this.syncFilters();
             this.syncSorter();
@@ -66,7 +67,7 @@ var SearchView = Backbone.View.extend({
         var self = this;
         //加载行政区/商圈//
         if (!this.isClosed) {
-            var buf = [], chbuf = [], i, text, locationValue = this.searchRepresentation.get("locationValue");
+            var buf = [], chbuf = [], i, text, locationValue = this.sr.get("locationValue");
             this.locations = locations;
 
             //加载行政区
@@ -93,8 +94,8 @@ var SearchView = Backbone.View.extend({
     /*渲染地址*/
     showLocation: function () {
         var self = this;
-        var locationValue = this.searchRepresentation.get("locationValue");
-        var circleValue = this.searchRepresentation.get("circleValue");
+        var locationValue = this.sr.get("locationValue");
+        var circleValue = this.sr.get("circleValue");
         var $dist = $("#filter_district");
         this.titleObj.city = "南京";
         if (!locationValue && !circleValue) {
@@ -137,8 +138,8 @@ var SearchView = Backbone.View.extend({
                 cbuf = [], scbuf = [], tcbuf = [],
                 children1, children2,
                 tc = "";
-            if (!this.searchRepresentation.get("courseName") && !this.searchRepresentation.get("categoryValue")) {
-                this.searchRepresentation.set("categoryValue", data[0].value);
+            if (!this.sr.get("courseName") && !this.sr.get("categoryValue")) {
+                this.sr.set("categoryValue", data[0].value);
 
             }
             //一级目录
@@ -171,7 +172,7 @@ var SearchView = Backbone.View.extend({
     },
     /*渲染选中的课程类别*/
     showCategory: function () {
-        var text, count, value, categoryValue = this.searchRepresentation.get("categoryValue");
+        var text, count, value, categoryValue = this.sr.get("categoryValue");
         if (!categoryValue) {
             return
         }
@@ -206,18 +207,18 @@ var SearchView = Backbone.View.extend({
      * 同步条件的active状态以及在下方显示的搜索条件
      */
     syncFilters: function () {
-        var startPrice = this.searchRepresentation.get("priceStart"),
-            priceEnd = this.searchRepresentation.get("priceEnd"),
-            courseName = this.searchRepresentation.get("courseName"),
-            classType = this.searchRepresentation.get("classType"),
-            startDateStart = this.searchRepresentation.get("startDateStart"),
-            startDateEnd = this.searchRepresentation.get("startDateEnd"),
-            cashback = this.searchRepresentation.get("cashbackStart"),
-            commission = this.searchRepresentation.get("commission"),
-            originalPriceStart = this.searchRepresentation.get("originalPriceStart"),
+        var startPrice = this.sr.get("priceStart"),
+            priceEnd = this.sr.get("priceEnd"),
+            courseName = this.sr.get("courseName"),
+            classType = this.sr.get("classType"),
+            startDateStart = this.sr.get("startDateStart"),
+            startDateEnd = this.sr.get("startDateEnd"),
+            cashback = this.sr.get("cashbackStart"),
+            commission = this.sr.get("commission"),
+            originalPriceStart = this.sr.get("originalPriceStart"),
 
-            schooltimeWeek = this.searchRepresentation.get("schooltimeWeek"),
-            schooltimeDay = this.searchRepresentation.get("schooltimeDay"),
+            schooltimeWeek = this.sr.get("schooltimeWeek"),
+            schooltimeDay = this.sr.get("schooltimeDay"),
             value, text;
         var $searchReqs = $("#searchReqs");
         //用户输入的课程名
@@ -282,7 +283,7 @@ var SearchView = Backbone.View.extend({
         }
     },
     syncSorter: function () {
-        var order = this.searchRepresentation.get("order"), columnKey = this.searchRepresentation.get("columnKey");
+        var order = this.sr.get("order"), columnKey = this.sr.get("columnKey");
         if (columnKey === "startDate") {
             $("#price").html("价格").removeClass("active");
             $("#editorPick").removeClass("active");
@@ -314,7 +315,7 @@ var SearchView = Backbone.View.extend({
 
     //进行课程搜索 重新设置搜索条件 并且获取数据
     courseSearch: function () {
-        this.searchResultView.sr = this.searchRepresentation;
+        this.searchResultView.sr = this.sr;
         //加载结果数据 param is pageIndex(using page 1)
         this.searchResultView.fetchAction(1);//每次搜索查询的时候重设为第一页
     },
@@ -322,31 +323,6 @@ var SearchView = Backbone.View.extend({
     bindEvents: function () {
         var that = this, $searchPanel = $("#searchPanel"), $searchReqs = $("#searchReqs");
         this.bindSortEvents();
-        //回车触发
-        this.$el.on("keypress", function (e) {
-            if (e.which === 13) {
-                $(".search_btn").click();
-            }
-        });
-        //顶部的按照课程名进行搜索
-        this.$el.on('click', '.search_btn', function () {
-            var courseName = $('.search_input').val();
-            if (courseName) {
-                var searchRepresentation = new CourseSearchRepresentation();
-                searchRepresentation.set("courseName", courseName);
-                app.navigate("search/" + searchRepresentation.toQueryString(), true);
-            }
-
-        });
-        //大家都在搜
-        $(".search_tip").on("click",".search_span",function(){
-            var courseName = $(this).html();
-            if (courseName) {
-                var searchRepresentation = new CourseSearchRepresentation();
-                searchRepresentation.set("courseName", courseName);
-                app.navigate("search/" + searchRepresentation.toQueryString(), true);
-            }
-        });
 
         /*具体筛选条件的点击事件*/
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
@@ -425,8 +401,8 @@ var SearchView = Backbone.View.extend({
             } else {
                 $(this).html("时间↑").addClass("active");
             }
-            that.searchRepresentation.set("columnKey", "startDate");
-            that.searchRepresentation.set("order", that.timeDesc ? "desc" : "asc");
+            that.sr.set("columnKey", "startDate");
+            that.sr.set("order", that.timeDesc ? "desc" : "asc");
             that.timeDesc = !that.timeDesc;
             that.courseSearch();
         });
@@ -438,8 +414,8 @@ var SearchView = Backbone.View.extend({
             } else {
                 $(this).html("价格↑").addClass("active");
             }
-            that.searchRepresentation.set("columnKey", "price");
-            that.searchRepresentation.set("order", that.priceDesc ? "desc" : "asc");
+            that.sr.set("columnKey", "price");
+            that.sr.set("order", that.priceDesc ? "desc" : "asc");
             that.priceDesc = !that.priceDesc;
             that.courseSearch();
 
@@ -449,32 +425,32 @@ var SearchView = Backbone.View.extend({
             $("#time").html("时间").removeClass("active");
             $("#price").html("价格").removeClass("active");
             $(this).html("爱上课推荐").addClass("active");
-            that.searchRepresentation.set("columnKey", undefined);
-            that.searchRepresentation.set("order", undefined);
+            that.sr.set("columnKey", undefined);
+            that.sr.set("order", undefined);
             that.courseSearch();
         });
 
         $("input[name=cashback]").on("change", function () {
             if ($(this).prop("checked")) {
-                that.searchRepresentation.set("cashbackStart", 1);
+                that.sr.set("cashbackStart", 1);
             } else {
-                that.searchRepresentation.set("cashbackStart", undefined);
+                that.sr.set("cashbackStart", undefined);
             }
             that.courseSearch();
         });
         $("input[name=commission]").on("change", function () {
             if ($(this).prop("checked")) {
-                that.searchRepresentation.set("commission", 1);
+                that.sr.set("commission", 1);
             } else {
-                that.searchRepresentation.set("commission", undefined);
+                that.sr.set("commission", undefined);
             }
             that.courseSearch();
         });
         $("input[name=originalPriceStart]").on("change", function () {
             if ($(this).prop("checked")) {
-                that.searchRepresentation.set("originalPriceStart", 1);
+                that.sr.set("originalPriceStart", 1);
             } else {
-                that.searchRepresentation.set("originalPriceStart", undefined);
+                that.sr.set("originalPriceStart", undefined);
             }
             that.courseSearch();
         });
@@ -496,8 +472,8 @@ var SearchView = Backbone.View.extend({
                 e.stopPropagation();
                 return
             }
-            that.searchRepresentation.set("categoryValue", dataId);
-            that.showCategory(that.searchRepresentation.get("categoryValue"));
+            that.sr.set("categoryValue", dataId);
+            that.showCategory(that.sr.get("categoryValue"));
             that.courseSearch();
         });
         $("#search_category").on("click", ".clearSearch", function (e) {
@@ -516,7 +492,7 @@ var SearchView = Backbone.View.extend({
         } else {
             $searchReqs.addClass("hidden");
         }
-        that.searchRepresentation.set("courseName", undefined);
+        that.sr.set("courseName", undefined);
 
         $('#search_category').removeClass('tab5').find('.actived').remove();
         that.$el.find('input.search_input').val('');
@@ -551,9 +527,9 @@ var SearchView = Backbone.View.extend({
         }
         if (criteria === "subCategory") {
             if (dataValue === "noreq") {
-                this.searchRepresentation.set("categoryValue", $target.parent().data("parentvalue"));
+                this.sr.set("categoryValue", $target.parent().data("parentvalue"));
             } else {
-                this.searchRepresentation.set("categoryValue", dataValue);
+                this.sr.set("categoryValue", dataValue);
             }
             $target.siblings("p").addClass("hidden");
             $target.siblings("[data-parentvalue=" + dataValue + "]").removeClass("hidden");
@@ -561,23 +537,23 @@ var SearchView = Backbone.View.extend({
         } else if (criteria === "district") {
             dataValue = $target.data("value");
             if (dataValue === "noreq") {
-                this.searchRepresentation.set("locationValue", undefined);
-                this.searchRepresentation.set("circleValue", undefined);
+                this.sr.set("locationValue", undefined);
+                this.sr.set("circleValue", undefined);
 //                if (this.compareWidgetView.map) {
 //                    this.compareWidgetView.map.setCenter(this.locations[0].name);
 //                    this.compareWidgetView.map.map.setZoom(9);
 //                }
             } else if (dataValue === "location") {//判断是不是行政区
-                this.searchRepresentation.set("locationValue", $target.data("value"));
-                this.searchRepresentation.set("circleValue", undefined);
+                this.sr.set("locationValue", $target.data("value"));
+                this.sr.set("circleValue", undefined);
                 this.titleObj.location = $target.html();
 //                if (this.compareWidgetView.map) {
 //                    this.compareWidgetView.map.setCenter($target.html());
 //                    this.compareWidgetView.map.map.setZoom(11);
 //                }
             } else if (dataValue === "circle") {//判断是不是商圈
-                this.searchRepresentation.set("circleValue", $target.data("value"));
-                this.searchRepresentation.set("locationValue", undefined);
+                this.sr.set("circleValue", $target.data("value"));
+                this.sr.set("locationValue", undefined);
                 this.titleObj.circle = $target.html();
 //                if (this.compareWidgetView.map) {
 //                    this.compareWidgetView.map.setCenter($target.html());
@@ -586,11 +562,11 @@ var SearchView = Backbone.View.extend({
             } else {
                 //判断是商圈下的还是行政区
                 if ($target.parent().data("parentvalue") === "location") {
-                    this.searchRepresentation.set("locationValue", dataValue);
-                    this.searchRepresentation.set("circleValue", undefined);
+                    this.sr.set("locationValue", dataValue);
+                    this.sr.set("circleValue", undefined);
                 } else {
-                    this.searchRepresentation.set("circleValue", dataValue);
-                    this.searchRepresentation.set("locationValue", undefined);
+                    this.sr.set("circleValue", dataValue);
+                    this.sr.set("locationValue", undefined);
                 }
 
             }
@@ -649,13 +625,13 @@ var SearchView = Backbone.View.extend({
                 date1 = undefined;
                 date2 = undefined;
             }
-            this.searchRepresentation.set("startDateStart", date1);
-            this.searchRepresentation.set("startDateEnd", date2);
+            this.sr.set("startDateStart", date1);
+            this.sr.set("startDateEnd", date2);
         }
         else if (criteria === "price") {
             if (dataValue === "noreq") {
-                this.searchRepresentation.set("priceStart", undefined);
-                this.searchRepresentation.set("priceEnd", undefined);
+                this.sr.set("priceStart", undefined);
+                this.sr.set("priceEnd", undefined);
             } else {
                 var priceRange = dataValue.split("-");
                 var minPrice = Utilities.toInt(priceRange[0]), maxPrice;
@@ -664,14 +640,14 @@ var SearchView = Backbone.View.extend({
                 } else {
                     maxPrice = Utilities.toInt(priceRange[1]);
                 }
-                this.searchRepresentation.set("priceStart", minPrice);
-                this.searchRepresentation.set("priceEnd", isNaN(maxPrice) ? undefined : maxPrice);
+                this.sr.set("priceStart", minPrice);
+                this.sr.set("priceEnd", isNaN(maxPrice) ? undefined : maxPrice);
             }
         } else if (criteria === "classMode") {
             if (dataValue === "noreq") {
-                this.searchRepresentation.set("classType", undefined);
+                this.sr.set("classType", undefined);
             } else {
-                this.searchRepresentation.set("classType", dataValue);
+                this.sr.set("classType", dataValue);
             }
         }
         //上课时间 平时或者周末的上午 下午 晚上
@@ -684,17 +660,20 @@ var SearchView = Backbone.View.extend({
                 week = rs[0] === '' ? undefined : rs[0];
                 day = rs[1] === '' ? undefined : rs[1];
             }
-            this.searchRepresentation.set("schooltimeWeek", week);
-            this.searchRepresentation.set("schooltimeDay", day);
+            this.sr.set("schooltimeWeek", week);
+            this.sr.set("schooltimeDay", day);
         }
         this.courseSearch();
-        //this.searchRepresentation.set(criteria, dataId);
+        //this.sr.set(criteria, dataId);
     },
     close: function () {
         if (!this.isClosed) {
             //removing all event handlers
             if (this.compareWidgetView) {
                 this.compareWidgetView.close();
+            }
+            if (this.searchBarView) {
+                this.searchBarView.close();
             }
             this.compareWidgetView = null;
             if (this.searchResultView) {

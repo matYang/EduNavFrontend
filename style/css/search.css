@@ -211,7 +211,7 @@
     color: #fff;
 }
 
-.search_result .sorter li,
+.search_result .sorter li.active,
 .search_result .sorter li:hover {
     background-color: #8AC4B8;
 }

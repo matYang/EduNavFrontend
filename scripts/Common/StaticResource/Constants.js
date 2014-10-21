@@ -96,8 +96,8 @@ var Constants = {
         "aboutUs", "joinUs", "contactUs", "advise", "help",
 
         //其它
+        'searchBar',//课程和机构的搜索框
         'errorPay',//支付失败的帮助页面
-
         "sideBarView",//侧边工具栏
 //        "banner",//首页的大屏滚动banner
 

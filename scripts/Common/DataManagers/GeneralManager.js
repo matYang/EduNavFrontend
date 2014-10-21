@@ -202,11 +202,11 @@
             Info.warn('GeneralManager::findCourse invalid parameter, exit');
             return;
         }
-        cache = app.cache.get("queryCourse", courseSearchRepresentation.toQueryString());
-        if (cache) {
-            this.batchFetchCourses(cache, callback);
-            return;
-        }
+//        cache = app.cache.get("queryCourse", courseSearchRepresentation.toQueryString());
+//        if (cache) {
+//            this.batchFetchCourses(cache, callback);
+//            return;
+//        }
 
         if (testMockObj.testMode) {
             searchResults = testMockObj.testCourses;
@@ -224,7 +224,7 @@
                     for (var i = 0; i < searchResults.length; i++) {
                         app.cache.set("course", searchResults.at(i).get("id"), searchResults.at(i).toJSON());
                     }
-                    app.cache.set("queryCourse", courseSearchRepresentation.toQueryString(), searchResults.pluck("id"));
+//                    app.cache.set("queryCourse", courseSearchRepresentation.toQueryString(), searchResults.pluck("id"));
                     callback.success(searchResults);
                 }
             },
@@ -306,19 +306,19 @@
 
     //根据搜索条件搜索机构列表 partnerSearchRepresentation
     GeneralManager.prototype.findPartner = function (sr, callback) {
-        var searchResults = new Tuans();
+        var searchResults = new Partners();
         if (!(sr instanceof Backbone.Model)) {
             Info.warn('GeneralManager::findPartner invalid parameter, exit');
             return;
         }
 
         if (testMockObj.testMode) {
-            searchResults = testMockObj.testTuans;
+            searchResults = testMockObj.testPartners;
             callback.success(searchResults);
             return;
         }
 
-        searchResults.overrideUrl(ApiResource.groupBuy);
+        searchResults.overrideUrl(ApiResource.partners);
         searchResults.fetch({
             data: sr.toQueryString(),
             dataType: 'json',
@@ -326,7 +326,7 @@
             success: function (model, response) {
                 if (callback) {
                     //todo tuan sr cache
-                    app.cache.set("queryTuan", sr.toQueryString(), searchResults.pluck("id"));
+//                    app.cache.set("queryTuan", sr.toQueryString(), searchResults.pluck("id"));
                     callback.success(searchResults);
                 }
             },
