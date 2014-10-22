@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="style/css/notifier-base.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/common-ui.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/modals.css"/>
+    <link rel="stylesheet" type="text/css" href="style/css/widgets.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/topBar.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/right_bar.css"/>
     <link rel="stylesheet" type="text/css" href="style/css/override.css"/>
@@ -83,6 +84,18 @@
 
 <div id="allTemplates">
 <!--modals start-->
+<script type="text/templates" id="tpl_setPhoneModal">
+    <div id="setPhoneModal" class="modal modal-setPhone">
+        <div class="modal-inner padding-md">
+            <div class="ft-dark">&nbsp;&nbsp;&nbsp;&nbsp;亲，请填写您的手机号码，方便我们的资深选课顾问为您提供专业一对一的服务~请放心，您的你信息我们会严格保密~</div>
+            <div class="wd-form clearfix">
+                <input id="setPhoneInput" class="wd-input pull-left" type="text" placeholder="请输入您的手机号" />
+                <div id="setPhoneBtn" class="wd-form-btn pull-right">ok</div>
+            </div>
+            <div class="modalPhoneMessage ft-dark"></div>
+        </div>
+    </div>
+</script>
 <script type="text/templates" id="tpl_mapModal">
     <div id="mapModal" class="modal modal-map">
         <div class="modal-inner" style="width:<%=width%>px;height:<%=height%>px;margin-top:-<%=height/2%>px;">
@@ -146,7 +159,7 @@
                 <div class="popTopBlack"></div>
                 <div class="popTitle">
                     <div class="popTitleA">
-                        <span class="">申请免费试听</span>
+                        <span class="popTSpanLeft">申请免费试听</span>
                         <a class="popShu"></a>
 
                         <div class="popTitleRight">
@@ -829,15 +842,7 @@
 
             <!--右栏开始 todo 加上课程申请的入口 备注信息需要标注来源-->
             <div class="fright w_250 unselectable needFixed ">
-                <div id="applyFormContainer" class="bg-white clearfix padding-sm">
-                    <div class="text-center"><img width="186" height="116" src="./style/images/right_form_a.png" alt=""/></div>
-                    <div class="sk-form">
-                        <div class="sk-message text-error text-center"></div>
-                        <input class="sk-input" type="text" placeholder="想学点什么？"/>
-                        <input class="sk-input" type="text" placeholder="想在哪儿学？"/>
-                        <div class="sk-form-btn">ok</div>
-                    </div>
-                </div>
+                <div id="applyWidget"></div>
                 <div class="blank"></div>
                 <div id="topTuanWidget" class="bg-white clearfix">
 
@@ -849,6 +854,18 @@
             </div>
         </div>
         <!--search_result end-->
+    </div>
+</script>
+
+<script type="text/template" id="tpl_applyWidget">
+    <div class="bg-white clearfix padding-sm">
+        <div class="text-center"><img width="186" height="116" src="style/images/widget_apply_a.png" alt=""/></div>
+        <div class="wd-form">
+            <div class="wd-message text-center" style="display: none"></div>
+            <input id="twhat" class="wd-input" type="text" placeholder="想学点什么？"/>
+            <input id="twhere" class="wd-input" type="text" placeholder="想在哪儿学？"/>
+            <div class="wd-form-btn">ok</div>
+        </div>
     </div>
 </script>
 
@@ -4755,6 +4772,8 @@
 <script src="scripts/View/Modal/LoginFastModal.js" type="text/javascript"></script>
 <script src="scripts/View/Modal/SelectCatModal.js" type="text/javascript"></script>
 <script src="scripts/View/Modal/SchoolModal.js" type="text/javascript"></script>
+<!--widgets-->
+<script src="scripts/View/ApplyWidgetView.js" type="text/javascript"></script>
 <!--todo not finished-->
 <script src="scripts/View/MyPage/MyPageUsernameModal.js" type="text/javascript"></script>
 
