@@ -94,7 +94,7 @@
             callback.success(testMockObj.testPartners.get(id));
             return;
         }
-        partner.overrideUrl(ApiResource.partner);
+        partner.overrideUrl(ApiResource.partners);
         partner.set('id', id);
         partner.fetch({
             dataType: 'json',

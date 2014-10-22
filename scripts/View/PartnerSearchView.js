@@ -31,10 +31,9 @@ var PartnerSearchView = Backbone.View.extend({
             app.topBarView.activeNavigator('inst');
             // $("title").html("找课程 | " + this.sr.toTitleString());//that will be too long
             this.$el.html(this.template);
-            //右侧的轮播图
-            //this.topTuanWidgetView = new topTuanWidgetView();
             this.searchBarView = new SearchBarView({searchType: 'partner', style: 'white', name:this.sr.get('instName')});
             this.applyWidgetView = new ApplyWidgetView();
+            this.topTuanWidgetView = new TopTuanWidgetView();
             //异步加载目录和地址
             app.generalManager.getCategories(this);//传递this,会在获取目录之后调用this.renderCategories()
             app.generalManager.getLocations(this);//同上 调用this.renderLocations
@@ -225,12 +224,6 @@ var PartnerSearchView = Backbone.View.extend({
                 $("#courseCount").html("课程数↓").addClass("active");
                 this.courseCountDesc = false;
             }
-        }
-    },
-    renderError: function (data) {
-        if (!this.isClosed) {
-            this.$resultp = this.$resultp || $("#searchResultDisplayPanel");
-            this.$resultp.empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
         }
     },
 
@@ -468,11 +461,13 @@ var PartnerSearchView = Backbone.View.extend({
             if (this.applyWidgetView) {
                 this.applyWidgetView.close();
             }
+            if (this.topTuanWidgetView) {
+                this.topTuanWidgetView.close();
+            }
             $("#filterPanel").children(".filterCriteria").off();
             $("#search_category").off();
             $("#search_subCategory").off();
             $("#filter_subCategory").off();
-            //this.topTuanWidgetView.close();
             this.searchResultView = null;
             $(document).off("scroll");
             $("#searchReqs").off();
@@ -485,61 +480,65 @@ var PartnerSearchView = Backbone.View.extend({
     }
 });
 
+
 //右侧轮播图
-//var topTuanWidgetView = Backbone.View.extend({
-//    el:'#topTuanWidget',
-//    template: _.template(tpl.get("topTuanWidgetView")),
-//    initialize:function(){
-//        _.bindAll(this, 'render', 'bindEvents','close');
-//        //todo backbone中是否需要如此?view中存在事件绑定时切换view会导致内存占用 但在close方法中已关闭
-//        // todo 用off来清除事件 所以下述的服务是否仍需要 后续再说
-//        //注册当前的view 在viewService中注册前会判断是否已存在该view并且判断其isClosed 不为关闭状态则首先进行关闭
-//        app.viewRegistration.register(this);
-//        this.isClosed = false;
-//        app.generalManager.findTopTuan({
-//            success: this.render
-//        });
-//        //this.render();
-//    },
-//    render:function(tuans){
-//        var that = this;
-//        this.$el.append(this.template());
-//        if (!tuans || !tuans.length) {
-//            return;
-//        }
-//        var l_buf = [];
-//        l_buf.push('<ul class="bjqs" style="display: block;">');
-//        tuans.forEach(function (tuan) {
-//            that.tuan = tuan._toJSON();
-//            l_buf.push(
-//                '<li class="bjqs-slide" style="display: list-item; opacity: 0.103855178322405;"> '
-//                +'<img src="' + tuan.photoList[0].url + '" title="' + tuan.title + '">'
-//                +'</li>'
-//            );
-//
-//        });
-//        l_buf.push('</ul>');
-//        $("#topTuanWidgetView").html(l_buf.join(''));
-//
-//
-//        $('#topTuanWidgetView').bjqs({
-//            'height' : 150,
-//            'width' : 250,
+var TopTuanWidgetView = Backbone.View.extend({
+    el:'#topTuanWidget',
+    template: _.template(tpl.get("topTuanWidgetView")),
+    initialize:function(){
+        _.bindAll(this, 'render', 'bindEvents','close');
+        var that = this;
+        app.viewRegistration.register(this);
+        this.isClosed = false;
+        app.generalManager.findTopTuan({
+            success: that.render
+        });
+        this.render();
+    },
+    render:function(tuans){
+        var that = this;
+
+        if (!tuans || !tuans.length) {
+            return;
+        }
+        this.$el.html(this.template());
+        var buf = '';
+        buf+='<ul class="bjqs" style="display: block;">';
+        tuans.forEach(function (tuan) {
+            that.tuan = tuan._toJSON();
+            buf+='<li class="bjqs-slide" style="display: list-item;"> ';
+            buf+='<a href="#tuan/' + that.tuan.id + '"><img src="' + that.tuan.photoList[0].url + '" title="' + that.tuan.title + '"></a>';
+            buf += '';
+            buf+='</li>';
+
+        });
+        buf += '</ul>';
+        this.$el.find("#topTuanWidgetMain").append(buf);
+
+
+
+        $('#topTuanWidgetMain').bjqs({
+            height: 150,
+            width: 250,
 //            'responsive' : true,
-//            automatic : true,
-//            nexttext : '>', // Text for 'next' button (can use HTML)
-//            prevtext : '<'// Text for 'next' button
-//        });
-//        this.bindEvents();
-//    },
-//    bindEvents:function(){
-//
-//    },
-//
-//    close: function () {
-//        if (!this.isClosed) {
-//            this.$el.off();
-//            this.isClosed = true;
-//        }
-//    }
-//});
+            animtype:'slide',
+            hoverpause : true,
+            showmarkers : false,
+            //'automatic' : true,
+            'nexttext' : '>', // Text for 'next' button (can use HTML)
+            'prevtext' : '<'// Text for 'next' button
+        });
+        this.bindEvents();
+    },
+    bindEvents:function(){
+
+    },
+
+    close: function () {
+        if (!this.isClosed) {
+            this.$el.off();
+            this.isClosed = true;
+        }
+    }
+});
+
