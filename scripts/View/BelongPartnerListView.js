@@ -58,7 +58,6 @@ var BelongPartnerListView = Backbone.View.extend({
 //                if(data.id == this.courseId){
 //                    len++;continue;
 //                }
-                console.log(data.categoryValue);
                 data.current = (data.id == this.courseId);
                 buf[i] = this.entryTemplate(data);
             }

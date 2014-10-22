@@ -35,6 +35,7 @@ var Constants = {
         "partnerSearch", "partnerSearchResultEntry", "partnerSearch_noMessage",
         "partnerDetail",
         "belongPartnerRow","belongPartnerNoRow","belongPartnerErrorRow",
+        "topTuanWidgetView",//课程轮播图
 
         /*课程搜索模块*/
         "home", "homeCategoryContainer", "homeButton", "homeCatButton",

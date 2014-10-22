@@ -11,6 +11,7 @@
     border-radius: 0;
     border: 1px solid #e2e2e2; font-size: 18px;
     margin-right: 10px;
+    float: left;
 }
 .ui-selectmenu-button:hover{background-color: #fff; border: 1px solid #e2e2e2;}
 .ui-selectmenu-button span.ui-icon-triangle-1-s{
