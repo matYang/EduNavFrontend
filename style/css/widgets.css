@@ -1,0 +1,26 @@
+/*机构搜索页面的申请提交表单widget*/
+.wd-form *{
+    /*ie8+*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 6px;
+}
+.wd-input{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 5px;
+    background: #EDEDED;
+    outline: 0;
+    border: 1px solid transparent;
+}
+.wd-input:focus{
+    border: 1px solid #32AF94;
+}
+.wd-form .wd-form-btn{
+    color: #ffffff;
+    background: #32AF94;
+    text-align: center;
+    padding: 8px 0;
+    cursor: pointer;
+}

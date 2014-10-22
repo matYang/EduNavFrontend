@@ -96,6 +96,9 @@ var Constants = {
         //底部栏
         "aboutUs", "joinUs", "contactUs", "advise", "help",
 
+        //页面右侧面板的widgets
+        'applyWidget',
+
         //其它
         'searchBar',//课程和机构的搜索框
         'errorPay',//支付失败的帮助页面
@@ -117,6 +120,7 @@ var Constants = {
         "mapModal",//todo 大屏地图
         "teacherModal",//【课程详情|团购详情】教师信息弹出框
         "payInfoModal",//【团购订单支付页面】支付结果用户确认--遇到问题或成功
+        "setPhoneModal",//【学校页右侧widget】输入手机号modal
 
         //todo 人工选课弹出框 暂未使用
         "artificialSelection"

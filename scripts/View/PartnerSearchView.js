@@ -30,8 +30,9 @@ var PartnerSearchView = Backbone.View.extend({
             app.viewRegistration.register(this);
             app.topBarView.activeNavigator('inst');
             // $("title").html("找课程 | " + this.sr.toTitleString());//that will be too long
-            this.$el.append(this.template);
+            this.$el.html(this.template);
             this.searchBarView = new SearchBarView({searchType: 'partner', style: 'white', name:this.sr.get('instName')});
+            this.applyWidgetView = new ApplyWidgetView();
             //异步加载目录和地址
             app.generalManager.getCategories(this);//传递this,会在获取目录之后调用this.renderCategories()
             app.generalManager.getLocations(this);//同上 调用this.renderLocations
@@ -241,15 +242,6 @@ var PartnerSearchView = Backbone.View.extend({
     bindEvents: function () {
         var that = this, $searchPanel = $("#searchPanel"), $searchReqs = $("#searchReqs");
         this.bindSortEvents();
-        /*绑定右侧表单的提交操作*/
-        this.$el.on('click','.sk-form-btn', function(){
-//            if (!that.popTip) {
-                app.infoModal.setMessage('提交成功~').show();
-//                that.popTip = new SuccessPopTip();
-//            } else {
-//                that.popTip.show();
-//            }
-        });
 
         /*具体筛选条件的点击事件*/
         $("#filterPanel").children(".filterCriteria").on("click", "span", function (e) {
@@ -471,8 +463,8 @@ var PartnerSearchView = Backbone.View.extend({
             if (this.searchResultView) {
                 this.searchResultView.close();
             }
-            if (this.popTip) {
-                this.popTip.close();
+            if (this.applyWidgetView) {
+                this.applyWidgetView.close();
             }
             $("#filterPanel").children(".filterCriteria").off();
             $("#search_category").off();

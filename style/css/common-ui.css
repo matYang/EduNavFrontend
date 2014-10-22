@@ -683,6 +683,9 @@ textarea {
 .ft-price, a.ft-price {
     color: #FF6A6A;
 }
+.ft-dark, a.ft-dark {
+    color: #555555;
+}
 
 .ft-light, a.ft-light {
     color: #aaaaaa;
@@ -730,7 +733,7 @@ textarea {
     background: url(../images/icon.png) no-repeat;
 }
 
-.icon-info {
+.icon-question {
     background-position: 0 -469px;
 }
 
