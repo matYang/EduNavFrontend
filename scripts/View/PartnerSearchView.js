@@ -227,12 +227,6 @@ var PartnerSearchView = Backbone.View.extend({
             }
         }
     },
-    renderError: function (data) {
-        if (!this.isClosed) {
-            this.$resultp = this.$resultp || $("#searchResultDisplayPanel");
-            this.$resultp.empty().append('<div class="no_data"><div>很抱歉，您的网络似乎不大好~~</div><p>请稍后再试</p></div>');
-        }
-    },
 
     //进行课程搜索 重新设置搜索条件 并且获取数据
     partnerSearch: function () {
