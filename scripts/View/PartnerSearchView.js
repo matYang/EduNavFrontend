@@ -518,10 +518,12 @@ var TopTuanWidgetView = Backbone.View.extend({
 
 
         $('#topTuanWidgetMain').bjqs({
-            'height' : 150,
-            'width' : 250,
-            'responsive' : true,
-            'animtype ':'slide',
+            height: 150,
+            width: 250,
+//            'responsive' : true,
+            animtype:'slide',
+            hoverpause : true,
+            showmarkers : false,
             //'automatic' : true,
             'nexttext' : '>', // Text for 'next' button (can use HTML)
             'prevtext' : '<'// Text for 'next' button
