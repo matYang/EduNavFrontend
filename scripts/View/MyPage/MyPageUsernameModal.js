@@ -1,6 +1,7 @@
 /**
- * Created by jz on 2014/8/31.
- */
+* Created by jz on 2014/8/31.
+*/
+
 var UsernameModal = BaseFormView.extend({
     form: false,
     modalClass:'usernameModal',

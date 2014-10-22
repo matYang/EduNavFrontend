@@ -242,8 +242,9 @@
 }
 /*免费试听modal*/
 .modal-freeTrial .modal-inner{
+    top:50%;
+    margin-top: -243px;
     width: 720px;
-    margin-top: 100px;
 }
 /*人工选课modal*/
 .modal-applyCourse .modal-inner{
@@ -272,3 +273,18 @@
     margin-top: -100px;
     width: 335px;
 }
+/*设置用户名modal*/
+/*.modal-username .modal-inner{*/
+    /*width: 520px;*/
+    /*padding: 30px 40px 20px;*/
+/*}*/
+
+/*.modal-username .margin-y{*/
+    /*width: 150px;*/
+    /*margin: 20px auto;*/
+/*}*/
+
+/*.modal-username .messagetxt{*/
+    /*text-align: center;*/
+/*}*/
+

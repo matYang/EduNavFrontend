@@ -2949,7 +2949,7 @@
                         </li>
                     </ul>
                 </div>
-                <div id="tuanDetailCommentsContainer" isshow="true"></div>
+                <div id="tuanDetailCommentsContainer"></div>
             </dd>
         </dl>
     </div>
@@ -3546,6 +3546,23 @@
     </div>
 </script>
 
+<script type="text/templates" id="tpl_mypage_credit">
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">积分账户</span></div>
+    <div class="blank1"></div>
+    <div class="mypage_content_inner">
+        <div class="total margin-bottom"><img src="style/images/icon_points.jpg">您现在拥有 <b id="myCredit"
+                                                                                          class="F_orange">0</b> 点可用积分
+        </div>
+        <ul id="creditNavBtn" class="tab1 clearfix">
+            <li data-id="table" class="active">积分明细</li>
+            <li data-id="store">积分商城</li>
+        </ul>
+        <div id="credit_pageContent">
+
+        </div>
+    </div>
+</script>
+
 <script type="text/templates" id="tpl_mypage_usernameModal">
     <div class="field">
         <label>用户名</label>
@@ -3562,23 +3579,6 @@
         </div>
         <div>
             拥有用户名才可以凭此邀请好友，邀请成功可获取丰富的奖励~
-        </div>
-    </div>
-</script>
-
-<script type="text/templates" id="tpl_mypage_credit">
-    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">积分账户</span></div>
-    <div class="blank1"></div>
-    <div class="mypage_content_inner">
-        <div class="total margin-bottom"><img src="style/images/icon_points.jpg">您现在拥有 <b id="myCredit"
-                                                                                          class="F_orange">0</b> 点可用积分
-        </div>
-        <ul id="creditNavBtn" class="tab1 clearfix">
-            <li data-id="table" class="active">积分明细</li>
-            <li data-id="store">积分商城</li>
-        </ul>
-        <div id="credit_pageContent">
-
         </div>
     </div>
 </script>
@@ -4571,7 +4571,7 @@
             </ul>
         </div>
 
-        <div id="tuanDetailCommentsContainer" isshow="true">
+        <div id="tuanDetailCommentsContainer">
 
         </div>
     </dd>
@@ -4772,6 +4772,7 @@
 <script src="scripts/View/Modal/LoginFastModal.js" type="text/javascript"></script>
 <script src="scripts/View/Modal/SelectCatModal.js" type="text/javascript"></script>
 <script src="scripts/View/Modal/SchoolModal.js" type="text/javascript"></script>
+<script src="scripts/View/Modal/UsernameModal.js" type="text/javascript"></script>
 <!--widgets-->
 <script src="scripts/View/ApplyWidgetView.js" type="text/javascript"></script>
 <!--todo not finished-->
@@ -4796,6 +4797,7 @@
 <script src="scripts/View/MyPage/MyPageDashboardView.js" type="text/javascript"></script>
 <script src="scripts/View/MyPage/MyPageShareView.js" type="text/javascript"></script>
 
+<script src="scripts/View/MyPage/MyPageUsernameModal.js" type="text/javascript"></script>
 
 <script src="scripts/View/PartnerSearchResultView.js" type="text/javascript"></script>
 <script src="scripts/View/PartnerSearchView.js" type="text/javascript"></script>
