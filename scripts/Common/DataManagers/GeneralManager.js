@@ -546,7 +546,7 @@
     //拉取评论
     GeneralManager.prototype.findComments = function (sr, callback) {
         var searchResults = new Comments();
-        if (!(sr instanceof Backbone.Model) || !sr.get('courseTemplateId')) {
+        if (!(sr instanceof Backbone.Model)) {
             Info.warn('GeneralManager::findComments invalid parameter, exit');
             return;
         }

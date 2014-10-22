@@ -2,7 +2,7 @@ var longText = "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊";
 testMockObj = {
     testMode: (C_ENV_VAR === "LOCAL") ? true : false,
     //testUser中的id为-1即为未登录状态
-    testUser: new User().set('name', '白痴').set('phone', '15012312312').set('gender', 0).set('id', -1).set('invitationCode', 'test'),
+    testUser: new User().set('name', '白痴').set('phone', '15012312312').set('gender', 0).set('id', 1).set('invitationCode', 'test'),
     testPartners: new Partners(),
     testPartner1: (new Partner())
         .set("id", 1)

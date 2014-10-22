@@ -1,32 +1,37 @@
-var TuanDetailCommentsView = Backbone.View.extend({
+//评论列表的显示（内嵌评论表单 评论表单的）
+var CommentsView = Backbone.View.extend({
     el: "#tuanDetailCommentsContainer",
     template: _.template(tpl.get("tuanDetailCommentsContainer")),
     entryContainer: '#commentsContainer',
     pageContainer: '#commentsPagination',
     commentEntryTemplate: _.template(tpl.get("commentEntry")),
+
+    config:{
+        showForm:true //是否显示表单
+    },
     initialize: function (opt) {
         var that = this;
-        this.templateId = opt.templateId;
-        this.parentView = opt.parentView;
-        this.showState = opt.showState;
-        this.comment = new Comment();
-        //评论的搜索条件 初始化templateId
-        this.sr = new CommentSearchRepresentation();
-        //其实团购里面的courseId以及course都是课程模板相关内容
-        this.sr.set('partnerId', opt.partnerId);
+        this.sr = opt.sr; //评论搜索条件 model
         this.sr.set('start', 0);
         this.sr.set('count', 5);
+
+        this.parentView = opt.parentView;
+        opt.config&&_.extend(this.config, opt.config);
+
+        this.hasForm = opt.hasForm;//是否包含评论表单
         this.isClosed = false;
         _.bindAll(this, "render", "afterRender", "setPagination", "bindEvents", "close");
         app.viewRegistration.register(this);
         var self = this;
         this.$el.html(this.template);
-        this.commentFormView = new CommentFormView({
-            parentView: that,
-            courseTemplateId: this.templateId,
-            commentEntryTemplate: this.commentEntryTemplate,
-            showState:this.showState
-        });
+        //评论表单
+        if(this.config.showForm){
+            this.commentFormView = new CommentFormView({
+                parentView: that,
+                courseTemplateId: this.templateId,
+                commentEntryTemplate: this.commentEntryTemplate
+            });
+        }
         this.bindEvents();
         this.fetchComments();
     },
