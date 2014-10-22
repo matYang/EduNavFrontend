@@ -117,7 +117,7 @@ var Constants = {
         "mapModal",//todo 大屏地图
         "teacherModal",//【课程详情|团购详情】教师信息弹出框
         "payInfoModal",//【团购订单支付页面】支付结果用户确认--遇到问题或成功
-
+        "applyCourseModal",//【人工选课】
         //todo 人工选课弹出框 暂未使用
         "artificialSelection"
     ],

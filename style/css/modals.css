@@ -234,6 +234,11 @@
     width: 720px;
     margin: 100px auto;
 }
+/*人工选课modal*/
+.modal-applyCourse .modal-inner{
+    width: 720px;
+    margin: 150px auto;
+}
 /*快速登录modal*/
 .modal-loginFast .modal-inner{
     width: 335px;

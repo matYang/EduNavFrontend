@@ -659,13 +659,13 @@
 .popContentUl {
     display: block;
     width: 420px;
-    height: 250px;
+    /*height: 250px;*/
     margin-bottom: 20px
 }
 
 .popContentUl li {
     width: 420px;
-    height: 32px;
+    min-height: 32px;
     display: block;
     margin-bottom: 18px;
     position: relative;
@@ -699,6 +699,7 @@
     background-color: #EFEFEF;
     border: 0;
     outline: 0;
+    padding-left: 10px;
 }
 
 .popTxtSpec {

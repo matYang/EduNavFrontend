@@ -146,7 +146,7 @@
                 <div class="popTopBlack"></div>
                 <div class="popTitle">
                     <div class="popTitleA">
-                        <span class="popTSpanLeft">申请免费试听</span>
+                        <span class="">申请免费试听</span>
                         <a class="popShu"></a>
 
                         <div class="popTitleRight">
@@ -159,7 +159,7 @@
                 <div class="popContent">
                     <div class="popContentA">
                         <div id="detail_submit_error" class="text-error text-center margin-bottom"></div>
-                        <ul class="popContentUl">
+                        <ul class="popContentUl clearfix">
                             <li>
                                 <i class="popIconStar"></i>
                                 <span>意向课程：</span>
@@ -184,6 +184,55 @@
                         </ul>
                         <div class="popBtn">
                             <div class="popBtnYes" id="btnApplefreeTrial">立即申请</div>
+                            <a class="popBtnNo js_popClose">放弃申请</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/templates" id="tpl_applyCourseModal">
+    <div id="applyCourseModal" class="modal modal-applyCourse">
+        <div class="modal-inner">
+            <div class="popMainA">
+                <div class="popTopBar"></div>
+                <div class="popTopBlack"></div>
+                <div class="popTitle">
+                    <div class="popTitleA">
+                        <span class="popTSpanLeft">申请人工选课</span>
+                        <a class="popShu"></a>
+
+                        <div class="popTitleRight">
+                            <i class="popIconQuan"></i>
+                            <span class="popTSpanRight">数百大牌培训机构，总有一个适合你</span>
+                        </div>
+                    </div>
+                    <a class="popMainClose js_popClose close"></a>
+                </div>
+                <div class="popContent">
+                    <div class="popContentA">
+                        <div id="modalA_submit_error" class="text-error text-center margin-bottom"></div>
+                        <ul class="popContentUl clearfix">
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>学员姓名：</span>
+                                <input id="modalA_userName_input" class="popTxt" type="text"/>
+                            </li>
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>联系电话：</span>
+                                <input id="modalA_phone_input" class="popTxt" type="text"/>
+                            </li>
+                            <li>
+                                <i class="popIconStar popIconStarSpec"></i>
+                                <span>附加信息：</span>
+                                <textarea id="modalA_remark_text" class="popTxt popTxtSpec"
+                                          placeholder="亲，请填上空闲的时间，择校、择课要求等信息，以便更好的为您服务"></textarea>
+                            </li>
+                        </ul>
+                        <div class="popBtn">
+                            <div class="popBtnYes" id="modalABtnSubmitApply">立即申请</div>
                             <a class="popBtnNo js_popClose">放弃申请</a>
                         </div>
                     </div>
@@ -495,7 +544,7 @@
                 <div class="popContent">
                     <div class="popContentA">
                         <div id="modalA_submit_error" class="text-error text-center margin-bottom"></div>
-                        <ul class="popContentUl">
+                        <ul class="popContentUl clearfix">
                             <li id="aSelectiontxt">
                                 <i class="popIconStar"></i>
                                 <span>意向课程：</span>
@@ -2199,7 +2248,7 @@
 
         <div class="btns">
             <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
-            <a class="btnconsult bookNow" data-value="">申请免费试听</a>
+            <a class="btnconsult bookNow" id="applyCourse" data-value="">申请免费试听</a>
         </div>
     </div>
 </div>
@@ -2332,6 +2381,7 @@
     </dd>
     <dd class="clearfix">
         <label>爱上课合作资质认证：</label>
+        <span style="float: left; margin-right: 2px;">已认证</span>
         <a class="indentification"><img src="style/images/identification_1.png" alt=""/></a>
         <!--未认证-->
         <!--<a class="indentification"><img src="style/images/identification_2.png" alt=""/></a>-->
@@ -4692,6 +4742,7 @@
 <script src="scripts/View/Modal/TeacherModal.js" type="text/javascript"></script>
 <script src="scripts/View/Modal/PayInfoModal.js" type="text/javascript"></script>
 <script src="scripts/View/Modal/FreeTrialModal.js" type="text/javascript"></script>
+<script src="scripts/View/Modal/ApplyCourseModal.js" type="text/javascript"></script>
 <script src="scripts/View/Modal/LoginFastModal.js" type="text/javascript"></script>
 <script src="scripts/View/Modal/SelectCatModal.js" type="text/javascript"></script>
 <script src="scripts/View/Modal/SchoolModal.js" type="text/javascript"></script>

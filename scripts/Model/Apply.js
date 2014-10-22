@@ -4,7 +4,7 @@ var Apply = Backbone.Model.extend({
         return {
             'id': -1,
             /*需要填写的信息*/
-            'categoryId':undefined,
+//            'categoryId':undefined,
             'userName': undefined,
             'phone': undefined,
             'remark': undefined

@@ -39,6 +39,14 @@ var PartnerDetailView = Backbone.View.extend({
             this.mapView = new MapView({mapElId: 'smallMap'});
             this.mapView.addMarker( self.addressList[0]);
             $('#smallMap').after('<a class="margin-top block J_viewLarge text-center">查看完整地图</a>');
+            $('.addressItem').hover(function () {
+                var a = BMap;
+                var index = $(this).data('index');
+                var address = self.addressList[index];
+                self.mapView.removeAllMarkers();
+                self.mapView.addMarker(address);
+            }, function () {
+            });
             this.$el.on('click', '.J_viewLarge', function () {
                 self.mapModal = new MapModal({addressList:  self.addressList});
                 var $body = $('body');
@@ -221,7 +229,7 @@ var PartnerDetailView = Backbone.View.extend({
         });
 
 
-        //
+        //搜索该机构的课程
         $("#searchInPartner").on("click",function(){
             var cat = $("#courseChoose").attr("data-id");
             var loc = $("#locationChoose").attr("data-id");
@@ -232,11 +240,20 @@ var PartnerDetailView = Backbone.View.extend({
                 locationId:loc
             });
         });
+
+        //申请人工选课
+        $("#applyCourse").on("click",function(){
+           that.applyCourseModal = new ApplyCourseModal();
+            that.applyCourseModal.show();
+        });
     },
 
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
+            if(this.applyCourseModal){
+                this.applyCourseModal.close();
+            }
             if (this.compareWidget) {
                 this.compareWidget.close();
             }
