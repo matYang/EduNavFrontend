@@ -17,4 +17,4 @@
 *.o
 *.plg
 *.keep
-.idea/workspace.xml
+*.xml

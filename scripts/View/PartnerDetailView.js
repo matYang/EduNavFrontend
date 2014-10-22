@@ -121,12 +121,14 @@ var PartnerDetailView = Backbone.View.extend({
         $(".detailArea .pic .pic_big").find("a:first").addClass("active");
         $(".detailArea .pic .pic_list").find("i:first").removeClass("active");
 //
-        //判断要不要出现评论框，true出现评论框，false不出现
-        var showState = $("#tuanDetailCommentsContainer").attr("isshow");
-        this.commentsView = new TuanDetailCommentsView({
-            partnerId: that.partner.get("id"),
+        var sr = new CommentSearchRepresentation();
+        sr.set('partnerId', that.partner.get("id"));
+        this.commentsView = new CommentsView({
+            sr: sr,
             parentView: that,
-            showState:showState
+            config:{
+                showForm:false
+            }
         });
 
         $("#courseChoose").selectmenu();

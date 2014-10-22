@@ -252,6 +252,8 @@
 }
 /*快速登录modal*/
 .modal-loginFast .modal-inner{
+    top:50%;
+    margin-top: -140px;
     width: 335px;
 }
 /*课程选择modal*/
