@@ -907,7 +907,7 @@
 </script>
 
 <script type="text/template" id="tpl_topTuanWidgetView">
-    <div class="span12" id="topTuanWidgetView" style="">
+    <div class="span12" id="topTuanWidgetMain" style="">
     </div>
 </script>
 
@@ -2221,15 +2221,17 @@
     <div class="row">
         <div class="clearfix" style="margin-bottom: 25px;">
             <h1 style="color: #128D56;font-weight: normal"><%= instName %> </h1>
-            <i class="share">
-                <ul class="shareArea clearfix">
-                    <li><a href=""><img src="style/images/share_1.png" alt=""/></a></li>
-                    <li><a href=""><img src="style/images/share_2.png" alt=""/></a></li>
-                    <li><a href=""><img src="style/images/share_3.png" alt=""/></a></li>
-                    <li><a href=""><img src="style/images/share_4.png" alt=""/></a></li>
-                    <li><a href=""><img src="style/images/share_5.png" alt=""/></a></li>
-                </ul>
-            </i>
+            <div class="shareIcon" style="float: left">
+                <i class="share"></i>
+                <div class="invitation_share blank clearfix">
+                    <a class="jiathis_button_tsina invitation_icon weibo">新浪微博</a>
+                    <a class="jiathis_button_renren invitation_icon renren">人人网</a>
+                    <a class="jiathis_button_qzone invitation_icon qzone">QQ空间</a>
+                    <a class="jiathis_button_douban invitation_icon douban">豆瓣</a>
+                    <a class="jiathis_button_kaixin001 invitation_icon kaixin">开心网</a>
+                </div>
+            </div>
+
 
 
 
@@ -2238,7 +2240,7 @@
 
         <div class="small_title">
             <div id="starDemo" style="margin-top: 2px"></div>
-            <a class="star-score">4分</a>
+            <a class="star-score"><%=rating%>分</a>
             <div class="comment">&nbsp;(<i class="commentsTotal">--</i>人评价)</div>
             
             <a class="tuanIcon">团购></a>
@@ -2527,7 +2529,7 @@
                 <%= courseName %>
             </p>
         </td>
-        <td class="addr"><p><%=address%></p></td>
+        <td class="addr"><p><%=circleName%></p></td>
         <td>
             ￥<%if(originalPrice){%><%=originalPrice%>
             <%}else if(price){%><%=price%>
@@ -2540,12 +2542,12 @@
             <!--<button type="button" class="btn_gray">当前课程</button>-->
             <!--</a>-->
             <a class="inline-block">
-                <a href="#course/<%= id %>" target="_parent">
+                <a href="#course/<%= id %>" target="_blank">
                     <button type="button" class="btn_g" style="background-color: #47bc78;" data-value="<%= id %>">详情</button>
                 </a>
 
                 <%if(groupBuyActivity){%>
-                <a href="#tuan/<%= id %>" target="_parent">
+                <a href="#tuan/<%= id %>" target="_blank">
                     <button type="button" class="btn_g" data-value="<%= id %>">去团购 ></button>
                 </a>
                 <%}else{%>

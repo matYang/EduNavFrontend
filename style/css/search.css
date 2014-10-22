@@ -1299,7 +1299,7 @@
 }
 .i_partner.i_partner_location{
     background: url("../images/i_partner_location.png") center no-repeat
-}}
+}
 
 /*机构搜索页面的申请提交表单*/
 .sk-form *{
@@ -1372,7 +1372,13 @@ ol.bjqs-markers li a:hover{
 }
 
 p.bjqs-caption{
-    background: rgba(255,255,255,0.5);
+    background: #fff;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    /*trigger render for chrome*/
+    -webkit-transform: translateZ(0);
 }
 
-#my-slideshow ol{display: none}
+#topTuanWidgetMain ol{display: none;}
+#topTuanWidgetMain li.bjqs-slide{ display: none;}
+#topTuanWidgetMain li.bjqs-slide img{width: 250px; height: 150px;}
