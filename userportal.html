@@ -2443,18 +2443,23 @@
 <dl class="tuan_content_3" class="content_inner" style="border: 0">
     <dt><i class="dticon"></i>课程介绍</dt>
     <dd class="clearfix">
-        <select name="select" id="courseChoose">
-            <option value="课程分类">课程分类</option>
-            <%_.each(categoryList,function(c){%>
-            <option value="<%=c.name%>" data-id="<%=c.id%>"><%=c.name%></option>
-            <%})%>
-        </select>
-        <select name="select" id="locationChoose">
-            <option value="上课地点">上课地点</option>
-            <%_.each(addressList,function(a){%>
-            <option value="<%=a.circleName%>" data-id="<%=a.id%>"><%=a.circleName%></option>
-            <%})%>
-        </select>
+        <div>
+            <select name="select" id="courseChoose">
+                <option value="课程分类">课程分类</option>
+                <%_.each(categoryList,function(c){%>
+                <option value="<%=c.name%>" data-id="<%=c.id%>"><%=c.name%></option>
+                <%})%>
+            </select>
+        </div>
+        <div>
+            <select name="select" id="locationChoose">
+                <option value="上课地点">上课地点</option>
+                <%_.each(addressList,function(a){%>
+                <option value="<%=a.circleName%>" data-id="<%=a.id%>"><%=a.circleName%></option>
+                <%})%>
+            </select>
+        </div>
+
         <input id="searchInPartner" type="button" value="OK" class="btn_search"/>
     </dd>
 </dl>
