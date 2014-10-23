@@ -233,8 +233,16 @@ var PartnerDetailView = Backbone.View.extend({
 
         //搜索该机构的课程
         $("#searchInPartner").on("click",function(){
-            var cat = $("#courseChoose").attr("data-id");
-            var loc = $("#locationChoose").attr("data-id");
+            //课程ID
+            var cat1 = $("#courseChoose-button").attr("aria-labelledby");
+            var cat2 = cat1.split('-')[2] - 1;
+            var cat = $("#courseChoose").find("option:eq(" + cat2 + ")").attr("data-id");
+            //var cat = $("#courseChoose").attr("data-id");
+            //商圈ID
+            var loc1 = $("#locationChoose-button").attr("aria-labelledby");
+            var loc2 = cat1.split('-')[2] - 1;
+            var loc = $("#locationChoose").find("option:eq(" + loc2 + ")").attr("data-id");
+            //var loc = $("#locationChoose").attr("data-id");
             that.belongPartnerListView.close();
             that.belongPartnerListView = new BelongPartnerListView({
                 partner : that.partner,
