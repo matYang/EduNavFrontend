@@ -12,7 +12,7 @@ var Partner = Backbone.Model.extend({
             'partnerDistinction': '',
             'logoUrl': '',
 
-            'rating':4.0, // 评分初始值为4
+            'rating': 4.0, // 评分初始值为4
             'popularity': 0,
             'teacherCount': 0,
             'courseCount': 0,
@@ -27,51 +27,51 @@ var Partner = Backbone.Model.extend({
     idAttribute: 'id',
 
     parse: function (data) {
-        var i, json = {}, photos = [], addresses = [], teachers = [];
+        var i, photos = [], addresses = [], teachers = [];
         if (typeof data !== 'undefined') {
             if (data instanceof Array) {
                 data = data[0];
             }
-            json.id = parseInt(data.id, 10);
-            json.partnerId = json.id;
-            json.wholeName = decodeURI(data.wholeName);
+            data.id = parseInt(data.id, 10);
+            data.partnerId = data.id;
+            data.wholeName = decodeURI(data.wholeName);
 
-            json.rating = Utilities.parseNum(data.rating, 1);
+            data.rating = Utilities.parseNum(data.rating, 1);
 
-            json.partnerIntro = decodeURI(data.partnerIntro);
-            json.partnerDistinction = decodeURI(data.partnerDistinction);
-            json.hqLocation = decodeURI(data.hqLocation);
+            data.partnerIntro = decodeURI(data.partnerIntro);
+            data.partnerDistinction = decodeURI(data.partnerDistinction);
+            data.hqLocation = decodeURI(data.hqLocation);
 
-            json.partnerQualification = Utilities.toInt(data.partnerQualification);
-            json.reference = decodeURI(data.reference);
+            data.partnerQualification = Utilities.toInt(data.partnerQualification);
+            data.reference = decodeURI(data.reference);
 
-            json.status = parseInt(data.status, 10);
-            json.instName = decodeURI(data.instName);
-            json.logoUrl = decodeURIComponent(data.logoUrl);
+            data.status = parseInt(data.status, 10);
+            data.instName = decodeURI(data.instName);
+            data.logoUrl = decodeURIComponent(data.logoUrl);
 
             if (data.classPhotoList) {
                 for (i = 0; i < data.classPhotoList.length; i++) {
                     photos[i] = new Photo(data.classPhotoList[i], {parse: true});
                 }
-                json.classPhotoList = photos;
+                data.classPhotoList = photos;
             }
             if (data.teacherList) {
                 for (i = 0; i < data.teacherList.length; i++) {
                     teachers[i] = new Teacher(data.teacherList[i], {parse: true});
                 }
-                json.teacherList = teachers;
+                data.teacherList = teachers;
             }
             if (data.addressList) {
                 for (i = 0; i < data.addressList.length; i++) {
                     addresses[i] = new Address(data.addressList[i], {parse: true});
                 }
-                json.addressList = addresses;
+                data.addressList = addresses;
             }
 
-            json.createTime = Utilities.castFromAPIFormat(data.createTime);
+            data.createTime = Utilities.castFromAPIFormat(data.createTime);
 
         }
-        return json;
+        return data;
     },
     _toJSON: function () {
         var json = _.clone(this.attributes), i;
