@@ -237,42 +237,14 @@ var PartnerDetailView = Backbone.View.extend({
         var locAll = 0;
         //搜索该机构的课程
         $("#searchInPartner").on("click",function(){
-
-
-            //课程ID
-            var cat1 = $("#courseChoose-button").attr("aria-labelledby");
-            var loc1 = $("#locationChoose-button").attr("aria-labelledby");
-
-
-            if( cat1 != undefined || cat1 != "ui-id-1" || cat1 != "ui-id-" + cat0){
-                catAll = $("#courseChoose").find("option").length;
+            var cat = $("#courseChoose").val();
+            if(cat=="课程分类"){
+                cat = undefined;
             }
-            if( loc1 != undefined || loc1 != "ui-id-1" || loc1 != "ui-id-" + cat0){
-                locAll = $("#locationChoose").find("option").length;
+            var loc = $("#locationChoose").val();
+            if(loc=="上课地点"){
+                loc = undefined;
             }
-
-            var cat0 = locAll + 1;
-            var loc0 = catAll + 1;
-
-            if( cat1 == undefined || cat1 == "ui-id-1" || cat1 == "ui-id-" + cat0){
-                var cat = undefined;
-            }else{
-                var cat2 = cat1.split('-')[2] - 1 - locAll;
-                var cat = $("#courseChoose").find("option:eq(" + cat2 + ")").attr("data-id");
-
-            }
-            //var cat = $("#courseChoose").attr("data-id");
-            //商圈ID
-
-
-            if( loc1 == undefined || loc1 == "ui-id-1"  || loc1 == "ui-id-" + loc0){
-                var loc = undefined;
-            }else{
-                var loc2 = loc1.split('-')[2] - 1 - catAll;
-                var loc = $("#locationChoose").find("option:eq(" + loc2 + ")").attr("data-id");
-
-            }
-
             //var loc = $("#locationChoose").attr("data-id");
             that.belongPartnerListView.close();
             that.belongPartnerListView = new BelongPartnerListView({
