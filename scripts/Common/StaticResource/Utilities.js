@@ -436,9 +436,15 @@ var Utilities = {
         var $time = $(selector);
         if ($time.length < 1)return;
         var timestamp = $time.data('value');
+        var a;
         var secondDelta = (timestamp - (new Date()).getTime()) / 1000;
         if (isNaN(secondDelta) || secondDelta <= 0)return;
         var countFn = function () {
+            if(secondDelta<=0){
+                $time.html('团购已结束，欢迎下次关注~');
+                window.clearInterval(a);
+                return
+            }
             var second = Math.floor(secondDelta % 60);             // 计算秒
             var minute = Math.floor((secondDelta / 60) % 60);      //计算分
             var hour = Math.floor((secondDelta / 3600) % 24);      //计算小时
@@ -447,6 +453,7 @@ var Utilities = {
             secondDelta--;
         };
         countFn();//init immediately
-        return setInterval(countFn, 1000);
+        a = setInterval(countFn, 1000);
+        return a;
     }
 };
