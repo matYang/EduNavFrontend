@@ -90,10 +90,10 @@ var Course = Backbone.Model.extend({
                 'extracurricular': undefined,//课后互动
                 'bonusService': undefined,//赠送服务
 
-                'conditionRating': 0,
-                'attitudeRating': 0,
-                'satisfactionRating': 0,
-                'evenRating': 0
+                'conditionRating': 4,
+                'attitudeRating': 4,
+                'satisfactionRating': 4,
+                'evenRating': 4
             };
         },
         parse: function (data) {
@@ -158,15 +158,6 @@ var Course = Backbone.Model.extend({
                 data.conditionRating = Utilities.parseNum(data.conditionRating, 1);
                 data.attitudeRating = Utilities.parseNum(data.attitudeRating, 1);
                 data.satisfactionRating = Utilities.parseNum(data.satisfactionRating, 1);
-                if (!data.conditionRating) {
-                    data.conditionRating = 0;
-                }
-                if (!data.attitudeRating) {
-                    data.attitudeRating = 0;
-                }
-                if (!data.satisfactionRating) {
-                    data.satisfactionRating = 0;
-                }
                 data.evenRating = ((data.conditionRating + data.attitudeRating + data.satisfactionRating) / 3);
                 data.evenRating = Utilities.parseNum(data.evenRating, 1);
             }

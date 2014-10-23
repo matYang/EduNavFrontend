@@ -225,7 +225,7 @@ var Utilities = {
     parseNum: function (val, fixed) {
         val = parseFloat(val);
         if (isNaN(val))
-            return null;
+            return undefined;
         if (fixed) {
             val = parseFloat(val.toFixed(fixed));
         }
