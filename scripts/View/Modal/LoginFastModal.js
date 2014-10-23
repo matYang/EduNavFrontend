@@ -45,7 +45,7 @@ var LoginFastModal = Modal.extend({
 
         this.$el.on('click', '.js_sendSms', function (e) {
             var phone = $("#sign_content .txt_phone").val();
-            var vcode = $('#sign_content .vcode');
+            var vcode = $('#sign_content .vcode').val();
             var $valid = $('#sign_content .errorMsg');
             $valid.html('');
             if (!phone) {
