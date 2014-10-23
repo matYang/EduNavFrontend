@@ -259,9 +259,7 @@ var PartnerDetailView = Backbone.View.extend({
 
 
         //分享
-        jiathis_config.summary = "我给大家介绍培训班啦！接受邀请请点击 www.iShangke.cn/register/invite=" +
-            app.sessionManager.sessionModel.get("invitationCode") +
-            " ， 注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！";
+        jiathis_config.summary = "学霸是怎样练成的？坚持不懈爱上课！强力推荐个好学校http://www.ishangke.cn/#inst/"+ that.partner.get('id') +"，注册即送800元现金券，还有更多课程团购低至一折，快跟我一起去上课吧";
 
         $('.invitation_share a').on('click',function(e){
             e.preventDefault();
@@ -327,7 +325,7 @@ var jiathis_config = {
     // imageWidth:26,
     // marginTop:150,
     url: "http://www.ishangke.cn",
-    title: "邀请培训拿红包 #爱上课#",
+    title: "学霸是怎样练成的？坚持不懈爱上课！",
     summary: "我请大家免费上培训班啦！接受邀请请点击www.iShangke.cn，注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！",
     // pic:"自定义分享的图片连接地址",
     data_track_clickback: true,
