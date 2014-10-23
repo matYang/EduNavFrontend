@@ -2406,7 +2406,7 @@
         <div class="span">
             <ol>
                 <% _.each(addressList,function(address){%>
-                <li class=""> <%=address.realAddress%> : <%=address.detail%></li>
+                <li class=""> <%=address.realAddress || instName %> : <%=address.detail%></li>
                 <%})%>
             </ol>
         </div>

@@ -62,6 +62,7 @@ var PartnerDetailView = Backbone.View.extend({
         $(document).scrollTop(0);
         this.$el.html(this.template(this.partner._toJSON()));
 
+
         this.belongPartnerListView = new BelongPartnerListView({partner : this.partner});
 //        //新建相关课程视图
 //        this.relatedCourseListView = new RelatedCourseListView({course: this.partner});
@@ -82,10 +83,7 @@ var PartnerDetailView = Backbone.View.extend({
 
         //this.compareWidget = new CourseDetailCompareWidgetView();
 
-        this.content1_top = $(".tuan_content_1").offset().top;//课程详情
-        this.content2_top = $(".tuan_content_2").offset().top;//特色服务
-        this.content3_top = $(".tuan_content_3").offset().top;//名师团队
-        this.content4_top = $(".tuan_content_4").offset().top;//评价
+
 
 
         //这里是为了声明页面加载完毕
@@ -137,6 +135,11 @@ var PartnerDetailView = Backbone.View.extend({
     },
     bindEvents: function () {
         var that = this;
+
+        this.content1_top = $(".tuan_content_1").offset().top;//课程详情
+        this.content2_top = $(".tuan_content_2").offset().top;//特色服务
+        this.content3_top = $(".tuan_content_3").offset().top;//名师团队
+        this.content4_top = $(".tuan_content_4").offset().top;//评价
 
         /*教师详情*/
         $(".tuan_content_2 .teacher_pic").on("click", function () {
