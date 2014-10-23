@@ -10,9 +10,9 @@
 
     //短信验证
     //该方法用于发送注册时的验证短信
-    UserManager.prototype.smsVerification = function (phone, callback) {
+    UserManager.prototype.smsVerification = function (obj, callback) {
         var self = this;
-        if (!phone) {
+        if (!obj.phone||!obj.vcode) {
             Info.warn('UserManager::smsVerification:: invalid parameter');
             return;
         }
@@ -28,7 +28,7 @@
         $.ajax({
             type: 'GET',
             url: ApiResource.user_smsVerification,
-            data: $.param({'phone': phone}),
+            data: $.param(obj),
             dataType: 'json',
             success: function (data) {
                 if (callback) {
@@ -275,9 +275,9 @@
     };
 
     //用于用户选择重设密码时发送取回密码用的验证短信
-    UserManager.prototype.forgetPassword = function (phone, callback) {
+    UserManager.prototype.forgetPassword = function (obj, callback) {
         var self = this;
-        if (!phone) {
+        if (!obj.phone||!obj.vcode) {
             Info.warn('UserManager::forgetPassword:: invalid parameter');
             return;
         }
@@ -290,7 +290,7 @@
             type: 'GET',
             async: true,
             url: ApiResource.user_forgetPassword,
-            data: $.param({'phone': phone}),
+            data: $.param(obj),
             dataType: 'json',
             contentType: 'application/json',
 
