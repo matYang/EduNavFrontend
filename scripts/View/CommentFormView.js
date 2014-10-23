@@ -1,3 +1,4 @@
+//评论表单
 var CommentFormView = Backbone.View.extend({
     el: "#commentForm",
     template: _.template(tpl.get("commentForm")),

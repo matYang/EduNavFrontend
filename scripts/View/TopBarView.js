@@ -2,7 +2,7 @@ var TopBarView = Backbone.View.extend({
 
     el: '#topBar',
     initialize: function () {
-        _.bindAll(this, 'render', 'bindEvents', 'close', 'login', 'logout');
+        _.bindAll(this, 'render', 'bindEvents', 'close', 'login', 'logout', 'activeNavigator', 'clearNavigator');
         app.viewRegistration.register(this);
         this.isClosed = false;
 
@@ -39,14 +39,6 @@ var TopBarView = Backbone.View.extend({
 
     bindEvents: function () {
         var self = this;
-//        //处理路由切换
-//        app.bind('all',function(router){
-//            var routerName = router.replace('route:','');
-//            if(!routerName)return;
-//            console.log(routerName)
-//            $('.topBar-navigation li').removeClass('active');
-//            $('#navigate_'+routerName).addClass('active')
-//        });
         this.$passwordInput = $("#login_password");
         this.$usernameInput = $("#login_username");
         this.$rememberInput = $("#login_remember");
@@ -60,6 +52,12 @@ var TopBarView = Backbone.View.extend({
         $('#navigate_tuan').on('click', function () {
             if (location.hash !== '#tuan') {
                 app.navigate("tuan", true);
+                app.infoModal.hide();
+            }
+        });
+        $('#navigate_inst').on('click', function () {
+            if (location.hash.indexOf("inst/search") !== 1) {
+                app.navigate("inst/search", true);
                 app.infoModal.hide();
             }
         });
@@ -212,6 +210,14 @@ var TopBarView = Backbone.View.extend({
         });
     },
 
+    //激活当前页面的导航菜单
+    activeNavigator: function (name) {
+        $('.topBar-navigation li').removeClass('active');
+        $('#navigate_' + name).addClass('active')
+    },
+    clearNavigator: function () {
+        $('.topBar-navigation li').removeClass('active');
+    },
     //判断有没有对比课程
     hasCourse: function () {
         //从localStorage中获取课程对比列表

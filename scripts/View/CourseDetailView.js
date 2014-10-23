@@ -147,9 +147,14 @@ var CourseDetailView = Backbone.View.extend({
         $(".courseDetail .pic .pic_big").find("a:first").addClass("active");
         $(".courseDetail .pic .pic_list").find("i:first").removeClass("active");
 
-        this.commentsView = new TuanDetailCommentsView({
-            templateId: that.courseTemplateId,
-            parentView: that
+        //判断要不要出现评论框，true出现评论框，false不出现
+        var showState = $("#tuanDetailCommentsContainer").attr("isshow");
+        var sr = new CommentSearchRepresentation();
+        sr.set('courseTemplateId', that.courseTemplateId);
+        this.commentsView = new CommentsView({
+            sr:sr,
+            parentView: that,
+            showState:showState
         });
         this.renderMap();
     },
@@ -289,123 +294,12 @@ var CourseDetailView = Backbone.View.extend({
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
-            if (this.compareWidget) {
-                this.compareWidget.close();
-            }
-            if (this.freeTrial) {
-                this.freeTrial.close();
-            }
             if (this.commentsView) {
                 this.commentsView.close();
             }
             $(document).off("scroll");
-            $("#courseNavigateTab").off();
             this.isClosed = true;
             app.courseDetailView = null;
         }
     }
 });
-
-//免费试听
-//var FreeTrial = Backbone.View.extend({
-//
-//    el: '#modals',
-//    initialize: function (params) {
-//        _.bindAll(this, 'render', 'autoName', 'closePop', 'close');
-//        this.validEle = '#detail_submit_error';
-//        this.template = _.template(tpl.get('freeTrial'));
-//        this.model = new Booking();
-//        this.model.initBookingFromCourse(params.course);
-//        var courseName = params.course instanceof Backbone.Model ? params.course.get('courseName') : params.course.courseName;
-//        this.render(courseName);
-//        this.bindEvents();
-//    },
-//
-//    render: function (courseName) {
-//        app.viewRegistration.register(this);
-//        this.$el.html(this.template({courseName: courseName}));
-//        this.autoName();
-//    },
-//    clearModel: function () {
-//        //这里清空保单数据以及模型数据
-//        this.model = new Booking();
-//        $('#detail_name_input').val('');
-//        $('#detail_phone_input').val('');
-//        $('#detail_note_text').val('');
-//        $(this.validEle).empty();
-//    },
-//    //自动填充用户名等
-//    autoName: function () {
-//        if (app.sessionManager.hasSession()) {
-//            //自动填充手机号和用户名 如果存在的话
-//            var name = app.sessionManager.sessionModel.get('username');
-//            var phone = app.sessionManager.sessionModel.get('phone');
-//            $('#detail_name_input').val(name);
-//            $('#detail_phone_input').val(phone);
-//        }
-//    },
-//    bindEvents: function () {
-//        var that = this;
-//        $(".js_popClose").on("click", function () {
-//            that.hide();
-//        });
-//
-//        //提交免费申请 使用Bookings
-//        $("#btnApplefreeTrial").on('click', function () {
-//            var $valid = $(that.validEle);
-//            var name = $('#detail_name_input').val();
-//            var phone = $('#detail_phone_input').val();
-//            var note = $('#detail_note_text').val();
-//            $valid.empty();
-//            if (!name) {
-//                $valid.html('<i class="icon icon-error"></i>亲，请输入您的姓名');
-//                return
-//            }
-//            if (!phone) {
-//                $valid.html('<i class="icon icon-error"></i>亲，请输入您的联系电话');
-//                return
-//            }
-//            if (phone.length !== 11 || isNaN(parseInt(phone, 10))) {
-//                $valid.html('<i class="icon icon-error"></i>亲，您的联系电话输入有误');
-//                return
-//            }
-//            that.model.set('name', name);
-//            that.model.set('phone', phone);
-//            that.model.set('note', note);
-//            app.userManager.initBooking(that.model, {
-//                success: function () {
-//                    that.clearModel();
-//                    that.hide();
-//                    //提交成功 关闭弹出框 弹出成功信息 清空表单数据
-//                    if (!that.popTip) {
-//                        that.popTip = new SuccessPopTip();
-//                    } else {
-//                        that.popTip.show();
-//                    }
-//                },
-//                error: function (data) {
-//                    $(that.validEle).html(data.message || '提交失败 ，请稍后再试');
-//                }
-//            });
-//        });
-//    },
-//    show: function () {
-//        this.autoName();
-//        $("#popfreeTrial").fadeIn(400);
-//    },
-//    hide: function () {
-//        $("#popfreeTrial").fadeOut(400);
-//        $(this.validEle).empty();
-//    },
-//    closePop: function () {
-//        if (this.popTip) {
-//            this.popTip.close();
-//        }
-//    },
-//
-//    close: function () {
-//        this.closePop();
-//        this.$el.empty();
-//        this.isClosed = true;
-//    }
-//});

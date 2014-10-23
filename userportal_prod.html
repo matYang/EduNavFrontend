@@ -66,6 +66,18 @@
 
 <div id="allTemplates">
 <!--modals start-->
+<script type="text/templates" id="tpl_setPhoneModal">
+    <div id="setPhoneModal" class="modal modal-setPhone">
+        <div class="modal-inner padding-md">
+            <div class="ft-dark">&nbsp;&nbsp;&nbsp;&nbsp;亲，请填写您的手机号码，方便我们的资深选课顾问为您提供专业一对一的服务~请放心，您的你信息我们会严格保密~</div>
+            <div class="wd-form clearfix">
+                <input id="setPhoneInput" class="wd-input pull-left" type="text" placeholder="请输入您的手机号" />
+                <div id="setPhoneBtn" class="wd-form-btn pull-right">ok</div>
+            </div>
+            <div class="modalPhoneMessage ft-dark"></div>
+        </div>
+    </div>
+</script>
 <script type="text/templates" id="tpl_mapModal">
     <div id="mapModal" class="modal modal-map">
         <div class="modal-inner" style="width:<%=width%>px;height:<%=height%>px;margin-top:-<%=height/2%>px;">
@@ -142,7 +154,7 @@
                 <div class="popContent">
                     <div class="popContentA">
                         <div id="detail_submit_error" class="text-error text-center margin-bottom"></div>
-                        <ul class="popContentUl">
+                        <ul class="popContentUl clearfix">
                             <li>
                                 <i class="popIconStar"></i>
                                 <span>意向课程：</span>
@@ -167,6 +179,55 @@
                         </ul>
                         <div class="popBtn">
                             <div class="popBtnYes" id="btnApplefreeTrial">立即申请</div>
+                            <a class="popBtnNo js_popClose">放弃申请</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/templates" id="tpl_applyCourseModal">
+    <div id="applyCourseModal" class="modal modal-applyCourse">
+        <div class="modal-inner">
+            <div class="popMainA">
+                <div class="popTopBar"></div>
+                <div class="popTopBlack"></div>
+                <div class="popTitle">
+                    <div class="popTitleA">
+                        <span class="popTSpanLeft">申请人工选课</span>
+                        <a class="popShu"></a>
+
+                        <div class="popTitleRight">
+                            <i class="popIconQuan"></i>
+                            <span class="popTSpanRight">数百大牌培训机构，总有一个适合你</span>
+                        </div>
+                    </div>
+                    <a class="popMainClose js_popClose close"></a>
+                </div>
+                <div class="popContent">
+                    <div class="popContentA">
+                        <div id="modalA_submit_error" class="text-error text-center margin-bottom"></div>
+                        <ul class="popContentUl clearfix">
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>学员姓名：</span>
+                                <input id="modalA_userName_input" class="popTxt" type="text"/>
+                            </li>
+                            <li>
+                                <i class="popIconStar"></i>
+                                <span>联系电话：</span>
+                                <input id="modalA_phone_input" class="popTxt" type="text"/>
+                            </li>
+                            <li>
+                                <i class="popIconStar popIconStarSpec"></i>
+                                <span>附加信息：</span>
+                                <textarea id="modalA_remark_text" class="popTxt popTxtSpec"
+                                          placeholder="亲，请填上空闲的时间，择校、择课要求等信息，以便更好的为您服务"></textarea>
+                            </li>
+                        </ul>
+                        <div class="popBtn">
+                            <div class="popBtnYes" id="modalABtnSubmitApply">立即申请</div>
                             <a class="popBtnNo js_popClose">放弃申请</a>
                         </div>
                     </div>
@@ -279,6 +340,7 @@
             <ul class="topBar-navigation">
                 <li id="navigate_home" class="button">首页</li>
                 <li id="navigate_search" class="button">课程</li>
+                <li id="navigate_inst" class="button">学校</li>
                 <li id="navigate_tuan" class="button">团购&bull;特卖<i class="icon-hot"></i></li>
             </ul>
             <!---->
@@ -317,6 +379,7 @@
             <ul class="topBar-navigation">
                 <li id="navigate_home" class="button">首页</li>
                 <li id="navigate_search" class="button">课程</li>
+                <li id="navigate_inst" class="button">学校</li>
                 <li id="navigate_tuan" class="button">团购&bull;特卖<i class="icon-hot"></i></li>
             </ul>
             <div class="login_reg">
@@ -476,7 +539,7 @@
                 <div class="popContent">
                     <div class="popContentA">
                         <div id="modalA_submit_error" class="text-error text-center margin-bottom"></div>
-                        <ul class="popContentUl">
+                        <ul class="popContentUl clearfix">
                             <li id="aSelectiontxt">
                                 <i class="popIconStar"></i>
                                 <span>意向课程：</span>
@@ -679,25 +742,161 @@
     </ul>
 </script>
 
-<script type="text/template" id="tpl_search">
-    <div class="container">
-        <div class="searchAll clearfix">
-            <div class="search_top white">
-                <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
-                <a class="search_btn"></a>
+<script type="text/template" id="tpl_searchBar">
+    <div class="searchAll clearfix">
+        <div class="clearfix search_top <%=style%>">
+            <div class="search_type">
+                <%=searchText%>
+                <span class="i-search-caret"></span>
+                <ul class="search_typeSelect">
+                    <li data-value="course" class="<%if(searchType=='course'){%>active<%}%>">课程</li>
+                    <li data-value="partner" class="<%if(searchType=='partner'){%>active<%}%>">学校</li>
+                </ul>
             </div>
-            <div class="search_tip">
-                <span style="color: #333">大家都在搜:</span>
-                <span class="search_span">四六级</span>
-                <span class="search_span">考研</span>
-                <span class="search_span">会计证</span>
-                <span class="search_span">日语</span>
-                <span class="search_span">雅思</span>
-                <span class="search_span">托福</span>
-                <span class="search_span">导游证</span>
-                <span class="search_span">教师证</span>
+            <input class="search_input" type="text" placeholder="搜索感兴趣的#<%=searchText%>#" value="<%=name%>">
+            <a class="search_btn"></a>
+
+        </div>
+        <div class="search_tip">
+            <span style="color: #333">大家都在搜:</span>
+            <span class="search_span">四六级</span>
+            <span class="search_span">考研</span>
+            <span class="search_span">会计证</span>
+            <span class="search_span">日语</span>
+            <span class="search_span">雅思</span>
+            <span class="search_span">托福</span>
+            <span class="search_span">导游证</span>
+            <span class="search_span">教师证</span>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_partnerSearch">
+    <div class="container">
+        <!--search Bar-->
+        <div id="searchBarWrap"></div>
+        <!--筛选框-->
+        <div id="searchPanel" class="filter unselectable">
+            <ul id="search_category" class="tab filterCriteria">
+            </ul>
+
+            <div id="filterPanel" class="filter_content">
+                <div id="filter_subCategory" class="filterCriteria filterCriteriadotted">
+                </div>
+                <div id="filter_district" class="filterCriteria filterCriteriadotted">
+                    <label>上课地区：</label>
+                    <span data-value="noreq" class="active">不限</span>
+
+                    <div data-value="location" class="subCategory span">行政区</div>
+                    <div data-value="circle" class="subCategory span">商圈</div>
+                </div>
             </div>
         </div>
+
+        <!--筛选结果-->
+        <div id="searchReqs" class="blank1 unselectable hidden">
+            <div><span id="resultNum"></span>个学校满足以下条件</div>
+        </div>
+
+        <div id="searchResultContent" class="search_result clearfix blank">
+            <!--左栏开始-->
+            <div class="fleft w_730">
+                <div id="searchResultSorter" class="clearfix unselectable">
+                    <ul class="sorter clearfix">
+                        <li id="editorPick" class="active">爱上课推荐</li>
+                        <li id="teacherCount">教师数</li>
+                        <li id="courseCount">课程数</li>
+                    </ul>
+                    <div class="fright">
+                        <!--当前促销：-->
+                        <!--<label for="check_originalPrice"> <input id="check_originalPrice" type="checkbox"-->
+                        <!--name="originalPriceStart"/>团购热卖</label>-->
+                    </div>
+                </div>
+                <!--searchResultSorter end-->
+                <div id="searchResultDisplayPanel">
+                </div>
+                <div id="partnerSearchResultNavigator" class="page blank1 clearfix">
+
+                </div>
+                <a onclick="doyoo.util.openChat('g=82548');return false;" class="adv" ><img class="margin-top" src="./style/images/search_a3.jpg" width="730" height="85" alt="击穿最低价！返现进行时！"/></a>
+            </div>
+
+            <!--右栏开始 todo 加上课程申请的入口 备注信息需要标注来源-->
+            <div class="fright w_250 unselectable needFixed ">
+                <div id="applyWidget"></div>
+                <div class="blank"></div>
+                <div id="topTuanWidget" class="bg-white clearfix">
+
+                </div>
+                <div class="blank"></div>
+                <a class="adv" onclick="doyoo.util.openChat('g=82548');return false;">
+                    <img src="./style/images/widget_a.jpg" alt="别人家的孩子都在学什么"/>
+                </a>
+            </div>
+        </div>
+        <!--search_result end-->
+    </div>
+</script>
+
+<script type="text/template" id="tpl_applyWidget">
+    <div class="bg-white clearfix padding-sm">
+        <div class="text-center"><img width="186" height="116" src="style/images/widget_apply_a.png" alt=""/></div>
+        <div class="wd-form">
+            <div class="wd-message text-center" style="display: none"></div>
+            <input id="twhat" class="wd-input" type="text" placeholder="想学点什么？"/>
+            <input id="twhere" class="wd-input" type="text" placeholder="想在哪儿学？"/>
+            <div class="wd-form-btn">ok</div>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_partnerSearchResultEntry">
+    <div class="searchResultEntry clearfix">
+        <div class="pic">
+            <a href="#/inst/<%=id%>" target="_blank">
+                <img src="<%= logoUrl %>" width="100" height="100"/>
+            </a>
+        </div>
+        <div class="col">
+            <p class="title">
+                <a href="#/inst/<%=id%>" target="_blank" class="courseTitle viewDetail" data-id="<%= id %>"><%= instName %></a>
+                <!--<span class="badge" style="margin-top: 5px;">团</span>-->
+            </p>
+            <p class="desc descSpec"><i class="i_partner i_partner_eye"></i>
+                <span><%=popularity%></span>
+                <i class="i_dash"></i>
+                <span>老师<%=teacherCount%></span>
+                <i class="i_dash"></i>
+                <a href="#/inst/<%=id%>" target="_blank" class="ft-primary a-dec"><%=courseCount%>门课程</a>
+                <i class="i_dash"></i>
+                <span id="raty_<%=id%>" class="raty" data-value="<%=rating%>"></span>
+                <span><%=rating%></span>
+            </p>
+            <p class="desc">
+                <i class="i_partner i_partner_hat"></i>
+                <%_.each(categoryList,function(c){%>
+                <span><%=c.name%></span>
+                <%})%>
+            </p>
+            <p class="desc"><i class="i_partner i_partner_location"></i>
+                <%_.each(addressList,function(a){%>
+                <span><%=a.circleName%></span>
+                <%})%>
+            </p>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl_topTuanWidgetView">
+    <div class="span12" id="topTuanWidgetMain" style="">
+    </div>
+</script>
+
+<script type="text/template" id="tpl_search">
+    <div class="container">
+        <!--search Bar-->
+        <div id="searchBarWrap"></div>
         <!--筛选框-->
         <div id="searchPanel" class="filter unselectable">
             <ul id="search_category" class="tab filterCriteria">
@@ -890,23 +1089,7 @@
 
 <script type="text/template" id="tpl_SearchCourse">
     <div class="frontBanner"></div>
-    <div class="searchAll clearfix">
-        <div class="search_top">
-            <input class="search_input" type="text" placeholder="搜索感兴趣的#课程#">
-            <a class="search_btn"></a>
-        </div>
-        <div class="search_tip">
-            <span style="color: #333">大家都在搜:</span>
-            <span class="search_span">四六级</span>
-            <span class="search_span">考研</span>
-            <span class="search_span">会计证</span>
-            <span class="search_span">日语</span>
-            <span class="search_span">雅思</span>
-            <span class="search_span">托福</span>
-            <span class="search_span">导游证</span>
-            <span class="search_span">教师证</span>
-        </div>
-    </div>
+    <div id="searchBarWrap"></div>
 
     <div id="searchCourse" class="clearfix">
         <div class="searchCourse">
@@ -1996,6 +2179,386 @@
     </div>
 </script>
 
+<script type="text/template" id="tpl_partnerDetail">
+<div class="wrapper bg-grey detailArea">
+<div class="container">
+<div id='widgets'></div>
+<div id="siteMap" class="sitemap">
+
+</div>
+<div class="partnerDetail blank ">
+<div class="banner panel_bg">
+    <div class="pic">
+        <div class="pic_big">
+            <% _.each(classPhotoList,function(photo){%>
+            <a class=""><img src="<%=photo.imgUrl%>" alt=""/></a>
+            <%})%>
+        </div>
+        <div class="pic_list">
+            <% _.each(classPhotoList,function(photo,index){%>
+            <a index="<%=index%>"><i class="active"></i><img src="<%=photo.imgUrl%>" alt=""/></a>
+            <%})%>
+        </div>
+    </div>
+    <div class="row">
+        <div class="clearfix" style="margin-bottom: 25px;">
+            <h1 style="color: #128D56;font-weight: normal"><%= instName %> </h1>
+            <div class="shareIcon" style="float: left">
+                <i class="share"></i>
+                <div class="invitation_share blank clearfix">
+                    <a class="jiathis_button_tsina invitation_icon weibo"></a>
+                    <a class="jiathis_button_renren invitation_icon renren"></a>
+                    <a class="jiathis_button_qzone invitation_icon qzone"></a>
+                    <a class="jiathis_button_douban invitation_icon douban"></a>
+                    <a class="jiathis_button_kaixin001 invitation_icon kaixin"></a>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+        <div class="small_title">
+            <div id="starDemo" style="margin-top: 2px"></div>
+            <a class="star-score"><%=rating%>分</a>
+            <div class="comment">&nbsp;(<i class="commentsTotal">--</i>人评价)</div>
+
+            <a class="tuanIcon">团购></a>
+        </div>
+
+        <div class="dash-line"></div>
+
+
+        <p class="desc">
+            <i class="i_partner i_partner_hat"></i>
+            <%_.each(categoryList,function(c){%>
+            <span><%=c.name%></span>
+            <%})%>
+        </p>
+
+        <p class="desc" style="margin-bottom: 15px;">
+            <i class="i_partner i_partner_location"></i>
+            <%_.each(addressList,function(a){%>
+            <span><%=a.circleName%></span>
+            <%})%>
+
+        </p>
+
+        <div class="dash-line"></div>
+
+        <p class="desc descSpec"><i class="i_partner i_partner_eye"></i>
+            <span><%=popularity%></span>
+            <i class="i_dash"></i>
+            <span>老师<%=teacherCount%></span>
+            <i class="i_dash"></i>
+            <span><%=courseCount%>门课程</span>
+        </p>
+
+        <div class="btns">
+            <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
+            <a class="btnconsult bookNow" id="applyCourse" data-value="">申请免费试听</a>
+        </div>
+    </div>
+</div>
+<div class="detailMain clearfix">
+<div class="tuan_sorterArea">
+    <ul class="tuan_sorter">
+        <li index="1"><a class="active">机构介绍</a></li>
+        <li index="2"><a>师资服务</a></li>
+        <li index="3"><a>课程介绍</a></li>
+        <li index="4"><a>评价</a></li>
+    </ul>
+    <i class="tuan_sorter_bottom"></i>
+</div>
+<!--左边-->
+<div id="tuan_fright" class="fright w_250">
+    <div class="tuan_btn clearfix ">
+        <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
+        <a class="btnconsult bookNow" data-value="">申请免费试听</a>
+    </div>
+
+    <!--爱上课承诺-->
+    <div class="promise panel_bg clearfix">
+        <h3>爱上课承诺</h3>
+        <ul class="promisePic clearfix">
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_1.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4>免费</h4>
+                                <span>免费咨询，免费测评，免费预约，免费试听。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_2.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4 style="background-color: #ffc000;">优质</h4>
+                                <span>只推荐优质课程，只合作优秀学校，避免欺诈陷阱。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_3.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4 style="background-color: #66bb8a;">享优惠</h4>
+                                <span>订课程享网站返现，最高可达1526元；团购特卖月月有。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="map panel_bg clearfix">
+        <div id="smallMap" style="width: 230px;height:180px"></div>
+        <%_.each(addressList,function(address, index){%>
+        <dl data-index="<%=index%>" class="addressItem map_list <%if(addressList.length > 3){%>map_info<%}%>">
+            <dt>
+                <%=address.realAddress||course.instName%>
+                <i></i>
+            </dt>
+            <dd><%=address.detail%></dd>
+        </dl>
+        <%})%>
+    </div>
+    <div class="hot_tuan panel_bg hidden">
+        <h4>一周热门团购</h4>
+        <a></a>
+    </div>
+</div>
+<!--left end-->
+
+<!--右边-->
+<div id="course_fright" class="fleft w_730 panel_bg">
+    <div class="tuan_content clearfix">
+
+        <dl class="tuan_content_1 content_inner">
+            <dt><i class="dticon"></i>机构介绍</dt>
+
+            <dd class="clearfix">
+                <% if (wholeName) { %>
+                <label>机构全称：</label>
+
+                <div class="span"><%=wholeName%></div>
+                <%}%>
+            </dd>
+            <dd class="clearfix">
+                <% if (hqLocation) { %>
+                <label>机构地址：</label>
+
+                <div class="span"><%= hqLocation %></div>
+                <%}%>
+            </dd>
+            <dd class="clearfix">
+
+                <label>校区地址：</label>
+
+                <div class="span">
+                    <ul>
+                        <% _.each(addressList,function(address){%>
+                        <ol class=""> <%=address.realAddress%> : <%=address.detail%></ol>
+                        <%})%>
+                    </ul>
+                </div>
+
+            </dd>
+            <dd class="clearfix">
+                <% if (partnerDistinction) { %>
+                <label>机构荣誉：</label>
+
+                <div class="span"><%=partnerDistinction%></div>
+                <%}%>
+            </dd>
+            <dd class="clearfix">
+                <label>爱上课合作资质认证：</label>
+                <span style="float: left; margin-right: 2px;">已认证</span>
+                <a class="indentification"><img src="style/images/identification_1.png" alt=""/></a>
+                <!--未认证-->
+                <!--<a class="indentification"><img src="style/images/identification_2.png" alt=""/></a>-->
+            </dd>
+            <dd class="clearfix">
+                <% if (partnerIntro) { %>
+                <label>机构介绍：</label>
+
+                <div class="span"><%= partnerIntro %></div>
+                <%}%>
+            </dd>
+        </dl>
+        <dl class="tuan_content_2" class="content_inner">
+            <dt><i class="dticon"></i>师资服务</dt>
+            <dd class="teacherArea clearfix">
+                <% for (var i =0; i < teacherList.length; i++) { %>
+                <div class="teacherInfor clearfix">
+                    <a class="teacher_pic" style="background-image: url('<%= teacherList[i].imgUrl %>')"
+                       data-id="<%=i%>">
+                        <div class="overlay_teacher">
+                        </div>
+                        <div class="overlay_t">
+                            <span>查看详情</span>
+                        </div>
+                    </a>
+                    <span><%= teacherList[i].name %></span>
+                </div>
+                <% } %>
+            </dd>
+        </dl>
+        <dl class="tuan_content_3" class="content_inner" style="border: 0">
+            <dt><i class="dticon"></i>课程介绍</dt>
+            <dd class="clearfix">
+                <select name="select" id="courseChoose">
+                    <option value="课程分类">课程分类</option>
+                    <%_.each(categoryList,function(c){%>
+                    <option value="<%=c.name%>" data-id="<%=c.id%>"><%=c.name%></option>
+                    <%})%>
+                </select>
+                <select name="select" id="locationChoose">
+                    <option value="上课地点">上课地点</option>
+                    <%_.each(addressList,function(a){%>
+                    <option value="<%=a.circleName%>" data-id="<%=a.id%>"><%=a.circleName%></option>
+                    <%})%>
+                </select>
+                <input id="searchInPartner" type="button" value="OK" class="btn_search"/>
+            </dd>
+        </dl>
+        <dl>
+            <dd class="clearfix">
+                <table width="100%" cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <td width="30%">课程名称</td>
+                        <td class="addr">地点</td>
+                        <td width="10%">价格【?】</td>
+                        <td width="25%">--</td>
+                    </tr>
+                    </thead>
+                    <tbody id="belongPartnerList"></tbody>
+                </table>
+            </dd>
+        </dl>
+        <dl class="tuan_content_4" class="content_inner">
+            <dt><i class="dticon"></i>评价<!--<span>我有2条评价</span>--></dt>
+            <dd class="clearfix">
+                <!--<div class="evaluate">-->
+                <!--<div class="title">*用户对本团购的消费评价</div>-->
+                <!--<ul class="eleft">-->
+                <!--<li class="score">4</li>-->
+                <!--<li id="star_eleft"></li>-->
+                <!--<li>共有<span class="commentsTotal">--</span>人评价</li>-->
+                <!--</ul>-->
+                <!--<div class="emid"></div>-->
+                <!--<ul class="eright">-->
+                <!--<li>-->
+                <!--<span>环境</span>-->
+                <!--<div id="evaluate_environment" class="eright_star"></div>-->
+                <!--<a></a>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<span>师质</span>-->
+                <!--<div id="evaluate_teacher" class="eright_star"></div>-->
+                <!--<a></a>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<span>服务</span>-->
+                <!--<div id="evaluate_service" class="eright_star"></div>-->
+                <!--<a></a>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <div id="tuanDetailCommentsContainer"></div>
+            </dd>
+        </dl>
+    </div>
+</div>
+<!--right end-->
+</div>
+<!--tuan main end-->
+</div>
+</div>
+</div>
+</script>
+
+<script type="text/template" id="tpl_belongPartnerRow">
+    <tr>
+        <td style="text-align: left; padding-left: 4px;">
+
+            <p data-id="<%= id %>">
+                <%if(groupBuyActivity){%>
+                <span class="badge" style="width: 16px;height: 16px; padding: 1px; line-height: 16px; margin-right: 2px;">团</span>
+                <%}%>
+                <%if(cashback){%>
+                <span class="badge" style="width: 16px;height: 16px; padding: 1px; line-height: 16px; margin-right: 2px; background-color: #28B094">返</span>
+                <%}%>
+                <%= courseName %>
+            </p>
+        </td>
+        <td class="addr"><p><%=circleName%></p></td>
+        <td>
+            ￥<%if(originalPrice){%><%=originalPrice%>
+            <%}else if(price){%><%=price%>
+            <%}else{%>待定<%}%>
+        </td>
+        <!--<td><span class="F_orange dotted-line"><%= commission/10 %>折</span></td>-->
+        <td>
+            <!--if(current)-->
+            <!--<a class="inline-block">-->
+            <!--<button type="button" class="btn_gray">当前课程</button>-->
+            <!--</a>-->
+            <a class="inline-block">
+                <a href="#course/<%= id %>" target="_blank">
+                    <button type="button" class="btn_g" style="background-color: #47bc78;" data-value="<%= id %>">详情</button>
+                </a>
+
+                <%if(groupBuyActivity){%>
+                <a href="#tuan/<%= id %>" target="_blank">
+                    <button type="button" class="btn_g" data-value="<%= id %>">去团购 ></button>
+                </a>
+                <%}else{%>
+                <button type="button" class="btn_g " data-value="<%= id %>" onclick="doyoo.util.openChat('g=82548');return false;">获取优惠</button>
+                <%}%>
+            </a>
+        </td>
+    </tr>
+</script>
+<script type="text/template" id="tpl_belongPartnerNoRow">
+    <tr>
+        <td colspan="4">
+            <div class="noMessage margin-y">
+                <div><i class="icon icon-warning"></i>很抱歉，暂没有该条件的课程~~</div>
+            </div>
+        </td>
+    </tr>
+</script>
+<script type="text/template" id="tpl_belongPartnerErrorRow">
+    <tr>
+        <td colspan="4">
+            <div class="noMessage margin-y">
+                <div><i class="icon icon-warning"></i>很抱歉，暂时无法查询到符合条件的课程~~</div>
+            </div>
+        </td>
+    </tr>
+</script>
+
+
 <script type="text/template" id="tpl_courseDetail">
 <div class="wrapper bg-grey detailArea">
 <div class="container">
@@ -2100,33 +2663,7 @@
         <a class="btnconsult bookNow" data-value="<%=courseId%>">申请免费试听</a>
     </div>
 
-    <!--爱上课承诺-->
-    <div class="promise panel_bg clearfix hidden">
-        <h3>爱上课承诺</h3>
-        <ul>
-            <li class="clearfix">
-                <a class="promiseIcon"><img src="style/images/promise_free.jpg" alt=""/></a>
-                <div class="promiseInfo">
-                    <h3>免费</h3>
-                    <p>免费咨询，免费测评，免费预约，免费试听</p>
-                </div>
-            </li>
-            <li class="clearfix">
-                <a class="promiseIcon"><img src="style/images/promise_quality.jpg" alt=""/></a>
-                <div class="promiseInfo">
-                    <h3>优质</h3>
-                    <p>只推荐优质课程，只合作优质学校，避免欺诈陷阱</p>
-                </div>
-            </li>
-            <li class="clearfix">
-                <a class="promiseIcon"><img src="style/images/promise_preferential.png" alt=""/></a>
-                <div class="promiseInfo">
-                    <h3>享优惠</h3>
-                    <p>订课程享网站返现，最高可达1526元；团购特卖月月有</p>
-                </div>
-            </li>
-        </ul>
-    </div>
+
 
     <div class="map panel_bg clearfix">
         <div id="smallMap" style="width: 230px;height:180px"></div>
@@ -2993,6 +3530,23 @@
     </div>
 </script>
 
+<script type="text/templates" id="tpl_mypage_credit">
+    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">积分账户</span></div>
+    <div class="blank1"></div>
+    <div class="mypage_content_inner">
+        <div class="total margin-bottom"><img src="style/images/icon_points.jpg">您现在拥有 <b id="myCredit"
+                                                                                          class="F_orange">0</b> 点可用积分
+        </div>
+        <ul id="creditNavBtn" class="tab1 clearfix">
+            <li data-id="table" class="active">积分明细</li>
+            <li data-id="store">积分商城</li>
+        </ul>
+        <div id="credit_pageContent">
+
+        </div>
+    </div>
+</script>
+
 <script type="text/templates" id="tpl_mypage_usernameModal">
     <div class="field">
         <label>用户名</label>
@@ -3009,23 +3563,6 @@
         </div>
         <div>
             拥有用户名才可以凭此邀请好友，邀请成功可获取丰富的奖励~
-        </div>
-    </div>
-</script>
-
-<script type="text/templates" id="tpl_mypage_credit">
-    <div class="title"><a class="js_toDashboard">我的爱上课</a> &gt; <span class="F_green">积分账户</span></div>
-    <div class="blank1"></div>
-    <div class="mypage_content_inner">
-        <div class="total margin-bottom"><img src="style/images/icon_points.jpg">您现在拥有 <b id="myCredit"
-                                                                                          class="F_orange">0</b> 点可用积分
-        </div>
-        <ul id="creditNavBtn" class="tab1 clearfix">
-            <li data-id="table" class="active">积分明细</li>
-            <li data-id="store">积分商城</li>
-        </ul>
-        <div id="credit_pageContent">
-
         </div>
     </div>
 </script>
@@ -3185,6 +3722,13 @@
     <div class="no_data" id="creditNoData">
         <div>您暂时还没有积分~~</div>
         <p style="line-height: 14px;font-size: 14px;">预订课程后就能获得积分哦</p>
+    </div>
+</script>
+
+<script type="text/templates" id="tpl_partnerSearch_noMessage">
+
+    <div class="text-center margin-y">
+        <img src="./style/images/no_partner.png" alt="对不起，暂无您想找的机构"/>
     </div>
 </script>
 
@@ -3715,33 +4259,6 @@
     <div class="tuan_btn clearfix">
         <a class="btnbuy">立即抢购</a>
         <a class="btnconsult" onclick="doyoo.util.openChat('g=82548');return false;">咨询</a>
-    </div>
-    <!--爱上课承诺-->
-    <div class="promise panel_bg clearfix hidden">
-        <h3>爱上课承诺</h3>
-        <ul>
-            <li class="clearfix">
-                <a class="promiseIcon"><img src="style/images/promise_free.jpg" alt=""/></a>
-                <div class="promiseInfo">
-                    <h3>免费</h3>
-                    <p>免费咨询，免费测评，免费预约，免费试听</p>
-                </div>
-            </li>
-            <li class="clearfix">
-                <a class="promiseIcon"><img src="style/images/promise_quality.jpg" alt=""/></a>
-                <div class="promiseInfo">
-                    <h3>优质</h3>
-                    <p>只推荐优质课程，只合作优质学校，避免欺诈陷阱</p>
-                </div>
-            </li>
-            <li class="clearfix">
-                <a class="promiseIcon"><img src="style/images/promise_preferential.png" alt=""/></a>
-                <div class="promiseInfo">
-                    <h3>享优惠</h3>
-                    <p>订课程享网站返现，最高可达1526元；团购特卖月月有</p>
-                </div>
-            </li>
-        </ul>
     </div>
     <div class="map panel_bg clearfix">
         <div id="smallMap" style="width: 230px;height:180px"></div>

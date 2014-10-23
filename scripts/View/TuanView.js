@@ -5,6 +5,7 @@ var TuanView = Backbone.View.extend({
             this.isClosed = false;
             _.bindAll(this, "render", "renderCircle", "bindEvents", "close");
             app.viewRegistration.register(this);
+            app.topBarView.activeNavigator('tuan');
 
 //            this.searchRepresentation = app.storage.getSearchRepresentationCache("tuan");
 //            this.searchRepresentation = new TuanSearchRepresentation();
@@ -69,6 +70,7 @@ var TuanView = Backbone.View.extend({
                 this.tuanBannerView.close();
                 this.isClosed = true;
                 $('.labels').off();
+                app.topBarView.clearNavigator();
             }
         }
     })
@@ -80,7 +82,7 @@ var TuanBannerView = Backbone.View.extend({
     template: _.template(tpl.get("tuanBanner")),
     timer: null,
     total: 4,
-    index:0,
+    index: 0,
     initialize: function () {
         var that = this;
         this.isClosed = false;

@@ -17,6 +17,7 @@ var HomePageView = Backbone.View.extend({
         document.title = "爱上课 | 为您选择最合适，最优惠的课程";
         this.isClosed = false;
         app.viewRegistration.register(this);
+        app.topBarView.activeNavigator('home');
         this.searchRepresentation = new CourseSearchRepresentation();
         $("body").addClass("index");
 //        if (!this.banner) {
@@ -64,10 +65,10 @@ var HomePageView = Backbone.View.extend({
                         cat3[k] = this.catButtonTemplate({value: children2[k].value, name: children2[k].name});
                     }
                     /*padding = (colSize - children2.length % colSize) % colSize;
-                    while (padding) {
-                        cat3.push("<li><a> --- </a></li>");
-                        padding--;
-                    }*/
+                     while (padding) {
+                     cat3.push("<li><a> --- </a></li>");
+                     padding--;
+                     }*/
                     obj.catgoryList = cat3.join("");
                     obj.catClass = 'cat' + (i + 1);//使用cat作为class 取一级循环中的序号 见index.css
                     obj.categoryName = children1[j].name;
@@ -177,8 +178,9 @@ var HomePageView = Backbone.View.extend({
 //            this.banner.close();
             this.searchArea.close();
             this.tuanBannerView.close();
-            //this.artificialSelection.close();
+            //this.artificialartificialSelection.close();
             app.homePageView = null;
+            app.topBarView.clearNavigator();
         }
     }
 });
@@ -243,6 +245,7 @@ var SearchArea = Backbone.View.extend({
 
     render: function () {
         this.$el.html(this.template);
+        this.searchBarView = new SearchBarView();
         $("#searchCourse .topBar li:eq(0)").addClass("active");
         $(".scperson").addClass("hidden");
         app.generalManager.getLocations(this);//同上 调用this.renderLocations
@@ -293,7 +296,7 @@ var SearchArea = Backbone.View.extend({
             }
         });
         //大家都在搜
-        $(".search_tip").on("click",".search_span",function(){
+        $(".search_tip").on("click", ".search_span", function () {
             var courseName = $(this).html();
             if (courseName) {
                 var searchRepresentation = new CourseSearchRepresentation();
@@ -321,13 +324,6 @@ var SearchArea = Backbone.View.extend({
 
         //自助选课 课程类目的选择弹出框
         $("#courseChooseContainer").on("click", function () {
-            //传入选择目录以后的回调函数
-//            if (!that.courseTip) {
-//                that.courseTip = new SelectCatModal({callback: that.selectCatSearch});
-//            }
-//            else if (!that.courseTip.isShow) {
-//                that.courseTip.show({callback: that.selectCatSearch});
-//            }
             that.selectCatModal.show();
         });
 
@@ -358,7 +354,7 @@ var SearchArea = Backbone.View.extend({
             //that.model.set('categoryId', categoryId);
             that.model.set('phone', phone);
             that.model.set('userName', userName);
-            that.model.set('remark', '【PC-首页】'+remark);
+            that.model.set('remark', '【PC-首页】' + remark);
             app.userManager.initApply(that.model, {
                 success: function () {
                     that.clearModel();
@@ -385,14 +381,14 @@ var SearchArea = Backbone.View.extend({
     },
 
     close: function () {
-        //需要关闭 生成的view  courseTip popTip
-        if (this.courseTip) {
-            this.courseTip.close();
-        }
         if (this.popTip) {
             this.popTip.close();
         }
+        if (this.searchBarView) {
+            this.searchBarView.close();
+        }
         this.colorInfoModal.close();
+        this.selectCatModal.close();
         this.$el.empty();
     }
 });
@@ -647,7 +643,7 @@ var SuccessPopTip = Backbone.View.extend({
     render: function () {
         app.viewRegistration.register(this);
         this.$el.append(this.template);
-        setTimeout(this.hide,1500)
+        setTimeout(this.hide, 1500)
     },
     bindEvents: function () {
         var that = this;
@@ -661,7 +657,7 @@ var SuccessPopTip = Backbone.View.extend({
     show: function () {
         $("#popSuccessApple").fadeIn(400);
         this.isShow = true;
-        setTimeout(this.hide, 4000);
+        setTimeout(this.hide, 3500);
     },
     hide: function () {
         $("#popSuccessApple").fadeOut(400);

@@ -80,6 +80,41 @@
         });
     };
 
+    //根据ID拉取单个机构
+    GeneralManager.prototype.fetchPartner = function (id, callback) {
+        var cache = app.cache.get("partner", id);
+        if (cache) {
+            if (callback) {
+                callback.success(new Partner(cache, {parse: true}));
+                return;
+            }
+        }
+        var partner = new Partner();
+        if (testMockObj.testMode) {
+            callback.success(testMockObj.testPartners.get(id));
+            return;
+        }
+        partner.overrideUrl(ApiResource.partners);
+        partner.set('id', id);
+        partner.fetch({
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    callback.success(model);
+                    app.cache.set("partner", id, partner.toJSON());
+                }
+            },
+
+            error: function (model, response) {
+                Info.warn('fetch partner failed');
+                if (callback) {
+                    callback.error($.parseJSON((response.responseText)));
+                }
+            }
+        });
+    };
+
     //根据ID拉取单个团购
     GeneralManager.prototype.fetchTuan = function (id, callback) {
         var tuan = new Tuan();
@@ -167,11 +202,11 @@
             Info.warn('GeneralManager::findCourse invalid parameter, exit');
             return;
         }
-        cache = app.cache.get("queryCourse", courseSearchRepresentation.toQueryString());
-        if (cache) {
-            this.batchFetchCourses(cache, callback);
-            return;
-        }
+//        cache = app.cache.get("queryCourse", courseSearchRepresentation.toQueryString());
+//        if (cache) {
+//            this.batchFetchCourses(cache, callback);
+//            return;
+//        }
 
         if (testMockObj.testMode) {
             searchResults = testMockObj.testCourses;
@@ -189,7 +224,7 @@
                     for (var i = 0; i < searchResults.length; i++) {
                         app.cache.set("course", searchResults.at(i).get("id"), searchResults.at(i).toJSON());
                     }
-                    app.cache.set("queryCourse", courseSearchRepresentation.toQueryString(), searchResults.pluck("id"));
+//                    app.cache.set("queryCourse", courseSearchRepresentation.toQueryString(), searchResults.pluck("id"));
                     callback.success(searchResults);
                 }
             },
@@ -269,6 +304,40 @@
         });
     };
 
+    //根据搜索条件搜索机构列表 partnerSearchRepresentation
+    GeneralManager.prototype.findPartner = function (sr, callback) {
+        var searchResults = new Partners();
+        if (!(sr instanceof Backbone.Model)) {
+            Info.warn('GeneralManager::findPartner invalid parameter, exit');
+            return;
+        }
+
+        if (testMockObj.testMode) {
+            searchResults = testMockObj.testPartners;
+            callback.success(searchResults);
+            return;
+        }
+
+        searchResults.overrideUrl(ApiResource.partners);
+        searchResults.fetch({
+            data: sr.toQueryString(),
+            dataType: 'json',
+
+            success: function (model, response) {
+                if (callback) {
+                    //todo tuan sr cache
+//                    app.cache.set("queryTuan", sr.toQueryString(), searchResults.pluck("id"));
+                    callback.success(searchResults);
+                }
+            },
+            error: function (model, response) {
+                Info.warn('TuanManager::fetchSearchResult:: fetch failed with response:');
+                if (callback) {
+                    callback.error($.parseJSON(response.responseText));
+                }
+            }
+        });
+    };
 
     //拉取课程类目
     GeneralManager.prototype.fetchCategories = function (callback) {
@@ -477,7 +546,7 @@
     //拉取评论
     GeneralManager.prototype.findComments = function (sr, callback) {
         var searchResults = new Comments();
-        if (!(sr instanceof Backbone.Model) || !sr.get('courseTemplateId')) {
+        if (!(sr instanceof Backbone.Model)) {
             Info.warn('GeneralManager::findComments invalid parameter, exit');
             return;
         }

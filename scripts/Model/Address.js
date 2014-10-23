@@ -2,28 +2,28 @@ var Address = Backbone.Model.extend({
     defaults: function () {
         return {
             'id': -1,
-            'lng':0,
-            'lat':0,
-            'realAddress': undefined,
-            'detail': undefined
+            'lng': 0,//经度
+            'lat': 0,//维度
+            'realAddress': undefined,//校区名
+            'detail': undefined,
+            'circleId': undefined,//商圈id
+            'circleName': undefined//商圈名
         };
     },
     idAttribute: 'id',
 
     parse: function (data) {
         if (typeof data !== 'undefined') {
-
             data.id = parseInt(data.id, 10);
         }
         return data;
     },
     _toJSON: function () {
-        var json = _.clone(this.attributes);
-        return json;
+        return _.clone(this.attributes);
     },
     toLocationObj: function (label) {
         return {
-            label: this.get('realAddress')||label,
+            label: this.get('realAddress') || label,
             name: this.get('detail'),
             lat: this.get('lat'),
             lng: this.get('lng')

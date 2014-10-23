@@ -1,0 +1,80 @@
+/*机构详情页面*/
+
+/*row*/
+.partnerDetail .row h1{float: left}
+
+/*分享图标*/
+.partnerDetail .share{
+    width: 24px;
+    height: 24px;
+    display: block;
+    background-image: url("../images/share.jpg");
+    float: left;
+    margin: 6px 0 0 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.small_title .star-score{ margin-left: 8px;float: left;}
+
+.small_title .tuanIcon{
+    width: 52px;
+    height: 23px;
+    background-color: #ff5933;
+    line-height: 23px;
+    text-align: center;
+    color: #fff;
+    margin: -2px 0 0 12px;
+    float: left;
+}
+.small_title .comment{
+    float: left;
+    margin-left: 8px;
+}
+
+.partnerDetail .row p{ padding: 20px 0 0 0;}
+
+.dash-line{ border-bottom: 1px dashed #d9d9d9;}
+
+
+.partnerDetail .invitation_share{ min-width: 180px; display: none;}
+.partnerDetail .invitation_share .invitation_icon{ width: 22px; height: 23px; float: left; margin-left: 4px;text-indent: -999999em; cursor:pointer;}
+.partnerDetail .invitation_share .weibo{ background-image: url("../images/share_1.png")}
+.partnerDetail .invitation_share .renren{ background-image: url("../images/share_2.png")}
+.partnerDetail .invitation_share .qzone{ background-image: url("../images/share_3.png")}
+.partnerDetail .invitation_share .douban{ background-image: url("../images/share_4.png")}
+.partnerDetail .invitation_share .kaixin{ background-image: url("../images/share_5.png")}
+.partnerDetail .invitation_share .weixin{ background-image: url("../images/share_1.png")}
+
+.partnerDetail .shareIcon:hover .invitation_share{display: block;}
+
+/*main*/
+.indentification{ width: 16px; height: 40px; display: block; float: left;}
+.indentification img{ width: 16px; height: 16px; margin-top: 12px;}
+
+
+/*课程搜索*/
+/*
+.sel-tip{
+    width: 30px;
+    height: 30px;
+    background-image: url("../images/sel_tip.png");
+    position: absolute;
+    left: 205px;
+    top:5px;
+}
+.sel-partent{ position: relative; float: left; margin-right: 10px;}
+.sel-partent select{width: 240px;height: 40px; padding: 0 10px; border: 1px solid #e2e2e2;}*/
+#courseChoose{width: 240px; height: 40px; margin-right: 10px;}
+#locationChoose{width: 240px; height: 40px; margin-right: 10px;}
+.btn_search{
+    width: 175px; height: 38px;
+    background-color: #28B094;
+    line-height: 38px;
+    text-align: center;
+    float: right;
+    border: 0; outline: 0;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 1px;
+}

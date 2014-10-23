@@ -37,7 +37,9 @@
 }
 .modal-inner{
     position: relative;
-    margin: 250px auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 250px;
     background-color: #ffffff;
 }
 
@@ -60,16 +62,6 @@
 }
 .modal-map .modal-close:hover{
     color: #444444;
-}
-.modal-map .modal-inner{
-    margin: 10px auto;
-    top:50%;
-    border: 1px solid #bababa;
-
-    text-align: left;
-    -webkit-box-shadow: 0 0 5px #ABABAB;
-    -moz-box-shadow: 0 0 5px #ABABAB;
-    box-shadow: 0 0 5px #ABABAB;
 }
 .modal-map .modal-header{
     font-size: 14px;
@@ -229,27 +221,57 @@
     font-style: normal;
     cursor: pointer;
 }
+/*setPhone modal*/
+.modal-setPhone .wd-form .wd-input{
+    width: 220px;
+}
+.modal-setPhone .wd-form .wd-form-btn{
+    width: 100px;
+    padding: 10px 0;
+}
+
+/*modal inner 设置*/
+/*完整地图查看*/
+.modal-map .modal-inner{
+    top:50%;
+    border: 1px solid #bababa;
+    text-align: left;
+    -webkit-box-shadow: 0 0 5px #ABABAB;
+    -moz-box-shadow: 0 0 5px #ABABAB;
+    box-shadow: 0 0 5px #ABABAB;
+}
 /*免费试听modal*/
 .modal-freeTrial .modal-inner{
-    width: 720px;
-    /*margin: 100px auto;*/
-    height: 486px;
     top:50%;
     margin-top: -243px;
+    width: 720px;
+}
+/*人工选课modal*/
+.modal-applyCourse .modal-inner{
+    width: 720px;
+    margin: 150px auto;
 }
 /*快速登录modal*/
 .modal-loginFast .modal-inner{
+    top:50%;
+    margin-top: -140px;
     width: 335px;
 }
 /*课程选择modal*/
 .modal-courseTip .modal-inner{
-    margin: 100px auto;
+    margin-top: 100px;
     width: 912px;
 }
 /*学校选择modal*/
 .modal-school .modal-inner{
-    margin: 100px auto;
+    margin-top: 100px;
     width: 712px;
+}
+/*设置电话号码modal*/
+.modal-setPhone .modal-inner{
+    top: 50%;
+    margin-top: -100px;
+    width: 335px;
 }
 /*设置用户名modal*/
 /*.modal-username .modal-inner{*/

@@ -34,8 +34,11 @@ var TuanDetailView = Backbone.View.extend({
         var rate3 = this.tuan.get('course').get('satisfactionRating');
         var evenRating = this.tuan.get('course').get('evenRating');
         this.$el.html(this.template(this.tuan._toJSON()));
-        this.commentsView = new TuanDetailCommentsView({
-            templateId: that.courseId,
+
+        var sr = new CommentSearchRepresentation();
+        sr.set('courseTemplateId', that.courseId);//这里的courseId后台返回的是模板id
+        this.commentsView = new CommentsView({
+            sr: sr,
             parentView: that
         });
         this.countDown = Utilities.countDown('#tuanDetail_endTime');//倒计时

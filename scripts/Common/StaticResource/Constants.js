@@ -31,6 +31,12 @@ var Constants = {
         /*对比页*/
         "compareView",
 
+        /*todo 机构模块*/
+        "partnerSearch", "partnerSearchResultEntry", "partnerSearch_noMessage",
+        "partnerDetail",
+        "belongPartnerRow","belongPartnerNoRow","belongPartnerErrorRow",
+        "topTuanWidgetView",//课程轮播图
+
         /*课程搜索模块*/
         "home", "homeCategoryContainer", "homeButton", "homeCatButton",
         "search", "searchResultEntry", "search_noMessage",
@@ -91,9 +97,12 @@ var Constants = {
         //底部栏
         "aboutUs", "joinUs", "contactUs", "advise", "help",
 
-        //其它
-        'errorPay',//支付失败的帮助页面
+        //页面右侧面板的widgets
+        'applyWidget',
 
+        //其它
+        'searchBar',//课程和机构的搜索框
+        'errorPay',//支付失败的帮助页面
         "sideBarView",//侧边工具栏
 //        "banner",//首页的大屏滚动banner
 
@@ -112,7 +121,8 @@ var Constants = {
         "mapModal",//todo 大屏地图
         "teacherModal",//【课程详情|团购详情】教师信息弹出框
         "payInfoModal",//【团购订单支付页面】支付结果用户确认--遇到问题或成功
-
+        "setPhoneModal",//【学校页右侧widget】输入手机号modal
+        "applyCourseModal",//【人工选课】
         //todo 人工选课弹出框 暂未使用
         "artificialSelection"
     ],

@@ -88,7 +88,6 @@
                 course: new CourseSearchRepresentation (),
                 tuan: new CourseSearchRepresentation (),
                 user: new UserSearchRepresentation (),
-                partner: new PartnerSearchRepresentation (),
                 booking: new BookingSearchRepresentation ()
             };
         }
@@ -98,7 +97,6 @@
                     course: new CourseSearchRepresentation (localStorage.sr.course, {parse: true}),
                     tuan: new TuanSearchRepresentation (localStorage.sr.tuan, {parse: true}),
                     user: new UserSearchRepresentation (localStorage.sr.user, {parse: true}),
-                    partner: new PartnerSearchRepresentation (localStorage.sr.partner, {parse: true}),
                     booking: new BookingSearchRepresentation (localStorage.sr.booking, {parse: true})
                 };
             } 
@@ -133,10 +131,6 @@
             this.sr[type] = sr;
             localStorage.sr = this.sr;
         }
-    };
-
-    StorageService.prototype.setViewCache = function (type, view) {
-        this.views[type] = view;
     };
 
     StorageService.prototype.getViewCache = function (type, params) {

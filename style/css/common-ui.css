@@ -34,14 +34,17 @@ a {
     text-decoration: none;
     color: #333333;
 }
-
-input[type="text"] {
-    padding: 0 1px;
+a.a-dec:hover{
+    text-decoration: underline;
 }
 
-input[type="password"] {
-    padding: 0 1px;
-}
+/*input[type="text"] {*/
+    /*padding: 0 1px;*/
+/*}*/
+
+/*input[type="password"] {*/
+    /*padding: 0 1px;*/
+/*}*/
 
 ol, ul {
     margin: 0;
@@ -411,7 +414,7 @@ textarea {
     background: #fff;
     color: #666;
     border-radius: 5px;
-    box-shadow: 2px 2px 6px rgba(241, 241, 241, 0.6)
+    /*box-shadow: 2px 2px 6px rgba(241, 241, 241, 0.6)*/
 }
 
 .has-tip-t .tip-t .arrow-t {
@@ -680,6 +683,9 @@ textarea {
 .ft-price, a.ft-price {
     color: #FF6A6A;
 }
+.ft-dark, a.ft-dark {
+    color: #555555;
+}
 
 .ft-light, a.ft-light {
     color: #aaaaaa;
@@ -727,7 +733,7 @@ textarea {
     background: url(../images/icon.png) no-repeat;
 }
 
-.icon-info {
+.icon-question {
     background-position: 0 -469px;
 }
 
@@ -804,59 +810,3 @@ body > #wrap {
     background: #248E4E;
     color: #ffffff
 }
-
-/*支付失败的帮助页面 panel*/
-#errorPayPanel {
-    color: #333333;
-}
-
-#errorPayPanel .panel-header {
-    color: #ffffff;
-}
-
-#errorPayPanel .h1 {
-    font-size: 22px;
-    line-height: 40px;
-}
-
-#errorPayPanel .h2 {
-    font-size: 20px;
-    line-height: 30px;
-}
-
-.answer {
-    padding-left: 15px;
-    margin: 15px 0;
-}
-
-.answer dt {
-    position: relative;
-    font-weight: bold;
-    line-height: 24px
-}
-
-.answer dt:before {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    left: -14px;
-    top: 8px;
-    width: 8px;
-    height: 8px;
-    background: url("../images/dot_warn.png") center no-repeat;
-}
-
-.answer dd {
-    margin-left: -3px;
-    line-height: 24px;
-}
-
-.answer a {
-    color: #F15922;
-    text-decoration: underline;
-}
-
-.answer a:hover {
-    color: #F15922;
-}
-

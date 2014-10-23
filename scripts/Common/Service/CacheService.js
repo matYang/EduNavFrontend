@@ -41,7 +41,7 @@
         } else {
             return null;
         }
-    }
+    };
 
     CacheService.prototype.set = function(type, key, value) {
         if (!this.enableCache) {

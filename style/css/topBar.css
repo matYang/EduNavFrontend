@@ -39,7 +39,7 @@
     position: relative;
     float: left;
     padding: 0 30px;
-    margin-left: 1px;
+    margin-left: 2px;
     cursor: pointer;
 }
 
@@ -210,7 +210,7 @@
 
 .login_reg .wrong {
     text-align: left;
-    line-height: 26px;
+    line-height: 18px;
     padding-left: 20px;
     background: url(../images/icon_wrong.png) no-repeat 0 -22px;
     font-size: 12px;
