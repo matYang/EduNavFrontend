@@ -13,7 +13,7 @@ var BelongPartnerListView = Backbone.View.extend({
         this.sr.set('enabled', undefined);
         this.sr.set('partnerId', this.partnerId);
         this.sr.set('categoryId', options.categoryId);
-        this.sr.set('locationId', options.categoryId);
+        this.sr.set('locationId', options.locationId);
         var self = this;
         app.generalManager.findCourse(this.sr, {
             success: self.render,
