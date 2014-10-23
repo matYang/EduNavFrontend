@@ -2468,18 +2468,16 @@
     <dd class="clearfix">
         <div>
             <select name="select" id="courseChoose">
-                <option value="课程分类">课程分类</option>
+                <option>课程分类</option>
                 <%_.each(categoryList,function(c){%>
-                <option value="<%=c.name%>" data-id="<%=c.id%>"><%=c.name%></option>
+                <option value="<%=c.id%>"><%=c.name%></option>
                 <%})%>
             </select>
         </div>
         <div>
             <select name="select" id="locationChoose">
-                <option value="上课地点">上课地点</option>
-                <%_.each(addressList,function(a){%>
-                <option value="<%=a.circleName%>" data-id="<%=a.circleId%>"><%=a.circleName%></option>
-                <%})%>
+                <option>上课地点</option>
+
             </select>
         </div>
 
