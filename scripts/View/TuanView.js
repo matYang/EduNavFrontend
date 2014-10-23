@@ -81,7 +81,7 @@ var TuanBannerView = Backbone.View.extend({
     el: "#tuanBanner",
     template: _.template(tpl.get("tuanBanner")),
     timer: null,
-    total: 4,
+    total: 4,//default 4-->actually is tuans.length
     index: 0,
     initialize: function () {
         var that = this;
@@ -98,6 +98,7 @@ var TuanBannerView = Backbone.View.extend({
         if (!tuans || !tuans.length) {
             return;
         }
+        this.total = tuans.length;
         //left img buf and right text buf
         var l_buf = [], r_buf = [];
         this.$el.html(this.template());
@@ -140,6 +141,9 @@ var TuanBannerView = Backbone.View.extend({
         });
     },
     changePic: function () {
+        if(this.total){
+            return;
+        }
         this.index = (this.index + 1) % 4;
         $(".tips .tips_li").removeClass("active last");
         $(".tips .tips_li:eq(" + this.index + ")").addClass("active");
@@ -172,7 +176,7 @@ var TuanResultView = MultiPageView.extend({
     entryContainer: "tuanResultContainer",
     noMessage: _.template(tpl.get("search_noMessage")),
     entryTemplate: _.template(tpl.get("tuanResultEntry")),
-    pageEntryNumber: 1000,
+    pageEntryNumber: 30,
     scroll: false,
     initialize: function () {
         _.bindAll(this, "bindEvents", "renderSearchResults", "clearCountdown", "renderError", "close");
