@@ -507,7 +507,7 @@ var TopTuanWidgetView = Backbone.View.extend({
         tuans.forEach(function (tuan) {
             that.tuan = tuan._toJSON();
             buf+='<li class="bjqs-slide" style="display: list-item;"> ';
-            buf+='<a href="#tuan/' + that.tuan.id + '"><img src="' + that.tuan.photoList[0].url + '" title="' + that.tuan.title + '"></a>';
+            buf+='<a href="#tuan/' + that.tuan.id + '"><img src="' + that.tuan.photoList[1].url + '" title="' + that.tuan.title + '"></a>';
             buf += '';
             buf+='</li>';
 
