@@ -58,10 +58,22 @@ var PartnerDetailView = Backbone.View.extend({
     },
     render: function () {
         var that = this;
-
+        this.partner = this.partner._toJSON();
         $(document).scrollTop(0);
-        this.$el.html(this.template(this.partner._toJSON()));
+        var address = [],circle = {};
+        address = this.partner.addressList;
+       _.each(address, function (v, index) {
+            circle[v.circleName] = v.circleId;
+        });
+        //that.circle = circle;
+        this.$el.html(this.template(this.partner));
 
+        var buf = '';
+        _.each(circle, function (v, k) {
+            buf += '<option value="'+ v +'">' + k + '</option>';
+        });
+
+        $("#locationChoose").append(buf);
 
         this.belongPartnerListView = new BelongPartnerListView({partner : this.partner});
 //        //新建相关课程视图
@@ -120,7 +132,7 @@ var PartnerDetailView = Backbone.View.extend({
         $(".detailArea .pic .pic_list").find("i:first").removeClass("active");
 //
         var sr = new CommentSearchRepresentation();
-        sr.set('partnerId', that.partner.get("id"));
+        sr.set('partnerId', that.partner.id);
         this.commentsView = new CommentsView({
             sr: sr,
             parentView: that,
