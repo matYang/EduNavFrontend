@@ -2352,7 +2352,7 @@
         <%_.each(addressList,function(address, index){%>
         <dl data-index="<%=index%>" class="addressItem map_list <%if(addressList.length > 3){%>map_info<%}%>">
             <dt>
-                <%=address.realAddress||course.instName%>
+                <%=address.realAddress||instName%>
                 <i></i>
             </dt>
             <dd><%=address.detail%></dd>
@@ -2392,11 +2392,11 @@
         <label>校区地址：</label>
 
         <div class="span">
-            <ul>
+            <ol>
                 <% _.each(addressList,function(address){%>
-                <ol class=""> <%=address.realAddress%> : <%=address.detail%></ol>
+                <li class=""> <%=address.realAddress%> : <%=address.detail%></li>
                 <%})%>
-            </ul>
+            </ol>
         </div>
 
     </dd>
