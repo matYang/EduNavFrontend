@@ -261,7 +261,7 @@
                 <div class="login_Area">
                     <ul class="title">
                         <li upid="login_content"><span>会员登录</span></li>
-                        <li class="active" upid="sign_content"><span>快捷登录（免注册）</span></li>
+                        <li class="active" upid="sign_content"><span>登录（免注册）</span></li>
                     </ul>
                     <ul id="login_content" class="content">
                         <li class="errorMsg text-center text-error"></li>
@@ -278,7 +278,11 @@
                         <li class="errorMsg text-center text-error"></li>
                         <li><input class="txt_phone" type="text" placeholder="请输入手机号"></li>
                         <li>
-                            <input class="txt_passed" type="password" placeholder="请输入验证码">
+                            <input class="txt_passed" type="text" placeholder="请输入图片验证码">
+                            <img class="vcode" src="/api/v2/user/vcodeimg" alt="图片验证码" width="100" height="45"/>
+                        </li>
+                        <li>
+                            <input class="txt_passed" type="text" placeholder="请输入短信验证码">
                             <a class="js_sendSms identifying">发送验证码</a>
                         </li>
                         <li style="height:30px;">
@@ -790,10 +794,9 @@
                 <span class="search_span">百创教育</span>
                 <span class="search_span">欧风</span>
                 <span class="search_span">品学教育</span>
-                <span class="search_span">启德教育</span>
+                <span class="search_span">启德学府</span>
                 <span class="search_span">瑞恩培训</span>
-                <span class="search_span">金智瑞普</span>
-                <span class="search_span">天策教育</span>
+                <span class="search_span">天策</span>
                 <span class="search_span">新世界教育</span>
             <%}%>
 
@@ -1219,6 +1222,14 @@
                         <dd>
                             <input id="invitationCodeInput" type="text" class="text" value=""
                                    placeholder="由朋友邀请注册的用户会获得额外的优惠">
+                        </dd>
+                    </dl>
+                    <dl class="clearfix" id="invitationCodeContainer">
+                        <dt>图片验证码：</dt>
+                        <dd>
+                            <input id="vcodeInput" type="text" class="text" value=""
+                                   placeholder="右侧图片邀请码">
+                            <img class="vcode" src="api/v2/user/vcodeimg" alt="图片验证码" width="100" height="45"/>
                         </dd>
                     </dl>
                     <dl class="clearfix" id="authContainer">
@@ -2689,7 +2700,7 @@
     </ul>
     <i class="tuan_sorter_bottom"></i>
 </div>
-<!--左边-->
+<!--右边-->
 <div id="tuan_fright" class="fright w_250">
     <div class="tuan_btn clearfix ">
         <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
@@ -2701,10 +2712,6 @@
     <div class="map panel_bg clearfix">
         <div id="smallMap" style="width: 230px;height:180px"></div>
 
-        <!--<a class="map-pic" href="http://api.map.baidu.com/geocoder?address=<%= address%>&output=html" target="_blank">-->
-            <!--<img src="http://api.map.baidu.com/staticimage?width=230&height=180&markers=<%= address.split('（')[0].split('(')[0] %>"-->
-                 <!--alt="<%= address%>"/>-->
-        <!--</a>-->
         <dl class="map_list">
             <dt><%= instName %></dt>
             <dd><%= address %></dd>
@@ -2715,9 +2722,8 @@
         <a></a>
     </div>
 </div>
-<!--left end-->
 
-<!--右边-->
+<!--左边-->
 <div id="course_fright" class="fleft w_730 panel_bg">
     <div class="tuan_content clearfix">
         <dl>
@@ -2937,7 +2943,7 @@
                 </div>
             </dd>
         </dl>
-        <dl class="tuan_content_4" class="content_inner">
+        <dl class="tuan_content_4 content_inner">
             <dt><i class="dticon"></i>评价<!--<span>我有2条评价</span>--></dt>
             <dd class="clearfix">
                 <div class="evaluate">
@@ -3659,6 +3665,13 @@
                         <dd>
                             <input id="findPassCellInput" type="text" class="text" value=""
                                    placeholder="请输入手机号(请不要输入特殊符号或者字母)"><span class="right"></span>
+                        </dd>
+                    </dl>
+                    <dl class="clearfix verify">
+                        <dt><span>*</span>图片验证码:</dt>
+                        <dd>
+                            <input id="vcodeInput" type="text" class="text">
+                            <img class="vcode" src="api/v2/user/vcodeimg" width="100" height="45" alt="图片验证码"/>
                         </dd>
                     </dl>
                     <dl class="clearfix verify" id="authContainer">

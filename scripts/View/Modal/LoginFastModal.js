@@ -28,9 +28,14 @@ var LoginFastModal = Modal.extend({
         this.$el.on('click', function () {
             that.hide();
         });*/
-        //防止事件冒泡
+        //todo 需修改为target何currentTarget的判断 防止事件冒泡
         this.$el.on('click', '.login_Area', function (e) {
             e.stopPropagation();
+        });
+
+        this.$el.on('click', '.vcode', function (e) {
+            var src = $(this).attr('src').split('?')[0]+'?_='+(new Date()).getTime();
+            $(this).attr('src', src)
         });
 
         //忘记密码
@@ -40,6 +45,7 @@ var LoginFastModal = Modal.extend({
 
         this.$el.on('click', '.js_sendSms', function (e) {
             var phone = $("#sign_content .txt_phone").val();
+            var vcode = $('#sign_content .vcode');
             var $valid = $('#sign_content .errorMsg');
             $valid.html('');
             if (!phone) {
@@ -50,7 +56,11 @@ var LoginFastModal = Modal.extend({
                 $valid.html('<i class="icon icon-error"></i>手机号格式有误');
                 return
             }
-            app.userManager.fastLoginSms(phone, Utilities.defaultSmsRequestHandler($(e.target)))
+            if (!vcode) {
+                $valid.html('<i class="icon icon-error"></i>请输入图片验证码');
+                return;
+            }
+            app.userManager.fastLoginSms({phone:phone,vcode:vcode}, Utilities.defaultSmsRequestHandler($(e.target)))
         });
         this.$el.on("click", '.btnLogin', function () {
             that.login();

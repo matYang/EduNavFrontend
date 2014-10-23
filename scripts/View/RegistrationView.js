@@ -61,6 +61,14 @@ var RegistrationView = BaseFormView.extend({
                 validatorContainer: $("#invitationCodeContainer")
             }),
             new BaseField({
+                name: "图片验证码",
+                fieldId: "vcodeInput",
+                type: "text",
+                mandatory: false,
+                modelAttr: "vcode",
+                validatorContainer: Utilities.defaultValidDivBuilder
+            }),
+            new BaseField({
                 name: "验证码",
                 fieldId: "registerVeriCode",
                 type: "text",
@@ -83,7 +91,9 @@ var RegistrationView = BaseFormView.extend({
         var that = this;
         $("#loginBox").hide();
         $("#getSms").on("click", function (e) {
-            if (Utilities.phoneValid(that.model.phone).valid) {
+            if(!that.model.vcode){
+                $("#smsInfo").html("请输入图片验证码");
+            }else if (Utilities.phoneValid(that.model.phone).valid) {
                 var $btnGetSms = $(this);
                 $btnGetSms.val("发送中...").prop("disabled", true);
                 app.userManager.smsVerification(that.model.phone, Utilities.defaultSmsRequestHandler($btnGetSms, $("#smsInfo")));
@@ -96,6 +106,10 @@ var RegistrationView = BaseFormView.extend({
             if (e.which === 13) {
                 $("#" + that.submitButtonId).trigger("click");
             }
+        });
+        this.$el.on('click', '.vcode', function (e) {
+            var src = $(this).attr('src').split('?')[0]+'?_='+(new Date()).getTime();
+            $(this).attr('src', src)
         });
         BaseFormView.prototype.bindEvents.call(this);
     },
