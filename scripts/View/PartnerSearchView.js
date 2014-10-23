@@ -277,20 +277,17 @@ var PartnerSearchView = Backbone.View.extend({
         //行政区和商圈
         $filter_district.on("click", '.subCategory', function () {
             var v = $(this).attr("data-value");
-            var index;
             if (v == "location") {
                 $filter_district.find("span").removeClass("active");
                 $filter_district.find(".span").removeClass("active");
                 $(this).addClass("active");
-                index = 0;
             } else if (v == "circle") {
                 $filter_district.find("span").removeClass("active");
                 $filter_district.find(".span").removeClass("active");
                 $(this).addClass("active");
-                index = 1;
             }
             $filter_district.find("p").addClass("hidden");
-            $filter_district.find("p:eq(" + index + ")").removeClass("hidden");
+            $filter_district.find("p[data-parentvalue="+ v +"]").removeClass("hidden");
         });
         $filter_district.find("span[data-value=noreq]").on("click", function () {
             $("#filter_district").find("p").addClass("hidden");
