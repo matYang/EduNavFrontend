@@ -21,6 +21,8 @@
                 },
 
                 'user': {
+                    vcode: '/vcode',
+                    vcodeimg: '/vcodeimg',
                     findSession: '/findSession',
                     smsVerification: '/smsVerification',
                     register: '/registration',

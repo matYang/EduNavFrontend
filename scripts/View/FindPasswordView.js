@@ -24,6 +24,14 @@ var FindPasswordView = BaseFormView.extend({
             buildValidatorDiv: Utilities.defaultValidDivBuilder
         }),
         new BaseField({
+            name: "短信验证码",
+            fieldId: "vcodeInput",
+            type: "text",
+            mandatory: true,
+            modelAttr: "vcode",
+            buildValidatorDiv: Utilities.defaultValidDivBuilder
+        }),
+        new BaseField({
             name: "密码",
             fieldId: "findPassPassInput",
             type: "text",
@@ -69,7 +77,9 @@ var FindPasswordView = BaseFormView.extend({
         var that = this;
         if (state !== 2) {
             $("#getSms").on("click", function () {
-                if (Utilities.phoneValid(that.model.accountIdentifier).valid) {
+                if(!that.model.vcode){
+                    $("#smsInfo").html("请输入图片验证码");
+                }else if (Utilities.phoneValid(that.model.phone).valid) {
                     app.userManager.forgetPassword(that.model.accountIdentifier, Utilities.defaultSmsRequestHandler($("#getSms"), $("#smsInfo")));
                 } else {
                     $("#smsInfo").html("请先输入正确的手机号");
@@ -78,6 +88,10 @@ var FindPasswordView = BaseFormView.extend({
             });
             BaseFormView.prototype.bindEvents.call(this);
         }
+        this.$el.on('click', '.vcode', function (e) {
+            var src = $(this).attr('src').split('?')[0]+'?_='+(new Date()).getTime();
+            $(this).attr('src', src)
+        });
     },
     submitAction: function () {
         app.userManager.recoverPassword(this.model, {

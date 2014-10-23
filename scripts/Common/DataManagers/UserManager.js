@@ -44,11 +44,11 @@
         });
     };
 
-    //免注册 快速登陆使用短信验证
+    //免注册 快速登陆使用短信验证 obj -->{phone:'',vcode:''}
     //该方法用于发送注册时的验证短信
-    UserManager.prototype.fastLoginSms = function (phone, callback) {
+    UserManager.prototype.fastLoginSms = function (obj, callback) {
         var self = this;
-        if (!phone) {
+        if (!obj.phone||!obj.vcode) {
             Info.warn('UserManager::smsVerification:: invalid parameter');
             return;
         }
@@ -65,7 +65,7 @@
         $.ajax({
             type: 'GET',
             url: ApiResource.user_fastLoginSms,
-            data: $.param({'phone': phone}),
+            data: $.param(obj),
             dataType: 'json',
             success: function (data) {
                 if (callback) {

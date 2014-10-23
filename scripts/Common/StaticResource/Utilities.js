@@ -307,7 +307,7 @@ var Utilities = {
                 var count_down = function (k) {
                     if (k > 0) {
                         setTimeout(function () {
-                            $button.html('重新发送(' + k + '秒)');
+                            $button.html('重新发送' + k + '秒');
                             count_down(k - 1);
                         }, 1000)
                     } else {

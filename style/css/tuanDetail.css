@@ -851,9 +851,17 @@
     width: 125px;
     padding: 10px 0 10px 10px;
 }
+.vcode {
+    width: 100px;
+    height: 45px;
+    cursor: pointer;
+}
+#sign_content .vcode {
+    float: right;
+}
 
 #login_fast .identifying {
-    width: 102px;
+    width: 100px;
     height: 45px;
     display: block;
     background-color: #2cb175;
