@@ -277,20 +277,17 @@ var PartnerSearchView = Backbone.View.extend({
         //行政区和商圈
         $filter_district.on("click", '.subCategory', function () {
             var v = $(this).attr("data-value");
-            var index;
             if (v == "location") {
                 $filter_district.find("span").removeClass("active");
                 $filter_district.find(".span").removeClass("active");
                 $(this).addClass("active");
-                index = 0;
             } else if (v == "circle") {
                 $filter_district.find("span").removeClass("active");
                 $filter_district.find(".span").removeClass("active");
                 $(this).addClass("active");
-                index = 1;
             }
             $filter_district.find("p").addClass("hidden");
-            $filter_district.find("p:eq(" + index + ")").removeClass("hidden");
+            $filter_district.find("p[data-parentvalue="+ v +"]").removeClass("hidden");
         });
         $filter_district.find("span[data-value=noreq]").on("click", function () {
             $("#filter_district").find("p").addClass("hidden");
@@ -507,10 +504,9 @@ var TopTuanWidgetView = Backbone.View.extend({
         tuans.forEach(function (tuan) {
             that.tuan = tuan._toJSON();
             buf+='<li class="bjqs-slide" style="display: list-item;"> ';
-            buf+='<a href="#tuan/' + that.tuan.id + '"><img src="' + that.tuan.photoList[1].url + '" title="' + that.tuan.title + '"></a>';
+            buf+='<a target="_blank" href="#tuan/' + that.tuan.id + '"><img src="' + that.tuan.photoList[0].url + '" title="' + that.tuan.title + '"></a>';
             buf += '';
             buf+='</li>';
-
         });
         buf += '</ul>';
         this.$el.find("#topTuanWidgetMain").append(buf);
@@ -518,15 +514,12 @@ var TopTuanWidgetView = Backbone.View.extend({
 
 
         $('#topTuanWidgetMain').bjqs({
-            height: 150,
+            height: 125,
             width: 250,
-//            'responsive' : true,
-            animtype:'slide',
+//            responsive: true,
             hoverpause : true,
             showmarkers : false,
-            //'automatic' : true,
-            'nexttext' : '>', // Text for 'next' button (can use HTML)
-            'prevtext' : '<'// Text for 'next' button
+            showcontrols: false
         });
         this.bindEvents();
     },
