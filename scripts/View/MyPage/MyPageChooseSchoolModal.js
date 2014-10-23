@@ -1,6 +1,6 @@
-/**
- * Created by jz on 2014/8/31.
- */
+///**
+// * Created by jz on 2014/8/31.
+// */
 //var ChooseSchoolView = Backbone.View.extend({
 //    form: false,
 //    modalClass: 'schoolModal',
