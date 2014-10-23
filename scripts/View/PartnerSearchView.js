@@ -510,7 +510,6 @@ var TopTuanWidgetView = Backbone.View.extend({
             buf+='<a target="_blank" href="#tuan/' + that.tuan.id + '"><img src="' + that.tuan.photoList[0].url + '" title="' + that.tuan.title + '"></a>';
             buf += '';
             buf+='</li>';
-
         });
         buf += '</ul>';
         this.$el.find("#topTuanWidgetMain").append(buf);
@@ -518,15 +517,12 @@ var TopTuanWidgetView = Backbone.View.extend({
 
 
         $('#topTuanWidgetMain').bjqs({
-            height: 150,
+            height: 125,
             width: 250,
-//            'responsive' : true,
-            animtype:'slide',
+//            responsive: true,
             hoverpause : true,
             showmarkers : false,
-            //'automatic' : true,
-            'nexttext' : '>', // Text for 'next' button (can use HTML)
-            'prevtext' : '<'// Text for 'next' button
+            showcontrols: false
         });
         this.bindEvents();
     },

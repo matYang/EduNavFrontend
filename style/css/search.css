@@ -1328,20 +1328,20 @@
     cursor: pointer;
 }
 /*lunbotu*/
-ul.bjqs{position:relative; list-style:none;padding:0;margin:0;overflow:hidden; display:none;}
-li.bjqs-slide{position:absolute; display:none;}
-ul.bjqs-controls{list-style:none;margin:0;padding:0;z-index:9999;}
-ul.bjqs-controls.v-centered li a{position:absolute;}
-ul.bjqs-controls.v-centered li.bjqs-next a{right:0;}
-ul.bjqs-controls.v-centered li.bjqs-prev a{left:0;}
-ol.bjqs-markers{list-style: none; padding: 0; margin: 0; width:100%;}
-ol.bjqs-markers.h-centered{text-align: center;}
-ol.bjqs-markers li{display:inline;}
-ol.bjqs-markers li a{display:inline-block;}
-p.bjqs-caption{display:block;width:96%;margin:0;padding:2%;position:absolute;bottom:0;}
+#topTuanWidgetMain ul.bjqs{position:relative; list-style:none;padding:0;margin:0;overflow:hidden; display:none;}
+#topTuanWidgetMain li.bjqs-slide{position:absolute; display:none;}
+#topTuanWidgetMain ul.bjqs-controls{list-style:none;margin:0;padding:0;z-index:9999;}
+#topTuanWidgetMain ul.bjqs-controls.v-centered li a{position:absolute;}
+#topTuanWidgetMain ul.bjqs-controls.v-centered li.bjqs-next a{right:0;}
+#topTuanWidgetMain ul.bjqs-controls.v-centered li.bjqs-prev a{left:0;}
+#topTuanWidgetMain ol.bjqs-markers{list-style: none; padding: 0; margin: 0; width:100%;}
+#topTuanWidgetMain ol.bjqs-markers.h-centered{text-align: center;}
+#topTuanWidgetMain ol.bjqs-markers li{display:inline;}
+#topTuanWidgetMain ol.bjqs-markers li a{display:inline-block;}
+#topTuanWidgetMain p.bjqs-caption{display:block;width:96%;margin:0;padding:2%;position:absolute;bottom:0;}
 
 
-ul.bjqs-controls.v-centered li a{
+#topTuanWidgetMain ul.bjqs-controls.v-centered li a{
     display:block;
     padding:8px;
     background:#fff;
@@ -1353,12 +1353,12 @@ ul.bjqs-controls.v-centered li a{
     -webkit-transform: translateZ(0);
 }
 
-ul.bjqs-controls.v-centered li a:hover{
+#topTuanWidgetMain ul.bjqs-controls.v-centered li a:hover{
     background:#000;
     color:#fff;
 }
 
-ol.bjqs-markers li a{
+#topTuanWidgetMain ol.bjqs-markers li a{
     padding:5px 10px;
     background:#000;
     color:#fff;
@@ -1366,12 +1366,12 @@ ol.bjqs-markers li a{
     text-decoration: none;
 }
 
-ol.bjqs-markers li.active-marker a,
-ol.bjqs-markers li a:hover{
+#topTuanWidgetMain ol.bjqs-markers li.active-marker a,
+#topTuanWidgetMain ol.bjqs-markers li a:hover{
     background: #999;
 }
 
-p.bjqs-caption{
+#topTuanWidgetMain p.bjqs-caption{
     background: #fff;
     filter: alpha(opacity=50);
     opacity: 0.5;
@@ -1381,4 +1381,7 @@ p.bjqs-caption{
 
 #topTuanWidgetMain ol{display: none;}
 #topTuanWidgetMain li.bjqs-slide{ display: none;}
-#topTuanWidgetMain li.bjqs-slide img{width: 250px; height: 150px;}
+#topTuanWidgetMain li.bjqs-slide img{
+    width: 250px;
+    height: 125px;
+}

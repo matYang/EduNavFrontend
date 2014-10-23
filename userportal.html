@@ -2249,14 +2249,14 @@
         <div class="dash-line"></div>
 
 
-        <p class="desc">
+        <p class="desc" style="height: 43px; overflow:hidden;text-overflow: ellipsis;">
             <i class="i_partner i_partner_hat"></i>
             <%_.each(categoryList,function(c){%>
             <span><%=c.name%></span>
             <%})%>
         </p>
 
-        <p class="desc" style="margin-bottom: 15px;">
+        <p class="desc" style="margin-bottom: 15px; padding: 0;">
             <i class="i_partner i_partner_location"></i>
             <%_.each(addressList,function(a){%>
             <span><%=a.circleName%></span>
