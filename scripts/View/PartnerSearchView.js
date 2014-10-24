@@ -31,7 +31,7 @@ var PartnerSearchView = Backbone.View.extend({
             app.topBarView.activeNavigator('inst');
             // $("title").html("找课程 | " + this.sr.toTitleString());//that will be too long
             this.$el.html(this.template);
-            this.searchBarView = new SearchBarView({searchType: 'partner', style: 'white', name:this.sr.get('instName')});
+            this.searchBarView = new SearchBarView({searchType: 'partner', style: 'white', name: this.sr.get('instName')});
             this.applyWidgetView = new ApplyWidgetView();
             this.topTuanWidgetView = new TopTuanWidgetView();
             //异步加载目录和地址
@@ -287,7 +287,7 @@ var PartnerSearchView = Backbone.View.extend({
                 $(this).addClass("active");
             }
             $filter_district.find("p").addClass("hidden");
-            $filter_district.find("p[data-parentvalue="+ v +"]").removeClass("hidden");
+            $filter_district.find("p[data-parentvalue=" + v + "]").removeClass("hidden");
         });
         $filter_district.find("span[data-value=noreq]").on("click", function () {
             $("#filter_district").find("p").addClass("hidden");
@@ -480,10 +480,10 @@ var PartnerSearchView = Backbone.View.extend({
 
 //右侧轮播图
 var TopTuanWidgetView = Backbone.View.extend({
-    el:'#topTuanWidget',
+    el: '#topTuanWidget',
     template: _.template(tpl.get("topTuanWidgetView")),
-    initialize:function(){
-        _.bindAll(this, 'render', 'bindEvents','close');
+    initialize: function () {
+        _.bindAll(this, 'render', 'bindEvents', 'close');
         var that = this;
         app.viewRegistration.register(this);
         this.isClosed = false;
@@ -492,7 +492,7 @@ var TopTuanWidgetView = Backbone.View.extend({
         });
         this.render();
     },
-    render:function(tuans){
+    render: function (tuans) {
         var that = this;
 
         if (!tuans || !tuans.length) {
@@ -500,30 +500,29 @@ var TopTuanWidgetView = Backbone.View.extend({
         }
         this.$el.html(this.template());
         var buf = '';
-        buf+='<ul class="bjqs" style="display: block;">';
+        buf += '<ul class="bjqs">';
         tuans.forEach(function (tuan) {
             that.tuan = tuan._toJSON();
-            buf+='<li class="bjqs-slide" style="display: list-item;"> ';
-            buf+='<a target="_blank" href="#tuan/' + that.tuan.id + '"><img src="' + that.tuan.photoList[0].url + '" title="' + that.tuan.title + '"></a>';
-            buf += '';
-            buf+='</li>';
+            buf += '<li class="bjqs-slide"> ';
+            buf += '<a class="adv" target="_blank" href="#tuan/' + that.tuan.id + '"><img src="' + that.tuan.photoList[0].url + '" title="' + that.tuan.title + '"></a>';
+            buf += '</li>';
         });
         buf += '</ul>';
         this.$el.find("#topTuanWidgetMain").append(buf);
 
 
-
         $('#topTuanWidgetMain').bjqs({
             height: 125,
             width: 250,
-//            responsive: true,
-            hoverpause : true,
-            showmarkers : false,
+            responsive: true,
+            automatic: true,
+            keyboardnav: false,
+            showmarkers: false,
             showcontrols: false
         });
         this.bindEvents();
     },
-    bindEvents:function(){
+    bindEvents: function () {
 
     },
 

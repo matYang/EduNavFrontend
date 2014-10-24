@@ -243,7 +243,7 @@
                 <div class="login_Area">
                     <ul class="title">
                         <li upid="login_content"><span>会员登录</span></li>
-                        <li class="active" upid="sign_content"><span>快捷登录（免注册）</span></li>
+                        <li class="active" upid="sign_content"><span>登录（免注册）</span></li>
                     </ul>
                     <ul id="login_content" class="content">
                         <li class="errorMsg text-center text-error"></li>
@@ -258,9 +258,13 @@
                     </ul>
                     <ul id="sign_content" class="content">
                         <li class="errorMsg text-center text-error"></li>
-                        <li><input class="txt_phone" type="text" placeholder="请输入手机号"></li>
+                        <li><input id="phoneInput" class="txt_phone" type="text" placeholder="请输入手机号"></li>
                         <li>
-                            <input class="txt_passed" type="password" placeholder="请输入验证码">
+                            <input id="vcodeInput" class="txt_passed" type="text" placeholder="请输入图片验证码">
+                            <img class="vcode" src="/api/v2/user/vcodeimg" alt="图片验证码" width="100" height="45"/>
+                        </li>
+                        <li>
+                            <input id="smsVInput" class="txt_passed" type="text" placeholder="请输入短信验证码">
                             <a class="js_sendSms identifying">发送验证码</a>
                         </li>
                         <li style="height:30px;">
@@ -757,8 +761,9 @@
             <a class="search_btn"></a>
 
         </div>
-        <div class="search_tip">
+        <div class="search_tip unselectable">
             <span style="color: #333">大家都在搜:</span>
+            <%if(searchType=='course'){%>
             <span class="search_span">四六级</span>
             <span class="search_span">考研</span>
             <span class="search_span">会计证</span>
@@ -767,6 +772,16 @@
             <span class="search_span">托福</span>
             <span class="search_span">导游证</span>
             <span class="search_span">教师证</span>
+            <%}else if(searchType=='partner'){%>
+            <span class="search_span">百创教育</span>
+            <span class="search_span">欧风</span>
+            <span class="search_span">品学教育</span>
+            <span class="search_span">启德学府</span>
+            <span class="search_span">瑞恩培训</span>
+            <span class="search_span">天策</span>
+            <span class="search_span">新世界教育</span>
+            <%}%>
+
         </div>
     </div>
 </script>
@@ -1189,6 +1204,14 @@
                         <dd>
                             <input id="invitationCodeInput" type="text" class="text" value=""
                                    placeholder="由朋友邀请注册的用户会获得额外的优惠">
+                        </dd>
+                    </dl>
+                    <dl class="clearfix" id="vcodeContainer">
+                        <dt>图片验证码：</dt>
+                        <dd>
+                            <input id="vcodeInput" type="text" class="text" value=""
+                                   placeholder="右侧图片邀请码">
+                            <img class="vcode" src="api/v2/user/vcodeimg" alt="图片验证码" width="100" height="45"/>
                         </dd>
                     </dl>
                     <dl class="clearfix" id="authContainer">
@@ -2225,20 +2248,20 @@
             <a class="star-score"><%=rating%>分</a>
             <div class="comment">&nbsp;(<i class="commentsTotal">--</i>人评价)</div>
 
-            <a class="tuanIcon">团购></a>
+            <!--<a class="tuanIcon">团购></a>-->
         </div>
 
         <div class="dash-line"></div>
 
 
-        <p class="desc">
+        <p class="desc" style="height: 43px; overflow:hidden;text-overflow: ellipsis;">
             <i class="i_partner i_partner_hat"></i>
             <%_.each(categoryList,function(c){%>
             <span><%=c.name%></span>
             <%})%>
         </p>
 
-        <p class="desc" style="margin-bottom: 15px;">
+        <p class="desc" style="margin-bottom: 15px; padding: 0;">
             <i class="i_partner i_partner_location"></i>
             <%_.each(addressList,function(a){%>
             <span><%=a.circleName%></span>
@@ -2334,7 +2357,7 @@
         <%_.each(addressList,function(address, index){%>
         <dl data-index="<%=index%>" class="addressItem map_list <%if(addressList.length > 3){%>map_info<%}%>">
             <dt>
-                <%=address.realAddress||course.instName%>
+                <%=address.realAddress||instName%>
                 <i></i>
             </dt>
             <dd><%=address.detail%></dd>
@@ -2374,11 +2397,11 @@
                 <label>校区地址：</label>
 
                 <div class="span">
-                    <ul>
+                    <ol>
                         <% _.each(addressList,function(address){%>
-                        <ol class=""> <%=address.realAddress%> : <%=address.detail%></ol>
+                        <li class=""> <%=address.realAddress || instName %> : <%=address.detail%></li>
                         <%})%>
-                    </ul>
+                    </ol>
                 </div>
 
             </dd>
@@ -2425,18 +2448,21 @@
         <dl class="tuan_content_3" class="content_inner" style="border: 0">
             <dt><i class="dticon"></i>课程介绍</dt>
             <dd class="clearfix">
-                <select name="select" id="courseChoose">
-                    <option value="课程分类">课程分类</option>
-                    <%_.each(categoryList,function(c){%>
-                    <option value="<%=c.name%>" data-id="<%=c.id%>"><%=c.name%></option>
-                    <%})%>
-                </select>
-                <select name="select" id="locationChoose">
-                    <option value="上课地点">上课地点</option>
-                    <%_.each(addressList,function(a){%>
-                    <option value="<%=a.circleName%>" data-id="<%=a.id%>"><%=a.circleName%></option>
-                    <%})%>
-                </select>
+                <div>
+                    <select name="select" id="courseChoose">
+                        <option>课程分类</option>
+                        <%_.each(categoryList,function(c){%>
+                        <option value="<%=c.id%>"><%=c.name%></option>
+                        <%})%>
+                    </select>
+                </div>
+                <div>
+                    <select name="select" id="locationChoose">
+                        <option>上课地点</option>
+
+                    </select>
+                </div>
+
                 <input id="searchInPartner" type="button" value="OK" class="btn_search"/>
             </dd>
         </dl>
@@ -2511,7 +2537,13 @@
                 <%= courseName %>
             </p>
         </td>
-        <td class="addr"><p><%=circleName%></p></td>
+        <td class="addr">
+            <%if(circleName){%>
+            <p><%=circleName%></p>
+            <%}else{%>
+            <p>-- --</p>
+            <%}%>
+        </td>
         <td>
             ￥<%if(originalPrice){%><%=originalPrice%>
             <%}else if(price){%><%=price%>
@@ -2656,35 +2688,85 @@
     </ul>
     <i class="tuan_sorter_bottom"></i>
 </div>
-<!--左边-->
+<!--右边-->
 <div id="tuan_fright" class="fright w_250">
     <div class="tuan_btn clearfix ">
         <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
         <a class="btnconsult bookNow" data-value="<%=courseId%>">申请免费试听</a>
     </div>
 
+    <!--爱上课承诺-->
+    <div class="promise panel_bg clearfix">
+        <h3>爱上课承诺</h3>
+        <ul class="promisePic clearfix">
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_1.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4>免费</h4>
+                                <span>免费咨询，免费测评，免费预约，免费试听。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_2.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4 style="background-color: #ffc000;">优质</h4>
+                                <span>只推荐优质课程，只合作优秀学校，避免欺诈陷阱。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_3.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4 style="background-color: #66bb8a;">享优惠</h4>
+                                <span>订课程享网站返现，最高可达1526元；团购特卖月月有。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </ul>
 
+    </div>
 
+    <%if(addressLat != 0 && addressLng != 0){%>
     <div class="map panel_bg clearfix">
         <div id="smallMap" style="width: 230px;height:180px"></div>
 
-        <!--<a class="map-pic" href="http://api.map.baidu.com/geocoder?address=<%= address%>&output=html" target="_blank">-->
-        <!--<img src="http://api.map.baidu.com/staticimage?width=230&height=180&markers=<%= address.split('（')[0].split('(')[0] %>"-->
-        <!--alt="<%= address%>"/>-->
-        <!--</a>-->
         <dl class="map_list">
             <dt><%= instName %></dt>
             <dd><%= address %></dd>
         </dl>
     </div>
+    <%}%>
+
+    <a class="adv" onclick="doyoo.util.openChat('g=82548');return false;">
+        <img src="./style/images/widget_a.jpg" alt="别人家的孩子都在学什么"/>
+    </a>
+
     <div class="hot_tuan panel_bg hidden">
         <h4>一周热门团购</h4>
         <a></a>
     </div>
 </div>
-<!--left end-->
 
-<!--右边-->
+<!--左边-->
 <div id="course_fright" class="fleft w_730 panel_bg">
 <div class="tuan_content clearfix">
 <dl>
@@ -2692,7 +2774,7 @@
         <table width="100%" cellpadding="0" cellspacing="0">
             <thead>
             <tr>
-                <td width="25%">开课日期</td>
+                <td width="30%">开课日期</td>
                 <td width="25%">上课时间</td>
                 <td class="addr">上课地点</td>
                 <td width="20%">--</td>
@@ -2904,7 +2986,7 @@
         </div>
     </dd>
 </dl>
-<dl class="tuan_content_4" class="content_inner">
+<dl class="tuan_content_4 content_inner">
     <dt><i class="dticon"></i>评价<!--<span>我有2条评价</span>--></dt>
     <dd class="clearfix">
         <div class="evaluate">
@@ -3628,6 +3710,13 @@
                                    placeholder="请输入手机号(请不要输入特殊符号或者字母)"><span class="right"></span>
                         </dd>
                     </dl>
+                    <dl class="clearfix verify">
+                        <dt><span>*</span>图片验证码:</dt>
+                        <dd>
+                            <input id="vcodeInput" type="text" class="text">
+                            <img class="vcode" src="api/v2/user/vcodeimg" width="100" height="45" alt="图片验证码"/>
+                        </dd>
+                    </dl>
                     <dl class="clearfix verify" id="authContainer">
                         <dt><span>*</span>手机验证码:</dt>
                         <dd>
@@ -4260,6 +4349,57 @@
         <a class="btnbuy">立即抢购</a>
         <a class="btnconsult" onclick="doyoo.util.openChat('g=82548');return false;">咨询</a>
     </div>
+
+    <!--爱上课承诺-->
+    <div class="promise panel_bg clearfix">
+        <h3>爱上课承诺</h3>
+        <ul class="promisePic clearfix">
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_1.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4>免费</h4>
+                                <span>免费咨询，免费测评，免费预约，免费试听。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_2.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4 style="background-color: #ffc000;">优质</h4>
+                                <span>只推荐优质课程，只合作优秀学校，避免欺诈陷阱。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_3.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4 style="background-color: #66bb8a;">享优惠</h4>
+                                <span>订课程享网站返现，最高可达1526元；团购特卖月月有。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
     <div class="map panel_bg clearfix">
         <div id="smallMap" style="width: 230px;height:180px"></div>
         <%_.each(addressList,function(address, index){%>

@@ -71,8 +71,8 @@ var LoginFastModal = Modal.extend({
     },
     fastLogin: function () {
         var that = this;
-        var phone = $("#sign_content .txt_phone").val(),
-            smsVerify = $("#sign_content .txt_passed").val();
+        var phone = $("#phoneInput").val(),
+            smsVerify = $("#smsVInput").val();
         var $valid = $('#sign_content .errorMsg');
         $valid.html('');
         if (!phone) {
