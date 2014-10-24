@@ -11,7 +11,7 @@ function loadScripts() {
     bscript.src = "http://api.map.baidu.com/api?v=2.0&ak=RpBwKog20Z0RI2LXj092ZsFv&callback=initMap";
     document.body.appendChild(bscript);
 
-    //高德地图
+    //高德地图
 //    var gscript = document.createElement("script");
 //    gscript.type = "text/javascript";
 //    gscript.src = "http://webapi.amap.com/maps?v=1.3&key=3f89354600cf9d5895859de81ca4ce12&callback=initGMap";
