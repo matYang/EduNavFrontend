@@ -6,10 +6,6 @@ var TuanView = Backbone.View.extend({
             _.bindAll(this, "render", "renderCircle", "bindEvents", "close");
             app.viewRegistration.register(this);
             app.topBarView.activeNavigator('tuan');
-
-//            this.searchRepresentation = app.storage.getSearchRepresentationCache("tuan");
-//            this.searchRepresentation = new TuanSearchRepresentation();
-
             this.render();
         },
         render: function () {
@@ -248,7 +244,6 @@ var TuanResultView = MultiPageView.extend({
             success: self.renderSearchResults,
             error: self.renderError
         });
-        app.storage.setSearchRepresentationCache(self.sr, "tuan");
     },
     renderError: function (data) {
         if (!this.isClosed) {
@@ -260,7 +255,6 @@ var TuanResultView = MultiPageView.extend({
             var searchResults = data || new Courses();
             this.messages = searchResults;
             var total = searchResults.total;//当前筛选条件下的数据总数
-            this.startIndex = 0;
             this.render();
         }
     },

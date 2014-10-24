@@ -63,7 +63,7 @@ var PartnerSearchRepresentation = Backbone.Model.extend({
         var queryObj = _.clone(this.attributes);
         queryObj.createTimeStart = typeof this.get('createTimeStart') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('createTimeStart'));
         queryObj.createTimeEnd = typeof this.get('createTimeEnd') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('createTimeEnd'));
-        queryObj.instName = encodeURIComponent(queryObj.instName);
+//        queryObj.instName = encodeURIComponent(queryObj.instName);
         return queryObj;
     },
     toTitleString: function () {
