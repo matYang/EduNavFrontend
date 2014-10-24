@@ -284,7 +284,7 @@ var PartnerDetailView = Backbone.View.extend({
 
 
         //分享
-        jiathis_config.summary = "学霸是怎样练成的？坚持不懈爱上课！强力推荐个好学校http://www.ishangke.cn/#inst/"+ that.partner.id +"，注册即送800元现金券，还有更多课程团购低至一折，快跟我一起去上课吧";
+        jiathis_config.summary = "学霸是怎样练成的？坚持不懈爱上课！强力推荐个好学校http://www.ishangke.cn/#inst/"+ that.partner.get("id") +"，注册即送800元现金券，还有更多课程团购低至一折，快跟我一起去上课吧";
 
         $('.invitation_share a').on('click',function(e){
             e.preventDefault();
