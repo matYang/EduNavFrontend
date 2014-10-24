@@ -102,7 +102,7 @@ testMockObj = {
         .set('schooltimeWeek', [1, 2]).set('schooltimeDay', [3, 4])
         .set('startTime1', '0900').set('finishTime1', '1100')
         .set("instName", "南京新东方").set("address", "南京市江宁区胜太路109号大才大厦6楼（AB）")
-        .set("addressLat",45).set("addressLng",85)
+        .set("addressLat",0).set("addressLng",0)
         .set("circleName", '仙林大学城1')
         .set("status", EnumConfig.CourseStatus.onlined)
         .set("bookingType", 1)

@@ -53,6 +53,9 @@ var CourseDetailView = Backbone.View.extend({
                 lat: 0,
                 lng: 0
             };
+            if(locationObj.addressLat == 0 && locationObj.addressLng == 0){
+                return;
+            }
             //新建地图view
             this.mapView = new MapView({mapElId: 'smallMap'});
             this.mapView.addMarker(locationObj);
