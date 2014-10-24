@@ -99,7 +99,7 @@ var CourseSearchRepresentation = Backbone.Model.extend({
         queryObj.startDateEnd = typeof this.get('startDateEnd') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('startDateEnd'));
         queryObj.createTimeStart = typeof this.get('createTimeStart') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('createTimeStart'));
         queryObj.createTimeEnd = typeof this.get('createTimeEnd') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('createTimeEnd'));
-        queryObj.courseName = encodeURIComponent(queryObj.courseName);
+//        queryObj.courseName = encodeURIComponent(queryObj.courseName);
         return queryObj;
     },
     toTitleString: function () {
