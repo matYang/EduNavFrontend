@@ -74,9 +74,6 @@
 
     //constructor
     this.StorageService = function () {
-        this.searchQueryState = {
-            
-        };
         this.compareList = [];
         this.views = {};
         //detect once upon initialization
@@ -85,19 +82,13 @@
         // live storage variables
         if (!this.isSupported || !localStorage.sr) {
             this.sr = {
-                course: new CourseSearchRepresentation (),
-                tuan: new CourseSearchRepresentation (),
-                user: new UserSearchRepresentation (),
-                booking: new BookingSearchRepresentation ()
+                course: new CourseSearchRepresentation ()
             };
         }
         if (this.isSupported) {
             if (localStorage.sr) {
                 this.sr = {
-                    course: new CourseSearchRepresentation (localStorage.sr.course, {parse: true}),
-                    tuan: new TuanSearchRepresentation (localStorage.sr.tuan, {parse: true}),
-                    user: new UserSearchRepresentation (localStorage.sr.user, {parse: true}),
-                    booking: new BookingSearchRepresentation (localStorage.sr.booking, {parse: true})
+                    course: new CourseSearchRepresentation (localStorage.sr.course, {parse: true})
                 };
             } 
             if (localStorage.compareList) {
@@ -117,10 +108,6 @@
     /**
      * expecting: UserLocaton object, date object, searchType
      */
-
-    StorageService.prototype.getSearchQueryState = function () {
-        return this.searchQueryState;
-    };
 
     StorageService.prototype.getSearchRepresentationCache = function (type) {
         return typeof this.sr[type] !== 'undefined' ? this.sr[type] : new UserSearchRepresentation ();

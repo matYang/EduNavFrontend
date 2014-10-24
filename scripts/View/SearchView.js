@@ -24,7 +24,7 @@ var SearchView = Backbone.View.extend({
                 this.sr = new CourseSearchRepresentation();
                 this.sr.castFromQuery(params.searchKey);
                 //重新保存查询结果
-                app.storage.setSearchRepresentationCache(this.sr, true);
+                app.storage.setSearchRepresentationCache(this.sr, 'course');
             } catch (e) {
                 app.navigate("search", {replace: true, trigger: false});
                 this.sr = new CourseSearchRepresentation();

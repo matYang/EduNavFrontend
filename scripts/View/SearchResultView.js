@@ -112,24 +112,10 @@ var SearchResultView = MultiPageView.extend({
     },
     renderSearchResults: function (data) {
         if (!this.isClosed) {
-            //prevent memory leaks
-//            if (typeof BMap !== "undefined" && !this.compareWidgetView.map) {
-//                this.compareWidgetView.renderMap();
-//            }
-//            if (this.compareWidgetView.map) {
-//                this.compareWidgetView.map.removeAllMarkers();
-//            }
             var searchResults = data || new Courses();
-            this.allMessages = searchResults;
             this.messages = searchResults;
             var total = searchResults.total;
             $("#resultNum").html(total);
-//            for (i = 0; i < searchResults.length; i++) {
-//                if (this.compareWidgetView.map) {
-//                    this.compareWidgetView.map.getLatLng(searchResults.at(i).get("address"), searchResults.at(i).get("instName"));
-//                }
-//            }
-            this.startIndex = 0;
             this.render();
         }
     },

@@ -74,7 +74,6 @@ var PartnerSearchResultView = MultiPageView.extend({
             success: self.renderSearchResults,
             error: self.renderError
         });
-        app.storage.setSearchRepresentationCache(self.sr, "course");
     },
     renderError: function (data) {
         if (!this.isClosed) {
@@ -83,24 +82,10 @@ var PartnerSearchResultView = MultiPageView.extend({
     },
     renderSearchResults: function (data) {
         if (!this.isClosed) {
-            //prevent memory leaks
-//            if (typeof BMap !== "undefined" && !this.compareWidgetView.map) {
-//                this.compareWidgetView.renderMap();
-//            }
-//            if (this.compareWidgetView.map) {
-//                this.compareWidgetView.map.removeAllMarkers();
-//            }
             var searchResults = data || new Courses();
-            this.allMessages = searchResults;
             this.messages = searchResults;
             var total = searchResults.total;
             $("#resultNum").html(total);
-//            for (i = 0; i < searchResults.length; i++) {
-//                if (this.compareWidgetView.map) {
-//                    this.compareWidgetView.map.getLatLng(searchResults.at(i).get("address"), searchResults.at(i).get("instName"));
-//                }
-//            }
-            this.startIndex = 0;
             this.render();
         }
     },
