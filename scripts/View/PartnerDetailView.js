@@ -63,7 +63,9 @@ var PartnerDetailView = Backbone.View.extend({
         var address = [],circle = {};
         address = this.partnerJson.addressList;
        _.each(address, function (v, index) {
-            circle[v.circleName] = v.circleId;
+           if(v.circleId){
+               circle[v.circleName] = v.circleId;
+           }
         });
         //that.circle = circle;
         this.$el.html(this.template(this.partner._toJSON()));
