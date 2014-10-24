@@ -133,8 +133,10 @@ var RegistrationView = BaseFormView.extend({
         }, 1000);
     },
     submitAction: function () {
-        this.model.authCode = this.model.authCode.toUpperCase();
-        app.userManager.registerUser(this.model, {
+        var model = _.clone(this.model);
+        model.vcode = undefined
+        model.authCode = model.authCode.toUpperCase();
+        app.userManager.registerUser(model, {
             success: this.successCallback,
             error: function (data) {
                 Info.displayNotice(data.message);
