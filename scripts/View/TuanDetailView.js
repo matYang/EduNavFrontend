@@ -86,14 +86,14 @@ var TuanDetailView = Backbone.View.extend({
     },
     //在地图脚本回调结束后会执行renderMap见mapLoadScript
     renderMap: function () {
-        if (typeof BMap !== 'undefined' && !this.mapView) {
+        if (typeof BMap !== 'undefined' && !this.mapView && this.tuan) {
+            //新建地图view
+            this.mapView = new MapView({mapElId: 'smallMap'});
             var self = this;
             self.addressList = [];
             this.tuan.get('addressList').forEach(function (address) {
                 self.addressList.push((address.toLocationObj(self.tuan.get('course').get('instName'))));
             });
-            //新建地图view
-            this.mapView = new MapView({mapElId: 'smallMap'});
             this.mapView.addMarker(self.addressList[0]);
             $('#smallMap').after('<a class="margin-top J_viewLarge block text-center">查看完整地图</a>');
             $('.addressItem').hover(function () {

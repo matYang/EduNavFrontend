@@ -2,7 +2,7 @@ var PartnerDetailView = Backbone.View.extend({
     el: "#content",
     template: _.template(tpl.get('partnerDetail')),
     initialize: function (opt) {
-        _.bindAll(this, 'render', 'bindEvents', 'renderMap', 'close','openModal');
+        _.bindAll(this, 'render', 'bindEvents', 'renderMap', 'close', 'openModal');
         app.viewRegistration.register(this);
         this.isClosed = false;
         this.sr = new CourseSearchRepresentation();
@@ -17,7 +17,7 @@ var PartnerDetailView = Backbone.View.extend({
                 self.partner = partner.clone();
                 self.partnerPhotos = partner.get('classPhotoList').slice(2);//从第三张图片开始为团购详情页面的图片index = 2
                 self.teacherList = partner.get("teacherList");
-                self.addressList =partner.get("addressList");
+                self.addressList = partner.get("addressList");
 
                 self.render();
                 self.bindEvents();
@@ -27,9 +27,10 @@ var PartnerDetailView = Backbone.View.extend({
             }
         });
     },
-    //todo 在地图脚本回调结束后会执行renderMap见mapLoadScript
+    //todo 在地图脚本回调结束后会执行renderMap见 mapLoadScript.js
     renderMap: function () {
-        if (typeof BMap !== 'undefined' && !this.mapView) {
+        // map and data is ready && map view is not created yet
+        if (typeof BMap !== 'undefined' && !this.mapView && this.partner) {
             var self = this;
             self.addressList = [];
             this.partner.get('addressList').forEach(function (address) {
@@ -37,7 +38,7 @@ var PartnerDetailView = Backbone.View.extend({
             });
             //新建地图view
             this.mapView = new MapView({mapElId: 'smallMap'});
-            this.mapView.addMarker( self.addressList[0]);
+            this.mapView.addMarker(self.addressList[0]);
             $('#smallMap').after('<a class="margin-top block J_viewLarge text-center">查看完整地图</a>');
             $('.addressItem').hover(function () {
                 var a = BMap;
@@ -48,7 +49,7 @@ var PartnerDetailView = Backbone.View.extend({
             }, function () {
             });
             this.$el.on('click', '.J_viewLarge', function () {
-                self.mapModal = new MapModal({addressList:  self.addressList});
+                self.mapModal = new MapModal({addressList: self.addressList});
                 var $body = $('body');
                 var width = $body.width() - 40;
                 var height = $body.height() - 60;
@@ -60,9 +61,9 @@ var PartnerDetailView = Backbone.View.extend({
         var that = this;
         this.partnerJson = this.partner._toJSON();
         $(document).scrollTop(0);
-        var address = [],circle = {};
+        var address = [], circle = {};
         address = this.partnerJson.addressList;
-       _.each(address, function (v, index) {
+        _.each(address, function (v, index) {
             circle[v.circleName] = v.circleId;
         });
         //that.circle = circle;
@@ -70,12 +71,12 @@ var PartnerDetailView = Backbone.View.extend({
 
         var buf = '';
         _.each(circle, function (v, k) {
-            buf += '<option value="'+ v +'">' + k + '</option>';
+            buf += '<option value="' + v + '">' + k + '</option>';
         });
 
         $("#locationChoose").append(buf);
 
-        this.belongPartnerListView = new BelongPartnerListView({partner : this.partner});
+        this.belongPartnerListView = new BelongPartnerListView({partner: this.partner});
 //        //新建相关课程视图
 //        this.relatedCourseListView = new RelatedCourseListView({course: this.partner});
 //        document.title = "爱上课 | " + this.partner.get("category").name +
@@ -94,8 +95,6 @@ var PartnerDetailView = Backbone.View.extend({
 
 
         //this.compareWidget = new CourseDetailCompareWidgetView();
-
-
 
 
         //这里是为了声明页面加载完毕
@@ -136,8 +135,8 @@ var PartnerDetailView = Backbone.View.extend({
         this.commentsView = new CommentsView({
             sr: sr,
             parentView: that,
-            config:{
-                showForm:false
+            config: {
+                showForm: false
             }
         });
 
@@ -230,7 +229,6 @@ var PartnerDetailView = Backbone.View.extend({
         });
 
 
-
         //课程详情中广告图的事件绑定
         $('.partnerDetail .bannerImg').on('click', function () {
             //打开客服系统
@@ -248,31 +246,31 @@ var PartnerDetailView = Backbone.View.extend({
         var catAll = 0;
         var locAll = 0;
         //搜索该机构的课程
-        $("#searchInPartner").on("click",function(){
+        $("#searchInPartner").on("click", function () {
             var cat = $("#courseChoose").val();
-            if(cat=="课程分类"){
+            if (cat == "课程分类") {
                 cat = undefined;
             }
             var loc = $("#locationChoose").val();
-            if(loc=="上课地点"){
+            if (loc == "上课地点") {
                 loc = undefined;
             }
             //var loc = $("#locationChoose").attr("data-id");
             that.belongPartnerListView.close();
             that.belongPartnerListView = new BelongPartnerListView({
-                partner : that.partner,
-                categoryId:cat,
-                locationId:loc
+                partner: that.partner,
+                categoryId: cat,
+                locationId: loc
             });
         });
 
         //申请人工选课
-        $("#applyCourse").on("click",function(){
-           that.applyCourseModal = new ApplyCourseModal();
+        $("#applyCourse").on("click", function () {
+            that.applyCourseModal = new ApplyCourseModal();
             that.applyCourseModal.show();
         });
 
-        $(".tuanIcon").on("click",function(){
+        $(".tuanIcon").on("click", function () {
             $.smoothScroll({
                 scrollTarget: ".tuan_content_3",
                 offset: -63,
@@ -282,9 +280,9 @@ var PartnerDetailView = Backbone.View.extend({
 
 
         //分享
-        jiathis_config.summary = "学霸是怎样练成的？坚持不懈爱上课！强力推荐个好学校http://www.ishangke.cn/#inst/"+ that.partner.get('id') +"，注册即送800元现金券，还有更多课程团购低至一折，快跟我一起去上课吧";
+        jiathis_config.summary = "学霸是怎样练成的？坚持不懈爱上课！强力推荐个好学校http://www.ishangke.cn/#inst/" + that.partner.get('id') + "，注册即送800元现金券，还有更多课程团购低至一折，快跟我一起去上课吧";
 
-        $('.invitation_share a').on('click',function(e){
+        $('.invitation_share a').on('click', function (e) {
             e.preventDefault();
             if (!app.sessionManager.sessionModel.get("invitationCode")) {
                 self.openModal();
@@ -294,7 +292,7 @@ var PartnerDetailView = Backbone.View.extend({
         });
         /*bind events end*/
         //load jiathis js for social share
-        if($('#jiathis_script').length === 0){
+        if ($('#jiathis_script').length === 0) {
             this.$el.append('<script id="jiathis_script" type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1407735888243953" charset="utf-8"></script>');
         }
         var userAgent = window.navigator.userAgent.toLowerCase();
@@ -308,13 +306,13 @@ var PartnerDetailView = Backbone.View.extend({
         }
     },
     openModal: function () {
-        this.usernameModal = new UsernameModal({view:this});
+        this.usernameModal = new UsernameModal({view: this});
     },
 
     close: function () {
         if (!this.isClosed) {
             this.$el.empty();
-            if(this.applyCourseModal){
+            if (this.applyCourseModal) {
                 this.applyCourseModal.close();
             }
             if (this.compareWidget) {
@@ -323,10 +321,10 @@ var PartnerDetailView = Backbone.View.extend({
             if (this.commentsView) {
                 this.commentsView.close();
             }
-            if(this.teacherModal){
+            if (this.teacherModal) {
                 this.teacherModal.close();
             }
-            if(this.freeTrialModal){
+            if (this.freeTrialModal) {
                 this.freeTrialModal.close();
             }
             $(document).off("scroll");

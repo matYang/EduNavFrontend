@@ -43,7 +43,7 @@ var CourseDetailView = Backbone.View.extend({
     },
     //在地图脚本回调结束后会执行renderMap见mapLoadScript
     renderMap: function () {
-        if (typeof BMap !== 'undefined' && !this.mapView) {
+        if (typeof BMap !== 'undefined' && !this.mapView && this.course) {
             var self = this;
             var locationObj = {
                 name: this.course.get('address'),
@@ -150,7 +150,7 @@ var CourseDetailView = Backbone.View.extend({
         var sr = new CommentSearchRepresentation();
         sr.set('courseTemplateId', that.courseTemplateId);
         this.commentsView = new CommentsView({
-            sr:sr,
+            sr: sr,
             parentView: that
         });
         this.renderMap();

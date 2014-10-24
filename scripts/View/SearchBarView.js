@@ -20,7 +20,7 @@ var SearchBarView = Backbone.View.extend({
         this.bindEvents();
     },
     render: function (name) {
-        this.$el.html(this.template({searchText:this.searchType==='course'?'课程':'学校',searchType: this.searchType, style: this.style, name: name}));
+        this.$el.html(this.template({searchText: this.searchType === 'course' ? '课程' : '学校', searchType: this.searchType, style: this.style, name: name}));
     },
     /**
      * 1#课程搜索和机构搜索的切换--改变当前的搜索状态变量
@@ -29,9 +29,9 @@ var SearchBarView = Backbone.View.extend({
     bindEvents: function () {
         var that = this;
         //1#搜索类型的切换
-        this.$el.on('click','.search_typeSelect li',function(e){
+        this.$el.on('click', '.search_typeSelect li', function (e) {
             var $this = $(this);
-            if($this.hasClass('active')){
+            if ($this.hasClass('active')) {
                 return
             }
             that.searchType = $this.data('value');
@@ -58,7 +58,7 @@ var SearchBarView = Backbone.View.extend({
 
     //根据输入的字段以及搜索类型进行搜索
     doSearch: function (name) {
-        if (name) {
+        if ($.trim(name)) {
             var sr;
             if (this.searchType === 'course') {
                 sr = new CourseSearchRepresentation();
