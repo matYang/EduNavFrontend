@@ -127,7 +127,7 @@
         }
         if (this.hasSession()) {
             //todo should remove
-            Info.alert('已经登录，请刷新页面');
+//            Info.alert('已经登录，请刷新页面');
             window.location.reload();
         }
         $.ajax({
