@@ -2555,7 +2555,13 @@
                 <%= courseName %>
             </p>
         </td>
-        <td class="addr"><p><%=circleName%></p></td>
+        <td class="addr">
+            <%if(circleName){%>
+            <p><%=circleName%></p>
+            <%}else{%>
+            <p>-- --</p>
+            <%}%>
+        </td>
         <td>
             ￥<%if(originalPrice){%><%=originalPrice%>
             <%}else if(price){%><%=price%>
@@ -2731,7 +2737,7 @@
                 <table width="100%" cellpadding="0" cellspacing="0">
                     <thead>
                     <tr>
-                        <td width="25%">开课日期</td>
+                        <td width="30%">开课日期</td>
                         <td width="25%">上课时间</td>
                         <td class="addr">上课地点</td>
                         <td width="20%">--</td>

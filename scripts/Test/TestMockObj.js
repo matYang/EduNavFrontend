@@ -37,8 +37,8 @@ testMockObj = {
         .set('detail', '南京市秦淮区人民政府').set('realAddress', '秦淮校区')
         .set('circleName','江宁大学城').set('circleId' ,1),
     testAddress3: (new Address()).set('id', 3)
-        .set('detail', '南京市秦淮区中山南路89号江苏文化大厦22楼').set('realAddress', '中山南路校区')
-        .set('circleName','城区其它商业区').set('circleId' ,3),
+        .set('detail', '南京市秦淮区中山南路89号江苏文化大厦22楼').set('realAddress', '中山南路校区'),
+
 
     testComments: new Comments(),
     testComment1: new Comment().set('id', 1).set('user', {phone: '133****23232'})
