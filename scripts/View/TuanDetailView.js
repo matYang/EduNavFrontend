@@ -208,12 +208,14 @@ var TuanDetailView = Backbone.View.extend({
                 $("#tuanDetail .w_730").css("margin-top", "63px");
                 $(".tuan_btn").show();
                 $(".tuan_sorterArea").addClass("stickyHeader");
+                $(".promise").addClass("hidden");
             }
             else if (scroH < navH) {
                 $("#tuan_fright").removeClass("stickyHeader");
                 $("#tuanDetail .w_730").css("margin-top", "");
                 $(".tuan_btn").hide();
                 $(".tuan_sorterArea").removeClass("stickyHeader");
+                $(".promise").removeClass("hidden");
             }
 
             $(".tuan_sorter li a").removeClass("active");

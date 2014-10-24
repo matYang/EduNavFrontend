@@ -684,7 +684,7 @@
 /*地图*/
 .w_250 .map {
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .w_250 .map-pic {
@@ -996,7 +996,7 @@
 
 
 /*承诺*/
-.promise{  padding: 15px 0 15px 15px; margin-bottom: 10px;}
+.promise{  padding: 15px 0 15px 15px; margin-bottom: 5px;}
 .promise h3{ color: #349e6F; float: left; width: 90px; line-height: 30px;}
 .promise .promisePic{ width: 145px; float: right;}
 .promise .promisePic li{ width: 40px; padding-left: 5px; float: left; }

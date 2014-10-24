@@ -48,9 +48,14 @@ var CourseDetailView = Backbone.View.extend({
             var locationObj = {
                 name: this.course.get('address'),
                 label: this.course.get('instName'),
+                addressLat: this.course.get('addressLat'),
+                addressLng: this.course.get('addressLng'),
                 lat: 0,
                 lng: 0
             };
+            if(locationObj.addressLat == 0 && locationObj.addressLng == 0){
+                return;
+            }
             //新建地图view
             this.mapView = new MapView({mapElId: 'smallMap'});
             this.mapView.addMarker(locationObj);
@@ -224,12 +229,14 @@ var CourseDetailView = Backbone.View.extend({
                 $(".courseDetail .w_730").css("margin-top", "63px");
                 $(".tuan_btn").show();
                 $(".tuan_sorterArea").addClass("stickyHeader");
+                $(".promise").addClass("hidden");
             }
             else if (scroH < navH) {
                 $("#tuan_fright").removeClass("stickyHeader");
                 $(".courseDetail .w_730").css("margin-top", "");
                 $(".tuan_btn").hide();
                 $(".tuan_sorterArea").removeClass("stickyHeader");
+                $(".promise").removeClass("hidden");
             }
 
             $(".tuan_sorter li a").removeClass("active");

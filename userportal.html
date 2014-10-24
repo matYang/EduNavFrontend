@@ -2713,8 +2713,57 @@
         <a class="btnconsult bookNow" data-value="<%=courseId%>">申请免费试听</a>
     </div>
 
+    <!--爱上课承诺-->
+    <div class="promise panel_bg clearfix">
+        <h3>爱上课承诺</h3>
+        <ul class="promisePic clearfix">
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_1.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4>免费</h4>
+                                <span>免费咨询，免费测评，免费预约，免费试听。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_2.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4 style="background-color: #ffc000;">优质</h4>
+                                <span>只推荐优质课程，只合作优秀学校，避免欺诈陷阱。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_3.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4 style="background-color: #66bb8a;">享优惠</h4>
+                                <span>订课程享网站返现，最高可达1526元；团购特卖月月有。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </ul>
 
+    </div>
 
+    <%if(addressLat != 0 && addressLng != 0){%>
     <div class="map panel_bg clearfix">
         <div id="smallMap" style="width: 230px;height:180px"></div>
 
@@ -2723,6 +2772,12 @@
             <dd><%= address %></dd>
         </dl>
     </div>
+    <%}%>
+
+    <a class="adv" onclick="doyoo.util.openChat('g=82548');return false;">
+        <img src="./style/images/widget_a.jpg" alt="别人家的孩子都在学什么"/>
+    </a>
+
     <div class="hot_tuan panel_bg hidden">
         <h4>一周热门团购</h4>
         <a></a>
@@ -4312,6 +4367,57 @@
         <a class="btnbuy">立即抢购</a>
         <a class="btnconsult" onclick="doyoo.util.openChat('g=82548');return false;">咨询</a>
     </div>
+
+    <!--爱上课承诺-->
+    <div class="promise panel_bg clearfix">
+        <h3>爱上课承诺</h3>
+        <ul class="promisePic clearfix">
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_1.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4>免费</h4>
+                                <span>免费咨询，免费测评，免费预约，免费试听。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_2.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4 style="background-color: #ffc000;">优质</h4>
+                                <span>只推荐优质课程，只合作优秀学校，避免欺诈陷阱。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="has-tip-t">
+                    <a class="promiseIcon">
+                        <img src="style/images/promise_3.png" alt=""/>
+                        <div class="tip-t">
+                            <div class="arrow-t"></div>
+                            <div class="tip_content-t">
+                                <h4 style="background-color: #66bb8a;">享优惠</h4>
+                                <span>订课程享网站返现，最高可达1526元；团购特卖月月有。</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
     <div class="map panel_bg clearfix">
         <div id="smallMap" style="width: 230px;height:180px"></div>
         <%_.each(addressList,function(address, index){%>

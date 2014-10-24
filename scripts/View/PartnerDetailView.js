@@ -329,10 +329,13 @@ var PartnerDetailView = Backbone.View.extend({
             if (this.freeTrialModal) {
                 this.freeTrialModal.close();
             }
+            if(this.belongPartnerListView){
+                this.belongPartnerListView.close();
+            }
             $(document).off("scroll");
             $("#courseNavigateTab").off();
             this.isClosed = true;
-            this.belongPartnerListView.close();
+
             app.partnerDetailView = null;
         }
     }
