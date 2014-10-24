@@ -165,7 +165,7 @@ var SearchView = Backbone.View.extend({
                 );
                 scbuf = [];
             }
-            $("#search_category").append(cbuf.join(""));
+            $("#search_category").prepend(cbuf.join(""));
             this.showCategory();
             this.bindCatSearchEvents();
         }
