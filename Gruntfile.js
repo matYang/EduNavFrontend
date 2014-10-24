@@ -9,8 +9,6 @@ module.exports = function (grunt) {
                     "scripts/Lib/backbone-min.js",
                     "scripts/Lib/jquery-ui.min.js",
                     "scripts/Lib/jquery.raty.js",
-//                  "scripts/Lib/jquery-ui-1.10.0.custom.min.js",
-//                  "scripts/Lib/datepicker-zh.js",
                     "scripts/Lib/jquery.placeholder.min.js",
                     "scripts/Lib/jquery.smooth-scroll.min.js",
                     "scripts/Lib/json2.js",
@@ -61,6 +59,7 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'build/style/css/style-min.css': [
+                        "style/lib/*.css",
                         'style/css/Global.css',
                         'style/css/notifier-base.css',
                         'style/css/common-ui.css',
@@ -79,7 +78,8 @@ module.exports = function (grunt) {
                         'style/css/booking.css',
                         'style/css/aboutUs.css',
                         'style/css/tuan.css',
-                        'style/css/tuanDetail.css'
+                        'style/css/tuanDetail.css',
+                        'style/css/partnerDetail.css'
                     ]
                 }
             }

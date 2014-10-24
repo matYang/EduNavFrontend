@@ -93,34 +93,6 @@ var CompareWidgetView = Backbone.View.extend({
     },
     renderMap: function () {
         var self = this;
-//        if (typeof BMap == "undefined" || this.map || !app.searchView) {
-//            return
-//        }
-//        var i = 0, courses = [];
-//        if (app.searchView && app.searchView.searchResultView&&app.searchView.searchResultView.messages) {
-//            courses = app.searchView.searchResultView.messages;
-//        }
-//        //新建百度地图view
-//        this.map = new MainMapView();
-//        if (app.searchView && app.searchView.searchRepresentation) {
-//            if (app.searchView.searchRepresentation.get("district")) {
-//                this.map.map.centerAndZoom((app.searchView.searchRepresentation.get("city")  || "南京") + "市" +
-//                    app.searchView.searchRepresentation.get("district") + "区", 12);
-//            } else {
-//                this.map.map.centerAndZoom(app.searchView.searchRepresentation.get("city") || "南京", 10);
-//            }
-//        } else {
-//            this.map.map.centerAndZoom("南京", 9);
-//        }
-//        //过滤相同的地址后再发送请求 减少请求次数
-//        var courseLocationMap = {};
-//        for (i = 0; i < courses.length; i++) {
-//            courseLocationMap[courses.at(i).get("instName")] = courses.at(i).get("address");
-//        }
-//
-//        _.each(courseLocationMap,function(address,instName){
-//            self.map.getLatLng(address, instName);
-//        });
     },
     close: function () {
         if (!this.isClosed) {
