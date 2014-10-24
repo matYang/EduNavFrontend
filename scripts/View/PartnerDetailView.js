@@ -58,15 +58,15 @@ var PartnerDetailView = Backbone.View.extend({
     },
     render: function () {
         var that = this;
-        this.partner = this.partner._toJSON();
+        this.partnerJson = this.partner._toJSON();
         $(document).scrollTop(0);
         var address = [],circle = {};
-        address = this.partner.addressList;
+        address = this.partnerJson.addressList;
        _.each(address, function (v, index) {
             circle[v.circleName] = v.circleId;
         });
         //that.circle = circle;
-        this.$el.html(this.template(this.partner));
+        this.$el.html(this.template(this.partner._toJSON()));
 
         var buf = '';
         _.each(circle, function (v, k) {
@@ -132,7 +132,7 @@ var PartnerDetailView = Backbone.View.extend({
         $(".detailArea .pic .pic_list").find("i:first").removeClass("active");
 //
         var sr = new CommentSearchRepresentation();
-        sr.set('partnerId', that.partner.id);
+        sr.set('partnerId', that.partner.get("id"));
         this.commentsView = new CommentsView({
             sr: sr,
             parentView: that,
