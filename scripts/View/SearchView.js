@@ -40,7 +40,7 @@ var SearchView = Backbone.View.extend({
             app.topBarView.activeNavigator('search');
             // $("title").html("找课程 | " + this.sr.toTitleString());//that will be too long
             this.$el.append(this.template);
-            this.searchBarView = new SearchBarView({searchType: 'course', style: 'white', name:this.sr.get('courseName')});
+            this.searchBarView = new SearchBarView({searchType: 'course', style: 'white', name: this.sr.get('courseName')});
             //异步加载目录和地址
             app.generalManager.getCategories(this);//传递this,会在获取目录之后调用this.renderCategories()
             app.generalManager.getLocations(this);//同上 调用this.renderLocations
@@ -97,34 +97,21 @@ var SearchView = Backbone.View.extend({
         var locationValue = this.sr.get("locationValue");
         var circleValue = this.sr.get("circleValue");
         var $dist = $("#filter_district");
+        var text;
         this.titleObj.city = "南京";
         if (!locationValue && !circleValue) {
             $dist.find("span[data-value=noreq]").addClass("active");
-        } /*else if (locationValue == "location" || circleValue == "circle") {
-         $dist.find("span[data-value=noreq]").removeClass("active");
-         //如果原本选择的是行政区
-         if (locationValue == "location") {
-         $dist.find("span[data-value=" + locationValue + "]").addClass("active");
-         var text = $dist.find("span[data-value=" + locationValue + "]").html();
-         $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
-         $dist.find("p[data-parentvalue=" + locationValue + "]").removeClass("hidden");
-         } else {//如果原本选择的是商圈
-         $dist.find("span[data-value=" + circleValue + "]").addClass("active");
-         var text = $dist.find("span[data-value=" + circleValue + "]").html();
-         $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
-         $dist.find("p[data-parentvalue=" + circleValue + "]").removeClass("hidden");
-         }
-         } */ else if (locationValue) {//如果原本选择的是行政区下的小标题
+        } else if (locationValue) {//如果原本选择的是行政区下的小标题
             $dist.find("span[data-value=noreq]").removeClass("active");
             $dist.find("span[data-value=" + locationValue + "]").addClass("active");
             $dist.find("p[data-parentvalue='location']").removeClass("hidden");
-            var text = $dist.find("span[data-value=" + locationValue + "]").html();
+            text = $dist.find("span[data-value=" + locationValue + "]").html();
             $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: locationValue, text: text}));
         } else {//如果原本选择的是商圈下的小标题
             $dist.find("span[data-value=noreq]").removeClass("active");
             $dist.find("span[data-value=" + circleValue + "]").addClass("active");
             $dist.find("p[data-parentvalue='circle']").removeClass("hidden");
-            var text = $dist.find("span[data-value=" + circleValue + "]").html();
+            text = $dist.find("span[data-value=" + circleValue + "]").html();
             $("#searchReqs").append(this.reqTemplate({criteria: "district", dataValue: circleValue, text: text}));
         }
 
@@ -373,7 +360,7 @@ var SearchView = Backbone.View.extend({
                 $(this).addClass("active");
             }
             $filter_district.find("p").addClass("hidden");
-            $filter_district.find("p[data-parentvalue="+ v +"]").removeClass("hidden");
+            $filter_district.find("p[data-parentvalue=" + v + "]").removeClass("hidden");
         });
         $filter_district.find("span[data-value=noreq]").on("click", function () {
             $("#filter_district").find("p").addClass("hidden");
@@ -452,24 +439,24 @@ var SearchView = Backbone.View.extend({
     bindCatSearchEvents: function () {
         var that = this;
         /*一级目录的点击事件 data-value为两位数字*/
-        $("#search_category").on("click", "li", function (e) {
+        this.$el.on("click", "#search_category li", function (e) {
             $("#filter_subCategory").removeClass("hidden");
             if ($(this).hasClass("active")) {
                 return;
             }
-            var dataId = $(e.target).data("value"), cv;
+            var dataValue = $(this).data("value"), cv;
             //如果是最右侧的用户搜索文字 阻止事件冒泡（改变active状态）
-            if (dataId == 'search') {
+            if (dataValue == 'search') {
                 e.stopPropagation();
                 return
             }
-            that.sr.set("categoryValue", dataId);
+            that.sr.set("categoryValue", dataValue);
             that.showCategory(that.sr.get("categoryValue"));
             that.courseSearch();
         });
-        $("#search_category").on("click", ".clearSearch", function (e) {
+        this.$el.on("click", "#search_category .clearSearch", function (e) {
             that.clearCourseNameSearch();
-            return;
+            e.stopPropagation();
         });
     },
     clearCourseNameSearch: function () {
@@ -502,13 +489,13 @@ var SearchView = Backbone.View.extend({
         var criteria = $filter.attr("id").split("_")[1], dataValue; //提取过滤类型 如'filter_classMode' to 'classMode'
         $("a[data-cri=" + criteria + "]").remove();
         dataValue = $target.data("value");
+        var $searchReqs = $("#searchReqs");
         if (dataValue !== "noreq") {
             //显示当前结果的过滤条件
-            $("#searchReqs").append(this.reqTemplate(
+            $searchReqs.append(this.reqTemplate(
                 {criteria: criteria, dataValue: dataValue, text: $filter.find("[data-value=" + dataValue + "]").html()}
             ));
         }
-        var $searchReqs = $("#searchReqs");
         if ($searchReqs.find("a").length) {
             $searchReqs.removeClass("hidden");
         } else {
@@ -675,6 +662,7 @@ var SearchView = Backbone.View.extend({
             this.searchResultView = null;
             $(document).off("scroll");
             $("#searchReqs").off();
+            this.$el.off();
             this.$el.empty();
             this.isClosed = true;
             app.searchView = null;

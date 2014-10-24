@@ -34,20 +34,10 @@ var Partner = Backbone.Model.extend({
             }
             data.id = parseInt(data.id, 10);
             data.partnerId = data.id;
-            data.wholeName = decodeURI(data.wholeName);
-
             data.rating = Utilities.parseNum(data.rating, 1);
 
-            data.partnerIntro = decodeURI(data.partnerIntro);
-            data.partnerDistinction = decodeURI(data.partnerDistinction);
-            data.hqLocation = decodeURI(data.hqLocation);
-
             data.partnerQualification = Utilities.toInt(data.partnerQualification);
-            data.reference = decodeURI(data.reference);
-
             data.status = parseInt(data.status, 10);
-            data.instName = decodeURI(data.instName);
-            data.logoUrl = decodeURIComponent(data.logoUrl);
 
             if (data.classPhotoList) {
                 for (i = 0; i < data.classPhotoList.length; i++) {

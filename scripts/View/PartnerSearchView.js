@@ -265,7 +265,7 @@ var PartnerSearchView = Backbone.View.extend({
                 //todo 去除课程名的搜索
                 //移除第5个标签 清空搜索input框 移除满足的条件
                 that.clearInstNameSearch();
-                return;
+                e.stopPropagation();
             }
             var $filterCri = $("#filter_" + cri);
             that.filterResult($filterCri, $filterCri.find("[data-value=noreq]").removeClass("active"));
@@ -355,7 +355,7 @@ var PartnerSearchView = Backbone.View.extend({
             if ($(this).hasClass("active")) {
                 return;
             }
-            var dataValue = $(e.target).data("value"), cv;
+            var dataValue = $(this).data("value"), cv;
             //如果是最右侧的用户搜索文字 阻止事件冒泡（改变active状态）
             if (dataValue == 'search') {
                 e.stopPropagation();
