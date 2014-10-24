@@ -325,6 +325,9 @@ var Utilities = {
                     $info.html(data.message || "发送失败，请检查网络正常并重试");
                 }
                 $button.val("重新发送").prop("disabled", false);
+                var $vcodeImg = $('.vcode');
+                var src = $vcodeImg.attr('src').split('?')[0] + '?_=' + (new Date()).getTime();
+                $vcodeImg.attr('src', src)
             }
         };
     },

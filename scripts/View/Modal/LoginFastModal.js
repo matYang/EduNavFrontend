@@ -3,7 +3,7 @@ var LoginFastModal = Modal.extend({
     modalEl: '#loginFastModal',
     template: _.template(tpl.get("loginFastModal")),
     static: false,
-    keyboard:true,
+    keyboard: true,
     //todo 可传入参数
     initialize: function (opt) {
         Modal.prototype.initialize.call(this);
@@ -25,16 +25,16 @@ var LoginFastModal = Modal.extend({
         });
 
         /*//点击背景隐藏登陆框 需要防止事件冒泡（弹出框位于$el中,$el为遮罩层）
-        this.$el.on('click', function () {
-            that.hide();
-        });*/
+         this.$el.on('click', function () {
+         that.hide();
+         });*/
         //todo 需修改为target何currentTarget的判断 防止事件冒泡
         this.$el.on('click', '.login_Area', function (e) {
             e.stopPropagation();
         });
 
         this.$el.on('click', '.vcode', function (e) {
-            var src = $(this).attr('src').split('?')[0]+'?_='+(new Date()).getTime();
+            var src = $(this).attr('src').split('?')[0] + '?_=' + (new Date()).getTime();
             $(this).attr('src', src)
         });
 
@@ -60,7 +60,7 @@ var LoginFastModal = Modal.extend({
                 $valid.html('<i class="icon icon-error"></i>请输入图片验证码');
                 return;
             }
-            app.userManager.fastLoginSms({phone:phone,vcode:vcode}, Utilities.defaultSmsRequestHandler($(e.target)))
+            app.userManager.fastLoginSms({phone: phone, vcode: vcode}, Utilities.defaultSmsRequestHandler($(e.target), $valid))
         });
         this.$el.on("click", '.btnLogin', function () {
             that.login();

@@ -32,7 +32,7 @@ var PartnerSearchRepresentation = Backbone.Model.extend({
         queryObj.useCache = undefined;
         for (var property in queryObj) {
             if (queryObj.hasOwnProperty(property) && typeof queryObj[property] !== 'undefined') {
-                queryArr.push(property + '=' + queryObj[property]);
+                queryArr.push(property + '=' + encodeURIComponent(queryObj[property]));
             }
         }
 
@@ -51,7 +51,7 @@ var PartnerSearchRepresentation = Backbone.Model.extend({
         }
         for (var property in queryObj) {
             if (queryObj.hasOwnProperty(property) && typeof queryObj[property] !== 'undefined') {
-                this.set(property, decodeURI(queryObj[property]));
+                this.set(property, decodeURIComponent(queryObj[property]));
                 if (property.indexOf("Date") > 0) {
                     this.set(property, Utilities.castFromAPIFormat(queryObj[property]));
                 }
@@ -63,6 +63,7 @@ var PartnerSearchRepresentation = Backbone.Model.extend({
         var queryObj = _.clone(this.attributes);
         queryObj.createTimeStart = typeof this.get('createTimeStart') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('createTimeStart'));
         queryObj.createTimeEnd = typeof this.get('createTimeEnd') === 'undefined' ? undefined : Utilities.castToAPIFormat(this.get('createTimeEnd'));
+        queryObj.instName = encodeURIComponent(queryObj.instName);
         return queryObj;
     },
     toTitleString: function () {
