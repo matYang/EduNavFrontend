@@ -66,9 +66,7 @@ var RegistrationView = BaseFormView.extend({
                 type: "text",
                 mandatory: false,
                 modelAttr: "vcode",
-                validatorContainer: $("#vcodeContainer"),
-                buildValidatorDiv: Utilities.defaultValidDivBuilder
-
+                validatorContainer: $("#vcodeContainer")
             }),
             new BaseField({
                 name: "验证码",
