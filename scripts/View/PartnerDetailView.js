@@ -270,13 +270,13 @@ var PartnerDetailView = Backbone.View.extend({
             that.applyCourseModal.show();
         });
 
-        $(".tuanIcon").on("click", function () {
-            $.smoothScroll({
-                scrollTarget: ".tuan_content_3",
-                offset: -63,
-                speed: 650
-            });
-        });
+//        $(".tuanIcon").on("click",function(){
+//            $.smoothScroll({
+//                scrollTarget: ".tuan_content_3",
+//                offset: -63,
+//                speed: 650
+//            });
+//        });
 
 
         //分享
