@@ -276,13 +276,13 @@
                     </ul>
                     <ul id="sign_content" class="content">
                         <li class="errorMsg text-center text-error"></li>
-                        <li><input class="txt_phone" type="text" placeholder="请输入手机号"></li>
+                        <li><input id="phoneInput" class="txt_phone" type="text" placeholder="请输入手机号"></li>
                         <li>
                             <input id="vcodeInput" class="txt_passed" type="text" placeholder="请输入图片验证码">
                             <img class="vcode" src="/api/v2/user/vcodeimg" alt="图片验证码" width="100" height="45"/>
                         </li>
                         <li>
-                            <input class="txt_passed" type="text" placeholder="请输入短信验证码">
+                            <input id="smsVInput" class="txt_passed" type="text" placeholder="请输入短信验证码">
                             <a class="js_sendSms identifying">发送验证码</a>
                         </li>
                         <li style="height:30px;">
