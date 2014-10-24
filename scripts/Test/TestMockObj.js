@@ -34,7 +34,7 @@ testMockObj = {
         .set('detail', '南京市江宁区胜太路109号大才大厦6楼').set('realAddress', '江宁校区')
         .set('circleName','江宁大学城').set('circleId' ,1),
     testAddress2: (new Address()).set('id', 2)
-        .set('detail', '南京市秦淮区人民政府').set('realAddress', '秦淮校区')
+        .set('detail', '南京市秦淮区人民政府').set('realAddress', '秦淮校区').set('lat',32.056032).set('lng',118.789967)
         .set('circleName','江宁大学城').set('circleId' ,1),
     testAddress3: (new Address()).set('id', 3)
         .set('detail', '南京市秦淮区中山南路89号江苏文化大厦22楼').set('realAddress', '中山南路校区'),
@@ -137,6 +137,7 @@ testMockObj = {
         .set('schooltimeWeek', [1, 2]).set('schooltimeDay', [3, 4])
         .set('startTime1', '0900').set('finishTime1', '1100')
         .set("instName", "南京新东方").set("address", "南京市玄武区南京市玄武区南京市玄武区南京市玄武区南京市玄武区南京市玄武区")
+        .set("addressLat",54).set("addressLng",11)
         .set("circleName", '仙林大学城1')
         .set("status", EnumConfig.CourseStatus.onlined)
         .set("bookingType", 1)

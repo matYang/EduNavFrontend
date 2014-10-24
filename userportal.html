@@ -2373,6 +2373,7 @@
     <div class="map panel_bg clearfix">
         <div id="smallMap" style="width: 230px;height:180px"></div>
         <%_.each(addressList,function(address, index){%>
+        <%if(address.lat){%>
         <dl data-index="<%=index%>" class="addressItem map_list <%if(addressList.length > 3){%>map_info<%}%>">
             <dt>
                 <%=address.realAddress||instName%>
@@ -2380,6 +2381,7 @@
             </dt>
             <dd><%=address.detail%></dd>
         </dl>
+        <%}%>
         <%})%>
     </div>
     <div class="hot_tuan panel_bg hidden">

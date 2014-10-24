@@ -31,7 +31,7 @@ var BelongPartnerListView = Backbone.View.extend({
 //        });
         if (courses && courses.length > 0) {
             var buf = [], course,cbuf = [];
-            var len = Math.min(20, courses.length);//最多显示前xx个课程
+            var len = Math.min(100, courses.length);//最多显示前xx个课程
 
             //需要将当期课程提至最上面,然后按照开课时间排序
             if (courses instanceof Backbone.Collection) {

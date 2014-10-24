@@ -34,7 +34,10 @@ var PartnerDetailView = Backbone.View.extend({
             var self = this;
             self.addressList = [];
             this.partner.get('addressList').forEach(function (address) {
-                self.addressList.push((address.toLocationObj(self.partner.get('instName'))));
+                if(address.toLocationObj(self.partner.get('instName')).lat)
+                {
+                    self.addressList.push((address.toLocationObj(self.partner.get('instName'))));
+                }
             });
             //新建地图view
             this.mapView = new MapView({mapElId: 'smallMap'});
