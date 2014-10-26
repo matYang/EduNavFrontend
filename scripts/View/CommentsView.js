@@ -16,6 +16,7 @@ var CommentsView = Backbone.View.extend({
         this.sr.set('count', 5);
 
         this.parentView = opt.parentView;
+        this.templateId = opt.templateId;z
         opt.config&&_.extend(this.config, opt.config);
 
         this.hasForm = opt.hasForm;//是否包含评论表单

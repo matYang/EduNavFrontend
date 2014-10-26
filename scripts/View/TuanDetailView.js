@@ -39,7 +39,8 @@ var TuanDetailView = Backbone.View.extend({
         sr.set('courseTemplateId', that.courseId);//这里的courseId后台返回的是模板id
         this.commentsView = new CommentsView({
             sr: sr,
-            parentView: that
+            parentView: that,
+            templateId: that.courseId
         });
         this.countDown = Utilities.countDown('#tuanDetail_endTime');//倒计时
         /*评价星级*/

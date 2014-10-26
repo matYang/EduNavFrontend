@@ -53,7 +53,7 @@ var CourseDetailView = Backbone.View.extend({
                 lat: 0,
                 lng: 0
             };
-            if(locationObj.addressLat == 0 && locationObj.addressLng == 0){
+            if (locationObj.addressLat == 0 && locationObj.addressLng == 0) {
                 return;
             }
             //新建地图view
@@ -156,7 +156,8 @@ var CourseDetailView = Backbone.View.extend({
         sr.set('courseTemplateId', that.courseTemplateId);
         this.commentsView = new CommentsView({
             sr: sr,
-            parentView: that
+            parentView: that,
+            templateId: that.courseTemplateId
         });
         this.renderMap();
     },

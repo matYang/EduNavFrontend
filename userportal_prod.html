@@ -2469,11 +2469,11 @@
         </dl>
         <dl>
             <dd class="clearfix">
-                <table width="100%" cellpadding="0" cellspacing="0">
+                <table class="table-list partner" width="100%" cellpadding="0" cellspacing="0">
                     <thead>
                     <tr>
                         <td width="30%">课程名称</td>
-                        <td class="addr">地点</td>
+                        <td width="35%" class="addr">地点</td>
                         <td width="10%">价格【?】</td>
                         <td width="25%">--</td>
                     </tr>
@@ -2526,7 +2526,7 @@
 
 <script type="text/template" id="tpl_belongPartnerRow">
     <tr>
-        <td style="text-align: left; padding-left: 4px;">
+        <td style="text-align: left;">
 
             <p data-id="<%= id %>">
                 <%if(groupBuyActivity){%>
@@ -2540,9 +2540,9 @@
         </td>
         <td class="addr">
             <%if(circleName){%>
-            <p><%=circleName%></p>
+            <%=circleName%>
             <%}else{%>
-            <p>-- --</p>
+            -- --
             <%}%>
         </td>
         <td>
@@ -2550,25 +2550,13 @@
             <%}else if(price){%><%=price%>
             <%}else{%>待定<%}%>
         </td>
-        <!--<td><span class="F_orange dotted-line"><%= commission/10 %>折</span></td>-->
         <td>
-            <!--if(current)-->
-            <!--<a class="inline-block">-->
-            <!--<button type="button" class="btn_gray">当前课程</button>-->
-            <!--</a>-->
-            <a class="inline-block">
-                <a href="#course/<%= id %>" target="_blank">
-                    <button type="button" class="btn_g" style="background-color: #47bc78;" data-value="<%= id %>">详情</button>
-                </a>
-
-                <%if(groupBuyActivity){%>
-                <a href="#tuan/<%= id %>" target="_blank">
-                    <button type="button" class="btn_g" data-value="<%= id %>">去团购 ></button>
-                </a>
-                <%}else{%>
-                <button type="button" class="btn_g " data-value="<%= id %>" onclick="doyoo.util.openChat('g=82548');return false;">获取优惠</button>
-                <%}%>
-            </a>
+            <a style="width:40px;" href="#course/<%= id %>" target="_blank">详情</a>
+            <%if(groupBuyActivity){%>
+            <a href="#tuan/<%= id %>" target="_blank">去团购</a>
+            <%}else{%>
+            <a onclick="doyoo.util.openChat('g=82548');return false;">获取优惠</a>
+            <%}%>
         </td>
     </tr>
 </script>
@@ -2772,7 +2760,7 @@
 <div class="tuan_content clearfix">
 <dl>
     <dd class="clearfix blank">
-        <table width="100%" cellpadding="0" cellspacing="0">
+        <table class="table-list" width="100%" cellpadding="0" cellspacing="0">
             <thead>
             <tr>
                 <td width="30%">开课日期</td>
@@ -2824,7 +2812,7 @@
         <%}%>
     </dd>
 </dl>
-<dl class="tuan_content_2" class="content_inner">
+<dl class="tuan_content_2 content_inner">
     <dt><i class="dticon"></i>学校师资</dt>
     <dd class="teacherArea clearfix">
         <% for (var i =0; i < teacherList.length; i++) { %>
@@ -2860,7 +2848,7 @@
     </dd>
     <%}%>
 </dl>
-<dl class="tuan_content_3" class="content_inner">
+<dl class="tuan_content_3 content_inner">
     <dt><i class="dticon"></i>特色服务</dt>
     <dd class="clearfix">
         <% if (passAgreement) { %>
@@ -3050,15 +3038,20 @@
                 <%if(startTime2){%>, <%=startTime2%> - <%=finishTime2%><%}%></p>
             <%}%>
         </td>
-        <td class="addr"><p><%=address%></p></td>
-        <!--<td><span class="F_orange dotted-line"><%= commission/10 %>折</span></td>-->
+        <td class="addr">
+            <%if(address){%>
+            <%if(address.length>=24){%>
+            <%= address.substr(0,24) %>...
+            <%}else{%>
+            <%=address%>
+            <%}%>
+            <%}else{%>
+            -- --
+            <%}%>
+        </td>
         <td>
-            <!--if(current)-->
-            <!--<a class="inline-block">-->
-            <!--<button type="button" class="btn_gray">当前课程</button>-->
-            <!--</a>-->
             <a class="inline-block">
-                <button type="button" class="btn_g bookNow" data-value="<%= id %>">申请免费试听</button>
+                <button type="button" class="btn_g" data-value="<%= id %>">申请免费试听</button>
             </a>
         </td>
     </tr>

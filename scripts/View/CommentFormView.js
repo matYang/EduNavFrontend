@@ -4,6 +4,7 @@ var CommentFormView = Backbone.View.extend({
     template: _.template(tpl.get("commentForm")),
     initialize: function (opt) {
         this.parentView = opt.parentView;
+        //评论是对课程模板的评论
         this.courseTemplateId = opt.courseTemplateId;
         this.isClosed = false;
         _.bindAll(this, "render", "bindEvents", "close");
@@ -16,7 +17,6 @@ var CommentFormView = Backbone.View.extend({
         var that = this;
         this.comment = new Comment();
         this.comment.set('courseTemplateId', this.courseTemplateId);
-        //todo 是否登陆
         this.$el.html(this.template());
         this.bindEvents();
     },

@@ -937,32 +937,51 @@
     background-color: #f4f4f4;
 }
 
-
-/*课程内容里面的表格*/
-
-.tuan_content thead tr td {
+/*详情页面中的富文本内容（课程介绍等）的表格*/
+.tuan_content table{
+    table-layout: fixed;
+}
+/*详情页面中的表格 课程中的相关课程和机构中的课程列表*/
+/*1#课程中的课程*/
+.table-list tbody tr:hover{
+    background:#eeeeee;
+}
+.table-list thead td {
     background-color: #79B0A5;
     color: #fff;
+    padding: 5px 2px;
 }
 
-.tuan_content tbody td button {
+.table-list tbody td{
+    padding: 5px 2px;
+    height: 40px;
+}
+.table-list tbody td button {
     background-color: #FF6A6A;
     border-radius: 17px;
 }
 
-.tuan_content tbody td {
-    padding: 5px 0;
-    height: 44px;
-
+/*2#机构中的课程*/
+.table-list.partner thead td{
+    height: 30px;
 }
-
-.tuan_content tbody td.addr {
+.table-list.partner td,
+.table-list.partner td p{
+    padding: 2px;
+    height: 20px;
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
 }
+.table-list.partner tbody td a {
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+}
+.table-list.partner tbody td a:hover{
+    text-decoration: underline;
+}
+
 
 .overlay_t{
     width: 114px; height: 74px;
@@ -993,8 +1012,6 @@
 .map_info i{ width: 9px; height: 5px; display: block; float: right; margin-top: 5px; background-image: url("../images/map_tip.png")}
 
 
-
-
 /*承诺*/
 .promise{  padding: 15px 0 15px 15px; margin-bottom: 5px;}
 .promise h3{ color: #349e6F; float: left; width: 90px; line-height: 30px;}
@@ -1018,5 +1035,4 @@
     padding: 10px 20px;
     line-height: 20px;
     font-size: 14px;
-
 }

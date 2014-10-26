@@ -10,6 +10,7 @@ var BelongPartnerListView = Backbone.View.extend({
         this.isClosed = false;
         this.partnerId = partner.get('id');
         this.sr = new CourseSearchRepresentation();
+        this.sr.set('count', 200);
         this.sr.set('enabled', undefined);
         this.sr.set('partnerId', this.partnerId);
         this.sr.set('categoryId', options.categoryId);
