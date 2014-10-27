@@ -16,6 +16,7 @@
 }
 
 .small_title .star-score{ margin-left: 8px;float: left;}
+.small_title .star-score:hover{ color: #333;}
 
 .small_title .tuanIcon{
     width: 52px;

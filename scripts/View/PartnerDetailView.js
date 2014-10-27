@@ -75,11 +75,16 @@ var PartnerDetailView = Backbone.View.extend({
         this.$el.html(this.template(this.partner._toJSON()));
 
         var buf = '';
+        var tbuf = '';
         _.each(circle, function (v, k) {
             buf += '<option value="' + v + '">' + k + '</option>';
         });
+        _.each(circle, function (v, k) {
+            tbuf += '<span>' + k + '</span>';
+        });
 
         $("#locationChoose").append(buf);
+        $("#circle_list").append(tbuf);
 
         this.belongPartnerListView = new BelongPartnerListView({partner: this.partner});
 //        //新建相关课程视图
@@ -219,6 +224,9 @@ var PartnerDetailView = Backbone.View.extend({
                 $(".promise").removeClass("hidden");
             }
 
+            //筛选框会不断变换高度。所以评价的高度会不确定
+            that.content4_top = $(".tuan_content_4").offset().top;//评价
+
             $(".tuan_sorter li a").removeClass("active");
             /*滚动到下方，导航栏变active*/
             var stickHeight = 64;
@@ -248,8 +256,6 @@ var PartnerDetailView = Backbone.View.extend({
             app.navigate("search/" + that.sr.toQueryString(), true);
         });
 
-        var catAll = 0;
-        var locAll = 0;
         //搜索该机构的课程
         $("#searchInPartner").on("click", function () {
             var cat = $("#courseChoose").val();
