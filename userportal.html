@@ -2835,6 +2835,28 @@
                 <div class="span"><%= suitableStudent %></div>
                 <%}%>
             </dd>
+
+            <% if (courseIntro) { %>
+            <dd class="clearfix">
+                <label>课程介绍：</label>
+
+                <div class="span"><%= courseIntro %></div>
+            </dd>
+            <%}%>
+            <% if (outline) { %>
+            <dd class="clearfix">
+                <label>课程提纲：</label>
+
+                <div class="span"><%= outline %></div>
+            </dd>
+            <%}%>
+            <% if (goal) { %>
+            <dd class="clearfix">
+                <label>教学目标：</label>
+
+                <div class="span"><%= goal %></div>
+            </dd>
+            <%}%>
         </dl>
         <dl class="tuan_content_2 content_inner">
             <dt><i class="dticon"></i>学校师资</dt>
@@ -3220,20 +3242,6 @@
             <td class="courseId_<%= course.id %>" width="195"><%= course.suitableStudent %></td>
             <% }); %>
         </tr>
-
-        <tr id="courseIntro">
-            <th>课程介绍</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>"><%= course.courseIntro %></td>
-            <% }); %>
-        </tr>
-        <tr id="goal">
-            <th>教学目标</th>
-            <% _.each(courses, function(course) { %>
-            <td class="courseId_<%= course.id %>"><%= course.goal %></td>
-            <% }); %>
-        </tr>
-
     </table>
 </div>
 <div class="title clearfix" style="border-top:none;" id="special_collapse">
