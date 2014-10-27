@@ -1029,7 +1029,7 @@
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/></div>
         <div class="col1">
             <p class="title">
-                <a class="courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
+                <a href="#course/<%= id %>" target="_blank" class="courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
             </p>
 
             <p class="desc descSpec">[<%= circleName||'-- --' %>]</p>
@@ -1073,8 +1073,8 @@
             </div>
 
             <div class="col3 clearfix">
-                <div class="blank margin-top" id="trial_<%= id %>"><input class="btn_g" value="查看详情" type="button">
-                </div>
+                <div class="blank margin-top" id="trial_<%= id %>"><a href="#course/<%= id %>" target="_blank" class="btn btn-sm">查看详情</a></div>
+                <!--<input class="btn_g" value="查看详情" type="button">-->
                 <div class="compare margin-top" id="compare_<%= id %>"><input class="btn_o add" type="button"
                                                                               value="+对比"/></div>
             </div>

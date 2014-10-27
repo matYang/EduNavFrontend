@@ -430,12 +430,15 @@
     padding: 0;
 }
 
-.search_result .col3 .btn_g {
-    width: 96px;
-    height: 36px;
+.search_result .col3 .btn.btn-sm {
+    /*width: 96px;*/
+    /*height: 36px;*/
     background-color: #ff6a6a;
     float: left;
     margin-right: 10px;
+    font-size: 14px;
+    color: #FFF;
+    padding: 7.5px 19px;
 }
 
 .search_result .col3 .btn_o {
