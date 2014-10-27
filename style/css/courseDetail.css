@@ -252,3 +252,16 @@ li.bjqs-slide{position:absolute; display:none;}
      width: 30px;
 }
 p.bjqs-caption{display:block;width:96%;margin:0;padding:2%;position:absolute;bottom:0;}
+
+
+
+/*分享图标*/
+.courseDetail .banner{ position: relative;}
+.courseDetail .invitation_share{ position: absolute; right: 27px; bottom: 30px;}
+.courseDetail .invitation_share .invitation_icon{ width: 22px; height: 23px; float: left; margin-left: 4px;text-indent: -999999em; cursor:pointer;}
+.courseDetail .invitation_share .weibo{ background-image: url("../images/share_1.png")}
+.courseDetail .invitation_share .renren{ background-image: url("../images/share_2.png")}
+.courseDetail .invitation_share .qzone{ background-image: url("../images/share_3.png")}
+.courseDetail .invitation_share .douban{ background-image: url("../images/share_4.png")}
+.courseDetail .invitation_share .kaixin{ background-image: url("../images/share_5.png")}
+.courseDetail .invitation_share .weixin{ background-image: url("../images/share_1.png")}
