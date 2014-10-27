@@ -1029,7 +1029,7 @@
         <div class="pic"><img src="<%= logoUrl %>" width="100" height="100"/></div>
         <div class="col1">
             <p class="title">
-                <a class="courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
+                <a href="#course/<%= id %>" target="_blank" class="courseTitle viewDetail" data-id="<%= id %>"><%= courseName %></a>
             </p>
 
             <p class="desc descSpec">[<%= circleName||'-- --' %>]</p>
@@ -1073,8 +1073,8 @@
             </div>
 
             <div class="col3 clearfix">
-                <div class="blank margin-top" id="trial_<%= id %>"><input class="btn_g" value="查看详情" type="button">
-                </div>
+                <div class="blank margin-top" id="trial_<%= id %>"><a href="#course/<%= id %>" target="_blank" class="btn btn-sm">查看详情</a></div>
+                <!--<input class="btn_g" value="查看详情" type="button">-->
                 <div class="compare margin-top" id="compare_<%= id %>"><input class="btn_o add" type="button"
                                                                               value="+对比"/></div>
             </div>
@@ -2243,16 +2243,10 @@
     <div class="row">
         <div class="clearfix" style="margin-bottom: 25px;">
             <h1 style="color: #128D56;font-weight: normal"><%= instName %> </h1>
-            <div class="shareIcon" style="float: left">
-                <i class="share"></i>
-                <div class="invitation_share blank clearfix">
-                    <a class="jiathis_button_tsina invitation_icon weibo"></a>
-                    <a class="jiathis_button_renren invitation_icon renren"></a>
-                    <a class="jiathis_button_qzone invitation_icon qzone"></a>
-                    <a class="jiathis_button_douban invitation_icon douban"></a>
-                    <a class="jiathis_button_kaixin001 invitation_icon kaixin"></a>
-                </div>
-            </div>
+            <!--<div class="shareIcon" style="float: left">-->
+                <!--<i class="share"></i>-->
+
+            <!--</div>-->
 
 
 
@@ -2278,12 +2272,8 @@
             <%})%>
         </p>
 
-        <p class="desc" style="margin-bottom: 15px; padding: 0;">
+        <p class="desc" id="circle_list" style="margin-bottom: 15px; padding: 0;">
             <i class="i_partner i_partner_location"></i>
-            <%_.each(addressList,function(a){%>
-            <span><%=a.circleName%></span>
-            <%})%>
-
         </p>
 
         <div class="dash-line"></div>
@@ -2299,6 +2289,14 @@
         <div class="btns">
             <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
             <a class="btnconsult bookNow" id="applyCourse" data-value="">申请免费试听</a>
+        </div>
+
+        <div class="invitation_share blank clearfix">
+            <a class="jiathis_button_tsina invitation_icon weibo"></a>
+            <a class="jiathis_button_renren invitation_icon renren"></a>
+            <a class="jiathis_button_qzone invitation_icon qzone"></a>
+            <a class="jiathis_button_douban invitation_icon douban"></a>
+            <a class="jiathis_button_kaixin001 invitation_icon kaixin"></a>
         </div>
     </div>
 </div>
@@ -2683,6 +2681,14 @@
                     <a class="btnbuy" onclick="doyoo.util.openChat('g=82548');return false;">在线咨询</a>
                     <a class="btnconsult bookNow" data-value="<%=courseId%>">申请免费试听</a>
                 </div>
+            </div>
+
+            <div class="invitation_share blank clearfix">
+                <a class="jiathis_button_tsina invitation_icon weibo"></a>
+                <a class="jiathis_button_renren invitation_icon renren"></a>
+                <a class="jiathis_button_qzone invitation_icon qzone"></a>
+                <a class="jiathis_button_douban invitation_icon douban"></a>
+                <a class="jiathis_button_kaixin001 invitation_icon kaixin"></a>
             </div>
     </div>
 <div class="detailMain clearfix">
@@ -3091,7 +3097,7 @@
         </td>
         <td>
             <a class="inline-block">
-                <button type="button" class="btn_g" data-value="<%= id %>">申请免费试听</button>
+                <button type="button" class="btn_g bookNow" data-value="<%= id %>">申请免费试听</button>
             </a>
         </td>
     </tr>
@@ -4349,6 +4355,16 @@
             <a class="btnbuy">立即抢购</a>
             <a class="btnconsult" onclick="doyoo.util.openChat('g=82548');return false;">咨询</a>
         </div>
+
+
+    </div>
+
+    <div class="invitation_share blank clearfix">
+        <a class="jiathis_button_tsina invitation_icon weibo"></a>
+        <a class="jiathis_button_renren invitation_icon renren"></a>
+        <a class="jiathis_button_qzone invitation_icon qzone"></a>
+        <a class="jiathis_button_douban invitation_icon douban"></a>
+        <a class="jiathis_button_kaixin001 invitation_icon kaixin"></a>
     </div>
 </div>
 

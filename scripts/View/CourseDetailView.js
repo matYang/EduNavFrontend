@@ -289,6 +289,31 @@ var CourseDetailView = Backbone.View.extend({
             that.sr.set("categoryValue", $(this).data('value'));
             app.navigate("search/" + that.sr.toQueryString(), true);
         });
+        //分享
+        jiathis_config.summary = "学霸是怎样练成的？坚持不懈爱上课！强力推荐个好课程http://www.ishangke.cn/#course/" + this.course.get('id') + "，注册即送800元现金券，还有更多课程团购低至一折，快跟我一起去上课吧";
+
+        $('.invitation_share a').on('click', function (e) {
+            e.preventDefault();
+            if (!app.sessionManager.sessionModel.get("invitationCode")) {
+                self.openModal();
+                //阻止事件追加:分享到其它社区里
+                e.stopImmediatePropagation();
+            }
+        });
+        /*bind events end*/
+        //load jiathis js for social share
+        if ($('#jiathis_script').length === 0) {
+            this.$el.append('<script id="jiathis_script" type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1407735888243953" charset="utf-8"></script>');
+        }
+        var userAgent = window.navigator.userAgent.toLowerCase();
+        var is_ie = (userAgent.indexOf('msie') != -1 && !is_opera) && userAgent.substr(userAgent.indexOf('msie') + 5, 3);
+        if (!window.clipboardData) {
+            $("#clickCopy").remove();
+        } else {
+            $("#clickCopy").on("click", function () {
+                window.clipboardData.setData("Text", $("#copy_content").val());
+            });
+        }
     },
 
     showLoginModal: function () {
@@ -302,9 +327,34 @@ var CourseDetailView = Backbone.View.extend({
             if (this.commentsView) {
                 this.commentsView.close();
             }
+            if(this.teacherModal){
+                this.teacherModal.close();
+            }
+            if(this.freeTrialModal){
+                this.freeTrialModal.close();
+            }
+            if(this.loginFastModal){
+                this.loginFastModal.close();
+            }
             $(document).off("scroll");
             this.isClosed = true;
             app.courseDetailView = null;
         }
     }
 });
+
+var jiathis_config = {
+    boldNum: 0,
+    siteNum: 7,
+    showClose: false,
+    sm: "t163,kaixin001,renren,douban,tsina,tqq,tsohu",
+    // imageUrl:"http://v2.jiathis.com/code/images/r5.gif",
+    // imageWidth:26,
+    // marginTop:150,
+    url: "http://www.ishangke.cn",
+    title: "学霸是怎样练成的？坚持不懈爱上课！",
+    summary: "我请大家免费上培训班啦！接受邀请请点击www.iShangke.cn，注册成为爱会员，我们都能获得20元红包奖励！赶快行动吧！",
+    // pic:"自定义分享的图片连接地址",
+    data_track_clickback: true,
+    shortUrl: true
+};

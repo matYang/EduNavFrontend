@@ -1036,3 +1036,15 @@
     line-height: 20px;
     font-size: 14px;
 }
+
+
+/*分享图标*/
+#tuanDetail .banner{ position: relative;}
+#tuanDetail .invitation_share{ position: absolute; right: 27px; bottom: 30px;}
+#tuanDetail .invitation_share .invitation_icon{ width: 22px; height: 23px; float: left; margin-left: 4px;text-indent: -999999em; cursor:pointer;}
+#tuanDetail .invitation_share .weibo{ background-image: url("../images/share_1.png")}
+#tuanDetail .invitation_share .renren{ background-image: url("../images/share_2.png")}
+#tuanDetail .invitation_share .qzone{ background-image: url("../images/share_3.png")}
+#tuanDetail .invitation_share .douban{ background-image: url("../images/share_4.png")}
+#tuanDetail .invitation_share .kaixin{ background-image: url("../images/share_5.png")}
+#tuanDetail .invitation_share .weixin{ background-image: url("../images/share_1.png")}

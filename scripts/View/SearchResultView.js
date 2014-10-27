@@ -17,7 +17,6 @@ var SearchResultView = MultiPageView.extend({
 
         this.fetchAction();
         this.bindEvents();
-        this.bindEntryEvents();
     },
     render: function () {
         this.isClosed = false;
@@ -68,21 +67,7 @@ var SearchResultView = MultiPageView.extend({
                 that.compareWidgetView.removeCourse(Utilities.toInt(id));
             }
 
-        }).on("click", ".blank", function (e) {
-            e.preventDefault();
-            id = Utilities.getId($(this).attr("id"));
-            app.navigate("course/" + id, true);
-        });
-    },
-
-    bindEntryEvents: function () {
-        $('#searchResultDisplayPanel').on('click', '.viewDetail', function () {
-            var courseId = $(this).data('id');
-            if (courseId == '')return;
-            //百度统计
-            _hmt.push(['_trackEvent', 'course', 'click', courseId]);
-            app.navigate("course/" + courseId, true);
-        });
+        })
     },
     fetchAction: function (pageIndex) {
         var self = this;
