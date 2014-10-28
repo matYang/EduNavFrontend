@@ -10,6 +10,7 @@ var Partner = Backbone.Model.extend({
             'instName': '',
             'partnerIntro': '',
             'partnerDistinction': '',
+            'outline':'',
             'logoUrl': '',
 
             'rating': 4.0, // 评分初始值为4
