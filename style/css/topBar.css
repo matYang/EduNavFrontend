@@ -238,6 +238,6 @@
     width: 100%;
     min-width: 1000px;
     height: 400px;
-    background: url("../images/front_banner.png") center center no-repeat #282C37;
+    background: url("../images/front_banner.png?_=112124") center center no-repeat #282C37;
     margin-bottom: 20px;
 }
