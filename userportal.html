@@ -2282,7 +2282,7 @@
         <p class="desc descSpec"><i class="i_partner i_partner_eye"></i>
             <span><%=popularity%></span>
             <i class="i_dash"></i>
-            <span>老师<%=teacherCount%></span>
+            <span><%=teacherCount%>位名师</span>
             <i class="i_dash"></i>
             <span><%=courseCount%>门课程</span>
         </p>
@@ -2626,7 +2626,7 @@
                 <h1 style="color: #128D56;font-weight: normal"><%= courseName %></h1>
 
                 <div class="small_title">
-                    <h3>【<%= instName %>】</h3>
+                    <h3>【<a href="#inst/<%=partnerId%>" target="_blank"><%= instName %></a>】</h3>
 
                     <div>
                         <%if(groupBuyActivity){%>
