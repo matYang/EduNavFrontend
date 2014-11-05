@@ -1134,20 +1134,22 @@
     width: auto;
     height: 32px;
     font-weight: normal;
-    line-height: 38px;
+    line-height: 32px;
     padding: 0 5px;
     font-size: 16px;
     margin-right: 10px;
 }
 
 #searchCourse .searchContent .location span:hover {
-    text-decoration: underline;
-    color: #28B094;
+    background: #47BC78;
+    color: #FFF;
+    border-radius: 11px
 }
 
 #location_list .active {
-    text-decoration: underline;
-    color: #28B094;
+    background: #47BC78;
+    color: #FFF;
+    border-radius: 11px
 }
 
 .adv{
