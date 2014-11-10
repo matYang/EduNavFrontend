@@ -896,7 +896,7 @@
                 <a href="#/inst/<%=id%>" target="_blank" class="courseTitle viewDetail" data-id="<%= id %>"><%= instName %></a>
                 <!--<span class="badge" style="margin-top: 5px;">团</span>-->
             </p>
-            <p class="desc descSpec"><i class="i_partner i_partner_eye"></i>
+            <p class="desc descSpec"><i class="heartIcon"></i>
                 <span><%=popularity%></span>
                 <i class="i_dash"></i>
                 <span>老师<%=teacherCount%></span>
@@ -912,7 +912,7 @@
                 <span><%=c.name%></span>
                 <%})%>
             </p>
-            <p class="desc"><i class="i_partner i_partner_location"></i>
+            <p class="desc"><i class="locationIcon"></i>
                 <%_.each(addressList,function(a){%>
                 <span><%=a.circleName%></span>
                 <%})%>
@@ -2273,15 +2273,16 @@
         </p>
 
         <p class="desc" id="circle_list" style="margin-bottom: 15px; padding: 0;">
-            <i class="i_partner i_partner_location"></i>
+            <i class="locationIcon"></i>
         </p>
 
         <div class="dash-line"></div>
 
-        <p class="desc descSpec"><i class="i_partner i_partner_eye"></i>
+        <p class="desc descSpec">
+            <i class="heartIcon"></i>
             <span><%=popularity%></span>
             <i class="i_dash"></i>
-            <span>老师<%=teacherCount%></span>
+            <span>老师 <a class="ft-primary"><%=teacherCount%></a> </span>
             <i class="i_dash"></i>
             <span><%=courseCount%>门课程</span>
         </p>

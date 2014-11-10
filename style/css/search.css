@@ -367,20 +367,20 @@
     margin: 5px 0 15px 0;
 }
 
-.search_result .desc .locationIcon {
+.locationIcon {
     width: 16px;
     height: 20px;
     display: inline-block;
     background-image: url("../images/location.jpg");
-    margin: 0 2px -5px 0;
+    margin: 0 4px -5px 4px;
 }
 
-.search_result .desc .heartIcon {
+.heartIcon {
     width: 16px;
     height: 14px;
     display: inline-block;
     background-image: url("../images/heart.png");
-    margin: 0 2px -3px 0;
+    margin: 0 4px -3px 4px;
 }
 
 .search_result .col2 {
