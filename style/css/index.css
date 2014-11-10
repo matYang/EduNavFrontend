@@ -409,7 +409,7 @@ p.footer-phone {
     margin-bottom: 30px;
 }
 
-.partners .partnerLi{ width: 240px; height: 160px; cursor: pointer; margin: 0 10px 10px 0; position: relative;}
+.partners .partnerLi{ display:block;width: 240px; height: 160px; cursor: pointer; margin: 0 10px 10px 0; position: relative;}
 .partnerLi img{ width: 240px; height: 160px;}
 .paetners_info{
     display: none;

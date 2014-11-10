@@ -473,54 +473,54 @@
             <span>走在教育的前沿</span>
         </div>
         <div class="partners clearfix">
-            <div class="partnerLi pull-left">
-                <img src="style/images/s1.png" alt="" title="百创"/>
+            <a href="#inst/9" target="_blank" class="partnerLi pull-left">
+                <img src="style/images/s1.png" alt="百创"/>
                 <div class="paetners_info">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国人力资源研究会南京市唯一合作伙伴，用友财务软件南京市唯一授权合作单位， 211学府合作单位
                 </div>
-            </div>
-            <div class="partnerLi pull-left">
-                <img src="style/images/s2.png" alt=""/>
+            </a>
+            <a href="#inst/27" target="_blank" class="partnerLi pull-left">
+                <img src="style/images/s2.png" alt="欧风"/>
                 <div class="paetners_info">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;国内最大、最权威的专业小语种培训基地，法国著名Gefor语言学院及德国ASL学院的战略合作同盟
                 </div>
-            </div>
-            <div class="partnerLi pull-left">
-                <img src="style/images/s3.png" alt=""/>
+            </a>
+            <a href="#inst/76" target="_blank" class="partnerLi pull-left">
+                <img src="style/images/s3.png" alt="品学教育"/>
                 <div class="paetners_info">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计算机3年VFP通过率高达95%，C语言、VB通过率高达85%；往届通过率高达85%以上
                 </div>
-            </div>
-            <div class="partnerLi pull-right">
-                <img src="style/images/s4.png" alt=""/>
+            </a>
+            <a href="#inst/34" target="_blank" class="partnerLi pull-right">
+                <img src="style/images/s4.png" alt="启德学府"/>
                 <div class="paetners_info">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国著名国际教育集团EIC启德教育集团旗下的国际语言培训机构，中国成立最早、规模最大的英语培训机构之一
                 </div>
-            </div>
-            <div class="partnerLi pull-left">
-                <img src="style/images/s5.png" alt=""/>
+            </a>
+            <a href="#inst/53" target="_blank" class="partnerLi pull-left">
+                <img src="style/images/s5.png" alt="瑞恩培训"/>
                 <div class="paetners_info">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;全国小语种培训第一品牌，专注于日、法、韩、德、西等多国小语种培训和特色英语培训
                 </div>
-            </div>
-            <div class="partnerLi pull-left">
-                <img src="style/images/s6.png" alt=""/>
+            </a>
+            <a href="#inst/65" target="_blank" class="partnerLi pull-left">
+                <img src="style/images/s6.png" alt="瑞普"/>
                 <div class="paetners_info">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拥有400余名专业IT技术工程师，各类培训教师及资深专家40余名，10年以上企事业信息化建设经验和高端教学设施
                 </div>
-            </div>
-            <div class="partnerLi pull-left">
-                <img src="style/images/s7.png" alt=""/>
+            </a>
+            <a href="#inst/78" target="_blank" class="partnerLi pull-left">
+                <img src="style/images/s7.png" alt="天策"/>
                 <div class="paetners_info">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;连续3年全国十佳公考培训机构，江苏省考面试特训营通过率高达92.94%，连续命中江苏省考面试多道真题
                 </div>
-            </div>
-            <div class="partnerLi pull-right">
-                <img src="style/images/s8.png" alt=""/>
+            </a>
+            <a href="#inst/39" target="_blank" class="partnerLi pull-right">
+                <img src="style/images/s8.png" alt="新世界教育"/>
                 <div class="paetners_info">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名牌大学+热门专业+国内外七大权威证书，学员已连续多年蝉联新日语能力考全国状元
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </script>
@@ -796,6 +796,7 @@
                 <span class="search_span">品学教育</span>
                 <span class="search_span">启德学府</span>
                 <span class="search_span">瑞恩培训</span>
+                <span class="search_span">瑞普</span>
                 <span class="search_span">天策</span>
                 <span class="search_span">新世界教育</span>
             <%}%>
@@ -899,7 +900,7 @@
             <p class="desc descSpec"><i class="heartIcon"></i>
                 <span><%=popularity%></span>
                 <i class="i_dash"></i>
-                <span>老师<%=teacherCount%></span>
+                <span><%=teacherCount%>位名师</span>
                 <i class="i_dash"></i>
                 <a href="#/inst/<%=id%>" target="_blank" class="ft-primary a-dec"><%=courseCount%>门课程</a>
                 <i class="i_dash"></i>
@@ -2282,7 +2283,7 @@
             <i class="heartIcon"></i>
             <span><%=popularity%></span>
             <i class="i_dash"></i>
-            <span>老师 <a class="ft-primary"><%=teacherCount%></a> </span>
+            <span><a class="ft-primary"><%=teacherCount%>位名师</a></span>
             <i class="i_dash"></i>
             <span><%=courseCount%>门课程</span>
         </p>
@@ -2626,7 +2627,7 @@
                 <h1 style="color: #128D56;font-weight: normal"><%= courseName %></h1>
 
                 <div class="small_title">
-                    <h3>【<%= instName %>】</h3>
+                    <h3>【<a href="#inst/<%=partnerId%>" target="_blank"><%= instName %></a>】</h3>
 
                     <div>
                         <%if(groupBuyActivity){%>

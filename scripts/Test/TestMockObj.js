@@ -106,6 +106,7 @@ testMockObj = {
         .set("circleName", '仙林大学城test1仙林大学城test1仙林大学城test1仙林大学城test1仙林大学城test1')
         .set("status", EnumConfig.CourseStatus.onlined)
         .set("bookingType", 1)
+        .set("partnerId", 1)
         .set("bookingTotal", 127)
         .set("groupBuyActivity", {id: 1})
         .set('startUponArrival', 1).set('startDate', new Date())

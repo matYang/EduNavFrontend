@@ -74,7 +74,7 @@ var MultiPageView = Backbone.View.extend({
                 this.$entryContainer.append(
                         "<tr><td colspan='"
                         + td_length
-                            + "'><div class = 'noMessage'>"
+                        + "'><div class = 'noMessage'>"
                         + this.noMessage()
                         + "</div></td></tr>");
             }
@@ -208,7 +208,7 @@ var MultiPageView = Backbone.View.extend({
         //这里实现为<=38 push 39(38+1);<=39 push 40(39+1)
         for (i = this.lastCount; i > 0; i--) {
             if (endPage <= pageTotal - i) {
-                pageViewList.push(makePage(pageTotal - i, pageTotal - i + 1));
+                pageViewList.push(makePage(pageTotal - i + 1, pageTotal - i + 1));
             }
         }
 
