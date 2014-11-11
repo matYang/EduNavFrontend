@@ -2552,7 +2552,7 @@
         <td>
             <a style="width:40px;" href="#course/<%= id %>" target="_blank">详情</a>
             <%if(groupBuyActivity){%>
-            <a href="#tuan/<%= id %>" target="_blank">去团购</a>
+            <a href="#tuan/<%= groupBuyActivity.id %>" target="_blank">去团购</a>
             <%}else{%>
             <a onclick="doyoo.util.openChat('g=82548');return false;">获取优惠</a>
             <%}%>
